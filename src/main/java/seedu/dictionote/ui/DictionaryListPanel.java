@@ -13,7 +13,7 @@ import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.Definition;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of dictionary content and definition.
  */
 public class DictionaryListPanel extends UiPart<Region> implements DictionaryListPanelConfig {
     private static final String FXML = "DictionaryListPanel.fxml";
@@ -45,7 +45,7 @@ public class DictionaryListPanel extends UiPart<Region> implements DictionaryLis
     }
 
     /**
-     * Display content list view
+     * Displays content display.
      */
     public void openContentDisplay() {
         if (!dictionaryContentListView.isVisible()) {
@@ -57,7 +57,7 @@ public class DictionaryListPanel extends UiPart<Region> implements DictionaryLis
     }
 
     /**
-     * Display definition display
+     * Displays definition display.
      */
     public void openDefinitionDisplay() {
         if (!dictionaryDefinitionListView.isVisible()) {
@@ -88,10 +88,10 @@ public class DictionaryListPanel extends UiPart<Region> implements DictionaryLis
             } else {
                 setGraphic(new DictionaryListContentCard(content, getIndex() + 1).getRoot());
             }
-            openContentDisplay();
         }
     }
-    /**r
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Definition}
      * using a {@code DictionaryDefinitionCard}.
      */
@@ -106,7 +106,6 @@ public class DictionaryListPanel extends UiPart<Region> implements DictionaryLis
             } else {
                 setGraphic(new DictionaryListDefinitionCard(definition, getIndex() + 1).getRoot());
             }
-            openDefinitionDisplay();
         }
     }
 

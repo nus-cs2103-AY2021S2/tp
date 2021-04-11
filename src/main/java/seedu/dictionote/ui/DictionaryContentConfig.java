@@ -3,7 +3,7 @@ package seedu.dictionote.ui;
 import seedu.dictionote.model.dictionary.DisplayableContent;
 
 /**
- * DictionaryContentConfig is used as a access point for others component to request for UI changes.
+ * DictionaryContentConfig is used as a access point for others component to request for its UI changes.
  */
 
 public interface DictionaryContentConfig {
