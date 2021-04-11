@@ -6,6 +6,12 @@ nav-text: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
+You can reach us at the respective emails:
+* Wong Khia Xeng `e0407883@u.nus.edu`
+* Heng Yong Ming `e0425848@u.nus.edu`
+* Joven Pua Zai Xiong`e0415502@u.nus.edu`
+* Noel Mathew Issac `e0415881@u.nus.edu`
+
 ## Project Team
 
 
@@ -17,17 +23,17 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/khiaxeng.md)]
 
 * Role: Team Lead
-* Responsibilities: Undecided
+* Responsibilities: Quality Assurance
 
 ### Heng Yong Ming
 
 <img src="images/hengyongming.png" width="200px">
 
 [Github](https://github.com/hengyongming)
-[[portfolio](team/yongming.md)]
+[[portfolio](team/hengyongming.md)]
 
 * Role: Developer
-* Responsibilities: Code Quality
+* Responsibilities: Backend expert
 
 ### Noel Mathew Issac
 <img src="images/noelmathewisaac.png" width="200px">
@@ -46,5 +52,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/jovenpua.md)]
 
 * Role: Developer
-* Responsibilities: Testing
+* Responsibilities: Testing expert
 
