@@ -56,7 +56,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
 1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price, with the property having the highest asking price at the top.
 1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
-1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment n/simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
+1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment n/simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021, at 12:00PM.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
  Some other example commands you can try:
@@ -124,14 +124,14 @@ Adds a property to the app.
 Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
 Description:
-* Each property has a unique pair of address and postal code.
+* Each property has a **unique pair of address and postal code**.
   * No two properties with the exact same address and postal code can exist in the app at the same time.
-* The format for specifying a deadline date is `DD-MM-YYYY`.
-* Postal codes should have a minimum of 5 digits and a maximum of 10 digits.
-* Client's contact number should have a minimum of 7 digits and a maximum of 15 digits.
-* There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
+* The format for specifying a deadline date is **`DD-MM-YYYY`**.
+* Postal codes should have a **minimum of 5 digits** and a **maximum of 10 digits**.
+* Client's contact number should have a **minimum of 7 digits** and a **maximum of 15 digits**.
+* There can be multiple tags but different tags should be **separated with a comma**. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
-Examples & Output:
+Examples:
 * `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
 
 ![Example property added](images/ExampleAddProperty.png)
@@ -145,16 +145,17 @@ Adds an appointment to the app.
 Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 
 Description:
-* Each appointment has a unique pair of date and time.
+* Each appointment has a **unique pair of date and time**.
   * No two appointments with the exact same meeting date and time can exist in the app at the same time.
-* The format for specifying a date is `DD-MM-YYYY`.
-* The format for specifying a time is `HHMM` (in 24-hour clock).
+* The format for specifying a date is **`DD-MM-YYYY`**.
+* The format for specifying a time is **`HHMM`** (in 24-hour clock).
    
-Examples & Output:
+Examples:
 * `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
-* `add appointment n/Meeting at agency r/Company is setting new sales target for the month d/01-06-2021 t/1300`
 
 ![Example property added](images/ExampleAddAppointment.png)
+
+* `add appointment n/Meeting at agency r/Company is setting new sales target for the month d/01-06-2021 t/1300`
 
 
 ### 3.3 Editing
@@ -178,6 +179,12 @@ Description:
 
 Examples:
 *  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+To remove tags from a property, you can use the command `edit property INDEX tags/`. <br> e.g. `edit property 1 tags/` can be used to remove all the tags from the property at index 1.
+
+</div>
 
 #### 3.3.2 Editing an appointment : `edit appointment`
 
@@ -333,7 +340,7 @@ Finds all properties containing any of the specified keywords (case-insensitive)
 Format:
 * `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] 
 [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] 
-[ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMA]`
+[ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMAS]`
 
 Description:
 * There can be 1 or more parameters. 
@@ -391,10 +398,9 @@ Options:
 
     Searches for properties whose clients' emails contains `[CLIENT_EMAIL]`. 
 
-* `[tags/TAGS_SEPARATED_BY_COMMA]`
+* `[tags/TAGS_SEPARATED_BY_COMMAS]`
 
-    Searches for properties whose tags contains tags in `[TAGS_SEPARATED_BY_COMMA]`. `TAGS_SEPARATED_BY_COMMA` consists of 
-    all tags you wish to search for, all separated with comma. 
+    Searches for properties whose tags contains tags in `[TAGS_SEPARATED_BY_COMMAS]`. `TAGS_SEPARATED_BY_COMMAS` consists of all tags you wish to search for, all separated with comma. 
 
 
 Examples:
@@ -529,7 +535,7 @@ Action | Format, Examples
 **List appointment** | `list appointment`
 **Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
 **Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
-**Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] [ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMA]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
+**Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] [ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
 **Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME] [KEYWORD]` <br> e.g., `find appointment n/bob d/23-12-2021`
 **Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
 **Clear** | `clear property` <br> `clear appointment` <br> `clear all`
