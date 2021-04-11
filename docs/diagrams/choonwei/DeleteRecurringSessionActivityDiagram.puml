@@ -1,0 +1,32 @@
+@startuml
+start
+:User executes delete recurring session command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([all prefixes are present])
+    : Parse all delete recurring session command arguments;
+    if () then ([all arguments are valid])
+        :Logic executes the command;
+        if () then ([index points to a valid recurring session])
+            if () then ([session date belongs to the recurring session])
+                : Model splits existing recurring session into
+                 two session(s)/recurring session(s);
+                : UI shows the updated session list;
+                : Logic saves the address book to the storage;
+                : UI shows that the delete recurring\n session  command is successful;
+            else ([else])
+                :Ui show error message;
+            endif
+        else ([else])
+            :Ui show error message;
+        endif
+    else ([else])
+        :Ui show error message;
+    endif
+else ([else])
+    :Ui show error message;
+endif
+stop
+@enduml
