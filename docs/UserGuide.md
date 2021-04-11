@@ -207,6 +207,10 @@ Format for adding module with grade: `addm m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUM
 
 Format for deleting: `deletem m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
+`SEM_NUMBER` here references to the semester number of the semester user created.
+
+For example, if user added a semester using `adds p/1 s/5`, to add module to this semester user need to use `addm p/1 s/5 m/MODULE_CODE`
+
 > Tip: A user can view module info to see more details about it. (See `info`)
 
 This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and `SEM_NUMBER`, and outputs meta details about the module being added/deleted, as well as whether the addition/deletion was successful or not.
