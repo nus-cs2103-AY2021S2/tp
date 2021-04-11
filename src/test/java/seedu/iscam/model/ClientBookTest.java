@@ -39,7 +39,7 @@ public class ClientBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyClientBook_replacesData() {
         ClientBook newData = getTypicalClientBook();
         clientBook.resetData(newData);
         assertEquals(newData, clientBook);
@@ -62,18 +62,18 @@ public class ClientBookTest {
     }
 
     @Test
-    public void hasClient_clientNotInAddressBook_returnsFalse() {
+    public void hasClient_clientNotInClientBook_returnsFalse() {
         assertFalse(clientBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_clientInAddressBook_returnsTrue() {
+    public void hasClient_clientInClientBook_returnsTrue() {
         clientBook.addClient(ALICE);
         assertTrue(clientBook.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_clientWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasClient_clientWithSameIdentityFieldsInClientBook_returnsTrue() {
         clientBook.addClient(ALICE);
         Client editedAlice = new ClientBuilder(ALICE).withLocation(VALID_LOCATION_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();

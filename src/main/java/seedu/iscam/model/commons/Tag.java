@@ -9,7 +9,8 @@ import static seedu.iscam.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric, and it should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be a single alphanumeric word and "
+                                                        + "it should not be blank.";
     public static final String MESSAGE_LENGTH_CONSTRAINTS = "Tags should not be longer than 50 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     private static final int MESSAGE_MAX_LENGTH = 50;

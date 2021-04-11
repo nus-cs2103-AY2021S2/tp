@@ -15,7 +15,7 @@ import seedu.iscam.model.util.meetingbook.MeetingBook;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -23,7 +23,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyBook_success() {
         Model model = new ModelManager(getTypicalClientBook(), getTypicalMeetingBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalClientBook(), getTypicalMeetingBook(), new UserPrefs());
         expectedModel.setClientBook(new ClientBook());

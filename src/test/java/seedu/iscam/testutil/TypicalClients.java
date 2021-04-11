@@ -72,11 +72,11 @@ public class TypicalClients {
      * Returns an {@code ClientBook} with all the typical clients.
      */
     public static ClientBook getTypicalClientBook() {
-        ClientBook ab = new ClientBook();
+        ClientBook cb = new ClientBook();
         for (Client client : getTypicalClients()) {
-            ab.addClient(client);
+            cb.addClient(client);
         }
-        return ab;
+        return cb;
     }
 
     public static List<Client> getTypicalClients() {
