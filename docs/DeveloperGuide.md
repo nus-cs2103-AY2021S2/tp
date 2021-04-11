@@ -195,7 +195,7 @@ The notdone mechanism is similar to that of the done mechanism, except that the 
 
 #### Implementation
 
-The workload distribution feature is implemented by `ModuleManager`. It uses HashMap and an OberservableList to monitor the workload of each module and PieChart in javaFX to visualizes it. More explicitly, it implements by 4 HashMaps using Module as key. The first three maps are used in the ModuleList while the map of weighted sum is used in the PieChart.
+The workload distribution feature is implemented by `ModuleManager`. It uses HashMap and an OberservableList to monitor the workload of each module and PieChart in javaFX to visualizes it. More explicitly, it is implemented by 4 HashMaps using Module as key. The first three maps are used in the ModuleList while the map of weighted sum is used in the PieChart.
 
 * `moduleLowWorkLoadDistribution` - the value corresponds to the number of tasks with low workload.
 * `moduleMediumWorkLoadDistribution` - the value corresponds to the number of tasks with medium workload.
