@@ -41,7 +41,7 @@
       <Label fx:id="deadlineDate" styleClass="cell_small_label" text="\$date" />
       <Label fx:id="deadlineTime" styleClass="cell_small_label" text="\$time" />
       <Label fx:id="weightage" styleClass="cell_small_label" text="\$weightage" />
-      <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
+      <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" wrapText="true" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
