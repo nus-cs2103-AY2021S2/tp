@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -95,23 +94,22 @@ public class EditCommand extends Command {
         List<SpecialDate> dates = personToEdit.getDates();
         List<Meeting> meetings = personToEdit.getMeetings();
 
-        Optional<Meeting> earliestMeeting = meetings.stream().min(Comparator.comparing(Meeting::getDate));
-        Optional<SpecialDate> earliestDate = dates.stream().min(Comparator.comparing(SpecialDate::getDate));
+        Meeting earliestMeeting = meetings.size() > 0 ? meetings.get(meetings.size() - 1) : null;
+        SpecialDate earliestDate = dates.size() > 0 ? dates.get(meetings.size() - 1) : null;
 
-        if (earliestMeeting.isPresent() && earliestMeeting.get().getDate().isAfter(updatedBirthday.getDate())) {
+        if (earliestMeeting != null && earliestMeeting.getDate().isBefore(updatedBirthday.getDate())) {
             throw new IllegalValueException(String.format(
                     Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
                     DateUtil.toUi(updatedBirthday.getDate()),
                     "meeting",
-                    DateUtil.toUi(earliestMeeting.get().getDate())));
+                    DateUtil.toUi(earliestMeeting.getDate())));
         }
-
-        if (earliestDate.isPresent() && earliestDate.get().getDate().isAfter(updatedBirthday.getDate())) {
+        if (earliestDate != null && earliestDate.getDate().isBefore(updatedBirthday.getDate())) {
             throw new IllegalValueException(String.format(
                     Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
                     DateUtil.toUi(updatedBirthday.getDate()),
-                    "special date",
-                    DateUtil.toUi(earliestDate.get().getDate())));
+                    "meeting",
+                    DateUtil.toUi(earliestDate.getDate())));
         }
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthday, updatedGoal,
