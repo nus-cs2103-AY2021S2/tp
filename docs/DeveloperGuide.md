@@ -330,7 +330,7 @@ The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBoo
         * Less object oriented approach which goes against the principles of how this project was set up
 
 #### Add Room
-This section will detail the implementation of the Add Room feature via the `oadd` command,
+This section will detail the implementation of the Add Room feature via the `oadd` command.
 
 ##### Overview of Insertion Process
 The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc.
