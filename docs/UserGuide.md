@@ -105,8 +105,8 @@ StoreMando will accept similar items but will give a warning to alert the user a
 
 Item Attribute | Constraints
 --------------------| -------
-Item Name  | An alphanumeric string that can be one word or more.
-Location | 
+Item Name  | An alphanumeric string that must be one word or more.
+Location | Must not be blank.
 Quantity | An integer that must be at least 1 and must not exceed 1,000,000.
 Expiry Date | A date in the format of YYYY-MM-DD. An item can either have 1 expiry date or no expiry date.
 Tag | An alphanumeric string that can only be one word long. An item can have 0 or more tags.
@@ -119,8 +119,8 @@ n/ | ITEM_NAME | `n/ITEM_NAME` | ITEM_NAME can have multiple words.
 l/ | LOCATION  | `l/LOCATION` | LOCATION can have multiple words.
 q/ | QUANTITY | `q/QUANTITY` | QUANTITY must be a positive integer.
 e/ | EXPIRY_DATE | `e/EXPIRY_DATE` | EXPIRY_DATE is a date in the format of YYYY-MM-DD.
-t/ | TAG | `t/TAG` | Each TAG can only be one word long.
-*/ | PARTIAL_WORD | `*/PARTIAL_WORD` | PARTIAL_WORD can have multiple partial words.
+t/ | TAG | `t/TAG` | Each TAG must only be one word long.
+*/ | PARTIAL_WORD | `*/PARTIAL_WORD` | PARTIAL_WORD must have at least one word.
 
 ----
 
