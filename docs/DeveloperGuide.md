@@ -8,12 +8,12 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Introduction**
+## **Introduction**
 
 ### Purpose
 
 The purpose of this document is to provide a brief overview of the multi-level design architecture of SmartLib,
-so that you as a developer would be able to gain a better understanding of the relationship between
+so that you as the developer would be able to gain a better understanding of the relationship between
 the various components that SmartLib is made up from.
 
 ### Audience
@@ -38,13 +38,13 @@ and borrowers' information, as compared to the traditional GUI apps currently av
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Setting up, getting started**
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Design**
+## **Design**
 
 ### Architecture
 
@@ -183,7 +183,7 @@ Classes used by multiple components are in the `seedu.smartlib.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Implementation**
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -513,7 +513,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -523,7 +523,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix: Requirements**
+## **Appendix: Requirements**
 
 ### Product scope
 
@@ -816,7 +816,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
