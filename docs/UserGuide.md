@@ -350,7 +350,7 @@ Format: `delete_session c/ID`
 
 Examples:
 
-- `delete_session c/1` deletes the session with session ID c/1 in the address book.
+- `delete_session c/1` deletes the session with session ID c/1 in EzManage.
 
 ### Assigning student(s)/tutor to session : `assign`
 
