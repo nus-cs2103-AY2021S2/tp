@@ -20,10 +20,12 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.project.Project;
 import seedu.address.storage.JsonColabFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.ProjectBuilder;
 
 public class MainWindowTest extends GuiUnitTest {
     @TempDir
@@ -91,13 +93,13 @@ public class MainWindowTest extends GuiUnitTest {
                 .build();
         assertTrue(logic.getFilteredContactList().contains(contactToAdd));
 
-        // assert contacts window is displayed
+        // contacts window is displayed
         assertTrue(mainWindowHandle.contains(MainWindow.CONTACT_LIST_PANEL_ID));
 
         int contactIndex = logic.getFilteredContactList().size();
 
         // update contact
-        inputCommand("updateC " + contactIndex +" p/91234567 e/johndoe@example.com");
+        inputCommand("updateC " + contactIndex + " p/91234567 e/johndoe@example.com");
         Contact contactToUpdate = new ContactBuilder(contactToAdd)
                 .withPhone("91234567")
                 .withEmail("johndoe@example.com")
@@ -110,6 +112,37 @@ public class MainWindowTest extends GuiUnitTest {
         inputCommand("deleteC " + contactIndex);
         assertFalse(logic.getFilteredContactList().contains(contactToUpdate));
         assertTrue(mainWindowHandle.contains(MainWindow.CONTACT_LIST_PANEL_ID));
+    }
+
+    @Test
+    public void projects_success() {
+        inputCommand("addP n/project");
+
+        // assert contact has been added
+        Project projectToAdd = new ProjectBuilder()
+                .withName("project")
+                .build();
+
+        assertTrue(logic.getFilteredProjectsList().contains(projectToAdd));
+
+        // project window is displayed
+        assertTrue(mainWindowHandle.contains(MainWindow.PROJECT_PANEL_ID));
+
+        int projectIndex = logic.getFilteredProjectsList().size();
+
+        // update project
+        inputCommand("updateP " + projectIndex + " n/newprojectname");
+        Project projectToUpdate = new ProjectBuilder(projectToAdd)
+                .withName("newprojectname")
+                .build();
+
+        assertTrue(logic.getFilteredProjectsList().contains(projectToUpdate));
+        assertTrue(mainWindowHandle.contains(MainWindow.PROJECT_PANEL_ID));
+
+        // delete project
+        inputCommand("deleteP " + projectIndex);
+        assertFalse(logic.getFilteredProjectsList().contains(projectToUpdate));
+        assertTrue(mainWindowHandle.contains(MainWindow.TODAY_PANEL_ID));
     }
 
     private void inputCommand(String command) {
