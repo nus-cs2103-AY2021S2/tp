@@ -302,11 +302,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ---------------------------------- | ----------------------------------------------------------------------   |
 | `* * *`  | new user                                   | See a list of all commands         | refer to instructions when I forget how to use the App                   |
 | `* * *`  | user                                       | add a new residence                | keep track of all my residences                                                                         |
-| `* * *`  | user                                       | delete a residence                 | remove places that I no longer need to track                             |
+| `* * *`  | user                                       | delete a residence                 | remove residence that I no longer need to track                             |
 | `* * *`  | user                                       | find a residence by name           | locate details of residence without having to go through the entire list |
 | `* *`    | user                                       | edit a residence                   | change the information of residence when it is changed or error.            |
-| `*`      | user owning and renting out many residences | update status of multiple residence at once  | save the time that editing clean status one by one    |
-|`* *`    | new user  |clean all example residence|begin my new Residence Tracker quick
+| `*`      | user owning and renting out many residences| update status of multiple residence at once  | save the time that editing clean status one by one    |
+|`* *`     | new user                                   |clean all example residence          |begin my new Residence Tracker quick
+|`* *`     | user                                       | exit the application                |use my computer for other stuff
+|`* *`     | user                                       | have a tutorial                     |quikly learn the usage of the application 
+|`* *`     | user                                       | add a new booking of a residence    |keep track of all booking information of my residences
+|`* *`     | user                                       | edit a new booking of a residence   |change the information of booking when it is changed or error.
+|`* *`     | user                                       | delete a new booking of a residence |remove booking details that I no longer need to track
+|`* *`     | busy user                                  | remind me of recent booking         |process the most recent booking in time
 
 
 *{More to be added}*
@@ -375,9 +381,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case(UC05): Edit status of a residence** <br>
+**Use case(UC05): Edit information of a residence** <br>
 **MSS** <br>
-1.  User keys in the index and status of the residence to be edited
+1.  User keys in the index and information of the residence to be edited
 2.  System validates the edition
 3.  System updates the residence status
 <br>    Use case ends.
@@ -405,9 +411,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User keys in the exit command
 2.  System closes
 <br>    Use case ends.
+    
+<br>
 
+**Use case(UC08): Update clean status of multiple residences at once** <br>
+**MSS** <br>
+1.  User keys in the required clean status and index of residences to be updated
+2.  System confirms the clean status and residences' index list 
+3.  System updates the required residences' clean status
+    <br>    Use case ends.
 
-*{More to be added}*
+**Extensions** <br>
+* 2a. System detects an error in the entered INDEX or in entered status
+
+    * 2ai. System requests for the expected format of status command.
+    * 2aii. User inputs the correct status command with necessary details.
+      <br>      Use case resumes at step 2.
+
+<br>
+
+**Use case(UC09): Adds a new booking of the specified residence** <br>
+**MSS** <br>
+1.  User keys in the index of the specified residence, and the booking details 
+2.  System confirms residence's index and booking details
+3.  System updates the residence's booking list
+    <br>    Use case ends.
+
+**Extensions** <br>
+* 2a. System detects an error in the entered INDEX or entered booking information
+
+    * 2ai. System requests for the expected format of addb command.
+    * 2aii. User inputs the correct addb command with necessary details.
+      <br>      Use case resumes at step 2.
+
+<br>
+
+**Use case(UC10): edit a booking of the specified residence** <br>
+**MSS** <br>
+1.  User keys in the index of the specified residence, the index of booking, and the edited booking details 
+2.  System confirms residence index, booking index, and booking details
+3.  System updates the residence's booking list
+    <br>    Use case ends.
+
+**Extensions** <br>
+* 2a. System detects an error in the entered INDEX or entered booking edition 
+
+    * 2ai. System requests for the expected format of eddb command.
+    * 2aii. User inputs the correct eddb command with correct index and edition.
+      <br>      Use case resumes at step 2.
+
+<br>
+
+**Use case (UC11): Delete a booking of a residence**
+
+**MSS**
+1.  User deletes a booking with a residence INDEX and a booking INDEX
+2.  System confirms the input number
+3.  System deletes the respective entry of the booking
+    <br>    Use case ends.
+
+**Extensions**
+
+* 2a. System detects an error in the entered residence INDEX or booking INDEX.
+
+    * 2ai. System requests for the correct format of deletion.
+    * 2aii. User inputs the correct delete command with two normal INDEX.
+
+      Use case resumes at step 2.
+
+<br>
+
+**Use case (UC12): Remind Residences with Upcoming Bookings** <br>
+**MSS**<br>
+1.  User keys in the remind command
+2.  System shows a list of all residences with bookings starting in the next 7 days.
+    Use case ends.
+
+<br>
+
+**Use case (UC13): CLear all residence at once** <br>
+**MSS**<br>
+1.  User keys in the clear command
+2.  System delete all residences information.
+    Use case ends.
+
+<br>
 
 ### Non-Functional Requirements
 
@@ -423,9 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Residence Status**:
     * **Clean**: The residence has been cleaned
     * **Unclean**: The residence needs to be cleaned
-    * **Book**: ***TBC***
-    * **Unbook**: ***TBC***
-
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
