@@ -3,7 +3,6 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-Remember to revert README!
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
