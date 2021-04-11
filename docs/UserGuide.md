@@ -60,6 +60,7 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
    * **`blist`** `2` : Blacklists the 2nd contact shown in the current list.
 
    * **`exit`** : Exits the app.
+  
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -88,7 +89,8 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `dark`, `light` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
+* Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive). This number represents the largest possible number of contacts
+  that can be stored using the current implementation of SpamEZ.
   Values out of this valid integer range will be treated as invalid inputs.
   
 * The following images represent email, phone and address respectively.
@@ -151,7 +153,7 @@ If the person already has a remark, the existing remark will be replaced.
 Format: `remark INDEX r/REMARK`
 
 * Adds or replaces the remark of the person at the specified `INDEX`. The index
-  refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, ...
+  refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, …​
 * By default, all newly added contacts will be displayed as having 'No remark'.
 * You can remove a person's remark by typing `r/` without specifying any remark after it. This will cause the person
   will be displayed as having 'No remark'.
@@ -160,16 +162,19 @@ Example:
 
 `remark 3 r/Currently on Stay Home Notice`
 
-### Blacklisting a contact : `blist`
+### Blacklisting or un-blacklisting a contact : `blist`
 
 Blocks specific contacts, to specify that they do not want to be contacted.
-If the contact is already blacklisted, they will be un-blacklisted. 
+If the contact is already blacklisted, they will be un-blacklisted. Blacklisted contacts are
+displayed with a black background, as shown below.
+
+![blacklisted contact](images/BlacklistedContact.png)
 
 Format: `blist INDEX`
 
-* Changes the blacklist status of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, 3, ...
+* Changes the blacklist status of the person at the specified `INDEX`. The index 
+  refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, …​
+* By default, all newly added contacts will be displayed as un-blacklisted.
 
 ### Blacklisting or un-blacklisting multiple contacts : `massblist`
 
@@ -181,7 +186,7 @@ Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
   to either 'blacklist' or 'unblacklist' depending on the input parameter.
 * The keyword (`blacklist` and `unblacklist`) must be in lower case. 
 * The index refers to the index number shown in the displayed person list. Both the 
-  start index and end index must be valid positive integers 1, 2, 3, ...
+  start index and end index **must be valid positive integers** 1, 2, 3, …​
 * Start index must be strictly smaller than the end index and the end index cannot be larger than the number of contacts
   currently displayed in the list.
 * The index range must be specified before the keyword. <br>
@@ -202,7 +207,7 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, 3, ...
+* The index **must be a valid positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
@@ -214,8 +219,8 @@ Deletes all contacts within the specified index range (inclusive).
 
 Format: `massdelete START-END`
 * Deletes all contacts whose `INDEX` lies between the specified index range.
-* The index refers to the number shown in the displayed person list. Both the start index and end index must be valid
-  positive integers 1, 2, 3, ...
+* The index refers to the number shown in the displayed person list. Both the start index and end index **must be valid
+  positive integers** 1, 2, 3, …​
 * Start index must be strictly smaller than the end index and the end index cannot be larger than the
   number of contacts currently displayed in the list.
 
