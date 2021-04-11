@@ -602,7 +602,7 @@ _{Explain here how the data archiving feature will be implemented}_
 1.  User requests to list notes.
 2.  Dictionote shows a list of notes.
 3.  User requests to delete a specific note in the list.
-4.  Dictionote deletes the contact.
+4.  Dictionote deletes the note.
 
     Use case ends.
 
@@ -622,10 +622,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **MSS**
 
-1.  User requests to list contacts.
-2.  Dictionote shows a list of contacts.
+1.  User requests to list notes.
+2.  Dictionote shows a list of notes.
 3.  User requests to sort notes based on the last edit time.
-4.  Dictionote shows a list of contacts, sorted by last edit time.
+4.  Dictionote shows a list of notes, sorted by last edit time.
 
     Use case ends.
 
