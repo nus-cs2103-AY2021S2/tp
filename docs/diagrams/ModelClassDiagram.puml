@@ -18,7 +18,7 @@ Class ObservableCalendarDate
 
 Package Task {
 Class Task
-Class Deadline
+Class Date
 Class RecurringSchedule
 Class Title
 Class Status
@@ -50,15 +50,15 @@ UniqueTaskList o--> "*" Task
 Planner *-left-> "1" UniqueTagList
 UniqueTagList o--> "*" Tag
 Task *--> Title
-Task *--> Deadline
+Task *--> Date
 Task *--> Duration
 Task *--> RecurringSchedule
 Task *--> Description
 Task *--> Status
 Task o--> "*" Tag
 
-Title -[hidden]right-> Deadline
-Deadline -[hidden]right-> Duration
+Title -[hidden]right-> Date
+Date -[hidden]right-> Duration
 Duration -[hidden]right-> RecurringSchedule
 RecurringSchedule -[hidden]right-> Description
 Description -[hidden]right-> Status
