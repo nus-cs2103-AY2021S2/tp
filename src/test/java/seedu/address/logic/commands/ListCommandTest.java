@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -61,4 +63,37 @@ public class ListCommandTest {
                 model, ListCommand.MESSAGE_EMPTY_TUTOR_LIST, expectedModel);
     }
 
+    @Test
+    public void execute_showAllSessions_emptyList() {
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+        assertCommandSuccess(new ListCommand(PREDICATE_SHOW_ALL_PERSONS,
+                        PREDICATE_SHOW_ALL_SESSIONS, "sessions"),
+                model, ListCommand.MESSAGE_EMPTY_SESSION_LIST, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        ListCommand listPersonsCommand = new ListCommand(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_SESSIONS,
+                                                            "persons");
+        ListCommand listSessionsCommand = new ListCommand(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_SESSIONS,
+                                                            "sessions");
+
+        // same object -> returns true
+        assertTrue(listPersonsCommand.equals(listPersonsCommand));
+
+        // same values -> returns true
+        ListCommand listPersonsCommandCopy = new ListCommand(PREDICATE_SHOW_ALL_PERSONS, PREDICATE_SHOW_ALL_SESSIONS,
+                                                             "persons");
+        assertTrue(listPersonsCommand.equals(listPersonsCommandCopy));
+
+        // different types -> returns false
+        assertFalse(listPersonsCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(listPersonsCommand.equals(null));
+
+        // different session -> returns false
+        assertFalse(listPersonsCommand.equals(listSessionsCommand));
+    }
 }

@@ -8,4 +8,5 @@ import seedu.address.model.session.SessionId;
 public class TypicalSessionIds {
     public static final SessionId SESSION_ID_FIRST_CLASS = SessionId.fromOneBased(1);
     public static final SessionId SESSION_ID_SECOND_CLASS = SessionId.fromOneBased(2);
+    public static final SessionId SESSION_ID_INVALID_CLASS = SessionId.fromOneBased(8);
 }

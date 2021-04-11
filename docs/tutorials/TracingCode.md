@@ -210,7 +210,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 In this tutorial, we traced a valid edit command from raw user input to
 the result being displayed to the user. From this tutorial, you learned
-more about the inner workings of AddressBook and how the various
+more about the inner workings of EzManage and how the various
 components mesh together to form one cohesive product.
 
 Here are some quick questions you can try to answer based on your

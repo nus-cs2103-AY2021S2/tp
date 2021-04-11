@@ -44,13 +44,17 @@ public class DeletePersonCommand extends Command {
         Optional<Person> personToDelete = lastShownList.stream()
                 .filter(x-> x.getPersonId().equals(targetPersonId)).findAny();
 
-        if (personToDelete.isPresent()) {
-            model.deletePerson(personToDelete.get());
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete.get()));
-        } else {
+        if (!personToDelete.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+
+        if (personToDelete.get().hasSession()) {
+            throw new CommandException(Messages.MESSAGE_CANNOT_DELETE_PERSON);
+        }
+
+        model.deletePerson(personToDelete.get());
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete.get()));
     }
 
     @Override

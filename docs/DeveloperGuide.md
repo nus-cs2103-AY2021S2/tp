@@ -51,9 +51,9 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_person s/1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="650" />
 
 The sections below give more details of each component.
 
@@ -86,11 +86,11 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_person s/3")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_person s/3` Command](images/DeletePersonSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -133,6 +133,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add person feature
+
+#### Current Implementation
+
+The add person feature allows the user to add either a student or a tutor to EzManage
+
+The add person feature is facilitated by `UniquePersonList`. This list is stored internally in `AddressBook` as persons.
+
+`UniquePersonList` has a method called `addPerson(Person p)` which adds a Person to its list of Person. This person could be a Tutor or a Student depending on its personType attribute.
+
+This operation is exposed in the `Model` interface as `Model#addPerson(Person person)`
+
+Given below is an example usage scenario and how the add person mechanism behaves at each step.
+
+Step 1: The user executes `add_person pt/student …`. The LogicManager takes in the string command and calls `AddressBookParser#parseCommand(String userInput)`.
+
+Step 2: The `parseCommand` method passes the user input to `AddPersonCommandParser#parse(String args)` which returns an AddPersonCommand object. This addPersonCommand object has a reference to a Person which could be either Student or Tutor
+
+Step 3: The LogicManager then executes the AddPersonCommand which calls the `Model#addPerson(Person person)` method.
+
+Step 4: The `Model` adds the new Person to `UniquePersonList` in `AddressBook` and returns a CommandResult
+
+Step 5: The `CommandResult` is then displayed on the UI
+
+The sequence for the example scenario can be found below:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
 ### Add session feature
 
 #### Current Implementation
@@ -155,11 +183,39 @@ Step 4: The `Model` adds the new session to `sessions` in `AddressBook` and retu
 
 Step 5: The `CommandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddSessionCommandParser` and `AddSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Assign person feature
+
+#### Current Implementation
+
+The assign feature is able to assign `sessionId` to the list of sessions in a Person. This person can either be a Student or a Tutor. 
+
+Likewise, `studentId` and `tutorId` will be assigned to the list of students and tutor attribute of a session respectively.
+
+Given below is  an example usage scenario and how the assign command behaves at each step.
+
+Step 1 : The user executes `assign s/1 t/1 c/1` command to assign student `s/1` and tutor `t/1` to session `c/1`The LogicManager takes in the user input the calls `AddressBookParser#parseCommand(String userInput)`
+
+Step 2: The `AddressBookParser` then calls `AssignCommandParser.parse(String args)` that returns a `AssignCommand`. This `AssignCommand` will be return back to LogicManager
+
+Step 3: `LogicManager` then calls `AssignCommand#execute()`. In this method, `ÀssignCommand` calls internal methods `getStudents()` and `getTutor()`to check if provided studentId and tutorId are valid inputs. Once checked, `AssignCommand` calls internal methods `assignTutor()` and `assignStudents` which updates the provided student, tutor and session in both `UniquePersonList` and `SessionList`.
+
+Step 4: A `CommandResult` is returned 
+
+Step 5: The `CommandResult` is then displayed on the UI.
+
+The sequence for the example scenario can be found below:
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
 ### Unassign person feature
+
+#### Current Implementation
+
 The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
 
 Given below is an example usage scenario and how the unassign command behaves at each step.
@@ -174,9 +230,12 @@ Step 4: The `UnassignCommand` calls the `Person#removeSession(SessionID session)
 
 Step 5: A `CommandResult` object is returned and displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnassignCommandParser` and `UnassignCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete person feature
 
@@ -208,11 +267,12 @@ Step 6: The `Model` removes the specified person from `persons` in `AddressBook`
 
 Step 7: The `commandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
 
-The sequence for the example scenario can be found below:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete session feature
 
@@ -244,6 +304,9 @@ The sequence for the example scenario can be found below:
 
 ![DeleteSessionSequenceDiagram](images/DeleteSessionSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommandParser` and `DeleteSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ### Edit session feature
 
 #### Current Implementation
@@ -268,9 +331,45 @@ Step 5: The `Model` replaces the specified session `sessionToEdit` in `sessions`
 
 Step 6: The `CommandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
-![AddSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
+![EditSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommandParser`, `EditSessionCommand` and `EditSessionDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### View person feature
+
+#### Current Implementation
+
+The view person feature requires the `personID` of the student or tutor, and 
+displays the relevant information belonging to the person under that specified ID.
+As the user enters the command word `view_person`, the `ViewCommandParser` will verify
+if a `personID` has been provided, and an error is thrown if otherwise. With the given `personID`, 
+a `PersonIdPredicate` will be created, and subsequently a `ViewPersonCommmand` object will be created. <br>
+
+The `ViewPersonCommand` class inherits from the `Command` abstract class, and it implements the `execute()`
+class where it will use the `PersonIdPredicate` to update the model with the filtered list. <br>
+
+Given below is an example usage scenario and how the view person merchanism behaves at each step. <br>
+
+Step 1. The user launches the application and executes `view_person s/1` command to view student with personID `s/1`. <br>
+
+Step 2. The `parseCommand` method under `AddressBookParser` class passes the user input to `ViewCommandParser`. <br>
+
+Step 3. The `ViewCommandParser` verifies that a valid `personID` has been provided and throw an exception if otherwise.
+The parser then return a `ViewPersonCommand` object using the `PersonIdPredicate` created from the `personID`. <br>
+
+Step 4. The `LogicManager` then executes the `ViewPersonCommand`. <br>
+
+Step 5. The `VierPersonCommand` updates the model by calling `Model#updateFilteredPersonList` using the `PersonIdPredicate` created previously.
+
+Step 6. A `CommandResult` object is returned and displayed on the UI.
+
+The following activity diagram illustrates what happens when a user executes a view person command:
+
+![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -404,18 +503,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | manager                               | delete a class                 | remove classes that are no longer available              |
 | `* * `   | manager                               | edit tutor information         | ensure tutor information are up to date                  |
 | `* * `   | manager                               | edit student information       | ensure student information are up to date                |
-| `* * `   | manager                               | manage of class enrollment size  | be aware of how many more students should be allocated to this class |
-| `* * `   | manager                               | filter out suitable tutors by available timings and subjects    | allocate a suitable tutor to a class |
-| `* `     | manager                               | update and check the status of students’ bills  |                                         |
-| `* `     | manager                               | update and check the status of payments owed to tutors |                                  |
-| `* `     | manager                               | get notified when students’ bills are due |                                               |
-
-*{More to be added}*
 
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EzManage` and the **Actor** is the `user`, unless specified otherwise)
 
 
 **Use case: Add a person**
@@ -423,7 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a tutor or student in the list
-2. AddressBook adds the Person
+2. EzManage adds the Person
 
     Use case ends
 
@@ -431,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given tutor/student information is already exist in the list
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EzManage shows an error message.
 
   Use case ends.
 
@@ -440,7 +532,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a class to the database
-2. AddressBook adds the class
+2. EzManage adds the class
 
    Use case ends
 
@@ -450,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to delete a specific student in the list of persons
-2.  AddressBook deletes the student
+2.  EzManage deletes the student
 
     Use case ends.
 
@@ -458,7 +550,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given ID is invalid.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EzManage shows an error message.
+    
+    Use case ends.
+
+* 1b. The given ID is a person who is currently assigned to a session.
+
+    * 1b1. EzManage shows an error message, informing user to unassign the person from all of his/her sessions, before he/she can be deleted.
     
     Use case ends.
 
@@ -467,7 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to view a specific tutor/student in the list according to person ID
-2.  AddressBook shows the person's details and the classes assigned to the person
+2.  EzManage shows the person's details and the classes assigned to the person
 
     Use case ends.
 
@@ -475,16 +573,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given index is in the wrong format.
 
-    * 1a1. AddressBook shows an error message and show the proper usage of the command.
+    * 1a1. EzManage shows an error message and show the proper usage of the command.
 
       Use case resumes at step 2.
     
 * 1b. The given index cannot be found in the address book.
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EzManage shows an error message.
 
       Use case ends.
-    
-*{More to be added}*
 
 
 ### Non-Functional Requirements
@@ -527,56 +623,48 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person
 
    1. Prerequisites: Know a valid person ID.
 
-   1. Test case: `delete s/1`<br>
+   1. Test case: `delete_person s/1`<br>
       Assumption: `s/1` is a valid person ID. <br>
       Expected: Person with the ID `s/1` is deleted from the person list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete t/0`<br>
+   1. Test case: `delete_person t/0`<br>
       Assumption: `t/0` is an invalid person ID. <br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is an invalid person ID)<br>
+   1. Other incorrect delete commands to try: `delete_person`, `delete_person x`, `...` (where x is an invalid person ID)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Viewing a person
 1. Viewing a person
     1. Prerequisites: there is at least 1 person in the list, 
-       and his/her personID is known to the tester.
+       and his/her person ID is known to the tester.
     1. Test case: `view_person s/1` <br>
-        Assumption: `s/1` is a valid personID <br>
-       Expected: details of person with personID `s/1` is displayed on the left pane, 
+        Assumption: `s/1` is a valid person ID <br>
+       Expected: details of person with person ID `s/1` is displayed on the left pane, 
        and his/her associated sessions are displayed on the right
        
     1. Test case: `view_person s/0` <br>
-        Assumption: `s/0` is an invalid personID since personID starts from 1 <br>
+        Assumption: `s/0` is an invalid person ID since person ID starts from 1 <br>
        Expected: Error message is shown, no person/session is displayed
-       
-2. _{ more test cases …​ }_
 
 ### Viewing a session
 1. Viewing a session
     1. Prerequisites: there is at least 1 session in the list,
-       and the sessionID is known to the tester.
+       and the session ID is known to the tester.
     1. Test case: `view_session c/1` <br>
-       Assumption: `c/1` is a valid sessionID <br>
-       Expected: details of the session with sessionID `c/1` is displayed on the left pane,
+       Assumption: `c/1` is a valid session ID <br>
+       Expected: details of the session with session ID `c/1` is displayed on the left pane,
        and the students in the session are displayed on the right
 
     1. Test case: `view_session c/0` <br>
-       Assumption: `c/0` is an invalid sessionID since sessionID starts from 1 <br>
+       Assumption: `c/0` is an invalid sessionID since session ID starts from 1 <br>
        Expected: Error message is shown, no person/session is displayed
-
-2. _{ more test cases …​ }_
 
 ### Saving data
 

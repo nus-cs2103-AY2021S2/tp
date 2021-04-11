@@ -1,8 +1,11 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-!include Style.puml
+!include style.puml
 
-box Logic LOGIC_COLOR_T2
+hide footbox
+title Unassign Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":UnassignCommandParser" as UnassignCommandParser LOGIC_COLOR
@@ -32,7 +35,7 @@ UnassignCommandParser -> command
 UnassignCommandParser --> AddressBookParser : command
 deactivate UnassignCommandParser
 
-UnassignCommandParser -[hidden]->]
+AddressBookParser -[hidden]-> UnassignCommandParser
 destroy UnassignCommandParser
 
 AddressBookParser --> LogicManager : command
@@ -53,6 +56,9 @@ deactivate c1
 
 command --> LogicManager : commandResult
 deactivate command
+
+LogicManager -[hidden]-> command
+destroy command
 
 LogicManager -->[ : commandResult
 deactivate LogicManager

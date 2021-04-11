@@ -21,7 +21,7 @@ public class SessionIdPredicate implements Predicate<Session> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Session // instanceof handles nulls
-                && sessionId.equals(((Session) other).getClassId())); // state check
+                || (other instanceof SessionIdPredicate // instanceof handles nulls
+                && sessionId.equals(((SessionIdPredicate) other).getSessionId())); // state check
     }
 }

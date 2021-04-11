@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 
 /**
- * Lists all persons in EZManage to the user.
+ * Lists all persons in EzManage to the user.
  */
 public class ListCommand extends Command {
 
@@ -90,5 +90,12 @@ public class ListCommand extends Command {
         default:
             throw new CommandException(MESSAGE_USAGE);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && listCommandType.equals(((ListCommand) other).listCommandType)); // state check
     }
 }
