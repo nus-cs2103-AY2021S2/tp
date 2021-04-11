@@ -100,11 +100,19 @@ public class RecurringSchedule implements Attribute {
      * @return String format output of recurring schedule detail in user-centric form
      */
     private String formatRecurringSchedule() {
-
         String outputDate = FORMATTER.format(endDate.get());
         String outputRecurringScheduleDetail = " Every " + dayOfWeek + " " + weekFreq + " until " + outputDate;
 
         return outputRecurringScheduleDetail;
+    }
+
+    /**
+     * Used to check whether the input date is within range for recurring schedule when recurring schedule is non-empty
+     *
+     * @return Boolean result of whether the input date is in the correct range for recurring schedule
+     */
+    public boolean isInvalidDateRange() {
+        return !isValidDateRange && !isEmptyValue();
     }
 
     /**
@@ -168,15 +176,6 @@ public class RecurringSchedule implements Attribute {
     }
 
     /**
-     * Used to check whether the input date is within range for recurring schedule when recurring schedule is non-empty
-     *
-     * @return Boolean result of whether the input date is in the correct range for recurring schedule
-     */
-    public boolean isInvalidDateRange() {
-        return !isValidDateRange && !isEmptyValue();
-    }
-
-    /**
      * Used to generate the output of the dates of the recurring schedule
      * When the recurring schedule is present (not an empty string input)
      *
@@ -189,15 +188,15 @@ public class RecurringSchedule implements Attribute {
         dayOfWeek = recurringScheduleData[2].toLowerCase();
         weekFreq = recurringScheduleData[3].toLowerCase();
 
-        if (endDate.get().isBefore(currentDate)) { // Handle case where recurring schedule has passed in PlanIT
+        String recurringScheduleDetail = formatRecurringSchedule();
+        int numWeeks = calculateNumWeeksBetweenDates();
+        weekDates = findWeekDates(numWeeks);
+
+        String recurringScheduleOutput = recurringScheduleDetail + "\n\nHere are the Recurring Sessions:\n"
+                + String.join("\n", weekDates);
+        if (weekDates.isEmpty()) {
             return "";
         } else {
-            String recurringScheduleDetail = formatRecurringSchedule();
-            int numWeeks = calculateNumWeeksBetweenDates();
-            weekDates = findWeekDates(numWeeks);
-
-            String recurringScheduleOutput = recurringScheduleDetail + "\n\nHere are the Recurring Sessions:\n"
-                    + String.join("\n", weekDates);
             return recurringScheduleOutput;
         }
     }
