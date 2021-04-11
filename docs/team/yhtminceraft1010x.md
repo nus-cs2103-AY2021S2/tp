@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tay Yi Hsuen's Project Portfolio Page
+title: Yi Hsuen's Project Portfolio Page
 ---
 
 ## Project: ModuleBook3.5
