@@ -346,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HEY MATEz` and the **Actor** is the `user`, unless specified otherwise)
 
-:pencil2: **Use case: Add a member**
+:pencil2: **Use case: Add a Member**
 
 **MSS**
 
@@ -363,7 +363,7 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: View members**
+:pencil2: **Use case: View Members**
 
 **MSS**
 
@@ -372,7 +372,7 @@ Use case ends.
     
 Use case ends.
 
-:pencil2: **Use case: Delete member**
+:pencil2: **Use case: Delete a Member**
 
 **MSS**
 
@@ -389,7 +389,7 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: Edit member's details**
+:pencil2: **Use case: Edit Member's details**
 
 **MSS**
 
@@ -406,7 +406,7 @@ Use case ends.
 
 Use case ends.
 
-:pencil2: **Use case: Find members with keywords**
+:pencil2: **Use case: Find Members with keywords**
 
 **MSS**
 
