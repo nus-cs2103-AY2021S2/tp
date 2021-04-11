@@ -11,14 +11,14 @@ public abstract class TagCommand extends Command {
     public static final String MESSAGE_NO_SELECTED_PERSON = "You have not selected any person.";
     public static final String MESSAGE_NO_SHOWN_PERSON = "There are no shown person.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add or delete tags of person(s) in the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add or delete tag(s) of person(s) in the address book.\n"
             + "Parameters: "
-            + "SUB_COMMAND [PARAMETERS]\n"
+            + "{ add | delete } { shown | selected | INDEX… } -t TAG…\n"
             + "Sub Commands: "
-            + ADD_SUB_COMMAND_WORD + " INDEX … -t TAG …, "
-            + DELETE_SUB_COMMAND_WORD + " INDEX … -t TAG …\n"
-            + "Example: "
-            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 -t Java -t Python\n"
-            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 3 -t Python";
+            + ADD_SUB_COMMAND_WORD + " { shown | selected | INDEX… } -t TAG…, "
+            + DELETE_SUB_COMMAND_WORD + " { shown | selected | INDEX… } -t TAG…\n"
+            + "Examples:\n"
+            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " shown -t Photoshop\n"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 3 -t Photoshop -t Illustrator";
 
 }
