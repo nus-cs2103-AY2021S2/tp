@@ -25,10 +25,10 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import dog.pawbook.logic.commands.DropCommand;
+import dog.pawbook.logic.commands.EnrolCommand;
 
-public class DropParserTest {
-    private EnrolDropCommandParser parser = new EnrolDropCommandParser(false);
+public class EnrolCommandParserTest {
+    private EnrolDropCommandParser parser = new EnrolDropCommandParser(true);
 
     @Test
     public void parse_emptyArguments_failure() {
@@ -36,17 +36,17 @@ public class DropParserTest {
 
         // Empty user input
         assertParseFailure(parser, EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DropCommand.MESSAGE_USAGE));
+                EnrolCommand.MESSAGE_USAGE));
 
         // Empty dogId
         String userInput = PROGRAMID_DESC_FIFTEEN;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DropCommand.MESSAGE_USAGE));
+                EnrolCommand.MESSAGE_USAGE));
 
         // Empty programId
         userInput = DOGID_DESC_TWO;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DropCommand.MESSAGE_USAGE));
+                EnrolCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class DropParserTest {
     }
 
     @Test
-    public void parse_multipleDogsMultiplePrograms_failure() {
+    public void parse_manyDogsManyPrograms_failure() {
         // Test that invalid ID parseException is thrown
         String userInput = DOGID_DESC_TWO + DOGID_DESC_FOUR + PROGRAMID_DESC_FIFTEEN + PROGRAMID_DESC_SEVENTEEN;
         assertParseFailure(parser, userInput, EnrolDropCommandParser.MESSAGE_UNSUPPORTED_BATCH_OPERATION);
@@ -97,11 +97,10 @@ public class DropParserTest {
         Set<Integer> programIdSet = new HashSet<>();
         dogIdSet.add(ID_TWO);
         programIdSet.add(ID_FIFTEEN);
-
         String userInput = DOGID_DESC_TWO + PROGRAMID_DESC_FIFTEEN;
-        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
 
-        assertParseSuccess(parser, userInput, dropCommand);
+        assertParseSuccess(parser, userInput, enrolCommand);
     }
 
     @Test
@@ -114,9 +113,9 @@ public class DropParserTest {
         Set<Integer> programIdSet = new HashSet<>(programIdList);
 
         String userInput = DOGID_DESC_TWO + PROGRAMID_DESC_FIFTEEN + PROGRAMID_DESC_SEVENTEEN;
-        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
 
-        assertParseSuccess(parser, userInput, dropCommand);
+        assertParseSuccess(parser, userInput, enrolCommand);
     }
 
     @Test
@@ -129,8 +128,8 @@ public class DropParserTest {
         programIdSet.add(ID_FIFTEEN);
 
         String userInput = DOGID_DESC_TWO + DOGID_DESC_FOUR + PROGRAMID_DESC_FIFTEEN;
-        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
 
-        assertParseSuccess(parser, userInput, dropCommand);
+        assertParseSuccess(parser, userInput, enrolCommand);
     }
 }
