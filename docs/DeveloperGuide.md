@@ -761,8 +761,6 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
-
 ### Add Client
 1. Adding a new client
    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
