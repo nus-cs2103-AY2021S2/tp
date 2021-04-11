@@ -34,25 +34,25 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=jlxw48&tabRepo=AY2021S2-CS2103T-W15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 <br><br>
 * **Project management**:
-    * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+    * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub.
 <br><br>
 * **Enhancements to existing features**:
     * Wrote tests to ensure correctness of implemented `policy` (Pull request [\#51](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/51))
       and `batch` (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/98), 
       [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)) commands.
-    * Corrected existing bugs from the original upstream repository (Pull request [\#183](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/183))
+    * Corrected existing bugs from the original upstream repository (Pull request [\#183](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/183)).
 <br><br>
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features:
-          * `policy`: Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/42), [\#43](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/43)
-          * `batch`: Pull request [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)
+        * Added documentation for 
+          `policy` (Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/42), [\#43](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/43)) and
+          `batch` (Pull request [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)).
         * Did cosmetic tweaks to existing documentation: Pull requests
               [\#61](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/61),
               [\#63](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/63), 
               [\#78](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/78)
             * Drafted initial layout of User Guide that is still used in current iterations, through improvements in formatting, whitespaces, organisation and page flow.
-            * Increase readability of User Guide for readers, through grammar and spelling checks for example.
+            * Increase coherence and readability of User Guide.
             * Crafted welcoming introduction to ClientBook's User Guide. 
     * Developer Guide:
         * Added implementation details [here](https://ay2021s2-cs2103t-w15-2.github.io/tp/DeveloperGuide.html#feature-to-display-the-insurance-policies-associated-with-a-selected-client) 
