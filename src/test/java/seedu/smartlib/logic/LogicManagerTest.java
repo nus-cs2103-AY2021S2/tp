@@ -1,7 +1,6 @@
 package seedu.smartlib.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_READER_DISPLAYED_INDEX;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.smartlib.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -25,6 +24,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.CommandResult;
+import seedu.smartlib.logic.commands.DeleteReaderCommand;
 import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
@@ -69,7 +69,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "deletereader 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_READER_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, DeleteReaderCommand.INVALID_COMMAND_FORMAT
+                + DeleteReaderCommand.MESSAGE_USAGE);
     }
 
     @Test

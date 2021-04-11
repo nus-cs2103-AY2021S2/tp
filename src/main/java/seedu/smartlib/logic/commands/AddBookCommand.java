@@ -34,7 +34,7 @@ public class AddBookCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New book added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the book base.";
     public static final String MESSAGE_DUPLICATE_ISBN = "The ISBN you entered exists in the book base but it has "
-            + "a different book name. Please ensure that you key in the correct book name and ISBN.";
+            + "a different book name. Please ensure that you have keyed in the correct book name and ISBN.";
     private final Book bookWithTempBarcode;
 
     /**

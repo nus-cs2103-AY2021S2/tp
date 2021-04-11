@@ -10,7 +10,7 @@ import seedu.smartlib.model.SmartLib;
  */
 public class ClearCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear-everything-in-my-database";
+    public static final String COMMAND_WORD = "clear-everything-in-my-smartlib";
     public static final String MESSAGE_SUCCESS = "SmartLib has been cleared!";
 
     /**

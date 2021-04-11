@@ -12,7 +12,7 @@ public class ListReaderCommand extends Command {
 
     public static final String COMMAND_WORD = "listreader";
 
-    public static final String MESSAGE_SUCCESS = "Listed all readers";
+    public static final String MESSAGE_SUCCESS = "Listed all readers.";
 
     /**
      * Executes the command and returns the result message.

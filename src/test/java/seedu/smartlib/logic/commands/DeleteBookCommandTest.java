@@ -11,7 +11,6 @@ import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.commons.core.Messages;
 import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
@@ -44,7 +43,8 @@ public class DeleteBookCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookList().size() + 1);
         DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteBookCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteBookCommand, model, DeleteBookCommand.INVALID_COMMAND_FORMAT
+                + DeleteBookCommand.MESSAGE_USAGE);
     }
 
     @Test
@@ -73,7 +73,8 @@ public class DeleteBookCommandTest {
 
         DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteBookCommand, model, Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteBookCommand, model, DeleteBookCommand.INVALID_COMMAND_FORMAT
+                + DeleteBookCommand.MESSAGE_USAGE);
     }
 
     @Test

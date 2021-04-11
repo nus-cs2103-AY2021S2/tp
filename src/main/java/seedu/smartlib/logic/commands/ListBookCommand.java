@@ -12,7 +12,7 @@ public class ListBookCommand extends Command {
 
     public static final String COMMAND_WORD = "listbook";
 
-    public static final String MESSAGE_SUCCESS = "Listed all books";
+    public static final String MESSAGE_SUCCESS = "Listed all books.";
 
     /**
      * Executes the command and returns the result message.

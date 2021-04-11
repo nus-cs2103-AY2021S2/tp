@@ -11,7 +11,7 @@ public class ListOverdueBookCommand extends Command {
 
     public static final String COMMAND_WORD = "listoverdue";
 
-    public static final String MESSAGE_SUCCESS = "Listed all overdue books";
+    public static final String MESSAGE_SUCCESS = "Listed all overdue books.";
 
     /**
      * Executes the command and returns the result message.
