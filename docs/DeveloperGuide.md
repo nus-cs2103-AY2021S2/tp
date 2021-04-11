@@ -103,7 +103,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the heymatez book data.
+* stores the heymatez data.
 * exposes an unmodifiable `ObservableList<Person>` and `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -194,7 +194,11 @@ Assumptions:
 Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in the task list of HEY MATEz with deadline before 2021-04-04.  A
 `FindTasksBeforeCommandParser` is created and it calls `FindTasksBeforeParser#parse` on the arguments
 
+<<<<<<< HEAD
+Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If it is
+=======
 Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If is is
+>>>>>>> d8135770783b53d5373b860af3723d5b381677c8
 valid,  it will create a new `FindTasksBeforeCommand` instance by calling the constructor with the DeadlineBeforeDatePredicate.
 
 Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
@@ -384,7 +388,11 @@ Use case ends.
 
 **Extensions** 
 
+<<<<<<< HEAD
+* 2a. Member name provided by user does not exist in the list of members
+=======
 * 2a. Name specified does not exist in the currently displayed list of members
+>>>>>>> d8135770783b53d5373b860af3723d5b381677c8
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -401,7 +409,11 @@ Use case ends.
 
 **Extensions**
 
+<<<<<<< HEAD
+* 2a. Member name provided by user does not exist in the list of members
+=======
 * 2a. Name specified does not exist in the currently displayed list of members
+>>>>>>> d8135770783b53d5373b860af3723d5b381677c8
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -462,8 +474,13 @@ Similar to editing a member except that the user specifies task index instead of
 
 **Extensions**
 
+<<<<<<< HEAD
+* 1a. Task index does not exist in the list of tasks
+    * 1a1. HEY MATEz shows an error message
+=======
 * 2a. Task does not exist (Task index out of bounds)
     * 2a1. HEY MATEz shows an error message
+>>>>>>> d8135770783b53d5373b860af3723d5b381677c8
   
 Use case ends.
 
@@ -482,6 +499,12 @@ lists tasks with its title or description matching any of the keywords
 2. HEY MATEz searches through tasks' deadline 
 3. HEY MATEz lists tasks with deadlines before the specified date
    
+Use case ends.
+
+Extensions
+* 1a. The deadline provided by user is not in the correct format or is invalid
+    * 1a1. HEY MATEz shows an error message
+    
 Use case ends.
 
 :pencil2: **Use case: Find tasks using Priority**
@@ -510,7 +533,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-* 1a. The index specified by the user does not exist
+* 1a. Task index does not exist in the list of tasks
     * 1a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -525,7 +548,7 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-* 1a. The index specified by the user does not exist
+* 1a. Task index does not exist in the list of tasks
     * 1a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -539,7 +562,7 @@ Use case ends.
 3.  HEY MATEz removes all members assigned to the task
 
 **Extensions**
-* 2a. The index specified by the user does not exist
+* 2a. Task index does not exist in the list of tasks
     * 2a1. HEY MATEz shows an error message
 
 Use case ends.
@@ -553,6 +576,9 @@ Use case ends.
     
 Use case ends.
 
+<<<<<<< HEAD
+:pencil2: **Use case: Find all Tasks assigned to a particular Member**
+=======
 :pencil2: **Use case: View Unassigned Tasks**
 
 **MSS**
@@ -560,6 +586,7 @@ Use case ends.
 Similar to viewing a list of uncompleted tasks but a list of unassigned task is displayed instead.
 
 :pencil2: **Use case: Find all Tasks assigned to a particular Members**
+>>>>>>> d8135770783b53d5373b860af3723d5b381677c8
 
 **MSS**
 
@@ -570,7 +597,7 @@ Similar to viewing a list of uncompleted tasks but a list of unassigned task is 
 Use case ends.
 
 **Extensions**
-* 1a. The user does not enter any input as the parameters
+* 1a. Member name provided by user does not exist in the list of members
     * 1a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -603,7 +630,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and tasks. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -620,13 +647,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all members using the `viewMembers` command. Multiple members in the list. A member with the name of `Alice` exists in the list. No member with the name `Barry` exists in the list.
 
-   1. Test case: `delete Alice`<br>
+   1. Test case: `deleteMember Alice`<br>
       Expected: Member with the name `Alice` is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete Barry`<br>
+   1. Test case: `deleteMember Barry`<br>
       Expected: No person is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is a name which does not exist in the list)<br>
+   1. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is a name which does not exist in the list)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
