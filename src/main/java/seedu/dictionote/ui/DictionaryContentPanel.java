@@ -43,13 +43,13 @@ public class DictionaryContentPanel extends UiPart<Region> implements Dictionary
     public DictionaryContentPanel(DictionaryListPanel dictionaryListPanelConfig) {
         super(FXML);
         this.dictionaryListPanelConfig = dictionaryListPanelConfig;
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
     @Override
     public void setDisplayContent(DisplayableContent displayableContent) {
         dialogContainer.getChildren().clear();
         dialogContainer.getChildren().add(new DictionaryContentCard(displayableContent).getRoot());
+        scrollPane.setVvalue(0);
     }
 
     @Override
