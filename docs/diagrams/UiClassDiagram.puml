@@ -33,8 +33,10 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .left..|> Ui
 UiManager -down-> MainWindow
+UiManager -[hidden]down-> MainWindow
+
 MainWindow --> HelpWindow
 
 MainWindow *-down-> CommandBox
@@ -42,39 +44,37 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
 MainWindow *-down-> MeetingListPanel
 MainWindow *-down-> StatusBarFooter
-MainWindow -right-> NotesWindow
-MainWindow -right-> NotifWindow
+MainWindow --> NotesWindow
+MainWindow --> NotifWindow
 
 
 PersonListPanel -down-> PersonCard
 MeetingListPanel -down-> MeetingCard
 
-MainWindow -left-|> UiPart
 
 CommandBox --|> UiPart
 ResultDisplay --|> UiPart
 PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+PersonCard ---|> UiPart
 MeetingListPanel --|> UiPart
 MeetingCard ---|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+HelpWindow --|> UiPart
 NotesWindow  --|> Alert
 NotifWindow --|> Alert
+MainWindow -|> UiPart
 
-PersonCard ....> Model
-MeetingCard ....> Model
-UiManager -up-> Logic
-MainWindow -left-> Logic
+PersonCard ...> Model
+MeetingCard ...> Model
+UiManager .> Logic
+MainWindow .> Logic
 
 MeetingCard -[hidden]left- PersonCard
 
 MeetingListPanel -[hidden]left- PersonListPanel
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+PersonListPanel -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
-Alert -[hidden]left- StatusBarFooter
+StatusBarFooter -[hidden]left- HelpWindow
 
-MainWindow -[hidden]-|> UiPart
 @enduml

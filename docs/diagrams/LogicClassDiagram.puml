@@ -55,8 +55,8 @@ ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
-LogicManager --> Storage
+LogicManager ..> Model
+LogicManager ..> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
