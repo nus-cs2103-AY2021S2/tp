@@ -1,14 +1,14 @@
 @startuml
 start
-:User executes tag-search command;
+:User executes view command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([invalid input])
-    :UI outputs error message;
+if () then ([invalid input date])
+    :GUI outputs error message;
 else ([else])
-    :UI shows updated list of Tasks which contain relevant tags;
+    :GUI shows updated list of Tasks with the input date;
 endif
 stop
 @enduml

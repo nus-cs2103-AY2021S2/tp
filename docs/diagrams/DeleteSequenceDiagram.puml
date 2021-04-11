@@ -48,7 +48,7 @@ deactivate TaskifyParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteTask(1)
+DeleteCommand -> Model : deleteTask(task)
 activate Model
 
 Model --> DeleteCommand
@@ -61,7 +61,7 @@ activate CommandResult
 CommandResult --> DeleteCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
+DeleteCommand --> LogicManager
 deactivate DeleteCommand
 
 [<--LogicManager

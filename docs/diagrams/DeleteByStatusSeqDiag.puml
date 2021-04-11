@@ -1,0 +1,102 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
+participant "<<class>>\n:DeleteUtil" as DeleteUtil LOGIC_COLOR
+participant ":DeleteByStatusCommandParser" as DeleteByStatusCommandParser LOGIC_COLOR
+participant "<<class>>\n:ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":DeleteByStatusCommand" as DeleteByStatusCommand LOGIC_COLOR
+participant "<<class>>\n:DeleteUtil" as DeleteUtil LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete completed -all")
+activate LogicManager
+
+LogicManager -> TaskifyParser : parseCommand("delete completed -all")
+activate TaskifyParser
+
+
+TaskifyParser -> DeleteUtil : isDeletingTasksByStatus("completed -all")
+activate DeleteUtil
+
+DeleteUtil --> TaskifyParser : true
+deactivate DeleteUtil
+
+create DeleteByStatusCommandParser
+TaskifyParser -> DeleteByStatusCommandParser
+activate DeleteByStatusCommandParser
+
+DeleteByStatusCommandParser --> TaskifyParser
+deactivate DeleteByStatusCommandParser
+
+TaskifyParser -> DeleteByStatusCommandParser : parse("completed -all")
+activate DeleteByStatusCommandParser
+
+DeleteByStatusCommandParser -> ParserUtil : parseInputToStatus("completed -all")
+activate ParserUtil
+
+ParserUtil --> DeleteByStatusCommandParser
+deactivate ParserUtil
+
+create DeleteByStatusCommand
+DeleteByStatusCommandParser -> DeleteByStatusCommand
+activate DeleteByStatusCommand
+
+DeleteByStatusCommand --> DeleteByStatusCommandParser
+deactivate DeleteByStatusCommand
+
+DeleteByStatusCommandParser --> TaskifyParser
+deactivate DeleteByStatusCommandParser
+DeleteByStatusCommandParser -[hidden]-> TaskifyParser
+destroy DeleteByStatusCommandParser
+
+TaskifyParser --> LogicManager
+deactivate TaskifyParser
+
+LogicManager -> DeleteByStatusCommand : execute()
+activate DeleteByStatusCommand
+
+'DeleteByStatusCommand -> Model : getFilteredTaskList()
+'activate Model
+'
+'Model --> DeleteByStatusCommand
+'deactivate Model
+
+DeleteByStatusCommand -> DeleteUtil : getTasksToDelete(...)
+activate DeleteUtil
+
+DeleteUtil --> DeleteByStatusCommand
+deactivate DeleteUtil
+
+DeleteByStatusCommand -> Model : deleteTasksFromModel(...)
+activate Model
+
+Model --> DeleteByStatusCommand
+deactivate Model
+
+DeleteByStatusCommand -> DeleteUtil : generateSuccessMessage(...)
+activate DeleteUtil
+
+DeleteUtil --> DeleteByStatusCommand
+deactivate DeleteUtil
+
+create CommandResult
+DeleteByStatusCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteByStatusCommand
+deactivate CommandResult
+
+DeleteByStatusCommand --> LogicManager
+deactivate DeleteByStatusCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
