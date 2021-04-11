@@ -1,0 +1,35 @@
+@startuml
+start
+:User enters addPersonMeetingConnectionCommand;
+
+if () then ([The index of the meeting is entered])
+    :Parse prefixes;
+    if () then ([all prefixes
+    formatted correctly])
+        :Check if Meeting index provided
+        is within range of meeting index;
+        if () then ([index within list boundary])
+            :Check if persons index provided is within the range of person index;
+            if() then ([indices are valid])
+                :Set up a Set to store store the persons indices and
+                remove duplication from the user input;
+                :Use the indices to get the Person Object and add connection
+                to the meeting in MeetBuddy;
+            else ([else])
+                : Display error message that persons indices
+                 cannot be found;
+            endif
+        else ([else])
+            :Display error message that
+            Meeting index cannot be found;
+        endif
+    else ([else])
+        :Display error message on
+        invalid prefix format;
+    endif
+else ([else])
+    :Display error message
+    and show command format;
+endif
+stop
+@enduml
