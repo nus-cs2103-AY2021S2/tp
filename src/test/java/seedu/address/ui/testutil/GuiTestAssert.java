@@ -11,6 +11,7 @@ import guitests.guihandles.ContactCardHandle;
 import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.TodayDeadlineCardHandle;
+import guitests.guihandles.TodayEventCardHandle;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.contact.Contact;
@@ -19,6 +20,7 @@ import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.deadline.DeadlineWithProject;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.repeatable.EventWithProject;
 
 /**
  * @@author {se-edu}-reused
@@ -64,6 +66,27 @@ public class GuiTestAssert {
      */
     public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
         assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
+        if (expectedEvent.getIsWeekly()) {
+            assertEquals(String.format(MESSAGE_EVENT_REPEATABLE,
+                    DateUtil.decodeDateIntoDay(expectedEvent.getDate()),
+                    DateUtil.decodeDate(expectedEvent.getDate()),
+                    TimeUtil.decodeTime(expectedEvent.getTime())),
+                    actualCard.getDateTime());
+        } else {
+            assertEquals(String.format(MESSAGE_EVENT_NON_REPEATABLE,
+                    DateUtil.decodeDateIntoDay(expectedEvent.getDate()),
+                    DateUtil.decodeDate(expectedEvent.getDate()),
+                    TimeUtil.decodeTime(expectedEvent.getTime())),
+                    actualCard.getDateTime());
+        }
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedEvent}.
+     */
+    public static void assertCardDisplaysTodayEvent(EventWithProject expectedEvent, TodayEventCardHandle actualCard) {
+        assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
+        assertEquals(expectedEvent.getProjectName().toString(), actualCard.getProjectName());
         if (expectedEvent.getIsWeekly()) {
             assertEquals(String.format(MESSAGE_EVENT_REPEATABLE,
                     DateUtil.decodeDateIntoDay(expectedEvent.getDate()),
