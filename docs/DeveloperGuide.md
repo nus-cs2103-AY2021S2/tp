@@ -361,6 +361,8 @@ Use case ends.
 
 * 1a. Member already exists (Matching Name) in the list
     * 1a1. HEY MATEz shows an error message
+* 1b. The name, phone number, email or role provided for the member is invalid
+    * 1b1. HEY MATEz shows an error message   
   
 Use case ends.
 
@@ -385,7 +387,7 @@ Use case ends.
 
 **Extensions** 
 
-* 2a. Member name provided by user does not exist in the list of members
+* 2a. Member name provided by user does not exist in the currently displayed list of members
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -402,7 +404,9 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Member name provided by user does not exist in the list of members
+* 1a. The new name, phone number, email or role provided for the member is invalid
+    * 1a1. HEY MATEz shows an error message   
+* 2a. Member name provided by user does not exist in the currently displayed list of members
     * 2a1. HEY MATEz shows an error message
 
 Use case ends.
@@ -430,7 +434,9 @@ Use case ends.
 
 * 1a. Task already exists (Matching Title) in the list
     * 1a1. HEY MATEz shows an error message
-  
+* 1b. The title, description, deadline, status or priority provided for the task is invalid
+    * 1b1. HEY MATEz shows an error message     
+      
 Use case ends.
 
 :pencil2: **Use case: View Tasks**
@@ -450,7 +456,7 @@ Similar to deleting a member but user specifies task index instead of name
 
 **Extensions**
 
-* 2a. Task index does not exist in the list of tasks
+* 2a. Task index does not exist in the current displayed list of tasks
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -463,8 +469,10 @@ Similar to editing a member except that the user specifies task index instead of
 
 **Extensions**
 
-* 1a. Task index does not exist in the list of tasks
-    * 1a1. HEY MATEz shows an error message
+* 1a. The new title, description, deadline, status or priority provided for the task is invalid
+    * 1a1. HEY MATEz shows an error message   
+* 1b. Task index does not exist in the currently displayed list of tasks
+    * 1b1. HEY MATEz shows an error message
   
 Use case ends.
 
@@ -495,8 +503,8 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to find tasks using the input (A priority)
-2.  HEY MATEz searches through each tasks' priority
+1.  User requests to find tasks of a certain priority
+2.  HEY MATEz searches through each task
 3.  HEY MATEz lists tasks with a matching priority.
     
 Use case ends.
@@ -512,12 +520,13 @@ Use case ends.
 **MSS**
 
 1.  User requests to mark a task as completed using the task's index
-2.  HEY MATEz searches for the task index and changes the status of the task in the list to be completed
+2.  HEY MATEz searches for the task index
+3.  HEY MATEz changes the status of the task in the list to completed
     
 Use case ends.
 
 **Extensions**
-* 1a. Task index does not exist in the list of tasks
+* 1a. Task index does not exist in the currently displayed list of tasks
     * 1a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -527,12 +536,13 @@ Use case ends.
 **MSS**
 
 1.  User requests to mark a task as uncompleted using the task's index
-2.  HEY MATEz searches for the task index and changes the status of the task in the list to be uncompleted
+2.  HEY MATEz searches for the task index 
+3.  HEY MATEzchanges the status of the task in the list to uncompleted
     
 Use case ends.
 
 **Extensions**
-* 1a. Task index does not exist in the list of tasks
+* 1a. Task index does not exist in the currently displayed list of tasks
     * 1a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -546,7 +556,7 @@ Use case ends.
 3.  HEY MATEz removes all members assigned to the task
 
 **Extensions**
-* 2a. Task index does not exist in the list of tasks
+* 2a. Task index does not exist in the currently displayed list of tasks
     * 2a1. HEY MATEz shows an error message
 
 Use case ends.
@@ -556,7 +566,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to view the list of uncompleted tasks
-2.  HEY MATEz lists the uncompleted tasks along with the description 
+2.  HEY MATEz lists the uncompleted tasks 
     
 Use case ends.
 
@@ -570,24 +580,16 @@ Similar to viewing a list of uncompleted tasks but a list of unassigned task is 
 
 **MSS**
 
-1.  User requests to find tasks using the user input
-2.  HEY MATEz searches through each tasks' and checks the tasks' assignees
+1.  User requests to find tasks assigned to a name
+2.  HEY MATEz searches through each task and checks the assignees of the task
 3.  HEY MATEz lists tasks with a matching assignee.
     
-Use case ends.
-
-**Extensions**
-* 1a. Member name provided by user does not exist in the list of members
-    * 1a1. HEY MATEz shows an error message
-  
 Use case ends.
 
 ### Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Data should be persistent after exiting and reopening the app.
 3. App should run locally on the user's computer.
-
-*{More to be added}*
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
