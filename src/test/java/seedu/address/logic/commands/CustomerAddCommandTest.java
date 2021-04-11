@@ -339,6 +339,16 @@ public class CustomerAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Returns a list of orders that contain a given dish
+         *
+         * @param target
+         */
+        @Override
+        public List<Order> getOrdersContainingDish(Dish target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public List<Order> getIncompleteOrders() {
             throw new AssertionError("This method should not be called.");
