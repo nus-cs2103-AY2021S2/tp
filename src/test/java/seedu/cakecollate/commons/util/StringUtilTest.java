@@ -199,9 +199,10 @@ public class StringUtilTest {
         assertEquals("Hello W", capitaliseEachWord("hello w"));
         assertEquals("W", capitaliseEachWord("w"));
 
-        // assertEquals("  ", capitaliseEachWord("  "));
+        assertEquals("  ", capitaliseEachWord("  "));
         assertEquals("", capitaliseEachWord(""));
 
     }
+
 
 }
