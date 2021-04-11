@@ -22,7 +22,7 @@ public class DeleteStudentCommand extends Command {
             + "Parameters: Matriculation Number \n"
             + "Example: " + COMMAND_WORD + " A1234567X";
 
-    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s"; // add name + matric number
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student: %1$s"; // add name + matric number
 
     private final MatriculationNumber matriculationNumber;
 
