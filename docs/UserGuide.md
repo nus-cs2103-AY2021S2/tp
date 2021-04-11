@@ -116,8 +116,7 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
 6. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `add` and pressing <kbd>Enter</kbd> will allow you to start adding information into Pawbook.
 
 <div markdown="span" class="alert alert-info">
-:bulb: Please refer to the features below for details of each command.
-
+:bulb: Please refer to the features below for details of each command.<br>
 :heavy_exclamation_mark: Ensure that the <kbd>data/pawbook.json</kbd> file is not corrupted or edited wrongly. If any part of the file is invalid or corrupted, Pawbook will not be able to restore the data from the previous session and will start fresh, writing over the same file when saving!
 </div>
 
@@ -169,12 +168,9 @@ Examples:
    Command: `add program n/Obedience Training s/02-02-2020 18:00 t/puppies`
 
 <div markdown="span" class="alert alert-info" id="add-tips">
-:bulb: Address fields are free from input checking to allow flexibility to users from different countries with different address formats.
-
-:bulb: Owners are considered to be the same if they share the same name and either the same phone or email.
-
-:bulb: Dogs are considered to be the same if they share the same name and the same owner.
-
+:bulb: Address fields are free from input checking to allow flexibility to users from different countries with different address formats.<br>
+:bulb: Owners are considered to be the same if they share the same name and either the same phone or email.<br>
+:bulb: Dogs are considered to be the same if they share the same name and the same owner.<br>
 :bulb: Programs are considered to be the same if they share the same name.
 </div>
 
@@ -214,10 +210,8 @@ Examples:
    Command: `delete program 3`
 
 <div markdown="span" class="alert alert-info">
-:heavy_exclamation_mark: Take note that deleting an owner will automatically delete all the dogs that belong to that owner as well. We do not allow dogs in Pawbook to not have an owner!
-
-:heavy_exclamation_mark: Requiring the type of entity you are deleting to be specified helps ensure that you do not accidentally delete the wrong entity and lose important customer data!
-
+:heavy_exclamation_mark: Take note that deleting an owner will automatically delete all the dogs that belong to that owner as well. We do not allow dogs in Pawbook to not have an owner!<br>
+:heavy_exclamation_mark: Requiring the type of entity you are deleting to be specified helps ensure that you do not accidentally delete the wrong entity and lose important customer data!<br>
 :bulb: Deleting using ID instead of name? Yes, all commands other than `add` and `find` uses the entity's ID. When a new entity is added to Pawbook, the system assigns an unique ID to each of them.
 </div>
 
@@ -261,12 +255,9 @@ Examples:
    Command: `edit program 3 t/learn`
 
 <div markdown="span" class="alert alert-info">
-:bulb: Tags are only able to take in one alphanumeric string!
-
-:bulb: The same restrictions from [Add Command](#add-tips) regarding identity of entities.
-
-:heavy_exclamation_mark: Take note that editing sessions for programs and tags for any entity will automatically override **all** its current sessions/tags! To clear all sessions/tags, use "s/" and "t/" respectively without any values.
-
+:bulb: Tags are only able to take in one alphanumeric string!<br>
+:bulb: The same restrictions from [Add Command](#add-tips) regarding identity of entities.<br>
+:heavy_exclamation_mark: Take note that editing sessions for programs and tags for any entity will automatically override **all** its current sessions/tags! To clear all sessions/tags, use "s/" and "t/" respectively without any values.<br>
 :heavy_exclamation_mark: At least one attribute needs to be modified!
 </div>
 
@@ -305,8 +296,7 @@ Examples:
    Command: `enrol d/2 p/3 p/4`
 
 <div markdown="span" class="alert alert-info">
-:bulb: Even for batch enrolment, the dog must not be enrolled in any of the programs, or all dogs must not be enrolled in that program, in order for the command to work.
-
+:bulb: Even for batch enrolment, the dog must not be enrolled in any of the programs, or all dogs must not be enrolled in that program, in order for the command to work.<br>
 :heavy_exclamation_mark: Take note that enrolling multiple dogs into multiple programs at once is **NOT** allowed as it is error-prone.
 For example, `enrol d/2 d/3 p/4 p/5` is **NOT** allowed!
 </div>
@@ -346,8 +336,7 @@ Examples:
    Command: `drop d/2 p/3 p/4`
 
 <div markdown="span" class="alert alert-info">
-:bulb: Even for batch removal, the dog must be enrolled in all of the programs, or all dogs must be enrolled in that program for the command to work.
-
+:bulb: Even for batch removal, the dog must be enrolled in all of the programs, or all dogs must be enrolled in that program for the command to work.<br>
 :heavy_exclamation_mark: Take note that removing multiple dogs from multiple programs at once is **NOT** allowed! For example, `drop d/2 d/3 p/4 p/5` is **NOT** allowed!
 </div>
 
