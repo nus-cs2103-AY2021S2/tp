@@ -29,6 +29,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_VIEW_GARMENT_SUCCESS = "Viewing Garments";
     public static final String MESSAGE_DUPLICATE_TYPE = "Duplicate garment types used";
+    public static final String MESSAGE_DIFFERENT_DRESSCODE = "Dress code differs between garments being viewed";
 
     private final List<Index> indexes;
 
@@ -62,7 +63,11 @@ public class ViewCommand extends Command {
             }
             viewList.add(garmentToView);
         }
-
+        for (Garment g : viewList) {
+            if (!g.getDressCode().equals(viewList.get(0).getDressCode())) {
+                throw new CommandException(MESSAGE_DIFFERENT_DRESSCODE);
+            }
+        }
         Predicate<Garment> predicateViewGarments = garment -> viewList.contains(garment);
         model.updateFilteredGarmentList(predicateViewGarments);
         return new CommandResult(MESSAGE_VIEW_GARMENT_SUCCESS);

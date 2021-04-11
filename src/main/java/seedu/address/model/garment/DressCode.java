@@ -49,7 +49,7 @@ public class DressCode {
     public DressCode(String dresscode) {
         requireNonNull(dresscode);
         checkArgument(isValidDressCode(dresscode), MESSAGE_CONSTRAINTS);
-        value = dresscode;
+        value = dresscode.toLowerCase();
     }
 
     /**
@@ -85,7 +85,7 @@ public class DressCode {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DressCode // instanceof handles nulls
-                && value.equals(((DressCode) other).value)); // state check
+                && value.equalsIgnoreCase(((DressCode) other).value)); // state check
     }
 
     @Override
