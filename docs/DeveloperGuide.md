@@ -220,7 +220,8 @@ The above mentioned Parser class inherits from the `#parse method` from the Pars
   If the arguments are valid, it creates a DeleteTaskCommand instance.
 
 Subsequently, the created `DeleteTaskCommand` object contains an `#execute` method which 
-is responsible for deleting the given Task with respect to the index. 
+is responsible for deleting the given Task with respect to the index. This is achieved by calling on
+`Model#deleteTask` with the task to be deleted where it will be removed from the list of tasks. 
 
 Below is the usage scenario of how delete task mechanism behaves.
 
@@ -229,13 +230,13 @@ Assumptions:
 2. HEY MATEz application has an existing task
 
 Step 1. User executes the `deleteTask 1` command to delete the task at the 1st index in the task list of HEY MATEz. 
-A `DeleteTaskCommandParser` is created and calls the `DeleteTaskCommandParser#parse` on the arguments.
+A `DeleteTaskCommandParser` object is created and calls the `DeleteTaskCommandParser#parse` on the arguments.
 
-Step 2. `DeleteTaskCommandParser#parse` method checks on the validity of the arguments for a `DeleteTaskCommand`. 
-If it is valid, it will create a new `DeleteTaskCommand` instance by calling the constructor.
+Step 2. `DeleteTaskCommandParser#parse` method then checks on the validity of the arguments for a `DeleteTaskCommand`. 
+If it is valid, it will create a new `DeleteTaskCommand` instance by calling the constructor along with the task `Index`.
 
-Step 3. The `DeleteTaskCommand#execute` is then called by `Logic Manager`. The task with the same `Index` is retrieved 
-and deleted from the task list using the `deleteTask` method in the `Model` class.
+Step 3. The `DeleteTaskCommand#execute` is then called by `Logic Manager`. The task with the same `Index` is retrieved
+and deleted from the task list when `Model#deleteTask` is called.
 
 Step 4. Once the execution is completed, the message `MESSAGE_DELETE_TASK_SUCCESS` is used to return a 
 new Command Result with the attached message.
@@ -319,26 +320,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user starting to use the app| be able to add in the contacts of my CCA members | have a better overview of the members in my CCA and access their information easily|
 | `* * *`  | forgetful CCA leader | be able to view who have been added into my contacts | retrieve their information and add the remaining members too |
-| `* * *`  | CCA leader with many tasks to be done in the CCA | be able to add tasks into the application | better manage the tasks |
-| `* * *`  | CCA leader with tasks that are constantly changing in details | be able to edit the details of the tasks accordingly | keep the task details updated |
+| `* * *`  | CCA leader with many tasks to be done | be able to add the tasks of our CCA | better manage the tasks |
+| `* * *`  | CCA leader whose tasks' details need to be updated constantly | be able to edit the details of the tasks accordingly | keep the tasks' details updated |
 | `* * *`  | CCA leader with tasks that are no longer relevant | be able to delete tasks that are either completed or unnecessary | keep the list organized and clear |
 | `* * *`  | CCA leader with projects and tasks piling up | be able to view a list of tasks that is to be completed by members of the CCA | be updated with what needs to be done |
 | `* * *`  | CCA leader who has members leaving the CCA | be able to remove details of the user from that application | better manage my members |
 | `* * *`  | CCA leader whose members’ details have changed | be able to edit the details of the user in the application | keep my contacts up-to-date |
 | `* * *` | CCA leader with many deadlines to meet | be able to set deadlines for specific tasks | keep track of the tasks' deadlines |
-| `* * *` | CCA leader with tasks to distribute | be able to assign tasks to students in the application | track the distribution of tasks |
+| `* * *` | CCA leader with tasks to be distributed | be able to assign tasks to students | track the distribution of tasks to certain members|
 | `* * `  | CCA leader with tasks that are being completed every other week | be able to mark tasks as ‘completed’  | track which tasks are completed |
 | `* * `  | CCA leader | be able to change the assignee of a task | easily update the member assigned to the task |
-| `* * `  | CCA leader | be able to assign a priority to a task | see which tasks need to be completed first |
-| `* * `  | CCA leader who has many tasks to supervise | be able to search for tasks which are of a certain priority | better manage tasks of different priorities |
-| `* * `  | CCA leader whose members have different roles | be able to assign roles to the members in the application | know who has a certain role |
-| `* * `  | CCA leader whose members have different roles | be able to edit the roles to the members in the application  | update the member roles when there is a change their roles |
-| `* `  | CCA leader who is very forgetful | be notified if I have accidentally added duplicate items/tasks | prevent repeated tasks from being added |
-| `* `  | CCA leader who has a lot of tasks to manage | search for tasks which contain a particular word  | find tasks more efficiently |
+| `* * `  | CCA leader | be able to assign a priority to a task | take note of the tasks that are more important and need to be completed first |
+| `* * `  | CCA leader who has many tasks to supervise | be able to search for tasks of a certain priority | better manage tasks of different priorities |
+| `* * `  | CCA leader whose members have different roles | be able to assign roles to the members | be aware of the members' roles |
+| `* * `  | CCA leader whose members have different roles | be able to edit the roles to the members | update the members' roles when there is a change in their roles |
+| `* `  | CCA leader who is very forgetful | be notified if I have accidentally added duplicate tasks | prevent repeated tasks from being added |
+| `* `  | CCA leader who has a lot of tasks to manage | search for tasks which contain a particular word  | find tasks more efficiently and quickly |
 | `* `  | forgetful CCA leader who has forgotten which tasks have not been assigned | be able to get a list of tasks that have not been assigned | distribute tasks more efficiently |
-| `* `  | CCA leader | be able to get a list of tasks that have not be completed | check on the progress of the tasks |
-| `* `  | CCA leader | be able to get a list of tasks whose deadlines occur before a certain date | make sure I don't miss those deadlines |
-| `* `  | CCA leader | be able to get a list of tasks assigned to a particular member | check how much work has been assigned to a particular member |
+| `* `  | CCA leader | be able to get a list of tasks that have not been completed | check on the progress of the tasks |
+| `* `  | CCA leader | be able to get a list of tasks with deadlines that are prior to a certain date | make sure I do not miss those deadlines |
+| `* `  | CCA leader | be able to get a list of tasks assigned to a particular member | check on the workload of a particular member |
 
 *{More to be added}*
 
