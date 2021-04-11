@@ -125,7 +125,6 @@ public class AddCommandParserTest {
                         + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_AMY + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
 
-
         IndexList lastIndexList = ORDER_ITEM_INDEXLIST_2;
 
         // multiple order indexes - only last prefix accepted
@@ -134,6 +133,7 @@ public class AddCommandParserTest {
                         + ORDER_ITEM_INDEXES_1 + ORDER_ITEM_INDEXES_2,
                 new AddCommand(lastIndexList, descriptor));
     }
+
 
     @Test
     public void parse_optionalFieldsMissing_success() {
