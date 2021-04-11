@@ -49,10 +49,11 @@ public class EditRoomCommand extends Command {
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in SunRez.";
-    public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
-            "The room has already been allocated to another resident. Please deallocate the room before editing.";
-    public static final String MESSAGE_ROOM_HAS_ISSUES = "This room still has issues assigned to it. Please delete all "
-            + "corresponding issues before editing the room.";
+    public static final String MESSAGE_ROOM_ALLOCATED_FAILURE = "The room has already been allocated to a resident so"
+            + " you cannot change the room number. Please deallocate the room before editing the room number.";
+    public static final String MESSAGE_ROOM_HAS_ISSUES = "This room still has issues assigned to it and so you cannot "
+            + "change the room number. If you wish to edit the room number, please delete all corresponding issues "
+            + "before editing the room.";
     private static final Logger logger = LogsCenter.getLogger(EditRoomCommand.class);
 
     private final Index index;
@@ -94,11 +95,21 @@ public class EditRoomCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
-        if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToEdit.getRoomNumber()))) {
+        // Block editing of the room number if the room is allocated to a resident.
+        // Check 2 things. If they are both true, block the edit
+        // 1. There is a resident allocated to the room
+        // 2. The room's number will change in the editing process
+        if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToEdit.getRoomNumber()))
+                && !roomToEdit.getRoomNumber().equals(editedRoom.getRoomNumber())) {
             throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
         }
 
-        if (model.issuesContainRoom(roomToEdit)) {
+        // Block editing of the room number if the room has issues attached to it.
+        // Check 2 things. If they are both true, block the edit
+        // 1. There is an issue that contains the room we are trying to edit
+        // 2. The room's number will change in the editing process
+        if (model.issuesContainRoom(roomToEdit)
+                && !roomToEdit.getRoomNumber().equals(editedRoom.getRoomNumber())) {
             throw new CommandException(MESSAGE_ROOM_HAS_ISSUES);
         }
 

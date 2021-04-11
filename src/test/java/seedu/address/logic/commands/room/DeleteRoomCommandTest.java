@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -79,6 +80,31 @@ public class DeleteRoomCommandTest {
 
         assertCommandFailure(deleteRoomCommand, model, String.format(
                 Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, model.getFilteredRoomList().size()));
+    }
+
+    /**
+     * Delete room with issues tied to it
+     */
+    @Test
+    public void execute_roomHasIssueDeleteRoom_failure() {
+        // Room idx 3 is tied to issue idx 0
+        Room roomToDelete = model.getFilteredRoomList().get(INDEX_SECOND.getZeroBased());
+        DeleteRoomCommand deleteRoomCommand = new DeleteRoomCommand(INDEX_THIRD);
+
+        String expectedMessage = String.format(DeleteRoomCommand.MESSAGE_ROOM_HAS_ISSUES, roomToDelete);
+
+        assertCommandFailure(deleteRoomCommand, model, expectedMessage);
+    }
+
+    /**
+     * Delete room while filtered list is empty
+     */
+    @Test
+    public void execute_filteredListIsEmpty_failure() {
+        model.updateFilteredRoomList(p -> false);
+        DeleteRoomCommand deleteRoomCommand = new DeleteRoomCommand(INDEX_FIRST);
+
+        assertCommandFailure(deleteRoomCommand, model, Messages.MESSAGE_NO_ROOMS);
     }
 
     @Test
