@@ -585,7 +585,7 @@ Action | Format, Examples
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
 * **Item**: An item is made up of an item name, location, quantity, expiry date(optional) and tags(optional). 
-* **Similar Items**: Two items are similar if they have the same spelling for name and location but differ by letter case.
-* **Identical Items**: Two items are identical if they have the same name and location in terms of spelling and letter case, as well as the same expiry date.    
+* **Similar Items**: Items that have the same spelling for name and location but differ by letter case.
+* **Identical Items**: Items that have the same name and location in terms of spelling and letter case, as well as the same expiry date if it exists for both.
 * **Alphanumeric**: Alphanumeric characters are those comprised of the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
 ----
