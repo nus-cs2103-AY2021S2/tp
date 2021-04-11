@@ -1,16 +1,16 @@
 @startuml
 start
-:User executes Add command;
+:User executes Find command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
 if () then ([user input is valid])
     :Parse Command;
-    if () then ([student does not exist in StudentBook])
-        :Save new student to StudentBook;
+    if () then ([student exists in StudentBook])
+        :Display the particular student entry;
     else ([else])
-        :Show student already exists message;
+        :Show no student found message;
     endif
 else ([else])
     : Show invalid message;
