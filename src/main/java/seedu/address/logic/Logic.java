@@ -35,17 +35,14 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns the Aliases.
+     * Returns the AliasMap.
      *
-     * @see seedu.address.model.Model#getAliases()
+     * @see seedu.address.model.Model#getAliasMap()
      */
-    ReadOnlyUniqueAliasMap getAliases();
+    ReadOnlyUniqueAliasMap getAliasMap();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
-
-    /** Returns an unmodifiable view of the sorted filtered list of persons */
-    ObservableList<Person> getSortedFilteredPersonList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -83,11 +80,6 @@ public interface Logic {
     Predicate<Person> getSelectedPersonPredicate();
 
     /**
-     * Returns aliases in an ObservableList of String.
-     */
-    ObservableList<String> getObservableStringAliases();
-
-    /**
      * Gets a List of flags of a provided command.
      *
      * @param command command to retrieve flags from
@@ -119,4 +111,9 @@ public interface Logic {
      * @return Returns a list of available flags for a specified command
      */
     List<String> getAvailableFlags(String commandString);
+
+    /**
+     * Returns a list of command aliases in String.
+     */
+    List<String> getCommandAliasesStringList();
 }

@@ -1,6 +1,6 @@
 {
   "_comment": "Aliases save file which contains the same Aliases values as in TypicalAliases#getTypicalAliases()",
-  "aliases" : [ {
+  "commandAliases" : [ {
     "alias" : "a",
     "command" : "add"
   }, {

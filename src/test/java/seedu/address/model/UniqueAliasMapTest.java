@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS_STRING;
-import static seedu.address.testutil.TypicalAliases.ADD_COMMAND;
-import static seedu.address.testutil.TypicalAliases.ADD_COMMAND_ALIAS;
-import static seedu.address.testutil.TypicalAliases.DELETE_ALIAS;
-import static seedu.address.testutil.TypicalAliases.INVALID_ALIAS_STRING;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_COMMAND;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_COMMAND_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.DELETE_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.INVALID_ALIAS_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,173 +31,174 @@ import seedu.address.model.alias.exceptions.DuplicateAliasException;
 
 public class UniqueAliasMapTest {
 
-    private final UniqueAliasMap aliases = new UniqueAliasMap();
+    private final UniqueAliasMap aliasMap = new UniqueAliasMap();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyMap(), aliases.getAliases());
+        assertEquals(Collections.emptyMap(), aliasMap.getCommandAliases());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> aliases.resetData(null));
+        assertThrows(NullPointerException.class, () -> aliasMap.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyUniqueAliasMap_replacesData() {
-        UniqueAliasMap newData = getTypicalAliases();
-        aliases.resetData(newData);
-        assertEquals(newData, aliases);
+        UniqueAliasMap newData = getTypicalAliasMap();
+        aliasMap.resetData(newData);
+        assertEquals(newData, aliasMap);
     }
 
     @Test
-    public void resetData_withDuplicateAliases_throwsDuplicateAliasException() {
-        // Two aliases with the same identity fields
-        Map<Alias, CommandAlias> newAliases = new HashMap<>();
-        newAliases.put(ADD_ALIAS, ADD_COMMAND_ALIAS);
-        newAliases.put(DELETE_ALIAS, ADD_COMMAND_ALIAS);
-        UniqueAliasMapStub newData = new UniqueAliasMapStub(newAliases);
+    public void resetData_withDuplicateCommandAliases_throwsDuplicateAliasException() {
+        // Two command aliases with the same identity fields
+        Map<Alias, CommandAlias> newAliasMap = new HashMap<>();
+        newAliasMap.put(ADD_ALIAS, ADD_COMMAND_ALIAS);
+        newAliasMap.put(DELETE_ALIAS, ADD_COMMAND_ALIAS);
+        UniqueAliasMapStub newData = new UniqueAliasMapStub(newAliasMap);
 
-        assertThrows(DuplicateAliasException.class, () -> aliases.resetData(newData));
+        assertThrows(DuplicateAliasException.class, () -> aliasMap.resetData(newData));
     }
 
     @Test
     public void hasAlias_nullAlias_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> aliases.hasAlias(null));
+        assertThrows(NullPointerException.class, () -> aliasMap.hasAlias(null));
     }
 
     @Test
     public void hasCommandAlias_nullCommandAlias_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> aliases.hasCommandAlias(null));
+        assertThrows(NullPointerException.class, () -> aliasMap.hasCommandAlias(null));
     }
 
     @Test
-    public void hasAlias_aliasNotInAliases_returnsFalse() {
-        assertFalse(aliases.hasAlias(ADD_ALIAS));
+    public void hasAlias_aliasNotInAliasMap_returnsFalse() {
+        assertFalse(aliasMap.hasAlias(ADD_ALIAS));
     }
 
     @Test
-    public void hasCommandAlias_commandAliasNotInAliases_returnsFalse() {
-        assertFalse(aliases.hasCommandAlias(ADD_COMMAND_ALIAS));
+    public void hasCommandAlias_commandAliasNotInAliasMap_returnsFalse() {
+        assertFalse(aliasMap.hasCommandAlias(ADD_COMMAND_ALIAS));
     }
 
     @Test
-    public void hasAlias_aliasInAliases_returnsTrue() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertTrue(aliases.hasAlias(ADD_ALIAS));
+    public void hasAlias_aliasInAliasMap_returnsTrue() {
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertTrue(aliasMap.hasAlias(ADD_ALIAS));
     }
 
     @Test
-    public void hasCommandAlias_commandAliasInAliases_returnsTrue() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertTrue(aliases.hasCommandAlias(ADD_COMMAND_ALIAS));
+    public void hasCommandAlias_commandAliasInAliasMap_returnsTrue() {
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertTrue(aliasMap.hasCommandAlias(ADD_COMMAND_ALIAS));
     }
 
     @Test
-    public void getAliases_modifyAlias_throwsUnsupportedOperationException() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertThrows(UnsupportedOperationException.class, () -> aliases.getAliases().remove(ADD_ALIAS));
-        assertThrows(UnsupportedOperationException.class, () -> aliases.getAliases().put(ADD_ALIAS, ADD_COMMAND_ALIAS));
+    public void getCommandAliases_modifyAlias_throwsUnsupportedOperationException() {
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertThrows(UnsupportedOperationException.class, () -> aliasMap.getCommandAliases().remove(ADD_ALIAS));
+        assertThrows(UnsupportedOperationException.class, () ->
+                aliasMap.getCommandAliases().put(ADD_ALIAS, ADD_COMMAND_ALIAS));
     }
 
     @Test
     public void addAlias_nullAlias_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> aliases.addAlias(null));
+        assertThrows(NullPointerException.class, () -> aliasMap.addAlias(null));
     }
 
     @Test
     public void addAlias_duplicatePerson_throwsDuplicateAliasException() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertThrows(DuplicateAliasException.class, () -> aliases.addAlias(ADD_COMMAND_ALIAS));
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertThrows(DuplicateAliasException.class, () -> aliasMap.addAlias(ADD_COMMAND_ALIAS));
     }
 
     @Test
     public void removeAlias_nullAlias_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> aliases.removeAlias(null));
+        assertThrows(NullPointerException.class, () -> aliasMap.removeAlias(null));
     }
 
     @Test
     public void removeAlias_aliasDoesNotExist_throwsAliasNotFoundException() {
-        assertThrows(AliasNotFoundException.class, () -> aliases.removeAlias(ADD_ALIAS));
+        assertThrows(AliasNotFoundException.class, () -> aliasMap.removeAlias(ADD_ALIAS));
     }
 
     @Test
     public void removeAlias_existingAlias_removesAlias() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        aliases.removeAlias(ADD_ALIAS);
-        UniqueAliasMap expectedAliases = new UniqueAliasMap();
-        assertEquals(expectedAliases, aliases);
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        aliasMap.removeAlias(ADD_ALIAS);
+        UniqueAliasMap expectedAliasMap = new UniqueAliasMap();
+        assertEquals(expectedAliasMap, aliasMap);
     }
 
     @Test
     public void getCommandAlias_existingAlias_returnsAlias() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertEquals(ADD_COMMAND_ALIAS, aliases.getCommandAlias(ADD_ALIAS));
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertEquals(ADD_COMMAND_ALIAS, aliasMap.getCommandAlias(ADD_ALIAS));
     }
 
     @Test
     public void getCommandAlias_aliasDoesNotExist_returnsNull() {
-        assertNull(aliases.getCommandAlias(ADD_ALIAS));
+        assertNull(aliasMap.getCommandAlias(ADD_ALIAS));
     }
 
     @Test
     public void getCommand_existingAlias_returnsAlias() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertEquals(ADD_COMMAND, aliases.getCommand(ADD_ALIAS));
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertEquals(ADD_COMMAND, aliasMap.getCommand(ADD_ALIAS));
     }
 
     @Test
     public void getCommand_aliasDoesNotExist_throwsNullPointerException() {
-        assertNull(aliases.getCommand(ADD_ALIAS));
+        assertNull(aliasMap.getCommand(ADD_ALIAS));
     }
 
     @Test
     public void parseAliasToCommand_existingAliasDoesNotExist_returnsCommandAliasInString() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertEquals(AddCommand.COMMAND_WORD, aliases.parseAliasToCommand(ADD_ALIAS_STRING));
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertEquals(AddCommand.COMMAND_WORD, aliasMap.parseAliasToCommand(ADD_ALIAS_STRING));
     }
 
     @Test
     public void parseAliasToCommand_aliasDoesNotExist_returnsUserInput() {
-        assertEquals(INVALID_ALIAS_STRING, aliases.parseAliasToCommand(INVALID_ALIAS_STRING));
+        assertEquals(INVALID_ALIAS_STRING, aliasMap.parseAliasToCommand(INVALID_ALIAS_STRING));
     }
 
     @Test
     public void getNumOfAlias_noAlias_returnsZero() {
         UniqueAliasMap emptyMap = new UniqueAliasMap();
-        assertEquals(emptyMap.getAliases().size(), aliases.getNumOfAlias());
+        assertEquals(emptyMap.getCommandAliases().size(), aliasMap.getNumOfAlias());
     }
 
     @Test
     public void getNumOfAlias_oneAlias_returnsOne() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
         UniqueAliasMap testMap = new UniqueAliasMap();
         testMap.addAlias(ADD_COMMAND_ALIAS);
-        assertEquals(testMap.getAliases().size(), aliases.getNumOfAlias());
+        assertEquals(testMap.getCommandAliases().size(), aliasMap.getNumOfAlias());
     }
 
     @Test
-    public void getObservableStringAliases_modifyStringAlias_throwsUnsupportedOperationException() {
-        aliases.addAlias(ADD_COMMAND_ALIAS);
-        assertThrows(UnsupportedOperationException.class, () -> aliases.getObservableStringAliases().remove(0));
-        assertThrows(UnsupportedOperationException.class, () -> aliases.getObservableStringAliases().add("error"));
+    public void getCommandAliasesStringList_modifyStringAlias_throwsUnsupportedOperationException() {
+        aliasMap.addAlias(ADD_COMMAND_ALIAS);
+        assertThrows(UnsupportedOperationException.class, () -> aliasMap.getCommandAliasesStringList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> aliasMap.getCommandAliasesStringList().add("error"));
     }
 
     @Test
     public void equals() {
-        // same empty aliases
-        assertEquals(new UniqueAliasMap(), aliases);
+        // same empty alias map
+        assertEquals(new UniqueAliasMap(), aliasMap);
 
-        // same aliases
-        aliases.resetData(getTypicalAliases());
-        assertEquals(getTypicalAliases(), aliases);
+        // same alias map
+        aliasMap.resetData(getTypicalAliasMap());
+        assertEquals(getTypicalAliasMap(), aliasMap);
 
-        // different aliases
-        assertNotEquals(new UniqueAliasMap(), aliases);
+        // different alias map
+        assertNotEquals(new UniqueAliasMap(), aliasMap);
     }
 
     /**
-     * A stub ReadOnlyUniqueAliasMap whose aliases can violate interface constraints.
+     * A stub ReadOnlyUniqueAliasMap whose alias map can violate interface constraints.
      */
     private static class UniqueAliasMapStub implements ReadOnlyUniqueAliasMap {
         private final ObservableMap<Alias, CommandAlias> internalList = FXCollections.observableMap(new HashMap<>());
@@ -207,12 +208,12 @@ public class UniqueAliasMapTest {
         private final ObservableList<String> internalUnmodifiableStringList =
                 FXCollections.unmodifiableObservableList(internalStringList);
 
-        UniqueAliasMapStub(Map<Alias, CommandAlias> aliases) {
-            internalList.putAll(aliases);
+        UniqueAliasMapStub(Map<Alias, CommandAlias> aliasMap) {
+            internalList.putAll(aliasMap);
         }
 
         @Override
-        public ObservableMap<Alias, CommandAlias> getAliases() {
+        public ObservableMap<Alias, CommandAlias> getCommandAliases() {
             return internalUnmodifiableList;
         }
 
@@ -227,7 +228,7 @@ public class UniqueAliasMapTest {
         }
 
         @Override
-        public ObservableList<String> getObservableStringAliases() {
+        public ObservableList<String> getCommandAliasesStringList() {
             return internalUnmodifiableStringList;
         }
     }

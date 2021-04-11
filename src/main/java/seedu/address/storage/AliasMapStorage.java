@@ -10,12 +10,12 @@ import seedu.address.model.ReadOnlyUniqueAliasMap;
 /**
  * Represents a storage for {@link seedu.address.model.UniqueAliasMap}.
  */
-public interface AliasesStorage {
+public interface AliasMapStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAliasesFilePath();
+    Path getAliasMapFilePath();
 
     /**
      * Returns UniqueAliasMap data as a {@link ReadOnlyUniqueAliasMap}.
@@ -23,23 +23,24 @@ public interface AliasesStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyUniqueAliasMap> readAliases() throws DataConversionException, IOException;
+    Optional<ReadOnlyUniqueAliasMap> readAliasMap() throws DataConversionException, IOException;
 
     /**
-     * @see #getAliasesFilePath()
+     * @see #getAliasMapFilePath()
      */
-    Optional<ReadOnlyUniqueAliasMap> readAliases(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyUniqueAliasMap> readAliasMap(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyUniqueAliasMap} to the storage.
-     * @param aliases cannot be null.
+     *
+     * @param aliasMap cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAliases(ReadOnlyUniqueAliasMap aliases) throws IOException;
+    void saveAliasMap(ReadOnlyUniqueAliasMap aliasMap) throws IOException;
 
     /**
-     * @see #saveAliases(ReadOnlyUniqueAliasMap)
+     * @see #saveAliasMap(ReadOnlyUniqueAliasMap)
      */
-    void saveAliases(ReadOnlyUniqueAliasMap aliases, Path filePath) throws IOException;
+    void saveAliasMap(ReadOnlyUniqueAliasMap aliasMap, Path filePath) throws IOException;
 
 }
