@@ -31,14 +31,19 @@ interface with the UI. The process by which message passing of the theme change 
    is exposed via the `Model#getGuiSettings` method.
    
 2. The `theme` command returns a `CommandResult` object that stores the desired `Theme` enumeration. This object is
-   passed via the `Logic` interface back into `MainWindow#executeCommand`, which in turn processes the `Theme`
-   via the `setTheme` method as specified above.
+   passed via the `Logic` interface back into `MainWindow#executeCommand`. which in turn processes the `Theme`
+   via the `setTheme` method as specified above. Both steps 1 and 2 are illustrated below:
 
-3. A replacement `GuiSettings` object is created by `Logic` using the updated theme,
-   and stored for subsequent retrieval in step 1.
+![](images/ThemeDiagramLogicExecute.png)
+
+3. The `Theme` encapsulated in the `CommandResult` is then passed into `setTheme`.
+   A replacement `GuiSettings` object is created by `Logic` using the updated theme,
+   and stored for subsequent retrieval (in step 1). This is shown below:
+   
+![](images/ThemeDiagramSetTheme.png)
 
 Notably, since `GuiSettings` is a common resource shared between the `Logic` and `Model` objects, this allows
-`ToggleThemeCommand` and `MainWindow` to access the `GuiSettings` object from different contexts without
+`ToggleThemeCommand` and `MainWindow` to access `GuiSettings` from different contexts without
 breaking the interface abstraction barrier.
 
 The following sequence diagram summarizes the `theme` command execution:
@@ -75,13 +80,13 @@ To add a new theme, adhere to the following steps:
    and populate it with the desired styling. If more styling rules are desired, feel free to separate them into
    multiple CSS files in the same directory.
    
-2. Add a new `Theme` enumeration, found in the `./ui/` application directory, and
+2. Add a new `Theme` enumeration value, and
    return the list of CSS files associated with the enumeration under the `Theme#getStyleSheets` method.
    
 3. To enable selection of the new theme using `theme` command, add a new entry for the theme in
-   `ToggleThemeCommand#execute` (found under the `./logic/commands/` directory).
+   `ToggleThemeCommand#execute` found within the `logic.commands` package.
    
-4. To enable selection of theme via menu bar, in the `MainWindow` class (found in `./ui/`),
+4. To enable selection of theme via menu bar, in `MainWindow` from the `ui` package,
    define a new `setTheme[THEME_NAME]` FXML event
-   handler that calls `MainWindow#setTheme` method with this new enumeration. In the `MainWindow` FXML itself,
+   handler calling `MainWindow#setTheme` method with this new enumeration. Additionally, in the `MainWindow` FXML itself,
    define a new `MenuItem` with the text `[THEME_NAME]` and register the aforementioned event handler.
