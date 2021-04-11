@@ -7,13 +7,14 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **1. Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+First, you will need to set up the project file in your local computer.<br>
+Please refer to the guide [_Setting up and getting started_](SettingUp.md) to set up the project properly.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction**
+## **2. Introduction**
 
 Welcome to our Developer Guide! CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:
 
@@ -25,8 +26,7 @@ Welcome to our Developer Guide! CakeCollate promises to be an efficient desktop 
   
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you’re a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
-
-## **Design**
+## **3. Design**
 
 ### Architecture
 
@@ -146,7 +146,7 @@ Classes used by multiple components are in the `seedu.cakecollate.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -159,6 +159,69 @@ The original approach of sorting the displayed list was to sort the observable l
 To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList() command.
 
 (explain with more code later)
+
+### Find feature
+
+The intended usage of the Find feature is for users to locate their orders in CakeCollate quickly and efficiently.
+In order to do this, this feature is implemented in a way that allows user to specify the fields of the orders and the keywords that they want to search with.<br>
+
+The find mechanism is facilitated by `ContainsKeywordsPredicate` which implements Java's `Predicate` interface.
+The conditions on which orders to find is then captured in this `Predicate`.
+The orders in CakeCollate are extracted and stored in a JavaFX `FilteredList`.
+It is then updated through the usage of `FilteredList#setPredicate(Predicate)` while passing `ContainsKeywordsPredicate` into the method.
+This updated `FilteredList` is then displayed, showing the results of the find command.
+
+This operation is exposed in the `Model` interface as `Model#updateFilteredOrderList`.
+
+The find feature generally does a generic 'OR' search. When multiple keywords are specified, orders that contains any of these keywords will be displayed.
+However, to enable a more specific search, users can specify multiple prefixes such as `/n` and `/o` and their respective keywords. This will trigger an 'AND' search.
+
+If users want to find all order with name `Alex` OR order description `Chocolate`, they can use the command: `find Alex Chocolate`.
+If users want to find an order with name `Alex` AND order description `Chocolate`, they can use the command: `find n/Alex o/Chocolate`.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+*Step 1.* The user keys in and execute the command `find n/Alex` to find orders with name `Alex`.
+
+*Step 2.* The command is parsed by `FindCommandParser`. The prefixes and their respective keywords are extracted and saved in an `ArgumentMultimap`. Refer to the [Logic Component](#logic-component) for more details.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, a `ContainsKeywordPredicate` and a `FindCommand` will be created.
+
+*Step 4.* The `FindCommand#execute` is called which updates the `FilteredList` that is currently being displayed.
+
+The following sequence diagram shows how this works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates FindCommandParser and calls parse("n/Alex") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+##### Aspect: How to create the `Predicate` to call `Model#updateFilteredOrderList` with.
+
+As CakeCollate is adapted from the AddressBook-Level3 project, the original find feature creates a `NameContainsKeywordsPredicate` and allow for finding keywords in the name field only.
+
+* **Alternative 1 (current choice):** Create a general `ContainsKeywordsPredicate` that tracks each field in an `Order` and their respective keywords. This is done by creating a `HashMap` and mapping each `Prefix` to a list of keywords inputted.
+    * Pros:
+      * Does not increase coupling as much as alternative 2.
+      * Easy to implement both `OR` and `AND` searches.
+    * Cons:
+      * Many if-else statements to check which fields the user specified.
+      * Require a way to map each field to the keywords inputted.
+
+* **Alternative 2:** Create a `[Field]ContainsKeywordsPredicate` for each field in an `Order`.
+    * Pros:
+      * `Tag`, `OrderDescription` and `DeliveryDate` require more complex method of extracting the `TestString`(the `String` to test the keywords against). This alternative will allow for inheritance to take place and enabling reusability of code.
+      * Easy to implement.
+    * Cons:
+      * Creating many classes causes increased coupling.
+      * Hard to implement `OR` searches.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -225,7 +288,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: How undo & redo executes
 
@@ -247,7 +310,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -257,7 +320,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
 ### Product scope
 
@@ -486,7 +549,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -606,7 +669,7 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Effort**
+## **8. Effort**
 
 Creating CakeCollate required a lot of effort to be put in by all the team members to change the existing
 AB3 project by introducing new models, commands and features which did not exist before.
