@@ -39,10 +39,10 @@ public class SampleDataUtil {
                     new Remark("loves meat"), getTagSet("choir")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Birthday("2000-08-23"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                    new Remark("hates blue"), getTagSet("year4")),
+                    new Remark("hates blue"), getTagSet("dance", "year4")),
             new Person(new Name("John Trump"), new Phone("92624417"), new Email("royb@example.com"),
                     Birthday.EMPTY_BIRTHDAY, new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    new Remark("hates black"), getTagSet("dance"))
+                    new Remark("hates black"), getTagSet("dance", "year3"))
         };
     }
 
