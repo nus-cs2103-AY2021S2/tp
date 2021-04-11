@@ -29,6 +29,7 @@ import seedu.address.model.contact.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.testutil.UpdateContactDescriptorBuilder;
+import seedu.address.testutil.UpdateGroupmateDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -98,6 +99,9 @@ public class CommandTestUtil {
     public static final UpdateContactCommand.UpdateContactDescriptor DESC_AMY;
     public static final UpdateContactCommand.UpdateContactDescriptor DESC_BOB;
 
+    public static final UpdateGroupmateCommand.UpdateGroupmateDescriptor DESC_SYLPH;
+    public static final UpdateGroupmateCommand.UpdateGroupmateDescriptor DESC_ROXY;
+
     static {
         DESC_AMY = new UpdateContactDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -105,6 +109,11 @@ public class CommandTestUtil {
         DESC_BOB = new UpdateContactDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        DESC_SYLPH = new UpdateGroupmateDescriptorBuilder().withName(VALID_NAME_SYLPH)
+                .withRoles(VALID_ROLE_LEADER).build();
+        DESC_ROXY = new UpdateGroupmateDescriptorBuilder().withName(VALID_NAME_ROXY)
+                .withRoles(VALID_ROLE_MAGICIAN).build();
     }
 
     /**
