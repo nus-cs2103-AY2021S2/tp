@@ -118,13 +118,13 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component. The full diagram for MeetingBook is omitted.](images/StorageClassDiagram.png)
+![Structure of the Storage Component. The full diagram for MeetingBook is omitted to make the figure less cluttered.](images/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the MeetBuddy data in json format and read it back.
 
 ### Common classes
 
