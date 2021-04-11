@@ -2383,6 +2383,8 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
 
+<div style="page-break-after: always;"></div>
+
 ### A8. Effort
 Creating SOChedule took considerable effort and required significant effort from all members.
 To achieve this, all members committed to meticulous planning, regular team meetings, effective communication
