@@ -1119,6 +1119,12 @@ testers are expected to do more *exploratory* testing.
 * A new class `AliasMap` is created to handle the mapping.
 * As `AliasMap` is stored in `UserPrefs` which is stored as a json file as `preferences.json`, users are able to modify the mapping directly. Hence an additional check is added to ensure that the alias mapping is valid when starting the application.
 
+### Statistics feature
+* This is an entirely new feature, AB3 did not have a `stats` feature.
+* Prior to adding this feature, the `review` feature had to be extended to allow users to mark a question as correct or wrong. And this involves creating an internal command `UpdateStatisticsCommand`, which updates the statistics of the flash cards in a Model-View-Controller fashion.
+* A new class, `Statistics` was created to represent the statistics attribute of flash cards.
+* A new class, `FlashbackStats` was created to integrate the display of statistics into the existing user interface.
+
 ### UI improvement
 * There is a significant change from the initial UI of AB3 to the final UI to make the application more visually appealing.
 * We considered many color choices and UI design and actively asked for feedback from all members in the team, and some of our friends also to reach the finalized design for the UI.

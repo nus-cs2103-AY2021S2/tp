@@ -16,7 +16,10 @@ Given below are my contributions to the project.
     * Justification: It is possible that the user make some mistakes when adding a flashcard, such as setting a wrong priority,
     setting a wrong category, or just minor typos. So instead of having to delete the flashcard and add the flashcard again,
     the edit command allows the user to quickly correct his/her mistakes made.   
-
+    * Highlights: Previously, AB3's edit feature uses a weak comparison to check whether the edited person is the same as the original person, whereby the system only checks whether the name of the edited person is the same as the original person.
+    In FlashBack, a stronger comparison was used, whereby the system checks whether all the attributes of the edited flashcard matches all the attributes of the original flashcards correspondingly. This is done to prevent cases where a flashcard is
+    successfully edited even though no attributes are being changed at all. E.g. If the system only checks for question of edited and original flashcards, the user can successfully edit the priority of a card from `Low` to `Low`, which does not make sense.
+  
 * **New Feature**: Added the ability for user to display statistics of flashcards. [#81](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/81)
     * What it does: Shows the user statistics of an individual flashcard, or the statistics of all flashcards
     in the list. The following information is displayed: 
@@ -42,5 +45,11 @@ Given below are my contributions to the project.
     * Updated the user guide and developer guide with information regarding the Edit functionality. [#64](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/64) 
     * Updated the user guide and developer guide with information regarding the Statistics functionality. [#90](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/90)
     * Added non-functional requirements and instruction of manual testing for Edit and Statistics to the developer guide. [#105](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/105/files)
-    * Added use cases for Add functionality in developer guide. [#39](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/39) 
+    * Added use cases for Add functionality in developer guide. [#39](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/39)
+  
+* **Pull Request Reviews**:
+    * [#66](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/66), [#60](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/60), [#65](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/65)
+  
+* **Bugs reported for other groups**:
+    * [Team W16-1](https://github.com/zenlyj/ped/issues) 
 
