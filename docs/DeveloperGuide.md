@@ -589,14 +589,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-Below is an illustration of the find command sequence diagram
-
-![Find Command Sequence Diagram](images/FindCommandSequenceDiagram.png)
-
-Below is a further breakdown of the logic component of the find command using a sequence diagram
-
-![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
-
 Below is an activity diagram to show a more simplified representation of the find command
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
