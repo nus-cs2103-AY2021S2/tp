@@ -31,7 +31,7 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
-package Storage {
+package Storage{
 Class HiddenModel #FFFFFF
 }
 
@@ -43,7 +43,7 @@ LogicManager -->"1" HeyMatezParser
 HeyMatezParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
+XYZCommandParser .left.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -55,8 +55,10 @@ ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Storage
 LogicManager --> Model
+LogicManager --> Storage
+Storage --[hidden] Model
+Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddTaskCommand, \nFindTasksCommand, etc
 
