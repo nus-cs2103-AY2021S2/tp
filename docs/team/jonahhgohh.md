@@ -44,15 +44,17 @@ My code contribution can be found [here](https://nus-cs2103-ay2021s2.github.io/t
 
 * Project Management:
     * Responsible for ensuring code quality of the team by reviewing and scrutinising PRs.
-    * Set up Github round-robin reviewing feature.
+    * Set up Github round-robin reviewing feature
+    * Managed milestones for team repository
 
 * Documentation:
     * User Guide
-        * Standardisation and through review of User Guide
-        * Added sections on `add_session` and `help` commands, Quick Start, View and Glossary.
+        * Standardisation and thorough review of User Guide [#137](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/137)
+        * Added sections on `add_session` and `help` commands, Quick Start, View and Glossary. [#131](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/131)
     * Developer Guide
-        * Added implementation details for Add Session Feature.
+        * Added implementation details for Add Session Feature [#92](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/92)
+        * Added implementation details for Model component [#299](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/299)
+        * Added section for Manual Testing [#304](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/304)
 
 * Team-Based Tasks & Community:
-    * PRs reviewed (with non-trivial review comments):
     * The full list of PRs I have reviewed can be found [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/pulls?q=reviewed-by%3AJonahhGohh).
