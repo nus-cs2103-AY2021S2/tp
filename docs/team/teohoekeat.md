@@ -44,6 +44,8 @@ Given below are my contributions to the project.
     (Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/45))
   * Save User Interface Configuration upon exit
     (Pull requests [\#78](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/78))
+  * Modify Result Display with adaptive height
+    (Pull requests [\#78](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/78))
   * Add `Help` Feature : `listcommand` command
     (Pull requests [\#88](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/88))
   * Update `Note` Feature : update Note Card UI
