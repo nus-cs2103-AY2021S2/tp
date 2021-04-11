@@ -8,7 +8,7 @@ The Difficulty level of implementing PartyPlanet was high, owing mainly to two r
 
 ### Achievements of the project
 
-* **Concise, cohesive command set:** The 4 main commands that we ended up with, namely `add`, `edit`, `delete` and `list` (and the event book equivalents) all have disjoint, non-overlapping roles, which helps to streamline a user’s workflow, as it is clear which command to use for a given purpose. Furthermore, the added options help a user to fine tune the effects of the commands to suit their specific purposes, thus augmenting the user-friendliness of our command set. Once a user is used to the command set and its additional options, this will facilitate effective and efficient party planning.
+* **Concise, cohesive command set:** The 4 main commands `add`, `edit`, `delete` and `list` (and the event book equivalents) all have non-overlapping and clear roles, which streamlines a user’s workflow. Furthermore, the added options help fine tune the commands, augmenting the user-friendliness of our command set. Once a user is used to the command set and its additional options, this will facilitate effective and efficient party planning.
 
 * **Cohesive product:** The address book and event books complement each other well, and offer users the ability to gather relevant details easily to plan for a celebration.
 
