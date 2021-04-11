@@ -123,9 +123,10 @@ You can use this command to add a new reader to SmartLib's registered reader bas
 Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 **:information_source: Notes:**
+
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * Note that SmartLib uses reader names to identify a reader. Hence, duplicate names are not allowed.
-* The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.   
+* The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.
 * The `[t/TAG]…` parameters are optional.
   Duplicate tags will be ignored.
 
@@ -135,11 +136,13 @@ Let's say a new reader wishes to be registered as a VIP.
 You can follow the steps below to add the reader to SmartLib's registered reader list.
 
 Steps:
-1. Type `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/vip` in the
+
+1. Type `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/vip` into the
    _Command Box_.
 2. Press `Enter` to execute your input.
 
 Outcome:
+
 * The _Result Display_ will show a success message with the newly added reader's information.
   <br><br>
   ![result for 'addreader_JohnDoe'](images/addreaderresult.png)
@@ -151,12 +154,14 @@ You can use this command to delete a reader from SmartLib's registered reader ba
 Format: `deletereader INDEX`
 
 **:information_source: Notes:**
+
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * Deletes the reader at the specified `INDEX`.
 * The index refers to the index number shown in the displayed reader list.
 * The index **must be a positive integer**, i.e. 1, 2, 3, …​
 
-**:warning: Warning:**<br>
+**:warning: Warning:**
+
 * A reader cannot be deleted if he/she has unreturned books. This is to prevent the loss of your books.
 
   To delete a reader holding on to unreturned books, you will need to first return the books borrowed by the reader
@@ -169,14 +174,14 @@ you can follow the steps below to delete the reader from SmartLib's registered r
 
 Steps:
 
-1. Type `deletereader 3` if the reader has an index of 3 as shown on the displayed reader list.
+1. Type `deletereader 3` into the _Command Box_ if the reader has an index of 3 as shown on the displayed reader list.
 2. Press `Enter` to execute.
 
 Outcome:
 
 * The _Result Display_ will show a success message with the deleted reader's information.
   <br><br>
-  ![result for 'addreader_JohnDoe'](images/deletereaderresult.png)
+  ![result for 'deletereader_3'](images/deletereaderresult.png)
 
 #### Finding readers : `findreader`
 
@@ -187,6 +192,7 @@ You can use this command to find readers whose names contain any of the given ke
 Format: `findreader KEYWORD [MORE_KEYWORDS]…`
 
 **:information_source: Notes:**
+
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
@@ -204,13 +210,13 @@ You can follow the steps below to obtain a list of readers named Bob.
 
 Steps:
 
-1. Type `findreader Bob` in the _Command Box_.
+1. Type `findreader Bob` into the _Command Box_.
 1. Press `Enter` to execute your input.
 
 Outcome:
 
-* The _Result Display_ will show a message indicating success.
-* SmartLib will list out all the readers with "Bob" in their name.
+* The _Result Display_ will show a message with the number of matching results indicating success.
+* SmartLib will list out all the readers with `Bob` in their name.
   <br><br>
   ![result for 'findreader Bob'](images/findBobResult.png)
 
@@ -221,6 +227,7 @@ You can also use this command to find readers whose tags contain any of the spec
 Format: `findreader t/TAG [MORE_TAGS]…`
 
 **:information_source: Notes:**
+
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * Currently, SmartLib does not support finding readers by name and tag concurrently.
 * The search is case-insensitive. e.g `vip` will match `VIP`.
@@ -239,12 +246,12 @@ You can follow the steps below to obtain a list of readers with the `VIP` tag.
 
 Steps:
 
-1. Type `findreader t/VIP` in the _Command Box_.
+1. Type `findreader t/VIP` into the _Command Box_.
 1. Press `Enter` to execute your input.
 
 Outcome:
 
-* The _Result Display_ will show a message indicating success.
+* The _Result Display_ will show a message with the number of matching results indicating success.
 * SmartLib will list out all the readers with `VIP` in their list of tags.
   <br><br>
   ![result for 'findreader t/VIP'](images/findVIPResult.png)
@@ -256,6 +263,7 @@ You can use this command to display a list of all readers in SmartLib's register
 Format: `listreader`
 
 **:information_source: Note:**
+
 * Any parameters stated after `listreader` will be ignored by SmartLib.
 
 Example use:
@@ -266,13 +274,13 @@ You can follow the steps below to get SmartLib to display the entire list of rea
 
 Steps:
 
-1. Type `listreader` in the _Command Box_.
+1. Type `listreader` into the _Command Box_.
 1. Press `Enter` to execute your input.
 
 Outcome:
 
 * The _Result Display_ will show a message indicating success.
-* SmartLib will list out all the readers.
+* SmartLib will list out all the readers in its registered reader base.
   <br><br>
   ![result for 'listreader'](images/listreaderResult.png)
 
@@ -300,108 +308,172 @@ given below, and familiarize yourself with them.
 
 #### Adding a book : `addbook`
 
-Adds a book to the book list.
+You can use this command to add a new book to SmartLib's registered book list.
 
 Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/GENRE`
 
 **:information_source: Notes:**
-* Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 
-Examples:
-* `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
-* `addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9780439023481 g/Young Adult`
+* Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
+* The book's name is case sensitive, e.g. `Secret` and `secret` are two different books.
+* Note that SmartLib uses book ISBN to uniquely identify a book. Hence,
+  * There may be multiple copies of a book with the same name and ISBN.
+  * Books with different names cannot share the same ISBN.
+  * Books with the same name can have different ISBNs,
+    as different authors may decide to publish books with the same name but with different content
+    (e.g. _Great Expectations_, by Charles Dickens vs. _Great Expectations_, by Kathy Acker).
+    
+    In fact, in the event that the same author publishes two distinct books (i.e. different ISBN) with the same name,
+    SmartLib will also be able to distinguish between them as well.
+
+Example use:
+
+Let's say you have ordered a new book (e.g. Harry Porter) for your library, and would like SmartLib to register the new
+book.
+You can follow the steps below to add the book to SmartLib's registered book list.
+
+Steps:
+
+1. Type `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy` into the _Command Box_.
+2. Press `Enter` to execute your input.
+
+Outcome:
+
+* SmartLib will randomly assign a barcode to your newly added book.
+* The _Result Display_ will show a success message with the newly added book's information.
+  <br><br>
+  ![result for 'addbook Harry Porter'](images/addbookresult.png)
 
 #### Deleting a book : `deletebook`
 
-Deletes a specific book from the book list.
+You can use this command to delete a specific book from SmartLib's registered book list.
 
 Format: `deletebook INDEX`
 
 **:information_source: Notes:**
+
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 * Deletes the book at the specified `INDEX`.
-* The index refers to the index number shown in the displayed reader list.
-* The index **must be a positive integer** 1, 2, 3, ...
+* The index refers to the index number shown in the displayed book list.
+* The index **must be a positive integer**, i.e. 1, 2, 3, …​
 
-Examples:
-* `listbook` followed by `deletebook 2` deletes the 2nd book in the book list.
+**:warning: Warning:**
 
-#### Finding books by keyword(s) : `findbook`
+* A book cannot be deleted if it is not returned.
 
-##### By book title:
+  To delete a book that is still loaned out, you will need to first return the book
+  (see the [return command](#returning-a-book--return) for more details), before deleting it.
 
-You can use this command to find books whose title contains any of the given keywords.
+Example use:
 
-Format: `findbook KEYWORD [MORE_KEYWORDS]`
+Let's say some of your books in the library have never been borrowed by your readers,
+and you would like to donate them to charity.
+You can follow the steps below to delete the book from SmartLib's registered book list.
+
+Steps:
+
+1. Type `deletebook 10` into the _Command Box_ if the book has an index of 10 as shown on the displayed book list.
+2. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a success message with the deleted book's information.
+  <br><br>
+  ![result for 'deletebook_10'](images/deletebookresult.png)
+
+#### Finding books : `findbook`
+
+You can use this command to find books whose information (i.e. title, author, publisher, ISBN, or genre)
+contains any of the given keywords.
+
+Format: `findbook KEYWORD [MORE_KEYWORDS]…`
 
 **:information_source: Notes:**
+
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 * The search is case-insensitive. e.g `Harry Potter` will match `harry potter`.
 * The order of the keywords do not matter. e.g. `Potter Harry` will match `Harry Potter`.
 * Only full words will be matched e.g. `Po` will not match `Potter`.
-* The search will only display books whose title matches any of the keywords (i.e. it disregards authors, genres, etc.).
-* Book titles matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Harry` will return books with either the title `Harry Potter and the Goblet of Fire` or
-  `Harry Potter and the Deathly Hallows`.
+* The search will display all books whose information matches any of the keywords (i.e. regardless of whether the
+  keyword appears in the book's title, author, publisher, ISBN, or genre field).
+* Books with information matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Harry Fantasy` will return books with either the title `Harry Potter and the Goblet of Fire` or
+  `Harry Potter and the Deathly Hallows`, as well as books with the genre `Fantasy`.
 
 Example use:
 
 Let's say you have many books in your book list,
-and you are trying to find more information about some book(s) (e.g. Harry Potter),
-You can follow the steps below to obtain a list of books with `Harry Potter` in their titles.
+and you are trying to find more information about a certain book (e.g. books whose title contains the word `Cloud`)
+or a genre of books (e.g. `Fantasy`).
+You can follow the steps below to obtain a list of books with `Cloud` in their titles, or with the genre `Fantasy`.
 
 Steps:
 
-1. Type `findbook Harry Potter ` in the _Command Box_.
+1. Type `findbook Cloud Fantasy` into the _Command Box_.
 2. Press `Enter` to execute your input.
 
 Outcome:
+
 * The _Result Display_ will show a message with the number of matching results indicating success.
-* SmartLib will list out all the books with `Harry Potter` in their titles.
-  ![result for 'findreader t/VIP'](images/findbookresult.png)
-
-##### By other types of labels(Author, Publisher, ISBN, Genre):
-
-You can also use this command to find books whose information(Author, Publisher, ISBN, Genre) contains any of the given keywords.
-
-Format: `findbook KEYWORD [MORE_KEYWORDS]`
-
-**:information_source: Notes:**
-* Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
-* Currently, SmartLib does not support finding books by name and labels, or different types of labels concurrently.
-* The search is case-insensitive. e.g `novel` will match `NOVEL`.
-* The order of the keywords do not matter. e.g. `young adult` will match `adult young`.
-* Only the keywords are searched.
-* Only full words will be matched e.g. `No` will not match `Novel`.
-* Books matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Fantasy Novel` will return books with either the genre `Fantasy` or with the genre `Novel`.
-
-Example use:
-
-Let's assume you are trying to find all the books of the genre 'Novel' in SmartLib,
-You can follow the steps below to obtain a list of books under the genre Novel.
-
-Steps:
-
-1. Type `findbook novel` in the _Command Box_.
-1. Press `Enter` to execute your input.
-
-Outcome:
-* The _Result Display_ will show a message with the number of matching results indicating success.
-* SmartLib will list out all the books under the genre `Novel`.
-  ![result for 'findreader t/VIP'](images/findbooknovel.png)
+* SmartLib will list out all the books with `Cloud` in their titles, as well as books with the genre `Fantasy`.
+  <br><br>
+  ![result for 'findbook Cloud Fantasy'](images/findbookresult.png)
 
 #### Listing all books : `listbook`
 
-Lists all the current in-store books.
+You can use this command to display a list of all the books in SmartLib's registered book list.
 
 Format: `listbook`
 
+**:information_source: Note:**
+
+* Any parameters stated after `listbook` will be ignored by SmartLib.
+
+Example use:
+
+Let's say you have just performed `findbook Cloud`,
+and you would like to head back to view the full list of books.
+You can follow the steps below to get SmartLib to display the entire list of books.
+
+Steps:
+
+1. Type `listbook` into the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a message indicating success.
+* SmartLib will list out all the books in its registered book list.
+  <br><br>
+  ![result for 'listbook'](images/listbookResult.png)
+
 #### Listing all overdue books : `listoverdue`
 
-Similar to `listbook` except the books listed are all overdue.
+You can use this command to display a list of all overdue books in SmartLib's registered book list.
 
 Format: `listoverdue`
+
+**:information_source: Note:**
+
+* Any parameters stated after `listoverdue` will be ignored by SmartLib.
+
+Example use:
+
+Let's say you are interested to know which books are currently overdue,
+so that you could send a reminder to readers who are holding on to them.
+You can follow the steps below to get SmartLib to display the list of overdue books.
+
+Steps:
+
+1. Type `listoverdue` into the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a message indicating success.
+* SmartLib will list out all overdue books in its registered book list.
+  <br><br>
+  ![result for 'listoverdue'](images/listoverdueResult.png)
 
 ### Managing borrowing records
 
@@ -491,7 +563,7 @@ Outcome:
 * The relevant parts in UI will be updated.
   ![result for 'return bc/1000000000'](images/ReturnCommand.png)
 
-#### Finding records by keyword(s) : `findrecord`
+#### Finding records : `findrecord`
 
 Finds relevant records with book titles containing any of the given keywords.
 
@@ -535,7 +607,7 @@ You can follow the steps below to start with a new blank copy of SmartLib.
 
 Steps:
 
-1. Type `clear-everything-in-my-smartlib` in the _Command Box_.
+1. Type `clear-everything-in-my-smartlib` into the _Command Box_.
 1. Press `Enter` to execute your input.
 
 Outcome:
@@ -563,7 +635,7 @@ containing explanations for its features, and the list of commands it supports.
 
 Steps:
 
-1. Type `help` in the _Command Box_.
+1. Type `help` into the _Command Box_.
 1. Press `Enter` to execute your input.
 
 Outcome:
@@ -589,7 +661,7 @@ Fret not, you could also exit the application by following the steps below.
 
 Steps:
 
-1. Type `exit` in the _Command Box_.
+1. Type `exit` into the _Command Box_.
 1. Press `Enter` to execute your input.
 
 Outcome:
@@ -619,9 +691,16 @@ file at the next run.
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous SmartLib home folder.
+
+**Q**: Why is there miscellaneous user data in my new copy of SmartLib?<br>
+**A**: We have placed miscellaneous user data for new users to try out SmartLib's various commands, so that they could
+make a more informed decision with regards to whether SmartLib is suitable for their daily use.
+
+To purge all sample user data from SmartLib, you may use the command
+[`clear-everything-in-my-smartlib`](#clearing-all-entries--clear-everything-in-my-smartlib).
 
 --------------------------------------------------------------------------------------------------------------------
 
