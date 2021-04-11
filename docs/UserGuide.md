@@ -18,10 +18,10 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
         * Delete a delivery task
         * Clear all delivery tasks
         * List all delivery tasks
-        * Mark delivery task as done
-        * Tagging a delivery task
-        * View completed delivery tasks
-        * View uncompleted delivery tasks
+        * Mark a delivery task as done
+        * Tag a delivery task
+        * View all completed delivery tasks
+        * View all uncompleted delivery tasks
         * Sort all delivery tasks (completion status, urgency then date)
         * Statistics of delivery workflow
         * Exit application
@@ -208,9 +208,13 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `delete 7` - delete 7 will delete the seventh delivery task in the delivery list.
-  
-![Ui](images/DeleteCommand.png)
+* Before
+
+![Ui](images/DeleteBefore.png)
+
+* `delete 7` - delete 7 will delete the seventh delivery task in the delivery list (after).
+
+![Ui](images/DeleteAfter.png)
 
 ### Clear all delivery tasks : `clear`
 
@@ -253,7 +257,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 ![Ui](images/DoneCommand.png)
 
-### Tagging a delivery task: `add` or `edit`
+### Tag a delivery task: `add` or `edit`
 
 **Purpose:** Add specific tag(s) to a delivery task
 
@@ -320,10 +324,14 @@ then urgency tags (only applicable for incomplete tasks), and lastly date.
 
 **Examples:**
 
+* Before
+
+![Ui](images/SortBefore.png)
+
 * `sort` - Lists all incomplete delivery tasks (urgent ones first) followed by completed delivery tasks, which are all
-  sorted by date.
-  
-![Ui](images/Sort.png)
+  sorted by date (after).
+
+![Ui](images/SortAfter.png)
 
 ### Statistics of delivery workflow : `stats`
 
@@ -410,8 +418,8 @@ Action | Format,<br> Example(s)
 Term | Definition,<br>
 --------|------------------
 **ATTRIBUTE** | `A key detail of a delivery task`<br> e.g., `name`
-**TASK_NUMBER** | `The delivery task number shown in the delivery list` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
-**PREFIX** | `refers to the letter representing the respective attribute.` <br> e.g., Letter a for attribute ADDRESS`
+**TASK_NUMBER** | `The delivery task number shown in the delivery list`
+**PREFIX** | `Refers to the letter representing the respective attribute.` <br> e.g., Letter a for attribute ADDRESS`
 
 
 
