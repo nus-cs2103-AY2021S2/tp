@@ -8,12 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
 import seedu.address.model.garment.Size;
-
-import java.util.Optional;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -96,9 +96,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isValid = true;
         String[] dressCodes = dressCode.get().split(" ");
         for (String d : dressCodes) {
-            if (!d.equalsIgnoreCase("casual") &&
-                    !d.equalsIgnoreCase("formal") &&
-                    !d.equalsIgnoreCase("active")) {
+            if (!d.equalsIgnoreCase("casual")
+                    && !d.equalsIgnoreCase("formal")
+                    && !d.equalsIgnoreCase("active")) {
                 isValid = false;
             }
         }
@@ -112,9 +112,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isValid = true;
         String[] types = type.get().split(" ");
         for (String t : types) {
-            if (!t.equalsIgnoreCase("upper") &&
-                    !t.equalsIgnoreCase("lower") &&
-                    !t.equalsIgnoreCase("footwear")) {
+            if (!t.equalsIgnoreCase("upper")
+                    && !t.equalsIgnoreCase("lower")
+                    && !t.equalsIgnoreCase("footwear")) {
                 isValid = false;
             }
         }
