@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 
+/**
+ * A utility class for common methods and formats used in ListCommandParser and EListCommandParser.
+ */
 public class ListCommandUtil {
 
     /**
