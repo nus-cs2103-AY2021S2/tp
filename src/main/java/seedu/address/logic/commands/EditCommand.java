@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -49,7 +48,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] where FLAG can be modify, insert or remove "
             + "for editing policy ids. If no flag is specified, the default behaviour is replace."
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_MEETING + "MEETING]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -141,7 +139,7 @@ public class EditCommand extends Command {
         default:
             throw new CommandException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
         }
-        List<Meeting> updatedMeetings = editPersonDescriptor.getMeetings().orElse(personToEdit.getMeetings());
+        List<Meeting> updatedMeetings = personToEdit.getMeetings();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedPolicies, updatedMeetings);
@@ -207,7 +205,6 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private List<InsurancePolicy> policiesToAdd;
         private List<InsurancePolicy> policiesToRemove;
-        private List<Meeting> meetings;
 
         public EditPersonDescriptor() {}
 
@@ -223,15 +220,13 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setPoliciesToAdd(toCopy.policiesToAdd);
             setPoliciesToRemove(toCopy.policiesToRemove);
-            setMeetings(toCopy.meetings);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove,
-                    meetings);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove);
         }
 
         public void setName(Name name) {
@@ -299,14 +294,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policiesToRemove);
         }
 
-        public void setMeetings(List<Meeting> meetings) {
-            this.meetings = meetings;
-        }
-
-        public Optional<List<Meeting>> getMeetings() {
-            return Optional.ofNullable(meetings);
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -328,8 +315,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getPoliciesToAdd().equals(e.getPoliciesToAdd())
-                    && getPoliciesToRemove().equals(e.getPoliciesToRemove())
-                    && getMeetings().equals(e.getMeetings());
+                    && getPoliciesToRemove().equals(e.getPoliciesToRemove());
         }
     }
 }

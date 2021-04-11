@@ -301,11 +301,12 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
     <td> Meeting </td>
     <td> <code>m</code> </td>
     <td><ul><li>Optional</li></ul> 
-        <ul><li>Should be of the form <code>DATE START END PLACE</code></li></ul> 
-        <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format</li></ul>
-        <ul><li><code>START</code> and <code>END</code> parts should be in <code>HH:mm</code> format</li></ul>
-        <ul><li><code>END</code> of a meeting must be after <code>START</code> of the same meeting on the same <code>DATE</code></li></ul>
-        <ul><li><code>START</code> of a meeting cannot be the same as <code>END</code> of another meeting on the same <code>DATE</code></li></ul>
+        <ul><li>Can only be modified by using the <code>meet</code> command</li></ul> 
+        <ul><li>Should be of the form <code>DATE START_TIME END_TIME PLACE</code></li></ul>
+        <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format, for example <code>20.05.2021</code></li></ul>
+        <ul><li><code>START_TIME</code> and <code>END_TIME</code> parts should be in <code>HH:mm</code> format, for example <code>15:30</code></li></ul>
+        <ul><li><code>END_TIME</code> of a meeting must be after <code>START_TIME</code> of the same meeting on the same <code>DATE</code></li></ul>
+        <ul><li><code>START_TIME</code> of a meeting cannot be the same as <code>END_TIME</code> of another meeting on the same <code>DATE</code></li></ul>
         <ul><li><code>PLACE</code> should not be empty and can have space between characters</li></ul>
     </td>
   </tr>
@@ -371,6 +372,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 * It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use `>` to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
+* Meetings of a client cannot be added with this command.
 
 **Examples**:
 * Example of a client with insurance policy but no URL associated with insurance policy
@@ -390,12 +392,13 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​ [m/MEETING]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
     * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
+* Meetings of a client cannot be modified with this command.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -472,33 +475,32 @@ If a parameter is expected only once in the command, but you specified it multip
 
 **Purpose**: Schedules a meeting on a particular date, start time, end time and place with a client in ClientBook.
 
-**Format**: `meet INDEX [-ACTION] DATE START END PLACE`
+**Format**: `meet INDEX [-ACTION] DATE START_TIME END_TIME PLACE`
 
 * Schedules a meeting with the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 * `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings of a client.
-* If `-ACTION` is empty, the default action for the command is to add a meeting.
-* Past meeting is allowed to be added for archive purposes.
-* There is a check for clashes between meetings when adding a new meeting with `meet` command.
-* Meetings can be modified with the `edit` command, but there will be no check for clashes between meetings.
+    * If `-ACTION` is empty, the default action for the command is to add a meeting.
+* Past meetings are allowed to be added to clients for archival purposes.
+* There will be a check for clashes between meetings when adding a new meeting.
 
 **Examples**:
-* Add a meeting and there are no clashes.
-    * `meet 1 20.05.2021 15:00 16:00 MRT`
-    
-      ![meet-add](images/meet-add.png)
-  <br><br>
-* Add a meeting but there are clashes.
-    * `meet 3 -add 20.05.2021 15:30 17:30 MRT`
-    
+* Add a meeting for a specific client and there are no clashes.
+    * `meet 5 -add 20.05.2021 15:00 16:00 MRT`
+      
+      ![meet-clash](images/meet-add.png)
+<br><br>
+* Add a meeting for a specific client but there are clashes.
+    * `meet 3 20.02.2021 12:00 15:00 KENT RIDGE MRT`
+      
       ![meet-clash](images/meet-clash.png)
 <br><br>
-* Delete a meeting.
-    * `meet 5 -delete 20.05.2021 15:00 16:00 KENT RIDGE MRT`
+* Delete a meeting of a specific client.
+    * `meet 4 -delete 23.08.2021 09:00 12:00 CLEMENTI MRT`
 <br><br>
-* Clear all meetings.
-    * `meet 2 -clear`
+* Clear all meetings of a specific client.
+    * `meet 1 -clear`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -601,16 +603,16 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 **Format**: `sort -IDENTIFIER -DIRECTION`
 
 * Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
-* The specified `IDENTIFIER` can be `-n` to sort your clients by name alphabetically or `-i` to sort by number of insurance policies, but not both.
-* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
+* The specified `IDENTIFIER` can be `n` to sort your clients by name alphabetically or `i` to sort by number of insurance policies, but not both.
+* The specified `DIRECTION` can be `asc` for ascending order or `des` for descending order, but not both.
 
 **Examples**:
-* If you want to see which of your clients have the most policies with you, sort the current list of clients 
-  by **descending** number of insurance policies owned.
-    * `sort -i -des`
+* If you want to see which of your clients have the least policies with you, sort the current list of clients 
+  by **ascending** number of insurance policies owned.
+    * `sort -i -asc`
       <br><br>
-* You can also sort the current list of clients by name in **ascending** alphabetical order.
-    * `sort -n -asc`
+* You can also sort the current list of clients by name in **descending** alphabetical order.
+    * `sort -n -des`
 
       ![sort](images/sort-des-annotate.png)
 
@@ -848,7 +850,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Edit**](#edit-edit-client-contact) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
 [**Delete**](#delete-delete-client-contact) | `delete INDEX` | `delete 3` |
 [**Batch**](#batch-execute-commands-in-batch) | `batch COMMAND INDICES [ARGUMENTS]` | `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111` |
-[**Meet**](#meet-schedule-a-meeting-with-a-client) | `meet INDEX [-ACTION] DATE START END PLACE` | `meet 1 20.05.2021 15:00 16:00 MRT` |
+[**Meet**](#meet-schedule-a-meeting-with-a-client) | `meet INDEX [-ACTION] DATE START_TIME END_TIME PLACE` | `meet 1 -add 20.05.2021 15:00 16:00 KENT RIDGE MRT` |
 |<span style="color:#c93640">**Contact Viewing**</span>|
 [**List**](#list-list-all-clients) | `list [-IDENTIFIER]` | `list -i` |
 [**Find**](#find-search-for-client-contact-based-on-keywords) | `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​` | `find a/Bedok & Clementi -p` |
