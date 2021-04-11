@@ -629,7 +629,7 @@ testers are expected to do more *exploratory* testing.
        John Doe's student details appear in the GUI.
        
     1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-       This test case assumes that the test case above was performed first.
+       This test case assumes that the test case above was performed first. <br>
        Expected: No student is added. Error details shown in the status message telling user that there already exists a student in Vax@NUS.
     
     1. Test case: `add A7654321J n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`   
