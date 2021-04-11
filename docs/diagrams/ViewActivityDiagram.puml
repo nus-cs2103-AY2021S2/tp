@@ -4,11 +4,11 @@ start
 :User executes view command;
 
 if () then ([dog])
-:ViewCommandParser processes to show owner;
+:Show dog, owner and programs enrolled;
 elseif () then ([owner])
-:ViewCommandParser processes to show all his dogs;
+: Show owner and his dogs;
 else ([program])
-:ViewCommandParser processes to show all enrolled dogs;
+:Shows the program and all enrolled dogs;
 endif
 :Return View Command;
 
