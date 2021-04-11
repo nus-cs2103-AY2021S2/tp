@@ -174,7 +174,7 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   as well as graduated students who are less likely to need private tuition.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal` `math`, `phys`, `sci`, `tam` which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Literature, Malay, Mathematics, Physics, Science and Tamil respectively, which are
   subjects which students are more likely to need private tuition.
@@ -265,9 +265,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
   
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal`, `math`, `phys`, `sci`, `tam`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Literature, Malay, Mathematics, Physics, Science, Tamil respectively, which are
   subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
