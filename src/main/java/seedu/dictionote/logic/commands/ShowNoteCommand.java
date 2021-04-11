@@ -14,7 +14,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
 /**
- * Show a specific note in the notes list to the user.
+ * Shows a specific note in the notes list to the user.
  */
 public class ShowNoteCommand extends Command {
     public static final String COMMAND_WORD = "shownote";
@@ -28,6 +28,11 @@ public class ShowNoteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an ShowNoteCommand that show the note on the note content panel.
+     *
+     * @param targetIndex index of the dictionary content.
+     */
     public ShowNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
