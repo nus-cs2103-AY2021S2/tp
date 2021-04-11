@@ -4,7 +4,7 @@ title: User Guide
 ---
 Hello! Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
 remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
-a centralised place to keep track of all their activities? Then ParentPal can be the app for you!
+a centralised place to keep track of all their activities? Then ParentPal could be the app for you!
 
 ParentPal is a **desktop app for managing your children's contacts and their related appointments, 
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
@@ -41,6 +41,19 @@ If you can type fast, ParentPal can get your contact management tasks done faste
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Understanding ParentPal
+
+### Expired appointments
+ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Should the appointment not appear red despite it having expired, click on the appointment box to refresh it.
+</div>
+
+![expiredAppt](images/expiredAppt.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -142,14 +155,16 @@ Adds or replaces tags to the specified contact by index.
 
 Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
 
-* Tags the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, …​
+* Tags the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list. 
+  The index must be a positive integer 1, 2, 3, …​
 
 Currently available options for the `[OPTION]` field include:
-* `rt` Replaces the currently existing tags with the given new set of tags 
+* `replace` Replaces the currently existing tags with the given new set of tags 
   
 Examples:
 *  `tag 4 t/School t/English` Adds the tags School and English to the 4th contact.
-*  `tag 2 o/rt tc/Alexa t/English` Replaces all existing tags of the 2nd contact with the child tag Alexa and the tag English.
+*  `tag 2 o/replace tc/Alexa t/English` Replaces all existing tags of the 2nd contact with the 
+   child tag Alexa and the tag English.
 
 
 #### Listing all contacts : `list`

@@ -57,6 +57,10 @@ public class ContactCard extends UiPart<Region> {
         checkForPlaceholder(contact.getAddress().value, address);
         checkForPlaceholder(contact.getEmail().value, email);
         streamTags(contact.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
+        checkForFavorite();
+    }
+
+    private void checkForFavorite() {
         if (!contact.getFavourite().isFav()) {
             favIcon.setStyle("-fx-background-color:transparent");
         }

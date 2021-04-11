@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_FIND_OPTI
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_NAME_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_PHONE_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_TAG_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_TAG_PREFIX;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.OPTION_EMAIL;
@@ -57,7 +58,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             // get everything after PREFIX_OPTION
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
             Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
+            String preamble = argMultimap.getPreamble();
+            if (!argsString.isPresent() || !preamble.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            }
+
             String unboxedArgsString = argsString.get();
+
             if (unboxedArgsString.trim().isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_MISSING_OPTION, MESSAGE_MISSING_FIND_OPTION)
@@ -97,8 +105,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         case OPTION_TAG: // find by tag
             // get tags
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(unboxedArgsString, PREFIX_TAG);
-            Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
+            List<String> tagNameList = argMultimap.getAllValues(PREFIX_TAG);
+            if (!tagNameList.isEmpty()) {
+                Set<Tag> tagSet = ParserUtil.parseTags(tagNameList);
+                return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_MISSING_TAG_PREFIX));
+            }
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));

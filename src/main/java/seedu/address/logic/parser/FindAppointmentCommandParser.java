@@ -50,18 +50,20 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             // get everything after PREFIX_OPTION
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
             Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
+            String preamble = argMultimap.getPreamble();
+            if (!argsString.isPresent() || !preamble.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            }
             String unboxedArgsString = argsString.get();
-
             if (unboxedArgsString.trim().isEmpty()) { // option prefix present but option not present
                 throw new ParseException(
                         String.format(MESSAGE_MISSING_OPTION, MESSAGE_MISSING_FIND_APPOINTMENT_OPTION)
                 );
             }
-
             // split args into option and remaining optionArgs
             String[] optionArgsArray = unboxedArgsString.split("\\s+", 2);
             String option = optionArgsArray[0];
-
             if (optionArgsArray.length == 1) { //if no option args provided
                 handleMissingFindAppointmentOptionsArgsExceptions(option);
             }
@@ -87,13 +89,13 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         switch (option) {
         case OPTION_NAME: // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
-        case OPTION_CHILD:
+        case OPTION_CHILD: //find by child
             return new FindAppointmentCommand(new ApptTagsContainKeywordsPredicate(keywords));
         case OPTION_ADDRESS: // find by address
             return new FindAppointmentCommand(new ApptAddressContainsKeywordsPredicate(keywords));
         case OPTION_DATE: // find by date
             return new FindAppointmentCommand(new ApptDateContainsKeywordsPredicate(keywords));
-        case OPTION_CONTACT: // find by contacts
+        case OPTION_CONTACT: // find by contact
             return new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(keywords));
         default:
             throw new ParseException(

@@ -15,6 +15,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,9 +27,13 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Name;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.predicate.NameContainsKeywordsPredicate;
+import seedu.address.testutil.AppointmentBookBuilder;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 
@@ -160,6 +166,96 @@ public class EditCommandTest {
                 new EditContactDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Edit a contact that is also a contact of an appointment object.
+     */
+    @Test
+    public void execute_changeContactBookAndAppointmentBook_success() {
+        //initial set up
+        Set<Contact> contacts = new HashSet<>();
+        Contact contact = new ContactBuilder().build();
+        contacts.add(contact);
+
+        Appointment sampleAppointment = new AppointmentBuilder().build();
+        Appointment appointment = new Appointment(sampleAppointment.getName(), sampleAppointment.getAddress(),
+                sampleAppointment.getDateTime(), contacts, sampleAppointment.getTags());
+
+        model.setAppointmentBook(new AppointmentBookBuilder().withAppointment(appointment).build());
+        model.setAddressBook(new AddressBook());
+        model.addContact(new ContactBuilder().build());
+
+        //expected result
+        Contact editedContact = new ContactBuilder().withName("Emily").build();
+        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(editedContact).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_CONTACT, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+
+        Set<Contact> editedContacts = new HashSet<>();
+        editedContacts.add(editedContact);
+        Appointment editedAppointment = new Appointment(appointment.getName(), appointment.getAddress(),
+                appointment.getDateTime(), editedContacts, appointment.getTags());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new AppointmentBook(model.getAppointmentBook()), new UserPrefs());
+        expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
+        expectedModel.setAppointment(model.getFilteredAppointmentList().get(0), editedAppointment);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void createEditedContact_descriptorSameAsContact_success() {
+        Contact contactToEdit = new ContactBuilder().build();
+        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contactToEdit).build();
+        assertTrue(contactToEdit.equals(EditCommand.createEditedContact(contactToEdit, descriptor)));
+    }
+
+    @Test
+    public void createEditedContact_descriptorDifferentFromContact_success() {
+        Contact contactToEdit = new ContactBuilder().build();
+        Contact newContact = new ContactBuilder().withName("Emily").build();
+        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(newContact).build();
+        assertFalse(contactToEdit.equals(EditCommand.createEditedContact(contactToEdit, descriptor)));
+    }
+
+    @Test
+    public void checkAppointment_multipleAppointmentsChangeTogetherWithContact_success() {
+        Contact contactToEdit = model.getFilteredContactList().get(0);
+        Set<Contact> contacts = new HashSet<>();
+        contacts.add(contactToEdit);
+        Appointment sampleAppointment1 = new AppointmentBuilder().build();
+        Appointment sampleAppointment2 = new AppointmentBuilder().withName("Family Outing").build();
+        Appointment appointment1 = new Appointment(sampleAppointment1.getName(), sampleAppointment1.getAddress(),
+                sampleAppointment1.getDateTime(), contacts, sampleAppointment1.getTags());
+        Appointment appointment2 = new Appointment(sampleAppointment2.getName(), sampleAppointment2.getAddress(),
+                sampleAppointment2.getDateTime(), contacts, sampleAppointment2.getTags());
+        model.setAppointmentBook(new AppointmentBookBuilder().withAppointment(appointment1)
+                .withAppointment(appointment2).build());
+        Contact newContact = new Contact(new Name("Emily"), contactToEdit.getPhone(), contactToEdit.getEmail(),
+                contactToEdit.getAddress(), contactToEdit.getTags(), contactToEdit.getTimeAdded(),
+                contactToEdit.getFavourite());
+        EditCommand.checkAppointment(model, contactToEdit, newContact);
+        assertTrue(model.getFilteredAppointmentList().get(0).getContacts().toArray()[0].equals(newContact));
+        assertTrue(model.getFilteredAppointmentList().get(1).getContacts().toArray()[0].equals(newContact));
+    }
+
+    @Test
+    public void editAppointment_singleAppointmentChangeWithContact_success() {
+        Contact contactToEdit = model.getFilteredContactList().get(0);
+        Set<Contact> contacts = new HashSet<>();
+        contacts.add(contactToEdit);
+        Appointment sampleAppointment = new AppointmentBuilder().build();
+        Appointment appointment = new Appointment(sampleAppointment.getName(), sampleAppointment.getAddress(),
+                sampleAppointment.getDateTime(), contacts, sampleAppointment.getTags());
+        model.setAppointmentBook(new AppointmentBookBuilder().withAppointment(appointment).build());
+        Contact newContact = new Contact(new Name("Emily"), contactToEdit.getPhone(), contactToEdit.getEmail(),
+                contactToEdit.getAddress(), contactToEdit.getTags(), contactToEdit.getTimeAdded(),
+                contactToEdit.getFavourite());
+        EditCommand.editAppointment(model, appointment, contactToEdit, newContact);
+        assertTrue(model.getFilteredAppointmentList().get(0).getContacts().toArray()[0].equals(newContact));
     }
 
     @Test

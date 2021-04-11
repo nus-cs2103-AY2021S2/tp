@@ -20,6 +20,11 @@ Class JsonAppointmentBookStorage
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
+
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
+Storage -|> AppointmentBookStorage
+
 StorageManager o--> AppointmentBookStorage
 AddressBookStorage -right[hidden]-> AppointmentBookStorage
 
@@ -31,6 +36,7 @@ JsonAddressBookStorage .down.> JsonSerializableAddressBook
 JsonSerializableAppointmentBook .down.> JsonAdaptedAppointment
 JsonSerializableAddressBook .down.> JsonAdaptedContact
 JsonAdaptedAppointment .down.> JsonAdaptedTag
+
 note on link
     "(Extra) For tag command"
 end note
