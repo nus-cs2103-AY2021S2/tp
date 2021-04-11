@@ -768,7 +768,7 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
                 <li>Persistent Sorting using a Comparator</li>
                 <li> Pros:
                     <ul>
-                        <li>UX considerations when users expect sorting to be persistent over multiple commands</li>
+                        <li>UX considerations when users expect sorting to be persistent over multiple order-altering commands</li>
                     </ul>
                 </li>
                 <li> Cons:
@@ -790,7 +790,7 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>UX might be compromised as order is not maintained over command executions</li>
+                        <li>UX might be compromised as order is not maintained over order-altering command executions</li>
                     </ul>
                 </li>
             </ul>
@@ -802,8 +802,8 @@ Our group decided to go with alternative 1 and implemented an additional sort co
 This is to ensure smoother UX, as well as better integration with other commands.
 
 By implementing it in this way, our group is able to ensure that the sort order remains consistent over commands that could either:
-* Alter the number of tasks shown at any one time (See <code>find_task</code>)</li>
-* Change the order of task appearance independent of <code>sort_task</code> (See <code>pin_task</code>)</li>
+* Alter the number of tasks shown at any one time (See `find_task`)
+* Change the order of task appearance independent of `sort_task` (See `pin_task`)
 
 This would enable SOChedule to better serve the needs of its user base. 
 
