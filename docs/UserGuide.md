@@ -49,7 +49,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 
 1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
 
-   ![Ui](images/Ui.png)
+   ![Ui](images/AnnotatedUi.png)
 
 ### 2.2 Trying out
 
@@ -94,7 +94,7 @@ For a quick reference of the available commands and their syntax, refer to the [
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/The Mayfair n/Mayfair`, only `n/Mayfair` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
