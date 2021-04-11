@@ -293,7 +293,45 @@ Step 2. The user executes `sort o/name`.
 The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
-Note: Style of diagram to be updated.
+
+### Favourite feature
+
+#### Implementation
+
+The sort mechanism is facilitated by `FavouriteCommand` and `FavouriteCommandParser`.
+
+`FavouriteCommandParser` implements the following operation:
+* `FavouriteCommandParser#parse(String args)` — Parses the arguments using `ArgumentTokenizer#tokenize`
+  and checks for `option`.
+* If there are no options specified in `args`, it means the user is simply favouriting a contact, so `isFav` is set to true.
+* If the `remove` option specified in `args`, it means the user is unfavouriting a contact, so `isFav` is set to false.
+
+`FavouriteCommand` extends `Command`, and implements the following operation:
+* `FavouriteCommand#execute(Model model)` — Executes the favourite command by creating an edited contact and 
+  setting the `favourite` attribute using `EditCommand.EditContactDescriptor` based on `isFav`. 
+  The `model` is then updated accordingly.
+
+Favouriting a contact is done by
+
+Given below is an example usage scenario and how the favourite mechanism behaves at each step.
+
+The following sequence diagram shows how the favourite operation works:
+
+
+#### Design consideration:
+
+##### Aspect: How to implement the favourite feature
+
+* **Alternative 1 (current choice):** 
+    * Pros:
+  * Cons:
+
+* **Alternative 2:**
+    * Pros:
+    * Cons:
+
+Alternative 1 was eventually chosen as 
+As such, that is the alternative that was chosen.
 
 ### Add feature
 
