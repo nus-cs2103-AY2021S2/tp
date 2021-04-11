@@ -17,6 +17,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventStatus;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
@@ -32,8 +34,10 @@ public class DoneCommandTest {
         DoneCommand doneCommand = new DoneCommand(eventIdentifier);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_EVENT_SUCCESS, eventToBeDone);
-
+        Event doneEvent = new Event(eventToBeDone.getName(), EventStatus.DONE, eventToBeDone.getPriority(),
+                eventToBeDone.getDescription(), eventIdentifier.getValue());
         ModelManager expectedModel = new ModelManager(new UserPrefs(), new EventBook(model.getEventBook()));
+        expectedModel.setEvent(eventToBeDone, doneEvent);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
