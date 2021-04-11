@@ -130,4 +130,16 @@ public class SubjectList implements Iterable<TutorSubject> {
         }
         return true;
     }
+
+    /**
+     * Returns true if {@code subjects} contains only unique subjects.
+     */
+    public static boolean isValidSubjectList(List<TutorSubject> subjects) {
+        for (TutorSubject ts : subjects) {
+            if (!TutorSubject.isValidTutorSubject(ts)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

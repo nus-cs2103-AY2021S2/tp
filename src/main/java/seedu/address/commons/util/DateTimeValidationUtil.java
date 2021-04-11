@@ -13,6 +13,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentDateTime;
@@ -24,8 +25,7 @@ import seedu.address.model.event.Event;
 public class DateTimeValidationUtil {
 
     /**
-     * Checks if the {@code AppointmentDateTime} entered fulfills the constraints.
-     * @throws CommandException
+     * Checks if the {@code Event}'s datetime fulfills the constraints.
      */
     public static boolean validateDateTime(Model model, Event... events) throws CommandException {
         requireAllNonNull(model, events);
@@ -98,6 +98,49 @@ public class DateTimeValidationUtil {
                 throw new CommandException(MESSAGE_DATE_CLASH);
             }
         }
+        return true;
+    }
+
+    /**
+     * Checks if the {@code AppointmentDateTime} from JsonAdapted fulfills the constraints.
+     * @throws IllegalValueException if there is an illegal value detected
+     */
+    public static boolean validateJsonAdaptedEvent(AppointmentDateTime timeFrom, AppointmentDateTime timeTo)
+            throws IllegalValueException {
+        /* TIME_FROM must be before TIME_NOW */
+        if (!timeFrom.isBefore(timeTo)) {
+            throw new IllegalValueException(MESSAGE_TIME_FROM_GREATER_THAN);
+        }
+
+        /* Start Time must be 6:00 AM onwards */
+        if (timeFrom.isInvalidStartTime()) {
+            throw new IllegalValueException(MESSAGE_INVALID_START_TIME);
+        }
+
+        /* End Time must not be after 11:00 PM */
+        if (timeTo.isInvalidEndTime()) {
+            throw new IllegalValueException(MESSAGE_INVALID_END_TIME);
+        }
+
+        double timeToHours = timeTo.toTime().getHour() + (timeTo.toTime().getMinute() / 60.0);
+        double timeFromHours = timeFrom.toTime().getHour() + (timeFrom.toTime().getMinute() / 60.0);
+        double timeDiff = timeToHours - timeFromHours;
+
+        /* Time Slot must be at least 1 hour */
+        if (timeDiff < 1) {
+            throw new IllegalValueException(MESSAGE_INVALID_SHORT_HOURS);
+        }
+
+        /* Time Slot must not exceed 8 hours */
+        if (timeDiff > 8) {
+            throw new IllegalValueException(MESSAGE_INVALID_LONG_HOURS);
+        }
+
+        /* Time must be in 30 minutes or 60 minutes block */
+        if (!timeFrom.isValidMinutes() || !timeTo.isValidMinutes()) {
+            throw new IllegalValueException(MESSAGE_INVALID_TIME_MINUTES);
+        }
+
         return true;
     }
 }

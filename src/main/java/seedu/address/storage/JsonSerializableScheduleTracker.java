@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,9 +56,6 @@ public class JsonSerializableScheduleTracker {
                 throw new IllegalValueException(MESSAGE_MISMATCH_DATE);
             }
 
-            if (schedule.isInvalidTimeRange()) {
-                throw new IllegalValueException(MESSAGE_TIME_FROM_GREATER_THAN);
-            }
             scheduleTracker.addSchedule(schedule);
         }
         return scheduleTracker;

@@ -45,7 +45,8 @@ public class ViewEventCommandTest {
         ViewEventCommand viewCommand = new ViewEventCommand(APPOINTMENT_FIRST_DATE);
 
         String expectedMessage = String.format(ViewEventCommand.MESSAGE_VIEW_EVENT_SUCCESS,
-                APPOINTMENT_FIRST_DATE.toDateString());
+                APPOINTMENT_FIRST_DATE.toDateString(), expectedModel.getFilteredAppointmentList().size(),
+                expectedModel.getFilteredScheduleList().size());
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -62,7 +63,8 @@ public class ViewEventCommandTest {
         ViewEventCommand viewCommand = new ViewEventCommand(APPOINTMENT_FIRST_DATE);
 
         String expectedMessage = String.format(ViewEventCommand.MESSAGE_VIEW_EVENT_SUCCESS,
-                APPOINTMENT_FIRST_DATE.toDateString());
+                APPOINTMENT_FIRST_DATE.toDateString(), expectedModel.getFilteredAppointmentList().size(),
+                expectedModel.getFilteredScheduleList().size());
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 

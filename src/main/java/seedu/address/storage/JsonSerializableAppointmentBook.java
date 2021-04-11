@@ -56,6 +56,7 @@ public class JsonSerializableAppointmentBook {
             if (!appointment.isSameDate()) {
                 throw new IllegalValueException(MESSAGE_MISMATCH_DATE);
             }
+
             appointmentBook.addAppointment(appointment);
         }
         return appointmentBook;

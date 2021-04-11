@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-
 /**
  * Represents a subject that a tutor offers.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -49,6 +48,17 @@ public class TutorSubject {
 
     public SubjectQualification getQualification() {
         return qualification;
+    }
+
+    /**
+     * Check if the {@code TutorSubject} is valid.
+     */
+    public static boolean isValidTutorSubject(TutorSubject tutorSubject) {
+        return SubjectName.isValidName(tutorSubject.getName().name)
+            && SubjectLevel.isValidLevel(tutorSubject.getLevel().level)
+            && SubjectRate.isValidRate(tutorSubject.getRate().rate.toString())
+            && SubjectExperience.isValidExperience(tutorSubject.getExperience().experience.toString())
+            && SubjectQualification.isValidQualification(tutorSubject.getQualification().qualification);
     }
 
     /**

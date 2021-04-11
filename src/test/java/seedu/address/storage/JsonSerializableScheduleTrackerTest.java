@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -54,14 +53,6 @@ public class JsonSerializableScheduleTrackerTest {
         JsonSerializableScheduleTracker dataFromFile = JsonUtil.readJsonFile(MISMATCH_SCHEDULE_FILE,
                 JsonSerializableScheduleTracker.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableScheduleTracker.MESSAGE_MISMATCH_DATE,
-                dataFromFile::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidTimeRangeSchedule_throwsIllegalValueException() throws Exception {
-        JsonSerializableScheduleTracker dataFromFile = JsonUtil.readJsonFile(INVALID_TIME_RANGE_SCHEDULE_FILE,
-                JsonSerializableScheduleTracker.class).get();
-        assertThrows(IllegalValueException.class, MESSAGE_TIME_FROM_GREATER_THAN,
                 dataFromFile::toModelType);
     }
 }

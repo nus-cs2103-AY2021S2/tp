@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+ScheduleTracker *-right-> "1" ScheduleList
+
+ScheduleList o-right-> Schedule
+
+Schedule *--> Title
+Schedule *--> TimeFrom
+Schedule *--> TimeTo
+Schedule *--> Description
+@enduml

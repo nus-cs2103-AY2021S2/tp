@@ -35,7 +35,7 @@ public class ViewAppointmentCommandTest {
         expectedModel.updateFilteredAppointmentList(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
-                appointmentToView.getTimeFrom().toDateString());
+                appointmentToView.getTimeFrom().toDateString(), expectedModel.getFilteredAppointmentList().size());
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -49,7 +49,7 @@ public class ViewAppointmentCommandTest {
         expectedModel.updateFilteredAppointmentList(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
-                appointmentToView.getTimeFrom().toDateString());
+                appointmentToView.getTimeFrom().toDateString(), expectedModel.getFilteredAppointmentList().size());
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 

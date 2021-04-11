@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.testutil.TypicalModel;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListAppointmentCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListScheduleCommand.
  */
 public class ListScheduleCommandTest {
 
@@ -27,14 +27,14 @@ public class ListScheduleCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListScheduleCommand(), model,
-                ListScheduleCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListScheduleCommand(), model, String.format(ListScheduleCommand.MESSAGE_SUCCESS,
+                model.getFilteredScheduleList().size()), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showScheduleAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListScheduleCommand(), model,
-                ListScheduleCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListScheduleCommand(), model, String.format(ListScheduleCommand.MESSAGE_SUCCESS,
+                expectedModel.getFilteredScheduleList().size()), expectedModel);
     }
 }

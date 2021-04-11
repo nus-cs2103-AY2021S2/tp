@@ -28,7 +28,8 @@ import seedu.address.ui.UiPart;
 
 /**
  * Panel displaying timetable.
- * Adapted from https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+ * Solution below adapted from
+ * https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
  * SchedulePanel.java
  */
 public class TimeTablePanel extends UiPart<Region> {

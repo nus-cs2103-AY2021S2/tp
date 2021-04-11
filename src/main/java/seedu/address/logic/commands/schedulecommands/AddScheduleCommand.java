@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_EDIT_COMMAND_ERROR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
@@ -30,16 +31,13 @@ public class AddScheduleCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Math Tuition Homework "
-            + PREFIX_DATE + "2021-3-1 "
+            + PREFIX_DATE + "2021-6-1 "
             + PREFIX_TIME_FROM + "08:00am "
             + PREFIX_TIME_TO + "10:00am "
             + PREFIX_DESCRIPTION + "Page 10 to 13";
 
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists in the list";
-    public static final String MESSAGE_CLASH_SCHEDULE = "The schedule you are trying "
-            + "to change clashes with the timeslot of an existing appointment or schedule. Please "
-            + "ensure timeslots to not clash.";
 
     private final Schedule toAdd;
 
@@ -68,10 +66,14 @@ public class AddScheduleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
         }
 
-        DateTimeValidationUtil.validateDateTime(model, toAdd);
+        boolean isValidateSuccess = DateTimeValidationUtil.validateDateTime(model, toAdd);
 
-        model.addSchedule(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);
+        if (isValidateSuccess) {
+            model.addSchedule(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);
+        } else {
+            throw new CommandException(MESSAGE_ADD_EDIT_COMMAND_ERROR);
+        }
     }
 
     @Override
