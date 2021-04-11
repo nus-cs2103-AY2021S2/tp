@@ -25,8 +25,9 @@ import seedu.address.model.DisplayFilterPredicate;
 
 class FilterCommandParserTest {
 
+    private static final String INVALID_PREFIX = "-dfdf";
+
     private final FilterCommandParser parser = new FilterCommandParser();
-    final String INVALID_PREFIX = "-dfdf";
 
     @Test
     public void parse_emptyArgs_success() {
