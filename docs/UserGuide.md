@@ -62,7 +62,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 3. Copy the file to the folder you want to use as the _home folder_ for JJIMY.
 
 4. Double-click the file to start the app. The GUI[<sup>3</sup>](#glossary) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiUG.png)
 
 5. Type in command in the `command box` and press Enter to execute it.
 
