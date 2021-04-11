@@ -939,7 +939,28 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find d/hello`<br>
        Expected: A filtered list will be returned if there exists tasks within PlanIT
        that has the full description keyword `hello` (case-insensitive).
+       
+### Sorting tasks in PlanIT
+1. Using sort command to sort all tasks or uncompleted tasks within PlanIT either in ascending or descending dates.
 
+    1. Test case: `sort by a`<br>
+       Expected: Sorts all tasks within PlanIT in ascending order. task with no dates would appear last.
+
+    1. Test case: `sort by d`<br>
+       Expected: Sorts all tasks within PlanIT in ascending order. task with no dates would appear first.
+
+    1. Test case: `sort`<br>
+       Expected: No sorted list will be returned.
+       An error message stating invalid input format of find command will be shown in the result display.
+
+    1. Test case: `sort by first`<br>
+       Expected: No sorted list will be returned.
+       An error message stating the list can only be sorted by a or by d.
+
+    1. Test case: `sort by last`<br>
+       Expected: No sorted list will be returned.
+       An error message stating the list can only be sorted by a or by d.
+       
 ### Removing a task
 
 1. Removing a task while all tasks are being shown
