@@ -6,7 +6,7 @@ title: User Guide
 # Welcome to Focuris User Guide!
 
 Thank you for downloading **Focuris**! As a busy University student, Focuris helps you manage and keep track of all your
-work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making 
+work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making
 your student life a little easier! <br/>
 
 Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
@@ -19,8 +19,8 @@ Get started quickly on your journey with Focuris [here](#1-quick-start)!
 
 ## Here's why you should use Focuris:
 
-As a student, have you ever been overwhelmed by work in the middle of the semester? Or have you ever struggled to 
-keep track of all your deadlines and projects? Or perhaps have you ever wondered what work to prioritise when things 
+As a student, have you ever been overwhelmed by work in the middle of the semester? Or have you ever struggled to
+keep track of all your deadlines and projects? Or perhaps have you ever wondered what work to prioritise when things
 get hectic? Well, Focuris is here to help! Focuris can:
 
 - Help with task management and scheduling through a simple and easy to navigate interface.
@@ -37,7 +37,7 @@ get hectic? Well, Focuris is here to help! Focuris can:
 - To get answers to some FAQs, head to [3. FAQ](#3-faq)!
 - To learn more about some keywords we use, head to [4. Glossary](#4-glossary)!
 
-Feel free to read on or check out our [Table of Contents](#table-of-contents), to learn more about our features 
+Feel free to read on or check out our [Table of Contents](#table-of-contents), to learn more about our features
 and customise your experience with Focuris!
 
 ---
@@ -163,8 +163,7 @@ and [2.3](#23-event-commands).
 **:information_source: Please take note of the following with regards to Events in Focuris:** <br>
 
 - You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
-  
-- Events of the same name are treated as case-insensitive. <br> 
+- Events of the same name are treated as case-insensitive. <br>
   e.g. `CS2030` is the same name as `cs2030`.
 
 </div>
@@ -190,7 +189,7 @@ The table below gives a detailed summary of the different [parameters](#paramete
 <div markdown="block" class="alert alert-info">
 **:information_source: Please take note of the following with regards to parameters in Focuris:** <br/>
 - Identifiers are not meant to be a counter of your events. It is meant to be a unique identifier for your Events in Focuris and may not count in order.
-- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events. 
+- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events.
 - Identifiers will be recalculated every time you run Focuris.
 - Identifiers do not get reset to 1 after a `clear` command.
 - Priority is set to `low` if you do not specify a priority for your event. <br/>
@@ -211,7 +210,6 @@ There are two views in Focuris, which can be toggled with the [`switch` command]
 
 2. `List` view<br/>
    ![Ui List](images/user-guide/Annotated/UiListWithReferenceAnnotated.png)
-   
 This is how your events are displayed:
 ![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
 

@@ -33,11 +33,15 @@ import java.util.Optional;
  */
 public class EditCommandTest {
 
+    private Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+
     @Test
     public void execute_allFieldsSpecified_success() {
-        Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
-        Event editedEvent = new EventBuilder().withIdentifier(IDENTIFIER_FIRST_EVENT.getValue()).buildWithID();
+        Event firstEventInModel = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
+
+        Event editedEvent = new EventBuilder().withIdentifier(firstEventInModel.getIdentifier()).buildWithID();
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedEvent).build();
         Identifier editedEventIdentifier = Identifier.fromIdentifier(editedEvent.getIdentifier());
         EditCommand editCommand = new EditCommand(editedEventIdentifier, descriptor);
@@ -46,20 +50,20 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
 
-        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
+        Optional<Event> optFirstEvent = model.getEventByIdentifier(firstEventInModel.getIdentifier());
         assertTrue(optFirstEvent.isPresent());
         Event firstEvent = optFirstEvent.get();
         expectedModel.setEvent(firstEvent, editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
     @Test
     public void execute_someFieldsSpecified_success() {
-        Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
-        Identifier lastEventIdentifier = Identifier.fromIdentifier(model.getFilteredEventList().size());
-        Event lastEvent = model.getEventBook().getEventList().get(lastEventIdentifier.getZeroBased());
+        int eventBookSize = model.getEventBook().getEventList().size();
+        Event lastEvent = model.getEventBook().getEventList().get(eventBookSize - 1);
+        Identifier lastEventIdentifier = Identifier.fromIdentifier(lastEvent.getIdentifier());
 
         EventBuilder eventInBook = new EventBuilder(lastEvent);
         Event editedEvent = eventInBook.withName(VALID_NAME_CS2100)
@@ -76,22 +80,21 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
     @Test
     public void execute_duplicateEvent_failure() {
-        Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
         Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
+        Event secondEvent = model.getEventBook().getEventList().get(IDENTIFIER_SECOND_EVENT.getZeroBased());
 
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
-        EditCommand editCommand = new EditCommand(IDENTIFIER_SECOND_EVENT, descriptor);
+        EditCommand editCommand = new EditCommand(Identifier.fromIdentifier(secondEvent.getIdentifier()), descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
     }
 
     @Test
     public void execute_invalidEventIndexUnfilteredList_failure() {
-        Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
         Identifier outOfBoundIdentifier = Identifier.fromIdentifier(Event.getLatestIdentifier().getValue() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2030).build();
         EditCommand editCommand = new EditCommand(outOfBoundIdentifier, descriptor);

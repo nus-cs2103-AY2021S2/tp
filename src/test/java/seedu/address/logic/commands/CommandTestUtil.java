@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -18,6 +19,7 @@ import seedu.address.model.EventBook;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventContainsKeywordsPredicate;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
 //import seedu.address.model.person.NameContainsKeywordsPredicate;
 //import seedu.address.model.person.Person;
@@ -31,12 +33,15 @@ public class CommandTestUtil {
     public static final String VALID_NAME_CS2030 = "CS2030";
     public static final String VALID_NAME_CS2107 = "CS2107";
     public static final String VALID_NAME_CS2100 = "CS2100";
-    public static final String VALID_DESCRIPTION_CS2030 = "Object oriented Programming";
+    public static final String VALID_DESCRIPTION_CS2030 = "Object oriented Programming module";
     public static final String VALID_DESCRIPTION_CS2107 = "Introduction to Information Security";
     public static final String VALID_DESCRIPTION_CS2100 = "Computer Organisation";
     public static final EventStatus VALID_STATUS_CS2030 = EventStatus.DONE;
     public static final EventStatus VALID_STATUS_CS2107 = EventStatus.IN_PROGRESS;
     public static final EventStatus VALID_STATUS_CS2100 = EventStatus.IN_PROGRESS;
+    public static final EventPriority VALID_PRIORITY_CS2030 = EventPriority.HIGH;
+    public static final EventPriority VALID_PRIORITY_CS2107 = EventPriority.MEDIUM;
+    public static final EventPriority VALID_PRIORITY_CS2100 = EventPriority.LOW;
 
     //Event
     public static final String EVENTNAME_DESC_CS2030 = " " + PREFIX_NAME + VALID_NAME_CS2030;
@@ -45,6 +50,9 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_CS2107 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2107;
     public static final String EVENTSTATUS_DESC_CS2030 = " " + PREFIX_STATUS + VALID_STATUS_CS2030;
     public static final String EVENTSTATUS_DESC_CS2107 = " " + PREFIX_STATUS + VALID_STATUS_CS2107;
+    public static final String EVENTPRIORITY_DESC_CS2030 = " " + PREFIX_PRIORITY + VALID_PRIORITY_CS2030;
+    public static final String EVENTPRIORITY_DESC_CS2107 = " " + PREFIX_PRIORITY + VALID_PRIORITY_CS2107;
+
 
     //Event
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "CS2030&"; // '&' not allowed in names
