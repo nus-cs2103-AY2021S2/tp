@@ -203,13 +203,13 @@ The edit mechanism is facilitated by `EditCommand` and `EditCommandParser`.
 
 `EditCommand` extends `Command` and implements the following operation:
 
-* `EditCommand#execute()` — edits the student with personal details if the details are valid, and returns a new
+* `EditCommand#execute()` — edits the student with new personal details if the details are valid, and returns a new
   `CommandResult` with a success message.
 
 `EditCommandParser` implements the `Parser` interface and implements the following operation:
 
 * `EditCommandParser#parse()`  —  parses the user's input and returns a `EditCommand` if the command format
-  is valid
+  is valid.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
@@ -223,8 +223,9 @@ to change his phone number and add in his address.
 
 Step 2. The user input is parsed by `AddressBookParser`, which passes the edit command's argument to `EditCommandParser`.
 
-Step 3. `EditCommandParser` creates a new `Person` object for the edited student and returns a new `EditCommand` 
-if the argument is valid. Otherwise, a `ParseException` is thrown.
+Step 3. `EditCommandParser` creates a new `EditPersonDescriptor` object to include the new values of the fields to be changed to.
+The student index `1` and the `EditPersonDescriptor` object are passed into the `SearchCommand` constructor as the arguments, if they are valid. 
+Otherwise, a `ParseException` is thrown.
 
 Step 4. `LogicManager` then calls `EditCommand#execute()`.
 
@@ -256,7 +257,7 @@ whereas name and phone are compulsory details which must not be blank at any tim
 * **Alternative 1 (current choice):** Only subjects and lessons can be cleared by leaving the space blank after their respective prefixes.
     * Pros: Fewer fields need to be taken care of and are easier to remember. 
       Subjects and lessons taken by the students could be removed.
-    * Cons: Deletion of a wrong piece of information is disallowed once it is stored in the application and no new information is available. 
+    * Cons: Deletion of a wrong piece of information is disallowed once it is stored in TutorsPet and no new information is available. 
       It might cause confusion in the future.
 
 * **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after its prefix.
