@@ -29,7 +29,7 @@ If you can type fast, SmartLib would be a brilliant and efficient assistant in t
 and borrowers' information, as compared to the traditional GUI apps currently available in the market!
 
 If you are interested in using our wonderful application,
-head over to [Quick start](#quick-start) now to learn how to begin your journey with SmartLib!
+head over to [quick start](#quick-start) now to learn how to begin your journey with SmartLib!
 
 --------------------------------------------------------------------------------------------------------------------
 
