@@ -516,13 +516,15 @@ Step 3: The user executes `progress` to view a progress report based on the acti
 
 #### ProgressCalculator class
 
-The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts a `user` input parameter in the form of a `User` class object.
-This `user` object will contain the necessary information required to calculate the precentage of adherence to the diet plan. These information are:
+<img src="images/ProgressCalculatorClassDiagram.png"/>
+
+The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts three paramters, namely:
 
 1. The `DietPlan` class object which contains the macronutrients requirements for the plan
 2. The `FoodIntakeList` class object which contains the list of foods consumed by the user on which day
+3. The `User` class object which contains information about the user
 
-The progress calculator will first calculate the required calories and macronutrients to fit the goal of the user's active diet plan. Documented below are the steps involved in deciding the daily amount of calories and macronutrients needed for the user to adhere to the diet plan:
+The progress calculator will first calculate the required calories and macronutrients to fit the goal of the user's active diet plan. This is done through the `PlanInfoCalculator` class. Documented below are the steps involved in deciding the daily amount of calories and macronutrients needed for the user to adhere to the diet plan:
 
 1. The user's weight maintenance calories are calculated based on the **Mifflin-St Joer Formula**.
 2. Depending on the type of diet plan (weight gain, weight loss or weight maintenance), the amount of calories required is calculated:
