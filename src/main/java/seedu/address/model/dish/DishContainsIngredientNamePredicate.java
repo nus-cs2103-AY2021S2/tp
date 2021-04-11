@@ -2,9 +2,16 @@ package seedu.address.model.dish;
 
 import java.util.function.Predicate;
 
+/**
+ * Predicate that checks if this dish contains an ingredient with specified name
+ */
 public class DishContainsIngredientNamePredicate implements Predicate<Dish> {
     private final String ingredientName;
 
+    /**
+     * Initialize predicate with name of ingredient
+     * @param ingredientName ingredient name to look for
+     */
     public DishContainsIngredientNamePredicate(String ingredientName) {
         this.ingredientName = ingredientName;
     }

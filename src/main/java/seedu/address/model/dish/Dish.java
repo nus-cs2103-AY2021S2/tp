@@ -18,9 +18,9 @@ public class Dish implements Item {
 
     /**
      * Dish constructor
-     * @param name
-     * @param price
-     * @param ingredientQuantityList
+     * @param name name of dish
+     * @param price price of dish
+     * @param ingredientQuantityList ingredients and their quantities
      */
     @JsonCreator
     public Dish(@JsonProperty("dish") String name, @JsonProperty("price") double price,
