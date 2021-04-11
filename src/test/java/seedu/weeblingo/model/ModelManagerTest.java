@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.U_CARD;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

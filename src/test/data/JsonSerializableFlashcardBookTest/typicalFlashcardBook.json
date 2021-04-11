@@ -1,0 +1,40 @@
+{
+  "flashcards" : [ {
+    "question" : "あ",
+    "answer" : "a",
+    "tagged" : [ "gojuon" ],
+    "userTagged" : [  ]
+  }, {
+    "question" : "い",
+    "answer" : "i",
+    "tagged" : [ "gojuon" ],
+    "userTagged" : [ ]
+  }, {
+    "question" : "う",
+    "answer" : "u",
+    "tagged" : [ "gojuon" ],
+    "userTagged" : [ ]
+  }, {
+    "question" : "え",
+    "answer" : "e",
+    "tagged" : [ "gojuon" ],
+    "userTagged" : [ ]
+  }, {
+    "question" : "お",
+    "answer" : "o",
+    "tagged" : [ "gojuon" ],
+    "userTagged" : [ ]
+  }, {
+    "question" : "か",
+    "answer" : "ka",
+    "tagged" : [ "gojuon" ],
+    "userTagged" : [ ]
+  }, {
+    "question" : "き",
+    "answer" : "ki",
+    "tagged" : [ "gojuon" ],
+    "userTagged" : [ ]
+  }
+  ],
+  "scores" : [ ]
+}

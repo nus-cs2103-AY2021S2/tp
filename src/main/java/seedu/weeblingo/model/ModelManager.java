@@ -212,6 +212,7 @@ public class ModelManager implements Model {
      * @param attempt The answer which the user entered.
      * @return True if the answer matches, false otherwise.
      */
+    @Override
     public boolean isCorrectAnswer(Answer attempt) {
         requireNonNull(quizInstance);
         return quizInstance.isCorrectAnswer(attempt);
@@ -226,6 +227,7 @@ public class ModelManager implements Model {
     /**
      * Deletes this quiz instance.
      */
+    @Override
     public void clearQuizInstance() {
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         quizInstance = null;
@@ -256,10 +258,12 @@ public class ModelManager implements Model {
 
     //=========== Mode Related =============================================================
 
+    @Override
     public Mode getMode() {
         return this.mode;
     }
 
+    @Override
     public int getCurrentMode() {
         assert this.mode.isValidMode();
         return this.mode.getCurrentMode();
@@ -269,6 +273,7 @@ public class ModelManager implements Model {
      * Switches the current mode to Quiz Mode.
      * @throws CommandException if the filtered list of flashcards is empty.
      */
+    @Override
     public void switchModeQuiz() throws CommandException {
         if (filteredFlashcards.isEmpty()) {
             throw new CommandException(MESSAGE_TAG_NOT_FOUND);
@@ -280,6 +285,7 @@ public class ModelManager implements Model {
      * Switches the current mode to Learn Mode.
      * @throws CommandException if the filtered list of flashcards is empty.
      */
+    @Override
     public void switchModeLearn() throws CommandException {
         if (filteredFlashcards.isEmpty()) {
             throw new CommandException(MESSAGE_TAG_NOT_FOUND);
@@ -290,6 +296,7 @@ public class ModelManager implements Model {
     /**
      * Switches the current mode to Menu Mode.
      */
+    @Override
     public void switchModeMenu() {
         clearQuizInstance();
         this.mode.switchModeMenu();
@@ -298,6 +305,7 @@ public class ModelManager implements Model {
     /**
      * Switches the current mode to History Mode.
      */
+    @Override
     public void switchModeHistory() {
         this.mode.switchModeHistory();
     }
@@ -305,6 +313,7 @@ public class ModelManager implements Model {
     /**
      * Switches the current mode to Quiz Session Mode.
      */
+    @Override
     public void switchModeQuizSession() {
         this.mode.switchModeQuizSession();
     }
@@ -312,6 +321,7 @@ public class ModelManager implements Model {
     /**
      * Switches the current mode to Check Success Mode.
      */
+    @Override
     public void switchModeCheckSuccess() {
         this.mode.switchModeCheckSuccess();
     }
@@ -319,6 +329,7 @@ public class ModelManager implements Model {
     /**
      * Switches the current mode to Quiz Session Ended Mode.
      */
+    @Override
     public void switchModeQuizSessionEnded() {
         this.mode.switchModeQuizSessionEnded();
     }

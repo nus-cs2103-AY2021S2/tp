@@ -1,0 +1,20 @@
+{
+  "flashcards" : [ {
+    "question" : "あ",
+    "answer" : "völlig",
+    "tagged" : [ ],
+    "userTagged" : [ ]
+  }, {
+    "question" : "い",
+    "answer" : "i",
+    "tagged" : [ "gojuon", "hiragana" ],
+    "userTagged" : [ ]
+  }],
+  "scores" : [ {
+    "time" : "10-04-2021 23:30:06",
+    "ratio" : "0.000%",
+    "questionAttempted" : "0",
+    "questionCorrect" : "0",
+    "timeSpent" : "00:00:01"
+  } ]
+}
