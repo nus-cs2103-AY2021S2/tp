@@ -360,6 +360,9 @@ public class ModelManager implements Model {
         Semester semester = newPlan.getSemesterBySemNumber(semNumber);
         semester.addModule(module);
         newPlan.addNumModules();
+        if (originalPlan.getIsMasterPlan()) {
+            newPlan.setMasterPlan(true);
+        }
         modulePlanner.setPlan(originalPlan, newPlan);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
@@ -368,6 +371,9 @@ public class ModelManager implements Model {
     public void deleteModule(Plan plan, Semester semester, Module module) {
         Semester newSemester = semester.removeModule(module);
         Plan newPlan = plan.changePlan(semester, newSemester);
+        if (plan.getIsMasterPlan()) {
+            newPlan.setMasterPlan(true);
+        }
         modulePlanner.setPlan(plan, newPlan);
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);
     }
