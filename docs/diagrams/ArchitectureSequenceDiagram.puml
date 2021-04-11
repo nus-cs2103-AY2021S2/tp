@@ -13,13 +13,21 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("delete 1")
 activate logic LOGIC_COLOR
 
+<<<<<<< HEAD
 logic -[LOGIC_COLOR]> model : deleteGarment(g)
+=======
+logic -[LOGIC_COLOR]> model : deleteGarment(p)
+>>>>>>> Branch-Docs-DGEDIT
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
 deactivate model
 
+<<<<<<< HEAD
 logic -[LOGIC_COLOR]> storage : saveWardrobe(wardrobe)
+=======
+logic -[LOGIC_COLOR]> storage : saveWardrobe(Wardrobe)
+>>>>>>> Branch-Docs-DGEDIT
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file
