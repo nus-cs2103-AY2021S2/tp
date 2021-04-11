@@ -12,6 +12,7 @@ public enum AvailableSubject {
     eng("english"),
     geo("geography"),
     hist("history"),
+    lit("literature"),
     mal("malay"),
     math("mathematics"),
     phys("physics"),
