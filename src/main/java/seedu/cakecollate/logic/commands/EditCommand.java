@@ -32,6 +32,8 @@ import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.order.Request;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -95,6 +97,8 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
+        addToOrderItemsModel(model);
+
         model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
@@ -122,6 +126,18 @@ public class EditCommand extends Command {
 
         return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions,
                 updatedTags, updatedDeliveryDate, deliveryStatus, updatedRequest);
+    }
+
+    private void addToOrderItemsModel(Model model) {
+        if (this.editOrderDescriptor.getOrderDescriptions().isEmpty()) {
+            return;
+        }
+
+        this.editOrderDescriptor.getOrderDescriptions().get().keySet().stream()
+                .map(OrderDescription::getValue) // because a string is needed for creating a new Type for new OrderItem
+                .map(o -> new OrderItem(new Type(o))) // map to order item so can check if already in model
+                .filter(o -> !model.hasOrderItem(o)) // filters out items that already exist in model
+                .forEach(model::addOrderItem);
     }
 
     @Override
