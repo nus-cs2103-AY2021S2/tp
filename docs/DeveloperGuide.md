@@ -127,9 +127,10 @@ Classes used by multiple components are in the `seedu.heymatez.commons` package.
 ## **Implementation**
 This section documents some of the noteworthy details on how certain features are implemented
 
-### Mark as completed / uncompleted feature
+### Mark Task as completed / uncompleted feature
 
-The implementation of the mark as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` classes respectively, both of which extends from the Command abstract class.
+The implementation of the Mark Task as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` 
+classes respectively, both of which extends from the Command abstract class.
 
 The execution of the command is also facilitated by the following Parser Classes:
 * `DoneTaskCommandParser`
