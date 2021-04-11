@@ -2,8 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
@@ -160,7 +160,7 @@ From the diagram illustrated above:
 1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to
    `PoolCommandParser` which creates and returns a `PoolCommand`.
-1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
+1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()` 
    that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
 1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
 1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
@@ -300,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 2. GME shows a list of passengers.
 3. HR executive chooses and view the details of the specific passenger.
 4. HR executive allocates drivers to specific passenger to the driver's carpooling group.
-
+   
    Use case ends.
 
 ***Extensions***
@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 ***Extensions***
 
 * 3a. No passenger fulfils the criteria.
-    * 3a1. GME shows empty list.
+  * 3a1. GME shows empty list.
 
   Use case ends.
 
@@ -341,9 +341,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 ***Extensions***
 
 * 2a. Any required field is missing.
-    * 2a1. GME warns the user to input the data missing.
+  * 2a1. GME warns the user to input the data missing.
 
-      Use case ends.
+    Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
