@@ -1,22 +1,32 @@
 ---
 layout: page
-title: Developer Guide for The Food Diary
+title: Developer Guide
 ---
+
+Done by (CS2103-T14-2):
+Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran Gokul
+
+---
+
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Description**
 
-The Food Diary is a **desktop app for managing food diary entries**, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
+The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and 
+packaged with a Graphical User Interface (GUI).
 
-The Food Diary **caters to food-passionate NUS students** who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
+The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options 
+tasted in the vicinity of NUS.
 
-The Food Diary will **allow students to save time and effort** when finding places to eat around the NUS vicinity. 
-The Food Diary especially caters to students chiefly on 3 aspects:
-1. The ability for users to log personal food reviews tagged under different categories for future reference;
-1. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI; and
-1. The ability to import and export their personal food diary to share with friends.
+The Food Diary will allow students to save time and effort when finding places to eat around the NUS vicinity. The Food 
+Diary especially caters to students mainly on 4 aspects:
+
+1. The ability for users to save food diary entries for future reference.
+2. The ability for users to find entries based on specific fields.
+3. The ability for users to have multiple food reviews for a food place.
+4. The option for users to use Commands / UI to perform some tasks quickly.
 
 ## **Design**
 ### Architecture
@@ -77,6 +87,7 @@ The sections below give more details of each component.
  
 
 ### Logic Component
+
 ![Logic Class Diagram](images/LogicClassDiagram.png)
 **API:** [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Logic.java)
 
@@ -96,7 +107,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### Model Component
 ![Model Architecture Diagram](images/ModelArchitectureDiagram.png)
 
-**API :** `Model.java`
+**API :** [`Model.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/model/Model.java)
 
 The `Model`,
 - stores a `UserPref` object that represents the user’s preferences.
@@ -109,7 +120,7 @@ The `Model`,
 ### Storage Component
 ![Storage Architecture Diagram](images/Storage.png)
 
-**API :** `Storage.java`
+**API :** [`Storage.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/storage/Storage.java)
 
 The `Storage` component,
 - can save `UserPref` objects in json format and read it back.
@@ -129,8 +140,6 @@ Notably:
  and is essential in allowing the app to restore back the GUI window settings upon reopening the app.
 * The `LogCenter` class in the `Index` folder contains methods that process the loggers and handlers responsible for
  logging useful information on the user's usage of the app for the developer's use and understanding.
-
-
 
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
@@ -190,7 +199,6 @@ The parsed command will be identified
 as a list command.
 
 ### Find Feature
-#### Implementation
 The Find feature allows a user to find entries that match **ANY** of the keywords provided by the user.
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
@@ -315,6 +323,16 @@ The following activity diagram summarises the events that take place when a user
 command:
 ![Revise Activity Diagram](images/ReviseActivityDiagram.png)
 
+#### Design Consideration
+
+##### Aspect: Whether to revise entry in command line or in a new UI window.
+* **Alternative 1 (current choice):** Revise entry in a new UI window.
+    * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
+    * Cons: Revise is not done purely in command line, but rather in a UI window.
+* **Alternative 2:** Revise entry in command line.
+  * Pros: Revise is purely done in the command line.
+  * Cons: For entry with lengthy details, it will flood the command line space and be difficult for revising.
+
 ### Edit Feature
 #### Implementation
 At its core, the `edit` feature allows a user to edit multiple fields pertaining to the entry specified by its `index`,
@@ -333,11 +351,11 @@ If the command `edit 1 re/New review is passed`, the `edit` command essentially 
  `ModelManager#setEntry()`, that calls `FoodDiary#setEntry()` to eventually change the target entry with a new entry.
 
 The following sequence diagram shows how Revise feature works:
-![FindAll Sequence Diagram](images/EditSequenceDiagram.png)
+![Edit Sequence Diagram](images/EditSequenceDiagram.png)
 
 The following activity diagram summarises the events that take place when a user executes the Revise
 command:
-![Revise Activity Diagram](images/EditActivityDiagram.png)
+![Edit Activity Diagram](images/EditActivityDiagram.png)
 
 
 ##### Design Consideration
@@ -355,9 +373,8 @@ command:
   As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
   for `edit` and the pros for the alternative.
 
-
 ### View Feature
-`View`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
+`view`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
 all the details of an entry. This feature is mainly used to read lengthy food reviews which cannot be shown on the Main 
 UI window.
 
@@ -367,7 +384,7 @@ Step 1. The user launches The Food Diary application. Data will be loaded from t
 The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price` 
 , `Rating`, `Review`, `TagCategory` and `TagSchool`.
 
-Step 2. The user executes `View <INDEX>`, for whichever entry with lengthy reviews he/she wants to view.
+Step 2. The user executes `view <INDEX>`, for whichever entry with lengthy reviews he/she wants to view.
 
 Step 3. If the user input is invalid, an error message will be displayed in the command box, If the entry specified do
 not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
@@ -378,11 +395,17 @@ The mechanism works in such a way where after the user enters a command in the U
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
 shown in a new window.
 
-The following sequence diagram shows how the `View` feature works:
+The following sequence diagram shows how the `view` feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes the `View` command:
+The following activity diagram summarizes what happens when a user executes the `view` command:
 ![View Activity Diagram](images/ViewActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** If the index specified by the user do not exist in The Food Diary, a CommandException will be thrown and the
+error will be displayed to the user in the command box. If index is not specified, the error message in the command box
+will show the correct syntax to use for the `View` command.
+</div>
 
 #### Design Consideration
 ##### Aspect: Whether to view entry with lengthy reviews in the Main UI or in a new window.
@@ -393,6 +416,21 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Design is integrated within Main UI, which gives it a cleaner look.
     * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
 
+### Clear Feature
+`clear`: Allows the user to clear entries in The Food Diary.
+
+Given below is an example usage scenario:
+
+Step 1. The user launches The Food Diary application. Data will be loaded from the storage to the application memory.
+The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price`
+, `Rating`, `Review`, `TagCategory` and `TagSchool`.
+
+Step 2. The user executes `clear` to clear all entries in The Food Diary.
+
+This feature was brought over to The Food Diary from AB3. There were not much changes apart from modifying it to clear
+entries instead. Similiar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()` 
+will be called to parse the user input in `FoodDiaryParser#parseCommand()`. The parsed command will be identified
+as a `clear` command.
 
 ### Exit Feature
 The Exit feature allows a user to close the application.
@@ -418,8 +456,8 @@ The parsed command will be identified as the exit command.
 
 
 ## **Appendix A: Effort**
-### **Challenges & Effort Required**
-### **Achievements**
+### Challenges & Effort Required
+### Achievements
 
 ## **Appendix B: Product scope**
 
@@ -816,6 +854,19 @@ to work on.
     <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
     6. Other incorrect `addon` commands to try: addon 10000000000 re/Good Food (invalid index)
     
+## Delete an Entry
+1. Delete a booking specified by booking ID.
+    1. Prerequisite: `list` all entries to find out the name of the entry to delete
+
+    Test case: delete 1
+    <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
+    
+    Test case: delete x (where x is non-existent booking ID)
+    <br>Expected: Error of invalid entry shown in result display. No entry is deleted.
+
+    Other incorrect delete commands to try: delete, delete Starbucks
+    <br>Expected: Invalid command format error. No entry is deleted.
+    
 ### Find for entries
 
 1. Finding for entries using the `find` command
@@ -931,21 +982,27 @@ to work on.
        and a price search, providing directions to correct the typos.
        - 0 default entries will be shown.
 
+
+### View an entry
+1. View an expanded view of an entry with lengthy review
+    1. Prerequisite: Must have entries listed out in the Main Window    
+
+    2. Test Case: Correct command with valid parameters:`view 1` (provided that entry of index 1 already exists)
+        
+        Expected: A window pops up which shows all details of the specified entry.
+    3. Test Case: Command without parameters: `view`
+       
+        Expected: User will be notified that invalid command format is provided. The command box
+        Will show the correct syntax for `view` command.
+    4. Test Case: Command not in lower-case: `ViEw 1` (provided that entry of index 1 already exists)
     
-## Delete an Entry
-1. Delete a booking specified by booking ID.
-    1. Prerequisite: `list` all entries to find out the name of the entry to delete
+        Expected: User will be notified about unknown command in the command box.
+    5. Test Case: Correct command but with non-existent index: `view 100000` (provided that entry of index 100000 
+       do not exists)
+       
+        Expected: User will be notified of invalid command and the number of entries in The Food Diary.
 
-    Test case: delete 1
-    <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
-    
-    Test case: delete x (where x is non-existent booking ID)
-    <br>Expected: Error of invalid entry shown in result display. No entry is deleted.
-
-    Other incorrect delete commands to try: delete, delete Starbucks
-    <br>Expected: Invalid command format error. No entry is deleted.
-
-###Revise an Entry
+### Revise an Entry
 1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(s)`
     1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line, execute `Revise <Index>`. 
                     `Index` refers to index of Entry to revise in view.
@@ -985,9 +1042,20 @@ to work on.
        
     9. Other invalid test cases to try: Use non-alphanumeric names, change name and address to be the same as an Entry that 
     already exists, invalid Categories `westen` and Schools `Com`. 
+    
+### Edit an entry
+    
+### Clear all entries
+1. Remove all entries from The Food Diary
+    1. Prerequisite: None
+    
+    2. Test Case: Correct command:`clear` 
+
+       Expected: Success message will show up in command box informing user that all entries are cleared.
+    3. Test Case: Command not in lower-case: `cLeAr`
+
+       Expected: User will be notified about unknown command in the command box.
        
-
 ## UI Mockup
-
 
 ![Ui Mock-up](images/Ui.png)
