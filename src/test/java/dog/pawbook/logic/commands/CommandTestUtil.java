@@ -13,6 +13,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.testutil.Assert.assertThrows;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -183,6 +184,16 @@ public class CommandTestUtil {
                 .withSessions(VALID_SESSION_OBEDIENCE_TRAINING).withTags(VALID_TAG_PUPPIES).build();
         DESC_POTTY_TRAINING = new EditProgramDescriptorBuilder().withName(VALID_NAME_POTTY_TRAINING)
                 .withSessions(VALID_SESSION_POTTY_TRAINING).withTags(VALID_TAG_ALL).build();
+    }
+
+    /**
+     * Generate an ID that is larger than the largest existing ID.
+     */
+    public static int getOutOfBoundId(Model model) {
+        return model.getUnfilteredEntityList().stream()
+                .map(Pair::getKey).sorted()
+                .collect(toList())
+                .get(model.getUnfilteredEntityList().size() - 1) + 1;
     }
 
     /**
