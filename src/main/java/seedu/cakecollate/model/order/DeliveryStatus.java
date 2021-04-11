@@ -10,10 +10,10 @@ public class DeliveryStatus implements Comparable<DeliveryStatus> {
             .map(Enum::name)
             .toArray(String[]::new);
 
-    private Status deliveryStatus;
-    
     private static final HashMap<Status, Integer> ordering = new HashMap<>();
-    
+
+    private Status deliveryStatus;
+
     static {
         ordering.put(Status.UNDELIVERED, 1);
         ordering.put(Status.CANCELLED, 2);
