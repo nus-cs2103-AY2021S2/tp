@@ -290,11 +290,11 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 
 #### Actual Implementation
 
-The find student feature helps users to locate a particular student record by the student's matriculation number.
+The find student feature helps users to locate a particular student record by the student's matriculation number along with the corresponding appointment if present.
 
 This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
 `FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
-`FindCommand` will invoke a method to search for the particular student entry in `Model` and return the specific student record if the student exists.
+`FindCommand` will invoke a method to search for the particular student entry and corresponding appointment in `Model` and return the specific student record if the student exists and appointment if it exists.
 
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
@@ -303,9 +303,9 @@ Step 1: The user executes `find A0175678U` into Vax@NUS.
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
 
-Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student entry of the particular student from `Model` if the student exists.
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student entry along with the relevant appointment of the particular student from `Model` if the student or appointment exists.
 
-Step 4: Display the particular student entry onto the UI. 
+Step 4: Display the particular student entry and the corresponding appointment onto the UI. 
 
 The following sequence diagram shows how the find operation works:
 
