@@ -723,7 +723,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | power user | create aliases for longer commands | shorten commands to be more efficient to type |
 | `* *` | power user | delete aliases that are no longer needed | avoid triggering the wrong command |
 
-## Use cases
+## **Use cases**
 
 For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code.
 
@@ -1092,7 +1092,7 @@ Use case ends.
 
       Use case ends.
 
-## Non-Functional Requirements
+## **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 records (residents, rooms and issues) without more than 1 second of lag for
@@ -1107,7 +1107,7 @@ Use case ends.
 9. The data should not be stored in a Database Management System (DBMS).
 10. Should not depend on any remote server.
 
-### Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Residential College (RC)**: A university residence for students that offers a 2-year program at NUS
