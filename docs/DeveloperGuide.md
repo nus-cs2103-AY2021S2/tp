@@ -168,6 +168,11 @@ Below is the sequence diagram to show how the mark task as completed mechanism w
 
 ![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes the mark task as completed command:
+
+![#Activity Diagram for Mark task as done](images/DoneTaskActivityDiagram.png)
+
+
 ### Find Tasks with deadline before a selected date feature
 
 The implementation of the finding of tasks with deadlines before a selected date is facilitated by the `FindTasksBeforeCommand`
@@ -520,13 +525,15 @@ Use case ends.
 
 1.  User requests to mark a task as completed using the task's index
 2.  HEY MATEz searches for the task index
-3.  HEY MATEz changes the status of the task in the list to completed
+3.  HEY MATEz changes the status of the task in the list to **completed**
     
 Use case ends.
 
 **Extensions**
 * 2a. Task index does not exist in the currently displayed list of tasks
     * 2a1. HEY MATEz shows an error message
+* 3a. The task has a status of **completed**
+    * 3a1. HEY MATEz shows an error message    
   
 Use case ends.
 
@@ -536,13 +543,15 @@ Use case ends.
 
 1.  User requests to mark a task as uncompleted using the task's index
 2.  HEY MATEz searches for the task index 
-3.  HEY MATEz changes the status of the task in the list to uncompleted
+3.  HEY MATEz changes the status of the task in the list to **uncompleted**
     
 Use case ends.
 
 **Extensions**
 * 2a. Task index does not exist in the currently displayed list of tasks
     * 2a1. HEY MATEz shows an error message
+* 3a. The task has a status of **uncompleted**
+    * 3a1. HEY MATEz shows an error message        
   
 Use case ends.
 
@@ -650,31 +659,39 @@ testers are expected to do more *exploratory* testing.
 
 ### Mark a task as completed
 
-1. Mark a task as completed:
+1. Mark a task as completed
 
-   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **uncompleted**.
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status 
+   is uncompleted. There also exists a task at index 2 whose task status is completed.
 
    1. Test case: `done 1`<br>
-      Expected: Status of task at index 1 is updated to **completed**. Successful task status update message is shown in the status bar.
+      Expected: Status of task at index 1 is updated to completed. Successful task status update message is shown in the status bar.
       
    1. Test case: `done 0`<br>
-      Expected: No task marked as **completed**. Error details is shown in the status bar.      
+      Expected: No task marked as completed. Error details is shown in the status bar.      
+
+    1. Test case: `done 2`<br>
+      Expected: Since the task already has a status of completed, an error message is shown in the status bar. 
       
    1. Other incorrect commands to try: `done`, `done -1` 
       Expected: Similar to previous. 
       
 ### Mark a task as uncompleted
 
-1. Mark a task as uncompleted: 
+1. Mark a task as uncompleted
 
-   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **completed**.
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status 
+   is completed. There also exists a task at index 2 whose task status is uncompleted.
 
    1. Test case: `undo 1`<br>
-      Expected: Status of task at index 1 is updated to **uncompleted**. Successful task status update message is shown in the status bar.
+      Expected: Status of task at index 1 is updated to uncompleted. Successful task status update message is shown in the status bar.
       
    1. Test case: `undo 0`<br>
-      Expected: No task marked as **uncompleted**. Error details is shown in the status bar.      
-      
+      Expected: No task marked as uncompleted. Error details is shown in the status bar.      
+   
+   1. Test case: `undo 2`<br>
+      Expected: Since the task already has a status of uncompleted, an error message is shown in the status bar.
+             
    1. Other incorrect commands to try: `undo`, `undo -1` 
       Expected: Similar to previous.   
 

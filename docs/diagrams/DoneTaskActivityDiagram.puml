@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes mark task as completed command;
+
+if () then ([input is valid])
+    :Fetch target task from task list;
+        if () then ([task status is uncompleted])
+            : Create a copy of the target task with
+               the status updated to completed;
+            : Update Task List with target task copy;
+            : Update User Interface;
+        else([else])
+            : Output task is already marked
+                      as completed error;
+        endif
+else ([else])
+    : Output error message;
+endif
+stop
+@enduml
