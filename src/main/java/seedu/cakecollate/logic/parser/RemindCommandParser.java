@@ -1,8 +1,5 @@
 package seedu.cakecollate.logic.parser;
 
-import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import seedu.cakecollate.commons.util.StringUtil;
 import seedu.cakecollate.logic.commands.RemindCommand;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
@@ -19,15 +16,12 @@ public class RemindCommandParser implements Parser<RemindCommand> {
      */
 
     public RemindCommand parse(String args) throws ParseException {
-        String trimmedArg = args.trim();
-        if (trimmedArg.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
+        int days;
+        try {
+            days = ParserUtil.parseDays(args);
+        } catch (ParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
-        if (!StringUtil.isUnsignedInteger(trimmedArg)) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
-        }
-        return new RemindCommand(new ReminderDatePredicate(Integer.parseInt(trimmedArg)));
+        return new RemindCommand(new ReminderDatePredicate(days));
     }
 }
