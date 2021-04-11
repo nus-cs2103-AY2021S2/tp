@@ -3,13 +3,13 @@ package seedu.weeblingo.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_DIFFICULT;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_EASY;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_EASY_AND_DIFFICULT;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_HIRAGANA;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.showFlashcardAtIndex;
@@ -86,7 +86,7 @@ public class DeleteCommandTest {
 
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(targetIndex, VALID_TAGS_SET_HIRAGANA);
 
-        Flashcard taggedFlashcard = new FlashcardBuilder().withTags(VALID_START_TAG_HIRAGANA)
+        Flashcard taggedFlashcard = new FlashcardBuilder().withTags(VALID_TAG_HIRAGANA)
                 .withUserTags(VALID_TAG_EASY).build();
 
         ModelManager modelManager = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());
@@ -103,7 +103,7 @@ public class DeleteCommandTest {
 
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(targetIndex, VALID_TAGS_SET_DIFFICULT);
 
-        Flashcard taggedFlashcard = new FlashcardBuilder().withTags(VALID_START_TAG_HIRAGANA)
+        Flashcard taggedFlashcard = new FlashcardBuilder().withTags(VALID_TAG_HIRAGANA)
                 .withUserTags(VALID_TAG_EASY).build();
 
         ModelManager modelManager = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());

@@ -42,18 +42,18 @@ public class CommandTestUtil {
     public static final String INVALID_START_INTEGER_MAX = "0";
     public static final String INVALID_START_INTEGER_MIDDLE = "-10";
     public static final String INVALID_START_INTEGER_MIN = String.valueOf(Integer.MIN_VALUE);
-    public static final String VALID_START_TAG_HIRAGANA = "hiragana";
-    public static final String VALID_START_TAG_GOJUON = "gojuon";
+    public static final String VALID_TAG_HIRAGANA = "hiragana";
+    public static final String VALID_TAG_GOJUON = "gojuon";
     public static final String INVALID_START_TAG = "!@#$%";
     public static final String VALID_NONEXISTENT_TAG = "thisIsANonExistentTag";
     public static final String VALID_TAG_INPUT = "1 t/easy";
     public static final String VALID_TAG_INPUT_MULTIPLE = "1 t/difficult t/easy";
     public static final int VALID_START_INTEGER_GENERIC = 0;
-    public static final Set<Tag> VALID_START_TAGS_SET_GENERIC = new HashSet<>();
-    public static final Set<Tag> VALID_TAGS_SET_HIRAGANA = new HashSet<>(List.of(new Tag(VALID_START_TAG_HIRAGANA)));
-    public static final Set<Tag> VALID_TAGS_SET_GOJUON = new HashSet<>(List.of(new Tag(VALID_START_TAG_GOJUON)));
+    public static final Set<Tag> VALID_TAGS_SET_GENERIC = new HashSet<>();
+    public static final Set<Tag> VALID_TAGS_SET_HIRAGANA = new HashSet<>(List.of(new Tag(VALID_TAG_HIRAGANA)));
+    public static final Set<Tag> VALID_TAGS_SET_GOJUON = new HashSet<>(List.of(new Tag(VALID_TAG_GOJUON)));
     public static final Set<Tag> VALID_TAGS_SET_COMBINATION = new HashSet<>(
-            List.of(new Tag(VALID_START_TAG_GOJUON), new Tag(VALID_START_TAG_HIRAGANA)));
+            List.of(new Tag(VALID_TAG_GOJUON), new Tag(VALID_TAG_HIRAGANA)));
     public static final Set<Tag> VALID_TAGS_SET_EASY = new HashSet<>(List.of(new Tag(VALID_TAG_EASY)));
     public static final Set<Tag> VALID_TAGS_SET_DIFFICULT = new HashSet<>(List.of(new Tag(VALID_TAG_DIFFICULT)));
     public static final Set<Tag> VALID_TAGS_SET_EASY_AND_DIFFICULT = new HashSet<>(
@@ -67,11 +67,11 @@ public class CommandTestUtil {
     public static final String INVALID_START_INTEGER_MIDDLE_DESC = " " + PREFIX_START_NUMBER
             + INVALID_START_INTEGER_MIDDLE;
     public static final String INVALID_START_INTEGER_MIN_DESC = " " + PREFIX_START_NUMBER + INVALID_START_INTEGER_MIN;
-    public static final String VALID_START_TAG_HIRAGANA_DESC = " " + PREFIX_TAG + VALID_START_TAG_HIRAGANA;
-    public static final String VALID_START_TAG_GOJUON_DESC = " " + PREFIX_TAG + VALID_START_TAG_GOJUON;
-    public static final String VALID_START_TAG_COMBINATION_DESC = " " + VALID_START_TAG_GOJUON_DESC + " "
-            + VALID_START_TAG_HIRAGANA_DESC;
-    public static final String INVALID_START_TAG_DESC = " " + PREFIX_TAG + INVALID_START_TAG;
+    public static final String VALID_TAG_HIRAGANA_DESC = " " + PREFIX_TAG + VALID_TAG_HIRAGANA;
+    public static final String VALID_TAG_GOJUON_DESC = " " + PREFIX_TAG + VALID_TAG_GOJUON;
+    public static final String VALID_TAG_COMBINATION_DESC = " " + VALID_TAG_GOJUON_DESC + " "
+            + VALID_TAG_HIRAGANA_DESC;
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + INVALID_START_TAG;
     public static final String VALID_NONEXISTENT_TAGS_SET_DESC = " " + PREFIX_TAG + VALID_NONEXISTENT_TAG;
 
     public static final String QUESTION_DESC_A = " " + PREFIX_QUESTION + VALID_QUESTION_A;
@@ -83,7 +83,6 @@ public class CommandTestUtil {
 
     public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for answeres
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

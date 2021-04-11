@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_INTEGER_MAX_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_INTEGER_MIDDLE_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_INTEGER_MIN_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_START_TAG_DESC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_NONEXISTENT_TAGS_SET;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_NONEXISTENT_TAGS_SET_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MAX;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MAX_DESC;
@@ -12,13 +14,13 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIDDLE_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAGS_SET_GENERIC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_COMBINATION_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_COMBINATION_DESC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_GOJUON_DESC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_HIRAGANA_DESC;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -30,19 +32,21 @@ import seedu.weeblingo.model.tag.Tag;
 public class StartCommandParserTest {
 
     private static final StartCommand STARTCOMMAND_GENERIC =
-        new StartCommand(VALID_START_INTEGER_GENERIC, VALID_START_TAGS_SET_GENERIC);
+        new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GENERIC);
     private static final StartCommand STARTCOMMAND_VALID_INTEGER_MIN =
-        new StartCommand(Integer.parseInt(VALID_START_INTEGER_MIN), VALID_START_TAGS_SET_GENERIC);
+        new StartCommand(Integer.parseInt(VALID_START_INTEGER_MIN), VALID_TAGS_SET_GENERIC);
     private static final StartCommand STARTCOMMAND_VALID_INTEGER_MIDDLE =
-        new StartCommand(Integer.parseInt(VALID_START_INTEGER_MIDDLE), VALID_START_TAGS_SET_GENERIC);
+        new StartCommand(Integer.parseInt(VALID_START_INTEGER_MIDDLE), VALID_TAGS_SET_GENERIC);
     private static final StartCommand STARTCOMMAND_VALID_INTEGER_MAX =
-        new StartCommand(Integer.parseInt(VALID_START_INTEGER_MAX), VALID_START_TAGS_SET_GENERIC);
+        new StartCommand(Integer.parseInt(VALID_START_INTEGER_MAX), VALID_TAGS_SET_GENERIC);
     private static final StartCommand STARTCOMMAND_VALID_TAG_HIRAGANA =
             new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_HIRAGANA);
     private static final StartCommand STARTCOMMAND_VALID_TAG_GOJUON =
             new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GOJUON);
     private static final StartCommand STARTCOMMAND_VALID_TAG_COMBINATION =
             new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_COMBINATION);
+    private static final StartCommand START_COMMAND_VALID_NONEXISTENT_TAGS =
+            new StartCommand(VALID_START_INTEGER_GENERIC, VALID_NONEXISTENT_TAGS_SET);
 
     private final StartCommandParser parser = new StartCommandParser();
 
@@ -69,17 +73,22 @@ public class StartCommandParserTest {
 
     @Test
     public void parse_validTagHiragana_success() throws ParseException {
-        assertEquals(parser.parse(VALID_START_TAG_HIRAGANA_DESC), STARTCOMMAND_VALID_TAG_HIRAGANA);
+        assertEquals(parser.parse(VALID_TAG_HIRAGANA_DESC), STARTCOMMAND_VALID_TAG_HIRAGANA);
     }
 
     @Test
     public void parse_validTagGojuon_success() throws ParseException {
-        assertEquals(parser.parse(VALID_START_TAG_GOJUON_DESC), STARTCOMMAND_VALID_TAG_GOJUON);
+        assertEquals(parser.parse(VALID_TAG_GOJUON_DESC), STARTCOMMAND_VALID_TAG_GOJUON);
     }
 
     @Test
     public void parse_validTagCombination_success() throws ParseException {
-        assertEquals(parser.parse(VALID_START_TAG_COMBINATION_DESC), STARTCOMMAND_VALID_TAG_COMBINATION);
+        assertEquals(parser.parse(VALID_TAG_COMBINATION_DESC), STARTCOMMAND_VALID_TAG_COMBINATION);
+    }
+
+    @Test
+    public void parse_validNonexistentTag_success() throws ParseException {
+        assertEquals(parser.parse(VALID_NONEXISTENT_TAGS_SET_DESC), START_COMMAND_VALID_NONEXISTENT_TAGS);
     }
 
     @Test
@@ -102,7 +111,6 @@ public class StartCommandParserTest {
 
     @Test
     public void parse_invalidTag_failure() {
-        assertThrows(ParseException.class,
-            Tag.MESSAGE_CONSTRAINTS, () -> parser.parse(INVALID_START_TAG_DESC));
+        assertThrows(ParseException.class, Tag.MESSAGE_CONSTRAINTS, () -> parser.parse(INVALID_TAG_DESC));
     }
 }

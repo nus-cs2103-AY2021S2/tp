@@ -31,11 +31,12 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
 * [Note for Testers](#note-for-testers)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
-### About WeebLingo
-WeebLingo is a desktop application that helps users learn the Japanese language. It has three primary modes,
+### About Weeblingo
+Weeblingo is a desktop application that helps users learn the Japanese language. It has three primary modes,
 which are the **learn**, **quiz** and **history** modes. The app contains flashcards that pairs a Japanese word and
 its corresponding English syllable for users to learn. It allows users to test themselves on their grasp of the Japanese language
 by starting a quiz session. In addition, users can view their history of past quiz attempts and the relevant statistics.
@@ -45,17 +46,19 @@ These are symbols used throughout the User Guide you might want to take note of.
 * :information_source: : Indicates information that is likely to be helpful
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `weeblingo.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-1/tp/releases/tag/v1.3).
+1. Download the latest `weeblingo.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-1/tp/releases/tag/v1.4).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your WeebLingo application.
+1. Copy the file to the folder you want to use as the _home folder_ for your Weeblingo application.
 
 1. Launch the app through running `java -jar weeblingo.jar` or double-clicking the icon. The GUI similar to the image below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiWithExplanation.png)
+
+    <div style="page-break-after: always;"></div>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -71,9 +74,9 @@ These are symbols used throughout the User Guide you might want to take note of.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -112,6 +115,8 @@ end using next instead. The end command is meant as a way to quickly discard and
 
 Format: `end`
 
+<div style="page-break-after: always;"></div>
+
 #### Asking for help: `help`
 
 Shows a message explaning how to access the help page.
@@ -126,6 +131,7 @@ Exits the application.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ### Learn Mode Commands
 
@@ -140,8 +146,10 @@ Tagging related functions are also only available in this mode.
 
 Format: `learn`
 
-Learn Mode:
+Learn Mode:<br>
 ![learn mode](images/learn_mode.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Tagging a flashcard: `tag`
 
@@ -163,8 +171,10 @@ Examples:
 * `tag 1 t/difficult`
 * `tag 5 t/fire`
 
-After successfully adding a tag:
+After successfully adding a tag:<br>
 ![tag successful](images/tag_success.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Deleting tags from a flashcard: `deleteTag`
 
@@ -184,9 +194,10 @@ Examples:
 * `deleteTag 3`
 * `deleteTag 1 t/difficult`
 
-After successfully deleting sampleTag from the flashcard at index 3:
+After successfully deleting sampleTag from the flashcard at index 3:<br>
 ![delete_successful](images/delete_success.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Quiz Mode Commands
 
@@ -223,11 +234,16 @@ Examples:
 * `start t/katakana`
 * `start n/5 t/gojuon t/hiragana`
 
-Before executing start command:
+<div style="page-break-after: always;"></div>
+
+Before executing start command:<br>
+
 ![before start](images/start_before.png)
 
-After executing start command:
+After executing start command:<br>
 ![after start](images/start_after.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Checking flashcard answers: `check`
 
@@ -244,13 +260,15 @@ Examples:
 * `check hi`
 * `check hI`
 
-If user attempt matches answer of flashcard:
+If user attempt matches answer of flashcard:<br>
 ![correct answer](images/check_correct.png)
 
-If user attempt does not match answer of flashcard:
+<div style="page-break-after: always;"></div>
+
+If user attempt does not match answer of flashcard:<br>
 ![incorrect answer](images/check_incorrect.png)
 
-If user tries to answer already correctly answered flashcard:
+If user tries to answer already correctly answered flashcard:<br>
 ![answered again](images/check_again.png)
 
 #### Going to next flashcard: `next`
@@ -263,6 +281,8 @@ Format: `next`
 flashcards tested (with answers shown) will be displayed. User may choose to start a new session through `start`,
 return to quiz view through `quiz` or return to menu through `end`.
 
+<div style="page-break-after: always;"></div>
+
 ### History Mode Commands
 
 #### Entering history mode: `history`
@@ -271,12 +291,13 @@ View scores of all past quiz attempts.
 
 Format: `history`
 
-Example:
-
+Example:<br>
 ![HistoryExample](images/HistoryUseExample.png)
 - If a quiz is left unfinished (i.e. there are still questions in the quiz), the history statistics will not be updated.
 - If a quiz session has zero attempt, a default correct ratio of `0.000%` will be recorded.
 - In future versions, `history` will provide more useful information to better optimize users' learning experience.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding and removing flashcards `[coming in v2.0]`
 
@@ -314,6 +335,8 @@ A combination of the above two options is also possible.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 Action | Format, Examples |
@@ -333,6 +356,7 @@ Action | Format, Examples |
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Note for Testers
 By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary

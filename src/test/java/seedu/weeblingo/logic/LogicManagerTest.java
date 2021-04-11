@@ -47,32 +47,6 @@ public class LogicManagerTest {
     }
 
 
-    //@Test
-    //public void execute_validCommand_success() throws Exception {
-    //    String learnCommand = LearnCommand.COMMAND_WORD;
-    //    assertCommandSuccess(learnCommand, LearnCommand.MESSAGE_SUCCESS, model);
-    //}
-
-    //@Test
-    //public void execute_storageThrowsIoException_throwsCommandException() {
-    //    // Setup LogicManager with JsonFlashcardBookIoExceptionThrowingStub
-    //    JsonFlashcardBookStorage addressBookStorage =
-    //            new JsonFlashcardBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-    //    JsonUserPrefsStorage userPrefsStorage =
-    //            new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //    StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-    //    logic = new LogicManager(model, storage);
-    //
-    //    // Execute add command
-    //    String addCommand = AddCommand.COMMAND_WORD + QUESTION_DESC_A
-    //            + ANSWER_DESC_A;
-    //    Flashcard expectedFlashcard = new FlashcardBuilder(AMY).withTags().build();
-    //    ModelManager expectedModel = new ModelManager();
-    //    expectedModel.addFlashcard(expectedFlashcard);
-    //    String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //    assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //}
-
     @Test
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredFlashcardList().remove(0));

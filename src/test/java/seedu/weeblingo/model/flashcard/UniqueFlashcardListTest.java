@@ -7,8 +7,8 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_I;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_GOJUON;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
 import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
@@ -47,7 +47,7 @@ public class UniqueFlashcardListTest {
     public void contains_flashcardWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFlashcardList.add(A_CARD);
         Flashcard editedCard = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_A)
-                .withAnswer(VALID_ANSWER_A).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY).build();
+                .withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_GOJUON).withUserTags(VALID_TAG_EASY).build();
         assertTrue(uniqueFlashcardList.contains(editedCard));
     }
 
@@ -90,7 +90,7 @@ public class UniqueFlashcardListTest {
     public void setFlashcard_editedFlashcardHasSameIdentity_success() {
         uniqueFlashcardList.add(A_CARD);
         Flashcard editedCard = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_I)
-                .withAnswer(VALID_ANSWER_I).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY)
+                .withAnswer(VALID_ANSWER_I).withTags(VALID_TAG_GOJUON).withUserTags(VALID_TAG_EASY)
                 .build();
         uniqueFlashcardList.setFlashcard(A_CARD, editedCard);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();

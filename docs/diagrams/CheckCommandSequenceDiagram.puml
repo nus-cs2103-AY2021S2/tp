@@ -32,7 +32,7 @@ activate CheckCommandParser
 CheckCommandParser --> WeeblingoParser :
 deactivate CheckCommandParser
 
-WeeblingoParser --> CheckCommandParser : parse("o")
+WeeblingoParser -> CheckCommandParser : parse("o")
 activate CheckCommandParser
 
 create CheckCommand
@@ -79,10 +79,10 @@ activate LogicManager
 LogicManager -> ModelManager : getCurrentIndex()
 activate ModelManager
 
-ModelManager -> LogicManager : index
+LogicManager <-- ModelManager : index
 deactivate ModelManager
 
-LogicManager -> MainWindow : index
+MainWindow <-- LogicManager : index
 deactivate LogicManager
 
 MainWindow -> LogicManager : showAnswer()
@@ -91,10 +91,10 @@ activate LogicManager
 LogicManager -> ModelManager : getCurrentMode()
 activate ModelManager
 
-ModelManager -> LogicManager : mode
+LogicManager <-- ModelManager : mode
 deactivate ModelManager
 
-LogicManager -> MainWindow : showAnswer
+MainWindow <-- LogicManager  : showAnswer
 deactivate LogicManager
 
 
