@@ -408,7 +408,7 @@ public class SmartLib implements ReadOnlySmartLib {
      * Returns true if a book with the same barcode as {@code barcode} is already borrowed.
      *
      * @param barcode barcode of book, which must exist in the book base.
-     * @return true if the book is borrowed, or if the book is not found.
+     * @return true if the book is borrowed, and false otherwise.
      */
     public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
         requireNonNull(barcode);

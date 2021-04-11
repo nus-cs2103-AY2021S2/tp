@@ -15,6 +15,8 @@ import static seedu.smartlib.testutil.TypicalModels.BOB;
 import static seedu.smartlib.testutil.TypicalModels.HABIT;
 import static seedu.smartlib.testutil.TypicalModels.HARRY;
 import static seedu.smartlib.testutil.TypicalModels.LIFE;
+import static seedu.smartlib.testutil.TypicalModels.MAZE;
+import static seedu.smartlib.testutil.TypicalModels.POWER;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_B;
 import static seedu.smartlib.testutil.TypicalModels.SECRET;
@@ -79,6 +81,7 @@ public class SmartLibTest {
 
         assertThrows(DuplicateReaderException.class, () -> smartLib.resetData(newData));
     }
+
 
     @Test
     public void hasReader_nullReader_throwsNullPointerException() {
@@ -178,6 +181,51 @@ public class SmartLibTest {
 
         // clear data
         smartLib.resetData(new SmartLib());
+    }
+
+    @Test
+    public void getBooksByIsbn() {
+        // EP: null Isbn
+        assertThrows(NullPointerException.class, () -> smartLib.getBooksByIsbn(null));
+
+        // EP: invalid Isbn-> returns empty arraylist
+        assertTrue(smartLib.getBooksByIsbn(HARRY.getIsbn()).isEmpty());
+        assertTrue(smartLib.getBooksByIsbn(MAZE.getIsbn()).isEmpty());
+
+        // EP: valid Isbn -> returns a list of Book objects whose Isbn is specified by given Isbn, if any
+        ArrayList<Book> newBookList = new ArrayList<>();
+        newBookList.add(HARRY);
+        newBookList.add(MAZE);
+        smartLib.setBooks(newBookList);
+
+        ArrayList<Book> expectedList = new ArrayList<>();
+        expectedList.add(HARRY);
+        assertEquals(expectedList, smartLib.getBooksByIsbn(HARRY.getIsbn()));
+
+        ArrayList<Book> expectedList2 = new ArrayList<>();
+        expectedList2.add(MAZE);
+        assertEquals(expectedList2, smartLib.getBooksByIsbn(MAZE.getIsbn()));
+
+        // clear data
+        smartLib.resetData(new SmartLib());
+
+    }
+
+    @Test
+    public void isBookWithBarcodeBorrowedTest() {
+        // EP: null barcode
+        assertThrows(NullPointerException.class, () -> smartLib.isBookWithBarcodeBorrowed(null));
+
+        // EP : barcode of the book not borrowed
+        assertFalse(smartLib.isBookWithBarcodeBorrowed(LIFE.getBarcode()));
+        assertFalse(smartLib.isBookWithBarcodeBorrowed(POWER.getBarcode()));
+
+        // EP : barcode of the book that is borrowed
+        smartLib.addBook(SECRET);
+        assertTrue(smartLib.isBookWithBarcodeBorrowed(SECRET.getBarcode()));
+
+        // EP : barcode of the book that is not found
+        assertFalse(smartLib.isBookWithBarcodeBorrowed(POWER.getBarcode()));
     }
 
     @Test

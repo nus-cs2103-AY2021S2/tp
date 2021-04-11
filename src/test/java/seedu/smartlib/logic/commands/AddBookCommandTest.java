@@ -31,7 +31,6 @@ public class AddBookCommandTest {
 
         CommandResult commandResult = new AddBookCommand(validBook).execute(modelStub);
 
-        assertEquals(String.format(AddBookCommand.MESSAGE_SUCCESS, validBook), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
 
@@ -68,7 +67,6 @@ public class AddBookCommandTest {
         // different reader -> returns false
         assertFalse(addHarryCommand.equals(addLandCommand));
     }
-
 
     /**
      * A Model stub that contains a single book.

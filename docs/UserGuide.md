@@ -294,8 +294,8 @@ Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/GENRE`
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 
 Examples:
-* `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
-* `addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9783161484100 g/Young Adult`
+* `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
+* `addbook b/Hunger Games a/Suzanne Collins p/Scholastic i/9780439023481 g/Young Adult`
 
 #### Deleting a book : `deletebook`
 
@@ -560,7 +560,9 @@ the data of your previous SmartLib home folder.
 * **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
 
 * **International Standard Book Number (ISBN)**: The ISBN is a numeric commercial book identifier which is intended to
-    be unique for each book. Books with the same name will share the same ISBN.
+    be unique for each book. Books with the same name will share the same ISBN. A 13-digit ISBN can be separated into 
+    its parts (prefix element, registration group, registrant, publication and check digit), and when this is done it is 
+     customary to separate the parts with hyphens or spaces. 
 
 * **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
     was successfully executed by SmartLib.
@@ -579,7 +581,7 @@ Action | Format, Examples
 **Delete reader** | `deletereader INDEX`<br> e.g., `deletereader 3`
 **Find reader** | `findreader KEYWORD [MORE_KEYWORDS]` or `findreader t/TAG [MORE_TAGS]`<br> e.g., `findreader James Jake`
 **List readers** | `listreader`
-**Add book** | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g., `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
+**Add book** | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g., `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
 **Borrow book** | `borrow bc/BARCODE r/READERNAME`<br> e.g., `borrow bc/1000000000 r/Alex`
 **Delete book** | `deletebook INDEX`<br> e.g., `deletebook 3`
 **Find book** | `findbook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findbook Thomas the Tank Engine`
