@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyDietLah;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
@@ -22,7 +21,7 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
-    private DietLahStorage dietLahStorage;
+    //private DietLahStorage dietLahStorage;
     private UniqueFoodListStorage uniqueFoodListStorage;
     private FoodIntakeListStorage foodIntakeListStorage;
     private DietPlanListStorage dietPlanListStorage;
@@ -33,11 +32,11 @@ public class StorageManager implements Storage {
      * Creates a {@code StorageManager} with the given {@code DietLahStorage}, {@code UniqueFoodListStorage}
      * and {@code UserPrefStorage}.
      */
-    public StorageManager(DietLahStorage dietLahStorage, UniqueFoodListStorage uniqueFoodListStorage,
+    public StorageManager(/*DietLahStorage dietLahStorage, */UniqueFoodListStorage uniqueFoodListStorage,
                           FoodIntakeListStorage foodIntakeListStorage, DietPlanListStorage dietPlanListStorage,
                           UserPrefsStorage userPrefsStorage, UserStorage userStorage) {
         super();
-        this.dietLahStorage = dietLahStorage;
+        //this.dietLahStorage = dietLahStorage;
         this.uniqueFoodListStorage = uniqueFoodListStorage;
         this.foodIntakeListStorage = foodIntakeListStorage;
         this.dietPlanListStorage = dietPlanListStorage;
@@ -64,7 +63,7 @@ public class StorageManager implements Storage {
 
     // ================ DietLah methods ==============================
 
-    @Override
+    /*@Override
     public Path getDietLahFilePath() {
         return dietLahStorage.getDietLahFilePath();
     }
@@ -89,7 +88,7 @@ public class StorageManager implements Storage {
     public void saveDietLah(ReadOnlyDietLah dietLah, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         dietLahStorage.saveDietLah(dietLah, filePath);
-    }
+    }*/
 
     // ================ UniqueFoodList methods ==============================
 

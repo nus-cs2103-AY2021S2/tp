@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddUserCommand;
@@ -16,7 +15,6 @@ import seedu.address.logic.parser.DietLahParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDietLah;
-import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -64,7 +62,7 @@ public class LogicManager implements Logic {
         }
 
         try {
-            storage.saveDietLah(model.getDietLah());
+            //storage.saveDietLah(model.getDietLah());
             storage.saveFoodList(model.getUniqueFoodList());
             storage.saveFoodIntakeList(model.getFoodIntakeList());
             if (model.getUser() == null) {
@@ -83,11 +81,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyDietLah getDietLah() {
         return model.getDietLah();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     @Override

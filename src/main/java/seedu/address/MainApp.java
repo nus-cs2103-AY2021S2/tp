@@ -15,22 +15,17 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.DietLah;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyDietLah;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.user.User;
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.model.util.TemplateInitializer;
-import seedu.address.storage.DietLahStorage;
 import seedu.address.storage.DietPlanListStorage;
 import seedu.address.storage.FoodIntakeListStorage;
-import seedu.address.storage.JsonDietLahStorage;
 import seedu.address.storage.JsonDietPlanListStorage;
 import seedu.address.storage.JsonFoodIntakeListStorage;
 import seedu.address.storage.JsonUniqueFoodListStorage;
@@ -69,7 +64,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        DietLahStorage dietLahStorage = new JsonDietLahStorage(userPrefs.getDietLahFilePath());
+        //DietLahStorage dietLahStorage = new JsonDietLahStorage(userPrefs.getDietLahFilePath());
         UniqueFoodListStorage uniqueFoodListStorage =
                 new JsonUniqueFoodListStorage(userPrefs.getUniqueFoodListFilePath());
         FoodIntakeListStorage foodIntakeListStorage =
@@ -77,7 +72,7 @@ public class MainApp extends Application {
         DietPlanListStorage dietPlanListStorage = new JsonDietPlanListStorage(userPrefs.getDietPlanListFilePath());
         UserStorage userStorage = new JsonUserStorage(userPrefs.getUserFilePath());
 
-        storage = new StorageManager(dietLahStorage, uniqueFoodListStorage,
+        storage = new StorageManager(uniqueFoodListStorage,
                 foodIntakeListStorage, dietPlanListStorage, userPrefsStorage, userStorage);
 
         initLogging(config);
@@ -96,8 +91,6 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         // TODO: Update handling of method
-        Optional<ReadOnlyDietLah> dietLahOptional;
-        ReadOnlyDietLah initialData;
         Optional<UniqueFoodList> uniqueFoodListOptional;
         UniqueFoodList uniqueFoodList;
         Optional<FoodIntakeList> foodIntakeListOptional;
@@ -109,14 +102,10 @@ public class MainApp extends Application {
 
         try {
             TemplateInitializer templateInitializer = new TemplateInitializer();
-            dietLahOptional = storage.readDietLah();
             uniqueFoodListOptional = storage.readFoodList();
             foodIntakeListOptional = storage.readFoodIntakeList();
             dietPlanListOptional = storage.readDietPlanList();
             userOptional = storage.readUser();
-            if (!dietLahOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample DietLah");
-            }
             if (!uniqueFoodListOptional.isPresent()) {
                 logger.info("Food data file not found. Will be starting fresh");
             }
@@ -129,7 +118,6 @@ public class MainApp extends Application {
             if (!userOptional.isPresent()) {
                 logger.info("User file not found. Will be starting with default template data");
             }
-            initialData = dietLahOptional.orElseGet(SampleDataUtil::getSampleDietLah);
             TemplateInitializer initializer = new TemplateInitializer();
             uniqueFoodList = uniqueFoodListOptional.orElse(initializer.getUniqueFoodListTemplate());
             foodIntakeList = foodIntakeListOptional.orElse(initializer.getFoodListIntakeTemplate());
@@ -138,7 +126,6 @@ public class MainApp extends Application {
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty DietLah");
             TemplateInitializer initializer = new TemplateInitializer();
-            initialData = new DietLah();
             uniqueFoodList = initializer.getUniqueFoodListTemplate();
             foodIntakeList = initializer.getFoodListIntakeTemplate();
             dietPlanList = initializer.getDietPlanListTemplate();
@@ -146,14 +133,13 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty DietLah");
             TemplateInitializer initializer = new TemplateInitializer();
-            initialData = new DietLah();
             uniqueFoodList = initializer.getUniqueFoodListTemplate();
             foodIntakeList = initializer.getFoodListIntakeTemplate();
             dietPlanList = initializer.getDietPlanListTemplate();
             user = initializer.createUser(uniqueFoodList, foodIntakeList);
         }
 
-        return new ModelManager(initialData, uniqueFoodList, foodIntakeList, dietPlanList, userPrefs, user);
+        return new ModelManager(uniqueFoodList, foodIntakeList, dietPlanList, userPrefs, user);
     }
 
     private void initLogging(Config config) {

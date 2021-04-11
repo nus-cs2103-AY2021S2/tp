@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import seedu.address.model.DietLah;
-import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building DietLah objects.
@@ -18,14 +17,6 @@ public class DietLahBuilder {
 
     public DietLahBuilder(DietLah dietLah) {
         this.dietLah = dietLah;
-    }
-
-    /**
-     * Adds a new {@code Person} to the {@code DietLah} that we are building.
-     */
-    public DietLahBuilder withPerson(Person person) {
-        dietLah.addPerson(person);
-        return this;
     }
 
     public DietLah build() {

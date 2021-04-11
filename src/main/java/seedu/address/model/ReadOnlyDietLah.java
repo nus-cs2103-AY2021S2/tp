@@ -1,8 +1,8 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
-import seedu.address.model.person.Person;
+import seedu.address.model.user.User;
 
 /**
  * Unmodifiable view of DietLAH!
@@ -10,16 +10,24 @@ import seedu.address.model.person.Person;
 public interface ReadOnlyDietLah {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
-     */
-    ObservableList<Person> getPersonList();
-
-    /**
      * Returns a view of the food list.
      *
      * @return food list
      */
     UniqueFoodList getFoodList();
+
+    /**
+     * Returns a view of the user.
+     *
+     * @return user
+     */
+    User getUser();
+
+    /**
+     * Returns a view of the food intake list.
+     *
+     * @return food intake list
+     */
+    FoodIntakeList getFoodIntakeList();
 
 }

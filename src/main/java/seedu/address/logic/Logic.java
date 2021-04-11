@@ -2,13 +2,11 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyDietLah;
-import seedu.address.model.person.Person;
 
 /**
  * API of the Logic component
@@ -29,9 +27,6 @@ public interface Logic {
      * @see seedu.address.model.Model#getDietLah()
      */
     ReadOnlyDietLah getDietLah();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
 
     /**
      * Returns the user prefs' diet lah file path.
