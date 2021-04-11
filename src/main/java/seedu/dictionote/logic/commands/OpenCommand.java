@@ -43,7 +43,9 @@ public class OpenCommand extends Command {
     private final UiActionOption uiActionOption;
 
     /**
-     * Creates an OpenCommand of a the specified UI Action Option {@code UiActionOption}
+     * Creates an OpenCommand of a the specified UI Action Option.
+     *
+     * @param uiActionOption UI action option for UI.
      */
     public OpenCommand(UiActionOption uiActionOption) {
         requireNonNull(uiActionOption);
