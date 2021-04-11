@@ -59,5 +59,3 @@ Given below are my contributions to the project.
       [\#39](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/39)
       [\#192](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/192)
       [\#199](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/199)
-
-    
