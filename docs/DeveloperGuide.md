@@ -176,25 +176,52 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: Requires more time to implement.
 
 
-### [Proposed] Find feature
+### Find feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed `find` mechanism extends the `find` mechanism of `AddressBook`, which only allows users to find entries 
-based on the "Name" attribute. This extended find mechanism allows users to find entries based on multiple attribute, namely:
-* Name
-* Size
-* Colour
-* DressCode
-* Type
-* Description
+based on the `Name` attribute. This extended find mechanism allows users to find their garments using 1 or more of 
+the garment attributes, namely:
+* `Name`
+* `Size`
+* `Colour`
+* `DressCode`
+* `Type`
+* `Description`
 
-This is achieved through the creation of new Predicates (in addition to the existing NameContainsKeywordsPredicate):
-* SizeContainsKeywordsPredicate
-* ColourContainsKeywordsPredicate
-* 
+The command is parsed from `WardrobeParser` to the `FindCommandParser`, where the inputs are tokenized using 
+`ArgumentTokenizer` into an object of `ArgumentMultiMap`, `argMultiMap`. An `AttributesContainsKeywordsPredicate` 
+object of the input is then created with `argMultiMap` as the argument for the constructor. 
 
-FindCommandParser is updated to detect the prefixes for multiple attributes (i.e. `n/` for Name, `c/` for Colour, etc.) and the respective predicate is hence used to create the FindCommand Object
+Finding the correct garment is achieved through the creation of new `Predicate` classes (in addition to the existing 
+`NameContainsKeywordsPredicate`) which checks if a :
+* `ContainsKeywordsPredicate`
+* `SizeContainsKeywordsPredicate`
+* `ColourContainsKeywordsPredicate`
+* `TypeContainsKeywordsPredicate`
+* `DressCodeContainsKeywordsPredicate`
+* `DescriptionContainsKeywordsPredicate`
+* `AttributesContainsKeywordsPredicate`
+
+`AttributesContainsKeywords` looks through each of the other types of `ContainsKeywordsPredicate` to return 
+true for garments that pass each predicate, and false otherwise. 
+
+The object of `AttributesContainsKeywordsPredicate` is passed to an object of `FindCommand`. The `execute` method of 
+`FindCommand` object is then called with `model`, which then calls the `updateFilteredGarmentList` method of `model`.
+This then displays all matching garments in the data to the front end of the nufash application.
+
+Given below is an example usage scenario of how the `find` mechanism works.
+
+1. The user launches the nufash application for the first time and is presented with a list of all garments 
+   retrieved from local storage `wardrobe.json` (if applicable)
+
+2. The user executes `find n/Shirt shorts s/23 22 c/blue` command to find the garments that has name containing 
+   'Shirt' or 'shorts', has size of 23 or 22, and has colour blue. The `find` command makes use of a 
+   `AttributesContainsKeywordsPredicate` to call the `updateFilteredGarmentList` display all the matching garments, 
+   without modifying the original garments list.
+   * Note: If no garments match the keywords given by the user, an empty list will be shown.
+
 
 The sequence diagram below shows how the find command works:
 ![Find Sequence Diagram](images/FindSequenceDiagram.png)
@@ -206,12 +233,12 @@ The activity diagram below shows the flow of what happens when a user executes t
 #### Design Consideration:
 
 ##### Aspect: How many attributes Find can account for at a time
-* **Alternative 1 (Current implementation)**: <br>
+* **Alternative 1 **: <br>
   Finds with only one attribute at a time. <br>
   E.g. `find n/jeans c/blue` will only find entries whose Name attribute contains the keyword "jeans".
   * Pros: Easier to implement.
   * Cons: Limited functionality.
-* **Alternative 2**: <br>
+* **Alternative 2(Implemented)**: <br>
   Finds with multiple given attributes. <br>
   E.g. `find n/jeans c/blue` will find entries whose Name attribute contains the keyword "jeans" **and** whose Colour attribute contains the keyword "blue".
   * Pros: More precise results.
