@@ -22,8 +22,8 @@ public class DeleteStudentCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by their unique matriculation number assigned by NUS.\n"
-            + "Parameters: Matriculation Number \n"
+            + ": Deletes the student identified by their unique matriculation number.\n"
+            + "Parameters: Matriculation Number in the format of A + 7 digit numeric sequence + alphabet. \n"
             + "Example: " + COMMAND_WORD + " A1234567X";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student: %1$s"; // add name + matric number
