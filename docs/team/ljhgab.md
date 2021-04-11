@@ -82,14 +82,14 @@ Computing, National University of Singapore (NUS).
 * [Pull Requests](https://github.com/AY2021S2-CS2103-W16-1/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Aljhgab)
 
 #### Contributions to the UG:
-* Wrote documentations about `list_task`, `list_event`, `find_task`, `find_event`, `today_task` and `today_event`.
+* Wrote documentations about `add_task`, `delete_task`, `list_task`, `list_event`, `find_task`, `find_event`, `today_task` and `today_event`.
 * Wrote documentations for the part **General Commands**.
 
 #### Contributions to the DG
 * Updated `Logic` diagram.
 * Wrote three overview sections for SOChedule, Task and Event.
-* Added implementation details of `add_task`, `delete_task`, `find_task`, `find_event`, `today_task`, `today_event`.
-* Added use cases for `add_task`, `delete_task`, `list_task`, `today_task`, `today_event`, `find_task`, `find_event`.
+* Added implementation details of `add_task`, `find_task`, `find_event`, `today_task`, `today_event`.
+* Added use cases for `add_task`, `delete_task`, `list_task`, `list_event`, `today_task`, `today_event`, `find_task`, `find_event`.
 * Added instructions for manual testing for `add_task`, `delete_task`, `list_task`, `list_event`, `today_task`, 
   `today_event`, `find_task`, `find_event`.
 * Updated the NFR part of Developer Guide.
@@ -128,6 +128,8 @@ Computing, National University of Singapore (NUS).
   [\#330](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/330)
   [\#340](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/340)
   [\#363](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/363)
+  [\#380](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/380)
+  [\#382](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/382)
   
 #### Contribution beyond the project team
   
