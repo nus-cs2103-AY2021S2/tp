@@ -32,7 +32,6 @@ public class ParserUtil {
      */
     public static Identifier parseIdentifier(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        System.out.println("Received: " + trimmedIndex);
         int identifierInt;
 
         // check that there's only one argument, if split by whitespace more than 1
