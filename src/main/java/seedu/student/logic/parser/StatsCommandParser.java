@@ -1,7 +1,5 @@
 package seedu.student.logic.parser;
 
-import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.List;
 
 import seedu.student.logic.commands.statscommands.StatsCommand;
@@ -14,6 +12,8 @@ import seedu.student.model.student.Faculty;
 import seedu.student.model.student.SchoolResidence;
 
 public class StatsCommandParser implements Parser<StatsCommand> {
+    public static final String MESSAGE_INVALID_STATS_COMMAND_FORMAT = "Invalid stats parameter entered. \n%1$s";
+
     private List<String> listResidences = SchoolResidence.getResidenceAbbreviation(); // "DOES_NOT_LIVE_ON_CAMPUS"
     private List<String> listFaculties = Faculty.getFacultyAbbreviation();
 
@@ -35,6 +35,6 @@ public class StatsCommandParser implements Parser<StatsCommand> {
             return new StatsCommandAll();
         }
         // invalid input
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
     }
 }
