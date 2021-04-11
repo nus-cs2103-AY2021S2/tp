@@ -16,7 +16,7 @@ Appointment --> PatientMap
 Appointment --> DoctorMap
 PatientMap --> Patient
 DoctorMap --> Doctor
-Appointment --> Timeslot
+Appointment *--> Timeslot
 Doctor -|> Person
 Patient -|> Person
 

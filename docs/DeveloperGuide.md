@@ -261,9 +261,9 @@ Use case ends.
     Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
 
-* **2a.** App-Ointment detects that a patient with the same name exists in the patient records.
-    * **2a1.** App-Ointment warns user about the duplicate patient.<br>
-    * **2a2.** App-Ointment suggest user to update patient information through an `edit-patient` command instead.<br>
+* **1b.** App-Ointment detects that a patient with the same name exists in the patient records.
+    * **1b1.** App-Ointment warns user about the duplicate patient.<br>
+    * **1b2.** App-Ointment suggest user to update patient information through an `edit-patient` command instead.<br>
     Use case ends.<br>
 
 ### UC04: Clear Patient Records
@@ -399,14 +399,14 @@ Use case ends.
     Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
 
-* **2a.** The patient index out of the bounds of the displayed list of patients.
-    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
-    Steps 2a1 is repeated until the index entered is correct/free from errors.
+* **1b.** The patient index out of the bounds of the displayed list of patients.
+    * **1b1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
+    Steps 1b1 is repeated until the index entered is correct/free from errors.
     Use case resumes from step 2.
 
-* **2b.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
-    * **2b1.** App-Ointment warns user about the conflicting appointment.<br>
-    * **2b2.** App-Ointment suggest user to either change existing appointment details through an `edit-appt` command, before adding the new appointment again, or change the new appointment details.<br>
+* **1c.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
+    * **1c1.** App-Ointment warns user about the conflicting appointment.<br>
+    * **1c2.** App-Ointment suggest user to either change existing appointment details through an `edit-appt` command, before adding the new appointment again, or change the new appointment details.<br>
     Use case ends.<br>
 
 ### UC16: Clear Appointment Schedule

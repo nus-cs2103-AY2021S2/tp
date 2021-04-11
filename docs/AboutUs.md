@@ -26,8 +26,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/jacob-pang.md)]
 
 * Role: Developer
-* Responsibilities:
-* Backup Responsibilities:
+* Responsibilities: App Architecture
+* Backup Responsibilities: Progress Checking
 
 ### Chia Jia-Xi, Kymie
 
