@@ -187,6 +187,9 @@ The following activity diagram summarises the events that take place when a user
 command:
 ![Revise Activity Diagram](images/EditActivityDiagram.png)
 
+
+##### Design Consideration
+
 ##### Aspect: Whether to edit a command in the command line or in a new UI window.
 * **Alternative 1 (current choice):** Edit entry in command line. 
   * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
