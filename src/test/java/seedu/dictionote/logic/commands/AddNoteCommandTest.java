@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -88,6 +89,17 @@ public class AddNoteCommandTest {
         assertFalse(addNoteCommand.equals(addOtherNoteCommand));
     }
 
+    @Test
+    public void execute__onEditMode_fail() {
+        ModelStubEditMode modelStub = new ModelStubEditMode();
+
+        Note validNote = new NoteBuilder().build();
+        AddNoteCommand addNoteCommand = new AddNoteCommand(validNote);
+
+        assertThrows(CommandException.class,
+            MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE, () -> addNoteCommand.execute(modelStub));
+
+    }
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -401,4 +413,16 @@ public class AddNoteCommandTest {
         }
     }
 
-}
+    /**
+     * A Model stub with edit mode
+     */
+    private class ModelStubEditMode extends ModelStub {
+        final ArrayList<Note> noteAdded = new ArrayList<>();
+
+        @Override
+        public boolean onEditModeNote() {
+            return true;
+        }
+    }
+    }
+
