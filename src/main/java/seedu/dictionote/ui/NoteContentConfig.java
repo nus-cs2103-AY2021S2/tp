@@ -8,7 +8,7 @@ import seedu.dictionote.model.note.Note;
  */
 public interface NoteContentConfig {
     /**
-     * sets and show the note.
+     * Sets and show the note.
      */
     void setNote(Note note);
 
@@ -28,7 +28,7 @@ public interface NoteContentConfig {
     boolean onEditMode();
 
     /**
-     * Gest the current content on the textarea.
+     * Gets the current content on the textarea.
      */
     String getEditedContent();
 
