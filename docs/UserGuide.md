@@ -109,9 +109,9 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `add n/John Doe p/98765432 e/johnd@gmail.com a/Blk 311, Clementi Ave 2, #01-12 d/2021-05-01, t/urgent
+* `add n/John Doe p/98765432 e/johnd@gmail.com a/Blk 311, Clementi Ave 2, #01-12 d/2021-05-01 t/urgent
   `
-  
+
 ![Ui](images/AddCommand.png)
 
 ### Add a remark to a delivery tasks: `remark`
@@ -144,13 +144,13 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `edit 7 n/Joshua t/bulky`
+* `edit 7 n/Joshua`
 
 ![Ui](images/EditSingleAttribute.png)
 
-* `edit 7 a/Clementi Road d/2021-10-01`
+* `edit 7 a/Clementi Road d/2021-10-01 t/bulky`
 
-![Ui](images/EditMultipleAttribute.png)
+![Ui](images/EditMultipleAttributes.png)
 
 ### Find deliveries using keywords matching any attribute: `find KEYWORDS`
 **Attributes:** Name, Phone number, Address, Date, Remark, Done, Email, Tags
