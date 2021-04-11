@@ -267,7 +267,7 @@ The following activity diagram below summarizes what happens when a user execute
 
 ![#Activity Diagram for Delete Task](images/DeleteTaskActivityDiagram.png)
 
-### Clear all Assignees of a Task feature
+### Clear all assignees of a Task feature
 
 The implementation of the clear all assignees of a task feature is facilitated by the `ClearAssigneeCommand` 
 class which extends from the Command abstract class.
@@ -674,7 +674,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `clear` <br>
        Expected: All the data in HEY MATEz is cleared.
        
-### Adding a member
+### Adding a Member
 
 1. Adding a member 
 
@@ -695,7 +695,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com` <br>
       Expected: similar to previous test case.
 
-### Viewing members
+### Viewing Members
 
 1. Lists all members within HEY MATEz
 
@@ -706,11 +706,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a member
 
-    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of Rachel exists in the members list
-       while no members with the name of John exists.
+    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of 'Rachel' exists in the members list
+       while no members with the name of 'John' exists.
 
     2. Test case: `deleteMember Rachel`<br>
-       Expected: Member with the name Rachel is deleted from the members list. Details of the deleted member is shown in the
+       Expected: Member with the name 'Rachel' is deleted from the members list. Details of the deleted member is shown in the
        status message.
 
     3. Test case: `deleteMember John`<br>
@@ -723,19 +723,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a member
 
-    1. Prerequisites: List all members using the `viewMembers` command. Members with the name of Alice and Timothy exists
-       in the members list while no members with the name of Dylan exists.
+    1. Prerequisites: List all members using the `viewMembers` command. Members with the name of 'Alice' and 'Timothy' exists
+       in the members list while no members with the name of 'Dylan' exists.
 
     2. Test case: `editMember Alice n/Allyson`<br>
-       Expected: Member with the name Alice is edited to have a new name of Allyson. Details of the edited member is shown
+       Expected: Member with the name 'Alice' is edited to have a new name of 'Allyson'. Details of the edited member is shown
        in the status message.
 
     3. Test case: `editMember Alice n/Timothy`<br>
-       Expected: No member is edited since a member with the name Timothy already exists. Error details is shown in the status
+       Expected: No member is edited since a member with the name 'Timothy' already exists. Error details is shown in the status
        message.
        
     4. Test case: `editMember Alice n/Alice Tan p/98887777 e/aliceTan@gmail.com`
-       Expected: Member with the name Alice is edited to have the new details as specified. Details of the edited member is shown
+       Expected: Member with the name 'Alice' is edited to have the new details as specified. Details of the edited member is shown
        in the status message.
 
     5. Test case: `editMember Dylan`<br>
@@ -744,7 +744,7 @@ testers are expected to do more *exploratory* testing.
     6. Other incorrect delete commands to try: `edit`, `editMember x` (where x is a name which does not exist in the members list) <br>
        Expected: Similar to previous test case.
 
-### Finding Members by Keywords
+### Finding Members by keywords
 
 1. Finding members in HEY MATEz whose details (i.e. name, phone number, email, role) contain any of the specified keywords
 
@@ -755,7 +755,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `findMembers Alice`<br>
        Expected: Alice is listed in the members list.
 
-    3. Test case: `findMembers alice@gmail.com bryan@gmail.com` <br>
+    3. Test case: `findMembers alice@gmail.com 89996666` <br>
        Expected: Both Alice and Bryan are listed in the members list.
 
     4. Test case: `findMembers secretary`<br>
@@ -767,7 +767,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `findMembers`<br>
        Expected: Invalid command format, error details is shown in the status message.
        
-### Viewing tasks
+### Viewing Tasks
 
 1. Lists all tasks within HEY MATEz. 
    
@@ -867,7 +867,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc.
       Expected: similar to previous test case.   
 
-### Find tasks assigned to a member
+### Find Tasks assigned to a Member
 
 1. Lists all tasks assigned to a member
 
@@ -879,13 +879,13 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findTasksFor`
       Expected: Error message displayed in the status bar.
 
-### Finding Tasks by Keywords
+### Finding Tasks by keywords
 
 1. Finding tasks in HEY MATEz whose title or description contain any of the specified keywords
 
     1. Prerequisites: HEY MATEz contains 2 tasks, T1 and T2, with the following details: <br>
-        * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach session
-        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline for EXCO event 
+        * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach
+        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline
 
     2. Test case: `findTasks Community`<br>
         Expected: Task T1 is listed in the task list. 
@@ -902,9 +902,9 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `findTasks`<br>
        Expected: Invalid command format, error details is shown in the status message.
 
-### Clearing all Assignees of a Task
+### Clearing all assignees of a Task
 
-1. Clearing all Assignees of a Task
+1. Clearing all assignees of a Task
     1. Prerequisites: List all tasks using the `viewTasks` command. There exists a task at index 1 with at least 1 member 
        assigned to it.
 
