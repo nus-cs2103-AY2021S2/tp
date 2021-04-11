@@ -84,13 +84,13 @@ public class FocurisParserTest {
     @Test
     public void parseCommand_irrelevantArgument_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_EXTRA_ARGUMENTS, ()
-                -> parser.parseCommand(ClearCommand.COMMAND_WORD + " 3"));
+            -> parser.parseCommand(ClearCommand.COMMAND_WORD + " 3"));
         assertThrows(ParseException.class, MESSAGE_EXTRA_ARGUMENTS, ()
-                -> parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
+            -> parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
         assertThrows(ParseException.class, MESSAGE_EXTRA_ARGUMENTS, ()
-                -> parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
+            -> parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
         assertThrows(ParseException.class, MESSAGE_EXTRA_ARGUMENTS, ()
-                -> parser.parseCommand(ExitCommand.COMMAND_WORD + " 3"));
+            -> parser.parseCommand(ExitCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
