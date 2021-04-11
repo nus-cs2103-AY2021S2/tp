@@ -477,15 +477,20 @@ and also a command summary for the user.
 ### Non-Functional Requirements
 
 1.  Should work on any [mainstream OS](#glossary-OS) as long as it has `Java 11` or above installed.
-2.  Should be able to hold up to 1000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
 3.  Should be usable by a tech novice who is not familiar with CLI.
 4.  Should respond within 2 seconds.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
     should be able to accomplish most of the tasks faster using commands than using the mouse.
 6.  A simple interface that is easy to navigate.
 7.  Not required to handle finance-related bookkeeping.
-8.  Should not crash or throw unexpected errors when internet connection is
-    unavailable.
+8.  Pawbook does not require internet connection to run. 
+9.  Able to work in all different time zones, regardless of where the system is operated in the world. 
+10. Features should be implemented such that they can undergo automated testing. 
+11. Pawbook data should be saved locally. Not possible to be hacked from external machines. Only way to access is through the local machine.
+12. Only one Pawbook program can run on a local machine at any time. 
+13. Pawbook program file size should not exit beyond 1GB. 
+14. Pawbook should be able to recover from exceptions and error handling and not freeze on the user. 
 
 ### Glossary
 
