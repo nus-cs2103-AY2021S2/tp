@@ -74,6 +74,7 @@ public class JsonUserPrefsStorageTest {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
         userPrefs.setAddressBookFilePath(Paths.get("abashbook.json"));
+        userPrefs.setAliasMapFilePath(Paths.get("alias.json"));
         return userPrefs;
     }
 
