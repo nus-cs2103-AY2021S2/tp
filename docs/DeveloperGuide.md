@@ -679,6 +679,7 @@ when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`
 </div>
 
 The activity diagram that summaries what happens when users execute the `UndoneTaskCommand` can be found below.
+(For brevity, we assume user command format is valid and 'show errors' actions are omitted.)
 
 ![Activity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
 
