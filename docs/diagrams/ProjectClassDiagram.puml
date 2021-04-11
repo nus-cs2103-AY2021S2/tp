@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class ColabFolder
+Class ModelManager
+
+Package Project {
+Class Project
+Class UniqueProjectList
+Class EventList
+Class DeadlineList
+Class TodoList
+Class GroupmateList
+}
+
+Package Role {
+Class Role
+}
+
+Package Events {
+Interface Repeatable <<Interface>>
+Class Event
+}
+
+Package Deadline {
+Interface CompletableDeadline <<Interface>>
+Class Deadline
+}
+
+Package Todo {
+Interface CompletableTodo <<Interface>>
+Class Todo
+}
+
+Package Groupmate {
+Class Groupmate
+Class Name
+}
+
+ModelManager o--> "1" ColabFolder
+ModelManager -->"~* filtered list" Project
+ColabFolder *--> "1" UniqueProjectList
+
+UniqueProjectList o-> "*" Project
+Project *--> "1" EventList
+Project *--> "1" DeadlineList
+Project *--> "1" TodoList
+Project *--> "1" GroupmateList
+
+EventList o--> "*" Repeatable
+Event .up.|> Repeatable
+
+DeadlineList o--> "*" CompletableDeadline
+Deadline .up.|> CompletableDeadline
+
+TodoList o--> "*" CompletableTodo
+Todo .up.|> CompletableTodo
+
+GroupmateList o--> "*" Groupmate
+Groupmate *--> "*" Role
+Groupmate *--> Name
+
+@enduml

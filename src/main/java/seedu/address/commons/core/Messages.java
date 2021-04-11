@@ -65,7 +65,7 @@ public class Messages {
     public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY = "You have no deadlines today!";
     public static final String MESSAGE_NO_TODOS_TO_DISPLAY = "You have no todos in this project!";
     public static final String MESSAGE_NO_GROUPMATES_TO_DISPLAY = "You have no groupmates in this project!";
-    public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no events in this project!";
-    public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no deadlines in this project!";
+    public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY = "You have no deadlines in this project!";
+    public static final String MESSAGE_NO_EVENTS_TO_DISPLAY = "You have no events in this project!";
 
 }
