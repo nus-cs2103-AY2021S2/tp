@@ -197,10 +197,10 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the both the expiring and expired item table.
      */
     private void updateExpiringItemTablePanel() {
-        expiredTablePanel = new ExpiredTablePanel(logic.getFilteredItemList());
+        expiredTablePanel = new ExpiredTablePanel(logic.getItemList());
         tablePanelPlaceholder.getChildren().add(expiredTablePanel.getRoot());
 
-        expiringTablePanel = new ExpiringTablePanel(logic.getFilteredItemList());
+        expiringTablePanel = new ExpiringTablePanel(logic.getItemList());
         tablePanelPlaceholder2.getChildren().add(expiringTablePanel.getRoot());
     }
     /**
