@@ -102,7 +102,7 @@ public class SampleDataUtil {
             ),
             new Pool(
                 new Driver(new Name("Alan Poh"), new Phone("88526716")),
-                new TripDay(DayOfWeek.MONDAY),
+                new TripDay(DayOfWeek.THURSDAY),
                 new TripTime(LocalTime.of(12, 0)),
                 List.of(
                     getSamplePassengers()[7],
