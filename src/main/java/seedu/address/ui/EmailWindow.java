@@ -35,6 +35,8 @@ public class EmailWindow extends UiPart<Stage> {
     private PasswordField emailPasswordField;
     @javafx.fxml.FXML
     private Label sentBoolValue;
+    @javafx.fxml.FXML
+    private Label invalidEmailSignal;
 
     /**
      * Creates a new HelpWindow.
@@ -95,6 +97,13 @@ public class EmailWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows error when invalid email address keyed in.
+     */
+    public void handleInvalidEmail() {
+        invalidEmailSignal.setVisible(true);
+    }
+
+    /**
      *
      *  Sends an email to the desired address.
      */
@@ -123,24 +132,29 @@ public class EmailWindow extends UiPart<Stage> {
         });
 
         try {
-            //create mail
-            MimeMessage m = new MimeMessage(session);
-            m.setFrom(new InternetAddress(from));
-            m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
-            m.setSubject(emailSubjectField.getText());
-            m.setText(emailMessageField.getText());
+            if (!username.contains("@") || !to.contains("@") || !from.contains("@")) {
+                handleInvalidEmail();
+            } else {
+                //create mail
+                MimeMessage m = new MimeMessage(session);
+                m.setFrom(new InternetAddress(from));
+                m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
+                m.setSubject(emailSubjectField.getText());
+                m.setText(emailMessageField.getText());
 
-            //send mail
+                //send mail
 
-            Transport.send(m);
-            sentBoolValue.setVisible(true);
-            System.out.println("Message sent!");
+                Transport.send(m);
+                sentBoolValue.setVisible(true);
+                System.out.println("Message sent!");
+            }
 
         } catch (MessagingException e) {
             e.printStackTrace();
         }
 
     }
+
     //@@author TheCodingByte
 
     /**

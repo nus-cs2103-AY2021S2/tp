@@ -203,15 +203,30 @@ Result:
 
 
 ## Exiting app: `exit`
-* **`exit`** : Exits the app.
+* **`exit`** : Exits the app safely.
 
 ## Quick help: `help`
 * **`help`** : Overview of commands and input syntax.
 
 ## Email Contact person: `email`
-* **`email`** : Opens a simplified mailbox interface enabling user to email to the desired contact persons with a prefilled text field.
-  Currently, it only supports sending through Gmail accounts and requires enabling less secure app access on google security.
-  This feature is **only** avaliable through the menu bar currently.
-  ![Ui](images/helps/googlehelp1.png)
-  Url: https://myaccount.google.com/security
+* **`email`** : Opens a simplified mailbox interface enable user to send email through Simple Mail Transfer Protocol(SMTP).
+  Please ensure that you enable google to allow for less secure access (it is a security feature provided by google) through
+  direct access to gmail server ports provided by google.
+  
+  Note: If you accidentally keyed in wrong password, you will need to reopen the application.
+  
+  Note: This feature only allows for out going SMTP server access, the application do not have access to your incoming mails
+  as it is on a different server. 
+  
+  
+  If you face any difficulty enabling access, please follow through below guide, or check out the help window for step by step
+  guides in setting up.
+  1. Go to google security(URL: https://myaccount.google.com/security)
+  ![Ui](images/helps/googleHelp1.png)
+  2. Scroll down or use the search function and type in 'Less secure app access' without quotation marks.
+  ![Ui](images/helps/googleHelp2.png)
+  3. Turn on the feature and this grants application access to only the Mail sending server.
+  ![Ui](images/helps/googleHelp3.png)  
+     
+  For more info : https://support.google.com/mail/answer/7126229?hl=en&authuser=6
 --------------------------------------------------------------------------------------------------------------------
