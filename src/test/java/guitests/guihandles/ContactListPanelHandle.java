@@ -14,15 +14,21 @@ import seedu.address.model.contact.Contact;
  *
  * Provides a handle for {@code ContactListPanel} containing the list of {@code ContactCard}.
  */
-public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
-    public static final String CONTACT_LIST_VIEW_ID = "#contactListViewPlaceholder";
-
+public class ContactListPanelHandle extends NodeHandle<Node> {
+    public static final String CONTACT_LIST_VIEW_ID = "#contactListView";
     private static final String CARD_PANE_ID = "#cardPane";
 
+    private ListView<Contact> listView;
     private Optional<Contact> lastRememberedSelectedContactCard;
 
-    public ContactListPanelHandle(ListView<Contact> contactListPanelNode) {
+    /**
+     * Creates a {@code ContactListPanelHandle} with the given {@code contactListPanelNode}.
+     *
+     * @param contactListPanelNode the {@code Node} to create the {@code ContactListPanelHandle}.
+     */
+    public ContactListPanelHandle(Node contactListPanelNode) {
         super(contactListPanelNode);
+        listView = getChildNode(CONTACT_LIST_VIEW_ID);
     }
 
     /**
@@ -33,7 +39,7 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
     public ContactCardHandle getHandleToSelectedCard() {
-        List<Contact> selectedContactList = getRootNode().getSelectionModel().getSelectedItems();
+        List<Contact> selectedContactList = listView.getSelectionModel().getSelectedItems();
 
         if (selectedContactList.size() != 1) {
             throw new AssertionError("Contact list size expected 1.");
@@ -50,14 +56,14 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * Returns the index of the selected card.
      */
     public int getSelectedCardIndex() {
-        return getRootNode().getSelectionModel().getSelectedIndex();
+        return listView.getSelectionModel().getSelectedIndex();
     }
 
     /**
      * Returns true if a card is currently selected.
      */
     public boolean isAnyCardSelected() {
-        List<Contact> selectedCardsList = getRootNode().getSelectionModel().getSelectedItems();
+        List<Contact> selectedCardsList = listView.getSelectionModel().getSelectedItems();
 
         if (selectedCardsList.size() > 1) {
             throw new AssertionError("Card list size expected 0 or 1.");
@@ -70,12 +76,12 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * Navigates the listview to display {@code Contact}s.
      */
     public void navigateToCard(Contact contact) {
-        if (!getRootNode().getItems().contains(contact)) {
+        if (!listView.getItems().contains(contact)) {
             throw new IllegalArgumentException("Contact does not exist.");
         }
 
         guiRobot.interact(() -> {
-            getRootNode().scrollTo(contact);
+            listView.scrollTo(contact);
         });
         guiRobot.pauseForHuman();
     }
@@ -84,12 +90,12 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * Navigates the listview to {@code index}es.
      */
     public void navigateToCard(int index) {
-        if (index < 0 || index >= getRootNode().getItems().size()) {
+        if (index < 0 || index >= listView.getItems().size()) {
             throw new IllegalArgumentException("Index is out of bounds.");
         }
 
         guiRobot.interact(() -> {
-            getRootNode().scrollTo(index);
+            listView.scrollTo(index);
         });
         guiRobot.pauseForHuman();
     }
@@ -98,7 +104,7 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * Selects the {@code ContactCard} at {@code index} in the list.
      */
     public void select(int index) {
-        getRootNode().getSelectionModel().select(index);
+        listView.getSelectionModel().select(index);
     }
 
     /**
@@ -115,7 +121,7 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
     }
 
     private Contact getContact(int index) {
-        return getRootNode().getItems().get(index);
+        return listView.getItems().get(index);
     }
 
     /**
@@ -131,7 +137,7 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * Remembers the selected {@code ContactCard} in the list.
      */
     public void rememberSelectedContactCard() {
-        List<Contact> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
+        List<Contact> selectedItems = listView.getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
             lastRememberedSelectedContactCard = Optional.empty();
@@ -145,7 +151,7 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * {@code rememberSelectedContactCard()} call.
      */
     public boolean isSelectedContactCardChanged() {
-        List<Contact> selectedItems = getRootNode().getSelectionModel().getSelectedItems();
+        List<Contact> selectedItems = listView.getSelectionModel().getSelectedItems();
 
         if (selectedItems.size() == 0) {
             return lastRememberedSelectedContactCard.isPresent();
@@ -159,6 +165,6 @@ public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
      * Returns the size of the list.
      */
     public int getListSize() {
-        return getRootNode().getItems().size();
+        return listView.getItems().size();
     }
 }
