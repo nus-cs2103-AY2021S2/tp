@@ -44,7 +44,7 @@ Given below are my contributions to the project.
 
 **Documentation**:
 * User Guide:
-  * Updated Introduction of TutorsPet
+  * Added Introduction of TutorsPet and How to Navigate User Guide
   * Added documentations for the features `add` and `edit` 
   * Did cosmetic tweaks to existing documentation of features 
   * Added section Coming soon to introduce the features we plan to implement in the next version 

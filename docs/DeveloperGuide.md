@@ -214,7 +214,7 @@ The edit mechanism is facilitated by `EditCommand` and `EditCommandParser`.
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently 1st student in TutorsPet. 
+Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently the 1st student in TutorsPet. 
 Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's subject being added with `edit` command is used.
 </div>
 

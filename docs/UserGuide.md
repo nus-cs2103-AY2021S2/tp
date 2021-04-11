@@ -6,17 +6,17 @@ title: User Guide
 TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
 ## How to Navigate User Guide
-* To have an overview of this user guide, head to [1. About](#1-about)!
+* To get an overview of this user guide, head to [1. About](#1-about)!
 * To start your journey with TutorsPet, head to [2. Quick Start](#2-quick-start)!
 * To learn about all our features, head to [3. Features](#3-features)!
-* To take a look at some exciting features in our future version, head to [4. Coming soon](#4-coming-soon)!
+* To see some exciting features in our future version, head to [4. Coming soon](#4-coming-soon)!
 * To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-FAQ)!
-* To learn about the format of fields available to a student contact, head to [6.1 Field Format Summary](#61-field-format-summary)!
+* To learn about the field formats of a student contact, head to [6.1 Field Format Summary](#61-field-format-summary)!
 * To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary)!
 
 Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step! 
 
-You can return to Table of Contents by clicking this button below each session <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>.
+You can return to Table of Contents by clicking this button <a href="#table-of-contents"> <button>Back to Table of Contents </button></a> below each session.
 
 ## Table of Contents
 * Table of Contents 
@@ -206,10 +206,15 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 will need to type in either y/n for confirmation to add conflicted schedule.
 </div>
 
-Examples:
+Example:
 * `add n/John Doe p/98612341`
-* `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
-* `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`
+
+More Examples:
+
+Command     | Result
+----------- |---------------------------------------------------
+`add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`|adds a new student Alice Tan's details in TutorsPet
+`add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`| adds a new student Bob Lee's details in TutorsPet
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -270,10 +275,15 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 `detail INDEX` command.
 </div>
 
-Examples:
+Example:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
-*  `edit 1 le/monday 1300 le/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
+   
+More Examples:
+
+Command     | Result
+----------- |---------------------------------------------------
+`edit 2 n/Betsy Crower t/`|edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
+`edit 1 le/monday 1300 le/tuesday 1400` | edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
