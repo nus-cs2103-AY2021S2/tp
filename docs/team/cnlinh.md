@@ -5,7 +5,7 @@ title: Linh's Project Portfolio Page
 
 ## Project: SunRez
 
-SunRez is a desktop resident management application used for managing NUS hostels and residential colleges. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.
+SunRez is a desktop resident management application used for managing NUS hostels and residential colleges. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.
 
