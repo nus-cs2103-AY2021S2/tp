@@ -88,10 +88,6 @@ public class EditBookingCommand extends Command {
         Booking bookingToEdit = lastShownList.get(index.getZeroBased());
         Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
 
-        if (bookingToEdit.isExactlySameBooking(editedBooking)) {
-            throw new CommandException(MESSAGE_UNCHANGED_BOOKING);
-        }
-
         if (!bookingToEdit.isSameBooking(editedBooking) && model.hasBooking(editedBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
         }

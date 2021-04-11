@@ -1,6 +1,7 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_EMAIL_FORMAT;
 import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -74,7 +75,7 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_EMAIL_DESC,
-                Email.MESSAGE_CONSTRAINTS); // invalid email
+                MESSAGE_INVALID_EMAIL_FORMAT + Email.MESSAGE_CONSTRAINTS); // invalid email
 
         // invalid phone followed by valid email
         assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY + INVALID_PHONE_DESC + EMAIL_DESC_AMY,

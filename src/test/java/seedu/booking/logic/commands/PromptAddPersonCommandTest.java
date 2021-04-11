@@ -25,6 +25,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.commands.states.AddPersonCommandState;
 import seedu.booking.logic.commands.states.CommandState;
@@ -44,11 +45,11 @@ public class PromptAddPersonCommandTest {
         CommandResult result = new PromptAddPersonCommand(new Name((VALID_NAME_AMY))).execute(model);
         assertEquals(expectedResult, result);
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertEquals(STATE_EMAIL, state);
-        assertTrue(ModelManager.isStateActive());
+        assertTrue(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 
     @Nested
@@ -57,13 +58,13 @@ public class PromptAddPersonCommandTest {
         @BeforeEach
         public void setUp() {
             CommandState commandState = new AddPersonCommandState(new Name(VALID_NAME_AMY));
-            ModelManager.setCommandState(commandState);
-            ModelManager.setStateActive();
+            StatefulLogicManager.setCommandState(commandState);
+            StatefulLogicManager.setStateActive();
         }
 
         @Test
         void execute_enterEmail_stateChangeToPhoneSuccessful() {
-            ModelManager.setState(STATE_EMAIL);
+            StatefulLogicManager.setState(STATE_EMAIL);
 
             PromptPersonEmailCommand command = new PromptPersonEmailCommand(
                     new Email(VALID_EMAIL_AMY));
@@ -77,16 +78,16 @@ public class PromptAddPersonCommandTest {
                 throw new AssertionError("Execution of command should not fail.");
             }
 
-            String state = ModelManager.getState();
+            String state = StatefulLogicManager.getState();
             assertEquals(STATE_PHONE, state);
-            assertTrue(ModelManager.isStateActive());
+            assertTrue(StatefulLogicManager.isStateActive());
 
-            ModelManager.resetCommandState();
+            StatefulLogicManager.resetCommandState();
         }
 
         @Test
         void execute_enterPhone_stateChangeToTagsSuccessful() {
-            ModelManager.setState(STATE_PHONE);
+            StatefulLogicManager.setState(STATE_PHONE);
 
             PromptPersonPhoneCommand command = new PromptPersonPhoneCommand(
                     new Phone(VALID_PHONE_AMY));
@@ -100,24 +101,24 @@ public class PromptAddPersonCommandTest {
                 throw new AssertionError("Execution of command should not fail.");
             }
 
-            String state = ModelManager.getState();
+            String state = StatefulLogicManager.getState();
             assertEquals(STATE_TAG, state);
-            assertTrue(ModelManager.isStateActive());
+            assertTrue(StatefulLogicManager.isStateActive());
 
-            ModelManager.resetCommandState();
+            StatefulLogicManager.resetCommandState();
         }
     }
 
     @Test
     void execute_enterTags_endActiveStateSuccessful() {
         CommandState commandState = new AddPersonCommandState(new Name(VALID_NAME_AMY));
-        ModelManager.setCommandState(commandState);
-        ModelManager.setStateActive();
-        ModelManager.setState(STATE_EMAIL);
+        StatefulLogicManager.setCommandState(commandState);
+        StatefulLogicManager.setStateActive();
+        StatefulLogicManager.setState(STATE_EMAIL);
         commandState.processInput(new Email(VALID_EMAIL_AMY));
-        ModelManager.setState(STATE_PHONE);
+        StatefulLogicManager.setState(STATE_PHONE);
         commandState.processInput(new Phone(VALID_PHONE_AMY));
-        ModelManager.setState(STATE_TAG);
+        StatefulLogicManager.setState(STATE_TAG);
 
         Set<Tag> set = new HashSet<>();
         set.add(new Tag(VALID_TAG_FRIEND + VALID_TAG_HUSBAND));
@@ -129,23 +130,23 @@ public class PromptAddPersonCommandTest {
             throw new AssertionError("Execution of command should not fail.");
         }
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertNull(state);
-        assertFalse(ModelManager.isStateActive());
+        assertFalse(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 
     @Test
     void execute_changeStateAfterTagState_invalidState() {
         CommandState commandState = new AddPersonCommandState(new Name(VALID_NAME_AMY));
-        ModelManager.setState(STATE_TAG);
+        StatefulLogicManager.setState(STATE_TAG);
         commandState.setNextState();
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
 
         assertEquals(STATE_TAG, state);
-        assertFalse(ModelManager.isStateActive());
+        assertFalse(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 }

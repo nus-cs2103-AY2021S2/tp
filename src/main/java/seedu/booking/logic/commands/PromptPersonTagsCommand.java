@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.Tag;
 import seedu.booking.model.person.Person;
 
@@ -22,11 +22,11 @@ public class PromptPersonTagsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModelManager.processStateInput(tagSet);
+        StatefulLogicManager.processStateInput(tagSet);
         CommandResult result;
-        Person person = (Person) ModelManager.create();
+        Person person = (Person) StatefulLogicManager.create();
         result = new AddPersonCommand(person).execute(model);
-        ModelManager.setStateInactive();
+        StatefulLogicManager.setStateInactive();
         return result;
     }
 

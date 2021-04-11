@@ -9,7 +9,6 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HAL
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_TAGS_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_HALL;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
@@ -92,7 +91,7 @@ public class TypicalBookings {
             .build();
 
     public static final Booking BOOKING_FIELD = new BookingBuilder()
-            .withVenue(VALID_BOOKING_VENUE_NAME_FIELD).withBooker(VALID_BOOKING_BOOKER_EMAIL_BOB)
+            .withVenue(VENUE1.getVenueName().venueName).withBooker(VALID_BOOKING_BOOKER_EMAIL_BOB)
             .withDescription(VALID_BOOKING_DESCRIPTION_FIELD)
             .withBookingStart(VALID_BOOKING_START_FIELD)
             .withBookingEnd(VALID_BOOKING_END_FIELD)

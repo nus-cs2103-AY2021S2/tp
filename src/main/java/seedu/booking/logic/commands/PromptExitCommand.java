@@ -1,7 +1,7 @@
 package seedu.booking.logic.commands;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 
 /**
  * Exits prompting process
@@ -16,7 +16,7 @@ public class PromptExitCommand extends Command {
      */
     public CommandResult execute(Model model) {
 
-        ModelManager.setStateInactive();
+        StatefulLogicManager.setStateInactive();
         return new CommandResult("Prompting exited.");
     }
 }

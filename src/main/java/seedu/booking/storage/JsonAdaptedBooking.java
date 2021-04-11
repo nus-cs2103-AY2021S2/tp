@@ -2,6 +2,7 @@ package seedu.booking.storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +19,6 @@ import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
-import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
@@ -75,7 +75,7 @@ public class JsonAdaptedBooking {
     public Booking toModelType() throws IllegalValueException {
 
         if (bookerEmail == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
 
         final Email modelBooker = new Email(bookerEmail);
@@ -94,22 +94,34 @@ public class JsonAdaptedBooking {
 
         if (bookingStart == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LocalDateTime.class.getSimpleName()));
+                    StartTime.class.getSimpleName()));
         }
-
-        //Build formatter
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        //Parse String to LocalDateTime
-        final StartTime modelBookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
-
 
         if (bookingEnd == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LocalDateTime.class.getSimpleName()));
+                    EndTime.class.getSimpleName()));
         }
 
-        // Parse String to LocalDateTime
-        final EndTime modelBookingEnd = new EndTime(LocalDateTime.parse(bookingEnd, formatter));
+        final StartTime modelBookingStart;
+        final EndTime modelBookingEnd;
+
+        //Build formatter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        try {
+            //Parse String to LocalDateTime
+            modelBookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Start time should follow yyyy-MM-dd HH:mm.");
+        }
+
+        try {
+            // Parse String to LocalDateTime
+            modelBookingEnd = new EndTime(LocalDateTime.parse(bookingEnd, formatter));
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("End time should follow yyyy-MM-dd HH:mm.");
+        }
+
+
 
 
         final List<Tag> bookingTags = new ArrayList<>();
