@@ -228,6 +228,9 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+        if (selectedPerson != null && target.equals(selectedPerson)) {
+            selectedPerson = editedPerson;
+        }
     }
 
     @Override
