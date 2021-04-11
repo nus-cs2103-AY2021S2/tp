@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -62,8 +62,7 @@ public class DoTodayCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(modelNoDailyTasks.getFilteredTaskList().size() + 1);
         DoTodayCommand doTodayCommand = new DoTodayCommand(outOfBoundIndex, addOperationFlag);
 
-        assertCommandFailure(doTodayCommand, modelNoDailyTasks,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoTodayCommand.MESSAGE_USAGE));
+        assertCommandFailure(doTodayCommand, modelNoDailyTasks, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
@@ -72,8 +71,7 @@ public class DoTodayCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(modelWithDailyTask.getDailyTaskList().size() + 1);
         DoTodayCommand doTodayCommand = new DoTodayCommand(outOfBoundIndex, removeOperationFlag);
 
-        assertCommandFailure(doTodayCommand, modelWithDailyTask,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoTodayCommand.MESSAGE_USAGE));
+        assertCommandFailure(doTodayCommand, modelWithDailyTask, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     private Model getModelWithDailyTask() {

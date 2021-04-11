@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYTAG;
@@ -42,8 +44,10 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_CODE + "CODE] "
-        + "[" + PREFIX_NOTES + "REMARK] "
-            + "[" + PREFIX_PRIORITYTAG + "REMARK]"
+        + "[" + PREFIX_DEADLINE_DATE + "DEADLINE_DATE] "
+        + "[" + PREFIX_DEADLINE_TIME + "DEADLINE_TIME] "
+        + "[" + PREFIX_NOTES + "NOTES] "
+        + "[" + PREFIX_PRIORITYTAG + "PRIORITY_TAG] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "CS2103 Assignment";
@@ -74,7 +78,7 @@ public class EditCommand extends Command {
         List<Task> lastShownDailyTaskList = model.getDailyTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());

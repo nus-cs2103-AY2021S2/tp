@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -107,8 +107,7 @@ public class NotesCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         NotesCommand notesCommand = new NotesCommand(outOfBoundIndex, new Notes(VALID_REMARK_BOB));
 
-        assertCommandFailure(notesCommand, model,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesCommand.MESSAGE_USAGE));
+        assertCommandFailure(notesCommand, model, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     /**
@@ -124,8 +123,7 @@ public class NotesCommandTest {
 
         NotesCommand notesCommand = new NotesCommand(outOfBoundIndex, new Notes(VALID_REMARK_BOB));
 
-        assertCommandFailure(notesCommand, model,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesCommand.MESSAGE_USAGE));
+        assertCommandFailure(notesCommand, model, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
 }

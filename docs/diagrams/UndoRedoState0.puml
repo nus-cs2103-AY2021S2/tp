@@ -6,9 +6,9 @@ skinparam ClassBorderColor #000000
 title Initial state
 
 package States {
-    class State1 as "__ab0:TaskTracker__"
-    class State2 as "__ab1:TaskTracker__"
-    class State3 as "__ab2:TaskTracker__"
+    class State1 as "__tt0:TaskTracker__"
+    class State2 as "__tt1:TaskTracker__"
+    class State3 as "__tt2:TaskTracker__"
 }
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
