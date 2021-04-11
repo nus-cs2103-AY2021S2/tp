@@ -62,11 +62,12 @@ public class EditCommandTest {
     public void execute_someFieldsSpecified_success() {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
-        Identifier lastEventIdentifier = Identifier.fromIdentifier(model.getFilteredEventList().size());
+        int eventBookSize = model.getEventBook().getEventList().size();
         //Optional<Event> optLastEvent = model.getEventByIdentifier(lastEventIdentifier.getValue());
         //assertTrue(optLastEvent.isPresent());
         //Event lastEvent = optLastEvent.get();
-        Event lastEvent = model.getEventBook().getEventList().get(lastEventIdentifier.getZeroBased());
+        Event lastEvent = model.getEventBook().getEventList().get(eventBookSize - 1);
+        Identifier lastEventIdentifier = Identifier.fromIdentifier(lastEvent.getIdentifier());
 
         EventBuilder eventInBook = new EventBuilder(lastEvent);
         Event editedEvent = eventInBook.withName(VALID_NAME_CS2100)
