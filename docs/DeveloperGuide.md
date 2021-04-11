@@ -295,8 +295,6 @@ The diagram below details how the user's command to add a resident propagates th
 ![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png)
 
 
-
-
 ### Room Features
 
 The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room(s) and 
@@ -356,12 +354,12 @@ The diagram below details how the user's command to add a room propagates throug
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
 
 **Diagram Notes** :
+* The `AddRoomCommand`'s execution follows the flow outlined under the section 
+  [Command parsing and execution](#command-parsing-and-execution). 
 * `toAdd` is the room to be added which is created by `AddRoomCommandParser`, and taken in as a parameter during the
   construction of `AddRoomCommand`. This process is omitted for brevity.
 * `AddRoomCommand` is a state-changing operation. After the new room is added, the new state of AddressBook is saved 
   using `model#commitAddressBook` in order to support undo/redo operations.
-* The `AddRoomCommand`'s execution is situated within the larger `Logic` component's execution framework. Before the
-`AddRoomCommand` is called, the command text is parsed by the `AddressBookParser`. 
 
 ### Resident-Room allocation feature
 
