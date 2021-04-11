@@ -21,25 +21,23 @@ import seedu.address.model.meeting.MeetingSortOption;
 
 public class SortMeetingCommand extends Command {
 
+    public static final List<String> ALL_OPTIONS = Arrays.stream(MeetingSortOption.values())
+            .map(meetingSortOption -> meetingSortOption.getValue()).collect(Collectors.toList());
+    public static final List<String> ALL_DIRECTIONS = Arrays.stream(MeetingSortDirection.values())
+            .map(meetingSortDirection -> meetingSortDirection.getValue()).collect(Collectors.toList());
+
+    public static final String COMMAND_WORD = "sortm";
+
+    public static final String MESSAGE_USAGE = "Please do: " + COMMAND_WORD + " "
+            + PREFIX_SORT_BY + ALL_OPTIONS.toString() + " "
+            + PREFIX_SORT_DIRECTION + ALL_DIRECTIONS.toString();
     private Comparator<Meeting> meetingComparator;
 
     private MeetingSortOption meetingSortOption;
     private MeetingSortDirection meetingSortDirection;
-
-
-    public static final String COMMAND_WORD = "sortm";
-
-    private static final List<String> all_options = Arrays.stream(MeetingSortOption.values()).
-            map(meetingSortOption ->
-                    meetingSortOption.getValue()).collect(Collectors.toList());
-    private static final List<String> all_directions = Arrays.stream(MeetingSortDirection.values()).
-            map(meetingSortDirection ->
-                    meetingSortDirection.getValue()).collect(Collectors.toList());
-
-    public static final String MESSAGE_USAGE = "Please do: " + COMMAND_WORD + " " +
-            PREFIX_SORT_BY + all_options.toString() + " " +
-            PREFIX_SORT_DIRECTION + all_directions.toString();
-
+    /**
+     * The constructor of sort meeting command.
+     */
     public SortMeetingCommand(MeetingSortOption sortOption, MeetingSortDirection sortDirection) {
         switch (sortOption) {
         case NAME:
@@ -59,6 +57,8 @@ public class SortMeetingCommand extends Command {
         case DESCRIPTION:
             meetingComparator = Comparator.comparing(meeting -> meeting.getDescription().toString(),
                     String.CASE_INSENSITIVE_ORDER);
+            break;
+        default:
             break;
         }
         if (sortDirection == MeetingSortDirection.DESC) {
@@ -84,8 +84,12 @@ public class SortMeetingCommand extends Command {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SortMeetingCommand that = (SortMeetingCommand) o;
         return meetingSortOption == that.meetingSortOption && meetingSortDirection == that.meetingSortDirection;
     }

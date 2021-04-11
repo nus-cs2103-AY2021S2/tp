@@ -58,7 +58,11 @@ public class DateTimeUtil {
             throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
         }
     }
-
+    /**
+     * Parses a string into IsoDate.
+     * @return the LocalDate.
+     * @throws ParseException if the dateTime string is of incorrect format
+     */
     public static LocalDate parseIsoDate(String date) throws ParseException {
         try {
             return LocalDate.parse(date, ISO_DATE_FORMATTER);

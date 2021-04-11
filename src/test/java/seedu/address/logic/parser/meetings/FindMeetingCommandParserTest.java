@@ -35,7 +35,7 @@ class FindMeetingCommandParserTest {
         // no leading and trailing whitespaces
         FindMeetingCommand command =
                 new FindMeetingCommand(meeting -> true, emptySet);
-        assertParseSuccess(parser, " "+PREFIX_DESCRIPTION+"",
+        assertParseSuccess(parser, " " + PREFIX_DESCRIPTION + "",
                 command);
     }
 
@@ -46,7 +46,7 @@ class FindMeetingCommandParserTest {
         // no leading and trailing whitespaces
         FindMeetingCommand command =
                 new FindMeetingCommand(meeting -> true, emptySet);
-        assertParseSuccess(parser, " "+PREFIX_NAME+"n",
+        assertParseSuccess(parser, " " + PREFIX_NAME + "n",
                 command);
     }
 
@@ -57,8 +57,8 @@ class FindMeetingCommandParserTest {
         FindMeetingCommand command =
                 new FindMeetingCommand(meeting -> true, emptySet);
         assertParseFailure(parser,
-                " "+PREFIX_TIME+"YO",
-                "findm: "+ DateTime.MESSAGE_CONSTRAINTS);
+                " " + PREFIX_TIME + "YO",
+                "findm: " + DateTime.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -69,9 +69,9 @@ class FindMeetingCommandParserTest {
         FindMeetingCommand command =
                 new FindMeetingCommand(meeting -> true, oneSet);
 
-        parser.parse(" "+PREFIX_PERSON_CONNECTION +"1 "+
-                PREFIX_NAME+"name "+ PREFIX_TIME + "2020-06-12 11:30 "+ PREFIX_DESCRIPTION+ "desc "+
-                PREFIX_PRIORITY + "3 "+ PREFIX_GROUP + "something");
+        parser.parse(" " + PREFIX_PERSON_CONNECTION + "1 "
+                + PREFIX_NAME + "name " + PREFIX_TIME + "2020-06-12 11:30 " + PREFIX_DESCRIPTION + "desc "
+                + PREFIX_PRIORITY + "3 " + PREFIX_GROUP + "something");
     }
 
 

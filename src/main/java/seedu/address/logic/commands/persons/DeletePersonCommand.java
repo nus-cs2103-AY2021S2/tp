@@ -1,5 +1,12 @@
 package seedu.address.logic.commands.persons;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -8,15 +15,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.meeting.*;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

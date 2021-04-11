@@ -1,9 +1,26 @@
 package seedu.address.logic.commands.meetings;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -30,20 +47,6 @@ import seedu.address.model.schedule.TimetablePrefs;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 
 public class AddMeetingCommandWithConnectionTest {
 
@@ -60,7 +63,8 @@ public class AddMeetingCommandWithConnectionTest {
             .withTerminate("2222-01-01 20:00").build();
 
         CommandResult commandResult2 = new AddPersonCommand(validPerson).execute(modelStub);
-        CommandResult commandResult1 = new AddMeetingCommand(validMeeting).setConnectionToPerson(connections).execute(modelStub);
+        CommandResult commandResult1 = new AddMeetingCommand(validMeeting)
+                .setConnectionToPerson(connections).execute(modelStub);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting),
             commandResult1.getFeedbackToUser());
@@ -81,7 +85,8 @@ public class AddMeetingCommandWithConnectionTest {
 
         // Check more complex connections (2 meetings points to the same person)
         expectedMeetings.add(validMeeting2);
-        CommandResult commandResult3 = new AddMeetingCommand(validMeeting2).setConnectionToPerson(connections).execute(modelStub);
+        CommandResult commandResult3 = new AddMeetingCommand(validMeeting2)
+                .setConnectionToPerson(connections).execute(modelStub);
         assertEquals(expectedMeetings.asUnmodifiableObservableList(),
             modelStub.getFilteredMeetingListByPersonConnection(validPerson));
         assertEquals(expectedPersons.asUnmodifiableObservableList(),
@@ -154,7 +159,7 @@ public class AddMeetingCommandWithConnectionTest {
             this.filteredNotes = new FilteredList<Note>(this.noteBook.getNoteList());
             // TODO: Modify the signature of ModelManager so that we can add connection inside it.
             this.connection = new PersonMeetingConnection();
-            this.timetablePrefs = new TimetablePrefs(LocalDate.of(2020,10,10));
+            this.timetablePrefs = new TimetablePrefs(LocalDate.of(2020, 10, 10));
         }
 
 

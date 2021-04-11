@@ -22,10 +22,10 @@ import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.START
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.START_DESC_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.TAG_DESC_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.TAG_DESC_MEETING2;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING1;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING1;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_GROUP_DESC;

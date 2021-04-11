@@ -1,29 +1,55 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.connections.AddPersonToMeetingConnectionCommand;
 import seedu.address.logic.commands.connections.DeletePersonToMeetingConnectionCommand;
-import seedu.address.logic.commands.meetings.*;
+import seedu.address.logic.commands.meetings.AddMeetingCommand;
+import seedu.address.logic.commands.meetings.DeleteMeetingCommand;
+import seedu.address.logic.commands.meetings.EditMeetingCommand;
+import seedu.address.logic.commands.meetings.FindMeetingCommand;
+import seedu.address.logic.commands.meetings.ListMeetingCommand;
+import seedu.address.logic.commands.meetings.SetTimetableCommand;
+import seedu.address.logic.commands.meetings.ShowMeetingCommand;
+import seedu.address.logic.commands.meetings.SortMeetingCommand;
+import seedu.address.logic.commands.meetings.UnsortMeetingCommand;
 import seedu.address.logic.commands.notes.AddNoteCommand;
 import seedu.address.logic.commands.notes.DeleteNoteCommand;
-import seedu.address.logic.commands.persons.*;
+import seedu.address.logic.commands.persons.AddPersonCommand;
+import seedu.address.logic.commands.persons.DeletePersonCommand;
+import seedu.address.logic.commands.persons.EditPersonCommand;
+import seedu.address.logic.commands.persons.FindGroupCommand;
+import seedu.address.logic.commands.persons.FindPersonCommand;
+import seedu.address.logic.commands.persons.ListPersonCommand;
+import seedu.address.logic.commands.persons.SortPersonCommand;
+import seedu.address.logic.commands.persons.UnsortPersonCommand;
 import seedu.address.logic.commands.reminders.RefreshRemindersCommand;
 import seedu.address.logic.parser.connections.AddPersonToMeetingConnectionParser;
 import seedu.address.logic.parser.connections.DeletePersonToMeetingConnectionParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.meetings.*;
+import seedu.address.logic.parser.meetings.AddMeetingCommandParser;
+import seedu.address.logic.parser.meetings.DeleteMeetingCommandParser;
+import seedu.address.logic.parser.meetings.EditMeetingCommandParser;
+import seedu.address.logic.parser.meetings.FindMeetingCommandParser;
+import seedu.address.logic.parser.meetings.SetTimetableCommandParser;
+import seedu.address.logic.parser.meetings.ShowMeetingCommandParser;
+import seedu.address.logic.parser.meetings.SortMeetingCommandParser;
 import seedu.address.logic.parser.notes.AddNoteCommandParser;
 import seedu.address.logic.parser.notes.DeleteNoteCommandParser;
-import seedu.address.logic.parser.persons.*;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.parser.persons.AddPersonCommandParser;
+import seedu.address.logic.parser.persons.DeletePersonCommandParser;
+import seedu.address.logic.parser.persons.EditPersonCommandParser;
+import seedu.address.logic.parser.persons.FindGroupCommandParser;
+import seedu.address.logic.parser.persons.FindPersonCommandParser;
+import seedu.address.logic.parser.persons.SortPersonCommandParser;
 
 /**
  * Parses user input.
