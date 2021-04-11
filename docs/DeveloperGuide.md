@@ -617,8 +617,8 @@ person on the list is born before 12-12-2020.
 
 ### Adding a friend group: `add-group`
 
-Prerequisites: List all person using the list command. There is at least a person present in the list. 
-There's only one existing group with the name `Colleagues` that does not have person with index 3 inside it.
+Prerequisites: List all person using the list command. There is at least 2 persons present in the list. 
+There's only one existing group with the name `Colleagues` that only has the person of index 1 inside it.
 
 1. Adding a non-existing group
     
@@ -631,9 +631,9 @@ There's only one existing group with the name `Colleagues` that does not have pe
        
 2. Adding an existing group
     
-    1. Test case: `add-group n/Colleagues p/3`<br>
+    1. Test case: `add-group n/Colleagues p/2`<br>
        Expected: A success message is shown in the status message. `Colleagues` will be selected with, showing all
-       three friends shown in the Friend Panel.
+       two friends shown in the Friend Panel.
    
     2. Test case: `add-group n/Colleagues p/2`<br>
        Expected: A success message is shown in the status message. `Colleagues will be selected` with the
@@ -993,7 +993,7 @@ friends that are already inside it.
 ### Subtracting Debt: `subtract-debt`
 
 Prerequisites: List all person using the `list` command. There is at least 2 persons present in the list. 
-The person with index 1 has no debt. The person with index 2 has its debt as `-$999999999999.00`
+The person with index 1 has no debt. The person with index 2 has its debt as `-$999999999999.00`.
 
 1. Subtracting debt
 
