@@ -149,12 +149,10 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="0" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
-is given below. It has a <code class="language-plaintext highlighter-rouge">Tag</code> list in the <code class="language-plaintext highlighter-rouge">imPoster</code>, which <code class="language-plaintext highlighter-rouge">Endpoint</code> references. This allows <code class="language-plaintext highlighter-rouge">imPoster</code> to only 
-require one <code class="language-plaintext highlighter-rouge">Tag</code> object per unique <code class="language-plaintext highlighter-rouge">Tag</code>, instead of each <code class="language-plaintext highlighter-rouge">Endpoint</code> needing their own <code class="language-plaintext highlighter-rouge">Tag</code> object.<br>
-  <p align="center">
-    <img width="500px" src="images/BetterModelClassDiagram.png" >
-  </p>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
+is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
+require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
+<img width="500px" src="images/BetterModelClassDiagram.png" >
 </div>
 
 <div style="page-break-after: always;"></div>
