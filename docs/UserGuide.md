@@ -251,7 +251,7 @@ To bulk edit, either do:
 
 </div>
 
-## Locating persons by name: `find`
+## Locating persons: `find`
 
 Finds persons whose field(s) contain any of the given keywords.
 <div markdown="block" class="alert alert-info">
