@@ -10,7 +10,7 @@ participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":record:IncompleteRecord" as IncompleteRecord MODEL_COLOR
+participant ":record:Record" as Record MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 participant ":SmartLib" as SmartLib MODEL_COLOR
 end box
@@ -36,12 +36,12 @@ deactivate ReturnCommandParser
 SmartLibParser -> ReturnCommandParser : parse("bc/1000000000")
 activate ReturnCommandParser
 
-create IncompleteRecord
-ReturnCommandParser -> IncompleteRecord : new IncompleteRecord(barcode, new DateReturned(now()))
-activate IncompleteRecord
+create Record
+ReturnCommandParser -> Record : new Record("Maze Runner", "1000000000", "John Doe", new DateReturned(now()))
+activate Record
 
-IncompleteRecord --> ReturnCommandParser : record
-deactivate IncompleteRecord
+Record --> ReturnCommandParser : record
+deactivate Record
 
 create ReturnCommand
 ReturnCommandParser -> ReturnCommand : new ReturnCommand(record)
@@ -57,21 +57,9 @@ ReturnCommandParser -[hidden]-> SmartLibParser
 destroy ReturnCommandParser
 
 SmartLibParser --> LogicManager : rc
-destroy SmartLibParser
+deactivate SmartLibParser
 
 LogicManager -> ReturnCommand : execute(model)
-activate ReturnCommand
-
-ReturnCommand -> Model : getReaderNameForReturn(barcode)
-activate Model
-
-Model -> SmartLib : getReaderByBarcode(barcode)
-activate SmartLib
-
-SmartLib --> Model : reader
-deactivate SmartLib
-
-Model --> ReturnCommand : readerName
 activate ReturnCommand
 
 ReturnCommand -> Model : markRecordAsReturned(record)
@@ -86,10 +74,10 @@ deactivate FilteredList
 Model --> ReturnCommand :
 deactivate Model
 
-ReturnCommand -> Model : returnBook(readerName, barcode)
+ReturnCommand -> Model : returnBook("John Doe", "1000000000")
 activate Model
 
-Model -> SmartLib : returnBook(readerName, barcode)
+Model -> SmartLib : isBookReturned("John Doe", "1000000000")
 activate SmartLib
 
 SmartLib --> Model :

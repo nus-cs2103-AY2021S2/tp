@@ -20,10 +20,10 @@ participant ":FilteredList" as FilteredList STORAGE_COLOR
 end box
 
 
-[-> LogicManager : execute("borrow r/Tom b/Cloud Atlas")
+[-> LogicManager : execute("borrow r/Tom bc/1000000001")
 activate LogicManager
 
-LogicManager -> SmartLibParser : parseCommand("borrow r/Tom b/Cloud Atlas")
+LogicManager -> SmartLibParser : parseCommand("borrow r/Tom bc/1000000001")
 activate SmartLibParser
 
 create BorrowCommandParser
@@ -33,14 +33,14 @@ activate BorrowCommandParser
 BorrowCommandParser --> SmartLibParser
 deactivate BorrowCommandParser
 
-SmartLibParser -> BorrowCommandParser : parse("r/Tom b/Cloud Atlas")
+SmartLibParser -> BorrowCommandParser : parse("r/Tom bc/1000000001")
 activate BorrowCommandParser
 
 create Record
-BorrowCommandParser -> Record : new Record("Tom", "Cloud Atlas", new DateBorrowed(now()))
+BorrowCommandParser -> Record : new Record("Tom", "Cloud Atlas", "1000000001", new DateBorrowed(now()))
 activate Record
 
-Record -> BorrowCommandParser : record
+Record --> BorrowCommandParser : record
 deactivate Record
 
 create BorrowCommand
@@ -68,25 +68,25 @@ activate Model
 Model -> SmartLib : addRecord(record)
 activate SmartLib
 
-SmartLib -> Model :
+SmartLib --> Model :
 deactivate SmartLib
 
 Model -> FilteredList: updateFilteredRecordList()
 activate FilteredList
 
-FilteredList -> Model:
+FilteredList --> Model:
 deactivate FilteredList
 
-Model -> BorrowCommand :
+Model --> BorrowCommand :
 deactivate Model
 
-BorrowCommand -> Model : borrowBook("Tom", "Cloud Atlas")
+BorrowCommand -> Model : borrowBook("1000000001", "Cloud Atlas")
 activate Model
 
-Model -> SmartLib : borrowBook("Tom", "Cloud Atlas")
+Model -> SmartLib : isBookBorrowed("1000000001", "Cloud Atlas")
 activate SmartLib
 
-SmartLib -> Model :
+SmartLib --> Model :
 deactivate SmartLib
 
 Model -> FilteredList : updateFilteredReaderList()
