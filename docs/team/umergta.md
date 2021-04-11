@@ -1,11 +1,11 @@
 ---
 layout: page
-title: T13-2 ModuleBook Level 3.5
+title: T13-2 ModuleBook3.5
 ---
 
-## Project: ModuleBook Level 3.5
+## Project: ModuleBook3.5
 
-ModuleBook - Level 3.5 is a desktop module book application used for keeping track of tasks for various NUS modules
+ModuleBook3.5 is a desktop module book application used for keeping track of tasks for various NUS modules
 in an *Easy, Seamless and Straightforward* manner. 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
@@ -49,8 +49,9 @@ Given below are my contributions to the project.
     * Modified documentation for the feature `add` [\#75](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/75)
     * Morphed documentation for existing features to remove traces of AB3 [\#52](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/52)
   * Developer Guide:
+    * Add sequence diagram and activity diagram for `recur` feature [\#274](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/274)
     * Updated target profile, user stories, value proposition [\#48](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/48)
-    * Add use cases for the feature `recur` [\#99](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/99), [\#134](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/134)
+    * Add use cases for the `recur` feature [\#99](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/99), [\#134](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/134)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/90), [\#84](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/84), [\#71](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/71)

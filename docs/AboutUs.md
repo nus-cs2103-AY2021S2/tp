@@ -19,6 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
     * Developer for ModuleBook3.5
     * Logic Component Checker
     * Documentation Checker
+    * Project Management
 
 ### Umer Siddiqui
 
@@ -32,7 +33,8 @@ We are a team based in the [School of Computing, National University of Singapor
     * Developer for ModuleBook3.5
     * Storage Component Checker
     * Documentation Checker
-
+    * Project Management
+    
 ### Lee Ze Xin
 
 <img src="images/figo2127.png" width="200px">
@@ -73,7 +75,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer, QA Engineer
 * Responsibilities:
     * Developer for ModuleBook3.5
-    * Commons Component Checker
+    * Ui Component Checker
     * Tester
     * QA Checker
     * Project Management
