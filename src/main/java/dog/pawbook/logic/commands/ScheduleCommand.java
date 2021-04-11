@@ -23,6 +23,11 @@ public class ScheduleCommand extends Command {
 
     private final LocalDate date;
 
+    /**
+     * Constructs a schedule command object.
+     *
+     * @param date of the specified schedule.
+     */
     public ScheduleCommand(LocalDate date) {
         requireNonNull(date);
         this.date = date;
