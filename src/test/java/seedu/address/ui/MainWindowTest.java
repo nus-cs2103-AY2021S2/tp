@@ -341,6 +341,17 @@ public class MainWindowTest extends GuiUnitTest {
         assertTrue(mainWindowHandle.contains(MainWindow.CONTACT_LIST_PANEL_ID));
     }
 
+    @Test
+    public void clear_success() {
+        assertFalse(logic.getFilteredProjectsList().isEmpty());
+        assertFalse(logic.getFilteredContactList().isEmpty());
+
+        inputCommand("clear");
+
+        assertTrue(logic.getFilteredProjectsList().isEmpty());
+        assertTrue(logic.getFilteredContactList().isEmpty());
+    }
+
     private void inputCommand(String command) {
         guiRobot.clickOn("#commandTextField");
         textInputControl.setText(command);
