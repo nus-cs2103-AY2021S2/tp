@@ -16,7 +16,7 @@ import seedu.address.model.alias.CommandAlias;
 /**
  * An Immutable AliasMap that is serializable to JSON format.
  */
-@JsonRootName(value = "aliasmap")
+@JsonRootName(value = "alias")
 class JsonSerializableAliasMap {
 
     public static final String MESSAGE_DUPLICATE_ALIAS = "Command aliases contains duplicate alias(es).";
