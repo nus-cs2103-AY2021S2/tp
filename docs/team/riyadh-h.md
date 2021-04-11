@@ -27,8 +27,8 @@ Given below are my contributions to the project.
   * Managed weekly Zoom meetings during Weeks 4 to 12.
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated the 'find' command to allow for users to search their contacts lists by tags or email. (Pull requests [\#65](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/65), [\#137](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/137))
+  * Fixed a bug in the original implementation of the contacts list (i.e., AddressBook) where two contacts could share the same phone number or email, but not the name. (Pull request [\#250](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/250))
 
 * **Documentation**:
   * User Guide:
