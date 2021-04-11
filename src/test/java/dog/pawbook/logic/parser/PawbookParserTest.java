@@ -33,7 +33,6 @@ import dog.pawbook.testutil.DogUtil;
 import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
-import dog.pawbook.testutil.TypicalId;
 
 public class PawbookParserTest {
 
@@ -56,7 +55,7 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_deleteOwner() throws Exception {
         DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
-                DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + TypicalId.ID_ONE);
+                DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + ID_ONE);
         assertEquals(new DeleteOwnerCommand(ID_ONE), command);
     }
 

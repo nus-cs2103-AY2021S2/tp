@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PawbookParser" as PawbookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteOwnerCommandParser" as DeleteOwnerCommandParser LOGIC_COLOR
+participant "d:DeleteOwnerCommand" as DeleteOwnerCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -19,50 +19,50 @@ activate LogicManager
 LogicManager -> PawbookParser : parseCommand("delete owner 1")
 activate PawbookParser
 
-create DeleteCommandParser
-PawbookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteOwnerCommandParser
+PawbookParser -> DeleteOwnerCommandParser
+activate DeleteOwnerCommandParser
 
-DeleteCommandParser --> PawbookParser
-deactivate DeleteCommandParser
+DeleteOwnerCommandParser --> PawbookParser
+deactivate DeleteOwnerCommandParser
 
-PawbookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+PawbookParser -> DeleteOwnerCommandParser : parse("1")
+activate DeleteOwnerCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteOwnerCommand
+DeleteOwnerCommandParser -> DeleteOwnerCommand
+activate DeleteOwnerCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteOwnerCommand --> DeleteOwnerCommandParser : d
+deactivate DeleteOwnerCommand
 
-DeleteCommandParser --> PawbookParser : d
-deactivate DeleteCommandParser
+DeleteOwnerCommandParser --> PawbookParser : d
+deactivate DeleteOwnerCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> PawbookParser
-destroy DeleteCommandParser
+DeleteOwnerCommandParser -[hidden]-> PawbookParser
+destroy DeleteOwnerCommandParser
 
 PawbookParser --> LogicManager : d
 deactivate PawbookParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteOwnerCommand : execute()
+activate DeleteOwnerCommand
 
-DeleteCommand -> Model : deleteOwner(1)
+DeleteOwnerCommand -> Model : deleteEntity(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteOwnerCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteOwnerCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteOwnerCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteOwnerCommand --> LogicManager : result
+deactivate DeleteOwnerCommand
 
 [<--LogicManager
 deactivate LogicManager

@@ -11,17 +11,23 @@ Interface DatabaseStorage <<Interface>>
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonDatabaseStorage
+abstract Class JsonAdaptedEntity
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> DatabaseStorage
 
 Storage -|> UserPrefsStorage
-Storage -|> AddressBookStorage
+Storage -|> DatabaseStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonDatabaseStorage .left.|> DatabaseStorage
 JsonDatabaseStorage .down.> JsonSerializableDatabase
-JsonSerializableDatabase .right.> JsonAdaptedOwner
-JsonAdaptedOwner .right.> JsonAdaptedTag
+JsonSerializableDatabase -right-> JsonAdaptedEntity
+JsonAdaptedEntity -right-> JsonAdaptedTag
+
+JsonAdaptedEntity ^-- JsonAdaptedOwner
+JsonAdaptedEntity ^-- JsonAdaptedDog
+JsonAdaptedEntity ^-- JsonAdaptedProgram
+JsonAdaptedProgram -left-> JsonAdaptedSession
 @enduml

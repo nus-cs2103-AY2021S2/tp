@@ -1,9 +1,12 @@
 package dog.pawbook.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import dog.pawbook.logic.commands.DeleteCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
+import dog.pawbook.model.managedentity.Entity;
 
-public abstract class DeleteCommandParser<T extends DeleteCommand> implements Parser<T> {
+public abstract class DeleteCommandParser<T extends DeleteCommand<? extends Entity>> implements Parser<T> {
     private final Class<T> cls;
 
     public DeleteCommandParser(Class<T> cls) {
@@ -20,15 +23,17 @@ public abstract class DeleteCommandParser<T extends DeleteCommand> implements Pa
      */
     @Override
     public T parse(String userInput) throws ParseException {
+        requireNonNull(userInput);
+        String trimmedInput = userInput.trim();
+        if (trimmedInput.isEmpty() || !trimmedInput.matches("\\d+")) {
+            throw new ParseException(getUsageText());
+        }
+
+        int id = ParserUtil.parseId(trimmedInput);
         try {
-            Integer id = Integer.parseInt(userInput.trim());
-            try {
-                return cls.getDeclaredConstructor(Integer.class).newInstance(id);
-            } catch (Exception e) {
-                throw new AssertionError("All DeleteCommand child classes should have Integer constructor!");
-            }
-        } catch (NumberFormatException e) {
-            throw new ParseException(getUsageText(), e);
+            return cls.getDeclaredConstructor(Integer.class).newInstance(id);
+        } catch (Exception e) {
+            throw new AssertionError("All DeleteCommand child classes should have Integer constructor!");
         }
     }
 }
