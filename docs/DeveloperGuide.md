@@ -158,22 +158,13 @@ one for the archived list. However, this idea was scrapped as that would involve
 and involve changes in unrelated classes. This way, the changes were contained and it made more sense for the `Patient`
 object to contain the information of whether or not they were archived.
 
-
-### \[Proposed\] Adding Medical Information such as Appointments and Medical Records
-
-_{Coming soon}_
-
-### \[Proposed\] Viewing all upcoming appointments the doctor has
-
-_{Coming soon}_
-
 ### Viewing all information regarding a patient
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `executeCommand("view 1")` API call.
 
 ![image](https://user-images.githubusercontent.com/48408342/114147903-c3b5ca80-994b-11eb-9bf3-add78bd3fca7.png)
 
-**How it works**
+**How**
 
 The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `Command`. It mainly overrides `Command#execute` in order to return a `CommandResult` with a `Patient` attribute. When `MainWindow#executeCommand` is ran:
 1. The command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`.
