@@ -1,0 +1,24 @@
+@startuml
+
+!include style.puml
+
+Package "Model"<<Rectangle>>{
+    Class TimetablePrefs MODEL_COLOR
+    Class M
+}
+
+
+Package "Ui"<<Rectangle>>{
+    Class TimetableView UI_COLOR
+    Class TimetablePlacementPolicy UI_COLOR
+    Class TimetableCell UI_COLOR
+}
+
+TimetableView ..> TimetableCell : creates
+TimetableView -> "1" TimetablePlacementPolicy
+
+
+
+
+
+@enduml

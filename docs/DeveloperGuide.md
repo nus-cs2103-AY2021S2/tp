@@ -59,12 +59,14 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component. Note that class diagram for TimetableView and MeetingDashboard are omitted
+for clarity.](images/UiClassDiagram.png)
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -157,20 +159,51 @@ Sorting would occur in the sorted list layer, and the filtering will be applied 
 This has the benefit of still sharing the references with the original observable list, 
 so modifications will still be reflected in the correct data structures.
 
-###Timetable feature
+###Timetable feature (author : Maurice Mok)
 
-The timetable feature will be help the user visualise the free times. 
-It also aid the user in scheduling meetings faster.
-There are two possible implementations for the model below:
+The timetable feature will be help the user visualise the free times, as well as his/her 
+meetings schedule for the following week. 
+It also aids the user in scheduling meetings faster or finding dates that she will be free on.
+It should be responsive, such that when the user edits, adds or deletes a meeting, it should
+be reflected in the timetable, if that meeting falls within the timetable range.
+The user should be able to at a glance tell what meetings she has on a particular day in the 
+timetable, and the timeslot of the meeting.
+The user should be able to change the start date of the timetable. This allows to view a wider
+range of days, as well as view past week schedules.
 
-One: Create a two-dimensional array to represent the schedule 
-with days as the row and columns being the half hour time slots
-This will serve as the model of a person's free schedule. Slots which are occupied will have
-their state marked as so. 
 
-Pros: A Ui can listen to the model and the display can be updated quickly with each change.
 
-Cons: Takes up more space. Problems handling meetings with not nice start and ending times.
+#### Design Considerations:
+
+Two possible implementations were considered.
+
+Alternative 1 : Represent a 7 day schedule as a 2 dimensional array with each cell representing a
+30 minute time interval, with each row representing a day, and each column representing a specified 
+timeslot within the day. Similar to a booking system, whenever a meeting is added or deleted,
+it will mark the timeslots as taken, or free up the slots.
+
+Pros: A Ui can listen to the model and the display can be updated quickly with each cell change.
+Whenever a meeting is added or removed, it only takes O(1) time to check each timeslot occupied by
+the meeting.
+
+Cons: Takes up more space. Needs a lot of restrictions on handling meetings with not nice start and ending times,
+and thus reduces a lot of flexibility for the user.
+
+Alternative 2 (*Current Choice): 
+Represent each day as a column in the GUI, for a total of 7 columns. Each meeting will be represented as a slot
+of length proportional to the meeting duration. Depending on the meeting's start times and end times, 
+the program will determine which column to slot the meeting in, as well as the vertical position in the column to
+put the meeting.
+
+Pros: More flexible in allowing users to display meetings with much more different start end times.
+Takes up less space in the model.
+
+Cons: It takes up more time for each operation to update the GUI, because you have to update at the very least 
+a whole column, or search through the slots in the column to find the slot.
+
+
+
+
 
 
 ### \[Proposed\] Undo/redo feature
