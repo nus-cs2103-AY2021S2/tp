@@ -381,11 +381,6 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void completeOrder(Order orderToComplete) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void cancelOrder(Order target) {
             throw new AssertionError("This method should not be called.");
         }

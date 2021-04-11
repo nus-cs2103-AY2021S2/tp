@@ -453,6 +453,10 @@ public class ModelManager implements Model {
         orderBook.removeOrder(target);
     }
 
+    /**
+     * Deletes orders
+     * @param orders
+     */
     public void deleteOrders(List<Order> orders) {
         for (Order o : orders) {
             deleteOrder(o);
