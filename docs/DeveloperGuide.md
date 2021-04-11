@@ -467,7 +467,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  System prompts for student's matriculation number.
 3.  User inputs the matriculation number.
 4.  System finds the student. 
-
+5.  System finds the corresponding appointment belonging to the student. 
+6.  System displays student and appointment. 
+    
     Use case ends.
 
 **Extensions**
@@ -483,6 +485,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
   
         Use case ends.
+        
+* 4a. Student is not found.
+
+    * 3a1. System shows a message informing users that the student is not found.
+  
+        Use case ends.
+
+* 5a. Student has no appointment.
+
+    * 3a1. System show an empty view for appointment list.
+  
+        Use case ends.   
         
 **Use case: Delete a student**
 
