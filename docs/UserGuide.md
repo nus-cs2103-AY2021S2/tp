@@ -14,13 +14,15 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
         * Add a delivery task
         * Add a remark to a delivery task
         * Edit a delivery task
-        * Find delivery task using keyword matching any attribute  
+        * Find delivery task(s) using keyword matching any attribute  
         * Delete a delivery task
         * Clear all delivery tasks
         * List all delivery tasks
-        * Mark delivery task as done
-        * View completed delivery tasks
-        * View uncompleted delivery tasks
+        * Mark a delivery task as done
+        * Tag a delivery task
+        * View all completed delivery tasks
+        * View all uncompleted delivery tasks
+        * Sort all delivery tasks (completion status, urgency then date)
         * Statistics of delivery workflow
         * Exit application
 
@@ -61,7 +63,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format**<br>
 
 * Attributes of a delivery tasks includes name, phone number, address, email, date, tags, date.
 
@@ -81,7 +83,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* For commands that do not take in any inputs (such as `help`, `list`, `exit` and `clear`), any inputs will be
+* For commands that do not take in any inputs (such as `help`, `list`, `exit`, `clear` and `sort`), any inputs will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -99,7 +101,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 ![Ui](images/HelpCommand.png)
 
-### Add a delivery tasks: `add`
+### Add a delivery task: `add`
 
 **Purpose:** Adds a delivery task to the delivery list.
 
@@ -107,11 +109,23 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/2021-10-10
+* `add n/John Doe p/98765432 e/johnd@gmail.com a/Blk 311, Clementi Ave 2, #01-12 d/2021-05-01 t/urgent
   `
-  
+
 ![Ui](images/AddCommand.png)
 
+### Add a remark to a delivery tasks: `remark`
+
+**Purpose:** Adds a remark to a delivery task in the delivery list.
+
+**Format:** `remark TASK_NUMBER r/REMARK`
+
+**Examples:**
+
+* `remark 7 r/needs utensils
+  `
+
+![Ui](images/RemarkCommand.png)
 
 ### Edit a delivery task: `edit TASK_NUMBER PREFIX/ATTRIBUTE`
 
@@ -134,22 +148,53 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 ![Ui](images/EditSingleAttribute.png)
 
-* `edit 7 a/Clementi Road d/2021-10-01`
+* `edit 7 a/Clementi Road d/2021-10-01 t/bulky`
 
-![Ui](images/EditMultipleAttribute.png)
+![Ui](images/EditMultipleAttributes.png)
 
-### Add a remark to a delivery tasks: `remark`
+### Find deliveries using keywords matching any attribute: `find KEYWORDS`
+**Attributes:** Name, Phone number, Address, Date, Remark, Done, Email, Tags
 
-**Purpose:** Adds a remark to a delivery task in the delivery list.
+**Purpose** Find deliveries with attributes that match the KEYWORDS
 
-**Format:** `remark TASK_NUMBER r/REMARK`
+**Notes:**
+* It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
+  That is, if you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
+  but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
+* Incomplete keywords are disabled in order to reduce the number of unnecessary search results which
+  may defeat the aim of the feature.
+* When finding dates, the format of the `KEYWORD` should be in YYYY-MM-DD format. For example,
+  when finding 4th January 2021, use `find 2021-01-04`.
 
-**Examples:**
+**Format** `find KEYWORDS`
 
-* `remark 7 r/needs utensils
-  `
+* One of the following results will show:
+    * Deliveries matching the keywords
+    * No matches found
 
-![Ui](images/RemarkCommand.png)
+**Example**
+1. Finding by name: `find Alex`
+
+
+![Ui](images/FindName.png)
+
+
+2. Finding by address: `find Tampines`
+
+
+![Ui](images/FindAddress.png)
+
+
+3. finding by telephone number: `find 87438807`
+
+
+![Ui](images/FindTelephone.png)
+
+
+4. finding by date of delivery: `find 2021-10-10`
+
+
+![Ui](images/FindDate.png)
 
 ### Delete a delivery task : `delete`
 
@@ -163,9 +208,25 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `delete 7` - delete 7 will delete the seventh delivery task in the delivery list.
-  
-![Ui](images/DeleteCommand.png)
+* Before
+
+![Ui](images/DeleteBefore.png)
+
+* `delete 7` - delete 7 will delete the seventh delivery task in the delivery list (after).
+
+![Ui](images/DeleteAfter.png)
+
+### Clear all delivery tasks : `clear`
+
+**Purpose:** Clear all the delivery tasks
+
+**Format:** `clear`
+
+**Examples:**
+
+* `clear` - Clears all the delivery tasks in the delivery list
+
+![Ui](images/ClearCommand.png)
 
 ### List all delivery tasks : `list`
 
@@ -178,18 +239,6 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 * `list` - Lists all the delivery tasks
 
 ![Ui](images/ListCommand.png)
-
-### Clear all delivery tasks : `list`
-
-**Purpose:** Clear all the delivery tasks
-
-**Format:** `clear`
-
-**Examples:**
-
-* `clear` - Clears all the delivery tasks in the delivery list
-
-![Ui](images/ClearCommand.png)
 
 ### Mark delivery task as done : `done`
 
@@ -208,103 +257,39 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 ![Ui](images/DoneCommand.png)
 
+### Tag a delivery task: `add` or `edit`
 
-### Find deliveries using keywords matching any attribute: `find KEYWORDS`
-**Attributes:** Name, Phone number, Address, Date, Remark, Done, Email, Tags
+**Purpose:** Add specific tag(s) to a delivery task
 
-**Purpose** Find deliveries with attributes that match the KEYWORDS
+**Format:** `add ... t/TAG` or `edit TASK_NUMBER t/TAG`
 
 **Notes:**
-* It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
-  That is, if you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
-  but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
-* Incomplete keywords are disabled in order to reduce the number of unnecessary search results which
-  may defeat the aim of the feature.
-* When finding dates, the format of the `KEYWORD` should be in YYYY-MM-DD format. For example, 
-  when finding 4th January 2021, use `find 2021-01-04`.
-  
-**Format** `find KEYWORDS`
 
-* One of the following results will show:
-  * Deliveries matching the keywords
-  * No matches found
-    
-**Example**
-1. Finding by name: `find Alex`
+* There are only 2 ways in which tag(s) can be added to delivery task(s): First, when adding a new delivery task,
+  include the desired tag, `add ... t/TAG`. Second, when tagging an existing delivery task, edit that task and include
+  the desired tag, `edit TASK_NUMBER t/TAG`.
 
-   
-   ![Ui](images/FindName.png)
+* These are the few valid tags that you can add to a delivery task: `urgent`, `fragile`, `bulky`, `food`, `liquid`,
+  `hot`, `cold`, and `heavy`. Invalid tags will not be added to the task.
 
-   
-2. Finding by address: `find Tampines`
+* When editing the tag(s) of an existing delivery task, all desired tags must be re-entered as the newly entered tag(s)
+  will override the existing one(s).<br>
+  e.g. if the tag `hot` is to be added to delivery task 7 that already has the tag `liquid`, the user input has to be
+  `edit 7 t/liquid t/hot` for delivery task 7 to have both `liquid` and `hot` tags. If the input is just `edit 7 t/hot`,
+  then delivery task 7 will only have the `hot` tag.
 
-   
-   ![Ui](images/FindAddress.png)
+**Example (add):**
 
-   
-3. finding by telephone number: `find 87438807`
+* `add n/Billy p/12345678 a/Bishan St 23 e/billy@gmail.com d/2021-05-01 t/urgent` - adds a delivery task with the
+  `urgent` tag to the delivery list
 
-   
-   ![Ui](images/FindTelephone.png)
+![Ui](images/AddTag.png)
 
-   
-4. finding by date of delivery: `find 2021-10-10`
+**Example (edit):**
 
-   
-   ![Ui](images/FindDate.png)
+* `edit 9 t/urgent t/hot` - adds the `urgent` and `hot` tags to the 9th delivery task in the delivery list
 
-
-### Sort delivery tasks in the list: `sort`
-
-**Purpose** Sort delivery tasks first by completion status (incomplete first), 
-then urgency tags (only applicable for incomplete tasks), and lastly date.
-
-**Format:** `sort`
-
-**Examples:**
-
-* `sort` - Lists all incomplete delivery tasks (urgent ones first) followed by completed delivery tasks, which are all
-sorted by date.
-
-   ![Ui](images/Sort.png)
-
-
-### Statistics of delivery workflow : `stats`
-
-**Purpose:** Get a summary report of the current delivery workflow
-
-**Format:** `stats`
-
-* The following data will be calculated and shown on the screen:
-  * Deliveries Done, Deliveries Not Done, Deliveries Due, Deliveries Not Due
-  * Fragile Deliveries , Liquid Deliveries, Food Deliveries, Hot Deliveries
-  * Cold Deliveries , Heavy Deliveries, Bulky Deliveries, Urgent Deliveries
-  * Other Deliveries
-  
-**Definition:**
-  * `Deliveries Done` are Deliveries that have been marked done
-  * `Deliveries Not Done` are Deliveries that have not been marked as done
-  * `Deliveries Due` are Deliveries that have exceeded their delivery date and are still marked as not done
-  * `Deliveries Not Due` are Deliveries that have not yet exceeded their delivery date and are marked as not done
-  * `Fragile Deliveries` are Deliveries with tags marked as fragile
-  * `Liquid Deliveries` are Deliveries with tags marked as liquid
-  * `Food Deliveries` are Deliveries with tags marked as food
-  * `Hot Deliveries` are Deliveries with tags marked as hot
-  * `Cold Deliveries` are Deliveries with tags marked as cold
-  * `Heavy Deliveries` are Deliveries with tags marked as heavy
-  * `Bulky Deliveries` are Deliveries with tags marked as bulky
-  * `Urgent Deliveries` are Deliveries with tags marked as urgent
-  * `Other Deliveries` are Deliveries without any tags 
-  
-  
-**How to interpret the displayed data:**
- * `Deliveries Done : 5 ( 83.33% )` means 5 and 83.33% of the deliveries in the list are marked as done 
- * `Deliveries Due: 1 ( 16.67% )` means 1 and 16.67% of the deliveries in the list are due 
-  
-**Example:**
-
-* `stats` - outputs the calculated figures as shown below
-       ![Ui](images/Stats.png)
+![Ui](images/EditTag.png)
 
 ### View completed delivery tasks: `completed`
 
@@ -329,6 +314,62 @@ sorted by date.
 * `uncompleted` - outputs the list of uncompleted delivery tasks
 
 ![Ui](images/UncompletedCommand.png)
+
+### Sort delivery tasks in the list: `sort`
+
+**Purpose** Sort delivery tasks first by completion status (incomplete first),
+then urgency tags (only applicable for incomplete tasks), and lastly date.
+
+**Format:** `sort`
+
+**Examples:**
+
+* Before
+
+![Ui](images/SortBefore.png)
+
+* `sort` - Lists all incomplete delivery tasks (urgent ones first) followed by completed delivery tasks, which are all
+  sorted by date (after).
+
+![Ui](images/SortAfter.png)
+
+### Statistics of delivery workflow : `stats`
+
+**Purpose:** Get a summary report of the current delivery workflow
+
+**Format:** `stats`
+
+* The following data will be calculated and shown on the screen:
+    * Deliveries Done, Deliveries Not Done, Deliveries Due, Deliveries Not Due
+    * Fragile Deliveries , Liquid Deliveries, Food Deliveries, Hot Deliveries
+    * Cold Deliveries , Heavy Deliveries, Bulky Deliveries, Urgent Deliveries
+    * Other Deliveries
+
+**Definition:**
+* `Deliveries Done` are Deliveries that have been marked done
+* `Deliveries Not Done` are Deliveries that have not been marked as done
+* `Deliveries Due` are Deliveries that have exceeded their delivery date and are still marked as not done
+* `Deliveries Not Due` are Deliveries that have not yet exceeded their delivery date and are marked as not done
+* `Fragile Deliveries` are Deliveries with tags marked as fragile
+* `Liquid Deliveries` are Deliveries with tags marked as liquid
+* `Food Deliveries` are Deliveries with tags marked as food
+* `Hot Deliveries` are Deliveries with tags marked as hot
+* `Cold Deliveries` are Deliveries with tags marked as cold
+* `Heavy Deliveries` are Deliveries with tags marked as heavy
+* `Bulky Deliveries` are Deliveries with tags marked as bulky
+* `Urgent Deliveries` are Deliveries with tags marked as urgent
+* `Other Deliveries` are Deliveries without any tags
+
+
+**How to interpret the displayed data:**
+* `Deliveries Done : 5 ( 83.33% )` means 5 and 83.33% of the deliveries in the list are marked as done
+* `Deliveries Due: 1 ( 16.67% )` means 1 and 16.67% of the deliveries in the list are due
+
+**Example:**
+
+* `stats` - outputs the calculated figures as shown below
+
+![Ui](images/Stats.png)
 
 ### Exit application : `exit`
 
@@ -377,8 +418,8 @@ Action | Format,<br> Example(s)
 Term | Definition,<br>
 --------|------------------
 **ATTRIBUTE** | `A key detail of a delivery task`<br> e.g., `name`
-**TASK_NUMBER** | `The delivery task number shown in the delivery list` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
-**PREFIX** | `refers to the letter representing the respective attribute.` <br> e.g., Letter a for attribute ADDRESS`
+**TASK_NUMBER** | `The delivery task number shown in the delivery list`
+**PREFIX** | `Refers to the letter representing the respective attribute.` <br> e.g., Letter a for attribute ADDRESS`
 
 
 

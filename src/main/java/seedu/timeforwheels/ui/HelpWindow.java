@@ -16,22 +16,24 @@ import seedu.timeforwheels.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Add delivery task - add n/NAME p/PHONE a/ADDRESS "
+    public static final String HELP_MESSAGE = "Add a delivery task - add n/NAME p/PHONE a/ADDRESS "
             + "e/EMAIL t/TAG d/DATETIME \n"
-            + "Edit delivery task (only way to add tag(s)"
-            + " - edit INDEX n/NAME p/PHONE a/ADDRESS e/EMAIL t/TAG d/DATETIME \n"
-            + "Add remark (usually for parcel name) - remark INDEX r/REMARK \n"
-            + "Delete delivery task - delete INDEX \n"
-            + "Clear delivery tasks - clear \n"
-            + "List delivery tasks - list \n"
-            + "Mark delivery tasks as done - done INDEX \n"
-            + "Find delivery task - find KEYWORD \n"
-            + "Sort the delivery tasks by completion status (incomplete first), urgency (for incomplete), then date"
+            + "Add a remark to a delivery task - remark TASK_NUMBER r/REMARK \n"
+            + "Edit a delivery task (only way to add tag(s)"
+            + " - edit TASK_NUMBER n/NAME p/PHONE a/ADDRESS e/EMAIL t/TAG d/DATETIME \n"
+            + "Find delivery task(s) - find KEYWORD \n"
+            + "Delete a delivery task - delete TASK_NUMBER \n"
+            + "Clear all delivery tasks - clear \n"
+            + "List all delivery tasks - list \n"
+            + "Mark a delivery tasks as done - done TASK_NUMBER \n"
+            + "Add tag(s) to a delivery task - edit TASK_NUMBER t/TAG \n"
+            + "View all completed delivery tasks - completed \n"
+            + "View all uncompleted delivery tasks - uncompleted \n"
+            + "Sort all delivery tasks by completion status (incomplete first), urgency (for incomplete), then date"
             + " - sort \n"
             + "Statistics of delivery workflow - stats \n"
-            + "View completed delivery tasks - completed \n"
-            + "View uncompleted delivery tasks - uncompleted \n"
-            + "For more detailed examples, please refer to our user guide: " + USERGUIDE_URL;
+            + "Exit the application - exit \n\n"
+            + "You may copy the URL of the user guide for more details: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
