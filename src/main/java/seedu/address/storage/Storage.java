@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage, AliasesStorage {
+public interface Storage extends AddressBookStorage, UserPrefsStorage, AliasMapStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -31,9 +31,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, AliasesSt
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     @Override
-    Optional<ReadOnlyUniqueAliasMap> readAliases() throws DataConversionException, IOException;
+    Optional<ReadOnlyUniqueAliasMap> readAliasMap() throws DataConversionException, IOException;
 
     @Override
-    void saveAliases(ReadOnlyUniqueAliasMap addressBook) throws IOException;
+    void saveAliasMap(ReadOnlyUniqueAliasMap aliasMap) throws IOException;
 
 }

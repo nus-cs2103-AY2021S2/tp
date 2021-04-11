@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
@@ -39,7 +39,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliases());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliasMap());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -52,7 +52,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -61,7 +61,7 @@ public class EditCommandTest {
     @Test
     public void execute_bulkEditPhoneSpecifiedIndexes_success() {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         Person personA = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personB = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
 
@@ -89,7 +89,7 @@ public class EditCommandTest {
     @Test
     public void execute_shownEditPhone_success() {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         // Bulk edit phone number
         final String phoneNumber = "99998888";
         for (Person person : model.getFilteredPersonList()) {
@@ -111,7 +111,7 @@ public class EditCommandTest {
         model.updateSelectedPersonList(model.getFilteredPersonList().subList(0, 1));
 
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         expectedModel.updateSelectedPersonList(expectedModel.getFilteredPersonList().subList(0, 1));
         // Edit phone number
         final String phoneNumber = "99998888";
@@ -166,7 +166,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -182,7 +182,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -199,7 +199,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
