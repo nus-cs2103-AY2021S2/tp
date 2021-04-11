@@ -179,7 +179,7 @@ Step 4. During it's execution, the `Deadline` object would be added to a `Deadli
 
 This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
 
-The `ViewProject` command results in the UI displaying the specified project together with all its related information. 
+The `ViewProject` command results in the UI displaying the specified project together with all its related information.
 
 The mechanism to issue the command to display a new project is facilitated by `ViewProjectUiCommand`, a concrete implementation of the `UiCommand` abstract class, which encapsulates the project `Index` as well as the logic that determines which methods to call in the `MainWindow`.
 
@@ -209,7 +209,7 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
 
     * Cons:
         * Many classes required.
-        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action. 
+        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action.
 
 * **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
     * Pros:
@@ -298,7 +298,7 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
         * This implementation will not work with an immutable implementation of `EventList`
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
-    * Pros: 
+    * Pros:
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
@@ -607,7 +607,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample entries. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -616,29 +616,42 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
 
-    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    1. Prerequisites: List all contacts using the `contacts` command. Multiple contacts in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `deleteC 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `deleteC 0`<br>
+       Expected: No contact is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a project
+
+1. Test case: `deleteP 1`<br>
+    Expected: First project is deleted from the list. Details of the deleted project shown in the status message.
+
+1. Test case: `deleteP 0`<br>
+    Expected: No project is deleted. Error details shown in the status message.
+
+1. Other incorrect delete commands to try: `deleteP`, `deleteP x`, `...` (where x is larger than the number of projects)<br>
+    Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Make sure there is a `./data/colab.json` file.<br>
+       If not, open the app, make some changes (e.g. ), and close the app.
 
-1. _{ more test cases …​ }_
+    1. Open `./data/colab.json` in a text editor (preferably not Windows Notepad).
+
+    1. Remove the starting `{` character of the json file and save the file.
+
+    1. Launch the app by runing `java -jar CoLAB.jar` in the console.<br>
+       Expected: The GUI should pop up with no entry. The console output should give warnings about incorrect data file format.

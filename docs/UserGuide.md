@@ -104,7 +104,7 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app. 
+Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app.
 </div>
 
 When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
@@ -312,7 +312,7 @@ You may view a list of all your projects in the side panel and view a specific p
 Project names that are too long may be truncated in the side panel. Simply view the project using the `project` command to view the full name in the main panel.
 </div>
 
-Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos. 
+Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To switch between the overview and todo pages, you can use the `overview` and `todo` commands respectively.
@@ -848,7 +848,7 @@ Parameter:
 Example:
 
 * `findC alex david` displays a list containing `Alex Yeoh` and `David Li`<br>
-  
+
 ![result for 'findC alex david'](images/findAlexDavidResult.png)
 
 ##### Deleting a contact : `deleteC`
