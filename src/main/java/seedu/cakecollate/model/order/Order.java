@@ -15,7 +15,7 @@ import seedu.cakecollate.model.tag.Tag;
  * Represents an Order in the cakecollate.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Order {
+public class Order implements Comparable<Order> {
 
     // Identity fields
     private final Name name;
@@ -202,4 +202,14 @@ public class Order {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Order o) {
+        int statusCompareTo = this.getDeliveryStatus().compareTo(o.getDeliveryStatus());
+
+        if (statusCompareTo == 0) {
+            return (this.getDeliveryDate().compareTo(o.getDeliveryDate()));
+        } else {
+            return statusCompareTo;
+        }
+    }
 }
