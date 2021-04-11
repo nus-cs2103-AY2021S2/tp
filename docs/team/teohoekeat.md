@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added ListCommand and CommandDetail command that shows the user command summary.
   * What it does: show the user list of command available and command details
   * Justification: With so many commands available, it is hard for the user to remember all available feature. User can use `listcommand` to quickly recap the available command.
-*
+
 **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=w13&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=TeoHoeKeat&tabRepo=AY2021S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
@@ -76,7 +76,8 @@ Given below are my contributions to the project.
       (Pull requests [\#89](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/89))
     * Added documentation for the features `editmode` and all `setdivider` and `toggledivider` command
       (Pull requests [\#114](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/114)
-      ,[\#148](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/148))
+      ,[\#148](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/148)
+      , [\#257](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/257))
 
   * Developer Guide:
     * Added Non-functional Requirement
@@ -84,10 +85,20 @@ Given below are my contributions to the project.
     * Added user stories and use case for UI related feature
       (Pull requests [\#37](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/37))
     * Added implementation details for UI related feature
-      (Pull requests [\#149](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/149))
+      (Pull requests [\#149](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/149)
+      , [\#260](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/260))
+    * Updated UI class diagram and UI component details
+      (Pull requests [\#141](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/141)
+      , [\#260](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/260))
 
----to be added
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+  * PRs reviewed (with non-trivial review comments): 
+    [\#53](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/53),
+    [\#105](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/105#discussion_r595257515),
+    [\#139](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/139#discussion_r602392869), 
+    [\#158](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/158#discussion_r602886244)
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/195))
+  * Reported bugs and suggestions for other teams in the class (examples:
+    [1](https://github.com/AY2021S2-CS2103-W16-1/tp/issues/263),
+    [2](https://github.com/AY2021S2-CS2103-W16-1/tp/issues/267),
+    [3](https://github.com/AY2021S2-CS2103-W16-1/tp/issues/264))
