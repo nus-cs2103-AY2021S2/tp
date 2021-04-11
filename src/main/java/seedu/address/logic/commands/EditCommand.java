@@ -95,7 +95,7 @@ public class EditCommand extends Command {
         List<Meeting> meetings = personToEdit.getMeetings();
 
         Meeting earliestMeeting = meetings.size() > 0 ? meetings.get(meetings.size() - 1) : null;
-        SpecialDate earliestDate = dates.size() > 0 ? dates.get(meetings.size() - 1) : null;
+        SpecialDate earliestDate = dates.size() > 0 ? dates.get(dates.size() - 1) : null;
 
         if (earliestMeeting != null && earliestMeeting.getDate().isBefore(updatedBirthday.getDate())) {
             throw new IllegalValueException(String.format(
