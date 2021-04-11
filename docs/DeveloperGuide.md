@@ -24,12 +24,12 @@ The developer guide describes the team's motive for creating RemindMe, and the u
 
 * **[1. Setting up, getting started](#1-setting-up-getting-started)**
 * **[2. Design](#2-design)**
-    * **[2.1 Architecture](#2.1-architecture)**
-    * **[2.2 UI component](#2.2-UI-component)**
-    * **[2.3 Logic component](#2.3-Logic-component)**
-    * **[2.4 Model component](#2.4-Model-component)**
-    * **[2.5 Storage component](#2.5-Storage-component)**
-    * **[2.6 Common classes](#2.6-Common-classes)**
+    * **[2.1 Architecture](#21-architecture)**
+    * **[2.2 UI component](#22-ui-component)**
+    * **[2.3 Logic component](#23-logic-component)**
+    * **[2.4 Model component](#24-model-component)**
+    * **[2.5 Storage component](#25-storage-component)**
+    * **[2.6 Common classes](#26-common-classes)**
 * **[3. Implementation](#3-implementation)**
     * **[3.1 Add feature](#31-add-feature)**
     * **[3.2 Find feature](#32-find-feature)**
@@ -39,14 +39,14 @@ The developer guide describes the team's motive for creating RemindMe, and the u
 * **[4. Documentation, logging, testing and dev-ops](#4-documentation-logging-testing-configuration-dev-ops)**
 * **[5. Effort](#5-effort)**
 * **[Appendix-requirements](#appendix-requirements)**
-    * **[Product scope](#Product-scope)**
-    * **[User stories](#User-stories)**
-    * **[Use cases](#Use cases)**
-    * **[Non Functional Requirements](#Non-functional-Requirements)**
-    * **[Glossary](#Glossary)**
+    * **[Product scope](#product-scope)**
+    * **[User stories](#user-stories)**
+    * **[Use cases](#use-cases)**
+    * **[Non Functional Requirements](#non-functional-requirements)**
+    * **[Glossary](#glossary)**
 * **[Appendix-instructions-for-manual-testing](#appendix-instructions-for-manual-testing)**
-    * **[Launch](#Launch)**
-    * **[Testing commands](#Testing-commands)**
+    * **[Launch](#launch)**
+    * **[Testing commands](#testing-commands)**
     * **[Saving data](#saving-data)**
 
 --------------------------------------------------------------------------------------------------------------------
