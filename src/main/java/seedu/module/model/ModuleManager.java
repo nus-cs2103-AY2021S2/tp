@@ -70,6 +70,13 @@ public class ModuleManager {
         if (mappingOfModulesToTasks == null) {
             rebuildMapping();
         }
+        insertTaskInternal(module, task);
+        increaseCorrectWorkloadDistribution(module, task);
+        setExistingModuleList();
+        setModulePieChartData();
+    }
+
+    private static void insertTaskInternal(Module module, Task task) {
         if (mappingOfModulesToTasks.containsKey(module)) {
             List<Task> newList = mappingOfModulesToTasks.get(module);
             //must ensure Module exists in the listOfValidModules
@@ -80,9 +87,6 @@ public class ModuleManager {
             newList.add(task);
             mappingOfModulesToTasks.put(module, newList);
         }
-        increaseCorrectWorkloadDistribution(module, task);
-        setExistingModuleList();
-        setModulePieChartData();
     }
 
     /**
@@ -121,6 +125,8 @@ public class ModuleManager {
      */
     public static void decreaseCorrectWorkloadDistribution(Module module, Task task) {
         int workloadLevel = task.getWorkload().getWorkloadLevel();
+        moduleWorkLoadDistribution.put(module,
+                moduleWorkLoadDistribution.get(module) - task.getWorkload().getWorkloadLevel());
         switch(workloadLevel) {
         case LOW_LEVEL:
             moduleLowWorkLoadDistribution.put(module,
@@ -169,16 +175,18 @@ public class ModuleManager {
         List<Task> newList = mappingOfModulesToTasks.get(module);
         //must ensure Module exists in the listOfValidModules
         newList.remove(task);
-        moduleWorkLoadDistribution.put(module,
-            moduleWorkLoadDistribution.get(module) - task.getWorkload().getWorkloadLevel());
+        deleteTaskInternal(module, newList);
+        decreaseCorrectWorkloadDistribution(module, task);
+        setExistingModuleList();
+        setModulePieChartData();
+    }
+
+    private static void deleteTaskInternal(Module module, List<Task> newList) {
         if (newList.isEmpty()) { //remove the module(key) from mapping if no task is associated with it
             mappingOfModulesToTasks.remove(module);
         } else {
             mappingOfModulesToTasks.put(module, newList);
         }
-        decreaseCorrectWorkloadDistribution(module, task);
-        setExistingModuleList();
-        setModulePieChartData();
     }
 
     /**
