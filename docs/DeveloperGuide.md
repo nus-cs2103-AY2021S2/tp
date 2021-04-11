@@ -393,7 +393,7 @@ Example: `alloc ri/1 oi/2`
 * Check that the 2nd room exists.
 * Check that the 1st resident has not already been allocated to the 2nd room.
 * Check that no other room is allocated to the 2nd resident.
-* Check that room the 2nd room is not occupied by any resident.
+* Check that the 2nd room is not occupied by any resident.
 
   **If all the above is true,**
 * Set the `ROOM` of the resident to be the room number of the room.

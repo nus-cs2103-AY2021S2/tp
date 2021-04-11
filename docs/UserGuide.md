@@ -31,8 +31,8 @@ features a Graphical User Interface (GUI) but is optimized for use via a Command
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press `Enter` to execute it.
-   e.g. typing `help` and pressing `Enter` will open the help window.<br>
+5. Type a command in the command box and press `ENTER` to execute it.
+   e.g. typing `help` and pressing `ENTER` will open the help window.<br>
 
    Some example commands you can try:
 
@@ -345,6 +345,10 @@ Format: `olist`
 
 #### Find rooms : `ofind`
 
+<div markdown="block" class="alert alert-info">
+:information_source: `ofind` currently only searches through rooms via room number or tags. Searching by room type will be implemented in the future.
+</div>
+
 Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
@@ -409,7 +413,7 @@ Deletes the room at a specified index.
 Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed room list.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
-  See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+  See [deallocate a resident](#deallocate-resident-from-room--dealloc) for more info.
 * `odel` will be blocked if there are issues associated with the room.
   Run `idel` to delete all issues associated with the room before attempting to delete the room.
   See [delete an issue](#delete-an-issue--idel) for more info.
@@ -735,8 +739,9 @@ Undo/redo history is not saved to the hard disk, so it will be lost when SunRez 
 Advanced users are welcome to edit these files directly.
 
 <div markdown="span" class="alert alert-warning">
-**Caution**: <br>
-If your changes to the data file makes its format invalid, SunRez will discard all data and start with an empty data file at the next run.
+**:exclamation:Caution**: <br>
+If your changes to the data file makes its format invalid, SunRez will discard all data and start with an empty data file at the next run. <br>
+If your changes are in a valid format but contain normally illegal data (e.g. duplicate residents, self-referencing aliases, etc.) then SunRez may stop functioning properly. We currently make no guarantees on the usability of SunRez if you edit its data files directly, although in future we may add protective measures.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
