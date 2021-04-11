@@ -23,10 +23,10 @@ public class DoctorTest {
     @Test
     public void isSameDoctor() {
         // same object -> returns true
-        assertTrue(DR_GREY .isSamePerson(DR_GREY));
+        assertTrue(DR_GREY.isSamePerson(DR_GREY));
 
         // null -> returns false
-        assertFalse(DR_GREY .isSamePerson(null));
+        assertFalse(DR_GREY.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new DoctorBuilder(DR_GREY).withTags(VALID_TAG_HUSBAND).build();
