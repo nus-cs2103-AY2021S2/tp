@@ -11,9 +11,8 @@ SOChedule is a one-stop solution for NUS School of Computing (SoC) students to m
 effectively. Targeted at users who can type fast and prefer typing to mouse input, SOChedule is optimized for use via a 
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-SOChedule was morphed from a sample project named AddressBook Level 3. It is written in Java and has around 15kLoCs. 
-This application was developed by my teammates and me for the Software Engineering module coded CS2103 in School of 
-Computing, National University of Singapore (NUS).
+SOChedule was morphed from a sample project named AddressBook Level 3. This application was developed by my teammates 
+and me for the Software Engineering module coded CS2103 in School of Computing, National University of Singapore (NUS).
 
 ### Summary of Contributions
 
@@ -57,9 +56,8 @@ Computing, National University of Singapore (NUS).
       
     - Highlights:
         
-        During the morphing process, I need to check through the original codebase and understand it comprehensively, 
-        and decide on what are the attributes we will keep and what are the attributes we will discard. Besides 
-        morphing the code, I also added some checks in `AddTaskParser` so that `Task` with past `Deadline` cannot be 
+        During the morphing process, I need to check through the original codebase and understand it comprehensively. 
+      Besides morphing the code, I also added a check in `AddTaskParser` so that `Task` with past `Deadline` cannot be 
         added.
     
   
@@ -78,24 +76,10 @@ Computing, National University of Singapore (NUS).
         message "There is no task/event present" will inform user about the fact that the task/event list is empty.
 
 #### Code Contributed
-* [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=ljhgab&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
-* [Pull Requests](https://github.com/AY2021S2-CS2103-W16-1/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Aljhgab)
-
-#### Contributions to the UG:
-* Wrote documentations about `add_task`, `delete_task`, `list_task`, `list_event`, `find_task`, `find_event`, `today_task` and `today_event`.
-* Wrote documentations for the part **General Commands**.
-
-#### Contributions to the DG
-* Updated `Logic` diagram.
-* Wrote three overview sections for SOChedule, Task and Event.
-* Added implementation details of `add_task`, `find_task`, `find_event`, `today_task`, `today_event`.
-* Added use cases for `add_task`, `delete_task`, `list_task`, `list_event`, `today_task`, `today_event`, `find_task`, `find_event`.
-* Added instructions for manual testing for `add_task`, `delete_task`, `list_task`, `list_event`, `today_task`, 
-  `today_event`, `find_task`, `find_event`.
-* Updated the NFR part of Developer Guide.
+* [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=ljhgab&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false) | [Pull Requests](https://github.com/AY2021S2-CS2103-W16-1/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Aljhgab)
 
 #### Contributions to team-based tasks
-* Morphed the task part of Logic component into our team project.
+* Morphed the task part of Logic component into our team project 
 * Managed release v1.3.1.
 
 #### Review/mentoring contributions
@@ -145,4 +129,15 @@ Computing, National University of Singapore (NUS).
   [5](https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/126))
   
 
+#### Contributions to the UG:
+* Wrote documentations about `add_task`, `delete_task`, `list_task`, `list_event`, `find_task`, `find_event`, `today_task` and `today_event`.
+* Wrote documentations for the part **General Commands**.
+
+#### Contributions to the DG
+* Updated `Logic` diagram.
+* Wrote three overview sections for SOChedule, Task and Event.
+* Added implementation details of `add_task`, `find_task`, `find_event`, `today_task`, `today_event`.
+* Added use cases and instructions for manual testing 
+  for `add_task`, `delete_task`, `list_task`, `list_event`, `today_task`, `today_event`, `find_task`, `find_event`.
+* Updated the NFR part of Developer Guide.
 

@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find_task homework assignment")
+[-> LogicManager : execute("find_task hw1")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand("find_task homework assignment")
+LogicManager -> SocheduleParser : parseCommand("find_task hw1")
 activate SocheduleParser
 
 create FindTaskCommandParser
@@ -26,7 +26,7 @@ activate FindTaskCommandParser
 FindTaskCommandParser --> SocheduleParser
 deactivate FindTaskCommandParser
 
-SocheduleParser -> FindTaskCommandParser : parse("homework assignment")
+SocheduleParser -> FindTaskCommandParser : parse("hw1")
 activate FindTaskCommandParser
 
 create FindTaskCommand
@@ -48,7 +48,7 @@ deactivate SocheduleParser
 LogicManager -> FindTaskCommand : execute()
 activate FindTaskCommand
 
-FindTaskCommand -> Model : updateFilteredList(Predicate<Task> predicate)
+FindTaskCommand -> Model : updateFilteredTaskList(Predicate<Task> predicate)
 activate Model
 
 Model --> FindTaskCommand

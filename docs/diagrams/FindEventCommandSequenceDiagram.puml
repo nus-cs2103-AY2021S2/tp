@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find_event project meeting")
+[-> LogicManager : execute("find_event meeting")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand("find_event project meeting")
+LogicManager -> SocheduleParser : parseCommand("find_event meeting")
 activate SocheduleParser
 
 create FindEventCommandParser
@@ -26,7 +26,7 @@ activate FindEventCommandParser
 FindEventCommandParser --> SocheduleParser
 deactivate FindEventCommandParser
 
-SocheduleParser -> FindEventCommandParser : parse("project meeting")
+SocheduleParser -> FindEventCommandParser : parse("meeting")
 activate FindEventCommandParser
 
 create FindEventCommand
@@ -48,7 +48,7 @@ deactivate SocheduleParser
 LogicManager -> FindEventCommand : execute()
 activate FindEventCommand
 
-FindEventCommand -> Model : updateFilteredList(Predicate<Event> predicate)
+FindEventCommand -> Model : updateFilteredEventList(Predicate<Event> predicate)
 activate Model
 
 Model --> FindEventCommand
