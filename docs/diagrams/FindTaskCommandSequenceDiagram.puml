@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":SOCheduleParser" as SOCheduleParser LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
 participant ":FindTaskCommandParser" as FindTaskCommandParser LOGIC_COLOR
 participant "d:FindTaskCommand" as FindTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("find_task homework assignment")
 activate LogicManager
 
-LogicManager -> SOCheduleParser : parseCommand("find_task homework assignment")
-activate SOCheduleParser
+LogicManager -> SocheduleParser : parseCommand("find_task homework assignment")
+activate SocheduleParser
 
 create FindTaskCommandParser
-SOCheduleParser -> FindTaskCommandParser
+SocheduleParser -> FindTaskCommandParser
 activate FindTaskCommandParser
 
-FindTaskCommandParser --> SOCheduleParser
+FindTaskCommandParser --> SocheduleParser
 deactivate FindTaskCommandParser
 
-SOCheduleParser -> FindTaskCommandParser : parse("homework assignment")
+SocheduleParser -> FindTaskCommandParser : parse("homework assignment")
 activate FindTaskCommandParser
 
 create FindTaskCommand
@@ -36,14 +36,14 @@ activate FindTaskCommand
 FindTaskCommand --> FindTaskCommandParser : s
 deactivate FindTaskCommand
 
-FindTaskCommandParser --> SOCheduleParser : s
+FindTaskCommandParser --> SocheduleParser : s
 deactivate FindTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindTaskCommandParser -[hidden]-> SOCheduleParser
+FindTaskCommandParser -[hidden]-> SocheduleParser
 destroy FindTaskCommandParser
 
-SOCheduleParser --> LogicManager : s
-deactivate SOCheduleParser
+SocheduleParser --> LogicManager : s
+deactivate SocheduleParser
 
 LogicManager -> FindTaskCommand : execute()
 activate FindTaskCommand

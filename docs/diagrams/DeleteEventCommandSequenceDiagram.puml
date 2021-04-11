@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(delete_event INDEX)
+[-> LogicManager : parse("delete_event 1")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(delete_event INDEX)
+LogicManager -> SocheduleParser : parseCommand("delete_event 1")
 activate SocheduleParser
 
 create DeleteEventCommandParser
@@ -26,7 +26,7 @@ activate DeleteEventCommandParser
 DeleteEventCommandParser --> SocheduleParser
 deactivate DeleteEventCommandParser
 
-SocheduleParser -> DeleteEventCommandParser: parse(INDEX)
+SocheduleParser -> DeleteEventCommandParser: parse("1")
 activate DeleteEventCommandParser
 
 create DeleteEventCommand

@@ -20,6 +20,12 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand("edit_task 1 n/t1")
 activate SocheduleParser
 
+create EditTaskCommandParser
+SocheduleParser -> EditTaskCommandParser
+activate EditTaskCommandParser
+EditTaskCommandParser --> SocheduleParser
+deactivate EditTaskCommandParser
+
 SocheduleParser -> EditTaskCommandParser: parse("1 n/t1")
 activate EditTaskCommandParser
 

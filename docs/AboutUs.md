@@ -34,10 +34,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ljhgab.png" width="200px">
 
 [[github](https://github.com/ljhgab)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ljhgab.md)]
 
 * Role: Developer
-* Responsibilities: Tasks Team
+* Responsibilities: Tasks Team, Testing
 
 ### Yap Jing Kang
 
