@@ -31,8 +31,8 @@ features a Graphical User Interface (GUI) but is optimized for use via a Command
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it.
-   e.g. typing `help` and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press `Enter` to execute it.
+   E.g. typing `help` and pressing `Enter` will open the help window.<br>
 
    Some example commands you can try:
 
@@ -72,10 +72,13 @@ the acceptable range. In the following sections, more information is given about
 Commands in this user guide follow this format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `radd n/NAME ...`, `NAME` is a parameter which can be used as `radd n/John Doe ...`.
+  e.g. in `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`, the paramters are `NAME`, `PHONE_NUMBER`, `EMAIL`, and `YEAR`. The command can be used as `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`.
 
 * Items in square brackets are optional.<br>
   e.g. `d/DESCRIPTION [t/TIMESTAMP]` can be used as `d/Broken chair t/2020/3/23 11:59pm` or as `d/Broken chair`.
+
+* Items with `...` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]...​` can be used as <code> </code>&nbsp;(i.e. 0 times), `t/SHN`, `t/SHN` `t/Renovating` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -137,13 +140,13 @@ As `Tom` is not a valid phone number, it will be rejected.
 
 #### Interpreting errors
 
-In most cases, the error displayed should be relatively self-explanatory. This sub-section aims to clear up any ambiguity 
-you might encounter when dealing with invalid commands or errors. 
+In most cases, the error displayed should be relatively self-explanatory. This sub-section aims to clear up any ambiguity
+you might encounter when dealing with invalid commands or errors.
 
 We will break our explanation down into the following categories:
 - Incorrect formats
 - Parameters do not conform to required values
-- Commands that require an [`INDEX`] (e.g. `redit 1 n/John`)
+- Commands that require an [`INDEX`](#index) (e.g. `redit 1 n/John`)
 
 ##### Incorrect formats
 This error typically shows a message along the following lines: `Invalid command format! [Information on how to use
@@ -155,8 +158,8 @@ Typically this happens because the command does not match the required format. C
 A special case of this takes place when the `INDEX` value is not a number.
 
 ##### Parameters do not conform to required values
-This error typically shows a message along the following lines: `[Parameter name] must be [some condition]`. E.g. 
-`Room numbers should be formatted as such: XY-ABC, where XY can be any pair of digits except 00, and ABC can 
+This error typically shows a message along the following lines: `[Parameter name] must be [some condition]`. E.g.
+`Room numbers should be formatted as such: XY-ABC, where XY can be any pair of digits except 00, and ABC can
 be any 3 digits.`
 
 ![Invalid param format](images/error-invalid-param-format.png)
@@ -169,24 +172,24 @@ helpful information in resolving the error too.
 The bounds of the `INDEX` parameter is documented [below](#index). This section will explain how errors with the `INDEX`
 will be dealt with.
 
-- If you do not specify the `INDEX` (e.g. `rdel`): The app will inform you that the format is invalid, and display the 
+- If you do not specify the `INDEX` (e.g. `rdel`): The app will inform you that the format is invalid, and display the
   format that should be used. This is a specific case of [incorrect formats](#incorrect-formats).
-  
+
 - If the `INDEX` is not an integer (e.g. `rdel abc`): The app will inform you that the format is invalid, and display the
-  format that should be used. This is also a specific case of [incorrect formats](#incorrect-formats), as the command 
+  format that should be used. This is also a specific case of [incorrect formats](#incorrect-formats), as the command
   expects a number but did not get one.
 
 - If the `INDEX` parameter is required alongside other parameters e.g. [`redit`](#edit-a-resident-record--redit), and
   **only** an `INDEX` (be it valid or not) value is provided (e.g. `redit 1000` or `redit 1`): The app will inform you
-  that the format is invalid, and display the format that should be used. This is another specific case 
-  of [incorrect formats](#incorrect-formats), as the command compulsorily needs at least one of the optional parameters 
+  that the format is invalid, and display the format that should be used. This is another specific case
+  of [incorrect formats](#incorrect-formats), as the command compulsorily needs at least one of the optional parameters
   to be provided.
-  
+
 - If the `INDEX` is 0 or lesser (e.g. `rdel -5`): The app will inform you that `INDEX` should be a positive integer.
 
 ![Index non positive](images/error-idx-non-positive.png)
 
-- If the `INDEX` is above the range of the collection specified (e.g. `rdel 100` but there are only 6 residents): The 
+- If the `INDEX` is above the range of the collection specified (e.g. `rdel 100` but there are only 6 residents): The
   app will inform you that `INDEX` needs to be between 1 and the size of the collection in question.
 
 ![Index out of range](images/error-idx-out-of-range.png)
@@ -194,12 +197,12 @@ will be dealt with.
 
 ### Command Parameters
 
-Many SunRez commands use various parameters. Their formats, constraints and rationale are provided in this subsection.
+Many SunRez commands use various parameters. Their formats, constraints and rationale, if any, are provided in this subsection.
 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
 | <a id="alias_name"></a> `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not contain space. </li><li> Must not be empty. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul>{:/} |
-| <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| The category of an issue.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not be empty. </li></ul>{:/} |
 | <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.{::nomarkdown}  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul>{:/} |
 | <a id="count"></a> `COUNT` | - | `history` | The number of command history entries wanted.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the total number of entries in command history. </li><li>Exception: if command history is empty then <code>COUNT</code> can be greater than the number of entries in command history (that is, it can be a positive integer). SunRez will simply indicate that command history is empty.</li></ul>{:/} |
 | <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | The description of an issue.{::nomarkdown} <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be empty. </li><li> Will wrap if too long. </li><li> These constraints are chosen for simplicity's sake and ease of displaying. </li></ul>{:/} |
@@ -207,7 +210,7 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="index"></a> `INDEX` | - | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul>{:/} |
 | <a id="keyword"></a> `KEYWORD` | - | `rfind` `ofind` `ifind` | A keyword used in the various find commands.{::nomarkdown} <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul>{:/} |
 | <a id="name"></a> `NAME` | `n/` | `radd` `redit` | The identifier of a resident.{::nomarkdown} <ul><li> Accepts only alphabetic characters and spaces. </li><li> Must not be blank. </li><li> Must be unique. </li><li> While it is acknowledged that some names may have special characters, the chosen constraints are sufficient for intended use cases. </li></ul>{:/} |
-| <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | The phone number of a resident.{::nomarkdown} <ul><li> Must contain only numbers. </li><li> Must be at least 3 digits long. </li></ul>{:/} |
+| <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | The phone number of a resident.{::nomarkdown} <ul><li> Must contain only digits. </li><li> Must be at least 3 digits long. </li></ul>{:/} |
 | <a id="room_number"></a> `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room.{::nomarkdown} <ul><li> Format: <code>XY-ABC</code>, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul>{:/} |
 | <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room.{::nomarkdown} <ul><li> Must be one of the following strings: <code>corridor_ac</code>, <code>corridor_non_ac</code>, <code>suite_ac</code>, <code>suite_non_ac</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
 | <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | The status of an issue.{::nomarkdown} <ul><li> Must of one of the following strings: <code>PENDING</code>, <code>CLOSED</code>. </li><li> Short forms are available: <code>P</code> for <code>PENDING</code>, <code>C</code> for <code>CLOSED</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
@@ -292,7 +295,7 @@ Example:
 Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
-*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before 
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before
    deletion. See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
@@ -305,24 +308,24 @@ Example:
 
 <div markdown="block" class="alert alert-secondary">
 :thinking: Why do room commands start with `o`?<br>
-:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. 
+:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands.
 `o` is the second character in R**o**om.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Rooms are always sorted in ascending order by room number in all views.**
+:information_source: Rooms are always sorted in ascending order by room number in all views.
 </div>
 
 #### Add a room : `oadd`
 
 Adds a room to the housing management system.
 
-Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
+Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]...`
 * Room is initialised with default occupancy status of "No".
 * The occupancy status cannot be defaulted to "Yes" during room addition.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or 
-  deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or 
-  [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or
+  deallocated. See [allocate a resident](#allocate-resident-to-room--alloc) or
+  [deallocate a resident](#deallocate-resident-from-room--dealloc) for more info.
 
 Parameters:
 * [`ROOM_NUMBER`](#room_number) The room number of the room to add.
@@ -346,7 +349,7 @@ Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
-* The search for tags matches any part of the tag and is NOT case-sensitive. e.g. `mell`, `smell`, `smelly` or `room` 
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g. `mell`, `smell`, `smelly` or `room`
   all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
 * Only the room number and tags are searched.
@@ -368,25 +371,25 @@ Examples:
 
 Edits the existing room record at a specified index.
 
-Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
+Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]...`
 * `INDEX` refers to the index number shown in the displayed room list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `oedit` will block editing of a room number **if the room is occupied**. Run `dealloc` to deallocate the room before 
+* `oedit` will block editing of a room number **if the room is occupied**. Run `dealloc` to deallocate the room before
   making further edits.
   * This is done to prevent residents from being assigned to non-existent rooms by editing away a room's number after
     allocating a resident to it
 * The occupancy status is not controllable through the `oedit` command.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or 
-  deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or 
-  [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
-* `oedit` will block editing of a room number **if there are issues tagged to the room**. Run `idel` to 
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or
+  deallocated. See [allocate a resident](#allocate-resident-to-room--alloc) or
+  [deallocate a resident](#deallocate-resident-from-room--dealloc) for more info.
+* `oedit` will block editing of a room number **if there are issues tagged to the room**. Run `idel` to
   [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
     * This is done to prevent issues from being assigned to non-existent rooms by editing away a room's number after
       assigning an issue to it
 
 <div markdown="block" class="alert alert-info">
-:information_source: Room numbers are editable *in general* as renovation or re-numbering excercises may take place.
+:information_source: Room numbers are editable *in general* as renovation or re-numbering exercises may take place.
 </div>
 
 Parameters:
@@ -407,8 +410,8 @@ Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed room list.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
   See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
-* `odel` will be blocked if the there are issues associated with the room.
-  Run `idel` to delete all issues associated the room before attempting to delete the room.
+* `odel` will be blocked if there are issues associated with the room.
+  Run `idel` to delete all issues associated with the room before attempting to delete the room.
   See [delete an issue](#delete-an-issue--idel) for more info.
 
 Parameters:
@@ -466,7 +469,7 @@ Example:
 
 Adds an issue to the housing management system.
 
-Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
+Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]...`
 
 Parameters:
 * [`ROOM_NUMBER`](#room_number) The room number of the issue to be added. Room number must exist in SunRez.
@@ -493,13 +496,13 @@ Format: `ilist`
 Finds all issues that contain any of the given keywords in the room number, description or tags.
 
 <div markdown="block" class="alert alert-info">
-**:information_source: `ifind` currently only searches through issues via room number and tags. Searching by status will be implemented in the future.**
+:information_source: `ifind` currently only searches through issues via room number and tags. Searching by status will be implemented in the future.
 </div>
 
 Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `broken` will match `Broken`.
 * The order of the keywords does not matter. e.g. `Broken light` will match `light broken`.
-* The search for tags and description matches any part of the tag and is NOT case-sensitive. 
+* The search for tags and description matches any part of the tag and is NOT case-sensitive.
   e.g. `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
 * Only the description, room number, and tags are searched.
@@ -520,7 +523,7 @@ Examples:
 
 Edits the existing issue record at a specified index.
 
-Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
+Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]...`
 * `INDEX` refers to the index number shown in the displayed issue list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -696,16 +699,16 @@ Examples:
 
 #### Access command history
 
-Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard.
-UP selects the previous command. DOWN selects the next command.
+Previous successful commands can be accessed via the `UP` and `DOWN` arrow keys on the keyboard.
+`UP` selects the previous command. `DOWN` selects the next command.
 
 Example usage:
 1. Enter some commands as per normal.
 1. Make sure the command box is in focus (e.g. click on it).
-1. Press the UP arrow key on your keyboard.
+1. Press the `UP` arrow key on your keyboard.
 1. SunRez should display the most recent successful command in the command box.
-    * Hit ENTER to run that command again.
-    * Alternatively, select other commands via the UP and DOWN arrow keys.
+    * Hit `ENTER` to run that command again.
+    * Alternatively, select other commands via the `UP` and `DOWN` arrow keys.
 
 #### Exit the program : `exit`
 
@@ -743,7 +746,7 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 ### How do I transfer my data to another computer?
 * On the computer with your data, do the following:
     1. Navigate to where SunRez is installed: the location of `sunrez.jar`.
-    1. Copy the following files to your other computer: `preferences.json`, `data/commandhistory.txt`,
+    2. Copy the following files to your other computer: `data/commandhistory.txt`,
        `data/sunrez.json`
 * Then, on your other computer, do the following:
     1. Download SunRez (`sunrez.jar`) and place it in a suitable folder.
@@ -762,17 +765,17 @@ Action | Format, Examples
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
-**Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd r/17-101 t/corridor_ac g/SHN`
+**Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]...` <br> e.g. `oadd r/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
-**Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
+**Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]...` <br> e.g. `oedit 1 g/SHN`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
 **Allocate a Resident to Room** | `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX` <br> e.g. `alloc ri/1 oi/2`
 **Deallocate a Resident from Room** | `dealloc INDEX` <br> e.g. `dealloc 1`
-**Add an open issue** | `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
+**Add an open issue** | `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]...` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
-**Edit an issue record** | `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iedit 1 r/20-109 s/Closed`
+**Edit an issue record** | `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]...` <br> e.g. `iedit 1 r/20-109 s/Closed`
 **Close an issue** | `iclo INDEX` <br> e.g. `iclo 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`

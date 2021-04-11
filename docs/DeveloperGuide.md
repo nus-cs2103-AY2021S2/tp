@@ -291,8 +291,8 @@ This process is summarised in the diagram below
 
 ##### Detailed execution pathway
 
-The diagram below details how the user's command to add a resident propagates through the system to eventually 
-add a resident. 
+The diagram below details how the user's command to add a resident propagates through the system to eventually
+add a resident.
 
 ![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png){:height="75%" width="75%"}
 
@@ -355,7 +355,7 @@ The `AddRoomCommand` inherits from the `Command` object and overrides the `execu
 already has the room being inserted, and if it does not, it will insert the room.
 
 The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing
-with the specific implemetations of each `Command` object.
+with the specific implementations of each `Command` object.
 
 ##### Execution pathway
 The diagram below details how the user's command to add a room propagates through the system to eventually add a room.
@@ -390,7 +390,7 @@ The `alloc` command will do the following:
 
 Example: `alloc ri/1 oi/2`
 * Check that the 1st resident exists.
-* Check that the 2nd room exists exists.
+* Check that the 2nd room exists.
 * Check that the 1st resident has not already been allocated to the 2nd room.
 * Check that no other room is allocated to the 2nd resident.
 * Check that room the 2nd room is not occupied by any resident.
@@ -465,7 +465,7 @@ This process is summarised in the diagram below
 
 The `AddIssueCommand` inherits from the `Command` object and overrides the `execute()` method.
 
-The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implementations of each `Command` object.
 
 ##### Execution pathway
 The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
@@ -1272,16 +1272,16 @@ starting point for testers to work on; testers are expected to do more *explorat
         * `iedit x` with at least 1 valid parameter given and where `x` is either a non-positive number or not a number at all. E.g. `iedit -1 r/01-234` and `iedit a d/ABCDEF`. <br>
           Expected: An error message indicating the type of error.
         * `iedit x` with at least 1 invalid parameter given and where `x` is a valid index. <br>
-          Expected: An error message indicating the constraints of the invalid paramter.
+          Expected: An error message indicating the constraints of the invalid parameter.
 
 5. Closing issues
 
     1. Prerequisites: There is at least 1 issue with status `Pending`.
 
-    2. Test case: `iclo x` where x is the index of a issue with status `Pending`. <br>
+    2. Test case: `iclo x` where x is the index of an issue with status `Pending`. <br>
        Expected: The issue's status is set to `Closed`.
 
-    3. Test case: `iclo x` where x is the index of a issue with status `Closed`. <br>
+    3. Test case: `iclo x` where x is the index of an issue with status `Closed`. <br>
        Expected: An error message indicating that the issue is already closed.
 
 6. Delete issues
