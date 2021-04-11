@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -13,7 +12,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@ProjectDisplayPanel.css" />
+    <URL value="@ProjectDisplayPanel.css"/>
   </stylesheets>
 
   <ScrollPane minHeight="50" vbarPolicy="NEVER" fitToHeight="true">
@@ -24,23 +23,26 @@
       <Tab>
         <graphic>
           <Group>
-            <Label rotate="90" styleClass="tab-label" text="Overview" />
+            <Label rotate="90" styleClass="tab-label" text="Overview"/>
           </Group>
         </graphic>
         <content>
           <ScrollPane fitToWidth="true">
             <VBox styleClass="project-display-panel-vbox">
               <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
-                <Label styleClass="label-header" text="Events" />
-                <StackPane fx:id="eventListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER"/>
+                <Label styleClass="label-header" text="Events"/>
+                <StackPane fx:id="eventListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity"
+                           VBox.vgrow="NEVER"/>
               </VBox>
               <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
-                <Label styleClass="label-header" text="Deadlines" />
-                <StackPane fx:id="deadlineListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER"/>
+                <Label styleClass="label-header" text="Deadlines"/>
+                <StackPane fx:id="deadlineListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity"
+                           VBox.vgrow="NEVER"/>
               </VBox>
               <VBox styleClass="project-display-panel-section" VBox.vgrow="NEVER">
-                <Label styleClass="label-header" text="Groupmates" />
-                <StackPane fx:id="groupmateListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="NEVER"/>
+                <Label styleClass="label-header" text="Groupmates"/>
+                <StackPane fx:id="groupmateListViewPlaceholder" maxHeight="-Infinity" minHeight="-Infinity"
+                           VBox.vgrow="NEVER"/>
               </VBox>
             </VBox>
           </ScrollPane>
@@ -49,12 +51,12 @@
       <Tab>
         <graphic>
           <Group>
-            <Label rotate="90" styleClass="tab-label" text="Todos" />
+            <Label rotate="90" styleClass="tab-label" text="Todos"/>
           </Group>
         </graphic>
         <content>
           <VBox styleClass="project-display-panel-section">
-            <Label styleClass="label-header" text="Todos" />
+            <Label styleClass="label-header" text="Todos"/>
             <StackPane fx:id="todoListViewPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </content>
@@ -62,6 +64,6 @@
     </tabs>
   </TabPane>
   <styleClass>
-    <String fx:value="pane-with-border" />
+    <String fx:value="pane-with-border"/>
   </styleClass>
 </VBox>

@@ -34,6 +34,7 @@ public class UpdateProjectCommand extends Command {
 
     public static final String MESSAGE_UPDATE_PROJECT_SUCCESS = "Updated Project: %1$s";
     public static final String MESSAGE_DUPLICATE_NAME = "This project already exists in CoLAB.";
+    public static final String MESSAGE_UNCHANGED_NAME = "This project already has this name.";
 
     private final Index targetIndex;
     private final ProjectName name;
@@ -66,6 +67,10 @@ public class UpdateProjectCommand extends Command {
             if (project.getProjectName().equals(name) && !projectToEdit.getProjectName().equals(name)) {
                 throw new CommandException(MESSAGE_DUPLICATE_NAME);
             }
+        }
+
+        if (projectToEdit.getProjectName().equals(name)) {
+            throw new CommandException(MESSAGE_UNCHANGED_NAME);
         }
 
         Project updatedProject = createUpdatedProject(projectToEdit, name);

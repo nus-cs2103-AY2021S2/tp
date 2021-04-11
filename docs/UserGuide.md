@@ -104,7 +104,7 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app. 
+Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app.
 </div>
 
 When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
@@ -203,7 +203,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `NAME`
 
 * The name of a contact/groupmate/project.
-* Names should only contain alphanumeric characters, and it should not be blank.
+* Names should only contain alphanumeric characters and spaces, and it should not be blank.
 
 ##### `PHONE_NUMBER`
 
@@ -244,8 +244,9 @@ To achieve the best possible experience, avoid adding excessively long text to C
 * Time can be only be entered in one of these formats:
     * 1730
     * 17:30
-* The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
-* The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+* Time should be a valid time (from 0000 to 2359) where:
+    * The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
+    * The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -311,7 +312,7 @@ You may view a list of all your projects in the side panel and view a specific p
 Project names that are too long may be truncated in the side panel. Simply view the project using the `project` command to view the full name in the main panel.
 </div>
 
-Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos. 
+Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To switch between the overview and todo pages, you can use the `overview` and `todo` commands respectively.
@@ -436,6 +437,10 @@ Example:
 
 * `addT 1 d/Add unit tests` adds a todo with the description `Add unit tests` to the first project in CoLAB.
 
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You can add a todo to a project containing another todo with the same `DESCRIPTION` as long as the todo in the project has been marked as done.
+</div>
+
 ##### Updating a todo of a project: `updateT`
 
 Updates an existing todo of a project in CoLAB.
@@ -516,6 +521,10 @@ Parameters:
 Example:
 
 * `addD 1 d/Milestone v1.2 by/01-03-2021` adds a deadline to the first project with description `Milestone v1.2` and due date `01-03-2021`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You can add a deadline to a project containing another deadline with the same `DESCRIPTION` and `DATE` as long as the deadline in the project has been marked as done.
+</div>
 
 ##### Updating a deadline of a project: `updateD`
 
@@ -607,6 +616,10 @@ Examples:
 
 * `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y` adds a weekly event with description `Project Meeting` starting on `24-04-2021` at `2000` to the first project.
 * `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n` adds a one time event with description `CS2101 Presentation` on `14-04-2021` at `1015` to the second project.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You cannot add an event to a project containing another event with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
+</div>
 
 ##### Updating an event of a project `updateE`
 
@@ -835,7 +848,7 @@ Parameter:
 Example:
 
 * `findC alex david` displays a list containing `Alex Yeoh` and `David Li`<br>
-  
+
 ![result for 'findC alex david'](images/findAlexDavidResult.png)
 
 ##### Deleting a contact : `deleteC`
@@ -1009,8 +1022,8 @@ Action | Format, Examples
 
 ## **7. Acknowledgements**
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Some code for integrating automated GUI tests was referenced from the AddressBook-Level4 [codebase](https://github.com/se-edu/addressbook-level4).
 - Libraries used:
     - [JavaFX](https://openjfx.io/)
     - [Jackson](https://github.com/FasterXML/jackson)

@@ -66,9 +66,9 @@ import seedu.address.testutil.GroupmateUtil;
 import seedu.address.testutil.TodoBuilder;
 import seedu.address.testutil.UpdateContactDescriptorBuilder;
 
-public class AddressBookParserTest {
+public class ColabParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ColabParser parser = new ColabParser();
 
     @Test
     public void parseCommand_add() throws Exception {

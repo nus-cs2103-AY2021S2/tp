@@ -49,6 +49,8 @@ public class UpdateContactCommand extends Command {
     public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Updated contact: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in CoLAB.";
+    public static final String MESSAGE_UNCHANGED_CONTACT = "This contact already has this name, phone,"
+            + " email, address and tags.";
 
     private final Index index;
     private final UpdateContactDescriptor updateContactDescriptor;
@@ -81,6 +83,10 @@ public class UpdateContactCommand extends Command {
 
         if (!contactToEdit.isSameContact(editedContact) && model.hasContact(editedContact)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONTACT);
+        }
+
+        if (contactToEdit.equals(editedContact)) {
+            throw new CommandException(MESSAGE_UNCHANGED_CONTACT);
         }
 
         model.setContact(contactToEdit, editedContact);

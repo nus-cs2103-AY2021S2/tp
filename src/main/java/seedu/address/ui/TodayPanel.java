@@ -35,10 +35,8 @@ public class TodayPanel extends UiPart<Region> {
 
     @FXML
     private Label date;
-
     @FXML
     private StackPane eventsListViewPlaceholder;
-
     @FXML
     private StackPane deadlinesListViewPlaceholder;
 

@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class ColabParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -20,6 +20,7 @@ Class Prefix
 package Command {
 Class XYZCommand
 Class CommandResult
+Class UiCommand
 Class "{abstract}\nCommand" as Command
 }
 
@@ -39,8 +40,8 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" ColabParser
+ColabParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser .left.|> Parser
@@ -60,10 +61,12 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note right of XYZCommand: XYZCommand = AddProjectCommand, \nFindContactCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
+Command .up.> UiCommand
+CommandResult -right-> UiCommand
 CommandResult -[hidden]-> Parser
 @enduml
