@@ -42,7 +42,24 @@ public class SampleDataUtil {
             new Task(new Title("CS2103 last milestone"), new Date("04/06/2021"), new Duration(""),
                    new RecurringSchedule(""), new Description("Wrap up project and release jar file"),
                    new Status("done"), getTagSet("CS2103", "Project")),
-
+            new Task(new Title("CS2102 NFR"), new Date("30/05/2021"), new Duration(""),
+                   new RecurringSchedule(""), new Description("Pls give me mercy"),
+                   new Status("not done"), getTagSet("CS2102", "Project")),
+            new Task(new Title("CS2105 Assignment 3"), new Date("15/05/2021"), new Duration(""),
+                    new RecurringSchedule(""), new Description("Beware of Youtube Ban"),
+                    new Status("not done"), getTagSet("CS2105", "Assignment")),
+            new Task(new Title("CS2105 Lecture"), new Date(""), new Duration(""),
+                    new RecurringSchedule("[30/05/2021][thu][weekly]"), new Description("Mr Zimmerman Media sharing"),
+                    new Status("not done"), getTagSet("CS2105", "Lectures")),
+            new Task(new Title("CS2106 Lecture"), new Date(""), new Duration(""),
+                     new RecurringSchedule("[30/05/2021][tue][weekly]"), new Description("Pipelining and Threading!!!"),
+                     new Status("not done"), getTagSet("CS2106", "Lectures")),
+            new Task(new Title("CS2102 Lecture"), new Date(""), new Duration(""),
+                        new RecurringSchedule("[30/05/2021][fri][weekly]"), new Description("SQL never ending queries"),
+                        new Status("not done"), getTagSet("CS2102", "Lectures")),
+            new Task(new Title("CS2103 PE"), new Date(""), new Duration(""),
+                    new RecurringSchedule(""), new Description("Time to find bugs!!!"),
+                    new Status("not done"), getTagSet("CS2103")),
         };
     }
 

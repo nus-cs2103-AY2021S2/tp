@@ -11,8 +11,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class SnoozeCommandParser implements Parser<SnoozeCommand> {
 
-    public static final String MESSAGE_INVALID_ARGUMENT = "Snooze Command must have a compulsory INDEX"
-            + " and an optional NUMBER argument, both of which are positive integers.";
+    public static final String MESSAGE_INVALID_ARGUMENT = "Invalid command format!\n"
+            + "Snooze Command must have a compulsory INDEX"
+            + " and an optional DAYS argument, both of which are positive integers.";
 
     private static final String SNOOZE_COMMAND_REGEX = "[0-9]+\\s?[0-9]*";
 

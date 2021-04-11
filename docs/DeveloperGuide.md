@@ -432,10 +432,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​ | I want to …​ | So that I can…​ |
 | -------- | ---------- | --------------- | ------------------ |
 | `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App  |
-| `* * *`  | user | add a date to a task | know when to complete it by |
+| `* * *`  | computing student  | add a date to a task | know when to complete it by |
 | `* * *`  | computing student | add tag(s) to a task | easily see tasks associated with a certain category |
-| `* * *`  | user | mark a task as done | remove tasks from the list after completing them |
-| `* * *`  | user | view when a task is due | understand how much time I have to complete it |
+| `* * *`  | computing student  | mark a task as done | remove tasks from the list after completing them |
+| `* * *`  | computing student  | view when a task is due | understand how much time I have to complete it |
 | `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
 | `* * *`  | computing student | search using keywords from the task title | find matching tasks quickly when I only can remember the title|
 | `* * *`  | computing student | search using keywords from the tag(s) of task|  find matching tasks from the same category quickly when I only can remember the tag(s).|
@@ -443,13 +443,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | computing student | view all my tasks in a list | review tasks whenever I want  |
 | `* * *`  | computing student | view all uncompleted tasks in a list | know what tasks are left to be done |
 | `* * *`  | computing student | edit my task | make any changes to the task when required |
-| `* * *`  | user | remove tasks from the list | reduce clutter or remove a mistakenly added task |
-| `* * *`  | user | remove specific fields from a task in the list | manage the details in a task |
+| `* * *`  | computing student  | remove tasks from the list | reduce clutter or remove a mistakenly added task |
+| `* * *`  | computing student  | remove specific fields from a task in the list | manage the details in a task |
 | `* * *`  | computing student | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
-| `* * *`  | user | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
-| `* * *`  | user | see all the statistics for the tasks | track my progress |
-| `* * *`  | user | view all the tasks on a specific date | schedule new tasks during the free time on that day |
-| `* *`  | user | see a list of tags currently used | keep track of all my tags |
+| `* * *`  | computing student  | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
+| `* * *`  | computing student  | see all the statistics for the tasks | track my progress |
+| `* * *`  | computing student | view all the tasks on a specific date | schedule new tasks during the free time on that day |
+| `* *`  | computing student  | see a list of tags currently used | keep track of all my tags |
 
 ### Use cases
 
@@ -507,9 +507,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User <u>adds a task</u> to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to add a date to a specified task.
-4. PlanIt shows task with updated date and updates list.
+4. PlanIT shows task with updated date and updates list.
 5. This task can be viewed in the Calendar User Interface on the day of the date.
 
    Use case ends.
@@ -527,16 +527,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User <u>adds a task</u> to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to add a duration to a specified task.
-4. PlanIt shows task with updated duration and updates list.
+4. PlanIT shows task with updated duration and updates list.
 5. The duration details can be viewed in the Calendar User Interface on the day of the task.
 
    Use case ends.
 
 **Extensions**
 * 4a. The given timeslot on that date is already taken.
-    * 4a1. PlanIt shows error message.
+    * 4a1. PlanIT shows error message.
 
       Use case resumes at step 3.
     
@@ -547,18 +547,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User <u>adds a task</u> with recurring schedule consisting of end date, 
    day of week and week frequency to the list.
-2. PlanIt shows task with the recurring dates based on the conditions specified by th the user.
+2. PlanIT shows task with the recurring dates based on the conditions specified by th the user.
 
    Use case ends.
 
 **Extensions**
 * 1a. The given input format is invalid.
-    * 1a1. PlanIt display an error message.
+    * 1a1. PlanIT display an error message.
     * 1a2. User enters the new details.
     Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. Use case resumes from Step 2.
 
 * 1b. The given input has an end date that has passed the current system date or less than a week from current system date.
-    * 1b1. PlanIt display an error message.
+    * 1b1. PlanIT display an error message.
     * 1b2. User enters the new details.
     Steps 1b1 to 1b2 are repeated until the user input end date is valid. Use case resumes from Step 2.
     
@@ -566,15 +566,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User <u>adds a task</u> to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to remove a specified task.
-4. PlanIt shows task that was removed and updates list.
+4. PlanIT shows task that was removed and updates list.
 
    Use case ends.
 
 **Extensions**
 * 4a. The given index is invalid.
-    * 4a1. PlanIt shows error message.
+    * 4a1. PlanIT shows error message.
 
       Use case resumes at step 3.
     
@@ -610,14 +610,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User <u>adds a task</u> with a dates to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to sort tasks either in ascending or descending dates.
 
    Use case ends.
 
 **Extensions**
 * 4a. There are no dates to all tasks.
-    * 4a1. PlanIt shows tasks to have no change in terms of order.
+    * 4a1. PlanIT shows tasks to have no change in terms of order.
 
       Use case ends.
 
@@ -625,20 +625,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User <u>adds a task</u> with title to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to find tasks with given keywords from the task title.
-4. PlanIt shows all tasks that matches any full word from the title.
+4. PlanIT shows all tasks that matches any full word from the title.
 
    Use case ends.
 
 **Extensions**
 * 3a. The given input format is invalid.
-    * 3a1. PlanIt display an error message.
+    * 3a1. PlanIT display an error message.
     * 3a2. User enters the new details.
     Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
       
 * 4a. There are no matching tasks.
-    * 4a1. PlanIt shows no matching tasks.
+    * 4a1. PlanIT shows no matching tasks.
 
       Use case ends.
 
@@ -646,20 +646,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User <u>adds a task</u> with tag(s) to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to find tasks with given keyword(s) from the task tag(s).
-4. PlanIt shows all tasks that matches the full keyword of the tag.
+4. PlanIT shows all tasks that matches the full keyword of the tag.
 
    Use case ends.
 
 **Extensions**
 * 3a. The given input format is invalid.
-    * 3a1. PlanIt display an error message.
+    * 3a1. PlanIT display an error message.
     * 3a2. User enters the new details.
     Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
       
 * 4a. There are no matching tasks.
-    * 4a1. PlanIt shows no matching tasks.
+    * 4a1. PlanIT shows no matching tasks.
 
       Use case ends.
 
@@ -667,20 +667,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User <u>adds a task</u> with multi-line description to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to find tasks with given keyword(s) from the task description.
-4. PlanIt shows all tasks that matches any full keyword from the description.
+4. PlanIT shows all tasks that matches any full keyword from the description.
 
    Use case ends.
 
 **Extensions**
 * 3a. The given input format is invalid.
-    * 3a1. PlanIt display an error message.
+    * 3a1. PlanIT display an error message.
     * 3a2. User enters the new details. 
     Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
       
 * 4a. There are no matching tasks.
-    * 4a1. PlanIt shows no matching tasks.
+    * 4a1. PlanIT shows no matching tasks.
 
       Use case ends.
 
@@ -688,16 +688,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User <u>adds a task</u> to the list.
-2. PlanIt shows task added to the list and updates list.
+2. PlanIT shows task added to the list and updates list.
 3. User enters command to mark a task as done.
-4. PlanIt updates Task in the model with Status updated to 'done'.
-5. PlanIt displays doneCommand success message.
+4. PlanIT updates Task in the model with Status updated to 'done'.
+5. PlanIT displays doneCommand success message.
 
    Use case ends.
 
 **Extensions**
 * 3a. The task selected already has a Status: 'done'
-    * 4a1. PlanIt displays task already done message.
+    * 4a1. PlanIT displays task already done message.
 
       Use case ends.
 
@@ -737,15 +737,15 @@ Preconditions: There is at least one task in PlanIT.
 
 **MSS**
 1. User enters command to view the tasks on a given date.
-2. PlanIt shows all the tasks that have their dates on the given date, if any.
-3. PlanIt changes the calendar's date to the given date.
-4. PlanIt displays a success message.
+2. PlanIT shows all the tasks that have their dates on the given date, if any.
+3. PlanIT changes the calendar's date to the given date.
+4. PlanIT displays a success message.
 
    Use case ends.
 
 **Extensions**
-* 1a. PlanIt detects an error in the entered command.
-    * 1a1. PlanIt requests for the correct command.
+* 1a. PlanIT detects an error in the entered command.
+    * 1a1. PlanIT requests for the correct command.
     * 1a2. User enters new data. 
       
         Steps 1a1-1a2 are repeated until the data entered are correct.
@@ -955,8 +955,51 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. Test case: Delete the data file which is saved at the same folder as the jar file.<br>
-      Expected: PlanIt launches with sample data loaded, and creates a new data file.
+      Expected: PlanIT launches with sample data loaded, and creates a new data file.
       
    1. Test case: Remove an attribute of a task, or fill in an attribute with the wrong format.<br>
-      Expected: PlanIt launches with an empty list.
+      Expected: PlanIT launches with an empty list.
 
+
+## **Appendix: Effort**
+
+### Challenges and Difficulties
+At the start of this CS2103 module, all of us did not have any experience in working as a team for software engineering project.
+Hence, the learning curve is rather steep as there is a need to understand and grasp the know-hows of using different tools
+like Github, JavaFx, gradle, Continous Integration. 
+Due to the pandemic situation, the mode of project meetings has been conducted online instead of face-to-face which 
+added on to the challenge ahead of us.
+
+Nevertheless, with the open-mindedness and togetherness of various individuals within the team, we 
+fiddled with the tools and source codes given to us and explain to other team members so everyone can be of the right 
+freqeuncy and things can be done quickly and efficiently.
+
+In addition, with the advancement of technology, we utilised communication platforms such as Zoom and Telegram
+to talk about the errors we have encountered so that someone within the team can step in easily and lend a helping hand.
+
+From time to time, our group will conduct postmortem meeting after the end of each milestone 
+to see what has to be improved or what is good and we should keep doing the same way. 
+Most importantly, we checked that our features are answering the user stories and PlanIT is catered to the target audience.
+
+### Achievements
+
+Product Design
+
+* Our team has successfully morphed the whole AddressBook AB3 code base and test cases while enhancing existing features
+and adding on new features to PlanIT.
+
+Implementation
+
+* Implemented practical features to serve as a solution for the target user such as recurring schedule for events, 
+task with deadlines, able to postpone deadlines and various useful task statistics.
+
+Project Management
+
+* We followed the forking workflow and find it rather effective 
+and able to serve as a protection to the team repo's master branch.
+
+* Created issues and assigned to team members while using the Github Project to keep track of the issues progress.
+
+* Planned and increment the features for each milestone progessively
+  and managed to finish all given tasks ahead of deadlines for all the milestones.
+  

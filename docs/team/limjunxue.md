@@ -8,9 +8,9 @@ layout: page title: Lim Junxue's Project Portfolio Page
 productivity with features and tools to help them manage their schedules. It features a calendar to provide a clear
 perspective of the user's schedule and common commands that are enhanced for fast typists.
 
-### Summary of Contributions:
+Summary of Contributions:
 
-#### Code contributed: [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=limjunxue&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=limjunxue&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
 
 * **New Feature**: Added the ability to type multiline descriptions in tasks.
     * What it does: allows users to add descriptions to describe their tasks, and use keys to create multiple lines.

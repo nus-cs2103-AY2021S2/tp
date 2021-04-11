@@ -2,8 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.AttributeManager;
+import seedu.address.model.task.Task;
 
 /**
  * Shows statistics of the planner.
@@ -32,23 +37,49 @@ public class StatsCommand extends Command {
             throw new CommandException(MESSAGE_NO_TASKS);
         }
 
-        int totalTasks = getTotalTasks(model);
-        double percentageOfTasksCompleted = getPercentage(model);
-        int numberDueNextWeek = getNumberDue(model);
+        List<Task> lastShownList = model.getFilteredTaskList();
+
+        int totalTasks = getTotalTasks(lastShownList);
+        double percentageOfTasksCompleted = getPercentage(lastShownList);
+        int numberDueNextWeek = getNumberDue(lastShownList);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, totalTasks, percentageOfTasksCompleted,
                 numberDueNextWeek));
     }
 
-    private int getTotalTasks(Model model) {
-        return model.size();
+    private int getTotalTasks(List<Task> lastShownList) {
+        return lastShownList.size();
     }
 
-    private double getPercentage(Model model) {
-        return model.getPercentage();
+    private double getPercentage(List<Task> lastShownList) {
+        double totalTasks = lastShownList.size();
+        double totalDone = 0;
+
+        for (Task t : lastShownList) {
+
+            if (new AttributeManager(t).isDone()) {
+                totalDone++;
+            }
+        }
+
+        double decimalFormat = totalDone / totalTasks;
+
+        return decimalFormat * 100;
     }
 
-    private int getNumberDue(Model model) {
-        return model.getNumberDue();
+    private int getNumberDue(List<Task> lastShownList) {
+        int totalNumDue = 0;
+
+        for (Task t : lastShownList) {
+            AttributeManager attributeManager = new AttributeManager(t);
+
+            if (!attributeManager.isEmptyDate()) {
+                boolean isWithinSevenDays = attributeManager.isWithinSevenDays(LocalDate.now());
+                if (isWithinSevenDays) {
+                    totalNumDue++;
+                }
+            }
+        }
+        return totalNumDue;
     }
 }
