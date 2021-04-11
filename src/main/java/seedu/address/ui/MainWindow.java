@@ -224,7 +224,7 @@ public class MainWindow extends UiPart<Stage> {
             // Update autocomplete list on keyup
             autocompleteListPanel.updateList(logic.getAutocompleteCommands(value));
 
-            if (showAlias && toggleable) {
+            if (showAlias) {
                 toggleable = false;
                 showAlias = false;
             } else {
