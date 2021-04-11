@@ -149,11 +149,15 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
 is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
 require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
-<img width="500px" src="images/BetterModelClassDiagram.png" >
 </div>
+<p align="center">
+  <img width="500px" src="images/BetterModelClassDiagram.png" >
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -219,6 +223,8 @@ An `Endpoint` contains the following attributes:
     * Pros: Less overhead as fewer objects are created
     * Cons: Prone to error as a Component might not be correctly changed
     
+<div style="page-break-after: always;"></div>
+
 ### Add endpoint feature
 
 #### What it is
@@ -246,6 +252,8 @@ The following sequence diagram shows how the add operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Find command feature
 
 #### What it is
@@ -266,6 +274,8 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `find get` will work as well, but will look through all fields instead of just one
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a find command:
 
@@ -317,7 +327,7 @@ of PlantUML, the lifeline reaches the end of diagram.
 
 The following activity diagram summarizes what happens when a user executes a valid run command:
 <p align="center">
-  <img width="430px" src="images/RunActivityDiagram.png" >
+  <img width="375px" src="images/RunActivityDiagram.png" >
 </p>
 
 #### Design consideration:
@@ -338,6 +348,8 @@ The following activity diagram summarizes what happens when a user executes a va
     each command parser.
   * Cons: Duplication of code across all command parsers that require the verification of URLs, such as `add` and
     `run` commands.
+
+<div style="page-break-after: always;"></div>
 
 ### Request feature
 
@@ -370,8 +382,6 @@ Step 4. The response retrieved will also be parsed and passed to UI for further 
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 The following sequence diagram shows how the request operation works when a user executes a `send` command for an endpoint with a `GET` request:
 
 <p align="center">
@@ -388,7 +398,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:<br/>
 
 <p align="center">
-  <img width="460px" img alt="RequestActivityDiagram" src="images/RequestActivityDiagram.png" />
+  <img width="430px" img alt="RequestActivityDiagram" src="images/RequestActivityDiagram.png" />
 </p>
 
 #### Design consideration:
@@ -402,6 +412,8 @@ The following activity diagram summarizes what happens when a user executes a `s
 * **Alternative 2:** The request class executes the API call and catches all exceptions together in one catch block.
     * Pros: Most if not all instances of failed API calls are caught.
     * Cons: Error message is not specific enough to help the user debug the error.
+
+<div style="page-break-after: always;"></div>
 
 ### Toggle command feature
 
@@ -424,7 +436,7 @@ Step 2. The `toggle` command returns a `CommandResult` that triggers the `update
 The following sequence diagram shows how the toggle command works for the above example: 
 
 <p align="center">
-  <img width="900px" src="images/ToggleSequenceDiagram.png" >
+  <img src="images/ToggleSequenceDiagram.png" >
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ToggleCommand`, `ToggleCommandParser` and `CommandResult` should end 
@@ -500,6 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 | `*`  | expert user | store my API data in the cloud | use the tester across multiple workstations               |
 | `*`  | moderate user | generate bug report for the API under test | share and request bug fixes from the developers               |
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix C: Use Cases**
 
@@ -544,6 +557,8 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case G03 - Toggle Application Theme**
 
 **MSS**
@@ -587,6 +602,8 @@ the `user`, unless specified otherwise)
   - 2a1. imPoster shows an error message to the user
 
     Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 - 2b. Adding the endpoint results in a duplicate
 
@@ -633,6 +650,8 @@ the `user`, unless specified otherwise)
 3.  imPoster removes the API endpoint and updates the API endpoint list
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -683,6 +702,8 @@ the `user`, unless specified otherwise)
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Extensions**
 
 - 2a. The given command/format is invalid
@@ -726,6 +747,8 @@ the `user`, unless specified otherwise)
 5.  imPoster saves the response to a file that the user can view
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -774,6 +797,8 @@ the `user`, unless specified otherwise)
     to the user
 
     Use case resumes at step 1.
+
+<div style="page-break-after: always;"></div>
 
 **Use case E09 - Abort an ongoing API call**
 
@@ -839,6 +864,8 @@ the `user`, unless specified otherwise)
 7.  Should be able to display responses not exceeding 100000 characters from an
     API call without crashing or throwing unexpected errors.
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix E: Glossary**
 
 | Term                                         | Description                                               |
@@ -855,6 +882,8 @@ the `user`, unless specified otherwise)
 | **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
 | **Postman** | <a name="glossary-postman"></a> An existing API client for developers. See more [here](https://www.postman.com/) |
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix F: Developer Workflow**
  
 Please checkout the [workflow guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/WorkflowGuide.html) to understand
@@ -863,19 +892,19 @@ the adopted approach in maintaining imPoster.
 ## **Appendix G: API definition**
 
 ### What is an API?
-Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call.
-
-<div style="page-break-after: always;"></div>
-
-The annotated diagram below captures these interactions and may aid in providing a better understanding:
+Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagram below captures these interactions and may aid in providing a better understanding:
 
 <p align="center">
   <img width="700px" src="images/ApiExplanation.png" >
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### Why learn about APIs?
 
 You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! For example, the simple act of visiting a website involves an API request which is responsible for bringing back a response to you in the form of a webpage. Even a simple text message to your friend relies on an API to reliably deliver your message! The use of APIs is extensive in today’s highly connected world so even if they are completely unrelated to your job, it helps to have some basic understanding of them!
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix H: Instructions for Manual Testing**
 
@@ -885,16 +914,14 @@ Given below are instructions to test the app manually.
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 ### Launch and shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder.
+    1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file. <br>
-      Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
+    1. Double-click the jar file. <br>
+       Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -935,28 +962,28 @@ Given below are instructions to test the app manually.
    1. There are less than 100 endpoints in the endpoint list, and endpoint that is to be added is not the same as any currently in the list.
 
    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us` <br>
-       Expected: A new endpoint with the `GET` method and `https://sg.yahoo.com/?p=us` address is added into the endpoint list.
+      Expected: A new endpoint with the `GET` method and `https://sg.yahoo.com/?p=us` address is added into the endpoint list.
 
    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -t yahoo` <br>
-       Expected: A new endpoint with the `GET` method, `https://sg.yahoo.com/?p=us` address and `yahoo` tag is added into the endpoint list.
+      Expected: A new endpoint with the `GET` method, `https://sg.yahoo.com/?p=us` address and `yahoo` tag is added into the endpoint list.
 
    1. Test case: `add -x get -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -h "key: value" -t common` <br>
-       Expected: A new endpoint with the `GET` method, `https://reqres.in/api/users` address, `{"name": "john doe", "job": "developer"}` data, `"key: value"` header and `common` tag is added into the endpoint list.
+      Expected: A new endpoint with the `GET` method, `https://reqres.in/api/users` address, `{"name": "john doe", "job": "developer"}` data, `"key: value"` header and `common` tag is added into the endpoint list.
 
    1. Test case: `add` <br>
-       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
+      Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
    1. Test case: `add -x get` <br>
-       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
+      Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
    1. Test case: `add -x get -u invalidurl\\` <br>
-       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `URL provided has to be valid...` <br>
+      Expected: No endpoint is added. Error details shown in the result display, with a result message saying `URL provided has to be valid...` <br>
 
    1. Test case: `add -x abc -u https://sg.yahoo.com/?p=us` <br>
-       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Methods only consists...`
+      Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Methods only consists...`
 
    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -d abc` <br>
-       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Data must be...`
+      Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Data must be...`
 
 ### Edit an endpoint
 
@@ -1000,7 +1027,7 @@ Given below are instructions to test the app manually.
       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Data must be...`
 
    1. Test case: `edit 1 -h abc` <br>
-      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...` 
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...`
 
 ### Find an endpoint
 
@@ -1032,7 +1059,7 @@ Given below are instructions to test the app manually.
 
 2. Find an endpoint (Precise Search)
 
-   1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.  
+   1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.
 
    1. Test case: `find -x get` <br>
       Expected: Looks through the method field for any partial or full word of `get` then displays them on the endpoint list. <br>
@@ -1088,8 +1115,8 @@ Given below are instructions to test the app manually.
    1. Prerequisites: There exists multiple endpoints in the list.
 
    1. Test case: `list`<br>
-     Expected: All endpoints are shown in the endpoint list, with a
-     result message saying `Listed all saved...`.
+      Expected: All endpoints are shown in the endpoint list, with a
+      result message saying `Listed all saved...`.
 
 2. List all endpoints from the endpoint list after a `find` command
 
@@ -1097,11 +1124,11 @@ Given below are instructions to test the app manually.
      Perform a `find` command such that the endpoint list shows less than actual number of endpoints.
 
    1. Test case: `list`<br>
-     Expected: Filter from the `find` will be cleared and all endpoints are shown in the endpoint list, with a result message saying `Listed all saved...`.
+      Expected: Filter from the `find` will be cleared and all endpoints are shown in the endpoint list, with a result message saying `Listed all saved...`.
 
 3. List all endpoints from the endpoint list after a `clear` command
 
-   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list. 
+   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list.
      
    1. Perform a `clear` command such that all endpoints are cleared from the endpoint list.
 
@@ -1119,6 +1146,8 @@ Given below are instructions to test the app manually.
 
    1. Test case: `clear 123`<br>
       Expected: All endpoints are cleared from the list.
+
+<div style="page-break-after: always;"></div>
 
 ### Call a saved endpoint
 
@@ -1162,8 +1191,6 @@ Given below are instructions to test the app manually.
       Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Connection could not be established.` <br>
       Other incorrect remove commands to try: `run x` (where x is any URL whose connection cannot be established).
 
-<div style="page-break-after: always;"></div>
-
 ### Saving data
 
 1. Saving endpoints between sessions
@@ -1175,7 +1202,7 @@ Given below are instructions to test the app manually.
    1. Close the app.
       
    1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The new endpoint is still present at the end of the list of saved endpoints. 
+      Expected: The new endpoint is still present at the end of the list of saved endpoints.
 
 1. Dealing with corrupted/missing data files
 
@@ -1188,7 +1215,7 @@ Given below are instructions to test the app manually.
    1. Test case: `data/imposter.json` was corrupted. <br>
       Expected: The app starts with a list of saved endpoints (on the left) that is empty.
       
-   1. Test case: `data/imposter.json` was deleted.
+   1. Test case: `data/imposter.json` was deleted. <br>
       Expected: The app starts with the default list of saved endpoints.
       
    1. Test case: `preferences.json` was corrupted/deleted. <br>
@@ -1198,23 +1225,23 @@ Given below are instructions to test the app manually.
 
 1. Toggle the theme
 
-    1. Test case: `toggle imposter` <br>
-       Expected: Theme changes to the `imposter` theme.
+   1. Test case: `toggle imposter` <br>
+      Expected: Theme changes to the `imposter` theme.
 
-    1. Test case: `toggle material` <br>
-       Expected: Theme changes to the `material` theme.
+   1. Test case: `toggle material` <br>
+      Expected: Theme changes to the `material` theme.
 
-    1. Test case: `toggle dark` <br>
-       Expected: Theme changes to the `dark` theme.
+   1. Test case: `toggle dark` <br>
+      Expected: Theme changes to the `dark` theme.
 
-    1. Test case: `toggle light` <br>
-       Expected: Theme changes to the `light` theme.
+   1. Test case: `toggle light` <br>
+      Expected: Theme changes to the `light` theme.
 
-    1. Test case: `toggle` <br>
-       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `Invalid command format!...`.
+   1. Test case: `toggle` <br>
+      Expected: Theme is not changed. Error details shown in the result display, with a result message saying `Invalid command format!...`.
 
-    1. Test case: `toggle abc` <br>
-       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `You may only toggle to supported themes...`.
+   1. Test case: `toggle abc` <br>
+      Expected: Theme is not changed. Error details shown in the result display, with a result message saying `You may only toggle to supported themes...`.
        
 ### Opening help window
 
@@ -1225,6 +1252,8 @@ Given below are instructions to test the app manually.
       
    1. Test case: `help thisisarandomstring` <br>
       Expected: Help window appears.
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix I: Effort**
 
