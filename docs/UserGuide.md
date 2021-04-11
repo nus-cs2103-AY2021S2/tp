@@ -101,6 +101,7 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
 - You must replace `FR_DESCRIPTION` with the description of your financial record. The description should not exceed 100 characters.
 - You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places** (additional decimal places will be rounded to two decimal places). The upper limit for `FR_AMOUNT`is 1,000,000.
+- You may include more than 1 `CATEGORY`, but each of it should not exceed 20 characters
 - The date you input must follow the format `DD-MM-YYYY` and it should be between 01-01-1970 and 31-12-2100. (e.g. 31-12-2020)
 - `DD` is the numeric value of the date, `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
 - You must use a date number with 2 digits, a month number with 2 digits, and a year number with 4 digits
@@ -147,9 +148,11 @@ Format: `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]
 
 **:bulb: Tips:**<br>
 
-- You must replace `FR_INDEX` with the index of the finacial record you want to delete.
+- You must replace `FR_INDEX` with the index of the financial record you want to delete.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
 - `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
+- Existing values will be overwritten by the input values
+- Use `c/` (leave `CATEGORY` blank) to completely remove existing categories of a record.
 - For the specifications on `FR_DESCRIPTION`, `FR_AMOUNT`, `DATE` and `CATEGORY`, please refer to `add-fr` command.
 
 </div>
@@ -160,7 +163,7 @@ Examples:
 
 ### Setting monthly budget : `set-bg`
 
-If you would like to change your budget to something different from what it currently is in BudgetBaby, you may use the `set-bg` command to set the budget for the current month and the following twelve months.
+If you would like to change your budget to something different from what it currently is in BudgetBaby, you may use the `set-bg` command to set the budget for the current month and the following 12 months.
 
 <img src="images/features/set-bg.png" width="600px">
 
@@ -179,8 +182,6 @@ Examples:
 - `set-bg 1300.50`
 
 ### Viewing a specific month : `view-month`
-
-[coming in v1.3 subject to changes]
 
 If you would like to take a look at how you managed your budget for a particular month, you may use the `view-month` command to display the data associated with a specific month.
 
@@ -218,8 +219,9 @@ Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 
 **:bulb: Tips:**
 
-- `d/FR_DESCRIPTION`, `a/FR_AMOUNT` and `c/FR_CATEGORY` are optional fields, but the command expects at least 1 field present
+- `d/FR_DESCRIPTION`, `a/FR_AMOUNT` and `c/FR_CATEGORY` are optional fields, but the command expects at least 1 field present.
 - `c/FR_CATEGORY` accepts multiple categories (i.e. `c/Food c/Picnic c/Family`)
+- The function only filters records that satisfies all the fields provided.
 
 Examples:
 
@@ -306,8 +308,8 @@ _Details coming soon ..._
 | **Delete a Financial Record** | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                                                                      |
 | **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                                                                 |
-| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
-| **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                            |
+| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                      |
+| **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
 | **Help**                      | `help`                                                                                                              |
 | **Exit**                      | `exit`                                                                                                              |

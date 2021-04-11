@@ -187,6 +187,7 @@ The following activity diagram summarizes what happens when a user executes `fin
 
 #### Extensions Implemented
 - `c/FR_CATEGORY` field accepts multiple categories
+- User is able to delete `Category` through the `edit-fr` command
 - Display an appropriate message if no matching financial records found
 
 #### Design Consideration
@@ -296,7 +297,7 @@ v1.2
 
 v1.3
 
-| As a …​                                                                    | I want to …​                                        | So that I can…​                                                                       |
+| As a …​                                                                 | I want to …​                                     | So that I can…​                                                                    |
 | -------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                         | add an FR                                           | track my spending history easily                                                      |
 | university student who wants to manage my finances                         | delete an FR                                        | recover from mistakes from adding wrong entries of my spending history                |
@@ -311,7 +312,24 @@ v1.3
 | university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list | quickly glance and gain insight from my spending patterns                             |
 | university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  | quickly glance and gain insight from my spending patterns                             |
 
-_{More to be added}_
+v1.4
+
+| As a …​                                                                 | I want to …​                                     | So that I can…​                                                                    |
+| -------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| university student who wants to manage my finances                         | add an FR                                           | track my spending history easily                                                      |
+| university student who wants to manage my finances                         | delete an FR                                        | recover from mistakes from adding wrong entries of my spending history                |
+| university student who wants to manage my finances                         | view all FRs                                        | quickly glance at all my past spendings                                               |
+| university student who wants to manage my finances                         | view all FRs in a particular month                  | quickly glance at my spending history of a specific month                             |
+| university student who wants to manage my finances                         | find FRs based on description, amount and/or category | quickly glance at my spending history of the specified fields                        |
+| university student who wants to manage my finances                         | reset filters on FRs                                | quickly glance at the original list of financial records                              |
+| university student who has difficulties in managing expenses               | set a monthly budget                                | keep track of my expenses and reduce chances of overspending                          |
+| university student who has difficulties in managing expenses               | view my monthly budget                              | quickly glance at budget set for the given month                                      |
+| careless university student who often makes mistakes                      | undo an incorrectly used command                     | correct the mistake(s) made                                                            |
+| careless university student who often makes mistakes                      | redo an incorrectly used command                     | correct the mistake(s) made                                                            |
+| university student who wants to know how much money I can still spend      | view my remaining budget for a particular month     | be aware of my spending and decide whether I need to be more prudent with my spending |
+| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets     | quickly glance and gain insight from my spending patterns                             |
+| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list | quickly glance and gain insight from my spending patterns                             |
+| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  | quickly glance and gain insight from my spending patterns                             |
 
 ### Use cases
 
@@ -429,9 +447,9 @@ _{More to be added}_
 
     Use case ends.
 
-**Use case: Filter financial records of the current month by category**
+**Use case: Find financial records of the current month by description, amount and/or category**
 
-1.  Actor requests to filter by `Food` category
+1.  Actor requests to find by `Food` category
 2.  System shows all financial records with `Food` tagged as category
 3.  Actor completes viewing the filtered list for the current month
 
@@ -445,11 +463,18 @@ _{More to be added}_
 
     Use case ends.
 
-- 2a. Actor wishes to view original list of financial records without filter
+- 2a. Actor wishes to further filter the list to view all records with description matching `Breakfast`
 
-  - 2a1. Actor requests to reset filter
-  - 2a2. System shows original list of financial records for the current month
-  - 2a3. Actor completes viewing the list of financial records
+    - 2a1. Actor requests to find by `Breakfast` description
+    - 2a2. System shows all financial records with `Breakfast` as description and `Food` as category
+
+      Use case ends.
+
+- 3a. Actor wishes to view original list of financial records without filter
+
+  - 3a1. Actor requests to reset filter
+  - 3a2. System shows original list of financial records for the current month
+  - 3a3. Actor completes viewing the list of financial records
 
     Use case ends.
 
