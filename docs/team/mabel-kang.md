@@ -55,4 +55,3 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/93)
     * Reported bugs and suggestions for other teams (example: [bug reports](https://github.com/mabel-kang/ped/issues))
-    
