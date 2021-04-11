@@ -44,23 +44,45 @@ public class TemporaryEntry {
         return tags;
     }
 
-    public void setEntryName(EntryName name) {
+    public TemporaryEntry setEntryName(EntryName name) {
         isAnyFieldEdited = true;
         entryName = Optional.of(name);
+        return this;
     }
 
-    public void setEntryStartDate(EntryDate date) {
+    public TemporaryEntry setEntryStartDate(EntryDate date) {
         isAnyFieldEdited = true;
         startDate = Optional.of(date);
+        return this;
     }
 
-    public void setEntryEndDate(EntryDate date) {
+    public TemporaryEntry setEntryEndDate(EntryDate date) {
         isAnyFieldEdited = true;
         endDate = Optional.of(date);
+        return this;
     }
 
-    public void setTags(Set<Tag> tags) {
+    public TemporaryEntry setTags(Set<Tag> tags) {
         isAnyFieldEdited = true;
         this.tags = Optional.of(tags);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TemporaryEntry)) {
+            return false;
+        }
+
+        TemporaryEntry otherEntry = (TemporaryEntry) other;
+        return otherEntry.entryName.equals(entryName)
+                && otherEntry.startDate.equals(startDate)
+                && otherEntry.endDate.equals(endDate)
+                && otherEntry.tags.equals(tags)
+                && otherEntry.isAnyFieldEdited == isAnyFieldEdited;
     }
 }

@@ -11,10 +11,7 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.NonOverlappingEntryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.schedule.Schedule;
-import seedu.address.model.schedule.UniqueScheduleList;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTaskList;
+
 
 /**
  * Wraps all data at the address-book level
@@ -25,8 +22,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueContactList contacts;
     private final NonOverlappingEntryList entries;
     private final UniquePersonList persons;
-    private final UniqueScheduleList schedules;
-    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -37,10 +32,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         entries = new NonOverlappingEntryList();
-        tasks = new UniqueTaskList();
         persons = new UniquePersonList();
         contacts = new UniqueContactList();
-        schedules = new UniqueScheduleList();
     }
 
     public AddressBook() {}
@@ -80,30 +73,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the task list with {@code tasks}.
-     * {@code tasks} must not contain duplicate tasks.
-     */
-    public void setTasks(List<Task> tasks) {
-        this.tasks.setTasks(tasks);
-    }
-
-    /**
-     * Replaces the contents of the schedule list with {@code schedules}.
-     * {@code schedules} must not contain duplicate schedules.
-     */
-    public void setSchedules(List<Schedule> schedules) {
-        this.schedules.setSchedules(schedules);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setContacts(newData.getContactList());
         setPersons(newData.getPersonList());
-        setTasks(newData.getTaskList());
-        setSchedules(newData.getScheduleList());
         setEntries(newData.getEntryList());
     }
 
@@ -232,56 +207,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
     //// schedule methods
 
-    /**
-     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
-     */
-    public boolean hasSchedule(Schedule schedule) {
-        requireNonNull(schedule);
-        return schedules.contains(schedule);
-    }
-
-    /**
-     * Adds a schedule to the schedule list.
-     * The schedule must not already exist in the schedule list.
-     */
-    public void addSchedule(Schedule schedule) {
-        schedules.add(schedule);
-    }
-
-    /**
-     * Removes a schedule {@code key} from the schedule list.
-     * {@code key} must exist in the schedule list.
-     */
-    public void removeSchedule(Schedule key) {
-        schedules.remove(key);
-    }
-
-    //// task methods
-
-    /**
-     * Returns true if a task with the same identity as {@code task} exists in the task list.
-     */
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return tasks.contains(task);
-    }
-
-    /**
-     * Adds a task to the task list.
-     * The task must not already exist in the task list.
-     */
-    public void addTask(Task t) {
-        tasks.add(t);
-    }
-
-    /**
-     * Removes {@code target} from this {@code AddressBook}.
-     * {@code target} must exist in the address book.
-     */
-    public void removeTask(Task target) {
-        tasks.remove(target);
-    }
-
     //// util methods
 
     @Override
@@ -303,16 +228,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Entry> getEntryList() {
         return entries.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Schedule> getScheduleList() {
-        return schedules.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Task> getTaskList() {
-        return tasks.asUnmodifiableObservableList();
     }
 
     @Override
