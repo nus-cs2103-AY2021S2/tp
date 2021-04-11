@@ -492,7 +492,7 @@ Format: `done_task INDEX1 [INDEX2] ...`
 
 **:information_source: Note:** <br>
 
-* If indexes provided include both an index for a task not existing in task list and an index for a completed task,
+* If indices provided include both an index for a task not existing in task list and an index for a completed task,
   the error message will only be about the non-existing task.
 
 </div>
