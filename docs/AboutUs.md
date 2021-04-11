@@ -14,30 +14,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/lrj689.png" width="200px">
 
 [[github](https://github.com/lrj689)]
+[[portfolio](team/lrj689.md)]
 
 ### Loh Jun Yong Kevin
 
 <img src="images/kevinlohjunyong.png" width="200px">
 
 [[github](https://github.com/kevinlohjunyong)]
+[[portfolio](team/kevinlohjunyong.md)]
 
 ### Nicholas Tanvis
 
 <img src="images/nicholastanvis.png" width="200px">
 
 [[github](http://github.com/nicholastanvis)]
+[[portfolio](team/nicholastanvis.md)]
 
 ### Shen Yang
 
 <img src="images/goatygoatygoat.png" width="200px">
 
 [[github](http://github.com/goatygoatygoat)]
+[[portfolio](team/goatygoatygoat.md)]
 
 ### Toh Sihui
 
 <img src="images/tsh22.png" width="200px">
 
 [[github](http://github.com/tsh22)]
+[[portfolio](team/tsh22.md)]
 
 ## Responsibilities
 
