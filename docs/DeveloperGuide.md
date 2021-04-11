@@ -878,7 +878,7 @@ Included in this section are some basic instructions developers may make use of 
 1. Print help message
 
     1. Test case: `help`<br>
-       Expected: The initial launch message is printed.
+       Result: The initial launch message is printed.
 
 ## **Appendix: Effort**
 
