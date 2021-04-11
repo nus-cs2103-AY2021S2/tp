@@ -11,7 +11,7 @@ import seedu.booking.commons.util.StringUtil;
 public class VenueName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Venue names should only contain alphanumeric characters and spaces, and it should not be blank.\n";
+            "Venue names must contain at least some alphanumeric characters. Spaces, hyphens and apostrophes are also permitted. \n";
 
     /*
      * The first character of the venue name must not be a whitespace,
