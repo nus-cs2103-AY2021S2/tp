@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to delete a reader from the SmartLib's registered reader base.
     * What it does: Allows the user to delete a reader and all his/her stored information from the SmartLib's registered reader base, by the reader's index on SmartLib's displayed reader list.
     * Justification: This feature is essential for the product because a user can then delete a reader if he/she no longer wish to have any services from the user.
-    In addition, if the user make any mistake during addreader, he/she can rectify by deleting and then adding the correct information again.
+    In addition, if the user make any mistake during `addreader`, he/she can rectify by deleting and then adding the correct information again.
     * Highlights: This enhancement has also taken care of the situation when a reader is deleted before he/she returns the borrowed books.
     Hence, the user can only delete readers who have no unreturned books.
     * Credits: _AB3's prior implementation of `delete` guided the implementation of the `deletereader` command._
@@ -37,12 +37,12 @@ Given below are my contributions to the project.
       [\#293](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/293)).
     * Refactor the return command to accept book barcode only to increase efficiency and prevent mixing of books of the same title (Pull request 
       [\#177](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/177))  
-    * Wrote additional tests for Book class to increase coverage (Pull requests 
+    * Wrote additional tests for `Book` class to increase coverage (Pull requests 
       [\#141](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/141), 
       [\#146](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/146)).
-    *Wrote additional tests for findrecord and findbook features to increase coverage (Pull request
+    * Wrote additional tests for `findrecord` and `findbook` features to increase coverage (Pull request
       [\#326](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/326)).  
-    * Improve the findbook feature to search books through book title, publisher, author, isbn, or genre (Pull request 
+    * Improve the `findbook` feature to enable searching books through book title, publisher, author, isbn, or genre (Pull request 
       [\#158](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/158)())
     * Improve the code quality by adopting SLAP principle and Single Responsibility Principle (Pull request
       [\#313](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/313))  
