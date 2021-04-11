@@ -1303,7 +1303,7 @@ Use case ends.
 
 * 2a. Some required information about the task is missing in the command.
 
-    * 1a1. SOChedule displays an error message suggesting that information provided when creating
+    * 2a1. SOChedule displays an error message suggesting that information provided when creating
       the task is incomplete.
       Use case ends.
 
