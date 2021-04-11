@@ -61,7 +61,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### 2.1 Architecture
 
-![ArchitectureDiagram](images/ArchitectureDiagram.png)
+![ArchitectureDiagram](images/ArchitectureDiagram.png)<br>
+*[Architecture Diagram for RemindMe]*
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -93,13 +94,15 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png) <br>
+*[Class diagram of Logic component]*
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-![Sequence diagram of the logic Component](images/ArchitectureSequenceDiagram.png)
+![Sequence diagram of the logic Component](images/ArchitectureSequenceDiagram.png) <br>
+*[Sequence diagram of Architecture]*
 
 The sections below give more details of each component.
 
@@ -107,7 +110,8 @@ The sections below give more details of each component.
 
 ### 2.2 UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.png) <br>
+*[Class Diagram of UI component]*
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -128,10 +132,12 @@ The `UI` component,
 
 ### 2.3 Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/LogicClassDiagram.png) <br>
+*[Class diagram of Logic component]*
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+
 
 1. `Logic` uses the `RemindMeParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -146,7 +152,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 2.4 Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagram.png) <br>
+*[Class diagram of Model component]*
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -167,7 +174,8 @@ The `Model`,
 
 ### 2.5 Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/StorageClassDiagram.png) <br>
+*[Class diagram of Storage component]*
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -230,7 +238,8 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 <br>
 <br>
 
-![AddCommandParserClassDiagram](images/AddCommandParserClassDiagram.png)
+![AddCommandParserClassDiagram](images/AddCommandParserClassDiagram.png) <br>
+*[Class diagram for add feature]*
 
 <br>
 <br>
@@ -255,8 +264,10 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 The following sequence diagram shows how the find operation works:
 
-![AddSequenceDiagram](images/AddSequenceDiagram.png)
+![AddSequenceDiagram](images/AddSequenceDiagram.png) <br>
+*[Sequence diagram for add feature]*<br>
 
+**[Back to Table Of Content](#table-of-contents)**
 
 ### 3.2 Find Feature
 
@@ -468,20 +479,20 @@ and returned to `LogicManager`.
 
 The above process is shown in the following sequence diagram:
 
-![EditFeatureSequenceDiagram](images/EditFeatureSequenceDiagram.png)
+![EditFeatureSequenceDiagram](images/EditFeatureSequenceDiagram.png)<br>
 *[Edit Feature Sequence Diagram for `edit m/CS2103 a/1 d/Tut2`]* 
-<br>
+
 
 Below is the separate sequence diagram for editAssignment(m, 1 , Tut2):
 
-![EditFeatureSequenceDiagram1](images/EditFeatureSequenceDiagram1.png)
+![EditFeatureSequenceDiagram1](images/EditFeatureSequenceDiagram1.png)<br>
 *[Edit Feature Sequence Diagram for `editAssignment(m, 1, Tut2)`]* 
-<br>
+
 
 The following activity diagram summarises the general workflow for the Edit Command:
 
-![EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
-*[Edit Feature Activity Diagram for `edit m/CS2103 a/1 d/Tut2`]* 
+![EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)<br>
+*[Edit Feature Activity Diagram for `edit m/CS2103 a/1 d/Tut2`]*
 
 **[Back to Table Of Content](#table-of-contents)**
 
@@ -521,6 +532,7 @@ and then the calendar will be ready to be displayed as a GUI.
 
 ![CalendarSequenceDiagram1](images/CalendarSequenceDiagram1.png)<br>
 *[Calendar Command Sequence Diagram]*
+<br>
 
 Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
 
@@ -1104,6 +1116,8 @@ Use Cases:<br>
 2. System shows upcoming events as a reminder.
    <br> Use case ends.
 
+**[Back to Table Of Content](#table-of-contents)**
+
 ### Non Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1111,6 +1125,8 @@ Use Cases:<br>
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  RemindMe should be able to respond within one seconds.
 5.  RemindMe should be usable by novice who has no prior experience with coding.
+
+**[Back to Table Of Content](#table-of-contents)**
 
 ### Glossary
 
