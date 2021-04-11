@@ -14,10 +14,17 @@ public class FindBookCommand extends Command {
 
     public static final String COMMAND_WORD = "findbook";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all books whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all books whose titles/labels contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Harry Potter";
+            + "To find a book with the specified keyword(s) in its title , "
+            + "use \"findbook KEYWORD(S)_IN_TITLE\".\n"
+            + "To find a book with the specified keyword(s) in its labels(author, publisher, isbn, genre), "
+            + "use \"findbook KEYWORD(S)_IN_LABEL\".\n"
+            + "Note that the current version of our app does not support the searching of "
+            + "books with titles and labels, or different types of labels within the same command.\n"
+            + "Example (search by titles): " + COMMAND_WORD + " Harry Potter\n"
+            + "Example (search by labels): " + COMMAND_WORD + " Fantasy";
 
     private final BookNameContainsKeywordsPredicate predicate;
 
