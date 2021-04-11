@@ -46,13 +46,14 @@ public class CommandBox extends UiPart<Region> {
         }
 
         if (commandText.trim().startsWith("/up")) {
-            past++;
             if (past >= previousCommands.size()) {
-                commandTextField.setText("!!!");
+                commandTextField.setText("No previous commands found!! Try executing a new command now!");
                 setStyleToIndicateCommandFailure();
             } else {
-                commandTextField.setText(previousCommands.get(previousCommands.size() - past));
+                commandTextField.setText(previousCommands.get(previousCommands.size() - past - 1));
+                commandTextField.setText("");
             }
+            past++;
             return;
         }
 
