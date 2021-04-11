@@ -287,7 +287,7 @@ If the provided project index and todo index are valid, then `DeleteTodoCommandP
 
 For a better understanding, take a look at the Logic Class Diagram in the Logic Component section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
 
-![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserCommandSequenceDiagram.png)
+![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserSequenceDiagram.png)
 
 *Sequence Diagram for the Delete Todo command*
 
@@ -295,7 +295,7 @@ The `DeleteTodoCommand` has been successfully created and its execute method wou
 
 Depicted below is another sequence diagram that shows the interaction between `StorageManager`, `ModelManager`, `LogicManager` and `DeleteTodoCommand`, when `DeleteTodoCommand#execute` is called.
 
-![Delete Todo Sequence Diagram](images/DeleteTodoCommandSequenceDiagram.png)
+![Delete Todo Sequence Diagram](images/DeleteTodoSequenceDiagram.png)
 
 *Sequence Diagram for `DeleteTodoCommand#execute()`*
 
