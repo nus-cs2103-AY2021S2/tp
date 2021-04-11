@@ -88,6 +88,13 @@ The `Model`,
 
 
 ### Storage Component
+![Storage Architecture Diagram](images/Storage.png)
+
+**API :** `Storage.java`
+
+The `Storage` component,
+- can save `UserPref` objects in json format and read it back.
+- can save the food diary data in json format and read it back.
 
 ### Common classes
 Classes used by multiple components are in the seedu.fooddiary.commons package.
@@ -113,10 +120,10 @@ The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`,
 
 Step 2. (Optional) The user executes `list` command to list out all the entries and select the entry to add on details.
 
-Step 2. The user executes `addon 1 re/I like this food a lot! p/7` command to add on details to an existing entry. 
+Step 3. The user executes `addon 1 re/I like this food a lot! p/7` command to add on details to an existing entry. 
 The command contains values such as a "I like this food a lot!" review and a price value of 7 dollars.
 
-Step 3. If the parameters entered by the user is valid, the application will create a new `entry` and stores the information in `Model` and `Storage`.
+Step 4. If the parameters entered by the user is valid, the application will create a new `entry` and stores the information in `Model` and `Storage`.
 Else, the FoodDiary will display an appropriate error message. 
 
 The following sequence diagram shows how the AddOn feature works:
@@ -154,20 +161,89 @@ will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
 The parsed command will be identified
 as a list command.
 
-### FindAll Feature
-The FindAll feature allows a user to find entries that match all the keywords provided by the user.
+### Find Feature
+#### Implementation
+The Find feature allows a user to find entries that match **ANY** of the keywords provided by the user.
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
 
-The FindAll feature is similar to the Find feature. The Find feature finds for all entries that meet
-at least one of the given keywords, while the FindAll feature only finds for entries that meet all the
-given keywords.
+This feature is implemented through the `find` command, where the user will provide a list of keywords that
+they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
+The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
+`TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
+fields of all entries, and return all entries that match at least one of the keywords provided. The UI will then
+be updated to display the list of entries that were returned as a search result.
 
-One of the alternatives considered was to make the Find command serve the purpose of both the Find & FindAll
-commands, as they behave similarly. However, this would require the user to key in additional syntax to
-specify which method of find they would like to use. This was deemed to be less user-friendly and more prone
-to errors as the command now consists of 3 parts (command word, type of find to use & keywords to find),
-instead of 2 (command word & keywords to find). As a result, FindAll was implemented as a separate feature.
+Given below is an example usage scenario:
+
+The user wants to find for good food places within NUS.
+
+Step 1: User enters the command `find 5/5`.
+
+Step 2: The food diary displays all entries that have a rating of 5/5.
+
+Step 3: User is considering whether to visit the food place in the first entry, and uses the view command `view 1`
+to look through that particular food entry to see past reviews.
+
+Step 4: User decides to visit that particular food place.
+
+To better understand how the Find feature works, refer to the diagrams provided for the FindAll feature, as the
+implementation is largely the same.
+
+#### Design Considerations
+
+##### Aspect: Whether the syntax used for the `find` command should be similar to the `add` command
+* **Alternative 1 (current choice):** Implement the `find` command without using similar syntax to the `add`
+  command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`)
+    * Pros: Lesser syntax required, making the command more user-friendly (**Important as the `find` command
+      will be executed by the user many more times as compared to the `add` command**)
+    * Cons: Makes the implementation less standardised across different commands
+* **Alternative 2:** Implement the `find` command by using similar syntax as the `add` command
+    * Pros: Makes the implementation more standardised across different commands
+    * Cons: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
+    impact the user experience
+
+##### Aspect: How the user input keywords for the `Rating` and `Price` fields should be implemented
+* **Alternative 1 (current choice):** Implement the rating and price fields with additional syntax (eg. Rating
+  implemented as `RATING/5` instead of `RATING`, and price implemented as `$PRICE` or `$PRICE-PRICE` instead
+  of `PRICE` or `PRICE-PRICE`)
+    * Pros: More intuitive keywords for the user to type out when performing their search
+    * Cons: More typing is required, with additional syntax that needs to be strictly followed
+* **Alternative 2:** Implement the rating and price fields without additional syntax
+    * Pros: Keywords can be typed out faster, makes performing searches more efficient
+    * Cons: Possibility of user getting back results for rating when finding for price, or getting back results
+    for price when finding for rating
+
+### FindAll Feature
+The FindAll feature allows a user to find entries that match **ALL** the keywords provided by the user.
+This enables the user to easily sieve out all the entries that meet every single requirement the user
+is looking for, which will be useful when deciding where to eat.
+
+This feature is implemented through the `findll` command, where the user will provide a list of keywords that
+they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
+The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
+`TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
+fields of all entries, and return all entries that match all the keywords provided. The UI will then
+be updated to display the list of entries that were returned as a search result.
+
+The FindAll feature is similar to the Find feature. The Find feature finds for all entries that meet
+at least **one of the given keywords,** while the FindAll feature only finds for entries that meet **all the
+given keywords.**
+
+Given below is an example usage scenario:
+
+The user wants to find for good food places within NUS that are within their budget, from a specific food
+category.
+
+Step 1: User enters the command `findall 5/5 $0-10 western`.
+
+Step 2: The food diary displays all entries that have a rating of 5/5, a price range that contains food options
+$10 or below, and that have western food available.
+
+Step 3: User is considering whether to visit the food place in the first entry, and uses the view command `view 1`
+to look through that particular food entry to see past reviews.
+
+Step 4: User decides to visit that particular food place.
 
 The following sequence diagram shows how the FindAll feature works:
 ![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
@@ -175,6 +251,20 @@ The following sequence diagram shows how the FindAll feature works:
 The following activity diagram summarises the events that take place when a user executes the FindAll
 command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature
+* **Alternative 1 (current choice):** Implement the FindAll feature as a separate command
+    * Pros: Easier to implement, and more user-friendly as less syntax is required
+    * Cons: User has to utilise 2 different commands despite them both performing a similar search function
+* **Alternative 2:** Implement the FindAll feature using the same command as the Find feature
+    * Pros: User can carry out all searches using only one command, which makes the features fit together better
+      than the first alternative
+    * Cons: Much harder to implement, and less user-friendly as more syntax is required due to the user needing to
+      specify the method of search between the Find and FindAll features that they would like to use to perform
+      their search
+
 
 ### Revise Feature
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
@@ -192,7 +282,7 @@ With the revise button, all the changes made are passed into the `MainWindow#exe
 prefix and the EditCommand. 
 
 The following sequence diagram shows how Revise feature works:
-![FindAll Sequence Diagram](images/ReviseSequenceDiagram.png)
+![Revise Sequence Diagram](images/ReviseSequenceDiagram.png)
 
 The following activity diagram summarises the events that take place when a user executes the Revise
 command:
@@ -439,7 +529,22 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC08: Find all specific entries**
+**UC08: Find for entries**
+
+**MSS**
+1. User enters keywords to be used to search for entries.
+2. Food Diary shows all entries matching user requirements (if any).
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Food Diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+  Use case resumes from step 2.
+
+**UC09: Find all specific entries**
 
 **MSS**
 1. User enters keywords to specify requirements for entries.
@@ -454,7 +559,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
   Use case resumes from step 2.
 
-**UC09: Revise an Entry**
+**UC10: Revise an Entry**
 
 **MSS**
 1. User requests to revise a specific entry.
@@ -473,7 +578,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC10: Exit**
+**UC11: Exit**
 
 **MSS**
 1. User exits.
@@ -486,7 +591,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC11: Clear**
+**UC12: Clear**
 
 **MSS**
 1. User requests to clear all entries.
@@ -545,7 +650,6 @@ Given below are instructions to test the app manually.
 to work on.
 </div>
 
-
 ### Launch and Shutdown
 
 1. Initial launch
@@ -565,29 +669,29 @@ to work on.
 1. Add an entry with the provided details.
     1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
 
-    1. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    2. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     <br>Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
     FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.
     
-    2. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    3. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     <br>Expected: Invalid rating error will be shown in the result display. Entry will not be added.
     
-    3. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    4. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     <br>Expected: Invalid price error will be shown in the result display. Entry will not be added.
        
-    4. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    5. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     <br>Expected: Invalid review error will be shown in the result display. Entry will not be added.
        
-    5. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
+    6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
     <br>Expected: Invalid address error will be shown in the result display. Entry will not be added.
 
-    6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
+    7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
     <br>Expected: A list of valid categories will be shown in the result display. Entry will not be added.
 
-    7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
+    8. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
     <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.
 
-    8. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)
 
 ## Add on to an entry
@@ -603,6 +707,122 @@ to work on.
     5. Test case: addon 1 re/Good Food p/1000
     <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
     6. Other incorrect `addon` commands to try: addon 10000000000 re/Good Food (invalid index)
+    
+### Find for entries
+
+1. Finding for entries using the `find` command
+   
+    1. Prerequisite: the food diary should contain all default entries
+    
+    2. Test case: `find 4/5`
+       
+        Expected:
+        - All entries shown with a rating of 4/5. 
+        - Success message displayed informing the user of the number of entries found.
+        - 4 default entries will be shown.
+       
+    3. Test case: `find $7`
+
+       Expected:
+       - All entries shown with a price of $7, or a range of price that contains $7. 
+       - Success message displayed informing the user of the number of entries found.
+       - 1 default entry will be shown.
+       
+    4. Test case: `find western 5/5 $5-10`
+
+       Expected:
+       - All entries shown which contain at least one of the three keywords provided.
+       - Success message displayed informing the user of the number of entries found.
+       - 10 default entries will be shown.
+       
+    5. Test case: `find 3/7`
+
+       Expected:
+       - All entries shown which contain the provided keyword: `3/7`, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of a possible typo for a rating search,
+       providing directions to correct the typo.
+       - 0 default entries will be shown.
+       
+    6. Test case: `find $5-`
+
+        Expected:
+        - All entries shown which contain the provided keyword: `$5-`, if any.
+        - Success message displayed informing the user of the number of entries found.
+        - Suggestion message displayed informing the user of a possible typo for a price search,
+        providing directions to correct the typo.
+        - 0 default entries will be shown.
+       
+    7. Test case: `find 3/7 $5-`
+
+        Expected:
+        - All entries shown which contain either of the keywords provided, if any.
+        - Success message displayed informing the user of the number of entries found.
+        - Suggestion message displayed informing the user of possible typos for a rating search,
+        and a price search, providing directions to correct the typos.
+        - 0 default entries will be shown.
+       
+### Find for specific entries
+
+1. Finding for entries using the `findall` command
+   
+    1. Prerequisite: the food diary should contain all default entries
+
+    2. Test case: `findall 4/5`
+
+       Expected:
+       - All entries shown with a rating of 4/5.
+       - Success message displayed informing the user of the number of entries found.
+       - 4 default entries will be shown.
+
+    3. Test case: `findall $7`
+
+       Expected:
+       - All entries shown with a price of $7, or a range of price that contains $7.
+       - Success message displayed informing the user of the number of entries found.
+       - 1 default entry will be shown.
+
+    4. Test case: `findall western 5/5 $5-10`
+
+       Expected:
+       - All entries shown which contain all three keywords provided.
+       - Success message displayed informing the user of the number of entries found.
+       - 2 default entries will be shown.
+
+    5. Test case: `findall 4/5 5/5`
+
+        Expected:
+        - All entries shown which contain both of the keywords provided, if any.
+        - Success message displayed informing the user of the number of entries found.
+        - 0 default entries will be shown.
+
+    6. Test case: `findall 3/7`
+
+       Expected:
+       - All entries shown which contain the provided keyword: `3/7`, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of a possible typo for a rating search,
+       providing directions to correct the typo.
+       - 0 default entries will be shown.
+
+    7. Test case: `findall $5-`
+
+       Expected:
+       - All entries shown which contain the provided keyword: `$5-`, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of a possible typo for a price search,
+       providing directions to correct the typo.
+       - 0 default entries will be shown.
+
+    8. Test case: `findall 3/7 $5-`
+
+       Expected:
+       - All entries shown which contain both of the keywords provided, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of possible typos for a rating search,
+       and a price search, providing directions to correct the typos.
+       - 0 default entries will be shown.
+
     
 ## Delete an Entry
 1. Delete a booking specified by booking ID.

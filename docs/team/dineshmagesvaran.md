@@ -71,7 +71,7 @@ Given below are my contributions to the project.
   
 
 * **Mentoring Contributions**:
-    * Reviewed PRs: [PRs Reviewed](https://github.com/AY2021S2-CS2103-T14-2/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+    * Reviewed PRs: [PRs Reviewed](https://github.com/AY2021S2-CS2103-T14-2/tp/pulls?q=is%3Apr+commenter%3ADineshMagesvaran+)
     * Gave suggestions to narrow down the target audience to be limited to NUS students
     * Gave suggestions to customise the app to specifically meet the needs of the target audience
       * Pre-populate the app with Food Diary entries of food places within NUS for the students to be better informed
