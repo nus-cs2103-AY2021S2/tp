@@ -4,7 +4,6 @@ import static seedu.address.model.property.Type.CONDO;
 import static seedu.address.model.property.Type.HDB;
 import static seedu.address.model.property.Type.LANDED;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -15,7 +14,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.AppUtil;
-import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
 import seedu.address.model.property.client.Client;
@@ -182,8 +180,7 @@ public class PropertyCard extends UiPart<Region> {
      * Greys out Property with expired deadline in Ui.
      */
     public void greyOutPropertiesWithPastDeadlines() {
-        Deadline currentDate = new Deadline(LocalDate.now());
-        if (currentDate.compareTo(property.getDeadline()) > 0) {
+        if (property.getDeadline().isOver()) {
             cardPane.setStyle("-fx-background-color: #696969");
             deadline.setStyle("-fx-text-fill: darkred");
         }

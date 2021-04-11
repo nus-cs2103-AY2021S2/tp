@@ -8,13 +8,20 @@ import java.util.function.Predicate;
 public class PropertyRemarksPredicate implements Predicate<Property> {
     private final String keywords;
 
+    /**
+     * Constructs a {@code PropertyRemarksPredicate} with a keyword.
+     * @throws IllegalArgumentException when keyword is empty.
+     */
     public PropertyRemarksPredicate(String keywords) throws IllegalArgumentException {
+        if (keywords.trim().isEmpty()) {
+            throw new IllegalArgumentException("Remark given is empty. ");
+        }
         this.keywords = keywords.toLowerCase();
     }
 
     @Override
     public boolean test(Property property) {
-        return property.getRemarks().remark.toLowerCase().contains(this.keywords);
+        return property.getRemarks() != null && property.getRemarks().remark.toLowerCase().contains(this.keywords);
     }
 
     @Override

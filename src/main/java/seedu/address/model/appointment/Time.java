@@ -36,15 +36,18 @@ public class Time implements Comparable<Time> {
     }
 
     /**
-     * Returns true if a given string is a valid time.
+     * Returns true if a given string is in a valid time format.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid time, otherwise false.
+     * @return True if the given string is in a valid time format, otherwise false.
      */
     public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if this {@code Time} has already passed.
+     */
     public boolean isOver() {
         return time.compareTo(LocalTime.now()) <= 0;
     }
