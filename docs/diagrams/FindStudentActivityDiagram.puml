@@ -12,6 +12,7 @@ if () then ([user input is valid])
     else ([else])
         :Show no student found message;
     endif
+
 else ([else])
     : Show invalid message;
 endif

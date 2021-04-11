@@ -192,7 +192,7 @@ _{more aspects and alternatives to be added}_
 ### Delete Student `delete`
 
 #### Actual Implementation
-The delete student feature helps users to delete a particular student entry by the student's matriculation number.
+The delete student feature helps users to delete a particular student record by the student's matriculation number.
 
 The delete student feature is implemented in the `DeleteCommand` class and facilitated by the following classes:
 * `Command`. `DeleteCommand` extends `Command` and overrides the `execute` method, which deletes a `Student` from the `Model`.
@@ -294,7 +294,7 @@ The find student feature helps users to locate a particular student record by th
 
 This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
 `FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
-`FindCommand` will invoke a method to search for the particular student entry in `Model` and return the specific student record if the student exists.
+`FindCommand` will invoke a method to search for the particular student record and the corresponding appointment in `Model` and return the specific student record if the student exists and corresponding appointment if there is an appointment belonging to the student.
 
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
@@ -303,9 +303,9 @@ Step 1: The user executes `find A0175678U` into Vax@NUS.
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
 
-Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student entry of the particular student from `Model` if the student exists.
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record of the particular student and corresponding appointment from `Model` if the student and corresponding appointment exists.
 
-Step 4: Display the particular student entry onto the UI. 
+Step 4: Display the particular student record onto the UI. 
 
 The following sequence diagram shows how the find operation works:
 
@@ -321,8 +321,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 * **Alternative 1 (current choice):** Find student based on student's matriculation number.
     * Pros:
-        * Each student entry found uniquely identifies a student.
-        * Only one student entry is shown if the particular student exists in the system. 
+        * Each student record found uniquely identifies a student.
+        * Only one student record is shown if the particular student exists in the system. 
     * Cons:
         * The user is required to know the student's matriculation number to perform the action. 
         
@@ -331,7 +331,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros:
         * User is not required to know the student's matriculation number.
     * Cons:
-        * Multiple student entries will be shown for students with the same name. The user might have to look through multiple entires to find the particular student hence causing inconvenience to them. 
+        * Multiple student records will be shown for students with the same name. The user might have to look through multiple entires to find the particular student hence causing inconvenience to them. 
         * The user has to type more words if the student name is too long. 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -388,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a student's appointment  | remove appointments that I no longer need or I accidentally added    |
 | `* * *`  | user                                       | list all data                   | view all student records and appointments at once                      |
 | `* *`    | user                                       | find a student and their appointment | locate a particular student record and their appointment (if it exists) without traversing the entire list   |
-| `* *`    | user                                       | filter student records         | view a specific group of student entries |
+| `* *`    | user                                       | filter student records         | view a specific group of student records |
 | `* *`    | new user                                   | see the usage of commonly used commands   | quickly refer to instructions when I forget how to use Vax@NUS    |
 | `* *`    | new user                                   | see the usage of all instructions         | refer to instructions when I forget how to use less common commands in Vax@NUS     |
 | `* *`    | user                                       | see medical history (e.g. allergies, pre-conditions) of a student | pass this critical information to the nurse in charge    |
@@ -403,27 +403,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Vax@NUS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a student entry**
+**Use case: Add a student record**
 
 **MSS**
 
-1.  User requests to add a specific student entry.
+1.  User requests to add a specific student record.
 2.  System prompts for student's details.
 3.  User inputs the respective details.
-4.  System adds the student entry.
+4.  System adds the student record.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The specified student entry exists in the system.
+* 1a. The specified student record exists in the system.
 
     * 1a1. System shows an error message.
   
         Use case ends.
 
 
-* 3a. User does not give sufficient inputs to add a student entry.
+* 3a. User does not give sufficient inputs to add a student record.
 
     * 3a1. System shows an error message.
   
