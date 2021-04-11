@@ -23,7 +23,7 @@ public class Booking implements Comparable<Booking> {
     private final TenantName tenantName;
     private final Phone phone;
     private final BookingTime bookingTime;
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
     /**
      * Every field must be present and not null.

@@ -33,7 +33,11 @@
                         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
                     </HBox>
                     <FlowPane fx:id="cleanStatusTags" />
-                    <FlowPane fx:id="tags" />
+               <ScrollPane fx:id="tagsScrollPane" hbarPolicy="NEVER" maxWidth="270.0" minWidth="270.0" prefWidth="270.0">
+                  <content>
+                          <FlowPane fx:id="tags" maxWidth="280.0" minWidth="280.0" prefWidth="280.0" />
+                  </content>
+               </ScrollPane>
                     <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
                 </VBox>
                 <HBox prefHeight="100.0" prefWidth="325.0" HBox.hgrow="ALWAYS">

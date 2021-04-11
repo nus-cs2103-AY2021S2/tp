@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
+
 ResidenceTracker (RT) is a **desktop app for managing residences, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, RT can get your residence management tasks done faster than traditional GUI apps.
+
+In addition to being able to managing several residences at once with just a few key strokes of the keyboard,
+ResidenceTracker helps users to also keep track of any bookings a residence has, overseeing multiple residences with ease. 
 
 * Table of Contents
 {:toc}
@@ -63,7 +67,8 @@ ResidenceTracker (RT) is a **desktop app for managing residences, optimized for 
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message with the current list of commands along with examples.
+It also provides a button to copy the URL link to access the help page.
 
 ![help message](images/helpMessage.png)
 

@@ -112,8 +112,9 @@ public class ParserUtil {
         requireNonNull(start);
         requireNonNull(end);
         try {
-            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu"));
+            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu"));
             if (!Booking.isValidBookingTime(startTime, endTime)) {
                 throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
             }
@@ -129,7 +130,7 @@ public class ParserUtil {
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         try {
-            return LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu"));
         } catch (Exception e) {
             throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }

@@ -52,6 +52,8 @@ public class ResidenceCard extends UiPart<Region> {
     private VBox bookingListVBox;
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    private ScrollPane tagsScrollPane;
 
     /**
      * Creates a {@code ResidenceCode} with the given {@code residence} and index to display.

@@ -20,15 +20,16 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because clean status is a special tag which is changed often, and after users call someone to clean residences, it usually needs to update more than one clean status. as busy managers, they definitely don’t want to waste time updating them one by one. So this command can save users' time.
     * Highlights: cleanStatusTag as a residence feature is applied to all aspects of the project. "add"and "edit" command can initialize and change it.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=wangtao0717&tabRepo=AY2021S2-CS2103-T16-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-    * pull and set up all project on GitHub
+    * Pull and set up the GitHub team org/repo
+    * Maintaining the issue tracker
 
 * **Enhancements to existing features**:
     * Updated the GUI background image and color (Pull requests [\#70](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/70), [\#75](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/75))
     * Wrote tests for new features to increase coverage  (Pull requests [\#80](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/80), [\#109](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/109))
-    * fix some failing tests (Pull requests [\#226](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/226)
+    * fix some failing tests (Pull requests [\#226](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/226))
 
 * **Documentation**:
     * User Guide:
@@ -38,6 +39,8 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added use case.[\#35](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/35)
         * Added implementation details of the `status` feature  [\#226](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/226)
+        * Added `StatusSequenceDiagram` UML
+    
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#229](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/229)
 
