@@ -69,11 +69,15 @@ public interface Model {
     boolean hasPool(Pool pool);
 
     /**
+     * Returns true if a pool that contains the given {@code passenger} exists in the address book.
+     */
+    boolean hasPoolWithPassenger(Passenger passenger);
+
+    /**
      * Deletes the given passenger.
      * The passenger must exist in the address book.
-     * @return true if the passenger was deleted, false otherwise.
      */
-    boolean deletePassenger(Passenger passenger);
+    void deletePassenger(Passenger passenger);
 
     /**
      * Deletes the given pool.
