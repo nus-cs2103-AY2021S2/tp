@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ResidenceTracker;
 import seedu.address.model.residence.NameContainsKeywordsPredicate;
 import seedu.address.model.residence.Residence;
+import seedu.address.testutil.EditBookingDescriptorBuilder;
 import seedu.address.testutil.EditResidenceDescriptorBuilder;
 
 /**
@@ -34,11 +37,10 @@ public class CommandTestUtil {
     public static final String VALID_UNCLEAN_TAG = "n";
     public static final String VALID_BOOKED_TAG = "y";
     public static final String VALID_UNBOOKED_TAG = "n";
-    //public static final List<Booking> VALID_BOOKING_LIST1 = new BookingList()
-    //        .add(new Booking(VALID_NAME_AMY, VALID_PHONE_AMY, VALID_BOOKING_START1, VALID_BOOKING_END1));
-    //public static final List<Booking> VALID_BOOKING_LIST2 = "2 Teenagers";
     public static final String VALID_TAG_RESERVED = "reserved";
     public static final String VALID_TAG_REPAIR = "plumbing";
+
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public static final String VALID_PHONE_BOOKING1 = "11111111";
     public static final String VALID_PHONE_BOOKING2 = "22222222";
@@ -48,6 +50,11 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_START2 = "30-03-2021";
     public static final String VALID_BOOKING_END1 = "05-05-2021";
     public static final String VALID_BOOKING_END2 = "30-05-2021";
+
+    public static final LocalDate INVALID_BOOKING_END = LocalDate.parse("01-01-1990", DATE_TIME_FORMATTER);
+    public static final LocalDate OVERLAP_BOOKING_DATE = LocalDate.parse("03-03-2020", DATE_TIME_FORMATTER);
+    public static final LocalDate VALID_LOCALDATE_START1 = LocalDate.parse(VALID_BOOKING_START1, DATE_TIME_FORMATTER);
+    public static final LocalDate VALID_LOCALDATE_END1 = LocalDate.parse(VALID_BOOKING_END1, DATE_TIME_FORMATTER);
 
     public static final String NAME_DESC_RESIDENCE1 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE1;
     public static final String NAME_DESC_RESIDENCE2 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE2;
@@ -61,6 +68,7 @@ public class CommandTestUtil {
     public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_TAG;
     public static final String PHONE_DESC_BOOKING1 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING1;
     public static final String PHONE_DESC_BOOKING2 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING2;
+    public static final String TENANT_NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_BOOKING1;
 
     // '&' not allowed in names
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
@@ -80,6 +88,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditResidenceDescriptor DESC_RESIDENCE1;
     public static final EditCommand.EditResidenceDescriptor DESC_RESIDENCE2;
+    public static final EditBookingCommand.EditBookingDescriptor DESC_BOOKING1;
+    public static final EditBookingCommand.EditBookingDescriptor DESC_BOOKING2;
 
     static {
         DESC_RESIDENCE1 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
@@ -88,6 +98,16 @@ public class CommandTestUtil {
         DESC_RESIDENCE2 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withAddress(VALID_ADDRESS_RESIDENCE2)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED, VALID_TAG_REPAIR).build();
+        DESC_BOOKING1 = new EditBookingDescriptorBuilder().withName(VALID_NAME_BOOKING1)
+                .withPhone(VALID_PHONE_BOOKING1)
+                .withStartDate(LocalDate.parse(VALID_BOOKING_START1, DATE_TIME_FORMATTER))
+                .withEndDate(LocalDate.parse(VALID_BOOKING_END1, DATE_TIME_FORMATTER))
+                .build();
+        DESC_BOOKING2 = new EditBookingDescriptorBuilder().withName(VALID_NAME_BOOKING2)
+                .withPhone(VALID_PHONE_BOOKING1)
+                .withStartDate(LocalDate.parse(VALID_BOOKING_START2, DATE_TIME_FORMATTER))
+                .withEndDate(LocalDate.parse(VALID_BOOKING_END2, DATE_TIME_FORMATTER))
+                .build();
     }
 
     /**

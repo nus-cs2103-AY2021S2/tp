@@ -32,7 +32,7 @@ public class EditBookingCommand extends Command {
     public static final String COMMAND_WORD = "editb";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified by "
-            + "booking index of the residence identified based on the residence index provided"
+            + "booking index of the residence identified based on the residence index provided. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + PREFIX_RESIDENCE + "RESIDENCE_INDEX "
@@ -41,7 +41,7 @@ public class EditBookingCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_BOOKING_START_DATE + "START_DATE] "
             + "[" + PREFIX_BOOKING_END_DATE + "END_DATE]\n"
-            + "Example: " + COMMAND_WORD + PREFIX_RESIDENCE + "1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_RESIDENCE + "1 "
             + PREFIX_BOOKING + "1 "
             + PREFIX_BOOKING_START_DATE + "01-01-2020";
 

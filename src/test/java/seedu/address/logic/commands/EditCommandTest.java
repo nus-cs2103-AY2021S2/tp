@@ -126,7 +126,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidResidenceIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredResidenceList().size() + 1);
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder()
                 .withName(VALID_NAME_RESIDENCE1).build();
