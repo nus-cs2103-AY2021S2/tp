@@ -71,8 +71,8 @@ Person *--> "*" Tag
 Patient --|> Person
 Doctor --|> Person
 AppointmentDisplay --|> Appointment
-Appointment *--> PatientMap
-Appointment *--> DoctorMap
+Appointment --> PatientMap
+Appointment --> DoctorMap
 Appointment *--> Timeslot
 Appointment *--> Tag
 
