@@ -44,19 +44,24 @@ public class AddCommandParser implements Parser<AddCommand> {
         requireNonNull(args);
         assert args.length() >= 8 : "there must be at least 8 arguments";
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_FACULTY,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FACULTY,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS,
                         PREFIX_SCHOOL_RESIDENCE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_FACULTY, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FACULTY, PREFIX_ADDRESS,
+                PREFIX_PHONE, PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        MatriculationNumber matriculationNumber;
+
+        try {
+            matriculationNumber = ParserUtil.parseMatric(argMultimap.getPreamble());
+        } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        MatriculationNumber matriculationNumber = ParserUtil.parseMatric(argMultimap
-                .getValue(PREFIX_MATRICULATION_NUMBER).get());
         Faculty faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

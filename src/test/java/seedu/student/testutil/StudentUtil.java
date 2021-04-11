@@ -31,8 +31,8 @@ public class StudentUtil {
      */
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
+        sb.append(student.getMatriculationNumber().value + " ");
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_MATRICULATION_NUMBER + student.getMatriculationNumber().value + " ");
         sb.append(PREFIX_FACULTY + student.getFaculty().value + " ");
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
