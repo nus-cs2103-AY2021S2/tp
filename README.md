@@ -72,7 +72,7 @@ https://github.com/AY2021S2-CS2103T-T12-4/tp
   <img src="docs/images/Ui.png" width="800px" />
 </p>
 
-**Note:** If you are a developer hoping to set this up as a project, please refer to our [developer guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/DeveloperGuide.html).
+**Note:** If you are a developer hoping to set this up as a project, please refer to our [developer guide](https://nightraven49.github.io/tp/DeveloperGuide.html).
 
 ## About Us
 

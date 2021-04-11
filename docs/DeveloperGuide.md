@@ -151,9 +151,9 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
 is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
 require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
-<p align="center">
-  <img width="500px" src="images/BetterModelClassDiagram.png" >
-</p>
+  <p align="center">
+    <img width="500px" src="images/BetterModelClassDiagram.png" >
+  </p>
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -208,8 +208,6 @@ An `Endpoint` contains the following attributes:
 * `Data` can be empty, as some API calls do not send any data to the server
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
-
-<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
@@ -906,21 +904,21 @@ Given below are instructions to test the app manually.
 
 1. Show the details of a selected endpoint from the endpoint list in the result display
 
-  1. Prerequisites: There exists at least one (but less than 100) endpoints in the endpoint list.
+   1. Prerequisites: There exists at least one (but less than 100) endpoints in the endpoint list.
 
-  1. Test case: `show 1`<br>
-     Expected: Details of the first endpoint in the endpoint list is shown in the result display.
+   1. Test case: `show 1`<br>
+      Expected: Details of the first endpoint in the endpoint list is shown in the result display.
 
-  1. Test case: `show`<br>
-     Expected: Error details shown in the result display, with a result message saying `Invalid command format!...`.
+   1. Test case: `show`<br>
+      Expected: Error details shown in the result display, with a result message saying `Invalid command format!...`.
 
-  1. Test case: `show 0`<br>
-     Expected: Error details shown in the result display, with a result message saying `An index must be specified.
-     ..`. Other incorrect show commands to try: `show -1`, `show one`
+   1. Test case: `show 0`<br>
+      Expected: Error details shown in the result display, with a result message saying `An index must be specified...`. <br>
+      Other incorrect show commands to try: `show -1`, `show one`
 
-  1. Test case: `show 100`<br>
-     Expected: Error details shown in the result display, with a result message saying `Index provided is not
-     within...`. Other incorrect remove commands to try: `show 101`,`show 999`
+   1. Test case: `show 100`<br>
+      Expected: Error details shown in the result display, with a result message saying `Index provided is not within...`. <br>
+      Other incorrect remove commands to try: `show 101`,`show 999`
 
 ### Add an endpoint
 
@@ -928,7 +926,7 @@ Given below are instructions to test the app manually.
 
     1. There are less than 100 endpoints in the endpoint list, and endpoint that is to be added is not the same as any currently in the list.
 
-    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us`<br>
+    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us` <br>
        Expected: A new endpoint with the `GET` method and `https://sg.yahoo.com/?p=us` address is added into the endpoint list.
 
     1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -t yahoo` <br>
@@ -947,113 +945,113 @@ Given below are instructions to test the app manually.
        Expected: No endpoint is added. Error details shown in the result display, with a result message saying `URL provided has to be valid...` <br>
 
     1. Test case: `add -x abc -u https://sg.yahoo.com/?p=us` <br>
-       Expected: No endpoint is add. Error details shown in the result display, with a result message saying `Methods only consists...`
+       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Methods only consists...`
 
     1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -d abc` <br>
-       Expected: No endpoint is add. Error details shown in the result display, with a result message saying `Data must be...`
+       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Data must be...`
 
 ### Edit an endpoint
 
 1. Edit an endpoint
 
-    1. Prerequisites: List all endpoints using the `list` command. There exists at least 1 endpoint in the list, and there are less than 100 endpoints.
+   1. Prerequisites: List all endpoints using the `list` command. There exists at least 1 endpoint in the list, and there are less than 100 endpoints.
 
-    1. Test case: `edit 1 -x get`<br>
-       Expected: The method of the endpoint at index 1 is changed to `GET` and any existing response is cleared.
+   1. Test case: `edit 1 -x get` <br>
+      Expected: The method of the endpoint at index 1 is changed to `GET` and any existing response is cleared.
 
-    1. Test case: `edit 1 -u https://sg.yahoo.com/?p=us` <br>
-       Expected: The url address of the endpoint at index 1 is changed to `https://sg.yahoo.com/?p=us` and any existing response is cleared.
+   1. Test case: `edit 1 -u https://sg.yahoo.com/?p=us` <br>
+      Expected: The url address of the endpoint at index 1 is changed to `https://sg.yahoo.com/?p=us` and any existing response is cleared.
 
-    1. Test case: `edit 1 -d` <br>
-       Expected: Any existing data of the endpoint at index 1 are removed and any existing response is cleared.
+   1. Test case: `edit 1 -d` <br>
+      Expected: Any existing data of the endpoint at index 1 are removed and any existing response is cleared.
 
-    1. Test case: `edit 1 -t` <br>
-       Expected: Any existing tags of the endpoint at index 1 are removed and any existing response is cleared.
+   1. Test case: `edit 1 -t` <br>
+      Expected: Any existing tags of the endpoint at index 1 are removed and any existing response is cleared.
 
-    1. Test case: `edit 1 -h` <br>
-       Expected: Any existing headers of the endpoint at index 1 are removed and any existing response is cleared.
+   1. Test case: `edit 1 -h` <br>
+      Expected: Any existing headers of the endpoint at index 1 are removed and any existing response is cleared.
 
-    1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -t common -t important` <br>
-       Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{"name": "john doe", "job": "developer"}` and its tags are changed to `common` and `important` and any existing response is cleared.
+   1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -t common -t important` <br>
+      Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{"name": "john doe", "job": "developer"}` and its tags are changed to `common` and `important` and any existing response is cleared.
 
-    1. Test case: `edit` <br>
-       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Invalid command format!...`
+   1. Test case: `edit` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
-    1. Test case: `edit 0` <br>
-       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `An index must be specified...` <br>
-       Other incorrect edit commands to try: `edit x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
+   1. Test case: `edit 0` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `An index must be specified...` <br>
+      Other incorrect edit commands to try: `edit x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
 
-    1. Test case: `edit 10` <br>
-       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `At least one parameter to edit must be provided.` <br>
-       Other incorrect edit commands to try: `edit x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size).
+   1. Test case: `edit 10` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `At least one parameter to edit must be provided.` <br>
+      Other incorrect edit commands to try: `edit x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size).
 
-    1. Test case: `edit 1 -x abc` <br>
-       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Methods only consists...`
+   1. Test case: `edit 1 -x abc` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Methods only consists...`
 
-    1. Test case: `edit 1 -d abc` <br>
-       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Data must be...`
+   1. Test case: `edit 1 -d abc` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Data must be...`
 
-    1. Test case: `edit 1 -h abc` <br>
-       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...` 
+   1. Test case: `edit 1 -h abc` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...` 
 
 ### Find an endpoint
 
 1. Find an endpoint (General Search)
    
-    1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.
+   1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.
     
-    1. Test case: `find get`<br>
-       Expected: Looks through all fields for any partial or full word of `get` then displays them on the endpoint list. <br>
-       E.g. `get` from any field will be matched.
+   1. Test case: `find get`<br>
+      Expected: Looks through all fields for any partial or full word of `get` then displays them on the endpoint list. <br>
+      E.g. `get` from any field will be matched.
 
-    1. Test case: `find g` <br>
-       Expected: Looks through all fields for any partial or full word of `g` then displays them on the endpoint list. <br>
-       E.g. `go` from any field will be matched.
+   1. Test case: `find g` <br>
+      Expected: Looks through all fields for any partial or full word of `g` then displays them on the endpoint list. <br>
+      E.g. `go` from any field will be matched.
 
-    1. Test case: `find get post` <br>
-       Expected: Looks through all fields for any partial or full word of `get` or `post` then displays them on the endpoint list. <br>
-       E.g. `get` or `post` from any field will be matched. (`OR` search).
+   1. Test case: `find get post` <br>
+      Expected: Looks through all fields for any partial or full word of `get` or `post` then displays them on the endpoint list. <br>
+      E.g. `get` or `post` from any field will be matched. (`OR` search).
 
-    1. Test case: `find 123 post` <br>
-       Expected: Looks through all fields for any partial or full word of `123` or `post` then displays them on the endpoint list. <br>
-       E.g. `123` or `post` from any field will be matched. (`OR` search).
+   1. Test case: `find 123 post` <br>
+      Expected: Looks through all fields for any partial or full word of `123` or `post` then displays them on the endpoint list. <br>
+      E.g. `123` or `post` from any field will be matched. (`OR` search).
 
-    1. Test case: `find ` <br>
-       Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Invalid command format!...`
+   1. Test case: `find ` <br>
+      Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
-    1. Test case: `find0` <br>
-       Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Unknown command`
+   1. Test case: `find0` <br>
+      Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Unknown command`
 
 2. Find an endpoint (Precise Search)
 
-    1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.  
+   1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.  
 
-    1. Test case: `find -x get` <br>
-       Expected: Looks through the method field for any partial or full word of `get` then displays them on the endpoint list. <br>
-       E.g. `get` from the method field will be matched.
+   1. Test case: `find -x get` <br>
+      Expected: Looks through the method field for any partial or full word of `get` then displays them on the endpoint list. <br>
+      E.g. `get` from the method field will be matched.
 
-    1. Test case: `find -x get -u yahoo` <br>
-       Expected: Looks through the method field for any partial or full word of `get` and the address field for any partial or full word of `yahoo` then displays them on the endpoint list. <br>
-       E.g. **Both** `get` from the method field and `yahoo` from the address field must be present to be matched. (`AND` search between multiple prefixes)
+   1. Test case: `find -x get -u yahoo` <br>
+      Expected: Looks through the method field for any partial or full word of `get` and the address field for any partial or full word of `yahoo` then displays them on the endpoint list. <br>
+      E.g. **Both** `get` from the method field and `yahoo` from the address field must be present to be matched. (`AND` search between multiple prefixes)
 
-    1. Test case: `find -h key -d name` <br>
-       Expected: Looks through the header field for any partial or full word of `key` and the data field for any partial or full word of `name` then displays them on the endpoint list. <br>
-       E.g. **Both** `key` from the method field and `name` from the address field must be present to be matched. (`AND` search between multiple prefixes)
+   1. Test case: `find -h key -d name` <br>
+      Expected: Looks through the header field for any partial or full word of `key` and the data field for any partial or full word of `name` then displays them on the endpoint list. <br>
+      E.g. **Both** `key` from the method field and `name` from the address field must be present to be matched. (`AND` search between multiple prefixes)
 
-    1. Test case: `find -x get post` <br>
-       Expected: Looks through the method for any partial or full word of `get` or `post` then displays them on the endpoint list. <br>
-       E.g. `get` or `post` from the method field will be matched. (`OR` search within one prefix).
+   1. Test case: `find -x get post` <br>
+      Expected: Looks through the method for any partial or full word of `get` or `post` then displays them on the endpoint list. <br>
+      E.g. `get` or `post` from the method field will be matched. (`OR` search within one prefix).
 
-    1. Test case: `find -x get post -u yahoo` <br>
-       Expected: Looks through the method for any partial or full word of `get` or `post` and the address field for any partial or full word of `yahoo` then displays them on the endpoint list. <br>
-       E.g. `get` or `post` from the method field and `yahoo` from the address field  will be matched. (`OR` search within one prefix and `AND` search between multiple prefixes).
+   1. Test case: `find -x get post -u yahoo` <br>
+      Expected: Looks through the method for any partial or full word of `get` or `post` and the address field for any partial or full word of `yahoo` then displays them on the endpoint list. <br>
+      E.g. `get` or `post` from the method field and `yahoo` from the address field  will be matched. (`OR` search within one prefix and `AND` search between multiple prefixes).
 
-    1. Test case: `find -x` <br>
-       Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Invalid command format!...`
+   1. Test case: `find -x` <br>
+      Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
-    1. Test case: `find -x get -x post` <br>
-       Expected: Looks through the method field for any partial or full word of `post` then displays them on the endpoint list. (Ignores the first instance of -x) <br>
-       E.g. `post` from the method field will be matched.
+   1. Test case: `find -x get -x post` <br>
+      Expected: Looks through the method field for any partial or full word of `post` then displays them on the endpoint list. (Ignores the first instance of -x) <br>
+      E.g. `post` from the method field will be matched.
 
 ### Remove an endpoint
 
@@ -1091,17 +1089,16 @@ Given below are instructions to test the app manually.
      Perform a `find` command such that the endpoint list shows less than actual number of endpoints.
 
   1. Test case: `list`<br>
-     Expected: Filter from the `find` will be cleared and all endpoints are shown in the endpoint list, with a
-     result message saying `Listed all saved...`.
+     Expected: Filter from the `find` will be cleared and all endpoints are shown in the endpoint list, with a result message saying `Listed all saved...`.
 
 3. List all endpoints from the endpoint list after a `clear` command
 
-  1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list.
-     Perform a `clear` command such that all endpoints are cleared from the endpoint list.
+   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list. 
+     
+   1.Perform a `clear` command such that all endpoints are cleared from the endpoint list.
 
-  1. Test case: `list`<br>
-     Expected: No endpoints are shown in the endpoint list, with a result message saying `It seems like your list
-     is empty!...`.
+   1. Test case: `list`<br>
+      Expected: No endpoints are shown in the endpoint list, with a result message saying `It seems like your list is empty!...`.
      
 ### Clear all endpoints
 
@@ -1128,34 +1125,34 @@ Given below are instructions to test the app manually.
       Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
    1. Test case: `send 0`<br>
-      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `An index must be specified...`
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `An index must be specified...` <br>
       Other incorrect remove commands to try: `send x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
       
    1. Test case: `send 100`<br>
-      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Index provided is not within...`
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Index provided is not within...` <br>
       Other incorrect remove commands to try: `send x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size). <br>
 
 ### Call an endpoint (without saving)
 
 1. Call an endpoint directly
    
-    1. Prerequisites: None
+   1. Prerequisites: None
     
-    1. Test case: `run -x get -u https://google.com`<br>
-       Expected: Endpoint is called successfully. Details of the response is shown in the result display.
+   1. Test case: `run -x get -u https://google.com`<br>
+      Expected: Endpoint is called successfully. Details of the response is shown in the result display.
 
-    1. Test case: `run https://google.com` <br>
-       Expected: Endpoint is called successfully. Details of the response is shown in the result display.
+   1. Test case: `run https://google.com` <br>
+      Expected: Endpoint is called successfully. Details of the response is shown in the result display.
 
-    1. Test case: `run -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"}` <br>
-       Expected: Endpoint is called successfully. Details of the response is shown in the result display..
+   1. Test case: `run -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"}` <br>
+      Expected: Endpoint is called successfully. Details of the response is shown in the result display..
 
-    1. Test case: `run` <br>
-       Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Invalid command format!...`
+   1. Test case: `run` <br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
-    1. Test case: `run https://thisisarandomanyhowlink.com` <br>
-       Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Connection could not be established.`
-       Other incorrect remove commands to try: `run x` (where x is any URL whose connection cannot be established).
+   1. Test case: `run https://thisisarandomanyhowlink.com` <br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Connection could not be established.` <br>
+      Other incorrect remove commands to try: `run x` (where x is any URL whose connection cannot be established).
 
 ### Saving data
 
@@ -1178,14 +1175,14 @@ Given below are instructions to test the app manually.
       
    1. Re-launch the app by double-clicking the jar file.
     
-   1. Test case: `data/imposter.json` was corrupted/deleted. <br>
-      Expected: The app should start with a list of saved endpoints (on the left) that is empty.
+   1. Test case: `data/imposter.json` was corrupted. <br>
+      Expected: The app starts with a list of saved endpoints (on the left) that is empty.
+      
+   1. Test case: `data/imposter.json` was deleted.
+      Expected: The app starts with the default list of saved endpoints.
       
    1. Test case: `preferences.json` was corrupted/deleted. <br>
-      Expected: The app should start with the default theme, window size and location.
-      
-1. _{ more test cases …​ }_
-
+      Expected: The app starts with the default theme, window size and location.
 
 ### Toggle the theme
 
@@ -1204,10 +1201,20 @@ Given below are instructions to test the app manually.
        Expected: Theme changes to the `light` theme.
 
     1. Test case: `toggle` <br>
-       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `Invalid command format!...`
+       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `Invalid command format!...`.
 
     1. Test case: `toggle abc` <br>
-       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `You may only toggle to supported themes. ...`
+       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `You may only toggle to supported themes...`.
+       
+### Opening help window
+
+1. Opening help window
+
+   1. Test case: `help` <br>
+      Expected: Help window with command examples and helpful links appears.
+      
+   1. Test case: `help thisisarandomstring` <br>
+      Expected: Help window appears.
 
 ## **Appendix I: Effort**
 
