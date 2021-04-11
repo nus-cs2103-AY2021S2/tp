@@ -33,11 +33,11 @@ public class ImportantDateTest {
                 .build();
         assertFalse(JURONG_SEC2_EXAM.isSameImportantDate(editedJurongSec2Exam));
 
-        // description differs in case, all other attributes same -> returns false
+        // description differs in case, all other attributes same -> returns true
         ImportantDate editedRafflesExam =
             new ImportantDateBuilder(RAFFLES_EXAM)
                 .withDescription(VALID_IMPORTANT_DATE_DESCRIPTION_RAFFLES_EXAM.toLowerCase()).build();
-        assertFalse(RAFFLES_EXAM.isSameImportantDate(editedRafflesExam));
+        assertTrue(RAFFLES_EXAM.isSameImportantDate(editedRafflesExam));
 
         // description has trailing spaces, all other attributes same -> returns true
         String descriptionWithTrailingSpaces = VALID_IMPORTANT_DATE_DESCRIPTION_RAFFLES_EXAM + " ";

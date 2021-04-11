@@ -32,10 +32,10 @@ public class DayTest {
         assertFalse(Day.isValidDay("3300")); // contains numbers
         assertFalse(Day.isValidDay("monday tuesday")); // multiple strings
         assertFalse(Day.isValidDay("monday 2")); // multiple strings with number
-        assertFalse(Day.isValidDay("Monday")); // capitalized first letter
-        assertFalse(Day.isValidDay("MONDAY")); // uppercase
 
         // valid day
         assertTrue(Day.isValidDay("monday")); // lowercase
+        assertTrue(Day.isValidDay("Monday")); // capitalized first letter
+        assertTrue(Day.isValidDay("MONDAY")); // uppercase
     }
 }
