@@ -9,12 +9,12 @@ import seedu.address.model.Model;
  */
 public class ListAliasCommand extends AliasCommand {
 
-    public static final String SHOWING_ALIASES_MESSAGE = "You have %d aliases.";
+    public static final String SHOWING_ALIASES_MESSAGE = "You have %d alias(es).";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        int numOfAlias = model.getNumOfAlias();
+        int numOfAlias = model.getNumOfCommandAlias();
         return new CommandResult(String.format(SHOWING_ALIASES_MESSAGE, numOfAlias),
                 false, true, false);
     }

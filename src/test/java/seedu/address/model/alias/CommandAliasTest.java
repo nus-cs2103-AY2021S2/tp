@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
-import static seedu.address.testutil.TypicalAliases.ADD_COMMAND;
-import static seedu.address.testutil.TypicalAliases.ADD_COMMAND_ALIAS;
-import static seedu.address.testutil.TypicalAliases.DELETE_ALIAS;
-import static seedu.address.testutil.TypicalAliases.DELETE_COMMAND;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_COMMAND;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_COMMAND_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.DELETE_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.DELETE_COMMAND;
 
 import org.junit.jupiter.api.Test;
 

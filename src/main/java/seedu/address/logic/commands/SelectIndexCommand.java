@@ -16,8 +16,8 @@ import seedu.address.model.person.Person;
  */
 public class SelectIndexCommand extends SelectCommand {
 
-    public static final String MESSAGE_SHOWN_SUCCESS = "Selected all shown items";
-    public static final String MESSAGE_INDEX_SUCCESS = "Selected items";
+    public static final String MESSAGE_SHOWN_SUCCESS = "Selected all shown person(s)";
+    public static final String MESSAGE_INDEX_SUCCESS = "Selected person(s)";
 
     private final List<Index> selectedIndexes;
     private final boolean isSpecialIndex;
@@ -50,7 +50,7 @@ public class SelectIndexCommand extends SelectCommand {
             return new CommandResult(MESSAGE_SHOWN_SUCCESS);
         }
 
-        List<Person> personList = model.getSortedFilteredPersonList();
+        List<Person> personList = model.getFilteredPersonList();
         List<Person> selectedPersonList = new ArrayList<>();
         for (Index index : selectedIndexes) {
             if (index.getZeroBased() >= personList.size()) {

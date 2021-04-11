@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,9 +21,8 @@ public class SelectClearCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliases());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAliases());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliasMap());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAliasMap());
         // set all to selected initially
         model.updateSelectedPersonList(model.getFilteredPersonList());
     }

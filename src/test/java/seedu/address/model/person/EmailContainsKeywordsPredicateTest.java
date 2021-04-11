@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -81,20 +80,5 @@ public class EmailContainsKeywordsPredicateTest {
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("12345", "Street", "Gordon", "Researcher"));
         assertFalse(predicate.test(new PersonBuilder().withPhone("12345").withName("Alice Gordon")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("Researcher").build()));
-    }
-
-    @Test
-    public void test_emailComparatorSort_compare() {
-        Comparator<Person> comparator = new EmailContainsKeywordsPredicate(Collections.singletonList("Shaun"));
-
-        // Sort by similarity
-        Person p1 = new PersonBuilder().withEmail("ShawnKoh@mail.com").build();
-        Person p2 = new PersonBuilder().withEmail("ShaunLim@mail.com").build();
-        assertTrue(comparator.compare(p1, p2) > 0);
-
-        // Sort lexicographically
-        Person p3 = new PersonBuilder().withEmail("ShawnyLim@mail.com").build();
-        Person p4 = new PersonBuilder().withEmail("ShawnKoh@mail.com").build();
-        assertTrue(comparator.compare(p3, p4) > 0);
     }
 }

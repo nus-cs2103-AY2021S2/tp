@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -28,26 +27,26 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final UniqueAliasMap aliases;
+    private final UniqueAliasMap aliasMap;
     private final SortedList<Person> sortedFilteredPersons;
     private DisplayFilterPredicate displayFilterPredicate;
     private List<Person> selectedPersonList;
 
     /**
-     * Initializes a ModelManager with the given addressBook, userPrefs, aliases.
+     * Initializes a ModelManager with the given addressBook, userPrefs, aliasMap.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUniqueAliasMap aliases) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUniqueAliasMap aliasMap) {
         super();
-        requireAllNonNull(addressBook, userPrefs, aliases);
+        requireAllNonNull(addressBook, userPrefs, aliasMap);
 
-        logger.fine("Initializing with address book: " + addressBook + ", aliases: " + aliases
+        logger.fine("Initializing with address book: " + addressBook + ", command aliases: " + aliasMap
                 + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedFilteredPersons = new SortedList<>(filteredPersons);
-        this.aliases = new UniqueAliasMap(aliases);
+        this.aliasMap = new UniqueAliasMap(aliasMap);
         displayFilterPredicate = new DisplayFilterPredicate();
         selectedPersonList = new ArrayList<>();
     }
@@ -147,19 +146,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(displayFilter);
     }
 
-    //=========== Sorted Filtered Person List Accessors ======================================================
-
-    @Override
-    public ObservableList<Person> getSortedFilteredPersonList() {
-        return sortedFilteredPersons;
-    }
-
-    @Override
-    public void updateSortedFilteredPersonList(Comparator<Person> comparator) {
-        requireNonNull(comparator);
-        sortedFilteredPersons.setComparator(comparator);
-    }
-
     //=========== Display Filter Accessors ===================================================================
 
     @Override
@@ -195,46 +181,46 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyUniqueAliasMap getAliases() {
-        return aliases;
-    }
-
-    @Override
-    public ObservableList<String> getObservableStringAliases() {
-        return aliases.getObservableStringAliases();
+    public ReadOnlyUniqueAliasMap getAliasMap() {
+        return aliasMap;
     }
 
     @Override
     public void addAlias(CommandAlias commandAlias) {
-        aliases.addAlias(commandAlias);
+        aliasMap.addAlias(commandAlias);
     }
 
     @Override
     public void deleteAlias(Alias alias) {
-        aliases.removeAlias(alias);
+        aliasMap.removeAlias(alias);
     }
 
     @Override
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
-        return aliases.hasAlias(alias);
+        return aliasMap.hasAlias(alias);
     }
 
     @Override
     public boolean hasCommandAlias(CommandAlias commandAlias) {
         requireNonNull(commandAlias);
-        return aliases.hasCommandAlias(commandAlias);
+        return aliasMap.hasCommandAlias(commandAlias);
     }
 
     @Override
     public CommandAlias getCommandAlias(Alias alias) {
         requireNonNull(alias);
-        return aliases.getCommandAlias(alias);
+        return aliasMap.getCommandAlias(alias);
     }
 
     @Override
-    public int getNumOfAlias() {
-        return aliases.getNumOfAlias();
+    public int getNumOfCommandAlias() {
+        return aliasMap.getNumOfAlias();
+    }
+
+    @Override
+    public List<String> getCommandAliasesStringList() {
+        return aliasMap.getCommandAliasesStringList();
     }
 
     @Override
@@ -254,7 +240,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && aliases.equals(other.aliases)
+                && aliasMap.equals(other.aliasMap)
                 && selectedPersonList.containsAll(other.selectedPersonList)
                 && other.selectedPersonList.containsAll(selectedPersonList);
     }
