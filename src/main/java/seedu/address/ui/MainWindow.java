@@ -73,7 +73,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
+        notifWindow = new NotifWindow(getPrimaryStage());
+        notesWindow = new NotesWindow(getPrimaryStage());
     }
 
     public Stage getPrimaryStage() {
@@ -164,7 +165,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNotif() {
-        notifWindow = new NotifWindow(getPrimaryStage());
         notifWindow.setMessage(logic.getNotifications());
         notifWindow.show();
         logger.info("Displaying notif window...");
@@ -175,7 +175,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNotes(Person personWithNotes) {
-        notesWindow = new NotesWindow(getPrimaryStage());
         notesWindow.setMessage(personWithNotes);
         notesWindow.show();
         logger.info("Displaying notes window...");
