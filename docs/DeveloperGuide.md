@@ -209,7 +209,7 @@ Below is the sequence diagram:
 
 ### Delete a Task feature
 
-The implementation of the delete a Task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
+The implementation of the delete a task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
 
 It is also enabled by the following Parser class:
 * `DeleteTaskCommandParser`
@@ -247,7 +247,7 @@ Below is the sequence diagram:
 
 ### Clear all Assignees of a Task feature
 
-The implementation of the Clear all Assignees of a Task feature is facilitated by the `ClearAssigneeCommand` 
+The implementation of the clear all assignees of a task feature is facilitated by the `ClearAssigneeCommand` 
 class which extends from the Command abstract class.
 
 It is also facilitated by the following Parser Classes:
