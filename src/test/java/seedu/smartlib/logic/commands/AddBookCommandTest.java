@@ -30,7 +30,6 @@ public class AddBookCommandTest {
         Book validBook = new BookBuilder().build();
 
         CommandResult commandResult = new AddBookCommand(validBook).execute(modelStub);
-
         assertEquals(Arrays.asList(validBook), modelStub.booksAdded);
     }
 
