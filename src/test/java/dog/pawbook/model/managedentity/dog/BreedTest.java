@@ -34,4 +34,26 @@ public class BreedTest {
         assertTrue(Breed.isValidBreed("Poodle"));
         assertTrue(Breed.isValidBreed("German Shepherd"));
     }
+
+    @Test
+    public void equals() {
+        Breed breed1 = new Breed("Corgi");
+        Breed breed2 = new Breed("Shiba Inu");
+
+        // same object -> returns true
+        assertTrue(breed1.equals(breed1));
+
+        // same values -> returns true
+        Breed breed1Copy = new Breed("Corgi");
+        assertTrue(breed1.equals(breed1Copy));
+
+        // different types -> returns false
+        assertFalse(breed1.equals(1));
+
+        // null -> returns false
+        assertFalse(breed1.equals(null));
+
+        // different breed -> returns false
+        assertFalse(breed1.equals(breed2));
+    }
 }
