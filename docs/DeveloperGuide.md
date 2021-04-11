@@ -748,15 +748,15 @@ The activity diagram shows the workflow when a list important dates command is e
 
 #### Design consideration:
 
-##### Aspect: Whether to display the list according to the sequence the important dates have been added in or sorted according to the details of the important dates.
+##### Aspect: Whether to display the list as a separate window or within the main window. 
 
-* **Alternative 1 (current choice):** Displays the important dates after sorting.
-    * Pros: Users can get an overview of the order in which these dates will be happening. 
-    * Cons: To be added.
+* **Alternative 1 (current choice):** Displays the list as a separate window.
+    * Pros: The main window would not be cluttered with too much information. 
+    * Cons: Users might not like having many windows open.
 
-* **Alternative 2:** Displays the important dates based on the order they have been added in.
-    * Pros: To be added.
-    * Cons: A separate command will have to be implemented in order to show the user the important dates displayed according to time and date.
+* **Alternative 2:** Displays the list within the main window.
+    * Pros: Users do not have to switch between windows when they want to enter commands to modify the important dates in the list.
+    * Cons: Having too much information in the main window might appear to be overwhelming, especially for the new users.
 
 ### Schedule feature
 
