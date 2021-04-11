@@ -2045,7 +2045,8 @@ These instructions only provide a starting point for testers to work on; testers
    
    1. For testing purposes, a sample `sochedule.json` is provided [here](https://raw.githubusercontent.com/AY2021S2-CS2103-W16-1/tp/master/src/test/data/sochedule.json). Place this file in a directory named `data`. `data` should be in the same relative path as `SOChedule.jar`.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
+   1. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample data.
 
 ### Adding a task
 
