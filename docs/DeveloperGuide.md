@@ -223,7 +223,6 @@ respectively in place of TitleContainsKeywordsPredicate </div>
 
 ![FindSequenceDiagram](images/FindByTitleSequenceDiagram.png)
 
-
 ##### Design Considerations
 For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods
 like `findTag`, `findTitle`, `findDescription`  into three different commands separately 
@@ -255,6 +254,57 @@ or just use a single command `find` in addition with command line prefix to perf
           duplication.
         - Since there are more commands for the user to remember, it is highly likely for the user to
           keep referring to the user guide if the user keeps forgetting the various commands.
+
+![SortSequenceDiagram](images/SortByDateSequenceDiagram.png)
+
+#### 4. Sorting tasks
+
+The `Sort` command applies to tasks in List. Both `sort by a` and the `sort by d`
+follow similar implementations with slight differences. Below we will look into the implementation of 
+the `sort by a`.
+
+The `sort by a` feature sorts the tasks based on the different dates of the tasks from the earliest task
+to the last task in chronological order. For tasks with no dates, they would appear last.
+1. When the command is executed by the user, the input it passed into
+   the `LogicManager` and gets parsed and identified in `AddressBookParser`.
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+   , the corresponding `SortCommandParser` object is formed. The user input then goes
+   through another level of parsing in `SortCommandParser`
+3. The `SortCommandParser` identifies the order in which the tasks are to be sort and creates a
+   `SortComparator` comparator object accordingly.
+4. The ```SortCommandParser``` creates a ```SortCommand``` with the above comparator. The command
+   is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```SortCommand#execute()```, which adds a new duplicate list of tasks that is
+   sorted in chronological order in ```List``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+##### Design Considerations
+For the `SortCommand`, we had several considerations that we made on whether to sort the list manually through
+the `sort` command or to automatically sort the list for every task that is added or edited.
+
+1. Alternative 1 (current choice): User has the option to sort the list manually in both ascending and descending format.
+   The list will not be automatically sorted when a task has been added or changed.
+
+    - Pros:
+        - If the user types in wrong information for a certain task, he is able to see the task at the bottom rather
+          than filtering through a sorted list which makes it easier to fix the error that he has made.
+        - Code will be easier to implement as we so not need to implement the auto sort phase.
+
+    - Cons:
+        - User has to manually sort the list, using the `sort` command, after keying in the new tasks to obtain an
+          ordered list.
+
+2. Alternative 2: The list will be automatically sorted every time the user makes a new list or edits one.
+
+    - Pros:
+        - Tasks will always be in chronological order and user does not have to key in any command to sort the list.
+
+    - Cons:
+        - If the user adds in a task with wrong details to a huge list, it will be difficult to find the task.
+          If the previous method was used the new task added will be at the bottom of the list.
+        - The code will be much more complex compared to alternative 1.
+        - User will not be have the ability to sort the list in different orders.
+
 
 
 ### Removing a field from a task
@@ -471,6 +521,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 3.
     
 #### **Use case: Add a duration to a task**
+
+**Precondition: The task has a title and has a deadline date .**
 
 **MSS**
 1. User <u>adds a task</u> to the list.
