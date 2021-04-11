@@ -284,7 +284,7 @@ Example:
 
 ![add_student_example](images/enhao/add_student%20-%20edited.png)
 
-2. Scrolling down to the end of the student list, you will see that `John Doe` has been added to TutorBuddy.
+3. Scrolling down to the end of the student list, you will see that `John Doe` has been added to TutorBuddy.
 
 ![add_student_result_example](images/enhao/add_student_result%20-%20edited.png)
 
@@ -338,8 +338,8 @@ Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] 
 * `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
 
 Example:
-1. You would like to edit `Alex Yeoh` student's phone number, email address and address as they are wrongly given. 
-2. Type in `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>enter</kbd>. (This edits the student `Alex Yeoh` `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1's)
+1. You would like to edit `Alex Yeoh` student's phone number, email address and address as they are wrong. 
+2. Type `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>enter</kbd>. (This edits the student `Alex Yeoh`'s `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1)
 
 ![edit_student_example](images/enhao/edit_student%20-%20edited.png)
 
@@ -347,19 +347,19 @@ Example:
 
 ![edit_student_result_example](images/enhao/edit_student_result%20-%20edited.png)
 
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+Use <code>find_student</code> command to filter the list of students you want.<br>
+The <code>STUDENT_INDEX</code> will be based on the current / filtered list.<br>
+(E.g. If John Doe is the 500th student, instead of <code>edit_student 500 [...]</code>, you can use <code>find_student John Doe</code> and
+<code>edit_student 1 [...]</code> if the John Doe you would like to edit is the 1st in the list)
+</div>
+
 
 ##### Deleting a student: `delete_student`
 
 Deletes the specified student from TutorBuddy.
 
 Format: `delete_student STUDENT_INDEX` <br>
-
-<div markdown="span" class="alert alert-primary">:bulb: Tip:
-Use <code>find_student</code> command to filter the list of students you want.<br>
-The <code>STUDENT_INDEX</code> will be based on the current list.<br>
-(E.g. If John Doe is the 500th student, instead of <code>delete_student 500</code>, you can use <code>find_student John Doe</code> and
-<code>delete_student 1</code> if the John Doe you would like to delete is the 1st in the list)
-</div>
 
 Example:
 1. You would like to delete the 2nd student based on the current list of students. 
@@ -371,10 +371,16 @@ Example:
 
 ![delete_student_result_example](images/enhao/delete_student_result%20-%20edited.png)
 
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+Similar to <code>edit_student</code>, you can also use <code>find_student</code> command to filter the list of students you want.<br>
+The <code>STUDENT_INDEX</code> will be based on the current / filtered list.<br>
+(E.g. If John Doe is the 500th student, instead of <code>delete_student 500</code>, you can use <code>find_student John Doe</code> and
+<code>delete_student 1</code> if the John Doe you would like to delete is the 1st in the list)
+</div>
 
 ##### Listing students' emails based on current list: `emails`
 As a user, you might want to quickly get all the email address of your students and send them a mass email.
-This feature displays a concatenated string of students' emails based on current list, separated by `;` which can be copied to their respective email client (E.g. Gmail) for mass sending of emails to students.
+This feature displays a concatenated text of students' emails based on current list, separated by `;` which can be copied to their respective email client (E.g. Gmail) for mass sending of emails to students.
 
 Format: `emails`
 
@@ -386,7 +392,7 @@ Example:
 
 ![emails_example](images/enhao/email%20-%20edited.png)
 
-3. A concatenated string of all the students' emails will be displayed.
+3. The concatenated text of all the students' emails will be displayed.
 
 ![emails_result_example](images/enhao/email_result%20-%20edited.png)
 
@@ -395,11 +401,11 @@ Example:
 ![emails_client_example](images/enhao/email_client-edited.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
-Similar to <code>delete_student</code>, you can also use <code>find_student</code> command after step 1 to filter the list of students you want.<br>
-The concatenated string displayed will be based on the current list.<br>
+Similar to <code>edit_student</code>, you can also use <code>find_student</code> command after step 1 to filter the list of students you want.<br>
+The email addresses displayed will be based on the current list.<br>
 (E.g. If you only want the the email addresses of <code>Alex Yeoh</code>, <code>David Li</code> and <code>Roy Balakrishnan</code> from the sample data,
 , you can use <code>find_student Alex David Roy</code> and <code>emails</code>
-to get the concatenated string of the 3 students' email addresses.)
+to get the concatenated text of the 3 students' email addresses.)
 </div>
 
 
@@ -508,7 +514,7 @@ Example:
 
 ![fee_example](images/enhao/fee%20-%20Edited.PNG)
 
-3. The result display box should return John Doe monthly fee for March 2021.
+3. The result display box displays John Doe's monthly fee for March 2021.
 
 ![fee_result_example](images/enhao/fee_result%20-%20Edited.PNG)
 
