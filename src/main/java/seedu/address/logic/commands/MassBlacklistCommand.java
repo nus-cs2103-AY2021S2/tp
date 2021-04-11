@@ -30,13 +30,8 @@ public class MassBlacklistCommand extends Command {
     public static final String MESSAGE_MASS_BLACKLIST_SUCCESS = "Successfully blacklisted "
             + "all persons within the index range %1$d-%2$d";
 
-<<<<<<< Updated upstream
     public static final String MESSAGE_MASS_UNBLACKLIST_SUCCESS = "Successfully unblacklisted "
             + "all contacts within the index range %1$d-%2$d";
-=======
-    public static final String MESSAGE_MASS_UNBLACKLIST_SUCCESS = "Successfully removed "
-            + "all persons within the index range %1$d-%2$d from the blacklist";
->>>>>>> Stashed changes
 
     private final Index startIndex;
     private final Index endIndex;
