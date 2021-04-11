@@ -759,19 +759,19 @@ There are 3 ways to check out the calendar.
 <br>
 1. You can type `calendar` in the command box as shown below.
 <br>
-![calendar1](images/Calendar1.png)
+![calendar1](images/calendar1.png)
 <br>
 <br>
 
 2. Alternatively, you may type shortcut `C` in the command box as shown below.
 <br>
-![calendar2](images/Calendar2.png)
+![calendar2](images/calendar2.png)
 <br>
 <br>
 
 3. You may also click on the drop out calendar menu.
 <br>
-![calendar3](images/Calendar3.png)
+![calendar3](images/calendar3.png)
 <br>
 <br>
 
