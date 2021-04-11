@@ -243,7 +243,7 @@ Displays list of all students and all sessions in TutorBuddy.
 
 Format: `list` <br>
 
-For example:
+Example:
 1. Type in the command `list` and press <kbd>Enter</kbd>.
 2. All students and sessions on their respective list view on the Tuition tab.
 ![list](images/command_list.png)
@@ -259,7 +259,7 @@ Run the <code>clear</code> command to start working with TutorBuddy in a clean s
 
 Format: `clear`
 
-For example:
+Example:
 1. Type in the command `clear` and press <kbd>Enter</kbd>.
 2. All data in TutorBuddy will be wiped clean.
 ![clear_command](images/clear_command.png)
