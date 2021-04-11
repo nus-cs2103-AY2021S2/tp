@@ -1,23 +1,28 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Edeline's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: ParentPal
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ParentPal is a desktop app for managing your children’s contacts and their related appointments. 
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to sort contacts.
+  * What it does: allows the user to sort the contact list in alphabetical or chronological order.
+  * Justification: This feature helps users keep their contact list organised in whichever way they want, 
+    and is a foundational function that users expect to have when they store a lot of information.
+  * Highlights: 
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to favourite contacts and list favourited contacts.
+  * What it does: allows the user to favourite or unfavourite contacts in the contact list.
+  * Justification: This feature makes the process of finding frequently contacted people much easier.
+  * Highlights: This enhancement affected the list command as it can now accept arguments in terms of options of what to list.
+    It required analysis of design alternatives as there were multiple ways to implement it.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=edelinetenges&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
