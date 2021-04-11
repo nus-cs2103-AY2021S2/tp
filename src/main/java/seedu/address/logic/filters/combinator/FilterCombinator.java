@@ -53,7 +53,7 @@ public class FilterCombinator implements Predicate<Customer> {
 
 
     private Node createTree(String description) {
-        description = description.trim();
+        description = " " + description + " ";
 
         if (description.replace('[', ' ').replace(']', ' ').trim().isEmpty()) {
             throw new IllegalArgumentException("Incorrect formatting 1 " + description.length());
@@ -149,7 +149,8 @@ public class FilterCombinator implements Predicate<Customer> {
                     throw new IllegalArgumentException("Incorrect formatting 3");
                 }
                 operator.setChild(upper);
-                nodeStack.push(operator);
+
+                return operator;
             }
 
             Node first = nodeStack.pop();
