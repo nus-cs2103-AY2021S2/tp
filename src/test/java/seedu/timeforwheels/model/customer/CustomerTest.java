@@ -34,7 +34,7 @@ public class CustomerTest {
         // same name, all other attributes different -> returns true
         Customer editedAlice = new CustomerBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HEAVY).build();
-        assertTrue(ALICE.isSameCustomer(editedAlice));
+        assertFalse(ALICE.isSameCustomer(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new CustomerBuilder(ALICE).withName(VALID_NAME_BOB).build();
