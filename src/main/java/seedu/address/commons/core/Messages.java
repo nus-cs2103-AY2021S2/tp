@@ -26,7 +26,7 @@ public class Messages {
     public static final String MESSAGE_NAME_DOES_NOT_EXIST = "The name provided does not exist!";
     //-------------------------------------
     public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Edited Contact: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONTACT = "The contact provided does not exist!";
+    public static final String MESSAGE_DUPLICATE_CONTACT = "The contact provided already exists in the address book.";
     public static final String MESSAGE_CONTACT_NAME_DOES_NOT_EXIST = "The contact name provided does not exist!";
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

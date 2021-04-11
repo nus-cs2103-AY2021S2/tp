@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_CONTACT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
 
@@ -33,7 +34,7 @@ public class AddContactCommandTest {
         Contact validContact = new ContactBuilder().build();
         AddContactCommand addContactCommand = new AddContactCommand(validContact);
         model.addContact(validContact);
-        String expectedMsg = AddContactCommand.MESSAGE_DUPLICATE_CONTACT;
+        String expectedMsg = MESSAGE_DUPLICATE_CONTACT;
         assertThrows(CommandException.class, expectedMsg, () -> addContactCommand.execute(model));
     }
     @Test
