@@ -110,8 +110,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean deletePassenger(Passenger passenger) {
-        return addressBook.removePassenger(passenger);
+    public void deletePassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        addressBook.removePassenger(passenger);
     }
 
     @Override

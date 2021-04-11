@@ -142,7 +142,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean deletePassenger(Passenger passenger) {
+        public boolean hasPoolWithPassenger(Passenger passenger) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePassenger(Passenger passenger) {
             throw new AssertionError("This method should not be called.");
         }
 

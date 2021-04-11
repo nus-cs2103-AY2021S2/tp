@@ -54,8 +54,8 @@ public class PoolCommand extends Command {
     public static final String MESSAGE_POOL_SUCCESS_WITH_WARNING = "Successfully created pool: %s, %s. \nNOTE: "
             + "There are passengers with time differences of more than 15 minutes with the pool time.";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal.";
-    public static final String MESSAGE_POOLS_CONTAIN_PERSON = "One or more passengers specified are already assigned " +
-            "to a pool.";
+    public static final String MESSAGE_POOLS_CONTAIN_PERSON = "One or more passengers specified are already assigned "
+            + "to a pool.";
     public static final String MESSAGE_TRIPDAY_MISMATCH = "One or more of the passengers specified "
             + "have a trip day that does not match this pool driver's trip day.";
 

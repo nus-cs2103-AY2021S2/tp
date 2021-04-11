@@ -76,9 +76,8 @@ public interface Model {
     /**
      * Deletes the given passenger.
      * The passenger must exist in the address book.
-     * @return true if the passenger was deleted, false otherwise.
      */
-    boolean deletePassenger(Passenger passenger);
+    void deletePassenger(Passenger passenger);
 
     /**
      * Deletes the given pool.
