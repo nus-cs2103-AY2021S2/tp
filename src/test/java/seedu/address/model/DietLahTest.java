@@ -23,7 +23,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class DietLahTest {
 
     private final DietLah dietLah = new DietLah();
 
@@ -38,7 +38,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyDietLah_replacesData() {
         DietLah newData = getTypicalDietLah();
         dietLah.resetData(newData);
         assertEquals(newData, dietLah);
@@ -50,7 +50,7 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        DietLahStub newData = new DietLahStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> dietLah.resetData(newData));
     }
@@ -61,18 +61,18 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInDietLah_returnsFalse() {
         assertFalse(dietLah.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInDietLah_returnsTrue() {
         dietLah.addPerson(ALICE);
         assertTrue(dietLah.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInDietLah_returnsTrue() {
         dietLah.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -85,12 +85,12 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyDietLah whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyDietLah {
+    private static class DietLahStub implements ReadOnlyDietLah {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        DietLahStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

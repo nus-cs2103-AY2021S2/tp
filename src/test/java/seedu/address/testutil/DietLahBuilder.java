@@ -21,7 +21,7 @@ public class DietLahBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code DietLah} that we are building.
      */
     public DietLahBuilder withPerson(Person person) {
         dietLah.addPerson(person);

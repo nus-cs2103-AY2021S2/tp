@@ -83,7 +83,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonDietLahIoExceptionThrowingStub
         JsonDietLahStorage dietLahStorage =
                 new JsonDietLahIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionDietLah.json"));
         JsonUserPrefsStorage userPrefsStorage =

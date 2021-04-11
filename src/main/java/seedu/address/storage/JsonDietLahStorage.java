@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyDietLah;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access DietLah data stored as a json file on the hard disk.
  */
 public class JsonDietLahStorage implements DietLahStorage {
 
@@ -45,14 +45,14 @@ public class JsonDietLahStorage implements DietLahStorage {
     public Optional<ReadOnlyDietLah> readDietLah(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableDietLah> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableDietLah> jsonDietLah = JsonUtil.readJsonFile(
                 filePath, JsonSerializableDietLah.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonDietLah.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonDietLah.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

@@ -20,7 +20,7 @@ import seedu.address.model.DietLah;
 import seedu.address.model.ReadOnlyDietLah;
 
 public class JsonDietLahStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDietLahStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,22 +47,22 @@ public class JsonDietLahStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readDietLah("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDietLah("notJsonFormatDietLah.json"));
     }
 
     @Test
     public void readDietLah_invalidPersonDietLah_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDietLah("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDietLah("invalidPersonDietLah.json"));
     }
 
     @Test
     public void readDietLah_invalidAndValidPersonDietLah_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDietLah("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDietLah("invalidAndValidPersonDietLah.json"));
     }
 
     @Test
     public void readAndSaveDietLah_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempDietLah.json");
         DietLah original = getTypicalDietLah();
         JsonDietLahStorage jsonDietLahStorage = new JsonDietLahStorage(filePath);
 
@@ -87,7 +87,7 @@ public class JsonDietLahStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveDietLah_nullDietLah_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveDietLah(null, "SomeFile.json"));
     }
 
@@ -104,7 +104,7 @@ public class JsonDietLahStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveDietLah_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveDietLah(new DietLah(), null));
     }
 }

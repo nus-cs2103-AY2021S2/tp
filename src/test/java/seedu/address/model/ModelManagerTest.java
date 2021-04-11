@@ -65,12 +65,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setDietLahFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setDietLahFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setDietLahFilePath_validPath_setsDietLahFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setDietLahFilePath(path);
         assertEquals(path, modelManager.getDietLahFilePath());
@@ -82,12 +82,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInDietLah_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInDietLah_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
@@ -99,16 +99,16 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        DietLah addressBook = new DietLahBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        DietLah differentAddressBook = new DietLah();
+        DietLah dietLah = new DietLahBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        DietLah differentDietLah = new DietLah();
         UserPrefs userPrefs = new UserPrefs();
         User user = new User();
 
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, new UniqueFoodList(),
+        modelManager = new ModelManager(dietLah, new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), userPrefs, user);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, new UniqueFoodList(),
+        ModelManager modelManagerCopy = new ModelManager(dietLah, new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), userPrefs, user);
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -121,14 +121,14 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, new UniqueFoodList(),
+        // different dietLah -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentDietLah, new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), userPrefs, user)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, new UniqueFoodList(),
+        assertFalse(modelManager.equals(new ModelManager(dietLah, new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), userPrefs, user)));
 
         // resets modelManager to initial state for upcoming tests
@@ -137,7 +137,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setDietLahFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, new UniqueFoodList(),
+        assertFalse(modelManager.equals(new ModelManager(dietLah, new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), differentUserPrefs, user)));
     }
 }

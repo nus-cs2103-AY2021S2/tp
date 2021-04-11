@@ -40,7 +40,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given dietLah and userPrefs.
      */
     public ModelManager(ReadOnlyDietLah dietLah, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList,
                         DietPlanList dietPlanList, ReadOnlyUserPrefs userPrefs, User user) {
@@ -103,7 +103,7 @@ public class ModelManager implements Model {
         userPrefs.setDietLahFilePath(dietLahFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== DietLah ================================================================================
 
     @Override
     public void setDietLah(ReadOnlyDietLah dietLah) {

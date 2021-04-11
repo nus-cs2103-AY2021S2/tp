@@ -47,7 +47,7 @@ public class DietLah implements ReadOnlyDietLah {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}. Adds
+     * Creates an DietLah using the Persons in the {@code toBeCopied}. Adds
      * the associated {@code FoodList} {@code FoodIntakeList}.
      */
     public DietLah(ReadOnlyDietLah toBeCopied,
@@ -72,7 +72,7 @@ public class DietLah implements ReadOnlyDietLah {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code DietLah} with {@code newData}.
      */
     public void resetData(ReadOnlyDietLah newData) {
         requireNonNull(newData);
@@ -110,7 +110,7 @@ public class DietLah implements ReadOnlyDietLah {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code DietLah}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {

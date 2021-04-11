@@ -115,7 +115,7 @@ public class MainApp extends Application {
             dietPlanListOptional = storage.readDietPlanList();
             userOptional = storage.readUser();
             if (!dietLahOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample DietLah");
             }
             if (!uniqueFoodListOptional.isPresent()) {
                 logger.info("Food data file not found. Will be starting fresh");
@@ -136,7 +136,7 @@ public class MainApp extends Application {
             dietPlanList = dietPlanListOptional.orElseGet(templateInitializer::getDietPlanListTemplate);
             user = userOptional.orElse(initializer.createUser(uniqueFoodList, foodIntakeList));
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty DietLah");
             TemplateInitializer initializer = new TemplateInitializer();
             initialData = new DietLah();
             uniqueFoodList = initializer.getUniqueFoodListTemplate();
@@ -144,7 +144,7 @@ public class MainApp extends Application {
             dietPlanList = initializer.getDietPlanListTemplate();
             user = initializer.createUser(uniqueFoodList, foodIntakeList);
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty DietLah");
             TemplateInitializer initializer = new TemplateInitializer();
             initialData = new DietLah();
             uniqueFoodList = initializer.getUniqueFoodListTemplate();
@@ -214,7 +214,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty DietLah");
             initializedPrefs = new UserPrefs();
         }
 

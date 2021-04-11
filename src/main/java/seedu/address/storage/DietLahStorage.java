@@ -18,7 +18,7 @@ public interface DietLahStorage {
     Path getDietLahFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyDietLah}.
+     * Returns DietLah data as a {@link ReadOnlyDietLah}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -32,10 +32,10 @@ public interface DietLahStorage {
 
     /**
      * Saves the given {@link ReadOnlyDietLah} to the storage.
-     * @param addressBook cannot be null.
+     * @param dietLah cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveDietLah(ReadOnlyDietLah addressBook) throws IOException;
+    void saveDietLah(ReadOnlyDietLah dietLah) throws IOException;
 
     /**
      * @see #saveDietLah(ReadOnlyDietLah)

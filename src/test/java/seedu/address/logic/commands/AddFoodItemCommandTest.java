@@ -87,7 +87,7 @@ public class AddFoodItemCommandTest {
         }
 
         @Override
-        public void setDietLahFilePath(Path addressBookFilePath) {
+        public void setDietLahFilePath(Path dietLahFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -16,7 +16,7 @@ import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.user.User;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of DietLah data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -30,7 +30,7 @@ public class StorageManager implements Storage {
     private UserStorage userStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UniqueFoodListStorage}
+     * Creates a {@code StorageManager} with the given {@code DietLahStorage}, {@code UniqueFoodListStorage}
      * and {@code UserPrefStorage}.
      */
     public StorageManager(DietLahStorage dietLahStorage, UniqueFoodListStorage uniqueFoodListStorage,
@@ -62,7 +62,7 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-    // ================ AddressBook methods ==============================
+    // ================ DietLah methods ==============================
 
     @Override
     public Path getDietLahFilePath() {
