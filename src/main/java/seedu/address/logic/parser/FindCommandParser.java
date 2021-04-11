@@ -168,7 +168,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
 
             if (argument.length() > 0) {
-                outputList.add(argument.trim());
+                String formattedArgument = argument.trim().toLowerCase();
+                outputList.add(formattedArgument);
             }
         }
 
