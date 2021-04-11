@@ -39,9 +39,9 @@
                         <HBox.margin>
                             <Insets left="5.0" />
                         </HBox.margin>
-                  <font>
-                     <Font name="SansSerif Regular" size="7.0" />
-                  </font>
+                        <font>
+                            <Font name="SansSerif Regular" size="7.0" />
+                        </font>
                     </Button>
                     <GridPane.margin>
                         <Insets />
@@ -66,19 +66,19 @@
                         <FXCollections fx:factory="observableArrayList">
                             <UG action="Add Dog" format="add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]..." />
                             <UG action="Add Owner" format="add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..." />
-                            <UG action="Add Program" format="add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]..." />
+                            <UG action="Add Program" format="add program n/PROGRAM_NAME [s/SESSION_DATETIME]... [t/TAG]..." />
                             <UG action="Delete" format="delete dog DOG_ID | owner OWNER_ID | program PROGRAM_ID" />
+                            <UG action="Drop" format="drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID [p/PROGRAM_ID]..." />
                             <UG action="Edit Dog" format="edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]..." />
                             <UG action="Edit Owner" format="edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..." />
-                            <UG action="Edit Program" format="edit program PROGRAM_ID [n/PROGRAM_NAME] [s/DATE_OF_SESSION]... [t/TAG]..." />
+                            <UG action="Edit Program" format="edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_DATETIME]... [t/TAG]..." />
                             <UG action="Enrol" format="enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID [p/PROGRAM_ID]..." />
-                            <UG action="Drop" format="drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID [p/PROGRAM_ID]..." />
-                            <UG action="Schedule" format="schedule [DATE]" />
-                            <UG action="List" format="list dog | owner | program" />
-                            <UG action="Find" format="find KEYWORD [MORE_KEYWORDS]..." />
-                            <UG action="View" format="view ENTITY_ID" />
-                            <UG action="Help" format="help" />
                             <UG action="Exit" format="exit" />
+                            <UG action="Find" format="find KEYWORD [MORE_KEYWORDS]..." />
+                            <UG action="Help" format="help" />
+                            <UG action="List" format="list dog | owner | program" />
+                            <UG action="Schedule" format="schedule [DATE]" />
+                            <UG action="View" format="view ENTITY_ID" />
                         </FXCollections>
                     </items>
                 </TableView>

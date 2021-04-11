@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
+* Table of Contents 
 {:toc}
 
 # Overview
@@ -14,7 +14,7 @@ This user guide contains (but not limited to) a [quick start guide](#quick-start
 
 ## Introduction
 
-Managing a business is definitely not easy, so imagine if your business involves taking care of countless energetic furpals. That's right! We are talking about the job of dog school managers.
+Managing a business is definitely not easy. Imagine if your business involves taking care of countless energetic furpals. That's right! We are talking about the job of dog school managers.
 
 As dog schools and dog day cares rise in popularity due to the hectic work life of dog owners, the operations of dog schools can quickly get out of hand. But no worries, we have Pawbook to save the day!
 
@@ -70,7 +70,7 @@ Syntax | Meaning | Example | Explanation
 normal font | Command keyword | `schedule` | -
 CAPS_WITH_UNDERSCORE | Compulsory parameter | `delete dog DOG_ID` | `delete dog` are the command keywords, while DOG_ID is compulsory and any valid dog ID can be provided.
 [SQUARE BRACKETS] | Optional parameter | [t/TAG] | When adding a dog for example, the tags to be added are optional.
-Ellipsis | Repeatable parameters | [t/TAG]... | When adding a dog for example, multiple tags can be supplied and all will be recognized, unlike non-repeatable parameters which only the last occurrence of the paramter will be recognized. 
+Ellipsis | Repeatable parameters | [t/TAG]... | When adding a dog for example, multiple tags can be supplied and all will be recognized, unlike non-repeatable parameters which only the last occurrence of the paramter will be recognized.
 
 ## GUI Layout
 
@@ -136,8 +136,8 @@ Format:
 
 ```
 add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...
-add owner n/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
-add program n/PROGRAM_NAME [s/SESSION_TIME]... [t/TAG]...
+add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...
+add program n/PROGRAM_NAME [s/SESSION_DATETIME]... [t/TAG]...
 ```
 
 Note:
@@ -176,7 +176,7 @@ Examples:
 </div>
 
 To add a dog called Oreo, with breed Jack Russell Terrier, date of birth 20 August 2020, sex female, belonging to the owner with ID 1, tags shy and docile,
-type `add dog n/Oreo b/Jack Russell Terrier d/2-02-2020 s/Female o/1 t/shy t/docile` into the commmand box. 
+type `add dog n/Oreo b/Jack Russell Terrier d/2-02-2020 s/Female o/1 t/shy t/docile` into the commmand box.
 ![Add Command](images/AddCommandScreenshot1.png)
 
 If successfully added, Pawbook will display a success message as shown here.
@@ -220,7 +220,7 @@ The ID for all entities is displayed in the first line beside its name.
 ![ID](images/DeleteCommandIDScreenshot.png)
 
 To delete dog 3 from Pawbook, type `delete dog 3` into the command box.
-![Delete Command](images/DeleteCommandScreenshot1.png) 
+![Delete Command](images/DeleteCommandScreenshot1.png)
 
 If successfully deleted, Pawbook will display a success message as shown here.
 ![Delete Command Result](images/DeleteCommandScreenshot2.png)
@@ -235,7 +235,7 @@ Format:
 ```
 edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...
 edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
-edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_TIME]... [t/TAG]...
+edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_DATETIME]... [t/TAG]...
 ```
 
 Note:
@@ -369,7 +369,7 @@ Examples:
    Command: `schedule`
 2. Display the schedule for 1st April 2021:
    Command: `schedule 01-04-2021`
-   
+
 To view the schedule for 01-02-2021, type `schedule 01-02-2021` into the command box.
 ![Schedule Command](images/ScheduleCommandScreenshot1.PNG)
 
@@ -531,10 +531,10 @@ A: Pawbook does not access any web services and can be run completely offline.
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/SESSION_TIME]... [t/TAG]...`
+**Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/SESSION_DATETIME]... [t/TAG]...`
 **Delete** | 1. `delete dog DOG_ID`<br> 2. `delete owner OWNER_ID`<br> 3. `delete program PROGRAM_ID`
 **Drop** | 1. `drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 2. `drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
-**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_TIME]... [t/TAG]...`
+**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_DATETIME]... [t/TAG]...`
 **Enrol** | 1. `enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]...`
