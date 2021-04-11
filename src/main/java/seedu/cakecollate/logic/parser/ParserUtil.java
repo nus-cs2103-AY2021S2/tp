@@ -263,9 +263,6 @@ public class ParserUtil {
     public static OrderItem parseOrderItem(String orderItemType) throws ParseException {
         requireNonNull(orderItemType);
         String trimmedOrderItemDescription = orderItemType.trim();
-        if (trimmedOrderItemDescription.isEmpty()) {
-            throw new ParseException(OrderDescription.MESSAGE_EMPTY);
-        }
         if (trimmedOrderItemDescription.length() > ORDER_DESCRIPTION_LENGTH) {
             throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
         }
@@ -290,9 +287,6 @@ public class ParserUtil {
         String trimmedDays = days.trim();
         if (isMoreThanOneInput) {
             throw new ParseException(RemindCommand.MESSAGE_MULTIPLE_INPUTS);
-        }
-        if (trimmedDays.isEmpty()) {
-            throw new ParseException(RemindCommand.MESSAGE_EMPTY);
         }
         if (!StringUtil.isUnsignedInteger(trimmedDays)) {
             throw new ParseException(

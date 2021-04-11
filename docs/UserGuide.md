@@ -13,9 +13,6 @@ https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html#1-introduction
 
 ## **1. Introduction**
 Welcome to our User Guide and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
-While there may be other modern applications such as Microsoft Excel that may be able to help you keep track of your data, they may not be the most efficient or simplest
-way for you to manage your data. 
-
 CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
 1. Order management
 2. Order Item management
@@ -23,6 +20,8 @@ CakeCollate promises to be an efficient desktop application that allows you to e
 4. Checking the delivery status of your orders
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
+
+Let us take you through how to user our CakeCollate in the rest of our user guide.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **2. Using the User Guide**
@@ -41,9 +40,11 @@ CakeCollate.
 In [Section 4: Features](#4-features), you can find instructions on what are the existing features and commands in CakeCollate
 and how you can use them to suit your needs.
 
-In [Section 5: FAQ](#5-faq), you can find solutions to commonly asked questions.
+In [Section 5: Glossary](#5-glossary), you can find some commonly used terms from our user guide and app at a glance.
 
-In [Section 6: Command Summary](#6-command-summary), you can find a summary to all of existing CakeCollate's commands.
+In [Section 6: FAQ](#6-faq), you can find solutions to commonly asked questions.
+
+In [Section 7: Command Summary](#7-command-and-prefix-summary), you can find a summary to all of existing CakeCollate's commands.
 
 
 ### **2.2 Reading the User Guide**
@@ -52,6 +53,14 @@ commands may receive.
 
 #### **2.2.1 Sections of the UI**
 ![User Interface](images/Annotated%20UI.png)
+
+1. The User Input Box is where you can type in commands. Commands are what help you interact with CakeCollate, for example, you use commands to tell CakeCollate to add a particular order, or display specific orders.
+
+1. The Result Box is where information is provided for you. If your command is valid, a successful message would appear. If your commands were invalid (for example, there were some spelling mistakes), then there would be an error message. 
+
+1. The Orders Box is where all the orders that you have added to CakeCollate are displayed.
+
+1. The Order Items Box is where all the different type of order items you have already entered into CakeCollate are displayed. You can think of it as a product catalogue. 
 
 #### **2.2.2 Formatting of Commands**
 
@@ -116,15 +125,22 @@ Prefix: `d/`
   I.e. If you entered an order with a `DELIVERY_DATE` for tomorrow, the order will not be deleted even if you launch the application again in two days.<br>
 :information_source: You do not have to worry about losing track of overdue orders.<br>
 
-**:exclamation: For advanced users:** You will be able to enter a past delivery date into the save file `cakecollate.json`. As such, you are recommended to add/edit a delivery date through the application itself.
+**:exclamation: For advanced users:** You will be able to enter a delivery date in the past to an order that has yet to be delivered into the storage file, `cakecollate.json`. The app will not be able to warn you that you have added an invalid delivery date. As such, you are recommended to add/edit a delivery date through the application itself.
 
 ##### `INDEX`
-Indexes are used to specify specific orders in CakeCollate. The index number can be found beside the 'name' field 
-in [order item box](#221-sections-of-the-ui).<br>
+Each order is given a particular index so you can easily refer an order for certain commands. The index of an order is found on the left side of the gui
+in the [orders box](#221-sections-of-the-ui).<br>
 Prefix: `none`
 * It can only contain positive integers greater than 1, but should not be greater than the total number of orders in 
 the Orders Box.
   E.g. `1`,`20`,`35`
+
+##### `INDEXES`
+
+Certain commands allow you to enter multiple [index parameters](#index), including the [delete command](#deleting-an-order-delete), which allows you to delete multiple orders at one go.
+
+Prefix: `none`
+* To specific multiple indexes, you can separate them with a space. For example `1 2 5`.
   
 ##### `EMAIL`
 The email of the customer who has placed the order.<br>
@@ -154,7 +170,7 @@ Prefix: `o/`
   E.g. `Durian Cake`, `Blackforest Cake`
 
 ##### `ORDER_ITEM_INDEXES`
-The order item index of the order item table for the order.<br>
+The order item index of the order item table.<br>
 Prefix: `oi/`
 * This refers to indexes of the order item table in the [order item box](#221-sections-of-the-ui).
 * This can be used with or as a replacement for `ORDER_DESCRIPTION`, given the order item in the table matches the order description you want to add/edit.
@@ -195,15 +211,12 @@ Prefix: `t/`
 1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. 
-You can use the sample data pre-loaded in the application to get play around and get used to the available commands. <br>
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** You can remove all the sample data using the `clear` command once you are ready to use CakeCollate.<br>
-</div> <br>
-   
-![Ui](images/Ui.png)
+You can use the sample data pre-loaded in the application to get play around and get used to the available commands. <br><br> 
+
+    ![Ui](images/Ui.png)
 
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all orders in the CakeCollate database.
@@ -218,7 +231,7 @@ You can use the sample data pre-loaded in the application to get play around and
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#4-features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -250,11 +263,13 @@ Examples:
 
 Advanced Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...`
 
-* The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` parameter is optional, but you need to include an `ORDER_ITEM_INDEXES` parameter.
+* The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` parameter, but you need to include an `ORDER_ITEM_INDEXES` parameter.
 
 * This alternative format is aimed at saving you some typing. If an order description you want to type already exists in the order items table of the GUI, you can specify its index instead of typing its entire name out.
 
 * For example, for an order that involves chocolate cake, if `chocolate cake` exists in the order items table as shown in the screenshot below, instead of typing `o/chocolate cake`, you can type out `oi/1`
+
+* As such, you can interpret the order item table of the gui as being a shortcut table.
 
 [comment]: <> ({screenshot})
 
@@ -266,7 +281,16 @@ Examples
 
 :information_source: **How are items added to the order items table?**<br>
 
-When you specify an order description using the prefix `o/`, e.g. `o/chocolate cake`, the app automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
+* When you specify an order description using the prefix `o/`, e.g. `o/chocolate cake`, the app automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
+
+* If you do want to add items into the order items table, you can refer to the [add item command](#adding-order-items-additem) below.
+
+:information_source: **How do you specify that a cake has been ordered multiple times?**<br>
+
+* If a user orders a chocolate cake multiple times, you can repeat the `o/` prefix twice, e.g. `o/chocolate cake o/chocolate cake`.
+
+* Alternatively, if the chocolate cake is in index 1 of the order items table, you can use `oi/1 1`.
+
 
 ##### Adding a special request to an order: `request`
 
@@ -514,23 +538,25 @@ If your changes to the data file makes its format invalid, CakeCollate will disc
 
 **Q**: How do I install Java?<br>
 **A**: [Click Here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) and download java based 
-on the operating system of the computer you are running cakecollate on.
+on the operating system of the computer you are running CakeCollate on.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **7. Command and prefix summary**
 
+[comment]: <> (Would something along the lines of `Setting order details` and `Displaying specific orders` improve the next two headings??)
+
 ### Order Interaction
 
 Action  | Format
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` 
-**Delete** | `delete INDEXES`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` <br> <br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/ORDER_DESCRIPTION]... [t/TAG]...`
 **Request** | `request INDEX r/REQUEST` 
 **Undelivered** | `undelivered INDEXES`
 **Delivered** | `delivered INDEXES`
 **Cancelled** | `cancelled INDEXES`
+**Delete** | `delete INDEXES`
 
 ### Order Functionalities
 
