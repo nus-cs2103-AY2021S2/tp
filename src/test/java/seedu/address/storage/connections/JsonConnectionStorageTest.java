@@ -80,13 +80,11 @@ public class JsonConnectionStorageTest {
         readBack = jsonConnectionStorage.readConnection(filePath, meetingBook, addressBook).get();
         assertEquals(original, readBack);
 
-        /**
-        // Save and read without specifying file path
-        original.addMeeting(MEETING1);
-        jsonMeetingBookStorage.saveMeetingBook(original); // file path not specified
-        readBack = jsonMeetingBookStorage.readMeetingBook().get(); // file path not specified
-        assertEquals(original, new MeetingBook(readBack));
-         **/
+
+        //check if default no filepath specified works.
+        jsonConnectionStorage.saveConnection(original); // file path not specified
+        readBack = jsonConnectionStorage.readConnection(meetingBook, addressBook).get(); // file path not specified
+        assertEquals(original, readBack);
     }
 
 }

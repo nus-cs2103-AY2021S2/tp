@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.group.Group;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.person.AddressBook;
@@ -31,6 +32,7 @@ public class ModelManagerTest {
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
         assertEquals(new MeetingBook(), new MeetingBook(modelManager.getMeetingBook()));
+        assertEquals(new PersonMeetingConnection(), modelManager.getPersonMeetingConnection());
     }
 
     @Test
