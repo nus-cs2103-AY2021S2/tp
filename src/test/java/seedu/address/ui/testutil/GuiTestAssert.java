@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.ui.EventCard.MESSAGE_EVENT_NON_REPEATABLE;
 import static seedu.address.ui.EventCard.MESSAGE_EVENT_REPEATABLE;
 
-import guitests.guihandles.CompletableDeadlineCardHandle;
-import guitests.guihandles.CompletableTodoCardHandle;
 import guitests.guihandles.ContactCardHandle;
+import guitests.guihandles.DeadlineCardHandle;
 import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.TodayDeadlineCardHandle;
 import guitests.guihandles.TodayEventCardHandle;
+import guitests.guihandles.TodoCardHandle;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.contact.Contact;
@@ -41,7 +41,7 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedDeadline}.
      */
     public static void assertCardDisplaysCompletableDeadline(
-            CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
+            CompletableDeadline expectedDeadline, DeadlineCardHandle actualCard) {
         assertTrue(actualCard.equals(expectedDeadline));
     }
 
@@ -57,7 +57,7 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedCompletableTodo}.
      */
     public static void assertCardDisplaysCompletableTodo(
-            CompletableTodo expectedTodo, CompletableTodoCardHandle actualCard) {
+            CompletableTodo expectedTodo, TodoCardHandle actualCard) {
         assertTrue(actualCard.equals(expectedTodo));
     }
 

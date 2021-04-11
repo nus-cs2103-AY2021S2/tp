@@ -5,6 +5,6 @@
 
 <?import javafx.scene.layout.StackPane?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <Label text="Contacts" styleClass="cell_huge_label"/>
+  <Label text="Contact List" styleClass="cell_huge_label"/>
   <StackPane fx:id="contactListViewPlaceholder" styleClass="pane_with_background" VBox.vgrow="ALWAYS"/>
 </VBox>

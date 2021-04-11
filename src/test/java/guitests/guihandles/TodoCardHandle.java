@@ -3,12 +3,12 @@ package guitests.guihandles;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import seedu.address.model.task.CompletableTodo;
-import seedu.address.ui.CompletableDeadlineCard;
+import seedu.address.ui.DeadlineCard;
 
 /**
- * Provides a handle to a {@code CompletableTodoCard}.
+ * Provides a handle to a {@code TodoCard}.
  */
-public class CompletableTodoCardHandle extends NodeHandle<Node> {
+public class TodoCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
     private static final String DESCRIPTION_FIELD_ID = "#description";
     private static final String COMPLETED_FIELD_ID = "#completedLabel";
@@ -18,10 +18,10 @@ public class CompletableTodoCardHandle extends NodeHandle<Node> {
     private final Label completedLabel;
 
     /**
-     * Constructs a {@code CompletableTodoCardHandle} handler object.
-     * @param cardNode Node of {@code CompletableTodoCard}.
+     * Constructs a {@code TodoCardHandle} handler object.
+     * @param cardNode Node of {@code TodoCard}.
      */
-    public CompletableTodoCardHandle(Node cardNode) {
+    public TodoCardHandle(Node cardNode) {
         super(cardNode);
 
         idLabel = getChildNode(ID_FIELD_ID);
@@ -46,6 +46,6 @@ public class CompletableTodoCardHandle extends NodeHandle<Node> {
      */
     public boolean equals(CompletableTodo todo) {
         return getDescription().equals(todo.getDescription())
-                && getCompleted().equals(CompletableDeadlineCard.getTextToDisplay(todo.getIsDone()));
+                && getCompleted().equals(DeadlineCard.getTextToDisplay(todo.getIsDone()));
     }
 }

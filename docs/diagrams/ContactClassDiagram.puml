@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class ColabFolder
+Class ModelManager
+
+Package Contact {
+Class Contact
+Class Address
+Class Email
+Class Name
+Class Phone
+Class UniqueContactList
+}
+
+Package Tag {
+Class Tag
+}
+
+ModelManager o--> "          1" ColabFolder
+
+ColabFolder *--> "1" UniqueContactList
+UniqueContactList o-> "*" Contact
+Contact *--> Name
+Contact *--> Phone
+Contact *--> Email
+Contact *--> Address
+Contact *-down--> " *" Tag
+
+ModelManager -->"~* filtered list" Contact
+@enduml
