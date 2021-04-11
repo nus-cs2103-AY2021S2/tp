@@ -381,8 +381,9 @@ For appointments, it uses the following:
     * `AppointmentTimePredicate`
 
 For both `Appointment` and `Property`, `PocketEstateParser` will check for `find appointment` or `find property` in user input, 
-then invoke their respective `FindCommandParser`, which will then parse user inputs and create `Predicates` according to user input. 
-All `Predicates` are then put in a `List` and used to create a `PredicateList` for the respective types. The `PredicateList` is then 
+then invoke their respective `FindCommandParser`, which will then parse user inputs and create `Predicates` according to user input.  
+All `Predicates` are then put in a `List` and used to create a `PredicateList` for the respective types. If there are more than one of 
+the same predicates used, The `PredicateList` is then 
 used to create `FindPropertyCommand` or `FindAppointmentCommand`, which is returned to `LogicManager`. 
 
 `LogicManager` will call `Command#exceute`, and for all find commands, this will update the list of `Property` or `Appointment` 
