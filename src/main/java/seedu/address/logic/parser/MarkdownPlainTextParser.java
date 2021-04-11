@@ -24,8 +24,6 @@ public class MarkdownPlainTextParser {
                 handleLine(next);
             }
 
-            plainText.replaceAll("…\u200B", "…");
-
             return plainText;
         } else {
             return "error formatting";

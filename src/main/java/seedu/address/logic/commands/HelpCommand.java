@@ -135,8 +135,6 @@ public class HelpCommand extends Command {
                 currLine = reader.readLine();
             }
 
-            helpMessage.replaceAll("…\u200B", "…");
-
             reader.close();
         } catch (IOException e) {
             System.out.println("Error reading file: " + e);
@@ -146,7 +144,6 @@ public class HelpCommand extends Command {
     }
 
     private String commandSummaryParser(String info) {
-        // if (!info.startsWith("\u200B |")) {
         if (!info.contains("| **")) {
             String[] separatedInfo = info.split("\\|");
             String[] commandName = separatedInfo[0].split("\\*");

@@ -4,15 +4,15 @@ title: User Guide
 ---
 Hello! Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
 remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
-a centralised place to keep track of all their activities? Then ParentPal can be the app for you!
+a centralised place to keep track of all their activities? Then ParentPal could be the app for you!
 
-ParentPal is a **desktop app for managing your children's contacts and their related appointments,
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a
-Graphical User Interface (GUI).
+ParentPal is a **desktop app for managing your children's contacts and their related appointments, 
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
+Graphical User Interface (GUI). 
 If you can type fast, ParentPal can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,17 +30,30 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all contacts.
+   * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-    * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all contacts.
 
-    * **`exit`** : Exits the app.
+   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Understanding ParentPal
+
+### Expired appointments
+ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Should the appointment not appear red despite it having expired, click on the appointment box to refresh it.
+</div>
+
+![expiredAppt](images/expiredAppt.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -109,11 +122,11 @@ Format: `theme o/OPTION`
 ParentPal's theme is set to dark by default.
 </div>
 
-Currently available options for the [OPTION] field include:
+Currently available options for the [OPTION] field include: 
 * `light` Light theme
 * `dark` Dark theme
 
-Examples:
+Examples: 
 * `theme o/light` changes theme to a light theme.
 
 ### Address Book Commands
@@ -136,20 +149,22 @@ Examples:
 * `add n/John Doe p/98765432`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Adding/replacing tags to a contact: `tag`
+#### Adding/replacing tags to a contact: `tag` 
 
 Adds or replaces tags to the specified contact by index.
 
 Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]... [t/TAG]...`
 
-* Tags the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, ...
+* Tags the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list. 
+  The index must be a positive integer 1, 2, 3, ...
 
 Currently available options for the `[OPTION]` field include:
-* `rt` Replaces the currently existing tags with the given new set of tags
-
+* `replace` Replaces the currently existing tags with the given new set of tags 
+  
 Examples:
 *  `tag 4 t/School t/English` Adds the tags School and English to the 4th contact.
-*  `tag 2 o/rt tc/Alexa t/English` Replaces all existing tags of the 2nd contact with the child tag Alexa and the tag English.
+*  `tag 2 o/replace tc/Alexa t/English` Replaces all existing tags of the 2nd contact with the 
+   child tag Alexa and the tag English.
 
 
 #### Listing all contacts : `list`
@@ -176,14 +191,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]... [t
 * The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* You can remove the optional fields (phone, email and address) by typing `p/`, `e/` or `a/` without specifying any phone, email or address after it.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing `t/` or `tc/` without
-  specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
-
+    specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
+  
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+*  `edit 4 e/` Edits to remove the email of the 4th contact in the displayed contact list.
 
 #### Finding contacts: `find`
 
@@ -210,15 +227,15 @@ Example: find o/tag t/first t/second
 * Incomplete words will also be matched e.g. `Ale` will match `Alex`
 * Contacts with any field matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Alex David` will return `Alex Yeoh`, `David Li`
-* If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
+* If *n* contacts can be found, message "*n* Contact(s) listed!" will be displayed
   e.g. when 0 results are found, "0 Contact(s) listed!" is displayed
-
+  
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
+* `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
+  ![result for 'find alex annie'](images/findAlexAnnieResult.png)
+* `find o/phone 9927` return contacts whose phone number contains 9927 (partial matches will also be returned).
 
 
 #### Deleting a contact : `delete`
@@ -243,12 +260,12 @@ Contacts that are involved with appointments cannot be deleted.
 
 Sorts the address book in the order based on the given option.
 
-Format: `sort o/OPTION`
+Format: `sort o/OPTION` 
 
 Currently available options for the `[OPTION]` field include:
 * `name` Sorts by name (alphabetical order)
 * `date` Sorts by date added (chronological order)
-
+  
 Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
 * `sort o/date` returns the contact list sorted in chronological order.
@@ -325,6 +342,10 @@ ParentPal currently does not support checking for clashing appointments. Please 
 Examples:
 * `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
 
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+You cannot add an appointment which has the same name, date, time and address as an existing appointment.
+</div>
+
 #### Deleting an appointment : `deleteAppt`
 
 Deletes the specified appointment from the appointment book.
@@ -352,26 +373,26 @@ Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]... [tc/C
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags and contacts, the existing tags and contacts of the contact will be removed
+* When editing tags and contacts, the existing tags and contacts of the contact will be removed 
   i.e the operation is not cumulative.
-
+  
 Examples:
 
 * `editAppt 1 n/PSG meeting a/ABC Secondary School c/1` Edits the name and address of the 1st appointment to
-  be `PSG meeting` and `ABC Secondary School` respectively and replaces all related contacts with the 1st contact
-  on the contact list.
+be `PSG meeting` and `ABC Secondary School` respectively and replaces all related contacts with the 1st contact 
+on the contact list.
 
 #### Finding appointments: `findAppt`
 
-Find appointments based on the given option. If no option specified, all of an appointment's
+Find appointments based on the given option. If no option specified, all of an appointment's 
 fields will be searched and any keyword matches in any one of the fields will return that appointment.
 
 Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]...`
 
 Currently available options for the `[OPTION]` field include:
 * `name` Find by the name of the appointment
-* `child` Find by the child that the appointment is tagged to
-* `address` Find by address of the appointment
+* `child` Find by the child that the appointment is tagged to   
+* `address` Find by address of the appointment  
 * `date` Find by date of appointment
 * `contact` Find by name of the contacts involved in the appointment
 
@@ -380,11 +401,12 @@ Currently available options for the `[OPTION]` field include:
 * Incomplete words will also be matched e.g. `PT` will match `PTM`
 * Appointments with any field matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
-* If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed
+* If *n* appointments can be found, message "*n* Appointment(s) listed!" will be displayed
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed
 
 Examples:
-* `findAppt ptm` returns `PTM`
+* `findAppt ptm` returns appointments with any field containing `PTM`.
+* `findAppt o/contact annie` returns appointments with at least one contact whose name contains `annie`.
 
 #### Listing all appointments : `listAppt`
 
@@ -413,8 +435,8 @@ If your changes to the data file makes its format invalid, ParentPal will discar
 
 ### Exporting your data
 
-1. After running ParentPal at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file.
-2. Send this `data` folder to your other device.
+1. After running ParentPal at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file. 
+2. Send this `data` folder to your other device.  
 
 ### Importing your data
 
@@ -433,7 +455,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: What's the difference between a Child Tag and a Tag? <br>
-**A**: Child Tags are meant to represent your children, useful especially
+**A**: Child Tags are meant to represent your children, useful especially 
 if you have multiple children. Child Tags will always appear at the front of the list of Tags
 in the Address Book and are displayed in a different color to differentiate them. Any command
 that works with regular tags such as 'Find' will also work with Child Tags.
