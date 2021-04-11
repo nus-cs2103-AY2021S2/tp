@@ -408,7 +408,7 @@ command box with that last command.
 
 #### 4.3.5 API Response Length
 
-**Description:** Due to performance issues with JavaFX, the maximum length of API responses that will be returned to a user in the result display is set at 100000 characters. Responses beyond this length will be trimmed but the current limit is much more than enough for a vast majority of cases.
+**Description:** Due to performance issues with [JavaFX](#glossary-javafx), the **maximum length** of API responses that will be returned to a user in the result display is set at **100000 characters**. Responses beyond this length will be **trimmed** but the current limit is much more than enough for a vast majority of cases.
 
 <div style="page-break-after: always;"></div>
 
@@ -477,6 +477,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
 | **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
 | **int** | <a name="glossary-int"></a> A primitive data type of Java that has the maximum value of (2^31)-1 and the minimum value of -(2^31) |
+| **JavaFX** | <a name="glossary-javafx"></a> JavaFX is a set of Java graphics libraries for creating Java GUI applications |
 
 <div style="page-break-after: always;"></div>
 
