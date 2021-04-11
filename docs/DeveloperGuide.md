@@ -122,7 +122,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 <div markdown="span" class="alert alert-info">
 :information_source: **Diagram note:** <br>
 
-`XYZCommand` and `XYZCommandParser` are placeholder classes. See the diagram notes in the 
+`XYZCommand` and `XYZCommandParser` are placeholder classes. See the diagram notes in the
 [Logic component section](#logic-component) for more information.
 </div>
 
@@ -169,7 +169,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `LogicManager` uses the `AddressBookParser` to parse the user command. 
+1. `LogicManager` uses the `AddressBookParser` to parse the user command.
 1. `LogicManager` may consult the `AliasMapping` in the `Model` (not shown in the diagram above) in case the user
    uses an alias. How an alias is executed is detailed [here](#alias-execution).
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -181,7 +181,7 @@ The `UI` component,
    [here](#navigate-history).
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("idel 1")` API call.
-Many other commands have a similar flow, differing only by the specific command parser class, command class and 
+Many other commands have a similar flow, differing only by the specific command parser class, command class and
 interaction with the model.
 
 ![Interactions Inside the Logic Component for the `idel 1` Command](images/DeleteSequenceDiagram.png)
@@ -201,7 +201,7 @@ interaction with the model.
 * We omit specific details of models `Resident`, `Room`, `ResidentRoom`, `Issue`, `CommandHistory` and `Alias` as they are explained
 in greater detail in their specific sections.
 
-* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the 
+* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the
   lower level sub-packages are shown in separate zoomed-in diagrams.
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -212,7 +212,7 @@ The `Model`,
 * stores a `CommandHistory` object that represents all previous commands entered by the user.
 * stores an `AliasMapping` object that represents the mapping of aliases to actual commands.
 * stores the SunRez data in a `StatefulAddressBook`.
-    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.  
+    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.
 * exposes the following unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
     * `ObservableList<Resident>`
     * `ObservableList<Room>`
@@ -223,16 +223,16 @@ The section below zooms in a **little bit** on how the `ModelManager` and `Addre
 Finer details than what is shown in the section below can be seen under the implementation section of each of the models.
 
 
-#### Zoomed-in view of Room, Resident and ResidentRoom 
+#### Zoomed-in view of Room, Resident and ResidentRoom
 ![Zoomed in view of Room, Resident and ResidentRoom](images/high-level-models/ResidentRoomZoomIn.png)
 
-#### Zoomed-in view of Issue 
+#### Zoomed-in view of Issue
 ![Zoomed in view of Issue](images/high-level-models/IssueZoomIn.png)
 
-#### Zoomed-in view of CommandHistory 
+#### Zoomed-in view of CommandHistory
 ![Zoomed in view of CommandHistory](images/high-level-models/CommandHistoryZoomIn.png)
 
-#### Zoomed-in view of Alias 
+#### Zoomed-in view of Alias
 ![Zoomed in view of Alias](images/high-level-models/AliasZoomIn.png)
 
 
@@ -431,7 +431,7 @@ The `AddIssueCommand` inherits from the `Command` object and overrides the `exec
 
 The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
 
-##### Detailed execution pathway
+##### Execution pathway
 The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
 
 ![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
@@ -940,16 +940,16 @@ Use case ends.
 **Extensions**
 
 * 2a. There are no unassigned residents.
-    
+
     Use case ends.
 * 3a. The given resident or room does not exist.
-    * 3a1. SunRez shows an error message.   
-      
+    * 3a1. SunRez shows an error message.
+
         Use case resumes at step 2.
 
 * 3b. The given resident or room have already been assigned.
-    * 3b1. SunRez shows an error message. 
-      
+    * 3b1. SunRez shows an error message.
+
         Use case resumes at step 2.
 
 
@@ -974,7 +974,7 @@ Use case ends.
 
 * 3b. The given resident does not have an existing allocation.
     * 3b1. SunRez shows an error message.
-        
+
         Use Case resumes at step 2.
 
 ### UC-021 Access Command History
@@ -1094,7 +1094,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 ### Resident Data
 
 1. Adding residents
-    1. Prerequisites: There is no existing resident named `John Doe`. 
+    1. Prerequisites: There is no existing resident named `John Doe`.
     2. Test case: `radd n/John Doe p/98765432 e/johnd@example.com y/1` <br>
        Expected: Resident is added.
     3. Incorrect `radd` commands to try. <br>
@@ -1160,7 +1160,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
     4. Test case: `odel abc` <br>
        Expected: A message indicating the command format is invalid followed by proper usage instructions.
-       
+
 ### Issue
 
 1. Adding an issue
@@ -1349,7 +1349,7 @@ command history.
 
     4. Test case: `rdel 1` then `undo` then `rdel 1` then `redo` <br>
        Expected: An error message is shown, indicating that redo cannot be performed.
-       
+
     5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
        Expected: The `redo` operations undo the `undo` operations in reverse order.
 
