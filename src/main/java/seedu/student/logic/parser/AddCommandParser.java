@@ -57,7 +57,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         try {
             matriculationNumber = ParserUtil.parseMatric(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MatriculationNumber.MESSAGE_CONSTRAINTS));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
