@@ -38,11 +38,11 @@ Given below are my contributions to the project.
   
   * Developer Guide:
     * Added documentation for `quiz features` and `checking user attempts` (Pull requests:
-    [#98](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/98/files)
+    [#98](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/98/files),
     [#187](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/187))
     * Modified given architectural diagrams non-trivially to match our project (Pull request
     [#187](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/187))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#68](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/68), [#78](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/78) [#168](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/168)
+  * PRs reviewed (with non-trivial review comments): [#68](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/68), [#78](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/78), [#168](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/168)
   
