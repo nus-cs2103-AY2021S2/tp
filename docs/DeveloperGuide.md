@@ -407,14 +407,14 @@ list in the storage organised too.
 #### Motivation
 
 As an insurance agent, our target user is likely to always be meeting up with clients to discuss about their portfolios 
-and will like to have a faster way to use ClientBook to avoid wasting the clients' time. Having a shortcuts feature for 
+and may want to have a faster way to use ClientBook to avoid wasting the clients' time. Having a `Shortcut` feature for 
 ClientBook will give the user a way to be more efficient during meetings with clients.
 
 #### Implementation
 
 A new command `AddShortcutCommand` was created. It extends the abstract class `Command`, overriding and implementing its
-`execute` method. When `AddShortcutCommand#execute()` is called, a shortcut is added to the shortcut library. When a 
-shortcut is added, there will be a check for any existing shortcuts with the same name.
+`execute` method. When `AddShortcutCommand#execute()` is called, a `Shortcut` is added to the `ShortcutLibrary`. When a 
+`Shortcut` is added, there will be a check for any existing `Shortcut`s with the same name.
 
 
 Below is an example usage scenario and how the information and data are passed around at each step.
@@ -425,12 +425,12 @@ Below is an example usage scenario and how the information and data are passed a
 `LogicManager`.
 
 **Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return 
-a `AddShortcutCommand`, which would contain the name of the shortcut (in this case `aia`), followed by the command that 
-the name will be mapped to (in this case `find i/aia`).
+a `AddShortcutCommand`, which would contain the name of the `Shortcut` (in this case `aia`), followed by the `Command` 
+mapped to the `Shortcut` (in this case `find i/aia`).
 
-**Step 4.** `AddShortcutCommand`then executes, storing the shortcut in the shortcut library and returning a 
+**Step 4.** `AddShortcutCommand`then executes, storing the `Shortcut` in the `ShortcutLibrary` and returning a 
 `CommandResult`. This `CommandResult` contains the feedback string message which indicates to the user whether the 
-specified shortcut has been added successfully.
+specified `Shortcut` has been added successfully.
 
 **Step 5.** This `CommandResult` is passed back to `MainWindow` to be displayed to the user through the `ResultDisplay`.
 
@@ -440,10 +440,10 @@ Below is a sequence diagram illustrating the flow of this entire process.
 
 #### Design Considerations
 
-The shortcut feature was designed such that the shortcut library is stored separately from the address book in 
-`shortcutlibrary.json`. Hence, there is minimal dependency between existing components and components of the shortcuts 
-feature. It was also implemented in a way that there are checks performed for duplicate shortcuts and validity of the 
-commands mapped to the shortcuts.
+The `Shortcut` feature was designed such that the `ShortcutLibrary` is stored separately from the `AddressBook` in 
+`shortcutlibrary.json`. Hence, there is minimal dependency between existing components and components of the `Shortcut` 
+feature. It was also implemented in a way that there are checks performed to detect duplicate `Shortcut`s and the 
+validity of the `Command`s mapped to the `Shortcut`s.
 
 <br>
 
@@ -597,6 +597,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy insurance agent                       | edit details common to multiple clients at once | save time by not having to edit details for each client individually |
 | `* *`    | busy insurance agent                       | delete multiple client contacts at once | save time by not having to delete each client individually |
 | `*`      | busy insurance agents                      | have access to keyboard commands e.g. CTRL + J | minimize time spent typing                         |
+| `*`      | tech-savvy user                            | create my own custom commands  | bookmark some commands which I frequently use into a simpler format.   |
 
 ### Use cases
 
@@ -852,10 +853,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user input does not follow the format required.
+* 1a. At least one of the given arguments is invalid.
 
     * 1a1. ClientBook shows an error message.
-
+    
       Use case resumes at step 1.
 
 <br>
@@ -892,7 +893,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given shortcut name is invalid.
+* 1a. At least one of the given arguments is invalid.
 
     * 1a1. ClientBook shows an error message.
 

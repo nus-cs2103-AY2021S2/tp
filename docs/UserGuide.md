@@ -334,10 +334,6 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
-* **If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.**
-  * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-
 * **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `listshortcut`) **will be ignored**. 
   * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
@@ -621,19 +617,55 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 We understand that you might have commands that you frequently use. You may use shortcuts to abbreviate
 those commands to make using ClientBook more convenient.
 
+### <span style="color:#c9a500">Example Usage</span>
+<p><b>Scenario:</b></p> 
+
+You are an insurance agent and you have many client contacts stored inside of ClientBook. Your work mainly requires 
+you to manage your clients' policies and you would like a way to view all your clients' policies while hiding other 
+additional information (e.g. address, email, phone). You know that you can do so with the `list -i` command. However, 
+you would like a faster way to do it because you have to use it frequently, so you decided to create a 
+shortcut named `li` to perform the same action as `list -i`.
+
+<br>
+
+<p><b>Step 1.</b></p> 
+
+**Adding the shortcut using the command** `addshortcut sn/li sc/list -i`.
+
+This command creates a shortcut which performs `list -i` everytime you type `li` in the command box, and it is saved to 
+your shortcut library.
+
+<br>
+
+<p><b>Step 2.</b></p> 
+
+**Using the shortcut using the command** `li`.
+
+As you have saved this shortcut in the shortcut library, you may now use `li` to perform the command `list -i` anytime 
+and as many times as you want, which will save you from the hassle of having to type `list -i` everytime.
+
+<p align="center"><img src="images/shortcut-example.png"></p>
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
 ### <span style="color:#c9a500"><code>addshortcut</code>: Add shortcut</span>
 
 **Purpose**: Adds a command shortcut to the shortcut library.
 
 **Format**: `addshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
 
-* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid command `SHORTCUT_COMMAND` to it.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must not already exist the shortcut library.
-* The specified `SHORTCUT_COMMAND` must be a valid command.
+* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid ClientBook command `SHORTCUT_COMMAND` to it.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must not already exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid ClientBook command (e.g. `find n/alex`).
 
 **Examples**:
-* Add a shortcut named `sna` to represent the command `sort -n -asc` (sort list by name in ascending order) in the shortcut library.
-    * `addshortcut sn/sna sc/sort -n -asc`
+* Add a shortcut named `li` to represent the command `list -i` (filter all client information to show policy details 
+  only) in the shortcut library.
+    * `addshortcut sn/li sc/list -i`
+
+![addshortcut](images/addshortcut.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -641,13 +673,13 @@ those commands to make using ClientBook more convenient.
 
 ### <span style="color:#c9a500"><code>editshortcut</code>: Edit shortcut</span>
 
-**Purpose**: Edits the command of a shortcut in the existing shortcut library.
+**Purpose**: Edits the command of a shortcut in the shortcut library.
 
 **Format**: `editshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
 
-* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid command `SHORTCUT_COMMAND`.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must exist the shortcut library.
-* The specified `SHORTCUT_COMMAND` must be a valid command.
+* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid ClientBook command `SHORTCUT_COMMAND`.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid ClientBook command (e.g. `find n/alex`).
 
 **Examples**:
 * Edit a shortcut named `ls` in the shortcut library such that it takes on a new command `list`.
@@ -664,7 +696,7 @@ those commands to make using ClientBook more convenient.
 **Format**: `deleteshortcut SHORTCUT_NAME`
 
 * Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and deletes it from the shortcut library.
-* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) and must exist in the shortcut library.
+* The specified `SHORTCUT_NAME` must be [alphanumeric](#glossary) without any spacing and must exist in the shortcut library.
 
 **Examples**:
 * Delete a shortcut named `ls` in the shortcut library.
@@ -676,8 +708,10 @@ those commands to make using ClientBook more convenient.
 
 ### <span style="color:#c9a500"><code>listshortcut</code>: List all shortcuts</span>
 
-**Purpose**: Lists all shortcuts in the existing shortcut library in case you want to view the shortcuts that you have previously
+**Purpose**: Lists all shortcuts in the shortcut library in case you want to view the shortcuts that you have previously
 created.
+
+![listshortcut](images/listshortcut.png)
 
 **Format**: `listshortcut`
 
@@ -687,7 +721,7 @@ created.
 
 ### <span style="color:#c9a500"><code>clearshortcut</code>: Delete all shortcuts</span>
 
-**Purpose**: Deletes all shortcuts in the existing shortcut library.
+**Purpose**: Deletes all shortcuts in the shortcut library.
 
 **Format**: `clearshortcut`
 
