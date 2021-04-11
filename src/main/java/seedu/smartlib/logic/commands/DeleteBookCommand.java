@@ -25,7 +25,7 @@ public class DeleteBookCommand extends Command {
     public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted book: %1$s";
     public static final String MESSAGE_UNABLE_TO_DELETE_UNRETURNED = "The book specified cannot be"
             + " deleted because it is currently on loan.\n"
-            + "Please manually return the book and then try to delete again.";
+            + "Please return the book first, and then try to delete it again.";
 
     private final Index targetIndex;
 

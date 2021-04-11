@@ -21,8 +21,8 @@ public class ReturnCommand extends Command {
 
     public static final String COMMAND_WORD = "return";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Returns the book with the corresponding barcode.\n"
-            + "Parameters: " + PREFIX_BARCODE + "<barcode>\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_BARCODE + "1016170563";
+            + "Parameters: " + PREFIX_BARCODE + "BARCODE\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_BARCODE + "1000000000";
     public static final String MESSAGE_SUCCESS = "Record marked as returned.\n";
     public static final String MESSAGE_COST = "The total cost is $%.2f.";
     public static final String MESSAGE_TOTAL_HOURS_DUE = "The book is overdue by %d hours.\n";

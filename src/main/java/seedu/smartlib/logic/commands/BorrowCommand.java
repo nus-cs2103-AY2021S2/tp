@@ -18,11 +18,11 @@ import seedu.smartlib.model.record.Record;
 public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a record of a reader borrowing a book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a record of a reader borrowing a book.\n"
             + "Note that a book cannot be borrowed to multiple readers at the same time.\n"
             + "Note that readers may only borrow up to " + SmartLib.QUOTA + " books.\n"
-            + "Parameters: " + PREFIX_BARCODE + "<barcode> " + PREFIX_READER + "<reader name>\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_BARCODE + "1000000001 " + PREFIX_READER + "Alex Yeoh";
+            + "Parameters: " + PREFIX_BARCODE + "BARCODE " + PREFIX_READER + "READER_NAME\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_BARCODE + "1999999999 " + PREFIX_READER + "Charlotte";
     public static final String MESSAGE_SUCCESS = "New borrowing record added.";
     public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base.";
     public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we were unable to find "
@@ -36,8 +36,8 @@ public class BorrowCommand extends Command {
             + " that he/she can borrow, or is holding on to an overdue book.";
     public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"
             + " unable to update it.";
-    public static final String NO_AVAILABLE_BOOKS = "Sorry, all copies are loaned out."
-            + "Maybe you could perform a search by book's name to see the book's borrowing status.";
+    public static final String NO_AVAILABLE_BOOKS = "Sorry, all copies of the book are loaned out.\n"
+            + "You can perform a search by book name to see the book's borrowing status.";
 
     private final IncompleteRecord incompleteRecord;
 

@@ -9,7 +9,7 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting SmartLib as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting SmartLib as requested...";
 
     /**
      * Executes the command and returns the result message.

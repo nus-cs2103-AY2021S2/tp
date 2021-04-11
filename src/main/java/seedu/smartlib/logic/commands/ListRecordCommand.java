@@ -9,6 +9,7 @@ import seedu.smartlib.model.Model;
  * Lists all records in SmartLib to the user.
  */
 public class ListRecordCommand extends Command {
+
     public static final String COMMAND_WORD = "listrecord";
 
     public static final String MESSAGE_SUCCESS = "Listed all records.";
