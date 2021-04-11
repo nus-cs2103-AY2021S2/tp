@@ -46,6 +46,8 @@ public class ParserUtilTest {
     private static final String INVALID_ORDER_DESC = " ";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DELIVERY_DATE = "12122012";
+    private static final String INVALID_DAYS = "-1";
+    private static final String INVALID_DAYS_MULTIPLE = "-1";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -56,6 +58,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DELIVERY_DATE = "01/01/2022";
+    private static final String VALID_DAYS = "1";
 
     private static final String VALID_INDEX_LIST_WITH_ONE_INDEX = "1";
     private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES = "1 2";
@@ -680,5 +683,22 @@ public class ParserUtilTest {
     public void parseOrderItem_validValue_returnsOrderDescription() throws ParseException {
         OrderItem expectedOrderItem = new OrderItem(new Type(VALID_ORDER_DESC_1));
         assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(VALID_ORDER_DESC_1));
+    }
+
+    @Test
+    public void parseDys_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDays(null));
+    }
+
+    @Test
+    public void parseDays_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDays(INVALID_DAYS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDays(INVALID_DAYS_MULTIPLE));
+    }
+
+    @Test
+    public void parseDays_validValue_returnsOrderDescription() throws ParseException {
+        int expectedDays = Integer.parseInt(VALID_DAYS);
+        assertEquals(expectedDays, ParserUtil.parseDays(VALID_DAYS));
     }
 }
