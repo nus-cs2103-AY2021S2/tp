@@ -1,12 +1,20 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.model.contact.Contact;
-
 
 /**
  * A utility class containing a list of {@code Contact} objects to be used in tests.
@@ -52,13 +60,20 @@ public class TypicalContacts {
             .withEmail("anna@example.com")
             .build();
 
+    // Manually added - Contact's details found in {@code CommandTestUtil}
+    public static final Contact AMY = new ContactBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+            .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Contact BOB = new ContactBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
+
     private TypicalContacts() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical contacts.
+     * Returns an {@code TeachingAssistant} with all the typical contacts.
      */
-    public static AddressBook getTypicalContactsAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static TeachingAssistant getTypicalContactsTeachingAssistant() {
+        TeachingAssistant ab = new TeachingAssistant();
         for (Contact contact : getTypicalContacts()) {
             ab.addContact(contact);
         }

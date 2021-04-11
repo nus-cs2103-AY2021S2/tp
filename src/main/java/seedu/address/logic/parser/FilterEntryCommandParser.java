@@ -13,8 +13,8 @@ import seedu.address.model.entry.EntryTagsContainKeywordsPredicate;
  */
 public class FilterEntryCommandParser implements Parser<FilterEntryCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterCommand
-     * and returns a FilterCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FilterEntryCommand
+     * and returns a FilterEntryCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterEntryCommand parse(String args) throws ParseException {
