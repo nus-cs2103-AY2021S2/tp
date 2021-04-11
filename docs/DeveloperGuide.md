@@ -669,6 +669,7 @@ Step 6. If the add important date command has been successfully executed, the su
 
 The sequence diagram below shows how the add important date feature works:
 ![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
+![Sequence Diagram for ref CreateAddDateCommand](images/CreateAddDateCommandSequenceDiagram.png)
 
 #### Activity Diagram
 

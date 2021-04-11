@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+mainframe "sd create AddDateCommand"
+
+box Logic LOGIC_COLOR_T1
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddDateCommandParser" as AddDateCommandParser LOGIC_COLOR
+participant "date:ImportantDate" as ImportantDate LOGIC_COLOR
+participant "a:AddDateCommand" as AddDateCommand LOGIC_COLOR
+end box
+
+create AddDateCommandParser
+AddressBookParser -> AddDateCommandParser
+activate AddDateCommandParser
+
+AddDateCommandParser --> AddressBookParser
+deactivate AddDateCommandParser
+
+AddressBookParser -> AddDateCommandParser : parse("d/math exam dt/2022-03-03 0800")
+activate AddDateCommandParser
+
+create ImportantDate
+AddDateCommandParser -> ImportantDate
+activate ImportantDate
+
+ImportantDate --> AddDateCommandParser : date
+deactivate ImportantDate
+
+
+AddDateCommandParser -> AddDateCommand
+activate AddDateCommand
+
+AddDateCommand --> AddDateCommandParser : a
+deactivate AddDateCommand
+AddDateCommandParser --> AddressBookParser : a
+deactivate AddDateCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddDateCommandParser -[hidden]-> AddressBookParser
+destroy AddDateCommandParser
+
+
+
+@enduml
