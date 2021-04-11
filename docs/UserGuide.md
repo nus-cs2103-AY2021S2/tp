@@ -226,6 +226,8 @@ Constraints:
 Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
+> Note: As this is not a fully fledged production level project, there are limited modules for users to add. If in the future this project grows to a production piece, it will use relevant NUS APIs to collect modules for users to add. Instead, currently there are only dozens of modules for users to add, but for the purposes of testing and showcasing this product, it is sufficient.
+
 #### Example output for add module command:
 ![AddModuleCommandDemo](images/AddModuleCommandDemo.png)
 
