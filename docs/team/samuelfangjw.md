@@ -9,12 +9,12 @@ CoLAB (Collaboration Lab) is a desktop app for university students to manage the
 
 Given below are my contributions to the project.
 
-* **Undo/Redo Feature**: 
+* **Undo/Redo Feature**:
   * Added the ability to undo/redo previous commands(Pull request [\#209](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/209)).
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
   * Highlights: Although a similar implementations exist in other similar projects, I decided to go with my own implementation after considering the pros and cons of each solution. My solution took into account the user experience, and has the ability undo not only the data but also the GUI to the previous state.
 
-* **Command History Feature**: 
+* **Command History Feature**:
   * Added a history command that allows the user to navigate to previous commands using up/down keys (Pull request [\#204](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/204)).
   Justification: This feature improves the user experience and makes it easy to execute multiple commands in a row.
 
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   * Redesigned GUI with new colour scheme and design (Pull requests [\#153](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/153), [\#121](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/121), [\#51](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/51)).
   * Many hours spent considering the user experience.
   * Required designing a modular `UICommands` class to encapsulate data and instructions needed to display different UI panels at the correct time (Pull requests [\#153](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/159), [\#83](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/159)).
-  
+
 * **GUI Testing**:
   * Integrated a third party library [(TestFX)](https://github.com/TestFX/TestFX) to the project (Pull request [\#61](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/61)) to facilitate automated GUI testing.
   * Many hours spent integrating TestFX with github actions.
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
   * Designed projects model (Pull request [\#64](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/64)).
   * Modified existing `AddressBook` class to store `Projects` as well (Pull request [\#175](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/175)).
   * Added various commands to navigate the UI (Pull requests [\#89](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/89), [\#90](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/90)).
-  * Implemented sorted ordering for Events, Deadlines, Todos and Groupmates (Pull request [\#239](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/239)). 
+  * Implemented sorted ordering for Events, Deadlines, Todos and Groupmates (Pull request [\#239](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/239)).
   * Wrote a test utility to facilitate generation of sample projects (Pull request [\#93](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/93)).
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=samuelfangjw&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=samuelfangjw&tabRepo=AY2021S2-CS2103T-T11-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)

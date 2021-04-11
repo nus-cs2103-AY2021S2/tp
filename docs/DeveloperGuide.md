@@ -141,7 +141,7 @@ This section describes some noteworthy details on how certain features are imple
 
 This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
 
-The `ViewProject` command results in the UI displaying the specified project together with all its related information. 
+The `ViewProject` command results in the UI displaying the specified project together with all its related information.
 
 The mechanism to issue the command to display a new project is facilitated by `ViewProjectUiCommand`, a concrete implementation of the `UiCommand` abstract class, which encapsulates the project `Index` as well as the logic that determines which methods to call in the `MainWindow`.
 
@@ -171,7 +171,7 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
 
     * Cons:
         * Many classes required.
-        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action. 
+        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action.
 
 * **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
     * Pros:
@@ -260,7 +260,7 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
         * This implementation will not work with an immutable implementation of `EventList`
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
-    * Pros: 
+    * Pros:
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
@@ -347,12 +347,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-#### UC1 - Add a contact
+<ul id="use-cases-toc"></ul>
+<script>
+function getLastH4Sibling(element) {
+    while (element && element.tagName != document.createElement('h4').tagName) {
+        element = element.previousElementSibling;
+    }
+    return element;
+}
+document.addEventListener('DOMContentLoaded', () => {
+    // get all use case headings as an array
+    const usecase_h5s = Array.prototype.slice.call(
+        document.getElementsByTagName("h5")
+    ).filter(h => h.textContent.startsWith('UC'));
+    const categories = {};
+    const category_links = {};
+    for (const usecase_h5 of usecase_h5s) {
+        const category = getLastH4Sibling(usecase_h5);
+        if (!(category.textContent in categories)) {
+            categories[category.textContent] = [];
+            category_links[category.textContent] = '#' + category.getAttribute('id');
+        }
+        categories[category.textContent].push({
+            'usecase_text': usecase_h5.textContent,
+            'usecase_link': '#' + usecase_h5.getAttribute('id')
+        });
+    }
+    for (const category_text of Object.keys(categories)) {
+        const category_link = category_links[category_text];
+        const category_li = document.createElement('li');
+        category_li.innerHTML = `<a href="${category_link}">${category_text}</a>`;
+        category_ul = document.createElement('ul');
+        for (const usecase of categories[category_text]) {
+            const usecase_li = document.createElement('li');
+            usecase_li.innerHTML = `<a href="${usecase.usecase_link}">${usecase.usecase_text}</a>`;
+            category_ul.appendChild(usecase_li);
+        }
+        category_li.appendChild(category_ul);
+        document.getElementById('use-cases-toc').appendChild(category_li);
+    }
+});
+</script>
+
+#### Projects
+
+##### UC1 - Add a project
 
 **MSS**
 
-1. User requests to add a contact
-2. CoLAB adds the contact
+1. User requests to add a project.
+2. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given name argument is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. User decides to undo the add action.
+
+    * 2a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC2 - Delete a project
+
+**MSS**
+
+1. User requests to delete a specific project in the list of projects.
+2. CoLAB deletes the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. User decides to undo the delete action.
+
+    * 2a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC3 - Modify information about a project
+
+**MSS**
+
+1. User requests to edit information about a project.
+2. CoLAB updates the entry with new information.
 
    Use case ends.
 
@@ -364,14 +458,557 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### UC2 - Find details of a specific contact
+* 2a. User decides to undo the update action.
+
+    * 2a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+#### Todos
+
+##### UC4 - Add a todo to a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to add a todo to the project.
+4. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given arguments are invalid.
+
+    * 2a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the add action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC5 - Delete a todo from a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to delete a specific todo in the list.
+4. CoLAB deletes the todo.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of todos is empty.
+
+  Use case ends.
+
+* 3a. The given todo index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the delete action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC6 - Modify information about a todo in a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to edit information about a todo.
+4. CoLAB updates the entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of todos is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the update action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC7 - Mark a todo in a project as done
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to mark a todo as done.
+4. CoLAB marks the given todo as done.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of todos is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the mark action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+#### Deadlines
+
+##### UC8 - Add a deadline to a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to add a deadline to the project.
+4. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given arguments are invalid.
+
+    * 2a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the add action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC9 - Delete a deadline from a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to delete a specific deadline in the list.
+4. CoLAB deletes the deadline.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of deadlines is empty.
+
+  Use case ends.
+
+* 3a. The given deadline index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the delete action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC10 - Modify information about a deadline in a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to edit information about a deadline.
+4. CoLAB updates the entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of deadlines is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the update action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC11 - Mark a deadline in a project as done
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to mark a deadline as done.
+4. CoLAB marks the given deadline as done.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of deadlines is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the mark action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+#### Events
+
+##### UC12 - Add an event to a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all events under the project.
+3. User requests to add an event to the project.
+4. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given arguments are invalid.
+
+    * 2a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the add action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC13 - Delete an event from a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all events under the project.
+3. User requests to delete a specific event in the list.
+4. CoLAB deletes the deadline.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of events is empty.
+
+  Use case ends.
+
+* 3a. The given event index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the delete action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC14 - Modify information about an event in a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all events under the project.
+3. User requests to edit information about an event.
+4. CoLAB updates the entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of events is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the update action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+#### Groupmates
+
+##### UC15 - Add a groupmate to a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all groupmates under the project.
+3. User requests to add a groupmate to the project.
+4. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given arguments are invalid.
+
+    * 2a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the add action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC16 - Delete a groupmate from a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all groupmates under the project.
+3. User requests to delete a specific groupmate in the list.
+4. CoLAB deletes the deadline.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of groupmates is empty.
+
+  Use case ends.
+
+* 3a. The given groupmate index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the delete action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC17 - Modify information about a groupmate in a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all groupmates under the project.
+3. User requests to edit information about a groupmate.
+4. CoLAB updates the entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of groupmates is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the update action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+#### Contacts
+
+##### UC18 - Add a contact
+
+**MSS**
+
+1. User requests to add a contact.
+2. CoLAB adds the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. User decides to undo the add action.
+
+    * 2a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC19 - Find a specific contact
 
 **MSS**
 
 1. User requests to find a contact.
 2. CoLAB shows a list of contacts that match user's query.
-3. User requests to view more details about a specific contact in the list.
-4. CoLAB shows more information about the contact in the list.
 
    Use case ends.
 
@@ -381,14 +1018,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-    * 3a1. CoLAB shows an error message.
-
-      Use case resumes at step 2.
-
-
-#### UC3 - Delete a contact
+##### UC20 - Delete a contact
 
 **MSS**
 
@@ -411,50 +1043,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### UC4 - Purge all entries from the app
+* 4a. User decides to undo the delete action.
 
-**MSS**
+    * 4a1. CoLAB reverses the effects of the previous command.
 
-1. User requests to delete all entries from the app.
-2. CoLAB asks user to confirm request.
-3. User confirms that they want to delete all entries.
-4. CoLAB deletes all data from the app.
+      Use case ends.
 
-   Use case ends.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-**Extensions**
-
-* 3a. User decides not to delete all entries.
-
-  Use case ends.
-
-#### UC5 - Find all contacts that take a certain module
-
-**MSS**
-
-1. User requests to list all contacts by modules taken.
-2. CoLAB lists all entries who have taken the modules.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given modules are invalid
-
-    * 1a1. CoLAB shows an error message.
-
-      Use case resumes at step 1.
-
-* 2a. The list of contacts is empty.
-
-  Use case ends.
-
-#### UC6 - Adding or Modifying information about a contact
+##### UC21 - Modify information about a contact
 
 **MSS**
 
 1. User requests to edit information about a contact.
-2. CoLAB updates entry with new information.
+2. CoLAB updates the entry with new information.
 
    Use case ends.
 
@@ -466,7 +1068,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-*{More to be added}*
+* 2a. User decides to undo the update action.
+
+    * 2a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+#### Others
+
+##### UC22 - Manage today's deadlines and events
+
+**MSS**
+
+1. User switches to the today panel.
+2. User <u>adds a new deadline (<a href="#uc8---add-a-deadline-to-a-project">UC8</a>)</u>.
+3. User <u>adds a new event (<a href="#uc12---add-an-event-to-a-project">UC12</a>)</u>.
+4. User <u>marks a deadline as done (<a href="#uc11---mark-a-deadline-in-a-project-as-done">UC11</a>)</u>.
+
+   Use case ends.
+
+**Extensions**
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC23 - Purge all entries from the app
+
+**MSS**
+
+1. User requests to delete all entries from the app.
+2. CoLAB deletes all data from the app.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User decides to undo the purge action.
+
+    * 2a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
+
+##### UC24 - View help
+
+**MSS**
+
+1. User opens the help page.
+2. CoLAB shows a summary of commands as well as a link to the online User Guide.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
@@ -510,7 +1163,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample entries. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -519,29 +1172,42 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
 
-    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    1. Prerequisites: List all contacts using the `contacts` command. Multiple contacts in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `deleteC 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `deleteC 0`<br>
+       Expected: No contact is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a project
+
+1. Test case: `deleteP 1`<br>
+    Expected: First project is deleted from the list. Details of the deleted project shown in the status message.
+
+1. Test case: `deleteP 0`<br>
+    Expected: No project is deleted. Error details shown in the status message.
+
+1. Other incorrect delete commands to try: `deleteP`, `deleteP x`, `...` (where x is larger than the number of projects)<br>
+    Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Make sure there is a `./data/colab.json` file.<br>
+       If not, open the app, make some changes (e.g. ), and close the app.
 
-1. _{ more test cases …​ }_
+    1. Open `./data/colab.json` in a text editor (preferably not Windows Notepad).
+
+    1. Remove the starting `{` character of the json file and save the file.
+
+    1. Launch the app by runing `java -jar CoLAB.jar` in the console.<br>
+       Expected: The GUI should pop up with no entry. The console output should give warnings about incorrect data file format.

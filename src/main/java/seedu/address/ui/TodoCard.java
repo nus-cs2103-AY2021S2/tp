@@ -32,7 +32,7 @@ public class TodoCard extends UiPart<Region> {
         this.todo = todo;
         id.setText(displayedIndex + ". ");
         description.setText(todo.getDescription());
-        completedLabel.setText(todo.getIsDone() ? "✔" : "");
+        completedLabel.setText(getTextToDisplay(todo.getIsDone()));
     }
 
     /**

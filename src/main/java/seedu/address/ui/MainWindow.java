@@ -33,6 +33,10 @@ import seedu.address.model.project.Project;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
+    public static final String CONTACT_LIST_PANEL_ID = "contactListPanel";
+    public static final String PROJECT_PANEL_ID = "projectDisplayPanel";
+    public static final String TODAY_PANEL_ID = "todayPanel";
+    public static final String HELP_PANEL_ID = "helpPanel";
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -216,6 +220,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!infoDisplayPlaceholder.getChildren().contains(helpPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(helpPanel.getRoot());
+            helpPanel.getRoot().setId(HELP_PANEL_ID);
         }
     }
 
@@ -230,6 +235,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!infoDisplayPlaceholder.getChildren().contains(projectDisplayPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(projectDisplayPanel.getRoot());
+            projectDisplayPanel.getRoot().setId(PROJECT_PANEL_ID);
         }
 
         projectDisplayPanel.displayProject(project);
@@ -242,6 +248,7 @@ public class MainWindow extends UiPart<Stage> {
         sidePanel.clearButtonStyles();
         sidePanel.addContactButtonStyle();
         contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        contactListPanel.getRoot().setId(CONTACT_LIST_PANEL_ID);
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
         sidePanel.clearSelection();
@@ -263,6 +270,7 @@ public class MainWindow extends UiPart<Stage> {
         todayPanel = new TodayPanel(logic.getColabFolder(), LocalDate.now());
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
+        todayPanel.getRoot().setId(TODAY_PANEL_ID);
         sidePanel.clearSelection();
     }
 
