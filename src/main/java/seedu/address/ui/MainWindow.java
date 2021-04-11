@@ -32,8 +32,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private TaskListPanel taskListPanel;
-    private ScheduleListPanel scheduleListPanel;
+    private ContactListPanel contactListPanel;
+    private EntryListPanel entryListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,10 +48,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane taskListPanelPlaceholder;
+    private StackPane contactListPanelPlaceholder;
 
     @FXML
-    private StackPane scheduleListPanelPlaceholder;
+    private StackPane entryListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -121,11 +122,21 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        //to be added once person class is deleted
+        //contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        //contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
+
+        entryListPanel = new EntryListPanel(logic.getFilteredEntryList());
+        entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
+
+        //To be deleted
+        /*
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+         */
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
