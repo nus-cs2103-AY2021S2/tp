@@ -286,7 +286,7 @@ Example: Add a <code>John Doe Bespectacled</code> and a <code>John Doe Unadorned
 Example:
 1. You would like to add a new student, **John Doe** to TutorBuddy.
 2. Type in `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` 
-   which includes all the essential information the application needs from the student and press <kbd>enter</kbd>.
+   which includes all the essential information the application needs from the student and press <kbd>Enter</kbd>.
 
 ![add_student_example](images/enhao/add_student%20-%20edited.png)
 
@@ -327,7 +327,7 @@ Example command usages from the current student list shown in Figure 1:
 Example 2:
 1. You want to find students whose name contains Alex, David and Roy.
 
-2. Type `find_student alex david roy` <i>(Note: keywords are case-insensitive)</i> and press <kbd>enter</kbd>.
+2. Type `find_student alex david roy` <i>(Note: keywords are case-insensitive)</i> and press <kbd>Enter</kbd>.
 
 ![find_student_example](images/enhao/find_student%20-%20edited.png)
 
@@ -345,7 +345,7 @@ Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] 
 
 Example:
 1. You would like to edit **Alex Yeoh** phone number, email address and address as they are wrong. 
-2. Type `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>enter</kbd>. (This edits the student **Alex Yeoh's** `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1)
+2. Type `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>Enter</kbd>. (This edits the student **Alex Yeoh's** `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1)
 
 ![edit_student_example](images/enhao/edit_student%20-%20edited.png)
 
@@ -369,7 +369,7 @@ Format: `delete_student STUDENT_INDEX` <br>
 
 Example:
 1. You would like to delete the 2nd student based on the current list of students. 
-2. Type `delete_student 2` and press <kbd>enter</kbd>.
+2. Type `delete_student 2` and press <kbd>Enter</kbd>.
 
 ![delete_student_example](images/enhao/delete_student%20-%20edited.png)
 
@@ -394,7 +394,7 @@ Example:
 
 1. You want to send a mass email to **all** of your students. 
 
-2. Type `emails` and press <kbd>enter</kbd>.
+2. Type `emails` and press <kbd>Enter</kbd>.
 
 ![emails_example](images/enhao/email%20-%20edited.png)
 
@@ -516,7 +516,7 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
 Example:
 1. You want to get the monthly fee payable by **Alex Yeoh** for March 2021.
-2. Type `fee n/Alex Yeoh m/3 y/2021` and press <kbd>enter</kbd>. 
+2. Type `fee n/Alex Yeoh m/3 y/2021` and press <kbd>Enter</kbd>. 
 
 ![fee_example](images/enhao/fee%20-%20Edited.PNG)
 
