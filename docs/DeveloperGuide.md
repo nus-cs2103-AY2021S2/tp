@@ -1550,9 +1550,8 @@ Use case ends.
 
 1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to sort task.
-4. User enters the sort parameter.
-5. SOChedule sorts the task list, and displays a success message.
+3. User chooses to sort the task list based on a sort parameter.
+4. SOChedule sorts the task list, and displays a success message.
    <br><br>
    Use case ends.
 
@@ -1563,9 +1562,9 @@ Use case ends.
   Use case ends.
 
 
-* 4a. The given sort argument is invalid.
+* 3a. The given sort argument is invalid.
 
-    * 4a1. SOChedule shows an error message indicating the invalidity of the sort argument.
+    * 3a1. SOChedule shows an error message indicating the invalidity of the sort argument.
 
       Use case resumes at step 2.
 
