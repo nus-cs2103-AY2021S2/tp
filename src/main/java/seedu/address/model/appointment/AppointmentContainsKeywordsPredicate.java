@@ -15,9 +15,14 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
     /**
      * Constructs {@code AppointmentContainsKeywordsPredicate}.
      */
-    public AppointmentContainsKeywordsPredicate(List<String> keywords) {
+    public AppointmentContainsKeywordsPredicate(List<String> keywords) throws IllegalArgumentException {
         this.keywords = new ArrayList<>();
-        keywords.forEach(s -> this.keywords.add(s.toLowerCase()));
+        for (String s : keywords) {
+            if (s.trim().isEmpty()) {
+                throw new IllegalArgumentException("Appointment name given is empty. ");
+            }
+            this.keywords.add(s.toLowerCase());
+        }
     }
 
     @Override

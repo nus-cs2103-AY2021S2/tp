@@ -13,13 +13,13 @@ Welcome to the PocketEstate Developer Guide! This guide will take you through th
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. **Setting up, getting started**
+## **1. Setting up, getting started**
 
 Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. **Design**
+## **2. Design**
 
 ### 2.1 Architecture
 
@@ -98,7 +98,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object, which is passed back to the `Ui`. The feedback to the user is then displayed to the user.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021")` API call.
 
 ![Interactions Inside the Logic Component for the `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` Command](images/AddPropertySequenceDiagram.png)
 
@@ -147,7 +147,7 @@ Some examples of common classes:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -160,11 +160,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 3.1.1 Current Implementation
 
-A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
+A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its pair of `Address` and `PostalCode`.
 
 A `Property consists of the following mandatory attributes,
   * a `Name`: the name of the property
-  * a `Type`: the housing type of the property (Hdb, Condo, Landed)
+  * a `Type`: the housing type of the property (HDB ![hdb_icon](images/hdb_16.png), Condo ![condo_icon](images/condo_16.png), Landed ![landed_icon](images/landed_16.png), etc.)
   * an `Address`: the address of the property
   * a `PostalCode`: the postal code of the property
   * a `Deadline`: the property's deadline for selling
@@ -208,7 +208,7 @@ A `Client` consists of at least one of the following attributes,
 
 #### 3.2.1 Current Implementation
 
-An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its `Date` and `Time`.
+An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its pair of `Date` and `Time`.
 
 An `Appointment` consists of the following mandatory attributes,
 * a `Name`: the name of the appointment
@@ -342,7 +342,7 @@ The following sequence diagram shows how the update operation works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -650,6 +650,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+<<<<<<< HEAD
 ### Find commands
 
 1. Find
@@ -704,6 +705,50 @@ testers are expected to do more *exploratory* testing.
         
     1. Test case: `find client`
         Expected: Both lists not updated. Error details shown in the status message. 
+
+### Editing a property
+
+1. Editing a property.
+
+    1. Prerequisites: Property list has at least 1 property
+
+    1. Test case: `edit property 1 n/Bishan Village` <br>
+       Expected: The first property in the property list is edited to have the name `Bishan Village`. The result display panel shows the full details of the edited property.
+
+    1. Test case: `edit property` <br>
+       Expected: No property is edited. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect edit property commands to try: `edit property n/Bishan Village`, `edit property +1` <br>
+       Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
+
+1. Editing to a duplicate property.
+
+    1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app that is not the first property in the property list.
+
+    1. Test case: `edit property 1 a/Blk 150 Bishan Street 11 #02-101 p/570150` <br>
+       Expected: No property is edited. An error message `Another property with the same address and postal code already exists in the app` is shown in the result display.
+
+### Editing an appointment
+
+1. Editing an appointment.
+
+    1. Prerequisites: The appointment list is not empty
+
+    1. Test case: `edit appointment 1 n/Meet Nathaniel` <br>
+       Expected: The first appointment in the appointment list has the name changed to `Meet Nathaniel`. The result display panel shows the full details of the edited appointment.
+
+    1. Test case: `edit appointment` <br>
+       Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect edit appointment commands to try: `edit appointment n/Meet Nathaniel`, `edit appointment +1 n/Meet Nathaniel`<br>
+       Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
+
+1. Editing to a duplicate appointment.
+
+    1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app that is not the first appointment in the appointment list.
+
+    1. Test case: `edit appointment 1 d/19-05-2021 t/1930` <br>
+       Expected: No appointment is edited. An error message `Another appointment with the same date and time already exists in the app` is shown in the result display.
 
 ## **Appendix G: Effort**
 

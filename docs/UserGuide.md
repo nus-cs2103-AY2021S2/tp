@@ -49,7 +49,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 
 1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
 
-   ![Ui](images/Ui.png)
+   ![Ui](images/AnnotatedUi.png)
 
 ### 2.2 Trying out
 
@@ -74,8 +74,25 @@ For a quick reference of the available commands and their syntax, refer to the [
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+## 3. User Interface
 
-## 3. Commands
+### Design
+
+PocketEstate boasts a minimalist design with alternating steel blue and light blue colours for regular properties/ appointments as its main design scheme. We also feature a grey background for property and appointment listings with an expired deadline to allow users to better focus on current properties/ appointments.
+
+![uiColorScheme](images/UiColorscheme.png)
+
+### Property Icons
+
+We also use the following symbols for easier identification of different property types in the app:
+
+Property Types | Symbols
+--------|------------------
+<p align="center"> Hdb | <p align="center"> ![Hdb](images/hdb_16.png)
+<p align="center"> Condo | <p align="center"> ![Condo](images/condo_16.png)
+<p align="center"> Landed | <p align="center"> ![Landed](images/landed_16.png)
+
+## 4. Commands
 
 <div markdown="block" class="alert alert-info">**:information_source: Notes about the command format:**<br>
 
@@ -94,14 +111,14 @@ For a quick reference of the available commands and their syntax, refer to the [
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/The Mayfair n/Mayfair`, only `n/Mayfair` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### 3.1 General
+### 4.1 General
 
-#### 3.1.1 Viewing help : `help`
+#### 4.1.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page. A link to the user guide will be provided.
 
@@ -109,15 +126,15 @@ Shows a message explaining how to access the help page. A link to the user guide
 
 Format: `help`
 
-#### 3.1.2 Exiting the program : `exit`
+#### 4.1.2 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.2 Adding
+### 4.2 Adding
 
-#### 3.2.1 Adding a property: `add property`
+#### 4.2.1 Adding a property: `add property`
 
 Adds a property to the app.
 
@@ -138,7 +155,7 @@ Examples:
 
 * `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
 
-#### 3.2.2 Adding an appointment: `add appointment`
+#### 4.2.2 Adding an appointment: `add appointment`
 
 Adds an appointment to the app.
 
@@ -158,9 +175,9 @@ Examples:
 * `add appointment n/Meeting at agency r/Company is setting new sales target for the month d/01-06-2021 t/1300`
 
 
-### 3.3 Editing
+### 4.3 Editing
 
-#### 3.3.1 Editing a property : `edit property`
+#### 4.3.1 Editing a property : `edit property`
 
 Overwrites the information of the property according to the user input provided.
 
@@ -180,13 +197,15 @@ Description:
 Examples:
 *  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
 
+![Example property edited](images/ExampleEditProperty.PNG)
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
 To remove tags from a property, you can use the command `edit property INDEX tags/`. <br> e.g. `edit property 1 tags/` can be used to remove all the tags from the property at index 1.
 
 </div>
 
-#### 3.3.2 Editing an appointment : `edit appointment`
+#### 4.3.2 Editing an appointment : `edit appointment`
 
 Overwrites the information of the appointment according to the user input provided.
 
@@ -200,9 +219,11 @@ Description:
 Examples:
 *  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
 
-### 3.4 Deleting
+![Example appointment edited](images/ExampleEditAppointment.PNG)
 
-#### 3.4.1 Removing a property : `delete property`
+### 4.4 Deleting
+
+#### 4.4.1 Removing a property : `delete property`
 
 Deletes the property at the specified index from the app.
 
@@ -216,7 +237,7 @@ Description:
 Examples:
 *  `delete property 7` deletes the property at index `7`.
 
-#### 3.4.2 Removing an appointment : `delete appointment`
+#### 4.4.2 Removing an appointment : `delete appointment`
 
 Deletes the appointment at the specified index from the app.
 
@@ -230,28 +251,36 @@ Description:
 Examples:
 *  `delete appointment 7` deletes the appointment at index `7`.
 
-### 3.5 Listing
+### 4.5 Listing
 
-#### 3.5.1 Listing all properties and appointments : `list all`
+#### 4.5.1 Listing all properties and appointments : `list all`
 
 Shows a list of all properties and appointments in the app.
 
-#### 3.5.2 Listing all properties : `list property`
+Format:
+* `list all`
+
+#### 4.5.2 Listing all properties : `list property`
 
 Shows a list of all properties in the app.
 
-#### 3.5.3 Listing all appointments : `list appointment`
+Format:
+* `list property`
+
+#### 4.5.3 Listing all appointments : `list appointment`
 
 Shows a list of all appointments in the app.
 
+Format:
+* `list appointment`
 
-### 3.6 Updating status
+### 4.6 Updating status
 
-#### 3.6.1 Updating the status of a property : `update`
+#### 4.6.1 Updating the status of a property : `update`
 
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
-Formats:
+Format:
 * `update INDEX OPTION`
 
 Description:
@@ -282,9 +311,11 @@ Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
-### 3.7 Sorting
+![Example property updated](images/ExampleUpdateNew.PNG)
 
-#### 3.7.1 Sorting properties: `sort property`
+### 4.7 Sorting
+
+#### 4.7.1 Sorting properties: `sort property`
 
 Sorts and shows a list of properties that are sorted by the specified sorting key in the specified sorting order.
 
@@ -300,7 +331,7 @@ Description:
 Examples:
 *  `sort property o/asc k/name` Sorts `property` by `name` in ascending order.
 
-#### 3.7.2 Sorting appointments: `sort appointment`
+#### 4.7.2 Sorting appointments: `sort appointment`
 
 Sorts and shows a list of appointments that are sorted by the specified sorting key in the specified sorting order.
 
@@ -316,9 +347,9 @@ Description:
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
 
-### 3.8 Undoing
+### 4.8 Undoing
 
-#### 3.8.1 Undoing : `undo`
+#### 4.8.1 Undoing : `undo`
 
 Undoes the last add, delete, edit or clear commands in the command history.
 
@@ -331,9 +362,9 @@ Description:
 Examples:
 *  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.
 
-### 3.9 Searching
+### 4.9 Searching
 
-#### 3.9.1 Searching properties: `find property`
+#### 4.9.1 Searching properties: `find property`
 
 Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
 
@@ -410,7 +441,7 @@ Examples:
 
 ![find property example](images/findproperty.png)
 
-#### 3.9.2 Searching appointments: `find appointment`
+#### 4.9.2 Searching appointments: `find appointment`
 
 Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
@@ -447,7 +478,7 @@ Examples:
 
 ![find appointment example](images/findappointment.png)
 
-#### 3.9.3 Searching clients: `find client`
+#### 4.9.3 Searching clients: `find client`
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
@@ -463,23 +494,23 @@ Examples:
 
 ![find client example](images/findclient.png)
 
-### 3.10 Clearing
+### 4.10 Clearing
 
-#### 3.10.1 Clearing all entries : `clear all`
+#### 4.10.1 Clearing all entries : `clear all`
 
 Clears all properties and appointments from the app.
 
-#### 3.10.2 Clearing all properties : `clear property`
+#### 4.10.2 Clearing all properties : `clear property`
 
 Clears all properties from the app.
 
-#### 3.10.3 Clearing all appointments : `clear appointment`
+#### 4.10.3 Clearing all appointments : `clear appointment`
 
 Clears all appointments from the app.
 
-## 4. Storage
+## 5. Storage
 
-#### 4.1 Saving the data
+#### 5.1 Saving the data
 
 PocketEstate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. PocketEstate data are saved as a JSON file after any command that modifies the data of the app.
 
@@ -488,7 +519,7 @@ The default storage data file paths used are:
 * Property storage data file: `[JAR file location]/data/propertybook.json`.
 * Appointment storage data file: `[JAR file location]/data/appointmentbook.json`.
 
-#### 4.2 Editing the data files
+#### 5.2 Editing the data files
 
 Advanced users are welcome to update data directly by editing the data files.
 
@@ -496,7 +527,7 @@ Advanced users are welcome to update data directly by editing the data files.
 If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run. For example, if the property storage data file is corrupted but the appointment storage data file is in the correct format, PocketEstate will start with an empty data file for properties and use the original data file for appointments.
 </div>
 
-#### 4.3 Specifying the data files
+#### 5.3 Specifying the data files
 
 It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
 
@@ -506,20 +537,20 @@ It is also possible to specify your own property and/or appointment storage data
 
 </div>
 
-#### 4.4 Archiving data files `[coming in v2.0]`
+#### 5.4 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PocketEstate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 7. Command summary
 
 Action | Format, Examples
 --------|------------------
@@ -530,7 +561,7 @@ Action | Format, Examples
 **Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cc/96011846`
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/21-07-2021 t/1500`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
-**List all** | `list all`
+**List all properties and appointments** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
 **Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
@@ -541,9 +572,9 @@ Action | Format, Examples
 **Clear** | `clear property` <br> `clear appointment` <br> `clear all`
 **Undo** | `undo`
 
-## 7. Appendix
+## 8. Appendix
 
-### 7.1 Launching application via command line
+### 8.1 Launching application via command line
 
 For advanced users, it is also possible to launch the app via the command line. Doing so will allow you the option of specifying your own configuration file.  The configuration file can be used to specify the location of the preferences file, which contains the preferred storage file paths for both property and appointment data.
 

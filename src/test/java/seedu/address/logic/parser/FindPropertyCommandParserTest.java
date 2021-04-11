@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
+import static seedu.address.model.property.client.AskingPrice.MESSAGE_CONSTRAINTS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,6 +110,23 @@ public class FindPropertyCommandParserTest {
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         assertParseSuccess(parser, " pm/$1,000,000", expectedFindCommand);
+    }
+
+    @Test
+    public void invalidPropertyPriceTest() {
+        String expectedPM = "Wrong input format for pm/ !\n"
+                + MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        String expectedPL = "Wrong input format for pl/ !\n"
+                + MESSAGE_CONSTRAINTS
+                + "\n"
+                + FindPropertyCommand.MESSAGE_USAGE;
+        List<Predicate<Property>> predicates = new ArrayList<>();
+        assertParseFailure(parser, " pm/abc", expectedPM);
+        assertParseFailure(parser, " pl/abc", expectedPL);
+        assertParseFailure(parser, " pm/ ", expectedPM);
+        assertParseFailure(parser, " pl/ ", expectedPL);
     }
 
     @Test
@@ -247,10 +265,12 @@ public class FindPropertyCommandParserTest {
     }
 
     @Test
-    public void multipleClientEmailTest() {
-        String expected = "Too many client emails! Please only use 1 client email. \n"
+    public void invalidClientEmailTest() {
+        String expected = "ce/ used but no keywords found! \n"
+                + "Email given is empty. "
+                + "\n"
                 + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " ce/abc.example.com ce/cdf@gmail.com", expected);
+        assertParseFailure(parser, " ce/ ", expected);
     }
 
     @Test
