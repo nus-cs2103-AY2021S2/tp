@@ -31,6 +31,12 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+package Storage {
+CLass HiddenStorage #FFFFFF
+}
+
+
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
@@ -54,6 +60,10 @@ LogicManager .left.> Command : executes >
 LogicManager --> Model
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+
+LogicManager --> Storage
+Storage --[hidden] Model
+Command .[hidden]up.> Storage
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
