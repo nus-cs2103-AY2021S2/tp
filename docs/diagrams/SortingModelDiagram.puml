@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class Wardrobe
+
+Package Garment {
+Class Garment
+Class DressCode
+Class Colour
+Class Name
+Class Size
+Class Type
+Class LastUse
+Class UniqueGarmentList
+Class GarmentComparator
+}
+
+Package Description {
+Class Description
+}
+}
+
+Wardrobe *--> "1" UniqueGarmentList
+UniqueGarmentList -> GarmentComparator
+UniqueGarmentList o--> "*" Garment
+Garment *--> Name
+Garment *--> Size
+Garment *--> Colour
+Garment *--> DressCode
+Garment *--> Type
+Garment *--> LastUse
+Garment *--> "*" Description
+
+Name -[hidden]right-> Size
+Size -[hidden]right-> DressCode
+DressCode -[hidden]right-> Colour
+
+@enduml

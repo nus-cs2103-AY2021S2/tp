@@ -133,22 +133,20 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Completed] List feature
+### [Completed] Default Sorting Order of Garments in Wardrobe
 
 #### Proposed Implementation
 
-The proposed `list` mechanism extends the `list` mechanism of `AddressBook`, which lists out the garments based on when they have been last used. The extended `list` mechanism sorts the list of garments
-based on the date and time that they were last used, and outputs the entries in that order.
+The proposed default sorting order of Garments in the Wardrobe, which lists out the Garments based on when they have been last used. The new default sorting order sorts the list of garments
+based on the date that they were last used, and outputs the entries from the earliest used date to the latest used date.
 
 This is achieved through the creation of the `LastUse` attribute that is tied to the `Garment` object, that gives a date as to when it was last used.
 
-`ListCommand` is updated to allow the garments to be sorted by the `LastUse` attribute.
+The Wardrobe is sorted at the `UniqueGarmentList` level with the help of `GarmentComparator`.
 
-The following sequence diagram shows how the list operation works:
+The following diagram shows where sorting occurs in the Model component (higher level elements omitted).
 
-
-
-The following activity diagram summarizes what happens when a user executes a new command:
+![Structure of the Model Component for sorting](images/SortingModelDiagram.png)
 
 #### Design Consideration:
 
