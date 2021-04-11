@@ -97,7 +97,7 @@ Action | Format, Examples
 Prefix | Format
 --------|------------------
 **n/** | `n/NAME`
-**p;** | `p/PHONE_NUMBER find [e/bob /AND p/98761234] /OR b/1999 10 11`
+**p** | `p/PHONE_NUMBER find [e/bob /AND p/98761234] /OR b/1999 10 11`
 **e/** | `e/EMAIL`
 **a/** | `a/ADDRESS`
 **b/** | `b/DATE_OF_BIRTH` 
