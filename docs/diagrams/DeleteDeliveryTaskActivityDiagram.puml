@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes Delete command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([user input is valid])
+    :Parse Command;
+    if () then ([delivery tasks exists in delivery list])
+        :Delete tasks from delivery list;
+    else ([else])
+        :Show delivery tasks does not exist message;
+    endif
+else ([else])
+    : Show invalid command format message;
+endif
+stop
+@enduml
