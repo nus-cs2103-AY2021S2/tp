@@ -258,10 +258,10 @@ To facilitate the implementation of this feature, several new predicate classes 
 The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns
 true.
 
-The following sequence diagram shows how the `find` command works:
+The following sequence diagram shows how the `find` command works:<br>
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-The following activity diagram shows what happens when `find` command is executed.
+The following activity diagram shows what happens when `find` command is executed.<br>
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design considerations:
@@ -906,7 +906,7 @@ testers are expected to do more *exploratory* testing.
 ### Undoing previous operations
 1. Undo previous operations.
    1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
-   1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420` followed by `undo`. <br>
+   1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420 m/email` followed by `undo`. <br>
       Expected: `Andy` is no longer in the contact list after `undo` is executed. Command that is undone is shown in the status message.
    1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.<br>
       Expected: The second contact in the list is no longer blacklisted. Command that is undone (i.e. `blacklist 2`) is shown in the status message.
@@ -920,16 +920,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Navigating through commands
 1. Navigating to previous commands.
-   1. Test case: Execute `light`, `edit 1 n/Name`, `find n/Name` in this order and press up arrow key three times. <br>
-      Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Name`, `edit 1 n/Name1` and finally `light`.
+   1. Test case: Execute `light`, `edit 1 n/Alex`, `find n/Alex` in this order and press up arrow key three times. <br>
+      Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Alex`, `edit 1 n/Alex` and finally `light`.
 1. Navigating to later commands.
    1. Prerequisite: Retain the same setting as in Test case 1.i.
    1. Test case: Press down arrow key.<br>
-      Expected: The command `edit 1 n/Name` is shown.
+      Expected: The command `edit 1 n/Alex` is shown.
    1. Test case: Press down arrow key again.<br>
-      Expected: The command `find n/Name` is shown.
+      Expected: The command `find n/Alex` is shown.
    1. Test case: Press down arrow key again.<br>
-      Expected: The command `find n/Name` is shown again since this is the last command executed.
+      Expected: The command `find n/Alex` is shown again since this is the last command executed.
 1. Attempt to navigate the commands when there are no commands executed.
    1. Test case: Press up arrow key.<br>
       Expected: Nothing is shown in the command box.
