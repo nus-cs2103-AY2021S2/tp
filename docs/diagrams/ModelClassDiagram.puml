@@ -60,7 +60,7 @@ UserPrefs ..|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 AppointmentSchedule *--> "1" NonConflictingAppointmentList
 UniquePersonList o--> "*" Person
-NonConflictingAppointmentList O-left-> "*" Appointment
+NonConflictingAppointmentList o-left-> "*" Appointment
 Person *---> Name
 Person *---> Phone
 Person *---> Email
@@ -68,9 +68,10 @@ Person *---> Address
 Person *---> "*" Tag
 Patient --|> Person
 Doctor --|> Person
-Appointment --> PatientMap
-Appointment --> DoctorMap
-Appointment --> Timeslot
+Appointment *--> PatientMap
+Appointment *--> DoctorMap
+Appointment *--> Timeslot
+Appointment *--> Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
