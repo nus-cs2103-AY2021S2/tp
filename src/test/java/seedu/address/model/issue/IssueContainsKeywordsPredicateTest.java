@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.issue.IssueBuilder;
 
-public class RoomNumberContainsKeywordsPredicateTest {
+public class IssueContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
@@ -32,7 +32,6 @@ public class RoomNumberContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
-        // assertFa
         assertFalse(firstPredicate.equals(1));
 
         // null -> returns false

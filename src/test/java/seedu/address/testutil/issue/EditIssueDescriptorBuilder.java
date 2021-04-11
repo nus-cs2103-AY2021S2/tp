@@ -42,6 +42,9 @@ public class EditIssueDescriptorBuilder {
 
     /**
      * Sets the {@code RoomNumber} of the {@code EditIssueDescriptorBuilder} that we are building.
+     *
+     * @param roomNumber Room number to be set.
+     * @return the descriptor builder itself.
      */
     public EditIssueDescriptorBuilder withRoomNumber(String roomNumber) {
         descriptor.setRoomNumber(new RoomNumber(roomNumber));
@@ -50,39 +53,54 @@ public class EditIssueDescriptorBuilder {
 
     /**
      * Sets the {@code Description} of the {@code EditIssueDescriptorBuilder} that we are building.
+     *
+     * @param description Description to be set.
+     * @return the descriptor builder itself.
      */
-    public EditIssueDescriptorBuilder withDescription(String issueNumber) {
-        descriptor.setDescription(new Description(issueNumber));
+    public EditIssueDescriptorBuilder withDescription(String description) {
+        descriptor.setDescription(new Description(description));
         return this;
     }
 
     /**
      * Sets the {@code Timestamp} of the {@code EditIssueDescriptorBuilder} that we are building.
+     *
+     * @param timestamp Timestamp to be set.
+     * @return the descriptor builder itself.
      */
-    public EditIssueDescriptorBuilder withTimestamp(String issueNumber) {
-        descriptor.setTimestamp(new Timestamp(issueNumber));
+    public EditIssueDescriptorBuilder withTimestamp(String timestamp) {
+        descriptor.setTimestamp(new Timestamp(timestamp));
         return this;
     }
 
     /**
      * Sets the {@code Status} of the {@code EditIssueDescriptorBuilder} that we are building.
+     *
+     * @param status Status to be set.
+     * @return the descriptor builder itself.
      */
-    public EditIssueDescriptorBuilder withStatus(String issueNumber) {
-        descriptor.setStatus(new Status(issueNumber));
+    public EditIssueDescriptorBuilder withStatus(String status) {
+        descriptor.setStatus(new Status(status));
         return this;
     }
 
     /**
      * Sets the {@code Category} of the {@code EditIssueDescriptorBuilder} that we are building.
+     *
+     * @param category Category to be set.
+     * @return the descriptor builder itself.
      */
-    public EditIssueDescriptorBuilder withCategory(String issueNumber) {
-        descriptor.setCategory(new Category(issueNumber));
+    public EditIssueDescriptorBuilder withCategory(String category) {
+        descriptor.setCategory(new Category(category));
         return this;
     }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditIssueDescriptorBuilder}
      * that we are building.
+     *
+     * @param tags Tags to be set.
+     * @return the descriptor builder itself.
      */
     public EditIssueDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());

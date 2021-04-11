@@ -78,7 +78,7 @@ public class AddIssueCommandParserTest {
                 + CATEGORY_DESC_10_100,
                 new AddIssueCommand(expectedIssue));
 
-        // multiple status - last year accepted
+        // multiple status - last status accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
                 + ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
@@ -88,7 +88,7 @@ public class AddIssueCommandParserTest {
                 + CATEGORY_DESC_10_100,
                 new AddIssueCommand(expectedIssue));
 
-        // multiple rooms - last room accepted
+        // multiple categories - last category accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
                 + ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
@@ -103,12 +103,12 @@ public class AddIssueCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIssueCommand.MESSAGE_USAGE);
 
-        // missing room number prefix
+        // missing description prefix
         assertParseFailure(parser,
                 DESCRIPTION_DESC_10_100,
                 expectedMessage);
 
-        // missing description prefix
+        // missing room number prefix
         assertParseFailure(parser,
                 ROOM_NUMBER_DESC_10_100,
                 expectedMessage);
@@ -124,7 +124,7 @@ public class AddIssueCommandParserTest {
                 + CATEGORY_DESC_10_100,
                 RoomNumber.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid description
         assertParseFailure(parser, ROOM_NUMBER_DESC_10_100
                 + INVALID_DESCRIPTION_DESC
                 + TIMESTAMP_DESC_10_100
@@ -132,7 +132,7 @@ public class AddIssueCommandParserTest {
                 + CATEGORY_DESC_10_100,
                 Description.MESSAGE_CONSTRAINTS);
 
-        // invalid email
+        // invalid timestamp
         assertParseFailure(parser, ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
                 + INVALID_TIMESTAMP_DESC
@@ -140,7 +140,7 @@ public class AddIssueCommandParserTest {
                 + CATEGORY_DESC_10_100,
                 Timestamp.MESSAGE_CONSTRAINTS);
 
-        // invalid year
+        // invalid status
         assertParseFailure(parser, ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
                 + TIMESTAMP_DESC_10_100
@@ -148,7 +148,7 @@ public class AddIssueCommandParserTest {
                 + CATEGORY_DESC_10_100,
                 Status.MESSAGE_CONSTRAINTS);
 
-        // invalid room
+        // invalid category
         assertParseFailure(parser, ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
                 + TIMESTAMP_DESC_10_100

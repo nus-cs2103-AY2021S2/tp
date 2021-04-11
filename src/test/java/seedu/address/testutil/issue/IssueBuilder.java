@@ -53,6 +53,9 @@ public class IssueBuilder {
 
     /**
      * Sets the {@code RoomNumber} of the {@code Issue} that we are building.
+     *
+     * @param roomNumber The room number to build the issue with.
+     * @return The IssueBuilder itself.
      */
     public IssueBuilder withRoomNumber(String roomNumber) {
         this.roomNumber = new RoomNumber(roomNumber);
@@ -61,6 +64,9 @@ public class IssueBuilder {
 
     /**
      * Sets the {@code Description} of the {@code Issue} that we are building.
+     *
+     * @param description The description to build the issue with.
+     * @return The IssueBuilder itself.
      */
     public IssueBuilder withDescription(String description) {
         this.description = new Description(description);
@@ -69,6 +75,9 @@ public class IssueBuilder {
 
     /**
      * Sets the {@code Timestamp} of the {@code Issue} that we are building.
+     *
+     * @param timestamp The timestamp to build the issue with.
+     * @return The IssueBuilder itself.
      */
     public IssueBuilder withTimestamp(String timestamp) {
         this.timestamp = new Timestamp(timestamp);
@@ -77,6 +86,9 @@ public class IssueBuilder {
 
     /**
      * Sets the {@code Status} of the {@code Issue} that we are building.
+     *
+     * @param status The status to build the issue with.
+     * @return The IssueBuilder itself.
      */
     public IssueBuilder withStatus(String status) {
         this.status = new Status(status);
@@ -85,6 +97,9 @@ public class IssueBuilder {
 
     /**
      * Sets the {@code Category} of the {@code Issue} that we are building.
+     *
+     * @param category The category to build the issue with.
+     * @return The IssueBuilder itself.
      */
     public IssueBuilder withCategory(String category) {
         this.category = new Category(category);

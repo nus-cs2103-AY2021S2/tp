@@ -30,12 +30,13 @@ public class RoomNumberTest {
         assertFalse(RoomNumber.isValidRoomNumber("03144")); // room does not have hyphen
         assertFalse(RoomNumber.isValidRoomNumber("floor-unit")); // non-numeric
         assertFalse(RoomNumber.isValidRoomNumber("fl00r-un1t")); // alphabets with number
-        assertFalse(RoomNumber.isValidRoomNumber("0-123")); // floor is fewer than 2 digits
+        assertFalse(RoomNumber.isValidRoomNumber("0-123")); // floor is less than 2 digits
         assertFalse(RoomNumber.isValidRoomNumber("000-123")); // floor is more than 2 digits
-        assertFalse(RoomNumber.isValidRoomNumber("00-12")); // unit is few than 3 digits
+        assertFalse(RoomNumber.isValidRoomNumber("00-12")); // unit is less than 3 digits
         assertFalse(RoomNumber.isValidRoomNumber("00-1234")); // unit is more than 3 digits
 
         // valid rooms
-        assertTrue(RoomNumber.isValidRoomNumber("01-234"));
+        assertTrue(RoomNumber.isValidRoomNumber("01-000"));
+        assertTrue(RoomNumber.isValidRoomNumber("99-999"));
     }
 }
