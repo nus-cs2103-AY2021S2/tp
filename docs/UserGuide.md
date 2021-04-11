@@ -392,7 +392,7 @@ so that you may find free time on the day to schedule new activities.
 Format: `view DATE`
 
 * Date should be in the format of dd/mm/yyyy like 12/12/2021.
-* Date conforms to specifications stated in the table of attributes.
+* Date cannot be before the year 1900 or after the year 2099.
 
 Examples:
 * `view 03/07/2021`<br>Lists all tasks with dates or recurring dates on 03/07/2021, and brings the calendar to July
