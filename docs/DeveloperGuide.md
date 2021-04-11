@@ -52,7 +52,7 @@ upon Taskify in the future.
   
 ### 1.3 Taskify Overview
 Taskify is a desktop app intended for university students, optimized for fast typists via a Command Line Interface 
-(CLI). Taskify helps users keep track of their tasks with a a clean and simplistic interface.
+(CLI). Taskify helps users keep track of their tasks with a clean and simplistic interface.
 
 ### 1.4 How to use this guide
 This Developer Guide is structured in a top-down manner, starting with the overall architecture of Taskify, followed
@@ -107,7 +107,7 @@ Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface`) mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface
 and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -205,7 +205,7 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
 describes some noteworthy details on how certain features are implemented.
 
-### Switch between the different tabs
+### 4.1 Switch between the different tabs
 
 #### Format of command
 * `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
@@ -241,10 +241,9 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 * **Alternative Choice:** Switch tabs based on tab index
     * Pros: Lesser things to remember as the format command is `switch index`
-    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.    
 
-
-### View Command
+### 4.2 View Command
 The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
 
 #### Implementation
@@ -269,6 +268,44 @@ to the user.
 #### Design Consideration
 * **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
 * **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
+
+### 4.3 Tag Search Command
+
+#### Implementation
+
+The implementation of the Tag Search feature is facilitated by `TagContainsKeywordsPredicate` which implements
+`Predicate<Task>` and has the `test` method's implementation overridden to test if a `Task` has tags that match any
+of the tags entered by the user.
+
+The `TagContainsKeywordsPredicate#test(Task)` iterates through the `keywords` of type `List<String>` and
+checks if any of the `keywords` match the tags in the `Task`. If one or more of the tags match the function returns true.
+
+
+`Task` has the following function to retrieve the tags:
+* `Task#getTags()` - Return the tags of a `Task` .
+
+`TagContainsKeywordsPredicate` will be passed to `Model#updateXYZFilteredTaskList(Predicate)`
+(`updateFilteredTaskList`, `updateUncompleredFilteredTaskList`, etc.) depending on which tab is currently active. The
+filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
+
+
+The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search
+tutorial cs2100` as input.
+
+![TagSearchSequenceDiagram](images/TagSearchSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the tag-search command:
+
+![TagSearchActivityDiagram](images/TagSearchActivityDiagram.png)
+
+#### Design Consideration
+* **Current Choice:** Search for tasks bases on one or more tags.
+    * Pros: Simple and intuitive for user to filter out similar tasks by using tags.
+    * Cons: User would have to type out all the tags individually if there are multiple tasks with unique tags
+
+* **Alternative Choice:** Search for tasks using a collection of tags grouped together with the same label.
+    * Pros: Users can type less and save time if they have multiple tags to search for.
+    * Cons: Less intuitive as user will have to keep track of which tags are under which group.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -391,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3b. The given status is expired. Even though `expired` is a valid status of a task, users cannot directly modify it.
     * 3b1. Taskify warns that it can change the status of the task if it is either `uncompleted` or `completed` .
 
-      Use case ends.
+        Use case ends.
   
 * 3c. Taskify does not recognise the status that the User wants to set
     * 3c1. Taskify warns that it does not understand the type of status entered
@@ -409,7 +446,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all Tasks
-2. Taskify lists all the Tasks
+2. Taskify lists all the Tasks  
+   Use case ends.
 
 **Extensions**
 
@@ -418,22 +456,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 ---
-**Use case 5: Search for Tasks using tags**
+**Use case 5: Search for Tasks by Tags**
 
 **MSS**
 
-1. User requests to search for Task(s) by using its tag.
-2. Taskify shows the Task(s) with the same tag.
+1. User requests to find Task(s) by tags based on a list of tags.
+2. Taskify shows the Tasks that match one or more of the given tags.    
+   Use case ends.
 
 **Extensions**
+* 1a. Taskify cannot find any Task with the given tags
+    * 1a1. Taskify informs the User that no Tasks are found.
 
-* 1a. Taskify cannot find any Task with the tag
-    * 1a1. Taskify warns that no such Task has this tag.
-    
-        Use case ends.
+      Use case ends.
     
 * 1b. The User's input is unrecognisable to Taskify
-    * 1b1. Taskify informs the User on the format to do a tag-search.
+    * 1b1. Taskify informs the User on the format of command to search for tasks by tags.
     
         Use case ends.
 
@@ -443,34 +481,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to sort the Tasks.
-2. Taskify shows the Tasks in their sorted order.
+2. Taskify shows the Tasks in their sorted order.   
+   Use case ends.
 
 ---
-**Use case 7: Search for Tasks using keywords (excluding tags)**
+**Use case 7: Search for Tasks by Name**
 
 **MSS**
 
-1. User requests to find Task(s) with given keywords.
-2. Taskify shows the Tasks that have passed the search.
+1. User requests to find Task(s) by name based on a list of keywords.
+2. Taskify shows the Tasks that match the given keywords.    
+   Use case ends.
 
 **Extensions**
 * 1a. Taskify cannot find any Task with the given keywords
-    * 1a1. Taskify informs the User that no Tasks are found, and that keyword(s) must match a whole word in the Task's name.
+    * 1a1. Taskify informs the User that no Tasks are found.
       
         Use case ends.
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. Taskify informs the User on the format of command to search for tasks by name.
+
+      Use case ends.    
 ---
 **Use case 8: Modifying an existing Task**
 
 **MSS**
 
 1. User requests to modify an existing Task
-2. Taskify shows the User the modified Task.
+2. Taskify shows the User the modified Task.     
+   Use case ends.
 
 **Extensions**
 * 1a. The User's input is unrecognisable to Taskify
     * 1a1. Taskify informs the User on the format to edit a Task.
 
-      Use case ends.
+        Use case ends.
     
 * 1b. The User's input for specific fields is invalid
     * 1b1. Taskify informs the User on the correct format of the field in the User's input that failed to pass validation checks.
@@ -478,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
     
 * 1c. The User's input does not include any fields at all.
-    * 1c. Taskify warns that no modifying can take place if there are no updated fields filled in.
+    * 1c1. Taskify warns that no modifying can take place if there are no updated fields filled in.
     
         Use case ends.
     
@@ -489,7 +534,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to switch to Home Tab.
-2. Taskify switches to Home Tab.
+2. Taskify switches to Home Tab.   
+   Use case ends.
 
     Use Case ends
 
@@ -513,11 +559,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to switch to Expired Tab.
 2. Taskify switches to Expired Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
-
 * 1a. If the user is currently in the Expired Tab
     * 1a1. Taskify informs the User that it is currently in the Expired Tab.
 
@@ -537,7 +582,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to switch to Completed Tab.
 2. Taskify switches to Completed Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
@@ -561,7 +606,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to switch to Uncompleted Tab.
 2. Taskify switches to Uncompleted Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
@@ -582,16 +627,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all Tasks that are due on specified date.
-2. Taskify shows all the User Tasks with the same date.
-   
+2. Taskify shows the User Tasks with the same date.   
+
    Use case ends.
 
 **Extensions**
 * 1a. There are no tasks stored
-    * 1a1. Taskify informs the User there are no tasks with the specified date.
-    
-        Use case ends.
-
+    * 1a1. Taskify informs the User there are no tasks tracked   
+      Use case ends.
+      
 ---
 
 ### 6.4 Non-Functional Requirements
@@ -634,9 +678,66 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutting down
 
-### 7.2 Deleting a task
+    1. Launch the help window `help` command.
+
+    1. Close the app using the `exit` command.  
+       Expected: Both the main window, and the help window should close.
+
+### 7.2 Adding a task
+
+1. Adding a task on the home tab.
+
+    1. Prerequisites: User should be on the home tab and there should not be any task with the same name in the list.
+       If there is such a task, delete it.
+
+    1. Test case: `add n/Finish 2103T Tutorial desc/Draw UML diagram date/2021-04-13 10:30 t/CS2103T`<br>
+       Expected: Task named Finish 2103T Tutorial should appear in the list of tasks on the home tab. It should 
+       appear at the bottom of the list ,and the details should be as entered.
+
+    1. Test case: `add n/Old Task desc/Draw UML diagram date/2015-04-13 10:30 t/CS2103T`<br>
+       Expected: No task is added. Error details indicating that the date should not be in the past shown in 
+       status 
+       message.
+       
+1. Adding a task on a non-home tab.
+
+    1. Prerequisites: User should be on any tab other than the home tab and there should not be any task with the same 
+       name in the list. If there is such a task, delete it.
+
+    1. Test case: `add n/Finish 2103T Tutorial desc/Draw UML diagram date/2021-04-13 10:30 t/CS2103T`<br>
+       Expected: No task is added since the user has to be on the home tab to add tasks. Error message instructing 
+       the user to switch to the home tab shown in status message.
+
+### 7.3 Editing a task
+
+1. Editing a task on the home tab.
+
+    1. Prerequisites: User should be on the home tab. There should be at least 1 task in the task list.
+
+    1. Test case: `edit 1 t/newtag`<br>
+       Expected: Task with index 1 is edited such that it will have a single tag named newtag.
+
+    1. Test case: `edit 1 s/completed desc/new description`<br>
+       Expected: Task with index 1 will be edited, and the new details should be as entered.
+
+    1. Test case: `edit 0 s/completed desc/new description`<br>
+       Expected: No event is deleted. Error details shown in the status message.
+
+    1. Other incorrect edit commands to try: `edit`, `edit x` (where x is larger than the list size).
+       Expected: Similar to previous.
+
+1. Adding a task on a non-home tab.
+
+    1. Prerequisites: User should be on any tab other than the home tab and there should be at least 1 task in the 
+       task list
+
+    1. Test case: `edit 1 s/completed desc/new description`<br>
+       Expected: No task is edited since the user has to be on the home tab to add tasks. Error message instructing
+       the user to switch to the home tab shown in status message.
+
+### 7.3 Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -652,15 +753,40 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### 7.4 Switching Tabs
 
-### 7.3 Saving data
+1. Switching to home tab
+    1. Test case: `home`<br>
+       Expected: If not already on the home tab, the UI will switch to the home tab.
+1. Switching to expired tab
+    1. Test case: `expired`<br>
+       Expected: If not already on the expired tab, the UI will switch to the home tab.
+1. Switching to completed tab      
+    1. Test case: `completed`<br>
+       Expected: If not already on the completed tab, the UI will switch to the home tab.
+1. Switching to uncompleted tab
+   1. Test case: `uncompleted`<br>
+      Expected: If not already on the uncompleted tab, the UI will switch to the home tab.
 
-1. Dealing with missing/corrupted data files
+### 7.5 Sorting Tasks
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Sorting tasks based on deadlines.
+    1. Test case: `sort`
+    1. Expected: All the tasks are sorted in ascending order of their deadline dates.
 
-1. _{ more test cases …​ }_
+### 7.6 Viewing help
+
+1. Viewing help
+   1. Test case: `help`
+   1. Expected: Help window appears.
+
+### 7.7 Clearing Data
+
+1. Clearing all data in Taskify
+    1. Test case: There should be some data in Taskify.
+    1. Test case: `clear`
+    1. Expected: All the data is cleared.
+    
 
 --------------------------------------------------------------------------------------------------------------------
 ## **8. Appendix: Effort**
