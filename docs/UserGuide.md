@@ -791,8 +791,8 @@ data directly by editing that data file.
 
 **:exclamation: Caution:**
 
-If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data
-file at the next run.
+* If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data
+  file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -855,18 +855,18 @@ To purge all sample user data from SmartLib, you may use the command
 
 Action                 | Format, Examples
 -----------------------|------------------
-**Add reader**         | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g. `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
-**Delete reader**      | `deletereader INDEX`<br> e.g. `deletereader 3`
-**Find reader**        | `findreader KEYWORD [MORE_KEYWORDS]…` or `findreader t/TAG [MORE_TAGS]…`<br> e.g. `findreader James Jake`
+**Add reader**         | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br><br> e.g. `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Delete reader**      | `deletereader INDEX`<br><br> e.g. `deletereader 3`
+**Find reader**        | `findreader KEYWORD [MORE_KEYWORDS]…` or `findreader t/TAG [MORE_TAGS]…` <br><br> e.g. `findreader James Jake`
 **List readers**       | `listreader`
-**Add book**           | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g. `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
-**Delete book**        | `deletebook INDEX`<br> e.g. `deletebook 3`
-**Find book**          | `findbook KEYWORD [MORE_KEYWORDS]…`<br> e.g. `findbook Thomas Tank Engine`
+**Add book**           | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br><br> e.g. `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
+**Delete book**        | `deletebook INDEX`<br><br> e.g. `deletebook 3`
+**Find book**          | `findbook KEYWORD [MORE_KEYWORDS]…`<br><br> e.g. `findbook Thomas Tank Engine`
 **List books**         | `listbook`
 **List overdue books** | `listoverdue`
-**Borrow book**        | `borrow bc/BARCODE r/READERNAME`<br> e.g. `borrow bc/1000000000 r/Alex`
-**Return book**        | `return bc/BARCODE`<br> e.g. `return bc/1202179131`
-**Find record**        | `findrecord KEYWORD [MORE_KEYWORDS]…`<br> e.g. `findrecord Cloud Hobbit`
+**Borrow book**        | `borrow bc/BARCODE r/READERNAME`<br><br> e.g. `borrow bc/1000000000 r/Alex`
+**Return book**        | `return bc/BARCODE`<br><br> e.g. `return bc/1202179131`
+**Find record**        | `findrecord KEYWORD [MORE_KEYWORDS]…`<br><br> e.g. `findrecord Cloud Hobbit`
 **List records**       | `listrecord`
 **Clear**              | `clear-everything-in-my-smartlib`
 **Help**               | `help`
