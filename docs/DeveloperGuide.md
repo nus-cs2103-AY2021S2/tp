@@ -143,22 +143,22 @@ Each of the `Completable` and `Repeatable` abstract classes specify behaviors sp
 
 `CompletableTodo`
     * Holds:
-      * A String: Description
-      * A Boolean: isDone
+      * A String: `Description`
+      * A Boolean: `isDone`
 
 `CompletableDeadline`
     * Holds:
-      * A String: Description
-      * A Boolean: isDone
-      * A Date: By
+      * A String: `Description`
+      * A Boolean: `isDone`
+      * A Date: `By`
 
 
 `Repeatable` 
     * Holds:
-      * A String: Description
-      * A Date: Date
-      * A Time: Time
-      * A Boolean: isWeekly
+      * A String: `Description`
+      * A Date: `Date`
+      * A Time: `Time`
+      * A Boolean: `isWeekly`
 
 #### Design Considerations
 
@@ -180,7 +180,7 @@ Each of the `Completable` and `Repeatable` abstract classes specify behaviors sp
         * Fewer classes required.
     * Cons:
         * `Task` is not closed to modification. A new implementation of `Task` might require the addition of fields to store additional behaviours and attributes.
-        * Risk of having a `Todo` added to a `DeadlineList` is heightened during implementation. This is in contrast to alternative 2, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
+        * Heightened risk of having a `Todo` or `Event` added to a `DeadlineList` during implementation. This is in contrast to the current implementation, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
 
 ### View Projects Feature
 
