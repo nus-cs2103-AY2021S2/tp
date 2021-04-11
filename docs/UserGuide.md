@@ -92,7 +92,7 @@ that you key in. Any success, error or warning messages will be displayed in thi
 
 ### 2.3. Information on Items
 
-Every item is made up of an item name, location and quantity. Expiry date and tags are optional. 
+Every item is made up of an item name, location and quantity. Expiry date and tags are optional.
 
 Expiry date of an item will be shown in orange if the item is expiring within the next 3 days. Expiry date of an item will be shown
 in red if the item has expired.
@@ -106,21 +106,21 @@ StoreMando will accept similar items but will give a warning to alert the user a
 Item Attribute | Constraints
 --------------------| -------
 Item Name  | An alphanumeric string that can be one word or more.
-Location | A string.
-Quantity | An integer that must be at least 1 and cannot exceed 1,000,000.
+Location | 
+Quantity | An integer that must be at least 1 and must not exceed 1,000,000.
 Expiry Date | A date in the format of YYYY-MM-DD. An item can either have 1 expiry date or no expiry date.
 Tag | An alphanumeric string that can only be one word long. An item can have 0 or more tags.
 
 ### 2.4. Prefixes and Keywords
 
-Prefix | Keyword and Format | Remarks
-:-----:|--------------------| -------
-n/ | ITEM_NAME `n/ITEM_NAME` | ITEM_NAME can take in multiple words.
-l/ | LOCATION  `l/LOCATION` | LOCATION can take in multiple words.
-q/ | QUANTITY `q/QUANTITY` | QUANTITY only takes in 1 positive integer.
-e/ | EXPIRY_DATE `e/EXPIRY_DATE` | EXPIRY_DATE takes in a date in the format of YYYY-MM-DD.
-t/ | TAG `t/TAG` | Each TAG can only be one word long.
-*/ | PARTIAL_WORD `*/PARTIAL_WORD` | PARTIAL_WORD can take in multiple partial words.
+Prefix | Keyword | Format | Remarks
+:-----:|----------| ----------| -------
+n/ | ITEM_NAME | `n/ITEM_NAME` | ITEM_NAME can have multiple words.
+l/ | LOCATION  | `l/LOCATION` | LOCATION can have multiple words.
+q/ | QUANTITY | `q/QUANTITY` | QUANTITY must be a positive integer.
+e/ | EXPIRY_DATE | `e/EXPIRY_DATE` | EXPIRY_DATE is a date in the format of YYYY-MM-DD.
+t/ | TAG | `t/TAG` | Each TAG can only be one word long.
+*/ | PARTIAL_WORD | `*/PARTIAL_WORD` | PARTIAL_WORD can have multiple partial words.
 
 ----
 
@@ -169,17 +169,17 @@ Examples:
 
 **:information_source: Notes about the add command:**
 
-* StoreMando does not allow adding of [identical items](#23-information-on-items)
-* Inputs given are case-sensitive. i.e. `add n/Chocolate Milk l/kitchen refrigerator q/2` and 
+* StoreMando does not allow adding of [identical items](#23-information-on-items).
+* Inputs given are case-sensitive. e.g. `add n/Chocolate Milk l/kitchen refrigerator q/2` and 
   `add n/chocolate milk l/Kitchen Refrigerator q/2` can be keyed it one after the other without
   any error being thrown.
-* Quantity provided must be greater than 0 and should not exceed 1,000,000. 
+* Quantity provided must be greater than 0 and must not exceed 1,000,000. 
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb:**Tip:** An item can have any number of tags (including 0)
+:bulb:**Tip:** An item can have any number of tags (including 0).
 
 </div>
 
@@ -214,9 +214,9 @@ Examples:
 * Existing values will be updated to the input values **only if input values differ from the existing values**.
 * Existing values **will not be updated** if the input values edit the item to one 
   that is [identical to another item](#23-information-on-items).
-* When editing tags, the existing tags of the item will be removed i.e. adding of tags is not cumulative.
+* When editing tags, the existing tags of the item will be removed. i.e. adding of tags is not cumulative.
 * You can remove all the items’ tags by typing `t/` without specifying any tags after it.
-* Quantity provided must be greater than 0 and should not exceed 1,000,000.
+* Quantity provided must be greater than 0 and must not exceed 1,000,000.
 
 </div>
 
@@ -253,10 +253,10 @@ You can use this command in 2 different ways.
 
 **:information_source: Notes about the find command:**
 
-* The search is case-insensitive. e.g. `milk` will match `Milk`
-* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`
+* The search is case-insensitive. e.g. `milk` will match `Milk`.
+* The order of the keywords does not matter. e.g. `Bread Chocolate` will match `Chocolate Bread`.
 * Only the item name is searched.
-* Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
+* Items matching at least one keyword will be returned. e.g. `find Chocolate Milk` will
   return `Cadbury Chocolate` and `Almond Milk`.
 * Items displayed are not in order of relevance, i.e. the topmost item displayed may not be the best match.
 * This command is executed on the currently displayed list instead of the entire list.
@@ -273,8 +273,8 @@ You can use this command in 2 different ways.
 
   Examples:
   
-    * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+    * `find Chocolate` returns `chocolate` and `Chocolate Milk`.
+    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`.
       
     <br>
     
@@ -282,7 +282,7 @@ You can use this command in 2 different ways.
 
   **:information_source: Notes about the command:**
 
-    * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`
+    * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`.
 
   </div>
 
@@ -292,8 +292,8 @@ You can use this command in 2 different ways.
 
   Examples:
   
-    * `find */Burger` returns `CheeseBurger` and `fishburger`
-    * `find */cheese egg` returns `MacAndCheese` and `eggs`
+    * `find */Burger` returns `CheeseBurger` and `fishburger`.
+    * `find */cheese egg` returns `MacAndCheese` and `eggs`.
       
     <br>
 
@@ -301,7 +301,7 @@ You can use this command in 2 different ways.
 
   **:information_source: Notes about the command:**
 
-    * Partial words will be matched e.g. `Choco` will match `Chocolates`
+    * Partial words will be matched e.g. `Choco` will match `Chocolates`.
 
   </div>
 
@@ -341,7 +341,7 @@ You can use this command in 3 different ways.
     * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
     * All the keywords provided need to match an item's location for the item to be displayed.
       e.g. 'Room' will match an item with location 'Living room' but 'Living room 1' will not match 
-      an item with location 'Living room'
+      an item with location 'Living room'.
     * This command is executed on the currently displayed list instead of the entire list. 
       e.g. if the list currently shows all the milk in the inventory, `list l/kitchen` will return the list 
       of milk in the kitchen instead of all items in the kitchen.
@@ -396,10 +396,10 @@ Examples:
 
 **:information_source: Notes about the reminder command:**
 
-* `NUMBER` refers to the number of days/weeks 
+* `NUMBER` refers to the number of days/weeks.
 * `NUMBER` must be **an integer from -365 to 365.** i.e. -365, -3, 0, 3, 365
 * `TIME_UNIT` is either `days` or `weeks`.
-* `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
+* `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**.
 * Items without expiry date will not be shown.
 * This command is executed on the currently displayed list instead of the entire list.
   e.g. if the list currently shows all the milk in the inventory, `reminder 3 days` will return the list
@@ -500,7 +500,7 @@ You can use this command in 2 different ways.
   **:information_source: Notes about the clear command:**
 
     * The search is case-sensitive. e.g 'room' will not match 'Room'.
-    * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'.
+    * The location input will be matched exactly. e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'.
       'Living room' will not match 'Room living'.
 
   </div>
