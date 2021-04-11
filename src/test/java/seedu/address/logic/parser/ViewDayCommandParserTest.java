@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -18,7 +17,20 @@ class ViewDayCommandParserTest {
 
     @Test
     public void parse_invalidDate_failure() {
-        assertParseFailure(parser, INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
+        // invalid format
+        assertParseFailure(parser, "12/12/20002", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "0/12/2002", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "00/1/20002", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "01/12/200", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "00/12/200a", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "01-12-2002", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "2002/12/20", Date.MESSAGE_CONSTRAINTS);
+        // invalid date
+        assertParseFailure(parser, "12/12/0000", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "12/00/2002", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "00/12/2002", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "01/12/1899", Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "01/12/2100", Date.MESSAGE_CONSTRAINTS);
     }
 
     @Test

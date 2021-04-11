@@ -19,8 +19,8 @@ public class CountdownCommand extends Command {
     public static final String COMMAND_WORD = "count";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the number of days and hours left until "
-            + "a deadline is due or an event is happening.\n"
-            + "Parameters: INDEX \n"
+            + "a task's date, if it exists.\n"
+            + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " INDEX\n";

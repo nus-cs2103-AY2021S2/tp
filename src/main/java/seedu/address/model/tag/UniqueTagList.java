@@ -32,6 +32,9 @@ public class UniqueTagList implements Iterable<Tag> {
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    /**
+     * Used to count the number of each unique tag.
+     */
     private final Map<Tag, Integer> mapOfTagCount = new HashMap<>();
 
     /**
@@ -75,8 +78,8 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Checks if there are tasks with the tag and removes the equivalent tag from the list if there are no more tasks
-     * with this tag.
+     * Checks if there are instances of the tag and removes the equivalent tag from the list if there are no more
+     * instances of this tag, else decrement the count.
      * The tag must exist in the list. Map that counts tags is updated.
      *
      * @param toRemove Tag to remove.
@@ -144,13 +147,13 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
-        if (!tagsAreUnique(tags)) {
+        if (!areUniqueTags(tags)) {
             throw new DuplicateTagException();
         }
 
         internalList.setAll(tags);
 
-        //logger.info("Tag Count: " + mapOfTagCount);
+        logger.info("Tag Count: " + mapOfTagCount);
     }
 
     /**
@@ -194,7 +197,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * @param tags List of tags to check if all are unique.
      * @return Boolean indicating if the list of tags are unique.
      */
-    private boolean tagsAreUnique(List<Tag> tags) {
+    private boolean areUniqueTags(List<Tag> tags) {
         for (int i = 0; i < tags.size() - 1; i++) {
             for (int j = i + 1; j < tags.size(); j++) {
                 if (tags.get(i).equals(tags.get(j))) {
