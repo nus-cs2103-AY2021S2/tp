@@ -47,7 +47,7 @@ Class AppointmentDisplay
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook ..|> ReadOnlyAddressBook
+AddressBook .right.|> ReadOnlyAddressBook
 AppointmentSchedule .up.|> ReadOnlyAppointmentSchedule
 
 ModelManager .up.|> Model
