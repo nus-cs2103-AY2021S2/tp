@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "Managed Entity" {
+Class UniqueEntityList
+abstract Class Entity
+
+Package Owner {
+Class Owner
+}
+
+Package Program {
+Class Program
+}
+
+Package Dog {
+Class Dog
+}
+}
+
+UniqueEntityList o--> "*" Entity
+Entity ^--- Program
+Entity ^--- Owner
+Entity ^--- Dog
+@enduml
