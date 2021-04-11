@@ -46,6 +46,8 @@ public class ParserUtilTest {
     private static final String INVALID_ORDER_DESC = " ";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DELIVERY_DATE = "12122012";
+    private static final String INVALID_DAYS = "-1";
+    private static final String INVALID_DAYS_MULTIPLE = "-1";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -56,6 +58,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DELIVERY_DATE = "01/01/2022";
+    private static final String VALID_DAYS = "1";
 
     private static final String VALID_INDEX_LIST_WITH_ONE_INDEX = "1";
     private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES = "1 2";
@@ -688,6 +691,8 @@ public class ParserUtilTest {
 
     @Test
     public void parserOrderItem_wrongCases_forcedToExpectedCase() throws ParseException {
+        // this test checks if order item parser method forces case for order item
+        // expected case: each first letter is capital, rest is lower case
         OrderItem expectedOrderItem = new OrderItem(new Type(EXPECTED_CASE_ORDER_DESC));
         assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(WRONG_CASE_ORDER_DESC_1));
         assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(WRONG_CASE_ORDER_DESC_2));
@@ -695,10 +700,27 @@ public class ParserUtilTest {
 
     @Test
     public void parserOrderDescription_wrongCases_forcedToExpectedCase() throws ParseException {
-        // check if order description parser forces case for order description and order item
+        // this test checks if order description parser method forces case for order description
         // expected case: each first letter is capital, rest is lower case
         OrderDescription expectedOrderItem = new OrderDescription(EXPECTED_CASE_ORDER_DESC);
         assertEquals(expectedOrderItem, ParserUtil.parseOrderDescription(WRONG_CASE_ORDER_DESC_1));
         assertEquals(expectedOrderItem, ParserUtil.parseOrderDescription(WRONG_CASE_ORDER_DESC_2));
+    }
+
+    @Test
+    public void parseDys_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDays(null));
+    }
+
+    @Test
+    public void parseDays_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDays(INVALID_DAYS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDays(INVALID_DAYS_MULTIPLE));
+    }
+
+    @Test
+    public void parseDays_validValue_returnsOrderDescription() throws ParseException {
+        int expectedDays = Integer.parseInt(VALID_DAYS);
+        assertEquals(expectedDays, ParserUtil.parseDays(VALID_DAYS));
     }
 }
