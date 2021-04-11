@@ -82,14 +82,6 @@ public class OrderBook implements ReadOnlyBook<Order> {
     }
 
     /**
-     * Turns the state of an order to complete
-     * @param key order to be completed
-     */
-    public void completeOrder(Order key) {
-        key.setState(Order.State.COMPLETED);
-    }
-
-    /**
      * Cancel an order
      * @param key order to be cancelled
      */

@@ -39,6 +39,23 @@ public class Order implements Item {
         this.dishQuantityList = dishQuantityList;
     }
 
+    /**
+     * Order constructor with state
+     * @param dateTime
+     * @param customer
+     * @param dishQuantityList
+     * @param state
+     */
+    @JsonCreator
+    public Order(@JsonProperty("datetime") LocalDateTime dateTime, @JsonProperty("customer") Person customer,
+                 @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList, State state) {
+        this.dateTime = dateTime;
+        this.customer = customer;
+        this.dishQuantityList = dishQuantityList;
+        this.state = state;
+    }
+
+
     public String getStrDatetime() {
         return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
     }
@@ -78,7 +95,10 @@ public class Order implements Item {
      * @return Copy of {@code Order} object with {@code editedPerson} in the customer attribute instead
      */
     public Order updateCustomer(Person editedPerson) {
-        return new Order(dateTime, editedPerson, dishQuantityList);
+        if (state == State.COMPLETED || state == State.CANCELLED) {
+            return this;
+        }
+        return new Order(dateTime, editedPerson, dishQuantityList, state);
     }
 
     /**
@@ -89,6 +109,9 @@ public class Order implements Item {
      * @return Copy of {@code Order} object with {@code editedDish} in the {@code dishQuantityList} attribute instead
      */
     public Order updateDish(Dish target, Dish editedDish) {
+        if (state == State.COMPLETED || state == State.CANCELLED) {
+            return this;
+        }
         List<Pair<Dish, Integer>> updatedQuantityList = new ArrayList<>();
         for (Pair<Dish, Integer> p : dishQuantityList) {
             if (p.getKey().equals(target)) {
@@ -97,7 +120,7 @@ public class Order implements Item {
                 updatedQuantityList.add(p);
             }
         }
-        return new Order(dateTime, customer, updatedQuantityList);
+        return new Order(dateTime, customer, updatedQuantityList, state);
     }
 
     public double getTotalPrice() {
@@ -142,8 +165,8 @@ public class Order implements Item {
         return state;
     }
 
-    public void setState(State newState) {
-        state = newState;
+    public Order setState(State newState) {
+        return new Order(dateTime, customer, dishQuantityList, newState);
     }
 
     // Predicate methods

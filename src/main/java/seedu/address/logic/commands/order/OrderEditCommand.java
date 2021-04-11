@@ -42,6 +42,7 @@ public class OrderEditCommand extends Command {
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order.";
+    public static final String MESSAGE_NOT_UNCOMPLETED_ORDER = "This order is not uncompleted. It cannot be modified";
 
     private final Index index;
     private final OrderEditCommand.EditOrderDescriptor editOrderDescriptor;
@@ -62,14 +63,19 @@ public class OrderEditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // You can only edit orders that are uncompleted.
+        model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
         List<Order> lastShownList = model.getFilteredOrderList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_ORDER));
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
+
+        if (orderToEdit.getState() != Order.State.UNCOMPLETED) {
+            System.out.println("not uncompleted");
+            throw new CommandException(MESSAGE_NOT_UNCOMPLETED_ORDER);
+        }
 
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 

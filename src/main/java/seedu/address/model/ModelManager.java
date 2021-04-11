@@ -469,10 +469,6 @@ public class ModelManager implements Model {
         orderBook.setOrder(target, editedOrder);
     }
 
-    public void completeOrder(Order target) {
-        orderBook.completeOrder(target);
-    }
-
     @Override
     public void cancelOrder(Order target) {
         orderBook.cancelOrder(target);

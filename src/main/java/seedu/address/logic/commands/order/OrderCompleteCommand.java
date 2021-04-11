@@ -45,9 +45,9 @@ public class OrderCompleteCommand extends Command {
         }
 
         Order orderToComplete = lastShownList.get(targetIndex.getZeroBased());
-        model.completeOrder(orderToComplete);
+        Order completedOrder = orderToComplete.setState(Order.State.COMPLETED);
+        model.setOrder(orderToComplete, completedOrder);
         model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
-
         return new CommandResult(String.format(MESSAGE_COMPLETE_ORDER_SUCCESS, orderToComplete),
                 CommandResult.CRtype.ORDER);
     }
