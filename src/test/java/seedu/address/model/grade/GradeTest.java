@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_SCIENCE;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGrades.MATHS_GRADE;
 import static seedu.address.testutil.TypicalGrades.SCIENCE_GRADE;
 
@@ -13,6 +14,27 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.GradeBuilder;
 
 public class GradeTest {
+
+    @Test
+    public void isValidSubject() {
+        // null graded item
+        assertThrows(NullPointerException.class, () -> GradedItem.isValidGradedItem(null));
+
+        // invalid graded item
+        assertFalse(Grade.isValidSubject("")); // empty string
+        assertFalse(Grade.isValidSubject(" ")); // spaces only
+        assertFalse(Grade.isValidSubject("^")); // only non-alphanumeric characters
+        assertFalse(Grade.isValidSubject("maths*")); // contains non-alphanumeric characters
+        // max number of characters is 20 but 21 here
+        assertFalse(Grade.isValidSubject("aaaaaaaaaaaaaaaaaaaaa"));
+
+        // valid graded item
+        assertTrue(Grade.isValidSubject("mathematics")); // alphabets only
+        assertTrue(Grade.isValidSubject("12345")); // numbers only
+        assertTrue(Grade.isValidSubject("sec3 maths")); // alphanumeric characters
+        assertTrue(Grade.isValidSubject("Capital Final")); // with capital letters
+        assertTrue(Grade.isValidSubject("aaaaaaaaaaaaaaaaaaaa")); // contains 20 characters
+    }
 
     @Test
     public void isSameGrade() {

@@ -749,29 +749,31 @@ This feature allows tutees to track and manage their grades obtained in particul
 
 Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
 
-Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`
+Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`
 
-* Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
-* `SUBJECT_NAME` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
+* Valid `GRADE_LETTER` must follow the Singapore-GCE O'Level grading system.
+* `SUBJECT_NAME` is case-insensitive and `GRADE_LETTER` must be uppercase.
 
-Example: `add_grade s/English gi/Final gr/A`
+Example: `add_grade s/English gi/Final gr/A1`
 
 Result Display Example Output:
 ```
-New grade added: English (Final): A
+New grade added: English (Final): A1
 ```
 
 #### Edit a grade: `edit_grade`
 
 Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
 
-Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`
+Format: `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]`
 
-Example: `edit_grade 1 gr/B`
+* At least one optional field to edit must be provided.
+
+Example: `edit_grade 1 gr/B3`
 
 Result Display Example Output:
 ```
-Edited Grade: Science (Lab 1): B
+Edited Grade: Science (Lab 1): B3
 ```
 
 #### Delete a grade: `delete_grade`
@@ -784,7 +786,7 @@ Example: `delete_grade 1`
 
 Result Display Example Output:
 ```
-Deleted Grade: Science (Lab 1): B
+Deleted Grade: Science (Lab 1): B3
 ```
 
 #### List grades: `list_grades`
@@ -800,13 +802,13 @@ Result Display Example Output:
 Listed all grades
   1. Science
      Lab 1
-     A
+     A1
   2. Mathematics
      Final
-     B
+     B3
   3. English
      Midterm
-     C
+     C5
 ```
 
 ### Reminder Tracker
@@ -1069,8 +1071,8 @@ Action | Format | Examples
 **Edit a budget** | `edit_budget b/BUDGET` | `edit_budget b/600`
 **Delete a budget** | `delete_budget` | `delete_budget`
 **View a budget** | `view_budget` | `view_budget`
-**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, | `add_grade s/English gi/Final gr/A` 
-**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, | `edit_grade 1 gr/B`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`, | `add_grade s/English gi/Final gr/A` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]`, | `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
 **List grades** | `list_grades` | `list_grades`
 **Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
