@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BARCODE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_GENRE;
@@ -47,6 +48,9 @@ public class CommandTestUtil {
     public static final String VALID_ISBN_MAZE = "9780307582881";
     public static final String VALID_GENRE_HARRY = "Fantasy";
     public static final String VALID_GENRE_MAZE = "SciFi";
+    public static final String VALID_BARCODE = "1000000020";
+    public static final String INVALID_BARCODE_SMALL = "100000000";
+    public static final String INVALID_BARCODE_LARGE = "10000000000";
 
     public static final String NAME_DESC_HARRY = " " + PREFIX_BOOK + VALID_NAME_HARRY;
     public static final String NAME_DESC_MAZE = " " + PREFIX_BOOK + VALID_NAME_MAZE;
@@ -58,12 +62,16 @@ public class CommandTestUtil {
     public static final String ISBN_DESC_MAZE = " " + PREFIX_ISBN + VALID_ISBN_MAZE;
     public static final String GENRE_DESC_HARRY = " " + PREFIX_GENRE + VALID_GENRE_HARRY;
     public static final String GENRE_DESC_MAZE = " " + PREFIX_GENRE + VALID_GENRE_MAZE;
+    public static final String BARCODE_DESC_TEMP = " " + PREFIX_BARCODE + VALID_BARCODE;
 
     public static final String INVALID_BOOKNAME_DESC = " " + PREFIX_BOOK + "Sorcerer's Stone";
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR + "J.K. Rowling";
     public static final String INVALID_PUBLISHER_DESC = " " + PREFIX_PUBLISHER;
     public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "837aa";
     public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE + "Sci-Fi";
+    public static final String INVALID_BARCODE_DESC1 = " " + PREFIX_BARCODE + INVALID_BARCODE_SMALL;
+    public static final String INVALID_BARCODE_DESC2 = " " + PREFIX_BARCODE + INVALID_BARCODE_LARGE;
+
 
     //=========== Readers ==================================================================================
 
