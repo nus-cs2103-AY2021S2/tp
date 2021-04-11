@@ -297,12 +297,17 @@ The diagram below details how the user's command to add a resident propagates th
 
 ### Room Features
 
-The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room.
+The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room(s) and 
+Delete Room.
 
 #### The Room Class
-The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing fields too.
+The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. 
+This allows for a low degree of coupling, and individual fields can change their input verification rules without 
+affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing 
+fields too.
 
-Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`, `RoomType#isValidRoomType()`, etc.
+Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`, 
+`RoomType#isValidRoomType()`, etc.
 
 ![The Room Class](images/room/RoomClass.png)
 
@@ -325,23 +330,36 @@ The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBoo
         * Less object oriented approach which goes against the principles of how this project was set up
 
 #### Add Room
-This section will detail the implementation of the Add Room feature via the `oadd` command,
+This section will detail the implementation of the Add Room feature via the `oadd` command.
 
 ##### Overview of Insertion Process
-The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
+The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc.
+The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, 
+a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a 
+feedback message is displayed to the user.
 
 This process is summarised in the diagram below
 ![Adding a Room](images/room/AddRoomCommandActivityDiagram.png)
 
 ##### AddRoomCommand
-The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model already has the room being inserted, and if it does not, it will insert the room.
+The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model 
+already has the room being inserted, and if it does not, it will insert the room.
 
-The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing 
+with the specific implemetations of each `Command` object.
 
-##### Detailed execution pathway
+##### Execution pathway
 The diagram below details how the user's command to add a room propagates through the system to eventually add a room.
 
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
+
+**Diagram Notes** :
+* The `AddRoomCommand`'s execution follows the flow outlined under the section 
+  [Command parsing and execution](#command-parsing-and-execution). 
+* `toAdd` is the room to be added which is created by `AddRoomCommandParser`, and taken in as a parameter during the
+  construction of `AddRoomCommand`. This process is omitted for brevity.
+* `AddRoomCommand` is a state-changing operation. After the new room is added, the new state of AddressBook is saved 
+  using `model#commitAddressBook` in order to support undo/redo operations.
 
 ### Resident-Room allocation feature
 
