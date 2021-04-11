@@ -194,7 +194,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code CompletableDeadline} using
-     * a {@code CompletableDeadlineCard}.
+     * a {@code DeadlineCard}.
      */
     static class CompletableDeadlineListViewCell extends ListCell<CompletableDeadline> {
         @Override
@@ -205,14 +205,14 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new CompletableDeadlineCard(completableDeadline, getIndex() + 1).getRoot());
+                setGraphic(new DeadlineCard(completableDeadline, getIndex() + 1).getRoot());
             }
         }
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code CompletableTodo} using
-     * a {@code CompletableTodoCard}.
+     * a {@code TodoCard}.
      */
     static class CompletableTodoListViewCell extends ListCell<CompletableTodo> {
         @Override
@@ -223,7 +223,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new CompletableTodoCard(completableTodo, getIndex() + 1).getRoot());
+                setGraphic(new TodoCard(completableTodo, getIndex() + 1).getRoot());
             }
         }
     }

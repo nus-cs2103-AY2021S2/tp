@@ -44,6 +44,7 @@ public class UpdateGroupmateCommand extends Command {
 
     public static final String MESSAGE_UPDATE_GROUPMATE_SUCCESS = "Updated groupmate: %1$s";
     public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists in this project.";
+    public static final String MESSAGE_UNCHANGED_GROUPMATE = "This groupmate already has this name and roles.";
 
     private final Index projectIndex;
     private final Index targetGroupmateIndex;
@@ -74,6 +75,7 @@ public class UpdateGroupmateCommand extends Command {
         if (projectIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
+
         Project projectToUpdate = lastShownList.get(projectIndex.getZeroBased());
         GroupmateList groupmates = projectToUpdate.getGroupmates();
 
@@ -86,6 +88,10 @@ public class UpdateGroupmateCommand extends Command {
 
         if (groupmates.contains(updatedGroupmate) && !groupmateToUpdate.isSameGroupmate(updatedGroupmate)) {
             throw new CommandException(MESSAGE_DUPLICATE_GROUPMATE);
+        }
+
+        if (groupmateToUpdate.equals(updatedGroupmate)) {
+            throw new CommandException(MESSAGE_UNCHANGED_GROUPMATE);
         }
 
         projectToUpdate.setGroupmate(targetGroupmateIndex.getZeroBased(), updatedGroupmate);

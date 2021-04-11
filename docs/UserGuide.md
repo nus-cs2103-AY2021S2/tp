@@ -203,7 +203,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `NAME`
 
 * The name of a contact/groupmate/project.
-* Names should only contain alphanumeric characters, and it should not be blank.
+* Names should only contain alphanumeric characters and spaces, and it should not be blank.
 
 ##### `PHONE_NUMBER`
 
@@ -244,8 +244,9 @@ To achieve the best possible experience, avoid adding excessively long text to C
 * Time can be only be entered in one of these formats:
     * 1730
     * 17:30
-* The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
-* The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+* Time should be a valid time (from 0000 to 2359) where:
+    * The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
+    * The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -436,6 +437,10 @@ Example:
 
 * `addT 1 d/Add unit tests` adds a todo with the description `Add unit tests` to the first project in CoLAB.
 
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You can add a todo to a project containing another todo with the same `DESCRIPTION` as long as the todo in the project has been marked as done.
+</div>
+
 ##### Updating a todo of a project: `updateT`
 
 Updates an existing todo of a project in CoLAB.
@@ -516,6 +521,10 @@ Parameters:
 Example:
 
 * `addD 1 d/Milestone v1.2 by/01-03-2021` adds a deadline to the first project with description `Milestone v1.2` and due date `01-03-2021`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You can add a deadline to a project containing another deadline with the same `DESCRIPTION` and `DATE` as long as the deadline in the project has been marked as done.
+</div>
 
 ##### Updating a deadline of a project: `updateD`
 
@@ -607,6 +616,10 @@ Examples:
 
 * `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y` adds a weekly event with description `Project Meeting` starting on `24-04-2021` at `2000` to the first project.
 * `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n` adds a one time event with description `CS2101 Presentation` on `14-04-2021` at `1015` to the second project.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You cannot add an event to a project containing another event with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
+</div>
 
 ##### Updating an event of a project `updateE`
 
