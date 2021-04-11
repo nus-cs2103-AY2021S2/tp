@@ -8,6 +8,7 @@ import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.testutil.TypicalTasks.MIDTERM;
 import static seedu.module.testutil.TypicalTasks.PROJECT;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
+import static seedu.module.testutil.TypicalTasks.TUTORIAL;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
 import java.util.Arrays;
@@ -65,7 +66,27 @@ public class FindModuleCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleTasksFound() {
+    public void execute_invalidModule_noTaskFound() {
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+        Predicate<Task> predicate = preparePredicate("CSMoDuLeCoDe");
+        FindModuleCommand command = new FindModuleCommand("CSMoDuLeCoDe");
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_existModule_oneTaskFound() {
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
+        Predicate<Task> predicate = preparePredicate("ST2131");
+        FindModuleCommand command = new FindModuleCommand("ST2131");
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TUTORIAL), model.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_existModule_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
         Predicate<Task> predicate = preparePredicate("CS3243");
         FindModuleCommand command = new FindModuleCommand("CS3243");
