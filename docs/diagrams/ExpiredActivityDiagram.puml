@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes expired command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([currently in expired tab])
+:Throw an exception;
+else ([else])
+:Update GUI to show expired;
+endif
+
+stop
+@enduml

@@ -104,6 +104,11 @@ Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
 
 * If a date is not specified in the command, the newly added Task will have its date set to the end of today (Today's date, 2359hrs).
 
+* All tags are automatically converted to lowercase.
+
+* The task name is limited to a maximum length of **50 characters** while the task description is limited to **80 
+  characters**.
+
 * If you add more than 2 add commands in the command box, only need the last add command is recognized.
 
 
@@ -284,6 +289,7 @@ previous computer.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
+
 Term | Explanation 
 --------|--------
 **CCA** | Abbreviation for Co-curricular activities

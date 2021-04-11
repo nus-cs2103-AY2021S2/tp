@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
+participant "e:ExpiredCommand" as ExpiredCommand LOGIC_COLOR
+participant "<<class>>\nCommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+[-> LogicManager : execute("expired")
+activate LogicManager
+
+LogicManager -> TaskifyParser : parseCommand("expired")
+activate TaskifyParser
+
+create CommandResult
+create ExpiredCommand
+TaskifyParser -> ExpiredCommand
+
+activate ExpiredCommand
+
+ExpiredCommand  --> TaskifyParser
+deactivate ExpiredCommand
+
+TaskifyParser --> LogicManager : s
+deactivate TaskifyParser
+
+LogicManager -> ExpiredCommand : execute()
+destroy TaskifyParser
+activate ExpiredCommand
+
+ExpiredCommand  -> CommandResult : switchToExpired(String)
+activate CommandResult
+
+CommandResult --> ExpiredCommand : CommandResult
+deactivate CommandResult
+
+ExpiredCommand  --> LogicManager : CommandResult
+deactivate ExpiredCommand
+destroy ExpiredCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
