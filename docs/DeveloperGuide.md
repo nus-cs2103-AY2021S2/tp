@@ -532,27 +532,27 @@ to work on.
 
 ### View an entry
 1. View an expanded view of an entry with lengthy review
-    1. Correct command with valid parameters:`view 1` (provided that entry of index 1 already exists)
+    1. Test Case: Correct command with valid parameters:`view 1` (provided that entry of index 1 already exists)
         
         Expected: A window pops up which shows all details of the specified entry.
-    2. Command without parameters: `view`
+    2. Test Case: Command without parameters: `view`
        
         Expected: User will be notified that invalid command format is provided. The command box
         Will show the correct syntax for `view` command.
-    3. Command not in lower-case: `ViEw 1` (provided that entry of index 1 already exists)
+    3. Test Case: Command not in lower-case: `ViEw 1` (provided that entry of index 1 already exists)
     
         Expected: User will be notified about unknown command in the command box.
-    4. Correct command but with non-existent index: `view 100000` (provided that entry of index 100000 
+    4. Test Case: Correct command but with non-existent index: `view 100000` (provided that entry of index 100000 
        do not exists)
        
         Expected: User will be notified of invalid command and the number of entries in The Food Diary.
 
 ### Clear all entries
 1. Remove all entries from The Food Diary
-    1. Correct command:`clear` 
+    1. Test Case: Correct command:`clear` 
 
        Expected: Success message will show up in command box informing user that all entries are cleared.
-    2. Command not in lower-case: `cLeAr`
+    2. Test Case: Command not in lower-case: `cLeAr`
 
        Expected: User will be notified about unknown command in the command box.
     
