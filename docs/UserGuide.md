@@ -35,7 +35,7 @@ ResidenceTracker helps users to also keep track of any bookings a residence has,
    * **`clear`** : Deletes all residences.
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command and do make sure to checkout the Refer to the [FAQ](#faq) section as well.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -265,13 +265,13 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ResidenceTracker home folder.
 
-**Q**: What does the colour of the bookings respresent?
+**Q**: What does the colour of the bookings respresent?<br>
 **A**: The colours are as follows
 * Red - refers to bookings that have passed
 * Orange - refers to bookings that are ongoing (A booking that starts or ends today is also considered ongoing)
 * Green - refers to bookings that have not started yet 
 
-**Q**: How can I keep viewing the filtered residence list returned by `remind` and `find` commands after I make edits?
+**Q**: How can I keep viewing the filtered residence list returned by `remind` and `find` commands after I make edits?<br>
 **A**: Unfortunately, that is not a functionality we have built yet, but we hear you! The next iteration will be sure to incorporate such features for a better user experience and we hope you can stick with us while we improve the product.
 
 --------------------------------------------------------------------------------------------------------------------
