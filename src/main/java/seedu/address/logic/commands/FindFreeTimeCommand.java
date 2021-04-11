@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_PASSED;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_PASSED;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.common.Date;
@@ -27,13 +27,15 @@ public class FindFreeTimeCommand extends Command {
         this.date = date;
     }
 
-    public LocalDate currentDate = LocalDate.now();
-    String currentDateStr = currentDate.format(DATE_FORMATTER);
-    public Date now = new Date(currentDateStr);
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        LocalDate currentDate = LocalDate.now();
+        String currentDateStr = currentDate.format(DATE_FORMATTER);
+        Date now = new Date(currentDateStr);
+
         ArrayList<String> freeTimeSlots = model.getFreeTimeSlots(date);
         if (date.compareTo(now) < 0) {
             throw new CommandException(MESSAGE_DATE_PASSED);

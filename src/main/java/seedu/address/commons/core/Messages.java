@@ -17,7 +17,7 @@ public class Messages {
             + "is before start date and time!";
     public static final String MESSAGE_INVALID_DATE = "The date format is invalid! "
             + "Date should be in the format of YYYY-MM-DD!";
-    public static final String MESSAGE_DATE_PASSED = "The date is in the past! " +
-            "Please key in a date from today onwards!";
+    public static final String MESSAGE_DATE_PASSED = "The date is in the past! "
+            + "Please key in a date from today onwards!";
 
 }
