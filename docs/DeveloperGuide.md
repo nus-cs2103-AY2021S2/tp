@@ -56,6 +56,25 @@ where the user issues the command `addon 1 re/i like this food`.
 The sections below give more details of each component. 
 
 ### UI component
+![Model Architecture Diagram](images/UiClassDiagram.png)
+**API:** [`Ui.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Ui.java)
+
+* The `Ui` interface consists of a `MainWindow` that is made up of smaller Ui parts. Namely, from top to bottom
+ these are: `CommandBox`, `ResultDisplay`, `EntryListPanel`, `StatusBarFooter`.
+* The `MainWindow` also intialises 3 other windows that are used in The Food Diary. Namely, these are:
+ `HelpWindow`, `ViewWindow` and `ReviseWindow`.
+* All of these Ui parts and windows, including the `MainWindow`, inheerit from the abstract `UiPart` class
+* In addition, the `UI` component also uses the JavaFX UI framework. THe layout of these UI parts are each defined in
+ their corresponding `.fxml` files that can be loated in the `src/main/resources/view` folder.
+* For example, the layout of the HelpWindow is specified in the HelpWindow.fxml file
+* A universal styling theme is applied to all components, and the styling is defined in 2 files:
+ `DarkTheme.css` and `Extensions.css`. Both are located in the `src/main/resources/view` folder.
+* Images/icons used throughout the app windows are located in the `src/main/resources/images` folder.
+ 
+1. The `UI` component executes user commands using the `Logic` component.
+2. The `UI` component also listens for changes to the `Model` data, to which the UI will be updated to reflect the
+ modified data.
+ 
 
 ### Logic Component
 ![Logic Class Diagram](images/LogicClassDiagram.png)
@@ -97,10 +116,19 @@ The `Storage` component,
 - can save the food diary data in json format and read it back.
 
 ### Common classes
-Classes used by multiple components are in the seedu.fooddiary.commons package.
+* Classes used by multiple components are in the fooddiary.commons package.
+* There are primarily 3 folders of classes classified under common classes. Namely, these are:
+    * Index
+    * Exceptions
+    * Utility
+* In general, these classes are responsible for the processing the app's logging information, GUI settings,
+ error messages thrown, and file management etc.
 
-
-
+Notably:
+* The `GuiSetting` class in the `Index` folder contains methods that process all the GUI settings of the app,
+ and is essential in allowing the app to restore back the GUI window settings upon reopening the app.
+* The `LogCenter` class in the `Index` folder contains methods that process the loggers and handlers responsible for
+ logging useful information on the user's usage of the app for the developer's use and understanding.
 
 
 
@@ -265,7 +293,6 @@ command:
       specify the method of search between the Find and FindAll features that they would like to use to perform
       their search
 
-
 ### Revise Feature
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
 mutually exclusive with the edit feature or the slower alternative. This feature shines when a user wishes to edit 
@@ -273,7 +300,7 @@ while also adding into multiple sections in an entry. The edit and addon feature
 quick and small chanegs to an entry.
 
 The command opens an additional window when a user enters the command in the UI, the command will be passed into 
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in  `FoodDiaryParser#parseCommand()`.
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
 With the window for revision of the entry, a user can easily make changes to the sections all at once. 
 
@@ -287,6 +314,46 @@ The following sequence diagram shows how Revise feature works:
 The following activity diagram summarises the events that take place when a user executes the Revise
 command:
 ![Revise Activity Diagram](images/ReviseActivityDiagram.png)
+
+### Edit Feature
+#### Implementation
+At its core, the `edit` feature allows a user to edit multiple fields pertaining to the entry specified by its `index`,
+ in a single edit command. The `edit` feature is the fundamental feature for editing an entry, and it is recommended
+ for users to use it if minor changes to an entry are to be made, typically caused by a spelling mistake or typo.
+ As such, the edit feature runs solely via the command typed in the command box. The following feature,
+ the `revise` feature, builds upon the implementation of the `edit` feature. See more below.
+ 
+When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which
+ `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+ The user input will be parsed as an `Edit` command and executed to edit the entry specified by
+ the index of the command.
+ 
+If the command `edit 1 re/New review is passed`, the `edit` command essentially replaces the old entry with a new
+ entry that has the new review. The `edit` coammand calls `Model#setEntry()`, which calls
+ `ModelManager#setEntry()`, that calls `FoodDiary#setEntry()` to eventually change the target entry with a new entry.
+
+The following sequence diagram shows how Revise feature works:
+![FindAll Sequence Diagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarises the events that take place when a user executes the Revise
+command:
+![Revise Activity Diagram](images/EditActivityDiagram.png)
+
+
+##### Design Consideration
+
+##### Aspect: Whether to edit a command in the command line or in a new UI window.
+* **Alternative 1 (current choice):** Edit entry in command line. 
+  * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
+  * Cons: For entries with lengthy details, typing long commands in the command line fills up the text field space
+  and makes it difficult for editing.
+* **Alternative 2:** Edit the entry in a new UI window. 
+  * Pros: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
+  * Cons: Edit is not done purely in command line, but rather in a UI window. This might pose an inconvenience
+  for the user given the added step to edit a field of an entry.
+  
+  As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
+  for `edit` and the pros for the alternative.
 
 
 ### View Feature
@@ -381,19 +448,22 @@ and Three, the ability to import and export their personal food diary to share w
 ## **Appendix C: User stories**
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority| As a …​                                                       | I want to …​                                  | So that I can…​                                             |
-| ------- | ---------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                  | refer back to the particular element that defined my food experience  |
-| `* * *` | User with little patience and time                               | Add names of places I have visited               | efficiently add a review to a place I have visited               |
-| `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had          | easily show them to my friends              |
-| `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before         | decide where I shall re-visit                                          |
-| `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
-| `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
-| `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
-| `* * *` | User who wants to read lengthy reviews of an entry | Glance through reviews of an entry | Quickly arrive at a conclusion for a food place|
-| `* *`   | User frequently revisiting a place                          | Add multiple reviews to a single place           | Store all my food experiences with the place   |
-| `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | visit the best food places without overspending
-| `* * *`   | User who made a mistake in an entry           | Perform revisions and updates to the entry | keep accurate and up-to-date information of food places
+| Priority| As a …​                                                           | I want to …​                                                        | So that I can…​                                                                    |
+| ------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                          | Refer back to the particular element that defined my food experience              |
+| `* * *` | User with little patience and time                               | Add names of places I have visited                                 | Efficiently add a review to a place I have visited                                |
+| `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had                            | Easily show them to my friends                                                    |
+| `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before                           | Decide where I shall re-visit                                                     |
+| `* * *` | User who would like to create custom category of food place      | Add the category of the place                                      | I can have a specific view of certain places                                      |
+| `* * *` | User who does not want to visit a place again                    | Remove the place                                                   | Reduce redundant food places in my list                                           |
+| `* * *` | User who wants to remember food ratings                          | Give a rating on the overall food experience                       | I can gauge/ballpark the satisfaction level I get against other food experiences  |
+| `* * *` | User who wants to read lengthy reviews of an entry               | Glance through reviews of an entry                                 | Quickly arrive at a conclusion for a food place                                   |
+| `* *`   | User frequently revisiting a place                               | Add multiple reviews to a single place                             | Store all my food experiences with the place                                      |
+| `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | Visit the best food places without overspending                                   |
+| `* *`   | User who wants identify a place he/she ate at previously by name | Find entries that match the name of the place I last visited       | Judge if I would like to go back to that place and eat there.                     |
+| `* * *` | User who made a mistake in an entry                              | Perform revisions and updates to the entry                         | Keep accurate and up-to-date information of food places                           |
+| `* * *` | User who is unclear of what to do with the app                   | Look at a help guide to get familiar with the app usage            | Use the app confidently and use it to its fullest extent                          |
+
 
 
 ## **Appendix D: Use cases**
@@ -411,25 +481,22 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **Extensions**
 
 * 1a.  Food Diary detects invalid command from user.
-
     *   1a1. Food Diary warns user about invalid command syntax.
-
     *	1a2. User enters correct command syntax.
 
          Use case resumes from step 2.
 
 * 2a. Food Diary detects duplicate entry that is already stored in the application.
-
     *	2a1. Food Diary warns user that the entry to be added already exists in the application.
 
          Use case ends.
 
-**UC02: List all restaurants**
+**UC02: List all entries**
 
 **MSS**
 
-1.  User requests to list all restaurants.
-2.  Food Diary displays all the restaurants.
+1.  User requests to list all entries.
+2.  Food Diary displays all the entries.
 
 **Extensions**
 
@@ -440,14 +507,14 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case resumes from step 2.
 
-* 2a. No Restaurants to display.
+* 2a. No entries to display.
 
-    * 2a1. Tells users that there are no restaurants.
+    * 2a1. Tells users that there are no entries.
     * 1a2. User enters correct syntax.
 
       Use case ends.
 
-**UC04: Add category**
+**UC03: Add category**
 
 **MSS**
 
@@ -470,7 +537,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC05: Add on review(s) and/or price to a specified Food Diary Entry**
+**UC04: Add on review(s) and/or price to a specified Food Diary Entry**
 
 **MSS**
 
@@ -491,7 +558,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC06: Delete an Entry**
+**UC05: Delete an Entry**
 
 **MSS**
 
@@ -510,7 +577,60 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC07: View an Entry**
+**UC06: Find for entries**
+
+**MSS**
+1. User enters keywords to be used to search for entries.
+2. Food Diary shows all entries matching user requirements (if any).
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Food Diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+  Use case resumes from step 2.
+
+
+**UC07: Find all specific entries**
+
+**MSS**
+1. User enters keywords to specify requirements for entries.
+2. Food Diary shows all entries matching user requirements (if any).
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Food Diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+  Use case resumes from step 2.
+  
+**UC08: Get Help**
+
+**MSS**
+1. User requests to get help on what commands to use.
+2. Food Diary returns a succint help guide with the information he needs.
+3. User reads the help guide and is now familiar with the commands to use.
+4. User requests to close help guide after use.
+5. Food Diary closes help guide.
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+      
+* 2a. User reads help guide but is still unclear of what command to use.
+    * 2a1. User requests to see User Guide for more information
+    * 2a2. Food Diary returns User Guide link for the user to access
+
+      Use case resumes from step 3.
+  
+**UC09: View an Entry**
 
 **MSS**
 1. User requests to view a specific entry.
@@ -529,36 +649,6 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC08: Find for entries**
-
-**MSS**
-1. User enters keywords to be used to search for entries.
-2. Food Diary shows all entries matching user requirements (if any).
-
-   Use case ends.
-
-**Extensions**:
-* 1a. Food Diary detects invalid command from user.
-    * 1a1. Food Diary warns user about wrong syntax.
-    * 1a2. User enters correct syntax.
-
-  Use case resumes from step 2.
-
-**UC09: Find all specific entries**
-
-**MSS**
-1. User enters keywords to specify requirements for entries.
-2. Food Diary shows all entries matching user requirements (if any).
-
-   Use case ends.
-
-**Extensions**:
-* 1a. Food Diary detects invalid command from user.
-    * 1a1. Food Diary warns user about wrong syntax.
-    * 1a2. User enters correct syntax.
-
-  Use case resumes from step 2.
-
 **UC10: Revise an Entry**
 
 **MSS**
@@ -571,23 +661,28 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
-      Use case ends.
+      Use case resumes from step 2.
 
 * 2a. User key in non-existent index in list
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
-
-**UC11: Exit**
+      
+**UC11: Edit an Entry**
 
 **MSS**
-1. User exits.
-2. Food Diary closes and data is saved.
+1. User requests to edit entry field(s) of a specific entry due to minor errors.
+2. Food Diary edits the entry with the updated field(s).
 
 **Extensions**:
 * 1a. Food diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+      
+* 1b. User keys in non-existent index in list
+    * 1b1. Food Diary tells user that no entry was found.
 
       Use case ends.
 
@@ -603,6 +698,19 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
+
+**UC13: Exit**
+
+**MSS**
+1. User exits.
+2. Food Diary closes and data is saved.
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case ends.
 
 ## **Appendix E: Non-Functional Requirements**
 
@@ -733,7 +841,7 @@ to work on.
        Expected:
        - All entries shown which contain at least one of the three keywords provided.
        - Success message displayed informing the user of the number of entries found.
-       - 10 default entries will be shown.
+       - 9 default entries will be shown.
        
     5. Test case: `find 3/7`
 
