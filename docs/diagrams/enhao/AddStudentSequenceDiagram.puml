@@ -4,6 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddStudentCommandParser" as AddStudentCommandParser LOGIC_COLOR
 participant ":AddStudentCommand" as AddStudentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -18,12 +19,28 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("add_student")
 activate AddressBookParser
 
+create AddStudentCommandParser
+AddressBookParser -> AddStudentCommandParser
+activate AddStudentCommandParser
+
+AddStudentCommandParser --> AddressBookParser
+deactivate AddStudentCommandParser
+
+AddressBookParser -> AddStudentCommandParser : parse()
+activate AddStudentCommandParser
+
 create AddStudentCommand
-AddressBookParser -> AddStudentCommand
+AddStudentCommandParser -> AddStudentCommand
 activate AddStudentCommand
 
-AddStudentCommand --> AddressBookParser :
+AddStudentCommand --> AddStudentCommandParser :
 deactivate AddStudentCommand
+
+AddStudentCommandParser --> AddressBookParser :
+deactivate AddStudentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddStudentCommandParser -[hidden]-> AddressBookParser
+destroy AddStudentCommandParser
 
 AddressBookParser --> LogicManager :
 deactivate AddressBookParser
@@ -45,7 +62,7 @@ create CommandResult
 AddStudentCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddStudentCommand
+CommandResult --> AddStudentCommand : result
 deactivate CommandResult
 
 AddStudentCommand --> LogicManager : result
