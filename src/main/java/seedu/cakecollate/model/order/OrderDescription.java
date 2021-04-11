@@ -10,6 +10,7 @@ public class OrderDescription {
 
     public static final String MESSAGE_CONSTRAINTS =
             String.format(Type.SHARED_CONSTRAINTS_MESSAGE, "Order description");
+    public static final String MESSAGE_EMPTY = "Order description cannot be empty.";
 
     public static final String VALIDATION_REGEX = Type.VALIDATION_REGEX;
 
