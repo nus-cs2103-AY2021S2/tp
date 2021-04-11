@@ -23,17 +23,16 @@ My code contribution can be found [here](https://nus-cs2103-ay2021s2.github.io/t
     - **Justification**: This feature allows for recurring session, which is likely the norm to tuition sessions, which often occur at fixed intervals.
       Because the information of previously-multiple sessions are now abstracted into one recurring session, its presence save space and other resources.
     - **Highlights**:
-      
       Defensive coding is employed, where a recurring session object can be created only if the last session date is consistent
       with the first session date and interval.
-      
+
       Through the parser of add_rec_session command, the correct last date of a session is suggested if entered wrongly. 
-      
+
       At the point of the command parser, creation of recurring session that do not in fact recurse, i.e. happens only once,
       is prevented. This is to establish to users that non-recurring single sessions are not a subset of recurring sessions.
       (The creation of recurring session object with zero recurrence is allowed on the system-side as used in
       when deleting one session of recurring session.)
-      
+
       Some key methods to the recurring session class include:
       - hasSessionOnDate, which checks if recurring session occurs on given date
       - buildSessionOnDate, which returns a single, non-recurring session of the recurring session,
@@ -42,7 +41,7 @@ My code contribution can be found [here](https://nus-cs2103-ay2021s2.github.io/t
       - numOfSessionsBetween, which returns the number of sessions that occurs between 2 given dates
       - isOverlapping, which checks if 2 recurring sessions overlap (the deployed method is done by Choon Wei)
     - **Related PR**: [PR #106](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/106)
-    
+
 
 - Delete Session
     - **What it does**: Deletes a session that belongs to a student under his/her list of sessions.
@@ -63,11 +62,10 @@ My code contribution can be found [here](https://nus-cs2103-ay2021s2.github.io/t
     - isOverlapDate method for 2 recurring session. Checks in a non-brute-force, mathematical way using extended euclid.
     Reason for no merge: Brute-force method works well in reasonable time. Review can be time-consuming.
     [PR #171](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/171)
-      
+
 - Documentation
     - User Guide
         - For recurring session command ([PR #127](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/127))
         - Purpose of UG([PR #125](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/125/files))
     - Developers Guide
         - Details for deleting session ([PR #103](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/103))
-    

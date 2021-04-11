@@ -116,8 +116,8 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* has the ability to save `UserPref` objects in JSON format and parse it back to an object after.
+* has the ability to save `Student` objects in JSON format, nested with its associated list of `Session` or `RecurringSession` objects, and parse it back after.
 
 ### Common classes
 

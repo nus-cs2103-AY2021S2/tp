@@ -128,7 +128,7 @@ The Home page is split into two views: **Reminder** and **Monthly Fees**.
 ##### Reminder
 The Reminder section displays upcoming tuition sessions for 3 consecutive days, starting today.
 <div markdown="block" class="alert alert-info">
-:information_source: If today is a Monday, then the Reminder section will display all sessions on this Monday, 
+:information_source: If today is a Monday, then the Reminder section will display all sessions on this Monday,
 Tuesday and Wednesday.
 </div>
 
@@ -146,7 +146,7 @@ The Tuition page is split into two views: **Student** and **Session**.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: This is the main tab for managing your students and sessions. Navigating to this tab before using commands such as
-<code>add_student</code>, <code>find_student</code>, <code>add_session</code> or <code>delete_session</code> allows the user 
+<code>add_student</code>, <code>find_student</code>, <code>add_session</code> or <code>delete_session</code> allows the user
 to see the reflected changes on the <strong>Student</strong> and <strong>Session</strong> list view.
 </div>
 

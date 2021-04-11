@@ -7,7 +7,7 @@ title: Jun Wei's Project Portfolio Page
 
 ## Overview
 
-TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their 
+TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their
 students' contacts, provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation.
 TutorBuddy was adapted from an existing desktop Java application [Address Book (Level 3)](https://se-education.org/addressbook-level3/).
 My team, consisting of 5 NUS Computer Science students, developed this application over the course of 6 weeks.
@@ -21,7 +21,7 @@ My code contribution can be found [here](https://nus-cs2103-ay2021s2.github.io/t
 
 * UI Enhancement with JavaFX [#119](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/119)
     * **What is it:** Major UI overhaul from [Address Book (Level 3)](https://se-education.org/addressbook-level3/).
-    * **Highlights:** Added a list view that reflects the sessions for each student. Restructured UI components. 
+    * **Highlights:** Added a list view that reflects the sessions for each student. Restructured UI components.
     * **Justification:** There was a need to display a list view in a list view to support the sessions as they are also
       nested in the student class. To allow for more information to be displayed to the user, restructuring of the UI components,
       especially bringing the command box to the bottom of the application was needed to ensure a smoother flow in the application usage.
@@ -56,4 +56,3 @@ My code contribution can be found [here](https://nus-cs2103-ay2021s2.github.io/t
 * Team-Based Tasks & Community:
     * PRs reviewed (with non-trivial review comments):
     * The full list of PRs I have reviewed can be found [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/pulls?q=reviewed-by%3AJonahhGohh).
-    
