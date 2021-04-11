@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
+import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
@@ -17,7 +19,8 @@ import seedu.storemando.model.item.LocationContainsPredicate;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "All items in the specified location (if any) are cleared!";
+    public static final String CLEAR_MESSAGE_SUCCESS = "All items in the inventory are cleared!";
+    public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location are cleared!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear items in storemando or a specified location. "
         + "Parameters: "
         + "[" + PREFIX_LOCATION + "LOCATION]\n"
@@ -38,9 +41,18 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Item> currentList = model.getFilteredItemList();
+        if (currentList.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
+        }
         model.clearLocation(predicate);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (predicate.equals(PREDICATE_SHOW_ALL_ITEMS)) {
+            return new CommandResult(CLEAR_MESSAGE_SUCCESS);
+        } else {
+            return new CommandResult(CLEAR_LOCATION_MESSAGE_SUCCESS);
+        }
+
     }
 
     @Override
