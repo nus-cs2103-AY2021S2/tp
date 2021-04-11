@@ -260,13 +260,13 @@ The above mentioned Parser class inherits the `#parse` method from the Parser in
 
 Subsequently, the created `ClearAssigneeCommand` object contains an `#execute` method which is responsible for
 clearing all assignees of the Task, with respect to its index. This is achieved by creating a new 
-`Task` object with the same fields and values as before but setting the `Set<Assignee>` field as a new empty HashSet. 
+`Task` object with the same fields and values as before but with the assignees field set to be a new empty HashSet. 
 
 Below is the usage scenario of how the clear all assignees of a Task mechanism behaves.
 
 Assumptions:
 1. User has already launched the app
-2. HEY MATEz application has an existing task with an **assignee**
+2. HEY MATEz application has an existing task with **assignees**
 
 Step 1. User executes the `clearAssignees 1` command to clear all the assignees of the task at index 1 in the task list of 
 HEY MATEz. A ` ClearAssigneesCommandParser` object is created and it calls `ClearAssigneesCommandParser#parse` on the arguments.
@@ -275,17 +275,19 @@ Step 2. The `ClearAssigneesCommandParser#parse` method will check on the validit
 If it is valid, it will create a new `ClearAssigneesCommand` instance by calling the constructor of `ClearAssigneesCommand`.
 
 Step 3. The `ClearAssigneesCommand#execute` method is then called by the `LogicManager`. The task with the same `Index` 
-is retrieved and a copy of the task is created with the same attribute values but with the `Set<Assignee>` field  
-updated to be a new empty HashSet. The copy of the task with the updated `Set<Assignee>` field replaces the old task in
-the `Model` class.
+is retrieved and a copy of the task is created with the same attribute values but with the assignees field updated to be a 
+new empty HashSet. The copy of the task with the updated assignees field replaces the old task in the `Model`.
 
 Step 4. Once the execution is completed, the message `MESSAGE_CLEARED_ASSIGNEES_SUCCESS` is used to return a new Command Result
 with the attached message.
 
-Below is the sequence diagram:
+The following sequence diagram shows how the clear all assignees of a Task mechanism behaves. 
 
 ![#Interactions Inside the Logic Component for the `clearAssignees 1` Command](images/ClearAssigneeSequenceDiagram.png)
 
+* Note: The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
+  but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -340,8 +342,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `  | CCA leader | be able to get a list of tasks that have not been completed | check on the progress of the tasks |
 | `* `  | CCA leader | be able to get a list of tasks with deadlines that are prior to a certain date | make sure I do not miss those deadlines |
 | `* `  | CCA leader | be able to get a list of tasks assigned to a particular member | check on the workload of a particular member |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -470,8 +470,8 @@ Similar to editing a member except that the user specifies task index instead of
 
 * 1a. The new title, description, deadline, status or priority provided for the task is invalid
     * 1a1. HEY MATEz shows an error message   
-* 1b. Task index does not exist in the currently displayed list of tasks
-    * 1b1. HEY MATEz shows an error message
+* 2a. Task index does not exist in the currently displayed list of tasks
+    * 2a1. HEY MATEz shows an error message
   
 Use case ends.
 
@@ -585,6 +585,8 @@ Similar to viewing a list of uncompleted tasks but a list of unassigned task is 
     
 Use case ends.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Data should be persistent after exiting and reopening the app.
@@ -602,24 +604,45 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and tasks. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and tasks. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+3. Shutting down
+    1. Launch the help window using the `help` command. 
+    
+    2. Close the app using the `exit` command. <br>
+        Expected: Both the help and main window should be closed.
+
+### Viewing Help 
+
+1. Viewing help 
+
+    1. Test case: `help` <br>
+        Expected: A help window is being displayed. 
+
+### Clearing Data
+
+1. Clearing all the data in the app
+   
+    1. Prerequisites: There is at least 1 member in the members list or 1 task in the task list.
+
+    2. Test case: `clear` <br>
+       Expected: All the data in HEY MATEz is cleared.
+       
 ### Adding a member
 
 1. Adding a member 
@@ -648,6 +671,71 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `viewMembers`<br>
       Expected: Lists all members within HEY MATEz.
 
+### Deleting a Member
+
+1. Deleting a member
+
+    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of Rachel exists in the members list
+       while no members with the name of John exists.
+
+    2. Test case: `deleteMember Rachel`<br>
+       Expected: Member with the name Rachel is deleted from the members list. Details of the deleted member is shown in the
+       status message.
+
+    3. Test case: `deleteMember John`<br>
+       Expected: No member is deleted. Error details is shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `deleteMember x` (where x is a name which does not exist in the members list) <br>
+       Expected: Similar to previous test case.
+
+### Editing a Member
+
+1. Editing a member
+
+    1. Prerequisites: List all members using the `viewMembers` command. Members with the name of Alice and Timothy exists
+       in the members list while no members with the name of Dylan exists.
+
+    2. Test case: `editMember Alice n/Allyson`<br>
+       Expected: Member with the name Alice is edited to have a new name of Allyson. Details of the edited member is shown
+       in the status message.
+
+    3. Test case: `editMember Alice n/Timothy`<br>
+       Expected: No member is edited since a member with the name Timothy already exists. Error details is shown in the status
+       message.
+
+    4. Test case: `editMember Alice n/Alice Tan p/98887777 e/aliceTan@gmail.com`
+       Expected: Member with the name Alice is edited to have the new details as specified. Details of the edited member is shown
+       in the status message.
+
+    5. Test case: `editMember Dylan`<br>
+       Expected: No member is edited. Error details is shown in the status message.
+
+    6. Other incorrect delete commands to try: `edit`, `editMember x` (where x is a name which does not exist in the members list) <br>
+       Expected: Similar to previous test case.
+
+### Finding Members by Keywords
+
+1. Finding members in HEY MATEz whose details (i.e. name, phone number, email, role) contain any of the specified keywords
+
+    1. Prerequisites: HEY MATEz contains 2 members with the following details: <br>
+        * 1. Name: Alice, Phone Number: 98887777, Email: alice@gmail.com, Role: Secretary
+        * 2. Name: Bryan, Phone Number: 89996666, Email: bryan@gmail.com, Role: Secretary
+
+    2. Test case: `findMembers Alice`<br>
+       Expected: Alice is listed in the members list.
+
+    3. Test case: `findMembers alice@gmail.com bryan@gmail.com` <br>
+       Expected: Both Alice and Bryan are listed in the members list.
+
+    4. Test case: `findMembers secretary`<br>
+       Expected: Both Alice and Bryan are listed in the members list since keywords specified are case-insensitive.
+
+    5. Test case: `findMembers President` <br>
+       Expected: Both Alice and Bryan are not listed since none of their details matches the specified keyword.
+
+    6. Test case: `findMembers`<br>
+       Expected: Invalid command format, error details is shown in the status message.
+       
 ### Mark a task as completed
 
 1. Mark a task as completed:
@@ -715,10 +803,41 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findTasksFor`
       Expected: Error message displayed in the status bar.
 
-### Saving data
+### Finding Tasks by Keywords
 
-1. Dealing with missing/corrupted data files
+1. Finding tasks in HEY MATEz whose title or description contain any of the specified keywords
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: HEY MATEz contains 2 tasks, T1 and T2, with the following details: <br>
+        * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach session
+        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline for EXCO event 
 
-1. _{ more test cases …​ }_
+    2. Test case: `findTasks Community`<br>
+        Expected: Task T1 is listed in the task list. 
+
+    3. Test case: `findTasks Community EXCO` <br>
+        Expected: Both task T1 and T2 are listed in the task list.
+
+    4. Test case: `findTasks proposal`<br>
+       Expected: Both task T1 and T2 are listed in the task list since keywords specified are case-insensitive.
+
+    5. Test case: `findTasks Pitch` <br>
+       Expected: Both task T1 and T2 are not listed since their title and description does not contain the specified keyword.
+       
+    6. Test case: `findTasks`<br>
+       Expected: Invalid command format, error details is shown in the status message.
+
+### Clearing all Assignees of a Task
+
+1. Clearing all Assignees of a Task
+    1. Prerequisites: List all tasks using the `viewTasks` command. There exists a task at index 1 with at least 1 member 
+       assigned to it.
+
+   2. Test case: `clearAssignees 1`<br>
+      Expected: All members assigned to the task at index 1 is cleared. Details of the task being cleared is shown
+      in the status message.
+      
+   3. Test case: `clearAssignees 0`<br>
+      Expected: No task is being cleared. Error details is shown in the status bar.
+
+   1. Other incorrect commands to try: `clearAssignees`, `clearAssignees -1`
+      Expected: Similar to previous test case.
