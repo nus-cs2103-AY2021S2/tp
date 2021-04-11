@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     <br><br>
 * **Documentation**:
     * User Guide:
-        * Added the documentation for the features `delete`, `undo`, `redo` and `alias`. [#31](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/31), [#69](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/69), [#93](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/93), [#133](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
+        * Added the documentation for the features `delete`, `undo`, `redo` and `alias`. [#31](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/31), [#69](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/69), [#93](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/93), [#113](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
         * Standardised the note sections. [#180](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/180)
     * Developer Guide:
         * Updated NFR and Glossary. [#37](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/37)
