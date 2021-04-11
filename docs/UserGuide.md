@@ -629,9 +629,11 @@ TutorsPet data are saved into three different JSON files: <br>
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**
 
+* You are strongly discouraged from editing the files due to syncing of information between the three files.
+* If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
 </div>
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
