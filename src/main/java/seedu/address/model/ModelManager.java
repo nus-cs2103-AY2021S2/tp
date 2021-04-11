@@ -453,6 +453,10 @@ public class ModelManager implements Model {
         orderBook.removeOrder(target);
     }
 
+    /**
+     * Deletes orders
+     * @param orders
+     */
     public void deleteOrders(List<Order> orders) {
         for (Order o : orders) {
             deleteOrder(o);
@@ -467,10 +471,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         orderBook.setOrder(target, editedOrder);
-    }
-
-    public void completeOrder(Order target) {
-        orderBook.completeOrder(target);
     }
 
     @Override

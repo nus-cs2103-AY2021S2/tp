@@ -108,6 +108,7 @@ public class JJIMYParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE), () -> parser.parseCompo("unknownCommand"));
+        assertThrows(ParseException.class, String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE), ()
+            -> parser.parseCompo("unknownCommand"));
     }
 }

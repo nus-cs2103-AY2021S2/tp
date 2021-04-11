@@ -311,9 +311,6 @@ public interface Model {
     /** Returns an list of the incomplete orders belonging to a particular customer */
     List<Order> getIncompleteOrdersFromPerson(Person target);
 
-    /** Mark an order as complete */
-    void completeOrder(Order orderToComplete);
-
     /**
      * Sets the state of the order to cancelled
      */
