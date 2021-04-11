@@ -1,6 +1,8 @@
 package seedu.dictionote.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.SetDictionaryDividerPositionCommand.MESSAGE_SET_DIVIDER_SUCCESS;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
@@ -37,6 +39,16 @@ public class SetDictionaryDividerPositionCommandTest {
                 expectedCommandResult, expectedModel);
             assertEquals(model.getGuiSettings().getDictionarySplitRatio(),
                 VALID_UI_POSITION[i] / SetDividerPositionCommand.NORMALIZE_RATIO);
+        }
+    }
+
+    @Test
+    public void execute_setDividerPosition_invalid() {
+        int[] invalidPosition = {Integer.MIN_VALUE, -1, 0 , 10, 11, Integer.MAX_VALUE};
+
+        for (int i = 0; i < invalidPosition.length; i++) {
+            assertCommandFailure(new SetDictionaryDividerPositionCommand(invalidPosition[i]), model,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDictionaryDividerPositionCommand.MESSAGE_USAGE));
         }
     }
 }
