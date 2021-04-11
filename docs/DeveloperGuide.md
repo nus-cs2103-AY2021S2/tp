@@ -92,4 +92,11 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-{% include_relative developerGuide/testing/index.md %}
+{% include_relative developerGuide/testing/testing.md %}
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+The effort put into PartyPlanet was larger than the effort required to implement AB3.
+
+{% include_relative developerGuide/effort/effort.md %}
