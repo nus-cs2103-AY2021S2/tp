@@ -37,7 +37,7 @@
 
 !define USER_COLOR #000000
 
-scale 854*480
+scale 1280*720
 
 skinparam BackgroundColor #e3f0ff
 
