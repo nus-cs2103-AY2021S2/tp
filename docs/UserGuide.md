@@ -413,8 +413,8 @@ Retrieves previously entered input.
 #### Data path display :
 
 * Displays the absolute path to the folder where the data is stored at the bottom of PartyPlanet.
-* Note to place the `PartyPlanet.jar` in a folder of length less than 60 characters to ensure that this feature 
-  works well.
+* Note: Absolute path to the data folder has to be of length less than 60 characters to ensure that this 
+  feature works well.
 
 <div markdown="block" class="alert-warning">
 
