@@ -280,7 +280,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (inHelp && !commandResult.isShowHelp()) {
                 resetMainWindow();
-                result = SHOWING_RETURN_MESSAGE + "\n" + result;
             }
 
             resultDisplay.setFeedbackToUser(result);

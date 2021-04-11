@@ -25,4 +25,12 @@ public class HelpCommandTest {
         helpCommand.execute(model);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
+
+    @Test
+    public void execute_mainToHelpViaList_success() {
+        CommandResult expectedCommandResult = new CommandResult(ListCommand.MESSAGE_SUCCESS, false, false);
+        HelpCommand helpCommand = new HelpCommand();
+        helpCommand.execute(model);
+        assertCommandSuccess(new ListCommand(), model, expectedCommandResult, expectedModel);
+    }
 }
