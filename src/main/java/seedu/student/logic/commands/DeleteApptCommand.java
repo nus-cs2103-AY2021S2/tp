@@ -27,8 +27,8 @@ public class DeleteApptCommand extends Command {
     public static final String MESSAGE_DELETE_APPT_SUCCESS = "Deleted Appointment: Name; %s, %s"; // appointment
     public static final String MESSAGE_NONEXISTENT_APPT = "No appointment for matriculation number %s exists.";
 
-    private final MatriculationNumber matriculationNumber;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private final MatriculationNumber matriculationNumber;
 
     /**
      * Creates a DeleteApptCommand object responsible for deleting the appointment of the student with the

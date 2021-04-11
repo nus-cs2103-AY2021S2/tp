@@ -28,8 +28,8 @@ public class DeleteStudentCommand extends Command {
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student: %1$s"; // add name + matric number
 
-    private final MatriculationNumber matriculationNumber;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private final MatriculationNumber matriculationNumber;
 
     /**
      * Creates a DeleteStudentCommand object responsible for deleting a student by matriculation number.
