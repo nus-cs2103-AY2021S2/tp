@@ -159,17 +159,23 @@ Minutes | <kbd>mm</kbd> | 00~59
 
 Examples:
 
-1. Adds an owner named John with the details provided in Pawbook.<br>
+1. Creates an owner named John with the details provided in Pawbook.<br>
    Command: `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
 
-2. Adds a dog named BRUCE belonging to owner with ID 1 in Pawbook.<br>
+2. Creates a dog named BRUCE belonging to owner with ID 1 in Pawbook.<br>
    Command: `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
 
 3. Creates a program with program name Obedience Training.<br>
    Command: `add program n/Obedience Training s/02-02-2020 18:00 t/puppies`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-info" id="add-tips">
 :bulb: Address fields are free from input checking to allow flexibility to users from different countries with different address formats.
+
+:bulb: Owners are considered to be the same if they share the same name and either the same phone or email.
+
+:bulb: Dogs are considered to be the same if they share the same name and the same owner.
+
+:bulb: Programs are considered to be the same if they share the same name.
 </div>
 
 To add a dog called Oreo, with breed Jack Russell Terrier, date of birth 20 August 2020, sex female, belonging to the owner with ID 1, tags shy and docile,
@@ -256,6 +262,8 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 :bulb: Tags are only able to take in one alphanumeric string!
+
+:bulb: The same restrictions from [Add Command](#add-tips) regarding identity of entities.
 
 :heavy_exclamation_mark: Take note that editing sessions for programs and tags for any entity will automatically override **all** its current sessions/tags! To clear all sessions/tags, use "s/" and "t/" respectively without any values.
 
