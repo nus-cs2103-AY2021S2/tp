@@ -658,7 +658,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
 
-   1. Test case: `remind 1=5`<br>
+   1. Test case: `remind 5`<br>
       Expected: All undelivered orders with a delivery date within 5 days from the delivery date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear in the status message. 
    1. Test case: `remind 0`<br>
       Expected: Only undelivered orders that has the current date displays on CakeCollate. The current date and the number of days from the current date for the date range to consider will appear in the status message. 
