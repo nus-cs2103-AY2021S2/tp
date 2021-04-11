@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<!-- @@author RuiFengg -->
+<!-- Reused from https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/resources/view/schedulepanel/DisplayDateSlot.fxml with no modifications -->
 <HBox xmlns:fx="http://javafx.com/fxml/1" id="slotPane" fx:id="slotPane" alignment="CENTER"
       styleClass="date-display-slot" xmlns="http://javafx.com/javafx/11">
     <VBox alignment="CENTER">

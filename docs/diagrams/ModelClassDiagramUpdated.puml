@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyXYZBook <<Interface>>
+Interface Model <<Interface>>
+Interface ObservableList <<Interface>>
+Class XYZBook
+Class ReadOnlyXYZBook
+Class Model
+Class ModelManager
+Class UserPrefs
+Class ReadOnlyUserPrefs
+
+Package XYZ {
+Class List
+Class XYZ
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+XYZBook .up.|> ReadOnlyXYZBook
+
+ModelManager .up.|> Model
+Model .right.> ObservableList
+ModelManager o--> "1" XYZBook
+ModelManager o-left->  UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+List *--> "*" XYZ
+
+XYZBook *--> "1" List
+ModelManager ----->" ~* filtered list" XYZ
+
+note right of XYZBook : XYZ refers to Tutor, Appointment, Schedule \nGrade, Budget or Reminder.
+
+@enduml

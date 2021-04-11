@@ -27,6 +27,7 @@ import seedu.address.model.tutor.Tutor;
 class JsonAdaptedTutor {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutor's %s field is missing!";
+    public static final String MESSAGE_FAVOURITE_CONSTRAINT = "Favourite should be true or false";
 
     private final String name;
     private final String gender;
@@ -155,11 +156,13 @@ class JsonAdaptedTutor {
             modelSubjectList.add(tutorSubject.toModelType());
         }
 
-        final boolean modelIsFavourite;
-        try {
-            modelIsFavourite = Boolean.parseBoolean(isFavourite);
-        } catch (Exception e) {
-            throw new IllegalValueException("Invalid boolean value");
+        boolean modelIsFavourite = false;
+        if (isFavourite != null) {
+            if (isFavourite.equals("false") || isFavourite.equals("true")) {
+                modelIsFavourite = Boolean.parseBoolean(isFavourite);
+            } else {
+                throw new IllegalValueException(MESSAGE_FAVOURITE_CONSTRAINT);
+            }
         }
 
         return new Tutor(modelName, modelGender, modelPhone, modelEmail,

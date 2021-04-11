@@ -11,10 +11,10 @@ if () then ([all required prefixes present])
       if () then ([all prefixes formatted correctly])
       :Check if reminder date is before today;
 
-          if () then ([reminder date is before or equals today])
+          if () then ([reminder date is equal or after today])
           :Check if reminder already existed;
 
-              if () then ([time_From is before time_To])
+              if () then ([reminder does not exist])
               :Add reminder to Reminder Tracker;
               :Show success message;
 
@@ -26,7 +26,7 @@ if () then ([all required prefixes present])
               endif
 
           else ([else])
-          :Shows an invalid datetime
+          :Shows an invalid date
           error message;
 
       endif

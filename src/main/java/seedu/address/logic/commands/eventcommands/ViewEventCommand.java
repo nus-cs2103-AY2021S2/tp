@@ -23,7 +23,8 @@ public class ViewEventCommand extends Command {
             + "Parameters: DATE (must be in YYYY-MM-DD format)\n"
             + "Example: " + COMMAND_WORD + " 2021-03-17";
 
-    public static final String MESSAGE_VIEW_EVENT_SUCCESS = "Viewing events on: %1$s";
+    public static final String MESSAGE_VIEW_EVENT_SUCCESS = "Viewing events on %1$s (%2$d appointment(s) and "
+            + "%3$d schedule(s) displayed)";
 
     private final AppointmentDateTime date;
 
@@ -39,7 +40,8 @@ public class ViewEventCommand extends Command {
 
         appointmentCommand.execute(model);
         viewScheduleCommand.execute(model);
-        return new CommandResult(String.format(MESSAGE_VIEW_EVENT_SUCCESS, date.toDateString()));
+        return new CommandResult(String.format(MESSAGE_VIEW_EVENT_SUCCESS, date.toDateString(),
+                model.getFilteredAppointmentList().size(), model.getFilteredScheduleList().size()));
     }
 
     @Override

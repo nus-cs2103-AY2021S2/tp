@@ -66,6 +66,23 @@ public class Tutor {
         this.isFavourite = isFavourite;
     }
 
+    /**
+     * Checks whether given tutor is valid.
+     *
+     * @param tutor Tutor to check
+     * @return Boolean representing whether given appointment is valid
+     */
+    public static boolean isValidTutor(Tutor tutor) {
+        return Name.isValidName(tutor.getName().fullName)
+                && Gender.isValidGender(tutor.getGender().personGender)
+                && Phone.isValidPhone(tutor.getPhone().value)
+                && Email.isValidEmail(tutor.getEmail().value)
+                && Address.isValidAddress(tutor.getAddress().value)
+                && Notes.isValidNote(tutor.getNotes().value)
+                && SubjectList.isValidSubjectList(tutor.getSubjectList().asUnmodifiableObservableList())
+                && Boolean.parseBoolean(String.valueOf(tutor.isFavourite));
+    }
+
     public Name getName() {
         return name;
     }

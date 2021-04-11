@@ -80,7 +80,8 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultBarFooter`, `FilterPanel`, `TutorListPanel` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -119,7 +120,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the TutorTracker data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<XYZ>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 ### Storage component
 
@@ -133,14 +134,14 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.TutorTracker.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 ### [Proposed] Favourite Feature
-####Proposed Implementation
+#### Proposed Implementation
 The proposed favourite feature is to facilitate the user to keep track of his/her favourites out of the entire list of tutors. 
 It implements the following operations:
 * `Favourite tutor` - Add a tutor to the list of favourite tutors.
@@ -152,7 +153,7 @@ These operations are exposed in the `Logic` interface by parsing respective `Fav
 
 Given below are example usage scenarios and how the favourite feature behaves at each step.
 
-### [Proposed] Note Feature
+### Note Feature
 #### Proposed Implementation
 Tutor Tracker's Notes feature allows users to create notes that are tagged to specific tutors and export them into a text file.
 
@@ -199,7 +200,7 @@ Steps for the execution of the `AddNoteCommand` (assuming that no errors are enc
 
 #### Design Consideration
 
-**Displaying Schedule in the GUI**
+**Displaying Notes in the GUI**
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
@@ -219,7 +220,6 @@ The following activity diagram summarizes what happens when the `add_note` comma
 To export the details and notes of a `Tutor` into a text file, we use the `export` command. The `export` command would
 create a new folder `/export` in the root directory. Details and notes of a `Tutor` would be converted into human-readable
 text form and exported into the `/export` folder.
-
 
 ### Grade Book
 Tutor tracker's Grade Book is to allow users to keep track their grade records for self reference and future study planning.
@@ -330,12 +330,34 @@ Steps for the execution of the `AddScheduleCommand` (assuming that no errors are
 
 #### Design Consideration
 
-**Displaying Schedule in the GUI**
+##### Determine the hierarchy of schedule
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
-| **Option 1** <br> Display schedules with appointments in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate appointments and schedule if not looked properly.|
-| **Option 2 (current choice)** <br> Display schedules in a separate tab from appointment. | Clear segregation between appointments and schedules. | May impose inconvenience as users have to switch tabs between appointments and schedules depending on their needs |
+| **Option 1** <br> Schedule to be a subclass of Appointment. | More ideal in terms of naming convention. | It may cause huge code changes and refactor required due to the Appointment class have already completed. |
+| **Option 2 (current choice)** <br> Create an additional parent class to be inherited by Appointment and Schedule. | Less change in codes as the Appointment class was completed (v1.2) before this idea extension proposed in v1.3. | May confuse users with the naming convention if the definitions and examples are not clearly stated. |
+
+Reason for choosing option 2:
+* We estimated the number of code changes required, and we deem it to be quite substantial. Hence, we have decided to go for option 2, by creating an abstract parent class called `Event`.
+
+##### Naming of the datetime attribute
+
+After choosing option 2 from the previous consideration, another issue arose due to the separation of classes.
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> Rename `AppointmentDateTime` to `EventDateTime` . | More ideal in terms of naming convention. | It may cause huge code changes and refactor required due to the Appointment class have already completed. At the same time, we have other features such as the Appointment Filter, which is heavily build using the `AppointmentDateTime` variable. |
+| **Option 2 (current choice)** <br> Retain the `AppointmentDateTime` attribute. | Less change in codes as the Appointment class was completed (v1.2) before this idea extension proposed in v1.3. | May confuse developers with the naming convention if the definitions and examples are not clearly stated. |
+
+Reason for choosing option 2:
+* We estimated the number of code changes required, and we deem it to be quite substantial. Hence, we have decided to go for option 2 by retaining the name `AppointmentDateTime` under the `Event` class. We have put comments in the class to explain the rationale behind it.
+
+##### Displaying Schedule in the GUI
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> Display schedules with appointments in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate appointments and schedule if not looked properly. |
+| **Option 2 (current choice)** <br> Display schedules in a separate tab from appointment. | Clear segregation between appointments and schedules. | May impose inconvenience as users have to switch tabs between appointments and schedules depending on their needs. |
 
 Reason for choosing option 2:
 * As we do not wish to overwhelm the user with too much information to provide a better user experience, we decided that option 2 may be a better option.
@@ -355,6 +377,8 @@ Reminders are date but not time-sensitive, users can add as many reminders as th
 #### Implementation
 A reminder is composed of `description` and `date`, which are used to identify a reminder uniquely.
 
+![Class Diagram of Reminder](images/reminder/ReminderClassDiagram.png)
+
 All the user's reminders are stored internally in the `reminderList`.
 Reminder Tracker consist of the following operations that can be performed on reminders:
 * `Add a reminder` - Add a new reminder and store it in the user's `reminderList`.
@@ -373,7 +397,7 @@ Steps for the execution of the `AddReminderCommand` (assuming that no errors are
 2. The `TutorTrackerParser` will then create a `AddReminderCommandParser`.
 3. The `AddReminderCommandParser` will then parse the inputs, and creates a `AddReminderCommand`.
 4. The `AddReminderCommand` will then validates the parameters and creates a `Reminder` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addSchedule()`, then create a `CommandResult` object and return the result.
+5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addReminder()`, then create a `CommandResult` object and return the result.
 6. The `Ui` component will detect this change and update the GUI.
 
 ![Sequence Diagram of Add Reminder](images/reminder/ReminderSequenceDiagram.png)
@@ -397,12 +421,13 @@ Tutor Tracker's Timetable GUI allows users to view their appointments and schedu
 
 #### Rationale
 As Tutor Tracker is an application to aid users in tracking their upcoming tuition appointments and schedules, our target users are secondary students.
-Like their school's timetable, we wish to present their personal tuition timetable to them.
+Similar to their school's timetable, we wish to present their personal tuition appointments and schedules as a timetable.
 
 #### Implementation
-The current implementation of the timetable view makes use of the list of appointments and schedules from the ModelManager. 
-The schedule view will display appointments from Monday to Sunday using JavaFx's GridPane. 
-Each row would consist of all appointments & schedules of a specific day, and the duration of an appointment or schedule would correspond to the number of columns taken up by an event. 
+The current implementation of the timetable view retrieve the list of appointments and schedules from the `ModelManager`. 
+The timetable view will display appointments and schedules timeslots from Monday to Sunday using JavaFx's GridPane. 
+Each row would consist of all appointments & schedules of a specific day.
+The duration of an appointment or schedule would correspond to the number of columns. 
 The date of an appointment will be indicated using the first column of the grid.
 
 When the user enters the `timetable` command to open the timetable window, the user input command undergoes the same command parsing as described in
@@ -743,7 +768,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
 
-    User case ends.
+    Use case ends.
 
 <hr/>
 
@@ -768,7 +793,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. No appointment matches the search value.
     * 3a1. TutorTracker displays an empty list.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -956,7 +981,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -974,7 +999,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. The index is out of bound.
     * 3a1. TutorTracker shows an error message.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -1017,15 +1042,15 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1. User requests to view the list of reminders.
 2. TutorTracker displays the list of reminders to the user.
-3.  User requests to delete a specific reminder in the list by indicating the index shown.
-4.  TutorTracker deletes that specific reminder.
+3. User requests to delete a specific reminder in the list by indicating the index shown.
+4. TutorTracker deletes that specific reminder.
 
 **Extensions**
 
 * 3a. The index is out of bound.
     * 3a1. TutorTracker shows an error message.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -1041,12 +1066,12 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 1a. The date is empty.
     * 1a1. TutorTracker set the default date is today.
 
-    User case resumes at step 2.
+    Use case resumes at step 2.
 
 * 1b. The given date is invalid.
     * 1b1. TutorTracker shows an error message.
-
-      Use case ends.
+      
+    Use case ends.
 
 <hr/>
 
@@ -1080,7 +1105,9 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Appointment**: An event in user's local schedule with related details, including tutor's name, date of appointment, start and end time and location(optional).
+* **Event**: Something happening on the day.
+* **Appointment**: An event that refers to a tuition session with a particular tutor. Information stored including the tutor's name, date of appointment, start and end time and location.
+* **Schedule**: An event that is closely related to tuition, such as allocating time to do tuition homework or assessments.
 * **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
 * **Years of Experience**: Years of experience of tutoring a specific subject.
 * **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
@@ -1093,11 +1120,6 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
 
 ### Launch and shutdown
 
@@ -1133,6 +1155,85 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a Schedule
+
+1. Adding a schedule
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided 
+        2. The date must be in the form `yyyy-mm-dd`. 
+        3. The time must be in the form ` hh:mm a`.
+        4. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+        5. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
+        6. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
+        7. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
+        8. The schedule's timeslot must not clash with existing appointments & schedules. <br><br>
+    2. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
+       Expected: Adds a schedule by the name `Maths Tuition Homework`, happening from `Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM` <br><br>
+    3. Test Case: `add_schedule t/Science Tuition Homework d/2021-6-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6` <br>
+       Expected: Adds a schedule by the name `Science Tuition Homework`, happening from `Jun 30 2021 06:00 PM to Jun 30 2021 07:00 PM` <br><br>
+    4. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
+       Expected: The schedule is not added. An error message saying that the schedule already exists (assuming you did the first
+       test case) is shown <br><br>
+    5. Test Case: `add_schedule t/Maths Tuition Homework d/2/5/2021 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
+       Expected: The schedule is not added. An error message saying that the date is in the wrong format is shown <br><br>
+    6. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/15:00pm to/7:00pm ds/Calculus Topic` <br>
+      Expected: The schedule is not added. An error message saying that the time is in the wrong format is shown <br><br>
+    7. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/7:00pm to/5:00pm ds/Calculus Topic` <br>
+      Expected: The schedule is not added. An error message saying that the time range is invalid is shown <br><br>
+    8. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/5:00am to/10:00am ds/Calculus Topic` <br>
+      Expected: The schedule is not added. An error message saying that the start time is invalid is shown <br><br>
+    9. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/10:00pm to/1:00am ds/Calculus Topic` <br>
+      Expected: The schedule is not added. An error message saying that the end time is invalid is shown <br><br>
+    10. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/5:31pm to/8:46pm ds/Calculus Topic` <br>
+      Expected: The schedule is not added. An error message saying that the time minutes are not in blocks of 30 or 60 minutes is shown <br><br>
+    11. Test Case: `add_schedule t/English Tuition Homework d/2021-6-2 fr/4:00pm to/8:00pm ds/Calculus Topic` <br>
+      Expected: The schedule is not added. An error message saying that the schedule clashes with another appointment or schedule (assuming you did the first
+      test case) is shown <br><br>
+
+### Deleting a Schedule
+
+1. Deleting a Schedule
+    1. Prerequisites: 
+        1. List all schedule(s) using the `list_schedules` command. Multiple schedules in the list. 
+        2. The schedule to be deleted must exist.
+        3. Index must be a positive integer.
+    2. Test Case: `delete_schedule 1` <br>
+       Expected: The first schedule displayed in the list is deleted. <br><br>
+    3. Test Case: `delete_schedule` <br>
+       Expected: An error message about the invalid command format is shown <br><br>
+    4. Test Case: `delete_schedule -1` <br>
+      Expected: An error message about the invalid command format is shown <br><br>
+
+### Adding a Reminder
+
+1. Adding a reminder
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided
+        2. The date must be in the form `yyyy-mm-dd`. <br><br>
+    2. Test Case: `add_reminder ds/Science Tuition Payment Due d/2021-6-2` <br>
+       Expected: Adds a reminder by the name `Science Tuition Payment Due`, to be reminded on `Jun 02 2021` <br><br>
+    3. Test Case: `add_reminder ds/Maths Tuition Payment Due d/2021-6-21` <br>
+       Expected: Adds a schedule by the name `Maths Tuition Payment Due`, to be reminded on `Jun 21 2021` <br><br>
+    4. Test Case: `add_reminder ds/Science Tuition Payment Due d/2021-6-2` <br>
+       Expected: The reminder is not added. An error message saying that the schedule already exists (assuming you did the first
+       test case) is shown <br><br>
+    5. Test Case: `add_reminder ds/Science Tuition Payment Due d/2/6/2021` <br>
+       Expected: The reminder is not added. An error message saying that the date is in the wrong format is shown <br><br>
+       
+### Deleting a Reminder
+
+1. Deleting a Reminder
+    1. Prerequisites:
+        1. List all reminder(s) using the `list_reminders` command. Multiple reminders in the list.
+        2. The reminder to be deleted must exist.
+        3. Index must be a positive integer.
+    2. Test Case: `delete_reminder 1` <br>
+       Expected: The first reminder displayed in the list is deleted. <br><br>
+    3. Test Case: `delete_reminder` <br>
+       Expected: An error message about the invalid command format is shown. <br><br>
+    4. Test Case: `delete_reminder -1` <br>
+       Expected: An error message about the invalid command format is shown. <br><br>
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
