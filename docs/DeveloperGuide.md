@@ -853,19 +853,38 @@ testers are expected to do more *exploratory* testing.
 
 ## 7.4 Deleting a task
 
-1. Deleting a task while all tasks are being shown
+1. Deleting a task on a non-home tab.
 
-    1. Prerequisites: List all tasks using the `list` command. Multiple tasks in the list.
+    1. Prerequisites: User should be on any tab other than the home tab. There are at least 1 task(s) to delete shown in the home tab.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+       Expected: No task is deleted since the user has to be on the home tab to delete tasks. Error message instructing
+       the user to switch to the home tab shown in status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+1. Deleting one task by index on a home tab.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Prerequisites: User should be on the home tab. There should be at least 1 task in the task list. 
+        
+    1. Test case: `delete 1`<br>
+      Expected: Task with index 1 will be deleted, and the details of the deleted task is shown
+       
+1. Deleting multiple tasks on a home tab
+
+    1. Prerequisites: User should be on the home tab. There should be at least 2 tasks in the task list. 
+       There should be at least 1 task with their status as `uncompleted`, and **no** tasks with the `expired` status
+    
+    1. Test case: `delete 1 2`<br>
+    Expected: Tasks with indices 1 and 2 will be deleted, and the details of the deleted tasks is shown
+       
+    1. Test case: `delete 1-2`<br>
+    Expected: Tasks with indices 1 and 2 will be deleted, and the details of the deleted tasks is shown
+       
+    1. Test case: `delete uncompleted`<br>
+    Expected: All tasks with the `uncompleted` status are deleted. 
+       
+    1. Test case: `delete expired`<br>
+    Expected: An error message **"There are no tasks with the given status!"** is given as there are no expired tasks.
+
 
 ## 7.5 Switching Tabs
 
