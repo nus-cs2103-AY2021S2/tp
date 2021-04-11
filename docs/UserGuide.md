@@ -142,6 +142,12 @@ command to access the help page for a detailed guide on using the application.
 
 Format: `help`
 
+**:bulb: Tips:**<br>
+
+You may use the `F5` hotkey to open up the Help window.
+
+</div>
+
 ### Adding a financial record : `add-fr`
 
 If you just spent some money and want to record it, you may use the `add-fr` command to add this expenditure as a financial record in BudgetBaby.
@@ -311,11 +317,27 @@ Format: `exit`
 
 ### Viewing top 5 categories spent for the current month
 
+<img src="images/features/category-stats.png" width="450px">
+
 The UI displays the top 5 categories that were spent on a particular month.
+
+**:bulb: Tips:**<br>
+
+You may use the `F6` hotkey to open up the Month statistics window.
+
+</div>
 
 ### Viewing budget for the current month
 
+<img src="images/features/monthly-stats.png" width="450px">
+
 The UI displays the current monthly budget that has been set automatically.
+
+**:bulb: Tips:**<br>
+
+You may use the `F7` hotkey to open up the Month statistics window.
+
+</div>
 
 ### Checking remaining budget for the current month
 
