@@ -552,6 +552,78 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a patient
+
+1. Adding a new patient
+   
+    1. Prerequisites: The patient to add must not already exist in the patient records.
+
+    1. Test case: `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: The new patient is appended to the patient records, and the details of the patient are displayed in the status message.
+       
+    1. Test case: `add-patient n/John Doe e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: No patient is added. Error details are shown in the status message.
+       
+    1. Other incorrect `add-patient` commands to try: `add-patient n/John Doe`, `add-patient n/John Doe p/a2345678`, `...` (where a field is missing, or the values are invalid)
+
+1. Adding a duplicate patient
+    
+    1. Prerequisites: The patient to add has the same `Name` as an existing patient in the patient records.
+    
+    1. Test case: `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: No patient is added. Error details are shown in the status message.
+
+    1. Missing fields and invalid value errors take precedence before duplicate patient errors.
+
+### Adding a doctor
+
+1. Adding a new doctor
+
+    1. Prerequisites: The doctor to add must not already exist in the doctor records.
+
+    1. Test case: `add-doctor n/Dr Meredith Grey`<br>
+       Expected: The new doctor is appended to the doctor records, and the details of the doctor are displayed in the status message.
+
+    1. Test case: `add-doctor n/`<br>
+       Expected: No doctor is added. Error details are shown in the status message. Status bar remains the same.
+
+    1. Other incorrect `add-doctor` commands to try: `add-doctor n/Ca$h Money`, `...` (where the `Name` value is invalid)<br>
+       Expected: Similar to previous.
+
+1. Adding a duplicate doctor
+
+    1. Prerequisites: The doctor to add has the same `Name` as an existing doctor in the doctor records.
+
+    1. Test case: `add-doctor n/Dr Meredith Grey`<br>
+       Expected: No doctor is added. Error details are shown in the status message. Status bar remains the same.
+
+### Adding an appointment
+
+1. Adding a non-conflicting appointment while all patients and doctors are shown
+
+    1. Prerequisites: List all patients and doctors using the `list-patient` and `list-doctor` command.<br>
+       There must be at least 1 patient and doctor in the patient records and doctor records respectively.
+
+    1. Test case: `add-appt pt/1 dr/1 at/2021-01-01 00:00 to/2021-01-01 01:30`<br>
+       Expected: The appointment is appended to the appointment schedule, and the details of the appointment are displayed in the status message.
+
+    1. Test case: `add-appt pt/1`<br>
+       Expected: No appointment is added. Error details are shown in the status message.
+
+    1. Other incorrect `add-appt` commands to try: `add-appt pt/0`, `add-appt pt/1 dr/1 at/2021-01-01 dur/0H 0M`, `...` (where a field is missing, values are invalid, or the indexes are out of bounds)<br>
+       Expected: Similar to previous.
+
+1. Adding a conflicting appointment
+
+    1. Prerequisites: The appointment to add is in conflict with an existing appointment in the appointment schedule.<br>
+       There is an overlap in the `Timeslot` fields with either the same `Patient` or `Doctor`.
+
+    1. Test case: `add-appt pt/1 dr/1 at/2021-01-01 00:00 to/2021-01-01 01:30`<br>
+       Expected: No appointment is added. Error details are shown in the status message.
+       
+    1. Missing fields and invalid value errors take precedence before conflicting appointment errors.
+
+
 ### Deleting a patient
 
 1. Deleting a patient while all patients with no existing appointments in the appointment schedule.
