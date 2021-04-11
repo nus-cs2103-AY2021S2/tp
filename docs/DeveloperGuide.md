@@ -21,9 +21,10 @@ title: Developer Guide
 - [**4. Implementation**](#4-implementation)
     - [4.1 Switch between the different tabs](#41-switch-between-the-different-tabs)
     - [4.2 View command](#42-view-command)
-    - [4.3 Delete multiple tasks with indices](#43-delete-multiple-tasks-with-indices)
-    - [4.4 Delete multiple tasks with an index range](#44-delete-multiple-tasks-with-an-index-range)
-    - [4.5 Delete all tasks of a specified status](#45-delete-all-tasks-of-a-specified-status)
+    - [4.3 Tag-Search command](#43-tag-search-command)  
+    - [4.4 Delete multiple tasks with indices](#44-delete-multiple-tasks-with-indices)
+    - [4.5 Delete multiple tasks with an index range](#45-delete-multiple-tasks-with-an-index-range)
+    - [4.6 Delete all tasks of a specified status](#46-delete-all-tasks-of-a-specified-status)
 - [**5. Documentation, logging, testing, configuration, dev-ops**](#5-documentation-logging-testing-configuration-dev-ops)
 - [**6. Appendix: Requirements**](#6-appendix-requirements)
     - [6.1 Product scope](#61-product-scope)
@@ -33,8 +34,13 @@ title: Developer Guide
     - [6.5 Glossary](#65-glossary)
 - [**7. Appendix: Instructions for manual testing**](#7-appendix-instructions-for-manual-testing)
     - [7.1 Launch and shutdown](#71-launch-and-shutdown)
-    - [7.2 Deleting a task](#72-deleting-a-task)
-    - [7.3 Saving data](#73-saving-data)
+    - [7.2 Adding a task](#72-adding-a-task)
+    - [7.3 Editing a task](#73-editing-a-task)
+    - [7.4 Deleting a task](#74-deleting-a-task)
+    - [7.5 Switching tabs](#75-switching-tabs)
+    - [7.6 Sorting tasks](#76-sorting-tasks)
+    - [7.7 Viewing help](#77-viewing-help)
+    - [7.8 Clearing data](#78-clearing-data)
 - [**8. Appendix: Effort**](#8-appendix-effort)
   
 
@@ -57,7 +63,7 @@ upon Taskify in the future.
   
 ## 1.3 Taskify Overview
 Taskify is a desktop app intended for university students, optimized for fast typists via a Command Line Interface 
-(CLI). Taskify helps users keep track of their tasks with a a clean and simplistic interface.
+(CLI). Taskify helps users keep track of their tasks with a clean and simplistic interface.
 
 ## 1.4 How to use this guide
 This Developer Guide is structured in a top-down manner, starting with the overall architecture of Taskify, followed
@@ -112,7 +118,7 @@ Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface`) mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface
 and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -246,7 +252,7 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 * **Alternative Choice:** Switch tabs based on tab index
     * Pros: Lesser things to remember as the format command is `switch index`
-    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.    
 
 
 ## 4.2 View Command
@@ -275,11 +281,49 @@ to the user.
 * **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
 * **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
 
+## 4.3 Tag Search Command
 
-## 4.3 Delete multiple tasks with indices
+### Implementation
+
+The implementation of the Tag Search feature is facilitated by `TagContainsKeywordsPredicate` which implements
+`Predicate<Task>` and has the `test` method's implementation overridden to test if a `Task` has tags that match any
+of the tags entered by the user.
+
+The `TagContainsKeywordsPredicate#test(Task)` iterates through the `keywords` of type `List<String>` and
+checks if any of the `keywords` match the tags in the `Task`. If one or more of the tags match the function returns true.
+
+
+`Task` has the following function to retrieve the tags:
+* `Task#getTags()` - Return the tags of a `Task` .
+
+`TagContainsKeywordsPredicate` will be passed to `Model#updateXYZFilteredTaskList(Predicate)`
+(`updateFilteredTaskList`, `updateUncompleredFilteredTaskList`, etc.) depending on which tab is currently active. The
+filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
+
+
+The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search
+tutorial cs2100` as input.
+
+![TagSearchSequenceDiagram](images/TagSearchSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the tag-search command:
+
+![TagSearchActivityDiagram](images/TagSearchActivityDiagram.png)
+
+### Design Consideration
+* **Current Choice:** Search for tasks bases on one or more tags.
+    * Pros: Simple and intuitive for user to filter out similar tasks by using tags.
+    * Cons: User would have to type out all the tags individually if there are multiple tasks with unique tags
+
+* **Alternative Choice:** Search for tasks using a collection of tags grouped together with the same label.
+    * Pros: Users can type less and save time if they have multiple tags to search for.
+    * Cons: Less intuitive as user will have to keep track of which tags are under which group.
+
+
+## 4.4 Delete multiple tasks with indices
 This feature allows users to list out the [indices](#65-glossary) of tasks to delete.
 
-### 4.3.1 Implementation
+### 4.4.1 Implementation
 This feature is facilitated by `DeleteMultipleCommand`, which is a `Command` that is executed with `execute()`. It relies on `DeleteUtil#hasMultipleValidIndex` as a validity check,
 which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` is called, and returns a `DeleteMultipleCommand`.
 
@@ -289,7 +333,7 @@ The following class diagram shows the relationship between classes for a success
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
 ![](images/DeleteMultipleUsingIndicesSeqDiag.png)
 
-### 4.3.2 Design Consideration
+### 4.4.2 Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Deleting several tasks with the default delete feature is too cumbersome
@@ -306,12 +350,12 @@ The following sequence diagram traces the step-by-step execution of deleting mul
 
 Solution 1 was selected for its better benefits as well as increased testability.
 
-## 4.4 Delete multiple tasks with an index range
+## 4.5 Delete multiple tasks with an index range
 This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
 
-### 4.4.1 Implementation
+### 4.5.1 Implementation
 This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
-[deleting multiple tasks with **multiple indices** feature](#43-delete-multiple-tasks-with-indices), with the only difference in
+[deleting multiple tasks with **multiple indices** feature](#44-delete-multiple-tasks-with-indices), with the only difference in
 the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in
 `DeleteUtil#getTasksToDelete(List<Task>, List<Index>, boolean)`. This field is determined by `DeleteMultipleCommand#parse`, which checks
 if the user is deleting tasks using indices or an index range by consulting `DeleteUtil#isDeletingTasksByRange`.
@@ -320,7 +364,7 @@ The responsible class diagram for this feature is [here](#classdiag), which is a
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
 ![](images/DeleteMultUsingIndexRangeSeqDiag.png)
-### 4.4.2 Design Consideration
+### 4.5.2 Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Listing indices individually after typing `delete` to delete many tasks might be cumbersome as well
@@ -334,10 +378,10 @@ be part of the same responsibility, so it likely does not violate SRP.
 
 
 
-## 4.5 Delete all tasks of a specified status
+## 4.6 Delete all tasks of a specified status
 This feature allows users to provide a `Status` to delete all tasks that are of that `Status`.
 
-### 4.5.1 Implementation
+### 4.6.1 Implementation
 This feature is facilitated by the `DeleteByStatusCommand`. It does a validity check by calling `DeleteUtil#isDeletingTasksByStatus` in `TaskifyParser`,
 and `DeleteByStatusCommandParser#parse` calls `ParserUtil#parseInputToStatus` to parse the user's input arguments into the desired `Status`, which
 is stored as a field in `DeleteByStatusCommand` for use in the execution of the command (i.e `DeleteByStatusCommand#execute`).
@@ -350,7 +394,7 @@ diagram for the previous two delete multiple tasks features is the name of the `
 The following sequence diagram traces the step-by-step execution of deleting all tasks of a specified status.
 ![](images/DeleteByStatusSeqDiag.png)
 
-### 4.5.2 Design Consideration
+### 4.6.2 Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Instead of deleting by indices, users might want to delete all tasks of a specific `Status`, which might be cumbersome with the existing two features for deleting multiple tasks.<br>
@@ -489,7 +533,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3b. The given status is expired. Even though `expired` is a valid status of a task, users cannot directly modify it.
     * 3b1. Taskify warns that it can change the status of the task if it is either `uncompleted` or `completed` .
 
-      Use case ends.
+        Use case ends.
   
 * 3c. Taskify does not recognise the status that the User wants to set
     * 3c1. Taskify warns that it does not understand the type of status entered
@@ -507,7 +551,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all Tasks
-2. Taskify lists all the Tasks
+2. Taskify lists all the Tasks  
+   Use case ends.
 
 **Extensions**
 
@@ -516,22 +561,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 ---
-**Use case 5: Search for Tasks using tags**
+**Use case 5: Search for Tasks by Tags**
 
 **MSS**
 
-1. User requests to search for Task(s) by using its tag.
-2. Taskify shows the Task(s) with the same tag.
+1. User requests to find Task(s) by tags based on a list of tags.
+2. Taskify shows the Tasks that match one or more of the given tags.    
+   Use case ends.
 
 **Extensions**
+* 1a. Taskify cannot find any Task with the given tags
+    * 1a1. Taskify informs the User that no Tasks are found.
 
-* 1a. Taskify cannot find any Task with the tag
-    * 1a1. Taskify warns that no such Task has this tag.
-    
-        Use case ends.
+      Use case ends.
     
 * 1b. The User's input is unrecognisable to Taskify
-    * 1b1. Taskify informs the User on the format to do a tag-search.
+    * 1b1. Taskify informs the User on the format of command to search for tasks by tags.
     
         Use case ends.
 
@@ -541,34 +586,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to sort the Tasks.
-2. Taskify shows the Tasks in their sorted order.
+2. Taskify shows the Tasks in their sorted order.   
+   Use case ends.
 
 ---
-**Use case 7: Search for Tasks using keywords (excluding tags)**
+**Use case 7: Search for Tasks by Name**
 
 **MSS**
 
-1. User requests to find Task(s) with given keywords.
-2. Taskify shows the Tasks that have passed the search.
+1. User requests to find Task(s) by name based on a list of keywords.
+2. Taskify shows the Tasks that match the given keywords.    
+   Use case ends.
 
 **Extensions**
 * 1a. Taskify cannot find any Task with the given keywords
-    * 1a1. Taskify informs the User that no Tasks are found, and that keyword(s) must match a whole word in the Task's name.
+    * 1a1. Taskify informs the User that no Tasks are found.
       
         Use case ends.
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. Taskify informs the User on the format of command to search for tasks by name.
+
+      Use case ends.    
 ---
 **Use case 8: Modifying an existing Task**
 
 **MSS**
 
 1. User requests to modify an existing Task
-2. Taskify shows the User the modified Task.
+2. Taskify shows the User the modified Task.     
+   Use case ends.
 
 **Extensions**
 * 1a. The User's input is unrecognisable to Taskify
     * 1a1. Taskify informs the User on the format to edit a Task.
 
-      Use case ends.
+        Use case ends.
     
 * 1b. The User's input for specific fields is invalid
     * 1b1. Taskify informs the User on the correct format of the field in the User's input that failed to pass validation checks.
@@ -576,7 +628,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
     
 * 1c. The User's input does not include any fields at all.
-    * 1c. Taskify warns that no modifying can take place if there are no updated fields filled in.
+    * 1c1. Taskify warns that no modifying can take place if there are no updated fields filled in.
     
         Use case ends.
     
@@ -587,7 +639,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to switch to Home Tab.
-2. Taskify switches to Home Tab.
+2. Taskify switches to Home Tab.   
+   Use case ends.
 
     Use Case ends
 
@@ -611,11 +664,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to switch to Expired Tab.
 2. Taskify switches to Expired Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
-
 * 1a. If the user is currently in the Expired Tab
     * 1a1. Taskify informs the User that it is currently in the Expired Tab.
 
@@ -635,7 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to switch to Completed Tab.
 2. Taskify switches to Completed Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
@@ -659,7 +711,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to switch to Uncompleted Tab.
 2. Taskify switches to Uncompleted Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
@@ -680,16 +732,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all Tasks that are due on specified date.
-2. Taskify shows all the User Tasks with the same date.
-   
+2. Taskify shows the User Tasks with the same date.   
+
    Use case ends.
 
 **Extensions**
 * 1a. There are no tasks stored
-    * 1a1. Taskify informs the User there are no tasks with the specified date.
-    
-        Use case ends.
-
+    * 1a1. Taskify informs the User there are no tasks tracked   
+      Use case ends.
+      
 ---
 
 ## 6.4 Non-Functional Requirements
@@ -733,9 +784,66 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutting down
 
-## 7.2 Deleting a task
+    1. Launch the help window `help` command.
+
+    1. Close the app using the `exit` command.  
+       Expected: Both the main window, and the help window should close.
+
+## 7.2 Adding a task
+
+1. Adding a task on the home tab.
+
+    1. Prerequisites: User should be on the home tab and there should not be any task with the same name in the list.
+       If there is such a task, delete it.
+
+    1. Test case: `add n/Finish 2103T Tutorial desc/Draw UML diagram date/2021-04-13 10:30 t/CS2103T`<br>
+       Expected: Task named Finish 2103T Tutorial should appear in the list of tasks on the home tab. It should 
+       appear at the bottom of the list ,and the details should be as entered.
+
+    1. Test case: `add n/Old Task desc/Draw UML diagram date/2015-04-13 10:30 t/CS2103T`<br>
+       Expected: No task is added. Error details indicating that the date should not be in the past shown in 
+       status 
+       message.
+       
+1. Adding a task on a non-home tab.
+
+    1. Prerequisites: User should be on any tab other than the home tab and there should not be any task with the same 
+       name in the list. If there is such a task, delete it.
+
+    1. Test case: `add n/Finish 2103T Tutorial desc/Draw UML diagram date/2021-04-13 10:30 t/CS2103T`<br>
+       Expected: No task is added since the user has to be on the home tab to add tasks. Error message instructing 
+       the user to switch to the home tab shown in status message.
+
+## 7.3 Editing a task
+
+1. Editing a task on the home tab.
+
+    1. Prerequisites: User should be on the home tab. There should be at least 1 task in the task list.
+
+    1. Test case: `edit 1 t/newtag`<br>
+       Expected: Task with index 1 is edited such that it will have a single tag named newtag.
+
+    1. Test case: `edit 1 s/completed desc/new description`<br>
+       Expected: Task with index 1 will be edited, and the new details should be as entered.
+
+    1. Test case: `edit 0 s/completed desc/new description`<br>
+       Expected: No event is deleted. Error details shown in the status message.
+       
+    1. Other incorrect edit commands to try: `edit`, `edit x` (where x is larger than the list size).
+       Expected: Similar to previous.
+
+1. Adding a task on a non-home tab.
+
+    1. Prerequisites: User should be on any tab other than the home tab and there should be at least 1 task in the 
+       task list
+
+    1. Test case: `edit 1 s/completed desc/new description`<br>
+       Expected: No task is edited since the user has to be on the home tab to add tasks. Error message instructing
+       the user to switch to the home tab shown in status message.
+
+## 7.4 Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -751,15 +859,40 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+## 7.5 Switching Tabs
 
-## 7.3 Saving data
+1. Switching to home tab
+    1. Test case: `home`<br>
+       Expected: If not already on the home tab, the UI will switch to the home tab.
+1. Switching to expired tab
+    1. Test case: `expired`<br>
+       Expected: If not already on the expired tab, the UI will switch to the home tab.
+1. Switching to completed tab      
+    1. Test case: `completed`<br>
+       Expected: If not already on the completed tab, the UI will switch to the home tab.
+1. Switching to uncompleted tab
+   1. Test case: `uncompleted`<br>
+      Expected: If not already on the uncompleted tab, the UI will switch to the home tab.
 
-1. Dealing with missing/corrupted data files
+## 7.6 Sorting Tasks
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Sorting tasks based on deadlines.
+    1. Test case: `sort`
+    1. Expected: All the tasks are sorted in ascending order of their deadline dates.
 
-1. _{ more test cases …​ }_
+## 7.7 Viewing help
+
+1. Viewing help
+   1. Test case: `help`
+   1. Expected: Help window appears.
+
+## 7.8 Clearing Data
+
+1. Clearing all data in Taskify
+    1. Test case: There should be some data in Taskify.
+    1. Test case: `clear`
+    1. Expected: All the data is cleared.
+    
 
 --------------------------------------------------------------------------------------------------------------------
 # **8. Appendix: Effort**
