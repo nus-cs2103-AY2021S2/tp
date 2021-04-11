@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,14 +22,18 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
 import seedu.address.storage.JsonColabFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.DeadlineBuilder;
+import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.GroupmateBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.TodoBuilder;
 
@@ -161,10 +166,10 @@ public class MainWindowTest extends GuiUnitTest {
 
         // add todo
         inputCommand("addT " + projectIndex + " d/todo");
-        Todo todoToAdd = new TodoBuilder()
+        Todo todo = new TodoBuilder()
                 .withDescription("todo")
                 .build();
-        project.addTodo(todoToAdd);
+        project.addTodo(todo);
 
         assertTrue(logic.getFilteredProjectsList().contains(project));
 
@@ -173,8 +178,9 @@ public class MainWindowTest extends GuiUnitTest {
         project.markTodo(0);
         assertTrue(logic.getFilteredProjectsList().contains(project));
 
+        // update todo
         inputCommand("updateT " + projectIndex + " i/1 d/newtodo");
-        todoToAdd.setDescription("newtodo");
+        todo.setDescription("newtodo");
         assertTrue(logic.getFilteredProjectsList().contains(project));
 
         // delete todo
@@ -196,11 +202,11 @@ public class MainWindowTest extends GuiUnitTest {
 
         // add deadline
         inputCommand("addD " + projectIndex + " d/deadline by/20-02-2021");
-        Deadline deadlineToAdd = new DeadlineBuilder()
+        Deadline deadline = new DeadlineBuilder()
                 .withDescription("deadline")
                 .withByDate(LocalDate.of(2021, 2, 20))
                 .build();
-        project.addDeadline(deadlineToAdd);
+        project.addDeadline(deadline);
 
         assertTrue(logic.getFilteredProjectsList().contains(project));
 
@@ -209,12 +215,85 @@ public class MainWindowTest extends GuiUnitTest {
         project.markDeadline(0);
         assertTrue(logic.getFilteredProjectsList().contains(project));
 
+        // update deadline
         inputCommand("updateD " + projectIndex + " i/1 d/newdeadline");
-        deadlineToAdd.setDescription("newdeadline");
+        deadline.setDescription("newdeadline");
         assertTrue(logic.getFilteredProjectsList().contains(project));
 
         // delete deadline
         inputCommand("deleteD " + projectIndex + " i/1");
+        assertFalse(logic.getFilteredProjectsList().contains(project));
+
+        // delete project
+        inputCommand("deleteP " + projectIndex);
+    }
+
+    @Test
+    public void events_success() {
+        // create project
+        inputCommand("addP n/project");
+        Project project = new ProjectBuilder()
+                .withName("project")
+                .build();
+        int projectIndex = logic.getFilteredProjectsList().size();
+
+        // add event
+        inputCommand("addE " + projectIndex + " d/event on/20-02-2021 at/2000 w/Y");
+        Event event = new EventBuilder()
+                .withDescription("event")
+                .withDate(LocalDate.of(2021, 2, 20))
+                .withTime(LocalTime.of(20, 0))
+                .withIsWeekly(true)
+                .build();
+        project.addEvent(event);
+
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // update event
+        inputCommand("updateE " + projectIndex + " i/1 d/newevent");
+        event = new EventBuilder(event)
+                .withDescription("newevent")
+                .build();
+        project.getEvents().setEvent(0, event);
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // delete event
+        inputCommand("deleteE " + projectIndex + " i/1");
+        assertFalse(logic.getFilteredProjectsList().contains(project));
+
+        // delete project
+        inputCommand("deleteP " + projectIndex);
+    }
+
+    @Test
+    public void groupmates_success() {
+        // create project
+        inputCommand("addP n/project");
+        Project project = new ProjectBuilder()
+                .withName("project")
+                .build();
+        int projectIndex = logic.getFilteredProjectsList().size();
+
+        // add groupmate
+        inputCommand("addG " + projectIndex + " n/groupmate r/developer");
+        Groupmate groupmate = new GroupmateBuilder()
+                .withName("groupmate")
+                .withRoles("developer")
+                .build();
+        project.addGroupmate(groupmate);
+
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // update groupmate
+        inputCommand("updateG " + projectIndex + " i/1 n/newgroupmate");
+        groupmate = new GroupmateBuilder(groupmate)
+                .withName("newgroupmate")
+                .build();
+        project.getGroupmates().setGroupmate(0, groupmate);
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // delete groupmate
+        inputCommand("deleteG " + projectIndex + " i/1");
         assertFalse(logic.getFilteredProjectsList().contains(project));
 
         // delete project
