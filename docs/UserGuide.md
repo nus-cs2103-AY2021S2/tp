@@ -20,7 +20,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Viewing a flashcard](#viewing-a-flashcard--view): `view`
         * [Finding flashcards](#finding-flashcards--find): `find`
         * [Filtering flashcards](#filtering-flashcards-filter): `filter`
-        * [Clearing all flashcards](#clearing-all-entries--clear): `clear`
+        * [Clearing all flashcards](#clearing-all-flashcards--clear): `clear`
         * [Undoing a command](#undoing-a-command--undo): `undo`
         * [Redoing a command](#redoing-a-command--redo): `redo`
         * [Sorting all flashcards](#sorting-all-flashcards-sort): `sort`
@@ -28,7 +28,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Viewing statistics of flashcards](#viewing-statistics-of-flashcards-stats): `stats`
         * [Adding an alias](#adding-an-alias-alias): `alias`
         * [Exiting the program](#exiting-the-program--exit): `exit`
-        * [Saving data](#saving-the-data)
+        * [Saving the data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
         * [Editing the preferences file](#editing-the-preferences-file)
     * [Review mode](#review-mode)
@@ -186,8 +186,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br><br>
   Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
-  <div style="page-break-after: always;"></div>
-  
+  <div style="page-break-after: always;"></div><br>
   After executing command `delete 2`: <br><br>
   ![UIAfterDelete](./images/UiAfterDelete.png)
 
@@ -269,9 +268,9 @@ Examples:
 * `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
   ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br>
 
-### Clearing all entries : `clear`
+### Clearing all flashcards : `clear`
 
-Clears all entries from FlashBack.
+Clears all flashcards from FlashBack.
 
 Format: `clear`
 
@@ -371,7 +370,7 @@ Examples:
 
 `stats 2` shows the statistics of the 2nd flashcard in the list.
 
-![UiStats](./images/UiStatsIndex.png) <br><br>
+![UiStats](./images/UiStatsIndex.png) <br>
 
 `stats` shows the overall statistics of the current flashcard list.
 

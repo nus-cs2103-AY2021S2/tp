@@ -29,12 +29,14 @@ title: Developer Guide
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Listing all flashcards](#listing-all-flashcards)
+    * [Adding a flashcard](#adding-a-flashcard)
     * [Deleting a flashcard](#deleting-a-flashcard)
     * [Editing a flashcard](#editing-a-flashcard)
     * [Finding flashcards](#finding-flashcards)
     * [Filtering flashcards](#filtering-flashcards)
     * [Clearing all flashcards](#clearing-all-flashcards)
     * [Viewing a flashcard](#viewing-a-flashcard)
+    * [Sorting flashcards](#sorting-flashcards)
     * [Review mode](#review-mode)
     * [Displaying statistics](#displaying-statistics)
     * [Undoing a command](#undoing-a-command)
@@ -812,6 +814,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 1. Initial launch
+   
     1. Download the jar file and copy into an empty folder
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
@@ -841,11 +844,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a flashcard
 1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
+   
     1. Prerequisites: Application is in main mode and running
+       
     1. Test case: `add q/Who invented the alternating current? a/Nikola Tesla c/Physics p/Mid`
     Expected: A new card is added to the list. Result display shows the details of the added flashcards.
+       
     1. Test case: `add q/Who initiated the Arab Spring operation? a/Barack Obama c/Political Studies p/High t/war`
     Expected: A new card is added to the list. Result display shows the details of the added flashcards with tags.
+       
     1. Test case: `add`
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
 
@@ -897,7 +904,7 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `find`<br>
        Expected: The list will not be updated, and an invalid command format error is shown in the result display.
-       <div style="page-break-after: always;"></div>
+       <div style="page-break-after: always;"></div><br>
        
     1. Test case: `find equa`<br>
        Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display states the number of flashcards found.
@@ -949,9 +956,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting flashcards
 1. Sorting all flashcards in FlashBack.
+   
     1. Prerequisites: There must be at least 1 flashcard currently shown in the list.
+       
     1. Test case: `sort priority -a`
     Expected: The display list will be updated to show flashcards sorted in ascending order of priority.
+       
     1. Test case: `sort`
     Expected: No flashcards sorted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
 <div style="page-break-after: always;"></div>
@@ -1014,13 +1024,14 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `q` <br>
        Expected: The application goes back to the main window. The result display shows the message: `Exit review mode`. 
-    
+    <div style="page-break-after: always;"></div>
+
 ### Displaying statistics
 
 1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
-        <div style="page-break-after: always;"></div>
+    
     1. Test case: `stats` <br>
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
@@ -1042,7 +1053,8 @@ testers are expected to do more *exploratory* testing.
        Expected: FlashBack will be updated to the previous state before the undoable command is executed.
        The UI will be updated to display all flashcards in FlashBack.
        The result display shows a message: `FlashBack has been undo!`.
-       
+       <div style="page-break-after: always;"></div>
+    
 ### Redoing a command
 
 1. Redoing an undone command in FlashBack
@@ -1053,7 +1065,6 @@ testers are expected to do more *exploratory* testing.
       Expected: FlashBack will be updated to the previous state before `undo` is executed.
       The UI will be updated to display all flashcards in FlashBack.
       The result display shows a message: `FlashBack has been redo!`.
-<div style="page-break-after: always;"></div>
 
 ### Adding an alias
 
