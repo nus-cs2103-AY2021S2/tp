@@ -2,7 +2,7 @@ package seedu.cakecollate.logic.parser.exceptions;
 
 
 /**
- * Represents a parse error encountered by a parser, when the index provided is an integer above 32bits.
+ * Represents a parse error encountered by a parser, when the index provided is a negative integer.
  */
 public class NegativeIndexException extends ParseException {
 

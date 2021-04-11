@@ -6,10 +6,13 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Interface ReadOnlyCakeCollate <<Interface>>
+Interface ReadOnlyOrderItems <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class CakeCollate
+Class OrderItems
 Class ReadOnlyCakeCollate
+Class ReadOnlyOrderItems
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -21,13 +24,25 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class OrderDescription
+Class Request
+Class DeliveryStatus
+Class DeliveryDate
 Class UniqueOrderList
 }
 
 Package Tag {
 Class Tag
 }
+
+Package OrderItem {
+Class OrderItem
+Class Type
+Class UniqueOrderItemsList
 }
+}
+
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -46,6 +61,10 @@ Order *--> Name
 Order *--> Phone
 Order *--> Email
 Order *--> Address
+Order *--> DeliveryStatus
+Order *--> Request
+Order *--> OrderDescription
+Order *--> DeliveryDate
 Order *--> "*" Tag
 
 Name -[hidden]right-> Phone
@@ -53,4 +72,13 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager ----->" ~* filtered list" Order
+
+OrderItems *--> "1" UniqueOrderItemsList
+UniqueOrderItemsList o--> "*" OrderItem
+
+ModelManager o-right-> "1" OrderItems
+OrderItems .down.|> ReadOnlyOrderItems
+OrderItem *--> Type
+ModelManager ----->" ~* filtered list" OrderItem
+
 @enduml

@@ -3,17 +3,16 @@ package seedu.cakecollate.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
-public class OrderDescription {
+import seedu.cakecollate.model.orderitem.Type;
 
-    public static final String MESSAGE_CONSTRAINTS = "Order description should not be left blank.";
+public class OrderDescription {
     public static final String MESSAGE_OVERFLOW = "Order description has a size limit of 70 characters.";
 
-    /*
-     * The first character of the order description must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-    // todo need help, why is this able to catch o/1 x Amy errors (errors using prefix when there shouldnt be)
+    public static final String MESSAGE_CONSTRAINTS =
+            String.format(Type.SHARED_CONSTRAINTS_MESSAGE, "Order description");
+    public static final String MESSAGE_EMPTY = "Order description cannot be empty.";
+
+    public static final String VALIDATION_REGEX = Type.VALIDATION_REGEX;
 
     public final String value;
 

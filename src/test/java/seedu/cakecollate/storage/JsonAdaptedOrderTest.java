@@ -33,9 +33,10 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedOrderDescription> VALID_ORDER_DESC = BENSON.getOrderDescriptions().stream()
-            .map(JsonAdaptedOrderDescription::new)
-            .collect(Collectors.toList());
+    private static final List<JsonAdaptedOrderDescription> VALID_ORDER_DESC =
+            BENSON.getOrderDescriptions().keySet().stream()
+                .map(JsonAdaptedOrderDescription::new)
+                .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

@@ -18,6 +18,9 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_DESC_BOB;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_INDEXES_1;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_INDEXES_2;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_INDEXLIST_2;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -121,15 +124,16 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_AMY + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
+
+        IndexList lastIndexList = ORDER_ITEM_INDEXLIST_2;
+
+        // multiple order indexes - only last prefix accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB
+                        + ORDER_ITEM_INDEXES_1 + ORDER_ITEM_INDEXES_2,
+                new AddCommand(lastIndexList, descriptor));
     }
 
-    // todo
-    /*
-    have both index list and order descriptions
-    have only index list no o/
-    have only o/ no oi/
-    what if oi/prefix repeat? ignoring like delete index right
-     */
 
     @Test
     public void parse_optionalFieldsMissing_success() {
@@ -230,12 +234,11 @@ public class AddCommandParserTest {
         Order expectedOrder = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(expectedOrder).build();
 
-        // doesn't matter if this index doesn't exist in order items model
         IndexList indexList = new IndexList(new ArrayList<>());
         indexList.add(INDEX_FIRST_ORDER);
         indexList.add(INDEX_SECOND_ORDER);
 
-        String orderItemIndex = " " + PREFIX_ORDER_ITEM_IDX + " 1 2 "; // todo has indexlist parsing been tested
+        String orderItemIndex = " " + PREFIX_ORDER_ITEM_IDX + " 1 2 ";
 
         // 1 order and a set of indices
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -248,7 +251,7 @@ public class AddCommandParserTest {
         Order expectedOrder = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND).withOrderDescriptions().build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(expectedOrder).build();
 
-        // doesn't matter if this index doesn't exist in order items model
+        // doesn't matter if this index doesn't exist in order items model; this test is independent of model
         IndexList indexList = new IndexList(new ArrayList<>());
         indexList.add(INDEX_FIRST_ORDER);
         indexList.add(INDEX_SECOND_ORDER);
@@ -260,4 +263,24 @@ public class AddCommandParserTest {
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB + orderItemIndex,
                 new AddCommand(indexList, descriptor));
     }
+
+
+    // ========== TESTS RELATED TO ADDING MULTIPLE CAKES TO THE SAME ORDER ==========
+    @Test
+    public void parse_recogniseDuplicateIndex_success() {
+        Order expectedOrder = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND).withOrderDescriptions().build();
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(expectedOrder).build();
+
+        IndexList expectedList = new IndexList(new ArrayList<>());
+        expectedList.add(INDEX_FIRST_ORDER);
+        expectedList.add(INDEX_FIRST_ORDER);
+
+        String orderItemIndex = " " + PREFIX_ORDER_ITEM_IDX + " 1 1 ";
+
+        // 1 order and a set of indices
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB + orderItemIndex,
+                new AddCommand(expectedList, descriptor));
+    }
+
 }

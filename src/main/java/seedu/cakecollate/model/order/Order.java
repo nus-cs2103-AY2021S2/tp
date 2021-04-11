@@ -3,7 +3,9 @@ package seedu.cakecollate.model.order;
 import static seedu.cakecollate.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,7 +25,7 @@ public class Order {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<OrderDescription> orderDescriptions = new HashSet<>();
+    private final HashMap<OrderDescription, Integer> orderDescriptions = new HashMap<>();
     private final DeliveryDate deliveryDate;
     private final DeliveryStatus deliveryStatus;
     private final Request request;
@@ -33,14 +35,15 @@ public class Order {
      * Every field must be present and not null.
      */
 
-    public Order(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
+    public Order(Name name, Phone phone, Email email, Address address,
+                 HashMap<OrderDescription, Integer> orderDescriptions,
                  Set<Tag> tags, DeliveryDate deliveryDate, Request request) {
         requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate, request);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.orderDescriptions.addAll(orderDescriptions);
+        this.orderDescriptions.putAll(orderDescriptions);
         this.tags.addAll(tags);
         this.deliveryDate = deliveryDate;
         this.deliveryStatus = new DeliveryStatus();
@@ -60,14 +63,14 @@ public class Order {
      * @param deliveryStatus Delivery status of the order.
      * @param request Request of the order.
      */
-    public Order(Name name, Phone phone, Email email, Address address, Set<OrderDescription> orderDescriptions,
+    public Order(Name name, Phone phone, Email email, Address address, Map<OrderDescription, Integer> orderDescriptions,
                  Set<Tag> tags, DeliveryDate deliveryDate, DeliveryStatus deliveryStatus, Request request) {
         requireAllNonNull(name, phone, email, address, orderDescriptions, tags, deliveryDate, request);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.orderDescriptions.addAll(orderDescriptions);
+        this.orderDescriptions.putAll(orderDescriptions);
         this.tags.addAll(tags);
         this.deliveryDate = deliveryDate;
         this.deliveryStatus = deliveryStatus;
@@ -94,8 +97,8 @@ public class Order {
      * Returns an immutable order description set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<OrderDescription> getOrderDescriptions() {
-        return Collections.unmodifiableSet(orderDescriptions);
+    public Map<OrderDescription, Integer> getOrderDescriptions() {
+        return Collections.unmodifiableMap(orderDescriptions);
     }
 
     /**
@@ -174,10 +177,11 @@ public class Order {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<OrderDescription> orderDescriptions = getOrderDescriptions();
+        Map<OrderDescription, Integer> orderDescriptions = getOrderDescriptions();
         if (!orderDescriptions.isEmpty()) {
             builder.append("; Order Descriptions:");
-            orderDescriptions.forEach(obj -> builder.append(" ").append(obj).append(","));
+            orderDescriptions.forEach((obj, quantity) ->
+                    builder.append(" ").append(quantity).append(" x ").append(obj).append(","));
             builder.setLength(builder.length() - 1);
         }
 

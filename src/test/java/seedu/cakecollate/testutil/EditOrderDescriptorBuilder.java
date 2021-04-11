@@ -1,5 +1,7 @@
 package seedu.cakecollate.testutil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -80,9 +82,11 @@ public class EditOrderDescriptorBuilder {
      * Sets the {@code OrderDescription} of the {@code EditOrderDescriptor} that we are building.
      */
     public EditOrderDescriptorBuilder withOrderDescriptions(String... orderDescriptions) {
-        Set<OrderDescription> orderDescriptionSet = Stream.of(orderDescriptions)
-                .map(OrderDescription::new).collect(Collectors.toSet());
-        descriptor.setOrderDescriptions(orderDescriptionSet);
+        Map<OrderDescription, Integer> orderDescriptionMap = new HashMap<>();
+        Stream.of(orderDescriptions)
+            .map(OrderDescription::new)
+            .forEach(o -> orderDescriptionMap.put(o, 1 + orderDescriptionMap.getOrDefault(o, 0)));
+        descriptor.setOrderDescriptions(orderDescriptionMap);
         return this;
     }
 

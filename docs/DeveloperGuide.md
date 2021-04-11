@@ -14,7 +14,19 @@ Please refer to the guide [_Setting up and getting started_](SettingUp.md) to se
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **2. Design**
+## **2. Introduction**
+
+Welcome to our Developer Guide! CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:
+
+* Order management
+* Order Item management
+* Reminders for undelivered orders that have delivery dates approaching the current date
+* Checking the delivery status of your orders
+<br>
+  
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you’re a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
+
+## **3. Design**
 
 ### Architecture
 
@@ -60,14 +72,16 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `OrderListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `OrderListPanel`, `OrderItemListPanel`, `HelpListPanel`, `StatusBarFooter` etc.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -100,12 +114,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+The `Model`:
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the cakecollate data.
-* exposes an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* exposes an unmodifiable `ObservableList<OrderItem>` that can also be 'observed'.
+* stores cakecollate's data.
+* stores the order item data.
+* exposes an unmodifiable `ObservableList<Order>` and `ObservableList<OrderItem>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * does not depend on any of the other three components.
 
 
@@ -122,8 +136,9 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the cakecollate data in json format and read it back.
+* `UserPrefsStorage` can save `UserPref` objects in json format and read it back.
+* `CakeCollateStorage` can save cakecollate's data in json format and read it back.
+* `OrderItemsStorage` can save order items data in json format and read it back.
 
 ### Common classes
 
@@ -131,7 +146,7 @@ Classes used by multiple components are in the `seedu.cakecollate.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **3. Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -295,7 +310,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -305,7 +320,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
 ### Product scope
 
@@ -356,14 +371,12 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 (For all use cases below, the **System** is `CakeCollate` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete an order**
+**Use case: List all orders**
 
 **MSS**
 
 1.  User requests to list order
 2.  CakeCollate shows a list of orders
-3.  User requests to delete a specific list of orders
-4.  CakeCollate deletes the specified orders
 
     Use case ends.
 
@@ -373,12 +386,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use case ends.
 
-* 3a. The given list of indices is invalid.
 
-    * 3a1. CakeCollate shows an error message.
-
-      Use case resumes at step 2.
-      
 **Use case: Add an order**
 
 **MSS**
@@ -413,6 +421,37 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 2.
 
+
+**Use case: Delete an order**
+
+**MSS**
+
+1.  User requests to list order
+2.  CakeCollate shows a list of orders
+3.  User requests to delete a specific list of orders
+4.  CakeCollate deletes the specified orders
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. One or more indexes in the index list is invalid, without any negative indexes.
+
+    * 3a1. CakeCollate shows an invalid index error message.
+
+      Use case resumes at step 2.
+
+* 3a. One or more indexes in the index list is negative.
+
+    * 3a1. CakeCollate shows an invalid command format error message.
+
+      Use case resumes at step 2.
+
+    
 **Use case: undeliver/deliver/cancel an order**
 
 **MSS**
@@ -430,11 +469,53 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use case ends.
 
-* 3a. The given index or indexes are invalid.
+* 3a. One or more indexes in the index list is invalid, without any negative indexes in the index list.
 
-    * 3a1. CakeCollate shows an error message.
+    * 3a1. CakeCollate shows an invalid index error message.
 
       Use case resumes at step 2.
+
+* 3a. One or more indexes in the index list is negative.
+
+    * 3a1. CakeCollate shows an invalid command format error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Help needed for command summary**
+
+**MSS**
+
+1.  User requests for help.
+2.  CakeCollate shows a list of commands, their formats, descriptions, and examples.
+
+    Use case ends.
+
+**Use case: Clear all existing orders and order items**
+
+**MSS**
+
+1.  User requests to clear all orders and order items.
+2.  CakeCollate clears all orders and order items.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Both the order and the order item list are empty.
+
+  Use case ends.
+
+
+**Use case: Exit from CakeCollate**
+
+**MSS**
+
+1.  User requests to exit.
+2.  CakeCollate is closed.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -468,7 +549,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -496,7 +577,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting multiple orders
 
-1. Deleting multiple orders while all orders are being show
+1. Deleting multiple orders while all orders are being shown
     1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
     1. Test case: `delete 1`<br>
        Expected: First order is deleted from the list. Details of the deleted order shown in the status message.
@@ -527,6 +608,57 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Undelivering multiple orders
+
+1. Undelivering multiple orders while all orders are being shown
+    1. Prerequisites: List all orders using the `list` command.
+    1. Test case: `undelivered 1`<br>
+       Expected: First order in the list is set to undelivered. Details of this order is shown in the status message.
+    1. Test case: `undelivered 1 2` <br>
+       Expected: First and second orders in the list are set to undelivered. Details of these orders are shown in the status message.
+    1. Test case: `undelivered 0 1`<br>
+       Expected: No changes made to any order. Invalid command format error is shown in the status message.
+    1. Test case: `undelivered`<br>
+       Expected: No changes made to any order. Invalid command format error is shown in the status message.
+    1. Test case:`undelivered x` (where x is larger than the list size)<br>
+       Expected: No changes made to any order. Invalid index is shown in the status message.
+
+1. _{ more test cases …​ }
+
+### Delivering multiple orders
+
+1. Delivering multiple orders while all orders are being shown
+    1. Prerequisites: List all orders using the `list` command.
+    1. Test case: `delivered 1`<br>
+       Expected: First order in the list is set to delivered. Details of this order is shown in the status message.
+    1. Test case: `delivered 1 2` <br>
+       Expected: First and second orders in the list are set to delivered. Details of these orders are shown in the status message.
+    1. Test case: `delivered 0 1`<br>
+       Expected: No changes made to any order. Invalid command format error is shown in the status message.
+    1. Test case: `delivered`<br>
+       Expected: No changes made to any order. Invalid command format error is shown in the status message.
+    1. Test case:`delivered x` (where x is larger than the list size)<br>
+       Expected: No changes made to any order. Invalid index is shown in the status message.
+
+1. _{ more test cases …​ }
+
+### Cancelling multiple orders
+
+1. Cancelling multiple orders while all orders are being shown
+    1. Prerequisites: List all orders using the `list` command.
+    1. Test case: `cancelled 1`<br>
+       Expected: First order in the list is set to cancelled. Details of this order is shown in the status message.
+    1. Test case: `cancelled 1 2` <br>
+       Expected: First and second orders in the list are set to cancelled. Details of these orders are shown in the status message.
+    1. Test case: `cancelled 0 1`<br>
+       Expected: No changes made to any order. Invalid command format error is shown in the status message.
+    1. Test case: `cancelled`<br>
+       Expected: No changes made to any order. Invalid command format error is shown in the status message.
+    1. Test case:`cancelled x` (where x is larger than the list size)<br>
+       Expected: No changes made to any order. Invalid index is shown in the status message.
+
+1. _{ more test cases …​ }
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -534,3 +666,48 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **8. Effort**
+
+Creating CakeCollate required a lot of effort to be put in by all the team members to change the existing
+AB3 project by introducing new models, commands and features which did not exist before.
+
+Difficulty level: Hard
+
+Challenges faced:
+* Before starting to develop AB3 into CakeCollate, we had to spend time understanding the 
+  existing commands, their implementation, and how the various parts of the application were 
+  connected to each other.
+    
+* As all the team members implemented different parts of CakeCollate simultaneously, it was 
+  difficult to ensure that the modifications made by one person would not affect the modifications
+  that another team member was making. A lot of testing and efficient communication was required
+  to ensure that the workflow worked efficiently.
+  
+* As two different models were implemented in CakeCollate, differentiating the commands used for
+  both the models and implementing the interactions between the two models took time to work out.
+  
+* Although the individual project used JavaFx, we were not very familiar with the it. Hence, it took some
+  trial and error was required to understand the JavaFx components and how they work.
+
+Effort required: ??
+
+Achievements of the project: 
+
+* The needs of the user are our first priority and hence we included features that satisfy almost
+  all the user stories that we hoped to satisfy in the table given in the User stories section of 
+  this developer guide.
+  
+* Extensive testing has been done to ensure minimum possible bugs in CakeCollate.
+
+
+
+
+
+
+
+
+
+ 

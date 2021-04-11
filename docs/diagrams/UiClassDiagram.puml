@@ -9,10 +9,14 @@ Interface Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
 Class ResultDisplay
+Class Panel
 Class OrderListPanel
+Class OrderItemPanel
+Class HelpListPanel
 Class OrderCard
+Class OrderItemCard
+Class HelpCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -30,29 +34,35 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> OrderListPanel
+MainWindow *-down-> Panel
 MainWindow *-down-> StatusBarFooter
 
+Panel -down-> OrderListPanel
 OrderListPanel -down-> OrderCard
+
+Panel -down-> OrderItemPanel
+OrderItemPanel -down-> OrderItemCard
+
+Panel -down-> HelpListPanel
+HelpListPanel -down-> HelpCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-OrderListPanel --|> UiPart
+Panel --|> UiPart
 OrderCard --|> UiPart
+OrderItemCard --|> UiPart
+HelpCard --|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
 
 OrderCard ..> Model
+OrderItemCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-OrderListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 

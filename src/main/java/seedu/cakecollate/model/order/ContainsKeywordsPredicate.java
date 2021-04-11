@@ -69,8 +69,8 @@ public class ContainsKeywordsPredicate implements Predicate<Order> {
         } else if (prefix.equals(PREFIX_ADDRESS)) {
             return order.getAddress().value;
         } else if (prefix.equals(PREFIX_ORDER_DESCRIPTION)) {
-            Set<OrderDescription> orderDescriptions = order.getOrderDescriptions();
-            Set<String> orderDescriptionsString = orderDescriptions.stream()
+            Map<OrderDescription, Integer> orderDescriptions = order.getOrderDescriptions();
+            Set<String> orderDescriptionsString = orderDescriptions.keySet().stream()
                     .map(OrderDescription::toString)
                     .collect(Collectors.toSet());
             return String.join(" ", orderDescriptionsString);

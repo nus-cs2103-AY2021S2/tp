@@ -25,6 +25,7 @@ Order *--> Address
 Order *--> DeliveryDate
 Order *--> Request
 Order *--> OrderItemDescription
+Order *--> DeliveryStatus
 
 
 @enduml
