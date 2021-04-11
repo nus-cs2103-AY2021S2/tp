@@ -49,7 +49,8 @@ class JsonAdaptedTask {
                            @JsonProperty("status") String status,
                            @JsonProperty("weightage") Integer weightage,
                            @JsonProperty("notes") String notes,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("priorityTag)") String priorityTag) {
         this.taskName = taskName;
         this.moduleCode = moduleCode;
         this.deadlineDate = deadlineDate;
@@ -57,7 +58,7 @@ class JsonAdaptedTask {
         this.status = status;
         this.weightage = weightage;
         this.notes = notes;
-        this.priorityTag = "LOW";
+        this.priorityTag = priorityTag;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -147,8 +148,8 @@ class JsonAdaptedTask {
         }
         final Notes modelNotes = new Notes(notes);
 
-        if (priorityTag == null) {
-            throw new IllegalValueException(PriorityTag.MESSAGE_CONSTRAINTS);
+        if (!PriorityTag.validateTag(priorityTag)) {
+            throw new IllegalValueException(PriorityTag.MESSAGE_INVALID_INPUT);
         }
 
         final PriorityTag modelPriorityTag = new PriorityTag(priorityTag);

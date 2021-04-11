@@ -16,6 +16,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,27 +34,27 @@ public class SampleDataUtil {
             new Task(new TaskName("Week 10 Quiz"), new ModuleCode("CS2103"),
                     DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(0),
-                    EMPTY_NOTES, getTagSet("core")),
+                    EMPTY_NOTES, getTagSet("core"), new PriorityTag("LOW")),
             new Task(new TaskName("Take Home lab 1"), new ModuleCode("CS2040"),
                     DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(10),
-                    EMPTY_NOTES, getTagSet("core", "difficult")),
+                    EMPTY_NOTES, getTagSet("core", "difficult"), new PriorityTag("MEDIUM")),
             new Task(new TaskName("Tutorial 6"), new ModuleCode("CS1010"),
                     DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status("Finished"), new Weightage(20),
-                    EMPTY_NOTES, getTagSet("core")),
+                    EMPTY_NOTES, getTagSet("core"), new PriorityTag("HIGH")),
             new Task(new TaskName("Tutorial 5"), new ModuleCode("CS2030"),
                     DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(10),
-                    EMPTY_NOTES, getTagSet("core")),
+                    EMPTY_NOTES, getTagSet("core"), new PriorityTag("LOW")),
             new Task(new TaskName("Weekly Readings"), new ModuleCode("CS3243"),
                     DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(20),
-                    EMPTY_NOTES, getTagSet("specialization")),
+                    EMPTY_NOTES, getTagSet("specialization"), new PriorityTag("MEDIUM")),
             new Task(new TaskName("Write Tests"), new ModuleCode("CS3244"),
                     DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status("Finished"), new Weightage(15),
-                    EMPTY_NOTES, getTagSet("specialization"))
+                    EMPTY_NOTES, getTagSet("specialization"), new PriorityTag("HIGH"))
         };
     }
 

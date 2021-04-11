@@ -8,7 +8,8 @@
     "status" : "Unfinished",
     "weightage" : 0,
     "notes" : "Being a software engineer is fun",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "priorityTag" : "LOW"
   }, {
     "taskName": "Take Home lab 1",
     "moduleCode": "CS2040",
@@ -17,7 +18,8 @@
     "status" : "Unfinished",
     "weightage" : 0,
     "notes" : "Favourite pastime: Kattis",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "priorityTag" : "HIGH"
   }, {
     "taskName": "Tutorial 6",
     "moduleCode": "CS1010",
@@ -26,7 +28,8 @@
     "status" : "Unfinished",
     "weightage" : 0,
     "notes" : "PE1",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "priorityTag" : "MEDIUM"
   }, {
     "taskName": "Tutorial 5",
     "moduleCode": "CS2030",
@@ -35,7 +38,8 @@
     "status" : "Unfinished",
     "weightage" : 0,
     "notes" : "PE2",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "priorityTag" : "HIGH"
   }, {
     "taskName": "Weekly Readings",
     "moduleCode": "CS3243",
@@ -44,7 +48,8 @@
     "status" : "Unfinished",
     "weightage" : 0,
     "notes" : "",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "priorityTag" : "LOW"
   }, {
     "taskName": "Write Tests",
     "moduleCode": "CS2100",
@@ -53,6 +58,7 @@
     "status" : "Unfinished",
     "weightage" : 0,
     "notes" : "",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "priorityTag" : "MEDIUM"
   } ]
 }
