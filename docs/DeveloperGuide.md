@@ -249,7 +249,7 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
 
 <img src="images/UniqueFoodListClassDiagram.png" width="287" />
 
-The UniqueFoodList class represents a list of food recorded by the user.
+The UniqueFoodList class represents a list of unique food recorded by the user.
 
 <img src="images/UniqueFoodListFoodAssociationClassDiagram.png" width="287" />
 
@@ -275,7 +275,7 @@ Additionally, here are some information to note:
 
 * Alternative 1: Keep multiple `UniqueFoodList`
     * Pros:
-        * Similar `Food` items can store multiple nutrients' value across
+        * Similar `Food` items can store multiple nutrients' value across many list
     * Cons:
         * Referencing a particular value from multiple lists can be quite complicated and buggy
 
@@ -312,7 +312,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 
 #### Description:
 
-This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and nutrient values specified has to be different from original before an update is permitted.
+This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and at least one nutrients' value specified has to be different from original before an update is permitted.
 
 Example: `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
