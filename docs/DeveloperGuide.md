@@ -193,6 +193,9 @@ below shows the parsing and execution process for the `execute("idel 1")` API ca
     * `DeleteIssueCmdParser` represents the class `DeleteIssueCommandParser`
     * `DeleteIssueCmd` represents the class `DeleteIssueCommand`
     * `CmdResult` represents the class `CommandResult`
+* `delete first issue` is not an actual method; rather it is a simplification of the two-step process of getting the
+  issue to delete then deleting it. These command-specific details are not the focus of this diagram, and have thus been
+  abbreviated.
 
 ### Model component
 
