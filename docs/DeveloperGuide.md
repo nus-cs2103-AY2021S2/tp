@@ -216,9 +216,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | view the medical records created | refer to the information i previously keyed in|
 | `* * `   | user                                       | archive a patient's contact information | reduce clutter in main list|
 | `* *`    | user                                       | unarchive a patient's contact information | reduce clutter in archive list|
+| `* *`    | user                                       | list out patients archived     | see patients in the archived list
 | `* `     | user                                       | clear the patients in DocBob    | reduce clutter|
 | `*`      | user                                       | exit the app                    | use my computer for other stuff|
-| `* **`    | user                                       | see all the commands available | know what commands to use                |
+| `* **`   | user                                       | see all the commands available | know what commands to use                |
 
 
 
@@ -232,29 +233,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   1. User chooses to add a patient.
   2. User enters the requested details of patient.
-  3. Bob adds the client and displays the new log of clients.
-
-    Use case ends.
+  3. DocBob adds the client and displays the new log of clients.
+    
+    `Use case ends.`
 
 **Extensions**
 
-  *2a. Bob detects an error in the format of the entered data.
+  *2a. DocBob detects an error in the format of the entered data.
   *    2a1. Bob requests for the correct format of the data.
   *    2a2. User enters new data.
   *    Steps 2a1-2a2 are repeated until the data entered are correct.
   
-      Use case resumes from step 3.
-
-      Use case ends.
+      `Use case resumes from step 3.`
+      `Use case ends.`
 
 **Use case: Listing all patients**
 
 **MSS**
 
 1. User requests to list all patients.
-2. Bob shows a list of patients.
+2. DocBob shows a list of patients.
 
-    Use case ends.
+    `Use case ends.`
 
 **Extensions**
 
@@ -269,11 +269,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete a specific patient in the list.
-2. Bob deletes the patient.
+2. DocBob deletes the patient.
 
-
-
-      Use case ends.
+      `Use case ends.`
 
 **Extensions**
 
@@ -282,7 +280,207 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
       Use case resumes at step 1.
 
-*{More to be added}*
+**Use case: View a patient's information**
+
+**MSS**
+
+1. User request to view patients information.
+2. DocBOb provides patient's information
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *1a. the given index is invalid
+  *    1a.1 DocBob shows an error message
+  
+       `Use case resumes at step 1.`
+  
+**Use case: Find a patient**
+
+**Pre-requisite:** Finding for patient either in an archived or unarchived list
+
+**MSS**
+
+1. User finds for a patient using a keyword which is case insensitive
+2. DocBob returns a patients
+
+   `Use case ends`
+
+**Extensions**
+
+  *1a1. the given keyword is a partial word
+  *     1a1.1 DocBob shows an error message
+  
+        `Use case resumes at step 1
+        
+  *1a2. the given patient is in the list user is currently in
+  *     1a2.1 DocBob a message to indicate user is in wrong list
+  
+        `Use case resumes at step 1
+        
+**Use case: Edit a patient's information**
+
+**MSS**
+
+1. User request to edit information by presenting new information and specifying which patient
+2. DocBob presents the new patient with updated information
+
+**Extensions**
+
+  *1a1. there is no patient to edit information
+  *     1a1.1 DocBob shows an error message
+  
+        `Use case resumes at step 1
+        
+  *1a2. no parameters were input to be editted
+  *     1a2.1 DocBob shows an error message
+  
+        `Use case resumes at step 1
+
+  *1a3. there is no corresponding field to be editted
+  *     1a2.1 DocBob shows an error message
+  
+        `Use case resumes at step 1
+
+**Use case: Adding a new appointment to a patient**
+
+**MSS**
+
+  1. User chooses to add an appointment to a patient.
+  2. User enters the requested details of the appointment and the patient.
+  3. DocBob adds the appointment to the patient and displays updated information.
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. DocBob detects an error in the format of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+      `Use case resumes from step 3.`
+      `Use case ends.`
+
+**Use case: Listing all appointments**
+
+**MSS**
+
+1. User requests to list all appointment.
+2. DocBob shows a list of appointment.
+
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. The list is empty
+
+      Use case ends.
+
+**Use case: Creating a new medical record**
+
+**MSS**
+
+  1. User chooses to add a medical to a patient.
+  2. User enters the requested index of patient and types in the information in the text editor
+  3. Bob adds the medical record to the patient
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. Bob detects an error in the format (index out of bounds) of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+      `Use case resumes from step 3.`
+      `Use case ends.`
+
+**Use case: View a patient's medical record**
+
+**MSS**
+
+1. User request to view patients medical record.
+2. DocBob provides patient's medical record
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *1a. the given index is invalid
+  *    1a.1 DocBob shows an error message
+  
+       `Use case resumes at step 1.`
+  
+**Use case: Adding a patient to archive**
+
+**MSS**
+
+  1. User chooses to add a patient to archive.
+  2. User enters the requested index of patient to add to archive.
+  3. Bob adds the client and displays the new log of clients.
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. Bob detects an error in the format (index out of bound) of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+      `Use case resumes from step 3.`
+      `Use case ends.`
+
+**Use case: Unarchiving a patient**
+
+**Pre-requisite:** Use 'archivelist' to list out the index of all the archived patients
+
+**MSS**
+
+1. User requests to unarchive a specific patient in the archieve list.
+2. DocBob unarchive the patient.
+
+      `Use case ends.`
+
+**Use case: Listing all patients in archive list**
+
+**MSS**
+
+1. User requests to list all patients that have been archived.
+2. DocBob shows a list of patients.
+
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. The list is empty
+
+      Use case ends.
+
+**Use case: Clear patients in from DocBob**
+
+**MSS**
+
+1. User requests to clear patient in DocBob.
+2. DocBob clears patients.
+
+**Use case: Exit DocBob program**
+
+**MSS**
+
+1. User requests to exit DocBob.
+2. DocBob terminates program.
+
+**Use case: Get list of commands**
+
+**MSS**
+
+1. User requests list of commands from DocBob.
+2. DocBob provides list of commands.
+
 
 ### Non-Functional Requirements
 
@@ -315,6 +513,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **MSS**: Main success story which describes the most straightforward interaction for a given use case, where nothing goes wrong
+* **Case insensitive**: Capitilisation of letters do not matter.  For example shrek,SHREK,ShErK are considered the same.
 
 --------------------------------------------------------------------------------------------------------------------
 
