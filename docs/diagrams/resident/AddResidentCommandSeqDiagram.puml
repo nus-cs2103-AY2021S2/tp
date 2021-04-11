@@ -1,66 +1,47 @@
 @startuml
 !include ../style.puml
 
-Actor User as user USER_COLOR
-Participant ":CommandBox" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":AddressBookParser" as abParser LOGIC_COLOR
-Participant ":AddResident\nCommandParser" as arcParser LOGIC_COLOR
-Participant ":AddResident\nCommand" as addResidentCmd LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":CommandResult" as cmdResult LOGIC_COLOR
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicmng LOGIC_COLOR
+Participant ":AddResidentCommand" as addResidentCmd LOGIC_COLOR
+end box
+box Model MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR
+end box
 
-
-user -[USER_COLOR]> ui: key in "radd n/John Doe \n p/91234567 \n e/johndoe@email.com y/3"
-activate ui UI_COLOR
-
-ui -[LOGIC_COLOR]> logic: executeCommand(cmdText)
-activate logic LOGIC_COLOR
-
-logic -[LOGIC_COLOR]> abParser: parseCommand(cmdText)
-activate abParser LOGIC_COLOR
-
-note over abParser
-The parsing process
-breaks cmdText down
-into an argumentMap
-named args. This
-process is omitted
-here for brevity.
+[-> logicmng: //execute(cmdText)//
+activate logicmng
+note over logicmng
+Command parsing
+is omitted for
+brevity
 end note
 
-abParser -[LOGIC_COLOR]> arcParser **:
-activate arcParser LOGIC_COLOR
-return
-
-abParser -[LOGIC_COLOR]> arcParser: parse(args)
-activate arcParser LOGIC_COLOR
-arcParser -[LOGIC_COLOR]> addResidentCmd**:
-activate addResidentCmd LOGIC_COLOR
-return
-
-return addResidentCmd
-destroy arcParser
-return addResidentCmd
-
-logic -[LOGIC_COLOR]> addResidentCmd: execute(model)
-activate addResidentCmd LOGIC_COLOR
-addResidentCmd -[MODEL_COLOR]> model: addResident(Resident)
-activate model MODEL_COLOR
-note right of model
-Storage mechanism
-omitted for brevity
+note over addResidentCmd
+The construction of the command
+sets the member variable resident toAdd
+to the resident to be added
 end note
+
+logicmng -> addResidentCmd: execute(model)
+activate addResidentCmd
+addResidentCmd -> model: //hasResident(toAdd)//
+activate model
 return
 
-addResidentCmd -[LOGIC_COLOR]> cmdResult**:
-activate cmdResult LOGIC_COLOR
+opt model does not have resident toAdd
+addResidentCmd -> model: //addResident(toAdd)//
+activate model
 return
+addResidentCmd -> model: //commitAddressBook()//
+activate model
 
-return commandResult
-return commandResult
+return
+end
 
-ui --[UI_COLOR]> user: display commandResult
-deactivate
+return
+<-[hidden]- addResidentCmd
+destroy addResidentCmd
+return
 
 @enduml

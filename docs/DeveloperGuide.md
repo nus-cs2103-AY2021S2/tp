@@ -290,10 +290,19 @@ This process is summarised in the diagram below
 ![Adding a Resident](images/resident/AddResidentCommandActivityDiagram.png)
 
 ##### Detailed execution pathway
-The diagram below details how the user's command to add a resident propagates through the system to eventually add a resident.
 
-![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png)
+The diagram below details how the user's command to add a resident propagates through the system to eventually 
+add a resident. 
 
+![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png){:height="75%" width="75%"}
+
+**Diagram Notes** :
+* The `AddResidentCommand`'s execution follows the flow outlined under the section
+  [Command parsing and execution](#command-parsing-and-execution).
+* `toAdd` is the resident to be added which is created by `AddResidentCommandParser`, and taken in as a parameter during the
+  construction of `AddResidentCommand`. This process is omitted for brevity.
+* `AddResidentCommand` is a state-changing operation. After the new resident is added, the new state of AddressBook is saved
+  using `model#commitAddressBook` in order to support undo/redo operations.
 
 ### Room Features
 

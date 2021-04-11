@@ -18,8 +18,8 @@ Class Room
 }
 }
 
-AddressBook *--> UniqueResidentList
-UniqueResidentList "1" *--> "*" Resident
+AddressBook --> "1" UniqueResidentList
+UniqueResidentList "1" --> "*" Resident
 Resident *--> "1" Name
 Resident *--> "1" Phone
 Resident *--> "1"  Email
