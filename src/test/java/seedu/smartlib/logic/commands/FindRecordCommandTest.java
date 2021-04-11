@@ -3,12 +3,8 @@ package seedu.smartlib.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.smartlib.commons.core.Messages.MESSAGE_BOOKS_LISTED_OVERVIEW;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_RECORD_LISTED_OVERVIEW;
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.smartlib.testutil.TypicalModels.HARRY_PORTER;
-import static seedu.smartlib.testutil.TypicalModels.LEGACY;
-import static seedu.smartlib.testutil.TypicalModels.PROMISE_LAND;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_B;
 import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
@@ -21,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
-import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 import seedu.smartlib.model.record.RecordContainsBookNamePredicate;
 
 public class FindRecordCommandTest {
@@ -100,10 +95,7 @@ public class FindRecordCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(RECORD_A, RECORD_B), model.getFilteredRecordList());
     }
-
-
-
-
+    
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
