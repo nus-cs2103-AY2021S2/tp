@@ -471,8 +471,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
-
 <div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
