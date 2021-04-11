@@ -56,6 +56,25 @@ where the user issues the command `addon 1 re/i like this food`.
 The sections below give more details of each component. 
 
 ### UI component
+![Model Architecture Diagram](images/UiClassDiagram.png)
+**API:** [`Ui.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Ui.java)
+
+* The `Ui` interface consists of a `MainWindow` that is made up of smaller Ui parts. Namely, from top to bottom
+ these are: `CommandBox`, `ResultDisplay`, `EntryListPanel`, `StatusBarFooter`.
+* The `MainWindow` also intialises 3 other windows that are used in The Food Diary. Namely, these are:
+ `HelpWindow`, `ViewWindow` and `ReviseWindow`.
+* All of these Ui parts and windows, including the `MainWindow`, inheerit from the abstract `UiPart` class
+* In addition, the `UI` component also uses the JavaFX UI framework. THe layout of these UI parts are each defined in
+ their corresponding `.fxml` files that can be loated in the `src/main/resources/view` folder.
+* For example, the layout of the HelpWindow is specified in the HelpWindow.fxml file
+* A universal styling theme is applied to all components, and the styling is defined in 2 files:
+ `DarkTheme.css` and `Extensions.css`. Both are located in the `src/main/resources/view` folder.
+* Images/icons used throughout the app windows are located in the `src/main/resources/images` folder.
+ 
+1. The `UI` component executes user commands using the `Logic` component.
+2. The `UI` component also listens for changes to the `Model` data, to which the UI will be updated to reflect the
+ modified data.
+ 
 
 ### Logic Component
 **API:** [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Logic.java)
@@ -89,10 +108,19 @@ The `Model`,
 ### Storage Component
 
 ### Common classes
-Classes used by multiple components are in the seedu.fooddiary.commons package.
+* Classes used by multiple components are in the fooddiary.commons package.
+* There are primarily 3 folders of classes classified under common classes. Namely, these are:
+    * Index
+    * Exceptions
+    * Utility
+* In general, these classes are responsible for the processing the app's logging information, GUI settings,
+ error messages thrown, and file management etc.
 
-
-
+Notably:
+* The `GuiSetting` class in the `Index` folder contains methods that process all the GUI settings of the app,
+ and is essential in allowing the app to restore back the GUI window settings upon reopening the app.
+* The `LogCenter` class in the `Index` folder contains methods that process the loggers and handlers responsible for
+ logging useful information on the user's usage of the app for the developer's use and understanding.
 
 
 
