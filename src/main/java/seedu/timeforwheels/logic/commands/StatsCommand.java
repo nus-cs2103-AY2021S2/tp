@@ -14,7 +14,7 @@ import seedu.timeforwheels.model.customer.Customer;
 import seedu.timeforwheels.model.tag.Tag;
 
 /**
- * Lists all customer in the delivery list to the user.
+ *  list a summary report of the current delivery workflow.
  */
 public class StatsCommand extends Command {
 

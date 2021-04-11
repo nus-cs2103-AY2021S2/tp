@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/timeforwheels/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/timeforwheels/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/timeforwheels/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/timeforwheels/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,9 +78,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/timeforwheels/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `TimeforWheelsParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -97,7 +97,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/timeforwheels/model/Model.java)
 
 The `Model`,
 
@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.timeforwheels.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,89 +133,60 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Delete Feature `delete`
 
-#### Proposed Implementation
+The delete feature allows drivers to delete a delivery tasks from the delivery list by using the task number in the displayed list.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Implementation 
+The Sequence Diagram below shows how the components interact when a user enters delete 3 to delete a delivey tasks with task number 3 in the delivery list:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Description:
+When the user keys in an input, execute method of LogicManager is called with the user input as the parameter.
+In the method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input.
+The DeliveryListParser parses the user input and identifies it as a DeleteCommand and instantiates a DeleteCommandParser object.
+DeleteListParser then invokes the parse method of the DeleteCommandParser object to further parse the arguments provided.
+In the parse method, the DeleteCommandParser ensures that the input is of the correct format and identifies the input for the index of the item to be deleted.
+If the index specified by the user is valid, a new DeleteCommand instance will be created and returned to LogicManager via DeleteListParser.
+The LogicManager will then invoke the overridden execute method of the DeleteCommand object with Model as the argument.
+Subsequently, the DeleteCommand object will invoke deleteItem method of Model with the index of the item to delete as the argument. It will then return a CommandResult object to LogicManager.
+This CommandResult will be returned at the end by LogicManager.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The following Activity Diagram summarizes what happens when a user executes the delete command:
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+![Delete Command Sequence Diagram](images/DeleteDeliveryTaskSequenceDiagram.png)
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![Delete Command Activity Diagram](images/DeleteDeliveryTaskActivityDiagram.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th customer in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+### Find Feature `find KEYWORDS`
 
-Step 3. The user executes `add n/David …​` to add a new customer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The find feature allows drivers to find a delivery based on attributes that match the keywords that have been typed in.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Implementation
+The Sequence Diagram below shows how the components interact when a user enters find Alex to retrieve entries matching the word ALex in the delivery list:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+![Find Command Sequence Diagram](images/FindCommandSequenceDiagram.png)
 
-</div>
+Below is a further breakdown of the logic component of the find command using a sequence diagram
 
-Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Description:
+When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. The
+DeliveryListParser parses the user input and identifies it as a FindCommand and instantiates a FindCommandParser object.
+DeliveryistParser then invokes the parse method of the FindCommandParser object to further parse the arguments provided.
+In the parse method, the FindCommandParser ensures that the input is of the correct format and identifies the keywords.
+If the input specified by the user is valid, a new FindCommand instance will be created and returned to LogicManager via
+DeliveryListParser. The LogicManager will then invoke the overridden execute method of the FindCommand object with Model
+as the argument. Subsequently, the FindCommand object will take in the keywords and invoke the updateFilteredCustomersList method of Model that gets the
+entries with attributes that match the keyword(s). It will then return a CommandResult object to LogicManager. This
+CommandResult will be returned at the end by LogicManager.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The following Activity Diagram summarizes what happens when a user executes the find command:
 
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the customer being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -591,18 +562,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Software System: Delivery App**
 
-**Use case: UC11 - Find all delivery entries by the keyword(s).**
+**Use case: UC11 - Find all delivery entries by the keyword(s) that match an attribute.**
 
 **Actor: Delivery driver (app user)**
 
 **Guarantees:**
 
-* Getting the list of existing delivery entries with details containing the specified keyword(s).
+* Getting the list of existing delivery entries with attributes matching the specified keyword(s).
 
 **MSS**
 
 1.  User requests to see all delivery entries with the matching keyword(s).
-2.  Delivery App lists out all existing delivery entries with details containing the specified keyword(s).
+2.  Delivery App lists out all existing delivery entries with attributes matching the specified keyword(s).
 
     Use case ends.
 
@@ -617,6 +588,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. Delivery App informs the User that there are no delivery entries with details containing the specified keyword(s).
 
   Use case ends.
+
+Below is an illustration of the find command sequence diagram
+
+![Find Command Sequence Diagram](images/FindCommandSequenceDiagram.png)
+
+Below is a further breakdown of the logic component of the find command using a sequence diagram
+
+![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
+
+Below is an activity diagram to show a more simplified representation of the find command
+
+![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
 **Software System: Delivery App**
 
@@ -822,18 +805,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 2. **Reliability**:
-    - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds
-    - Should be able to detect and inform users of duplicate delivery entries and confirm with user if they wish to proceed in adding them to the list
+    - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds.
+    - Should be able to detect and inform users of duplicate delivery entries.
 
 3. **Security:**
-    - Users that request for any delivery entry data to be deleted will have the data permanently erased from memory
+    - Users that request for any delivery entry data to be deleted will have the data permanently erased from memory.
 
 4. **Integrity**
-    - For any time-related data presented to the user, the date formats will be `DD-MM-YYYY`
-    - Delivery entries made by the user will be stored in a _JSON_ file inside the hard disks
+    - For any time-related data presented to the user, the date formats will be `YYYY-MM-DD`.
+    - Delivery entries made by the user will be stored in a _JSON_ file inside the hard disks.
 
 5. **Flexibility**
-    - TimeforWheels should be able to handle as many date format inputs as possible by the user and convert the date format to `DD-MM-YYYY`
+    - TimeforWheels should be able to make it easy for users to find the delivery information stored inside such as name, date, address, tags etc.
 
 *{More to be added}*
 
