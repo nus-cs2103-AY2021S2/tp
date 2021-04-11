@@ -32,7 +32,16 @@ title: Developer Guide
    A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
    A7. [Saving Data](#a7-saving-data)<br>
    A8. [Effort](#a8-effort)<br>
-   
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+The name SOChedule is case-insensitive in the text and images in this Developer Guide.<br>
+i.e. SOChedule, SoChedule, Sochedule can be used interchangeably.
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).  
