@@ -1022,8 +1022,8 @@ Action | Format, Examples
 
 ## **7. Acknowledgements**
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Some code for integrating automated GUI tests was referenced from the AddressBook-Level4 [codebase](https://github.com/se-edu/addressbook-level4).
 - Libraries used:
     - [JavaFX](https://openjfx.io/)
     - [Jackson](https://github.com/FasterXML/jackson)
