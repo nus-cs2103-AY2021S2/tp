@@ -22,7 +22,7 @@ title: Developer Guide
    4.3 [Event](#43-event)<br>
    &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
    &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation-of-event-level-commands)<br>
-1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
+1. [Documentation, Logging, Testing, Configuration, Dev-Ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
    A2. [User Stories](#a2-user-stories)<br>
@@ -253,7 +253,7 @@ and the rest will be hidden and cannot be viewed. This is something undesirable.
                     <ul>
                         <li> More restrictive as a hard maximum limit has been set to disallow users from creating a task or event with a name of longer than 30 characters.</li>
                     </ul>
-                </li>
+                </li>q:q
             </ul>
         </td>
         <td> 
@@ -2001,11 +2001,10 @@ Use case ends.
 ### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 500 tasks without a noticeable sluggishness in performance for typical usage.
 1.  Should be able to hold up to 500 events without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 1.  Should give a response to user's input within 5 seconds.
-1.  The user interface should be intuitive to a SoC freshman with little knowledge about programming.
 1.  The source code should be open source.
 
 *{More to be added}*
