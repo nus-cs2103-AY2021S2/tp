@@ -265,3 +265,5 @@ Explicitly, the following should take on values between 1 and 100 only.
 * Semester number
 * Plan number
 * Number of modules in a plan or semester
+
+Please note that if you manually edit the data.json file that the NUS Module Planner application may not longer function as expected.
