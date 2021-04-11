@@ -111,8 +111,8 @@ Examples:
 
 Find customers from the contact list that matches specified filters.
 
-Format: `find  n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE coe/COE_EXPIRY_DATE t/TAGs 
-cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE b/DATE_OF_BIRTH`
+Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+OWNED_CARTYPE] [coe/COE_EXPIRY_DATE] [t/TAGs] 
+[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]`
 
 **IMP** : All arguments are optional. In particular:
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to 
@@ -156,11 +156,6 @@ We can combine in the following way :
 
 Note that for `find A /AND B /OR C /OR D /AND E` , the implicit bracketing considered is `find A /AND [B /OR [C /OR [D 
 /AND E]]]`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A customer can have any number of tags (including 0)
-</div>
-
 
 ## Deleting a customer : `delete`
 
