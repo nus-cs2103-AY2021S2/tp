@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Command {
+Class "{abstract}\nCommand" as Command
+
+Class "{abstract}\nAddCommand" as AddCommand
+Class "{abstract}\nDeleteCommand" as DeleteCommand
+
+Class AddProgramCommand
+Class AddDogCommand
+Class AddOwnerCommand
+
+Class DeleteOwnerCommand
+Class DeleteDogCommand
+Class DeleteProgramCommand
+}
+
+AddCommand .up.|> Command
+DeleteCommand .up.|> Command
+
+AddOwnerCommand -up---|> AddCommand
+AddDogCommand -up--|> AddCommand
+AddProgramCommand -up-|> AddCommand
+
+DeleteOwnerCommand -up---|> DeleteCommand
+DeleteDogCommand -up--|> DeleteCommand
+DeleteProgramCommand -up-|> DeleteCommand
+
+AddCommand .[hidden]right.> DeleteCommand
+
+@enduml

@@ -1,14 +1,14 @@
 @startuml
 start
 :User executes delete command;
-if () then ([owner])
+if () then (["owner"])
 :DeleteOwnerCommandParser processes;
-elseif () then ([dog])
+elseif () then (["dog"])
 :DeleteDogCommandParser processes;
-else ([program])
+else (["program"])
 :DeleteProgramCommandParser processes;
 endif
-:returns DeleteCommand;
+:Return DeleteCommand;
 stop
 
 @enduml
