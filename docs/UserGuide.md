@@ -70,7 +70,7 @@ purposes, these steps are split into a few categories.
 This image below is a screenshot of the app displaying contacts of a CCA member and a vendor, and events of different 
 dates where event 6 is marked as done. 
 
-<img src="images/tutorial-add.PNG" width="200px">
+<img src="images/tutorial-add.PNG">
 
 #### Search and Sort through contacts and events
 
@@ -86,7 +86,7 @@ dates where event 6 is marked as done.
 
 This image below is a screenshot of the app displaying events sorted by upcoming event dates.
 
-<img src="images/tutorial-sort.PNG" width="200px">
+<img src="images/tutorial-sort.PNG">
 
 #### Deleting contacts and events
 
