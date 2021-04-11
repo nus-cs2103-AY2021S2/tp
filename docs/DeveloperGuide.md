@@ -213,8 +213,8 @@ have upcoming birthdays, a pop-up box will be served to the user to remind them 
 
 **Value proposition**:
 * manage contacts faster than a typical mouse/GUI driven app
-* maintain notes on their client, their needs, their likes/dislikes, insurance plans, applications for insurance claims, etc.
-* get automated reminders about upcoming meetups/ notifications if they haven’t contacted clients in a long time.
+* maintain notes on their client, their needs, their likes/dislikes, insurance plans etc.
+* get automated reminders about upcoming meetups/ notifications on the client's birthday.
 
 ### User stories
 
@@ -342,11 +342,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. AddressBook shows an error message. 
   * Use case resumes at step 2.
 
-* 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd_HH:MM)
+* 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd HH:MM)
   * 3b1. AddressBook shows an error message and reminds the user of the correct format.
   * Use case resumes at step 2.
 
-* 3c. The given date-and-time is invalid (eg. user input 2020-02-31_14:30)
+* 3c. The given date-and-time is invalid (eg. user input 2020-02-31 14:30)
   * 3c1. AddressBook shows an error message 
   * Use case resumes at step 2.
 
@@ -393,8 +393,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Tag**: ...
 
---------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
+<!--
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -445,3 +446,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+-->

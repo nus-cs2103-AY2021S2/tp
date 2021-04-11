@@ -3,20 +3,35 @@ layout: page
 title: Huang Po-Wei's Project Portfolio Page
 ---
 
-## Project: Link.me
+# Project: Link.me 
+
+## Project Overview
 
 Link.me is a desktop client managing book application aimed for insurance agents to manage their contacts. 
 The basic Link.me codebase is adapted from AddressBook Level 3, an address book app created under the Seedu Initiative.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 14 kLoC.
 
-Given below are my contributions to the project.
+## Contribution Summary
 
-* **New Feature**: Added the ability to schedule meeting.
+* **New Feature 1**: Added the ability to schedule meeting. 
+  [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/dd8f4186422b19d0a37b66e36c7deeeb8ac54068),
+  [PR](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/25)
   * What it does: allows user to schedule meetings with specific clients.
   * Justification: This feature improves the product significantly because it now includes an entirely new aspect -- meeting scheduling into the application.
-  * Highlights: This command required a separate list to store meetings. Allowing list displays for the person and the meeting in order of time was mildly tricky.
+  * Highlights: This command required a separate list to store meetings. 
+    Allowing list displays for the person and the meeting in order of time was mildly tricky.
 
-* **New Feature**: Added a notification function.
+* **New Feature 2**: Added the ability to unschedule meeting.
+  [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/d01310146e6c840a8ef09c154a99b4218eabf071),
+  [PR](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/57)
+  * What it does: allows user to unschedule meetings with specific clients.
+  * Justification: This feature is the counterpart of the previous feature.
+  * Highlights: This feature needs to edit the meeting list set up on the previous feature, allow parsing for 
+    both index numbers and other particular options, and execute different operations depending on the input option.
+
+* **New Feature 3**: Added a notification function.
+  [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/8e30ab16f842111aee627c2cafe970eabc602df8),
+  [PR](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/40)
   * What it does: reminds the user of upcoming birthdays and meetings.
   * Justification: This feature allows users to be reminds of important events without having to go through the entire list of information.
   * Highlights: This feature required a separate window to be displayed. 
@@ -31,7 +46,10 @@ Given below are my contributions to the project.
   * Drafted the OOP implementation framework for notification and notes windows.
 
 * **Code contributed**: 
-  [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=georgepwhuang&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=georgepwhuang&tabRepo=AY2021S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+  [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=georgepwhuang&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=georgepwhuang&tabRepo=AY2021S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false),
+  [Pull requests](https://github.com/AY2021S2-CS2103T-W12-3/tp/pulls?q=is%3Apr+author%3Ageorgepwhuang),
+  [Commits](https://github.com/AY2021S2-CS2103T-W12-3/tp/commits?author=georgepwhuang)
+  
 * **Documentation**:
   * User Guide:
     * Added the layout introduction section.
@@ -39,7 +57,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `schedule`, `unschedule`, and `notif`.
   * Developer Guide:
     * Added implementation details of the `schedule` and `notif` feature.
-    * Drafted three sequence diagrams and updated two class diagrams.
+    * Drafted three sequence diagrams, one activity and updated three class diagrams.
     * Drafted three use cases: adding a person, editing a person, and filtering by tag.
   * Other Documents:
     * Drafted first iteration of [index.md](index.md).
@@ -69,3 +87,12 @@ Given below are my contributions to the project.
     [\#108](https://github.com/nus-cs2103-AY2021S2/forum/issues/108#issuecomment-773184636),
     [\#145](https://github.com/nus-cs2103-AY2021S2/forum/issues/145#issuecomment-779881367)
   * Reported potential bug in JavaFX [\#267](https://github.com/nus-cs2103-AY2021S2/forum/issues/267)
+  * Reported bugs and suggestions for other teams in the class (e.g. 
+    [\#278](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/278),
+    [\#279](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/279),
+    [\#280](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/280),
+    [\#281](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/281),
+    [\#282](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/282),
+    [\#283](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/283),
+    [\#284](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/284)
+    
