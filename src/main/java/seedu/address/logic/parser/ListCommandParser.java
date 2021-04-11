@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
+import static seedu.address.logic.commands.FavouriteCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_FAVOURITE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
@@ -18,7 +19,8 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     @Override
     public ListCommand parse(String args) throws ParseException {
-        if (args.equals("")) {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
             return new ListCommand();
         } else {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
