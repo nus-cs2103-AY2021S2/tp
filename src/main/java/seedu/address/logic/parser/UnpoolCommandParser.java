@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.UnpoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -20,10 +19,10 @@ public class UnpoolCommandParser implements Parser<UnpoolCommand> {
      */
     public UnpoolCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            if (!args.trim().chars().allMatch(Character::isDigit)) {
+            if (args.isBlank() || !args.trim().chars().allMatch(Character::isDigit)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnpoolCommand.MESSAGE_USAGE));
             }
+            Index index = ParserUtil.parseIndex(args);
             return new UnpoolCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);

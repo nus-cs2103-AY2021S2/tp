@@ -184,7 +184,7 @@ public class ParserUtil {
         requireNonNull(indices);
         final Set<Index> indicesSet = new HashSet<>();
         for (String index : indices) {
-            if (!index.chars().allMatch(Character::isDigit)) {
+            if (index.isBlank() || !index.chars().allMatch(Character::isDigit)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
             indicesSet.add(parseIndex(index));
