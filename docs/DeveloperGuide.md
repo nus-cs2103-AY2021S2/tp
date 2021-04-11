@@ -266,11 +266,11 @@ filtered list will then be updated according to the given `Predicate` and the ch
 The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search 
 tutorial cs2100` as input.
 
-![FindSequenceDiagram](images/TagSearchSequenceDiagram.png)
+![TagSearchSequenceDiagram](images/TagSearchSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes the tag-search command:
 
-![FindActivityDiagram](images/TagSearchActivityDiagram.png)
+![TagSearchActivityDiagram](images/TagSearchActivityDiagram.png)
 
 #### Design Consideration
 * **Current Choice:** Search for tasks bases on one or more tags.
@@ -403,15 +403,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3b. The given status is expired. Even though `expired` is a valid status of a task, users cannot directly modify it.
     * 3b1. Taskify warns that it can change the status of the task if it is either `uncompleted` or `completed` .
 
-      Use case ends.
+        Use case ends.
   
 * 3c. Taskify does not recognise the status that the User wants to set
-    * 3b1. Taskify warns that it does not understand the type of status entered
+    * 3c1. Taskify warns that it does not understand the type of status entered
     
         Use case ends.
     
 * 3d. The given index is invalid
-    * 3c1. Taskify warns that the index entered is invalid.
+    * 3d1. Taskify warns that the index entered is invalid.
     
         Use case ends.
 
@@ -421,7 +421,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all Tasks
-2. Taskify lists all the Tasks
+2. Taskify lists all the Tasks  
+   Use case ends.
 
 **Extensions**
 
@@ -430,22 +431,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 ---
-**Use case 5: Search for Tasks using tags**
+**Use case 5: Search for Tasks by Tags**
 
 **MSS**
 
-1. User requests to search for Task(s) by using its tag.
-2. Taskify shows the Task(s) with the same tag.
+1. User requests to find Task(s) by tags based on a list of tags.
+2. Taskify shows the Tasks that match one or more of the given tags.    
+   Use case ends.
 
 **Extensions**
+* 1a. Taskify cannot find any Task with the given tags
+    * 1a1. Taskify informs the User that no Tasks are found.
 
-* 1a. Taskify cannot find any Task with the tag
-    * 1a1. Taskify warns that no such Task has this tag.
-    
-        Use case ends.
+      Use case ends.
     
 * 1b. The User's input is unrecognisable to Taskify
-    * 1b1. Taskify informs the User on the format to do a tag-search.
+    * 1b1. Taskify informs the User on the format of command to search for tasks by tags.
     
         Use case ends.
 
@@ -455,34 +456,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to sort the Tasks.
-2. Taskify shows the Tasks in their sorted order.
+2. Taskify shows the Tasks in their sorted order.   
+   Use case ends.
 
 ---
-**Use case 7: Search for Tasks using keywords (excluding tags)**
+**Use case 7: Search for Tasks by Name**
 
 **MSS**
 
-1. User requests to find Task(s) with given keywords.
-2. Taskify shows the Tasks that have passed the search.
+1. User requests to find Task(s) by name based on a list of keywords.
+2. Taskify shows the Tasks that match the given keywords.    
+   Use case ends.
 
 **Extensions**
 * 1a. Taskify cannot find any Task with the given keywords
-    * 1a1. Taskify informs the User that no Tasks are found, and that keyword(s) must match a whole word in the Task's name.
-
+    * 1a1. Taskify informs the User that no Tasks are found.
+      
         Use case ends.
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. Taskify informs the User on the format of command to search for tasks by name.
+
+      Use case ends.    
 ---
 **Use case 8: Modifying an existing Task**
 
 **MSS**
 
 1. User requests to modify an existing Task
-2. Taskify shows the User the modified Task.
+2. Taskify shows the User the modified Task.     
+   Use case ends.
 
 **Extensions**
 * 1a. The User's input is unrecognisable to Taskify
     * 1a1. Taskify informs the User on the format to edit a Task.
 
-      Use case ends.
+        Use case ends.
     
 * 1b. The User's input for specific fields is invalid
     * 1b1. Taskify informs the User on the correct format of the field in the User's input that failed to pass validation checks.
@@ -490,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
     
 * 1c. The User's input does not include any fields at all.
-    * 1c. Taskify warns that no modifying can take place if there are no updated fields filled in.
+    * 1c1. Taskify warns that no modifying can take place if there are no updated fields filled in.
     
         Use case ends.
 ---
@@ -499,7 +507,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to switch to Home Tab.
-2. Taskify switches to Home Tab.
+2. Taskify switches to Home Tab.   
+   Use case ends.
 
 **Extensions**
 * 1a. If the user is currently in the Home tab 
@@ -521,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to got to Expired Tab.
 2. Taskify switches to Expired Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
@@ -545,7 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to got to Completed Tab.
 2. Taskify switches to Completed Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
@@ -569,7 +578,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to got to Uncompleted Tab.
 2. Taskify switches to Uncompleted Tab.
 
-   Use Case ends
+   Use Case ends.
 
 
 **Extensions**
@@ -591,13 +600,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all Tasks that are due on specified date.
-2. Taskify shows the User Tasks with the same date.
+2. Taskify shows the User Tasks with the same date.   
+   Use case ends.
 
 **Extensions**
 * 1a. There are no tasks stored
-    * 1a1. Taskify informs the User there are no tasks tracked
-    
-Use case ends.
+    * 1a1. Taskify informs the User there are no tasks tracked   
+      Use case ends.
 
 ---
 
