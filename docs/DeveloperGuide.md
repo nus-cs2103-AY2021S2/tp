@@ -187,7 +187,7 @@ Step 2. The user decides to blacklist the person, and executes the `blist INDEX`
 The `blist INDEX` command will create a new `Person` with the same information as the person at `INDEX` in `AddressBook`,
 but with a new `Blacklist` with a different blacklist status, which then replaces the original person.
 
-![BlacklistState1](images/BlacklistState2.png)
+![BlacklistState2](images/BlacklistState2.png)
 
 The following sequence diagram shows how the blacklist operation works:
 
@@ -330,6 +330,119 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
+<<<<<<< Updated upstream
+=======
+### Mass Blacklist feature
+The mass blacklist/unblacklist mechanism is facilitated by `MassBlacklistCommand`.
+Below is an example usage scenario for mass blacklist. The usage for mass unblacklist is similar. 
+
+Step 1: The user executes `massblist 4-12 b/blacklist ` to blacklist all contacts within the index range 4-12.
+The string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `MassBlacklistCommand` object.
+
+Step 3: The `MassBlacklistCommand` object calls `Model#massBlacklist(4,12)` to blacklist all contacts
+in the `AddressBook` with index between 4 to 12.
+
+Step 4: After the contacts have been blacklisted, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the mass blacklist operation works:
+![MassBlacklistSequenceDiagram](images/MassBlacklistSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassBlacklistCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a mass delete command:
+![MassBlacklistActivityDiagram](images/MassBlacklistActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of mass blacklist command
+* **Alternative 1 (current choice):** Input format is `massdelete START-END`.
+  * Pros: More inutitive for the user.
+  * Cons: More difficult to implement as new methods will have to be written to parse the hyphen (-) symbol.
+
+* **Alternative 2:** Input format is `massdelete start/START end/END`.
+  * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
+    well-suited to parse such input formats.
+  * Cons: There are more prefixes for the user to remember.
+
+### Mass Delete feature
+The mass delete mechanism is facilitated by `MassDeleteCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `massdelete 2-5` to delete all contacts within the index range 2-5.
+The string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `MassDeleteCommand` object.
+
+Step 3: The `MassDeleteCommand` object calls `Model#massDelete(2,5)` to delete all contacts
+in the `AddressBook` with index between 2 to 5.
+
+Step 4: After deletion, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the mass delete operation works:
+![MassDeleteSequenceDiagram](images/MassDeleteSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a mass delete command:
+![MassDeleteActivityDiagram](images/MassDeleteActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Input format
+* **Alternative 1 (current choice):** Input format is `massdelete START-END`.
+    * Pros: More inutitive for the user.
+    * Cons: More difficult to implement as new methods will have to be written to parse the hyphen (-) symbol.
+
+* **Alternative 2:** Input format is `massdelete start/START end/END`.
+    * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
+      well-suited to parse such input formats.
+    * Cons: There are more prefixes for the user to remember.
+
+### Remark feature
+The Remark feature is facilitated by the classes `Remark` and `RemarkCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `add n/John Doe...` to add a new contact. This creates a new `Person` object. By default,
+the new contact is displayed as having "No remark".
+
+![RemarkState1](images/RemarkState1.png)
+
+Step 2: The user now decides to add a new remark to the new contact by executing `remark 3 r/Absent`.
+The `Logic` component creates a new `RemarkCommand` object for execution.
+
+Step 4: `RemarkCommand` creates a new `Person` object which is identical to the original `Person` object in
+every field except that the `Remark` of the new `Person` object have been updated.
+
+Step 6: `RemarkCommand` calls `Model#setPerson()` to replace the original `Person` in the `AddressBook` with the new
+`Person`.
+
+![RemarkState2](images/RemarkState2.png)
+
+Step 7: After the `AddressBook` has been updated, the `ModelManager` class will update `filteredPersons`
+to reflect the change.
+
+The following activity diagram summarizes what happens when a user executes a remark command:
+![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of remark
+* **Alternative 1 (current choice):** Editing the `Remark` field is done in a separate command.
+    * Pros: Reduces coupling and increases abstraction. Code for the `Remark` command can be reused elsewhere.
+    * Cons: More commands for the user to remember.
+
+* **Alternative 2:** Use the existing `Edit` command to edit the `Remark` field.
+    * Pros: Easier to implement as the edit command already has a parser and many helper methods.
+    * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
+      class even bigger and thus more difficult to maintain.
+
+>>>>>>> Stashed changes
 ### Sort feature
 The sort feature is implemented in the `SortCommand` class.
 Below is an example usage scenario.
@@ -350,7 +463,73 @@ it back to the `UI` component to display it to the user.
 
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+<<<<<<< Updated upstream
     
+=======
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of sort
+* **Alternative 1 (current choice):** Sort command sorts the entire address book.
+  * Pros: Easy to implement.
+  * Cons:
+
+* **Alternative 2:**
+  * Pros:
+  * Cons:
+
+### Navigate previous commands feature
+
+#### Implementation
+
+The implementation of this feature is facilitated by `CommandList` class, which is a self-implemented linked list class.
+Whenever a command is executed, regardless of validity, a new node containing the command will be created and added into the linked list.
+The nodes in the linked list are implemented using `CommandNode` class, which keeps track of the following information:
+
+* Command executed
+* A reference to the previous `CommandNode` in the linked list.
+* A reference to the next `CommandNode` in the linked list.
+
+In addition, a `cursor` is introduced in `CommandList` class to help with navigation of the commands.
+The `cursor` keeps track of the current command while users are traversing through the commands using up and down arrow keys.
+Its position will be reset to the newly added `CommandNode`, which is the last node in the list, once a new command has been executed.
+
+When the user presses the up arrow key, there are two possible scenarios:
+* The `cursor` is at the first node in the list.
+    * Nothing happens.
+* The `cursor` is not at the first node in the list.
+    * The `cursor` is moved to the previous node and a new command is retrieved.
+
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramUp.png)
+
+Similarly, when the user presses the down arrow key, there are two possible scenarios:
+* The `cursor` is at the last node in the list.
+    * Nothing happens.
+* The `cursor` is not at the last node in the list.
+    * The `cursor` is moved to the next node and a new command is retrieved.
+
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramDown.png)
+
+#### Design considerations:
+
+#### Aspect: Data structure used to model the list of commands
+
+* **Alternative 1 (Current choice)**: Use a self-implemented linked list.
+    * Pros: More control on the implementation. Cursor lies on the element themselves.
+    * Cons: Higher chance of errors in implementation, especially when it comes to addition of nodes.
+* **Alternative 2**: Use the `LinkedList` class provided by Java.
+    * Pros: Easier implementation. Most operations have been provided by Java.
+    * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
+
+>>>>>>> Stashed changes
 ### Undo feature
 
 #### Implementation

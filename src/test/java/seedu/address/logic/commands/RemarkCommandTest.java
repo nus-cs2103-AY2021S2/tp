@@ -38,7 +38,7 @@ public class RemarkCommandTest {
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, JANE_REMARK);
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_CHANGE_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToEdit, editedPerson);
@@ -53,7 +53,7 @@ public class RemarkCommandTest {
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_EIGHTH_PERSON, NO_REMARK);
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_CHANGE_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToEdit, editedPerson);
@@ -70,7 +70,7 @@ public class RemarkCommandTest {
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, JANE_REMARK);
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_CHANGE_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToEdit, editedPerson);
@@ -87,7 +87,7 @@ public class RemarkCommandTest {
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, NO_REMARK);
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_CHANGE_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToEdit, editedPerson);

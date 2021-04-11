@@ -62,11 +62,11 @@ public class AddressBookParser {
         case BlacklistCommand.COMMAND_WORD:
             return new BlacklistCommandParser().parse(arguments);
 
-        case CollectCommand.COMMAND_WORD:
-            return new CollectCommandParser().parse(arguments);
-
         case MassBlacklistCommand.COMMAND_WORD:
             return new MassBlacklistCommandParser().parse(arguments);
+
+        case CollectCommand.COMMAND_WORD:
+            return new CollectCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

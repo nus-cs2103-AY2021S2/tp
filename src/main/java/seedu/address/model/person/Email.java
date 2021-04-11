@@ -64,4 +64,15 @@ public class Email {
         return value.hashCode();
     }
 
+<<<<<<< Updated upstream
+=======
+    /**
+     * The two emails will be compared by lexicographical order.
+     */
+    @Override
+    public int compareTo(Email otherEmail) {
+        return this.value.compareTo(otherEmail.value);
+    }
+
+>>>>>>> Stashed changes
 }
