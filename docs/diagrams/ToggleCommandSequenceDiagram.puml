@@ -1,0 +1,128 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DictionoteParser" as DictionoteParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "s:SetNoteDividerPositionCommand" as SetNoteDividerPositionCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant "g:GuiSettings" as GuiSettings MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("setdividern 3")
+activate MainWindow
+
+
+MainWindow-> LogicManager : execute("setdividern 3")
+activate LogicManager
+
+LogicManager -> DictionoteParser : parseCommand("setdividern 3")
+activate DictionoteParser
+
+DictionoteParser -> ParserUtil : parsePosition("3")
+activate ParserUtil
+
+ParserUtil --> DictionoteParser :
+deactivate ParserUtil
+
+create SetNoteDividerPositionCommand
+DictionoteParser -> SetNoteDividerPositionCommand
+activate SetNoteDividerPositionCommand
+
+SetNoteDividerPositionCommand --> DictionoteParser : s
+deactivate SetNoteDividerPositionCommand
+
+
+DictionoteParser --> LogicManager : s
+deactivate DictionoteParser
+
+LogicManager -> SetNoteDividerPositionCommand : execute()
+activate SetNoteDividerPositionCommand
+
+SetNoteDividerPositionCommand -> ModelManager : getGuiSettings()
+activate ModelManager
+
+ModelManager --> SetNoteDividerPositionCommand : g
+deactivate ModelManager
+
+SetNoteDividerPositionCommand --> GuiSettings : setNoteSplitRatio(0.3)
+activate GuiSettings
+
+GuiSettings --> SetNoteDividerPositionCommand :
+deactivate GuiSettings
+
+
+create CommandResult
+SetNoteDividerPositionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SetNoteDividerPositionCommand
+deactivate CommandResult
+
+SetNoteDividerPositionCommand --> LogicManager : r
+deactivate SetNoteDividerPositionCommand
+
+LogicManager --> MainWindow : r
+deactivate LogicManager
+
+MainWindow -> CommandResult : getUiAction()
+activate CommandResult
+
+CommandResult --> MainWindow :action
+deactivate CommandResult
+
+
+MainWindow -> CommandResult : getUiActionOption()
+activate CommandResult
+
+CommandResult --> MainWindow :option
+deactivate CommandResult
+
+MainWindow --> MainWindow : executeUiAction(action, option)
+activate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+MainWindow --> MainWindow : configSplit()
+activate MainWindow
+
+MainWindow --> MainWindow : configNoteSplit()
+activate MainWindow
+
+
+MainWindow -> LogicManager : getGuiSettings()
+activate LogicManager
+
+LogicManager -> ModelManager : getGuiSettings()
+activate ModelManager
+
+ModelManager --> LogicManager : g
+deactivate ModelManager
+
+LogicManager --> MainWindow : g
+deactivate LogicManager
+
+MainWindow -> GuiSettings : getNoteSplitRatio()
+activate GuiSettings
+
+GuiSettings --> MainWindow
+deactivate GuiSettings
+
+
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

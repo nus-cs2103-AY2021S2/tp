@@ -46,11 +46,15 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
+[diagrams](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. 
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/Main.java) 
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -66,15 +70,18 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API 
+  `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface 
+and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -87,14 +94,21 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DictionaryListPanel`, `DictionaryContentPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `NoteListPanel`, `NoteCard` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
+that are in the `src/main/resources/view` folder. For example, 
+the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Use `Logic` component to update the UI with new settings.
+* `DictionaryContentPanel` use` DictionaryListPanelConfig` to detect `DictionaryListPanel`display status
+* Model Component can request for content change using `DictionaryContentConfig` and `NoteContentConfig`
 
 ### Logic component
 
@@ -103,7 +117,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `DictionoteBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -201,32 +215,72 @@ Note that if the user does not have a mail client software set as default in the
 
 ### UI features
 
-#### Manipulation UI through Command
+#### Opening and Closing UI through Command
 #####  Implementation
-Dictionote provides a dynamic user interface that allows the user to open and close any panel.
-When executing any given command, dictionote should be able to change the user interface according to the command.
-All commands should be able to open or close the UI panel. The user will also be given the ability to manipulate UI through user command.
-The feature is implemented through the `CommandResult` that all `Command` in the system return.
+Dictionote has an interactive user interface that allows the user to open and close any panel through command.
+Furthermore, when any command is executed, 
+Dictionote should be able to change the user interface based on the command type/requirement.
+All commands should be able to open and close its required UI panel. 
+The user will also be able to open and close the UI via user command.
+The feature is implemented using `CommandResult`, which is returned by all `Command` in the system.
 
-`CommandResult` store a string `feedbackToUser`, enum `UiAction` and enum `UiActionOption`. `feedbackToUser` will
+`CommandResult` contain a `String` object call `feedbackToUser`, a `UiAction` enum call `uiAction`
+and `UiActionOption` enum call `uiActionOption`. `feedbackToUser` will
 be show on the `ResultDisplay` indicating the command feedback after execution.
-`UiAction` indicate the action the command want the `UI` to take.
-e.g `UiAction.OPEN`, `UiAction.CLOSE`, `UiAction.EXIT`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
+`uiAction` indicate the action the command want the `UI` to take.
+e.g `UiAction.OPEN`, `UiAction.CLOSE`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
 It indicate the specific option available for the `UiAction`.
-e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
+e.g `UiActionOption.CONTACT` for `UiAction.OPEN` mean open contact panel.
 
-The following is the sequence diagram for `OPENCOMMAND`
+The following is the sequence diagram for executing a command to open a panel.
 
 ![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
 
 #### Design Consideration
-* **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
-    * Pros: make use of the existing system and easy to implement
-    * Cons: All command will have to decide on the response. (or use the default setting)
-* Alternative 2: Make use of the Model Component as an intermediary between Command and UI. 
-  The command will call a method available on the model to make a change to the UI.
-    * Pros: Only the class that requires to change in UI will be needed to call the method
+* **Alternative 1 (current choice):** Make use of the existing `CommandResult` class
+    * Pros: Make use of the existing system and easy to implement
+    * Cons: All command will have to decide on the response. (or use the default setting) (desire behaviour)
+* Alternative 2: Make use of the `Model` component as an intermediary between Command and UI.
+  The command will call a method available on the `Model` component to change the UI settings,
+  the `UI` will listen to the setting on the `Model` component.
+    * Pros: Only the class that requires to change the UI will be needed to call the method.
     * Cons: Increasing coupling.
+    
+#### Manipulation UI Settings through Command
+#####  Implementation
+While all `Command` has the ability to open and close the UI. There are some UI settings that are more specific.
+In this case, we don't want all commands to implement its behavior, so using `CommandResult` isn't ideal.
+Since the `UI` component is already uses `GuiSettings` to store its settings when Dictionote close.
+We can make use of the existing structure by making the `UI` component 
+to actively listen for changes to the `GuiSettings`.
+The features are implemented in all `toggledivider` and `setdividerposition` commands.
+
+The command will change the `GuiSettings` located in `Model` componenet. 
+When the `CommandResult` is returned to the `UI` component.
+The `UI` component will check for changes in `GuiSettings` and update it Ui according.
+
+The following is the sequence diagram for executing a command to set note divider position.
+
+![OpenCommandSequenceDiagram](images/ToggleCommandSequenceDiagram.png)
+
+In the sequence diagram, `executeUiAction(action,option)` is called.
+This is to show that the command ensure that the user receives proper feedback when the divider position changes.
+The command will open all panels that were affected by the divider position change.
+If the affected panel remain closed, the user will not be able to notice the changes.
+Note divider affect both `NoteListPanel` and `NoteContentPanel`, hence if its  is closed, they will be open. 
+The execution of the command will make both `NoteListPanel` and `NoteContentPanel` visible,
+and the note divider positions will be adjusted to the desired position
+
+#### Design Consideration
+* Alternative 1 Make use of the existing `CommandResult` class
+    * Pros: Make use of the existing system and easy to implement
+    * Cons: All command will have to decide on the response. (or use the default setting)
+* **Alternative 2(current choice):**: Make use of the `Model` component as an intermediary between Command and UI.
+  The command will call a method available on the `Model` component to change the UI settings, 
+  the `UI` will listen to the setting on the `Model` component.
+    * Pros: Only the class that requires to change the UI will be needed to call the method.
+    * Cons: Increasing coupling.
+
 
 ### Note Features
 
@@ -419,15 +473,15 @@ _{Explain here how the data archiving feature will be implemented}_
 | Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                            | Category               |
 | -------- | -------------------------------------------------------------| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------- |
 |***Main***| | | |
-| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy a note from dictionary                            | Main/UI/UX         |
+| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy dictionary content to note                        | Main/UI/UX         |
 | `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary panel                          | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary manager panel                  | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note panel                                | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note Manager panel                        | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjust the Ui                              | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI configuration                               | do no need to adjust the UI using mouse                       | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | use the space available more efficiently                      | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary Content panel                  | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary List panel                     | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note Content panel                        | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note List  panel                          | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjusting the Ui everytime I open the app  | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI configuration                               | Do no need to adjust the UI using mouse                       | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | Use the space available more efficiently                      | Main/Non-essential |
 |***Dictionary*** | -- | -- | --  | -- |
 | `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Dictionary/Essential|
 | `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
@@ -468,32 +522,64 @@ _{Explain here how the data archiving feature will be implemented}_
 
 (For all use cases below, the **System** is the `Dictionote` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Close Panel**
+**Use case: UC01 - Close a panel**
 
 **MSS**
-1.  User requests to close a specific display panel
-2.  Dictionote close the display Panel
+1.  User requests to close a specific display panel.
+2.  Dictionote close the display Panel.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The given display panel is invalid.
-    * 1a1. Dictionote shows an error message
+    * 1a1. Dictionote shows an error message.
 
+      Use case ends.
+
+**Use case: UC02 - Edit and save a note in edit mode**
+
+**MSS**
+1.  User requests to edit in edit mode.
+2.  Dictionote enable edit mode.
+3.  User edit note and request to save the note.
+4.  Dictionote save edited note.
+5.  Dictionote exit edit mode.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No note is shown in note content panel.
+    * 1a1. Dictionote shows an error message.
+
+      Use case ends.
+
+* 3a. Dictionote found the note the user trying to save were a duplicate of another note in the system.
+    * 3a1. Dictionote shows an error message.
+    * 3a2. User edit note with new content and request to save the note.
+
+      Steps 3a1-3a2 are repeated until the note the User is trying to save is not a duplicate.
+
+      Use case resumes from step 4.
+
+* \* a. At any time, User chooses to exit edit mode.
+    * \*a1. Dictionote discard edited note.
+    * \*a2. Dictionote exit edit mode. 
+      
       Use case ends.
 
 
 
 
-**Use case: Delete a contact**
+**Use case: UC03 -  Delete a contact**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  Dictionote shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  Dictionote deletes the contact
+1.  User requests to list contacts.
+2.  Dictionote shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  Dictionote deletes the contact.
 
     Use case ends.
 

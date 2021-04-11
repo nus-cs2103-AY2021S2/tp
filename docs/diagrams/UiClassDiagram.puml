@@ -7,6 +7,7 @@ skinparam classBackgroundColor UI_COLOR
 package UI <<Rectangle>>{
 Interface Ui <<Interface>>
 Interface DictionaryContentConfig <<Interface>>
+Interface DictionaryListPanelConfig <<Interface>>
 Interface NoteContentConfig <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
@@ -37,61 +38,69 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
+
+ResultDisplay -[hidden]up- HelpWindow
+CommandBox -[hidden]up- ResultDisplay
+StatusBarFooter -[hidden]up- CommandBox
+MainWindow -[hidden]down- Model
+
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
+MainWindow -left-> HelpWindow
 MainWindow *-down-> ResultDisplay
+MainWindow *-down-> CommandBox
 MainWindow *-down-> ContactListPanel
 MainWindow *-down-> StatusBarFooter
 MainWindow *-down-> DictionaryListPanel
 MainWindow *-down-> NoteListPanel
+MainWindow *-right-> NoteContentPanel
 MainWindow *-down-> DictionaryContentPanel
-MainWindow *-down-> NoteContentPanel
 
+NoteListPanel -down-> NoteCard
 ContactListPanel -down-> ContactCard
 DictionaryListPanel -down-> DictionaryListContentCard
 DictionaryListPanel -down-> DictionaryListDefinitionCard
-NoteListPanel -down-> NoteCard
 
 
-ContactCard..> Model
-DictionaryListContentCard..> Model
-DictionaryListDefinitionCard..> Model
-NoteCard..> Model
-Model .left.> DictionaryContentConfig
-Model .left.> NoteContentConfig
-UiManager -up-> Logic
-MainWindow -right-> Logic
-
-
-CommandBox -[hidden]up- ResultDisplay
-StatusBarFooter -[hidden]up- CommandBox
-HelpWindow -[hidden]left- StatusBarFooter
-ContactListPanel -[hidden]left- HelpWindow
+ContactListPanel --[hidden]left- StatusBarFooter
 NoteListPanel -[hidden]left- ContactListPanel
 DictionaryListPanel -[hidden]left- NoteListPanel
-NoteContentPanel -[hidden]left- DictionaryListPanel
-DictionaryContentPanel -[hidden]left- NoteContentPanel
 
-UiPart -[hidden]down- Model
+DictionaryContentPanel -[hidden]up- NoteContentPanel
+
+ContactCard .down...> Model
+DictionaryListContentCard .down...> Model
+DictionaryListDefinitionCard .down...> Model
+NoteCard .down...> Model
+Model .up...> DictionaryContentConfig
+Model .up...> NoteContentConfig
+
+MainWindow -up-> Logic
+UiManager -up-> Logic
+
+NoteContentPanel ..|> NoteContentConfig
+DictionaryContentPanel ..|> DictionaryContentConfig
+DictionaryListPanel .up.|> DictionaryListPanelConfig
+DictionaryContentPanel --> DictionaryListPanelConfig
 
 
-NoteContentPanel .down.|> NoteContentConfig
-DictionaryContentPanel .down.|> DictionaryContentConfig
+Interface DictionaryContentConfig <<Interface>>
 
+MainWindow --|> UiPart
 HelpWindow --|> UiPart
 ResultDisplay --|> UiPart
-ContactListPanel --|> UiPart
-ContactCard --|> UiPart
-DictionaryListPanel --|> UiPart
-DictionaryListContentCard --|> UiPart
-DictionaryListDefinitionCard --|> UiPart
-NoteListPanel --|> UiPart
-NoteCard --|> UiPart
-StatusBarFooter --|> UiPart
 CommandBox --|> UiPart
-DictionaryContentPanel --|> UiPart
+ContactListPanel --|> UiPart
+StatusBarFooter --|> UiPart
+NoteListPanel --|> UiPart
+DictionaryListPanel --|> UiPart
+
+NoteCard ---|> UiPart
+ContactCard ---|> UiPart
+DictionaryListContentCard ---|> UiPart
+DictionaryListDefinitionCard ---|> UiPart
+
+DictionaryContentPanel -|> UiPart
 NoteContentPanel --|> UiPart
 
 

@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials and writing notes about them. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
+**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials, writing notes about them, and sharing these notes with others. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -283,7 +283,8 @@ Showcases a note.
 
 Format: `shownote INDEX​`
 
-* Shows the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
+* Shows the note at the specified `INDEX`.
+* The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
 
 #### List all notes : `listnote`
 
@@ -315,18 +316,27 @@ Examples:
 * `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
 #### Edit a note in edit mode : `editmode`
 
-Edits a note in edit mode.
+Edits a note in edit mode. 
 
 Format: `editmode`
 
 * A note have to be show on the note content panel using `shownote` command.
+* The user will be able to edit the note content in the text box.
+* The user will not be able to edit the tag.
 * In edit note mode, all others note related command will be disable.
 * To exit edit note mode, use `quit` to discard all changes or `save` to save all changes
 
 
 Examples:
 * `editmode`
-  * note content will be editable
+  * Note Content will be editable
+![Ui Panel](images/EditModeExample.png)
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Use <kbd>Esc</kbd> to return to command box and <kbd>Tab</kbd> to focus on next element.
+
+</div>
 
 #### Save and exit edit mode: `save`
 
@@ -359,6 +369,10 @@ Examples:
 
 ### Contact Features
 
+For the following contact features, irrelevant panels of the user interface were closed (see [Closing UI Panel](./UserGuide.md#closing-ui-panel-close) below). <br>
+Thus, for the upcoming examples, assume the following as the current state of Dictionote:
+![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.png)
+
 #### Adding a contact: `addcontact`
 
 Adds a contact to the contacts list.
@@ -368,6 +382,9 @@ Format: `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
 </div>
+
+* Contacts may share names, addresses, and tags.
+* Contacts **must not** share phone numbers or emails, as they are considered unique to each contact.
 
 Examples:
 * `addcontact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -388,6 +405,7 @@ Format: `editcontact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contacts list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* The new phone number or email-if specified-**must not** be present as a value for any other existing contact.
 * When editing tags, the existing tags of the contact will be removed (i.e., adding of tags is not cumulative).
 * You can remove all of the contact’s tags by typing `t/` without
   specifying any tags after it.
@@ -415,9 +433,13 @@ Format: `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...
 
 Examples:
 * `findcontact n/John` returns `john` and `John Doe`
+* `findcontact n/jack e/@email.net t/friends t/university` returns all contacts containing `Jack` in their name, `@email.net` in their email, and both `Friends` and `University` as part of their tags.
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-* (More examples to be added...)
+  ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.png)
+* `findcontact t/colleagues t/friends` returns `Bernice Yu` <br>
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.png)
+* `findcontact t/colleagues n/roy` returns `Roy Balakrishnan` <br>
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact3.png)
 
 #### Deleting a contact : `deletecontact`
 
@@ -433,17 +455,22 @@ Format: `deletecontact INDEX`
 
 Opens a new window to send an email to the specified contact from the contacts list.
 
-Format: `emailcontact INDEX`
+Format: `emailcontact INDEX [ni/NOTE_INDEX]`
 
 * Opens a new message composition window with the *to* field containing the email address of the contact at the specified `INDEX`.
+* If `ni/NOTE_INDEX` is provided, the contents of the note at `NOTE_INDEX` will be copied to the *body* field of the new message.
 * The application uses the user's default mailing application to provide email features.
 * The application **does not guarantee** the success of sending an email, as it is handled by the mailing application used.
-* The index refers to the index number shown in the displayed contacts list.
+* The index refers to the index number shown in the displayed contacts list or notes list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
+* `listcontact` followed by `emailcontact 3 ni/1` opens a new message composition window targeting `Charlotte Oliveiro` with the body containing `CS2103T exam is coming.`. <br>
+    * This example uses Microsoft Outlook as a mailing application on a Windows 10 machine. 
+  ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.png) <br>
+  ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.png) 
 
 #### Sorting the contacts list by most frequently-contacted: `mostfreqcontact`
 
@@ -451,8 +478,19 @@ Sorts the contacts list in descending order based on the number of email sending
 
 Format: `mostfreqcontact`
 
-* Each sucessful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
+
+* This command sorts the entire contacts list, including the contacts that did not match the latest `findcontact` query.
+* Each successful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
 * The ordering of the contacts list after sorting will replace the original ordering. (i.e., the sorted ordering is stored by Dictionote)
+
+Example:
+* Assume the following:
+    * Five emails were sent to `Charlotte Oliveiro`.
+    * Four emails were sent to `David Li`.
+    * Two emails were sent to `Bernice Yu`.
+    * One email was sent to `Alex Yeoh`.
+* `mostfreqcontact` results in the following: <br>
+  ![result for 'mostfreqcontact'](images/ContactMostFreqContact.png)
 
 #### Clearing the contacts list : `clearcontact`
 
@@ -470,13 +508,11 @@ The following are the 5 region where the user can manipulate
 #### Opening and Closing UI Panel
 
 ##### Opening UI Panel: `open`
+Dictionote will open the UI Panel you've chosen. When you open the panel, it is set to be visible.
 
+Format: `open OPTION`
 
-Open selected UI Panel.
-
-Format: `open Option`
-
-* The following `Option` are supported
+* The following `OPTION` are supported
     * `-a`: All panel
     * `-c`: Contact panel
     * `-d`: Both dictionary list panel and dictionary content panel
@@ -489,17 +525,16 @@ Format: `open Option`
 
 Examples:
 * `open -c`
-    * show contact panel
+    * The Contact panel will be visible to the user
 * `open -a`
-    * show all panel
+    * All panel will be visible to the user
 
 ##### Closing UI Panel: `close`
+Dictionote will close the UI Panel you've chosen. The panel is set to be invisible when closed.
 
-Close selected UI Panel.
+Format: `close OPTION`
 
-Format: `close Option`
-
-* The following `Option` are supported
+* The following `OPTION` are supported
     * `-a`: All panel
     * `-c`: Contact panel
     * `-d`: Both dictionary list panel and dictionary content panel
@@ -512,9 +547,9 @@ Format: `close Option`
 
 Examples:
 * `close -c`
-    * close contact panel
+    * The Contact panel will be invisible to the user
 * `close -a`
-    * close all panel
+    * All panel will be invisible to the user
 
 #### Setting UI Divider Position
 Dictionote allows the user to manipulate the divider between the region via command.
@@ -527,15 +562,23 @@ in either horizontally or vertically mode.
 
 ![Ui Divider Configuration](images/UiDividerConfig.png)
 
+The following is the meaning of the suffix found in `setdivider` command
+* m - Main
+* d - Dictionary
+* n - Note
+* c - Contact
+
+
 ##### Set contact divider position: `setdividerc`
 
 Sets the position of the contact divider.
 The contact divider is the divider separating the contact and others user interface.
+When the divider position changes, Contact Panel become visible.
 
-Format: `setdividerc Position`
+Format: `setdividerc POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividerc 8`
@@ -544,11 +587,13 @@ Examples:
 
 Sets the position of the dictionary divider.
 The dictionary divider is the divider separating the dictionary list and dictionary content.
+When the divider position changes,
+both the Dictionary List Panel and the Dictionary Content Panel become visible.
 
-Format: `setdividerd Position`
+Format: `setdividerd POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividerd 5`
@@ -557,11 +602,13 @@ Examples:
 
 Sets the position of the note divider.
 The note divider is the divider separating the note list and note content.
+When the divider position changes,
+both the Note List Panel and the Note Content Panel become visible.
 
-Format: `setdividern Position`
+Format: `setdividern POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividern 6`
@@ -570,11 +617,13 @@ Examples:
 
 Sets the position of the main divider.
 The main divider is the divider separating the note and dictionary.
+When the divider position changes,
+both the Note List Panel and the Dictionary List Panel become visible.
 
-Format: `setdividerm Position`
+Format: `setdividerm POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividerm 3`
@@ -585,11 +634,18 @@ The following are the 2 divider where the user can manipulate
 
 ![Ui Orientation](images/UiOrientation.png)
 
+The following is the meaning of the suffix found in `toggledivider` command
+* d - Dictionary
+* n - Note
+
+
 ##### Toggle dictionary divider orientation: `toggledividerd`
 
-Toggle the orientation of the dictionary divider.
+Toggle the orientation of the dictionary divider. 
 If the current orientation of the dictionary divider on horizontal,
 it will be changed to vertical and vice versa.
+When the orientation changes, 
+both the Dictionary List Panel and the Dictionary Content Panel become visible.
 
 Format: `toggledividerd`
 
@@ -601,6 +657,8 @@ Examples:
 Toggle the orientation of the note divider.
 If the current orientation of the note divider horizontal,
 it will be changed to vertical and vice versa.
+When the orientation changes,
+both the Note List Panel and the Note Content Panel become visible.
 
 Format: `toggledividern`
 
@@ -618,14 +676,15 @@ Format: `exit`
 
 #### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Dictionote data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Dictionote data are saved as a JSON file at directory `[JAR file location]/data/`. 
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Dictionote will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -636,6 +695,14 @@ _Details coming soon ..._
 
 ## FAQ
 
+**My data is missing after I edited my JSON file.**
+* When an invalid JSON file is detected, Dictionote discards all data and starts over with an empty data file. 
+* Please use a JSON editor software to ensure that the format is still valid after you've edited it.
+
+**I tried to open the closed panel with my mouse, but there is no content displayed when I drag the panel open.**
+* Dictionote is designed to support fast typists, mouse action is limited, please use the `open` command instead.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -644,15 +711,15 @@ Action | Format, Examples
 --------|------------------
 **Viewing help** | `help`
 **Viewing Command List** | `listcommand`
-**Viewing Dictionary Command Details** | `listcommandd`
-**Viewing Note Command Details** | `listcommandn`
-**Viewing Contact Command Details** | `listcommandc`
-**Viewing UI Command Details** | `listcommandu`
+**Viewing Dictionary Command Details** | `commanddetaild`
+**Viewing Note Command Details** | `commanddetailn`
+**Viewing Contact Command Details** | `commanddetailc`
+**Viewing UI Command Details** | `commanddetailu`
 **Exit** | `exit`
 ***Dictionary Features*** | -
 **Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
 **Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
-**Show specific content** | `showdc INDEX`
+**Show specific content** | `showdc INDEX` <br> e.g., `showdc 1`
 **List content** | `listcontent`
 **List definitions** | `listdef`
 **Copy content to note** | `copytonote`
@@ -665,11 +732,11 @@ Action | Format, Examples
 **Mark note as undone** | `markasundonenote INDEX`
 **Mark all notes as undone** | `markallasundonenote`
 **Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
-**Show note** | `shownote`
+**Show note** | `shownote INDEX` <br> e.g., `shownote 1`
 **List all notes** | `listnote`
 **Sort all notes** | `sortnote`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
-**Edit note in edit mode** | `editmodenote`
+**Edit note in edit mode** | `editmode`
 **Quit edit mode** | `quit`
 **Save changes to note** | `save`
 ***Contact Features*** | -
@@ -678,15 +745,15 @@ Action | Format, Examples
 **Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
 **Find contacts** | `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James e/@mail.com t/family`
 **Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
-**Send email to contact** | `emailcontact INDEX`<br> e.g., `emailcontact 2`
+**Send email to contact** | `emailcontact INDEX [ni/NOTE_INDEX]`<br> e.g., `emailcontact 2 ni/1`
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 ***UI Features*** | -
-**Open UI panel** | `open Option` <br> e.g., `open -c`
-**Close UI panel** | `close Option` <br> e.g., `close -c`
-**Set contact divider position** | `setdividerc POSITION`
-**Set dictionary divider position** | `setdividerd POSITION`
-**Set note divider position** | `setdividern POSITION`
-**Set main divider position** | `setdividerm POSITION`
+**Open UI panel** | `open OPTION` <br> e.g., `open -c`
+**Close UI panel** | `close OPTION` <br> e.g., `close -c`
+**Set contact divider position** | `setdividerc POSITION` <br> e.g., `setdividerc 3`
+**Set dictionary divider position** | `setdividerd POSITION` <br> e.g., `setdividerd 3`
+**Set note divider position** | `setdividern POSITION` <br> e.g., `setdividern 3`
+**Set main divider position** | `setdividerm POSITION` <br> e.g., `setdividerm 5`
 **Toggle dictionary divider orientation** | `toggledividerd`
 **Toggle note divider orientation** | `toggledividern`

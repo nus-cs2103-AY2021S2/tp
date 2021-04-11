@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added edit mode command for the shown note that allows the user to edit note.
 
   * What it does: allows the user to edit the note in a text-editor like an environment
-  * Justification: Note can be relatively long. It isn't ideal to let the user edit their note with CLI. 
+  * Justification: Note can be relatively long. It isn't ideal to let the user edit their note with CLI.
     The most ideal way to let the user edit their note in a way where the user is allowed to modify their existing note easily
 
 * **New Feature**: Added ListCommand and CommandDetail command that shows the user command summary.

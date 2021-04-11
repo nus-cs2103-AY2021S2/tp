@@ -11,7 +11,6 @@ public abstract class SetDividerPositionCommand extends Command {
      * Creates an SetDividerPositionCommand that set an divider to a the specified position
      */
     public SetDividerPositionCommand(int position) {
-        assert position <= 9 || position >= 1 : "Position should be parsed and validate before passing in";
         this.position = position;
     }
 }

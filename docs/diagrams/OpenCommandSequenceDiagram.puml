@@ -1,13 +1,14 @@
 @startuml
 !include style.puml
 
-box Model UI_COLOR_T1
+box Ui UI_COLOR_T1
 participant ":MainWindow" as MainWindow UI_COLOR
 end box
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":DictionoteParser" as DictionoteParser LOGIC_COLOR
+participant ":OpenCommandParser" as OpenCommandParser LOGIC_COLOR
 participant "o:OpenCommand" as OpenCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -22,12 +23,29 @@ activate LogicManager
 LogicManager -> DictionoteParser : parseCommand("open -c")
 activate DictionoteParser
 
+create OpenCommandParser
+DictionoteParser -> OpenCommandParser
+activate OpenCommandParser
+
+OpenCommandParser --> DictionoteParser
+deactivate OpenCommandParser
+
+DictionoteParser -> OpenCommandParser : parse("-c")
+activate OpenCommandParser
+
 create OpenCommand
-DictionoteParser -> OpenCommand
+OpenCommandParser -> OpenCommand
 activate OpenCommand
 
-OpenCommand --> DictionoteParser : o
+OpenCommand --> OpenCommandParser : o
 deactivate OpenCommand
+
+OpenCommandParser --> DictionoteParser : o
+deactivate OpenCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+OpenCommandParser -[hidden]-> DictionoteParser
+destroy OpenCommandParser
 
 DictionoteParser --> LogicManager : o
 deactivate DictionoteParser
@@ -50,22 +68,24 @@ LogicManager --> MainWindow : r
 deactivate LogicManager
 
 
-MainWindow --> MainWindow : executeUiAAction(action, option)
-activate MainWindow
-
-
 MainWindow -> CommandResult : getUiAction()
 activate CommandResult
 
-CommandResult --> MainWindow : getUiActionOption()
+CommandResult --> MainWindow :action
 deactivate CommandResult
 
 
-MainWindow -> CommandResult
+MainWindow -> CommandResult : getUiActionOption()
 activate CommandResult
 
-CommandResult --> MainWindow
+CommandResult --> MainWindow :option
 deactivate CommandResult
+
+MainWindow --> MainWindow : executeUiAction(action, option)
+activate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
 
 
 MainWindow --> MainWindow
