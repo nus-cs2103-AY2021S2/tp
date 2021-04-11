@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 
 public class CommandResultTest {
     @Test
@@ -50,9 +52,18 @@ public class CommandResultTest {
 
     @Test
     void getUiAction() {
+        for (UiAction action : UiAction.values()) {
+            CommandResult commandResult = new CommandResult("feedback",action);
+            assertEquals(commandResult.getUiAction(),action);
+        }
     }
 
     @Test
     void getUiActionOption() {
+        UiAction action = UiAction.OPEN;
+        for (UiActionOption actionOption : UiActionOption.values()) {
+            CommandResult commandResult = new CommandResult("feedback",action, actionOption);
+            assertEquals(commandResult.getUiActionOption(),actionOption);
+        }
     }
 }
