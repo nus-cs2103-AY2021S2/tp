@@ -6,25 +6,30 @@ skinparam classBackgroundColor MODEL_COLOR
 
 
 package Model {
-Class AddressBook
-package Issue {
-Class UniqueIssueList
-Class Issue
-Class RoomNumber
-Class Description
-Class Timestamp
-Class Status
-Class Category
-Enum "<<enumeration>>\nIssueStatus" as IssueStatus
-}
+    Class AddressBook
+    package Issue {
+        Class IssueList
+        Class Issue
+        Class RoomNumber
+        Class Description
+        Class Timestamp
+        Class Status
+        Class Category
+        Enum "<<enumeration>>\nIssueStatus" as IssueStatus
+    }
+
+    package Tag {
+        Class Tag
+    }
 }
 
-AddressBook *--> UniqueIssueList
-UniqueIssueList "1" *--> "*" Issue
+AddressBook --> "1" IssueList
+IssueList "1" --> "*" Issue
 Issue *--> "1" RoomNumber
 Issue *--> "1" Description
 Issue *--> "1" Timestamp
 Issue *--> "1" Status
 Issue *--> "1" Category
 Status *--> "1" IssueStatus
+Issue *--> "*" Tag
 @enduml

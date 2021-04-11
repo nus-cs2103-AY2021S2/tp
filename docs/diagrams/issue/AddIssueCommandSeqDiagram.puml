@@ -1,66 +1,73 @@
 @startuml
 !include ../style.puml
 
-Actor User as user USER_COLOR
-Participant ":CommandBox" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":AddressBookParser" as abParser LOGIC_COLOR
-Participant ":AddIssue\nCommandParser" as aicParser LOGIC_COLOR
-Participant ":AddIssue\nCommand" as addIssueCmd LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":CommandResult" as cmdResult LOGIC_COLOR
+scale 1.3
 
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddIssueCommand" as AddIssueCommand LOGIC_COLOR
+end box
 
-user -[USER_COLOR]> ui: key in "iadd n/10-100 \n d/flickering light"
-activate ui UI_COLOR
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
 
-ui -[LOGIC_COLOR]> logic: executeCommand(cmdText)
-activate logic LOGIC_COLOR
+[-> LogicManager : execute(cmdText)
+activate LogicManager
 
-logic -[LOGIC_COLOR]> abParser: parseCommand(cmdText)
-activate abParser LOGIC_COLOR
-
-note over abParser
-The parsing process
-breaks cmdText down
-into an argumentMap
-named args. This
-process is omitted
-here for brevity.
+note over LogicManager
+Command parsing
+is omitted for
+brevity
 end note
 
-abParser -[LOGIC_COLOR]> aicParser **:
-activate aicParser LOGIC_COLOR
-return
-
-abParser -[LOGIC_COLOR]> aicParser: parse(args)
-activate aicParser LOGIC_COLOR
-aicParser -[LOGIC_COLOR]> addIssueCmd**:
-activate addIssueCmd LOGIC_COLOR
-return
-
-return addIssueCmd
-destroy aicParser
-return addIssueCmd
-
-logic -[LOGIC_COLOR]> addIssueCmd: execute(model)
-activate addIssueCmd LOGIC_COLOR
-addIssueCmd -[MODEL_COLOR]> model: addIssue(Issue)
-activate model MODEL_COLOR
-note right of model
-Storage mechanism
-omitted for brevity
+note over AddIssueCommand
+The construction of the command
+sets the member variable toAdd
+to the issue to be added
 end note
-return
 
-addIssueCmd -[LOGIC_COLOR]> cmdResult**:
-activate cmdResult LOGIC_COLOR
-return
+LogicManager -> AddIssueCommand : execute(model)
+activate AddIssueCommand
 
-return commandResult
-return commandResult
+AddIssueCommand -> Model : hasRoom(toAdd.roomNumber)
+activate Model
 
-ui --[UI_COLOR]> user: display commandResult
-deactivate
+Model --> AddIssueCommand
+deactivate Model
+
+opt room exists
+
+    AddIssueCommand -> Model : hasIssue(toAdd)
+    activate Model
+
+    Model --> AddIssueCommand
+    deactivate Model
+
+    opt toAdd does not exist
+
+        AddIssueCommand -> Model : addIssue(toAdd)
+        activate Model
+
+        Model --> AddIssueCommand
+        deactivate Model
+
+        AddIssueCommand -> Model : commitAddressBook()
+        activate Model
+
+        Model --> AddIssueCommand
+        deactivate Model
+
+    end
+end
+
+AddIssueCommand --> LogicManager
+deactivate AddIssueCommand
+AddIssueCommand -[hidden]-> LogicManager
+destroy AddIssueCommand
+
+
+[<-- LogicManager
+deactivate LogicManager
 
 @enduml

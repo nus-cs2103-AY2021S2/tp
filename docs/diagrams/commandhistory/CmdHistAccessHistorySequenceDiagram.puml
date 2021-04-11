@@ -1,33 +1,45 @@
 @startuml
 !include ../style.puml
 
+skinParam DefaultFontSize 18
+skinParam ParticipantFontSize 20
+
 Actor User as user USER_COLOR
+
+box UI UI_COLOR_T1
 Participant ":CommandBox" as ui UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
 Participant ":CommandHistorySelector" as selector LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
 Participant ":ReadOnlyCommandHistory" as cmdHist MODEL_COLOR
+end box
 
-user -[USER_COLOR]> ui : press UP arrow
-activate ui UI_COLOR
+user -> ui : press UP arrow
+activate ui
 
-ui -[UI_COLOR]> selector : selectPrevious()
-activate selector LOGIC_COLOR
+ui -> selector : selectPreviousUntilFirst()
+activate selector
 
-selector -[LOGIC_COLOR]> selector : update state
-activate selector LOGIC_COLOR
+selector -> selector : update state
+activate selector
 
-selector --[LOGIC_COLOR]> selector
+selector --> selector : newSelectedIndex
 deactivate selector
 
-selector -[LOGIC_COLOR]> cmdHist : get(previous)
-activate cmdHist MODEL_COLOR
+selector -> cmdHist : get(newSelectedIndex)
+activate cmdHist
 
-cmdHist --[MODEL_COLOR]> selector : command entry
+cmdHist --> selector : cmdEntry
 deactivate cmdHist
 
-selector --[LOGIC_COLOR]> ui : command entry
+selector --> ui : cmdEntry
 deactivate selector
 
-ui --[UI_COLOR]> user : display\n command entry
-deactivate ui UI_COLOR
+ui --> user : display\n cmdEntry
+deactivate ui
 
 @enduml

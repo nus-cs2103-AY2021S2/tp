@@ -64,6 +64,17 @@ located at the end of the lifeline. However, due to a limitation of PlantUML, an
 the X to the end of the diagram.
 </div>
 
+#### Component colors
+
+Most diagrams (e.g. architecture, class and sequence) in this guide follow a color scheme to show which of the four
+major components something belongs to. Here is the color scheme in the format `COMPONENT`: COLOR.
+* `UI`: Green
+* `Logic`: Blue
+* `Model`: Red
+* `Storage`: Yellow
+
+The four components are formally introduced below in the [design section below](#design).
+
 #### How to create and edit
 
 This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
@@ -86,6 +97,7 @@ of each component.
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -100,16 +112,23 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its Application Programming Interface (API) in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Diagram note:** <br>
+
+`XYZCommand` and `XYZCommandParser` are placeholder classes. See the diagram notes in the
+[Logic component section](#logic-component) for more information.
+</div>
+
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `rdel 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -119,67 +138,122 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+**Diagram Notes** :
+* `XYZListPanel` is a placeholder for a concrete `ListPanel`. Currently `Resident`, `Room`, and `Issue` each have a `ListPanel` class. Similarly for `XYZCard`.
+
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListPanel`s, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
+* Delegates command history selection to the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
+**Diagram Notes** :
+* `XYZCommand` is a placeholder for a concrete command such as `AddResidentCommand`, `ExitCommand`, etc. There are many
+  commands (each with its own class), so for a placeholder has been used for simplicity. Likewise, `XYZCommandParser` is
+  a placeholder for a concrete command parser.
+* Some (but not all) command parsers make use of utility parser classes such as `CliSyntax`, `ParserUtil`,
+  `ArgumentMultimap`, `ArgumentTokenizer` and `Prefix`. These classes are not necessary for a high-level understanding
+  of the logic component, so they have been omitted from the diagram above for brevity.
+
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `LogicManager` uses the `AddressBookParser` to parse the user command.
+1. `LogicManager` may consult the `AliasMapping` in the `Model` (not shown in the diagram above) in case the user
+   uses an alias. How an alias is executed is detailed [here](#alias-execution).
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution may affect the `Model` (e.g. adding a resident or closing an issue).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object may also instruct the `Ui` to perform certain actions, such as displaying
+   help to the user.
+1. `CommandHistorySelector` is responsible for the logic of navigating command history. Its implementation is detailed
+   [here](#navigate-history).
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+#### Command parsing and execution
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+The `Logic` component handles the parsing and execution of commands, and most of them follow the same flow, differing
+only by the specific command parser class, command class and interaction with the model. The example Sequence Diagram
+below shows the parsing and execution process for the `execute("idel 1")` API call.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `idel 1` Command](images/DeleteSequenceDiagram.png)
+
+**Diagram Notes** :
+* To improve readability, some class names have been shortened in the diagram:
+    * `DeleteIssueCmdParser` represents the class `DeleteIssueCommandParser`
+    * `DeleteIssueCmd` represents the class `DeleteIssueCommand`
+    * `CmdResult` represents the class `CommandResult`
+* `delete first issue` is not an actual method; rather it is a simplification of the two-step process of getting the
+  issue to delete then deleting it. These command-specific details are not the focus of this diagram, and have thus been
+  abbreviated.
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+**Diagram Notes** :
+* We omit specific details of models `Resident`, `Room`, `ResidentRoom`, `Issue`, `CommandHistory` and `Alias` as they are explained
+in greater detail in their specific sections.
+
+* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the
+  lower level sub-packages are shown in separate zoomed-in diagrams.
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `CommandHistory` object that represents all previous commands entered by the user.
+* stores an `AliasMapping` object that represents the mapping of aliases to actual commands.
+* stores the SunRez data in a `StatefulAddressBook`.
+    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.
+* exposes the following unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
+    * `ObservableList<Resident>`
+    * `ObservableList<Room>`
+    * `ObservableList<Issue>`
+* does not depend on any of the other three components (`Storage`, `Logic`, `UI`).
+
+The section below zooms in a **little bit** on how the `ModelManager` and `AddressBook`/`StatefulAddressBook` interact with the lower level sub-packages.
+Finer details than what is shown in the section below can be seen under the implementation section of each of the models.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+#### Zoomed-in view of Room, Resident and ResidentRoom
+![Zoomed in view of Room, Resident and ResidentRoom](images/high-level-models/ResidentRoomZoomIn.png)
 
-</div>
+#### Zoomed-in view of Issue
+![Zoomed in view of Issue](images/high-level-models/IssueZoomIn.png)
+
+#### Zoomed-in view of CommandHistory
+![Zoomed in view of CommandHistory](images/high-level-models/CommandHistoryZoomIn.png)
+
+#### Zoomed-in view of Alias
+![Zoomed in view of Alias](images/high-level-models/AliasZoomIn.png)
 
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
+**Diagram Notes**:
+* `Storage` inherits from `CommandHistoryStorage`, `UserPrefsStorage` and `AddressBookStorage`. However, this interface inheritance is omitted for brevity.
+
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the SunRez data in json format and read it back.
+* can save the command history data in plain text format and read it back.
 
 ### Common classes
 
@@ -216,19 +290,33 @@ This process is summarised in the diagram below
 ![Adding a Resident](images/resident/AddResidentCommandActivityDiagram.png)
 
 ##### Detailed execution pathway
-The diagram below details how the user's command to add a resident propagates through the system to eventually add a resident.
 
-![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png)
+The diagram below details how the user's command to add a resident propagates through the system to eventually
+add a resident.
 
+![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png){:height="75%" width="75%"}
+
+**Diagram Notes** :
+* The `AddResidentCommand`'s execution follows the flow outlined under the section
+  [Command parsing and execution](#command-parsing-and-execution).
+* `toAdd` is the resident to be added which is created by `AddResidentCommandParser`, and taken in as a parameter during the
+  construction of `AddResidentCommand`. This process is omitted for brevity.
+* `AddResidentCommand` is a state-changing operation. After the new resident is added, the new state of AddressBook is saved
+  using `model#commitAddressBook` in order to support undo/redo operations.
 
 ### Room Features
 
-The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room.
+The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room(s) and
+Delete Room.
 
 #### The Room Class
-The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing fields too.
+The Room class consists of 4 fields, each of which contain their own methods to verify their respective input.
+This allows for a low degree of coupling, and individual fields can change their input verification rules without
+affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing
+fields too.
 
-Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`, `RoomType#isValidRoomType()`, etc.
+Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`,
+`RoomType#isValidRoomType()`, etc.
 
 ![The Room Class](images/room/RoomClass.png)
 
@@ -245,29 +333,42 @@ The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBoo
 * **Alternative 2:** Leave fields of Room as member variables of the Room class
     * Pros:
         * Everything is self-contained within the Room class, single source of "truth"
-    * Cons
+    * Cons:
         * Field verification becomes a responsibility of the Room class which is not desirable (Violation of SRP)
         * Changes to individual fields would impact the Room class which may unintentionally break other things
         * Less object oriented approach which goes against the principles of how this project was set up
 
 #### Add Room
-This section will detail the implementation of the Add Room feature via the `oadd` command,
+This section will detail the implementation of the Add Room feature via the `oadd` command.
 
 ##### Overview of Insertion Process
-The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
+The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc.
+The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid,
+a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a
+feedback message is displayed to the user.
 
 This process is summarised in the diagram below
 ![Adding a Room](images/room/AddRoomCommandActivityDiagram.png)
 
 ##### AddRoomCommand
-The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model already has the room being inserted, and if it does not, it will insert the room.
+The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model
+already has the room being inserted, and if it does not, it will insert the room.
 
-The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing
+with the specific implementations of each `Command` object.
 
-##### Detailed execution pathway
+##### Execution pathway
 The diagram below details how the user's command to add a room propagates through the system to eventually add a room.
 
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
+
+**Diagram Notes** :
+* The `AddRoomCommand`'s execution follows the flow outlined under the section
+  [Command parsing and execution](#command-parsing-and-execution).
+* `toAdd` is the room to be added which is created by `AddRoomCommandParser`, and taken in as a parameter during the
+  construction of `AddRoomCommand`. This process is omitted for brevity.
+* `AddRoomCommand` is a state-changing operation. After the new room is added, the new state of AddressBook is saved
+  using `model#commitAddressBook` in order to support undo/redo operations.
 
 ### Resident-Room allocation feature
 
@@ -289,10 +390,10 @@ The `alloc` command will do the following:
 
 Example: `alloc ri/1 oi/2`
 * Check that the 1st resident exists.
-* Check that the 2nd room exists exists.
+* Check that the 2nd room exists.
 * Check that the 1st resident has not already been allocated to the 2nd room.
 * Check that no other room is allocated to the 2nd resident.
-* Check that room the 2nd room is not occupied by any resident.
+* Check that the 2nd room is not occupied by any resident.
 
   **If all the above is true,**
 * Set the `ROOM` of the resident to be the room number of the room.
@@ -345,7 +446,7 @@ The Issue class consists of 5 fields, each of which contain their own methods to
 
 Examples of verification functions in each of the fields include `Category#isValidCategory()`, `Status#isValidStatus()`, etc.
 
-![The Issue Class](images/Issue/IssueClass.png)
+![The Issue Class](images/issue/IssueClass.png)
 
 The `Issue` objects are stored in an `IssueList` which is held by `AddressBook`.
 
@@ -364,13 +465,16 @@ This process is summarised in the diagram below
 
 The `AddIssueCommand` inherits from the `Command` object and overrides the `execute()` method.
 
-The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implementations of each `Command` object.
 
-##### Detailed execution pathway
+##### Execution pathway
 The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
 
 ![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
 
+**Diagram Notes** :
+ * The `AddIssueCommand`'s execution follows the flow outlined under the section [Command parsing and execution](#command-parsing-and-execution).
+ * `toAdd` is the issue to be added which is created by `AddIssueCommandParser`, and taken in as a parameter during the construction of `AddIssueCommand`. This process is omitted for brevity.
 
 ### Alias feature
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
@@ -400,6 +504,12 @@ With `AliasMapping` included in `AddressBook`, `AddressBook` supports the follow
 User can create a new `Alias` via the `AliasCommand`. The sequence diagram below describes how an `Alias` is created.
 
 ![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
+
+**Diagram Notes** :
+* To improve readability, some class names have been shortened in the diagram:
+    * `AliasCmdParser` represents the class `AliasCommandParser`
+    * `AliasCmd` represents the class `AliasCommand`
+    * `CmdResult` represents the class `CommandResult`
 
 #### Alias execution
 When a user executes a new command, `AddressBookParser` will follow these steps:
@@ -438,7 +548,7 @@ The following class diagram shows an overview of the command history subsystem a
 ![CommandHistoryModelClassDiagram](images/commandhistory/CmdHistModelClassDiagram.png)
 
 ##### How Command History is Updated
-`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
+`LogicManager#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
 be appended to the command history via `Model#appendCommandHistoryEntry()`. If either parsing or execution fails,
 then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the
 example command `help`.
@@ -446,9 +556,8 @@ example command `help`.
 ![CommandHistoryUpdateSequenceDiagram](images/commandhistory/CmdHistUpdateSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source:
-**Note:** In the sequence diagram above, `parseAndExecute()` is not an actual method; rather it is a simplification
-of a two-step process in the Logic component. The important thing to note is that `CommandHistory` is updated only
-_after_ a command is parsed and executed successfully by the Logic component.
+**Note:** In the sequence diagram above, `parse and execute` is not an actual method; rather it is a simplification
+of a two-step process in the `LogicManager`.
 </div>
 
 
@@ -461,30 +570,39 @@ Viewing command history is implemented through `ViewHistoryCommand` and supporte
 `ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the
 entries it needs to display, formats the entries into a message, then finally returns the message wrapped in
 a `CommandResult`, to be displayed to the user. The following sequence diagram illustrates the main interactions
-between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`.
+between `ViewHistoryCommand` and the Model component.
 
 ![ViewHistorySequenceDiagram](images/commandhistory/CmdHistViewHistorySequenceDiagram.png)
 
 ##### Navigate History
-The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively
+The user navigates their command history via the `UP` and `DOWN` arrow keys. The `UP` and `DOWN` arrow keys respectively
 select the previous and next commands in history, if any.
 
-The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
+The `UP` and `DOWN` key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
 logic of navigation and keeping track of state (which command we are selecting) to a `CommandHistorySelector`.
-The `CommandHistorySelector` is called via `#selectNext()` and `#selectPrevious()` which are expected
-to respectively return the next and previous commands in history since they were last called. Upon receiving the
-relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
-The following sequence diagram shows the aforementioned relationships.
+The `CommandHistorySelector` is called via `#selectNextUntilOnePastLast()` and `#selectPreviousUntilFirst()` which are
+expected to respectively return the next and previous commands in history since they were last called. Upon receiving
+the relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
+The following sequence diagram shows the aforementioned relationships in the example where a user presses the `UP` arrow
+key.
 
 ![AccessHistorySequenceDiagram](images/commandhistory/CmdHistAccessHistorySequenceDiagram.png)
 
-`CommandHistorySelector#selectLast()` can also be called to reset the selection to the most recent command in history.
-This is useful, for example, when a user has navigated to the middle of their command history then executes a new
-command. At this point, we want navigation to start from the most recent command again - not where the user was
-before he/she executed a command.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** In the sequence diagram above, `update state` is not an actual method; rather it is an abstraction of the
+internal process of updating the `CommandHistorySelector` state.
+</div>
+
+`CommandHistorySelector#navigateToOnePastLast()` can also be called to reset the selection to the one past the most
+recent command in history. This is useful, for example, when a user has navigated to the middle of their command history
+then executes a new command. At this point, we want navigation to start from the most recent command again - not where
+the user was before he/she executed a command. We go _one past_ the most recent command so that when the user requests
+for the most recent command (previous), it shows the most recent one rather than the second most recent one.
 
 Currently, SunRez uses a `SuppliedCommandHistorySelector` as its `CommandHistorySelector`. This implementation uses
-a `Supplier<ReadOnlyCommandHistory>` to view SunRez command history whenever it is called to select a new entry.
+a `Supplier<ReadOnlyCommandHistory>` to obtain the current SunRez command history whenever it is called to select a new
+entry. The exact implementation used may change, so the sequence diagram above shows the interface
+`CommandHistorySelector` rather than a specific class.
 
 ##### Save/Load History
 SunRez automatically saves command history after each command execution, and loads command history (if any) upon app
@@ -493,13 +611,14 @@ start-up. The command history is saved in a plain-text file at `[JAR_file_locati
 Saving and loading is supported by `CommandHistoryStorage`, an interface that exposes read and write methods. SunRez
 currently uses an implementation of this interface called `PlainTextCommandHistoryStorage`, which serializes each
 command history entry as a single line of plain text in the command history file. The class structure is shown
-in the class diagram in the _Command History Overview_ subsection above.
+in the class diagram in the [Command History Overview](#command-history-overview) subsection above.
 
 Command history is saved immediately after it is updated. Since command history is only updated after a successful
 command execution, this implies that only successful commands are saved. In order to save command history,
 `CommandHistoryStorage` creates a serialized string from a `ReadOnlyCommandHistory` view of the command history, then
 writes it to disk using `FileUtil#writeToFile()` as a helper. The following activity diagram shows a simplified flow
-of the storage process from command execution to writing the command history to file.
+of the command execution process from user input to storage; it locates the saving procedure for command history in the
+entire process.
 
 ![CommandHistoryStorageActivityDiagram](images/commandhistory/CommandHistoryStorageActivityDiagram.png)
 
@@ -604,9 +723,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | power user | create aliases for longer commands | shorten commands to be more efficient to type |
 | `* *` | power user | delete aliases that are no longer needed | avoid triggering the wrong command |
 
-## Use cases
+## **Use cases**
 
-(For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code)
+For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code.
 
 
 ### UC-001 Add a resident
@@ -872,19 +991,21 @@ Use case ends.
 3. User requests to allocate a resident to a room.
 4. SunRez allocates the resident to the room and saves the changes.
 
+Use case ends.
+
 **Extensions**
 
 * 2a. There are no unassigned residents.
-    
+
     Use case ends.
 * 3a. The given resident or room does not exist.
-    * 3a1. SunRez shows an error message.   
-      
+    * 3a1. SunRez shows an error message.
+
         Use case resumes at step 2.
 
 * 3b. The given resident or room have already been assigned.
-    * 3b1. SunRez shows an error message. 
-      
+    * 3b1. SunRez shows an error message.
+
         Use case resumes at step 2.
 
 
@@ -896,6 +1017,8 @@ Use case ends.
 2. SunRez displays residents, each with its corresponding allocated room, if any.
 3. User requests to deallocate a resident from its room.
 4. SunRez deallocates the resident from its room and saves the changes.
+
+Use case ends.
 
 **Extensions**
 
@@ -909,7 +1032,7 @@ Use case ends.
 
 * 3b. The given resident does not have an existing allocation.
     * 3b1. SunRez shows an error message.
-        
+
         Use Case resumes at step 2.
 
 ### UC-021 Access Command History
@@ -969,7 +1092,7 @@ Use case ends.
 
       Use case ends.
 
-## Non-Functional Requirements
+## **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 records (residents, rooms and issues) without more than 1 second of lag for
@@ -984,7 +1107,7 @@ Use case ends.
 9. The data should not be stored in a Database Management System (DBMS).
 10. Should not depend on any remote server.
 
-### Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Residential College (RC)**: A university residence for students that offers a 2-year program at NUS
@@ -1026,10 +1149,10 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Re-launch the app by double-clicking the jar file. Check the command history again with `history`. <br>
        Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
 
-### Resident Data
+### Resident
 
 1. Adding residents
-    1. Prerequisites: There is no existing resident named `John Doe`. 
+    1. Prerequisites: There is no existing resident named `John Doe`.
     2. Test case: `radd n/John Doe p/98765432 e/johnd@example.com y/1` <br>
        Expected: Resident is added.
     3. Incorrect `radd` commands to try. <br>
@@ -1068,7 +1191,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `rfind KEYWORD` <br>
        Expected: Residents whose names have words fully matching `KEYWORD` are listed.
 
-### Rooms
+### Room
 
 1. Adding a room
 
@@ -1095,7 +1218,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
     4. Test case: `odel abc` <br>
        Expected: A message indicating the command format is invalid followed by proper usage instructions.
-       
+
 ### Issue
 
 1. Adding an issue
@@ -1149,16 +1272,16 @@ starting point for testers to work on; testers are expected to do more *explorat
         * `iedit x` with at least 1 valid parameter given and where `x` is either a non-positive number or not a number at all. E.g. `iedit -1 r/01-234` and `iedit a d/ABCDEF`. <br>
           Expected: An error message indicating the type of error.
         * `iedit x` with at least 1 invalid parameter given and where `x` is a valid index. <br>
-          Expected: An error message indicating the constraints of the invalid paramter.
+          Expected: An error message indicating the constraints of the invalid parameter.
 
 5. Closing issues
 
     1. Prerequisites: There is at least 1 issue with status `Pending`.
 
-    2. Test case: `iclo x` where x is the index of a issue with status `Pending`. <br>
+    2. Test case: `iclo x` where x is the index of an issue with status `Pending`. <br>
        Expected: The issue's status is set to `Closed`.
 
-    3. Test case: `iclo x` where x is the index of a issue with status `Closed`. <br>
+    3. Test case: `iclo x` where x is the index of an issue with status `Closed`. <br>
        Expected: An error message indicating that the issue is already closed.
 
 6. Delete issues
@@ -1230,14 +1353,14 @@ e.g. `radd`, `redit`, `idel`, `clear`, etc.
 
 **:information_source: Shortcuts to undo:**<br>
 1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`Z` (Windows, Linux) or `CMD`+`Z` (Mac).
 
 These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
 command history.
 
 **:information_source: Shortcuts to redo:**<br>
 1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`SHIFT`+`Z` (Windows, Linux) or `CMD`+`SHIFT`+`Z` (Mac).
 
 These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
 command history.
@@ -1284,7 +1407,7 @@ command history.
 
     4. Test case: `rdel 1` then `undo` then `rdel 1` then `redo` <br>
        Expected: An error message is shown, indicating that redo cannot be performed.
-       
+
     5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
        Expected: The `redo` operations undo the `undo` operations in reverse order.
 

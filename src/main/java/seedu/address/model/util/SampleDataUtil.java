@@ -21,6 +21,7 @@ import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Room;
 import seedu.address.model.resident.Year;
+import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.IsOccupied;
 import seedu.address.model.room.RoomNumber;
 import seedu.address.model.room.RoomType;
@@ -41,7 +42,7 @@ public class SampleDataUtil {
                     new Room(UNALLOCATED_REGEX)),
             new Resident(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Year("3"),
-                    new Room(UNALLOCATED_REGEX)),
+                    new Room("05-672")),
             new Resident(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Year("4"),
                     new Room(UNALLOCATED_REGEX)),
@@ -49,8 +50,8 @@ public class SampleDataUtil {
                     new Year("4"),
                     new Room(UNALLOCATED_REGEX)),
             new Resident(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Year("5"),
-                    new Room(UNALLOCATED_REGEX))
+                    new Year("4"),
+                    new Room("01-234"))
         };
     }
 
@@ -58,7 +59,7 @@ public class SampleDataUtil {
         return new seedu.address.model.room.Room[] {
             new seedu.address.model.room.Room(new RoomNumber("01-234"),
                     new RoomType(RoomTypeOptions.CORRIDOR_AC.name()),
-                    new IsOccupied(IsOccupied.UNOCCUPIED),
+                    new IsOccupied(IsOccupied.OCCUPIED),
                     new HashSet<>(Arrays.asList(new Tag("SHN")))),
             new seedu.address.model.room.Room(new RoomNumber("03-325"),
                     new RoomType(RoomTypeOptions.CORRIDOR_NON_AC.name()),
@@ -74,7 +75,7 @@ public class SampleDataUtil {
                     new HashSet<>(Arrays.asList(new Tag("SHN")))),
             new seedu.address.model.room.Room(new RoomNumber("05-672"),
                     new RoomType(RoomTypeOptions.SUITE_NON_AC.name()),
-                    new IsOccupied(IsOccupied.UNOCCUPIED),
+                    new IsOccupied(IsOccupied.OCCUPIED),
                     new HashSet<>(Arrays.asList(new Tag("SHN")))),
             new seedu.address.model.room.Room(new RoomNumber("08-912"),
                     new RoomType(RoomTypeOptions.CORRIDOR_AC.name()),
@@ -100,6 +101,14 @@ public class SampleDataUtil {
         };
     }
 
+
+    public static ResidentRoom[] getSampleResidentRooms() {
+        return new ResidentRoom[] {
+            new ResidentRoom(new seedu.address.model.resident.Name("Charlotte Oliveiro"), new RoomNumber("05-672")),
+            new ResidentRoom(new seedu.address.model.resident.Name("Roy Balakrishnan"), new RoomNumber("01-234"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Resident sampleResident : getSampleResidents()) {
@@ -110,6 +119,9 @@ public class SampleDataUtil {
         }
         for (Issue sampleIssue : getSampleIssues()) {
             sampleAb.addIssue(sampleIssue);
+        }
+        for (ResidentRoom sampleResidentRoom : getSampleResidentRooms()) {
+            sampleAb.addResidentRoom(sampleResidentRoom);
         }
         return sampleAb;
     }
