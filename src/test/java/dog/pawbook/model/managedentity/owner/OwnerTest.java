@@ -5,9 +5,10 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static dog.pawbook.testutil.TypicalEntities.ALICE;
-import static dog.pawbook.testutil.TypicalEntities.APPLE;
-import static dog.pawbook.testutil.TypicalEntities.BOB;
+import static dog.pawbook.model.managedentity.owner.Owner.*;
+import static dog.pawbook.testutil.TypicalEntities.*;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -17,6 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.testutil.OwnerBuilder;
+
+import java.util.Collections;
+import java.util.List;
 
 public class OwnerTest {
 
@@ -82,6 +86,26 @@ public class OwnerTest {
     public void getAddress() {
         assertEquals(new Address("123, Jurong West Ave 6, #08-111"), ALICE.getAddress());
         assertEquals(new Address("Block 123, Bobby Street 3"), BOB.getAddress());
+    }
+
+    @Test
+    public void hashcode() {
+        Owner owner = new OwnerBuilder(ALICE).build();
+
+        // same values -> returns same hashcode
+        assertEquals(owner.hashCode(), new OwnerBuilder(ALICE).build().hashCode());
+
+        // different name -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withName("Peter").build().hashCode());
+
+        // different phone -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withPhone("90019001").build().hashCode());
+
+        // different email -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withEmail("test123@example.com").build().hashCode());
+
+        // different address -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withAddress("Block 123 Street 123").build().hashCode());
     }
 
     @Test
