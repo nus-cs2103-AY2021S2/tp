@@ -14,7 +14,7 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
   - [Adding a person: `add`](#adding-a-person-add)
   - [Listing all persons: `list`](#listing-all-persons--list)
   - [Editing a person: `edit`](#editing-a-person--edit)
-  - [Adding a new remark or replacing an existing remark: `remark`](#adding-a-new-remark-or-replacing-an-existing-remark--remark)
+  - [Adding a remark: `rem ark`](#adding-a-new-remark-or-replacing-an-existing-remark--remark)
   - [Blacklisting a contact: `blist`](#blacklisting-a-contact--blist)
   - [Blacklisting or unblacklisting multiple contacts: `massblist`](#blacklisting-or-unblacklisting-multiple-contacts--massblist)
   - [Deleting a person: `delete`](#deleting-a-person--delete)
