@@ -49,8 +49,7 @@ public class OrderItem {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Type of cake: ")
-                .append(getType());
+        builder.append(getType());
         return builder.toString();
     }
 

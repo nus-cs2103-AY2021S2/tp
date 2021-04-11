@@ -132,6 +132,12 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
+    /**
+     * Checks if indexes exceed number of items in order item model. Other validity checks like -ve numbers and
+     * non-integers are taken care of by parser for index list.
+     * @param model
+     * @throws CommandException
+     */
     private void checkValidIndexes(Model model) throws CommandException {
         if (orderItemIndexList == null) {
             return;
@@ -168,9 +174,8 @@ public class AddCommand extends Command {
      * given by the user, which have been added to the descriptor by the parser
      *
      * @param model
-     * @throws CommandException thrown when invalid indexes are given
      */
-    private void addToOrderDescriptionsBasedOnIndexes(Model model) throws CommandException {
+    private void addToOrderDescriptionsBasedOnIndexes(Model model) {
         List<OrderItem> lastShownOrderItems = model.getFilteredOrderItemsList();
 
         List<Index> indexList = orderItemIndexList.getIndexList();
@@ -187,8 +192,6 @@ public class AddCommand extends Command {
                 )
         ));
     }
-
-
 
     @Override
     public boolean equals(Object other) {
