@@ -12,8 +12,7 @@ public enum Priority {
     UNASSIGNED("unassigned");
 
     public static final String MESSAGE_CONSTRAINTS = "Task Priority should take one of the predefined values: "
-            + "high, medium, low "
-            + "or unassigned (Case Sensitive)";
+            + "high, medium, low or unassigned (case-sensitive)";
 
     public final String priority;
 
