@@ -67,11 +67,11 @@ Adds the details of a student to Vax@NUS records.
 
 > For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the add student command.
 
-Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
+Format: `add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
-* `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-* `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`
+* `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+* `add A1234567X n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`
 
 | Before        | 
 | ------------- |
@@ -188,13 +188,13 @@ Adds an appointment to Vax@NUS' records.
 
 Appointments can be added for both unvaccinated and vaccinated students, as appointments can also entail follow-ups or check-ups in addition to vaccinations.
 
-Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
+Format: `addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
 > For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding the details of an appointment accepted by Vax@NUS.
 
 Examples:
-* `addAppt i/A1234567X d/2021-12-13 ts/13:00`
-* `addAppt i/A7654321J d/2021-12-13 ts/14:00`
+* `addAppt A1234567X d/2021-12-13 ts/13:00`
+* `addAppt A7654321J d/2021-12-13 ts/14:00`
 
 | Before        | 
 | ------------- |
@@ -299,21 +299,13 @@ Vax@NUS saves your current data into your computer automatically after any comma
 
 :information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
 
-
-### Editing the data
-
-Vax@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
-
-Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity.
-
-If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s).
-Failure to do so will result in an invalid data file format as the appointment does not belong to any student.
-
-> :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
-
 > Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
 :information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting Vax@NUS.
+
+> :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+
+:information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -412,7 +404,7 @@ If unindicated, the `School Residence` field will default to `DOES NOT LIVE ON C
 
 Action | Format, Examples
 --------|------------------
-**Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+**Add Student** | `add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
 **Edit Student** | `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
 **Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter unvaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
