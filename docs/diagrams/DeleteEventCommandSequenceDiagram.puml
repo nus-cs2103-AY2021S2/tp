@@ -49,7 +49,7 @@ SocheduleParser -[hidden]->[
 LogicManager -> DeleteEventCommand : execute()
 activate DeleteEventCommand
 
-DeleteEventCommand -> Model : deleteEvents(Event eventToDelete)
+DeleteEventCommand -> Model : deleteEvent(Event eventToDelete)
 activate Model
 DeleteEventCommand <-- Model
 deactivate Model
@@ -64,6 +64,7 @@ LogicManager <-- DeleteEventCommand
 deactivate DeleteEventCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteEventCommand -[hidden]->[
+destroy DeleteEventCommand
 
 [<-- LogicManager : CommandResult
 @enduml
