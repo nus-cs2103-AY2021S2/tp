@@ -13,11 +13,18 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(clear)
+[-> LogicManager : execute("clear")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(clear)
+LogicManager -> SocheduleParser : parseCommand("clear")
 activate SocheduleParser
+
+create ClearCommandParser
+SocheduleParser -> ClearCommandParser
+activate ClearCommandParser
+
+ClearCommandParser --> SocheduleParser
+deactivate ClearCommandParser
 
 SocheduleParser -> ClearCommandParser: parse()
 activate ClearCommandParser
@@ -42,7 +49,7 @@ SocheduleParser -[hidden]->[
 LogicManager -> ClearCommand : execute()
 activate ClearCommand
 
-ClearCommand -> Model : setSochedule(new Sochedule)
+ClearCommand -> Model : setSochedule("sochedule")
 activate Model
 ClearCommand <-- Model
 deactivate Model
