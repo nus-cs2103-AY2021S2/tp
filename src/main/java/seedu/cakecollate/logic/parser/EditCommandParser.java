@@ -20,6 +20,7 @@ import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.logic.commands.EditCommand;
 import seedu.cakecollate.logic.commands.EditCommand.EditOrderDescriptor;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
+import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.tag.Tag;
@@ -46,6 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IndexOutOfBoundsException pe) {
             throw new IndexOutOfBoundsException(pe.getMessage());
+        } catch (NegativeIndexException pe) {
+            throw new NegativeIndexException(pe.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }

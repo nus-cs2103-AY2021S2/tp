@@ -1,6 +1,7 @@
 package seedu.cakecollate.logic.parser;
 
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.cakecollate.commons.core.Messages.MESSAGE_NEGATIVE_INDEX;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.DELIVERY_DATE_DESC_AMY;
@@ -80,7 +81,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_NEGATIVE_INDEX);
 
         // zero index
         assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);

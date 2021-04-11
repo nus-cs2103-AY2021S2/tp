@@ -112,6 +112,8 @@ public class AddCommand extends Command {
                 || this.orderItemIndexList.getIndexList().size() != 0
                 : "some error here; neither order description nor order item index was provided";
 
+        checkValidIndexes(model);
+
         if (this.addOrderDescriptor.getOrderDescriptions().isPresent()) {
             addToOrderItemsModel(model);
         }
@@ -130,6 +132,22 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
+    private void checkValidIndexes(Model model) throws CommandException {
+        if (orderItemIndexList == null) {
+            return;
+        }
+
+        List<OrderItem> lastShownOrderItems = model.getFilteredOrderItemsList();
+
+        List<Index> indexList = orderItemIndexList.getIndexList();
+
+        for (Index i : indexList) {
+            if (i.getZeroBased() >= lastShownOrderItems.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ORDER_ITEM_INDEX);
+            }
+        }
+    }
+
     /**
      * Adds order descriptions in the descriptor to order items model if they aren't already in the model.
      * These order descriptions are inputted by the user and already added into the descriptor before
@@ -143,7 +161,6 @@ public class AddCommand extends Command {
                 .map(o -> new OrderItem(new Type(o))) // map to order item so can check if already in model
                 .filter(o -> !model.hasOrderItem(o)) // filters out items that already exist in model
                 .forEach(model::addOrderItem);
-
     }
 
     /**
@@ -158,18 +175,12 @@ public class AddCommand extends Command {
 
         List<Index> indexList = orderItemIndexList.getIndexList();
 
-        for (Index i : indexList) {
-            if (i.getZeroBased() >= lastShownOrderItems.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_ORDER_ITEM_INDEX);
-            }
-        }
-
         /* for each index specified
          * get corresponding order item
          * create an order description from the order item
          */
-        indexList.forEach(index -> addOrderDescriptor.setOrderDescription(
-                new OrderDescription(lastShownOrderItems
+        indexList.forEach(index -> addOrderDescriptor.setOrderDescription(new OrderDescription(
+                lastShownOrderItems
                     .get(index.getZeroBased())
                     .getType()
                     .toString()
