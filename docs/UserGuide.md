@@ -31,8 +31,11 @@ It is generally advised for new users to at least read through the [Quick Start]
 
 Note the following symbols and formatting used in this document:
 
-`list` <br>
-The grey highlight, also called a mark-up, indicates that the text in it can be typed into the command line and executed by the application.
+* Mark-up: `list` <br> 
+  Text with this formatting indicates that it can be **typed** into the command line and executed by the application or it
+  can be **results** of the command.
+* Bolded: **important** <br> 
+  Text with this formatting indicates that it is important information, and should be taken note of.
 
 <div markdown="block" class="alert alert-info">
 
@@ -57,11 +60,11 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 ## 2. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java **11** or above installed in your Computer.
 
-1. Download the latest `tutorspet.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-3/tp/releases).
+1. Download the latest **tutorspet.jar** from [here](https://github.com/AY2021S2-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TutorsPet.
+1. Copy the file to the folder you want to use as the **home folder** for your TutorsPet.
 
 1. Double-click the file to start the app. If that does not work, open command prompt and type in 
    `java -jar /path/to/jar/file`, replacing the path with the absolute or relative file paths.
@@ -98,22 +101,22 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in **UPPER_CASE** are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/SUBJECT]` can be used as `n/John Doe t/econ` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…` after them can be used multiple times including **zero times**.<br>
   e.g. `[t/SUBJECT]…​` can be used as ` ` (i.e. 0 times), `t/chem`, `t/phys t/math` etc.
   
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extra keywords input for commands that do not require parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* **Extra keywords** input for commands that do not require parameters (such as `help`, `list`, `exit` and `clear`) will be **ignored**.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
@@ -386,13 +389,11 @@ Prefix | Searching Criteria
 
 :bulb:**Tips:** <br>
 
-* At least one prefix must be used.
+* **At least one** prefix must be used.
+   
+* All 3 types of prefix can be used **concurrently**.
   
-* Each prefix should only be used at most once for each search. 
-  
-* All 3 types of prefix can be used concurrently.
-  
-* The search is case-insensitive. E.g. `TAN` will match `Tan`.
+* The search is case-insensitive.
   
 * The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
    
@@ -623,9 +624,9 @@ TutorsPet data are saved in the hard disk automatically after any command that c
 #### 3.5.2 Editing the data file
 
 TutorsPet data are saved into three different JSON files: <br>
-1. `[JAR file location]/data/addressbook.json` for storing contact details. 
-2. `[JAR file location]/data/datesbook.json` for storing important exam dates.
-3. `[JAR file location]/data/lessonbook.json`for storing student lesson dates.
+1. **\[JAR file location]/data/addressbook.json** for storing contact details. 
+2. **\[JAR file location]/data/datesbook.json** for storing important exam dates.
+3. **\[JAR file location]/data/lessonbook.json** for storing student lesson dates.
 
 Advanced users are welcome to update data directly by editing that data file.
 
@@ -640,12 +641,12 @@ Advanced users are welcome to update data directly by editing that data file.
 
 ## 4. Coming soon
 
-### 4.1 Add a subject to teach`[coming in v2.0]`
+### 4.1 Add a subject to teach **[coming in v2.0]**
 
 _Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
 while in v2.0, more personalised subjects can be added in._
 
-### 4.2 Add profile picture for each contact`[coming in v2.0]`
+### 4.2 Add profile picture for each contact **[coming in v2.0]**
 _Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
 by providing the file path to the picture._
 --------------------------------------------------------------------------------------------------------------------
@@ -667,13 +668,13 @@ Student Contact Field   | Prefix | Optional?|Notes
 ------------------------| -------|--------- |------------------------------------
 Name                    | `n/`   | Y        | Contains alphanumeric characters and spaces only
 Phone number            | `p/`   | Y        | Contains numbers only; at least 3 digits long
-Email                   | `e/`   | N        | Should be in the format of **local-part@domain** e.g. **alexyeoh@gmail.com**
+Email                   | `e/`   | N        | Should be in the format of **local-part@domain** e.g. `alexyeoh@gmail.com`
 Address                 | `a/`   | N        | Any format
 Guardian's name         | `gn/`  | N        | Contains alphanumeric characters and spaces only
 Guardian's phone number | `gp/`  | N        | Contains numbers only; at least 3 digits long
 Education level         | `lv/`  | N        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad`
 Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.
-Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. **1300**
+Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
