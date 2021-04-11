@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+
+package DisplayPanels <<Rectangle>> {
+    Class PatientListPanel
+    Class DoctorListPanel
+    Class AppointmentListPanel
+}
+
+package Model <<Rectangle>> {
+    package PatientModel <<Rectangle>> {
+    }
+    package DoctorModel <<Rectangle>> {
+    }
+    package AppointmentModel <<Rectangle>> {
+    }
+}
+
+package DisplayCards <<Rectangle>> {
+    Class PatientCard
+    Class DoctorCard
+    Class AppointmentCard
+}
+
+PatientListPanel -down-> PatientCard
+DoctorListPanel -down-> DoctorCard
+AppointmentListPanel -down-> AppointmentCard
+
+DoctorListPanel -[hidden]left- PatientListPanel
+AppointmentListPanel -[hidden]left- DoctorListPanel
+
+
+PatientCard ..> PatientModel
+DoctorCard ..> DoctorModel
+AppointmentCard ..> AppointmentModel
+@enduml
