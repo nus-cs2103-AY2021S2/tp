@@ -1194,17 +1194,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -1218,3 +1218,49 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding an important date
+
+1. Adding an important date while all important dates are being shown
+
+    1. Prerequisites: List all important dates using the `list-date` command. Multiple important dates in the list.
+  
+    1. Test case: `add-date d/math exam dt/2021-11-03 0800`<br>
+       Expected: Adds an important date with the description `math exam` and details `2021-11-03 0800`. Details of the added important date is shown in the status message. List is updated. 
+  
+    1. Test case: `add-date d/math exam`<br>
+       Expected: No important date is added. Error details shown in the status message.
+       
+    1. Test case: `add-date dt/2021-11-03 0800`<br>
+       Expected: Similar to previous.
+       
+    1. Test case: `add-date d/math exam dt/2021/11/03 8am`<br>
+       Expected: Similar to previous.
+  
+    1. Other incorrect add important date commands to try: `add-date`, `add-date x`, `...` (where x is the description or details without the `d/` or `dt/` prefix)<br>
+       Expected: Similar to previous.
+
+
+### Deleting an important date
+
+1. Deleting an important date while all important dates are being shown
+   
+    1. Prerequisites: List all important dates using the `list-date` command. Multiple important dates in the list.
+    
+      1. Test case: `delete-date 1`<br>
+         Expected: First important date is deleted from the list. Details of the deleted important date is shown in the status message.
+    
+      1. Test case: `delete-date 0`<br>
+         Expected: No important date is deleted. Error details shown in the status message.
+    
+      1. Other incorrect delete important date commands to try: `delete-date`, `delete x`, `...` (where x is larger than the list size, larger than 2147483647 or not a positive integer)<br>
+         Expected: Similar to previous.
+
+### Listing all important dates
+
+1. List all important dates.
+
+    1. Test case: `list-date 2`<br>
+       Expected: Opens window with a list of important dates. Success details is shown in the status message.
+    
+    1. Incorrect list important date commands include cases where the command entered is not `list-date`
