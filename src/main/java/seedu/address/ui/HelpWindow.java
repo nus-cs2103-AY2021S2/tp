@@ -121,7 +121,7 @@ public class HelpWindow extends UiPart<Stage> {
             String currentLine = reader.readLine();
 
             // Keeps reading the file until Command Summary is reached
-            while (currentLine != null && !currentLine.equals("# Command Summary")) {
+            while (currentLine != null && !currentLine.contains("# Command Summary")) {
                 currentLine = reader.readLine();
             }
 
