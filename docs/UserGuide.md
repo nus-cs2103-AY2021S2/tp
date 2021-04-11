@@ -100,7 +100,7 @@ Format: `commanddetailu`
 
 ### Dictionary Features
 This section will introduce to you the commands to be used in the Dictionary Panel.
-![dictionary](images/dictionary_panel.png)
+![dictionary](images/dictionaryoverview.png)
 
 #### Listing all content : `listcontent`
 
@@ -111,7 +111,7 @@ Shows a list of all contents in the Dictionary.
 
 Format: `listcontent`  
 This command will return you the content in the dictionary panel:
-![listcontent](images/list_content.png)
+![listcontent](images/Diagram-listcontent.png)
 
 #### Finding content in the Dictionary using keywords: `findcontent`
 
@@ -133,7 +133,7 @@ Examples:
 * `findcontent programming` returns `Programming` and `PROGRAMMING LANGUAGE`
 * `findcontent some different` returns `some content`, `different thing`<br>
 * `findcontent program` will return the following 2 contents:
-  ![demo findcontent](images/find_content.png)
+  ![demo findcontent](images/Diagram-findcontent.png)
 
 
 #### Listing all definitions : `listdef`
@@ -145,7 +145,7 @@ Shows a list of all the definitions in the Dictionary.
 
 Format: `listdef`  
 This command will show you the list of definitions in the dictionary panel:
-  ![listdef](images/list_def.png)
+  ![listdef](images/Diagram-listdef.png)
 
 #### Finding definition in the Dictionary using keywords: `finddef`
 
@@ -162,7 +162,7 @@ Format: `finddef KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
-  ![finddef](images/find_def.png)
+  ![finddef](images/Diagram-finddef.png)
 
 #### Show a dictionary content : `showdc`
 
@@ -174,10 +174,10 @@ Format: `showdc INDEX​`
 * The index refers to the index number shown in the displayed dictionary list. The index **must be a positive integer** 1, 2, 3, …​
 * If the list shown in the dictionary panel is the content's list, then the indexes will correspond to the content in the content list.   
   E.g. in the contents list, show the content of index 1:
-  ![showdc content](images/showdc_content.png)
+  ![showdc content](images/Diagram-showdccontent.png)
 * If the list shown in the dictionary panel is the definitions list, then the indexes will correspond to the content in the definitions list.  
   E.g. in the definitions list, show the definition of index 1:
-  ![showdc defs](images/showdc_def.png)
+  ![showdc defs](images/Diagram-showdcdef.png)
   
 
 #### Copying content to a note: `copytonote`
@@ -190,12 +190,12 @@ Shows a list of all the definitions in the Dictionary.
 Format: `copytonote`
 
 Example: `copytonote 1`
-  ![copttonote](images/copytonote.png)  
-You will see that a new note with the details of the content at index 1 will be created in the note panel.  
+  ![copttonote](images/Diagram-copytonote.png)  
+You will see that a new note with the details of the content at index 1 will be created in the note list panel.  
 
-To view the note created, use the command `shownote` at the respective index, in this case index 6  
+To view the note created in the note content panel, use the command `shownote` at the respective index, in this case index 6  
 `shownote 6`:
-  ![shownote for content](images/shownoteforcontent.png)  
+  ![shownote for content](images/Diagram-shownoteforcontent.png)  
   
 To edit the note/carry out other commands, please view the detailed commands under the [Note Features](#note-features).
 
