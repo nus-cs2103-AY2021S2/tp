@@ -15,7 +15,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final int MAX_NO_OF_ENTRIES_ALLOWED = 1000000;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new entry to the food diary. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new entry to the food diary.\n"
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
             + CliSyntax.PREFIX_RATING + "RATING "
