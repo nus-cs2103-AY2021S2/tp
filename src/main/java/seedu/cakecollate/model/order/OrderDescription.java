@@ -6,13 +6,13 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 public class OrderDescription {
 
     public static final String MESSAGE_CONSTRAINTS = "Order description should not be left blank.";
+    public static final String MESSAGE_OVERFLOW = "Order description has a size limit of 70 characters.";
 
     /*
      * The first character of the order description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    // todo need help, why is this able to catch o/1 x Amy errors (errors using prefix when there shouldnt be)
 
     public final String value;
 

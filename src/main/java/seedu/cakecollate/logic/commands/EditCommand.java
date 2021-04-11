@@ -11,8 +11,10 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -57,6 +59,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.";
+    public static final String MESSAGE_NO_CHANGE = "No changes were made.";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -88,6 +91,10 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
+        if (orderToEdit.equals(editedOrder)) {
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
+
         model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
@@ -104,13 +111,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editOrderDescriptor.getPhone().orElse(orderToEdit.getPhone());
         Email updatedEmail = editOrderDescriptor.getEmail().orElse(orderToEdit.getEmail());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
-        Set<OrderDescription> updatedOrderDescriptions =
+        Map<OrderDescription, Integer> updatedOrderDescriptions =
                 editOrderDescriptor.getOrderDescriptions().orElse(orderToEdit.getOrderDescriptions());
         Set<Tag> updatedTags = editOrderDescriptor.getTags().orElse(orderToEdit.getTags());
         DeliveryDate updatedDeliveryDate =
                 editOrderDescriptor.getDeliveryDate().orElse(orderToEdit.getDeliveryDate());
         DeliveryStatus deliveryStatus = orderToEdit.getDeliveryStatus();
-        Request updatedRequest = orderToEdit.getRequest(); // edit command does not allow editing requests.
+        // Normal edit command does not support editing request but this is here to support test cases for edit command
+        Request updatedRequest = editOrderDescriptor.getRequest().orElse(orderToEdit.getRequest());
 
         return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions,
                 updatedTags, updatedDeliveryDate, deliveryStatus, updatedRequest);
@@ -143,7 +151,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<OrderDescription> orderDescriptions;
+        private Map<OrderDescription, Integer> orderDescriptions;
         private Set<Tag> tags;
         private DeliveryDate deliveryDate;
         private Request request;
@@ -162,6 +170,7 @@ public class EditCommand extends Command {
             setOrderDescriptions(toCopy.orderDescriptions);
             setTags(toCopy.tags);
             setDeliveryDate(toCopy.deliveryDate);
+            setRequest(toCopy.request);
         }
 
         /**
@@ -203,13 +212,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
-            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) : null;
+        public void setOrderDescriptions(Map<OrderDescription, Integer> orderDescriptions) {
+            this.orderDescriptions = (orderDescriptions != null) ? new HashMap<>(orderDescriptions) : null;
         }
 
-        public Optional<Set<OrderDescription>> getOrderDescriptions() {
+        public Optional<Map<OrderDescription, Integer>> getOrderDescriptions() {
             return (orderDescriptions != null)
-                    ? Optional.of(Collections.unmodifiableSet(orderDescriptions))
+                    ? Optional.of(Collections.unmodifiableMap(orderDescriptions))
                     : Optional.empty();
         }
 
@@ -236,6 +245,14 @@ public class EditCommand extends Command {
 
         public Optional<DeliveryDate> getDeliveryDate() {
             return Optional.ofNullable(deliveryDate);
+        }
+
+        public void setRequest(Request request) {
+            this.request = request;
+        }
+
+        public Optional<Request> getRequest() {
+            return Optional.ofNullable(request);
         }
 
         @Override

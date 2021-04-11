@@ -1,5 +1,6 @@
 package seedu.cakecollate.logic.commands;
 
+import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
@@ -31,12 +32,14 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size());
+        assertCommandSuccess(new ListCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size());
         showOrderAtIndex(model, INDEX_FIRST_ORDER);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, expectedMessage, expectedModel);
     }
 }

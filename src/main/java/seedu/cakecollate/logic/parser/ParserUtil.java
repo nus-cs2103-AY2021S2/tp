@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.cakecollate.commons.core.Messages;
@@ -12,6 +14,7 @@ import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
+import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -28,12 +31,14 @@ import seedu.cakecollate.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is invalid.";
+    public static final String MESSAGE_NO_INDEX_PROVIDED = "No index provided";
     public static final int PHONE_LENGTH = 20;
     public static final int TAG_LENGTH = 30;
-
     public static final int INTEGER_LENGTH = 10;
-    public static final int NAME_LENGTH = 80;
+    public static final int NAME_LENGTH = 70;
+    public static final int ORDER_DESCRIPTION_LENGTH = 70;
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -47,6 +52,9 @@ public class ParserUtil {
         boolean allDigitsAndLengthMoreThanTen = allDigits && lengthMoreThanTen;
         if (allDigitsAndLengthMoreThanTen) {
             throw new IndexOutOfBoundsException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        }
+        if (StringUtil.isNegativeInteger(trimmedIndex)) {
+            throw new NegativeIndexException(Messages.MESSAGE_NEGATIVE_INDEX);
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
@@ -62,11 +70,16 @@ public class ParserUtil {
      * @throws ParseException if one of the specified indices is invalid.
      */
     public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
-        String[] indexListSplit = oneBasedIndexList.trim().split(" ");
+        String[] indexListSplit = oneBasedIndexList.trim().split("\\s+");
         IndexList indexList = new IndexList(new ArrayList<>());
         for (String index: indexListSplit) {
-            Index parsedIndex = parseIndex(index);
-            indexList.add(parsedIndex);
+            if ((!index.equals(" ")) && (!index.equals(""))) {
+                Index parsedIndex = parseIndex(index.trim());
+                indexList.add(parsedIndex);
+            }
+        }
+        if (indexList.getIndexList().size() == 0) {
+            throw new ParseException(MESSAGE_NO_INDEX_PROVIDED);
         }
         indexList.sortList();
         return indexList;
@@ -160,6 +173,9 @@ public class ParserUtil {
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
         String trimmedOrderDescription = orderDescription.trim();
+        if (trimmedOrderDescription.length() > ORDER_DESCRIPTION_LENGTH) {
+            throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
+        }
         if (!OrderDescription.isValidOrderDescription(trimmedOrderDescription)) {
             throw new ParseException(OrderDescription.MESSAGE_CONSTRAINTS);
         }
@@ -168,16 +184,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>}.
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Map<OrderDescription, Integer>}.
      */
-    public static Set<OrderDescription> parseOrderDescriptions(Collection<String> orderDescriptions)
+    public static Map<OrderDescription, Integer> parseOrderDescriptions(Collection<String> orderDescriptions)
             throws ParseException {
         requireNonNull(orderDescriptions);
-        final Set<OrderDescription> orderDescriptionSet = new HashSet<>();
-        for (String o : orderDescriptions) {
-            orderDescriptionSet.add(parseOrderDescription(o));
+        final Map<OrderDescription, Integer> orderDescriptionMap = new HashMap<>();
+        for (String str : orderDescriptions) {
+            OrderDescription od = parseOrderDescription(str);
+            int quantity = orderDescriptionMap.getOrDefault(od, 0);
+            orderDescriptionMap.put(od, quantity + 1);
         }
-        return orderDescriptionSet;
+        return orderDescriptionMap;
     }
 
     /**
@@ -223,11 +241,9 @@ public class ParserUtil {
             throw new ParseException(DeliveryDate.MESSAGE_EMPTY);
         }
         if (!DeliveryDate.isValidFormat(trimmedDeliveryDate)) {
-            System.out.println("not valid format");
             throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
         }
         if (!DeliveryDate.isXDaysLater(trimmedDeliveryDate, 0L)) {
-            System.out.println("not future date");
             throw new ParseException(String.format(DeliveryDate.MESSAGE_CONSTRAINTS_VALUE, trimmedDeliveryDate));
         }
         return new DeliveryDate(trimmedDeliveryDate);

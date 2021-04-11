@@ -183,12 +183,15 @@ public class ModelManager implements Model {
         orderItems.removeOrderItem(target);
     }
 
-
-
     @Override
     public void addOrderItem(OrderItem orderItem) {
         logger.info(String.format("adding order item %s to orderitems %s", orderItem, orderItems));
         orderItems.addOrderItem(orderItem);
+    }
+
+    @Override
+    public void setOrderItems(ReadOnlyOrderItems orderItems) {
+        this.orderItems.resetData(orderItems);
     }
 
     //=========== Filtered Order Items List Accessors =============================================================

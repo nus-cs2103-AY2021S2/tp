@@ -82,7 +82,6 @@ public class RemindCommandTest {
     @Test
     public void execute_largeRange_allOrdersFound() {
         String expectedMessage = String.format(MESSAGE_ORDERS_REMINDER_OVERVIEW, 7, 69420);
-        System.out.println(expectedMessage);
         ReminderDatePredicate predicate = new ReminderDatePredicate(69420);
         RemindCommand command = new RemindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
@@ -96,7 +95,6 @@ public class RemindCommandTest {
     @Test
     public void execute_largeRange_mostOrdersFound() {
         String expectedMessage = String.format(MESSAGE_ORDERS_REMINDER_OVERVIEW, 6, 500);
-        System.out.println(expectedMessage);
         ReminderDatePredicate predicate = new ReminderDatePredicate(500);
         RemindCommand command = new RemindCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
