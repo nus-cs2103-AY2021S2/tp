@@ -13,13 +13,20 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(free_time date)
+[-> LogicManager : execute("free_time...")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(free_time date)
+LogicManager -> SocheduleParser : parseCommand("free_time...")
 activate SocheduleParser
 
-SocheduleParser -> FindFreeTimeCommandParser: parse(date)
+create FindFreeTimeCommandParser
+SocheduleParser -> FindFreeTimeCommandParser
+activate FindFreeTimeCommandParser
+
+FindFreeTimeCommandParser --> SocheduleParser
+deactivate FindFreeTimeCommandParser
+
+SocheduleParser -> FindFreeTimeCommandParser: parse("2021-08-08")
 activate FindFreeTimeCommandParser
 
 create FindFreeTimeCommand
@@ -42,7 +49,7 @@ SocheduleParser -[hidden]->[
 LogicManager -> FindFreeTimeCommand : execute()
 activate FindFreeTimeCommand
 
-FindFreeTimeCommand -> Model : getFreeTimeSlots(Date date)
+FindFreeTimeCommand -> Model : getFreeTimeSlots("2021-08-08")
 activate Model
 FindFreeTimeCommand <-- Model
 deactivate Model

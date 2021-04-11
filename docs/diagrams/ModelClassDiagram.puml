@@ -27,20 +27,20 @@ Class UniqueEventList
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> "<<Interface>>\nModel"
 
-Sochedule .up.|> "<<Interface>>\nReadOnlySochedule"
 
 ModelManager .up.|> "<<Interface>>\nModel"
 "<<Interface>>\nModel" .right.> "<<Interface>>\nObservableList"
 ModelManager o--> "1" Sochedule
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
+Sochedule .right.|> "<<Interface>>\nReadOnlySochedule"
 
 Sochedule *--> "1" UniqueTaskList
-UniqueTaskList o--> "*" Task
+UniqueTaskList o-left-> "*" Task
 
 Sochedule *--> "1" UniqueEventList
-UniqueEventList o--> "*" Event
+UniqueEventList o-right-> "*" Event
 
-ModelManager ----->"1" Task : "filtered list"
-ModelManager ----->"1" Event : "filtered list"
+ModelManager ---->"1" Task : "filtered list"
+ModelManager ---->"1" Event : "filtered list"
 @enduml
