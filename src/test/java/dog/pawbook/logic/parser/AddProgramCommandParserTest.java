@@ -67,6 +67,10 @@ public class AddProgramCommandParserTest {
         Program expectedProgram = new ProgramBuilder(POTTY_TRAINING).withTags().build();
         assertParseSuccess(parser, NAME_DESC_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING,
                 new AddProgramCommand(expectedProgram));
+        // zero sessions
+        expectedProgram = new ProgramBuilder(POTTY_TRAINING).withSessions().build();
+        assertParseSuccess(parser, NAME_DESC_POTTY_TRAINING + TAG_DESC_PUPPIES,
+                new AddProgramCommand(expectedProgram));
     }
 
     @Test
@@ -76,8 +80,7 @@ public class AddProgramCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING,
                 expectedMessage);
-        // missing session prefix
-        assertParseFailure(parser, VALID_NAME_POTTY_TRAINING, expectedMessage);
+
     }
 
     @Test
