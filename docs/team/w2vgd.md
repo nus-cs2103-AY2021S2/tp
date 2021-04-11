@@ -41,11 +41,11 @@ Given below are my contributions to the project:
   * Wrote additional tests ([\#299](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/299), [\#62](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/62), [\#66](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/66))
 
 
-#### Project management:
+#### Project management
 
 * Managed releases `v1.2`, `v1.2.1`, `v1.3`, `v1.3.1`, `v1.4` (5 releases) on GitHub
 
-#### Documentation:
+#### Documentation
 
 * **User Guide**:
   * Added documentation for the commands `add property` and `add appointment` ([\#25](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/25), [\#290](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/290))
@@ -60,7 +60,7 @@ Given below are my contributions to the project:
   * Updated Architecture sequence diagram, Ui class diagram, Logic class diagram, Model class diagram ([\#142](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/142), [\#151](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/151), [\#156](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/156), [\#182](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/182))
   * Formatted table of contents with numbering for each section ([\#323](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/323))
 
-#### Community:
+#### Community
 
 * PRs reviewed (with non-trivial review comments): ([\#132](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/132), [\#202](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/202), [\#191](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/191), [\#195](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/195), [\#84](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/84))
 * Initiated forum discussions tagged with `must-see` labels (examples: [\#224](https://github.com/nus-cs2103-AY2021S2/forum/issues/224), [\#257](https://github.com/nus-cs2103-AY2021S2/forum/issues/257), [\#276](https://github.com/nus-cs2103-AY2021S2/forum/issues/276))
