@@ -76,7 +76,7 @@ The sections below give more details of each component.
 * All of these Ui parts and windows, including the `MainWindow`, inheerit from the abstract `UiPart` class
 * In addition, the `UI` component also uses the JavaFX UI framework. THe layout of these UI parts are each defined in
  their corresponding `.fxml` files that can be loated in the `src/main/resources/view` folder.
-* For example, the layout of the HelpWindow is specified in the HelpWindow.fxml file
+* For example, the layout of the HelpWindow is specified in the `HelpWindow.fxml` file
 * A universal styling theme is applied to all components, and the styling is defined in 2 files:
  `DarkTheme.css` and `Extensions.css`. Both are located in the `src/main/resources/view` folder.
 * Images/icons used throughout the app windows are located in the `src/main/resources/images` folder.
@@ -143,6 +143,7 @@ Notably:
 
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
+
 ### AddOn Feature
 The AddOn feature allows the user to add review(s) and/or a price to a single entry of a food place. This will be useful
 for users who frequently visit a particular place and would like to enter their reviews and the price spent on each visit.
@@ -166,7 +167,7 @@ Else, the FoodDiary will display an appropriate error message.
 The following sequence diagram shows how the AddOn feature works:
 ![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
 
-The following activity diagram summaries the flow of event when a user executes the addon command:
+The following activity diagram summaries the flow of event when a user executes the `addon` command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
 #### Design Consideration
@@ -284,7 +285,7 @@ Step 4: User decides to visit that particular food place.
 The following sequence diagram shows how the FindAll feature works:
 ![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the FindAll
+The following activity diagram summarises the events that take place when a user executes the `findAll`
 command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
@@ -319,8 +320,8 @@ prefix and the EditCommand.
 The following sequence diagram shows how Revise feature works:
 ![Revise Sequence Diagram](images/ReviseSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the Revise
-command:
+The following activity diagram summarises the events that take place when a user executes the `revise
+command`:
 ![Revise Activity Diagram](images/ReviseActivityDiagram.png)
 
 #### Design Consideration
@@ -350,10 +351,10 @@ If the command `edit 1 re/New review is passed`, the `edit` command essentially 
  entry that has the new review. The `edit` coammand calls `Model#setEntry()`, which calls
  `ModelManager#setEntry()`, that calls `FoodDiary#setEntry()` to eventually change the target entry with a new entry.
 
-The following sequence diagram shows how Revise feature works:
+The following sequence diagram shows how Edit feature works:
 ![Edit Sequence Diagram](images/EditSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the Revise
+The following activity diagram summarises the events that take place when a user executes the `edit`
 command:
 ![Edit Activity Diagram](images/EditActivityDiagram.png)
 
@@ -372,6 +373,29 @@ command:
   
   As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
   for `edit` and the pros for the alternative.
+
+### Help Feature
+
+The `help` feature primarly helps the user by showing a help guide whenever a user wishes to see it.
+ 
+* The help guide is a succint version of all the commands and keywords for certan input parameters.
+
+* The help guide also dislays examples related to each command for users to quickly get a sense of what
+ each command does.
+    
+* The help guide also contains the link to our User Guide where users can copy the link from
+ and visit for more information
+
+An additional `HelpWindow` is opened when a user enters the `help` command in the UI. The command will be passed into 
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the
+user input in `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
+A `HelpWindow` is returned at the end.
+
+The following sequence diagram shows how the Help feature works:
+![Help Sequence Diagram](images/HelpSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `help` command:
+![Help Activity Diagram](images/HelpActivityDiagram.png)
 
 ### View Feature
 `view`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
@@ -395,7 +419,7 @@ The mechanism works in such a way where after the user enters a command in the U
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
 shown in a new window.
 
-The following sequence diagram shows how the `view` feature works:
+The following sequence diagram shows how the View feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes the `view` command:
@@ -457,7 +481,7 @@ The parsed command will be identified as the exit command.
 
 ## **Appendix A: Challenges Faced**
 
-### Challenges Faced & Rationale
+### Challenges Faced & Rationalez
 
 1. One of the most significant challenges on the creation of The Food Diary was refactoring and redefining classes and
  methods to match the implementation of a Food Diary, and in doing so do away with previous implementations
