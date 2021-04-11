@@ -70,10 +70,11 @@ ResidenceTracker helps users to also keep track of any bookings a residence has,
 Shows a message with the current list of commands along with examples.
 It also provides a button to copy the URL link to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
+Shortcut: press `F1`
+
+![help message](images/helpMessage.png)
 
 ### Adding a residence: `add`
 
