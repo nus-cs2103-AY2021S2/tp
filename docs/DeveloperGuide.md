@@ -158,9 +158,16 @@ The FindAll feature allows a user to find entries that match **ALL** the keyword
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
 
+This feature is implemented through the `findll` command, where the user will provide a list of keywords that
+they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
+The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
+`TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
+fields of all entries, and return all entries that match all the keywords provided. The UI will then
+be updated to display the list of entries that were returned as a search result.
+
 The FindAll feature is similar to the Find feature. The Find feature finds for all entries that meet
-at least one of the given keywords, while the FindAll feature only finds for entries that meet all the
-given keywords.
+at least **one of the given keywords,** while the FindAll feature only finds for entries that meet **all the
+given keywords.**
 
 The following sequence diagram shows how the FindAll feature works:
 ![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
@@ -433,7 +440,22 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC08: Find all specific entries**
+**UC08: Find for entries**
+
+**MSS**
+1. User enters keywords to be used to search for entries.
+2. Food Diary shows all entries matching user requirements (if any).
+
+   Use case ends.
+
+**Extensions**:
+* 1a. Food Diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+  Use case resumes from step 2.
+
+**UC09: Find all specific entries**
 
 **MSS**
 1. User enters keywords to specify requirements for entries.
@@ -448,7 +470,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
   Use case resumes from step 2.
 
-**UC09: Revise an Entry**
+**UC10: Revise an Entry**
 
 **MSS**
 1. User requests to revise a specific entry.
@@ -467,7 +489,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC10: Exit**
+**UC11: Exit**
 
 **MSS**
 1. User exits.
@@ -480,7 +502,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC11: Clear**
+**UC12: Clear**
 
 **MSS**
 1. User requests to clear all entries.
