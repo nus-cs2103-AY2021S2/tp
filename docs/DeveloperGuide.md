@@ -176,19 +176,19 @@ This section describes some noteworthy details on how certain features are imple
 
 ##### Implementation
 
-This feature is implemented as a command, `EmailCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific contact on the contacts list.
+This feature is implemented as a command, `EmailCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific contact on the contacts list. In addition, the command has an optional index number argument that refers to a note within the note book.
 
-The index number was selected to refer to a particular contact. This is due to its character length being shorter in most cases than any other field of information in `Contact` objects, making it both simple and sufficient.
+The index number was selected to refer to a particular contact. This is due to its character length being shorter in most cases than any other field of information in `Contact` objects, making it both simple and sufficient. Likewise, notes are referred to by their index numbers for the same reasons.
 
-The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end.
+The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end. In case a note index number is provided, the contents of the note located at the specified index number will be copied to the messages's body field.
 
 As an example, consider running Dictionote on a Windows 10 machine with Microsoft Outlook as the OS default mail client:
 
-* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
+* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window and the note on the right):
 
 ![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
 
-* After typing in `emailcontact 2` and executing it, the result would be:
+* After typing in `emailcontact 2 ni\1` and executing it, the result would be:
 
 ![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
 
@@ -197,8 +197,9 @@ As an example, consider running Dictionote on a Windows 10 machine with Microsof
 ![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
 
 * Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
+* Also note that the body of the message contains the contents of the first note on the list (that is, `QA stands for Quality Assurance`).
 
-Note that if the user does not have a mail client software set as default in their OS, then Dictionote will try to navigate to the `mailto` link through the user's default browser (i.e., the `mailto` link will be treated as an ordinary URL link).
+In case the user does not have a mail client software set as default in their OS, Dictionote will try to navigate to the `mailto` link through the user's default browser (i.e., the `mailto` link will be treated as an ordinary URL link).
 
 ##### Design Considerations
 
