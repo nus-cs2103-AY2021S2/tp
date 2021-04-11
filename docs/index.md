@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ModuleBook Level-3.5
+title: ModuleBook3.5
 ---
 
 [![CI Status](https://github.com/AY2021S2-CS2103T-T13-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T13-2/tp/actions)
