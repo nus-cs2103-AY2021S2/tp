@@ -232,6 +232,8 @@ attempt answering the quiz question or skip the flashcard.
 
 These operations are executed through `QuizCommand`, `StartCommand`, `CheckCommand` and `NextCommand` in the `Logic` class.
 
+<div style="page-break-after: always;"></div>
+
 #### Entering Quiz Mode
 
 The `quiz` command is used to enter Quiz mode, allowing the user to start various quizzes from there.
@@ -242,6 +244,8 @@ The following activity diagram summarizes what happens when a user enters the Qu
 The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Starting a Session
 
@@ -254,6 +258,8 @@ enters the start command.
 Thr following sequence diagram shows the interactions that occur when the start command is executed:
 
 ![StartSequenceDiagram](images/StartSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Checking User Attempt
 
@@ -268,6 +274,8 @@ The following activity diagram summarizes the general workflow of `check` comman
 The following sequence diagram shows how the `check` command works:
 ![CheckCommandSequenceDiagram](images/CheckCommandSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Quiz Scoring
 
 The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
@@ -279,6 +287,7 @@ along with each quiz session.
 
 ![QuizScoringSequenceDiagramRake](images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png)
 
+<div style="page-break-after: always;"></div>
 
 #### View Past Quiz Attempts
 
@@ -519,6 +528,7 @@ of the current version of application for your reference. The link is [here](Fla
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
 
 ### Using the `end` command
 
@@ -534,6 +544,8 @@ of the current version of application for your reference. The link is [here](Fla
 
    4. Other correct end commands locations to try: _while in learn mode_, _right after ending a Quiz_, …​ <br>
       Expected: Returns to menu.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
