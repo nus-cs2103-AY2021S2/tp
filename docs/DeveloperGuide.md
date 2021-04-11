@@ -987,11 +987,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given search command is in an incorrect format. 
+* 1a. The given search command is in an incorrect format.
+  
   * 1a1. TutorsPet shows an error message. 
     
     Use case ends.
 * 1b. The given search command has two of the same parameters.
+  
   * 2b1. TutorsPet executes the command while taking in the last occurrence of the parameters only. 
     
     Use case resumes at step 2.
