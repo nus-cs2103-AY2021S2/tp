@@ -40,14 +40,16 @@ public class EditPersonCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no email specified
-        assertParseFailure(parser, " " + PREFIX_NAME + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " " + PREFIX_NAME + VALID_NAME_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
 
         // no field specified
         assertParseFailure(parser, ORIGINAL_EMAIL_DESC_AMY,
-                EditPersonCommand.MESSAGE_NOT_EDITED + EditPersonCommand.MESSAGE_FIELDS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
 
         // no email and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
     }
 
     @Test

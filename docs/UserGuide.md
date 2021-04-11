@@ -146,7 +146,7 @@ Format: `exit_prompt`
 
 * BookCoin stores information about venue bookers which is important for scheduling/ contacting purposes. When bookers are stored, their information can be used for multiple bookings in the future which allows you to access their details easily without having to repeat the same booker details multiple times across bookings.
 * For your convenience, we use the term "person" in the app instead of "booker" to make a distinction between "booker" and "booking", which can be confusing.
-* Persons are identified by their emails, hence all email inputs between persons must be unique. Persons with the same name are allowed.
+* Persons are identified by their emails, hence all email inputs between persons must be unique. Phone inputs must also be unique between persons, but persons with the same name are allowed.
 
 </div>
 
@@ -162,21 +162,26 @@ Format: `add_person n/NAME`
 
 #### 3.3.2. Editing a person : `edit_person`
 
-Edits an existing person in the booking system, identified by their unique email.
+Edits an existing person in the booking system. 
 
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
+* Edits the person with the specified `EMAIL` indicated in `eo/EMAIL` (case-insensitive).  
+* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person. 
+* The provision of an empty `TAG` field is accepted.
 
 Example:
-* `edit_person eo/amy@example.com p/83984029` changes the phone number of the person with email amy@example.com to 83984029.
+* `edit_person eo/amy@example.com p/83984029 n/Jane` edits the person who currently has the email `amy@example.com`. The person's phone number is edited to `83984029` and name is edited to `Jane`.
+* `edit_person eo/lim@gmail.com e/limyi@gmail.com t/` edits the person who currently has the email `lim@gmail.com`. The person's email is edited to `limyi@gmail.com` and all associated tags, if any, are removed.
 
 #### 3.3.3. Deleting a person : `delete_person`
 
-Deletes a person corresponding to the email specified.
+Deletes the specified person from the booking system.
 
 Format: `delete_person e/EMAIL`
+* Deletes the person with the specified `EMAIL` (case-insensitive).
 
 Example:
-* `delete_person e/johndoe@gmail.com`
+* `delete_person e/johndoe@gmail.com` deletes the person with email `johndoe@gmail.com` from the system.
 
 #### 3.3.4. Listing all persons : `list_person`
 
@@ -186,14 +191,28 @@ Format: `list_person`
 
 #### 3.3.5. Finding a person : `find_person`
 
-Shows information about the person corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows a list of persons who match the specified field(s).
 
 Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
+* The fields that can be specified include the person's `NAME`, `PHONE`, `EMAIL`, and `TAG`. At least one field must be provided.
+* Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+* Only for the `NAME` field, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
+* The provision of an empty `TAG` field is accepted.
 
 Example:
-* `find_person n/John Doe t/Student`
+* `find_person n/John Doe t/Student` shows a list of persons whose name contains words that fully matches any of the two specified name keywords `John` and `Doe`, and is tagged with `Student`.
+* `find_person t/` shows a list of persons who do not have tags.
 
 ### 3.4. Venue
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: About venues:**<br>
+
+* BookCoin stores information about venues which is important for scheduling/ contacting purposes. When bookers are stored, their information can be used for multiple bookings in the future which allows you to access their details easily without having to repeat the same venue details multiple times across bookings.
+* Venues are identified by their venue names, hence all venue names between venues must be unique.
+
+</div>
 
 #### 3.4.1. Adding a venue : `add_venue` (Multi step command)
 
@@ -209,22 +228,27 @@ Example:
 
 #### 3.4.2. Editing a venue : `edit_venue`
 
-Edits an existing venue in the booking system with the specified venue name.
+Edits an existing venue in the booking system.
 
 Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESCRIPTION] [t/TAG]`
+* Edits the venue with the specified `VENUE_NAME` indicated in `vo/VENUE_NAME`(case-insensitive).
+* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified venue.
+* The provision of empty `DESCRIPTION` and `TAG` fields are accepted.
 
 Examples:
-* `edit_venue vo/Lab max/30` changes the maximum capacity of the venue named Lab to 30.
-* `edit_venue vo/Victoria Hall v/Sports Hall` changes the venue name of the venue named Victoria Hall to Sports Hall.
+* `edit_venue vo/Lab max/30 d/Used for experiments` edits the venue that currently has the venue name `Lab`. The venue's maximum capacity is edited to `30`.
+* `edit_venue vo/Victoria Hall d/ t/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description and tag(s), if any, are made empty.  
+
 
 #### 3.4.3. Deleting a venue : `delete_venue`
 
-Deletes a venue corresponding to the venue name specified.
+Deletes the specified venue from the booking system.
 
 Format: `delete_venue v/VENUE_NAME`
+* Deletes the venue with the specified `VENUE_NAME` (case-insensitive).
 
 Example:
-* `delete_venue v/Volleyball Court` deletes the venue with the name "Volleyball Court".
+* `delete_venue v/Volleyball Court` deletes the venue with the venue name `Volleyball Court` from the system.
 
 #### 3.4.4. Listing all venues : `list_venue`
 
@@ -234,14 +258,28 @@ Format: `list_venue`
 
 #### 3.4.5. Finding a venue : `find_venue`
 
-Shows information about the venue corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+Shows a list of venues that match the specified field(s).
 
 Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
+* The fields that can be specified include the venue's `VENUE_NAME`, `CAPACITY`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
+* Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+* Only for the `NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
+* The provision of empty `TAG` and `DESCRIPTION` fields are accepted.
 
 Example:
-* `find_venue v/Hall max/50 `
+* `find_venue v/Victoria Hall max/50` shows a list of venues whose name contains words that fully matches any of the two specified venue name keywords `Victoria` and `Hall`. The venue must also have a maximum capacity of at least `50`.
+* `find_venue t/ d/` shows a list of venues that do not have description and tags.
 
 ### 3.5. Booking
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: About venues:**<br>
+
+* BookCoin stores information about bookings for scheduling/ contacting purposes. 
+* Bookings are identified by their , hence all  between bookings must be unique.
+
+</div>
 
 #### 3.5.1. Adding a booking : `add_booking` (Multi step command)
 
@@ -279,12 +317,17 @@ Format: `list_booking`
 
 #### 3.5.5. Finding a booking : `find_booking` 
 
-Shows information about the booking corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+Shows a list of bookings that match the specified field(s).
 
 Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
+* The fields that can be specified include the booking's `BOOKER_EMAIL`, `DATE`, ,`VENUE_NAME`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
+* Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
+* The provision of empty `TAG` and `DESCRIPTION` fields are accepted.
 
 Example:
-* `find_booking e/johnd@gmail.com v/Hall `
+* `find_booking e/johnd@gmail.com date/2020-02-12` shows a list of bookings booked by a person with the email `johnd@gmail.com`. The booking duration must also contain the date `2020-02-12`.
+* `find_booking t/ d/` shows a list of bookings that do not have descriptions and tags.
 
 ### 3.6. Upcoming
 

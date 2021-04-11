@@ -61,7 +61,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED + EditPersonCommand.MESSAGE_FIELDS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
         }
 
         return new EditPersonCommand(email, editPersonDescriptor);

@@ -3,7 +3,7 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.booking.commons.core.Messages.MESSAGE_BOOKING_DISPLAYED;
+import static seedu.booking.commons.core.Messages.MESSAGE_NO_BOOKINGS_FOUND;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -65,7 +65,7 @@ public class FindBookingCommandTest {
 
     @Test
     public void execute_zeroKeywords_noBookingsFound() {
-        String expectedMessage = String.format(MESSAGE_BOOKING_DISPLAYED, 0);
+        String expectedMessage = String.format(MESSAGE_NO_BOOKINGS_FOUND);
 
         List<Predicate<Booking>> predicate = prepareEmailPredicate(VALID_EMAIL_AMY);
 

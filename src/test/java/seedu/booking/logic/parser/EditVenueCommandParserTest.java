@@ -37,14 +37,16 @@ public class EditVenueCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no venue name specified
-        assertParseFailure(parser, " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVenueCommand.MESSAGE_USAGE));
 
         // no field specified
         assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL,
-                EditVenueCommand.MESSAGE_NOT_EDITED + EditVenueCommand.MESSAGE_FIELDS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVenueCommand.MESSAGE_USAGE));
 
         // no venue name and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVenueCommand.MESSAGE_USAGE));
     }
 
     @Test

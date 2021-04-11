@@ -44,6 +44,9 @@ public class Messages {
             "The venue name provided does not exist in the system.\n";
     public static final String MESSAGE_VENUE_DISPLAYED = "%1$d Venue(s) displayed!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_NO_PERSONS_FOUND = "No persons found!";
+    public static final String MESSAGE_NO_VENUES_FOUND = "No venues found!";
+    public static final String MESSAGE_NO_BOOKINGS_FOUND = "No bookings found!";
     public static final String MESSAGE_VENUE_LISTED_EMPTY = "There are no venues in the system.\n";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! Input "
             + "should be in yyyy-mm-dd HH:MM format.\n";
