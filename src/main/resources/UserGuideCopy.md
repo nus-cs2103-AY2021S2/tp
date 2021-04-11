@@ -217,8 +217,8 @@ Currently available options for the `[OPTION]` field include:
 * `tag` Find by tags of the contact (only exact tags will be matched)
 
 <div markdown="span" class="alert alert-primary">:warning: **Warning:**
-When using the <code>tag</code> option <code>t/</code> needs to be placed in front of the tag 
-you are searching for. Also, please note that only exact matches will be returned for find by tag.<br>
+When using the 'tag' option 't/' needs to be placed in front of the tag 
+you are searching for. Also, please note that only exact matches will be returned for find by tag.
 Example: find o/tag t/first t/second
 </div>
 
@@ -277,7 +277,7 @@ The default order is by the date the contact was added.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If sort is entered after executing find, a sorted found list will be displayed as explained in the 3rd example above.</br>
+If sort is entered after executing find, a sorted found list will be displayed as explained in the 3rd example above.
 The sort order will also be saved and the full address book will be sorted.
 </div>
 
