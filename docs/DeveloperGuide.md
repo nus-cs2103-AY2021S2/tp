@@ -580,9 +580,9 @@ testers are expected to do more *exploratory* testing.
       
 ### Deleting a student
 
-1. Deleting a student while all students are being shown
+1. Deleting a student
 
-   1. Prerequisites: List all students using the `list` command. Sample data of students and appointments shown in the list.
+   1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
 
    1. Test case: `delete A0182345T`<br>
       Expected: First student (Alex Yeoh) is deleted from the list. Details of the deleted student shown in the status message. 
