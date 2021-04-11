@@ -147,9 +147,7 @@ Here are some general rules to follow when entering prefixes and parameters:
   protocol is needed for an API request to be carried out.<br>
   e.g. If a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`.
 
-* The **index** parameter provided should be a **non-zero unsigned integer** within the allowed range of Java's 
-  [`int`](#glossary-int) data type. On top of that, the **index** should be within the bounds of the API endpoint 
-  list.<br>
+* The **index** parameter provided should be a [non-zero unsigned integer](https://en.wikipedia.org/wiki/Integer_(computer_science)) within the allowed range of Java's [`int`](#glossary-int) data type. On top of that, the **index** should be within the bounds of the API endpoint list.<br>
   e.g If there are 3 endpoints saved in the endpoint list. The range of valid index is 1 to 3.
 
 * For the **URL** parameter, as our application is focused on API testing, we have no plans to direct all our efforts in
@@ -289,7 +287,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.7 Find a saved API endpoint: <span class="main-command">find</span>
 
-**Description (General Search):** Looking for an endpoint across all parameters? Find endpoints containing the search word(s)! **(requires at least one keyword)**.
+**Description (General Search):** Looking for an endpoint across all parameters? Find endpoints containing the search words **(requires at least one keyword)**.
 
 **Format (General Search):** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
@@ -299,9 +297,9 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
   <img width="450px" src="images/commands/find1.png" >
 </p>
 
-**Description (Precise Search):** Looking for an endpoint in specific parameters? Find endpoints containing the search word(s)! based on the [prefix](#prefix-table) **(requires at least one keyword)** Note the following 2 points:
-- Searches **within a single [prefix](#prefix-table)** will perform an **OR** search across the search terms and all endpoints matching either keywords will be returned.
-- Searches **across multiple [prefixes](#prefix-table)** will preform an **AND** search and only endpoints matching all keywords will be returned.
+**Description (Precise Search):** Looking for an endpoint in specific parameters? Find endpoints containing the search words based on the [prefix](#prefix-table) **(requires at least one keyword)**.<br> Note the following 2 points:
+- Searches done **within a single [prefix](#prefix-table)** will perform an **OR** search across the search terms and all endpoints matching either keywords will be returned.
+- Searches done **across multiple [prefixes](#prefix-table)** will preform an **AND** search and only endpoints matching all keywords will be returned.
 
 **Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
 
@@ -390,9 +388,9 @@ command box with that last command.
 
 #### 4.3.3 Scroll endpoint list or result display
 
-**Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **macOS**) are available as options to scroll the 2 components above.
+**Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on macOS) are available as options to scroll the 2 components above.
 
-**Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **macOS**)
+**Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on macOS)
 
 #### 4.3.4 Error Messages
 
@@ -415,9 +413,9 @@ command box with that last command.
 **A**: This current version of imPoster only supports the sending of [JSON](#85-json-format) data in the request body which is the format used by an estimated over 70% of APIs worldwide. We apologise for the inconvenience caused but we are happy to share that plans are in place to include support for other data formats in future versions!
 
 <a name="data-file"></a>
-**Q**: Where are the data of imPoster saved?
+**Q**: Where is the data of imPoster saved?
 <br/><br/>
-**A**: imPoster data are saved automatically after every command into a JSON file named `imposter.json`. This file is stored within the `data` folder in the same location as the application `JAR` file and is created after the initial launch (and a command execution) of a fresh installation.
+**A**: imPoster data is saved automatically after every command into a JSON file named `imposter.json`. This file is stored within the `data` folder in the same location as the application `JAR` file and is created after the initial launch (and a command execution) of a fresh installation.
 
 <div style="page-break-after: always;"></div>
 
