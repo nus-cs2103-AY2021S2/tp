@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-##### UC3 - Add or modify information about a project
+##### UC3 - Modify information about a project
 
 **MSS**
 
@@ -631,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-##### UC6 - Add or modify information about a todo in a project
+##### UC6 - Modify information about a todo in a project
 
 **MSS**
 
@@ -777,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-##### UC10 - Add or modify information about a deadline in a project
+##### UC10 - Modify information about a deadline in a project
 
 **MSS**
 
@@ -923,7 +923,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-##### UC14 - Add or modify information about an event in a project
+##### UC14 - Modify information about an event in a project
 
 **MSS**
 
@@ -1032,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-##### UC17 - Add or modify information about a groupmate in a project
+##### UC17 - Modify information about a groupmate in a project
 
 **MSS**
 
@@ -1144,7 +1144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-##### UC21 - Add or modify information about a contact
+##### UC21 - Modify information about a contact
 
 **MSS**
 
