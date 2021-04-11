@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while
 still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
-users can learn Japanese at a comfortable pace and manage flashcards with this application.
+users can learn Japanese at a comfortable pace and manage flashcards with this application. 
 
 ## Table of Contents
 * [Setting Up](#setting-up-getting-started)
