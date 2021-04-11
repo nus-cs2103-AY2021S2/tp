@@ -36,12 +36,10 @@ at all times.
 
 In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training,
 grooming and workshops. With many moving parts daily, managing operations  can get overwhelming.
-PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services
-and maintain organisation. At present, there is no such application to help dog school owners to organise and
+PawBook is an all-in-one management system to help dog school managers to bookkeep and maintain organisation. 
+At present, there is no such application to help dog school owners to organise and
 manage their dog school currently. This application serves to increase the effectiveness and efficacy of dog schools
-which in turn allows dog schools and its owners to take in more dogs. This application is necessary to help organise the
-school's system. By increasing the intake of dogs in dog schools, this increases the number of trained dogs in Singapore
-in general which solves the general problem of untrained dogs in Singapore being a nuisance to the public.
+managers. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -568,7 +566,7 @@ and also a command summary for the user.
     - 1a1. Pawbook shows an error message to the user.
     - 1a2. User supplies the correct command. <br>
       Steps 1a1-1a2 are repeated until the command entered is correct.
-    Use case resumes at step 3.
+    Use case resumes at step 2.
       
 
 **Use case: UC08 - Exit Pawbook**
@@ -588,7 +586,7 @@ and also a command summary for the user.
     - 1a1. Pawbook shows an error message to the user.
     - 1a2. User supplies the correct command. <br>
       Steps 1a1-1a2 are repeated until the command entered is correct.
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 
 *{More to be added}*
@@ -608,7 +606,7 @@ and also a command summary for the user.
 10. Features should be implemented such that they can undergo automated testing. 
 11. Pawbook data should be saved locally. Not possible to be hacked from external machines. Only way to access is through the local machine.
 12. Only one Pawbook program can run on a local machine at any time. 
-13. Pawbook program file size should not exit beyond 1GB. 
+13. Pawbook program file size should not exceed beyond 1GB. 
 14. Pawbook should be able to recover from exceptions and error handling and not freeze on the user. 
 
 ### Glossary
