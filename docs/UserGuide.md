@@ -143,7 +143,7 @@ Format: `help`
 
 Adds a task to the planner. <br>
 Tasks with the same title cannot be added to the planner
-so that you do not have to worry about adding duplicate tasks by accident.
+so that you do not have to worry about adding duplicate tasks by accident. Calendar will be reset.
 
 Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
@@ -181,7 +181,7 @@ mk n/take a break d/
 
 Edits an existing task in the planner
 so that you can have the flexibility in making changes to a certain task
-if there is a change in your task or schedule.
+if there is a change in your task or schedule. Calendar will be reset.
 
 Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
@@ -200,7 +200,7 @@ Examples:
    
 ### Postpone a task's date : `snooze`
 
-Postpones your task's date by a specified number of days.
+Postpones your task's date by a specified number of days. Calendar will be reset.
 
 Format: `snooze INDEX [DAYS]`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
@@ -215,16 +215,14 @@ Examples:
 ### Listing all tasks : `ls`
 
 Shows a list of all tasks in the planner
-so that you can view all the tasks easily in one place. <br>
-Automatically brings your calendar back to the current date.
+so that you can view all the tasks easily in one place. Calendar will be reset.
 
 Format: `ls`
 
 ### Listing all uncompleted tasks : `ls not done`
 
 Shows a list of all uncompleted tasks in the planner
-so that you can view all the uncompleted tasks easily. <br>
-Automatically brings your calendar back to the current date.
+so that you can view all the uncompleted tasks easily. Calendar will be reset.
 
 Format: `ls not done`
 
@@ -249,7 +247,7 @@ Format: `sort by a` or `sort by d`
 ### Searching a task by title: `find`
 
 Find matching tasks based on the title keyword(s) provided 
-so that you can find matching tasks quickly when only certain words from the title of the task can be remembered.
+so that you can find matching tasks quickly when only certain words from the title of the task can be remembered. Calendar will be reset.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -265,7 +263,7 @@ Examples:
 ### Searching a task by description: `find d/`
 
 Find matching tasks based on the description keywords provided
-so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered.
+so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered. Calendar will be reset.
 
 Format: `find d/KEYWORD [MORE_KEYWORDS]`
 
@@ -284,7 +282,7 @@ Examples:
 ### Searching a task by tag: `find t/`
 
 Find matching tasks based on the tag keyword provided 
-so that you can find matching tasks from the same category quickly when only the tag(s) can be remembered.
+so that you can find matching tasks from the same category quickly when only the tag(s) can be remembered. Calendar will be reset.
 
 Format: `find t/KEYWORD`
 
@@ -394,6 +392,7 @@ so that you may find free time on the day to schedule new activities.
 Format: `view DATE`
 
 * Date should be in the format of dd/mm/yyyy like 12/12/2021.
+* Date cannot be before the year 1900 or after the year 2099.
 
 Examples:
 * `view 03/07/2021`<br>Lists all tasks with dates or recurring dates on 03/07/2021, and brings the calendar to July
@@ -402,8 +401,8 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the planner so that you can remove all tasks within the planner at once. 
-<br> Automatically brings your calendar back to the current date.
+Clears all entries from the planner so that you can remove all tasks within the planner at once.
+Calendar will be reset.
 
 Format: `clear`
 
@@ -430,7 +429,7 @@ start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Calendar Navigation
+## Calendar Specifications
 
 ![Calendar](images/Calendar.png)
 
@@ -447,6 +446,7 @@ Action | Format
     E.g. if the command specifies `prev 987`, it will be interpreted as `prev`.
 * `next` and `prev` operates on the currently displayed month.
 * The displayed date and month will revert to the current date and month upon starting up the app.
+* Month displayed can go beyond `date` limits.
 
 --------------------------------------------------------------------------------------------------------------------
 
