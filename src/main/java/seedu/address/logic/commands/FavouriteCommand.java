@@ -67,6 +67,7 @@ public class FavouriteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FavouriteCommand // instanceof handles nulls
+                && index.equals(((FavouriteCommand) other).index)
                 && Boolean.compare(isFav, ((FavouriteCommand) other).isFav) == 0); // state check
     }
 }

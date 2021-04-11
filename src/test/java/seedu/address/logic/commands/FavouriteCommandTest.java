@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -64,5 +65,31 @@ public class FavouriteCommandTest {
         FavouriteCommand favouriteCommand = new FavouriteCommand(INDEX_SECOND_CONTACT, true);
 
         assertCommandFailure(favouriteCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void equals() {
+        FavouriteCommand favouriteFirstCommand = new FavouriteCommand(INDEX_FIRST_CONTACT, true);
+        FavouriteCommand favouriteSecondCommand = new FavouriteCommand(INDEX_SECOND_CONTACT, true);
+
+        // same object -> returns true
+        assertTrue(favouriteFirstCommand.equals(favouriteFirstCommand));
+
+        // same values -> returns true
+        FavouriteCommand favouriteFirstCommandCopy = new FavouriteCommand(INDEX_FIRST_CONTACT, true);
+        assertTrue(favouriteFirstCommand.equals(favouriteFirstCommandCopy));
+
+        // different values -> returns false
+        FavouriteCommand favouriteFirstCommandCopyUnfavourite = new FavouriteCommand(INDEX_FIRST_CONTACT, false);
+        assertFalse(favouriteFirstCommand.equals(favouriteFirstCommandCopyUnfavourite));
+
+        // different types -> returns false
+        assertFalse(favouriteFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(favouriteFirstCommand.equals(null));
+
+        // different contact -> returns false
+        assertFalse(favouriteFirstCommand.equals(favouriteSecondCommand));
     }
 }
