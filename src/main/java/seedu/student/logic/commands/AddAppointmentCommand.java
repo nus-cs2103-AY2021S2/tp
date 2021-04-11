@@ -26,8 +26,9 @@ public class AddAppointmentCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment already exists in the records";
-    public static final String MESSAGE_OVERLAPPING_APPOINTMENT = "The appointment overlaps with another appointment.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "The specified student already has an appointment in the records.";
+    public static final String MESSAGE_OVERLAPPING_APPOINTMENT = "The appointment clashes with another appointment.";
     public static final String MESSAGE_STUDENT_DOES_NOT_EXIST = "The student does not exist in the records.";
 
 
