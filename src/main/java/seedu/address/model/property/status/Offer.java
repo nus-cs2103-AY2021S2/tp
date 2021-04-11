@@ -1,12 +1,12 @@
 package seedu.address.model.property.status;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a buyer's offer price for a property.
