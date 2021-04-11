@@ -85,6 +85,8 @@ public class FilterCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FilterCommand) // instanceof handles nulls
-                && filterPredicate.equals(((FilterCommand) other).filterPredicate);
+                && filterPredicate.equals(((FilterCommand) other).filterPredicate)
+                && prefixes.containsAll(((FilterCommand) other).prefixes)
+                && ((FilterCommand) other).prefixes.containsAll(prefixes);
     }
 }

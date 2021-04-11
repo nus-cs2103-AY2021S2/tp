@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
@@ -25,6 +24,8 @@ import seedu.address.model.DisplayFilterPredicate;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
+    public static final String FORCE_PREAMBLE = " ";
+
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand and returns
      * an FilterCommand object for execution.
@@ -35,13 +36,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         assert args != null;
 
-        if (args.isEmpty()) {
+        if (args.trim().isEmpty()) {
             return new FilterCommand(new DisplayFilterPredicate());
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer
-                .tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_TAG, PREFIX_REMARK);
+                .tokenize(FORCE_PREAMBLE + args.trim(), PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_TAG,
+                        PREFIX_REMARK);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -78,6 +80,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
     @Override
     public boolean isValidCommandToAlias(String userInput) {
-        return true;
+        try {
+            parse(userInput);
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
     }
 }
