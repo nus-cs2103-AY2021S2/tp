@@ -41,7 +41,7 @@ public class FlashcardBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyFlashcardBook_replacesData() {
         FlashcardBook newData = getTypicalFlashcardBook();
         flashcardBook.resetData(newData);
         assertEquals(newData, flashcardBook);
@@ -67,18 +67,18 @@ public class FlashcardBookTest {
     }
 
     @Test
-    public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
+    public void hasFlashcard_flashcardNotInFlashcardBook_returnsFalse() {
         assertFalse(flashcardBook.hasFlashcard(A_CARD));
     }
 
     @Test
-    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
+    public void hasFlashcard_flashcardInFlashcardBook_returnsTrue() {
         flashcardBook.addFlashcard(A_CARD);
         assertTrue(flashcardBook.hasFlashcard(A));
     }
 
     @Test
-    public void hasFlashcard_flashcardWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasFlashcard_flashcardWithSameIdentityFieldsInFlashcardBook_returnsTrue() {
         flashcardBook.addFlashcard(A_CARD);
         Flashcard editedAlice = new FlashcardBuilder(A)
             .withAnswer(VALID_ANSWER_A)
