@@ -434,7 +434,7 @@ Use case ends
     * 2a1. System shows an error message.
   
         Use case ends.  
-* 3a. System detects the error in the entered parameter
+* 3a. System detects that the given parameter is invalid.
 
     * 3a1. System shows an error message.
     
