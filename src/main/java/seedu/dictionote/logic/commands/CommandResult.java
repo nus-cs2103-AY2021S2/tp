@@ -77,6 +77,4 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, uiAction, uiActionOption);
     }
-
-
 }
