@@ -298,7 +298,7 @@ Format: `exit`
 
 Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
  
- :information_source: **NOTE:**  VAX@NUS will display our sample data file if no data file is found from your computer.
+ :information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
 
 ### Editing the data
 
@@ -311,7 +311,7 @@ Editing a student's matriculation number through the JSON file is allowed, howev
 If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment. 
 Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
 
-> :warning: If your direct changes to the data file result in invalid formatting, Vax@NUS will discard all data and start with an empty data file in your next launch. Be very careful!
+> :warning: If your direct changes to the data file result in invalid formatting, Vax@NUS will start with an empty data file in your next launch. Be very careful!
 
 >--------------------------------------------------------------------------------------------------------------------
 
