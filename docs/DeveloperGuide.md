@@ -185,6 +185,30 @@ The notdone mechanism is similar to that of the done mechanism, except that the 
 
 <div style="page-break-after: always;"></div>
 
+### Workload Distribution feature
+
+#### Implementation
+
+The workload distribution feature is implemented by `ModuleManager`. It uses HashMap and an OberservableList to monitor the workload of each module and PieChart in javaFX to visualizes it. More explicitly, it is implemented by 4 HashMaps using Module as key. The first three maps are used in the ModuleList while the map of weighted sum is used in the PieChart.
+
+* `moduleLowWorkLoadDistribution` - the value corresponds to the number of tasks with low workload.
+* `moduleMediumWorkLoadDistribution` - the value corresponds to the number of tasks with medium workload.
+* `moduleHighWorkLoadDistribution` - the value corresponds to the number of tasks with high workload.
+
+* `moduleWorkLoadDistribution` - the value corresponds to the weighted sum of workload where low workload is counted as 1, medium workload is counted as 2, high workload is counted as 3.
+
+It also implements following method:
+
+* `increaseCorrectWorkloadDistribution(Module module, Task task)` —  Based on the workload of the task, increases the value of corresponding map and the `moduleWorkloadDistribution`.
+
+* `decreaseCorrectWorkloadDistribution(Module module, Task task)` —  Based on the workload of the task, decreases the value of corresponding map and the `moduleWorkloadDistribution`.
+
+The following class diagram shows the classes related to implementing workload distribution:
+
+![WorkloadDistributionDiagram](images/WorkloadDistributionClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
