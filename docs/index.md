@@ -4,6 +4,7 @@ title: JJIMY
 ---
 
 [![Java CI](https://github.com/AY2021S2-CS2103T-W15-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-W15-3/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-W15-3/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103T-W15-3/tp)
 
 ![Ui](images/Ui.png)
 
