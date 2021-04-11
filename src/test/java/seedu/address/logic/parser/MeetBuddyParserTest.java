@@ -1,33 +1,27 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.persons.AddPersonCommand;
-import seedu.address.logic.commands.persons.ClearPersonCommand;
-import seedu.address.logic.commands.persons.DeletePersonCommand;
-import seedu.address.logic.commands.persons.EditPersonCommand;
+import seedu.address.logic.commands.persons.*;
 import seedu.address.logic.commands.persons.EditPersonCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.persons.FindPersonCommand;
-import seedu.address.logic.commands.persons.ListPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 public class MeetBuddyParserTest {
 
@@ -38,12 +32,6 @@ public class MeetBuddyParserTest {
         Person person = new PersonBuilder().build();
         AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddPersonCommand(person), command);
-    }
-
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearPersonCommand.COMMAND_WORD) instanceof ClearPersonCommand);
-        assertTrue(parser.parseCommand(ClearPersonCommand.COMMAND_WORD + " 3") instanceof ClearPersonCommand);
     }
 
     @Test

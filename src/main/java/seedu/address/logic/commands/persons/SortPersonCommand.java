@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.Command;
@@ -23,6 +24,9 @@ public class SortPersonCommand extends Command {
 
     private Comparator<Person> personComparator;
 
+    private PersonSortOption personSortOption;
+    private PersonSortDirection personSortDirection;
+
     public static final String COMMAND_WORD = "sortp";
 
     private static final List<String> all_options = Arrays.stream(PersonSortOption.values()).
@@ -37,6 +41,9 @@ public class SortPersonCommand extends Command {
             PREFIX_SORT_DIRECTION + all_directions.toString();
 
     public SortPersonCommand(PersonSortOption sortOption, PersonSortDirection sortDirection) {
+        personSortOption = sortOption;
+        personSortDirection = sortDirection;
+
         switch (sortOption) {
         case NAME:
             personComparator = Comparator.comparing(person -> person.getName().toString(),
@@ -74,5 +81,18 @@ public class SortPersonCommand extends Command {
         requireNonNull(model);
         model.sortFilteredPersonList(this.personComparator);
         return new CommandResult("Sorted");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SortPersonCommand that = (SortPersonCommand) o;
+        return personSortOption == that.personSortOption && personSortDirection == that.personSortDirection;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personSortOption, personSortDirection);
     }
 }
