@@ -894,7 +894,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: Editing the data file to remove a name field to simulate a corrupted data file, while the app is not running.
+       Expected: Upon opening the app, there are no contacts in the GUI.
+
+    1. Test case: Deleting the data file.
+       Expected: Upon opening the app, the default sample contacts are shown in the GUI.
 
 ### Filtering contacts
 
