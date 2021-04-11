@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_STR_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_STR_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_STR_BOB;
@@ -46,9 +48,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+                new NameContainsKeywordsPredicate(Collections.singletonList(VALID_FIRST_NAME_AMY));
         NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+                new NameContainsKeywordsPredicate(Collections.singletonList(VALID_FIRST_NAME_BOB));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);

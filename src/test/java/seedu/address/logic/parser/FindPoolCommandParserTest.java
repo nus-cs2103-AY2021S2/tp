@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_NO_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -19,9 +21,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 public class FindPoolCommandParserTest {
-    private static final String AMY_FIRST_NAME = VALID_NAME_AMY.split("\\s+")[0];
-    private static final String BOB_FIRST_NAME = VALID_NAME_BOB.split("\\s+")[0];
-
     private FindPoolCommandParser parser = new FindPoolCommandParser();
 
     @Test
@@ -53,11 +52,11 @@ public class FindPoolCommandParserTest {
     public void parse_validNameArgs_returnsFindCommand() {
         // one keyword, no leading and trailing whitespaces
         FindPoolCommand expectedFindPoolCommand =
-                new FindPoolCommand(new PooledPassengerContainsKeywordsPredicate(Arrays.asList("Amy")));
-        assertParseSuccess(parser, " " + PREFIX_NAME + AMY_FIRST_NAME, expectedFindPoolCommand);
+                new FindPoolCommand(new PooledPassengerContainsKeywordsPredicate(Arrays.asList(VALID_FIRST_NAME_AMY)));
+        assertParseSuccess(parser, " " + PREFIX_NAME + VALID_FIRST_NAME_AMY, expectedFindPoolCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n " + PREFIX_NAME + AMY_FIRST_NAME + " \n \t", expectedFindPoolCommand);
+        assertParseSuccess(parser, " \n " + PREFIX_NAME + VALID_FIRST_NAME_AMY + " \n \t", expectedFindPoolCommand);
     }
 
     @Test
@@ -65,18 +64,18 @@ public class FindPoolCommandParserTest {
         // more than one keyword, no leading and trailing whitespaces - n/Amy n/Bob
         FindPoolCommand expectedFindPoolCommand =
                 new FindPoolCommand(new PooledPassengerContainsKeywordsPredicate(
-                        Arrays.asList(AMY_FIRST_NAME, BOB_FIRST_NAME)));
+                        Arrays.asList(VALID_FIRST_NAME_AMY, VALID_FIRST_NAME_BOB)));
         assertParseSuccess(parser, " " + PREFIX_NAME
-                + AMY_FIRST_NAME + " " + PREFIX_NAME + BOB_FIRST_NAME, expectedFindPoolCommand);
+                + VALID_FIRST_NAME_AMY + " " + PREFIX_NAME + VALID_FIRST_NAME_BOB, expectedFindPoolCommand);
 
         // multiple whitespaces and tabs between keywords
-        assertParseSuccess(parser, " \n " + PREFIX_NAME + AMY_FIRST_NAME + " "
-                + PREFIX_NAME + BOB_FIRST_NAME + "\n \t", expectedFindPoolCommand);
+        assertParseSuccess(parser, " \n " + PREFIX_NAME + VALID_FIRST_NAME_AMY + " "
+                + PREFIX_NAME + VALID_FIRST_NAME_BOB + "\n \t", expectedFindPoolCommand);
     }
 
     @Test
     public void parse_validNameArgWithWhitespace_returnsFindCommand() {
-        // no leading and trailing whitespaces - n/Amy Bee
+        // no leading and trailing whitespaces -s n/Amy Bee
         FindPoolCommand expectedFindPoolCommand =
                 new FindPoolCommand(new PooledPassengerContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY)));
         assertParseSuccess(parser, NAME_DESC_AMY, expectedFindPoolCommand);

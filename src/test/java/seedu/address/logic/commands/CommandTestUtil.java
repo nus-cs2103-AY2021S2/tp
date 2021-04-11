@@ -35,6 +35,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_FIRST_NAME_AMY = VALID_NAME_AMY.split("\\s+")[0];
+    public static final String VALID_FIRST_NAME_BOB = VALID_NAME_BOB.split("\\s+")[0];
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";

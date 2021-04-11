@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_POOLS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPools.HOMEPOOL;
 import static seedu.address.testutil.TypicalPools.OFFICEPOOL;
@@ -40,7 +42,7 @@ public class FindPoolCommandTest {
     @Test
     public void execute_oneUnmatchedKeyword_noPoolFound() {
         String expectedMessage = String.format(MESSAGE_POOLS_LISTED_OVERVIEW, 0);
-        PooledPassengerContainsKeywordsPredicate predicate = prepareNamePredicate("Alices");
+        PooledPassengerContainsKeywordsPredicate predicate = prepareNamePredicate(VALID_FIRST_NAME_BOB);
         FindPoolCommand command = new FindPoolCommand(predicate);
         expectedModel.updateFilteredPoolList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,9 +70,9 @@ public class FindPoolCommandTest {
     @Test
     public void equals() {
         PooledPassengerContainsKeywordsPredicate firstPredicate =
-                new PooledPassengerContainsKeywordsPredicate(Collections.singletonList("first"));
+                new PooledPassengerContainsKeywordsPredicate(Collections.singletonList(VALID_FIRST_NAME_AMY));
         PooledPassengerContainsKeywordsPredicate secondPredicate =
-                new PooledPassengerContainsKeywordsPredicate(Collections.singletonList("second"));
+                new PooledPassengerContainsKeywordsPredicate(Collections.singletonList(VALID_FIRST_NAME_BOB));
 
         FindPoolCommand findPoolFirstCommand = new FindPoolCommand(firstPredicate);
         FindPoolCommand findPoolSecondCommand = new FindPoolCommand(secondPredicate);
