@@ -22,7 +22,7 @@ ResidenceTracker helps users to also keep track of any bookings a residence has,
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ResidenceTracker.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to that shown below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -79,12 +79,12 @@ Format: `help`
 
 Adds a new residence to the list of residences, default for clean status is ‘clean’. Valid clean status inputs are `y`,`n`, `clean` and `unclean`
 
-* Names can include `@` inside. e.g `pinnacle@duxton`
-* Names can include numbers. e.g `Block71`
-* Names must include at least one alphanumeric character.
-* Valid clean statuses is case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
+* Names cannot be empty. Trailing white spaces before and after a valid name will be ignored. e.g `  BLK 3  ` will be used and displayed as `BLK 3`
+* Names should only contain alpha-numeric characters. e.g `Block71 Ayer Rajah`  
+* Valid clean statuses are case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
 * Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
-* Tags should only contain alphanumeric characters, symbols and spaces are not valid.
+* Tags should only contain alphanumeric characters. Symbols and spaces are not valid.
+* Valid tags are case-sensitive so will be used exactly as provided by the user. e.g `POPular` will be used and displayed as `POPular`
 
 Format: ` add n/RESIDENCE_NAME a/ADDRESS [c/VALID_CLEAN_STATUS] [t/TAG]... `
 
@@ -94,12 +94,13 @@ Examples:
 
 ### Listing all residences: `list`
 
-Shows a list of all residences in the app.
+Shows the full list of all residences in the app.
 
 Format: `list`
 
 * The displayed list of residences will be sorted by their clean status.
 * Unclean residences come before clean residences.  
+* After any edit to a filtered residence list that is returned by commands `find` and `remind`, the GUI displays this full residence list again.
 
 ### Listing residences with bookings starting in the next 7 days: `remind`
 
@@ -118,8 +119,8 @@ Edits the given fields of an existing residence (excludes bookings, see `editb` 
 Format: `edit RESIDENCE_INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`
 
 * Edits the residence at the specified `RESIDENCE_INDEX`.
-* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residence list(i.e. **NOT** zero-indexed, items start at index 1).
-* The `RESIDENCE_INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residence list (i.e. start from index 1).
+* The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 * At least one field must be provided.
 * If this command is used to edit tags, all tags for this residence need to be specified.
 * Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
@@ -156,7 +157,7 @@ Deletes the specified residence from the list of residences shown.
 Format: `delete RESIDENCE_INDEX`
 
 * Deletes the residence at the specified `RESIDENCE_INDEX`.
-* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. start from index 1).
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 
 Examples:
@@ -169,7 +170,7 @@ Update Clean status of multiple residences at once.
 Format: `status clean RESIDENCE_INDEX1 RESIDENCE_INDEX2..` or `status unclean RESIDENCE_INDEX1 RESIDENCE_INDEX2..`
 
 * Updates the clean status of the residences' with the specified `RESIDENCE_INDEX`.
-* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. start from index 1).
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 * More than 1 residence indexes can be specified.
 * After updating, the residence list will sort automatically to show Unclean residences before the clean residences.
@@ -192,13 +193,12 @@ Adds a new booking to the specified residence.
 Format: `addb RESIDENCE_INDEX n/NAME_OF_TENANT p/PHONE_OF_TENANT s/START_DATE e/END_DATE`
 
 * Adds a booking to the residence at the specified `RESIDENCE_INDEX`.
-* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. start from index 1).
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 * The phone must only include numbers and must be at least 3 characters long. e.g `p/999` `p/12345678`
 * The dates must follow the format DD-MM-YYYY. e.g `s/01-02-2021`
-* It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
-  to be earlier than the `START_DATE`.
-* It is invalid to edit `START_DATE` or `END_DATE` such that it overlaps with dates of other bookings.
+* The `START_DATE` to be before than the `END_DATE`.
+* The booking period `START_DATE` to `END_DATE` should not overlap with the booking period of other bookings for this residence.
 * Existing values will be updated to the input values.
 
 Examples:
@@ -212,8 +212,8 @@ Deletes the specified booking from the specified residence.
 Format: `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`
 
 * Deletes the booking at the specified `BOOKING_INDEX` from the residence at the specified `RESIDENCE_INDEX`
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. start from index 1).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be a **positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `deleteb r/3 b/2` deletes the 2nd booking from the 3rd residence.
@@ -224,8 +224,8 @@ Edits the specified booking from the specified residence.
 
 Format: `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` 
 
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. start from index 1).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be a **positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
 to be earlier than the `START_DATE`.
@@ -264,6 +264,15 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ResidenceTracker home folder.
+
+**Q**: What does the colour of the bookings respresent?
+**A**: The colours are as follows
+* Red - refers to bookings that have passed
+* Orange - refers to bookings that are ongoing (A booking that starts or ends today is also considered ongoing)
+* Green - refers to bookings that have not started yet 
+
+**Q**: How can I keep viewing the filtered residence list returned by `remind` and `find` commands after I make edits?
+**A**: Unfortunately, that is not a functionality we have built yet, but we hear you! The next iteration will be sure to incorporate such features for a better user experience and we hope you can stick with us while we improve the product.
 
 --------------------------------------------------------------------------------------------------------------------
 
