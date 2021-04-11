@@ -5,9 +5,9 @@ title: User Guide
 
 <a name="introduction"></a>
 ## Welcome to HEY MATEz
-As a Club Leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
-the mountain of tasks** that have to be completed? Or perhaps is it a challenge to **keep track of the increasing 
-number of tasks** and be able to **assign these tasks to members efficiently**? 
+As a Club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
+the mountain of tasks** that have to be completed? Or perhaps it is a challenge to **keep track of the increasing 
+number of deadlines** and be able to **assign tasks to members efficiently**. 
 
 HEY MATEz is a desktop application to get rid of your woes by allowing you to **track 
 members** and **tasks** within the club **efficiently and easily**! It is
@@ -19,7 +19,7 @@ With HEY MATEz, managing and distributing tasks will never be a headache again! 
 This user guide includes information on the **features** of HEY MATEz as well as a walkthrough on how to use them. The features 
 are further divided into 3 sections which include the **General features**, **Member related features** as well as the **Task related features**.
 Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
-to manage tasks which can be identified by their unique deadlines or priorities.
+to manage tasks which can be identified by their unique list indexes.
 
 * [Introduction](#introduction)  
 * [Quick Start](#quick-start)  
@@ -259,7 +259,7 @@ Format: `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIG
 * STATUS field can only take on the values **completed** or **uncompleted** (Values are case-sensitive).
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
 * PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned** (Values are case-sensitive).
-* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex yeoh" are not the same assignee.
+* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp; Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignee prefixes. 
@@ -308,7 +308,7 @@ Format: `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NE
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assignees, the existing assignees of the task will be removed i.e adding of assignees is not cumulative.
-* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex yeoh" are not the same assignee.
+* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp;  Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0). To have multiple assignees, simply use multiple assignee prefixes.    
