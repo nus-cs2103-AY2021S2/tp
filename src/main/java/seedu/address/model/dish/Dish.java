@@ -8,11 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Pair;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.ingredient.Ingredient;
 
-public class Dish implements Item, Aggregator<Ingredient> {
+public class Dish implements Item {
     private String name;
     private double price;
     private List<Pair<Ingredient, Integer>> ingredientQuantityList;
@@ -41,7 +40,6 @@ public class Dish implements Item, Aggregator<Ingredient> {
 
     //@@author kangtinglee
     /** Checks if a particular ingredient is contained within this dish */
-    @Override
     public boolean contains(Ingredient ingredient) {
         for (Pair<Ingredient, Integer> pair : getIngredientQuantityList()) {
             if (pair.getKey().equals(ingredient)) {

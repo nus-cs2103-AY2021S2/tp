@@ -10,13 +10,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Pair;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.person.Person;
 
 
-public class Order implements Item, Aggregator<Dish> {
+public class Order implements Item {
     public enum State {
         UNCOMPLETED, COMPLETED, CANCELLED
     }
@@ -172,7 +171,6 @@ public class Order implements Item, Aggregator<Dish> {
      *
      * @param dish
      */
-    @Override
     public boolean contains(Dish dish) {
         for (Pair<Dish, Integer> p : dishQuantityList) {
             if (p.getKey().isSame(dish)) {
