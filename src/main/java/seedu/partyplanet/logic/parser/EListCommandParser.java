@@ -73,13 +73,13 @@ public class EListCommandParser implements Parser<EListCommand> {
 
         if (isExactSearch) {
             if (!allNames.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact event name: " + String.join(", ", allNames);
+                stringFind += ListCommandUtil.getCriteriaString("exact event name", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
             }
             if (!allRemarks.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact event remark: " + String.join(", ", allRemarks);
+                stringFind += ListCommandUtil.getCriteriaString("exact event remark", allRemarks);
             }
             for (String remark : allRemarks) {
                 predicates.add(new EventRemarkContainsExactKeywordsPredicate(remark));
@@ -87,13 +87,13 @@ public class EListCommandParser implements Parser<EListCommand> {
 
         } else {
             if (!allNames.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial event name: " + String.join(", ", allNames);
+                stringFind += ListCommandUtil.getCriteriaString("partial event name", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
             }
             if (!allRemarks.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial event remark: " + String.join(", ", allRemarks);
+                stringFind += ListCommandUtil.getCriteriaString("partial event remark", allRemarks);
             }
             for (String remark : allRemarks) {
                 predicates.add(new EventRemarkContainsKeywordsPredicate(remark));

@@ -45,4 +45,12 @@ public class ListCommandUtil {
         }
         return remarks;
     }
+
+    /**
+     * Generates output string for each list searching criteria.
+     * e.g. {@code critera} = 'exact name', {@code criteriaValues} = ['Alice', 'Bob', ...]
+     */
+    public static String getCriteriaString(String criteria, List<String> criteriaValues) {
+        return "\n\u2022 Requires " + criteria + ": " + String.join(", ", criteriaValues);
+    }
 }
