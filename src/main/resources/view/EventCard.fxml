@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -14,7 +13,7 @@
     <URL value="@ProjectDisplayPanel.css"/>
   </stylesheets>
 
-  <GridPane HBox.hgrow="ALWAYS" minHeight="45" prefHeight="45" maxHeight="45" >
+  <GridPane HBox.hgrow="ALWAYS" minHeight="45" prefHeight="45" maxHeight="45">
     <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" minWidth="10"/>
     </columnConstraints>
