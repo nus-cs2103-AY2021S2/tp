@@ -651,7 +651,7 @@ Given below is an example usage scenario and how the find task mechanism behaves
 `assignment`.
 Let us call these task the target tasks.
 A `FindTaskCommandParser` object is created, and the `FindTaskCommandParser#parse(String args)` method is called.
-The method parses the `homework assignment` into a list of strings : [`homwork`, `assignment`], which is the original
+The method parses the `homework assignment` into a list of strings : [`homework`, `assignment`], which is the original
 string splitted by whitespace. This list of strings will be passed into the constructor of 
 `TaskNameContainsKeywordPredicate`, which will then be passed into the constuctor of a `FindTaskCommand`.
 The `FindTaskCommand` object with input predicate is returned.
