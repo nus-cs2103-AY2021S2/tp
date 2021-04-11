@@ -261,11 +261,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                        | add a new appointment                    |                                                                     |
 | `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
 | `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
-| `* * *`  | user                                        | list all patients                        | see all the patients or reset the patient filters                   |
-| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
-| `* * *`  | user                                        | edit a patient by specific fields        | update the patient information without having to delete and add a new patient |
 | `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
+| `* * *`  | user                                        | add a new patient                        |                                                                     |
+| `* * *`  | user                                        | delete a patient                         | remove patients who on longer have appointments                     |
+| `* * *`  | user                                        | find a patient  by specific fields       | locate details of relevant patients without having to go through the entire list |
+| `* * *`  | user                                        | edit a patient  by specific fields       | update the patient information without having to delete and add a new patient |
+| `* * *`  | user                                        | add a new doctor                         |                                                                     |
+| `* * *`  | user                                        | delete a doctor                          | remove doctors who on longer work for the clinic                    |
+| `* * *`  | user                                        | find a doctor by specific fields         |  locate details of relevant doctors without having to go through the entire list |
+| `* * *`  | user                                        | edit a doctor  by specific fields        | update the doctor information without having to delete and add a new doctor |
+| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
+| `* * *`  | user                                        | list all patients                        | see all the patients or reset the patient filters                   |
+| `* * *`  | user                                        | list all doctors                         | see all the doctors or reset the doctors filters                    |
+| `* *`    | user                                        | clear all appointments                   | clear the appointment list without having to delete appointments one by one |
+| `* *`    | user                                        | clear all patients                       | clear the patient list without having to delete appointments one by one     |
+| `* *`    | user                                        | clear all doctors                        | clear the doctor list without having to delete appointments one by one     |
+| `* *`    | user                                        | lookup previous records of an appointment| fill in missing information where ommitted by the appointment       |
 | `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
+| `* *`    | user                                        | lookup previous records of a doctor      | fill in missing information where ommitted by the doctor            |
 | `* *`    | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
 | `* *`    | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
 | `*`      | user with many appointments in the schedule | sort appointments by specific fields     | locate a category of appointments easily                            |
@@ -307,7 +320,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a2.** App-Ointment suggest user to update patient information through an `edit-patient` command instead.<br>
     Use case ends.<br>
 
-### UC03: Add an appointment
+### UC03: Add a doctor
+**MSS**
+1. User <u>enters the `add-doctor` command and corresponding subcommands (UC01)</u>
+2. App-Ointment adds a new doctor to the doctor records.
+
+**Extensions**
+* Similar to `add-patient` command.
+
+### UC04: Add an appointment
 **MSS**
 1. User <u>enters the `add-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment adds a new appointment to the appointment schedule.
@@ -328,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b2.** App-Ointment suggest user to either change existing appointment details through an `edit-appt` command, before adding the new appointment again, or change the new appointment details.<br>
     Use case ends.<br>
 
-### UC04: List all patients
+### UC05: List all patients
 **MSS**
 1. User <u>enters the `list-patient` command (UC01)</u>
 2. App-Ointment displays all patients.
@@ -338,7 +359,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no patients to display.<br>
     Use case ends.
 
-### UC05: List all appointments
+### UC06: List all doctors
+**MSS**
+1. User <u>enters the `list-doctor` command (UC01)</u>
+2. App-Ointment displays all doctors.
+
+**Extensions**
+* Similar to `list-patient` command.
+
+
+### UC07: List all appointments
 **MSS**
 1. User <u>enters the `list-appt` command (UC01)</u>
 2. App-Ointment displays all appointments.
@@ -348,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC06: Edit a patient
+### UC08: Edit a patient
 **MSS**
 1. User <u>enters the `edit-patient` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the details of the patient.
@@ -368,8 +398,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 2a1 is repeated until the index entered is correct/free from errors.
       Use case resumes from step 2.
 
+### UC09: Edit a doctor
+**MSS**
+1. User <u>enters the `edit-doctor` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the details of the doctor.
 
-### UC07: Edit an appointment
+**Extensions**
+* Similar to `edit-patient` command.
+
+
+### UC10: Edit an appointment
 **MSS**
 1. User <u>enters the `edit-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the details of the appointment.
@@ -394,9 +432,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit-appt` command, before editing the current appointment again, or change the edit details of the current appointment.<br>
     Use case ends.
 
-### UC08: Find appointments by search fields
+### UC11: Find appointments by search fields
 **MSS**
-1. User <u>enters the `find` command and corresponding subcommands (UC01)</u>
+1. User <u>enters the `find-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the displayed list of appointments to fit.
 
 **Extensions**
@@ -409,7 +447,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC09: Delete a patient
+### UC12: Find patients by search fields
+**MSS**
+1. User <u>enters the `find-patient` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the displayed list of patients to fit.
+
+**Extensions**
+* **1a.** System detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **2a.** There are no doctors to display.
+    * **2a1.** App-Ointment informs user that there are no patients to display.<br>
+      Use case ends.
+
+### UC13: Find doctors by search fields
+**MSS**
+1. User <u>enters the `find-doctor` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the displayed list of doctors to fit.
+
+**Extensions**
+* Similar to `find-patient` command.
+
+### UC14: Delete a patient
 **MSS**
 1. User <u>enters the `delete-patient` command and corresponding subcommands (UC01)</u>
 2. App-Ointment removes the patient from the patient records.
@@ -433,7 +494,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b1.** App-Ointment warns user about the associated appointments, prompts user to use force delete and displays the expected subcommand format.<br>
     Use case ends.
 
-### UC10: Delete an appointment
+### UC15: Delete a doctor
+**MSS**
+1. User <u>enters the `delete-doctor` command and corresponding subcommands (UC01)</u>
+2. App-Ointment removes the patient from the doctor records.
+
+**Extensions**
+* Similar to `delete-patient` command.
+
+### UC16: Delete an appointment
 **MSS**
 1. User <u>enters the `delete-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment removes the appointment from the appointment schedule
