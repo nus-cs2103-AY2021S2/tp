@@ -216,10 +216,35 @@ From the diagram illustrated above:
 1. `AddressBookParser` would then have its `parse()` method invoked to parse the argument `"n/Alice"` and passes it to
    `FindPoolCommandParser`.
 1. `FindPoolCommandParser` parses the argument `"n/Alice"` and creates a `PooledPassengerContainsKeywordPredicate` which is returned to the `FindPoolCommandParser`.
-1. `FindPoolCommandParser` then creates a `FindPoolCommand`, and provides the newly created `PooledPassengerContainsKeywordPredicate` to it. The `FindPoolCommand` object is then returned to LogicManager.
-1. `LogicManager` would subsequently invoke the `execute()` method of the `FindPoolCommand`, which turn calls the `updateFilteredPoolList()` method in `Model`, causing the shown pool list to be updated according to the predicate in the `FindPoolCommand` object.
+1. `FindPoolCommandParser` then creates a `FindPoolCommand`, and provides the newly created `PooledPassengerContainsKeywordPredicate` to it. The `FindPoolCommand` object is then returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `FindPoolCommand`, which in turn calls the `updateFilteredPoolList()` method in `Model`, causing the shown pool list to be updated according to the predicate in the `FindPoolCommand` object.
 1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
 1. Finally, a `CommandResult` would be returned to `LogicManager` to indicate the completion status of the command.
+
+### Find feature
+
+The rationale behind expanding on the find feature is to allow for the user to find passengers by more attributes to improve usability. 
+Instead of being restricted to searching for names only, the user can now find other passengers with the same day or of a certain area. 
+This is vital as it is necessary to improve the usability for the user when attempting to find passengers to carpool with drivers.
+
+![Interactions Inside the Logic Component for the `find n/Lucy n/Adam` Command](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**  The `command` argument that is passed into
+`execute()`, represents the string `"find n/Lucy n/Adam"`, and has been abstracted for readability.
+<br>
+The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"find n/Lucy n/Adam"` command.
+1. Object of `AddressBookParser` class is then accessed, which then subsequently creates `FindCommandParser` class object to help parse the user's command.
+1. `AddressBookParser` would then invoke the `parse()` method of `FindCommandParser`, with parameters `n/Lucy n/Adam`, to parse the arguments `n/Lucy n/Adam`.
+1. `FindCommandParser` parses the arguments `n/Lucy n/Adam` and creates a `NameContainsKeywordPredicate` object named `predicate` which is returned to the `FindCommandParser` object.
+1. `FindCommandParser` then instantiates a `FindCommand` object with `predicate` as a parameter. The `FindCommand` object is then returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of `FindCommand`, which in turn calls the `updateFilteredPoolList()` method in `Model`, causing the shown pool list to be updated according to `predicate` in the `FindCommand` object.
+1. A `CommandResult` object is then created with a message which includes the number of passengers found on the list updated by `updateFilteredPoolList()`.
+1. Finally, the `CommandResult` object is returned to `LogicManager`.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
