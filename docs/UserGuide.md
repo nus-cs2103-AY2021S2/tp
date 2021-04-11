@@ -630,7 +630,7 @@ Format: `clear_completed_task`
 
 * This command is still able to be executed on a task list without any completed tasks. <br>
   In this case, success message `Completed tasks (if any) have been cleared!` will still be displayed. <br>
-  However, no task will be cleared since there are no completed tasks.
+  However, no tasks will be cleared since there are no completed tasks.
 
 </div>
 
@@ -653,7 +653,7 @@ Format: `clear_expired_task`
 
 * This command is still able to be executed on a task list without any expired tasks. <br>
   In this case, success message `Expired tasks (if any) have been cleared!` will still be displayed. <br>
-  However, no task will be cleared since there are no expired tasks.
+  However, no tasks will be cleared since there are no expired tasks.
 
 </div>
 
