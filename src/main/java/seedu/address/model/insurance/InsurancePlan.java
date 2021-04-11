@@ -10,8 +10,8 @@ public class InsurancePlan {
     public static final String MESSAGE_CONSTRAINTS = "Input should be of the form:\n"
             + "plan INDEX i/PLAN_NAME $PREMIUM (add plan) OR plan INDEX c/PLAN_INDEX (remove plan)\n"
             + "e.g. plan 3 i/Protecc $4000 OR plan 2 c/3\n"
-            + "The plan name should only contain alphanumeric characters and spaces,"
-            + " and it should not be blank.\n"
+            + "The plan name should not be blank and should only contain alphanumeric characters, spaces, and "
+            + "these special characters, excluding the outer parentheses, (-(),)."
             + "The yearly premium should be a positive amount with up to 2 decimal places.";
     public static final String PREMIUM_CONSTRAINTS =
             "The yearly premium should be a positive amount with up to 2 decimal places.";
