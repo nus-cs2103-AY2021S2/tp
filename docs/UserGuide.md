@@ -402,24 +402,23 @@ Prefix | Searching Criteria
 * Only full words will be matched e.g. `Ta` will not match `Tan`.
   
 * Contacts matching at least one keyword will be returned. 
-  
-  E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
 
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
-  subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
   
 </div>
 
 Examples:
-* `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
-* `search n/Patrick Lim` returns students whose names are `patrick lim` and `Lim Zi Ying`
-* `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
-* `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
-* `search t/CHEM`, `search t/chem`, and `search t/Chem` will all return students with the subject `chem`
-* `search t/chem math` returns students with the subject `chem` or with the subject `math` or with both.
+
+Command     | Result
+----------- |---------------------------------------------------
+`search n/eliza s/woodlands t/math`| displays a list of students whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
+`search n/Patrick Lim` | displays a list of students whose names are `patrick lim` and `Lim Zi Ying`
+`search s/woodlands` | displays a list of students studying in `woodlands primary school` and `woodlands secondary school`
+`search s/raffles hwa` | displays a list of students studying in `Raffles Institution` and `Hwa chong institution`
+`search t/CHEM` <br>`search t/chem` <br>`search t/Chem` | displays a list of students with the subject `chem`
+`search t/chem math` | displays a list of students with the subject `chem` or with the subject `math` or with both.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
