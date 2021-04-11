@@ -173,21 +173,9 @@ Examples:
 * Inputs given are case-sensitive. e.g. `add n/Chocolate Milk l/kitchen refrigerator q/2` and 
   `add n/chocolate milk l/Kitchen Refrigerator q/2` can be keyed it one after the other without
   any error being thrown.
-* Quantity provided must be greater than 0 and must not exceed 1,000,000. 
 
 </div>
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb:**Tip:** An item can have any number of tags (including 0).
-
-</div>
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** Expiry date of an item is optional.
-
-</div>
 
 ### 3.2. Editing an item : `edit`
 
@@ -216,7 +204,6 @@ Examples:
   that is [identical to another item](#23-information-on-items).
 * When editing tags, the existing tags of the item will be removed. i.e. adding of tags is not cumulative.
 * You can remove all the items’ tags by typing `t/` without specifying any tags after it.
-* Quantity provided must be greater than 0 and must not exceed 1,000,000.
 
 </div>
 
