@@ -3,8 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppObjects.DR_ORANGE;
 import static seedu.address.testutil.TypicalAppObjects.DR_GREY;
+import static seedu.address.testutil.TypicalAppObjects.DR_ORANGE;
 import static seedu.address.testutil.TypicalAppObjects.DR_PURPLE;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 
