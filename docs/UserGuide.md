@@ -51,7 +51,7 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/email` : Adds a contact named `John Doe` to the contacts list.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -90,6 +90,10 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 
 * Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
   Values out of this valid integer range will be treated as invalid inputs.
+  
+* The following images represent email, phone and address respectively.
+
+![email](images/email.png) ![phone](images/smartphone.png) ![address](images/house.png)  
 </div>
 
 ### Viewing help : `help`

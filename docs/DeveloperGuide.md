@@ -14,7 +14,8 @@ title: Developer Guide
   - [Blacklist](#blacklist-feature)
   - [Collect](#collect-feature)
   - [Find](#finding-contacts-by-details)
-  - [Light/Dark] >Ryan
+  - [Light](#light-feature)
+  - [Dark](#dark-feature)
   - [Mass Blacklist](#mass-blacklist-feature)
   - [Mode of Contact](#mode-of-contact-feature)
   - [Remark](#remark-feature)
@@ -33,7 +34,7 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a contact](#deleting-a-contact)
   - [Saving data](#saving-data)
-  - [Adding a contact] >Ryan (Mode of contact)
+  - [Adding a contact](#adding-a-contact)
   - [Changing blacklist status of a contact](#changing-blacklist-status-of-a-contact)
   - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
   - [Editing remark for a contact](#adding-a-new-remark)
@@ -41,7 +42,8 @@ title: Developer Guide
   - [Performing mass blacklist](#blacklisting-or-unblacklisting-multiple-contacts)
   - [Performing mass delete](#deleting-multiple-contacts)
   - [Sorting visible contact list](#sort-entries-by-name)
-  - [Transitioning between light and dark mode] >Ryan
+  - [Changing to light mode](#changing-to-light-mode)
+  - [Changing to dark mode](#changing-to-dark-mode)
   - [Undoing previous operations](#undoing-previous-operations)
   - [Navigating through commands](#navigating-through-commands)
 
@@ -1018,36 +1020,87 @@ testers are expected to do more *exploratory* testing.
 
 ### Undoing previous operations
 1. Undo previous operations.
+
    1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
    1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420 m/email` followed by `undo`. <br>
       Expected: `Andy` is no longer in the contact list after `undo` is executed. Command that is undone is shown in the status message.
+      
    1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.<br>
       Expected: The second contact in the list is no longer blacklisted. Command that is undone (i.e. `blacklist 2`) is shown in the status message.
 
 1. Attempt to undo when no changes are done to the contact list.<br>
+
    1. Prerequisite: No commands have been executed before executing the following test cases.
+   
    1. Test case: `undo`<br>
       Expected: An error stating there is nothing to undo is shown in the status message.
+      
    1. Test case: execute `light` and `undo` in this order.<br>
       Expected: Similar to previous.
 
 ### Navigating through commands
 1. Navigating to previous commands.
+
    1. Test case: Execute `light`, `edit 1 n/Alex`, `find n/Alex` in this order and press up arrow key three times. <br>
       Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Alex`, `edit 1 n/Alex` and finally `light`.
+      
 1. Navigating to later commands.
    1. Prerequisite: Retain the same setting as in Test case 1.i.
+   
    1. Test case: Press down arrow key.<br>
       Expected: The command `edit 1 n/Alex` is shown.
+      
    1. Test case: Press down arrow key again.<br>
       Expected: The command `find n/Alex` is shown.
+      
    1. Test case: Press down arrow key again.<br>
       Expected: The command `find n/Alex` is shown again since this is the last command executed.
+      
 1. Attempt to navigate the commands when there are no commands executed.
+
    1. Test case: Press up arrow key.<br>
       Expected: Nothing is shown in the command box.
+      
    1. Test case: Press down arrow key.<br>
       Expected: Similar to previous.
+      
 1. Attempt to navigate later commands after executing a command.
+
    1. Test case: Execute any command and press down arrow key.<br>
       Expected: Nothing is shown in the command box.
+
+### Adding a contact
+1. Adding a new contact.
+    1. Prerequisite: None.
+    
+    1. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/email t/friends t/owesMoney`<br>
+       Expected: New contact `John Doe`is added to the contact list.
+    
+    1. Test case: `add n/John Doe`<br>
+       Expected: No contact is added. Error details are shown in the status message.
+
+### Changing to light mode
+1. Change the mode of viewing to light mode.
+    1. Prerequisite: None.
+    
+    1. Test case : `light`<br>
+       Expected: Mode of viewing is now in light mode.      
+    
+    1. Test case : `light 1234 `
+       Expected: Mode of viewing is now in light mode.                                  
+    
+    1. Other incorrect input to try: `light dark`, `light delete 1`, `...`(any additional input after light)<br>
+       Expected: Similar to previous. 
+       
+### Changing to dark mode
+1. Change the mode of viewing to dark mode.
+    1. Prerequisite: None.
+    
+    1. Test case : `dark`<br>
+       Expected: Mode of viewing is now in dark mode.      
+    
+    1. Test case : `dark 1234 `
+       Expected: Mode of viewing is now in dark mode.                                  
+    
+    1. Other incorrect input to try: `dark light`, `dark delete 1`, `...`(any additional input after dark)<br>
+       Expected: Similar to previous.            
