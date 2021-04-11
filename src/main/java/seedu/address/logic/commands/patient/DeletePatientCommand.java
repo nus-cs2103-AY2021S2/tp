@@ -1,10 +1,12 @@
 package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_PATIENT_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_FORCE_DELETE_PATIENT_REQUIRED;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -49,7 +51,7 @@ public class DeletePatientCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -61,11 +63,11 @@ public class DeletePatientCommand extends Command {
         // checks if patient has any existing appointments
         if (model.hasPatientInAppointmentSchedule(patientToDelete)) {
             throw new CommandException(String.format(
-                    Messages.MESSAGE_FORCE_DELETE_PATIENT_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
+                    MESSAGE_FORCE_DELETE_PATIENT_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
         }
 
         model.deletePatient(patientToDelete);
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }
 
     @Override
