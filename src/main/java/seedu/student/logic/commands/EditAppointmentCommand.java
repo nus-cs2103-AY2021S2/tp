@@ -22,12 +22,12 @@ public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "editAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an appointment identified in Vax@NUS \n"
-            + "by the index number used in the displayed student list. "
+            + "by the student's matriculation number. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: Matriculation Number "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START TIME \n"
-            + "Example: " + COMMAND_WORD + " A01234567X "
+            + "Example: " + COMMAND_WORD + " A1234567X "
             + PREFIX_DATE + "2021-03-25 "
             + PREFIX_START_TIME + "11:00 \n";
 
