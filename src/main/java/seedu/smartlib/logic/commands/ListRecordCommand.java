@@ -11,7 +11,7 @@ import seedu.smartlib.model.Model;
 public class ListRecordCommand extends Command {
     public static final String COMMAND_WORD = "listrecord";
 
-    public static final String MESSAGE_SUCCESS = "Listed all records";
+    public static final String MESSAGE_SUCCESS = "Listed all records.";
 
     /**
      * Executes the command and returns the result message.

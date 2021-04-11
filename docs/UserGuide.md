@@ -45,18 +45,18 @@ head over to [Quick start](#quick-start) now to learn how to begin your journey 
 contains some sample data.<br><br>
 ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing `listbook` and pressing Enter will
 list all the current books in store.<br>
    Some example commands you can try:
 
-   * **`addreader`** `r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named
+   * `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named
    `John Doe` to SmartLib.
 
-   * **`deletereader`** `3` : Deletes the 3rd contact shown in the current list.
+   * `deletereader 3` : Deletes the 3rd contact shown in the current list.
 
-   * **`listbook`** : Lists all stored books in SmartLib.
+   * `listbook` : Lists all stored books in SmartLib.
 
-   * **`exit`** : Exits the app.
+   * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -162,24 +162,21 @@ Format: `deletereader INDEX`
   To delete a reader holding on to unreturned books, you will need to first return the books borrowed by the reader
   (see the [return command](#returning-a-book--return) for more details), before deleting him/her.
 
-Example:
+Example use:
 
 If a reader wishes to have his/her registration cancelled and personal information erased from SmartLib, 
 you can follow the steps below to delete the reader from SmartLib's registered reader base.
 
 Steps:
+
 1. Type `deletereader 3` if the reader has an index of 3 as shown on the displayed reader list.
 2. Press `Enter` to execute.
 
 Outcome:
+
 * The _Result Display_ will show a success message with the deleted reader's information.
   <br><br>
   ![result for 'addreader_JohnDoe'](images/deletereaderresult.png)
-
-Tip:
-* If you have just executed a _findreader_ command,
-  the displayed reader list on SmartLib will be a filtered result of the find command. 
-  To delete the reader by the correct index, you could do `listreader` first to get the complete reader list. 
 
 #### Finding readers : `findreader`
 
@@ -187,21 +184,22 @@ Tip:
 
 You can use this command to find readers whose names contain any of the given keywords.
 
-Format: `findreader KEYWORD [MORE_KEYWORDS]`
+Format: `findreader KEYWORD [MORE_KEYWORDS]…`
 
 **:information_source: Notes:**
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
+* The search will only display readers whose name matches any of the keywords (i.e. it disregards tags,
+  phone numbers, etc.).
 * Readers matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Example use:
 
-Let's say you have many readers in your reader list,
-and you are trying to find more information about a particular reader (e.g. Bob).
+Suppose you have many readers in your registered reader base, and you are trying to find a particular reader
+which you could only remember as `Bob` (let's say you have forgotten his full name).
 You can follow the steps below to obtain a list of readers named Bob.
 
 Steps:
@@ -210,29 +208,32 @@ Steps:
 1. Press `Enter` to execute your input.
 
 Outcome:
+
 * The _Result Display_ will show a message indicating success.
-* SmartLib will list out all the readers with "Bob" in their name.<br><br>
+* SmartLib will list out all the readers with "Bob" in their name.
+  <br><br>
   ![result for 'findreader Bob'](images/findBobResult.png)
 
 ##### By tag:
 
 You can also use this command to find readers whose tags contain any of the specified tags.
 
-Format: `findreader t/TAG [MORE_TAGS]`
+Format: `findreader t/TAG [MORE_TAGS]…`
 
 **:information_source: Notes:**
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * Currently, SmartLib does not support finding readers by name and tag concurrently.
 * The search is case-insensitive. e.g `vip` will match `VIP`.
 * The order of the tags do not matter. e.g. `VIP TopBorrower` will match `TopBorrower VIP`.
-* Only the tags are searched.
-* Only full words will be matched e.g. `VI` will not match `VIP`.
+* Only full words will be matched e.g. `VIP` will not match `VVIP`.
+* The search will only display readers whose tags matches any of the keywords (i.e. it disregards reader names,
+  phone numbers, etc.).
 * Readers matching at least one tag will be returned (i.e. `OR` search).
   e.g. `VIP VVIP` will return readers with either the tag `VIP` or with the tag `VVIP`.
 
 Example use:
 
-Let's say you have many readers in your reader list,
+Let's say you have many readers in your registered reader base,
 and you are trying to find more information about a particular type of reader(s) (e.g. VIPs).
 You can follow the steps below to obtain a list of readers with the `VIP` tag.
 
@@ -242,13 +243,15 @@ Steps:
 1. Press `Enter` to execute your input.
 
 Outcome:
+
 * The _Result Display_ will show a message indicating success.
-* SmartLib will list out all the readers with `VIP` in their list of tags.<br><br>
+* SmartLib will list out all the readers with `VIP` in their list of tags.
+  <br><br>
   ![result for 'findreader t/VIP'](images/findVIPResult.png)
 
 #### Listing all readers : `listreader`
 
-You can use this command to display a list of all readers in SmartLib.
+You can use this command to display a list of all readers in SmartLib's registered reader base.
 
 Format: `listreader`
 
@@ -267,8 +270,10 @@ Steps:
 1. Press `Enter` to execute your input.
 
 Outcome:
+
 * The _Result Display_ will show a message indicating success.
-* SmartLib will list out all the readers.<br><br>
+* SmartLib will list out all the readers.
+  <br><br>
   ![result for 'listreader'](images/listreaderResult.png)
 
 ### Managing your books
@@ -333,10 +338,11 @@ Format: `findbook KEYWORD [MORE_KEYWORDS]`
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 * The search is case-insensitive. e.g `Harry Potter` will match `harry potter`.
 * The order of the keywords do not matter. e.g. `Potter Harry` will match `Harry Potter`.
-* Only the keywords are searched.
 * Only full words will be matched e.g. `Po` will not match `Potter`.
+* The search will only display books whose title matches any of the keywords (i.e. it disregards authors, genres, etc.).
 * Book titles matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Harry` will return books with either the title `Harry Potter and the Goblet of Fire` or `Harry Potter and the Deathly Hallows`.
+  e.g. `Harry` will return books with either the title `Harry Potter and the Goblet of Fire` or
+  `Harry Potter and the Deathly Hallows`.
 
 Example use:
 
@@ -425,12 +431,13 @@ Format: `borrow bc/BARCODE r/READERNAME`
 **:information_source: Notes:**
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 * Lets the reader with the specified name READERNAME borrow the book specified by name BOOKNAME.
-* The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.   
+* The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.
+  (The reason for case sensitivity is because reader names are currently being used as a unique identifier for each
+  reader.)
 
 Example Use:
 * `borrow bc/1000000000 r/Alex` records a rental entry that reader whose name is Alex borrowed
 a copy of The Old Man And The Sea which barcode is 1000000000
-
 
 More Examples:
 * `borrow bc/1234567890125 r/Bernice` records that Bernice borrowed a copy of Cloud Atlas which barcode is 1234567890125
@@ -462,7 +469,7 @@ Format: `return bc/BARCODE`
 * Lets the reader return the book specified by barcode BARCODE.
 * The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
 
-Example Use:
+Example use:
 * `return bc/1000000000` records a rental entry that the book with the barcode number 1000000000 has been returned.
 
 More Examples:
@@ -504,28 +511,90 @@ Format: `listrecord`
 Finally, SmartLib also provides a number of commands which will serve to be very helpful in your day-to-day use of the
 application.
 
-#### Clearing all entries : `clear-everything-in-my-database`
+#### Clearing all entries : `clear-everything-in-my-smartlib`
 
-Clears all entries from SmartLib. 
+You can use this command to clear all of your entries in SmartLib.
 
-As there is no undo once you clear all entries, 
-we design the command word for clearing entries in such a way that you will not wipe out your precious data by accident. 
+Format: `clear-everything-in-my-smartlib`
 
-Format: `clear-everything-in-my-database`
+**:information_source: Notes:**
+* As there is currently no way to undo your actions once you have cleared your SmartLib, 
+  we have thus designed the command word for clearing entries to be especially complex,
+  so that it would be unlikely for you to accidentally wipe out all of your precious data.
+* Any parameters stated after `clear-everything-in-my-smartlib` will be ignored by SmartLib.
+
+Example use:
+
+Let's say you have decided to close down your bookstore due to a lack of visitors,
+and decided to start anew with a comic store instead,
+since you have observed a growing consumer base for comics and manga.
+
+Let's also assume that you have enjoyed using SmartLib for your previous business,
+and would like to continue using our app for your new venture.
+You can follow the steps below to start with a new blank copy of SmartLib.
+
+Steps:
+
+1. Type `clear-everything-in-my-smartlib` in the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a message indicating success.
+* SmartLib will clear all its data.
+  <br><br>
+  ![result for 'clear-everything-in-my-smartlib'](images/clearresult.png)
 
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
+You can use this command to access the URL of a page showing SmartLib's features,
+and the list of commands supported by SmartLib (i.e. this page).
 
 Format: `help`
 
+**:information_source: Note:**
+* Any parameters stated after `help` will be ignored by SmartLib.
+
+Example use:
+
+Let's say you are a new user of SmartLib, and would like to learn more about how SmartLib can be used.
+You can follow the steps below to get SmartLib to display a link to its User Guide,
+containing explanations for its features, and the list of commands it supports. 
+
+Steps:
+
+1. Type `help` in the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a message indicating success.
+* SmartLib will show a link to its User Guide, which you can then copy into your web browser.
+  <br><br>
+  ![help message](images/helpMessage.png)
+
 #### Exiting the program : `exit`
 
-Exits the program.
+You can use this command to exit the program.
 
 Format: `exit`
+
+**:information_source: Note:**
+* Any parameters stated after `help` will be ignored by SmartLib.
+
+Example use:
+
+Let's say you would like to exit SmartLib, but you are not able to access the exit button of the application.
+Fret not, you could also exit the application by following the steps below.
+
+Steps:
+
+1. Type `exit` in the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* SmartLib will terminate.
 
 ### Miscellaneous features (for advanced users)
 
@@ -533,18 +602,18 @@ Some features, such as data saving and storage, and handled automatically by Sma
 
 #### Saving the data
 
-SmartLib data are saved in the hard disk automatically after any command that changes the data. There is no need to save
-manually.
+SmartLib's data are saved in the hard disk automatically after any command that causes a change in the data.
+There is no need to save manually.
 
 #### Editing the data file
 
 SmartLib data are saved as a JSON file `[JAR file location]/data/smartlib.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+**:exclamation: Caution:**
+
 If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data
 file at the next run.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -571,12 +640,17 @@ the data of your previous SmartLib home folder.
 * **International Standard Book Number (ISBN)**: The ISBN is a numeric commercial book identifier which is intended to
     be unique for each book. Books with the same name will share the same ISBN. A 13-digit ISBN can be separated into 
     its parts (prefix element, registration group, registrant, publication and check digit), and when this is done it is 
-     customary to separate the parts with hyphens or spaces. 
+     customary to separate the parts with hyphens or spaces.
+     
+* **JavaScript Object Notation (JSON) file**: This is a file format that uses human-readable text to store data.
 
 * **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
     was successfully executed by SmartLib.
 
 * **Special characters**: Special characters refer to any characters that are not alphanumeric.
+
+* **Web browser**: A web browser is a piece of application software for accessing the World Wide Web.
+  Some examples include Google Chrome, Mozilla Firefox, and Safari.
 
 ![annotated Ui](images/Ui-annotated.png)
 
@@ -584,18 +658,21 @@ the data of your previous SmartLib home folder.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add reader** | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, t/TAG, ..., t/TAG]` <br> e.g., `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
-**Delete reader** | `deletereader INDEX`<br> e.g., `deletereader 3`
-**Find reader** | `findreader KEYWORD [MORE_KEYWORDS]` or `findreader t/TAG [MORE_TAGS]`<br> e.g., `findreader James Jake`
-**List readers** | `listreader`
-**Add book** | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g., `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
-**Borrow book** | `borrow bc/BARCODE r/READERNAME`<br> e.g., `borrow bc/1000000000 r/Alex`
-**Delete book** | `deletebook INDEX`<br> e.g., `deletebook 3`
-**Find book** | `findbook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findbook Thomas the Tank Engine`
-**List books** | `listbook`
-**Return book** | `return bc/BARCODE`<br> e.g., `return bc/1202179131`
-**Clear** | `clear`
-**Help** | `help`
-**Exit** | `exit`
+Action                 | Format, Examples
+-----------------------|------------------
+**Add reader**         | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g. `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Delete reader**      | `deletereader INDEX`<br> e.g. `deletereader 3`
+**Find reader**        | `findreader KEYWORD [MORE_KEYWORDS]…` or `findreader t/TAG [MORE_TAGS]…`<br> e.g. `findreader James Jake`
+**List readers**       | `listreader`
+**Add book**           | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g. `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
+**Delete book**        | `deletebook INDEX`<br> e.g. `deletebook 3`
+**Find book**          | `findbook KEYWORD [MORE_KEYWORDS]…`<br> e.g. `findbook Thomas Tank Engine`
+**List books**         | `listbook`
+**List overdue books** | `listoverdue`
+**Borrow book**        | `borrow bc/BARCODE r/READERNAME`<br> e.g. `borrow bc/1000000000 r/Alex`
+**Find record**        | `findrecord KEYWORD [MORE_KEYWORDS]…`<br> e.g. `findrecord Cloud Hobbit`
+**List records**       | `listrecord`
+**Return book**        | `return bc/BARCODE`<br> e.g. `return bc/1202179131`
+**Clear**              | `clear-everything-in-my-smartlib`
+**Help**               | `help`
+**Exit**               | `exit`
