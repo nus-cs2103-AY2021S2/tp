@@ -29,14 +29,24 @@ import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.tag.Tag;
 
-public class EditAutocompleteUtil {
+public class EditAutocompleteUtil implements AutocompleteUtil {
 
     private static final String INDEX_OUT_OF_BOUNDS_ERROR = "Index provided does not match any user!";
+
+    private final String input;
+
+    /**
+     * EditAutocompleteUtil Constructor.
+     */
+    public EditAutocompleteUtil(String input) {
+        requireNonNull(input);
+        this.input = input;
+    }
 
     /**
      * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
      */
-    private static String getTagsAsAutocompletedString(Set<Tag> tags) {
+    protected static String getTagsAsAutocompletedString(Set<Tag> tags) {
         return tags
             .stream()
             .map(t -> t.tagName)
@@ -47,16 +57,14 @@ public class EditAutocompleteUtil {
 
     /**
      * Parses an edit command to autocomplete remark.
-     * @param arguments User's input command.
      * @param model Model instance containing address book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.
      */
-    public String parseCommand(String arguments, Model model) throws ParseException, CommandException {
-        requireNonNull(arguments);
+    public String parse(Model model) throws ParseException, CommandException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
         Index index;
@@ -156,6 +164,19 @@ public class EditAutocompleteUtil {
         }
 
         return output;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof EditAutocompleteUtil)) {
+            return false;
+        }
+
+        return this.input.equals(((EditAutocompleteUtil) obj).input);
     }
 
 }

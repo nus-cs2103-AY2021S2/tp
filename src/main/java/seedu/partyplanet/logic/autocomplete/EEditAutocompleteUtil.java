@@ -21,22 +21,30 @@ import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.event.Event;
 
-public class EEditAutocompleteUtil {
+public class EEditAutocompleteUtil implements AutocompleteUtil {
 
     private static final String INDEX_OUT_OF_BOUNDS_ERROR = "Index provided does not match any event!";
 
+    private final String input;
+
+    /**
+     * EEditAutocompleteUtil Constructor.
+     */
+    public EEditAutocompleteUtil(String input) {
+        requireNonNull(input);
+        this.input = input;
+    }
+
     /**
      * Parses an edit command to autocomplete remark.
-     * @param arguments User's input command.
      * @param model Model instance containing address book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.
      */
-    public String parseCommand(String arguments, Model model) throws ParseException, CommandException {
-        requireNonNull(arguments);
+    public String parse(Model model) throws ParseException, CommandException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_DATE, PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_DATE, PREFIX_REMARK);
 
         Index index;
         try {
@@ -93,6 +101,19 @@ public class EEditAutocompleteUtil {
         }
 
         return output;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof EEditAutocompleteUtil)) {
+            return false;
+        }
+
+        return this.input.equals(((EEditAutocompleteUtil) obj).input);
     }
 
 }
