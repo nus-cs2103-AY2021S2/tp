@@ -1,14 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.identifier.Identifier;
-import seedu.address.model.EventBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Event;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -16,8 +7,16 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_EVENT;
-import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.identifier.Identifier;
+import seedu.address.model.EventBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Event;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
@@ -42,7 +41,7 @@ public class DoneCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Identifier outOfBoundIndex = Identifier.fromIdentifier(model.getEventBook().getEventList().size() + 1);
-        DoneCommand doneCommand= new DoneCommand(outOfBoundIndex);
+        DoneCommand doneCommand  = new DoneCommand(outOfBoundIndex);
 
         assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER);
     }
