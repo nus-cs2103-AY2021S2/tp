@@ -31,7 +31,8 @@ import seedu.address.testutil.MeetingBuilder;
 public class EditMeetingCommandTest {
 
     private Model model =
-            new ModelManager(new AddressBook(), getTypicalMeetingBook(), new NoteBook(), new UserPrefs(), new PersonMeetingConnection());
+            new ModelManager(new AddressBook(), getTypicalMeetingBook(),
+                    new NoteBook(), new UserPrefs(), new PersonMeetingConnection());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -41,7 +42,8 @@ public class EditMeetingCommandTest {
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        Model expectedModel = new ModelManager(new MeetingBook(model.getMeetingBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), getTypicalMeetingBook(),
+                new NoteBook(), new UserPrefs(), new PersonMeetingConnection());
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
@@ -108,7 +110,8 @@ public class EditMeetingCommandTest {
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        Model expectedModel = new ModelManager(new MeetingBook(model.getMeetingBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), getTypicalMeetingBook(),
+                new NoteBook(), new UserPrefs(), new PersonMeetingConnection());
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
