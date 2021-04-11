@@ -14,7 +14,6 @@ import seedu.cakecollate.model.order.ReminderDatePredicate;
 public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
-    public static final String MESSAGE_EMPTY = "Days cannot be left blank!";
     public static final String MESSAGE_MULTIPLE_INPUTS = "Only one input for remind command is accepted! Did you leave"
             + "a space between 2 digits?";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders whose delivery dates "

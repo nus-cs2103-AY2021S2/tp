@@ -15,7 +15,7 @@ public class RemindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", RemindCommand.MESSAGE_EMPTY);
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "1     1", RemindCommand.MESSAGE_MULTIPLE_INPUTS);
         assertParseFailure(parser, " 1 a", RemindCommand.MESSAGE_MULTIPLE_INPUTS);
         assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
