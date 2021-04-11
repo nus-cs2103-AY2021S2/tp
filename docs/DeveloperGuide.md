@@ -244,6 +244,37 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 ![Delete Command Activity Diagram](images/DeleteDeliveryTaskActivityDiagram.png)
 
+
+### Find Feature `find KEYWORDS`
+
+The find feature allows drivers to find a delivery based on attributes that match the keywords that have been typed in.
+
+Implementation
+The Sequence Diagram below shows how the components interact when a user enters find Alex to retrieve entries matching the word ALex in the delivery list:
+
+![Find Command Sequence Diagram](images/FindCommandSequenceDiagram.png)
+
+Below is a further breakdown of the logic component of the find command using a sequence diagram
+
+![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
+
+Description:
+When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. The
+DeliveryListParser parses the user input and identifies it as a FindCommand and instantiates a FindCommandParser object.
+DeliveryistParser then invokes the parse method of the FindCommandParser object to further parse the arguments provided.
+In the parse method, the FindCommandParser ensures that the input is of the correct format and identifies the keywords.
+If the input specified by the user is valid, a new FindCommand instance will be created and returned to LogicManager via
+DeliveryListParser. The LogicManager will then invoke the overridden execute method of the FindCommand object with Model
+as the argument. Subsequently, the FindCommand object will take in the keywords and invoke the updateFilteredCustomersList method of Model that gets the
+entries with attributes that match the keyword(s). It will then return a CommandResult object to LogicManager. This
+CommandResult will be returned at the end by LogicManager.
+
+The following Activity Diagram summarizes what happens when a user executes the find command:
+
+![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
