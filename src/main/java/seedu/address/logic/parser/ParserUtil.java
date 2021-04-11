@@ -18,11 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.schedule.DateTime;
-import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.TaskDescription;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -39,7 +35,7 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(String.format("Index given: %s\n%s", trimmedIndex, MESSAGE_INVALID_INDEX));
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -55,7 +51,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ContactName.isValidName(trimmedName)) {
-            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format("Name given: %s\n%s", trimmedName, ContactName.MESSAGE_CONSTRAINTS));
         }
         return new ContactName(trimmedName);
     }
@@ -90,34 +86,6 @@ public class ParserUtil {
         return new ContactEmail(trimmedEmail);
     }
 
-    /**
-     * Parses a {@code String description} into a {@code ScheduleDescription}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code description} is invalid.
-     */
-    public static ScheduleDescription parseScheduleDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!ScheduleDescription.isValidName(trimmedDescription)) {
-            throw new ParseException(ScheduleDescription.MESSAGE_CONSTRAINTS);
-        }
-        return new ScheduleDescription(trimmedDescription);
-    }
-
-    /**
-     * Parses a {@code String task description} into a {@code TaskDescription}
-     *
-     * @throws ParseException if the given {@code description} is invalid
-     */
-    public static TaskDescription parseTaskDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!TaskDescription.isValidDescription(trimmedDescription)) {
-            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
-        }
-        return new TaskDescription(trimmedDescription);
-    }
 
     //to be deleted-----------------------------------
     /**
@@ -130,7 +98,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format("Name given: %s\n%s", trimmedName, Name.MESSAGE_CONSTRAINTS));
         }
         return new Name(trimmedName);
     }
@@ -145,7 +113,8 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format("Phone number given: %s\n%s",
+                    trimmedPhone, Phone.MESSAGE_CONSTRAINTS));
         }
         return new Phone(trimmedPhone);
     }
@@ -175,7 +144,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format("Email given: %s\n%s", trimmedEmail, Email.MESSAGE_CONSTRAINTS));
         }
         return new Email(trimmedEmail);
     }
@@ -191,7 +160,7 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format("Tag given: %s\n%s", trimmedTag, Tag.MESSAGE_CONSTRAINTS));
         }
         return new Tag(trimmedTag);
     }
@@ -209,37 +178,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateStr} into a {@code Date}.
-     */
-    public static Date parseDate(String dateStr) throws ParseException {
-        requireNonNull(dateStr);
-        String trimmedDate = dateStr.trim();
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
-        }
-        return new Date(trimmedDate);
-    }
-
-    /**
-     * Parses a {@code String dateTimeStr} into a {@code DateTime}.
-     */
-    public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
-        requireNonNull(dateTimeStr);
-        String trimmedDateTime = dateTimeStr.trim();
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
-        }
-        return new DateTime(trimmedDateTime);
-    }
-
-    /**
      * Parses a {@code String entryName} into a {@code EntryName}.
      */
     public static EntryName parseEntryName(String entryName) throws ParseException {
         requireNonNull(entryName);
         String trimmedEntryName = entryName.trim();
         if (!EntryName.isValidName(trimmedEntryName)) {
-            throw new ParseException(EntryName.NAME_CONSTRAINTS);
+            throw new ParseException(String.format("Name given: %s\n%s", trimmedEntryName, EntryName.NAME_CONSTRAINTS));
         }
         return new EntryName(trimmedEntryName);
     }
@@ -251,7 +196,7 @@ public class ParserUtil {
         requireNonNull(entryDate);
         String trimmedEntryDate = entryDate.trim();
         if (!EntryDate.isValidDate(trimmedEntryDate)) {
-            throw new ParseException(EntryDate.DATE_CONSTRAINTS);
+            throw new ParseException(String.format("Date given: %s\n%s", trimmedEntryDate, EntryDate.DATE_CONSTRAINTS));
         }
         return new EntryDate(trimmedEntryDate);
     }

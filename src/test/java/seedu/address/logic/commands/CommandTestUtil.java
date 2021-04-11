@@ -24,6 +24,7 @@ import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
+import seedu.address.model.entry.ListEntryFormatPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditContactDescriptorBuilder;
@@ -92,6 +93,10 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final ListEntryFormatPredicate ALL_PREDICATE = new ListEntryFormatPredicate("");
+    public static final ListEntryFormatPredicate DAY_PREDICATE = new ListEntryFormatPredicate("day");
+    public static final ListEntryFormatPredicate WEEK_PREDICATE = new ListEntryFormatPredicate("week");
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -169,6 +174,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showContactAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredContactList().size());
+
+        Contact contact = model.getFilteredContactList().get(targetIndex.getZeroBased());
+        final String[] splitName = contact.getName().fullName.split("\\s+");
+        model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredContactList().size());
     }
 
     /**
