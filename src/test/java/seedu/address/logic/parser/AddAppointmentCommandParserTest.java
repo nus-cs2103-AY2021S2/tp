@@ -95,9 +95,9 @@ public class AddAppointmentCommandParserTest {
         assertParseFailure(parser, NAME_DESC_PTM + INVALID_ADDRESS_DESC + DATE_DESC_PTM + CONTACT_DESC_2,
                 Address.MESSAGE_CONSTRAINTS);
 
-        // invalid date
+        // invalid date format
         assertParseFailure(parser, NAME_DESC_PTM + ADDRESS_DESC_PTM + INVALID_DATE_DESC + CONTACT_DESC_2,
-                DateTime.MESSAGE_CONSTRAINTS);
+                DateTime.MESSAGE_INVALID_FORMAT);
 
         // invalid contact
         // assertParseFailure(parser, NAME_DESC_PTM + ADDRESS_DESC_PTM + DATE_DESC_PTM + INVALID_CONTACT_DESC,

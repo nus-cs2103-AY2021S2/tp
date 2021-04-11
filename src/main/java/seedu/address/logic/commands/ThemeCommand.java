@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Changes the theme of Helibook.
+ * Changes the theme of ParentPal.
  */
 public class ThemeCommand extends Command {
 
