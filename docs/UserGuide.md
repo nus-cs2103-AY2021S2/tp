@@ -404,7 +404,12 @@ Prefix | Searching Criteria
   
 </div>
 
-Examples:
+Example:
+`search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex`, order does not matter, or with
+the school `xyz` or with subjects `cn`.
+![Search command](images/Search%20Command.png)
+
+Other examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
