@@ -2,11 +2,8 @@ package seedu.storemando.logic.commands;
 
 import static seedu.storemando.logic.parser.CliSyntax.PREFIX_LOCATION;
 
-import java.util.function.Predicate;
-
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.item.Item;
 
 /**
  * Clears the storemando or a specified location.
