@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.BookStorage;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access PersonBook data stored as a json file on the hard disk.
  */
 public class JsonPersonBookStorage implements BookStorage<Person> {
 
@@ -38,12 +38,7 @@ public class JsonPersonBookStorage implements BookStorage<Person> {
         return readBook(filePath);
     }
 
-    /**
-     * Similar to {@link #readBook()}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file is not in the correct format.
-     */
+    @Override
     public Optional<ReadOnlyBook<Person>> readBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -66,11 +61,7 @@ public class JsonPersonBookStorage implements BookStorage<Person> {
         saveBook(personBook, filePath);
     }
 
-    /**
-     * Similar to {@link #saveBook(ReadOnlyPersonBook)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
+    @Override
     public void saveBook(ReadOnlyBook<Person> personBook, Path filePath) throws IOException {
         requireNonNull(personBook);
         requireNonNull(filePath);

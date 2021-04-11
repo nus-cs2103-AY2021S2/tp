@@ -17,6 +17,9 @@ import seedu.address.model.order.Order;
 import seedu.address.storage.BookStorage;
 import seedu.address.storage.person.JsonPersonBookStorage;
 
+/**
+ * A class to access OrderBook data stored as a json file on the hard disk.
+ */
 public class JsonOrderBookStorage implements BookStorage<Order> {
 
     private static final Logger logger = LogsCenter.getLogger(JsonPersonBookStorage.class);
@@ -27,26 +30,17 @@ public class JsonOrderBookStorage implements BookStorage<Order> {
         this.filePath = filePath;
     }
 
-    /**
-     * Returns the file path of the data file.
-     */
+    @Override
     public Path getBookFilePath() {
         return filePath;
     }
 
-    /**
-     * Returns AddressBook data as a {@link ReadOnlyBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
-     */
+    @Override
     public Optional<ReadOnlyBook<Order>> readBook() throws DataConversionException, IOException {
         return readBook(filePath);
     }
 
-    /**
-     * @see #getBookFilePath()
-     */
+    @Override
     public Optional<ReadOnlyBook<Order>> readBook(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
@@ -64,18 +58,12 @@ public class JsonOrderBookStorage implements BookStorage<Order> {
         }
     }
 
-    /**
-     * Saves the given {@link ReadOnlyBook} to the storage.
-     * @param orderBook cannot be null.
-     * @throws IOException if there was any problem writing to the file.
-     */
+    @Override
     public void saveBook(ReadOnlyBook<Order> orderBook) throws IOException {
         saveBook(orderBook, filePath);
     }
 
-    /**
-     * @see #saveBook(ReadOnlyBook)
-     */
+    @Override
     public void saveBook(ReadOnlyBook<Order> orderBook, Path filePath) throws IOException {
         requireNonNull(orderBook);
         requireNonNull(filePath);

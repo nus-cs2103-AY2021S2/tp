@@ -11,6 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderBook;
+
 /**
  * An immutable OrderBook that is serializable to JSON format.
  */
@@ -20,17 +21,25 @@ public class JsonSerializableOrderBook {
 
     private final List<Order> orders = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonSerializableOrderBook} with the given persons.
+     */
     @JsonCreator
     public JsonSerializableOrderBook(@JsonProperty("orders") List<Order> orders) {
         this.orders.addAll(orders);
     }
 
+    /**
+     * Converts a given {@code ReadOnlyBook<Order>} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableOrderBook}.
+     */
     public JsonSerializableOrderBook(ReadOnlyBook<Order> source) {
         orders.addAll(source.getItemList());
     }
 
     /**
-     * To model type
+     * Converts this order book into the model's {@code OrderBook} object.
      * @return OrderBook model type
      * @throws IllegalValueException
      */
