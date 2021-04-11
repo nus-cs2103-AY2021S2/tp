@@ -41,10 +41,14 @@ title: Developer Guide
     * [Redoing a command](#redoing-a-command)
     * [Adding an alias](#adding-an-alias)
 * [Appendix: Effort](#appendix-effort)
+    * [Refactor from AB3 to FlashBack](#refactor-from-ab3-to-flashback)
     * [Find feature](#find-feature)
     * [Filter feature](#filter-feature)
     * [View feature](#view-feature)
     * [Review Mode](#review-mode)
+    * [Sort feature](#sort-feature)
+    * [UndoRedo feature](#undoredo-feature)
+    * [Alias feature](#alias-feature)
     * [UI improvement](#ui-improvement)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -283,7 +287,7 @@ overall statistics of the current flashcard list.
 
 A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where the UI is updated to display the retrieved statistics.
 
-Example: `stats 3` is entered by the user
+Example: `stats 3` is entered by the user.
 
 It implements the following operations:
 
@@ -480,6 +484,10 @@ the UI is updated to display the retrieved message.
 
 </div>
 
+Now, when user executes a command in the main mode, `FlashBackParser` will check if the `commandWord` is an alias. If `commandWord` is an alias, The `commandWord` will be parsed into the actual command before the specified CommandParser is created.
+The following activity diagram summarizes what happens when a user tries to execute a command using the alias.<br><br>
+![AliasActivityDiagram](images/AliasActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -491,6 +499,7 @@ the UI is updated to display the retrieved message.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -662,18 +671,30 @@ otherwise) <br /><br />
 
 **MSS**
 
-1. User requests to delete a flashcard from the list.
-1. FlashBack deletes the specified flashcard.
-1. User requests to undo delete command.
-1. FlashBack reverts to its previous state before delete command.
+1. User requests to execute a command.
+1. FlashBack executes the specified command.
+1. User requests to undo a command.
+1. FlashBack reverts to its state before the previous command was executed.
 
    Use case ends.
+   
+**Extensions**
+   
+* 1a. The command is invalid.
+   
+     Use case ends.
+   
+* 3a. The command executed is not an undoable command. (Only `add`, `edit`, `delete` and `clear` can be undone)
+   * 3a1. FlashBack shows an error message.
+
+     Use case ends.
+
    
 **Use case: UC08 - Redo an undoable command**
 
 **MSS**
 
-1. User undo an undoable command (UC07).
+1. User undoes an undoable command (UC07).
 1. User requests to redo the command.
 1. FlashBack reverts to its previous state before undo command.
 
@@ -699,8 +720,6 @@ Use case ends.
 * 3b. User enters `h` command when the answer is currently hidden.
     * 3b1. FlashBack shows an error message <br>
     Use case resumes at step 3.
-<div style="page-break-after: always;"></div>
-
 * 3c. User enters `a` command when the answer is currently shown.
     * 3c1. FlashBack shows an error message <br>
     Use case resumes at step 3.
@@ -716,7 +735,7 @@ Use case ends.
 1. User requests to display statistics of a flashcard.
 1. FlashBack displays the statistics of the requested flashcard.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
@@ -743,7 +762,7 @@ in step 1 and 2 of MSS
 1. User requests to add an alias to a command.
 1. FlashBack displays alias added successfully.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
@@ -819,7 +838,6 @@ testers are expected to do more *exploratory* testing.
     
     1. Test cases: `list` <br>
     Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
-<div style="page-break-after: always;"></div>
 
 ### Adding a flashcard
 1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
@@ -879,13 +897,13 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `find`<br>
        Expected: The list will not be updated, and an invalid command format error is shown in the result display.
+       <div style="page-break-after: always;"></div>
        
     1. Test case: `find equa`<br>
        Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display states the number of flashcards found.
        
     1. Test case: `find newton random`<br>
        Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display states the number of flashcards found.
-<div style="page-break-after: always;"></div>
 
 ### Filtering flashcards
 
@@ -913,8 +931,6 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `clear` <br>
        Expected: All flashcards shown in `FlashcardListPanel` are deleted. The result display shows the message: `FlashBack has been cleared!`.
-    
-<div style="page-break-after: always;"></div>
 
 ### Viewing a flashcard
 
@@ -969,6 +985,7 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `a` <br>
        Expected: The answer of the current flashcard is displayed to the user. The result display shows the message: `The answer is shown, did you get it correct? (t/f)`, followed by the instruction.
+    <div style="page-break-after: always;"></div>
 
 1. Hiding answer
     
@@ -1003,7 +1020,7 @@ testers are expected to do more *exploratory* testing.
 1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
-    
+        <div style="page-break-after: always;"></div>
     1. Test case: `stats` <br>
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
@@ -1036,10 +1053,11 @@ testers are expected to do more *exploratory* testing.
       Expected: FlashBack will be updated to the previous state before `undo` is executed.
       The UI will be updated to display all flashcards in FlashBack.
       The result display shows a message: `FlashBack has been redo!`.
-      
+<div style="page-break-after: always;"></div>
+
 ### Adding an alias
 
-1. Defining an alias for a command in FlashBack
+1. Defining an alias for a command in FlashBack.
     
     1. Prerequisites: The application is in Main Window.
     
@@ -1059,6 +1077,9 @@ testers are expected to do more *exploratory* testing.
 <div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
+### Refactor from AB3 to FlashBack
+* All fields in AB3 (`Person`,`Name`, `Email`, `Address`, `Phone`) were replaced with new fields that suited FlashBack(`Flashcard`, `Question`, `Answer`, `Category`, `Priority`).
+* All class, method and variable names in the code and documentation were refactored.
 
 ### Find feature
 
@@ -1082,6 +1103,21 @@ testers are expected to do more *exploratory* testing.
 * This is a totally new feature relative to AB3.
 * This feature mostly involved in UI work since a completely new window must be created from the beginning.
 * A new class called `ReviewManager` is created to handle the logic for this mode.
+
+### Sort feature
+* Challenge was to add flags and prefixes, totally different from other features, and parsing inputs.
+* AB3 did not have a `sort` feature.
+* Implemented a new enum `SortOptions` to contain sorting options for the user, as well as parse functions.
+
+### Undo/redo feature
+* Challenge was to store the states of FlashBack so that users are able to undo/redo an action.
+* As AB4 have `undo` and `redo` feature, the implementations of FlashBack's `undo` and `redo` is adapted from AB4.
+
+### Alias feature
+* Challenge was to create a new class to handle the mapping of alias and command.
+* AB3 did not have a `alias` feature.
+* A new class `AliasMap` is created to handle the mapping.
+* As `AliasMap` is stored in `UserPrefs` which is stored as a json file as `preferences.json`, users are able to modify the mapping directly. Hence an additional check is added to ensure that the alias mapping is valid when starting the application.
 
 ### UI improvement
 * There is a significant change from the initial UI of AB3 to the final UI to make the application more visually appealing.

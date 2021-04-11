@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes a command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+if () then (['commandWord' is an alias])
+    :Parse 'commandWord' text to the actual command text;
+else ([else])
+endif
+:The respective command parser is called;
+:The command is executed;
+stop
+@enduml

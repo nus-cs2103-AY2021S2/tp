@@ -30,6 +30,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
+        * [Editing the preferences file](#editing-the-preferences-file)
     * [Review mode](#review-mode)
         * [Showing next flashcard](#showing-next-flashcard--n): `n`
         * [Showing previous flashcard](#showing-previous-flashcard--p): `p`
@@ -135,7 +136,7 @@ Format: `help`
 
 Adds a new flashcard to the flashcard list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br>
-<div markdown="span" class="alert alert-primary">:memo: **Note:** <br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** <br>
 The `TAG` is optional when adding a new flashcard.<br>
 Tag(s) should be alphanumeric, and there should not be any spacing between characters.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`, case-sensitive.
@@ -235,9 +236,9 @@ Examples:
 
 Filter flashcards based on specified field input in FlashBack.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** You can only filter by `question`, `category`, `priority`, and `tag`.
+:information_source: **Note:** You can only filter by `question`, `category`, `priority`, and `tag`.
 
 </div>
 
@@ -276,8 +277,8 @@ Format: `clear`
 
 ### Undoing a command : `undo`
 
-Restores FlashBack to the state before the previous command was executed.
-<div markdown="span" class="alert alert-primary">:memo:
+Restores FlashBack to the state before the most recent undoable command was executed.
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 </div>
 
@@ -298,7 +299,7 @@ Examples:
 
 ### Redoing a command : `redo`
 
-Restores FlashBack to the state before the previous command was undo.
+Redoes the most recent action that was undone (reverses the `undo` command).
 
 Format: `redo`
 <div style="page-break-after: always;"></div>
@@ -315,9 +316,9 @@ Examples:
 
 ### Sorting all flashcards: `sort`
 Sorts all flashcards in display according to a given option.
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** You can only sort by `priority` or `question`.
+:information_source: **Note:** You can only sort by `priority` or `question`.
 
 </div>
 
@@ -341,9 +342,9 @@ Reviews list of flashcards that is in display.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** The flashcards in Review Mode are appeared in random order.
+:information_source: **Note:** The flashcards in Review Mode are appeared in random order.
 
 </div>
 
@@ -361,7 +362,7 @@ The following statistics are displayed:
 
 Format: `stats [INDEX]` <br>
 
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 If a valid `INDEX` is provided, the statistics of the flashcard identified by the provided index is shown.
 If the `INDEX` is omitted, FlashBack will display overall statistics for all flashcards in the current list.
 </div>
@@ -378,9 +379,9 @@ Examples:
 
 ### Adding an alias: `alias`
 Defines an alias for a command in FlashBack.
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** You can only add alias for Main mode commands.
+:information_source: **Note:** You can only add alias for Main mode commands. The alias should also not have the same name as commands in both the main and review modes.
 
 </div>
 
@@ -417,6 +418,17 @@ FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json
 
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data file at the next run.
+
+</div>
+
+### Editing the preferences file
+The user preferences are saved as a JSON file  `[JAR file location]/preferences.json`. Similar to the data file, advanced users are welcome to update the preferences and alias mapping directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+If your changes to the preferences file makes its format invalid, FlashBack will discard all preferences and start with an empty data file at the next run.
+Also, if your changes to the alias mapping is invalid, for example mapping `add` to `delete`, FlashBack will deem the entire alias mapping corrupted and will start with an empty alias mapping.
 
 </div>
 <div style="page-break-after: always;"></div>
@@ -462,9 +474,9 @@ Example: <br><br>
 ### Reviewing a flashcard as correct: `t`
 
 Marks that the user got the answer correct for the current flashcard. <br>
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** This command can only be executed if the answer of the current flashcard is shown.
+:information_source: **Note:** This command can only be executed if the answer of the current flashcard is shown.
 
 </div>
 
@@ -477,9 +489,9 @@ Example: <br><br>
 ### Reviewing a flashcard as wrong : `f`
 
 Marks that the user got the answer wrong for the current flashcard. <br>
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** This command can only be executed if the answer of the current flashcard is shown.
+:information_source: **Note:** This command can only be executed if the answer of the current flashcard is shown.
 
 </div>
 
