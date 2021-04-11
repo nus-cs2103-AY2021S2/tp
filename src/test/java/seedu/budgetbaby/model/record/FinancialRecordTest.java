@@ -1,7 +1,6 @@
-package seedu.budgetbaby.model.month;
+package seedu.budgetbaby.model.record;
 
 import org.junit.jupiter.api.Test;
-import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.testutil.FinancialRecordBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

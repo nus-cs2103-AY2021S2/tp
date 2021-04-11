@@ -1,5 +1,6 @@
 package seedu.budgetbaby.testutil;
 
+import seedu.budgetbaby.logic.parser.YearMonthParser;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
@@ -30,12 +31,12 @@ public class TypicalFinancialRecord {
     public static final FinancialRecord DINNER = new FinancialRecordBuilder()
         .withDescription("Dinner")
         .withAmount("20.0")
-        .withTimestamp("02-02-2021")
+        .withTimestamp("02-01-2021")
         .build();
     public static final FinancialRecord BUBBLETEA = new FinancialRecordBuilder()
         .withDescription("Bubble tea")
         .withAmount("3.45")
-        .withTimestamp("03-03-2021")
+        .withTimestamp("03-01-2021")
         .build();
 
     public static final FinancialRecord CAIFAN = new FinancialRecordBuilder()
@@ -57,15 +58,35 @@ public class TypicalFinancialRecord {
     /**
      * Returns a {@code Month} with all the typical financial records.
      */
-    public static Month getTypicalMonth() {
-        Month m = new MonthBuilder().build();
-        for (FinancialRecord record : getTypicalFinancialRecords()) {
+    public static Month getTypicalMonth1() {
+        Month m = new MonthBuilder().withMonth(
+            YearMonthParser.getYearMonth("01-2021")
+        ).build();
+        for (FinancialRecord record : getTypicalFinancialRecords1()) {
             m.addFinancialRecord(record);
         }
         return m;
     }
 
-    public static List<FinancialRecord> getTypicalFinancialRecords() {
-        return new ArrayList<>(Arrays.asList(LUNCH, DINNER, BUBBLETEA, CAIFAN, EARRING));
+    public static List<FinancialRecord> getTypicalFinancialRecords1() {
+        return new ArrayList<>(Arrays.asList(LUNCH, DINNER, BUBBLETEA));
     }
+
+    public static Month getTypicalMonth2() {
+        Month m = new MonthBuilder().withMonth(
+            YearMonthParser.getYearMonth("02-2021")
+        ).build();
+        for (FinancialRecord record : getTypicalFinancialRecords2()) {
+            m.addFinancialRecord(record);
+        }
+        return m;
+    }
+
+    public static List<FinancialRecord> getTypicalFinancialRecords2() {
+        return new ArrayList<>(Arrays.asList(CAIFAN, EARRING));
+    }
+
+    public static final Month JAN = getTypicalMonth1();
+    public static final Month FEB = getTypicalMonth2();
+
 }

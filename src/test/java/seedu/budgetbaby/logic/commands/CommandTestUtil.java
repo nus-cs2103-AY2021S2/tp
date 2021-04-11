@@ -32,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_EARRING = "Earing";
     public static final String VALID_AMOUNT_CAIFAN = "4.50";
     public static final String VALID_AMOUNT_EARRING = "18.88";
-    public static final String VALID_TIMESTAMP_CAIFAN = "11-01-2021";
-    public static final String VALID_TIMESTAMP_EARRING = "02-01-2021";
+    public static final String VALID_TIMESTAMP_CAIFAN = "11-02-2021";
+    public static final String VALID_TIMESTAMP_EARRING = "02-02-2021";
     public static final String VALID_TAG_FOOD = "food";
     public static final String VALID_TAG_SHOPPING = "shopping";
 

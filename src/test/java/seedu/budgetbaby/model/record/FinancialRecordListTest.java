@@ -1,8 +1,6 @@
-package seedu.budgetbaby.model.month;
+package seedu.budgetbaby.model.record;
 
 import org.junit.jupiter.api.Test;
-import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.model.record.FinancialRecordList;
 import seedu.budgetbaby.model.record.exception.FinancialRecordNotFoundException;
 
 import java.util.Collections;
