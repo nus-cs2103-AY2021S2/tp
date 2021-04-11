@@ -1106,7 +1106,7 @@ Our `Event` supports the following features through a `LogicManager`
 * [`today_event`](#implementation-of-today_event-command)
 * [`find_event`](#implementation-of-find_event-command)
 * [`clear_expired_event`](#implementation-of-clear_expired_event-command)
-* [`find_free`](#implementation-of-find_free-command)
+* [`free_time`](#implementation-of-free_time-command)
 
 The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are
 omitted here because their implementation is similar to that of other features.
@@ -1336,8 +1336,8 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 [Return to Overview](#431-overview)
 
 
-#### Implementation of `find_free` command
-In SOChedule, the governing logic behind the `find_free` command is laid out in [`FindFreeTimeCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTimeCommand.java)
+#### Implementation of `free_time` command
+In SOChedule, the governing logic behind the `free_time` command is laid out in [`FindFreeTimeCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTimeCommand.java)
 The following is a detailed explanation on how FindFreeTimeCommand is implemented.
 
 **Step 1**: User executes `free_time DATE` command to find free time slots in the given day.
@@ -1474,6 +1474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SOC Student                           | Delete an event from my schedule from my schedule                      | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | Edit events in my schedule                                             | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | View events in my schedule                                             | I can have a better sense of what will happen in the following days or weeks |
+| `* *`    | SOC Student                           | Find free time slots on a specific date                                | I can allocate my time better                                                |
 | `*`      | SOC Student                           | View events that are happening today                                   | I can have a better sense of what events are happening today                 |
 | `*`      | SOC Student                           | Search events by certain keywords                                      | I can view the details of the event that I want to find                      |
 | `*`      | SOC Student                           | Clear expired events                                                   | I can make my schedule cleaner                                               |
@@ -1485,7 +1486,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
 | -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `* *`    | SOC Student                           | Find tasks and events before or on a given date                        | I can keep track of my tasks and events better                               |
-| `* *`    | SOC Student                           | Find free time slots on a specific date                                | I can allocate my time better                                                |
 | `* *`    | SOC Student                           | Have a summary of task completion status and events in next 7 days     | I can keep track of my progress and plan ahead for my schedule               |
 | `*`      | SOC Student                           | Clear the entire schedule                                              | I can start adding tasks and events from fresh                               |
 
@@ -1968,16 +1968,18 @@ Use case ends.
    
 **Extensions**
 
-* 2a. SOChedule notifies that there is no free time slots.
-
+* 2a. There is no free time on the given date.
+  
+   * 2a1. SOChedule notifies user that there is no free time. <br>
   Use case ends.
   <br><br>
   
-* 3a. The given date is invalid.
+* 2b. The given date is invalid.
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the date. <br>
-      Use case ends.
-      <br><br>
+    * 2b1. SOChedule displays an error message. <br>
+   Use case ends.
+   <br><br>
+      
 
 **Use case: UC23 - Getting a summary of SOChedule**
 

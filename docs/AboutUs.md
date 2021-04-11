@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/icelenaugust.png" width="200px">
 
 [[github](http://github.com/icelenaugust)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/icelenaugust.md)]
 
 * Role: Developer
 * Responsibilities: Tasks Team
@@ -43,7 +43,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/souluseless.png" width="200px">
 
 [[github](http://github.com/souluseless)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/souluseless.md)]
 
 * Role: Developer
 * Responsibilities: Tasks Team
