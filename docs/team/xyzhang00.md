@@ -5,9 +5,10 @@ title: Zhang Xinyi's Project Portfolio Page
 
 ## Project: Weeblingo
 
-Weeblingo is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI)
-while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
-users can learn Japanese at a comfortable pace with this application.
+Weeblingo is a desktop app for learning the Japanese language via flashcards. It is designed specifically with the needs
+of budding Japanese language students in mind, providing everything one would need to embark on their academic journey.
+With a simple and friendly design and carefully crafted user-centric features, one can learn Japanese at a comfortable
+pace to the level of proficiency one desires.
 
 Given below are my contributions to the project.
 
