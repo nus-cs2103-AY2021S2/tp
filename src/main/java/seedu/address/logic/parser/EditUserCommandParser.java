@@ -21,7 +21,14 @@ import seedu.address.model.user.Gender;
 import seedu.address.model.user.IdealWeight;
 import seedu.address.model.user.User;
 
+/**
+ * Parses the given {@code String} of arguments in the context of the EditUserCommand
+ * and returns an EditUserCommand object for execution.
+ *
+ * @throws ParseException if the user input does not conform the expected format
+ */
 public class EditUserCommandParser implements Parser<EditUserCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditUserCommand
      * and returns an EditUserCommand object for execution.

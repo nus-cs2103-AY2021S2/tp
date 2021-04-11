@@ -12,11 +12,14 @@ import seedu.address.logic.commands.AddFoodItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.Food;
 
+/**
+ * Parses input arguments and creates a new AddFoodItemCommand object
+ */
 public class AddFoodItemCommandParser implements Parser<AddFoodItemCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddFoodItemCommand
+     * and returns an AddFoodItemCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

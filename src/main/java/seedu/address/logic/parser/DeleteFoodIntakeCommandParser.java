@@ -18,11 +18,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteFoodIntakeCommandParser implements Parser<DeleteFoodIntakeCommand> {
 
     /**
-     * Parses user inputs and pass them to DeleteFoodIntakeCommand
+     * Parses the given {@code String} of arguments in the context of the DeleteFoodIntakeCommand
+     * and returns an DeleteFoodIntakeItemCommand object for execution.
      *
-     * @param args argumentst
-     * @return a DeleteFoodIntakeCommand instance
-     * @throws ParseException if the input is incorrect
+     * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteFoodIntakeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
