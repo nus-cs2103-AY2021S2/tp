@@ -103,14 +103,13 @@ to manage tasks which can be identified by their unique list indexes.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `e/EMAIL p/PHONE_NUMBER`, `p/PHONE_NUMBER e/EMAIL` is also acceptable.
   
-<<<<<<< HEAD
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98562545 p/88885555`, only `p/88885555` will be taken.
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For features which use the INDEX field, the INDEX you specify must be a valid number displayed on the list of tasks.
+* For features which use the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
 
 </div>
 
@@ -158,7 +157,7 @@ Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 * NAME field is case-sensitive.   
 * NAME and ROLE fields can take on any values with alphanumeric characters.
 * PHONE_NUMBER field has to have a minimum length of 3 digits and maximum length of 15 digits.
-* If ROLE field is not specified, person will be assigned a default role of member.
+* If ROLE field is not specified, person will be assigned a default role of `Member`.
 
 Assumptions:
 * Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
@@ -167,6 +166,16 @@ a different phone number, email or role.
 Examples: 
 * `addMember Dylan p/64529356 e/dylan@gmail.com`
 * `addMember Dylan p/64529356 e/dylan@gmail.com r/President`
+
+Using the following addMember command, `addMember Erynne p/96398428 e/erynne@gmail.com`, the addMember command
+can be used as shown below:
+ 
+1. Key in the addMember command and its parameters
+![Example using the addMember command](images/UG-examples/addMember-cmd.png)
+
+2. Press enter and view the result of the addMember command
+![Example of using addMember result](images/UG-examples/addMember-result.png)
+
 
 <a name="deleteMember"></a>
 ### 2. Delete Member: `deleteMember`
@@ -178,7 +187,7 @@ Format: `deleteMember NAME`
 * NAME field is case-sensitive.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified must be in the currently displayed list of Members when executing this command.
+The NAME specified must appear in the currently displayed list of members in order for it to be valid.
 </div>
 
 Examples:
@@ -208,7 +217,7 @@ Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_
 * Existing values will be updated to the input values. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified must be in the currently displayed list of Members when executing this command.  
+The NAME specified must appear in the currently displayed list of members in order for it to be valid.
 </div>
 
 Examples: 
@@ -226,8 +235,8 @@ any of the specified keywords.
 Format: `findMembers KEYWORD [MORE_KEYWORDS]...`
 
 * KEYWORD must match an entire word, case-insensitive, in order for the particular member to be found. 
-  * E.g. `Rachel` will not match with `Rach`.
-  * E.g. `Rachel` will match with `rachel`. 
+  * e.g. `Rachel` will not match with `Rach`.
+  * e.g. `Rachel` will match with `rachel`. 
 
 Examples: 
 * `findMembers Rachel`
@@ -247,10 +256,10 @@ deadline to the task list.
 Format: `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]...`
 
 * If you did not specify a value for STATUS, the Task will be assigned a default status value of **uncompleted**.
-* STATUS field can only take on the values **completed** or **uncompleted**.
+* STATUS field can only take on the values **completed** or **uncompleted** (Values are case-sensitive).
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
-* PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned**.
-* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
+* PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned** (Values are case-sensitive).
+* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp; Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignee prefixes. 
@@ -259,6 +268,16 @@ A task can have any number of assignees (including 0). To add multiple assignees
 Examples: 
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Rachel a/James`
+
+Using the following addTask command, `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Alex Yeoh a/Bernice Yu`, the 
+addTask command can be used as shown below:
+ 
+1. Key in the addTask command and its parameters
+![Example using the addTask command](images/UG-examples/addTask-cmd.png)
+
+2. Press enter and view the result of the addTask command
+![Example of using addTask result](images/UG-examples/addTask-result.png)
+
 
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
@@ -289,7 +308,7 @@ Format: `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NE
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assignees, the existing assignees of the task will be removed i.e adding of assignees is not cumulative.
-* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
+* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp;  Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0). To have multiple assignees, simply use multiple assignee prefixes.    
@@ -324,14 +343,15 @@ Examples:
 <a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
 
-With so many tasks, you may want to find tasks with given keywords quickly.
-This feature allows you to find all tasks which contains any of the specified keywords in its TITLE or DESCRIPTION.
+With so many tasks, you may want to find tasks quickly using some keywords.
+This feature allows you to find all tasks which contain any of the specified keywords in its TITLE or DESCRIPTION.
 
 Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 
-* KEYWORD must match an entire word, case-insensitive, in order for the particular task to be found.
-  * E.g. `Meeting` will not match with `Meet`.
-  * E.g. `Meeting` will match with `meeting`.
+* KEYWORD must match an entire word in order for the particular task to be found.
+  * e.g. `Meeting` will not match with `Meet`.
+* The search using KEYWORD is case-sensitive.
+  * e.g. `Meeting` will match with `meeting`.
 
 Examples: 
 * `findTasks Meeting`
@@ -410,11 +430,13 @@ This feature allows you to find all tasks assigned to a single member.
 
 Format: `findTasksFor NAME`
 
-* The search using NAME is case-sensitive. e.g. `David Li` will only match with `David Li`.
+* The search using NAME is case-sensitive.
+  * e.g. `David Li` will only match with `David Li`.
 * NAME must match an entire member's name exactly in order for the tasks assigned to that member to be found. 
-  
+  * e.g. `David` will not match with `David Li`
+ 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-A NAME that does not exist in the Member List will return no tasks listed.
+A NAME that does not belong to a member inside HEY MATEz will return no tasks listed.
 </div>
 
 Examples: 

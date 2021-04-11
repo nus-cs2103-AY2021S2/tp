@@ -20,6 +20,7 @@ public class ViewTasksCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
         if (model.isTaskListEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
         }

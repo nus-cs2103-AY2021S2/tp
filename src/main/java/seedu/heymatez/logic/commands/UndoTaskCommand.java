@@ -1,7 +1,6 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.List;
@@ -49,10 +48,6 @@ public class UndoTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
-
-        if (lastShownList.isEmpty()) {
-            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
-        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

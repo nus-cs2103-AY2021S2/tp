@@ -1,8 +1,8 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.heymatez.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -48,10 +48,6 @@ public class ClearAssigneesCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (lastShownList.isEmpty()) {
-            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
-        }
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
@@ -64,7 +60,7 @@ public class ClearAssigneesCommand extends Command {
         }
 
         model.setTask(taskToClear, clearedTask);
-        model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_CLEARED_ASSIGNEES_SUCCESS, clearedTask));
     }
 

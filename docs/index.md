@@ -8,7 +8,7 @@ title: HEY MATEz
 
 ![Ui](images/Ui.png)
 
-**HEY MATEz is a desktop application for managing your CCA member contact details and tasks to be completed.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface). 
+**HEY MATEz is a desktop application for managing your Club members and tasks to be completed.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface). 
 With HEY MATEz, planning  and distributing tasks among your members will never give you a headache again! :smile:
 
 

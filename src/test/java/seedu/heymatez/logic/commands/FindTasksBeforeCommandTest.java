@@ -58,7 +58,7 @@ public class FindTasksBeforeCommandTest {
 
     @Test
     public void execute_deadline_noTaskFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+        String expectedMessage = MESSAGE_EMPTY_TASK_LIST;
         DeadlineBeforeDatePredicate predicate = new DeadlineBeforeDatePredicate("2021-02-03");
         FindTasksBeforeCommand command = new FindTasksBeforeCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
