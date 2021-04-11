@@ -26,7 +26,7 @@ public class AddModuleCommand extends Command {
             + PREFIX_MODULE_CODE + "CS1010S";
 
     public static final String MESSAGE_SUCCESS = "New module added to Plan %1$s\t Semester: %2$s\t Module Code: %3$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exist in this current semester";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in this current semester";
     public static final String MESSAGE_INVALID_MODULE_CODE = "The module code provided is not recognised.";
     public static final String MESSAGE_INVALID_GRADE = "The grade provided is invalid.";
 
