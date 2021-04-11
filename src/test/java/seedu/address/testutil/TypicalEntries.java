@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.model.entry.Entry;
 
 public class TypicalEntries {
@@ -26,8 +26,8 @@ public class TypicalEntries {
 
     private TypicalEntries() {} // prevents instantiation
 
-    public static AddressBook getTypicalEntriesList() {
-        AddressBook ab = new AddressBook();
+    public static TeachingAssistant getTypicalEntriesList() {
+        TeachingAssistant ab = new TeachingAssistant();
         for (Entry entry : getTypicalEntries()) {
             ab.addEntry(entry);
         }

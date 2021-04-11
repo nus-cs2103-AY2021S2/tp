@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactsAddressBook;
+import static seedu.address.testutil.TypicalContacts.getTypicalContactsTeachingAssistant;
 import static seedu.address.testutil.TypicalIndices.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndices.INDEX_SECOND;
 
@@ -24,7 +24,7 @@ import seedu.address.model.contact.Contact;
  */
 public class DeleteContactCommandTest {
 
-    private Model model = new ModelManager(getTypicalContactsAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactsTeachingAssistant(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteContactCommandTest {
 
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTeachingAssistant(), new UserPrefs());
         expectedModel.deleteContact(contactToDelete);
 
         assertCommandSuccess(deleteContactCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteContactCommandTest {
 
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTeachingAssistant(), new UserPrefs());
         expectedModel.deleteContact(contactToDelete);
         showNoContact(expectedModel);
 
@@ -69,7 +69,7 @@ public class DeleteContactCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getContactList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTeachingAssistant().getContactList().size());
 
         DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);
 

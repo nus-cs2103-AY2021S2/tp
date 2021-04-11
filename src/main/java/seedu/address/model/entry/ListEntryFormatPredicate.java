@@ -20,10 +20,12 @@ public class ListEntryFormatPredicate implements Predicate<Entry> {
         LocalDate startDate = LocalDate.from(entry.getStartDate());
         LocalDate endDate = LocalDate.from(entry.getEndDate());
         if (keyword.equals("day")) {
-            return today.equals(startDate) || today.equals(endDate);
+            return today.equals(startDate) || today.equals(endDate)
+                    || startDate.isBefore(today) && endDate.isAfter(today);
         } else if (keyword.equals("week")) {
             return startDate.isAfter(yesterday) && startDate.isBefore(lastDay)
-                || endDate.isAfter(yesterday) && endDate.isBefore(lastDay);
+                || endDate.isAfter(yesterday) && endDate.isBefore(lastDay)
+                    || startDate.isBefore(yesterday) && endDate.isAfter(lastDay);
         } else {
             return true;
         }

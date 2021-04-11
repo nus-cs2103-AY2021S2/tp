@@ -9,14 +9,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.testutil.ContactBuilder;
 
 public class AddContactCommandTest {
-    private ModelManager model = new ModelManager(new AddressBook(), new UserPrefs());
+    private ModelManager model = new ModelManager(new TeachingAssistant(), new UserPrefs());
     @Test
     public void constructor_nullcontact_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
