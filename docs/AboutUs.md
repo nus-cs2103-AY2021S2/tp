@@ -21,7 +21,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/bennyphoe.png" width="200px">
 
 [[github](http://github.com/Bennyphoe)]
-[[portfolio](team/benny.md)]
+[[portfolio](team/bennyphoe.md)]
 
 - Role: Developer
 - Responsibilities: Documentation, Scheduling & Tracking
