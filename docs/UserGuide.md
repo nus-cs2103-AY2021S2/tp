@@ -270,7 +270,6 @@ Finds persons whose field(s) contain any of the given keywords.
 * Similar words are matched. e.g `Shawn` with match `Shaun`
 * Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
     * `bet` in `Elizabeth` is 1 character away from `Ben`
-* Results will be sorted by similarity then dictionary order.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
