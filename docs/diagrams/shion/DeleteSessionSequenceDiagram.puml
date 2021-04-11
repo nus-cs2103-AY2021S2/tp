@@ -74,7 +74,7 @@ create CommandResult
 DeleteSessionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteSessionCommand
+CommandResult --> DeleteSessionCommand : result
 deactivate CommandResult
 
 DeleteSessionCommand --> LogicManager : result

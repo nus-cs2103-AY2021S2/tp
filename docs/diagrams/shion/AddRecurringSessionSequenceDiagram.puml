@@ -52,7 +52,7 @@ create CommandResult
 AddRecurringSessionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddRecurringSessionCommand
+CommandResult --> AddRecurringSessionCommand : result
 deactivate CommandResult
 
 [<-- AddRecurringSessionCommand : result
