@@ -37,6 +37,10 @@ Package Tag {
 Class Tag
 }
 
+Package Insurance {
+Class InsurancePlan
+}
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -59,6 +63,7 @@ Person *--> Gender
 Person *--> Birthdate
 Person *--> "*" Tag
 Person *--> "0...1" Meeting
+Person *--> "*" InsurancePlan
 
 AddressBook *--> "1" UniqueMeetingList
 UniqueMeetingList o--> "*" Entry
@@ -73,6 +78,7 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 Tag -[hidden]left-> Meeting
 Entry -[hidden]left-> Person
-
+Person -[hidden]down-> InsurancePlan
+Person -[hidden]up-> UniquePersonList
 ModelManager ----->" ~* filtered list" Person
 @enduml

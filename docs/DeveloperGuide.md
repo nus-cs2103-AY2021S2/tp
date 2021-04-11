@@ -159,7 +159,7 @@ construction. As a result, the current implementation of the Meeting list takes 
 the list, and accesses the meeting attribute within the `Person` object when needed.
 
 In regard to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
-everytime the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
+every time the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
@@ -202,6 +202,15 @@ One of the planned features is to alert the user if the birthday of a client is 
 requires us to check through each person stored within the app to see whether their birthday (derived from their
 birthdate) occurs before `LocalDate.now().plusDays(7)`. This check will be done upon launching the app. If >=1 persons
 have upcoming birthdays, a pop-up box will be served to the user to remind them of the birthdays.
+
+### Representing premiums of insurance plans
+
+The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
+risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
+zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it 
+to 2 decimal places.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -252,7 +261,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | add the current insurance plan of each client               | be aware of their current insurance requirements and coverage                |
 | `* * *`  | insurance agent                            | schedule meetings with people or groups of people           | keep track of upcoming meetings                                              |
 | `* * `   | insurance agent                            | check the age of each client                                | know if their insurance plan should be updated/ changed, as they get older   |
-| `* * `   | user with many persons in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
+| `* * `   | user with many clients in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
 | `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                       |
 | `* * `   | first-time user                            | see sample entries already in the app                       | get a good idea of the functionalities of the app before deciding to use it  |
 | `* * `   | forgetful insurance agent                  | reminders when clients' important dates are approaching     | prepare a meaningful greeting/ gift                                          |
@@ -284,13 +293,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
 otherwise)
 
-**Use case: Add a person**
+**Use case: Add a client**
 
 **MSS**
 
-1. User adds a person with corresponding information.
-2. AddressBook shows the list of persons.
-3. Use case ends.
+1.  User adds a client with corresponding information.
+2.  AddressBook shows the list of clients.
+3.  Use case ends.
 
 **Extensions**
 
@@ -302,15 +311,16 @@ otherwise)
     * 1b1. AddressBook shows an error message.
     * Use case ends.
 
-**Use case: Edit a person**
+
+**Use case: Edit a client**
 
 **MSS**
+1.  User requests to list clients
+2.  AddressBook shows the list of clients
+3.  User requests to edit a specific client in the list
+4.  AddressBook edits the client
+5.  Use case ends.
 
-1. User requests to list persons
-2. AddressBook shows the list of persons
-3. User requests to edit a specific person in the list
-4. AddressBook edits the person
-5. Use case ends.
 
 **Extensions**
 
@@ -329,15 +339,15 @@ otherwise)
     * 3a1. AddressBook shows an error message.
     * Use case resumes at step 2.
 
-**Use case: Delete a person**
+**Use case: Delete a client**
 
 **MSS**
+1.  User requests to list clients
+2.  AddressBook shows a list of clients
+3.  User requests to delete a specific client in the list
+4.  AddressBook deletes the client
+5.  Use case ends.
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
-5. Use case ends.
 
 **Extensions**
 
@@ -384,10 +394,9 @@ otherwise)
 **Use case: Filter according to tag**
 
 **MSS**
-
-1. User requests to search for persons according to tag.
-2. AddressBook shows the list of persons
-3. Use case ends.
+1.  User requests to search for clients according to tag.
+2.  AddressBook shows the list of clients
+3.  Use case ends.
 
 **Extensions**
 
@@ -400,16 +409,15 @@ otherwise)
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. The software should not use any OS-dependent libraries and OS-specific features.
-3. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
-5. The software should work without requiring an installer.
-6. The software should not depend on a remote server.
-7. The data should be stored locally and should be in a human editable text file.
-8. The software should be packaged into a single JAR file.
-9. The project is expected to adhere to a schedule that delivers a new iteration every two weeks.
+1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The software should not use any OS-dependent libraries and OS-specific features.
+3.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  The software should work without requiring an installer.
+6.  The software should not depend on a remote server.
+7.  The data should be stored locally and should be in a human editable text file.
+8.  The software should be packaged into a single JAR file.
+9.  The project is expected to adhere to a schedule that delivers a new iteration every two weeks.
 10. The project JAR file should not exceed 100MB.
 11. Project PDF files should not exceed 15MB each.
 12. The Developer Guide and User Guide should be PDF-friendly and should not contain expandable panels, embedded videos
@@ -449,17 +457,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a client
 
-1. Deleting a person while all persons are being shown
+1. Deleting a client while all clients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No clients is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
