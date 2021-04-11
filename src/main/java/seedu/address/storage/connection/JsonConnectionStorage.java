@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 import static java.util.Objects.requireNonNull;
 
 public class JsonConnectionStorage implements ConnectionStorage {
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonConnectionStorage.class);
 
     private Path filePath;
 

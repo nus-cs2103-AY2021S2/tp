@@ -1,5 +1,13 @@
 package seedu.address.logic.commands.connections;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -8,16 +16,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.meeting.*;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
 import seedu.address.model.person.Person;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 public class AddPersonToMeetingConnectionCommand extends Command {
     public static final String COMMAND_WORD = "addptm";
@@ -68,7 +73,8 @@ public class AddPersonToMeetingConnectionCommand extends Command {
      * This method will handle the connections that the user wants to add from both the g/ and p/
      * Duplicate person that the user wants to build connection with this meeting will be automatically removed.
      */
-    private void addConnectionsToPersons(Meeting toAdd, Model model, Set<Person> existedPersonsConnection) throws CommandException {
+    private void addConnectionsToPersons(Meeting toAdd, Model model,
+                                         Set<Person> existedPersonsConnection) throws CommandException {
         // Use set to ensure unique element.
         HashSet<Person> personsConnection = new HashSet<>();
         personsConnection.addAll(existedPersonsConnection);

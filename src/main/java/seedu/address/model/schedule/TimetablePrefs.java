@@ -30,6 +30,18 @@ public class TimetablePrefs {
     public ObservableValue<LocalDate> getReadOnlyStartDate() {
         return timetableStartDate;
     }
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        } else if (other instanceof TimetablePrefs) {
+            TimetablePrefs otherTimetablePrefs =(TimetablePrefs) other;
+            return otherTimetablePrefs.timetableStartDate.get()
+                    .equals(otherTimetablePrefs.timetableStartDate.get());
+        } else {
+            return false;
+        }
+    }
 
 }
 

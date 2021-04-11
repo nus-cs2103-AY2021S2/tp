@@ -50,7 +50,8 @@ public class DeleteNoteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.logic.commands.notes.DeleteNoteCommand // instanceof handles nulls
-                && targetIndex.equals(((seedu.address.logic.commands.notes.DeleteNoteCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((seedu.address.logic.commands.notes.DeleteNoteCommand) other)
+                .targetIndex)); // state check
     }
 }
 
