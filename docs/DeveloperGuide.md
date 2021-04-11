@@ -309,13 +309,15 @@ FriendDex allows users to add a picture to their contact. This section details t
 #### Implementation
 
 1. The user will first supply the index of the contact to edit and the path to an image file.
-2. `AddPictureCommand` will take the file path and validate it.
-3. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`.
+2. `AddPictureCommand` will take the file path and validate it. 
+3. If the file path is invalid, FriendDex will return an error message to the user. (Not shown in sequence diagram)
+4. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`.
    The renaming is done to avoid problems with two image files having the same file name.
-4. A `Picture` object will then be created, storing the file path of the copied image file.
-5. Lastly, it will be attached to the `Person` being edited and saved to `Model`.
+4. A `Picture` object will be created, storing the file path of the copied image file.
+5. The old `Picture` will then be deleted from `Person` (`Person#deletePicture()` will only delete the old `Picture` if it exists).  
+5. Lastly, the new `Picture` will be attached to the `Person` being edited and saved to `Model`.
 
-The sequence diagram below depicts the execution path when a `AddPictureCommand` is executed.
+The sequence diagram below depicts the execution path when an `AddPictureCommand` is executed.
 
 ![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
 

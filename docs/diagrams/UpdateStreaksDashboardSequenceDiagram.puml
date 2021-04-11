@@ -6,9 +6,9 @@ autoactivate on
 box Model MODEL_COLOR_T1
 participant ":AddressBook" as AddressBook MODEL_COLOR
 participant ":PersonStreakList" as PersonStreakList MODEL_COLOR
-participant ":PersonStreak" as PersonStreak <<class>> MODEL_COLOR
+participant "<<class>>\n:PersonStreak" as PersonStreak MODEL_COLOR
 participant ":Person" as Person MODEL_COLOR
-participant ":Streak" as Streak <<class>> MODEL_COLOR
+participant "<<class>>\n:Streak" as Streak MODEL_COLOR
 end box
 
 [-> AddressBook : setPerson(p, editedP)
