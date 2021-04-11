@@ -135,19 +135,30 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Model for Tasks (Todos, Deadlines & Events)
 
-The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Contact model from AB3.
+The classes and implementations used to model various Tasks (i.e. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes.
 
-The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. Each `Completable` and `Repeatable` abstract class specifies specific behaviors.
+The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. 
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
+Each of the `Completable` and `Repeatable` abstract classes specify behaviors specific to them. In particular, `Completable` should support being marked as done and `Repeatable` should support repetition. Furthermore, `Completable` has been further broken down into `CompletableTodo` and `CompletableDeadline` to facilitate Deadlines having an associated date.
 
-Step 1. The user executes the command `addD`, which adds a Deadline to a project specified in the command.
+`CompletableTodo`
+    * Holds:
+      * A String: Description
+      * A Boolean: isDone
 
-Step 2. The `Deadline` object is created during  the parsing of a user's command. The `Deadline` object requires a description & LocalDate.
+`CompletableDeadline`
+    * Holds:
+      * A String: Description
+      * A Boolean: isDone
+      * A Date: By
 
-Step 3. The `Deadline` object is then passed as a parameter in a created `AddDeadlineCommand` that would be executed.
 
-Step 4. During it's execution, the `Deadline` object would be added to a `DeadlineList` that is stored in a `Project`.
+`Repeatable` 
+    * Holds:
+      * A String: Description
+      * A Date: Date
+      * A Time: Time
+      * A Boolean: isWeekly
 
 #### Design Considerations
 
