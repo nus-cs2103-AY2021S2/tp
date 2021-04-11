@@ -1,5 +1,6 @@
 package seedu.us.among.logic.commands;
 
+import static seedu.us.among.commons.core.Messages.MESSAGE_USE_HELP;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.us.among.logic.commands.exceptions.CommandException;
@@ -15,6 +16,7 @@ public class ToggleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Toggles the theme of the application.\n"
             + "Parameters: THEME (currently supported themes are light, dark, imposter and material)\n"
+            + MESSAGE_USE_HELP + "\n\n"
             + "Example: " + COMMAND_WORD + " light";
 
     private final String theme;

@@ -3,13 +3,12 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-<!-- Remember to revert README! -->
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.4</h3>
+<h3 class="post-subtitle">v1.4b</h3>
 
 <div style="page-break-after: always;"></div>
 ## Table of Contents
@@ -29,7 +28,7 @@ This developer's guide assumes its readers to have a **basic understanding** of 
 For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
 However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. <br>
 
-Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. <br>
+Readers are also advised to download our latest releases from our [main website](https://imposter-dev.tk) in order to test out the application. <br>
 
 ## **Navigating this Developer Guide**
 
@@ -45,8 +44,9 @@ Before diving into the rest of the contents in our developer guide, the followin
 
 ## **Design**
 ### Architecture
-
-![Architecture_Diagram](images/ArchitectureDiagram.png)
+<p align="center">
+  <img width="450px" src="images/ArchitectureDiagram.png" >
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -70,7 +70,9 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<p align="center">
+  <img width="900px" src="images/LogicClassDiagram.png" >
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -78,15 +80,18 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `remove 1`.
 
-<img src="images/ArchitectureSequenceDiagramRemove.png" width="600" />
+<p align="center">
+  <img width="500px" src="images/ArchitectureSequenceDiagramRemove.png" >
+</p>
 
 The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
 
 ### UI component
-
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+  <img width="900px" src="images/UiClassDiagram.png" >
+</p>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/Ui.java)
@@ -105,7 +110,9 @@ The `UI` component,
 <div style="page-break-after: always;"></div>
 
 ### Logic component
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<p align="center">
+  <img width="900px" src="images/LogicClassDiagram.png" >
+</p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/logic/Logic.java)
@@ -116,8 +123,13 @@ The `UI` component,
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
-![Interactions Inside the Logic Component for the `delete 1` Command](images/RemoveSequenceDiagram.png)
+
+<p align="center">
+  <img width="900px" src="images/RemoveSequenceDiagram.png" >
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -125,7 +137,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div style="page-break-after: always;"></div>
 
 ### Model component
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<p align="center">
+  <img width="450px" src="images/ModelClassDiagram.png" >
+</p>
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/model/Model.java)
 
@@ -138,14 +152,15 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
 is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
 require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+<img width="500px" src="images/BetterModelClassDiagram.png" >
 </div>
 
 <div style="page-break-after: always;"></div>
 
 ### Storage component
-
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<p align="center">
+  <img width="900px" src="images/StorageClassDiagram.png" >
+</p>
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/storage/Storage.java)
 
@@ -164,10 +179,16 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### Endpoint Components
+
+### Endpoint components
+
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
+
 #### Implementation
-![Structure of the Model Component](images/EndpointClassDiagram.png)
+<p align="center">
+  <img width="650px" src="images/EndpointClassDiagram.png" >
+</p>
+
 An `Endpoint`,
 * is stored in `EndpointList` of the `Model`
 * encapsulates an API endpoint
@@ -186,13 +207,6 @@ An `Endpoint` contains the following attributes:
 * `Data` can be empty, as some API calls do not send any data to the server
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
-
-<div style="page-break-after: always;"></div>
-
-The following activity diagram summarizes how an endpoint is created when a user executes an add command:
-![AddActivityDiagram](images/AddActivityDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
@@ -224,7 +238,11 @@ Step 1. The user launches the application and executes `add -x get -u https://ap
 Step 2. The endpoint is added to the model.
 
 The following sequence diagram shows how the add operation works:
-![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<p align="center">
+  <img width="900px" src="images/AddSequenceDiagram.png" >
+</p>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -252,61 +270,74 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 The following activity diagram summarizes what happens when a user executes a find command:
 
 <p align="center">
-  <img src="images/FindActivityDiagram.png" alt="FindActivityDiagram" width="450px" />
+  <img width="430px" src="images/FindActivityDiagram.png" >
 </p>
 
-### Send/run command feature
+<div style="page-break-after: always;"></div>
+
+### Send & run command feature
 
 #### What it is
 
-Allows the user to make an API call to a specific endpoint, either with values from a saved endpoint (`send`) or values passed in as command line arguments (`run`).
+Allows the user to make a request to a specific API endpoint, either with data from a saved endpoint (`send` command) or values passed in from the command box (`run` command). The main use cases for send and run commands are as follows:
+* Send: the user wants to get the latest response from the API service provider of a particular endpoint in the endpoint list. The endpoint invoked will also update its response details in the storage file.
+* Run: the user wants to run a quick API request without saving. The parameters required for the API request is supplied as part of the command parameters, and the response will be displayed for inspection.
 
 #### Implementation
 
-The send/run mechanism is very involved in the invocation of an actual outbound request that is facilitated by the `request` package. Both commands allow users to get the latest response from an endpoint and display the result for inspection.
+The send and run commands both involve the invocation of an actual outbound request that is facilitated by the `request` package. Both commands allow users to get the latest response from an endpoint and display the result for inspection.
 
-Given below is an example usage scenario and how the send command behaves at each step.
+Given below is an example usage scenario of how the `run` command behaves at each step.
 
-Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint (a `get` request to the API URL address above).
+Step 1. The user launches the application and executes `run -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to make a call to the specified API (which is a `get` request to the URL above).
 
-Step 2. The user executes `send 1` command to first retrieve the endpoint stored at index 1. The endpoint at that index will then be used to generate an `EndpointCaller` object.
+Step 2. The `run` command parser first validates the user input. According to the format of the run command supplied, the parser retrieves the relevant endpoint details in order to construct a `run` command.
 
-Step 3. The `send` command calls `EndpointCaller#callEndpoint()`, sending out the HTTP request to the targeted API service provider and retrieves a response. The existing endpoint used to invoke the request will be used to generate an updated endpoint with the returned response and saved into the model.
+Step 3. The `run` command creates an `EndpointCaller` object to execute the request via `EndpointCaller#callEndpoint()`, sending out the HTTP request to the targeted API service provider and retrieves a response.
 
-Step 4. The response retrieved will also be parsed and passed to UI for further formatting and displaying to the user.
+Step 4. The response will then be parsed and forwarded to `UI` for further formatting before displaying to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a send command fails its execution, it will not call `model.setEndpoint()`, so the endpoint list state will not be updated or saved.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a run command fails to execute, relevant error message will be provided.
 </div>
-
-The following sequence diagram shows how the send operation works:
-![SendSequenceDiagram](images/SendSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand` should end 
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a run command:
+The following sequence diagram shows how the `run` operation works:
+
 <p align="center">
-  <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png" width="400px"/>
+  <img width="900px" src="images/RunSequenceDiagram.png" >
 </p>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for 
+`RunCommandParser`, `RunCommand` and `EndpointCaller` should end at the destroy marker (X) but due to a limitation 
+of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a valid run command:
+<p align="center">
+  <img width="430px" src="images/RunActivityDiagram.png" >
+</p>
+
 #### Design consideration:
 
-##### Aspect: How send & run executes
+##### Aspect: How run executes
 
-* **Alternative 1 (current choice):** The Send and Run command parsers verify the validity of endpoint/url address before generating the respective commands.
-    * Pros: Keep the checking logic within the same place.
-    * Cons: It may not be clear if the command contains a valid endpoint.
+* **Alternative 1 (current choice):** The `run` command parser does a primitive verification of the url via
+  the helper method `ParserUtil#parseAddress`. The helper method in term invokes `Address#isValidAddress` to
+  intercept obvious non-urls provided by the user. The parser thereafter generates a `run` command with the verified
+  input.
+  * Pros: By abstracting out the `parseAddress` method and encapsulating the validity of URL address in the `Address`
+    class, the helper method can be utilised by other commands such as the `add` command.
+  * Cons: An extra layer of abstraction may make it harder to make quick changes to the logic in URL address
+    verification.
 
-* **Alternative 2:** Individual command checks if the endpoint/url address is valid by itself.
-    * Pros: Checking of url address validity right before execution will ensure proper request is processed.
-    * Cons: Duplication of code across Send and Run commands.
-
-<div style="page-break-after: always;"></div>
+* **Alternative 2:** Individual command parser checks for the url address validity by itself.
+  * Pros: Making it obvious to developers to view the exact steps taken in parsing the user input within
+    each command parser.
+  * Cons: Duplication of code across all command parsers that require the verification of URLs, such as `add` and
+    `run` commands.
 
 ### Request feature
 
@@ -339,10 +370,14 @@ Step 4. The response retrieved will also be parsed and passed to UI for further 
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the request operation works when a user executes a `send` command for an endpoint with a `GET` request:
-<p align="centre">
-  <img alt="SendSequenceDiagram" src="images/RequestSequenceDiagram.png"/>
+
+<p align="center">
+  <img width="500px" src="images/RequestSequenceDiagram.png" >
 </p>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand`, `EndpointCaller` and `GetRequest` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -350,10 +385,10 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
-<br/>
+The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:<br/>
+
 <p align="center">
-  <img alt="RequestActivityDiagram" src="images/RequestActivityDiagram.png" />
+  <img width="460px" img alt="RequestActivityDiagram" src="images/RequestActivityDiagram.png" />
 </p>
 
 #### Design consideration:
@@ -387,7 +422,10 @@ Step 2. The `toggle` command returns a `CommandResult` that triggers the `update
 <div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the toggle command works for the above example: 
-![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
+
+<p align="center">
+  <img width="900px" src="images/ToggleSequenceDiagram.png" >
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ToggleCommand`, `ToggleCommandParser` and `CommandResult` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -411,21 +449,25 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 **Target user profile**:
 
-- has a need to test a significant number of APIs
 - prefers a quick means of testing APIs
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable with APIs
+- can type fast and prefer typing to mouse interactions
+- is a beginner in API development
 - is keen to develop software products that involve APIs
 - requires testing of APIs in projects or work-related tasks
+- needs to learn and interact with APIs
+- prefers a portable and lightweight application
 
 **Value proposition**:
 
-- beautify response
-- save requests for quick execution again
-- general analysis/recommendation system based on certain metrics
+- beautify and highlight key metrics of API responses
+- shortcuts to execute common API testing tasks
+- able to save APIs for repeated execution and continuous debugging
+- relevant prompts and comprehensive supporting documentations
 - no need to create any account
 - simple and easy to get started
+- clutter free user interface
+- one-step download and light on system resources
+- optimised for keyboard navigation and shortcuts 
 - unintrusive
 - great user experience
 
@@ -436,36 +478,43 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
 
-| Priority | As a …​               | I want to …​                              | So that I can…​                                                 |
+| Priority | As a …​               | I want to …​                              | So that I can…​                  |
 | -------- | --------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| `* * *`  | new user              | view a quick description of APIs          | quickly review the concepts of APIs                             |
-| `* * *`  | long time user        | test my APIs on the fly                   | run API tests anytime                                           |
+| `* * *`  | new user              | view a quick description of APIs          | quickly review the basic concepts of APIs                             |
+| `* * *`  | long time user        | test API endpoints without saving them                  | have a quick way to verify if an API is working                                           |
 | `* * *`  | long time user        | quickly load my previous APIs             | save time and not have to type them all out again               |
-| `* * *`  | experienced developer | test out my API multiple times repeatedly | know if my API can cope under significant traffic               |
-| `* * *`  | new API developer     | clear error messages                      | quickly learn where I went wrong                                |
-| `* * *`  | API tester            | a focused simple design                   | quickly validate the state of an endpoint                       |
-| `* * *`  | new user              | have an optional features walkthrough     | have a broad overview of functionalities                        |
-| `* * *`  | moderate user         | find/locate saved API endpoints           | can easily view the information for the endpoint of my interest |
-| `*`      | experienced developer | export my saved API endpoints             | can easily port or integrate the data with other platforms      |
-| `*`      | expert user           | have API recommendations                  | help to optimise or are more suited for my product              |
-| `*`      | moderate user         | learn to optimise my usage                | can have a faster and smoother workflow                         |
+| `* * *`  | new API developer     | view clear error messages                      | quickly learn what went wrong                                |
+| `* * *`  | API tester            | a simple user interface                   | quickly validate the state of an endpoint                       |
+| `* * *`  | new user              | view a table of command summary    | have a broad overview of available functionalities                        |
+| `* * *`  | moderate user         | find/locate saved API endpoints           | easily view the details of a particular endpoint |
+| `* * *`  | API developer         | cancel my API call if it takes too long           | proceed to verify the errors or work on another API request |
+| `* * *`  | API developer         | organize my APIs by categories           | easily find the ones that I want to test |
+| `* * *`  | beginner API developer         | call up APIs that I have just used           | quickly verify the output again after fixing bugs  |
+| `* *`  | API developer         | see a loading spinner when making an API call           | clearly know when an API call is still in-progress or when an error has occurred |
+| `* *`  | moderate user              | be able to change the application theme          | make the user interface more comfortably suit my visual needs                             |
+| `* *`      | long time developer | have shortcuts to certain commands that I frequently use             | save time typing certain commands      |
+| `*`      | experienced developer | export my saved API endpoints             | easily port or integrate the data with other platforms      |
+| `*`      | expert user           | have analysis reports of my usage                  | identify trends and consolidate my API testing progress              |
+| `*`      | moderate user         | get tips on how to optimise my usage                | can have a faster and smoother workflow                         |
+| `*`  | experienced developer | send out multiple requests to an API endpoint concurrently | test if the API can cope under significant traffic               |
+| `*`  | expert user | store my API data in the cloud | use the tester across multiple workstations               |
+| `*`  | moderate user | generate bug report for the API under test | share and request bug fixes from the developers               |
 
-_{More to be added}_
 
 ## **Appendix C: Use Cases**
 
 (For all use cases below, the **System** is the `imPoster` and the **Actor** is
 the `user`, unless specified otherwise)
 
-### <ins>General Use Cases</ins>
+### General Use Cases
 
 **Use case G01 - View Help**
 
 **MSS**
 
 1.  User requests for help with using the application
-2.  User enters help command into command box
-3.  imPoster returns a help link for the user to click
+2.  User enters `help` command into command box
+3.  imPoster returns a help page with links and command summary for the user
 
     Use case ends.
 
@@ -482,7 +531,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to exit the application
-2.  User enters exit command into command box
+2.  User enters `exit` command into command box
 3.  imPoster exits
 
     Use case ends.
@@ -500,7 +549,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to toggle application theme
-2.  User enters toggle command into command box
+2.  User enters `toggle` command into command box
 3.  imPoster switches to user specified application theme
 
     Use case ends.
@@ -519,7 +568,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-### <ins>Endpoint Use Cases</ins>
+### Endpoint Use Cases
 
 **Use case E01 - Add an API endpoint**
 
@@ -539,6 +588,12 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+- 2b. Adding the endpoint results in a duplicate
+
+  - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
+
+    Use case resumes at step 1.
+
 **Use case E02 - Edit an API endpoint**
 
 **MSS**
@@ -557,9 +612,15 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-- 2b. The given index is invalid
+- 2b. Editing the endpoint results in a duplicate
 
-  - 2b1. imPoster shows an error message to the user
+  - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
+
+    Use case resumes at step 1.
+
+- 2c. The given index is invalid
+
+  - 2c1. imPoster shows an error message to the user
 
     Use case resumes at step 2.
 
@@ -606,11 +667,11 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-- 2b. The given search result is empty
+- 3a. The search result comes up empty
 
-  - 2b1. imPoster shows a message informing the user that there are no endpoints found
+  - 3a1. imPoster shows a message informing the user that there are no endpoints found
 
-    Use case resumes at step 1.
+    Use case ends.
 
 **Use case E05 - List all saved API endpoints**
 
@@ -630,7 +691,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
     
-- 3a.The API endpoint list is empty
+- 3a. The API endpoint list is empty
 
   - 3a1. imPoster shows an additional message to inform the user that the endpoint list is empty
 
@@ -758,9 +819,11 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix D: Non-Functional Requirements**
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above
+1.  Should work on any [mainstream OS](#glossary-OS) as long as it has Java `11` or above
     installed.
 2.  Should be able to hold up to 1000 API endpoints without a noticeable
     sluggishness in performance for typical usage.
@@ -768,21 +831,29 @@ the `user`, unless specified otherwise)
     code, not system admin commands) should be able to accomplish most of the
     tasks faster using commands than using the mouse.
 4.  Should feel simple and easy to use as compared to existing
-    solutions such as [Postman](https://www.postman.com/).
+    solutions such as [Postman](#glossary-postman).
 5.  Should be able to provide a proper response even if a call to an API
     endpoint fails due to third-party unavailability.
 6.  Should not crash or throw unexpected errors when internet connection is
     unavailable.
-7.  Should be able to display responses not exceeding 100000 lines from an
+7.  Should be able to display responses not exceeding 100000 characters from an
     API call without crashing or throwing unexpected errors.
 
 ## **Appendix E: Glossary**
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **API endpoint/Endpoint**: The point of entry in a communication channel for two
-  systems to interact
-- **API Call/Call**: A process where information is transferred, processed and a response is returned
-- **Postman**: An existing API client for developers
+| Term                                         | Description                                               |
+| -------------------------------------------- | --------------------------------------------------------- |
+| **Mainstream OS** | <a name="glossary-OS"></a> Windows, Linux, Unix, OS-X  |
+| **API** | <a name="glossary-api"></a> API is short for **Application Programming Interface** and allows two systems to interact with each other  |
+| **Call** | <a name="glossary-call"></a> A call to an API endpoint refers to the process of sending a [request to the server and then receiving a response](#83-what-are-requests-and-responses)          |
+| **Endpoint** | <a name="glossary-endpoint"></a> The communication point of a system that allows it to interact with another system, commonly accessed through a URL |
+| **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#84-request-methods) (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
+| **Response** | The information obtained from an endpoint after a request is sent to it (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
+| **Parameter**   | Information passed in as part of a command with its type identified by a prefix (e.g. `METHOD`) |
+| **Prefix**   | Characters used to identify the following parameter (e.g. `-x` is the prefix for the parameter `METHOD`) |
+| **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
+| **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
+| **Postman** | <a name="glossary-postman"></a> An existing API client for developers. See more [here](https://www.postman.com/) |
 
 ## **Appendix F: Developer Workflow**
  
@@ -792,7 +863,11 @@ the adopted approach in maintaining imPoster.
 ## **Appendix G: API definition**
 
 ### What is an API?
-Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
+Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call.
+
+<div style="page-break-after: always;"></div>
+
+The annotated diagram below captures these interactions and may aid in providing a better understanding:
 
 <p align="center">
   <img width="700px" src="images/ApiExplanation.png" >
@@ -810,11 +885,13 @@ Given below are instructions to test the app manually.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Launch and shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file. <br>
       Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
@@ -831,24 +908,261 @@ Given below are instructions to test the app manually.
    1. With the app still open, enter `exit` in the command box or click on the close window button.<br>
       Expected: App closes.
 
-1. _{ more test cases …​ }_
+### Show an endpoint
 
-### Deleting an endpoint
+1. Show the details of a selected endpoint from the endpoint list in the result display
 
-1. Deleting an endpoint while all endpoints are being shown
+   1. Prerequisites: There exists at least one (but less than 100) endpoints in the endpoint list.
 
-   1. Prerequisites: List all endpoints using the `list` command. Multiple endpoints in the list.
+   1. Test case: `show 1`<br>
+      Expected: Details of the first endpoint in the endpoint list is shown in the result display.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `show`<br>
+      Expected: Error details shown in the result display, with a result message saying `Invalid command format!...`.
+
+   1. Test case: `show 0`<br>
+      Expected: Error details shown in the result display, with a result message saying `An index must be specified...`. <br>
+      Other incorrect show commands to try: `show -1`, `show one`
+
+   1. Test case: `show 100`<br>
+      Expected: Error details shown in the result display, with a result message saying `Index provided is not within...`. <br>
+      Other incorrect remove commands to try: `show 101`,`show 999`
+
+### Add an endpoint
+
+1. Add an endpoint
+
+   1. There are less than 100 endpoints in the endpoint list, and endpoint that is to be added is not the same as any currently in the list.
+
+   1. Test case: `add -x get -u https://sg.yahoo.com/?p=us` <br>
+       Expected: A new endpoint with the `GET` method and `https://sg.yahoo.com/?p=us` address is added into the endpoint list.
+
+   1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -t yahoo` <br>
+       Expected: A new endpoint with the `GET` method, `https://sg.yahoo.com/?p=us` address and `yahoo` tag is added into the endpoint list.
+
+   1. Test case: `add -x get -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -h "key: value" -t common` <br>
+       Expected: A new endpoint with the `GET` method, `https://reqres.in/api/users` address, `{"name": "john doe", "job": "developer"}` data, `"key: value"` header and `common` tag is added into the endpoint list.
+
+   1. Test case: `add` <br>
+       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `add -x get` <br>
+       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `add -x get -u invalidurl\\` <br>
+       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `URL provided has to be valid...` <br>
+
+   1. Test case: `add -x abc -u https://sg.yahoo.com/?p=us` <br>
+       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Methods only consists...`
+
+   1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -d abc` <br>
+       Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Data must be...`
+
+### Edit an endpoint
+
+1. Edit an endpoint
+
+   1. Prerequisites: List all endpoints using the `list` command. There exists at least 1 endpoint in the list, and there are less than 100 endpoints.
+
+   1. Test case: `edit 1 -x get` <br>
+      Expected: The method of the endpoint at index 1 is changed to `GET` and any existing response is cleared.
+
+   1. Test case: `edit 1 -u https://sg.yahoo.com/?p=us` <br>
+      Expected: The url address of the endpoint at index 1 is changed to `https://sg.yahoo.com/?p=us` and any existing response is cleared.
+
+   1. Test case: `edit 1 -d` <br>
+      Expected: Any existing data of the endpoint at index 1 are removed and any existing response is cleared.
+
+   1. Test case: `edit 1 -t` <br>
+      Expected: Any existing tags of the endpoint at index 1 are removed and any existing response is cleared.
+
+   1. Test case: `edit 1 -h` <br>
+      Expected: Any existing headers of the endpoint at index 1 are removed and any existing response is cleared.
+
+   1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -t common -t important` <br>
+      Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{"name": "john doe", "job": "developer"}` and its tags are changed to `common` and `important` and any existing response is cleared.
+
+   1. Test case: `edit` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `edit 0` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `An index must be specified...` <br>
+      Other incorrect edit commands to try: `edit x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
+
+   1. Test case: `edit 10` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `At least one parameter to edit must be provided.` <br>
+      Other incorrect edit commands to try: `edit x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size).
+
+   1. Test case: `edit 1 -x abc` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Methods only consists...`
+
+   1. Test case: `edit 1 -d abc` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Data must be...`
+
+   1. Test case: `edit 1 -h abc` <br>
+      Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...` 
+
+### Find an endpoint
+
+1. Find an endpoint (General Search)
+   
+   1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.
+    
+   1. Test case: `find get`<br>
+      Expected: Looks through all fields for any partial or full word of `get` then displays them on the endpoint list. <br>
+      E.g. `get` from any field will be matched.
+
+   1. Test case: `find g` <br>
+      Expected: Looks through all fields for any partial or full word of `g` then displays them on the endpoint list. <br>
+      E.g. `go` from any field will be matched.
+
+   1. Test case: `find get post` <br>
+      Expected: Looks through all fields for any partial or full word of `get` or `post` then displays them on the endpoint list. <br>
+      E.g. `get` or `post` from any field will be matched. (`OR` search).
+
+   1. Test case: `find 123 post` <br>
+      Expected: Looks through all fields for any partial or full word of `123` or `post` then displays them on the endpoint list. <br>
+      E.g. `123` or `post` from any field will be matched. (`OR` search).
+
+   1. Test case: `find ` <br>
+      Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `find0` <br>
+      Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Unknown command`
+
+2. Find an endpoint (Precise Search)
+
+   1. Prerequisites: None, but if the list is empty, all searches will also lead to no results.  
+
+   1. Test case: `find -x get` <br>
+      Expected: Looks through the method field for any partial or full word of `get` then displays them on the endpoint list. <br>
+      E.g. `get` from the method field will be matched.
+
+   1. Test case: `find -x get -u yahoo` <br>
+      Expected: Looks through the method field for any partial or full word of `get` and the address field for any partial or full word of `yahoo` then displays them on the endpoint list. <br>
+      E.g. **Both** `get` from the method field and `yahoo` from the address field must be present to be matched. (`AND` search between multiple prefixes)
+
+   1. Test case: `find -h key -d name` <br>
+      Expected: Looks through the header field for any partial or full word of `key` and the data field for any partial or full word of `name` then displays them on the endpoint list. <br>
+      E.g. **Both** `key` from the method field and `name` from the address field must be present to be matched. (`AND` search between multiple prefixes)
+
+   1. Test case: `find -x get post` <br>
+      Expected: Looks through the method for any partial or full word of `get` or `post` then displays them on the endpoint list. <br>
+      E.g. `get` or `post` from the method field will be matched. (`OR` search within one prefix).
+
+   1. Test case: `find -x get post -u yahoo` <br>
+      Expected: Looks through the method for any partial or full word of `get` or `post` and the address field for any partial or full word of `yahoo` then displays them on the endpoint list. <br>
+      E.g. `get` or `post` from the method field and `yahoo` from the address field  will be matched. (`OR` search within one prefix and `AND` search between multiple prefixes).
+
+   1. Test case: `find -x` <br>
+      Expected: No endpoint is found. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `find -x get -x post` <br>
+      Expected: Looks through the method field for any partial or full word of `post` then displays them on the endpoint list. (Ignores the first instance of -x) <br>
+      E.g. `post` from the method field will be matched.
+
+### Remove an endpoint
+
+1. Remove an endpoint while all endpoints are being shown
+
+   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list, and there are less than 100 endpoints.
+
+   1. Test case: `remove 1`<br>
       Expected: First endpoint is deleted from the list. Details of the deleted endpoint shown in the result display.
 
-   1. Test case: `delete 0`<br>
-      Expected: No endpoint is deleted. Error details shown in the result display.
+   1. Test case: `remove`<br>
+      Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Test case: `remove 0`<br>
+      Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `An index must be specified...`
+      Other incorrect remove commands to try: `remove x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
+      
+   1. Test case: `remove 100`<br>
+      Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `Index provided is not within...`
+      Other incorrect remove commands to try: `remove x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size).
 
-1. _{ more test cases …​ }_
+### List all endpoints
+
+1. List all endpoints
+
+   1. Prerequisites: There exists multiple endpoints in the list.
+
+   1. Test case: `list`<br>
+     Expected: All endpoints are shown in the endpoint list, with a
+     result message saying `Listed all saved...`.
+
+2. List all endpoints from the endpoint list after a `find` command
+
+   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list.
+     Perform a `find` command such that the endpoint list shows less than actual number of endpoints.
+
+   1. Test case: `list`<br>
+     Expected: Filter from the `find` will be cleared and all endpoints are shown in the endpoint list, with a result message saying `Listed all saved...`.
+
+3. List all endpoints from the endpoint list after a `clear` command
+
+   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list. 
+     
+   1. Perform a `clear` command such that all endpoints are cleared from the endpoint list.
+
+   1. Test case: `list`<br>
+      Expected: No endpoints are shown in the endpoint list, with a result message saying `It seems like your list is empty!...`.
+     
+### Clear all endpoints
+
+1. Clear all endpoints from the endpoint list
+
+   1. Prerequisites: None
+
+   1. Test case: `clear`<br>
+      Expected: All endpoints are cleared from the list.
+
+   1. Test case: `clear 123`<br>
+      Expected: All endpoints are cleared from the list.
+
+### Call a saved endpoint
+
+1. Call a saved endpoint while all endpoints are being shown
+
+   1. Prerequisites: List all endpoints using the `list` command. There exists at least 1 endpoint in the list, and there are less than 100 endpoints.
+
+   1. Test case: `send 1`<br>
+      Expected: First endpoint is called from the list. Details of the response is shown in the result display.
+
+   1. Test case: `send`<br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `send 0`<br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `An index must be specified...` <br>
+      Other incorrect remove commands to try: `send x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
+      
+   1. Test case: `send 100`<br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Index provided is not within...` <br>
+      Other incorrect remove commands to try: `send x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size). <br>
+
+### Call an endpoint (without saving)
+
+1. Call an endpoint directly
+   
+   1. Prerequisites: None
+    
+   1. Test case: `run -x get -u https://google.com`<br>
+      Expected: Endpoint is called successfully. Details of the response is shown in the result display.
+
+   1. Test case: `run https://google.com` <br>
+      Expected: Endpoint is called successfully. Details of the response is shown in the result display.
+
+   1. Test case: `run -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"}` <br>
+      Expected: Endpoint is called successfully. Details of the response is shown in the result display..
+
+   1. Test case: `run` <br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `run https://thisisarandomanyhowlink.com` <br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Connection could not be established.` <br>
+      Other incorrect remove commands to try: `run x` (where x is any URL whose connection cannot be established).
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
@@ -871,13 +1185,46 @@ Given below are instructions to test the app manually.
       
    1. Re-launch the app by double-clicking the jar file.
     
-   1. Test case: `data/imposter.json` was corrupted/deleted. <br>
-      Expected: The app should start with a list of saved endpoints (on the left) that is empty.
+   1. Test case: `data/imposter.json` was corrupted. <br>
+      Expected: The app starts with a list of saved endpoints (on the left) that is empty.
+      
+   1. Test case: `data/imposter.json` was deleted.
+      Expected: The app starts with the default list of saved endpoints.
       
    1. Test case: `preferences.json` was corrupted/deleted. <br>
-      Expected: The app should start with the default theme, window size and location.
+      Expected: The app starts with the default theme, window size and location.
+
+### Toggle the theme
+
+1. Toggle the theme
+
+    1. Test case: `toggle imposter` <br>
+       Expected: Theme changes to the `imposter` theme.
+
+    1. Test case: `toggle material` <br>
+       Expected: Theme changes to the `material` theme.
+
+    1. Test case: `toggle dark` <br>
+       Expected: Theme changes to the `dark` theme.
+
+    1. Test case: `toggle light` <br>
+       Expected: Theme changes to the `light` theme.
+
+    1. Test case: `toggle` <br>
+       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `Invalid command format!...`.
+
+    1. Test case: `toggle abc` <br>
+       Expected: Theme is not changed. Error details shown in the result display, with a result message saying `You may only toggle to supported themes...`.
+       
+### Opening help window
+
+1. Opening help window
+
+   1. Test case: `help` <br>
+      Expected: Help window with command examples and helpful links appears.
       
-1. _{ more test cases …​ }_
+   1. Test case: `help thisisarandomstring` <br>
+      Expected: Help window appears.
 
 ## **Appendix I: Effort**
 

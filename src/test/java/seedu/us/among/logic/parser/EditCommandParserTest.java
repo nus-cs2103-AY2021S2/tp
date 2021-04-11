@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_FACT;
 import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_RANDOM;
 import static seedu.us.among.logic.commands.CommandTestUtil.DATA_DESC_DEFAULT;
@@ -66,7 +67,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditCommand.MESSAGE_USAGE + "\n"));
     }
 
     @Test

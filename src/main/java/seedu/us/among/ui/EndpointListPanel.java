@@ -39,6 +39,18 @@ public class EndpointListPanel extends UiPart<Region> {
         endpointListView.getSelectionModel().selectedItemProperty().addListener(listener);
     }
 
+    public void focusSelectedEndpoint(Endpoint e) {
+        endpointListView.getSelectionModel().select(e);
+    }
+
+    public void unfocusEndpointList() {
+        endpointListView.getSelectionModel().clearSelection();
+    }
+
+    public boolean contains(Endpoint e) {
+        return endpointListView.getItems().contains(e);
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Endpoint} using a {@code EndpointCard}.
      */

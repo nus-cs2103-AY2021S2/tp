@@ -24,7 +24,7 @@ public class ShowCommandParser implements Parser<ShowCommand> {
      */
     public ShowCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtil.parseIndex(args, ShowCommand.MESSAGE_USAGE);
             return new ShowCommand(index);
         } catch (ParseException pe) {
             logger.warning(StringUtil.getDetails(pe));

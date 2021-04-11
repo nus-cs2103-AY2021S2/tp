@@ -114,7 +114,7 @@ public class CommandTestUtil {
      */
     public static void assertAddCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel, Endpoint endpoint) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, endpoint, false);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, endpoint, true);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -124,6 +124,23 @@ public class CommandTestUtil {
      * takes a string {@code expectedMessage}.
      */
     public static void assertEditCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            String resultString = result.getFeedbackToUser();
+            assertEquals(expectedMessage, resultString);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException | RequestException | AbortRequestException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to
+     * {@link #assertRemoveCommandSuccess(Command, Model, CommandResult, Model, Endpoint)} that
+     * takes a string {@code expectedMessage}.
+     */
+    public static void assertRemoveCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
