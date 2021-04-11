@@ -167,15 +167,19 @@ Examples:
 * `addMember Dylan p/64529356 e/dylan@gmail.com`
 * `addMember Dylan p/64529356 e/dylan@gmail.com r/President`
 
+<br/><br/>
+
 Using the following addMember command, `addMember Erynne p/96398428 e/erynne@gmail.com`, the addMember command
 can be used as shown below:
- 
+
 1. Key in the addMember command and its parameters
+<br/><br/>
 ![Example using the addMember command](images/UG-examples/addMember-cmd.png)
-
+<br/><br/>
 2. Press enter and view the result of the addMember command
+<br/><br/>
 ![Example of using addMember result](images/UG-examples/addMember-result.png)
-
+<br/><br/>
 
 <a name="deleteMember"></a>
 ### 2. Delete Member: `deleteMember`
@@ -269,15 +273,19 @@ Examples:
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Rachel a/James`
 
+<br/><br/>
+
 Using the following addTask command, `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Alex Yeoh a/Bernice Yu`, the 
 addTask command can be used as shown below:
  
 1. Key in the addTask command and its parameters
+<br><br>
 ![Example using the addTask command](images/UG-examples/addTask-cmd.png)
-
+<br><br>
 2. Press enter and view the result of the addTask command
+<br><br>
 ![Example of using addTask result](images/UG-examples/addTask-result.png)
-
+<br><br>
 
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
