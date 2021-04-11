@@ -47,11 +47,22 @@ public class FilterCommand extends Command {
 
     private final List<String> prefixes;
 
+    /**
+     * Initializes FilterCommand with no filters.
+     *
+     * @param filterPredicate predicate for filter.
+     */
     public FilterCommand(DisplayFilterPredicate filterPredicate) {
         this.filterPredicate = filterPredicate;
         this.prefixes = new ArrayList<>();
     }
 
+    /**
+     * Initializes FilterCommand with prefixes.
+     *
+     * @param filterPredicate predicate for filter.
+     * @param prefixes        parsed valid prefixes.
+     */
     public FilterCommand(DisplayFilterPredicate filterPredicate, List<String> prefixes) {
         this.filterPredicate = filterPredicate;
         this.prefixes = prefixes;
