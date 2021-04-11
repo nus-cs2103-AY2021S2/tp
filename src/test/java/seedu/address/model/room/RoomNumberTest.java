@@ -30,11 +30,13 @@ public class RoomNumberTest {
         assertFalse(RoomNumber.isValidRoomNumber("01-010*")); // contains non-alphanumeric characters
         assertFalse(RoomNumber.isValidRoomNumber("1-010")); // format does not conform for floor number
         assertFalse(RoomNumber.isValidRoomNumber("01-00")); // format does not conform for unit number
+        assertFalse(RoomNumber.isValidRoomNumber("00-00")); // disallow starting with 00
 
         // valid room number
         assertTrue(RoomNumber.isValidRoomNumber("12-123")); // correct format
         assertTrue(RoomNumber.isValidRoomNumber("02-123")); // correct format floor number start with 0
-        assertTrue(RoomNumber.isValidRoomNumber("02-003")); // correct format unit number start with 00
+        assertTrue(RoomNumber.isValidRoomNumber("10-003")); // correct format unit number start with 10
+        assertTrue(RoomNumber.isValidRoomNumber("22-003")); // correct format unit number start with 10
         assertTrue(RoomNumber.isValidRoomNumber("02-023")); // correct format unit number start with 0
     }
 
