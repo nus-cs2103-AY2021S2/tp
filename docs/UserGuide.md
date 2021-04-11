@@ -54,6 +54,14 @@ commands may receive.
 #### **2.2.1 Sections of the UI**
 ![User Interface](images/Annotated%20UI.png)
 
+1. The User Input Box is where you can type in commands. Commands are what help you interact with CakeCollate, for example, you use commands to tell CakeCollate to add a particular order, or display specific orders.
+
+1. The Result Box is where information is provided for you. If your command is valid, a successful message would appear. If your commands were invalid (for example, there were some spelling mistakes), then there would be an error message. 
+
+1. The Orders Box is where all the orders that you have added to CakeCollate are displayed.
+
+1. The Order Items Box is where all the different type of order items you have already entered into CakeCollate are displayed. You can think of it as a product catalogue. 
+
 #### **2.2.2 Formatting of Commands**
 
 <div markdown="block" class="alert alert-info">
