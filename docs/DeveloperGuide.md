@@ -6,17 +6,30 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+
+--------------------------------------------------------------------------------------------------------------------
+## **1. Introduction to BookCoin**
+
+Welcome! This is BookCoin, a compact application for booking management for administrative personnel. This developer guide is created to give a quick introduction of BookCoin to interested developers on its structure and implementation. 
+All are welcome to contribute!
+
+This guide covers several aspects of BookCoin, starting from its high-level design implementation and following with an overview of the implementation behind key features and  
+rationale behind certain design decisions. Links are also provided to various guides on the tools used in Documentation, Testing, and DevOps. 
+Finally, the appendices specify the product scope, requirements, a glossary, and instructions for manual testing.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
-### Architecture
+This section provides an overview of the high-level design of BookCoin.
+
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -32,16 +45,16 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components. One example class is (#LogsCenter), which is used by many classes to write log messages to BookCoin’s log file.
 
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of BookCoin in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-Each of the four components,
+Each of the four components
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.

@@ -21,6 +21,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Wrote additional tests for existing features to increase coverage from Venue, Parser, Tag and Storage class
     * Managed storage function for Venue class
+    * Managed modifications to implement tag class to better suit BookCoin's purposes
 
 * **Documentation**:
     * User Guide: formatted and polished user guide for better readability, added app constraints and design justifications, wrote and revised commands listed in user guide.
