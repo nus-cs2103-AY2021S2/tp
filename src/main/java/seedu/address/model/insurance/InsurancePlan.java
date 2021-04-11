@@ -20,7 +20,7 @@ public class InsurancePlan {
      * The first character of the plan name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}()\\-,][\\p{Alnum} ()\\-,]*";
     public static final String REGEX_POSITIVE_INTEGER = "[0]*[123456789][\\p{Digit}]*";
     public static final String REGEX_ALL_ZEROES = "0*";
 
