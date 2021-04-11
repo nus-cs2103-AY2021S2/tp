@@ -32,7 +32,16 @@ title: Developer Guide
    A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
    A7. [Saving Data](#a7-saving-data)<br>
    A8. [Effort](#a8-effort)<br>
-   
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+The name SOChedule is case-insensitive in the text and images in this Developer Guide.<br>
+i.e. SOChedule, SoChedule, Sochedule can be used interchangeably.
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).  
@@ -253,7 +262,7 @@ and the rest will be hidden and cannot be viewed. This is something undesirable.
                     <ul>
                         <li> More restrictive as a hard maximum limit has been set to disallow users from creating a task or event with a name of longer than 30 characters.</li>
                     </ul>
-                </li>q:q
+                </li>
             </ul>
         </td>
         <td> 
@@ -945,7 +954,7 @@ The following is a brief explanation , as illustrated by a sequence diagram, of 
     <tr>
         <td> 
             <ul>
-                <li>More Persistent Sorting using a Comparator</li>
+                <li>More persistent Sorting using a Comparator</li>
                 <li> Pros:
                     <ul>
                         <li>UX considerations when users expect sorting to be persistent over multiple order-altering commands.</li>
@@ -961,7 +970,7 @@ The following is a brief explanation , as illustrated by a sequence diagram, of 
         </td>
         <td> 
             <ul>
-                <li>More Transient Sorting by sorting the UniqueTaskList directly.</li>
+                <li>More transient Sorting by sorting the UniqueTaskList directly.</li>
                 <li> Pros:
                     <ul>
                         <li>Straightforward implementation.</li>
@@ -1023,7 +1032,7 @@ The UI will also update as the underlying task list has been modified.
 The sequence diagram for `PinTaskCommand` can be found below.
 It is largely similar to `SortTaskCommand`, with a some minor differences:
 * Instead of `SortTask`-related parsers and commands, `PinTask`-related parsers and commands are created and activated.
-* Additional call to `Model#sortTaskDefault()` after `Model#pinTask(Task)`
+* Additional call to `Model#sortTasksDefault()` after `Model#pinTask(Task)`
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
@@ -1493,8 +1502,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### A3. Use cases
 
-(For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
-
 **Use case: UC01 - Adding a task**
 
 **MSS**
@@ -1792,6 +1799,8 @@ Use case ends.
 
 **Use case: UC12 - Clearing all completed tasks**
 
+**MSS**
+
 1. User requests to clear all completed tasks.
 1. SOChedule displays a success message for clearing all completed tasks.
    <br><br>
@@ -1799,6 +1808,8 @@ Use case ends.
    <br><br>
    
 **Use case: UC13 - Clearing all expired tasks**
+
+**MSS**
 
 1. User requests to clear all expired tasks.
 1. SOChedule displays a success message for clearing all expired tasks.
@@ -1854,6 +1865,8 @@ Use case ends.
       <br><br>
 
 **Use case: UC16 - Editing an event**
+
+**MSS**
 
 1. User requests to <u> list events (UC17)</u>.
 1. SOChedule shows a list of events.
@@ -1929,12 +1942,14 @@ Use case ends.
 
 **Use case: UC20 - Clearing expired events**
 
+**MSS**
+
 1. User requests to clear all expired events.
 1. SOChedule displays a success message for clearing all expired events.
    <br><br>
    Use case ends.
    
-**Use case: UC21 - Finding Schedule aiven a date**
+**Use case: UC21 - Finding schedule given a date**
 
 **MSS**
 1. User wishes to find schedule given a specified date.
@@ -2009,7 +2024,6 @@ Use case ends.
 1.  Should give a response to user's input within 5 seconds.
 1.  The source code should be open source.
 
-*{More to be added}*
 
 ### A5. Glossary
 
@@ -2034,9 +2048,10 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Download the jar file and copy into an empty folder
    
-   1. For testing purposes, a sample `sochedule.json` is provided [here](https://raw.githubusercontent.com/AY2021S2-CS2103-W16-1/tp/master/https://github.com/AY2021S2-CS2103-W16-1/tp/tree/master/src/test/data/sochedule.json). Place this file in a directory named `data`. `data` should be in the same relative path as `SOChedule.jar`.
+   1. For testing purposes, a sample `sochedule.json` is provided [here](https://raw.githubusercontent.com/AY2021S2-CS2103-W16-1/tp/master/src/test/data/sochedule.json). Place this file in a directory named `data`. `data` should be in the same relative path as `SOChedule.jar`.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
+   1. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample data.
 
 ### Adding a task
 
@@ -2044,15 +2059,13 @@ These instructions only provide a starting point for testers to work on; testers
 
     1. Prerequisites: No duplicates tasks could exist.
 
-    1. Test case: `add_task n/Homework 1 d/2021-05-10 p/8`
-       
+    1. Test case: `add_task n/Homework 1 d/2021-05-10 p/8` <br>
         Expected: Task successfully added, detailed information shown in the status bar.
 
-    1. Test case: `add_task n/Assignment d/2021-05-11 p/9 c/Assignment`
-       
+    1. Test case: `add_task n/Assignment d/2021-05-11 p/9 c/Assignment` <br>
         Expected: Task successfully added, detailed information shown in the status bar.
 
-    1. Test case: `add_task n/Past Task d/2021-01-07 p/7`
+    1. Test case: `add_task n/Past Task d/2021-01-07 p/7` <br>
        Expected: Task is not added, since deadline is past. Detailed error message shown in the status bar.
 
     1. Other incorrect commands to try: `add_task`, `add_task n/Task 1`, etc.
@@ -2089,11 +2102,11 @@ These instructions only provide a starting point for testers to work on; testers
     1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
        All of the tasks to be completed are currently marked as uncompleted.
 
-    1. Test case: `done 1 2` <br>
+    1. Test case: `done_task 1 2` <br>
        Expected: The first and second task in the task list are marked as completed.
        "Completed 2 Task(s)." to appear in status bar.
        
-    1. Other incorrect command to try : `done abc`.
+    1. Other incorrect command to try : `done_task abc`.
 
 ### Marking a task as uncompleted
 
@@ -2102,11 +2115,11 @@ These instructions only provide a starting point for testers to work on; testers
     1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
        The task to be uncompleted is currently marked as completed.
     
-    1. Test case: `undone 1` <br>
+    1. Test case: `undone_task 1` <br>
        Expected: The first task in the task list are marked as uncompleted.
        "Uncompleted 1 Task." to appear in status bar.
        
-    1. Other incorrect command to try : `undone abc`.
+    1. Other incorrect command to try : `undone_task abc`.
 
 ### Listing all tasks
 
@@ -2338,8 +2351,8 @@ These instructions only provide a starting point for testers to work on; testers
 1. Clearing SOChedule
 
     1. Test case: `clear`<br>
-       Expected: All Tasks and Events in SOChedule are cleared. Success message `Sochedule has been cleared!`
-       will always be shown in the status message, regardless of whether there is any Task or Event.
+       Expected: All Tasks and Events in SOChedule are cleared. <br>
+       Success message `Sochedule has been cleared!` will always be shown in the status message, regardless of whether there is any Task or Event.
        
 ### A7. Saving data
 
