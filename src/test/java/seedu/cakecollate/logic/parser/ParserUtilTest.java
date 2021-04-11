@@ -708,7 +708,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDys_null_throwsNullPointerException() {
+    public void parseDays_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDays(null));
     }
 
