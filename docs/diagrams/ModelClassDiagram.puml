@@ -29,6 +29,20 @@ Class Tag
 }
 }
 
+Package Patient{
+Class Patient
+}
+
+Package Doctor{
+Class Doctor
+}
+
+Package Appointment {
+Class Appointment
+Class Timeslot
+Class NonConflictingAppointmentList
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
@@ -47,6 +61,11 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Patient --|> Person
+Doctor --|> Person
+Appointment *--> Patient
+Appointment *--> Doctor
+Appointment *--> Timeslot
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
