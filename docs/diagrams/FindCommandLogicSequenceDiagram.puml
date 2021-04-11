@@ -3,9 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TimesForWheelsParser" as TimesForWheelsParser LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-participant "d:FindCommand" as FindCommand LOGIC_COLOR
+participant "command:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -16,37 +16,43 @@ end box
 [-> LogicManager : execute("find Alex")
 activate LogicManager
 
-LogicManager -> TimesForWheelsParser : parseCommand("find Alex")
-activate TimesForWheelsParser
+LogicManager -> DeliveryListParser : parseCommand("find Alex")
+activate DeliveryListParser
 
 create FindCommandParser
-TimesForWheelsParser -> FindCommandParser
+DeliveryListParser -> FindCommandParser
 activate FindCommandParser
 
-FindCommandParser --> TimesForWheelsParser
+FindCommandParser --> DeliveryListParser
 deactivate FindCommandParser
 
-TimesForWheelsParser -> FindCommandParser : parse("find Alex")
+DeliveryListParser -> FindCommandParser : parse("find Alex")
 activate FindCommandParser
 
 create FindCommand
 FindCommandParser -> FindCommand
 activate FindCommand
 
-FindCommand --> FindCommandParser : d
+FindCommand --> FindCommandParser : command
 deactivate FindCommand
 
-FindCommandParser --> TimesForWheelsParser : d
+FindCommandParser --> DeliveryListParser : command
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindCommandParser -[hidden]-> TimesForWheelsParser
+FindCommandParser -[hidden]-> DeliveryListParser
 destroy FindCommandParser
 
-TimesForWheelsParser --> LogicManager : d
-deactivate TimesForWheelsParser
+DeliveryListParser --> LogicManager : command
+deactivate DeliveryListParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
+
+FindCommand -> Model : updateFilteredCustomerList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
 
 FindCommand -> Model : findPerson("Alex")
 activate Model
