@@ -611,7 +611,7 @@ One of the challenges is if we should allow overdue tasks (task with deadlines b
                 </li>
                 <li> Cons:
                     <ul>
-                        <li> Users may not want overdue tasks to be edited </li>
+                        <li> Users may not want overdue tasks to be edited.</li>
                     </ul>
                 </li>
             </ul>
@@ -642,7 +642,7 @@ editing a task or editing it back quickly if they realize they have edited the w
 [Return to Overview](#421-overview)
 
 
-#### Implementation of `done_task` command**
+#### Implementation of `done_task` command
 In SOChedule, the governing logic behind the `done_task` command is laid out in [`DoneTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DoneTaskCommand.java)
 The done task mechanism is supported mainly by `DoneTaskCommand` and `DoneTaskCommandParser`.
 
@@ -830,7 +830,7 @@ under normal usage. Thus, we feel alternative 1 is sufficient to serve our users
 [Return to Overview](#421-overview)
 
 
-#### Implementation of `today_task` command**
+#### Implementation of `today_task` command
 In SOChedule, the governing logic behind the `today_task` command is laid out in [`TodayTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TodayTaskCommand.java)
 The following is a detailed explanation on how `TodayTaskCommand.java` is implemented.
 
@@ -1100,8 +1100,9 @@ Our `Event` supports the following features through a `LogicManager`
 * [`edit_event`](#implementation-of-edit_event-command)
 * `list_event` (Omitted for brevity and simplicity)
 * [`today_event`](#implementation-of-today_event-command)
-* [`find_event`](#implementation-of-find_event-command))
+* [`find_event`](#implementation-of-find_event-command)
 * [`clear_expired_event`](#implementation-of-clear_expired_event-command)
+* [`find_free`](#implementation-of-find_free-command)
 
 The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are
 omitted here because their implementation is similar to that of other features.
@@ -1332,8 +1333,8 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 
 #### Implementation of `find_free` command
-In SOChedule, the governing logic behind the `find_free` command is laid out in [`FindFreeTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTaskCommand.java)
-The following is a detailed explanation on how FindFreeTaskCommand is implemented.
+In SOChedule, the governing logic behind the `find_free` command is laid out in [`FindFreeTimeCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTimeCommand.java)
+The following is a detailed explanation on how FindFreeTimeCommand is implemented.
 
 **Step 1**: User executes `free_time DATE` command to find free time slots in the given day.
 An `FindFreeTimeCommandParser` object is created, and the `FindFreeTimeCommandParser#parse(String args)` method is called.
