@@ -8,11 +8,11 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 ## How to Navigate User Guide
 * To have an overview of this user guide, head to [1. About](#1-about)!
 * To start your journey with TutorsPet, head to [2. Quick Start](#2-quick-start)!
-* To learn about all features in TutorsPet, head to [3. Features](#3-features)!
+* To learn about all our features, head to [3. Features](#3-features)!
 * To take a look at some exciting features in our future version, head to [4. Coming soon](#4-coming-soon)!
 * To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-FAQ)!
 * To learn about the format of fields available to a student contact, head to [6.1 Field Format Summary](#61-field-format-summary)!
-* To get an overview of all our Commands, head to [6.2 Command summary](#62-command-summary)!
+* To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary)!
 
 Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step! 
 
