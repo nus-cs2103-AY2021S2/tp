@@ -831,7 +831,7 @@ and events that are ongoing on the date.
 Format: `find_schedule DATE`
 * Tasks found will be incomplete tasks with deadlines before or on the specified date.
 * Events found will be events where specified date falls between start date (inclusive) and end date (inclusive). <br>
-  (i.e. **ongoing events**)
+  (i.e. ongoing events)
 * Date entered must be in the format of `YYYY-MM-DD`. <br>
   It can be a date that is earlier than today.
 * Only one single date can be entered. 
