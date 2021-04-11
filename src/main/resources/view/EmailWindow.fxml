@@ -35,7 +35,7 @@
                      <font>
                         <Font size="11.0" />
                      </font></Label>
-                  <Button fx:id="enableAccessButton" layoutX="432.0" layoutY="174.0" mnemonicParsing="false" onAction="#enableAccess" prefHeight="26.0" prefWidth="149.0" text="URL to google security" textFill="#121212">
+                  <Button fx:id="enableAccessButton" layoutX="432.0" layoutY="174.0" mnemonicParsing="false" onAction="#enableAccess" prefHeight="26.0" prefWidth="149.0" text="Copy URL to google security" textFill="#121212">
                      <font>
                         <Font size="11.0" />
                      </font>
