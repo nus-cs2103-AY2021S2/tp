@@ -1,32 +1,31 @@
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Proposed] Enquire if time interval is free
+### Enquire if time interval is free
 
 The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
 
 An outline of the proposed implementation is as follows:
 
-The `AddressBookParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
+The `AddressBookParser` should accept another case of command word `free` which eventually returns `FreeCommand`
 back to Logic Manager.
 
 This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as:
-* "Free"
-* Or the task that is occupying that time interval
+* "You're Free!"
+* Or "Sorry, you're not free. Entries occupying that time interval listed below!". The occupying entries are shown in
+the entry list at the main window.
 
 The following activity diagram summarizes what happens when a user executes the new command:
 
 ![Free Intervals Activity Diagram](images/FreeIntervalActivityDiagram.png)
 
-The `ModelManager` class will be required to implement `checkIfFree` method which eventually checks the interval
-provided by the user against all tasks' `LocalDateTime` attribute in
-`UniqueTaskList#checkIfFree(start, end)`.
+A `ListOccupyingEntryPredicate` class is implemented that provides a predicate that accepts user provided
+start and end interval. The predicate is provided to `ModelManager#updateFilteredEntryList` and updates the entry list
+according to the condition under `ListOccupyingEntryPredicate#test`.
 
-The following sequence diagram outlines how the enquiry operation works:
+The following sequence diagram outlines how the free operation works:
 
 ![Free Intervals Sequence Diagram](images/FreeIntervalSequenceDiagram.png)
-
-Note: Details in Model class and `CheckFreeCommandParser` have been omitted for simplicity.
 
 ### [Proposed] Merge Schedule and Task
 The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
