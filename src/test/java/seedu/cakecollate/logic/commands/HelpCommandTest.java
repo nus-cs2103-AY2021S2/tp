@@ -1,5 +1,6 @@
 package seedu.cakecollate.logic.commands;
 
+import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.cakecollate.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
@@ -28,7 +29,8 @@ public class HelpCommandTest {
 
     @Test
     public void execute_mainToHelpViaList_success() {
-        CommandResult expectedCommandResult = new CommandResult(ListCommand.MESSAGE_SUCCESS, false, false);
+        CommandResult expectedCommandResult =
+                new CommandResult(String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
         HelpCommand helpCommand = new HelpCommand();
         helpCommand.execute(model);
         assertCommandSuccess(new ListCommand(), model, expectedCommandResult, expectedModel);

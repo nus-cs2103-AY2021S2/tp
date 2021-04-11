@@ -634,7 +634,15 @@ Challenges faced:
 
 Effort required: ??
 
-Achievements of the project: ??
+Achievements of the project: 
+
+* The needs of the user are our first priority and hence we included features that satisfy almost
+  all the user stories that we hoped to satisfy in the table given in the User stories section of 
+  this developer guide.
+  
+* Extensive testing has been done to ensure minimum possible bugs in CakeCollate.
+
+
 
 
 
