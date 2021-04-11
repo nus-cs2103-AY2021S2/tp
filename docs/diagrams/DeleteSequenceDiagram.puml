@@ -15,7 +15,6 @@ end box
 
 [-> LogicManager : execute("delete owner 1")
 activate LogicManager
-
 LogicManager -> PawbookParser : parseCommand("delete owner 1")
 activate PawbookParser
 
