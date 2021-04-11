@@ -141,6 +141,7 @@ public class ModelManager implements Model {
         return personBook.hasPerson(person);
     }
 
+    @Override
     //@@author kangtinglee
     public Person getPersonByIndex(int i) {
         return getFilteredPersonList().get(i);
@@ -177,15 +178,12 @@ public class ModelManager implements Model {
         }
     }
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
 
+    @Override
     public List<Order> getIncompleteOrders() {
         ObservableList<Order> orders = getOrderBook().getItemList();
         List<Order> incompleteOrders = new ArrayList<>();
@@ -217,64 +215,45 @@ public class ModelManager implements Model {
     }
 
     //=========== Dishes ================================================================================
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
     @Override
     public void setDishBook(ReadOnlyBook<Dish> dishBook) {
         this.dishBook.resetData(dishBook);
     }
 
-    /** Returns the AddressBook */
     @Override
     public ReadOnlyBook<Dish> getDishBook() {
         return dishBook;
     }
 
-    /**
-     * Returns true if a dish with the same name as {@code dish} exists in the address book.
-     */
     @Override
     public boolean hasDish(Dish dish) {
         requireNonNull(dish);
         return dishBook.hasDish(dish);
     }
 
-    /**
-     * Returns the {@code Person} object at the specified index on the UI
-     */
+    @Override
     public Dish getDishByIndex(int i) {
         return getFilteredDishList().get(i);
     }
 
-    /**
-     * Deletes the given dish.
-     * The dish must exist.
-     */
+    @Override
     public void deleteDish(Dish target) {
         dishBook.removeDish(target);
     }
 
-    /**
-     * Adds the given dish.
-     * {@code dish} must not already exist
-     */
+    @Override
     public void addDish(Dish dish) {
         dishBook.addDish(dish);
     }
 
-    /**
-     * Replaces the given dish {@code target} with {@code editedDish}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedDish} must not be the same as another existing dish in the address book.
-     */
+    @Override
     public void setDish(Dish target, Dish editedDish) {
         requireAllNonNull(target, editedDish);
 
         dishBook.setDish(target, editedDish);
     }
 
-    /** Returns an unmodifiable view of the filtered person list */
+    @Override
     public ObservableList<Dish> getFilteredDishList() {
         return filteredDishes;
     }
@@ -309,77 +288,51 @@ public class ModelManager implements Model {
     }
 
     //=========== Ingredients ================================================================================
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
     @Override
     public void setIngredientBook(ReadOnlyBook<Ingredient> ingredientBook) {
         this.ingredientBook.resetData(ingredientBook);
     }
 
-    /** Returns the AddressBook */
     @Override
     public ReadOnlyBook<Ingredient> getIngredientBook() {
         return ingredientBook;
     }
 
-    /**
-     * Returns true if a ingredient with the same name as {@code ingredient} exists in the address book.
-     */
     @Override
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return ingredientBook.hasIngredient(ingredient);
     }
 
-    /**
-     * Returns the {@code Ingredient} object at the specified index on the UI
-     */
+    @Override
     public Ingredient getIngredientByIndex(int i) {
         return getFilteredIngredientList().get(i);
     }
 
-    /**
-     * Deletes the given ingredient.
-     * The ingredient must exist.
-     */
+    @Override
     public void deleteIngredient(Ingredient target) {
         ingredientBook.removeIngredient(target);
     }
 
-    /**
-     * Adds the given ingredient.
-     * {@code ingredient} must not already exist
-     */
+    @Override
     public void addIngredient(Ingredient ingredient) {
         ingredientBook.addIngredient(ingredient);
     }
 
-    /**
-     * Replaces the given ingredient {@code target} with {@code editedIngredient}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedIngredient} must not be the same as another existing ingredient.
-     */
+    @Override
     public void setIngredient(Ingredient target, Ingredient editedIngredient) {
         requireAllNonNull(target, editedIngredient);
 
         ingredientBook.setIngredient(target, editedIngredient);
     }
 
-    /**
-     * Decrease the ingredient quantity by given quantity
-     * @param target ingredient to be decreased
-     * @param decreaseQuantity the number to decrease the ingredient quantity
-     */
+    @Override
     public void decreaseIngredient(Ingredient target, int decreaseQuantity) {
         Ingredient decreasedIngredient = new Ingredient(target.getName(), target.getQuantity() - decreaseQuantity);
         this.setIngredient(target, decreasedIngredient);
     }
 
-    /**
-     * Decrease the ingredient quantity with the given {@code order}
-     * @param order order added
-     */
+    @Override
     public void decreaseIngredientByOrder(Order order) {
         List<Pair<Dish, Integer>> dishQuantityList = order.getDishQuantityList();
 
@@ -396,30 +349,18 @@ public class ModelManager implements Model {
         }
     }
 
-    /**
-     * Increases the ingredient quantity by given quantity
-     * @param target ingredient to be increased
-     * @param increaseQuantity the number to increase the ingredient quantity
-     */
-    public void increaseIngredient(Ingredient target, int increaseQuantity) {
+    private void increaseIngredient(Ingredient target, int increaseQuantity) {
         Ingredient increase = new Ingredient(target.getName(), target.getQuantity() + increaseQuantity);
         this.setIngredient(target, increase);
     }
 
-    /**
-     * Increases an existing ingredient by given quantity
-     * @param name existing ingredient's name
-     * @param increaseQuantity the number to increase the ingredient quantity
-     */
+    @Override
     public void increaseIngredientByName(String name, int increaseQuantity) {
         Ingredient ingredient = ingredientBook.getIngredientByName(name);
         increaseIngredient(ingredient, increaseQuantity);
     }
 
-    /**
-     * Increases the ingredient quantity with the given {@code order}
-     * @param order order added
-     */
+    @Override
     public void increaseIngredientByOrder(Order order) {
         List<Pair<Dish, Integer>> dishQuantityList = order.getDishQuantityList();
 
@@ -436,7 +377,7 @@ public class ModelManager implements Model {
         }
     }
 
-    /** Returns an unmodifiable view of the filtered person list */
+    @Override
     public ObservableList<Ingredient> getFilteredIngredientList() {
         return filteredIngredients;
     }
@@ -449,7 +390,6 @@ public class ModelManager implements Model {
 
 
     //@@author kangtinglee
-    /** Returns a list of dishes that use a particular ingredient */
     public List<Dish> getDishesByIngredients(Ingredient ingredient) {
         List<Dish> result = new ArrayList<>();
         List<Dish> dishes = getDishBook().getItemList();
@@ -462,85 +402,51 @@ public class ModelManager implements Model {
     }
 
     //=========== Orders ================================================================================
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
     @Override
     public void setOrderBook(ReadOnlyBook<Order> orderBook) {
         this.orderBook.resetData(orderBook);
     }
 
-    /** Returns the OrderBook */
     @Override
     public ReadOnlyBook<Order> getOrderBook() {
         return orderBook;
     }
 
-    /**
-     * Returns true if a order with the same name as {@code order} exists in the address book.
-     */
     @Override
     public boolean hasOrder(Order order) {
         requireNonNull(order);
         return orderBook.hasOrder(order);
     }
 
-    /**
-     * Deletes the given order.
-     * The order must exist.
-     */
     public void deleteOrder(Order target) {
         orderBook.removeOrder(target);
     }
 
-    /**
-     * Deletes a list of orders.
-     * The orders must exist.
-     */
     public void deleteOrders(List<Order> orders) {
         for (Order o : orders) {
             deleteOrder(o);
         }
     }
 
-
-    /**
-     * Adds the given order.
-     * {@code order} must not already exist
-     */
     public void addOrder(Order order) {
         orderBook.addOrder(order);
     }
 
-    /**
-     * Replaces the given order {@code target} with {@code editedOrder}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedOrder} must not be the same as another existing order in the address book.
-     */
     public void setOrder(Order target, Order editedOrder) {
         requireAllNonNull(target, editedOrder);
 
         orderBook.setOrder(target, editedOrder);
     }
 
-    /**
-     * Sets the state of the order to complete
-     */
     public void completeOrder(Order target) {
         orderBook.completeOrder(target);
     }
 
-    /**
-     * Sets the state of the order to cancelled
-     */
     @Override
     public void cancelOrder(Order target) {
         orderBook.cancelOrder(target);
     }
 
-    /**
-     * Sets the state of the orders to cancelled
-     */
     @Override
     public void cancelOrders(List<Order> targets) {
         for (Order o : targets) {
@@ -569,9 +475,6 @@ public class ModelManager implements Model {
         return true;
     }
 
-    /**
-     * Returns an unmodifiable view of the filtered order list
-     */
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
@@ -590,7 +493,6 @@ public class ModelManager implements Model {
     }
 
     //@@author kangtinglee
-    /** Returns an list of the orders belonging to a particular customer */
     public List<Order> getOrdersFromPerson(Person target) {
         List<Order> result = new ArrayList<>();
         ObservableList<Order> orders = getOrderBook().getItemList();
@@ -603,7 +505,6 @@ public class ModelManager implements Model {
     }
 
     //@@author kangtinglee
-    /** Returns an list of the incomplete orders belonging to a particular customer */
     public List<Order> getIncompleteOrdersFromPerson(Person target) {
         List<Order> result = new ArrayList<>();
         List<Order> orders = getOrdersFromPerson(target);
@@ -614,10 +515,6 @@ public class ModelManager implements Model {
         }
         return result;
     }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-
 
     @Override
     public boolean equals(Object obj) {
