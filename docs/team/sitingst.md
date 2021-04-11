@@ -43,5 +43,5 @@ Given below are my contributions to the project.
     * Updated documentation for storage model [\#90](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/295))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#143](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/143), [\#148](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/148), [\#159](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/159), [\#239](https://github.com/AY2021S2-CS2103T-W10-4/tp/ /239)
+  * PRs reviewed (with non-trivial review comments): [\#143](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/143), [\#148](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/148), [\#159](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/159), [\#239](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/239)
 
