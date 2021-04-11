@@ -26,7 +26,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all items";
     public static final String MESSAGE_SUCCESS_TAG_PREDICATE = "Listed all items with the following tag %s";
     public static final String MESSAGE_SUCCESS_LOCATION_PREDICATE = "Listed all items located in %s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the storemando. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the storemando.\n"
         + "Parameters: "
         + "[" + PREFIX_LOCATION + "LOCATION] " + "/ [" + PREFIX_TAG + "TAG]\n"
         + "Example:\n"
