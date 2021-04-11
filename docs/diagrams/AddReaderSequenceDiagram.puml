@@ -21,10 +21,10 @@ box Storage STORAGE_COLOR_T1
 participant ":UniqueReaderList" as UniqueReaderList STORAGE_COLOR
 end box
 
-[-> LogicManager : execute("addreader r/Tom p/81688168 e/tom@email.com a/Queenstown")
+[-> LogicManager : execute(commandString)
 activate LogicManager
 
-LogicManager -> SmartLibParser : parseCommand("addreader r/Tom p/81688168 e/tom@email.com a/Queenstown")
+LogicManager -> SmartLibParser : parseCommand(commandString)
 activate SmartLibParser
 
 create AddReaderCommandParser
@@ -34,18 +34,18 @@ activate AddReaderCommandParser
 AddReaderCommandParser --> SmartLibParser
 deactivate AddReaderCommandParser
 
-SmartLibParser -> AddReaderCommandParser : parse("addreader r/Tom p/81688168 e/tom@email.com a/Queenstown")
+SmartLibParser -> AddReaderCommandParser : parse(commandString)
 activate AddReaderCommandParser
 
 create Reader
-AddReaderCommandParser -> Reader : new Reader(Tom, 81688168, tom@email.com, Queenstown)
+AddReaderCommandParser -> Reader : new Reader
 activate Reader
 
 Reader -> AddReaderCommandParser : reader
 deactivate Reader
 
 create AddReaderCommand
-AddReaderCommandParser -> AddReaderCommand : new AddReaderCommand(reader)
+AddReaderCommandParser -> AddReaderCommand : newAddReaderCommand
 activate AddReaderCommand
 
 AddReaderCommand --> AddReaderCommandParser
