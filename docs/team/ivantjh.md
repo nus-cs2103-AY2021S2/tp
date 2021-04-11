@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Elaboration: To ensure that the Streaks Dashboard was always updated, I used an observable list to store streak data. Whenever there were changes to Person data, I made the same changes to the observable list. 
     The changes were done with modifications to take into account the sorted nature of the dashboard. I also wrote the algorithm for calculating streaks. It was tedious to test that algorithm because the streak is dependent on today's date. <br><br>
   
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=ivantjh)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?breakdown=true&search=ivantjh)
 
 * **Team Tasks**:
   * Set up Github Actions and repository for optimised iteration workflow (e.g. making CI to run only when we want it to, branch protection rules for master branch)

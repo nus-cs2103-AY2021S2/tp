@@ -29,6 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[homepage](https://chester.how)]
 [[github](https://github.com/chesterhow)]
+[[portfolio](team/chesterhow.html)]
 
 * Role: Developer
 * Responsibilities: UI + Integration
