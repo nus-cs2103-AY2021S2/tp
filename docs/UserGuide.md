@@ -321,6 +321,8 @@ Format: `exit`
 
 The UI displays the top 5 categories that were spent on a particular month.
 
+<div markdown="block" class="alert alert-primary">
+
 **:bulb: Tips:**<br>
 
 You may use the `F6` hotkey to open up the Month statistics window.
@@ -332,6 +334,8 @@ You may use the `F6` hotkey to open up the Month statistics window.
 <img src="images/features/monthly-stats.png" width="450px">
 
 The UI displays the current monthly budget that has been set automatically.
+
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
 
