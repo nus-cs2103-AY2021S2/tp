@@ -327,21 +327,41 @@ With this, the Delete Todo command finishes executing and CoLAB's UI displays th
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new contact               | keep track of details from peers I have crossed paths with             |
-| `* * *`  | user                                       | edit a contact's details        | update their details when there is change                              |
-| `* * *`  | user                                       | delete a contact                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a contact by name          | locate details of contacts without having to go through the entire list |
-| `* * *`  | user                                       | tag a contact with tags         | easily keep track of who the contact is                                |
-| `* *`    | University Student                         | find contacts by modules taken | easily find contacts who take the same module as me                    |
-| `* *`    | Student Teaching Assistant                 | find contacts by tutorial group| easily find contacts of students in my class                           |
-| `* *`    | user                                       | purge all data in the app      | start my address book from fresh                                       |
-| `*`      | long time user                             | archive data files             | refer to old address books when needed                                 |
-
-
-*{More to be added}*
+| Priority | As a …​                                     | I want to …​                        | So that I can…​                                                               |
+| -------- | ------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------------------- |
+| `* * *`  | University Student                         | add a new contact                  | keep track of details from peers I have crossed paths with                   |                      
+| `* * *`  | University Student                         | edit a contact's details           | update the contact's details when there is change                            |
+| `* * *`  | University Student                         | delete a contact                   | remove contacts that I no longer need                                        |
+| `* * *`  | University Student                         | find a contact by name             | locate details of contacts without having to go through an entire list       |
+| `* * *`  | University Student                         | tag a contact with tags            | easily keep track of who the contact is                                      |
+| `* * *`  | University Student                         | view all my contacts               | see the overall contents of my contact list                                  |
+| `* * *`  | University Student                         | add a new project                  | keep track of my projects                                                    |
+| `* * *`  | University Student                         | edit a project's details           | update the project's details when there is change                            |
+| `* * *`  | University Student                         | delete a project                   | remove projects that I no longer need                                        |
+| `* * *`  | University Student                         | view a project                     | see details of that project                                                  |
+| `* * *`  | University Student                         | view the overview of a project     | see my deadlines, events and groupmates of that project                      |
+| `* * *`  | University Student                         | view todos of a project            | see my todos of that project                                                 |
+| `* * *`  | University Student                         | add a new todo to a project        | keep track of my project's todos                                             |
+| `* * *`  | University Student                         | delete a todo from a project       | remove todos that I no longer need                                           |
+| `* * *`  | University Student                         | edit a todo's details              | update the todo's details when there is change                               |
+| `* * *`  | University Student                         | mark a todo as done                | know when a todo is done                                                     |
+| `* * *`  | University Student                         | add a new deadline to a project    | keep track of my project's deadline                                          |
+| `* * *`  | University Student                         | delete a deadline from a project   | remove deadlines that I no longer need                                       |
+| `* * *`  | University Student                         | edit a deadline's details          | update the deadline's details when there is change                           |
+| `* * *`  | University Student                         | mark a deadline as done            | know when a deadline is done                                                 |
+| `* * *`  | University Student                         | keep track of a deadline's date    | know when the deadline is due                                                |
+| `* * *`  | University Student                         | add an new event to a project      | keep track of my project's events                                            |
+| `* * *`  | University Student                         | delete an event from a project     | remove events that I no longer need                                          |
+| `* * *`  | University Student                         | edit an event's details            | update the event's details when there is change                              |
+| `* *`    | University Student                         | indicate an event as weekly        | have events that repeat weekly                                               |
+| `* * *`  | University Student                         | keep track of an event's date      | know when the event is                                                       |
+| `* * *`  | University Student                         | add a new groupmate to a project   | keep track of my project's groupmates                                        |
+| `* * *`  | University Student                         | delete a groupmate from a project  | remove groupmates that I no longer need                                      |
+| `* * *`  | University Student                         | edit a groupmate's details         | update the groupmate's details when there is change                          |
+| `* * *`  | University Student                         | add roles to a groupmate           | easily keep track of the groupmate's roles                                   |
+| `* *`    | University Student                         | undo an action made in the app     | revert an unintended action                                                  |
+| `* *`    | University Student                         | redo an action made in the app     | redo an action that was previously undone                                    |
+| `* *`    | University Student                         | clear all data in the app          | start my application from fresh                                              |
 
 ### Use cases
 
