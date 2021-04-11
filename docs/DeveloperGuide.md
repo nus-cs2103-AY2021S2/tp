@@ -356,7 +356,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC04: Add category**
+**UC03: Add category**
 
 **MSS**
 
@@ -379,7 +379,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC05: Add on review(s) and/or price to a specified Food Diary Entry**
+**UC04: Add on review(s) and/or price to a specified Food Diary Entry**
 
 **MSS**
 
@@ -400,7 +400,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC06: Delete an Entry**
+**UC05: Delete an Entry**
 
 **MSS**
 
@@ -419,7 +419,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC07: View an Entry**
+**UC06: View an Entry**
 
 **MSS**
 1. User requests to view a specific entry.
@@ -438,7 +438,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC08: Find all specific entries**
+**UC07: Find all specific entries**
 
 **MSS**
 1. User enters keywords to specify requirements for entries.
@@ -452,6 +452,25 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a2. User enters correct syntax.
 
   Use case resumes from step 2.
+  
+**UC08: Edit an Entry**
+
+**MSS**
+1. User requests to edit entry field(s) of a specific entry due to minor errors.
+2. Food Diary edits the entry with the updated field(s).
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+      
+* 1b. User keys in non-existent index in list
+    * 1b1. Food Diary tells user that no entry was found.
+
+      Use case ends.
+
 
 **UC09: Revise an Entry**
 
@@ -472,52 +491,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case ends.
 
-**UC10: Exit**
-
-**MSS**
-1. User exits.
-2. Food Diary closes and data is saved.
-
-**Extensions**:
-* 1a. Food diary detects invalid command from user.
-    * 1a1. Food Diary warns user about wrong syntax.
-    * 1a2. User enters correct syntax.
-
-      Use case ends.
-
-**UC11: Clear**
-
-**MSS**
-1. User requests to clear all entries.
-2. Food Diary clears all entries.
-
-**Extensions**:
-* 1a. Food diary detects invalid command from user.
-    * 1a1. Food Diary warns user about wrong syntax.
-    * 1a2. User enters correct syntax.
-
-      Use case resumes from step 2.
-      
-**UC12: Edit an Entry**
-
-**MSS**
-1. User requests to edit entry field(s) of a specific entry.
-2. Food Diary edits the entry with the updated field(s).
-
-**Extensions**:
-* 1a. Food diary detects invalid command from user.
-    * 1a1. Food Diary warns user about wrong syntax.
-    * 1a2. User enters correct syntax.
-
-      Use case resumes from step 2.
-      
-* 1b. User keys in non-existent index in list
-    * 1b1. Food Diary tells user that no entry was found.
-
-      Use case ends.
-
-
-**UC13: Get Help**
+**UC10: Get Help**
 
 **MSS**
 1. User requests to get help on what commands to use.
@@ -538,6 +512,34 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 2a2. Food Diary returns User Guide link for the user to access
 
       Use case resumes from step 3.
+      
+**UC11: Exit**
+
+**MSS**
+1. User exits.
+2. Food Diary closes and data is saved.
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case ends.
+
+**UC12: Clear**
+
+**MSS**
+1. User requests to clear all entries.
+2. Food Diary clears all entries.
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+      
+
       
 
 ## **Appendix E: Non-Functional Requirements**
