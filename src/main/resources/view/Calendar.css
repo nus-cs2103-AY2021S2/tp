@@ -54,3 +54,8 @@
     -fx-border-width: 5px;
     -fx-border-color: blue;
 }
+
+#tagListView .scroll-bar:horizontal {
+    -fx-scale-x: 0;
+    -fx-padding: -10;
+}
