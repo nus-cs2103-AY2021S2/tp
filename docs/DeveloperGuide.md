@@ -246,6 +246,12 @@ The following sequence diagram shows how the find operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
+The following activity diagram summarises the general workflow for the Add Command:
+
+![EditFeatureActivityDiagram](images/AddFeatureActivityDiagram.png)
+*[Add Feature Activity Diagram for `add m/CS2103T`]*
+
+
 
 ### 3.2 Find Feature
 

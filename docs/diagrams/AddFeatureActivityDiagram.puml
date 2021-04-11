@@ -1,0 +1,19 @@
+
+@startuml
+start
+:User executes command;
+if() then ([user input is valid])
+    :Create add command to check if it matches a pre-existing Module;
+    if() then ([if Module exists])
+        :Show error message to user;
+
+    else([if Module does not exist])
+        :Create new Module and add it into UniqueModuleList;
+        :Show successful command result;
+
+    endif
+else([user input is invalid])
+    :Show error message to user;
+endif
+stop
+@enduml
