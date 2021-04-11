@@ -132,6 +132,19 @@ The fields that can be searched through include `Name`, `Rating`, `Price`, `Addr
 fields of all entries, and return all entries that match at least one of the keywords provided. The UI will then
 be updated to display the list of entries that were returned as a search result.
 
+Given below is an example usage scenario:
+
+The user wants to find for good food places within NUS.
+
+Step 1: User enters the command `find 5/5`.
+
+Step 2: The food diary displays all entries that have a rating of 5/5.
+
+Step 3: User is considering whether to visit the food place in the first entry, and uses the view command `view 1`
+to look through that particular food entry to see past reviews.
+
+Step 4: User decides to visit that particular food place.
+
 To better understand how the Find feature works, refer to the diagrams provided for the FindAll feature, as the
 implementation is largely the same.
 
@@ -176,6 +189,21 @@ The FindAll feature is similar to the Find feature. The Find feature finds for a
 at least **one of the given keywords,** while the FindAll feature only finds for entries that meet **all the
 given keywords.**
 
+Given below is an example usage scenario:
+
+The user wants to find for good food places within NUS that are within their budget, from a specific food
+category.
+
+Step 1: User enters the command `findall 5/5 $0-10 western`.
+
+Step 2: The food diary displays all entries that have a rating of 5/5, a price range that contains food options
+$10 or below, and that have western food available.
+
+Step 3: User is considering whether to visit the food place in the first entry, and uses the view command `view 1`
+to look through that particular food entry to see past reviews.
+
+Step 4: User decides to visit that particular food place.
+
 The following sequence diagram shows how the FindAll feature works:
 ![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
 
@@ -214,7 +242,7 @@ With the revise button, all the changes made are passed into the `MainWindow#exe
 prefix and the EditCommand. 
 
 The following sequence diagram shows how Revise feature works:
-![FindAll Sequence Diagram](images/ReviseSequenceDiagram.png)
+![Revise Sequence Diagram](images/ReviseSequenceDiagram.png)
 
 The following activity diagram summarises the events that take place when a user executes the Revise
 command:
@@ -573,47 +601,56 @@ to work on.
 1. Finding for entries using the `find` command
    
     1. Prerequisite: the food diary should contain all default entries
-
+    
     2. Test case: `find 4/5`
        
-        Expected: All entries shown with a rating of 4/5, with a success message displayed
-        informing the user of the number of entries found. (4 default entries will be shown)
+        Expected:
+        - All entries shown with a rating of 4/5. 
+        - Success message displayed informing the user of the number of entries found.
+        - 4 default entries will be shown.
        
     3. Test case: `find $7`
 
-       Expected: All entries shown with a price of $7, or a range of price that contains $7. 
-       Success message displayed informing the user of the number of entries found.
-       (1 default entry will be shown)
+       Expected:
+       - All entries shown with a price of $7, or a range of price that contains $7. 
+       - Success message displayed informing the user of the number of entries found.
+       - 1 default entry will be shown.
        
     4. Test case: `find western 5/5 $5-10`
 
-       Expected: All entries shown which contain at least one of the three keywords provided
-       Success message displayed informing the user of the number of entries found.
-       (10 default entries will be shown)
+       Expected:
+       - All entries shown which contain at least one of the three keywords provided.
+       - Success message displayed informing the user of the number of entries found.
+       - 10 default entries will be shown.
        
     5. Test case: `find 3/7`
 
-       Expected: All entries shown which contain the provided keyword: `3/7`, if any.
-       Success message displayed informing the user of the number of entries found.
-       Suggestion message displayed informing the user of a possible typo for a rating search,
-       providing directions to correct the typo. (0 default entries will be shown)
+       Expected:
+       - All entries shown which contain the provided keyword: `3/7`, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of a possible typo for a rating search,
+       providing directions to correct the typo.
+       - 0 default entries will be shown.
        
     6. Test case: `find $5-`
 
-        Expected: All entries shown which contain the provided keyword: `$5-`, if any.
-        Success message displayed informing the user of the number of entries found.
-        Suggestion message displayed informing the user of a possible typo for a price search,
-        providing directions to correct the typo. (0 default entries will be shown)
+        Expected:
+        - All entries shown which contain the provided keyword: `$5-`, if any.
+        - Success message displayed informing the user of the number of entries found.
+        - Suggestion message displayed informing the user of a possible typo for a price search,
+        providing directions to correct the typo.
+        - 0 default entries will be shown.
        
     7. Test case: `find 3/7 $5-`
 
-        Expected: All entries shown which contain either of the keywords provided, if any.
-        Success message displayed informing the user of the number of entries found.
-        Suggestion message displayed informing the user of possible typos for a rating search,
+        Expected:
+        - All entries shown which contain either of the keywords provided, if any.
+        - Success message displayed informing the user of the number of entries found.
+        - Suggestion message displayed informing the user of possible typos for a rating search,
         and a price search, providing directions to correct the typos.
-        (0 default entries will be shown)
+        - 0 default entries will be shown.
        
-### Finding for specific entries
+### Find for specific entries
 
 1. Finding for entries using the `findall` command
    
@@ -621,42 +658,58 @@ to work on.
 
     2. Test case: `findall 4/5`
 
-       Expected: All entries shown with a rating of 4/5, with a success message displayed
-       informing the user of the number of entries found. (4 default entries will be shown)
+       Expected:
+       - All entries shown with a rating of 4/5.
+       - Success message displayed informing the user of the number of entries found.
+       - 4 default entries will be shown.
 
     3. Test case: `findall $7`
 
-       Expected: All entries shown with a price of $7, or a range of price that contains $7.
-       Success message displayed informing the user of the number of entries found.
-       (1 default entry will be shown)
+       Expected:
+       - All entries shown with a price of $7, or a range of price that contains $7.
+       - Success message displayed informing the user of the number of entries found.
+       - 1 default entry will be shown.
 
     4. Test case: `findall western 5/5 $5-10`
 
-       Expected: All entries shown which contain all three keywords provided
-       Success message displayed informing the user of the number of entries found.
-       (2 default entries will be shown)
+       Expected:
+       - All entries shown which contain all three keywords provided.
+       - Success message displayed informing the user of the number of entries found.
+       - 2 default entries will be shown.
 
-    5. Test case: `findall 3/7`
+    5. Test case: `findall 4/5 5/5`
 
-       Expected: All entries shown which contain the provided keyword: `3/7`, if any.
-       Success message displayed informing the user of the number of entries found.
-       Suggestion message displayed informing the user of a possible typo for a rating search,
-       providing directions to correct the typo. (0 default entries will be shown)
+        Expected:
+        - All entries shown which contain both of the keywords provided, if any.
+        - Success message displayed informing the user of the number of entries found.
+        - 0 default entries will be shown.
 
-    6. Test case: `findall $5-`
+    6. Test case: `findall 3/7`
 
-       Expected: All entries shown which contain the provided keyword: `$5-`, if any.
-       Success message displayed informing the user of the number of entries found.
-       Suggestion message displayed informing the user of a possible typo for a price search,
-       providing directions to correct the typo. (0 default entries will be shown)
+       Expected:
+       - All entries shown which contain the provided keyword: `3/7`, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of a possible typo for a rating search,
+       providing directions to correct the typo.
+       - 0 default entries will be shown.
 
-    7. Test case: `findall 3/7 $5-`
+    7. Test case: `findall $5-`
 
-       Expected: All entries shown which contain both of the keywords provided, if any.
-       Success message displayed informing the user of the number of entries found.
-       Suggestion message displayed informing the user of possible typos for a rating search,
+       Expected:
+       - All entries shown which contain the provided keyword: `$5-`, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of a possible typo for a price search,
+       providing directions to correct the typo.
+       - 0 default entries will be shown.
+
+    8. Test case: `findall 3/7 $5-`
+
+       Expected:
+       - All entries shown which contain both of the keywords provided, if any.
+       - Success message displayed informing the user of the number of entries found.
+       - Suggestion message displayed informing the user of possible typos for a rating search,
        and a price search, providing directions to correct the typos.
-       (0 default entries will be shown)
+       - 0 default entries will be shown.
 
 
 ## UI Mockup
