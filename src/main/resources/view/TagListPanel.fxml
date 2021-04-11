@@ -2,10 +2,7 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Slider?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="tagListView" VBox.vgrow="ALWAYS" orientation="HORIZONTAL">
-    <Slider blockIncrement="1000" snapToTicks="true" prefWidth="0.01" minWidth="0.01" maxWidth="0.01" maxHeight="1"/>
-  </ListView>
+  <ListView fx:id="tagListView" VBox.vgrow="NEVER" orientation="HORIZONTAL"/>
 </VBox>

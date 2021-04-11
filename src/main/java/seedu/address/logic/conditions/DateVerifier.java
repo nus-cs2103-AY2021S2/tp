@@ -1,7 +1,5 @@
 package seedu.address.logic.conditions;
 
-import static seedu.address.model.task.attributes.RecurringSchedule.INVALID_END_DATE;
-
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -9,40 +7,49 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 
+/**
+ * Enforces the conditions for a task's Date attribute.
+ */
 public class DateVerifier {
-    public static final String MESSAGE_INVALID_DATE_RANGE = "Task has invalid date input.\n\nNote: Months of Apr, Jun, "
-            + "Sep, Nov has only 30 days while Feb has only 28 days with leap years (mulitples of 4) having 29 days";
 
+    private static final String MESSAGE_EMPTY_DATE = "The task selected has not Date attribute.";
+    private static final String MESSAGE_DATE_OVER = "The task selected is already over.";
     private static final Logger logger = LogsCenter.getLogger(DateVerifier.class);
 
-    private Task task;
+    private AttributeManager attributeManager;
 
-    public DateVerifier (Task task) {
-        this.task = task;
+    /**
+     * Constructor for the DateVerifier.
+     *
+     * @param task The task with Date to be verified.
+     */
+    public DateVerifier(Task task) {
+        this.attributeManager = new AttributeManager(task);
     }
 
     /**
-     * Checks if the given date is within a valid range.
+     * Checks that a task has a Date attribute.
      *
-     * @throws CommandException
+     * @throws CommandException If the Date attribute is missing.
      */
-    public void checkInvalidDateRange() throws CommandException {
-        if (new AttributeManager(task).hasInvalidDateRange()) {
-            logger.info("Invalid date detected: " + MESSAGE_INVALID_DATE_RANGE);
-
-            throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
+    public void enforceNonEmptyDate() throws CommandException {
+        if (attributeManager.isEmptyDate()) {
+            logger.info(MESSAGE_EMPTY_DATE);
+            throw new CommandException(MESSAGE_EMPTY_DATE);
         }
     }
 
     /**
-     * Checks if the task is already over the current date.
+     * Checks that the Date of a task is not over the current date according to the system.
      *
      * @throws CommandException
      */
-    public void checkForExpiredDate() throws CommandException {
-        if (new AttributeManager(task).hasExpired()) {
-            logger.info("Invalid date detected: " + INVALID_END_DATE);
-            throw new CommandException(INVALID_END_DATE);
+    public void enforceDateNotOver() throws CommandException {
+        assert(!attributeManager.isEmptyDate());
+
+        if (attributeManager.dateOver()) {
+            logger.info(MESSAGE_DATE_OVER);
+            throw new CommandException(MESSAGE_DATE_OVER);
         }
     }
 }

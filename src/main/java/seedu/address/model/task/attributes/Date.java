@@ -21,9 +21,9 @@ public class Date implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format dd/mm/yyyy. For example, 1 July 2021 should be "
-                    + "expressed as 01/07/2021, not 1/7/2021.";
-    public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
-            "Date should not be before today";
+                    + "expressed as 01/07/2021, not 1/7/2021."
+                    + "\n- Day, month or year should not be zeros."
+                    + "\n- Date cannot be before year 1900 or after 2099.";
 
     public static final String VALIDATION_REGEX = "^((0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d)$";
 
@@ -129,7 +129,7 @@ public class Date implements Attribute {
     }
 
     /**
-     * Check if there is a value present.
+     * Checks if there is a value present.
      *
      * @return true is value is null, false otherwise.
      */

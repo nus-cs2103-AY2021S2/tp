@@ -16,7 +16,7 @@ UniqueTaskList o-right-> Task
 Task o-up-> "*" Tag
 
 Task *--> Title
-Task *--> Deadline
+Task *--> Date
 Task *--> Duration
 Task *--> RecurringSchedule
 Task *--> Description

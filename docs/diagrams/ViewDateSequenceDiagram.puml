@@ -16,14 +16,14 @@ end box
 activate ViewDayCommandParser
 
 create TaskOnDatePredicate
-ViewDayCommandParser -> TaskOnDatePredicate
+ViewDayCommandParser -> TaskOnDatePredicate : new TaskOnDatePredicate(date)
 activate TaskOnDatePredicate
 
 TaskOnDatePredicate --> ViewDayCommandParser : predicate
 deactivate TaskOnDatePredicate
 
 create ViewDayCommand
-ViewDayCommandParser -> ViewDayCommand : new ViewDayCommand(predicate)
+ViewDayCommandParser -> ViewDayCommand : new ViewDayCommand(predicate, local date)
 activate ViewDayCommand
 
 ViewDayCommand --> ViewDayCommandParser : command
@@ -51,9 +51,9 @@ create CommandResult
 ViewDayCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ViewDayCommand : result
+CommandResult --> ViewDayCommand : commandResult
 deactivate CommandResult
 
-[<--ViewDayCommand : result
+[<--ViewDayCommand : commandResult
 deactivate ViewDayCommand
 @enduml

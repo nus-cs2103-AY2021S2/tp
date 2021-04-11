@@ -6,7 +6,7 @@ import seedu.address.commons.CalendarDirection;
 import seedu.address.model.Model;
 
 /**
- * Navigates the calendar to the next month.
+ * This command navigates the calendar to the next month.
  */
 public class CalendarNextCommand extends Command {
 

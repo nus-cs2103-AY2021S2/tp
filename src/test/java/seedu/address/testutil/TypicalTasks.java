@@ -97,7 +97,7 @@ public class TypicalTasks {
      */
     public static List<Tag> getTypicalTags() {
         List<Tag> typicalTags = new ArrayList<>();
-        for (Task task: getTypicalTasks()) {
+        for (Task task : getTypicalTasks()) {
             typicalTags.addAll(task.getTags());
         }
         return typicalTags;

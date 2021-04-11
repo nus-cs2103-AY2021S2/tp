@@ -309,6 +309,10 @@ public class AddCommandTest {
         public Set<Tag> addTagsIfAbsent(Set<Tag> tags) {
             return tags;
         }
+
+        @Override
+        public void resetCalendarDate() {
+        }
     }
 
 }

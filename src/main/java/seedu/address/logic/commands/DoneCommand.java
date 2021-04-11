@@ -70,6 +70,7 @@ public class DoneCommand extends Command {
     private void updateModel(Model model, Task taskToSetAsDone, Task taskStatusSetToDone) throws CommandException {
         model.setTask(taskToSetAsDone, taskStatusSetToDone);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.resetCalendarDate();
     }
 
     /**

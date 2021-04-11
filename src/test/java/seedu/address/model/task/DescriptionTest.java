@@ -19,7 +19,6 @@ public class DescriptionTest {
         // null description
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
-
         // valid descriptions
         assertTrue(Description.isValidDescription("")); // blank
         assertTrue(Description.isValidDescription("  \n"));

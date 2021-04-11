@@ -92,17 +92,19 @@ public class EditCommand extends Command {
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         checkForDuplicateTask(model, taskToEdit, editedTask);
-
-        ConditionLogic conditionLogic = new ConditionLogic(editedTask);
-        conditionLogic.checkInvalidDateRange();
-        conditionLogic.checkForExpiredDate();
-        conditionLogic.enforceAttributeConstraints();
-        conditionLogic.enforceTitleLength();
-
+        verifyTask(editedTask);
         editedTask = handleTagUpdates(model, taskToEdit, editedTask);
         updateModel(model, taskToEdit, editedTask);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+    }
+
+    private void verifyTask(Task task) throws CommandException {
+        ConditionLogic conditionLogic = new ConditionLogic(task);
+        conditionLogic.checkInvalidDateRange();
+        conditionLogic.checkForExpiredDate();
+        conditionLogic.enforceAttributeConstraints();
+        conditionLogic.enforceTitleLength();
     }
 
     private Task getTaskToEdit(List<Task> list) {
@@ -128,6 +130,7 @@ public class EditCommand extends Command {
     private void updateModel(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.resetCalendarDate();
     }
 
     /**

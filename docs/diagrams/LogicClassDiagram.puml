@@ -23,11 +23,23 @@ Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
 
+package Conditions {
+Class ConditionLogic
+Class ConstraintManager
+Class RecurringScheduleVerifier
+Class DateVerifier
+Class IndexManager
+}
+
 Interface Logic <<Interface>>
 Class LogicManager
 }
 
-package Model{
+package Model {
+Class HiddenModel #FFFFFF
+}
+
+package Storage {
 Class HiddenModel #FFFFFF
 }
 
@@ -49,14 +61,24 @@ XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+note left of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 LogicManager .left.> Command : executes >
 
+XYZCommand ..> ConditionLogic
+ConditionLogic --> DateVerifier
+ConditionLogic --> IndexManager
+ConditionLogic --> ConstraintManager
+ConditionLogic --> RecurringScheduleVerifier
+
+LogicManager -right-> Storage
 LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+Command .left.> Model
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+
+PlannerParser -[hidden]->LogicManager
+LogicManager -[hidden]->CommandResult
+Logic -[hidden]->XYZCommandParser
 @enduml

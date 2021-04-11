@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -32,6 +33,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_DURATION + "DURATION] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "This is a task "
@@ -47,6 +49,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_DURATION + "DURATION] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]... ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
@@ -68,16 +71,19 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         handleDuplicateTask(model);
+        enforceValidityOfTask();
 
+        updateTags(model);
+        updateModel(model);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    private void enforceValidityOfTask() throws CommandException {
         ConditionLogic conditionLogic = new ConditionLogic(toAdd);
         conditionLogic.enforceAttributeConstraints();
         conditionLogic.checkInvalidDateRange();
         conditionLogic.checkForExpiredDate();
         conditionLogic.enforceTitleLength();
-        updateTags(model);
-        updateModel(model);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     private void handleDuplicateTask(Model model) throws CommandException {
@@ -96,6 +102,7 @@ public class AddCommand extends Command {
 
     private void updateModel(Model model) {
         model.addTask(toAdd);
+        model.resetCalendarDate();
     }
 
     @Override
