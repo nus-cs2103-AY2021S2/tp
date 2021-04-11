@@ -384,7 +384,7 @@ Outcome:
 #### Finding books : `findbook`
 
 You can use this command to find books whose information (i.e. title, author, publisher, ISBN, or genre)
-contains any of the given keywords.
+contain any of the given keywords.
 
 Format: `findbook KEYWORD [MORE_KEYWORDS]…`
 
