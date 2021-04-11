@@ -69,7 +69,8 @@ Given below are my contributions to the project.
   * Added manual testing instructions for command history and undo/redo:
     [\#333](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/333).
   * Updated [logic component](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html#logic-component)
-    descriptions and diagrams: [\#386](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/386).
+    descriptions and diagrams: [\#386](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/386) and
+    [\#429](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/429).
   * Added implementation details and diagrams for command history:
     [\#109](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/109),
     [\#317](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/317) and
@@ -94,10 +95,7 @@ Given below are my contributions to the project.
     [here](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+reviewed-by%3Abenedictkhoomw+-author%3Abenedictkhoomw+).
   * Contributed to forum discussions: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/243#issuecomment-817067120),
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/301#issuecomment-817068673),
-    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/293#issuecomment-817065231),
-    [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/250),
-    [5](https://github.com/nus-cs2103-AY2021S2/forum/issues/207),
-    [6](https://github.com/nus-cs2103-AY2021S2/forum/issues/54).
+    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/293#issuecomment-817065231).
   * Bug reports for my team:
     [\#60](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/60),
     [\#67](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/67),
