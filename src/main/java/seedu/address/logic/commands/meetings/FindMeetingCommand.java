@@ -51,7 +51,9 @@ public class FindMeetingCommand extends Command {
 
     private final Set<Index> persons;
 
-
+    /**
+     * The constructor of find meeting command.
+     */
     public FindMeetingCommand(Predicate<Meeting> combinedPredicate, Set<Index> personsIndexesToSearch) {
         super();
         this.combinedPredicate = combinedPredicate;
@@ -79,9 +81,11 @@ public class FindMeetingCommand extends Command {
     private Predicate<Meeting> makeContainsPeoplePredicate(Set<Index> people, Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Supplier<Stream<Integer>> zeroBasedIndexStreamSupplier = () -> people.stream().map(index -> index.getZeroBased());
+        Supplier<Stream<Integer>> zeroBasedIndexStreamSupplier = () ->
+                people.stream().map(index -> index.getZeroBased());
 
-        if (zeroBasedIndexStreamSupplier.get().anyMatch(integer -> integer >=  lastShownList.size())) {
+        if (zeroBasedIndexStreamSupplier.get().anyMatch(integer -> integer
+                >= lastShownList.size())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSONS_DISPLAYED_INDEX);
         }
 
@@ -93,8 +97,12 @@ public class FindMeetingCommand extends Command {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         FindMeetingCommand that = (FindMeetingCommand) o;
         return persons.equals(that.persons);
     }
