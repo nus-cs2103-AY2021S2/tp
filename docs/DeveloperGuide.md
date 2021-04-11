@@ -187,12 +187,12 @@ Classes used by multiple components are in the `seedu.smartlib.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Book
+### Book
 
-### Adding a book
+#### Adding a book
 The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader#addbook)
 
-### Deleting a book
+#### Deleting a book
 
 The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under
 [**`Logic`**](#logic-component)).
@@ -205,7 +205,7 @@ The following activity diagram summarizes what happen when a user executes a del
 
 ![DeleteBookActivityDiagram](images/DeleteBookActivityDiagram.png)
 
-### Finding books with keywords
+#### Finding books with keywords
 
 Finding books in the book list requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, and obtain the keyword(s) of the
@@ -229,20 +229,20 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
 
-### Listing all books
+#### Listing all books
 
 The execution of listing all books is very similar to listing all readers. The difference is that a `ListBookCommand` 
 is created instead of `ListReaderCommand`. Also, `Model#updateFilteredReaderList()` is called instead of `Model#updateFilteredReaderList()`.
 
-### Listing overdue books
+#### Listing overdue books
 
 The execution of listing overdue books is very similar to listing books. The only difference between them is the predicate passed into the method `Model#updateFilteredBookList()`.
 When listing all books, the predicate will always return true for all books (e.g. `book -> true`), but for listing overdue books, 
 the predicate is `book -> book.isOverdue()`, which will call `Book#isOverdue()`.
 
-## Reader
+### Reader
 
-### Adding a reader
+#### Adding a reader
 Adding a reader into a class requires user input from the CLI.
 The `SmartLibParser` will parse the user input to check the validity of it, the input is valid if
 1. The reader does not already exist in the code base.
@@ -270,11 +270,11 @@ The following activity diagram summarizes what happens when a user executes the 
 ![AddReaderActivityDiagram](images/AddReaderActivityDiagram.png)
 
 
-### Deleting a reader
+#### Deleting a reader
 The execution of deleting a reader `deletereader` is very similar to deleting a book `deletebook` (refer to diagrams under Book)
 
 
-### Listing all readers
+#### Listing all readers
 
 Listing all readers in a class requires user input from the CLI.
 The `SmartLibParser` will then create a `ListReaderCommand`, which will trigger Model to update the GUI with a full list
@@ -301,7 +301,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![ListReaderActivityDiagram](images/ListReaderActivityDiagram.png)
 
-### Finding readers with keywords
+#### Finding readers with keywords
 
 The execution of finding a reader using keywords and finding a book using keywords is very similar (you may want to
 refer to the diagrams under [**`Finding books with keywords`**](#finding-books-with-keywords)).
@@ -310,9 +310,9 @@ The only differences are that `FindReaderCommandParser` is used to parse the arg
 `FindBookCommandParser`, and an object of `FindReaderCommand` is created. In order to find a reader using keywords,
 `Model#updateFilteredReaderList()` is called instead of `Model#updateFilteredBookList()`.
 
-## Record
+### Record
 
-### Borrowing a book
+#### Borrowing a book
 
 Recording a reader borrowing a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
@@ -353,7 +353,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![BorrowActivityDiagram](images/BorrowActivityDiagram.png)
 
-### Returning a book
+#### Returning a book
 
 Recording a reader returning a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
@@ -393,7 +393,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![ReturnActivityDiagram](images/ReturnActivityDiagram.png)
 
-### Returning overdue books
+#### Returning overdue books
 
 This section is a more detailed explanation of how the system deals with returned book that is overdue.
 This process happens after `ReturnCommand#returnBook()` and before creating a `CommandResult` object (refer to
@@ -410,9 +410,9 @@ The following sequence diagram shows how `ReturnCommand` deals with overdue book
 
 ![OverdueBookSequenceDiagram](images/OverdueBookSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
+#### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+##### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedSmartLib`. It extends `SmartLib` with an undo/redo history,
 stored internally as an `smartLibStateList` and `currentStatePointer`. Additionally, it implements the following
@@ -497,9 +497,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
+##### Design Consideration and Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire SmartLib.
   * Pros: Easy to implement.
