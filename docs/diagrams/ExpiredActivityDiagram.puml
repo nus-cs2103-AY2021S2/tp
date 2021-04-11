@@ -8,7 +8,7 @@ start
 if () then ([currently in expired tab])
 :Throw an exception;
 else ([else])
-:Update GUI to show expired;
+:Update UI to switch to the expired tab;
 endif
 
 stop

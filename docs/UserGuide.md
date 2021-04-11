@@ -66,6 +66,8 @@ The UI of Taskify is split into 4 main components:
 Shown above are positions of the Tabs and Tasks of a Task List. The fields of a Task include Index, Name,
 Tags, Description, Status and Date.
 
+A Status can be one of the following: `uncompleted`, `completed` or `expired`.
+
 ### 2. Command box
 <img src="images/commandbox.png" width="600">
 
@@ -82,36 +84,55 @@ This is the Response Box. This is where you will see Taskify's response to your 
 This is the Due Today List. This is where Tasks that are due today will be displayed
 for your convenience.
 
---------------------------------------------------------------------------------------------------------------------
-## Features
-
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the UI:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* The maximum screen size of the UI has been restricted for the best viewing experience.
+* Navigating between tabs can only be done via CLI.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+## Features and Behaviour
+This section highlights the features and behaviour of Taskify when it comes to certain situations. Refer to
+this section if there are any unexpected or undesirable behaviour while using Taskify. We welcome any feedback
+or suggestions [here](https://github.com/AY2021S2-CS2103T-W14-4/tp/issues). 
+
+#### Notes about the Taskify's behaviour
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+  
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Finish Tutorial`.
 
-* Items in square brackets are optional.<br>
+* Items in square brackets are optional.
+  
   e.g. `n/NAME [t/TAG]` can be used as `n/Finish Tutorial t/CS2103T` or as `n/Finish Tutorial`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times including zero times.
+  
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T`, `t/Assignment t/CS2103T` etc.
 
-* Parameters can be in any order.<br>
+* Parameters can be in any order.
+  
   e.g. if the command specifies `n/NAME desc/DESCRIPTION`, `desc/DESCRIPTION n/NAME` is also acceptable.
   
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
-  of the parameter will be taken.<br>
+  of the parameter will be taken.
+  
   e.g. if you specify `n/Finish Tutorial n/Watch Lecture`, only `n/Watch Lecture` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `sort` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `sort` and `clear`) will be ignored.
   
-* For the `completed`, `uncompleted`, `expired` tabs, the following commands do not work: `add`, `delete` and `edit`. Switch to the `home` tab to use these commands.
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Adding a task in the `home` tab will display the full list of tasks.
-</div>
+
+* For the `completed`, `uncompleted`, `expired` tabs, only the following commands work: `help`, `exit`, `uncompleted`, 
+  `completed`, `expired` and `home`. Switch to the `home` tab to utilize the other commands.
+
+* In the current implementation, for tasks which have expired, the app has to be restarted for the status of the task to be updated
+from `uncompleted` to `expired`.
 
 
 
@@ -212,7 +233,7 @@ Delete multiple tasks by either:
     * Format: `delete INDEX INDEX ...`
     * Examples: `delete 1 2 3` deletes the 1st, 2nd, 3rd task as displayed, if Taskify has at least 3 tasks.
     * Note:
-        * `delete 1 2 3` will **NOT** delete the 1st and 2nd task if there are **only** two tasks in Taskify.
+        * If any of the indices provided are invalid, no tasks will be deleted.
     
 
 * Stating the range of indexes
