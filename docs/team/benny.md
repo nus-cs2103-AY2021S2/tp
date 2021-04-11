@@ -16,8 +16,8 @@ Given below are my contributions to the project.
   * Highlights: This is modified using the AddressBook Level 3's original structure when adding a person into AddressBook. When a student or tutor is added, the UI is able to easily differentiate between student and tutor. The students and tutors are also saved into EzManage's person.JSON with a PersonType attribute for easy future references.
   * Credits: AddressBook Level 3
 
-* **New Feature** : Assign Feature [\#66](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/66)
-  )    * What it does: Allow the user to assign student(s) and tutor to a session
+* **New Feature** : Assign Feature [\#66](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/66)  
+    * What it does: Allow the user to assign student(s) and tutor to a session
     * Justification: Instead of using pen and paper to indicate which student/tutor belongs to which session, this feature allow user to swifty assign student and tutor to a class. The application will also warn the user if there are any schedule clashes or if the personnel is already assigned to a class to prevent duplicate.
     * Highlights: Each student/tutor has a list of sessions that he/she is assigned to. Likewise, sessions also have a list of students and a tutor assigned to it. This makes retrieval of information much easier.
 
