@@ -488,7 +488,6 @@ given below, and familiarize yourself with them.
 
 | Parameter       | Description                                                                                                                                                                                                          | Valid examples                                                                   |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `BOOKNAME`      | The name of the book associated with the record.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                | `A Book`, `noobbook69`, `X AE A12`                                               |
 | `READERNAME`    | The name of the reader associated with the record.<br><br>It must be alphanumeric (may contain spaces).                                                                                                              | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
 | `BARCODE`       | The barcode of the book associated with the record.<br><br>It must be a valid barcode (i.e. it must consist only of numbers, and be exactly 10 digits long).                                                         | `1234567890`                                                                     |
 | `KEYWORD`       | The keyword that you would like to use to search for your target record(s).<br><br>It must be a single alphanumeric word.                                                                                            | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
@@ -496,38 +495,36 @@ given below, and familiarize yourself with them.
 
 #### Borrowing a book : `borrow`
 
-Records a borrowing activity. You need to do so whenever a reader borrows a book.
+You can use this command to let a reader borrow a book.
 
 Format: `borrow bc/BARCODE r/READERNAME`
 
 **:information_source: Notes:**
+
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
-* Lets the reader with the specified name READERNAME borrow the book specified by name BOOKNAME.
 * The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.
   (The reason for case sensitivity is because reader names are currently being used as a unique identifier for each
   reader.)
+* Readers who are currently holding on to overdue books are not allowed to borrow books, until they have returned the
+  overdue books.
+* Each reader can only borrow up to 4 books at any point in time.
 
-Example Use:
-* `borrow bc/1000000000 r/Alex` records a rental entry that reader whose name is Alex borrowed
-a copy of The Old Man And The Sea which barcode is 1000000000
+Example use:
 
-More Examples:
-* `borrow bc/1234567890125 r/Bernice` records that Bernice borrowed a copy of Cloud Atlas which barcode is 1234567890125
-* `borrow bc/1000000001 r/Charlotte` records that Charlotte borrowed a copy of The Hobbit which barcode is 1000000001
-  
+Let's say the reader `Charlotte` would like to borrow the book `Cloud Nine`.
+You can follow the steps below to get SmartLib to keep track of the borrowing record.
+
 Steps:
-1. Type `borrow` in the _Command Box_.
-2. Type `bc/BARCODE` where `BARCODE` is to be replaced by actual barcode
-3. Type `r/READERNAME` where `READERNAME` is the reader borrowing the book
 
-Notes:
-1. Each part of command is separated by space
-2. Command is sensitive to cases, so you need to type out the exact case match.
+1. Type `borrow bc/1999999999 r/Charlotte` into the _Command Box_.
+1. Press `Enter` to execute your input.
 
 Outcome:
+
 * The _Result Display_ will show a message indicating success.
 * SmartLib will record down this borrowing activity.
-* The relevant parts in UI will be updated.
+* The relevant parts of the GUI will be updated.
+  <br><br>
   ![result for 'borrow bc/1999999999 r/Charlotte'](images/BorrowCommand.png)
   
 #### Returning a book : `return`
@@ -537,6 +534,7 @@ Records a returning activity. You need to do so whenever a reader returns a borr
 Format: `return bc/BARCODE`
 
 **:information_source: Notes:**
+
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 * Lets the reader return the book specified by barcode BARCODE.
 * The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
@@ -716,10 +714,13 @@ To purge all sample user data from SmartLib, you may use the command
 
 * **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
 
+* **Graphical User Interface (GUI)**: The GUI is a form of user interface that allows users to interact with electronic
+    devices through graphical icons, instead of text-based user interfaces or typed command labels.
+
 * **International Standard Book Number (ISBN)**: The ISBN is a numeric commercial book identifier which is intended to
     be unique for each book. Books with the same name will share the same ISBN. A 13-digit ISBN can be separated into 
     its parts (prefix element, registration group, registrant, publication and check digit), and when this is done it is 
-     customary to separate the parts with hyphens or spaces.
+    customary to separate the parts with hyphens or spaces.
      
 * **JavaScript Object Notation (JSON) file**: This is a file format that uses human-readable text to store data.
 
@@ -729,7 +730,7 @@ To purge all sample user data from SmartLib, you may use the command
 * **Special characters**: Special characters refer to any characters that are not alphanumeric.
 
 * **Web browser**: A web browser is a piece of application software for accessing the World Wide Web.
-  Some examples include Google Chrome, Mozilla Firefox, and Safari.
+    Some examples include Google Chrome, Mozilla Firefox, and Safari.
 
 ![annotated Ui](images/Ui-annotated.png)
 
@@ -749,9 +750,9 @@ Action                 | Format, Examples
 **List books**         | `listbook`
 **List overdue books** | `listoverdue`
 **Borrow book**        | `borrow bc/BARCODE r/READERNAME`<br> e.g. `borrow bc/1000000000 r/Alex`
+**Return book**        | `return bc/BARCODE`<br> e.g. `return bc/1202179131`
 **Find record**        | `findrecord KEYWORD [MORE_KEYWORDS]…`<br> e.g. `findrecord Cloud Hobbit`
 **List records**       | `listrecord`
-**Return book**        | `return bc/BARCODE`<br> e.g. `return bc/1202179131`
 **Clear**              | `clear-everything-in-my-smartlib`
 **Help**               | `help`
 **Exit**               | `exit`
