@@ -43,7 +43,8 @@ public class DoneCommandTest {
         Identifier outOfBoundIndex = Identifier.fromIdentifier(model.getEventBook().getEventList().size() + 1);
         DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
 
-        assertCommandFailure(doneCommand, model, String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER ,outOfBoundIndex.getValue()));
+        assertCommandFailure(doneCommand, model,
+                String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER, outOfBoundIndex.getValue()));
     }
 
     //    @Test
