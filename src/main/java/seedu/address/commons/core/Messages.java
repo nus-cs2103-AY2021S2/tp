@@ -21,7 +21,7 @@ public class Messages {
             + " existing entries!";
 
     public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Edited Contact: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONTACT = "The contact provided does not exist!";
+    public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists!";
     public static final String MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX = "The contact index provided is invalid";
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
