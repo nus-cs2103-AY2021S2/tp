@@ -7,7 +7,7 @@ Welcome to the User Guide of _Teaching Assistant_!
 
 Are you a JC/Secondary school teacher, having troubles keeping track of all your consultations, meetings and your
 students' contacts? No worries! Our application, _Teaching Assistant_ will provide an all-in-one platform for you to
-organise your entries (tasks and schedules) and contacts!
+organise your entries (schedules) and contacts!
 
 We target JC/Secondary school teachers as they are the teachers who have a greater need to contact their students
 compared to primary school schools, yet do not have a standardised platform for communication unlike teachers
@@ -18,8 +18,8 @@ typing into a Command Box. For users who type fast, they can use this applicatio
 applications that heavily use Graphical User Interface (GUI), where a user uses the application by interacting with
 graphical features such as buttons.
 
-If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using _Teaching Assistant_
-.
+If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using 
+_Teaching Assistant_.
 
 An image of our UI is shown below!
 
@@ -47,7 +47,10 @@ An image of our UI is shown below!
         - [Delete](#deleting-an-entry)
         - [Clear](#clearing-overdue-entries)
     - [Clear](#clearing-all-data)
-    - [Exiting](#exiting-the-program)
+    - [Exit](#exiting-the-program)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
 - [Command Summary](#command-summary)
 
 ---
@@ -100,8 +103,9 @@ Adds a contact into Teaching Assistant.
 
 Format: `cadd n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-* A contact can have any number of tags (including 0).
-* A contact can be tagged to an entry to easily filter for contacts related an entry.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A contact can be tagged to an entry to easily filter for contacts related an entry.
+</div>
 
 Example(s):
 
@@ -265,7 +269,7 @@ Format: `elist [FORMAT]`
 * No argument: listing all entries
 * `FORMAT` is only restricted to the following cases
     * `day`: listing entries for today
-    * `week`: listing entries for the next 7 days
+    * `week`: listing entries for today as well as the next 6 days
 
 Example(s):
 
@@ -324,6 +328,27 @@ Format: `exit`
 
 ---
 
+### Saving the data
+Teaching Assistant data is saved in the hard disc automatically after any command that changes the data is executed.
+There is no need to save data manually.
+
+### Editing the data file
+Teaching Assistant data is saved as a JSON file `[JAR file location]/data/teachingAssistant.json`. Advanced users are
+welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+</div>
+
+---
+
+### FAQ
+**Q**: How do I transfer my data to another computer?
+**A**: Install Teaching Assistant in the other computer and overwrite the empty data file it creates with the file that 
+contains the data of your previous Teaching Assistant home folder.
+
+---
+
 ## Command summary
 
 ### Others
@@ -338,22 +363,23 @@ Action | Format
 
 Action | Format
 -------- | ------------------
-**Add** | `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
-**Filter tags** | `filter KEYWORD [MORE_KEYWORDS]`
-**Edit** | `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
-**List** | `list`
-**Delete** | `delete INDEX`
+**Add** | `cadd n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+**Find** | `cfind KEYWORD [MORE_KEYWORDS]...`
+**Filter tags** | `cfilter KEYWORD [MORE_KEYWORDS]...`
+**Edit** | `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+**List** | `clist`
+**Delete** | `cdelete INDEX`
 
 ### Entries
 
 Action | Format
 -------- | ------------------
-**Add** | `eadd n/NAME [sd/START DATE] ed/END DATE [t/TAG]`
-**Find** | `efind KEYWORD [MORE_KEYWORDS]`
-**Filter tags** | `efilter KEYWORD [MORE_KEYWORDS]`
-**List (by day/week)** | `elist [day/week]`
+**Add** | `eadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]...`
+**Find** | `efind KEYWORD [MORE_KEYWORDS]...`
+**Filter tags** | `efilter KEYWORD [MORE_KEYWORDS]...`
+**Edit** | `eedit INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
+**List** | `elist [FORMAT]`
 **Check if free** | `free sd/START_DATE ed/END_DATE`
-**Delete** | `edelete NAME`
+**Delete** | `edelete INDEX`
 **Clear overdue entries** | `eclear`
 
