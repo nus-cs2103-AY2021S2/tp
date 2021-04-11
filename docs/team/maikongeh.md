@@ -47,7 +47,9 @@ Given below are my contributions to the project.
   
 * **Documentation**:
     * User Guide:
-        * Added documentations for the features `done` and `delete` [\#193](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/193) 
+        * Added documentations for the features `done` and `delete` 
+        (Pull request [\#193](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/193))
+        
         * Added documentation for UG. 
         (Pull requests  [\#46](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/46),
                         [\#174](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/174))
