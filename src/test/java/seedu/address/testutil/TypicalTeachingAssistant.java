@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 
@@ -87,13 +88,44 @@ public class TypicalTeachingAssistant {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    //===Contact===
+    public static final Contact AVA = new ContactBuilder().withName("Ava Pauline")
+            .withEmail("alice@example.com")
+            .withPhone("94351253")
+            .withTags("friends").build();
+
+    public static final Contact BEN = new ContactBuilder().withName("Ben Meier")
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").build();
+
+    public static final Contact CLAIRE = new ContactBuilder().withName("Claire Kurz").withPhone("95352563")
+            .withEmail("heinz@example.com").withTags("colleagues").build();
+
+    public static final Contact DAVID = new ContactBuilder().withName("David Meier").withPhone("87652533")
+            .withEmail("cornelia@example.com").withTags("friends").build();
+
+    public static final Contact ELLIE = new ContactBuilder().withName("Ellie Meyer").withPhone("94822244")
+            .withEmail("werner@example.com").build();
+
+    public static final Contact FINN = new ContactBuilder().withName("Finn Kunz").withPhone("94824277")
+            .withEmail("lydia@example.com").build();
+
+    public static final Contact GABRIEL = new ContactBuilder().withName("Gabriel Best").withPhone("94824422")
+            .withEmail("anna@example.com").build();
+    // Manually added
+    public static final Contact HANNAH = new ContactBuilder().withName("Hannah Meier").withPhone("84824244")
+            .withEmail("stefan@example.com").build();
+    public static final Contact IVAN = new ContactBuilder().withName("Ivan Mueller").withPhone("84821311")
+            .withEmail("hans@example.com").build();
+
     private TypicalTeachingAssistant() {} // prevents instantiation
 
     public static AddressBook getTypicalTeachingAssistant() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+        for (Contact contact : getTypicalContacts()) {
+            ab.addContact(contact);
         }
+
         for (Entry entry : getTypicalEntries()) {
             ab.addEntry(entry);
         }
@@ -104,7 +136,7 @@ public class TypicalTeachingAssistant {
         return new ArrayList<>(Arrays.asList(CONSULTATION, CLASS_MEETING, EXTRA_CLASS, SHORT_QUIZ, DO_STUFF));
     }
 
-    public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    public static List<Contact> getTypicalContacts() {
+        return new ArrayList<>(Arrays.asList(AVA, BEN, CLAIRE, DAVID, ELLIE, FINN, GABRIEL));
     }
 }

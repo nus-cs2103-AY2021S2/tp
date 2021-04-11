@@ -1,50 +1,41 @@
 {
-  "_comment": "Teaching Assistant save file which contains the same values as in TypicalEntries#get()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
+  "_comment": "Teaching Assistant save file which contains the same values as in TypicalTeachingAssistant#get()",
+  "contacts" : [ {
+    "name" : "Ava Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
-    "name" : "Benson Meier",
+    "name" : "Ben Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "name" : "Carl Kurz",
+    "name" : "Claire Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "tagged" : [ "colleagues" ]
   }, {
-    "name" : "Daniel Meier",
+    "name" : "David Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822244",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "name" : "Finn Kunz",
+    "phone" : "94824277",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
     "tagged" : [ ]
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
+    "name" : "Gabriel Best",
+    "phone" : "94824422",
     "email" : "anna@example.com",
-    "address" : "4th street",
     "tagged" : [ ]
   } ],
-  "tasks" : [ ],
-  "schedules" : [ ],
   "entries" : [ {
     "entryName" : "Consultation",
     "startDate" : "2022-02-01 13:00",

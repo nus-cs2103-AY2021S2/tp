@@ -8,8 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
-import seedu.address.model.schedule.Schedule;
-import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -23,12 +21,6 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULES = unused -> true;
-
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -183,59 +175,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntryList(Predicate<Entry> predicate);
-
-    // ====== The methods declared below are deprecated ======
-
-    /**
-     * Returns true if a task with the same identity as {@code task} exists in the task list.
-     */
-    boolean hasTask(Task task);
-
-    /**
-     * Adds the given task.
-     * {@code task} must not already exist in the task list.
-     */
-    void addTask(Task task);
-
-    /**
-     * Deletes the given task.
-     * The task must exist in the address book.
-     */
-    void deleteTask(Task target);
-
-    /**
-     * Adds the given schedule.
-     * {@code schedule} must not already exist in the schedule list.
-     */
-    void addSchedule(Schedule schedule);
-
-    /**
-     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
-     */
-    boolean hasSchedule(Schedule schedule);
-
-    /**
-     * Deletes the given schedule.
-     * The schedule must exist in the schedule list.
-     */
-    void deleteSchedule(Schedule schedule);
-
-    /** Returns an unmodifiable view of the filtered schedule list */
-    ObservableList<Schedule> getFilteredScheduleList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredScheduleList(Predicate<Schedule> predicate);
-
-    /** Returns an unmodifiable view of the filtered task list */
-    ObservableList<Task> getFilteredTaskList();
-
-    /**
-     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredTaskList(Predicate<Task> predicate);
 
 }

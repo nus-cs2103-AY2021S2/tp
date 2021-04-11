@@ -23,8 +23,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
-import seedu.address.model.schedule.Schedule;
-import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -173,21 +171,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasTask(Task toAdd) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addTask(Task toAdd) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteTask(Task target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
@@ -238,44 +221,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Schedule> getFilteredScheduleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public boolean hasSchedule(Schedule schedule) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteSchedule(Schedule schedule) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Task> getFilteredTaskList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addSchedule(Schedule schedule) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredTaskList(Predicate<Task> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
