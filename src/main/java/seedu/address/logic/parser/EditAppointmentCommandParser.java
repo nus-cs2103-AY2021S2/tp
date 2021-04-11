@@ -78,7 +78,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     /**
      * Parses {@code Collection<String> contacts} into a {@code Set<Contact>} if {@code contacts} is non-empty.
      * If {@code contacts} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero contacts.
+     * {@code Set<Contact>} containing zero contacts.
      */
     private Optional<Set<Contact>> parseContactsForEdit(Collection<String> contacts) throws ParseException {
         assert contacts != null;
