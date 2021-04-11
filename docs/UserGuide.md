@@ -179,13 +179,6 @@ Examples:
 * `status clean 1 3` update the 1st and 3rd residences clean status to `Clean`.
 * `status unclean 2 5` update the 2nd and 5th residences clean status to `Unclean`.
 
-
-### Clearing all entries : `clear`
-
-Clears all entries from the residence tracker.
-
-Format: `clear`
-
 ### Adding a booking: `addb`
 
 Adds a new booking to the specified residence.
@@ -235,6 +228,12 @@ to be earlier than the `START_DATE`.
 Examples:
 * `editb r/1 b/2 p/90069009 s/03-28-2021` Edits the phone number and start date of 2nd booking of the 1st residence to be
 `90069009` and `03-28-2021` respectively.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the residence tracker. Useful when users wish to clear all the sample data at once.
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 
