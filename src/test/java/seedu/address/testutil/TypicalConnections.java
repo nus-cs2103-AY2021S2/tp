@@ -27,19 +27,6 @@ public class TypicalConnections {
                 meetingList.get(1)
         );
 
-        typicalPersonMeetingConnection.addPersonMeetingConnection(
-                personList.get(1),
-                meetingList.get(1)
-        );
-        typicalPersonMeetingConnection.addPersonMeetingConnection(
-                personList.get(2),
-                meetingList.get(0)
-        );
-
-        typicalPersonMeetingConnection.addPersonMeetingConnection(
-                personList.get(3),
-                meetingList.get(0)
-        );
         return typicalPersonMeetingConnection;
     }
 }

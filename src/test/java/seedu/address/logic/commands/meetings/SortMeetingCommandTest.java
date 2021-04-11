@@ -16,17 +16,20 @@ import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingSortDirection;
 import seedu.address.model.meeting.MeetingSortOption;
+import seedu.address.model.note.NoteBook;
+import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonSortDirection;
 import seedu.address.model.person.PersonSortOption;
 
 class SortMeetingCommandTest {
 
-    private Model model = new ModelManager(getTypicalMeetingBook(), new UserPrefs());
-
+    private Model model = new ModelManager(new AddressBook(), getTypicalMeetingBook(), new NoteBook(),
+            new UserPrefs(), new PersonMeetingConnection());
 
     @Test
     void executeStart() throws CommandException {
@@ -34,7 +37,7 @@ class SortMeetingCommandTest {
                 MeetingSortDirection.ASC);
         CommandResult results = command.execute(model);
         ObservableList<Meeting> filteredList = model.getFilteredMeetingList();
-        assertEquals(MEETING4,filteredList.get(0));
+        assertEquals(MEETING4, filteredList.get(0));
         assertEquals(new CommandResult("Sorted meetings"), results);
     }
     @Test
@@ -43,7 +46,7 @@ class SortMeetingCommandTest {
                 MeetingSortDirection.DESC);
         CommandResult results = command.execute(model);
         ObservableList<Meeting> filteredList = model.getFilteredMeetingList();
-        assertEquals(MEETING4,filteredList.get(0));
+        assertEquals(MEETING4, filteredList.get(0));
         assertEquals(new CommandResult("Sorted meetings"), results);
     }
     @Test
@@ -70,7 +73,7 @@ class SortMeetingCommandTest {
                 MeetingSortDirection.ASC);
         CommandResult results = command.execute(model);
         ObservableList<Meeting> filteredList = model.getFilteredMeetingList();
-        assertEquals(MEETING1,filteredList.get(0));
+        assertEquals(MEETING1, filteredList.get(0));
         assertEquals(new CommandResult("Sorted meetings"), results);
     }
 
