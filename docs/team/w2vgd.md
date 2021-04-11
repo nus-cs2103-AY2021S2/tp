@@ -66,4 +66,4 @@ Given below are my contributions to the project:
 * Initiated forum discussions tagged with `must-see` labels (examples: [\#224](https://github.com/nus-cs2103-AY2021S2/forum/issues/224), [\#257](https://github.com/nus-cs2103-AY2021S2/forum/issues/257), [\#276](https://github.com/nus-cs2103-AY2021S2/forum/issues/276))
 * Provided tips through forum discussions (examples: [Moving tags to different commits](https://github.com/nus-cs2103-AY2021S2/forum/issues/36), [Enabling soft wraps in IntelliJ](https://github.com/nus-cs2103-AY2021S2/forum/issues/188))
 * Provided help through forum discussions (examples: [\#5](https://github.com/nus-cs2103-AY2021S2/forum/issues/5), [\#30](https://github.com/nus-cs2103-AY2021S2/forum/issues/30), [\#53](https://github.com/nus-cs2103-AY2021S2/forum/issues/53))
-* Helped fix a bug in the AB3 Logic class diagram that is adopted by other classmates (issue: [\#257](https://github.com/nus-cs2103-AY2021S2/forum/issues/257))
+* Fixed a bug in the original AB3 Logic class diagram (issue: [\#257](https://github.com/nus-cs2103-AY2021S2/forum/issues/257))
