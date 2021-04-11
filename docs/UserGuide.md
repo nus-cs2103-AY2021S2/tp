@@ -31,6 +31,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
 * [Note for Testers](#note-for-testers)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -45,6 +46,7 @@ These are symbols used throughout the User Guide you might want to take note of.
 * :information_source: : Indicates information that is likely to be helpful
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -71,6 +73,7 @@ These are symbols used throughout the User Guide you might want to take note of.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -112,6 +115,8 @@ end using next instead. The end command is meant as a way to quickly discard and
 
 Format: `end`
 
+<div style="page-break-after: always;"></div>
+
 #### Asking for help: `help`
 
 Shows a message explaning how to access the help page.
@@ -126,6 +131,7 @@ Exits the application.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ### Learn Mode Commands
 
@@ -142,6 +148,8 @@ Format: `learn`
 
 Learn Mode:
 ![learn mode](images/learn_mode.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Tagging a flashcard: `tag`
 
@@ -166,6 +174,8 @@ Examples:
 After successfully adding a tag:
 ![tag successful](images/tag_success.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting tags from a flashcard: `deleteTag`
 
 Reads in a positive index and zero or more tags, and removes these tags from the flashcard at the desired index.
@@ -187,6 +197,7 @@ Examples:
 After successfully deleting sampleTag from the flashcard at index 3:
 ![delete_successful](images/delete_success.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Quiz Mode Commands
 
@@ -223,11 +234,15 @@ Examples:
 * `start t/katakana`
 * `start n/5 t/gojuon t/hiragana`
 
+<div style="page-break-after: always;"></div>
+
 Before executing start command:
 ![before start](images/start_before.png)
 
 After executing start command:
 ![after start](images/start_after.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Checking flashcard answers: `check`
 
@@ -247,11 +262,15 @@ Examples:
 If user attempt matches answer of flashcard:
 ![correct answer](images/check_correct.png)
 
+<div style="page-break-after: always;"></div>
+
 If user attempt does not match answer of flashcard:
 ![incorrect answer](images/check_incorrect.png)
 
 If user tries to answer already correctly answered flashcard:
 ![answered again](images/check_again.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Going to next flashcard: `next`
 
@@ -289,6 +308,8 @@ There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my quiz attempt scores to other computers?<br>
@@ -313,6 +334,8 @@ would like to be tested on; starting with these tags will give you a quiz sessio
 A combination of the above two options is also possible.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
