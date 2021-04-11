@@ -100,7 +100,7 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extra keywords inputted for commands that do not require parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extra keywords input for commands that do not require parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
@@ -158,9 +158,9 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   as well as graduated students who are less likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal` `math`, `phys`, `sci`, `tam` which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Literature, Malay, Mathematics, Physics, Science and Tamil respectively, which are
   subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
@@ -421,7 +421,7 @@ Format: `list`
 Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass update all the student's levels at the start of the school year.
 
-If only some students' levels need to be changed, [edit](#editing-a-contact) can be used instead.
+If only some students' levels need to be changed, [edit](#editing-a-contact--edit) can be used instead.
 
 Format: `levelup ex/[INDEX]...`
 
@@ -459,7 +459,7 @@ Examples:
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass undo of `levelup` or indicate retainees. 
 
-If only some students' levels need to be changed, [edit](#editing-a-contact) can be used instead.
+If only some students' levels need to be changed, [edit](#editing-a-contact--edit) can be used instead.
 
 Format: `leveldown ex/[INDEX]...`
 
@@ -625,7 +625,7 @@ Address                 | `a/`   | N        | Any format
 Guardian's name         | `gn/`  | N        | Contains alphanumeric characters and spaces only
 Guardian's phone number | `gp/`  | N        | Contains numbers only; at least 3 digits long
 Education level         | `lv/`  | N        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad`
-Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`<br>Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`<br><br>Represents subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science Economics, Geography and History in order of the above listing.
+Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.
 Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. **1300**
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
