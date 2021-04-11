@@ -647,8 +647,9 @@ For event list:
 Finds all free time slots on the given date from the event list.
 
 Format: `free_time DATE`
-* **Free time slots** refer to all times in the given date without any event happening
-* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
+* **Free time slots** refer to all times in the given date without any event happening.
+* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`.
+* Date entered must be a date from current date onwards.
 * Only one single date can be entered. If more than one dates are supplied, program will return an error message
   indicating invalid date.
 

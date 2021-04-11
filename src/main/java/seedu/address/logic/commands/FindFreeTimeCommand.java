@@ -2,13 +2,17 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_PASSED;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.common.Date;
 
 public class FindFreeTimeCommand extends Command {
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     public static final String COMMAND_WORD = "free_time";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all free time slots on the given date\n"
@@ -23,11 +27,17 @@ public class FindFreeTimeCommand extends Command {
         this.date = date;
     }
 
+    public LocalDate currentDate = LocalDate.now();
+    String currentDateStr = currentDate.format(DATE_FORMATTER);
+    public Date now = new Date(currentDateStr);
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ArrayList<String> freeTimeSlots = model.getFreeTimeSlots(date);
-        if (freeTimeSlots.size() == 0) {
+        if (date.compareTo(now) < 0) {
+            throw new CommandException(MESSAGE_DATE_PASSED);
+        } else if (freeTimeSlots.size() == 0) {
             return new CommandResult(MESSAGE_NO_FREE_TIME);
         } else {
             String timeSlots = "";
