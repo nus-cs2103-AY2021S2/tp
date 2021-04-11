@@ -4,27 +4,32 @@
 skinParam DefaultFontSize 18
 skinParam ParticipantFontSize 20
 
+box Logic LOGIC_COLOR_T1
 Participant ":ViewHistoryCommand" as cmd LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
 Participant "model:Model" as model MODEL_COLOR
 Participant "hist:ReadOnlyCommandHistory" as cmdHist MODEL_COLOR
+end box
 
--[LOGIC_COLOR]> cmd : execute(model)
-activate cmd LOGIC_COLOR
+-> cmd : execute(model)
+activate cmd
 
-cmd -[LOGIC_COLOR]> model : getCommandHistory()
-activate model MODEL_COLOR
+cmd -> model : getCommandHistory()
+activate model
 
-model -[MODEL_COLOR]-> cmd : hist
-deactivate model MODEL_COLOR
+model --> cmd : hist
+deactivate model
 
 loop until each entry to be listed has been read
-    cmd -[LOGIC_COLOR]> cmdHist : get(i)
-    activate cmdHist MODEL_COLOR
-    cmd <[MODEL_COLOR]-- cmdHist : ith entry
+    cmd -> cmdHist : get(i)
+    activate cmdHist
+    cmd <-- cmdHist : ith entry
     deactivate cmdHist
 end
 
-<-[LOGIC_COLOR]- cmd : cmdHistoryMsg
+<-- cmd : cmdHistoryMsg
 deactivate cmd
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 <-[hidden]- cmd
