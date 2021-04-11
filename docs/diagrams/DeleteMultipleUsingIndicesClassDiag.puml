@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+skinparam classAttributeFontColor #FFFFFFF
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+
+Interface Logic <<interface>> {
+Class LogicManager
+}
+
+package Command {
+Class DeleteMultipleCommand
+Class CommandResult
+Class "{abstract}\nCommand" as Command
+}
+
+package Util {
+Class DeleteUtil
+}
+
+package Parser {
+Interface Parser <<interface>>
+Class TaskifyParser
+Class DeleteMultipleCommandParser
+Class ParserUtil
+}
+
+LogicManager .up.|> Logic
+LogicManager -->"1" TaskifyParser
+
+LogicManager ..> Command : executes >
+
+Logic ..> CommandResult
+LogicManager ..> CommandResult
+
+Command .> CommandResult : generates >
+DeleteMultipleCommand -|> Command
+DeleteMultipleCommand ..> DeleteUtil
+DeleteMultipleCommandParser ..> DeleteUtil
+DeleteMultipleCommandParser ..> ParserUtil
+
+DeleteMultipleCommandParser ..> DeleteMultipleCommand : creates >
+DeleteMultipleCommandParser ..|> Parser
+TaskifyParser .> DeleteMultipleCommandParser : creates >
+TaskifyParser ...> DeleteUtil
+}
+
+@enduml

@@ -1,0 +1,101 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
+participant ":DeleteMultipleCommandParser" as DeleteMultipleCommandParser LOGIC_COLOR
+participant "<<class>>\n:ParserUtil" as ParserUtil LOGIC_COLOR
+participant "<<class>>\n:DeleteUtil" as DeleteUtil LOGIC_COLOR
+participant ":DeleteMultipleCommand" as DeleteMultipleCommand LOGIC_COLOR
+participant "<<class>>\n:DeleteUtil" as DeleteUtil LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete 1 2 3")
+activate LogicManager
+
+LogicManager -> TaskifyParser : parseCommand("delete 1 2 3")
+activate TaskifyParser
+
+create DeleteMultipleCommandParser
+TaskifyParser -> DeleteMultipleCommandParser
+activate DeleteMultipleCommandParser
+
+DeleteMultipleCommandParser --> TaskifyParser
+deactivate DeleteMultipleCommandParser
+
+TaskifyParser -> DeleteMultipleCommandParser: parse("1 2 3")
+activate DeleteMultipleCommandParser
+
+DeleteMultipleCommandParser -> ParserUtil : parseMultipleIndex("1 2 3")
+activate ParserUtil
+
+ParserUtil --> DeleteMultipleCommandParser
+deactivate ParserUtil
+
+DeleteMultipleCommandParser -> DeleteUtil : isDeletingTasksByRange("1 2 3")
+activate DeleteUtil
+
+DeleteUtil --> DeleteMultipleCommandParser : false
+deactivate DeleteUtil
+
+create DeleteMultipleCommand
+DeleteMultipleCommandParser -> DeleteMultipleCommand
+activate DeleteMultipleCommand
+
+DeleteMultipleCommand --> DeleteMultipleCommandParser
+deactivate DeleteMultipleCommand
+
+DeleteMultipleCommandParser --> TaskifyParser
+deactivate DeleteMultipleCommandParser
+DeleteMultipleCommandParser -[hidden]-> TaskifyParser
+destroy DeleteMultipleCommandParser
+
+TaskifyParser --> LogicManager
+deactivate TaskifyParser
+
+LogicManager -> DeleteMultipleCommand : execute()
+activate DeleteMultipleCommand
+
+'DeleteMultipleCommand -> Model : getFilteredTaskList()
+'activate Model
+'
+'Model --> DeleteMultipleCommand
+'deactivate Model
+
+DeleteMultipleCommand -> DeleteUtil : getTasksToDelete(...)
+activate DeleteUtil
+
+DeleteUtil --> DeleteMultipleCommand
+deactivate DeleteUtil
+
+DeleteMultipleCommand -> Model : deleteTasksFromModel(...)
+activate Model
+
+Model --> DeleteMultipleCommand
+deactivate Model
+
+DeleteMultipleCommand -> DeleteUtil : generateSuccessMessage(...)
+activate DeleteUtil
+
+DeleteUtil --> DeleteMultipleCommand
+deactivate DeleteUtil
+
+create CommandResult
+DeleteMultipleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteMultipleCommand
+deactivate CommandResult
+
+DeleteMultipleCommand --> LogicManager
+deactivate DeleteMultipleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

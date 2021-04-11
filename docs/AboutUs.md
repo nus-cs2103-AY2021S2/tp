@@ -49,7 +49,7 @@ You can reach us at the respective emails:
 <img src="images/csmortal.png" width="200px">
 
 [Github](https://github.com/CSmortal)
-[[portfolio](team/jovenpua.md)]
+[[portfolio](team/csmortal.md)]
 
 * Role: Developer
 * Responsibilities: Testing expert
