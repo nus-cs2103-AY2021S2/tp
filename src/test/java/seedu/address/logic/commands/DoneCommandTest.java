@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
-import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_EVENT;
+import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,17 +24,17 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
  */
 public class DoneCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalEventBook());
+    private Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Event eventToBeDone = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_PERSON.getZeroBased());
+        Event eventToBeDone = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
         Identifier eventIdentifier = Identifier.fromIdentifier(eventToBeDone.getIdentifier());
         DoneCommand doneCommand = new DoneCommand(eventIdentifier);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_EVENT_SUCCESS, eventToBeDone);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new EventBook(model.getEventBook()));
+        ModelManager expectedModel = new ModelManager( new UserPrefs(), new EventBook(model.getEventBook()));
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
@@ -78,14 +78,14 @@ public class DoneCommandTest {
 
     @Test
     public void equals() {
-        DoneCommand doneFirstCommand = new DoneCommand(IDENTIFIER_FIRST_PERSON);
-        DoneCommand doneSecondCommand = new DoneCommand(IDENTIFIER_SECOND_PERSON);
+        DoneCommand doneFirstCommand = new DoneCommand(IDENTIFIER_FIRST_EVENT);
+        DoneCommand doneSecondCommand = new DoneCommand(IDENTIFIER_SECOND_EVENT);
 
         // same object -> returns true
         assertTrue(doneFirstCommand.equals(doneFirstCommand));
 
         // same values -> returns true
-        DoneCommand doneFirstCommandCopy = new DoneCommand(IDENTIFIER_FIRST_PERSON);
+        DoneCommand doneFirstCommandCopy = new DoneCommand(IDENTIFIER_FIRST_EVENT);
         assertTrue(doneFirstCommand.equals(doneFirstCommandCopy));
 
         // different types -> returns false
