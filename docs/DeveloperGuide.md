@@ -603,12 +603,12 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the levelup feature works:
+The sequence diagram below shows how the leveldown feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a levelup command is executed:
+The activity diagram shows the workflow when a leveldown command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
 
 #### Design consideration:
