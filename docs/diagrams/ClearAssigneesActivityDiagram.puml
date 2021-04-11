@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes clearAssignees command;
+
+if () then ([valid command input])
+    :Fetch target task from task list;
+        if () then ([target task has 1 or more assignees])
+            : Create a copy of the target
+               task with its assignees
+                updated to be cleared;
+            : Update task list with the
+              copy of the target task;
+            : Output cleared assignees
+                  success message;
+        else([else])
+            : Output no assignees
+               to clear message;
+        endif
+else ([else])
+    : Output invalid command
+       input error message;
+endif
+stop
+@enduml
