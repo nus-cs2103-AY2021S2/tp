@@ -44,14 +44,11 @@ destroy AddTaskCommandParser
 
 LogicManager <-- SocheduleParser : s
 deactivate SocheduleParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-SocheduleParser -[hidden]->[
-destroy SocheduleParser
 
 LogicManager -> AddTaskCommand : execute()
 activate AddTaskCommand
 
-AddTaskCommand -> Model : addTasks(Task taskToAdd)
+AddTaskCommand -> Model : addTask(Task taskToAdd)
 activate Model
 AddTaskCommand <-- Model
 deactivate Model

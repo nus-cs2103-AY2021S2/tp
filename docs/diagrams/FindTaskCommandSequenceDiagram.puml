@@ -63,6 +63,9 @@ deactivate CommandResult
 
 FindTaskCommand --> LogicManager : result
 deactivate FindTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTaskCommand -[hidden]->[
+destroy FindTaskCommand
 
 [<--LogicManager
 deactivate LogicManager

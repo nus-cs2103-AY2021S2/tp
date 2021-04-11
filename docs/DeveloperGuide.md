@@ -23,7 +23,7 @@ title: Developer Guide
    &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
    &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation-of-event-level-commands)<br>
 1. [Documentation, Logging, Testing, Configuration, Dev-Ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
-1. [Appendix](#appendix)<br>
+[Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
    A2. [User Stories](#a2-user-stories)<br>
    A3. [Use Cases](#a3-use-cases)<br>
@@ -198,6 +198,7 @@ To ensure duplicates are handled, our team went through several alternatives and
                 <li> Pros:
                     <ul>
                         <li>Tasks with same name but different deadline, priority and/or any other fields are allowed.</li>
+                        <li>Similarly, tasks with same name, deadline and priority, but different tags and/or categories are allowed.</li>
                     </ul>
                 </li>
                 <li> Cons:
@@ -228,8 +229,11 @@ To ensure duplicates are handled, our team went through several alternatives and
 
 We chose Alternative 1 because it is more flexible and suitable for users' need. 
 There can be multiple tasks with same name but other different fields, like deadlines. 
-For example, a user may need to create two tasks with the same name '2103 quiz',
+For example, a user may need to create two tasks with the same name `2103 quiz`,
 but one is due on this Monday and the other is due the next Monday. Both of these 2 tasks should be allowed in our task list.
+Another example can be that a user may want to create two tasks with the same name `quiz`, deadline `2022-01-01` 
+and priority `3`, but one is with tag `CS2103` and the other one is with tag `CS2102`. 
+Both of these 2 tasks should be allowed in our task list.
 
 #### 3.4.2 Design considerations for Event-related Models
 Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
@@ -529,9 +533,9 @@ specific task with given arguments. An `AddTaskCommandParser` object is created,
 `AddTaskParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
 checks to ensure that it compiles with the specification. An `AddTaskCommand` object is returned.
 
-**Step 2**: On `AddTaskCommand#execute()`, `Model#addTasks(Task taskToAdd)` is called.
+**Step 2**: On `AddTaskCommand#execute()`, `Model#addTask(Task taskToAdd)` is called.
 This will add the task specified into the task list.
-For brevity, lower level implementation of `Model#addTasks(Task taskToAdd)` is omitted.
+For brevity, lower level implementation of `Model#addTask(Task taskToAdd)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_ADD_TASK_SUCCESS`.
@@ -553,9 +557,9 @@ A `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String a
 The method conducts parses the `INDEX` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteTaskCommand` object is returned.
 
-**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTasks(Task taskToDelete)` is called.
+**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTask(Task taskToDelete)` is called.
 This will delete the task at the specified index.
-For brevity, lower level implementation of `Model#deleteTasks(Task taskToDelete)` is omitted.
+For brevity, lower level implementation of `Model#deleteTask(Task taskToDelete)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_DELETE_TASK_SUCCESS`.
@@ -857,7 +861,7 @@ A `TodayTaskCommand` object is returned
 **Step 2**: On `TodayTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This 
 will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
 `TaskDeadlineIsTodayPredicate`. For brevity, lower level implementation of 
-`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+`Model#updateFilteredTaskList(Predicate<Task> predicate)` is omitted.
 
 **Step 3**: On execution completion, a `CommandResult` is created. A success message will be appended with
 `CommandResult#MESSAGE_TODAY_TASK_SUCCESS` and `MESSAGE_TASK_LISTED_OVERVIEW`. The UI will also update as the underlying 
@@ -896,7 +900,7 @@ The `FindTaskCommand` object with input predicate is returned.
 On `FindTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This
 will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
 `TaskNameContainsKeywordPredicate`. For brevity, lower level implementation of
-`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+`Model#updateFilteredTaskList(Predicate<Task> predicate)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_TASKS_LISTED_OVERVIEW`.
@@ -1041,7 +1045,7 @@ It can also be similarly extrapolated and applied to `unpin_task`.
 
 
 #### Implementation of `clear_completed_task` command
-In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`CLearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
+In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`ClearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
 The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
 
 **Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
@@ -1111,7 +1115,7 @@ Our `Event` supports the following features through a `LogicManager`
 * [`today_event`](#implementation-of-today_event-command)
 * [`find_event`](#implementation-of-find_event-command)
 * [`clear_expired_event`](#implementation-of-clear_expired_event-command)
-* [`find_free`](#implementation-of-find_free-command)
+* [`free_time`](#implementation-of-free_time-command)
 
 The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are
 omitted here because their implementation is similar to that of other features.
@@ -1125,12 +1129,12 @@ The following is a detailed explanation on how `AddEventCommand.java` is impleme
 
 **Step 1**: User executes `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...` 
 command to add the specific event with given arguments. An `AddEventCommandParser` object is created, and the 
-`AddEventParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
+`AddEventCommandParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
 checks to ensure that it compiles with the specification. An `AddEventCommand` object is returned.
 
-**Step 2**: On `AddEventCommand#execute()`, `Model#addEvents(Event eventToAdd)` is called.
+**Step 2**: On `AddEventCommand#execute()`, `Model#addEvent(Event eventToAdd)` is called.
 This will add the event specified into the event list.
-For brevity, lower level implementation of `Model#addEvents(Event eventToAdd)` is omitted.
+For brevity, lower level implementation of `Model#addEvent(Event eventToAdd)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message `AddEventCommand#MESSAGE_ADD_EVENT_SUCCES` will be displayed.
@@ -1148,13 +1152,13 @@ In SOChedule, the governing logic behind the `delete_event` command is laid out 
 The following is a detailed explanation on how DeleteEventCommand is implemented.
 
 **Step 1**: User executes `delete_event 1` command to delete the event at the given index.
-A `DeleteEventParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
+A `DeleteEventCommandParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
 The method conducts parses the `1` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteEventCommand` object is returned.
 
-**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvents(Event eventToDelete)` is called.
+**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvent(Event eventToDelete)` is called.
 This will delete the event at the specified index.
-For brevity, lower level implementation of `Model#deleteEvents(Event eventToDelete)` is omitted.
+For brevity, lower level implementation of `Model#deleteEvent(Event eventToDelete)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message `DeleteEventCommand#MESSAGE_DELETE_EVENT_SUCCESS` will be displayed.
@@ -1341,8 +1345,8 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 [Return to Overview](#431-overview)
 
 
-#### Implementation of `find_free` command
-In SOChedule, the governing logic behind the `find_free` command is laid out in [`FindFreeTimeCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTimeCommand.java)
+#### Implementation of `free_time` command
+In SOChedule, the governing logic behind the `free_time` command is laid out in [`FindFreeTimeCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTimeCommand.java)
 The following is a detailed explanation on how FindFreeTimeCommand is implemented.
 
 **Step 1**: User executes `free_time DATE` command to find free time slots in the given day.
@@ -1479,6 +1483,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | SOC Student                           | Delete an event from my schedule from my schedule                      | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | Edit events in my schedule                                             | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | View events in my schedule                                             | I can have a better sense of what will happen in the following days or weeks |
+| `* *`    | SOC Student                           | Find free time slots on a specific date                                | I can allocate my time better                                                |
 | `*`      | SOC Student                           | View events that are happening today                                   | I can have a better sense of what events are happening today                 |
 | `*`      | SOC Student                           | Search events by certain keywords                                      | I can view the details of the event that I want to find                      |
 | `*`      | SOC Student                           | Clear expired events                                                   | I can make my schedule cleaner                                               |
@@ -1490,7 +1495,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
 | -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `* *`    | SOC Student                           | Find tasks and events before or on a given date                        | I can keep track of my tasks and events better                               |
-| `* *`    | SOC Student                           | Find free time slots on a specific date                                | I can allocate my time better                                                |
 | `* *`    | SOC Student                           | Have a summary of task completion status and events in next 7 days     | I can keep track of my progress and plan ahead for my schedule               |
 | `*`      | SOC Student                           | Clear the entire schedule                                              | I can start adding tasks and events from fresh                               |
 
@@ -1979,16 +1983,18 @@ Use case ends.
    
 **Extensions**
 
-* 2a. SOChedule notifies that there is no free time slots.
-
+* 2a. There is no free time on the given date.
+  
+   * 2a1. SOChedule notifies user that there is no free time. <br>
   Use case ends.
   <br><br>
   
-* 3a. The given date is invalid.
+* 2b. The given date is invalid.
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the date. <br>
-      Use case ends.
-      <br><br>
+    * 2b1. SOChedule displays an error message. <br>
+   Use case ends.
+   <br><br>
+      
 
 **Use case: UC23 - Getting a summary of SOChedule**
 
@@ -2012,11 +2018,10 @@ Use case ends.
 ### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 500 tasks without a noticeable sluggishness in performance for typical usage.
 1.  Should be able to hold up to 500 events without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 1.  Should give a response to user's input within 5 seconds.
-1.  The user interface should be intuitive to a SoC freshman with little knowledge about programming.
 1.  The source code should be open source.
 
 
@@ -2065,8 +2070,6 @@ These instructions only provide a starting point for testers to work on; testers
 
     1. Other incorrect commands to try: `add_task`, `add_task n/Task 1`, etc.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
@@ -2082,8 +2085,6 @@ These instructions only provide a starting point for testers to work on; testers
    1. Other incorrect delete commands to try: `delete_task`, `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Editing a task
 1. Edits an uncompleted task in the task list
     1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
@@ -2094,9 +2095,7 @@ These instructions only provide a starting point for testers to work on; testers
        Details of the edited task to appear in status bar.
        
     1. Other incorrect command to try : `edit_task`
-
-1. _{ more test cases …​ }_
-
+   
 ### Marking one or more tasks as done
 1. Marks one or more uncompleted tasks from the task list as completed
 
@@ -2108,8 +2107,6 @@ These instructions only provide a starting point for testers to work on; testers
        "Completed 2 Task(s)." to appear in status bar.
        
     1. Other incorrect command to try : `done_task abc`.
-
-1. _{ more test cases …​ }_
 
 ### Marking a task as uncompleted
 
@@ -2123,8 +2120,6 @@ These instructions only provide a starting point for testers to work on; testers
        "Uncompleted 1 Task." to appear in status bar.
        
     1. Other incorrect command to try : `undone_task abc`.
-
-1. _{ more test cases …​ }_
 
 ### Listing all tasks
 
@@ -2149,8 +2144,6 @@ These instructions only provide a starting point for testers to work on; testers
     1. Test case: `find_task homework assignment`<br>
        Expected: All the tasks whose name contains any of `homework` or `assignment` in the task list will be shown. <br>
        A message `x task(s) listed!` will be shown, where `x` is the number of tasks that satisfies the condition.
-       
-1. _{ more test cases …​ }_
 
 ### Sorting the task list
 
@@ -2165,8 +2158,6 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
 
     1. Other valid parameters to test: `name`, `completion` and `deadline`.
-
-1. _{ more test cases …​ }_
 
 ### Pinning a task
 
@@ -2189,7 +2180,6 @@ These instructions only provide a starting point for testers to work on; testers
     1. Other incorrect delete commands to try: `pin_task`, `pin_task x` (where x is larger than the list size)<br>
        Expected: Similar to previous cases.
 
-1. _{ more test cases …​ }_
 
 ### Unpinning a task
 
@@ -2211,9 +2201,7 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Other incorrect delete commands to try: `unpin_task`, `unpin_task x` (where x is larger than the list size)<br>
       Expected: Similar to previous cases.
-
-1. _{ more test cases …​ }_
-
+      
 
 ### Clearing completed tasks
 
@@ -2221,9 +2209,7 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Test case: `clear_completed_task`<br>
       Expected: Tasks marked as done are cleared from the list. <br>
-      Success message `Completed tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any completed task or not.   
-
-1. _{ more test cases …​ }_
+      Success message `Completed tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any completed task or not.
 
 ### Clearing expired tasks
 
@@ -2231,9 +2217,7 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Test case: `clear_expired_task`<br>
       Expected: Tasks with past deadlines are cleared from the list. <br>
-      Success message `Expired tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired task or not. 
-
-1. _{ more test cases …​ }_
+      Success message `Expired tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired task or not.
 
 ### Adding an event
 
@@ -2252,7 +2236,6 @@ These instructions only provide a starting point for testers to work on; testers
                   
     1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
    
-1. _{ more test cases …​ }_
     
 ### Deleting an event
 
@@ -2271,8 +2254,6 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Other incorrect delete commands to try: `delete_event`, `delete_event x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-      
-1. _{ more test cases …​ }_
 
 ### Editing an event
 
@@ -2288,7 +2269,6 @@ These instructions only provide a starting point for testers to work on; testers
                
     1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
    
-1. _{ more test cases …​ }_
 
 ### Listing all events
 
@@ -2306,8 +2286,6 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: All the events that happening on today will be shown. <br>
        A message `Listed events happen on today` and `x event(s) listed!` will be shown, where `x` is the number of events that happen on today.
 
-1. _{ more test cases …​ }_
-
 ### Finding events by names
 
 1. Finding events by names
@@ -2316,7 +2294,6 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: All the events whose name contains any of `project` or `meeting` in the event list will be shown. <br>
        A message `x event(s) listed!` will be shown, where `x` is the number of events that satisfies the condition.
        
-1. _{ more test cases …​ }_
 
 ### Clearing expired events
 
@@ -2326,7 +2303,6 @@ These instructions only provide a starting point for testers to work on; testers
       Expected: Events with past end date time are cleared from the list. <br>
       Success message `Expired events (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired event or not.
 
-1. _{ more test cases …​ }_
 
 ### Finding schedule given a date
 
@@ -2345,8 +2321,6 @@ These instructions only provide a starting point for testers to work on; testers
             1 event(s) listed!" appears in the status bar.
            
     1. Other incorrect command to try: `find_schedule 2021-005-01`.
-   
-1. _{ more test cases …​ }_
 
 ### Finding free time slots
 
@@ -2361,8 +2335,8 @@ These instructions only provide a starting point for testers to work on; testers
        1. If there are no events happening on the day, `The entire day is free!` will be displayed after the success message.
           
        1. If no free time slots were found, `There is no free time in the day!` will be displayed.
-
-1. _{ more test cases …​ }_
+    1. Test case: `free_time 2021-02-29`<br>
+       Expected: Displays an error message for invalid date.
 
 ### Getting a summary of SOChedule
 
@@ -2371,8 +2345,6 @@ These instructions only provide a starting point for testers to work on; testers
     1. Test case: `summary`<br>
        Expected: Displays a summary for SOChedule. Success message `Summary:`, followed by detailed about `Task`,
        and details about `Event`.
-       
-1. _{ more test cases …​ }_
 
 ### Clearing SOChedule
 

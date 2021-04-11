@@ -50,7 +50,7 @@ SocheduleParser -[hidden]->[
 LogicManager -> DeleteTaskCommand : execute()
 activate DeleteTaskCommand
 
-DeleteTaskCommand -> Model : deleteTasks(Task taskToDelete)
+DeleteTaskCommand -> Model : deleteTask(Task taskToDelete)
 activate Model
 DeleteTaskCommand <-- Model
 deactivate Model
@@ -65,6 +65,7 @@ LogicManager <-- DeleteTaskCommand
 deactivate DeleteTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteTaskCommand -[hidden]->[
+destroy DeleteTaskCommand
 
 [<-- LogicManager : CommandResult
 @enduml
