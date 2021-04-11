@@ -24,8 +24,6 @@ public class MarkdownPlainTextParser {
                 handleLine(next);
             }
 
-            plainText.replaceAll("…\u200B", "…");
-
             return plainText;
         } else {
             return "error formatting";
@@ -53,6 +51,7 @@ public class MarkdownPlainTextParser {
         String[] nextSplit = next.split("<|\\>");
         String divContent = nextSplit[2];
 
+        // change ':emoji: **BoldText:**' into 'emoji BoldText:'
         if (divContent.startsWith(":bulb:")) {
             plainText += "\uD83D\uDCA1 " + divContent.substring(9, 13) + " ";
         } else if (divContent.startsWith(":exclamation:")) {
