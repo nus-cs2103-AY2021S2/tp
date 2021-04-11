@@ -82,18 +82,6 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-
-            System.out.println("===Actual\n\n");
-            actualModel.getEventBook().getEventList().stream().forEach(System.out::println);
-            System.out.println(result.getFeedbackToUser());
-            System.out.println("===Actual\n\n");
-
-            System.out.println("===Expected\n\n");
-            expectedModel.getEventBook().getEventList().stream().forEach(System.out::println);
-            System.out.println(expectedCommandResult.getFeedbackToUser());
-            System.out.println("===Expected\n\n");
-
-
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {

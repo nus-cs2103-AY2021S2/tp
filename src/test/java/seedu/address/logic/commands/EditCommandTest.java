@@ -13,6 +13,8 @@ import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_EVENT;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -24,8 +26,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
-
-import java.util.Optional;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
