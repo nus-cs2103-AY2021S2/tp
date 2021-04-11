@@ -48,10 +48,17 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             List<Predicate<Appointment>> nameList = new ArrayList<>();
-            argMultimap.getAllValues(PREFIX_NAME)
-                .forEach(s -> {
-                    nameList.add(new AppointmentContainsKeywordsPredicate(Arrays.asList(s.split("\\s+"))));
-                });
+            try {
+                argMultimap.getAllValues(PREFIX_NAME)
+                    .forEach(s -> {
+                        nameList.add(new AppointmentContainsKeywordsPredicate(Arrays.asList(s.split("\\s+"))));
+                    });
+            } catch (IllegalArgumentException e) {
+                throw new ParseException("n/ used but no keywords found! \n"
+                        + e.getMessage()
+                        + "\n"
+                        + FindAppointmentCommand.MESSAGE_USAGE);
+            }
             orPredicates.add(new AppointmentPredicateList(nameList));
         }
 

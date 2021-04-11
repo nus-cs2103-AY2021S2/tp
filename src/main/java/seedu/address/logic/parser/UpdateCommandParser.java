@@ -56,7 +56,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             if (command.contains("new")) {
                 Offer offer;
                 try {
-                    offer = new Offer(matcher.group("amount"));
+                    offer = ParserUtil.parseOffer(matcher.group("amount"));
                 } catch (IllegalArgumentException e) {
                     throw new ParseException(Offer.MESSAGE_CONSTRAINTS);
                 }

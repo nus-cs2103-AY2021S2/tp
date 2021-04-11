@@ -13,8 +13,11 @@ public class PropertyAddressPredicate implements Predicate<Property> {
     /**
      * Constructs a PropertyAddressPredicate.
      */
-    public PropertyAddressPredicate(String address) {
+    public PropertyAddressPredicate(String address) throws IllegalArgumentException {
         requireNonNull(address);
+        if (address.trim().isEmpty()) {
+            throw new IllegalArgumentException("Address given is empty. ");
+        }
         this.address = address;
     }
 

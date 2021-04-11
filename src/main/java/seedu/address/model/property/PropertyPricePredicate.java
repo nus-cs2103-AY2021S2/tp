@@ -23,10 +23,14 @@ public class PropertyPricePredicate implements Predicate<Property> {
      *               note that regardless of this value, any askingPrice
      *               that is equals to the given price will return true.
      */
-    public PropertyPricePredicate(String price, boolean isLess) throws ParseException {
+    public PropertyPricePredicate(String price, boolean isLess) throws IllegalArgumentException {
         requireNonNull(price);
         checkArgument(AskingPrice.isValidAskingPrice(price));
-        this.price = AskingPrice.parse(price);
+        try {
+            this.price = AskingPrice.parse(price);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
         this.isLess = isLess;
     }
 

@@ -8,7 +8,14 @@ import java.util.function.Predicate;
 public class AppointmentRemarksPredicate implements Predicate<Appointment> {
     private final String keywords;
 
+    /**
+     * Constructs a {@code AppointmentRemarksPredicate} when given a keyword.
+     * @throws IllegalArgumentException when keyword is empty.
+     */
     public AppointmentRemarksPredicate(String keywords) throws IllegalArgumentException {
+        if (keywords.trim().isEmpty()) {
+            throw new IllegalArgumentException("Remark given is empty. ");
+        }
         this.keywords = keywords.toLowerCase();
     }
 

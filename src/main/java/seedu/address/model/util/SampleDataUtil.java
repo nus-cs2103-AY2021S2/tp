@@ -56,7 +56,7 @@ public class SampleDataUtil {
                 null,
                 new Client(new Name("Caleb"), new Contact("84459627"),
                     new Email("caleb_goh@gmail.com"), new AskingPrice(Long.parseLong("350000"))),
-                getTagSet("2 bedrooms", "65 square metres"), new Option(new Offer("330000"))),
+                getTagSet("2 bedrooms", "65 square metres"), new Option(new Offer(Long.parseLong("330000")))),
             new Property(new Name("The Interlace"),
                 new Type("Condo"),
                 new Address("180 Depot Rd"),

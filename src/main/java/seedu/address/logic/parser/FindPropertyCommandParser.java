@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
+import static seedu.address.model.property.client.AskingPrice.MESSAGE_CONSTRAINTS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,22 +68,46 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             List<Predicate<Property>> nameList = new ArrayList<>();
-            argMultimap.getAllValues(PREFIX_NAME)
-                       .forEach(s -> {
-                           nameList.add(new PropertyNamePredicate(Arrays.asList(s.split("\\s+"))));
-                       });
-            predicates.add(new PropertyPredicateList(nameList).combineDisjunction());
+            try {
+                argMultimap.getAllValues(PREFIX_NAME)
+                        .forEach(s -> {
+                            nameList.add(new PropertyNamePredicate(Arrays.asList(s.split("\\s+"))));
+                        });
+                predicates.add(new PropertyPredicateList(nameList).combineDisjunction());
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(
+                        "n/ used but no name found! \n"
+                        + e.getMessage()
+                        + "\n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
         }
 
         if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_MORE).isPresent()) {
             for (String argument: argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_MORE)) {
-                predicates.add(new PropertyPricePredicate(argument, false));
+                try {
+                    predicates.add(new PropertyPricePredicate(argument, false));
+                } catch (IllegalArgumentException e) {
+                    throw new ParseException(
+                            "Wrong input format for pm/ !\n"
+                            + MESSAGE_CONSTRAINTS
+                            + "\n"
+                            + FindPropertyCommand.MESSAGE_USAGE);
+                }
             }
         }
 
         if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_LESS).isPresent()) {
             for (String argument: argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_LESS)) {
-                predicates.add(new PropertyPricePredicate(argument, true));
+                try {
+                    predicates.add(new PropertyPricePredicate(argument, true));
+                } catch (IllegalArgumentException e) {
+                    throw new ParseException(
+                            "Wrong input format for pl/ !\n"
+                                    + MESSAGE_CONSTRAINTS
+                                    + "\n"
+                                    + FindPropertyCommand.MESSAGE_USAGE);
+                }
             }
         }
 
@@ -184,14 +209,10 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         if (argMultimap.getValue(PREFIX_CLIENT_EMAIL).isPresent()) {
             List<String> emails = argMultimap.getAllValues(PREFIX_CLIENT_EMAIL);
             List<Predicate<Property>> emailList = new ArrayList<>();
-            if (emails.size() > 1) {
-                throw new ParseException("Too many client emails! Please only use 1 client email. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            }
             try {
                 emails.forEach(s -> emailList.add(new PropertyClientEmailPredicate(s)));
-            } catch (NullPointerException e) {
-                throw new ParseException("Wrong client email format! \n"
+            } catch (IllegalArgumentException e) {
+                throw new ParseException("ce/ used but no keywords found! \n"
                         + e.getMessage()
                         + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
@@ -202,8 +223,15 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
             List<Predicate<Property>> clientList = new ArrayList<>();
             List<String> names = argMultimap.getAllValues(PREFIX_CLIENT_NAME);
-            names.forEach(name ->
-                clientList.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
+            try {
+                names.forEach(name ->
+                    clientList.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException("cn/ used buy no keywords found! \n"
+                        + e.getMessage()
+                        + "\n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
+            }
             predicates.add(new PropertyPredicateList(clientList).combineDisjunction());
         }
 

@@ -14,10 +14,14 @@ public class PropertyNamePredicate implements Predicate<Property> {
 
     /**
      * Constructs a {@code PropertyNamePredicate}
+     * @throws IllegalArgumentException when keyword is empty.
      */
-    public PropertyNamePredicate(List<String> names) {
+    public PropertyNamePredicate(List<String> names) throws IllegalArgumentException {
         this.keywords = new ArrayList<>();
         for (String s : names) {
+            if (s.trim().isEmpty()) {
+                throw new IllegalArgumentException("Name given is empty. ");
+            }
             this.keywords.add(s.toLowerCase());
         }
     }
