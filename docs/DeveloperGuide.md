@@ -121,7 +121,7 @@ Given below is an example usage scenario:
 Step 1. The user is in the Food Diary application. 
 
 Step 2. The user executes list. The Food Diary application lists all the entries in the user's database. 
-Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `Category` and `School`.
+Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `TagCategory` and `TagSchool`.
 
 This feature was brought over to The Food Diary from AB3. 
 There were not much changes apart from modifying it to list
@@ -524,6 +524,20 @@ Given below are instructions to test the app manually.
 to work on.
 </div>
 
+### Launch and shtudown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample bookings. The window size may not be optimum.
+
+2. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    2. Re-launch the app by double-clicking the jar file.
+        Expected: The most recent window size and location is retained.
 
 ###Revise an Entry
 1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(s)`
