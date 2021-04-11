@@ -8,7 +8,7 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 ## Code Contributed
 You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=)
 
-##Enhancements implemented.
+## Enhancements implemented.
 1) I implemented the PriorityTag feature for semesterconfig
 2) Assist in creating sorting comparator to sort the tasks according to Priority levels
 
@@ -18,23 +18,23 @@ Enhancements
 * Highlights: User can use the `sort` command to view the tasks in priority levels 
 * It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature that was handled by another of my team mate. 
 
-##Testing
+## Testing
 * I was in charge of testing for the Storage component. I wrote test cases for storage classes, ensure that the test cases used are able to address the different valid/invalid cases given
 * I wrote test cases for Priority Tag class, correctly testing the valid and invalid test cases carefully
 
-##Contributions to the UG
+## Contributions to the UG
 Added documentation for `priority tag` feature, as well as standardising the team's markdown and language style 
 
-##Contributions to the DG
+## Contributions to the DG
 * I was in charge of the Storage component and therefore I drew up the Storage UML diagrams on the DG.
 * Edited the exisiting UML diagram to fit our new features into the Storage component, taking care of the refactored componenets as well
 * Wrote additional information under the Storage component with regards to our new features
 
-##Contributions to team-based tasks
+## Contributions to team-based tasks
 * Refactored person classes in the Person package 
 * Helped to standardize UG and DG 
 * Wrote test cases for Storage component
 * Approve and merge PRs when possible
 
-##Contributions beyond the project team
+## Contributions beyond the project team
 
