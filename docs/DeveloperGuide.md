@@ -224,7 +224,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `Bob` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `DocBob` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Adding a new patient**
 
@@ -286,18 +286,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. Domain rules : at least 1 user added
-2. Constraints : System should be compatible with previous version and easily scalable to add new functionalities
-3. Technical requirement : System should be able to work on any processor i.e. 32 bit or 64 bit.
-4. Technical requirement : System should be scalable enough to be able to keep up with new processors (more than 64)
-5. Technical requirement : System should be able to work on an operating system (OS) i.e. MacOS, Windows, Linux etc.
-6. Performance requirement : System should have at most a tolerable lag time but not too long that it is off putting
-7. Quality requirement : System should be straightforward enough that a novice should at the very least be able to add, edit and delete users
-8. Process requirement : i.e. the project should adhere to the schedule pre decided (subject to minor adjustments within the agreed upon room for error)
-9. Miscellaneous : the program should not contain any offending imaginary and or vulgar words/language
+| Category of Non Functional Requirements | Non Functional Requirement                                                                                    | 
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Domain rules                            | at least 1 patient added |
+| Constraints                             | System should be compatible with previous version and easily scalable to add new functionalities  |
+| Constraints                             | System should give obvious advantage to fast typers |
+| Constraints                             | System should not have elements of social networking i.e. communication between devices |
+| Technical requirement                   | System should be able to work on any processor i.e. 32 bit or 64 bit |
+| Technical requirement                   | System should be scalable enough to be able to keep up with new processors (more than 64) |
+| Technical requirement                   | System should be able to work on an operating system (OS) i.e. MacOS, Windows, Linux etc.|
+| Technical requirement                   | System should be able to work on older version of different OS i.e. Windows 7, OS x 10.3 (panther) etc.|
+| Performance requirement                 | System should have at most a tolerable lag time |
+| Performance requirement                 | Lag time of system should not be too long and result in an off putting experience|
+| Quality requirement                     | System should be straightforward enough that a novice should at the very least be able to add, edit and delete users|
+| Quality requirement                     | System should be have features that make sense so that as time pass, the users can do more with the software|
+| Quality requirement                     | System should be robust enough to handle manner of edge cases i.e. throw appropriate exceptions that guide the user|
+| Process requirement                     | the project should adhere to the schedule pre decided (subject to minor adjustments within margin of error)|
+| Notes about project scope               | the program should not have to handle printing printing of the screen |
+| Notes about project scope               | the program should not have to handle uploading information to private servers |
+| Notes about project scope               | the program should not have to handle encryption and decryption of information passed into it |
+| Miscellaneous                           | the program should not contain any offending imaginary |
+| Miscellaneous                           | the program should not contain any vulgar words/language |
+| Miscellaneous                           | the program should not contain any political imagery |
 
 
-*{More to be added}*
+
 
 ### Glossary
 
