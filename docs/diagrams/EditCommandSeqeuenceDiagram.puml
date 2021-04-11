@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Taskify" as Taskify MODEL_COLOR
+end box
+[-> LogicManager : execute("edit 2 n/Task Name d/Task Desc date/2021-04-20")
+activate LogicManager
+
+LogicManager -> TaskifyParser : parseCommand("edit 2 n/Task Name d/Task Desc date/2021-04-20")
+activate TaskifyParser
+
+create EditCommand
+TaskifyParser -> EditCommand
+activate EditCommand
+
+EditCommand --> TaskifyParser
+deactivate EditCommand
+
+TaskifyParser --> LogicManager : e
+deactivate TaskifyParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : setTask(task)
+activate Model
+
+Model -> Taskify : setTask(task)
+activate Taskify
+
+Taskify --> Model :
+deactivate Taskify
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+EditCommand -[hidden]-> LogicManager : result
+destroy EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

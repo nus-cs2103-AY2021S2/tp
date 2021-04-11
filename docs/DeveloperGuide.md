@@ -216,15 +216,76 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
 describes some noteworthy details on how certain features are implemented.
 
-## 4.1 Switch between the different tabs
+### 4.1 Add Command
 
-### 4.1.1 Format of command
+#### Implementation
+The add command mainly uses the Logic and Model components. The add command takes in the following parameters:
+* `n/Name`
+* `desc/Description`
+* `date/Date`
+* `t/Tags`
+
+The following activity diagram summarizes what happens when a user executes an add command.
+![AddActivityDiagram](images/AddCommandActivityDiagram.png)
+
+The following sequence diagram shows the execution of the add command.
+![AddSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
+### 4.2 Edit Command
+
+#### Implementation
+The edit command has a similar implementation to the add command, it mainly uses the Logic and Model components 
+(see Diagrams in 4.1). The only notable differences are:
+* The edit command is able to take in an extra parameter `s/Status`.
+* Edit command takes in an `index` to specify which Task in the list to edit.
+
+The following activity diagram summarizes what happens when a user executes an edit command.
+![EditActivityDiagram](images/EditCommandActivityDiagram.png)
+
+The following sequence diagram shows the execution of the edit command.
+![EditSequenceDiagram](images/EditCommandSeqeuenceDiagram.png)
+
+
+### 4.3 View Command
+The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
+
+#### Implementation
+This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
+in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
+
+The following sequence diagram shows how the `view` command works. We will assume the user inputs
+`view 2021-04-12`, that is, the user intends to view all tasks that have the date 12th April 2021.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+1. The user inputs `view 2021-04-12`.
+2. TaskifyParser identifies this as a `view` command and creates a `ViewCommandParser` and call its parse method
+with the arguments specified by the user (in this case, `2021-04-12`).
+3. `ViewCommandParser` creates a new `TaskHasSameDatePredicate` with the arguments `2021-04-12`.
+4. `ViewCommandParser` creates a new `ViewCommand` with the newly created `TaskHasSameDatePredicate` object.
+5. When `ViewCommand`'s execute method is called, it prompts `Model` to call `updateFilteredTaskList()` with the 
+`TaskHasSameDatePredicate` predicate.
+6. `Model` updates the filtered list based on the predicate.
+7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
+to the user.
+
+The following activity diagram summarizes what happens when a user executes a view command:
+![ViewActivityDiagram](images/ViewCommandActivityDiagram.png)
+   
+#### Design Consideration
+* **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
+* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates. As such, users can
+input commands like `view today` or `view tomorrow` as a shortcut, instead of typing out
+  the entire date.
+
+### 4.4 Switch between the different tabs
+
+### Format of command
 * `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
 * `expired`: switch from the other tab to expired tab. It will throw an error if you are already in the expired tab.
 * `uncompleted`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the uncompleted tab.
 * `completed`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the completed tab.
 
-### 4.1.2 Implementation
+### Implementation
 
 The tab switching functionality is facilitated by the `MainWindow#switchTab(int tabNumber)` depending on which tab you
 want to switch to and what tab users are currently on now.
@@ -245,43 +306,16 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 ![ExpiredActivityDiagram](images/ExpiredActivityDiagram.png)
 
-### 4.1.3 Design Consideration
+### Design Consideration
 * **Current Choice:** Switch tabs based on the tab name.
     * Pros: More intuitive to the user. The tab name corresponds to the status of the tasks for that tab.
     * Cons: User would have to type longer sentence as compared to `switch 1`
 
 * **Alternative Choice:** Switch tabs based on tab index
     * Pros: Lesser things to remember as the format command is `switch index`
-    * Cons: Less intuitive as user will have to look up what tab one corresponds to.    
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
 
-
-## 4.2 View Command
-The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
-
-### 4.2.1 Implementation
-This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
-in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
-
-The following sequence diagram shows how the `view` command works. We will assume the user inputs
-`view 2021-04-12`, that is, the user intends to view all tasks that have the date 12th April 2021.
-
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
-1. The user inputs `view 2021-04-12`.
-2. TaskifyParser identifies this as a `view` command and creates a `ViewCommandParser` and call its parse method
-with the arguments specified by the user (in this case, `2021-04-12`).
-3. `ViewCommandParser` creates a new `TaskHasSameDatePredicate` with the arguments `2021-04-12`.
-4. `ViewCommandParser` creates a new `ViewCommand` with the newly created `TaskHasSameDatePredicate` object.
-5. When `ViewCommand`'s execute method is called, it prompts `Model` to call `updateFilteredTaskList()` with the 
-`TaskHasSameDatePredicate` predicate.
-6. `Model` updates the filtered list based on the predicate.
-7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
-to the user.
-   
-### 4.2.2 Design Consideration
-* **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
-* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
-
-## 4.3 Tag Search Command
+### 4.5 Tag Search Command
 
 ### Implementation
 
@@ -320,10 +354,10 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: Less intuitive as user will have to keep track of which tags are under which group.
 
 
-## 4.4 Delete multiple tasks with indices
+## 4.6 Delete multiple tasks with indices
 This feature allows users to list out the [indices](#65-glossary) of tasks to delete.
 
-### 4.4.1 Implementation
+### Implementation
 This feature is facilitated by `DeleteMultipleCommand`, which is a `Command` that is executed with `execute()`. It relies on `DeleteUtil#hasMultipleValidIndex` as a validity check,
 which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` is called, and returns a `DeleteMultipleCommand`.
 
@@ -333,7 +367,7 @@ The following class diagram shows the relationship between classes for a success
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
 ![](images/DeleteMultipleUsingIndicesSeqDiag.png)
 
-### 4.4.2 Design Consideration
+### Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Deleting several tasks with the default delete feature is too cumbersome
@@ -350,10 +384,10 @@ The following sequence diagram traces the step-by-step execution of deleting mul
 
 Solution 1 was selected for its better benefits as well as increased testability.
 
-## 4.5 Delete multiple tasks with an index range
+## Delete multiple tasks with an index range
 This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
 
-### 4.5.1 Implementation
+### Implementation
 This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
 [deleting multiple tasks with **multiple indices** feature](#44-delete-multiple-tasks-with-indices), with the only difference in
 the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in
@@ -364,7 +398,7 @@ The responsible class diagram for this feature is [here](#classdiag), which is a
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
 ![](images/DeleteMultUsingIndexRangeSeqDiag.png)
-### 4.5.2 Design Consideration
+### Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Listing indices individually after typing `delete` to delete many tasks might be cumbersome as well
@@ -378,10 +412,10 @@ be part of the same responsibility, so it likely does not violate SRP.
 
 
 
-## 4.6 Delete all tasks of a specified status
+## 4.7 Delete all tasks of a specified status
 This feature allows users to provide a `Status` to delete all tasks that are of that `Status`.
 
-### 4.6.1 Implementation
+### Implementation
 This feature is facilitated by the `DeleteByStatusCommand`. It does a validity check by calling `DeleteUtil#isDeletingTasksByStatus` in `TaskifyParser`,
 and `DeleteByStatusCommandParser#parse` calls `ParserUtil#parseInputToStatus` to parse the user's input arguments into the desired `Status`, which
 is stored as a field in `DeleteByStatusCommand` for use in the execution of the command (i.e `DeleteByStatusCommand#execute`).
@@ -394,7 +428,7 @@ diagram for the previous two delete multiple tasks features is the name of the `
 The following sequence diagram traces the step-by-step execution of deleting all tasks of a specified status.
 ![](images/DeleteByStatusSeqDiag.png)
 
-### 4.6.2 Design Consideration
+### Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Instead of deleting by indices, users might want to delete all tasks of a specific `Status`, which might be cumbersome with the existing two features for deleting multiple tasks.<br>
