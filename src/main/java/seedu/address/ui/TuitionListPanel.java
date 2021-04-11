@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -11,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
 /**
@@ -19,7 +17,6 @@ import seedu.address.model.student.Student;
  */
 public class TuitionListPanel extends UiPart<Region> {
     private static final String FXML = "TuitionListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TuitionListPanel.class);
 
     @FXML
     private Label studentName;

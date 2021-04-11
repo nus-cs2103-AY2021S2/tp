@@ -104,8 +104,6 @@ public class TypicalStudents {
             .withGuardianPhone(VALID_GUARDIAN_PHONE_BOB).withRelationship(VALID_RELATIONSHIP_BOB)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalStudents() {} // prevents instantiation
 
     /**

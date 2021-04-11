@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.time.LocalDateTime;
-import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -10,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.FeeUtil;
 import seedu.address.model.fee.Month;
@@ -23,7 +21,6 @@ import seedu.address.model.student.Student;
  */
 public class MonthlyFeeListPanel extends UiPart<Region> {
     private static final String FXML = "MonthlyFeeListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(MonthlyFeeListPanel.class);
     private ObservableList<MonthlyFee> monthlyFeeList;
 
     @FXML

@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -12,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
@@ -24,7 +22,6 @@ import seedu.address.model.tuition.Tuition;
  */
 public class UpcomingTuitionListPanel extends UiPart<Region> {
     private static final String FXML = "UpcomingTuitionListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(UpcomingTuitionListPanel.class);
 
     @FXML
     private ListView<Tuition> upcomingTuitionListView;
