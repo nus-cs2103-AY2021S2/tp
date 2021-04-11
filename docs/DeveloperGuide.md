@@ -1002,3 +1002,4 @@ and able to serve as a protection to the team repo's master branch.
 
 * Planned and increment the features for each milestone progessively
   and managed to finish all given tasks ahead of deadlines for all the milestones.
+  
