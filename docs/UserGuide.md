@@ -77,6 +77,7 @@ Ellipsis | Repeatable parameters | [t/TAG]... | When adding a dog for example, m
 In this section, you will be introduced to the layout of Pawbook's Graphical User Interface (GUI). This will help you better understand what each component that you observe on-screen represents.
 
 There are a total of two views that you can navigate to when using Pawbook:
+
 * [Main Page View](#main-page-view)
 * [Help Page View](#help-page-view)
 
@@ -137,7 +138,7 @@ Format:
 ```
 add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...
 add owner n/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
-add program n/PROGRAM_NAME [s/DATETIME_OF_SESSION]... [t/TAG]...
+add program n/PROGRAM_NAME [s/SESSION_TIME]... [t/TAG]...
 ```
 
 Note:
@@ -234,7 +235,7 @@ Format:
 ```
 edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...
 edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
-edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...
+edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_TIME]... [t/TAG]...
 ```
 
 Note:
@@ -268,7 +269,7 @@ To edit the phone number of owner with ID 1 to 91234567, type `owner ID p/912345
 If successfully edited, Pawbook will display a success message as shown here.
 ![Edit Command Result](images/EditCommandScreenshot2.png)
 
-### Enrol Command: Let a dog join a program
+### Enrol Command: Allows dog(s) to join program(s)
 
 **Function**: Enrol a specified dog to a specified program that the dog was previously not enrolled in. Batch enrolment is also supported, which means that multiple dogs can be enrolled into the same program, or one dog can be enrolled into multiple programs.<br>
 **Use case**: When you want to enrol a dog into a specific program, you can use this command. One instance is when after a new dog Bruce has just joined the school and is applying for Obedience Training. You can then enrol Bruce into the Obedience Training program after you have added Bruce into the system.
@@ -309,7 +310,7 @@ To enrol dog 4 into program 13, type `enrol d/4 p/13` into the command box.
 Upon successful enrollment, Pawbook will display a success message as shown here.
 ![Enrol Command Result](images/EnrolCommandScreenshot2.png)
 
-### Drop Command: Remove dogs from enrolled programs
+### Drop Command: Remove dog(s) from enrolled program(s)
 
 **Function**: Removes a specified dog from a specified program that the dog was previously enrolled in. Batch removal is supported, which means that multiple dogs can be removed from the same program, or a single dog can be removed from multiple programs.<br>
 **Use case**: After a dog has finished a program or has dropped out of the program, you can remove him from the program using this command.
@@ -349,7 +350,7 @@ To drop dog 4 from program 13, type `drop d/4 p/13` into the command box.
 Upon successful dropping, Pawbook will display a success message as shown here.
 ![Drop Command Result](images/DropCommandScreenshot2.png)
 
-### Schedule Command: See all your programs at a glance
+### Schedule Command: See all the programs in a day
 
 **Function**: Display all programs happenings on the current day or any specified date.<br>
 **Use case**: As a busy dog school manager, this allows you to view at one glance what are the programs that are lined up on any given day.
@@ -410,7 +411,7 @@ To view all the programs in Pawbook, type `list program` into the command box.
 If there are programs to be viewed, Pawbook will display a success message as shown here.
 ![List Command Result](images/ListCommandScreenshot2.png)
 
-### Find Command: Search for entities by name
+### Find Command: Search for entities by keywords
 
 **Function**: Shows the list of entities with names that contain the keywords supplied.<br>
 **Use case**: When you forgot the ID of an entity (dog/owner/program) and want to find it by their name. You can also find multiple entities by providing multiple keywords. This may be helpful when you want to see just one specific entity profile.
@@ -443,7 +444,7 @@ To find entities containing `Berry` and `Training`, type `find berry training` i
 If there are entities to be viewed, Pawbook will display a success message as shown here.
 ![Find Command Result](images/FindCommandScreenshot2.png)
 
-### View Command: See a particular entity alongside related entities
+### View Command: See a specified entity and its related entities
 
 **Function**: Views the entity with the given ID together with all entities related to the specified entity.<br>
 **Use case**: When you want to have a more detailed view of a particular entity (dog/owner/program), you can use this command to see more details. The first entry at the top will be the profile of the entity you want to view. This is followed by the all its related entities. For instance, when you view Bruce the dog, you will first see the his profile, followed by his owner's profile and finally all the programs that Bruce is enrolled in.
@@ -533,10 +534,10 @@ A: Pawbook does not access any web services and can be run completely offline.
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]...`
+**Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/SESSION_TIME]... [t/TAG]...`
 **Delete** | 1. `delete dog DOG_ID`<br> 2. `delete owner OWNER_ID`<br> 3. `delete program PROGRAM_ID`
 **Drop** | 1. `drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 2. `drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
-**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...`
+**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_TIME]... [t/TAG]...`
 **Enrol** | 1. `enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]...`
@@ -550,8 +551,8 @@ Action | Format
 # Glossary
 
 Term  | Explanation
------|------------------
+------|------------------
 CLI | Short for Command Line Interface. CLI-based applications are primarily used through processing text commands.
 GUI | Short for Graphical User Interface. GUIs work as the tangible user interface between program and user. Users interact with Pawbook through the GUI on their devices.
 Entity | Refers to either an owner, a dog or a program.
-Camel Case | Refers the a style of writing without spaces and indicating the separation of words using a single capitalized letter.
+Camel Case | Refers to a style of writing without spaces and indicating the separation of words using a single capitalized letter.
