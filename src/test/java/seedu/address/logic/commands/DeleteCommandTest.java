@@ -2,15 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIdentifier;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_EVENT;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -40,46 +41,36 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
-    /*
+
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Identifier outOfBoundIndex = Identifier.fromIdentifier(model.getEventBook().getEventList().size() + 1);
+        Identifier outOfBoundIndex = Identifier.fromIdentifier(Event.getLatestIdentifier().getValue() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER);
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER,
+                outOfBoundIndex.getValue());
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
-     */
 
-    /*
     @Test
-    public void execute_validIndexFilteredList_success() {
-        showEventAtIdentifier(model, IDENTIFIER_FIRST_EVENT);
+    public void execute_validIndexfilteredList_success() {
+        int sizeOfEventBook = model.getEventBook().getEventList().size();
+        Event eventToDelete = model.getEventBook().getEventList().get(sizeOfEventBook - 1);
+        Event secondEvent = model.getEventBook().getEventList().get(IDENTIFIER_SECOND_EVENT.getZeroBased());
+        Identifier eventIdentifier = Identifier.fromIdentifier(eventToDelete.getIdentifier());
+        Identifier secondEventIdentifier = Identifier.fromIdentifier(secondEvent.getIdentifier());
+        showEventAtIdentifier(model, secondEventIdentifier);
 
-        Event eventToDelete = model.getFilteredEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(IDENTIFIER_FIRST_EVENT);
+        DeleteCommand deleteCommand = new DeleteCommand(eventIdentifier);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete);
 
-        Model expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
         expectedModel.deleteEvent(eventToDelete);
-        showNoEvent(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showEventAtIdentifier(model, IDENTIFIER_FIRST_EVENT);
-
-        Identifier outOfBoundIndex = IDENTIFIER_SECOND_EVENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getEventBook().getEventList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER);
-    }
-     */
 
     @Test
     public void equals() {

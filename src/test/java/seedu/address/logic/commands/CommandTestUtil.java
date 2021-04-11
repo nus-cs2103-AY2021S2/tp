@@ -11,6 +11,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.identifier.Identifier;
 //import seedu.address.commons.core.identifier.Index;
@@ -151,13 +152,15 @@ public class CommandTestUtil {
      * {@code model}'s event book.
      */
     public static void showEventAtIdentifier(Model model, Identifier targetIdentifier) {
-        assertTrue(targetIdentifier.getZeroBased() < model.getFilteredEventList().size());
+        assertTrue(targetIdentifier.getValue() < Event.getLatestIdentifier().getValue());
 
-        Event event = model.getFilteredEventList().get(targetIdentifier.getZeroBased());
+        Optional<Event> optEvent = model.getEventByIdentifier(targetIdentifier.getValue());
+        assertTrue(optEvent.isPresent());
+        Event event = optEvent.get();
         final String[] splitName = event.getName().eventName.split("\\s+");
-        model.updateFilteredEventList(new EventContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredEventList(new EventContainsKeywordsPredicate(Arrays.asList(splitName)));
 
-        assertEquals(1, model.getFilteredEventList().size());
+        assertTrue(model.getFilteredEventList().size() > 0);
     }
 
 }

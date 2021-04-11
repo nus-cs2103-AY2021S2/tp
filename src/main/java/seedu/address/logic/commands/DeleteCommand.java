@@ -42,6 +42,7 @@ public class DeleteCommand extends Command {
                                 targetIdentifier.getValue())));
 
         model.deleteEvent(eventToDelete);
+        model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }
 
