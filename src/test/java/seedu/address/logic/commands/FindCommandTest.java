@@ -79,7 +79,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleNameKeywords_multiplePassengersFound() {
         String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz".toLowerCase());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

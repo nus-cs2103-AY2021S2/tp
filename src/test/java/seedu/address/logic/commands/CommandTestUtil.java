@@ -34,7 +34,9 @@ import seedu.address.testutil.EditPassengerDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_NAME_AMY_LOWER_CASE = VALID_NAME_AMY.toLowerCase();
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_BOB_LOWER_CASE = VALID_NAME_BOB.toLowerCase();
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
@@ -165,7 +167,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPassengerList().size());
 
         Passenger passenger = model.getFilteredPassengerList().get(targetIndex.getZeroBased());
-        final String[] splitName = passenger.getName().fullName.split("\\s+");
+        final String[] splitName = passenger.getName().fullName.toLowerCase().split("\\s+");
         model.updateFilteredPassengerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPassengerList().size());
