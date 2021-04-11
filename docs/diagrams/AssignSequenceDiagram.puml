@@ -1,8 +1,11 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 !include Style.puml
 
-box Logic LOGIC_COLOR_T2
+hide footbox
+title Assign Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AssignCommandParser" as AssignCommandParser LOGIC_COLOR

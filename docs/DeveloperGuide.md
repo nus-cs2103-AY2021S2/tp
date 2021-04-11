@@ -51,9 +51,9 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_person s/1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="650" />
 
 The sections below give more details of each component.
 
@@ -133,9 +133,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-###Add Person feature
+### Add person feature
 
-The add person feature allows the user to add either a student or a tutor to EZManage
+#### Current Implementation
+
+The add person feature allows the user to add either a student or a tutor to EzManage
 
 The add person feature is facilitated by `UniquePersonList`. This list is stored internally in `AddressBook` as persons.
 
@@ -158,8 +160,6 @@ Step 5: The `CommandResult` is then displayed on the UI
 The sequence for the example scenario can be found below:
 
 ![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
-
-
 
 ### Add session feature
 
@@ -189,7 +189,10 @@ The sequence for the example scenario can be found below:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddSessionCommandParser` and `AddSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### assign person feature
+### Assign person feature
+
+#### Current Implementation
+
 The assign feature is able to assign `sessionId` to the list of sessions in a Person. This person can either be a Student or a Tutor. 
 
 Likewise, `studentId` and `tutorId` will be assigned to the list of students and tutor attribute of a session respectively.
@@ -210,6 +213,9 @@ The sequence for the example scenario can be found below:
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
 ### Unassign person feature
+
+#### Current Implementation
+
 The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
 
 Given below is an example usage scenario and how the unassign command behaves at each step.
@@ -267,37 +273,6 @@ The sequence for the example scenario can be found below:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
-### View person feature
-
-#### Current Implementation
-The view person feature requires the `personID` of the student or tutor, and 
-displays the relevant information belonging to the person under that specified ID.
-As the user enters the command word `view_person`, the `ViewCommandParser` will verify
-if a `personID` has been provided, and an error is thrown if otherwise. With the given `personID`, 
-a `PersonIdPredicate` will be created, and subsequently a `ViewPersonCommmand` object will be created. <br>
-
-The `ViewPersonCommand` class inherits from the `Command` abstract class, and it implements the `execute()`
-class where it will use the `PersonIdPredicate` to update the model with the filtered list. <br>
-
-Given below is an example usage scenario and how the view person merchanism behaves at each step. <br>
-
-Step 1. The user launches the application and executes `view_person s/1` command to view student with personID `s/1`. <br>
-
-Step 2. The `parseCommand` method under `AddressBookParser` class passes the user input to `ViewCommandParser`. <br>
-
-Step 3. The `ViewCommandParser` verifies that a valid `personID` has been provided and throw an exception if otherwise.
-The parser then return a `ViewPersonCommand` object using the `PersonIdPredicate` created from the `personID`. <br>
-
-Step 4. The `LogicManager` then executes the `ViewPersonCommand`. <br>
-
-Step 5. The `VierPersonCommand` updates the model by calling `Model#updateFilteredPersonList` using the `PersonIdPredicate` created previously.
-
-Step 6. A `CommandResult` object is returned and displayed on the UI.
-
-The following activity diagram illustrates what happens when a user executes a view person command:
-
-![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
 
 ### Delete session feature
 
@@ -362,6 +337,38 @@ The sequence for the example scenario can be found below:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommandParser`, `EditSessionCommand` and `EditSessionDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+### View person feature
+
+#### Current Implementation
+
+The view person feature requires the `personID` of the student or tutor, and 
+displays the relevant information belonging to the person under that specified ID.
+As the user enters the command word `view_person`, the `ViewCommandParser` will verify
+if a `personID` has been provided, and an error is thrown if otherwise. With the given `personID`, 
+a `PersonIdPredicate` will be created, and subsequently a `ViewPersonCommmand` object will be created. <br>
+
+The `ViewPersonCommand` class inherits from the `Command` abstract class, and it implements the `execute()`
+class where it will use the `PersonIdPredicate` to update the model with the filtered list. <br>
+
+Given below is an example usage scenario and how the view person merchanism behaves at each step. <br>
+
+Step 1. The user launches the application and executes `view_person s/1` command to view student with personID `s/1`. <br>
+
+Step 2. The `parseCommand` method under `AddressBookParser` class passes the user input to `ViewCommandParser`. <br>
+
+Step 3. The `ViewCommandParser` verifies that a valid `personID` has been provided and throw an exception if otherwise.
+The parser then return a `ViewPersonCommand` object using the `PersonIdPredicate` created from the `personID`. <br>
+
+Step 4. The `LogicManager` then executes the `ViewPersonCommand`. <br>
+
+Step 5. The `VierPersonCommand` updates the model by calling `Model#updateFilteredPersonList` using the `PersonIdPredicate` created previously.
+
+Step 6. A `CommandResult` object is returned and displayed on the UI.
+
+The following activity diagram illustrates what happens when a user executes a view person command:
+
+![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -496,18 +503,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | manager                               | delete a class                 | remove classes that are no longer available              |
 | `* * `   | manager                               | edit tutor information         | ensure tutor information are up to date                  |
 | `* * `   | manager                               | edit student information       | ensure student information are up to date                |
-| `* * `   | manager                               | manage of class enrollment size  | be aware of how many more students should be allocated to this class |
-| `* * `   | manager                               | filter out suitable tutors by available timings and subjects    | allocate a suitable tutor to a class |
-| `* `     | manager                               | update and check the status of students’ bills  |                                         |
-| `* `     | manager                               | update and check the status of payments owed to tutors |                                  |
-| `* `     | manager                               | get notified when students’ bills are due |                                               |
-
-*{More to be added}*
 
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EzManage` and the **Actor** is the `user`, unless specified otherwise)
 
 
 **Use case: Add a person**
@@ -515,7 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a tutor or student in the list
-2. AddressBook adds the Person
+2. EzManage adds the Person
 
     Use case ends
 
@@ -523,7 +523,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given tutor/student information is already exist in the list
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EzManage shows an error message.
 
   Use case ends.
 
@@ -532,7 +532,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a class to the database
-2. AddressBook adds the class
+2. EzManage adds the class
 
    Use case ends
 
@@ -542,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to delete a specific student in the list of persons
-2.  AddressBook deletes the student
+2.  EzManage deletes the student
 
     Use case ends.
 
@@ -550,7 +550,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given ID is invalid.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EzManage shows an error message.
+    
+    Use case ends.
+
+* 1b. The given ID is a person who is currently assigned to a session.
+
+    * 1b1. EzManage shows an error message, informing user to unassign the person from all of his/her sessions, before he/she can be deleted.
     
     Use case ends.
 
@@ -559,7 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to view a specific tutor/student in the list according to person ID
-2.  AddressBook shows the person's details and the classes assigned to the person
+2.  EzManage shows the person's details and the classes assigned to the person
 
     Use case ends.
 
@@ -567,16 +573,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given index is in the wrong format.
 
-    * 1a1. AddressBook shows an error message and show the proper usage of the command.
+    * 1a1. EzManage shows an error message and show the proper usage of the command.
 
       Use case resumes at step 2.
     
 * 1b. The given index cannot be found in the address book.
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EzManage shows an error message.
 
       Use case ends.
-    
-*{More to be added}*
 
 
 ### Non-Functional Requirements

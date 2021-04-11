@@ -3,9 +3,9 @@ layout: page
 title: Chanell Ng 's Project Portfolio Page
 ---
 
-## Project: EZManage
+## Project: EzManage
 
-EZManage - EZManage is a desktop address book application used for the management of a tuition centre's sessions, students and tutors. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+EzManage - EzManage is a desktop address book application used for the management of a tuition centre's sessions, students and tutors. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -15,19 +15,19 @@ Given below are my contributions to the project.
   * Highlights: A session ID of a session is always unique and unmodifiable once given to a session. The uniqueness of the session IDs allows for efficient management of all the sessions. 
   
 * **New Feature**: Added the ability to delete a session.
-  * What it does: Allows the user to delete an existing session in EZManage using the session's unique session ID.
+  * What it does: Allows the user to delete an existing session in EzManage using the session's unique session ID.
   * Justification: This feature improves the product significantly because a user can easily manage the list of sessions and allows the app to provide a convenient way to remove sessions when mistakenly added or when a specific session is no longer needed.
-  * Highlights: A session can only be deleted if the given session ID is valid and session exists in EZManage.
+  * Highlights: A session can only be deleted if the given session ID is valid and session exists in EzManage.
   * Credits: AddressBook Level 3
 
 * **New Feature**: Added the ability to edit a session.
-  * What it does: Allows the user to edit an existing session in EZManage.
+  * What it does: Allows the user to edit an existing session in EzManage.
   * Justification: This feature improves the product significantly because a user can easily manage the information of sessions and gives users the flexibility to easily alter a session's information after creation should details like the sessions's subject, day, timeslot or tags be outdated.
   * Highlights: To avoid potential day or timeslot clashes of a session's enrolled students and assigned tutor when editing a session, a user can only edit a session's day and timeslot if the session has no students and no tutor assigned. A user will have to unassign all students and tutor before being able to edit the session's time-related information. 
   * Credits: AddressBook Level 3
 
 * **New Feature**: Added the ability to have an individual view of a specific session.
-  * What it does: Allows the user to view an existing session in EZManage by displaying all information relevant to a session on two split panels. The left panel displays the session's information and the right panel displays the list of students enrolled in the session , if any.
+  * What it does: Allows the user to view an existing session in EzManage by displaying all information relevant to a session on two split panels. The left panel displays the session's information and the right panel displays the list of students enrolled in the session , if any.
   * Justification: This feature improves the product significantly because a user can easily view a specific session and allows the app to provide a convenient way to display all information relevant to a specific session. 
   * Highlights: This enhancement allows the user to easily manage a specific session by viewing the session's enrolled students then calling subsequent relevant commands to manage a session's list of enrolled students and tutor. It required an in-depth analysis of design alternatives.
   
