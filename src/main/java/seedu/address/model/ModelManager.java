@@ -66,7 +66,10 @@ public class ModelManager implements Model {
     private final TimetablePrefs timetablePrefs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs. MeetingBook will be set to default.
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Sets the MeetingBook to be empty
+     * Sets the Person- Meeting Connection to be empty
+     * Sets the timetable preferences to be default date today's date.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();

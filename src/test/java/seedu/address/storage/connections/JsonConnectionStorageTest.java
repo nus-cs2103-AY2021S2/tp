@@ -6,11 +6,9 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
-import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.connection.JsonConnectionStorage;
-import seedu.address.storage.meetingbook.JsonMeetingBookStorage;
 import seedu.address.testutil.TypicalMeetings;
 import seedu.address.testutil.TypicalPersons;
 
@@ -21,9 +19,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalMeetings.MEETING1;
-import static seedu.address.testutil.TypicalMeetings.MEETING6;
-import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
+
 
 public class JsonConnectionStorageTest {
     private static final Path TEST_DATA_FOLDER =
