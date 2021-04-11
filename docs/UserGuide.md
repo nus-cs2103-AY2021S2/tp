@@ -55,7 +55,7 @@ These are symbols used throughout the User Guide you might want to take note of.
 1. Copy the file to the folder you want to use as the _home folder_ for your Weeblingo application.
 
 1. Launch the app through running `java -jar weeblingo.jar` or double-clicking the icon. The GUI similar to the image below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiWithExplanation.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
