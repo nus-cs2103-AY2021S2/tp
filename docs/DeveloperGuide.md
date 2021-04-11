@@ -112,7 +112,45 @@ The following sequence diagram shows how the AddOn feature works:
 The following activity diagram summaries the flow of event when a user executes the addon command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
+### Find Feature
+#### Implementation
+The Find feature allows a user to find entries that match **ANY** of the keywords provided by the user.
+This enables the user to easily sieve out all the entries that meet every single requirement the user
+is looking for, which will be useful when deciding where to eat.
 
+This feature is implemented through the `find` command, where the user will provide a list of keywords that
+they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
+The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
+`TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
+fields of all entries, and return all entries that match at least one of the keywords provided. The UI will then
+be updated to display the list of entries that were returned as a search result.
+
+To better understand how the Find feature works, refer to the diagrams provided for the FindAll feature, as the
+implementation is largely the same.
+
+#### Design Considerations
+
+##### Aspect: Whether the syntax used for the `find` command should be similar to the `add` command
+* **Alternative 1 (current choice):** Implement the `find` command without using similar syntax to the `add`
+  command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`)
+    * Pros: Lesser syntax required, making the command more user-friendly (**Important as the `find` command
+      will be executed by the user many more times as compared to the `add` command**)
+    * Cons: Makes the implementation less standardised across different commands
+* **Alternative 2:** Implement the `find` command by using similar syntax as the `add` command
+    * Pros: Makes the implementation more standardised across different commands
+    * Cons: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
+    impact the user experience
+
+##### Aspect: How the user input keywords for the `Rating` and `Price` fields should be implemented
+* **Alternative 1 (current choice):** Implement the rating and price fields with additional syntax (eg. Rating
+  implemented as `RATING/5` instead of `RATING`, and price implemented as `$PRICE` or `$PRICE-PRICE` instead
+  of `PRICE` or `PRICE-PRICE`)
+    * Pros: More intuitive keywords for the user to type out when performing their search
+    * Cons: More typing is required, with additional syntax that needs to be strictly followed
+* **Alternative 2:** Implement the rating and price fields without additional syntax
+    * Pros: Keywords can be typed out faster, makes performing searches more efficient
+    * Cons: Possibility of user getting back results for rating when finding for price, or getting back results
+    for price when finding for rating
 
 ### FindAll Feature
 #### Implementation
@@ -130,6 +168,7 @@ The following sequence diagram shows how the FindAll feature works:
 The following activity diagram summarises the events that take place when a user executes the FindAll
 command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
+
 #### Design Consideration
 
 ##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature
