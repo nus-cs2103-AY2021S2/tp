@@ -150,15 +150,46 @@ Classes used by multiple components are in the `seedu.cakecollate.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sorting displayed list by delivery date
+### Add Command Feature
 
-The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date
+A key functionality of CakeCollate is the ability to add cake items into an order (also known as order items or order descriptions). The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
 
-(insert sequence diagram)
+However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and map one input to the other. 
 
-To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList() command.
+We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model. Prior to this feature, the AddCommand was initialised using an `Order` object created by the `AddCommandParser`, the `AddCommand::execute` method took in a model, and the `AddCommandParser::parse` method did not take in a model. Given this, there were two main options to implement the mapping:
 
-(explain with more code later)
+1. Refactor `AddCommandParser::parse` to have access to the Model. 
+
+    * Pros: This meant that the mapping would be done within the parser, which fitted the responsibility of the parser, and the order object for initialising the `AddCommand` can be created in the parser itself.
+    * Cons: This seemed like extra coupling between the Parser methods and classes, and the Model class, as the method `CakeCollateParser::parseCommand` which is the caller of `AddCommandParser::parse` will need to have access to the model too.
+
+2. Allow the mapping to take place in the `AddCommand::execute` method, since that method takes in a model as a parameter. 
+
+    * Pros: Keep the existing level of coupling between model and parser classes (i.e. none). 
+    * Cons: This meant that the order object cannot be initialised in the `AddCommandParser::parse` method as the `OrderDescriptions` in the `Order` would have been incomplete if the mapping from `indexes` to `OrderDescriptions` was not done yet.
+
+In light of the additional coupling, the second option was chosen. An AddCommandDescriptor nested class was created in the AddCommand class, similar to the EditCommand, so that indexes and order descriptions that were inputted can be stored, and once the mappings were done in the `AddCommand::execute` method, the entire `Order` object could be built before being added to the model.
+
+Hence, based on this implementation, here is the sequence diagram containing the steps that occur when a user inputs an `Order` containing an `o/` and `oi/` field.
+
+**Sequence diagram depicting the `AddCommandParser::parse` method:**
+
+![AddParserSequenceDiagram](images/AddParserSequenceDiagram.png)
+
+**Sequence diagram depicting the `AddCommand::execute` method:**
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+
+[comment]: <> (### Sorting displayed list by delivery date)
+
+[comment]: <> (The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date)
+
+[comment]: <> (&#40;insert sequence diagram&#41;)
+
+[comment]: <> (To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList&#40;&#41; command.)
+
+[comment]: <> (&#40;explain with more code later&#41;)
 
 
 ### Find feature
