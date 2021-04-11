@@ -206,19 +206,19 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-# **4. Implementation**
+# **4 Implementation**
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
 describes some noteworthy details on how certain features are implemented.
 
-## Switch between the different tabs
+## 4.1 Switch between the different tabs
 
-### Format of command
+### 4.1.1 Format of command
 * `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
 * `expired`: switch from the other tab to expired tab. It will throw an error if you are already in the expired tab.
 * `uncompleted`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the uncompleted tab.
 * `completed`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the completed tab.
 
-### Implementation
+### 4.1.2 Implementation
 
 The tab switching functionality is facilitated by the `MainWindow#switchTab(int tabNumber)` depending on which tab you
 want to switch to and what tab users are currently on now.
@@ -239,7 +239,7 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 ![ExpiredActivityDiagram](images/ExpiredActivityDiagram.png)
 
-### Design Consideration
+### 4.1.3 Design Consideration
 * **Current Choice:** Switch tabs based on the tab name.
     * Pros: More intuitive to the user. The tab name corresponds to the status of the tasks for that tab.
     * Cons: User would have to type longer sentence as compared to `switch 1`
@@ -249,10 +249,10 @@ The following activity diagram summarizes what happens when a user executes a sw
     * Cons: Less intuitive as user will have to look up what tab one corresponds to.
 
 
-## View Command
+## 4.2 View Command
 The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
 
-### Implementation
+### 4.2.1 Implementation
 This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
 in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
 
@@ -271,15 +271,15 @@ with the arguments specified by the user (in this case, `2021-04-12`).
 7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
 to the user.
    
-### Design Consideration
+### 4.2.2 Design Consideration
 * **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
 * **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
 
 
-## \[New] Delete multiple tasks with indices
-This feature allows users to list out the [indices](#glossary) of tasks to delete.
+## 4.3 Delete multiple tasks with indices
+This feature allows users to list out the [indices](#65-glossary) of tasks to delete.
 
-### Implementation
+### 4.3.1 Implementation
 This feature is facilitated by `DeleteMultipleCommand`, which is a `Command` that is executed with `execute()`. It relies on `DeleteUtil#hasMultipleValidIndex` as a validity check,
 which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` is called, and returns a `DeleteMultipleCommand`.
 
@@ -289,7 +289,7 @@ The following class diagram shows the relationship between classes for a success
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
 ![](images/DeleteMultipleUsingIndicesSeqDiag.png)
 
-### Design Consideration
+### 4.3.2 Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Deleting several tasks with the default delete feature is too cumbersome
@@ -306,12 +306,12 @@ The following sequence diagram traces the step-by-step execution of deleting mul
 
 Solution 1 was selected for its better benefits as well as increased testability.
 
-## \[New] Delete multiple tasks with an index range
+## 4.4 Delete multiple tasks with an index range
 This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
 
-### Implementation
+### 4.4.1 Implementation
 This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
-[deleting multiple tasks with **multiple indices** feature](#new-delete-multiple-tasks-with-indices), with the only difference in
+[deleting multiple tasks with **multiple indices** feature](#43-delete-multiple-tasks-with-indices), with the only difference in
 the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in
 `DeleteUtil#getTasksToDelete(List<Task>, List<Index>, boolean)`. This field is determined by `DeleteMultipleCommand#parse`, which checks
 if the user is deleting tasks using indices or an index range by consulting `DeleteUtil#isDeletingTasksByRange`.
@@ -320,7 +320,7 @@ The responsible class diagram for this feature is [here](#classdiag), which is a
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
 ![](images/DeleteMultUsingIndexRangeSeqDiag.png)
-### Design Consideration
+### 4.4.2 Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Listing indices individually after typing `delete` to delete many tasks might be cumbersome as well
@@ -334,10 +334,10 @@ be part of the same responsibility, so it likely does not violate SRP.
 
 
 
-## \[New] Delete all tasks of a specified status
+## 4.5 Delete all tasks of a specified status
 This feature allows users to provide a `Status` to delete all tasks that are of that `Status`.
 
-### Implementation
+### 4.5.1 Implementation
 This feature is facilitated by the `DeleteByStatusCommand`. It does a validity check by calling `DeleteUtil#isDeletingTasksByStatus` in `TaskifyParser`,
 and `DeleteByStatusCommandParser#parse` calls `ParserUtil#parseInputToStatus` to parse the user's input arguments into the desired `Status`, which
 is stored as a field in `DeleteByStatusCommand` for use in the execution of the command (i.e `DeleteByStatusCommand#execute`).
@@ -350,7 +350,7 @@ diagram for the previous two delete multiple tasks features is the name of the `
 The following sequence diagram traces the step-by-step execution of deleting all tasks of a specified status.
 ![](images/DeleteByStatusSeqDiag.png)
 
-### Design Consideration
+### 4.5.2 Design Consideration
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Instead of deleting by indices, users might want to delete all tasks of a specific `Status`, which might be cumbersome with the existing two features for deleting multiple tasks.<br>
@@ -371,9 +371,6 @@ are much more important.
 --------------------------------------------------------------------------------------------------------------------
 
 # **5. Documentation, logging, testing, configuration, dev-ops**
-
-
-# **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
