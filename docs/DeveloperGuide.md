@@ -381,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific person.
 2.  BookCoin To The Moon deletes the person.
 
-    Use case resumes at step 1.
+    Use case ends.
 
 **Extensions**
 
@@ -419,13 +419,13 @@ This use case is similar to UC07 - List all bookings, except that bookings are r
 
 **Extensions**
 
-* 1a. A venue with the specified field(s) does not exist in the system.
+* 1a. No venues with the specified field(s) exists in the system.
 
     * 1a1. BookingSystem shows an error message.
 
       Use case ends.
 
-* 1b. The specified field(s) is/are invalid.
+* 1b. The field(s) specified is/are invalid.
 
     * 1a1. BookingSystem shows an error message.
 
@@ -577,11 +577,11 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list_person` command. 
-      Multiple persons in the list. Person with email johndoe@gmail.com is in the list.
-      Person with email nonexistent@gmail.com is not in the list.
+      Multiple persons in the list. Person with email `johndoe@gmail.com` is in the list.
+      Person with email `nonexistent@gmail.com` is not in the list.
 
    1. Test case: `delete_person e/johndoe@gmail.com`<br>
-      Expected: Person with email johndoe@gmail.com is deleted from the list.
+      Expected: Person with email `johndoe@gmail.com` is deleted from the list.
       Details of the deleted contact shown in the status message.
 
    1. Test case: `delete_person e/nonexistent@gmail.com`<br>
@@ -597,14 +597,14 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a venue while all venues are being shown
 
     1. Prerequisites: List all venues using the `list_venue` command.
-       Multiple venues in the list. Venue with venue name Victoria Hall is in the list.
-       Venue with venue name Nonexistent Venue is not in the list.
+       Multiple venues in the list. Venue with venue name `Victoria Hall` is in the list.
+       Venue with venue name `NonExistent Venue` is not in the list.
 
     1. Test case: `delete_venue v/Victoria Hall`<br>
-       Expected: Venue with venue name Victoria Hall is deleted from the list.
+       Expected: Venue with venue name `Victoria Hall` is deleted from the list.
        Details of the deleted venue shown in the status message.
 
-    1. Test case: `delete_venue v/Nonexistent Venue`<br>
+    1. Test case: `delete_venue v/NonExistent Venue`<br>
        Expected: No venue is deleted. Error details shown in the status message.
 
     1. Other incorrect delete venue commands to try: `delete_venue`, `delete_venue x` <br>
@@ -637,11 +637,11 @@ testers are expected to do more *exploratory* testing.
 1. Editing a person while all persons are being shown
 
     1. Prerequisites: List all persons using the `list_person` command.
-       At least one person in the list. Person with email johndoe@gmail.com is in the list.
-       Person with email nonexistent@gmail.com is not in the list.
+       At least one person in the list. Person with email `johndoe@gmail.com` is in the list.
+       Person with email `nonexistent@gmail.com` is not in the list.
 
     1. Test case: `edit_person eo/johndoe@gmail.com p/90398472`<br>
-       Expected: Person with email johndoe@gmail.com has his/her phone number changed to 90398472.
+       Expected: Person with email `johndoe@gmail.com` has his/her phone number edited to 90398472.
        Details of the edited person in the status message.
 
     1. Test case: `edit_person eo/nonexistent@gmail.com`<br>
