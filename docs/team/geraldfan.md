@@ -16,26 +16,26 @@ I implemented 3 main features:
 
 Enhancement 1: Added the ModuleCode attribute for Task
     
-    * What it does:  Allows the user to add and edit the ModuleCode as an attribute of the Task
-    * Justification: Allows the user to know the module that the Task belongs to
+* What it does:  Allows the user to add and edit the ModuleCode as an attribute of the Task
+* Justification: Allows the user to know the module that the Task belongs to
 
 Enhancement 2: Implemented the Undo Command
 
-    * What it does: Allows the user to undo the last command which altered the state of the application
-    * Justification: This allows the user to undo any mistakes that were made i.e. clearing the application
-    * Highlights: It was difficult to implment the functionality where only commands which altered the application 
-                    could be undone as there was no way to differentiate between state modifying commands and non-state modifying 
+* What it does: Allows the user to undo the last command which altered the state of the application
+* Justification: This allows the user to undo any mistakes that were made i.e. clearing the application
+* Highlights: It was difficult to implment the functionality where only commands which altered the application 
+                could be undone as there was no way to differentiate between state modifying commands and non-state modifying 
                     commands. This was overcome by creating a NonModifyingCommand Enum to differentiate between the 
                     commands as well as overriding the toString() methods of each Command such that they could be 
                     checked against the NonModifyingCommand Enum.
 
 Enhancement 3: Implemented the Redo Command as well as the VersionedTaskTracker
 
-    * What it does: Allows the user to redo the last command that modified the application state
-    * Justification: This allows the user to redo a command after an Undo Command was issues. 
-    * Highlights: This enhancement follows the behaviour that most moderrn desktop applications follow, where if a 
-                    new command that alters the application is used after a Undo Command, the redundant states will 
-                    be purged. 
+* What it does: Allows the user to redo the last command that modified the application state
+* Justification: This allows the user to redo a command after an Undo Command was issues. 
+* Highlights: This enhancement follows the behaviour that most moderrn desktop applications follow, where if a 
+                new command that alters the application is used after a Undo Command, the redundant states will 
+                be purged. 
 
 
 ##Contributions to the UG
