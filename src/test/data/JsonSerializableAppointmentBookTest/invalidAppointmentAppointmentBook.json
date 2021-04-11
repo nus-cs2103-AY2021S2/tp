@@ -1,0 +1,8 @@
+{
+  "appointments" : [ {
+    "name" : "Meet Alex",
+    "remark" : "To celebrate Christmas at Fullerton Hotel",
+    "date" : "Invalid date",
+    "time" : "3:00PM"
+  } ]
+}
