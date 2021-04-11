@@ -255,11 +255,14 @@ Shows a message explaining how to access the help page.
 Adds a task into the task list.
 
 Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
-* `n/` is followed by the task name.
-* `d/` is followed by the date, with the format YYYY-MM-DD, deadline cannot be a past date.
+* `n/` is followed by the task name, it is case-sensitive.
+* `d/` is followed by the date of deadline, with the format `YYYY-MM-DD`, deadline cannot be a past date. Here, `Y` means
+  the year, `M` means the month and `D` means the day and all of them has to be integers and the date must be a valid date.
 * `p/` is followed by the priority, with 0 being highest and 9 being lowest. Other inputs are not accepted.
-* `c/` is followed by the category. It is optional.
-* `t/` is followed by the tag. It is optional.
+* `c/` is followed by the category. Different categories are separated by white space. It is optional.
+* `t/` is followed by the tag. Different tags are separated by white space. It is optional.
+* Note that any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments
+  (e.g. name/Name, tag/Tag or T&sk) will lead to an error.
 
 Examples:
 * `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
@@ -273,11 +276,14 @@ Deletes a task from the task list.
 
 Format: `delete_task INDEX`
 * Deletes the task at the specified INDEX.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive and valid integer 1, 2, 3, ...
+* Note that only one `INDEX` is accepted, multiple `INDEX` will lead to input format error.
+* The `INDEX` refers to the index number shown in the **displayed** task list.
+* The `INDEX` must be a positive and valid integer 1, 2, 3, ... i.e. `0`, negative integers and integers greater than
+  `2147482637` will lead to input format error.
 
 Examples:
-* `delete_task 2` deletes the second task in the task list.
+* `list` followed by `delete_task 2` deletes the second task in the full task list.
+* `find_task homework` followed by `delete_task 1` deletes the first task in the result of the `find_task` command.
 
 [Return to Feature List](#feature-list)
 
@@ -385,17 +391,19 @@ Format: `today_task`
 ### Finding tasks by name: `find_task`
 Finds tasks whose names contain any of the given keywords from the task list.
 
-Format: `find_task KEYWORD [MORE_KEYWORDS]`
+Format: `find_task KEYWORD1 [KEYWORD2] ...`
 * The search is case-insensitive. e.g. `homework` will match `Homework`.
+* The search scope is the **full** task list.
 * The order of the keywords does not matter. e.g. `Practice Problems` will match `Problems Practice`.
 * Only the name of the tasks is searched.
 * Only full words will be matched. e.g. `CS` will not match `CS2103`.
-* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Homework` will return 
+* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Homework` will return
   `ST2131 Homework`, `CS2103 Quiz`.
-  
+
 Examples:
 * `find_task Homework` returns `st2131 homework` and `Homework 1`
 * `find_task assignment homework` returns `Assignment 1`, `Homework 2`
+  
 ![find_task example](images/find_task-example.png)
 
 [Return to Feature List](#feature-list)
@@ -413,7 +421,8 @@ Format: `sort_task ARGUMENT`
    * `priority`: Sorts by task priority, in decreasing order, from priority 0 on top, to priority 9 at the bottom
 * On subsequent boots, the following will happen:
    * Relative order from previous launch will be preserved.
-   * However, if any order-altering command is issued, tasks will be sorted by name by default, unless otherwise stated by another `sort_task` command.
+   * However, if any order-altering command (`pin_task`, `unpin_task`, and `find_task`) is issued, tasks will be sorted by name by default, unless otherwise stated by another `sort_task` command.
+   * Marking a task as complete (`done_task`) or incomplete (`undone_task`) does not constitute an order-altering command.
     
 Examples:
 * `sort_task completion` sorts the task list by completion status.
@@ -504,13 +513,17 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * `st/` is followed by the time in the 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
 * `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
 * `et/` is followed by the time in the 24-hour format and in the format of **hh:mm**.
-* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
-* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
-* The ENDDATE and ENDTIME provided cannot be a past date time.
+* The `STARTDATE` and `STARTTIME` provided can be in the past (ongoing event).
+* The `ENDDATE` and `ENDTIME` provided should be after `STARTDATE` and `STARTTIME`.
+* The `ENDDATE` and `ENDTIME` provided cannot be a past date time.
 * Time overlapping events are allowed.
-* `c/` is followed by the category. It is optional.
-* `t/` is followed by the tag. It is optional.
-
+* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1` `c/c2`). It is optional.
+* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
+* Note that any valid prefixes and input arguments (e.g. `n/Meeting 1` or `p/1`) followed by invalid prefixes and 
+input arguments (e.g. `name/Name`, `tag/Tag` or `T&sk`) will lead to an error.
+* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one 
+would be taken (i.e. `n/n2`).
+  
 Examples:
 * `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its 
   respective attributes to the event list.
@@ -523,8 +536,10 @@ Deletes an event from the event list.
 
 Format: `delete_event INDEX`
 * Deletes the event at the specified INDEX.
-* The index refers to the index number shown in the displayed event list.
-* The index must be a positive and valid integer 1, 2, 3, ...
+* Note that only one `INDEX` is accepted, multiple `INDEX` will lead to input format error.
+* The `INDEX` refers to the index number shown in the **displayed** event list.
+* The `INDEX` must be a positive and valid integer 1, 2, 3, ... i.e. `0`, negative integers and integers greater than
+  `2147482637` will lead to input format error.
 
 Examples:
 * `delete_event 3` deletes the third event from the event list.
@@ -536,13 +551,14 @@ Examples:
 Edits an **existing and uncompleted** event in the event list.
 
 Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
-* You can only edit the details of an unexpired event.
-* At least one of the optional fields must be provided.
-* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
-* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
-* The ENDDATE and ENDTIME provided cannot be a past date time.
-* Existing values will be updated to the input values.
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. 
+The index must be an **integer larger than zero**. A valid example can be `1`.
+* An expired event could only be edited when users edit the past end date and time to unexpired end date and time (extend the event).
+* Other than the condition above, you can only edit the details of an **unexpired** event.
+* **At least one** of the optional fields must be provided.
+* The `STARTDATE` and `STARTTIME` provided can be in the past (ongoing event).
+* The `ENDDATE` and `ENDTIME` provided should be after `STARTDATE` and `STARTTIME`.
+* The `ENDDATE` and `ENDTIME` provided cannot be a past date time.
 * When editing tags/categories, the existing tags/categories of the event will be removed i.e. adding of tags/categories
   is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it. 
@@ -576,8 +592,9 @@ Format: `today_event`
 ### Finding events by name: `find_event`
 Finds events whose names contain any of the given keywords from the event list.
 
-Format: `find_event KEYWORDS [MORE_KEYWORDS]`
+Format: `find_event KEYWORD1 [KEYWORD2] ...`
 * The search is case-insensitive. e.g. `meeting` will match `Meeting`.
+* The search scope is the **full** task list.
 * The order of the keywords does not matter. e.g. `Attending Lecture` will match `Lecture Attending`.
 * Only the name of the events is searched.
 * Only full words will be matched. e.g. `CS` will not match `CS2103`.

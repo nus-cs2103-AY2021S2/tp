@@ -768,7 +768,7 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
                 <li>Persistent Sorting using a Comparator</li>
                 <li> Pros:
                     <ul>
-                        <li>UX considerations when users expect sorting to be persistent over multiple commands</li>
+                        <li>UX considerations when users expect sorting to be persistent over multiple order-altering commands</li>
                     </ul>
                 </li>
                 <li> Cons:
@@ -790,7 +790,7 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>UX might be compromised as order is not maintained over command executions</li>
+                        <li>UX might be compromised as order is not maintained over order-altering command executions</li>
                     </ul>
                 </li>
             </ul>
@@ -802,8 +802,8 @@ Our group decided to go with alternative 1 and implemented an additional sort co
 This is to ensure smoother UX, as well as better integration with other commands.
 
 By implementing it in this way, our group is able to ensure that the sort order remains consistent over commands that could either:
-* Alter the number of tasks shown at any one time (See <code>find_task</code>)</li>
-* Change the order of task appearance independent of <code>sort_task</code> (See <code>pin_task</code>)</li>
+* Alter the number of tasks shown at any one time (See `find_task`)
+* Change the order of task appearance independent of `sort_task` (See `pin_task`)
 
 This would enable SOChedule to better serve the needs of its user base. 
 
@@ -864,11 +864,11 @@ The sequence diagram for `ClearCompletedTaskCommand` can be found below.
 **Implementation of ClearExpiredTaskCommand**  
 The following is a detailed explanation on how ClearExpiredTaskCommand is implemented.
 
-**Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
+**Step 1**: User executes `clear_expired_task` command to clear expired tasks in task list.
 A `ClearExpiredTaskCommand` object is created and returned.
 
 **Step 2**: On `ClearExpiredTaskCommand#execute()`, `Model#clearExpiredTasks()` is called.
-This will delete all expired tasks whose deadline have already past.
+This will delete all expired tasks whose deadlines have already passed.
 For brevity, lower level implementation of `Model#clearExpiredTasks()` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
@@ -937,6 +937,7 @@ The sequence diagram for `AddEventCommand` can be found below.
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of DeleteEventCommand**  
+
 The following is a detailed explanation on how DeleteEventCommand is implemented.
 
 **Step 1**: User executes `delete_event Index` command to delete the event at the given index.
@@ -1035,7 +1036,7 @@ The `edit_event` feature was implemented with a static class `EditEventDescripto
 <img src="images/EditEventCommandClassDiagram.png" width="550" />
 
 **Step 1**: User executes `edit_event Index` command to Edit the event at the given index.
-An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
+An `EditEventCommandParser` object is created, and the `EditEventCommandParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
 If the field is edited, then store the edited one; otherwise, store the original value.
@@ -1047,7 +1048,7 @@ These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Eve
 `Model#updateFilteredEventList()` are called. These will update the edited Event into the event list.
 
 **Step 3**: On execution completion a `CommandResult` is created.
-A success message `EditEventCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
+A success message `EditEventCommand#MESSAGE_EDIT_EVENT_SUCCESS` will be displayed.
 The UI will also update as the underlying event list has been modified.
 
 The sequence diagram for `EditEventCommand` can be found below.
@@ -1094,7 +1095,7 @@ The following activity diagram summarises what happens when a user executes a Ed
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>Need to add extra checks in EditEventCommand</li>
+                        <li>Needs to add extra checks in EditEventCommand</li>
                     </ul>
                 </li>
             </ul>
@@ -1104,8 +1105,8 @@ The following activity diagram summarises what happens when a user executes a Ed
 <div markdown="block">
 
 We chose alternative 1 because if the event in the real world ended, it’s meaningless to let users make changes 
-on any field other than end date time. We did consider the fact that an event in the real world could be extended, 
-so we allow users to make changes on end date time from an expired timestamp to an unexpired timestamp. Besides, 
+on any field other than end date and time. We did consider the fact that an event in the real world could be extended, 
+so we allow users to make changes on end date and time from an expired timestamp to an unexpired timestamp. Besides, 
 we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become 
 an “overdue task”, while there’s no “overdue event”.
 
@@ -1189,15 +1190,15 @@ readability of the code. Implementing codes under UniqueEventList also reduces d
 **Implementation of ClearExpiredEventCommand**  
 The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
 
-**Step 1**: User executes `clear_completed_event` command to clear completed events in event list.
+**Step 1**: User executes `clear_expired_event` command to clear expired events in the event list.
 A `ClearExpiredEventCommand` object is created and returned.
 
 **Step 2**: On `ClearExpiredEventCommand#execute()`, `Model#clearExpiredEvents()` is called.
-This will delete all expired events whose end date time have already past.
+This will delete all expired events whose end date time have already passed.
 For brevity, lower level implementation of `Model#clearExpiredEvents()` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
-A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_COMPLETED_TASK_SUCCESS` will be displayed.
+A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_EXPIRED_EVENT_SUCCESS` will be displayed.
 
 The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
@@ -1304,7 +1305,7 @@ Use case ends.
 
 * 2a. Some required information about the task is missing in the command.
 
-    * 1a1. SOChedule displays an error message suggesting that information provided when creating
+    * 2a1. SOChedule displays an error message suggesting that information provided when creating
       the task is incomplete.
       Use case ends.
 
@@ -1413,7 +1414,7 @@ Use case ends.
       Use case resumes at step 2.
     
 
-**Use case: UC04 - List tasks**
+**Use case: UC04 - Listing tasks**
 
 **MSS**
 
@@ -1551,9 +1552,8 @@ Use case ends.
 
 1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to sort task.
-4. User enters the sort parameter.
-5. SOChedule sorts the task list, and displays a success message.
+3. User chooses to sort the task list based on a sort parameter.
+4. SOChedule sorts the task list, and displays a success message.
    <br><br>
    Use case ends.
 
@@ -1564,9 +1564,9 @@ Use case ends.
   Use case ends.
 
 
-* 4a. The given sort argument is invalid.
+* 3a. The given sort argument is invalid.
 
-    * 4a1. SOChedule shows an error message indicating the invalidity of the sort argument.
+    * 3a1. SOChedule shows an error message indicating the invalidity of the sort argument.
 
       Use case resumes at step 2.
 
@@ -1681,7 +1681,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The event scheduler is empty.
+* 2a. The event list is empty.
 
   Use case ends.
 
@@ -1701,13 +1701,15 @@ Use case ends.
    <br><br>
    Use case ends.
    
+**Extensions**
+   
 * 3a. No edited field is provided
 
     * 3a1. SOChedule displays an error message suggesting that information provided when editing
       the event is incomplete.
       Use case resumes at step 2.
 
-* 3b. The event is expired
+* 3b. The event to be edited is expired
 
     * 3b1. SOChedule displays an error message suggesting that an expired event cannot be edited.
       Use case resumes at step 2.
@@ -1723,18 +1725,6 @@ Use case ends.
     * 3d1. SOChedule shows an error message.
       Use case resumes at step 2.
 
-**Extensions**
-
-* 2a. The task list is empty.
-
-  Use case ends.
-
-
-* 3a. The given index is invalid.
-
-    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
-
-      Use case resumes at step 2.
 
 **Use case: UC17 - Listing events**
 
@@ -2225,28 +2215,54 @@ testers are expected to do more *exploratory* testing.
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
 
 ### Effort
-SOChedule morphs AddressBook 3(AB3) to an application that help NUS School of Computing (SoC) students
-to effectively manage their tasks and events. Since we are not building our product based on AB3, significant amount of efforts
-are needed to convert the AB3 code base to suit the needs of SOChedule. This involves rewriting the major components including
-Model, Logic, UI, Storage and more. Even before we started to implement our unique features, efforts 
-similar to than building an AB3-level product from scratch are needed. 
+Creating SOChedule took considerable effort and required significant effort from all members.
+To achieve this, all members committed to meticulous planning, regular team meetings, effective communication
+and strong collaboration to ensure that SOChedule is delivered on time and in a satisfactory state.
 
-Compared to AB3 which only stores and updates `Person`, SOChedule doubles the difficulty and handles multiple entity types. 
-Two main ones are related to `Task` and `Event`. This means our project requires more, if not doubled, efforts as compared to implementing AB3 from scratch 
-because of the additional attributes needed to be dealt with.
-Some of them are specific to `Task`, like `Completion Status` and `Priority`. 
-Some of them are specific to `Event`, like `Time`. 
-Some of them are used by both `Task` and `Event`, like `Name` and `Date`.
+#### Major Changes
 
-Because of these additional attributes, Logic component needs more parsers to handle various inputs and commands to achieve
-the features we designed to improve the efficiency of our users. Such examples include parsing and validating of `Date` and `Time` from user inputs.
-Some challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
-Also, we need to add further constraints with our commands to ensure users do not perform invalid operations with our commands. 
-For example, users cannot edit an event to make its start date time later than end date time. 
-All of these require a significant amount of efforts in designing, developing and testing.
+The original code base, Address Book 3 (AB3), was an application that was based around contacts management.
+SOChedule, on the other hand, is an application that aims to help NUS School of Computing (SoC) students
+to effectively manage their tasks and events.
+As such, much changes had to be made to the original code base to ensure that the code is conducive for SOChedule.
 
-Similarly, Storage component needs to deal with more complicated data and data structures that involve both tasks and events. 
+* Major components had to be rewritten or adapted to suit SOChedule's needs.
+  This includes `Model`, `Logic`, `UI`, `Storage`, among other smaller components.
+  This rewrite had to be completed prior to the development of additional features,
+  and demanded significant time and effort similar to building the product from scratch. 
 
-Also, we need to redesign the GUI to show both task list and event lists and the additional attributes we introduced as compared to AB3.
+* Beyond storing a single object type, `Person` in AB3, SOChedule is a major upgrade as it is able to handle two radically different object types, namely `Task` and `Event`.
+  This significantly increased the complexity of our project as most of AB3 code are no longer applicable for use in SOChedule.
+  This would mean that additional time was required to plan out the new objects and attributes thoroughly before implementation could begin.
+  Furthermore, some attributes required addition validation checks beyond a simple presence and alphanumeric check. 
+  For instance, the date-related attributes in `Event` (i.e. `START_DATE` and `END_DATE`) required more thoughtful consideration as there were more specific requirements required, such as past date checks.
+  Such considerations could also have knock-on consequences on other attributes within the same class (date-related attributes could affect the checks for time-related attributes).
+  This would naturally increase the level of complexity of this project.`
 
-Some of the achievements in SOChedule may include our `pin_task` and `sort_task` method.  
+* Additional, non-trivial UI modifications had to be made as well. Beyond simple changes to the aesthetics,
+  changes were made to how the UI functioned. Originally, AB3 only required one `ListView` to handle a single `Person` class.
+  As SOChedule contains 2 different classes, two `ListView` were required, each coming with their own interface to underlying code.
+  Additional thought was required to ensure smooth integration with backend code and smooth user experience.
+
+#### Challenges
+
+* Due to the additional attributes, there were much more attribute handling and edge case considerations.
+  As such, the planning phase was made much more complicated as there was a need for thorough consideration of the new classes and their corresponding attributes.
+  Concurrently, we also had to make sure that the code we implemented adhered to well-known coding principles to ensure code quality.
+  To solve this, we laid down the design requirements early on in the project and ensured that all members had a clear overview of each other's work and responsibilities.
+  Throughout development, regular team meetings were held to keep each other up to date on each other's progress.
+  With the open communication and frequent updates, we were able to help each other test and proofread.
+  Should there be any deviation from the intended outcome, issues were quickly raised and squashed.
+  Through this iterative process, SOChedule was refined.
+  
+* Due to the increase in complexity over AB3, there were also challenges faced throughout implementation.
+  Some challenges included requiring a thorough understanding of the existing code base and component interactions, 
+  being clear of the separation of concerns and the actual implementation of the new commands, while balancing this with the tight deadlines and other commitments.
+  To solve this, we split the workload based on components, in order to ensure that every team member could be the local expert on a component,
+  and by commands. With this setup, each team member was a jack of all trades, and master of one.
+  This smoothened the development process greatly as there was a sense of ownership with each member's commands, while also having the ability to seek clarification on any particular component.
+
+#### Conclusion
+Overall, while being undeniably tough and demanding, our group managed to unite and push through the challenges we faced incrementally.
+While the workload was relentless, the process was made much better and smoother through clear communications and careful planning.
+This made the development process much more enjoyable, and has definitely turned all of us into a better software developer in more ways than one.
