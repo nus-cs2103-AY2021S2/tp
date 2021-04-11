@@ -25,7 +25,7 @@ Class Description
 }
 
 Wardrobe *--> "1" UniqueGarmentList
-UniqueGarmentList -> GarmentComparator
+UniqueGarmentList .> GarmentComparator
 UniqueGarmentList o--> "*" Garment
 Garment *--> Name
 Garment *--> Size
