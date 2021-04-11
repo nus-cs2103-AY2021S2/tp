@@ -36,8 +36,12 @@ public class FindCommand extends Command {
         }
 
         model.updateFilteredCustomerList(predicate);
-        return new CommandResult(
-            String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
+        if (model.getFilteredCustomerList().size() == 1) {
+            return new CommandResult(String.format(Messages.MESSAGE_SINGULAR_CUSTOMER_LISTED_OVERVIEW, 1));
+        } else {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
+        }
     }
 
     @Override
