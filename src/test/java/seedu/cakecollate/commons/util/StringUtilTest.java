@@ -203,6 +203,4 @@ public class StringUtilTest {
         assertEquals("", capitaliseEachWord(""));
 
     }
-
-
 }
