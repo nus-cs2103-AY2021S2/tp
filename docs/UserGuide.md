@@ -40,7 +40,9 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 
     * **`exit`** : Exits the app.
 
-    * **`help`** : Get a legend of commands.
+    * **`help`** : Opens the help window.
+    
+    * **`email`**: Opens the email interface.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -88,9 +90,9 @@ Action | Format, Examples
 **delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
 **clear** | `clear` Clears the contact list, erasing all saved data.
-**exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
-**help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
-**email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
+**exit** | `exit` Exits the app. Ignores all texts type after 'exit' e.g. exit 12345.
+**help** | `help` Opens the help window. Ignores all texts type after 'help' e.g. help 12345.
+**email** | `email` Opens the email interface. Ignores all texts type after 'email' e.g. email 12345.
 **up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
 
 
@@ -106,13 +108,15 @@ A customer can have any number of tags, carsOwned, carPreferred (including 0)
 
 Examples:
 * `add n/John Wayne p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10`
-* `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  t/friend c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+* `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  t/friend c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV` 
+![Ui](images/examples/addcus1.png)
+
 ### Finding a customer: `find` 
 
 Find customers from the contact list that matches specified filters.
 
 Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+OWNED_CARTYPE] [coe/COE_EXPIRY_DATE] [t/TAGs] 
-[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]`
+[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]` 
 
 **IMP** : All arguments are optional. In particular:
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to 
@@ -129,7 +133,6 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
     - eg `find e/abc` will return profiles with the following emails:
         -  `abcd@gmail.com`
         -  `bbabc@gmail.com`
-
 
 
 Further details about the search options are as follows:
@@ -202,9 +205,14 @@ Result:
 * **`help`** : Overview of commands and input syntax.
 
 ## Email Contact person: `email`
-* **`email`** : Opens a simplified mailbox interface enabling user to send email through Simple Mail Transfer Protocol(SMTP).
+* **`email`** : Opens a simplified mailbox interface as shown below, enabling user to send email through Simple Mail Transfer Protocol(SMTP).
   Please ensure that you enable google to allow for less secure access - this is the term by google, which means an action
   to disable 2-step verification for logging in.
+  You may use the following dummy email provided for testing:
+  **username**: cs2103emailtest@gmail.com <br>
+  **password**: emailtest1 <br>
+  ![Ui](images/helps/emailInterface.png)
+  
   Note: This feature only allows for out going SMTP server access, the application do not have access to your incoming mails
   as it is on a different server.
   ![Ui](images/helps/googleHelp4.png)
@@ -224,16 +232,16 @@ Result:
   You will be required to fill in the respective fields, please note that current version does not support multiple 
   authentication attempts, hence you will be required to restart the application if your email or password details are
   filled incorrectly.
-  ![Ui](images/helps/emailLogin.png)
+  ![Ui](images/helps/unmatchedPw.png)
   
   
-  **Successful Login**
+  **Successful Login** <br>
   You will receive a confirmation message 'Message Sent' when email is successfully sent out. 
   Please note that in this we have blocked multiple log in and authentication, the email and password box will be disabled 
   after successful authentication. If you have been successfully authenticated, a green text will be shown in the bottom 
   left corner of the interface 'You are logged in'.
   You may continue to send email to other receiver addresses without having to re-enter the password.
-  ![Ui](images/helps/Sentmail.png)
+  ![Ui](images/helps/Sentemail.png)
   
  
   Please note that if you input a non-existing receiver email, message will still mark as sent. You will however receive a 
@@ -245,7 +253,7 @@ Result:
   your email will still be mark as sent. However you will be receiving a failed message in your email inbox.
   ![Ui](images/helps/invalidDomain.png)
 
-  **Failed Login**
+  **Failed Login** <br>
 
   If you have failed the authentication, either due to mismatching email and password, you will be required to restart
   the application, as support for multiple logins are blocked. The password you entered will be cleared, together with the 
