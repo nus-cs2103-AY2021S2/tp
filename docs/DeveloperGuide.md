@@ -150,6 +150,18 @@ In future installments, this implementation may be scraped in favor for an imple
 as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as 
 is.
 
+### Unscheduling meetings
+
+The implementation of unscheduling meetings is very similar to scheduling meetings, so we skip the details of the 
+implementations here and ask you to refer to the implementation of scheduling meetings as reference.
+
+The behavior of the unscheduling command and its options are shown as below.
+![UnscheduleActivityDiagram](images/UnscheduleActivityDiagram.png)
+
+The internal operation of removing a meeting involves locating the meeting owner on the internal list first, then use
+the meeting (the key) to remove the owner (the value) from the treemap, then exporting the values in the treemap back
+into the internal list.
+
 ### Displaying Notifications
 ![NotifSequenceDiagram](images/NotifSequenceDiagram.png)
 
