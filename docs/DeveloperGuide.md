@@ -285,9 +285,9 @@ quiz is displayed in the GUI window. The following activity diagrams summarize h
 along with each quiz session.
 
 <p float="left">
-  <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" width="310" />
+  <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" />
   <img src="images/blank.png" width="20" />
-  <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" width="310" />
+  <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" />
 </p>
 
 <div style="page-break-after: always;"></div>
