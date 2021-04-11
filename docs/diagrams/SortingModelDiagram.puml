@@ -5,15 +5,7 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyWardrobe <<Interface>>
-Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
 Class Wardrobe
-Class ReadOnlyWardrobe
-Class Model
-Class ModelManager
-Class UserPrefs
-Class ReadOnlyUserPrefs
 
 Package Garment {
 Class Garment
@@ -24,6 +16,7 @@ Class Size
 Class Type
 Class LastUse
 Class UniqueGarmentList
+Class GarmentComparator
 }
 
 Package Description {
@@ -31,18 +24,8 @@ Class Description
 }
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
-
-Wardrobe .up.|> ReadOnlyWardrobe
-
-ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" Wardrobe
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
-
 Wardrobe *--> "1" UniqueGarmentList
+UniqueGarmentList -> GarmentComparator
 UniqueGarmentList o--> "*" Garment
 Garment *--> Name
 Garment *--> Size
@@ -56,5 +39,4 @@ Name -[hidden]right-> Size
 Size -[hidden]right-> DressCode
 DressCode -[hidden]right-> Colour
 
-ModelManager ----->" ~* filtered list" Garment
 @enduml
