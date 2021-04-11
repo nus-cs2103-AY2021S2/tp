@@ -64,12 +64,17 @@ public class PriorityTag {
      * @return boolean value to validated
      */
 
-    public boolean validateTag(String tagName) {
-        if (tagName.equals("LOW") || tagName.equals("MEDIUM") || tagName.equals("HIGH")) {
-            return true;
-        } else {
+    public static boolean validateTag(String tagName) {
+        try {
+            if (tagName.equals("LOW") || tagName.equals("MEDIUM") || tagName.equals("HIGH")) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NullPointerException e) {
             return false;
         }
+
     }
 
     /**
