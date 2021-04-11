@@ -37,6 +37,14 @@ public class UniquePassengerList implements Iterable<Passenger> {
     }
 
     /**
+     * Returns true if the list contains an equal passenger as the given argument.
+     */
+    public boolean containsEqual(Passenger toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
      * Adds a passenger to the list.
      * The passenger must not already exist in the list.
      */

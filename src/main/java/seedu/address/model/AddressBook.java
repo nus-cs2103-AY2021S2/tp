@@ -81,6 +81,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a passenger equal to {@code passenger} exists in the address book.
+     */
+    public boolean hasEqualPassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        return passengers.containsEqual(passenger);
+    }
+
+    /**
      * Adds a passenger to the address book.
      * The passenger must not already exist in the address book.
      */
@@ -104,14 +112,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
-     * @return true if {@code key} has been removed, false if a {@code Pool} references {@code key}.
      */
-    public boolean removePassenger(Passenger key) {
-        if (pools.containsPassenger(key)) {
-            return false;
-        }
+    public void removePassenger(Passenger key) {
         passengers.remove(key);
-        return true;
     }
 
 
@@ -123,6 +126,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPool(Pool pool) {
         requireNonNull(pool);
         return pools.contains(pool);
+    }
+
+    /**
+     * Returns true if a pool that contains the given {@code passenger} exists in the address book.
+     */
+    public boolean hasPoolWithPassenger(Passenger passenger) {
+        return pools.containsPassenger(passenger);
     }
 
     /**

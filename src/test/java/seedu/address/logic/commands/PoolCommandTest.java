@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalDrivers.DRIVER_ALICE;
 import static seedu.address.testutil.TypicalDrivers.DRIVER_BOB;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPassengers;
 
 import java.util.Set;
@@ -84,7 +85,7 @@ public class PoolCommandTest {
 
     @Test
     public void execute_duplicatePool_throwsCommandException() {
-        Pool duplicatePool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST).withIndex(INDEX_SECOND)
+        Pool duplicatePool = new PoolBuilder().withModel(model).withIndex(INDEX_THIRD)
                 .withTags(VALID_TAG_IT).withTripTime(VALID_TRIPTIME_EVENING)
                 .withTripDay(VALID_TRIPDAY_FRIDAY).build();
 
