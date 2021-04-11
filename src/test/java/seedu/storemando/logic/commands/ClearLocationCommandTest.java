@@ -12,26 +12,17 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
-import seedu.storemando.model.StoreMando;
 import seedu.storemando.model.UserPrefs;
 import seedu.storemando.model.item.LocationContainsPredicate;
 
-public class ClearCommandTest {
+public class ClearLocationCommandTest {
 
     @Test
     public void execute_emptyStoreMando_failure() {
         Model model = new ModelManager();
 
-        assertCommandFailure(new ClearCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
-    }
-
-    @Test
-    public void execute_nonEmptyStoreMando_clearAllSuccess() {
-        Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
-        expectedModel.setStoreMando(new StoreMando());
-
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.CLEAR_MESSAGE_SUCCESS, expectedModel);
+        assertCommandFailure(new ClearLocationCommand(new LocationContainsPredicate("Kitchen Basket")),
+            model, Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
@@ -42,13 +33,13 @@ public class ClearCommandTest {
         expectedModel.clearLocation(predicate);
         expectedModel.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
 
-        assertCommandSuccess(new ClearCommand(predicate), model, ClearCommand.CLEAR_LOCATION_MESSAGE_SUCCESS,
-            expectedModel);
+        assertCommandSuccess(new ClearLocationCommand(predicate), model,
+            ClearLocationCommand.CLEAR_LOCATION_MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void equals() {
-        final ClearCommand standardCommand = new ClearCommand();
+        final ClearCommand standardCommand = new ClearLocationCommand(new LocationContainsPredicate("Kitchen"));
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
@@ -60,6 +51,7 @@ public class ClearCommandTest {
         assertFalse(standardCommand.equals(new SortAscendingQuantityCommand()));
 
         // same type but diff predicate -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand(new LocationContainsPredicate("Kitchen"))));
+        assertFalse(standardCommand.equals(new ClearAllCommand()));
+        assertFalse(standardCommand.equals(new ClearLocationCommand(new LocationContainsPredicate("Toilet"))));
     }
 }
