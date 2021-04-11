@@ -34,6 +34,8 @@ SOChedule is a one-stop solution for NUS School of Computing (SoC) students to m
 Targeted at users who can type fast and prefer typing to mouse input, SOChedule is optimized for use via a Command Line Interface (CLI) 
 while still having the benefits of a Graphical User Interface (GUI).
 
+<div style="page-break-after: always;"></div>
+
 ## Feature List
 
 ### General Commands
@@ -118,6 +120,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
     </tr>
 </table>
 
+<div style="page-break-after: always;"></div>
+
 ### Task-Specific
 
 <table>
@@ -199,6 +203,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 </table>
 
 [Return to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## Common Arguments
 Below are a few arguments commonly found in SOChedule commands, and their corresponding restrictions, command-specific restrictions notwithstanding.
@@ -439,6 +445,8 @@ Examples:
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
+
 
 ### Editing a task: `edit_task`
 Edits an **existing and uncompleted** task in the task list.
@@ -456,7 +464,7 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * When editing tags and categories, the order given in the input and the order as shown in the UI can be different. <br>
   For example, in input `edit_task 1 t/t2 t/t10`, `t/t2` is before `t/t10` in the input, but `t10` may appear in the UI before `t2`.
   Lexicographical order is followed.
-
+  
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
@@ -474,6 +482,9 @@ Examples:
 * `edit_task 1 n/t1` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
 * `edit_task 2 p/3 t/` edits the priority of the second task (if present in SOChedule) to be `3` and clears all existing tags. 
 
+<div style="page-break-after: always;"></div>
+
+
 #### Illustration of usage of `edit_task`:
 ![Example of usage of `edit task`](images/EditTaskUsage.png)
 
@@ -487,6 +498,8 @@ Format: `list_task`
 
 [Return to Feature List](#feature-list)
 
+
+<div style="page-break-after: always;"></div>
 
 ### Marking one or more tasks as done: `done_task`
 Marks one or more task from the task list as completed.
@@ -516,6 +529,7 @@ Examples:
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Marking a task as uncompleted: `undone_task`
 Marks a completed task from the task list as uncompleted.
@@ -526,6 +540,7 @@ Format: `undone_task INDEX`
 
 Examples:
 * `undone_task 1` marks the first task in the task list as uncompleted.
+
 
 #### Illustration of usage of `undone_task`:
 ![Example of usage of `undone task`](images/UndoneTaskUsage.png)
@@ -540,6 +555,7 @@ Format: `today_task`
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Finding tasks by name: `find_task`
 Finds tasks whose names contain any of the given keywords from the task list.
@@ -561,6 +577,8 @@ Examples:
 ![find_task example](images/find_task-example.png)
 
 [Return to Feature List](#feature-list)
+
+<div style="page-break-after: always;"></div>
 
 
 ### Sorting all tasks: `sort_task`
@@ -588,6 +606,7 @@ Examples:
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Pinning a task: `pin_task`
 Pins a task from the task list.
@@ -608,11 +627,15 @@ Examples:
 #### Illustration of usage of `pin_task`:
 ![Example of usage of `pin_task`](images/PinTaskUsage.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Illustration of the interaction between `pin_task` and `sort_task`:
 ![Example of interaction of `pin_task` with `sort_task`](images/PinTaskInteractionWithSortTask.png)
 
 [Return to Feature List](#feature-list)
 
+
+<div style="page-break-after: always;"></div>
 
 ### Unpinning a task: `unpin_task`
 Unpins a task from the task list.
@@ -624,11 +647,14 @@ Format: `unpin_task INDEX`
 Examples:
 * `unpin_task 1` unpins the first task in the task list
 
+
 #### Illustration of usage of `unpin_task`:
 ![Example of usage of `unpin_task`](images/UnpinTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing completed tasks: `clear_completed_task`
 Clears tasks marked as completed from the task list.
@@ -645,10 +671,14 @@ Format: `clear_completed_task`
 
 </div>
 
+
 #### Illustration of usage of `clear_completed_task`:
 ![Example of usage of `clear_completed_task`](images/ClearCompletedTaskUsage.png)
 
 [Return to Feature List](#feature-list)
+
+
+<div style="page-break-after: always;"></div>
 
 
 ### Clearing expired tasks: `clear_expired_task`
@@ -673,6 +703,7 @@ Format: `clear_expired_task`
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Adding an event: `add_event`
 Adds an event to the event list.
@@ -710,6 +741,7 @@ Examples:
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Deleting an event: `delete_event`
 Deletes an event from the event list.
@@ -725,13 +757,14 @@ Examples:
 [Return to Feature List](#feature-list)
 
 
+<div style="page-break-after: always;"></div>
+
 ### Editing an event: `edit_event`
-Edits an **existing and uncompleted** event in the event list.
+Edits an **existing and unexpired** event in the event list.
 
 Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
 * Edits the event at the specified `INDEX`.
-* An expired event could only be edited when users edit the past end date and time to an unexpired end date and time. <br>
-  (i.e. top extend the event).
+* An expired event could only be edited when users edit the past end date and time to an unexpired end date and time (i.e. to extend the event).
 * Except the condition above, only **unexpired** event can be edited.
 * **At least one** of the optional fields must be provided.
 * The `ENDDATE` and `ENDTIME` provided must be **after** `STARTDATE` and `STARTTIME`.
@@ -766,6 +799,7 @@ Examples:
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Listing all events: `list_event`
 Lists all events from the event list.
@@ -782,6 +816,7 @@ Format: `today_event`
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Finding events by name: `find_event`
 Finds events whose names contain any of the given keywords from the event list.
@@ -803,6 +838,7 @@ Examples:
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Clearing expired events: `clear_expired_event`
 Clears events with past end date time from the event list.
@@ -826,6 +862,8 @@ Format: `clear_expired_event`
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
+
 
 ### Finding free time slots: `free_time`
 Finds all free time slots on the given date from the event list.
@@ -843,6 +881,8 @@ Examples:
 ![Example of usage of `free_time`](images/FindFreeTimeExample.png)
 
 [Return to Feature List](#feature-list)
+
+<div style="page-break-after: always;"></div>
 
 
 ### Finding schedule given a date: `find_schedule`
@@ -863,12 +903,17 @@ Format: `find_schedule DATE`
 
 * After running `find_schedule`, `list_task` and `list_event` can be used to display the whole task list and event list respectively.
 
+* This command is still able to be executed on an empty task list, and an empty event list.
+  In this case, the success message will still be displayed. <br>
+  
 </div>
 
 Examples:
 * `find_schedule 2021-04-10` finds:
   * All existing uncompleted tasks with deadlines before or on `2021-04-10`.
   * All existing events where `2021-04-10` falls between start date (inclusive) and end date (inclusive).
+
+<div style="page-break-after: always;"></div>
 
 #### Illustration of usage of `find_schedule`:
 
@@ -884,6 +929,7 @@ For event list:
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Summarising tasks and events statistics: `summary`
 Displays a summary of tasks completion status and events upcoming for the next 7 days.
@@ -900,6 +946,7 @@ Format: `summary`
 
 [Return to Feature List](#feature-list)
 
+<div style="page-break-after: always;"></div>
 
 ### Clearing SOChedule: `clear`
 Clears all tasks and events in the SOChedule's task list and event list.
@@ -914,6 +961,8 @@ Format: `clear`
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
