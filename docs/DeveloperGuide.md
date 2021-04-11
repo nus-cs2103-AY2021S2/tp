@@ -112,9 +112,11 @@ The following sequence diagram shows how the AddOn feature works:
 The following activity diagram summaries the flow of event when a user executes the addon command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
+
+
 ### FindAll Feature
 #### Implementation
-The FindAll feature allows a user to find entries that match all the keywords provided by the user.
+The FindAll feature allows a user to find entries that match **ALL** the keywords provided by the user.
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
 
@@ -122,18 +124,25 @@ The FindAll feature is similar to the Find feature. The Find feature finds for a
 at least one of the given keywords, while the FindAll feature only finds for entries that meet all the
 given keywords.
 
-One of the alternatives considered was to make the Find command serve the purpose of both the Find & FindAll
-commands, as they behave similarly. However, this would require the user to key in additional syntax to
-specify which method of find they would like to use. This was deemed to be less user-friendly and more prone
-to errors as the command now consists of 3 parts (command word, type of find to use & keywords to find),
-instead of 2 (command word & keywords to find). As a result, FindAll was implemented as a separate feature.
-
 The following sequence diagram shows how the FindAll feature works:
 ![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
 
 The following activity diagram summarises the events that take place when a user executes the FindAll
 command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
+#### Design Consideration
+
+##### Aspect: Whether the FindAll feature should be implemented as a separate command from the Find feature
+* **Alternative 1 (current choice):** Implement the FindAll feature as a separate command
+    * Pros: Easier to implement, and more user-friendly as less syntax is required
+    * Cons: User has to utilise 2 different commands despite them both performing a similar search function
+* **Alternative 2:** Implement the FindAll feature using the same command as the Find feature
+    * Pros: User can carry out all searches using only one command, which makes the features fit together better
+      than the first alternative
+    * Cons: Much harder to implement, and less user-friendly as more syntax is required due to the user needing to
+      specify the method of search between the Find and FindAll features that they would like to use to perform
+      their search
+
 
 ### Revise Feature
 #### Implementation
