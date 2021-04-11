@@ -106,6 +106,9 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
+> **NOTE:** student book contains data of student records and student appointments. 
+> 
+>
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
