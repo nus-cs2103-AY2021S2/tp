@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Jiaxiang's Project Portfolio Page
+title: Yu Jiaxiang's Project Portfolio Page
 ---
 
 ## Project: SOChedule
