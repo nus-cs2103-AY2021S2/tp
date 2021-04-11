@@ -152,7 +152,21 @@ After entering the command:
 
 Shows a list of all persons/students/tutors/sessions in EzManage.
 
-Format: `list persons` or `list students` or `list tutors` or `list sessions`
+Formats:
+
+1. `list persons`
+
+   - This lists all the persons currently in EzManage
+
+2. `list students`
+
+   - This lists all the students currently in EzManage
+
+3. `list tutors`
+   - This lists all the tutors currently in EzManage
+
+4. `list sessions`
+   - This lists all the sessoins currently in EzManage
 
 ### Viewing a tutor/student : `view_person`
 
@@ -346,24 +360,16 @@ Formats:
 
 1. `assign s/ID…​ c/ID`
 
-   - This assigns a student of `s/ID` or multiple students to a class of `c/ID`
-   - Example : `assign s/2 s/1 c/1` This assigns students of `s/2` and `s/1` to class `c/1`
+   - This assigns student(s) of `s/ID…` to a session of `c/ID`
+   - Example : `assign s/2 s/1 c/1` assigns students of `s/2` and `s/1` to session `c/1`
 
 2. `assign t/ID c/ID`
 
-   - This assign a tutor of `t/ID` to a class of `c/ID`
-   - Example: `assign t/1 c/1` This assign a tutor of `t/1` to class of `c/1`
+   - This assigns a tutor of `t/ID` to a session of `c/ID`
+   - Example: `assign t/1 c/1` assigns a tutor of `t/1` to session of `c/1`
 
 3. `assign s/ID…​ t/ID c/ID`
-   - This assigns a student of `s/ID` or multiple students and a tutor of `t/ID` to a class of `c/ID`
-
-* Assigns students with the specified `s/ID` to the session with the specified `c/ID`
-* Assigns the tutor with the specified `t/ID` to the session with the specified `c/ID`
-
-Examples:
-* `assign s/2 s/1 c/1` assigns students of `s/2` and `s/1` to session `c/1`
-* `assign t/1 c/1` assigns a tutor of `t/1` to session of `c/1`
-* `assign s/1 t/1 c/1` assigns student of `s/1`, and tutor of `t/1` to the session `c/1`
+   - This assigns student(s) of `s/ID…` and a tutor of `t/ID` to a session of `c/ID`
 
 `view_session c/1` before entering the command:
 
@@ -377,18 +383,20 @@ Examples:
 
 Unassigns the specified people from a session.
 
-Format: `unassign [s/ID]… [t/ID] c/ID`
+Formats:
 
-- Unassigns students with the specified `s/ID` from the session with the specified `c/ID`
-- Unassigns the tutor with the specified `t/ID` from the session with the specified `c/ID`
-- At least one of the optional fields must be provided.
-- Any number of students can be unassigned at the same time (including 0)
+1. `unassign s/ID…​ c/ID`
 
-Examples:
+   - This unassigns student(s) of `s/ID…` from a session of `c/ID`
+   - Example : `unassign s/2 s/1 c/1` unassigns students of `s/2` and `s/1` from session `c/1`
 
-- `unassign s/1 c/1` unassigns the student with student ID s/1 from the session with session ID c/1.
-- `unassign c/1 t/1` unassigns the tutor with tutor ID t/1 from the session with session ID c/1.
-- `unassign s/1 s/2 t/1 c/1` unassigns students with student IDs s/1 and s/2, and the tutor with tutor ID t/1 from the session with session ID c/1.
+2. `unassign t/ID c/ID`
+
+   - This unassigns a tutor of `t/ID` from a session of `c/ID`
+   - Example: `unassign c/1 t/1` unassigns a tutor of `t/1` from session of `c/1`
+
+3. `unassign s/ID…​ t/ID c/ID`
+   - This unassigns student(s) of `s/ID…` and a tutor of `t/ID` from a session of `c/ID`
 
 `view_session c/1` before entering the command:
 
