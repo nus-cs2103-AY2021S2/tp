@@ -124,19 +124,19 @@ public class PoolCommand extends Command {
 
         boolean shouldWarn = checkTimeDifference(passengers);
 
-        Pool pool = new Pool(driver, tripDay, tripTime, passengers, tags);
+        Pool toAdd = new Pool(driver, tripDay, tripTime, passengers, tags);
 
-        if (model.hasPool(pool)) {
+        if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);
         }
 
-        model.addPool(pool);
+        model.addPool(toAdd);
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
         String outputMessage = shouldWarn ? MESSAGE_POOL_SUCCESS_WITH_WARNING : MESSAGE_POOL_SUCCESS;
 
 
-        return new CommandResult(String.format(outputMessage, pool.getDriverAsStr(), pool.getPassengerNames()));
+        return new CommandResult(String.format(outputMessage, toAdd.getDriverAsStr(), toAdd.getPassengerNames()));
     }
 
     @Override
