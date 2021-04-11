@@ -976,7 +976,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 1b. The given arguments are invalid.
+* 1b. One or more of the given arguments are invalid.
 
     * 1b1. ClientBook shows an error message.
 
@@ -1000,7 +1000,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to change the details which are common to several clients.
+1.  User requests to change the details of several clients.
 
 2.  ClientBook updates the details.
 
@@ -1008,7 +1008,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given arguments are invalid.
+* 1a. One or more of the given arguments are invalid.
 
     * 1a1. ClientBook shows an error message.
 
@@ -1022,13 +1022,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to delete several clients at once.
 
-2.  ClientBook removes the client contacts from the address book.
+2.  ClientBook deletes the client contacts.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given arguments are invalid.
+* 1a. One or more of the given arguments are invalid.
 
     * 1a1. ClientBook shows an error message.
 
