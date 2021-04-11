@@ -7,6 +7,16 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+ParentPal is a desktop application designed for parents to manage their children-related contacts and appointments.
+ParentPal is built for use via a Command Line Interface (CLI), the Graphical User Interface (GUI) is primarily meant
+for displaying key information. 
+
+ParentPal is largely built with Java. GUI related functionality is powered by JavaFX and CSS.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -14,6 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The following section provides details of the architecture and a few selected functionalities of the application.
 
 ### Architecture
 
@@ -141,15 +152,13 @@ The `tag` command allows for the appending of tags to an existing
 `Contact` without having to replace existing tags as offered by `edit` and is facilitated by 
 the `TagCommand` and `TagCommandParser` classes.
 
-[Placeholder: Class Diagram of Tag and related classes here... ]
+![Tag Class Diagram](images/TagCommandClassDiagram.png)
 
 As part of the `Model` component, other components interact with tags through the `Model.java` API.
 As `Contact` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
 involve creating a new `Contact` and replacing the original `Contact` through `Model#setPerson()`.
 
 Given below is an example usage scenario of the `tag` command and how the application behaves through its execution.
-
-[Placeholder: screenshot of initial AddressBook before operation]
 
 Step 1. The user executes `tag 1 tc/Adam t/formteacher` to add tags to a previous contact they have added.
 
@@ -169,24 +178,30 @@ and subsequently `LogicManager`.
 Step 6. `LogicManager` then calls the `execute` method of the newly created `TagCommand`.
 
 Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Contact` object 
-though the `createTaggedPerson` method which will have its tags appended withe the new `Set<Tag>` defined by the command.
+though the `createTaggedPerson` method which will have its tags appended with the new `Set<Tag>` defined by the command.
 
 Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Contact` and a `CommandResult`
 representing success is returned to the `LogicManager`.
 
 Shown below is the sequence diagram that visualises the above operations of a `tag` command.
 
-[Placeholder: Sequence diagram describing the program in the above steps]
+![Tag Sequence Diagram](images/TagSequenceDiagram.png)
 
 When displaying the tags in the UI as a `PersonCard`, a customised `TagComparator` that implements
 `Comparator<Tag>` is used to sort the tags such that `ChildTag` will be placed first before regular
 `Tag`. During the generation of the `Label` for the each `Tag` a different background color is then set
-for `ChildTag` resulting in the UI view shown below.
-
-[Placeholder: UI screenshot of AddressBook after operation]
+for `ChildTag`.
 
 
-#### \[Proposed\] Potential Improvements
+#### Design Considerations
+
+The decision to implement `ChildTag` as its own class rather than a boolean in the `Tag` class was to allow for the 
+future extensibility of the program in being able to create more types of Tags in the future. 
+
+This also allows for `ChildTag` to store its own seperate information from regular `Tag` if needed 
+such as other details of the child itself. Extending `ChildTag` from the original `Tag` class allows for them to be 
+stored within the same data structure allowing for easier manipulation by other commands that may deal with tags such
+as `find`.
 
 ### Help feature
 
@@ -454,13 +469,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

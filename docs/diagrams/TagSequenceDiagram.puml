@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ParentPalParser" as ParentPalParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":TagCommand" as TagCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(tag 1 tc/Adam t/formteacher)
+activate LogicManager
+
+LogicManager -> ParentPalParser : parseCommand(tag 1 tc/Adam t/formteacher)
+activate ParentPalParser
+
+create TagCommandParser
+ParentPalParser -> TagCommandParser : TagCommandParser()
+activate TagCommandParser
+TagCommandParser --> ParentPalParser
+deactivate TagCommandParser
+
+ParentPalParser -> TagCommandParser : parse(1 tc/Adam t/formteacher)
+activate TagCommandParser
+
+create TagCommand
+TagCommandParser -> TagCommand : TagCommand()
+activate TagCommand
+TagCommand --> TagCommandParser :
+deactivate TagCommand
+
+TagCommandParser --> ParentPalParser : TagCommand
+deactivate TagCommandParser
+
+ParentPalParser --> LogicManager : TagCommand
+deactivate ParentPalParser
+
+LogicManager -> TagCommand : execute(model)
+activate TagCommand
+alt isReplace
+    TagCommand -> TagCommand : createReplacedTaggedContact(contactToTag)
+    activate TagCommand
+    TagCommand -> TagCommand : new Contact
+    deactivate TagCommand
+else
+    TagCommand -> TagCommand : createTaggedContact(contactToTag)
+    activate TagCommand
+        TagCommand -> TagCommand : new Contact
+        deactivate TagCommand
+end
+
+TagCommand --> LogicManager: commandResult
+
+LogicManager -->[ : commandResult
+@enduml
