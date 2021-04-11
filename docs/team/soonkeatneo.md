@@ -35,6 +35,8 @@ Given below are my contributions to the project.
         * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
     * Developer Guide:
         * Added NFRs to the application.
+        * Documented User portion of the code.
+        * Added appendixes for manual testing and effort.
     * Website:
         * Update various placeholders and leftovers from AB3
 
