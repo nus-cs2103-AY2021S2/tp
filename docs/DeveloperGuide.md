@@ -16,11 +16,10 @@ title: Developer Guide
   - [Find](#finding-contacts-by-details)
   - [Light](#light-feature)
   - [Dark](#dark-feature)
+  - [Mode of Contact](#mode-of-contact-feature)
   - [Mass Blacklist](#mass-blacklist-feature)
-  - [Mode of Contact](#mode-of-contact-feature)
-  - [Remark](#remark-feature)
   - [Mass Delete](#mass-delete-feature)
-  - [Mode of Contact](#mode-of-contact-feature)
+  - [Remark](#remark-feature)
   - [Navigate Previous Commands](#navigate-previous-commands-feature)
   - [Sort](#sort-feature)
   - [Undo](#undo-feature)
@@ -336,16 +335,16 @@ The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
 ### Mass Blacklist feature
-The mass blacklist/unblacklist mechanism is facilitated by `MassBlacklistCommand`.
-Below is an example usage scenario for mass blacklist. The usage for mass unblacklist is similar. 
+The mass blacklist/un-blacklist mechanism is facilitated by `MassBlacklistCommand`.
+Below is an example usage scenario for mass blacklist.
 
-Step 1: The user executes `massblist 4-12 b/blacklist ` to blacklist all contacts within the index range 4-12.
+Step 1: The user executes `massblist 2-5 b/blacklist ` to blacklist all contacts within the index range 2-5.
 The string is passed to the `Logic` component.
 
 Step 2: The `Logic` component parses the string and creates a corresponding `MassBlacklistCommand` object.
 
-Step 3: The `MassBlacklistCommand` object calls `Model#massBlacklist(4,12)` to blacklist all contacts
-in the `AddressBook` with index between 4 to 12.
+Step 3: The `MassBlacklistCommand` object calls `Model#massBlacklist(2,5)` to blacklist all contacts
+in the `AddressBook` with index between 2 to 5.
 
 Step 4: After the contacts have been blacklisted, `filteredPersons` in `ModelManager` is updated to reflect the change.
 
@@ -444,44 +443,6 @@ The following activity diagram summarizes what happens when a user executes a re
     * Pros: Easier to implement as the edit command already has a parser and many helper methods.
     * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
       class even bigger and thus more difficult to maintain.
-      
-### Sort feature
-The sort mechanism is facilitated by `SortCommand`.
-Below is an example usage scenario.
-
-Step 1: The user executes `sort ascending` to sort the contact list by name in ascending order. The
-string is passed to the `Logic` component.
-
-Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
-
-Step 3: The `SortCommand` object calls `Model#sortByName()` to sort the
-internal `AddressBook`.
-
-Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect the change.
-
-The following sequence diagram illustrates how the sort operation works:
-![SortSequenceDiagram](images/SortSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The following activity diagram summarizes what happens when a user executes a sort command:
-![SortActivityDiagram](images/SortActivityDiagram.png)
-
-#### Design considerations:
-
-##### Aspect: Sort input format
-* **Alternative 1 (current choice):** `sort ascending` and `sort descending`
-  * Pros: Easier for the user to remember
-  * Cons: Difficult to extend the command to accept more parameters.
-
-* **Alternative 2:** `sort d/ascending` and `sort d/descending`
-  * Pros: This implementation makes it easier to extend the command in the future to accept more parameters. For example, `sort 
-    c/modeofcontact c/name d/descending` is a possible format that can be used to sort the list firstly by mode of contact then by name in
-    descending order. 
-  * Cons: Not as user friendly as the user will have to remember more commands.
 
 ### Navigate previous commands feature
 
@@ -525,7 +486,45 @@ Similarly, when the user presses the down arrow key, there are two possible scen
 * **Alternative 2**: Use the `LinkedList` class provided by Java.
     * Pros: Easier implementation. Most operations have been provided by Java.
     * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
-  
+
+### Sort feature
+The sort mechanism is facilitated by `SortCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `sort ascending` to sort the contact list by name in ascending order. The
+string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
+
+Step 3: The `SortCommand` object calls `Model#sortByName()` to sort the
+internal `AddressBook`.
+
+Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the sort operation works:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Sort input format
+* **Alternative 1 (current choice):** `sort ascending` and `sort descending`
+  * Pros: Easier for the user to remember
+  * Cons: Difficult to extend the command to accept more parameters.
+
+* **Alternative 2:** `sort d/ascending` and `sort d/descending`
+  * Pros: This implementation makes it easier to extend the command in the future to accept more parameters. For example, `sort
+    c/modeofcontact c/name d/descending` is a possible format that can be used to sort the list firstly by mode of contact then by name in
+    descending order.
+  * Cons: Not as user friendly as the user will have to remember more commands.
+
 ### Undo feature
 
 #### Implementation
@@ -859,6 +858,8 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
+
+</div>
 
 ### Launch and shutdown
 

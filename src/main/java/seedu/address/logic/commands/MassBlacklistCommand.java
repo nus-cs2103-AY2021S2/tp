@@ -90,7 +90,7 @@ public class MassBlacklistCommand extends Command {
             // state check
             boolean isSameStartIndex = startIndex.equals(otherBlacklistCommand.startIndex);
             boolean isSameEndIndex = endIndex.equals(otherBlacklistCommand.endIndex);
-            boolean isSameKeyword = toBlacklist == otherBlacklistCommand.toBlacklist;
+            boolean isSameKeyword = (toBlacklist == otherBlacklistCommand.toBlacklist);
             return isSameStartIndex && isSameEndIndex && isSameKeyword;
         }
         return false;
