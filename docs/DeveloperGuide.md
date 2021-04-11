@@ -348,7 +348,7 @@ The following sequence diagram shows how the delete operation works:
 
 The following activity diagram summarizes what happens when a user executes a `food_delete` command:
 
-<img src="images/AddFoodItemActivityDiagram.png" width="415" />
+<img src="images/DeleteFoodItemActivityDiagram.png" width="415" />
 #### Description:
 
 This command deletes a valid food item from the unique food list. Food item has to exist in the food list before the deletion can be carried out.
