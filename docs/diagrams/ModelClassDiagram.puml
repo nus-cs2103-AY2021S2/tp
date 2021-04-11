@@ -22,10 +22,11 @@ Class Person
 Class Patient
 Class Doctor
 Class DoctorMap
+Class Name
 Class PatientMap
 Class Address
 Class Email
-Class Name
+
 Class Phone
 Class UniquePersonList
 }
@@ -39,6 +40,7 @@ Package Appointment {
 Class Appointment
 Class Timeslot
 Class NonConflictingAppointmentList
+Class AppointmentDisplay
 }
 }
 
@@ -61,13 +63,14 @@ AddressBook *--> "1" UniquePersonList
 AppointmentSchedule *--> "1" NonConflictingAppointmentList
 UniquePersonList o--> "*" Person
 NonConflictingAppointmentList o-left-> "*" Appointment
-Person *---> Name
-Person *---> Phone
-Person *---> Email
-Person *---> Address
-Person *---> "*" Tag
+Person *--right-> Name
+Patient *--> Phone
+Patient *--> Email
+Patient *--> Address
+Person *--> "*" Tag
 Patient --|> Person
 Doctor --|> Person
+AppointmentDisplay --|> Appointment
 Appointment *--> PatientMap
 Appointment *--> DoctorMap
 Appointment *--> Timeslot
