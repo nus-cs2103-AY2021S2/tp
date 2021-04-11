@@ -40,7 +40,7 @@ public class PlanCommandParser implements Parser<Command> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
+            throw new ParseException("The client index provided is invalid.");
         }
 
         if (argMultimap.getValue(PREFIX_INSURANCE).isEmpty() && argMultimap.getValue(PREFIX_CLEAR).isEmpty()) {
@@ -51,7 +51,12 @@ public class PlanCommandParser implements Parser<Command> {
             InsurancePlan plan = ParserUtil.parsePlan(argMultimap.getValue(PREFIX_INSURANCE).get());
             return new AddPlanCommand(index, plan);
         } else {
-            Index planIndex = ParserUtil.parseRemovePlanIndex(argMultimap.getValue(PREFIX_CLEAR).get());
+            Index planIndex;
+            try {
+                planIndex = ParserUtil.parseRemovePlanIndex(argMultimap.getValue(PREFIX_CLEAR).get());
+            } catch (ParseException pe) {
+                throw new ParseException("The plan index provided is invalid.");
+            }
             return new RemovePlanCommand(index, planIndex);
         }
     }
