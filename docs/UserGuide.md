@@ -48,12 +48,12 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-* For commands with prefixes, 
+* For commands with prefixed parameters,
   
    * Parameters can be in any order.<br>
    e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   
-   * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+   * If a parameter is expected only once in the command but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
    e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
   
 
@@ -383,10 +383,6 @@ If unindicated, the `School Residence` field will default to `DOES NOT LIVE ON C
 <br>
 **A**: Allergies and past medical history.
 
-**Q** : Will I be able to add other types of appointments besides vaccination appointments?
-<br>
-**A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
-
 **Q** : Am I able to reassign an appointment to another student?
 <br>
 **A** : No, you will need to add a new appointment for the new student. 
@@ -397,7 +393,7 @@ If unindicated, the `School Residence` field will default to `DOES NOT LIVE ON C
 
 **Q**: How long is a vaccination appointment?
 <br>
-**A**: The vaccination appointment lasts 30 mins, which includes registration, administering the vaccine and observation. 
+**A**: Each vaccination appointment lasts 30 minutes, which includes registration, administering the vaccine and observation. 
 
 -----------------------------------------------------------------------------------------------------------------
 ## Command Summary
