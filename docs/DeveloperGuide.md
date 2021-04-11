@@ -201,7 +201,7 @@ Step 3. The command is parsed by `EditBookingCommandParser` and returns a `EditB
 
 Step 4. `Editbookingcommand#execute` checks if the residence and booking exists and if the edited end date is valid.
 
-Step 5. The method then calls `BookingList#setBooking` to set the edited booking before calling `model#setResidence` to set the edited residence. Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+Step 5. The method then calls `BookingList#setBooking` to set the edited booking before calling `Model#setResidence` to set the edited residence. Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
  
 ### \[Proposed\] Undo/redo feature
 
