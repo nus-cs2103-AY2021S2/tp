@@ -2,6 +2,7 @@ package seedu.address.logic.commands.customer;
 
 import static java.util.Objects.requireNonNull;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -28,9 +29,9 @@ public class CustomerDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
     public static final String MESSAGE_DELETE_PERSON_FAILURE =
-            "Failed to deleted cusomter: %1 due to outstanding orders, "
+            "Failed to deleted cusomter: %1$s due to outstanding orders, "
                     + "add -f flag to force delete the cusomter\n"
-                    + "Warning: This will delete any order that contains %1";
+                    + "Warning: This will delete any order that contains %1$s";
 
     private final Index targetIndex;
     private final boolean isForce;

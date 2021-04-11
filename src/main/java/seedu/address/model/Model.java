@@ -282,6 +282,10 @@ public interface Model {
     /** Returns a list of orders that have not been fulfilled and contain a given dish */
     List<Order> getIncompleteOrdersContainingDish(Dish target);
 
+    //@@ author kangtinglee
+    /** Returns a list of orders that contain a given dish */
+    List<Order> getOrdersContainingDish(Dish target);
+
     /** Returns a list of orders that have not been fulfilled */
     List<Order> getIncompleteOrders();
 
