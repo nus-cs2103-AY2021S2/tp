@@ -108,7 +108,7 @@ public class EditCommand extends Command {
             throw new IllegalValueException(String.format(
                     Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
                     DateUtil.toUi(updatedBirthday.getDate()),
-                    "meeting",
+                    "date",
                     DateUtil.toUi(earliestDate.getDate())));
         }
 
