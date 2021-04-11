@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":MeetingBookParser" as MeetingBookParser LOGIC_COLOR
+participant ":MeetingBookParser" as MeetBuddyParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> MeetingBookParser : parseCommand("delete 1")
-activate MeetingBookParser
+LogicManager -> MeetBuddyParser : parseCommand("delete 1")
+activate MeetBuddyParser
 
 create DeleteCommandParser
-MeetingBookParser -> DeleteCommandParser
+MeetBuddyParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> MeetingBookParser
+DeleteCommandParser --> MeetBuddyParser
 deactivate DeleteCommandParser
 
-MeetingBookParser -> DeleteCommandParser : parse("1")
+MeetBuddyParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,14 +36,14 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> MeetingBookParser : d
+DeleteCommandParser --> MeetBuddyParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> MeetingBookParser
+DeleteCommandParser -[hidden]-> MeetBuddyParser
 destroy DeleteCommandParser
 
-MeetingBookParser --> LogicManager : d
-deactivate MeetingBookParser
+MeetBuddyParser --> LogicManager : d
+deactivate MeetBuddyParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand

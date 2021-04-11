@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":MeetingBookParser" as MeetingBookParser LOGIC_COLOR
+participant ":MeetBuddyParser" as MeetBuddyParser LOGIC_COLOR
 participant ":ShowMeetingCommandParser" as ShowMeetingCommandParser LOGIC_COLOR
 participant "sm:ShowMeetingCommand" as ShowMeetingCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -11,23 +11,23 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":PersonMeetingConnection" as PersonMeetingConnection MODEL_COLOR
+participant ":PersonInMeetingPredicate" as PersonInMeetingPredicate MODEL_COLOR
 end box
 
 [-> LogicManager : execute("showm 1")
 activate LogicManager
 
-LogicManager -> MeetingBookParser : parseCommand("showm 1")
-activate MeetingBookParser
+LogicManager -> MeetBuddyParser : parseCommand("showm 1")
+activate MeetBuddyParser
 
 create ShowMeetingCommandParser
-MeetingBookParser -> ShowMeetingCommandParser
+MeetBuddyParser -> ShowMeetingCommandParser
 activate ShowMeetingCommandParser
 
-ShowMeetingCommandParser --> MeetingBookParser
+ShowMeetingCommandParser --> MeetBuddyParser
 deactivate ShowMeetingCommandParser
 
-MeetingBookParser -> ShowMeetingCommandParser : parse("1")
+MeetBuddyParser -> ShowMeetingCommandParser : parse("1")
 activate ShowMeetingCommandParser
 
 create ShowMeetingCommand
@@ -37,26 +37,26 @@ activate ShowMeetingCommand
 ShowMeetingCommand --> ShowMeetingCommandParser : sm
 deactivate ShowMeetingCommand
 
-ShowMeetingCommandParser --> MeetingBookParser : sm
+ShowMeetingCommandParser --> MeetBuddyParser : sm
 deactivate ShowMeetingCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-ShowMeetingCommandParser -[hidden]-> MeetingBookParser
+ShowMeetingCommandParser -[hidden]-> MeetBuddyParser
 destroy ShowMeetingCommandParser
 
-MeetingBookParser --> LogicManager : sm
-deactivate MeetingBookParser
+MeetBuddyParser --> LogicManager : sm
+deactivate MeetBuddyParser
 
 LogicManager -> ShowMeetingCommand : execute()
 activate ShowMeetingCommand
 
-ShowMeetingCommand -> Model : showMeeting(1)
+ShowMeetingCommand -> PersonInMeetingPredicate
+activate PersonInMeetingPredicate
+
+PersonInMeetingPredicate --> ShowMeetingCommand : pred
+deactivate PersonInMeetingPredicate
+
+ShowMeetingCommand -> Model : updateFilteredPersonList(pred)
 activate Model
-
-Model -> PersonMeetingConnection
-activate PersonMeetingConnection
-
-PersonMeetingConnection -> Model
-deactivate PersonMeetingConnection
 
 Model --> ShowMeetingCommand
 deactivate Model
@@ -64,6 +64,12 @@ deactivate Model
 create CommandResult
 ShowMeetingCommand -> CommandResult
 activate CommandResult
+
+CommandResult -> Model : getFilteredPersonList()
+activate Model
+
+Model --> CommandResult : fpl
+deactivate Model
 
 CommandResult --> ShowMeetingCommand
 deactivate CommandResult
