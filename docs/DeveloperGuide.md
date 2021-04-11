@@ -568,6 +568,51 @@ Given below are instructions to test the app manually.
 to work on.
 </div>
 
+### Find for entries
+1. Finding for entries using the `findall` command
+    1. Prerequisite: the food diary should contain all default entries
+
+    2. Test case: `find 4/5`
+       
+        Expected: All entries shown with a rating of 4/5, with a success message displayed
+        informing the user of the number of entries found. (4 default entries will be shown)
+       
+    3. Test case: `find $7`
+
+       Expected: All entries shown with a price of $7, or a range of price that contains $7. 
+       Success message displayed informing the user of the number of entries found.
+       (1 default entry will be shown)
+       
+    4. Test case: `find western 5/5 $5-10`
+
+       Expected: All entries shown which contain at least one of the three keywords provided
+       Success message displayed informing the user of the number of entries found.
+       (10 default entries will be shown)
+       
+    5. Test case: `find 3/7`
+
+       Expected: All entries shown which contain the provided keyword: `3/7`, if any.
+       Success message displayed informing the user of the number of entries found.
+       Suggestion message displayed informing the user of a possible typo for a rating search,
+       providing directions to correct the typo. (0 default entries will be shown)
+       
+    6. Test case: `find $5-`
+
+        Expected: All entries shown which contain the provided keyword: `$5-`, if any.
+        Success message displayed informing the user of the number of entries found.
+        Suggestion message displayed informing the user of a possible typo for a price search,
+        providing directions to correct the typo. (0 default entries will be shown)
+       
+    7. Test case: `find 3/7 $5-`
+
+        Expected: All entries shown which contain either of the keywords provided, if any.
+        Success message displayed informing the user of the number of entries found.
+        Suggestion message displayed informing the user of possible typos for a rating search,
+        and a price search, providing directions to correct the typos.
+        (0 default entries will be shown)
+       
+### Finding for specific entries
+
 ## UI Mockup
 
 
