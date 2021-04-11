@@ -73,13 +73,13 @@ In addition, it is optional to include the following detail of a student:
 
 :information_source: **NOTE** If the `School Residence` of a student is not specified, the system will default to `DOES_NOT_LIVE_ON_CAMPUS` and assume that the student does not live on campus.
 
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which how the information should be presented to the program. 
+> For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which how the information should be presented to the program. 
 
 Format: `add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
 * `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-* `add A1234567X n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`
+* `add A7654321J n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`
 
 | Before        | 
 | ------------- |
@@ -97,7 +97,7 @@ All inputs specified are optional, but at least one of them must be provided. Af
 
  :information_source: **NOTE:** Every field except the student's matriculation number can be edited. Should you wish to edit the matriculation number of a student, you must first delete the student entry and add a new one with the updated matriculation number. 
 
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains how the information should be presented to the program.
+> For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains how the information should be presented to the program.
 
 Format: `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
@@ -180,13 +180,13 @@ Adds an appointment to Vax@NUS' records.
 
 Appointments can be added for both unvaccinated and vaccinated students, as appointments can also entail follow-ups or check-ups in addition to vaccinations.
 
-Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
+Format: `addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
 > For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
 
 Examples:
-* `addAppt i/A1234567X d/2021-12-13 ts/13:00`
-* `addAppt i/A7654321J d/2021-12-13 ts/14:00`
+* `addAppt A1234567X d/2021-12-13 ts/13:00`
+* `addAppt A7654321J d/2021-12-13 ts/14:00`
 
 | Before        | 
 | ------------- |
@@ -342,6 +342,15 @@ Please refer to the [Input Formats](#input-formats) section when editing the dat
 <br>
 **A**: The vaccination appointment lasts 30 mins, which includes registration, administering the vaccine and observation. 
 
+**Q**: Why can I add appointments before the current date?
+<br>
+**A**: Just like other calendar applications, adding appointments before the current date
+helps to facilitate administrative tasks, such as tracking past appointments and backdating. 
+
+**Q**: How do I manage appointments that have been completed?
+<br>
+**A**: You can choose to delete them manually or leave them there, depending on administrative needs. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
@@ -416,7 +425,7 @@ Action | Format, Examples
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
 **Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter unvaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
-**Add  Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
+**Add Appointment** | `addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt A1234567X d/2021-12-13 ts/13:00`
 **Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM` <br> e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` <br> e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`
