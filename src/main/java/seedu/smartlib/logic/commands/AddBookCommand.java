@@ -1,16 +1,11 @@
 package seedu.smartlib.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Random;
