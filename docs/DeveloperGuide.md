@@ -263,6 +263,10 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
+The following activity diagram below summarizes what happens when a user executes the `deleteTask` command:
+
+![#Activity Diagram for Delete Task](images/DeleteTaskActivityDiagram.png)
+
 ### Clear all Assignees of a Task feature
 
 The implementation of the clear all assignees of a task feature is facilitated by the `ClearAssigneeCommand` 
