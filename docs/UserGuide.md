@@ -73,6 +73,7 @@ Tasks can have the following attributes:
 
 | Attribute | Prefix | Description |
 |---|---|---|
+
 | Title | `t/` | A short description or name for the task. {::nomarkdown}<ul><li>Titles can only contain alphanumeric values and have at most 40 characters.</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/} <br> <div markdown="span" class="alert alert-info">:information_source:  Every task must have a title. </div>|
 | Date | `set/` | A date to represent the deadline of a task or to represent the day that the task will be carried out. {::nomarkdown}<ul><li> Dates should be of the format dd/mm/yyyy e.g 02/06/2021</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}|
 | Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. {::nomarkdown}<ul><li>Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30</li><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}|
@@ -214,7 +215,7 @@ Examples:
 
 ### Marking a task as done: `done`
 
-Sets a task's status to 'done'.
+Sets a task's status to 'done'. Calendar will be reset.
 
 Format: `done INDEX`
 * Sets the task at the specified `INDEX` to be done. The index refers to the index number shown in the displayed list.
@@ -472,7 +473,7 @@ that contains the data of your previous PlanIT home folder.
 ## Command summary
 
 Action | Format, Examples
---------|------------------
+---|---
 **Make** | `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
 **Clear** | `clear`
 **Mark Done** | `done INDEX`
