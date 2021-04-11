@@ -103,6 +103,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+**[Back to Table Of Content](#table-of-contents)**
+
 ### 2.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -122,6 +124,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+**[Back to Table Of Content](#table-of-contents)**
+
 ### 2.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -137,7 +141,8 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("clear m/")` API call.
 
-![Interactions Inside the Logic Component for the `clear m/` Command](images/ClearFeatureSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `clear m/` Command](images/ClearFeatureSequenceDiagram.png)<br>
+*[Sample Sequence Diagram for clear command]*
 
 ### 2.4 Model component
 
@@ -157,6 +162,8 @@ The `Model`,
 
 </div>
 
+**[Back to Table Of Content](#table-of-contents)**
+
 
 ### 2.5 Storage component
 
@@ -169,10 +176,13 @@ The `Storage` component,
 * can save the RemindMe data in json format and read it back.
 * CalendarStorage is accessed by UI component which is no indicated in the diagram.
 
+**[Back to Table Of Content](#table-of-contents)**
+
 ### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 <br><br>
+**[Back to Table Of Content](#table-of-contents)**
 --------------------------------------------------------------------------------------------------------------------
 
 ## **3. Implementation**
@@ -184,6 +194,7 @@ The features are:
 * **[Delete Feature](#33-delete-feature)**
 * **[Edit Feature](#34-edit-feature)**
 * **[Calendar Feature](#35-calendar-feature)**
+* **[Back to Table Of Content](#table-of-contents)**
 
 ### 3.1 Add Feature
 
@@ -258,6 +269,15 @@ The proposed find implementation is facilitated by `ModelManager`, which extends
 * Modules
 * General Events
 
+The following activity diagram summarizes what happens when a user executes a `find m/CS2101` command:<br>
+![FindActivityDiagram](images/findcommand/FindActivityDiagram.png)<br>
+*[Find Activity Diagram for `find m/CS2101`]*
+<br>
+
+The following sequence diagram shows how the find operation works:<br>
+![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)<br>
+*[Find Sequence Diagram for `find m/CS2101`]*
+
 Given below is an example usage scenario and how the find mechanism behaves at each step. Input: `find m/CS2101`
 
 **Step 1:** Your input is parsed into `RemindMeParser` using the `parseCommand` method.
@@ -313,17 +333,8 @@ passing your input into the appropriate `FindModuleCommand`.
 **Step 9:** The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning 
 `resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
 <br>
-<br>
 
-The following sequence diagram shows how the find operation works:
-![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)<br>
-*[Find Sequence Diagram for `find m/CS2101`]*
-
-The following activity diagram summarizes what happens when a user executes a `find m/CS2101` command:<br>
-![FindActivityDiagram](images/findcommand/FindActivityDiagram.png)<br>
-*[Find Activity Diagram for `find m/CS2101`]*
-<br>
-<br>
+**[Back to Table Of Content](#table-of-contents)**
 
 ### 3.3 Delete Feature
 
@@ -332,9 +343,9 @@ RemindMe is able to delete an existing `Assignment` in an existing `Module`
 
 The diagram below shows the relationships between `DeleteAssignmentCommand` and `DeleteAssignmentCommandParser` under 
 the `Logic` component and the relationship between `Module` and `Assignment` under the `Model` component.
+<br>
+<br>
 
-<br>
-<br>
 The following example usage scenario describes how the delete mechanism behaves at each step.
 
     Assuming RemindMe has a Module named CS2103. This Module contains a AssignmentList that stores
@@ -380,13 +391,14 @@ and returned to `LogicManager`.
 **Step 7:** Lastly, `LogicManager` saves the updated RemindMe.
 
 The above process is shown in the following sequence diagram:
-![DeleteFeatureSequenceDiagram](images/DeleteFeatureSequenceDiagram.png)  
+![DeleteFeatureSequenceDiagram](images/DeleteFeatureSequenceDiagram.png)<br>
 *[Delete Sequence Diagram for `delete m/CS2103 a/3`]*
 
 The following activity diagram summarises the general workflow for the Delete Command:
-![DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png) 
-*[Delete Activity Diagram for `delete m/CS2103 a/3`]* 
+![DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png)<br>
+*[Delete Activity Diagram for `delete m/CS2103 a/3`]*
 
+**[Back to Table Of Content](#table-of-contents)**
 
 ### 3.4 Edit Feature
 
@@ -399,8 +411,8 @@ the `Logic` component and the relationship between `Module` and `Assignment` und
 <br>
 <br>
 
-![EditFeatureClassDiagram](images/EditFeatureClassDiagram.png)
-*[Edit Feature Class Diagram]* 
+![EditFeatureClassDiagram](images/EditFeatureClassDiagram.png)<br>
+*[Edit Feature Class Diagram]*
 <br>
 <br>
 
@@ -471,13 +483,15 @@ The following activity diagram summarises the general workflow for the Edit Comm
 ![EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
 *[Edit Feature Activity Diagram for `edit m/CS2103 a/1 d/Tut2`]* 
 
+**[Back to Table Of Content](#table-of-contents)**
 
 ### 3.5 Calendar Feature
 
 #### Implementation
 
-![CalendarSequenceDiagram2](images/CalendarSequenceDiagram2.png)
+![CalendarSequenceDiagram2](images/CalendarSequenceDiagram2.png) <br>
 *[Calendar Feature Sequence Diagram]* 
+<br>
 
 **Given below is an example of how the calendar UI is created.**
 
@@ -505,7 +519,7 @@ and then the calendar will be ready to be displayed as a GUI.
 <br>
 <br>
 
-![CalendarSequenceDiagram1](images/CalendarSequenceDiagram1.png)
+![CalendarSequenceDiagram1](images/CalendarSequenceDiagram1.png)<br>
 *[Calendar Command Sequence Diagram]*
 
 Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
@@ -525,20 +539,20 @@ pushed to `MainWindow` to call `MainWindow#handleCalendar` to show the `Calendar
 
 **Step 4:** `CalendarWindow` loaded by its fxml file and called `CalendarWindow#show` to show its shown 
 as a pop-up window for you.
-
 <br>
 <br>
-
+**[Back to Table Of Content](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+* **[Documentation guide](Documentation.md)**
+* **[Testing guide](Testing.md)**
+* **[Logging guide](Logging.md)**
+* **[Configuration guide](Configuration.md)**
+* **[DevOps guide](DevOps.md)**
+* **[Back to Table Of Content](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -558,7 +572,9 @@ entities and ensure they are of the right format.
 
 Moreover, RemindMe has a calendar which is able to differentiate all entries in RemindMe based on the dates and time.
 Assignments in Modules has a checkbox to indicate whether an assignment is done or not. This adds a new logic into RemindMe, 
-compared to AB3, and additional GUI. 
+compared to AB3, and additional GUI.
+
+**[Back to Table Of Content](#table-of-contents)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -613,39 +629,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+**[Back to Table Of Content](#table-of-contents)**
+
 ### Use cases
 
 (For all use cases below, the **System** is the `RemindMe` and the **Actor** is the `user`, unless specified otherwise)
 
 Use Cases:<br>
-* **[Use Case 1: View Help](#Use-Case-1:-view-help)**
-* **[Use Case 2: Exit](#Use-Case-2:-exit)**
-* **[Use Case 3: Add Module](#Use-Case-3:-add-module)**
-* **[Use Case 4: Add Assignment](#Use-Case-4:-add-assignment)**
-* **[Use Case 5: Add Exam](#Use-Case-5:-add-exam)**
-* **[Use Case 6: Add Person and Birthday](#Use-Case-6:-Add-Person-and-Birthday)**
-* **[Use Case 7: Add General Events](#Use-Case-7:-add-general-events)**
-* **[Use Case 8: Edit Module](#Use-Case-8:-edit-module)**
-* **[Use Case 9: Edit Assignment](#Use-Case-9:-edit-assignment)**
-* **[Use Case 10: Edit Exam](#Use-Case-10:-edit-exam)**
-* **[Use Case 11: Edit Person](#Use-Case-11:-edit-person)**
-* **[Use Case 12: Edit General Event](#Use-Case-12:-edit-general-event)**
-* **[Use Case 13: Delete Module](#Use-Case-13:-delete-module)**
-* **[Use Case 14: Delete Assignment](#Use-Case-14:-delete-assignment)**
-* **[Use Case 15: Delete Exam](#Use-Case-15:-delete-exam)**
-* **[Use Case 16: Delete Person](#Use-Case-16:-delete-person)**
-* **[Use Case 17: Delete General Event](#Use-Case-17:-delete-general-event)**
-* **[Use Case 18: Find Module](#Use-Case-18:-find-module)**
-* **[Use Case 19: Find Person](#Use-Case-19:-find-person)**
-* **[Use Case 20: Find General Event](#Use-Case-20:-find-general-event)**
-* **[Use Case 21: List](#Use-Case-21:-list)**
-* **[Use Case 22: Mark Assignment as Done](#Use-Case-22:-Mark-Assignment-as-Done)**
-* **[Use Case 23: Clear App](#Use-Case-23:-clear-app)**
-* **[Use Case 24: Clear Modules](#Use-Case-24:-clear-modules)**
-* **[Use Case 25: Clear Contacts](#Use-Case-25:-clear-contacts)**
-* **[Use Case 26: Clear Events](#Use-Case-26:-clear-events)**
-* **[Use Case 27: View Calendar](#Use-Case-27:-View-Calendar)**
-* **[Use Case 28: Reminder](#Use-Case-28:-Reminder)**
+* **[Use Case 1: View Help](#use-case-1-view-help)**
+* **[Use Case 2: Exit](#use-case-2-exit)**
+* **[Use Case 3: Add Module](#use-case-3-add-module)**
+* **[Use Case 4: Add Assignment](#use-case-4-add-assignment)**
+* **[Use Case 5: Add Exam](#use-case-5-add-exam)**
+* **[Use Case 6: Add Person and Birthday](#use-case-6-add-person-and-birthday)**
+* **[Use Case 7: Add General Events](#use-case-7-add-general-events)**
+* **[Use Case 8: Edit Module](#use-case-8-edit-module)**
+* **[Use Case 9: Edit Assignment](#use-case-9-edit-assignment)**
+* **[Use Case 10: Edit Exam](#use-case-10-edit-exam)**
+* **[Use Case 11: Edit Person](#use-case-11-edit-person)**
+* **[Use Case 12: Edit General Event](#use-case-12-edit-general-event)**
+* **[Use Case 13: Delete Module](#use-case-13-delete-module)**
+* **[Use Case 14: Delete Assignment](#use-case-14-delete-assignment)**
+* **[Use Case 15: Delete Exam](#use-case-15-delete-exam)**
+* **[Use Case 16: Delete Person](#use-case-16-delete-person)**
+* **[Use Case 17: Delete General Event](#use-case-17-delete-general-event)**
+* **[Use Case 18: Find Module](#use-case-18-find-module)**
+* **[Use Case 19: Find Person](#use-case-19-find-person)**
+* **[Use Case 20: Find General Event](#use-case-20-find-general-event)**
+* **[Use Case 21: List](#use-case-21-list)**
+* **[Use Case 22: Mark Assignment as Done](#use-case-22-mark-assignment-as-done)**
+* **[Use Case 23: Clear App](#use-case-23-clear-app)**
+* **[Use Case 24: Clear Modules](#use-case-24-clear-modules)**
+* **[Use Case 25: Clear Contacts](#use-case-25-clear-contacts)**
+* **[Use Case 26: Clear Events](#use-case-26-clear-events)**
+* **[Use Case 27: View Calendar](#use-case-27-view-calendar)**
+* **[Use Case 28: Reminder](#use-case-28-reminder)**
+* **[Back to Table Of Content](#table-of-contents)**
 
 ### Use Case 1: View Help
 
@@ -1103,6 +1122,7 @@ Term | Meaning
 **Event** | Consists of a start time and date which it occurs on.
 **Assignment** | Consists of a deadline under a relevant module.
 **GUI** | Graphic User Interface, the visible interface the user sees for the application.
+**CLI** | Command Line Input, inputs passed in by user while RemindMe is running.
 **FilteredList** | List of entries that can take a predicate and show entries that is tested true by the predicated.
 **Tokenize** | Splits the user's inputs based on the prefixes for RemindMe.
 **Prefix** | Prefixes used by RemindMe to parse user's input. <br>Prefixes used by RemindMe are `m/`, `a/`, `e/`, `n/`, `b/`, `g/`, `by/` and `on/`.
@@ -1179,6 +1199,8 @@ testers are expected to do more *exploratory* testing.
 
    4. Clears RemindMe. Test case: `clear`. RemindMe is cleared completely.<br>
       (Ensure that RemindMe has some entries in it.) 
+
+**[Back to Table Of Content](#table-of-contents)**
 
 ### Saving data
 
