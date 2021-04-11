@@ -83,8 +83,8 @@ public class AddCommand extends Command {
             + PREFIX_DATE + "01/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.\n" +
-            "Note that Tags are not taken into consideration when checking for duplicated orders.";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.\n"
+            + "Note that Tags are not taken into consideration when checking for duplicated orders.";
 
     private final IndexList orderItemIndexList;
     private final AddOrderDescriptor addOrderDescriptor;

@@ -58,8 +58,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.\n" +
-            "Note that Tags are not taken into consideration when checking for duplicated orders.";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.\n"
+            + "Note that Tags are not taken into consideration when checking for duplicated orders.";
     public static final String MESSAGE_NO_CHANGE = "No changes were made.";
 
     private final Index index;
