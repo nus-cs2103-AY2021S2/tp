@@ -7,7 +7,10 @@ title: FriendDex
 
 ![Ui](images/Ui.png)
 
-**FriendDex is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**FriendDex**, a portmanteau of Friend and Pokedex, is a **relationship management tool**, catered
+to those who would like to maintain their personal relationships without compromising on other
+aspects of their life. While it has a GUI, most of the user interactions happen using a CLI (Command
+Line Interface).
 
 * If you are interested in using FriendDex, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing FriendDex, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
