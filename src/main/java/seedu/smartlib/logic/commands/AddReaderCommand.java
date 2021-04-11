@@ -18,7 +18,7 @@ public class AddReaderCommand extends Command {
 
     public static final String COMMAND_WORD = "addreader";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reader to the registered reader base. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reader to the registered reader base.\n"
             + "Parameters: "
             + PREFIX_READER + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -31,7 +31,7 @@ public class AddReaderCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "OneYearMembership "
-            + PREFIX_TAG + "vip";
+            + PREFIX_TAG + "VIP";
 
     public static final String MESSAGE_SUCCESS = "New reader added: %1$s";
     public static final String MESSAGE_DUPLICATE_READER = "This reader already exists in the registered reader base";

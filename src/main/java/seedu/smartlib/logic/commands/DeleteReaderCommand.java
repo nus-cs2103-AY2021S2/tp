@@ -22,7 +22,7 @@ public class DeleteReaderCommand extends Command {
             + "Parameter: INDEX (must be a positive integer smaller than the size of your reader list).\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_READER_SUCCESS = "Deleted Reader: %1$s";
+    public static final String MESSAGE_DELETE_READER_SUCCESS = "Deleted reader: %1$s";
     public static final String HAS_UNRETURNED_BOOKS = "The reader specified cannot be deleted because "
             + "he/she has unreturned books.\nPlease manually return those books and then delete again.";
 

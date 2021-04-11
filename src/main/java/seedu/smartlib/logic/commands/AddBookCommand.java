@@ -1,11 +1,16 @@
 package seedu.smartlib.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,13 +28,19 @@ public class AddBookCommand extends Command {
 
     public static final String COMMAND_WORD = "addbook";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a book to SmartLib's booklist. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a book to SmartLib's booklist.\n"
             + "Parameters: "
             + PREFIX_BOOK + "BOOKNAME "
             + PREFIX_AUTHOR + "AUTHOR "
             + PREFIX_PUBLISHER + "PUBLISHER "
             + PREFIX_ISBN + "ISBN "
-            + PREFIX_GENRE + "GENRE ";
+            + PREFIX_GENRE + "GENRE\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_BOOK + "Great Expectations "
+            + PREFIX_AUTHOR + "Charles Dickens "
+            + PREFIX_PUBLISHER + "Chapman Hall "
+            + PREFIX_ISBN + "9780194241748 "
+            + PREFIX_GENRE + "Novel ";
 
     public static final String MESSAGE_SUCCESS = "New book added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the book base.";
