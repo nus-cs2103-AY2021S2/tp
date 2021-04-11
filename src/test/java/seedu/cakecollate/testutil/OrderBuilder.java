@@ -1,5 +1,6 @@
 package seedu.cakecollate.testutil;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class OrderBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_ORDER_DESCRIPTION = "1 x Chocolate Cake";
+    public static final String DEFAULT_ORDER_DESCRIPTION = "Mango Cheesecake";
     public static final String DEFAULT_DELIVERY_DATE = "01/01/2022";
     public static final String DEFAULT_REQUEST = "";
 
@@ -35,7 +36,7 @@ public class OrderBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<OrderDescription> orderDescriptions;
+    private HashMap<OrderDescription, Integer> orderDescriptions;
     private Set<Tag> tags;
     private DeliveryDate deliveryDate;
     private DeliveryStatus deliveryStatus;
@@ -49,8 +50,8 @@ public class OrderBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        orderDescriptions = new HashSet<>();
-        orderDescriptions.add(new OrderDescription(DEFAULT_ORDER_DESCRIPTION));
+        orderDescriptions = new HashMap<>();
+        orderDescriptions.put(new OrderDescription(DEFAULT_ORDER_DESCRIPTION), 1);
         tags = new HashSet<>();
         deliveryDate = new DeliveryDate(DEFAULT_DELIVERY_DATE);
         deliveryStatus = new DeliveryStatus();
@@ -65,7 +66,7 @@ public class OrderBuilder {
         phone = orderToCopy.getPhone();
         email = orderToCopy.getEmail();
         address = orderToCopy.getAddress();
-        orderDescriptions = new HashSet<>(orderToCopy.getOrderDescriptions());
+        orderDescriptions = new HashMap<>(orderToCopy.getOrderDescriptions());
         tags = new HashSet<>(orderToCopy.getTags());
         deliveryDate = orderToCopy.getDeliveryDate();
         deliveryStatus = orderToCopy.getDeliveryStatus();
@@ -119,7 +120,7 @@ public class OrderBuilder {
      * Sets the {@code OrderDescription} of the {@code OrderDescription} that we are building.
      */
     public OrderBuilder withOrderDescriptions(String ... orderDescriptions) {
-        this.orderDescriptions = SampleDataUtil.getOrderDescriptionSet(orderDescriptions);
+        this.orderDescriptions = SampleDataUtil.getOrderDescriptionMap(orderDescriptions);
         return this;
     }
 

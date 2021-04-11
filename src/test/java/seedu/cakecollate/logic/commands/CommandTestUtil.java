@@ -7,9 +7,12 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_ITEM_IDX;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
+import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_THIRD_ORDER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import seedu.cakecollate.commons.core.index.Index;
+import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.Prefix;
 import seedu.cakecollate.model.CakeCollate;
@@ -46,8 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_CHOCOLATE_ORDER = "1 x Amys Chocolate Cakes";
-    public static final String VALID_BERRY_ORDER = "1 x Bobs Berry Cakes";
+    public static final String VALID_CHOCOLATE_ORDER = "Amys Chocolate Cakes";
+    public static final String VALID_BERRY_ORDER = "Bobs Berry Cakes";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DELIVERY_DATE_AMY = "01/01/2022";
@@ -75,6 +79,10 @@ public class CommandTestUtil {
     public static final OrderItem ORDER_ITEM_AMY = new OrderItem(new Type(VALID_CHOCOLATE_ORDER));
     public static final OrderItem ORDER_ITEM_BOB = new OrderItem(new Type(VALID_BERRY_ORDER));
 
+    public static final String INDEXES_2 = "1 3";
+    public static final String ORDER_ITEM_INDEXES_1 = " " + PREFIX_ORDER_ITEM_IDX + "1 2 4";
+    public static final String ORDER_ITEM_INDEXES_2 = " " + PREFIX_ORDER_ITEM_IDX + INDEXES_2;
+
     // these are some user input fields with prefixes, invalid according to validation specified in model classes
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -91,6 +99,8 @@ public class CommandTestUtil {
     public static final EditCommand.EditOrderDescriptor DESC_AMY;
     public static final EditCommand.EditOrderDescriptor DESC_BOB;
 
+    public static final IndexList ORDER_ITEM_INDEXLIST_2;
+
     static {
         DESC_AMY = new EditOrderDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -100,6 +110,12 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withOrderDescriptions(VALID_BERRY_ORDER).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withDeliveryDate(VALID_DELIVERY_DATE_BOB).build();
+
+
+        List<Index> l = new ArrayList<>();
+        l.add(INDEX_FIRST_ORDER);
+        l.add(INDEX_THIRD_ORDER);
+        ORDER_ITEM_INDEXLIST_2 = new IndexList(l);
     }
 
     /**

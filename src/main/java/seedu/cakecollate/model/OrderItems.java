@@ -59,6 +59,7 @@ public class OrderItems implements ReadOnlyOrderItems {
      * The order item must not already exist in the order item list.
      */
     public void addOrderItem(OrderItem p) {
+        requireNonNull(p);
         orderItems.add(p);
     }
 

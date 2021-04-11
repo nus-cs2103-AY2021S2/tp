@@ -9,8 +9,10 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
  */
 public class Type {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Order Type should only contain alphanumeric characters, \" and white spaces, and it should not be blank";
+    public static final String SHARED_CONSTRAINTS_MESSAGE =
+            "%s should only contain alphanumeric characters, \" and white spaces, and it should not be blank";
+
+    public static final String MESSAGE_CONSTRAINTS = String.format(SHARED_CONSTRAINTS_MESSAGE, "Order Type");
 
     public static final String VALIDATION_REGEX = "^([\\p{Alnum}\"]|([\\p{Alnum}\"][\\p{Alnum}\" ]*))$";
 
@@ -42,11 +44,17 @@ public class Type {
         return value;
     }
 
+    /**
+     * Returns true if the value of the type is the same regardless of case.
+     *
+     * @param other Object to compare with
+     * @return whether the two are equal (case insensitive)
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Type // instanceof handles nulls
-                && value.equals(((Type) other).value)); // state check
+                && value.equalsIgnoreCase(((Type) other).value)); // state check
     }
 
     @Override

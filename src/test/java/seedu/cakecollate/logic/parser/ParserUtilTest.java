@@ -9,7 +9,9 @@ import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +26,8 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -48,7 +52,7 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_ORDER_DESC_1 = "chocolate mousse";
-    private static final String VALID_ORDER_DESC_2 = "1 x strawberry thing";
+    private static final String VALID_ORDER_DESC_2 = "strawberry thing";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DELIVERY_DATE = "01/01/2022";
@@ -275,11 +279,11 @@ public class ParserUtilTest {
 
     @Test
     public void parseOrderDescription_collectionWithValidOrderDescription_returnsSet() throws Exception {
-        Set<OrderDescription> actualOrderDescriptionSet =
+        Map<OrderDescription, Integer> actualOrderDescriptionSet =
                 ParserUtil.parseOrderDescriptions(Arrays.asList(VALID_ORDER_DESC_1, VALID_ORDER_DESC_2));
-        Set<OrderDescription> expectedOrderDescriptionSet =
-                new HashSet<>(Arrays.asList(new OrderDescription(VALID_ORDER_DESC_1),
-                        new OrderDescription(VALID_ORDER_DESC_2)));
+        Map<OrderDescription, Integer> expectedOrderDescriptionSet = new HashMap<>();
+        expectedOrderDescriptionSet.put(new OrderDescription(VALID_ORDER_DESC_1), 1);
+        expectedOrderDescriptionSet.put(new OrderDescription(VALID_ORDER_DESC_2), 1);
 
         assertEquals(expectedOrderDescriptionSet, actualOrderDescriptionSet);
     }
@@ -657,4 +661,24 @@ public class ParserUtilTest {
             -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_3));
     }
 
+    @Test
+    public void parseOrderItem_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderItem(null));
+    }
+
+    @Test
+    public void parseOrderItem_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderItem(INVALID_ORDER_DESC));
+    }
+
+    @Test
+    public void parseOrderItem_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderItem(OVERFLOW_ORDER_DESCRIPTION));
+    }
+
+    @Test
+    public void parseOrderItem_validValue_returnsOrderDescription() throws ParseException {
+        OrderItem expectedOrderItem = new OrderItem(new Type(VALID_ORDER_DESC_1));
+        assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(VALID_ORDER_DESC_1));
+    }
 }
