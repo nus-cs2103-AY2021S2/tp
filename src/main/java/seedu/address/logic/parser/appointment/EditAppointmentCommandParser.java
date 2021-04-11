@@ -71,11 +71,11 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     .setDuration(TimeslotParser.parseDuration(argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get()));
         }
 
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
+
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
-
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
         return new EditAppointmentCommand(index, editAppointmentDescriptor);
     }
