@@ -54,7 +54,6 @@ public class EditCommandTest {
         Optional<Event> optFirstEvent = model.getEventByIdentifier(firstEventInModel.getIdentifier());
         assertTrue(optFirstEvent.isPresent());
         Event firstEvent = optFirstEvent.get();
-        //Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
         expectedModel.setEvent(firstEvent, editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -64,9 +63,7 @@ public class EditCommandTest {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
         int eventBookSize = model.getEventBook().getEventList().size();
-        //Optional<Event> optLastEvent = model.getEventByIdentifier(eventBookSize - 1);
-        //assertTrue(optLastEvent.isPresent());
-        //Event lastEvent = optLastEvent.get();
+      
         Event lastEvent = model.getEventBook().getEventList().get(eventBookSize - 1);
         Identifier lastEventIdentifier = Identifier.fromIdentifier(lastEvent.getIdentifier());
 
@@ -89,9 +86,6 @@ public class EditCommandTest {
     public void execute_duplicateEvent_fail() {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
-        //Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
-        //assertTrue(optFirstEvent.isPresent());
-        //Event firstEvent = optFirstEvent.get();
         Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
         Event secondEvent = model.getEventBook().getEventList().get(IDENTIFIER_SECOND_EVENT.getZeroBased());
 
