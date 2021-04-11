@@ -12,13 +12,16 @@ Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonPlannerStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> PlannerStorage
+
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> PlannerStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonPlannerStorage .left.|> PlannerStorage
-JsonPlannerStorage .down.> JsonSerializablePlannerStorage
-JsonSerializablePlannerStorage .right.> JsonSerializableTask
-JsonSerializableTask .right.> JsonAdaptedTag
+JsonPlannerStorage .down.> JsonSerializablePlanner
+JsonSerializablePlanner .right.> JsonAdaptedTask
+JsonAdaptedTask .right.> JsonAdaptedTag
 @enduml
