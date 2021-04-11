@@ -20,7 +20,7 @@ Package Role {
 Class Role
 }
 
-Package Events {
+Package Event {
 Class "{abstract}\nRepeatable" as Repeatable
 Class Event
 }
