@@ -17,13 +17,17 @@ public class PersonInMeetingPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         Set<Person> personsInMeeting = this.meeting.getConnectionToPerson();
-        Set<Group> groupsInMeeting = this.meeting.getGroups();
+        return personsInMeeting.stream()
+                .anyMatch(p -> p.equals(person));
+
+        /* The code below is to be used only if the people in the meeting groups are to be displayed too (i.e. in v1.5) */
+        /*Set<Group> groupsInMeeting = this.meeting.getGroups();
         Set<Group> groupsForPerson = person.getGroups();
         return groupsInMeeting.stream()
                 .anyMatch(mGroup ->
                         groupsForPerson.stream().anyMatch(pGroup ->
                                 pGroup.equals(mGroup))) ||
-                personsInMeeting.stream().anyMatch(p -> p.equals(person));
+                personsInMeeting.stream().anyMatch(p -> p.equals(person));*/
     }
 
     @Override
