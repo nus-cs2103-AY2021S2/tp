@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        logger.info("----------------[EXECUTE][START]");
 
         CommandResult commandResult;
         Command command = modulePlannerParser.parseCommand(commandText);
@@ -53,9 +53,10 @@ public class LogicManager implements Logic {
         try {
             storage.savePlans(model.getPlans());
         } catch (IOException ioe) {
+            logger.info("----------------[EXECUTE][EXCEPTION]");
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
+        logger.info("----------------[EXECUTE][END][" + commandText + "]");
         return commandResult;
     }
 

@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.plan.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.plan.commons.core.LogsCenter;
 import seedu.plan.commons.core.Messages;
 import seedu.plan.commons.core.index.Index;
 import seedu.plan.logic.commands.exceptions.CommandException;
@@ -16,6 +18,7 @@ import seedu.plan.model.plan.Plan;
  * Marks a Semester as the current semester.
  */
 public class MasterPlanCommand extends Command {
+    private final Logger logger = LogsCenter.getLogger(MasterPlanCommand.class);
 
     public static final String COMMAND_WORD = "master";
 
@@ -35,10 +38,12 @@ public class MasterPlanCommand extends Command {
      */
     public MasterPlanCommand(Index masterPlanIndex) {
         this.masterPlanIndex = masterPlanIndex;
+        logger.info("----------------[CONSTRUCTOR][" + masterPlanIndex.getOneBased() + "]");
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("----------------[EXECUTE][START]");
         requireNonNull(model);
         List<Plan> lastShownList = model.getFilteredPlanList();
 
@@ -59,6 +64,7 @@ public class MasterPlanCommand extends Command {
         try {
             masterPlan = lastShownList.get(masterPlanIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
+            logger.info("----------------[EXECUTE][EXCEPTION]");
             throw new CommandException("Set a new Master Plan as the old one is no longer valid.");
         }
         Plan originalPlan = masterPlan;
@@ -66,11 +72,14 @@ public class MasterPlanCommand extends Command {
         model.setMasterPlan(masterPlan);
         model.setPlan(originalPlan, masterPlan);
 
+        logger.info("----------------[EXECUTE][END]");
         return new CommandResult(String.format(MESSAGE_SUCCESS, masterPlanIndex.getOneBased()));
     }
 
     @Override
     public boolean equals(Object other) {
+        logger.info("----------------[EQUALS]["
+                + this.toString() + "][" + other.toString() + "]");
         if (other == this) {
             return true;
         } else if (other instanceof MasterPlanCommand) {
