@@ -1,13 +1,14 @@
 package seedu.address.model.entry;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EntryBuilder;
-
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.entry.EntryDate.DEFAULT_FORMATTER;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.EntryBuilder;
 
 public class ListEntryFormatPredicateTest {
 
