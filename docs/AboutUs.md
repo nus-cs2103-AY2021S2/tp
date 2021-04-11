@@ -9,7 +9,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Azeem Vasanwala
+### Azeem Arshad Vasanwala
 
 <img src="images/drwala.png" width="200px">
 
@@ -19,7 +19,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing, Rooms feature
 
-### Benedict Khoo
+### Khoo Ming Wei, Benedict
 
 <img src="images/benedictkhoomw.png" width="200px">
 
@@ -39,7 +39,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Integration, Resident Feature
 
-### Ian Soo
+### Soo Qi Xuan Ian
 
 <img src="images/stein414.png" width="200px">
 
@@ -49,7 +49,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 * Role: Developer, VS Code Expert
 * Responsibilities: Code Quality, Issue Feature
 
-### Linh
+### Cao Ngoc Linh
 
 <img src="images/cnlinh.png" width="200px">
 
