@@ -169,5 +169,4 @@ public class UpdateContactCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new UpdateContactCommand(INDEX_FIRST, DESC_BOB)));
     }
-
 }

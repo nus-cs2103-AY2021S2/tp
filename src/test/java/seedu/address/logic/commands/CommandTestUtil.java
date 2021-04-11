@@ -15,6 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,11 +59,13 @@ public class CommandTestUtil {
     public static final String VALID_EVENT_DATE = " " + PREFIX_EVENT_DATE + "01-01-2020";
     public static final String VALID_EVENT_TIME = " " + PREFIX_EVENT_TIME + "1730";
     public static final String VALID_EVENT_WEEKLY = " " + PREFIX_EVENT_WEEKLY + "N";
+    public static final String VALID_PROJECT_NAME = " " + PREFIX_NAME + "CS2103T team project";
     public static final String INVALID_DESCRIPTION = " " + PREFIX_DESCRIPTION + "";
     public static final String INVALID_DEADLINE_DATE = " " + PREFIX_DEADLINE_DATE + "01/01-2020";
     public static final String INVALID_EVENT_DATE = " " + PREFIX_EVENT_DATE + "01-01/2020";
     public static final String INVALID_EVENT_TIME = " " + PREFIX_EVENT_TIME + "17-30";
     public static final String INVALID_EVENT_WEEKLY = " " + PREFIX_EVENT_WEEKLY + "Maybe";
+    public static final String INVALID_PROJECT_NAME = " " + PREFIX_NAME + "   ";
 
 
     public static final String NAME_DESC_SYLPH = " " + PREFIX_NAME + VALID_NAME_SYLPH;
@@ -98,6 +102,10 @@ public class CommandTestUtil {
 
     public static final UpdateContactCommand.UpdateContactDescriptor DESC_AMY;
     public static final UpdateContactCommand.UpdateContactDescriptor DESC_BOB;
+    public static final UpdateDeadlineCommand.UpdateDeadlineDescriptor DESC_DEADLINE_1;
+    public static final UpdateDeadlineCommand.UpdateDeadlineDescriptor DESC_DEADLINE_2;
+    public static final UpdateEventCommand.UpdateEventDescriptor DESC_EVENT_1;
+    public static final UpdateEventCommand.UpdateEventDescriptor DESC_EVENT_2;
 
     public static final UpdateGroupmateCommand.UpdateGroupmateDescriptor DESC_SYLPH;
     public static final UpdateGroupmateCommand.UpdateGroupmateDescriptor DESC_ROXY;
@@ -109,6 +117,26 @@ public class CommandTestUtil {
         DESC_BOB = new UpdateContactDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        DESC_DEADLINE_1 = new UpdateDeadlineCommand.UpdateDeadlineDescriptor();
+        DESC_DEADLINE_1.setDescription("deadline");
+        DESC_DEADLINE_1.setDate(LocalDate.of(2020, 1, 1));
+
+        DESC_DEADLINE_2 = new UpdateDeadlineCommand.UpdateDeadlineDescriptor();
+        DESC_DEADLINE_2.setDescription("close deadline");
+        DESC_DEADLINE_2.setDate(LocalDate.of(2020, 2, 1));
+
+        DESC_EVENT_1 = new UpdateEventCommand.UpdateEventDescriptor();
+        DESC_EVENT_1.setDescription("Tutorial");
+        DESC_EVENT_1.setDate(LocalDate.of(2020, 1, 1));
+        DESC_EVENT_1.setTime(LocalTime.of(12, 30));
+        DESC_EVENT_1.setIsWeekly(false);
+
+        DESC_EVENT_2 = new UpdateEventCommand.UpdateEventDescriptor();
+        DESC_EVENT_2.setDescription("Tutorial 2");
+        DESC_EVENT_2.setDate(LocalDate.of(2020, 2, 1));
+        DESC_EVENT_2.setTime(LocalTime.of(14, 30));
+        DESC_EVENT_2.setIsWeekly(true);
 
         DESC_SYLPH = new UpdateGroupmateDescriptorBuilder().withName(VALID_NAME_SYLPH)
                 .withRoles(VALID_ROLE_LEADER).build();
@@ -196,5 +224,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredProjectList().size());
     }
-
 }

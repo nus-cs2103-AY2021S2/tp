@@ -105,7 +105,7 @@ public class UpdateDeadlineCommand extends Command {
      * Creates and returns a {@code Deadline} with the details of {@code deadlineToUpdate}
      * edited with {@code updateDeadlineDescriptor}.
      */
-    private static CompletableDeadline createUpdatedDeadline(CompletableDeadline deadlineToUpdate,
+    public static CompletableDeadline createUpdatedDeadline(CompletableDeadline deadlineToUpdate,
                                                              UpdateDeadlineDescriptor updateDeadlineDescriptor) {
         assert deadlineToUpdate != null;
 
