@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 
-public class AddCommandParserTest {
+public class AddFrCommandParserTest {
 
     private AddFrCommandParser parser = new AddFrCommandParser();
 
