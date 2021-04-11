@@ -27,7 +27,7 @@ activate FindTaskBeforeCommandParser
 FindTaskBeforeCommandParser --> HeyMatezParser
 deactivate FindTaskBeforeCommandParser
 
-HeyMatezParser -> FindTaskBeforeCommandParser : parse("findBefore 2021-04-04")
+HeyMatezParser -> FindTaskBeforeCommandParser : parse("2021-04-04")
 activate FindTaskBeforeCommandParser
 
 create DeadlineBeforeDatePredicate
@@ -70,7 +70,7 @@ activate CommandResult
 CommandResult --> FindTaskBeforeCommand
 deactivate CommandResult
 
-FindTaskBeforeCommand --> LogicManager : result
+FindTaskBeforeCommand --> LogicManager
 deactivate FindTaskBeforeCommand
 
 [<--LogicManager

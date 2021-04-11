@@ -68,10 +68,10 @@ CommandResult --> ClearAssigneesCommand
 deactivate CommandResult
 
 ClearAssigneesCommand --> LogicManager
-destroy ClearAssigneesCommand
+deactivate ClearAssigneesCommand
 
-'ClearAssigneesCommand -[hidden]-> LogicManager
-'destroy ClearAssigneesCommand
+ClearAssigneesCommand -[hidden]-> LogicManager
+destroy ClearAssigneesCommand
 
 [<--LogicManager
 deactivate LogicManager

@@ -25,9 +25,9 @@ to manage tasks which can be identified by their unique list indexes.
 * [Quick Start](#quick-start)  
 * [Features](#features)
   + [General Features](#general)
-    - [1. Clear all data in application: `clear`](#clear)
-    - [2. Exiting the programme: `exit`](#exit)
-    - [3. View Help: `help`](#help)
+    - [1. View Help: `help`](#help)
+    - [2. Clear all data in HEY MATEz: `clear`](#clear)
+    - [3. Exit Program: `exit`](#exit)
   + [Member Related Features](#members)
     - [1. Add Member: `addMember`](#addMember)
     - [2. Delete Member: `deleteMember`](#deleteMember)
@@ -42,9 +42,9 @@ to manage tasks which can be identified by their unique list indexes.
     - [5. Mark Task as Completed: `done`](#doneTask)
     - [6. Mark Task as Uncompleted: `undo`](#undoTask)
     - [7. Find Tasks by Keywords: `findTasks`](#findTask)
-    - [8. Find Tasks due before certain date: `findBefore`](#findBefore)
+    - [8. Find Tasks by Deadline: `findBefore`](#findBefore)
     - [9. Find Tasks by Priority: `findPriority`](#findPriority)
-    - [10. Remove all Members Assigned to a Task: `clearAssignees`](#clearAssignees)
+    - [10. Clear all Members Assigned to a Task: `clearAssignees`](#clearAssignees)
     - [11. View List of Unassigned Tasks: `viewUnassignedTasks`](#findUnassigned)
     - [12. View List of Uncompleted Tasks: `viewUncompletedTasks`](#findUncompleted)
     - [13. Find Tasks Assigned to a Single Member: `findTasksFor`](#findTasksFor)
@@ -118,8 +118,16 @@ to manage tasks which can be identified by their unique list indexes.
 <a name="general"></a>
 ## General Features
 
+<a name="help"></a>
+### 1. View Help: `help`
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+Example: `help`
+
 <a name="clear"></a>
-### 1. Clear all data in application: `clear`
+### 2. Clear all data in application: `clear`
 Clears all entries from the application.
 
 Format: `clear`
@@ -127,20 +135,12 @@ Format: `clear`
 Example: `clear`
 
 <a name="exit"></a>
-### 2. Exiting the programme: `exit`
+### 3. Exiting the programme: `exit`
 Exits the program.
 
 Format: `exit`
 
 Example: `exit`
-
-<a name="help"></a>
-### 3. View Help: `help`
-Shows a message explaining how to access the help page.
-
-Format: `help`
-
-Example: `help`
 
 -------------------------------------------------------------------------------------------------------------
 
@@ -485,7 +485,7 @@ If your changes to the data file makes its format invalid, HEY MATEz will discar
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
+**View Help** | `help`
 **Clear Data** | `clear`
 **Exit Program** | `exit`
 ||
@@ -502,8 +502,8 @@ Action | Format, Examples
 **Mark Task as Completed** | `done INDEX`<br> e.g., `done 1`
 **Mark Task as Uncompleted** | `undo INDEX`<br> e.g., `undo 1`
 **Find Tasks by Keywords** | `findTasks KEYWORD [MORE_KEYWORDS]...`<br> e.g., `findTasks Meeting Proposal Draft`
-**Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority high`
 **Find Tasks by Deadline** | `findBefore DATE`<br> e.g., `findBefore 2021-04-05`
+**Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority high`
 **Clear all Members Assigned to a Task** | `clearAssignees INDEX`<br> e.g., `clearAssignees 2`
 **View Unassigned Tasks** | `viewUnassignedTasks`<br> e.g., `viewUnassignedTasks`
 **View Uncompleted Tasks** | `viewUncompletedTasks`<br> e.g., `viewUncompletedTasks`

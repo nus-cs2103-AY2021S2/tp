@@ -61,8 +61,8 @@ activate CommandResult
 CommandResult --> DeleteTaskCommand
 deactivate CommandResult
 
-DeleteTaskCommand --> LogicManager : result
-deactivate DeleteTaskCommand
+DeleteTaskCommand --> LogicManager :
+destroy DeleteTaskCommand
 
 [<--LogicManager
 deactivate LogicManager
