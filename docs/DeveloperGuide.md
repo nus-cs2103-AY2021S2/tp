@@ -60,6 +60,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Design
 
 ### 3.1 Architecture
@@ -98,6 +100,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -129,6 +133,8 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_task 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete_task 1` Command](images/DeleteTaskCommandSequenceDiagram.png)
@@ -141,6 +147,8 @@ The lifeline for `DeleteTaskCommandParser`should end at the destroy marker (X) b
 </div>
 
 [Return to Table of Contents](#table-of-contents)  
+
+<div style="page-break-after: always;"></div>
 
 ### 3.4 Model component
 
@@ -360,6 +368,8 @@ For brevity, lower level implementation is omitted.
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
 
+<div style="page-break-after: always;"></div>
+
 The sequence diagram for `ClearCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearCommandSequenceDiagram.png)
@@ -386,12 +396,15 @@ For brevity, lower level implementation is omitted.
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
 
+<div style="page-break-after: always;"></div>
+
 The sequence diagram for `SummaryCommand` can be found below.
 
 ![Sequence Diagram of Summary Command](images/SummaryCommandSequenceDiagram.png)
 
 [Return to Overview](#411-overview)  
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `find_schedule` command
 In SOChedule, the governing logic behind the `find_schedule` command is laid out in [`FindScheduleCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindScheduleCommand.java)
@@ -420,6 +433,8 @@ and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` a
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_FIND_SCHEDULE_SUCCESS`.
+
+<div style="page-break-after: always;"></div>
 
 The sequence diagram for a sample usage of `FindScheduleCommand` can be found below.
 
@@ -564,6 +579,7 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 [Return to Overview](#421-overview)  
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `delete_task` command  
 In SOChedule, the governing logic behind the `delete_task` command is laid out in [`DeleteTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteTaskCommand.java)
@@ -588,6 +604,7 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 [Return to Overview](#421-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `edit_task` command
 In SOChedule, the governing logic behind the `edit_task` command is laid out in [`EditTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditTaskCommand.java)
@@ -616,6 +633,8 @@ These will create the edited Task. Then, `Model#setTask(Task taskToEdit, Task ed
 A success message `EditTaskCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
 
 The UI will also update as the underlying task list has been modified.
+
+<div style="page-break-after: always;"></div>
 
 The sequence diagram for a sample usage of `EditTaskCommand` can be found below.
 
@@ -764,6 +783,7 @@ under normal usage. Thus, we feel alternative 2 is necessary to serve our users 
 
 [Return to Overview](#421-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `undone_task` command
 In SOChedule, the governing logic behind the `undone_task` command is laid out in [`UndoneTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UndoneTaskCommand.java)
@@ -860,7 +880,6 @@ under normal usage. Thus, we feel alternative 1 is sufficient to serve our users
 
 [Return to Overview](#421-overview)
 
-
 #### Implementation of `today_task` command
 In SOChedule, the governing logic behind the `today_task` command is laid out in [`TodayTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TodayTaskCommand.java)
 The following is a detailed explanation on how `TodayTaskCommand.java` is implemented.
@@ -891,6 +910,7 @@ The sequence diagram for TodayTaskCommand can be found below.
 
 [Return to Overview](#421-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `find_task` command
 In SOChedule, the governing logic behind the `find_task` command is laid out in [`FindTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindTaskCommand.java)
@@ -929,6 +949,7 @@ The sequence diagram for `FindTaskCommand` can be found below, using `find_task 
 
 [Return to Overview](#421-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `sort_task` command
 In SOChedule, the governing logic behind the `sort_task` command is laid out in [`SortTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/SortTaskCommand.java)
@@ -959,11 +980,11 @@ The sequence diagram for `sortTaskCommand` can be found below, using the aforeme
 
 ![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ***Lower Level implementation***  
 The following is a brief explanation , as illustrated by a sequence diagram, of how sorting is implemented inside the Model component.
 ![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 ***Design Considerations for `SortTaskCommand`***
 <table>
@@ -1018,6 +1039,7 @@ This would enable SOChedule to better serve the needs of its user base.
 
 [Return to Overview](#421-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `pin_task`/`unpin_task` commands
 In SOChedule, the governing logic behind the `pin_task` command is laid out in [`PinTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/PinTaskCommand.java),
@@ -1049,12 +1071,16 @@ For brevity, lower level implementation of `Model#pinTask(Task task)` is omitted
 A success message will be appended with `CommandResult#MESSAGE_PIN_TASK_SUCCESS`.
 The UI will also update as the underlying task list has been modified.
 
+<div style="page-break-after: always;"></div>
+
 The sequence diagram for `PinTaskCommand` can be found below.
 It is largely similar to `SortTaskCommand`, with a some minor differences:
 * Instead of `SortTask`-related parsers and commands, `PinTask`-related parsers and commands are created and activated.
 * Additional call to `Model#sortTasksDefault()` after `Model#pinTask(Task)`
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The below activity diagram summarises what happens when `pin_task` is called, using `pin_task 1` as an example.
 It can also be similarly extrapolated and applied to `unpin_task`.
@@ -1063,6 +1089,7 @@ It can also be similarly extrapolated and applied to `unpin_task`.
 
 [Return to Overview](#421-overview) 
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `clear_completed_task` command
 In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`ClearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
@@ -1084,6 +1111,7 @@ The sequence diagram for `ClearCompletedTaskCommand` can be found below.
 
 [Return to Overview](#421-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `clear_expired_task` command  
 In SOChedule, the governing logic behind the `clear_expired_task` command is laid out in [`ClearExpiredTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearExpiredTaskCommand.java)
@@ -1138,9 +1166,16 @@ Our `Event` supports the following features through a `LogicManager`
 * [`clear_expired_event`](#implementation-of-clear_expired_event-command)
 * [`free_time`](#implementation-of-free_time-command)
 
-The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are
-omitted here because their implementation is similar to that of other features.
+<div markdown="span" class="alert alert-info">
 
+:information_source: **Note:**
+
+The implementation of the noteworthy ones will be listed in the next section.
+Some implementations of features are omitted because their implementation is similar to that of other features.
+
+</div>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.2 Implementation of Event-level commands
 
@@ -1158,7 +1193,7 @@ This will add the event specified into the event list.
 For brevity, lower level implementation of `Model#addEvent(Event eventToAdd)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
-A success message `AddEventCommand#MESSAGE_ADD_EVENT_SUCCES` will be displayed.
+A success message `AddEventCommand#MESSAGE_ADD_EVENT_SUCCESS` will be displayed.
 The UI will also update as the underlying event list has been modified.
 
 The sequence diagram for `AddEventCommand` can be found below.
@@ -1167,6 +1202,7 @@ The sequence diagram for `AddEventCommand` can be found below.
 
 [Return to Overview](#431-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `delete_event` command  
 In SOChedule, the governing logic behind the `delete_event` command is laid out in [`DeleteEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteEventCommand.java)
@@ -1191,6 +1227,7 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 [Return to Overview](#431-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `edit_event` command
 In SOChedule, the governing logic behind the `edit_event` command is laid out in [`EditEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditEventCommand.java)
@@ -1215,6 +1252,8 @@ These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Eve
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message `EditEventCommand#MESSAGE_EDIT_EVENT_SUCCESS` will be displayed.
 The UI will also update as the underlying event list has been modified.
+
+<div style="page-break-after: always;"></div>
 
 The sequence diagram for `EditEventCommand` can be found below, using the aforementioned as an example.
 
@@ -1276,6 +1315,7 @@ an “overdue task”, while there’s no “overdue event”.
 
 [Return to Overview](#431-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `today_event` command
 In SOChedule, the governing logic behind the `today_event` command is laid out in [`TodayEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TodayEventCommand.java)
@@ -1308,6 +1348,7 @@ The sequence diagram for TodayEventCommand can be found below.
 
 [Return to Overview](#431-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `find_event` command
 In SOChedule, the governing logic behind the `find_event` command is laid out in [`FindEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindEventCommand.java)
@@ -1346,6 +1387,7 @@ The sequence diagram for `FindEventCommand` can be found below, using `find_even
 
 [Return to Overview](#431-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `clear_expired_event` command
 In SOChedule, the governing logic behind the `clear_expired_event` command is laid out in [`ClearExpiredEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearExpiredEventCommand.java)
@@ -1367,6 +1409,7 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 [Return to Overview](#431-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `free_time` command
 In SOChedule, the governing logic behind the `free_time` command is laid out in [`FindFreeTimeCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTimeCommand.java)
@@ -1388,11 +1431,12 @@ The sequence diagram for `FindFreeTimeCommand` can be found below.
 
 ![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The below activity diagram summarises what happens when `free_time` is called.
 
 <img src="images/FindFreeTimeActivityDiagram.png" width="450" />
 
-<div style="page-break-after: always;"></div>
 
 ***Design Considerations for `FindFreeTimeCommand`***
 <table>
@@ -1446,6 +1490,8 @@ readability of the code. Implementing code under UniqueEventList also reduces de
 [Return to Table of Contents](#table-of-contents)  
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Documentation, logging, testing, configuration, dev-ops
 
@@ -1528,6 +1574,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | SOC Student                           | Clear the entire schedule                                              | I can start adding tasks and events from fresh                               |
 
 *{More to be added}*
+
+<div style="page-break-after: always;"></div>
 
 ### A3. Use cases
 
@@ -2044,6 +2092,8 @@ Use case ends.
    <br><br>
    Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -2053,8 +2103,6 @@ Use case ends.
 1.  Should give a response to user's input within 5 seconds.
 1.  The source code should be open source.
 
-<div style="page-break-after: always;"></div>
-
 ### A5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -2062,6 +2110,7 @@ Use case ends.
 * **Task**: Activities to be undertaken that can be marked complete/uncompleted. It also has a compulsory date field to 
   indicate its deadline.
 
+<div style="page-break-after: always;"></div>
 
 ### A6. Instructions for manual testing
 
