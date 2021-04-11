@@ -12,22 +12,35 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.doctor.EditDoctorCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.PatientMap;
+import seedu.address.model.person.SamePersonPredicate;
+import seedu.address.testutil.EditDoctorDescriptorBuilder;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+    public static final String VALID_UUID_AMY = "564ae8c3-d0e6-4597-93ae-fe88c21a819f";
+    public static final String VALID_UUID_BOB = "8e80ae4c-6435-408e-918c-3d73bc3df1e4";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_DR_LEONARD = "Dr Leonard Hofstadter";
+    public static final String VALID_NAME_DR_SHELDON = "Dr Sheldon Cooper";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -36,6 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_SHORT = "short";
+    public static final String VALID_TAG_TALL = "tall";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -48,6 +63,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -57,16 +73,24 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPatientCommand.EditPatientDescriptor DESC_AMY;
+    public static final EditPatientCommand.EditPatientDescriptor DESC_BOB;
+    public static final EditDoctorCommand.EditDoctorDescriptor DESC_DR_LEONARD;
+    public static final EditDoctorCommand.EditDoctorDescriptor DESC_DR_SHELDON;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPatientDescriptorBuilder()
+                .withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPatientDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_DR_LEONARD = new EditDoctorDescriptorBuilder().withName(VALID_NAME_DR_LEONARD)
+                .withTags(VALID_TAG_SHORT).build();
+        DESC_DR_SHELDON = new EditDoctorDescriptorBuilder().withName(VALID_NAME_DR_SHELDON)
+                .withTags(VALID_TAG_TALL).build();
     }
 
     /**
@@ -104,25 +128,67 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        AddressBook<Patient> expectedPatientRecords = new AddressBook<>(actualModel.getPatientRecords());
+        List<Patient> expectedFilteredPatientList = new ArrayList<>(actualModel.getFilteredPatientList());
+
+        AddressBook<Doctor> expectedDoctorRecords = new AddressBook<>(actualModel.getDoctorRecords());
+        List<Doctor> expectedFilteredDoctorList = new ArrayList<>(actualModel.getFilteredDoctorList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedPatientRecords, actualModel.getPatientRecords());
+        assertEquals(expectedFilteredPatientList, actualModel.getFilteredPatientList());
+        assertEquals(expectedDoctorRecords, actualModel.getDoctorRecords());
+        assertEquals(expectedFilteredDoctorList, actualModel.getFilteredDoctorList());
     }
+
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered patient list to show only the patient at the given {@code targetIndex} in the
+     * {@code model}'s patient records.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showPatientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
+        model.updateFilteredPatientList(new SamePersonPredicate(patient));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredPatientList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered doctor list to show only the doctor at the given {@code targetIndex} in the
+     * {@code model}'s doctor records.
+     */
+    public static void showDoctorAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredDoctorList().size());
+
+        Doctor doctor = model.getFilteredDoctorList().get(targetIndex.getZeroBased());
+        model.updateFilteredDoctorList(new SamePersonPredicate(doctor));
+
+        assertEquals(1, model.getFilteredDoctorList().size());
+    }
+
+
+    /**
+     * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
+     * {@code model}'s appointment schedule.
+     */
+    public static void showAppointmentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
+
+        Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
+        Map<UUID, Patient> patientHashMap = PatientMap.getPatientMap();
+        PatientMap.updatePatientHashMap(model.getPatientRecords().getPersonList());
+
+        UUID patientUuid = appointment.getPatientUuid();
+
+        final String patientName = patientHashMap.get(patientUuid).getName().fullName;
+
+        model.updateFilteredAppointmentList(
+                new AppointmentContainsKeywordsPredicate(
+                        Arrays.asList(patientName),
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        new ArrayList<>()));
+        assertEquals(1, model.getFilteredAppointmentList().size());
+    }
 }

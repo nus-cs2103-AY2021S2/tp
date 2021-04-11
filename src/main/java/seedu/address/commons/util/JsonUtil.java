@@ -28,7 +28,7 @@ import seedu.address.commons.exceptions.DataConversionException;
  */
 public class JsonUtil {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(JsonUtil.class);
 
     private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
@@ -60,7 +60,7 @@ public class JsonUtil {
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
-            logger.info("Json file " + filePath + " not found");
+            LOGGER.info("Json file " + filePath + " not found");
             return Optional.empty();
         }
 
@@ -69,7 +69,7 @@ public class JsonUtil {
         try {
             jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
         } catch (IOException e) {
-            logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
+            LOGGER.warning("Error reading from jsonFile file " + filePath + ": " + e);
             throw new DataConversionException(e);
         }
 

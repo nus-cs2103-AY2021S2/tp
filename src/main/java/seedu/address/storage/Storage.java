@@ -6,13 +6,16 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends UserPrefsStorage, AppointmentScheduleStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -20,13 +23,24 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
+    // =============== Patient Records ========================================================================= //
+    Path getPatientRecordsFilePath();
+
+    Optional<ReadOnlyAddressBook<Patient>> readPatientRecords() throws DataConversionException, IOException;
+
+    void savePatientRecords(ReadOnlyAddressBook<Patient> patientRecords) throws IOException;
+
+    // =============== Doctor Records ========================================================================= //
+    Path getDoctorRecordsFilePath();
+
+    Optional<ReadOnlyAddressBook<Doctor>> readDoctorRecords() throws DataConversionException, IOException;
+
+    void saveDoctorRecords(ReadOnlyAddressBook<Doctor> doctorRecords) throws IOException;
+
+    // =============== Appointment Schedule ==================================================================== //
     @Override
-    Path getAddressBookFilePath();
+    Optional<ReadOnlyAppointmentSchedule> readAppointmentSchedule() throws DataConversionException, IOException;
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
-
-    @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
-
+    void saveAppointmentSchedule(ReadOnlyAppointmentSchedule appointmentSchedule) throws IOException;
 }

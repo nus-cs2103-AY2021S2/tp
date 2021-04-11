@@ -9,5 +9,6 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "patientRecordsFilePath" : "PatientRecords.json",
+  "appointmentScheduleFilePath" : "AppointmentSchedule.json"
 }

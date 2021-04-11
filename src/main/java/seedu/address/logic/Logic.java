@@ -8,7 +8,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyAppointmentSchedule;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 
 /**
  * API of the Logic component
@@ -24,21 +27,6 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
-     */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
-
-    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -47,4 +35,53 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    //=========== PatientRecords ================================================================================
+    /**
+     * Returns the PatientRecords.
+     *
+     * @see seedu.address.model.Model#getPatientRecords()
+     */
+    ReadOnlyAddressBook<Patient> getPatientRecords();
+
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Patient> getFilteredPatientList();
+
+    /**
+     * Returns the user prefs' patient records file path.
+     */
+    Path getPatientRecordsFilePath();
+
+    //=========== DoctorRecords ================================================================================
+    /**
+     * Returns the AddressBook.
+     *
+     * @see seedu.address.model.Model#getDoctorRecords()
+     */
+    ReadOnlyAddressBook<Doctor> getDoctorRecords();
+
+    /** Returns an unmodifiable view of the filtered list of doctors */
+    ObservableList<Doctor> getFilteredDoctorList();
+
+    /**
+     * Returns the user prefs' doctor records file path.
+     */
+    Path getDoctorRecordsFilePath();
+
+    //=========== AppointmentSchedule ========================================================================
+    /**
+     * Returns the AppointmentSchedule
+     *
+     * @see seedu.address.model.Model#getAppointmentSchedule()
+     */
+    ReadOnlyAppointmentSchedule getAppointmentSchedule();
+
+    /** Returns an unmodifiable view of the filtered list of appointments */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Returns the user prefs' appointment schedule file path.
+     */
+    Path getAppointmentScheduleFilePath();
+
 }

@@ -102,11 +102,11 @@
     </module>
 
     <module name="ConstantName">
-      <!-- Validates non-private, static, final fields against the expression "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
+      <!-- Validates static, final fields against the expression "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
       <metadata name="altname" value="ConstantName"/>
-      <property name="applyToPrivate" value="false"/>
+      <property name="applyToPrivate" value="true"/>
       <message key="name.invalidPattern"
-               value="Variable ''{0}'' should be in ALL_CAPS (if it is a constant) or be private (otherwise)."/>
+               value="Variable ''{0}'' should be in ALL_CAPS (if it is a constant)."/>
       <property name="severity" value="warning"/>
     </module>
 

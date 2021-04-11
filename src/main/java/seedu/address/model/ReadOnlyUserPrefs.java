@@ -9,8 +9,20 @@ import seedu.address.commons.core.GuiSettings;
  */
 public interface ReadOnlyUserPrefs {
 
-    GuiSettings getGuiSettings();
+    public GuiSettings getGuiSettings();
 
-    Path getAddressBookFilePath();
+    public void setGuiSettings(GuiSettings guiSettings);
+
+    public Path getPatientRecordsFilePath();
+
+    public void setPatientRecordsFilePath(Path patientRecordsFilePath);
+
+    public Path getDoctorRecordsFilePath();
+
+    public void setDoctorRecordsFilePath(Path doctorRecordsFilePath);
+
+    public Path getAppointmentScheduleFilePath();
+
+    public void setAppointmentScheduleFilePath(Path appointmentScheduleFilePath);
 
 }

@@ -6,40 +6,57 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a storage for {@link seedu.address.model.AddressBook}.
  */
-public interface AddressBookStorage {
+public abstract class AddressBookStorage<T extends Person> {
+
+    protected Path filePath;
+
+    public AddressBookStorage(Path filePath) {
+        this.filePath = filePath;
+    }
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    public Path getAddressBookFilePath() {
+        return filePath;
+    }
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    public Optional<ReadOnlyAddressBook<T>> readAddressBook() throws DataConversionException {
+        return readAddressBook(filePath);
+    }
 
     /**
-     * @see #getAddressBookFilePath()
+     * Similar to {@link #readAddressBook()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    public abstract Optional<ReadOnlyAddressBook<T>> readAddressBook(Path filePath) throws DataConversionException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    public void saveAddressBook(ReadOnlyAddressBook<T> addressBook) throws IOException {
+        saveAddressBook(addressBook, filePath);
+    }
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * @param filePath location of the data. Cannot be null.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
-
+    public abstract void saveAddressBook(ReadOnlyAddressBook<T> addressBook, Path filePath) throws IOException;
 }
+

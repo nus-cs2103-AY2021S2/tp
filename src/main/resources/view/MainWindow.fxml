@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -10,9 +11,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="App-Ointment" minWidth="775" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -22,38 +24,79 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
+      <VBox minHeight="346.0" minWidth="775.0" prefWidth="925">
+        <children>
+          <MenuBar fx:id="menuBar">
+            <Menu mnemonicParsing="false" text="File">
+              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            </Menu>
+          </MenuBar>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
+          <SplitPane dividerPositions="0.3" orientation="HORIZONTAL" VBox.vgrow="ALWAYS">
+              <SplitPane dividerPositions="0.4" orientation="VERTICAL" VBox.vgrow="ALWAYS">
+                <VBox fx:id="doctorList" minWidth="300" prefWidth="350" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                  <StackPane>
+                    <padding>
+                      <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                    <children>
+                      <Label styleClass="person-label" text="Doctors" />
+                    </children>
+                    <padding>
+                      <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                  </StackPane>
+                  <StackPane fx:id="doctorListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                </VBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                <VBox fx:id="patientList" minWidth="300" prefWidth="350" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                  <StackPane>
+                    <padding>
+                      <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                    <children>
+                      <Label styleClass="person-label" text="Patients" />
+                    </children>
+                    <padding>
+                      <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                  </StackPane>
+                  <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                </VBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+              </SplitPane>
+            <VBox>
+              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+              <VBox fx:id="appointmentList" minWidth="450" prefWidth="550" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              </VBox>
+            </VBox>
+          </SplitPane>
+            <VBox VBox.vgrow="NEVER">
+              <children>
+                <StackPane fx:id="patientStatusBarPlaceholder" />
+                <StackPane fx:id="doctorStatusBarPlaceholder" />
+                <StackPane fx:id="appointmentStatusBarPlaceholder" />
+              </children>
+            </VBox>
+        </children>
       </VBox>
     </Scene>
   </scene>

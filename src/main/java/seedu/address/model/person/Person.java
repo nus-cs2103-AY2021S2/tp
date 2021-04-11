@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -13,43 +14,44 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
+
+    // UUID to determine uniqueness
+    protected final UUID uuid;
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    protected final Name name;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    protected final Set<Tag> tags = new HashSet<>();
+
+    /**
+     * Every field must be present and not null, except for UUID,
+     * which can be generated automatically.
+     */
+    public Person(Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
+        this.uuid = UUID.randomUUID();
+        this.name = name;
+        this.tags.addAll(tags);
+    }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(UUID uuid, Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
+        this.uuid = uuid;
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
         this.tags.addAll(tags);
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public Name getName() {
         return name;
-    }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -88,29 +90,21 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+        return otherPerson.getUuid().equals(getUuid())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -119,5 +113,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

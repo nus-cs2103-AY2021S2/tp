@@ -1,12 +1,16 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.InputCommandStorage;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -32,11 +36,12 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles the Enter button pressed event.
+     * Handles the Enter, Up, and Down Key button pressed event.
      */
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
+        handleToggleInput();
         if (commandText.equals("")) {
             return;
         }
@@ -47,6 +52,25 @@ public class CommandBox extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
+
+    }
+
+    private void handleToggleInput() {
+        commandTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                KeyCode keyboardEvent = ke.getCode();
+                if (keyboardEvent == KeyCode.UP) {
+                    commandTextField.setText(InputCommandStorage.retrieveInput(true));
+                }
+
+                if (keyboardEvent == KeyCode.DOWN) {
+                    commandTextField.setText(InputCommandStorage.retrieveInput(false));
+
+                }
+                ke.consume();
+            }
+        });
     }
 
     /**
