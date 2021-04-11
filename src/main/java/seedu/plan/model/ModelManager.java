@@ -164,11 +164,12 @@ public class ModelManager implements Model {
                         .collect(Collectors.toList());
             }
             if (modulesInPlan.containsAll(masterModules)) {
-                newPlan.setIsValid(true);
+                // newPlan.setIsValid(true);
+                modulePlanner.setPlan(p, p.setIsValid(true));
             } else {
-                newPlan.setIsValid(false);
+                modulePlanner.setPlan(p, p.setIsValid(false));
             }
-            modulePlanner.setPlan(p, newPlan);
+            // modulePlanner.setPlan(p, newPlan);
         }
 
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);

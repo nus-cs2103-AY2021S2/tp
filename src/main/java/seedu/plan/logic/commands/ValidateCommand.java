@@ -1,6 +1,7 @@
 package seedu.plan.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.plan.model.Model.PREDICATE_SHOW_ALL_PLANS;
 
 import seedu.plan.logic.commands.exceptions.CommandException;
 import seedu.plan.model.Model;
@@ -42,6 +43,8 @@ public class ValidateCommand extends Command {
         currentSemester = model.getCurrentSemester(); // Exception if not set
 
         model.validate(masterPlan, currentSemester);
+        model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS); // ensure validate command always show table of plans
+        model.setCurrentCommand("list");                        // ensure validate command always show table of plans
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
