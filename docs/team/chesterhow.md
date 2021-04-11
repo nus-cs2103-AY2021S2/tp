@@ -45,7 +45,7 @@ Given below are my contributions to the project.
   * Justification: Due to the amount of details a person can have, not all details are shown on the
   list of people. Hence, this feature allows users to see the full details of a person.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=chesterhow&tabRepo=AY2021S2-CS2103T-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?breakdown=true&search=chesterhow)
 
 * **Team Tasks**:
   * Set up the GitHub organisation and tp repo
