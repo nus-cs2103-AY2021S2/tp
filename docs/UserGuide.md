@@ -30,7 +30,7 @@ their profile pictures.
 
    * **`listp`** : Lists all contacts.
 
-   * **`add`**`n/John Doe ph/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe ph/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to MeetBuddy.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -90,9 +90,9 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `addp`
 
-Adds a person to the address book.
+Adds a person to MeetBuddy.
 
 Format: `add n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​`
 
@@ -106,13 +106,13 @@ Examples:
 
 ### Listing all persons : `listp`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in MeetBuddy.
 
 Format: `listp`
 
-### Editing a person : `edit`
+### Editing a person : `editp`
 
-Edits an existing person in the address book.
+Edits an existing person in MeetBuddy.
 
 Format: `edit INDEX [n/NAME] [ph/PHONE] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`
 
@@ -126,7 +126,7 @@ Examples:
 *  `edit 1 ph/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower g/` Edits the personName of the 2nd person to be `Betsy Crower` and clears all existing groups.
 
-### Locating persons by personName: `find`
+### Locating persons by personName: `findp`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -143,7 +143,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating persons by group: `findg`
+### Locating persons by group: `findpg`
 
 Finds persons whose groups contain any of the given keywords.
 
@@ -158,9 +158,9 @@ Format: `findg KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findg badminton` returns the list of contacts that are in the badminton group
 
-### Deleting a person : `delete`
+### Deleting a person : `deletep`
 
-Deletes the specified person from the address book.
+Deletes the specified person from MeetBuddy.
 
 Format: `delete INDEX`
 
@@ -169,7 +169,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `list` followed by `delete 2` deletes the 2nd person in MeetBuddy.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Sorting of contacts : `sortp`
@@ -189,6 +189,106 @@ Format: `sortp by/FIELD d/DIRECTION`
     * Sort by descending alphabetical order : `DESC`
 
 Examples
+
+### Adding a meeting: `addm`
+
+Adds a meeting to MeetBuddy.
+
+Format: `addm n/NAME st/TIME ed/TIME [des/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​`
+* Note that meetings must be of minimum length of 15 mins and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00, but can be from 15 March 16:00 - 22 march 15:59.
+* Priority should be an integer from 1 to 5. If the priority is not specified, it will be automatically set as 1.
+* Description can be empty.
+* A meeting can have any number of groups (including 0).
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+
+Examples:
+* `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
+
+### Listing all meetings : `listm`
+
+Shows a list of all meetings in MeetBuddy.
+
+Format: `listm`
+
+### Editing a meeting : `editm`
+
+Edits an existing meeting in MeetBuddy.
+
+Format: `editm INDEX [n/NAME] [st/START TIME] [ed/END TIME] [desc/DESCRIPTION] [pr/PRIORITY] [p/PERSON RELATED INDEX] [g/GROUP]...​`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing values will be updated to the input values.
+* When editing person related, the existing related contacts will be removed. You must specify the index correctly.
+* When editing groups, the existing groups in the meeting will be removed i.e adding of groups is not cumulative.
+* You can remove all the meeting’s groups by typing `g/` without specifying any groups after it.
+
+Examples:
+*  `editm 1 n/CS2103 Lecture g/SOC g/friends` Edits the name of the 1st meeting to be `CS2103 Lecture`, and its groups to be `SOC` and `friends`.
+*  `editm 2 n/CS2106 Lab g/` Edits the name of the 2nd meeting to be `CS2106 Lab` and clears all existing groups in the meeting.
+*  `editm 2 n/CS2106 Lab p/1` Edits the name of the 2nd meeting to be `CS2106 Lab` and change the contacts related field to the first person in your contact list (If he/she exists).
+### Deleting a meeting: `deletem`
+
+Deletes a meeting in MeetBuddy.
+
+Format: `deletem INDEX`
+
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listm` followed by `delete 2` deletes the 2nd meeting in MeetBuddy.
+
+### Adding persons related for a meeting: `addptm`
+
+Adds persons related to a meeting in MeetBuddy.
+
+Format: `addptm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+
+Examples:
+* `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
+
+### Deleting persons related from a meeting: `deletepfm`
+
+Deletes persons related from a meeting in MeetBuddy.
+
+Format: `deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+* The related persons that the user wants to delete must exist in the contacts related field.
+
+
+Examples:
+* `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
+
+
+### Sorting of meetings : `sortm`
+
+Sorts the meetings displayed according to a specified field.
+
+Format: `sortm by/FIELD d/DIRECTION`
+
+* Sorts according to the field specified by `FIELD`
+* `FIELD` is only restricted to the following cases:
+    * Sort by name : `NAME`
+    * Sort by start time : `START`
+    * Sort by end time : `END`
+    * Sort by priority : `PRIORITY`
+    * Sort by description : `DESCRIPTION`
+* `DIRECTION` is only restricted to the following cases:
+    * Sort by ascending order : `ASC`
+    * Sort by descending order : `DESC`
+
+
+### Listing all persons and meetings : `list`
+
+Shows a list of all persons and meetings in MeetBuddy.
+
+Format: `list`
 
 ##Timetable feature
 
@@ -241,114 +341,14 @@ MeetBuddy data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-MeetingBook data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Advanced users are welcome to update data directly by editing that data file.
+Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
+Meeting data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Users are not suggested updating data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
-
-### Adding a meeting: `addm`
-
-Adds a meeting to MeetBuddy. 
-
-Format: `addm n/NAME st/TIME ed/TIME [des/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​`
-* Note that meetings must be of minimum length of 15 mins and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00, but can be from 15 March 16:00 - 22 march 15:59.
-* Priority should be an integer from 1 to 5. If the priority is not specified, it will be automatically set as 1.
-* Description can be empty.
-* A meeting can have any number of groups (including 0).
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
-
-Examples:
-* `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2` 
-
-### Listing all meetings : `listm`
-
-Shows a list of all meetings in the meeting book.
-
-Format: `listm`
-
-### Editing a meeting : `editm`
-
-Edits an existing meeting in the meeting book.
-
-Format: `editm INDEX n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [p/PERSON RELATED INDEX] [g/GROUP]...​`
-
-* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
-* Existing values will be updated to the input values.
-* When editing person related, the existing related contacts will be removed. You must specify the index correctly.  
-* When editing groups, the existing groups in the meeting will be removed i.e adding of groups is not cumulative.
-* You can remove all the meeting’s groups by typing `g/` without specifying any groups after it.
-
-Examples:
-*  `editm 1 n/CS2103 Lecture g/SOC g/friends` Edits the name of the 1st meeting to be `CS2103 Lecture`, and its groups to be `SOC` and `friends`.
-*  `editm 2 n/CS2106 Lab g/` Edits the name of the 2nd meeting to be `CS2106 Lab` and clears all existing groups in the meeting.
-*  `editm 2 n/CS2106 Lab p/1` Edits the name of the 2nd meeting to be `CS2106 Lab` and change the contacts related field to the first person in your contact list (If he/she exists).
-### Deleting a meeting: `deletem`
-
-Deletes a meeting in the meeting book.
-
-Format: `deletem INDEX`
-
-* Deletes the meeting at the specified `INDEX`.
-* The index refers to the index number shown in the displayed meeting list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listm` followed by `delete 2` deletes the 2nd meeting in the meeting book.
-
-### Adding persons related for a meeting: `addptm`
-
-Adds persons related to a meeting in MeetBuddy.
-
-Format: `addptm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`
-* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
-* The user must input at least one person related index field.
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
-
-Examples:
-* `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
-
-### Deleting a meeting: `deletepfm`
-
-Deletes persons related from a meeting in MeetBuddy.
-
-Format: `deletepfm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`
-* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
-* The user must input at least one person related index field.
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
-* The related persons that the user wants to delete must exist in the contacts related field. 
-
-
-Examples:
-* `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
-
-
-### Sorting of meetings : `sortm`
-
-Sorts the meetings displayed according to a specified field.
-
-Format: `sortm by/FIELD d/DIRECTION`
-
-* Sorts according to the field specified by `FIELD`
-* `FIELD` is only restricted to the following cases:
-    * Sort by name : `NAME`
-    * Sort by start time : `START`
-    * Sort by end time : `END`
-    * Sort by priority : `PRIORITY`
-    * Sort by description : `DESCRIPTION`
-* `DIRECTION` is only restricted to the following cases:
-    * Sort by ascending order : `ASC`
-    * Sort by descending order : `DESC`
-    
-
-### Listing all persons and meetings : `list`
-
-Shows a list of all persons and meetings in MeetBuddy.
-
-Format: `list`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -363,10 +363,10 @@ Format: `list`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `add n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
-**Delete** | `delete INDEX`<br> e.g., `delete 3` <br> <br> `deletem INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` <br> <br> `editm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> <br> `findg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findg badminton` <br>
+**Add** | `addp n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `addp n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
+**Delete** | `deletep INDEX`<br> e.g., `deletep 3` <br> <br> `deletem INDEX`<br> e.g., `deletem 3`
+**Edit** | `editp INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com` <br> <br> `editm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
+**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
