@@ -9,11 +9,12 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.logic.commands.CommandTestUtil.getOutOfBoundId;
+import static dog.pawbook.logic.commands.EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_THREE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
-import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -28,7 +29,6 @@ import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
 import dog.pawbook.testutil.OwnerBuilder;
-import javafx.util.Pair;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -40,15 +40,15 @@ public class EditOwnerCommandTest {
 
     @Test
     public void execute_allFieldsSpecified_success() {
-        Owner owner = (Owner) model.getEntity(ID_ONE);
-        EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(owner).build();
+        Owner firstOwner = (Owner) model.getEntity(ID_ONE);
+        EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(firstOwner).build();
         EditOwnerCommand editOwnerCommand = new EditOwnerCommand(ID_ONE, descriptor);
 
-        String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, owner);
+        String expectedMessage = String.format(MESSAGE_EDIT_OWNER_SUCCESS, firstOwner);
 
         expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_ONE));
+
         assertCommandSuccess(editOwnerCommand, model, expectedMessage, expectedModel);
     }
 
@@ -64,7 +64,7 @@ public class EditOwnerCommandTest {
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditOwnerCommand editOwnerCommand = new EditOwnerCommand(ID_THREE, descriptor);
 
-        String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
+        String expectedMessage = String.format(MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(ID_THREE, editedOwner);
@@ -75,13 +75,13 @@ public class EditOwnerCommandTest {
 
     @Test
     public void execute_noFieldSpecified_success() {
-        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_ONE, new EditOwnerDescriptor());
-        Owner editedOwner = (Owner) model.getEntity(ID_ONE);
+        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_THREE, new EditOwnerDescriptor());
+        Owner editedOwner = (Owner) model.getEntity(ID_THREE);
 
-        String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
+        String expectedMessage = String.format(MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_ONE));
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_THREE));
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
@@ -97,8 +97,7 @@ public class EditOwnerCommandTest {
 
     @Test
     public void execute_outOfBoundOwnerId_failure() {
-        Integer outOfBoundId = model.getUnfilteredEntityList().stream()
-                .map(Pair::getKey).sorted().collect(toList()).get(model.getUnfilteredEntityList().size() - 1) + 1;
+        int outOfBoundId = getOutOfBoundId(model);
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditOwnerCommand editOwnerCommand = new EditOwnerCommand(outOfBoundId, descriptor);
 

@@ -9,6 +9,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.logic.commands.CommandTestUtil.getOutOfBoundId;
 import static dog.pawbook.logic.commands.EditDogCommand.MESSAGE_EDIT_DOG_SUCCESS;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_FOUR;
@@ -122,19 +123,14 @@ public class EditDogCommandTest {
 
     @Test
     public void execute_outOfBoundOwnerIdSpecified_failure() {
-        int invalidOwnerId = model.getUnfilteredEntityList().stream()
-                .map(Pair::getKey)
-                .sorted()
-                .collect(toList())
-                .get(model.getUnfilteredEntityList().size() - 1)
-                + 1;
-
+        int invalidOwnerId = getOutOfBoundId(model);
         EditDogCommand.EditDogDescriptor descriptor = new EditDogDescriptorBuilder()
                 .withOwnerId(invalidOwnerId).build();
         EditDogCommand editDogCommand = new EditDogCommand(ID_FOUR, descriptor);
 
         assertCommandFailure(editDogCommand, model, MESSAGE_INVALID_OWNER_ID);
     }
+
     @Test
     public void execute_nonOwnerIdSpecified_failure() {
         EditDogCommand.EditDogDescriptor descriptor = new EditDogDescriptorBuilder()
