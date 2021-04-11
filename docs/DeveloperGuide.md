@@ -152,11 +152,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Command Feature
 
-A key functionality of CakeCollate is the ability to add cake items into an order (also known as order items or order descriptions). The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
+A key functionality of CakeCollate is the ability to add cake items into an order (better known as order items or order descriptions for this app). The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
 
 However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and map one input to the other. 
 
-We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model. Prior to this feature, the AddCommand was initialised using an `Order` object created by the `AddCommandParser`, the `AddCommand::execute` method took in a model, and the `AddCommandParser::parse` method did not take in a model. Given this, there were two main options to implement the mapping:
+We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model. Prior to this feature, the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`, the `AddCommand::execute` method took in a model, and the `AddCommandParser::parse` method did not take in a model. Given this, there were two main options to implement the mapping:
 
 1. Refactor `AddCommandParser::parse` to have access to the Model. 
 
@@ -168,7 +168,7 @@ We chose to still contain an `OrderDescription` object in the `Order` class, and
     * Pros: Keep the existing level of coupling between model and parser classes (i.e. none). 
     * Cons: This meant that the order object cannot be initialised in the `AddCommandParser::parse` method as the `OrderDescriptions` in the `Order` would have been incomplete if the mapping from `indexes` to `OrderDescriptions` was not done yet.
 
-In light of the additional coupling, the second option was chosen. An AddCommandDescriptor nested class was created in the AddCommand class, similar to the EditCommand, so that indexes and order descriptions that were inputted can be stored, and once the mappings were done in the `AddCommand::execute` method, the entire `Order` object could be built before being added to the model.
+In light of the additional coupling, the second option was chosen. An `AddCommandDescriptor` nested class was created in the `AddCommand` class, similar to the `EditCommand`, so that indexes and order descriptions that were inputted can be stored, and once the mappings were done in the `AddCommand::execute` method, the entire `Order` object could be built before being added to the model.
 
 Hence, based on this implementation, here is the sequence diagram containing the steps that occur when a user inputs an `Order` containing an `o/` and `oi/` field.
 
