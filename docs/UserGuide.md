@@ -146,6 +146,7 @@ Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
 A Task can have any number of tags (including 0)
 </div>
 
+
 Examples:
 * `add n/CS2100 Finals desc/Revise for Finals date/2021-04-13 12:00`
 * `add n/Consult Professor desc/Discuss project with prof date/2021-04-04 10:30 t/project`
@@ -313,9 +314,6 @@ Format: `exit`
 **A**: Install Taskify by downloading the `taskify.jar` file in the other computer and replace the default data file it creates 
 (located at `[JAR file location]/data/taskify.json`) with the Taskify data file from your 
 previous computer.
-
-**Q**: Can I specify a status when adding a new task to Taskify?<br>
-**A**: All newly added tasks have an "uncompleted" status by default. However, you can change the status of a task using the `edit` command. <br>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
