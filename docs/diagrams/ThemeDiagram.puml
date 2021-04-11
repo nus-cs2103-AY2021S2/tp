@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+skinparam MinClassWidth 93
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "t:ToggleThemeCommand" as ToggleThemeCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Commons #ccc
+participant "g:GuiSettings" as GuiSettingsNew #888
+participant ":GuiSettings" as GuiSettings #888
+end box
+
+
+[-> MainWindow : executeCommand\n("theme")
+activate MainWindow
+MainWindow -> Logic : execute\n("theme")
+
+activate Logic
+
+'User-aware calls
+
+Logic -> AddressBookParser : parseCommand\n("theme")
+activate AddressBookParser
+create ToggleThemeCommand
+AddressBookParser -> ToggleThemeCommand
+activate ToggleThemeCommand
+
+'Interface with Model
+ToggleThemeCommand -> Model : getGuiSettings()
+activate Model
+Model --> ToggleThemeCommand
+deactivate Model
+ToggleThemeCommand -> GuiSettings : getTheme()
+activate GuiSettings
+GuiSettings --> ToggleThemeCommand
+deactivate GuiSettings
+
+'Return
+ToggleThemeCommand --> AddressBookParser
+deactivate ToggleThemeCommand
+AddressBookParser --> Logic
+deactivate AddressBookParser
+Logic --> MainWindow
+deactivate Logic
+
+'Execution
+MainWindow -> ToggleThemeCommand : execute(t)
+activate ToggleThemeCommand
+ToggleThemeCommand --> MainWindow
+deactivate ToggleThemeCommand
+MainWindow -> MainWindow : setTheme()
+activate MainWindow
+create GuiSettingsNew
+MainWindow -> GuiSettingsNew
+activate GuiSettingsNew
+GuiSettingsNew --> MainWindow
+deactivate GuiSettingsNew
+MainWindow -> Logic : setGuiSettings(g)
+activate Logic
+deactivate Logic
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<-- MainWindow
+deactivate MainWindow
+destroy GuiSettings
+destroy ToggleThemeCommand
+@enduml
