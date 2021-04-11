@@ -48,6 +48,8 @@ The ***Sequence Diagram*** below shows how the components interact with each oth
 
 The sections below give more details of each component.
 
+---
+
 ### UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -63,6 +65,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+---
 
 ### Logic component
 
@@ -81,6 +85,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
+---
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -94,6 +100,8 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Contact>` and `ObservableList<Entry>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other components.
 
+---
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -104,9 +112,13 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save Teaching Assistant data in json format and read it back.
 
+---
+
 ### Common Classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
+
+---
 
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.
