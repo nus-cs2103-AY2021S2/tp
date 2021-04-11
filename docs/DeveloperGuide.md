@@ -236,21 +236,24 @@ The activity diagram below shows the flow of what happens when a user executes t
   * Pros: More precise results.
   * Cons: Requires a single predicate to account for all combinations of user input.
 
-### [Proposed] Match feature
+### Match feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed `match` mechanism matches extends the proposed `find` mechanism of `NuFash`. It 
+The `match` mechanism extends the `find` mechanism of `NuFash`. It 
 finds garments that match the colour and dress code of a specified garment, and 
-also complements the type of the specified garment.
+also complement the type of the specified garment.
 
-This is achieved through the creation of three new Predicates (in addition to the existing NameContainsKeywordsPredicate):
+This is achieved through the creation of four new Predicates (in addition to the existing NameContainsKeywordsPredicate).
+These are shown below, and the first predicate is dependent on the second, third and fourth.
+* AttributesContainsKeywordsPredicate
 * ColourContainsKeywordsPredicate
 * DressCodeContainsKeywordsPredicate
 * TypeContainsKeywordsPredicate
 
-MatchCommand is updated to use an updated find command
-with multiple attributes (i.e. `c/` for Colour, `d/` for dressCode and `t/` for type) and the respective predicate is hence used to create the FindCommand Object
+MatchCommand is updated to use a find command
+with single or multiple attributes (i.e. `c/` for Colour, `r/` for dressCode and `t/` for type) and the respective 
+predicate is subsequently used to create a FindCommand Object. This is then executed.
 
 #### Design Consideration:
 
