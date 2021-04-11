@@ -520,7 +520,7 @@ Action | Format | Examples
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorBuddy home folder.
 
 **Q**: May I edit the data file? 
-**A**: Advanced users are welcome to update data directly by editing that data file. AddressBook data are saved as a JSON file `[JAR file location]/data/tutorbuddy.json`.
+**A**: Advanced users are welcome to update data directly by editing that data file. Tutorbuddy data are saved as a JSON file `[JAR file location]/data/tutorbuddy.json`.
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TutorBuddy may not function as intended.
 
