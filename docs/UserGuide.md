@@ -595,12 +595,9 @@ This glossary provides definitions for the special terms used in this user guide
 
 #### Sample Data (Students)
 
-![sample_student_1](images/enhao/sample1.PNG)
-![sample_student_2](images/enhao/sample2.PNG)
-![sample_student_3](images/enhao/sample3.PNG)
+![sample_student](images/enhao/sample_student.png)
 
 #### Sample Data (Sessions)
 
-![sample_session_1](images/enhao/sample_ses1.PNG)
-![sample_session_2](images/enhao/sample_ses2.PNG)
+![sample_session](images/enhao/sample_session.png)
 --------------------------------------------------------------------------------------------------------------------
