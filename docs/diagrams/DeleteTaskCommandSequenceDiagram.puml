@@ -50,7 +50,7 @@ SocheduleParser -[hidden]->[
 LogicManager -> DeleteTaskCommand : execute()
 activate DeleteTaskCommand
 
-DeleteTaskCommand -> Model : deleteTasks(Task taskToDelete)
+DeleteTaskCommand -> Model : deleteTask(Task taskToDelete)
 activate Model
 DeleteTaskCommand <-- Model
 deactivate Model

@@ -45,12 +45,11 @@ LogicManager <-- SocheduleParser : s
 deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SocheduleParser -[hidden]->[
-destroy SocheduleParser
 
 LogicManager -> AddEventCommand : execute()
 activate AddEventCommand
 
-AddEventCommand -> Model : addEvents(Event eventToAdd)
+AddEventCommand -> Model : addEvent(Event eventToAdd)
 activate Model
 AddEventCommand <-- Model
 deactivate Model

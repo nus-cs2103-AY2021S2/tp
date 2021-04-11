@@ -23,7 +23,7 @@ title: Developer Guide
    &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
    &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation-of-event-level-commands)<br>
 1. [Documentation, Logging, Testing, Configuration, Dev-Ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
-1. [Appendix](#appendix)<br>
+[Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
    A2. [User Stories](#a2-user-stories)<br>
    A3. [Use Cases](#a3-use-cases)<br>
@@ -524,9 +524,9 @@ specific task with given arguments. An `AddTaskCommandParser` object is created,
 `AddTaskParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
 checks to ensure that it compiles with the specification. An `AddTaskCommand` object is returned.
 
-**Step 2**: On `AddTaskCommand#execute()`, `Model#addTasks(Task taskToAdd)` is called.
+**Step 2**: On `AddTaskCommand#execute()`, `Model#addTask(Task taskToAdd)` is called.
 This will add the task specified into the task list.
-For brevity, lower level implementation of `Model#addTasks(Task taskToAdd)` is omitted.
+For brevity, lower level implementation of `Model#addTask(Task taskToAdd)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_ADD_TASK_SUCCESS`.
@@ -548,9 +548,9 @@ A `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String a
 The method conducts parses the `INDEX` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteTaskCommand` object is returned.
 
-**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTasks(Task taskToDelete)` is called.
+**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTask(Task taskToDelete)` is called.
 This will delete the task at the specified index.
-For brevity, lower level implementation of `Model#deleteTasks(Task taskToDelete)` is omitted.
+For brevity, lower level implementation of `Model#deleteTask(Task taskToDelete)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_DELETE_TASK_SUCCESS`.
@@ -1036,7 +1036,7 @@ It can also be similarly extrapolated and applied to `unpin_task`.
 
 
 #### Implementation of `clear_completed_task` command
-In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`CLearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
+In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`ClearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
 The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
 
 **Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
@@ -1120,12 +1120,12 @@ The following is a detailed explanation on how `AddEventCommand.java` is impleme
 
 **Step 1**: User executes `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...` 
 command to add the specific event with given arguments. An `AddEventCommandParser` object is created, and the 
-`AddEventParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
+`AddEventCommandParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
 checks to ensure that it compiles with the specification. An `AddEventCommand` object is returned.
 
-**Step 2**: On `AddEventCommand#execute()`, `Model#addEvents(Event eventToAdd)` is called.
+**Step 2**: On `AddEventCommand#execute()`, `Model#addEvent(Event eventToAdd)` is called.
 This will add the event specified into the event list.
-For brevity, lower level implementation of `Model#addEvents(Event eventToAdd)` is omitted.
+For brevity, lower level implementation of `Model#addEvent(Event eventToAdd)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message `AddEventCommand#MESSAGE_ADD_EVENT_SUCCES` will be displayed.
@@ -1143,13 +1143,13 @@ In SOChedule, the governing logic behind the `delete_event` command is laid out 
 The following is a detailed explanation on how DeleteEventCommand is implemented.
 
 **Step 1**: User executes `delete_event 1` command to delete the event at the given index.
-A `DeleteEventParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
+A `DeleteEventCommandParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
 The method conducts parses the `1` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteEventCommand` object is returned.
 
-**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvents(Event eventToDelete)` is called.
+**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvent(Event eventToDelete)` is called.
 This will delete the event at the specified index.
-For brevity, lower level implementation of `Model#deleteEvents(Event eventToDelete)` is omitted.
+For brevity, lower level implementation of `Model#deleteEvent(Event eventToDelete)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message `DeleteEventCommand#MESSAGE_DELETE_EVENT_SUCCESS` will be displayed.
@@ -2057,8 +2057,6 @@ These instructions only provide a starting point for testers to work on; testers
 
     1. Other incorrect commands to try: `add_task`, `add_task n/Task 1`, etc.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
@@ -2074,8 +2072,6 @@ These instructions only provide a starting point for testers to work on; testers
    1. Other incorrect delete commands to try: `delete_task`, `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Editing a task
 1. Edits an uncompleted task in the task list
     1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
@@ -2086,9 +2082,7 @@ These instructions only provide a starting point for testers to work on; testers
        Details of the edited task to appear in status bar.
        
     1. Other incorrect command to try : `edit_task`
-
-1. _{ more test cases …​ }_
-
+   
 ### Marking one or more tasks as done
 1. Marks one or more uncompleted tasks from the task list as completed
 
@@ -2100,8 +2094,6 @@ These instructions only provide a starting point for testers to work on; testers
        "Completed 2 Task(s)." to appear in status bar.
        
     1. Other incorrect command to try : `done abc`.
-
-1. _{ more test cases …​ }_
 
 ### Marking a task as uncompleted
 
@@ -2115,8 +2107,6 @@ These instructions only provide a starting point for testers to work on; testers
        "Uncompleted 1 Task." to appear in status bar.
        
     1. Other incorrect command to try : `undone abc`.
-
-1. _{ more test cases …​ }_
 
 ### Listing all tasks
 
@@ -2141,8 +2131,6 @@ These instructions only provide a starting point for testers to work on; testers
     1. Test case: `find_task homework assignment`<br>
        Expected: All the tasks whose name contains any of `homework` or `assignment` in the task list will be shown. <br>
        A message `x task(s) listed!` will be shown, where `x` is the number of tasks that satisfies the condition.
-       
-1. _{ more test cases …​ }_
 
 ### Sorting the task list
 
@@ -2157,8 +2145,6 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
 
     1. Other valid parameters to test: `name`, `completion` and `deadline`.
-
-1. _{ more test cases …​ }_
 
 ### Pinning a task
 
@@ -2181,7 +2167,6 @@ These instructions only provide a starting point for testers to work on; testers
     1. Other incorrect delete commands to try: `pin_task`, `pin_task x` (where x is larger than the list size)<br>
        Expected: Similar to previous cases.
 
-1. _{ more test cases …​ }_
 
 ### Unpinning a task
 
@@ -2203,9 +2188,7 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Other incorrect delete commands to try: `unpin_task`, `unpin_task x` (where x is larger than the list size)<br>
       Expected: Similar to previous cases.
-
-1. _{ more test cases …​ }_
-
+      
 
 ### Clearing completed tasks
 
@@ -2213,9 +2196,7 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Test case: `clear_completed_task`<br>
       Expected: Tasks marked as done are cleared from the list. <br>
-      Success message `Completed tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any completed task or not.   
-
-1. _{ more test cases …​ }_
+      Success message `Completed tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any completed task or not.
 
 ### Clearing expired tasks
 
@@ -2223,9 +2204,7 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Test case: `clear_expired_task`<br>
       Expected: Tasks with past deadlines are cleared from the list. <br>
-      Success message `Expired tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired task or not. 
-
-1. _{ more test cases …​ }_
+      Success message `Expired tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired task or not.
 
 ### Adding an event
 
@@ -2244,7 +2223,6 @@ These instructions only provide a starting point for testers to work on; testers
                   
     1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
    
-1. _{ more test cases …​ }_
     
 ### Deleting an event
 
@@ -2263,8 +2241,6 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Other incorrect delete commands to try: `delete_event`, `delete_event x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-      
-1. _{ more test cases …​ }_
 
 ### Editing an event
 
@@ -2280,7 +2256,6 @@ These instructions only provide a starting point for testers to work on; testers
                
     1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
    
-1. _{ more test cases …​ }_
 
 ### Listing all events
 
@@ -2298,8 +2273,6 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: All the events that happening on today will be shown. <br>
        A message `Listed events happen on today` and `x event(s) listed!` will be shown, where `x` is the number of events that happen on today.
 
-1. _{ more test cases …​ }_
-
 ### Finding events by names
 
 1. Finding events by names
@@ -2308,7 +2281,6 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: All the events whose name contains any of `project` or `meeting` in the event list will be shown. <br>
        A message `x event(s) listed!` will be shown, where `x` is the number of events that satisfies the condition.
        
-1. _{ more test cases …​ }_
 
 ### Clearing expired events
 
@@ -2318,7 +2290,6 @@ These instructions only provide a starting point for testers to work on; testers
       Expected: Events with past end date time are cleared from the list. <br>
       Success message `Expired events (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired event or not.
 
-1. _{ more test cases …​ }_
 
 ### Finding schedule given a date
 
@@ -2337,8 +2308,6 @@ These instructions only provide a starting point for testers to work on; testers
             1 event(s) listed!" appears in the status bar.
            
     1. Other incorrect command to try: `find_schedule 2021-005-01`.
-   
-1. _{ more test cases …​ }_
 
 ### Finding free time slots
 
@@ -2353,8 +2322,8 @@ These instructions only provide a starting point for testers to work on; testers
        1. If there are no events happening on the day, `The entire day is free!` will be displayed after the success message.
           
        1. If no free time slots were found, `There is no free time in the day!` will be displayed.
-
-1. _{ more test cases …​ }_
+    1. Test case: `free_time 2021-02-29`<br>
+       Expected: Displays an error message for invalid date.
 
 ### Getting a summary of SOChedule
 
@@ -2363,8 +2332,6 @@ These instructions only provide a starting point for testers to work on; testers
     1. Test case: `summary`<br>
        Expected: Displays a summary for SOChedule. Success message `Summary:`, followed by detailed about `Task`,
        and details about `Event`.
-       
-1. _{ more test cases …​ }_
 
 ### Clearing SOChedule
 
