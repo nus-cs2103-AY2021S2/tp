@@ -10,7 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.person.Person;
 
 /**
  * API of the Logic component
@@ -31,9 +30,6 @@ public interface Logic {
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered list of contacts */
     ObservableList<Contact> getFilteredContactList();

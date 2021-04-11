@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,7 +24,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Entry> filteredEntries;
-    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,7 +38,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredContacts = new FilteredList<>(this.addressBook.getContactList());
         filteredEntries = new FilteredList<>(this.addressBook.getEntryList());
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -120,32 +117,6 @@ public class ModelManager implements Model {
         addressBook.setContact(target, editedContact);
     }
 
-    // ====== Person ======
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
     // ====== Entry ======
 
     /**
@@ -210,23 +181,6 @@ public class ModelManager implements Model {
         filteredContacts.setPredicate(predicate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
     //=========== Filtered Entry List Accessors ==============================================================
 
     /**
@@ -262,7 +216,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredContacts.equals(other.filteredContacts)
+                && filteredEntries.equals(other.filteredEntries);
     }
 
 }

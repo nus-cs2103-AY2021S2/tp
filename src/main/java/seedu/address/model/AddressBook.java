@@ -9,8 +9,6 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.NonOverlappingEntryList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 
 
 /**
@@ -21,7 +19,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueContactList contacts;
     private final NonOverlappingEntryList entries;
-    private final UniquePersonList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,7 +29,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         entries = new NonOverlappingEntryList();
-        persons = new UniquePersonList();
         contacts = new UniqueContactList();
     }
 
@@ -57,14 +53,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
-    /**
      * Replaces the contents of the entry list with {@code entries}.
      * {@code entries} must not contain overlapping entries.
      */
@@ -78,7 +66,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setContacts(newData.getContactList());
-        setPersons(newData.getPersonList());
         setEntries(newData.getEntryList());
     }
 
@@ -118,43 +105,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeContact(Contact key) {
         contacts.remove(key);
-    }
-
-    //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
     }
 
     //// entry methods
@@ -211,18 +161,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return contacts.asUnmodifiableObservableList().size() + " contacts";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Contact> getContactList() {
         return contacts.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
     @Override
@@ -234,12 +179,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && contacts.equals(((AddressBook) other).contacts));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return contacts.hashCode();
     }
 
 }

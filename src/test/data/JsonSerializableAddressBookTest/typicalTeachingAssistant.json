@@ -4,62 +4,62 @@
     "name" : "Ava Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "tagged" : [ "friends" ]
+    "tagged" : ["friends"]
   }, {
     "name" : "Ben Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : ["owesMoney", "friends"]
   }, {
     "name" : "Claire Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "tagged" : [ "colleagues" ]
+    "tagged" : ["colleagues"]
   }, {
     "name" : "David Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "tagged" : [ "friends" ]
+    "tagged" : ["friends"]
   }, {
-    "name" : "Elle Meyer",
+    "name" : "Ellie Meyer",
     "phone" : "94822244",
     "email" : "werner@example.com",
-    "tagged" : [ ]
+    "tagged" : []
   }, {
     "name" : "Finn Kunz",
     "phone" : "94824277",
     "email" : "lydia@example.com",
-    "tagged" : [ ]
+    "tagged" : []
   }, {
     "name" : "Gabriel Best",
     "phone" : "94824422",
     "email" : "anna@example.com",
-    "tagged" : [ ]
+    "tagged" : []
   } ],
   "entries" : [ {
     "entryName" : "Consultation",
     "startDate" : "2022-02-01 13:00",
     "endDate" : "2022-02-01 14:30",
-    "tagged" : [ "History" ]
+    "tagged" : ["History"]
   }, {
     "entryName" : "Class Meeting",
     "startDate" : "2022-02-01 15:00",
     "endDate" : "2022-02-01 16:30",
-    "tagged" : [ "21S07" ]
+    "tagged" : ["21S07"]
+  },{
+    "entryName" : "Extra Class",
+    "startDate" : "2022-02-02 17:00",
+    "endDate" : "2022-02-02 18:30",
+    "tagged" : ["Math"]
   }, {
     "entryName" : "Short Quiz",
     "startDate" : "2022-02-02 14:30",
     "endDate" : "2022-02-02 15:15",
-    "tagged" : [ "Geography", "21A01" ]
-  }, {
-    "entryName" : "Extra Class",
-    "startDate" : "2022-02-02 17:00",
-    "endDate" : "2022-02-02 18:30",
-    "tagged" : [ "Math" ]
+    "tagged" : ["Geography", "21A01"]
   }, {
     "entryName" : "Go do something important",
     "startDate" : "2022-02-04 09:00",
     "endDate" : "2022-02-04 09:30",
-    "tagged" : [ "Important", "Stuff" ]
+    "tagged" : ["Important", "Stuff"]
   } ]
 }
