@@ -71,6 +71,7 @@ Compared to traditional diet tracking apps such as MyFitnessPal, you interact wi
 ---
 
 ## Understanding the User Guide
+
 To make browsing the user guide more pleasant for you, here are some of the symbols and formats used throughout the guide:
 
 Legend | Description
@@ -91,12 +92,14 @@ Legend | Description
 4. Double-click the file to start DietLAH!
 
 5. When you first launch DietLAH!, this is what it looks like:
+
   <p align="center"><img src="images/user-guide/gui.png"></p>
 
   It will show some basic information on how to use it, and some sample data will already be present. 
 
 6. Type the command in the command box at the top and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
+   
    * **`reset t/blank`**: Resets sample data in the application.
 
    * **`bmi g/M a/43 h/170 w/70 i/50`**: Sets up your user profile with the gender (male), age (43), height (170cm), weight (70kg) and ideal weight (50kg).
@@ -146,10 +149,8 @@ DietLAH! uses this information to provide personalized recommendations based on 
     ✏️ <strong>Note:</strong> You need to enter this command before all other commands will work! Also, note that you need to clear the sample data before you can use this command!
 </div>
 
-**Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
-
-**Example:** `bmi g/M a/43 h/170 w/70 i/80`
-
+**Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`  
+**Example:** `bmi g/M a/43 h/170 w/70 i/80`  
 **Expected output:**
 
 <p align="center">
@@ -160,8 +161,7 @@ DietLAH! uses this information to provide personalized recommendations based on 
 
 You can view your information and associated health risks (if any), at any time by using the command given below.
 
-**Command Format:** `bmi_query`
-
+**Command Format:** `bmi_query`  
 **Expected output:**
 
 <p align="center">
@@ -172,10 +172,8 @@ You can view your information and associated health risks (if any), at any time 
 
 From time to time, we may have lost or gained weight following our diet plan. This allows you to update your information to reflect those changes.
 
-**Command Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
-
-**Example:** `bmi_update g/M a/43 h/170 w/70 i/80`
-
+**Command Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`  
+**Example:** `bmi_update g/M a/43 h/170 w/70 i/80`  
 **Expected output:**
 
 <p align="center">
@@ -188,8 +186,7 @@ From time to time, we may have lost or gained weight following our diet plan. Th
 
 Get a personalized diet plan based on your current BMI and characteristics.
 
-**Command Format:** `plan_recommend`
-
+**Command Format:** `plan_recommend`  
 **Expected output:**
 
 <p align="center">
@@ -200,8 +197,7 @@ Get a personalized diet plan based on your current BMI and characteristics.
 
 Shows you the current active diet plan you have selected.
 
-**Command Format:** `plan_current`
-
+**Command Format:** `plan_current`  
 **Expected output:**
 
 <p align="center">
@@ -212,10 +208,8 @@ Shows you the current active diet plan you have selected.
 
 Change your current active diet plan to another one. It's okay to change your mind!
 
-**Command Format:** `plan_set p/ID`
-
-**Example:** `plan_set p/1`
-
+**Command Format:** `plan_set p/ID`  
+**Example:** `plan_set p/1`  
 **Expected output:**
 
 <p align="center">
@@ -226,8 +220,7 @@ Change your current active diet plan to another one. It's okay to change your mi
 
 Shows you a list of currently available diet plans.
 
-**Command Format:** `plan_list`
-
+**Command Format:** `plan_list`  
 **Expected output:**
 
 <p align="center">
@@ -238,10 +231,8 @@ Shows you a list of currently available diet plans.
 
 Interested in trying out a diet plan? Find out more about its daily nutritional requirements.
 
-**Command Format:** `plan p/ID`
-
-**Example:** `plan p/1`
-
+**Command Format:** `plan p/ID`  
+**Example:** `plan p/1`  
 **Expected output:**
 
 <p align="center">
@@ -254,8 +245,7 @@ Interested in trying out a diet plan? Find out more about its daily nutritional 
 
 Save food items you frequently consume, so you don't have to re-enter them every time! Your food list acts as a shortcut to help speed up your food intake recording.
 
-**Command Format:** `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
-
+**Command Format:** `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`  
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
 <div markdown="span" class="alert alert-primary">
@@ -272,8 +262,7 @@ Save food items you frequently consume, so you don't have to re-enter them every
 
 Update food items in your food list with new nutrition values.
 
-**Command Format:** `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
-
+**Command Format:** `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`  
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
 <div markdown="span" class="alert alert-primary">
@@ -294,10 +283,8 @@ Update food items in your food list with new nutrition values.
 
 Shows you all the food items stored in your food list.
 
-**Command Format:** `food_list`
-
-**Example:** `food_list`
-
+**Command Format:** `food_list`  
+**Example:** `food_list`  
 **Expected output:**
 
 <p align="center">
@@ -308,8 +295,7 @@ Shows you all the food items stored in your food list.
 
 Deletes the specified food item.
 
-**Command Format:** `food_delete n/name`
-
+**Command Format:** `food_delete n/name`  
 **Example:** `food_delete n/tomato`
 
 <div markdown="span" class="alert alert-warning">
@@ -336,8 +322,7 @@ E.g. when you record two 'Chicken rice' in the food intake, they will appear as 
 
 Record your food intake for the specified date with a new food item not currently in your food list. The food will also be added to your food list for your convenience!
 
-**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
-
+**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`  
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
 <div markdown="span" class="alert alert-primary">
@@ -355,8 +340,7 @@ Record your food intake for the specified date with a new food item not currentl
 
 Record your food intake for the specified date using an existing food from your food list. Now you can save time having to re-enter your favourite food!
 
-**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME`
-
+**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME`  
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato`
 
 **Expected output:**
@@ -369,8 +353,7 @@ Record your food intake for the specified date using an existing food from your 
 
 Record your food intake for the specified date using an existing food from your food list, but with different nutrient value(s). The value(s) will also be updated in your food list.
 
-**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
-
+**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`  
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
 <div markdown="span" class="alert alert-primary">
@@ -387,8 +370,7 @@ Record your food intake for the specified date using an existing food from your 
 
 Update the nutrient value(s) of a previously entered food intake given the date and food name.
 
-**Command Format:** `food_intake_update d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
-
+**Command Format:** `food_intake_update d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`  
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
 <div markdown="span" class="alert alert-success">
@@ -409,8 +391,7 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 
 Delete a food intake record from the application.
 
-**Command Format:** `food_intake_delete d/DATE(in dd Mmm yyyy format) n/FOOD_NAME`
-
+**Command Format:** `food_intake_delete d/DATE(in dd Mmm yyyy format) n/FOOD_NAME`  
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
 
 <div markdown="span" class="alert alert-warning">
@@ -431,10 +412,8 @@ View the list of food intakes on a given day or over a period of days. Refer to 
 
 View the list of food intakes on a specific day.
 
-**Command Format:** `food_intake_query d/DATE(in dd Mmm yyyy format)`
-
-**Example:** `food_intake_query d/31 Mar 2021`
-
+**Command Format:** `food_intake_query d/DATE(in dd Mmm yyyy format)`  
+**Example:** `food_intake_query d/31 Mar 2021`  
 **Expected output:**
 
 <p align="center">
@@ -445,10 +424,8 @@ View the list of food intakes on a specific day.
 
 View the list of food intakes over a period of days (both inclusive).
 
-**Command Format:** `food_intake_query df/DATE_FROM(in dd Mmm yyyy format) dt/DATE_TO(in dd Mmm yyyy format)`
-
-**Example:** `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
-
+**Command Format:** `food_intake_query df/DATE_FROM(in dd Mmm yyyy format) dt/DATE_TO(in dd Mmm yyyy format)`  
+**Example:** `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`  
 **Expected output:**
 
 <p align="center">
@@ -479,8 +456,7 @@ Generates a progress report based on your current active diet plan. Your food in
 
 Get rid of all existing records and start afresh.
 
-**Command Format:** `reset t/blank`
-
+**Command Format:** `reset t/blank`  
 **Expected output:**
 
 <p align="center">
@@ -491,8 +467,7 @@ Get rid of all existing records and start afresh.
 
 Get rid of all existing records and populate it with the sample template data.
 
-**Command Format:** `reset t/template`
-
+**Command Format:** `reset t/template`  
 **Expected output:**
 
 <p align="center">
@@ -562,21 +537,21 @@ The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet. It is desi
 
 The Standard Ketogenic Diet is suitable for individuals suffering from Type II Diabetes where excess carbohydrates would have been converted into glucose.
 
-**Classification:** `Weight Loss`
+**Classification:** `Weight Loss`  
 **Composition:** `70% Fat` `10% Carbohydrates` `20% Proteins`
 
 ### A1.2 High-Protein Ketogenic Diet
 
 The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb) which increases the protein intake. This variation is designed to help athletes and bodybuilders maintain their muscle mass whilst burning fat.
 
-**Classification:** `Weight Loss`
+**Classification:** `Weight Loss`  
 **Composition:** `60% Fat` `5% Carbohydrates` `35% Proteins`
 
 ### A1.3 Balanced Plan For Weight Gain
 
 This plan is aimed at individuals who are intending to gain healthy weight in a balanced manner. Some exercise coupled with this diet plan will allow individuals to gain some muscle steadily.
 
-**Classification:** `Weight Gain`
+**Classification:** `Weight Gain`  
 **Composition:** `30% Fat` `35% Carbohydrates` `35% Proteins`
 
 ### A1.4 Clean Bulk
@@ -584,19 +559,19 @@ This plan is aimed at individuals who are intending to gain healthy weight in a 
 The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
 processed foods to hit the calorie intake.
 
-**Classification:** `Weight Gain`
+**Classification:** `Weight Gain`  
 **Composition:** `30% Fat` `30% Carbohydrates` `40% Proteins`
 
 ### A1.5 High Carbohydrates Bulk
 
 This plan is intended for athletes who are involved in high intensity sports which require high energy consumption. As such, this plan prescribes a higher amount of carbohydrates to offset this need whilst ensuring the protein intake is enough to promote muscle growth and in turn, healthy weight gain.
 
-**Classification:** `Weight Gain`
+**Classification:** `Weight Gain`  
 **Composition:** `15% Fat` `55% Carbohydrates` `30% Proteins`
 
 ### A1.6 Balanced Plan
 
 The perfect ying-yang. Eat healthy food and complete the calorie goal. Eat lots of fruits and vegetables, and base meals on higher fiber starchy carbohydrates.
 
-**Classification:** `Maintain Weight`
+**Classification:** `Maintain Weight`  
 **Composition:** `30% Fat` `40% Carbohydrates` `30% Proteins`

@@ -1,5 +1,3 @@
-
-
 ---
 layout: page
 title: Developer Guide
@@ -12,6 +10,7 @@ title: Developer Guide
 # Developer Guide
 
 ## Table of Contents
+
 <!--ts-->
 * [Design](#design)
 * [Implementation](#implementation)
@@ -46,20 +45,27 @@ title: Developer Guide
 * [References](#references)
 <!--te-->
 
-## **Introduction**
+---
+
+## Introduction
+
 DietLAH! is a desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight. The application also stores all the application data in a JSON (JavaScript Object Notation) storage file so that the user's progress and records will remain when they re-open the application.
 
 This developer guide serves as a documentation and manual of how the existing system was designed, and provides information on how certain important features were implemented.
 
+---
+
 ## Understanding the Developer Guide
+
 To make the Developer Guide more comprehensible, certain labelling and highlights are used in the guide. Familiarising yourself with these syntaxes may help you get the most out of the Developer Guide.
+
 Legend | Description
---------|------------------
+-------|-------------
 `Inline code` | Highlights Objects, Classes and Code segments
 [Tips] | Useful tips
 [Important] | Important information to take note of
 
-## **Design**
+## Design
 
 ### Architecture
 
@@ -149,9 +155,9 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
+<div markdown="span" class="alert alert-info">
+    :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+    ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 </div>
 
 
@@ -169,7 +175,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -186,7 +192,6 @@ yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 
 Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
-
 ### User Object
 
 <img src="images/UserClassDiagram.png" width="512" />
@@ -202,7 +207,6 @@ The 'User' object contains the following components:
 Some of the actions that can be performed with the User component are:
 1. Set and retrieve the user's chosen diet plan (Active Diet Plan)
 2. Update and retrieve the list of Food items that the user has stored
-
 
 ### Food Object
 
@@ -226,6 +230,7 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
 #### Design consideration:
 
 ##### Aspect: How the components within `Food` are added or changed
+
 * Current Choice:
   * The food components are not immutable and its nutrients value will update each time an update command is passed.
 * Pros:
@@ -246,11 +251,13 @@ The following activity diagram summarizes what happens when a user executes a `f
 <img src="images/AddFoodItemActivityDiagram.png" width="415" />
 
 #### Description:
+
 This command adds a valid food item into the unique food list. Users are able to add a food item in with the valid input to the command below. If a food item with a similar name is added, this command will not allow it and an error will be shown to ask the user if they want to update the value instead.
 
 Example: `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 #### Implementation:
+
 Once the user types in the command to add food, the parser will check for all the required prefixes. If all required prefixes are present and the input values are valid, `AddFoodItemCommand` object is created. `AddFoodItemCommand` is a class that extends `Command` abstract class. `AddFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will prompt an error that the food item exist and suggest updating the food item value instead. Otherwise, a new food item object will be created and added into the food list.
 
 Below is an example of a usage scenario:
@@ -265,11 +272,13 @@ Diagram flow to be inserted here
 ### Update food item feature
 
 #### Description:
+
 This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and nutrient values specified has to be different from original before an update is permitted.
 
 Example: `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 #### Implementation:
+
 Once the user types in the command to update food, the parser will check for the presence of the name prefix and the presence of at least one of the nutrient prefix. If the required prefixes and valid value(s) are present, the `UpdateFoodItemCommand` object is created and a temporary food item object is created with the new values. `UpdateFoodItemCommand` is a class that extends `Command` abstract class. `UpdateFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will check for any difference of the original values with the new value(s). If there is at least 1 difference, the food item in the food list will be updated to the new value(s). Otherwise, it will prompt for the user to modify at least 1 of the food item's value to be different from original.
 
 Below is an example of a usage scenario:
@@ -283,11 +292,13 @@ The following sequence diagram shows how the update operation works:
 ### List food item feature
 
 #### Description:
+
 This command lists all the food item(s) in the food list.
 
 Example: `food_list`
 
 #### Implementation:
+
 Once the user types in the command, the list of food items in the food list will be displayed.`ListFoodItemCommand` is a class that extends `Command` abstract class. `ListFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will list all the food items stored in the food list.
 
 Below is an example of a usage scenario:
@@ -301,11 +312,13 @@ The following sequence diagram shows how the delete operation works:
 ### Delete food item feature
 
 #### Description:
+
 This command deletes a valid food item from the unique food list. Food item has to exist in the food list before the deletion can be carried out.
 
 Example: `food_delete n/FOOD_NAME`
 
 #### Implementation:
+
 Once the user types in the command to delete food, the parser will check for the required name prefix. If the name prefix is present, the `DeleteFoodItemCommand` object is created with the food name captured from the parser. `DeleteFoodItemCommand` is a class that extends `Command` abstract class. `DeleteFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will delete the food item from the list. Otherwise, it will prompt an error that the food item is not found.
 
 Below is an example of a usage scenario:
@@ -330,13 +343,16 @@ The 'FoodIntake' class stores a `LocalDate` and `Food`:
 The `Food` object associated with each `FoodIntake` object is independent of the `UniqueFoodList` and editing a `Food` in the `UniqueFoodList` will not affect old FoodIntake values, and vice versa.
 
 #### FoodIntake Constructors
+
 There are two constructors for the creation of a FoodIntake object.
 
 1. `public FoodIntake(LocalDate date, Food temporaryFood)` : Creates a `FoodIntake` object given the `LocalDate` and `Food` object - used in the general FoodIntakeCommand when there is no need to alter the `Food` name e.g. appending the numerical duplicate count.
 2. `public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins)` : Creates a FoodIntake object given the `LocalDate` and individual food name and nutrient values - used when loading to file and saving duplicate `FoodIntake` Food names.
 
 #### Design consideration
+
 ##### Aspect: Allowing special `Food` names for duplicate `FoodIntake` names
+
 When adding multiple `FoodIntake`s with the same `Food` name in a given date, the `FoodIntake` with the duplicate name will be appended with a **duplicate count**.
 
 For example, adding two 'chicken rice' will result in the following list of food intakes: chicken rice, chicken rice #2.
@@ -373,7 +389,9 @@ Additionally, some noteworthy information to note:
 2. Whenever a `FoodIntake` is deleted, the duplicate count is re-ordered for `FoodIntake`s matching the name and date. More information on the implementation is provided in the below section.
 
 #### Design consideration
+
 ##### Aspect: A single `FoodIntakeList` used for the program
+
 * Current Choice:
   * A single `FoodIntakeList` is used to store all `FoodIntake`s by the user
 * Pros:
@@ -393,6 +411,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 <img src="images/AddFoodIntakeActivityDiagram.png" width="507" />
 
 #### Description:
+
 For the user's convenience, there are 3 scenarios for recording food intake.
 
 1. Add `FoodIntake` for new `Food` not currently in the `UniqueFoodList`.<br/>
@@ -418,6 +437,7 @@ The `AddFoodIntakeParser` first verifies that the expected format is met and the
 The `addFoodIntake()` method of the `FoodIntakeList` is finally called to add the `FoodIntake` into the list. Refer to the detailed implementation below.
 
 ##### addFoodIntake(FoodIntake foodIntake)
+
 The method first strips the duplicate count, if any, from the `Food` name in the `FoodIntake` using the `getOriginalName()`. Thereafter, the `getFoodIntakeItemCount()` method is called which returns the number of `FoodIntakes` matching the `Food` name and `date` (item count).
 
 If the item count is 0, the `FoodIntake` is added as it is. Otherwise, it means that there is at least 1 `FoodIntake` with the same name and date - and would require a duplicate count to be appended to the name.
@@ -432,6 +452,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 
 
 #### Description:
+
 The user can delete food intakes already added to the application by providing the food name, and date of intake.
 
 Example: `food_intake_delete d/dd MMM yyy n/FOOD_NAME`
@@ -448,17 +469,17 @@ The following activity diagram summarizes what happens when a user executes a `f
 
 <img src="images/UpdateFoodIntakeActivityDiagram.png" width="635" />
 
-
 #### Description:
+
 The user can update the nutrient values of previously recorded food intakes. At least 1 nutrient value must be provided to be updated and values not provided will remain unchanged.
 
 Example: `food_intake_update d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
 
 #### Implementation:
+
 The `UpdateFoodIntakeCommand` will take in the provided nutrient values to be updated, and for those that were not provided, the original `FoodIntake`'s `Food` values will be copied over and retained.
 
 The newly packaged `FoodIntake` object with the updated `Food` values is passed to the `updateFoodIntake()` method in the `FoodIntakeList` and will replace the matching `FoodIntake`.
-
 
 ### Progress Report feature
 
@@ -474,6 +495,7 @@ Each progress report provides the following information:
 Example: `progress`
 
 #### Implementation:
+
 Before the `progress` command can be successfully run, the user needs to have selected an active diet plan to follow. Otherwise, the user will be prompted to select a diet plan first.
 A progress report will then be generated whenever the `progress` command is entered.
 
@@ -555,15 +577,12 @@ Example: `reset t/blank` to a fresh copy
 
 Example: `reset t/template` to the sample template data
 
-
 #### Implementation:
 Both the `resetToTemplate()` and `resetToBlank()` methods reside in the `FoodIntakeList` and `UniqueFoodList` respectively. When the `reset` command is called, the respective reset method is called in both the `FoodIntakeList` and `UniqueFoodList`.
 
 `resetToTemplate()` makes use of the `TemplateInitializer` to populate the lists with a fixed set of sample template data, while `resetToBlank()` resets the list to blank.
 
 Thereafter, a new `User` is created via `createUser(this.foodList, this.foodIntakeList)` with the cleared `UniqueFoodList` and `FoodIntakeList`. If the reset type is set to `blank`, the `User` storage file is **deleted** and the user will be required to re-setup their BMI.
-
-
 
 ### Mifflin-St Joer Formula
 
@@ -574,7 +593,6 @@ The formula takes into account the individual's weight, height, age and sex.
 For men, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) + 5**
 <br/>
 For women, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) - 161**
-
 
 ### Product Scope
 
@@ -587,6 +605,7 @@ For women, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) 
 **Value proposition**: quickly input daily food intake and calculate their macronutrients to check if diet plan is progressing as planned
 
 ### User Stories
+
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
 |Priority|   As a ...   |   I want to ...  |   So that I can​ ...   |
@@ -735,8 +754,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-*{More to be added}*
 
+*{More to be added}*
 
 ### References
 
