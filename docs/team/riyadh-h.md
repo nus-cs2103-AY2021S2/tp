@@ -30,14 +30,14 @@ Given below are my contributions to the project.
   * Updated the 'find' command to allow for users to search their contacts lists by tags or email. (Pull requests [\#65](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/65), [\#137](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/137))
   * Fixed a bug in the original implementation of the contacts list (i.e., AddressBook) where two contacts could share the same phone number or email, but not the name. (Pull request [\#250](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/250))
 
-* **Documentation**:
+* **Documentation (to be updated)**:
   * User Guide:
     * Added documentation for the features `delete` and `find` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details of the `delete` feature.
 
-* **Community**:
+* **Community (to be updated)**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
   * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
