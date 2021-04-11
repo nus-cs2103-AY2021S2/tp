@@ -420,7 +420,7 @@ should not be selected. This leads to only finding events that are ongoing at th
 (i.e. with start date before or on and end date after or on the specified date). 
 
 For tasks, it is debatable. Completed tasks should not shown. However, some
-consideration is needed to determine which incomplete tasks to display.
+consideration is needed to determine which uncompleted tasks to display.
 
 <table>
     <tr>
@@ -430,7 +430,7 @@ consideration is needed to determine which incomplete tasks to display.
     <tr>
         <td> 
             <ul>
-                <li> Select incomplete tasks with deadlines before or on the given date.</li>
+                <li> Select uncompleted tasks with deadlines before or on the given date.</li>
                 <li> Pros:
                     <ul>
                         <li>Less tasks are being shown. This may be more helpful as users can focus more on these tasks with an earlier deadline than the other tasks.</li>
@@ -473,7 +473,7 @@ helpful for users to know what tasks should be dealt with first and improve thei
 
 #### 4.2.1 Overview
 
-`Task` is a type of activity that comes with a `Deadline` attribute and can be marked as complete or incomplete. It is
+`Task` is a type of activity that comes with a `Deadline` attribute and can be marked as complete or uncompleted. It is
 specified by the following attributes:
 
 * `Name`
@@ -751,7 +751,7 @@ The method parses the `1` and conducts validation checks to ensure that the give
 A `UndoneTaskCommand` object is returned.
 
 **Step 2**: On `UndoneTaskCommand#execute()`,
-the indices are further checked to ensure the target task exist in the task list, and they are not incomplete to begin with.
+the indices are further checked to ensure the target task exist in the task list, and they are not uncompleted to begin with.
 Afterwards, the information of the target task is copied ,and an uncompleted task with exactly the same information as the target task is created.
 Finally, `Model#setTask(Task taskToUndone, Task uncompletedTask)` and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method are called.
 These two methods update the target task in the task list and refresh the UI to show the update.
@@ -791,7 +791,7 @@ Here are our considerations.
     <tr>
         <td> 
             <ul>
-                <li> Undone task only marks one task as incomplete. </li>
+                <li> Undone task only marks one task as uncompleted. </li>
                 <li> Pros:
                     <ul>
                         <li>Easier to implement, maintain and integrate with other commands and components.</li>
@@ -806,7 +806,7 @@ Here are our considerations.
         </td>
         <td> 
             <ul>
-                <li>Undone task can mark more than one tasks as incomplete.</li>
+                <li>Undone task can mark more than one tasks as uncompleted.</li>
                 <li> Pros:
                     <ul>
                         <li>May save a small amount of time when users need to undone multiple tasks.</li>
@@ -824,7 +824,7 @@ Here are our considerations.
 </table>
 
 Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited development and
-testing time. More importantly, unlike `done_task`, users are unlikely to have the demand to mark multiple tasks as incomplete at one go
+testing time. More importantly, unlike `done_task`, users are unlikely to have the demand to mark multiple tasks as uncompleted at one go
 under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
 
 [Return to Overview](#421-overview)
@@ -1505,8 +1505,7 @@ Use case ends.
 
 * 2a. Some required information about the task is missing in the command.
 
-    * 2a1. SOChedule displays an error message suggesting that information provided when creating
-      the task is incomplete. <br>
+    * 2a1. SOChedule displays an error message. <br>
       Use case ends.
       <br><br>
       
@@ -2011,7 +2010,7 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: Activities that start at a specific time and ends at a specific time.
-* **Task**: Activities to be undertaken that can be marked complete/incomplete. It also has a compulsory date field to 
+* **Task**: Activities to be undertaken that can be marked complete/uncompleted. It also has a compulsory date field to 
   indicate its deadline.
 
 --------------------------------------------------------------------------------------------------------------------
