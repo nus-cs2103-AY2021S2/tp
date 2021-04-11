@@ -541,6 +541,53 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 2.
 
+**Use case: Add an order item**
+
+**MSS**
+
+1.  User requests to add an order item to the order items table.
+2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The order item description is invalid i.e. it contains invalid characters such as numbers and special characters or is blank.
+
+    * 1a1. CakeCollate shows an error message stating that the order item description should only contain alphabets and shouldn't be blank.
+    
+      Use case resumes at step 1.
+    
+* *a. User requests for help <link help use case here>.
+
+**Use case: Delete an order item**
+
+**MSS**
+
+1.  User requests to delete a specific list of order items.
+2.  CakeCollate deletes the specified order items.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. One or more indexes input by the user exceeds the length of the current list.
+
+    * 3a1. CakeCollate shows an error message stating that the index provided is invalid.
+
+      Use case resumes at step 1.
+
+* 3b. One or more indexes input by the user is negative.
+
+    * 3a1. CakeCollate shows an error message stating that the index can't be negative.
+
+      Use case resumes at step 1.
+
+* *a. User requests for help <link help use case here>.
 
 **Use case: Help needed for command summary**
 
