@@ -12,7 +12,7 @@ Participant ":AddResident\nCommandParser" as arcParser LOGIC_COLOR
 Participant ":AddResident\nCommand" as addResidentCmd LOGIC_COLOR
 end box
 box Model MODEL_COLOR_T1
-Participant ":Model" as model MODEL_COLOR
+Participant ":Model" as model MODEL_COLORww
 Participant ":CommandResult" as cmdResult LOGIC_COLOR
 
 
@@ -45,6 +45,7 @@ activate addResidentCmd LOGIC_COLOR
 return
 
 return addResidentCmd
+<-[hidden]-cmd
 destroy arcParser
 return addResidentCmd
 
@@ -63,6 +64,8 @@ activate cmdResult LOGIC_COLOR
 return
 
 return commandResult
+<-[hidden]-cmd
+destroy addResidentCmd
 return commandResult
 
 ui --> user: display commandResult

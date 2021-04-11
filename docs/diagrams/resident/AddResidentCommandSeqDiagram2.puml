@@ -1,0 +1,48 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicmng LOGIC_COLOR
+Participant ":AddResident\nCommand" as addResidentCmd LOGIC_COLOR
+end box
+box Model MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR
+end box
+
+[-> logicmng: //execute(cmdText)//
+activate logicmng
+note over logicmng
+Command parsing
+is omitted for
+brevity
+end note
+
+note over addResidentCmd
+The construction of the command
+sets the member variable resident toAdd
+to the resident to be added
+end note
+
+addResidentCmd -> model: //hasResident(toAdd)//
+activate model
+return
+
+logicmng -> addResidentCmd: execute(model)
+activate addResidentCmd
+
+opt model does not have resident toAdd
+addResidentCmd -> model: //addResident(toAdd)//
+activate model
+return
+addResidentCmd -> model: //commitAddressBook()//
+activate model
+
+return
+end
+
+return
+<-[hidden]- addResidentCmd
+destroy addResidentCmd
+return
+
+@enduml

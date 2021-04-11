@@ -281,9 +281,10 @@ This process is summarised in the diagram below
 ![Adding a Resident](images/resident/AddResidentCommandActivityDiagram.png)
 
 ##### Detailed execution pathway
-The diagram below details how the user's command to add a resident propagates through the system to eventually add a resident.
 
-![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png)
+Given below is a usage scenario and how adding a resident behaves at each step.
+
+![Adding a Resident](images/resident/AddResidentCommandSeqDiagram2.png)
 
 
 ### Room Features
