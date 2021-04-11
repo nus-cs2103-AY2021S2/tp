@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -196,6 +197,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         });
 
         LocalDate now = LocalDate.now();
+
+        // Sort by descriptions first then sort by date
+        personEvents.sort(Comparator.comparing(PersonEvent::getDescription));
+
         personEvents.sort((x, y) -> {
             // Sorts dates by proximity to current date
             int xMonth = (x.getMonth() < now.getMonthValue()) ? (x.getMonth() + 12) : x.getMonth();
