@@ -41,18 +41,10 @@ public class EntryCard extends UiPart<Region> {
         this.entry = entry;
         id.setText(displayedIndex + ". ");
         entryName.setText(entry.getEntryName().name);
-
-        if (entry.haveDifferentDates()) {
-            startDate.setText("From: "
-                    + entry.getStartDate().format(DEFAULT_FORMATTER));
-            endDate.setText("To: "
-                    + entry.getEndDate().format(DEFAULT_FORMATTER));
-            cardPane.setStyle("-fx-background-color: #515658");
-        } else {
-            startDate.setText("");
-            endDate.setText("Due: " + entry.getEndDate().format(DEFAULT_FORMATTER));
-            cardPane.setStyle("-fx-background-color: #3c3e3f");
-        }
+        startDate.setText("From: "
+                + entry.getStartDate().format(DEFAULT_FORMATTER));
+        endDate.setText("To: "
+                + entry.getEndDate().format(DEFAULT_FORMATTER));
 
         if (entry.isOverdue()) {
             cardPane.setStyle("-fx-background-color: derive(#FF0000, 40%)");
