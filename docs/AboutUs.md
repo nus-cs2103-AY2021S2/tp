@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/bigdoot.png" width="200px">
 
 [[github](https://github.com/BigDoot)]
-[[portfolio](team/BigDoot.md)]
+[[portfolio](team/bigdoot.md)]
 
 * Role: Team Lead
 * Responsibilities: Testing, Code quality
