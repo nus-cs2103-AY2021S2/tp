@@ -2,32 +2,33 @@
 !include ../style.puml
 
 package UI <<Rectangle>> {
-class CommandBox UI_COLOR_T3
+class CommandBox UI_COLOR
 }
 
 package Model <<Rectangle>> {
-class CommandHistory MODEL_COLOR_T3
-interface ReadOnlyCommandHistory <<interface>> MODEL_COLOR_T3
-class ModelManager MODEL_COLOR_T3
-class CommandHistoryEntry MODEL_COLOR_T3
+class CommandHistory MODEL_COLOR
+interface ReadOnlyCommandHistory <<interface>> MODEL_COLOR
+class ModelManager MODEL_COLOR
+class CommandHistoryEntry MODEL_COLOR
 }
 
 package Logic <<Rectangle>> {
-class ViewHistoryCommand LOGIC_COLOR_T3
-interface CommandHistorySelector <<interface>> LOGIC_COLOR_T3
-class SuppliedCommandHistorySelector LOGIC_COLOR_T3
-class ViewHistoryCommandParser LOGIC_COLOR_T3
+class ViewHistoryCommand LOGIC_COLOR
+interface CommandHistorySelector <<interface>> LOGIC_COLOR
+class SuppliedCommandHistorySelector LOGIC_COLOR
+class ViewHistoryCommandParser LOGIC_COLOR
 }
 
 package Storage <<Rectangle>> {
-interface CommandHistoryStorage <<interface>> STORAGE_COLOR_T3
-class PlainTextCommandHistoryStorage STORAGE_COLOR_T3
+interface CommandHistoryStorage <<interface>> STORAGE_COLOR
+class PlainTextCommandHistoryStorage STORAGE_COLOR
 }
 
 ReadOnlyCommandHistory <|.. CommandHistory
 CommandBox --> CommandHistorySelector : delegates\nselection logic to >
 CommandHistory *-> "*" CommandHistoryEntry : composed of >
-ModelManager -> "1" CommandHistory : has >
+ModelManager *-> "1" CommandHistory
+ModelManager .> CommandHistoryEntry
 ViewHistoryCommand ..> ReadOnlyCommandHistory : formats >
 ViewHistoryCommandParser ..> ViewHistoryCommand : constructs >
 CommandHistoryStorage ..> ReadOnlyCommandHistory : serializes >

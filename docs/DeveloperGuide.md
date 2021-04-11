@@ -512,7 +512,7 @@ The following class diagram shows an overview of the command history subsystem a
 ![CommandHistoryModelClassDiagram](images/commandhistory/CmdHistModelClassDiagram.png)
 
 ##### How Command History is Updated
-`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
+`LogicManager#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
 be appended to the command history via `Model#appendCommandHistoryEntry()`. If either parsing or execution fails,
 then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the
 example command `help`.
@@ -520,9 +520,8 @@ example command `help`.
 ![CommandHistoryUpdateSequenceDiagram](images/commandhistory/CmdHistUpdateSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source:
-**Note:** In the sequence diagram above, `parseAndExecute()` is not an actual method; rather it is a simplification
-of a two-step process in the Logic component. The important thing to note is that `CommandHistory` is updated only
-_after_ a command is parsed and executed successfully by the Logic component.
+**Note:** In the sequence diagram above, `parse and execute` is not an actual method; rather it is a simplification
+of a two-step process in the `LogicManager`.
 </div>
 
 
@@ -535,30 +534,39 @@ Viewing command history is implemented through `ViewHistoryCommand` and supporte
 `ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the
 entries it needs to display, formats the entries into a message, then finally returns the message wrapped in
 a `CommandResult`, to be displayed to the user. The following sequence diagram illustrates the main interactions
-between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`.
+between `ViewHistoryCommand` and the Model component.
 
 ![ViewHistorySequenceDiagram](images/commandhistory/CmdHistViewHistorySequenceDiagram.png)
 
 ##### Navigate History
-The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively
+The user navigates their command history via the `UP` and `DOWN` arrow keys. The `UP` and `DOWN` arrow keys respectively
 select the previous and next commands in history, if any.
 
-The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
+The `UP` and `DOWN` key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
 logic of navigation and keeping track of state (which command we are selecting) to a `CommandHistorySelector`.
-The `CommandHistorySelector` is called via `#selectNext()` and `#selectPrevious()` which are expected
-to respectively return the next and previous commands in history since they were last called. Upon receiving the
-relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
-The following sequence diagram shows the aforementioned relationships.
+The `CommandHistorySelector` is called via `#selectNextUntilOnePastLast()` and `#selectPreviousUntilFirst()` which are
+expected to respectively return the next and previous commands in history since they were last called. Upon receiving
+the relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
+The following sequence diagram shows the aforementioned relationships in the example where a user presses the `UP` arrow
+key.
 
 ![AccessHistorySequenceDiagram](images/commandhistory/CmdHistAccessHistorySequenceDiagram.png)
 
-`CommandHistorySelector#selectLast()` can also be called to reset the selection to the most recent command in history.
-This is useful, for example, when a user has navigated to the middle of their command history then executes a new
-command. At this point, we want navigation to start from the most recent command again - not where the user was
-before he/she executed a command.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** In the sequence diagram above, `update state` is not an actual method; rather it is an abstraction of the
+internal process of updating the `CommandHistorySelector` state.
+</div>
+
+`CommandHistorySelector#navigateToOnePastLast()` can also be called to reset the selection to the one past the most
+recent command in history. This is useful, for example, when a user has navigated to the middle of their command history
+then executes a new command. At this point, we want navigation to start from the most recent command again - not where
+the user was before he/she executed a command. We go _one past_ the most recent command so that when the user requests
+for the most recent command (previous), it shows the most recent one rather than the second most recent one.
 
 Currently, SunRez uses a `SuppliedCommandHistorySelector` as its `CommandHistorySelector`. This implementation uses
-a `Supplier<ReadOnlyCommandHistory>` to view SunRez command history whenever it is called to select a new entry.
+a `Supplier<ReadOnlyCommandHistory>` to obtain the current SunRez command history whenever it is called to select a new
+entry. The exact implementation used may change, so the sequence diagram above shows the interface 
+`CommandHistorySelector` rather than a specific class.
 
 ##### Save/Load History
 SunRez automatically saves command history after each command execution, and loads command history (if any) upon app
@@ -567,13 +575,14 @@ start-up. The command history is saved in a plain-text file at `[JAR_file_locati
 Saving and loading is supported by `CommandHistoryStorage`, an interface that exposes read and write methods. SunRez
 currently uses an implementation of this interface called `PlainTextCommandHistoryStorage`, which serializes each
 command history entry as a single line of plain text in the command history file. The class structure is shown
-in the class diagram in the _Command History Overview_ subsection above.
+in the class diagram in the [Command History Overview](#command-history-overview) subsection above.
 
 Command history is saved immediately after it is updated. Since command history is only updated after a successful
 command execution, this implies that only successful commands are saved. In order to save command history,
 `CommandHistoryStorage` creates a serialized string from a `ReadOnlyCommandHistory` view of the command history, then
 writes it to disk using `FileUtil#writeToFile()` as a helper. The following activity diagram shows a simplified flow
-of the storage process from command execution to writing the command history to file.
+of the command execution process from user input to storage; it locates the saving procedure for command history in the
+entire process.
 
 ![CommandHistoryStorageActivityDiagram](images/commandhistory/CommandHistoryStorageActivityDiagram.png)
 
