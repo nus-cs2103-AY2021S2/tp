@@ -53,7 +53,7 @@ in workload management.
 
    * **`mk`**`n/eat dinner` : Makes a task titled `eat dinner` to the planner.
 
-   * **`rmt`**`3` : Removes the 3rd task shown in the current planner.
+   * **`rmt`**`3` : Removesde the 3rd task shown in the current planner.
 
 6. Refer to the [Features](#features) below for details of each command.
 
