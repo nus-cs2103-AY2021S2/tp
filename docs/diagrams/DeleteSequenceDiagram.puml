@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete-task 1")
+[-> LogicManager : execute("rmt 1")
 activate LogicManager
 
-LogicManager -> PlannerParser : parseCommand("delete-task 1")
+LogicManager -> PlannerParser : parseCommand("rmt 1")
 activate PlannerParser
 
 create DeleteCommandParser
