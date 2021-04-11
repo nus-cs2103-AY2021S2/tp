@@ -19,7 +19,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/lue97.png" width="200px">
 
-[[github](https://github.com/lue97)]
+[[github](https://github.com/lue97)][[portfolio](team/lue.html)]
 
 * Role: Developer
 
