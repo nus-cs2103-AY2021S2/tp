@@ -276,22 +276,21 @@ Sorting by name is done by comparing `Contact` objects, which implement `Compara
 
 Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Contact` objects.
 
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
+Given below are some example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
+Scenario 1: The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
+The user then executes `sort o/name`.
+
 The `Contact` objects created will be timestamped with the `TimeAdded` attribute.
 By default, they will be displayed on in the order in which they were added.
 
-[comment]: <> (add UML diagram)
+1.
 
-Step 2. The user executes `sort o/name`.
-
-(Add more steps)
-
-[comment]: <> (add UML diagram)
+Scenario 2: The user executes `find john` followed by `sort o/date`.
+1.
 
 The following sequence diagram shows how the sort operation works:
-
+Note: to be updated
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 ### Favourite feature
@@ -311,9 +310,16 @@ The sort mechanism is facilitated by `FavouriteCommand` and `FavouriteCommandPar
   setting the `favourite` attribute using `EditCommand.EditContactDescriptor` based on `isFav`. 
   The `model` is then updated accordingly.
 
-Favouriting a contact is done by
+Given below are some example usage scenario and how the favourite mechanism behaves at each step.
 
-Given below is an example usage scenario and how the favourite mechanism behaves at each step.
+Scenario 1: User enters `list` followed by `fav 2`.
+1. 
+
+Scenario 2: User enters `find alice` followed by `fav 1`.
+1.
+
+Scenario 3: User enters `list` followed by `fav 3 o/remove`.
+1.
 
 The following sequence diagram shows how the favourite operation works:
 ![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
