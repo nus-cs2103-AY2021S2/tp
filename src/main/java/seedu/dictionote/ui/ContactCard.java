@@ -42,7 +42,7 @@ public class ContactCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code ContactCode} with the given {@code Contact} and index to display.
+     * Creates a {@code ContactCard} with the given {@code Contact} and index to display.
      */
     public ContactCard(Contact contact, int displayedIndex) {
         super(FXML);
