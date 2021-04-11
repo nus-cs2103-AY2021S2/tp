@@ -325,9 +325,9 @@ Example command usages from the current student list shown in Figure 1:
 * `find_student Johnz Lee` returns "John Lee", "Johnz Tan" and "Samuel Lee"
 
 Example 2:
-1. You want to find students whose name contains alex, david and roy.
+1. You want to find students whose name contains Alex, David and Roy.
 
-2. Type `find_student alex david roy` and press <kbd>enter</kbd>.
+2. Type `find_student alex david roy` <i>(Note: keywords are case-insensitive)</i> and press <kbd>enter</kbd>.
 
 ![find_student_example](images/enhao/find_student%20-%20edited.png)
 
@@ -344,7 +344,7 @@ Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] 
 * `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
 
 Example:
-1. You would like to edit **Alex Yeoh** student's phone number, email address and address as they are wrong. 
+1. You would like to edit **Alex Yeoh** phone number, email address and address as they are wrong. 
 2. Type `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>enter</kbd>. (This edits the student **Alex Yeoh's** `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1)
 
 ![edit_student_example](images/enhao/edit_student%20-%20edited.png)
@@ -357,7 +357,7 @@ Example:
 Use <code>find_student</code> command to filter the list of students you want.<br>
 The <code>STUDENT_INDEX</code> will be based on the current / filtered list.<br>
 (E.g. If John Doe is the 500th student, instead of <code>edit_student 500 [...]</code>, you can use <code>find_student John Doe</code> and
-<code>edit_student 1 [...]</code> if the John Doe you would like to edit is the 1st in the list)
+<code>edit_student 1 [...]</code> if the particular John Doe you would like to edit is the 1st in the list)
 </div>
 
 
@@ -381,7 +381,7 @@ Example:
 Similar to <code>edit_student</code>, you can also use <code>find_student</code> command to filter the list of students you want.<br>
 The <code>STUDENT_INDEX</code> will be based on the current / filtered list.<br>
 (E.g. If John Doe is the 500th student, instead of <code>delete_student 500</code>, you can use <code>find_student John Doe</code> and
-<code>delete_student 1</code> if the John Doe you would like to delete is the 1st in the list)
+<code>delete_student 1</code> if the particular John Doe you would like to delete is the 1st in the list)
 </div>
 
 ##### Listing students' emails based on current list: `emails`
@@ -410,7 +410,7 @@ Example:
 Similar to <code>edit_student</code>, you can also use <code>find_student</code> command after step 1 to filter the list of students you want.<br>
 The email addresses displayed will be based on the current list.<br>
 (E.g. If you only want the the email addresses of <code>Alex Yeoh</code>, <code>David Li</code> and <code>Roy Balakrishnan</code> from the sample data,
-, you can use <code>find_student Alex David Roy</code> and <code>emails</code>
+you can use <code>find_student Alex David Roy</code> and <code>emails</code>
 to get the concatenated text of the 3 students' email addresses.)
 </div>
 
