@@ -62,4 +62,12 @@ public class FavouriteCommand extends Command {
                 String.format(isFav ? MESSAGE_FAVOURITE_CONTACT_SUCCESS : MESSAGE_UNFAVOURITE_CONTACT_SUCCESS,
                         favouritedContact));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FavouriteCommand // instanceof handles nulls
+                && index.equals(((FavouriteCommand) other).index)
+                && Boolean.compare(isFav, ((FavouriteCommand) other).isFav) == 0); // state check
+    }
 }

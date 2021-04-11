@@ -1,10 +1,18 @@
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
 .label {
-	-fx-font-size: 10pt;
+	-fx-font-size: 11pt;
 	-fx-font-family: "Segoe UI Semilight";
     -fx-text-fill: white;
     -fx-opacity: 1;
@@ -29,7 +37,7 @@
 .button {
 	-fx-background-color: #1d1d1d;
 	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-	-fx-font-size: 10pt;
+	-fx-font-size: 11pt;
 	-fx-text-fill: #d8d8d8;
 	-fx-padding: 5 22 5 22;
 }
@@ -46,7 +54,6 @@
 .button:focused {
     -fx-border-color: white, white;
     -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
     -fx-border-insets: 1 1 1 1, 0;
 }
@@ -64,4 +71,30 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+.scroll-bar {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
 }
