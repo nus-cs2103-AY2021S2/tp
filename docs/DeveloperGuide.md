@@ -72,7 +72,6 @@ The sections below give more details of each component.
 
 ### UI component
 
-****** change picture
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
@@ -607,3 +606,40 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Effort**
+
+Creating CakeCollate required a lot of effort to be put in by all the team members to change the existing
+AB3 project by introducing new models, commands and features which did not exist before.
+
+Difficulty level: Hard
+
+Challenges faced:
+* Before starting to develop AB3 into CakeCollate, we had to spend time understanding the 
+  existing commands, their implementation, and how the various parts of the application were 
+  connected to each other.
+    
+* As all the team members implemented different parts of CakeCollate simultaneously, it was 
+  difficult to ensure that the modifications made by one person would not affect the modifications
+  that another team member was making. A lot of testing and efficient communication was required
+  to ensure that the workflow worked efficiently.
+  
+* As two different models were implemented in CakeCollate, differentiating the commands used for
+  both the models and implementing the interactions between the two models took time to work out.
+  
+* Although the individual project used JavaFx, we were not very familiar with the it. Hence, it took some
+  trial and error was required to understand the JavaFx components and how they work.
+
+Effort required: ??
+
+Achievements of the project: ??
+
+
+
+
+
+
+
+ 
