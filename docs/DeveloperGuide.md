@@ -386,8 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case (UC11): Delete a booking of a residence**
-
+**Use case (UC11): Delete a booking of a residence**<br>
 **MSS**
 1.  User deletes a booking from a residence.
 2.  System validates the booking to be deleted.
@@ -484,11 +483,20 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There are some stored residences in the residence tracker. The app is closed.
 
     1. Test case: corrupted `residencetracker.json` <br>
-       Steps: First edit the `residencetracker.json` such that it becomes an invalid format by removing a single `}` at the end of the file. Open the residence tracker.<br>
-       Expected: The residence tracker will start but the residence list will be empty (i.e all previous data is lost). Add a few residences and try other commands. They should work as expected.
+       
+       * Steps: 
+         * Edit the `residencetracker.json` such that it becomes an invalid format by removing a single `}` at the end of the file.
+         * Open the residence tracker. <br>
+       
+       Expected: The residence tracker will start but the residence list will be empty (i.e all previous data is lost). Add a few residences and try other commands. They should work as expected. <br>
 
     1. Test case: missing `residencetracker.json` <br>
-       Steps: Exit the residence tracker. First delete the `residencetracker.json` from the `/data` directory. Open the residence tracker.<br>
+       
+       * Steps: 
+         * Exit the residence tracker.
+         * Delete the `residencetracker.json` from the `/data` directory.
+         * Open the residence tracker.<br>
+       
        Expected: The residence tracker will start with only the sample data.
        
 
