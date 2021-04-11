@@ -13,11 +13,14 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.UpdateFoodIntakeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new UpdateFoodIntakeCommand object
+ */
 public class UpdateFoodIntakeCommandParser implements Parser<UpdateFoodIntakeCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UpdateFoodIntakeCommand
+     * and returns an UpdateFoodIntakeCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -66,7 +69,7 @@ public class UpdateFoodIntakeCommandParser implements Parser<UpdateFoodIntakeCom
     }
 
     /**
-     * Returns true if the specified prefix contains empty {@code Optional} values in the given
+     * Returns true if the specified prefix contains {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {

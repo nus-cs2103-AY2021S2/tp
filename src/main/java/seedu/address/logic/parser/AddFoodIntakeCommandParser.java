@@ -14,7 +14,11 @@ import seedu.address.logic.commands.AddFoodIntakeCommand;
 import seedu.address.logic.commands.AddFoodIntakeCommand.TemporaryFoodDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new AddFoodIntakeCommand object
+ */
 public class AddFoodIntakeCommandParser implements Parser<AddFoodIntakeCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddFoodIntakeCommand
      * and returns an AddFoodIntakeCommand object for execution.

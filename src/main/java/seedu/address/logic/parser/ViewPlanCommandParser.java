@@ -9,13 +9,15 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ViewPlanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ViewPlanCommand object
+ */
 public class ViewPlanCommandParser implements Parser<ViewPlanCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the plan Command
      * and returns a ViewPlanCommand object for execution.
      *
-     * @param args arguments passed in
-     * @return an ViewPlanCommand instance
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewPlanCommand parse(String args) throws ParseException {

@@ -13,14 +13,15 @@ import seedu.address.logic.commands.UpdateFoodItemCommand;
 import seedu.address.logic.commands.UpdateFoodItemCommand.EditFoodDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new UpdateFoodItemCommand object
+ */
 public class UpdateFoodItemCommandParser implements Parser<UpdateFoodItemCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateFoodItemCommand
      * and returns an UpdateFoodItemCommand object for execution.
      *
-     * @param args arguments passed in
-     * @return an UpdateFoodItemCommand instance
      * @throws ParseException if the user input does not conform the expected format
      */
     public UpdateFoodItemCommand parse(String args) throws ParseException {
