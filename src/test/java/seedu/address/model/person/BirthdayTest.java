@@ -39,7 +39,7 @@ public class BirthdayTest {
     public void isValidBirthdayDate() {
         LocalDate now = LocalDate.now();
 
-        assertTrue(Birthday.isValidBirthday(now)) ;
+        assertTrue(Birthday.isValidBirthday(now));
 
         assertFalse(Birthday.isValidBirthday(now.plusDays(1)));
     }
