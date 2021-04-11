@@ -35,12 +35,13 @@ FindCommandParser -> ParserUtil
 activate ParserUtil
 return keywords
 
-FindCommandParser -> NameContainsKeywordPredicate : keywords
+create NameContainsKeywordPredicate
+FindCommandParser -> NameContainsKeywordPredicate : NameContainsKeywordPredicate(keywords)
 activate NameContainsKeywordPredicate
 return predicate
 
 create FindCommand
-FindCommandParser -> FindCommand : predicate
+FindCommandParser -> FindCommand : FindCommand(predicate)
 activate FindCommand
 return d
 
