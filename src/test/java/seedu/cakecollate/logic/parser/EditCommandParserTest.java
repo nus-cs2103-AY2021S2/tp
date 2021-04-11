@@ -117,7 +117,7 @@ public class EditCommandParserTest {
 
         // order description
         assertParseFailure(parser, "1" + ORDER_DESC_AMY + ORDER_DESC_BOB + ORDER_DESC_EMPTY,
-                OrderDescription.MESSAGE_EMPTY);
+                OrderDescription.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + ORDER_DESC_AMY + ORDER_DESC_EMPTY + ORDER_DESC_BOB,
                 OrderDescription.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + ORDER_DESC_EMPTY + ORDER_DESC_AMY + ORDER_DESC_BOB,
