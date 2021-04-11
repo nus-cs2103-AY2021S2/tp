@@ -278,7 +278,15 @@ Example: Add a <code>John Doe Bespectacled</code> and a <code>John Doe Unadorned
 </div>
 
 Example:
-* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+1. You would like to add a new student, `John Doe` to TutorBuddy.
+2. Type in `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` 
+   which includes all the essential information the application needs from the student and press <kbd>enter</kbd>.
+
+![add_student_example](images/enhao/add_student%20-%20edited.png)
+
+2. Scrolling down to the end of the student list, you will see that `John Doe` has been added to TutorBuddy.
+
+![add_student_result_example](images/enhao/add_student_result%20-%20edited.png)
 
 ##### Locating student by name: `find_student`
 
@@ -292,7 +300,7 @@ Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * Students with name matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `John Doe` will return `John Tan`, `Peter Doe`
 
-Example:
+Example 1:
 
 \# | Student Name
 ---- |---------
@@ -310,6 +318,18 @@ Example command usages from the current student list shown in Figure 1:
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
 * `find_student Johnz Lee` returns "John Lee", "Johnz Tan" and "Samuel Lee"
 
+Example 2:
+1. You want to find students whose name contains alex, david and roy.
+
+2. Type `find_student alex david roy` and press <kbd>enter</kbd>.
+
+![find_student_example](images/enhao/find_student%20-%20edited.png)
+
+3. The student and session list will be filtered and should only contains students and sessions of students whose name contains the keywords specified.
+
+![find_student_result_example](images/enhao/find_student_result%20-%20edited.png)
+
+
 ##### Editing a student: `edit_student`
 
 Edits an existing student's detail(s) in TutorBuddy.
@@ -317,8 +337,16 @@ Edits an existing student's detail(s) in TutorBuddy.
 Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` <br>
 * `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
 
-Examples:
-* `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` edits the student at index 1's `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS`
+Example:
+1. You would like to edit `Alex Yeoh` student's phone number, email address and address as they are wrongly given. 
+2. Type in `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>enter</kbd>. (This edits the student `Alex Yeoh` `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1's)
+
+![edit_student_example](images/enhao/edit_student%20-%20edited.png)
+
+3. The edited student information will be reflected in the student list.
+
+![edit_student_result_example](images/enhao/edit_student_result%20-%20edited.png)
+
 
 ##### Deleting a student: `delete_student`
 
@@ -333,36 +361,47 @@ The <code>STUDENT_INDEX</code> will be based on the current list.<br>
 <code>delete_student 1</code> if the John Doe you would like to delete is the 1st in the list)
 </div>
 
-Examples:
-* `delete_student 2` deletes the 2nd student based on the current list of students
+Example:
+1. You would like to delete the 2nd student based on the current list of students. 
+2. Type `delete_student 2` and press <kbd>enter</kbd>.
+
+![delete_student_example](images/enhao/delete_student%20-%20edited.png)
+
+3. The 2nd student in the list (`Bernice Yu`) and her associated sessions will be deleted.
+
+![delete_student_result_example](images/enhao/delete_student_result%20-%20edited.png)
+
 
 ##### Listing students' emails based on current list: `emails`
 As a user, you might want to quickly get all the email address of your students and send them a mass email.
-This feature displays a concatenated string of students' emails based on current list, separated by `;` which can be copied to their respective email client (E.g. gmail) for mass sending of emails to students.
+This feature displays a concatenated string of students' emails based on current list, separated by `;` which can be copied to their respective email client (E.g. Gmail) for mass sending of emails to students.
 
 Format: `emails`
 
 Example:
 
-\# | Student Name | Email
----- |---------|------|
-1 | John Lee | johnlee@gmail.com
-2 | Johnz Tan | johnztan@gmail.com
-3 | Jon Koh | jonkoh@gmail.com
-4 | Samuel Lee | sam@gmail.com
+1. You want to send a mass email to **all** of your students. 
 
-*Figure 2.1 State of Student List After `list` command*
+2. Type `emails` and press <kbd>enter</kbd>.
 
-\# | Student Name | Email
----- |---------|------|
-1 | John Lee | johnlee@gmail.com
-2 | Jon Koh | jonkoh@gmail.com
+![emails_example](images/enhao/email%20-%20edited.png)
 
-*Figure 2.2 State of Student List After `find_student john jon` command*
+3. A concatenated string of all the students' emails will be displayed.
 
-* To get emails of all students (see Figure 2.1): `list` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+![emails_result_example](images/enhao/email_result%20-%20edited.png)
 
-* To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
+4. The user can copy the values in the result display box to the "To" field of any email client that they have (E.g. Gmail).
+
+![emails_client_example](images/enhao/email_client-edited.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+Similar to <code>delete_student</code>, you can also use <code>find_student</code> command after step 1 to filter the list of students you want.<br>
+The concatenated string displayed will be based on the current list.<br>
+(E.g. If you only want the the email addresses of <code>Alex Yeoh</code>, <code>David Li</code> and <code>Roy Balakrishnan</code> from the sample data,
+, you can use <code>find_student Alex David Roy</code> and <code>emails</code>
+to get the concatenated string of the 3 students' email addresses.)
+</div>
+
 
 #### 4.2.4 Managing Sessions
 
@@ -464,7 +503,14 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 * `YEAR` should be a positive integer between 1970 and 2037 inclusive
 
 Example:
-* `fee n/John Doe m/1 y/2021` returns John Doe monthly fee for January 2021
+1. You want to get the monthly fee payable by `Alex Yeoh` for March 2021.
+2. Type `fee n/Alex Yeoh m/3 y/2021` and press <kbd>enter</kbd>. 
+
+![fee_example](images/enhao/fee%20-%20Edited.PNG)
+
+3. The result display box should return John Doe monthly fee for March 2021.
+
+![fee_result_example](images/enhao/fee_result%20-%20Edited.PNG)
 
 <div markdown="block" class="alert alert-info">
 :information_source: Note that calculation of fee is only guaranteed to be accurate for totaled fees of up to $2,147,483,647. 
