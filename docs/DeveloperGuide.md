@@ -141,7 +141,7 @@ All 8 compulsory fields and 1 optional field in `Student` are updated and added 
 
 Given below is an example usage scenario and how the `Add` Student mechanism behaves at each step.
 
-Step 1: The user executes `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
+Step 1: The user executes `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
 
 ![Receiving an input](images/ReceiveInput.png)
 
@@ -249,7 +249,7 @@ The add appointment feature is facilitated by `AddCommandParser` and `AddAppoint
 
 Given below is an example usage scenario that elucidates the mechanism of the add appointment feature.
 
-Step 1: The user executes `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
+Step 1: The user executes `addAppt A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
 
 Step 2: The `AddCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
 
@@ -295,7 +295,7 @@ The find student feature helps users to locate a particular student record by th
 
 This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
 `FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
-`FindCommand` will invoke a method to search for the particular student record and the corresponding appointment in `Model` and return the specific student record if the student exists and corresponding appointment if an appointment belong to the student.
+`FindCommand` will invoke a method to search for the particular student record and his/her appointment in `Model` and return the specific student record along with the corresponding appointment if it exists.
 
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
@@ -304,7 +304,7 @@ Step 1: The user executes `find A0175678U` into Vax@NUS.
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
 
-Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record and the appointment belonging to the  particular student from `Model`.
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record and the appointment belonging to the particular student from `Model`.
 
 Step 4: Display the particular student record and appointment onto the UI. 
 
