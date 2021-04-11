@@ -143,7 +143,7 @@ unique identifier upon construction. As a result, the current implementation of 
 accesses the meeting attribute within the `Person` object when needed.
 
 In regard to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
-everytime the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
+every time the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
@@ -172,6 +172,15 @@ One of the planned features is to alert the user if the birthday of a client is 
 requires us to check through each person stored within the app to see whether their birthday (derived from their 
 birthdate) occurs before `LocalDate.now().plusDays(7)`. This check will be done upon launching the app. If >=1 persons
 have upcoming birthdays, a pop-up box will be served to the user to remind them of the birthdays.
+
+### Representing premiums of insurance plans
+
+The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
+risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
+zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it 
+to 2 decimal places.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
