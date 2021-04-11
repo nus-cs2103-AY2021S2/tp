@@ -21,14 +21,10 @@ public class UniqueTagListTestUtil {
     public static final Tag TAG_ZOO = new Tag(VALID_TAG_ZOO);
     public static final Set<Tag> SET_TAG_FRIEND = new HashSet<>();
     public static final Set<Tag> SET_TAG_HUSBAND = new HashSet<>();
-    public static final Set<Tag> SET_MULTIPLE_TAGS = new HashSet<>();
 
     static {
         SET_TAG_FRIEND.add(TAG_FRIEND);
         SET_TAG_HUSBAND.add(TAG_HUSBAND);
-        SET_MULTIPLE_TAGS.add(TAG_FRIEND);
-        SET_MULTIPLE_TAGS.add(TAG_HUSBAND);
-        SET_MULTIPLE_TAGS.add(TAG_VIM);
     }
 
     /**
@@ -38,8 +34,7 @@ public class UniqueTagListTestUtil {
      * @return Set of the given tags.
      */
     public static Set<Tag> buildSetOfTags(Tag... tags) {
-        Set<Tag> setOfTags = new HashSet<>(Arrays.asList(tags));
-        return setOfTags;
+        return new HashSet<>(Arrays.asList(tags));
     }
 
     /**
