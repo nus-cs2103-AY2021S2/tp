@@ -76,7 +76,7 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager ----->" ~* filtered list" Patient
-ModelManager ----->" ~* filtered list" Doctor
-ModelManager ----->" ~* filtered list" Appointment
+ModelManager ----> Patient : " ~* filtered list"
+ModelManager ----> Doctor : " ~* filtered list"
+ModelManager ----> Appointment : " ~* filtered list"
 @enduml
