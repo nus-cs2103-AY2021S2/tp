@@ -11,10 +11,6 @@ insurance agents who can type fast to accomplish their client management tasks f
 
 Given below are my contributions to the project.
 
-* **New Feature**: Extended `InsurancePolicy` class to also store the URLs to the policy documents.
-    * **What it does**: Associates each policy ID with an optional policy URL to the policy document.
-    * **Justification**: Allows the user to store the policy URL associated with their clients' policies, acting as a central storage facility to facilitate retrieval and access of policy documents.
-<br><br>
 * **New Feature**: Added a new command which allows user to display client's policies in a pop-up window.
     * **What it does**: Allows the user to view all the policies in a separate window, where they can then click a "Copy URL" button to easily retrieve the policy's URL (if any). 
     * **Justification**: This feature improves the product significantly because a user can easily retrieve the URL of a policy document, and enter it into a web browser to view the policy document.
