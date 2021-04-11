@@ -39,7 +39,7 @@ public class ShowDictionaryContentCommandTest {
 
         DisplayableContent contentToShow =
             model.getFilteredCurrentDictionaryList().get(INDEX_FIRST_NOTE.getZeroBased());
-        ShowDictionaryContentCommand ShowDictionaryContentCommand = new ShowDictionaryContentCommand(INDEX_FIRST_NOTE);
+        ShowDictionaryContentCommand showDictionaryContentCommand = new ShowDictionaryContentCommand(INDEX_FIRST_NOTE);
 
         String expectedMessage = String.format(MESSAGE_SHOW_CONTENT_SUCCESS, contentToShow);
 
@@ -48,7 +48,7 @@ public class ShowDictionaryContentCommandTest {
         expectedModel.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
         expectedModel.showDictionaryContent(contentToShow);
 
-        assertCommandSuccess(ShowDictionaryContentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(showDictionaryContentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
