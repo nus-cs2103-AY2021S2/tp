@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes Select
+        command;
+
+if () then ([valid command])
+    :System attempts to find
+        the garment to select;
+    :Update garment list;
+    :Display garment list;
+
+else ([else])
+    :Output invalid command
+             format error;
+endif
+
+stop
+@enduml
