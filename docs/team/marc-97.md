@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **New feature**: Added the ability to redo a command. [#88](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/88)
     * What it does: Similar to undo, except it reverses the undo command.
     * Justification: Similar to undo, this features allows user to redo a command when the users accidentally undo a command.
-    <br><br>
+    <br>
 <div style="page-break-after: always;"></div>
 * **New feature**: Added the ability to define an alias for a command. [#111](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/111)
     * What it does: Allows the user to define an alias for a command.
