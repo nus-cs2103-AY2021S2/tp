@@ -2351,8 +2351,8 @@ These instructions only provide a starting point for testers to work on; testers
 1. Clearing SOChedule
 
     1. Test case: `clear`<br>
-       Expected: All Tasks and Events in SOChedule are cleared. Success message `Sochedule has been cleared!`
-       will always be shown in the status message, regardless of whether there is any Task or Event.
+       Expected: All Tasks and Events in SOChedule are cleared. <br>
+       Success message `Sochedule has been cleared!` will always be shown in the status message, regardless of whether there is any Task or Event.
        
 ### A7. Saving data
 
