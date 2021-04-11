@@ -15,7 +15,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindPatientCommandParserTest {
 
     private FindPatientCommandParser parser = new FindPatientCommandParser();
-
+  
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
@@ -31,5 +31,4 @@ public class FindPatientCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
     }
-
 }
