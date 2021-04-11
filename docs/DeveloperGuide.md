@@ -247,7 +247,7 @@ and the rest will be hidden and cannot be viewed. This is something undesirable.
                 </li>
                 <li> Cons:
                     <ul>
-                        <li> More restrictive as a hard maximum limit has been set to disallow users from creating a task or event with a name of longer than 20 characters.</li>
+                        <li> More restrictive as a hard maximum limit has been set to disallow users from creating a task or event with a name of longer than 30 characters.</li>
                     </ul>
                 </li>
             </ul>
