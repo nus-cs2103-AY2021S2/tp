@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added implementation details [here](https://ay2021s2-cs2103t-w15-2.github.io/tp/DeveloperGuide.html#feature-to-display-the-insurance-policies-associated-with-a-selected-client) 
           for the `policy` feature, to launch a pop-up window to display policies of a selected client (Pull request [\#82](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/82)).
-        * Added use cases for `policy` and `batch` features (Pull request [\#191](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/191)).
+        * Added user stories and use cases for `policy` and `batch` features (Pull requests [\#191](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/191), [\#192](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/192)).
         * Modified Logic component's Class Diagram and abstracted the Parser component into its own Class Diagram (Pull request [\#194](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/194)).
 <br><br>
 * **Community**:
