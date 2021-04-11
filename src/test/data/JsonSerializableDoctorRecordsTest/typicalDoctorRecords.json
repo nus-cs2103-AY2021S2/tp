@@ -16,13 +16,5 @@
     "uuid" : "0b56a520-f0db-4a3a-b560-3aab72a9e10c",
     "name" : "Dr Jekyll",
     "tagged" : [ "AndMrHyde" ]
-  }, {
-    "uuid" : "e6b1f1d6-c85d-4baf-b07f-f5a2876e4d75",
-    "name" : "Dr Murphy",
-    "tagged" : [ ]
-  }, {
-    "uuid" : "40c9902a-110a-44c1-a064-a5ef5e8c0117",
-    "name" : "Dr Drake Ramoray",
-    "tagged" : [ ]
-  } ]
+  }]
 }
