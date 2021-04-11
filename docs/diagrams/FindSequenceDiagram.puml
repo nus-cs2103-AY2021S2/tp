@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PawbookParser" as PawbookParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-participant "d:FindCommand" as FindCommand LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("view 1")
+[-> LogicManager : execute("find Alice")
 activate LogicManager
 
-LogicManager -> PawbookParser : parseCommand("find keyword")
+LogicManager -> PawbookParser : parseCommand("find Alice")
 activate PawbookParser
 
 create FindCommandParser
@@ -26,29 +26,29 @@ activate FindCommandParser
 FindCommandParser --> PawbookParser
 deactivate FindCommandParser
 
-PawbookParser -> FindCommandParser : parse("keyword")
+PawbookParser -> FindCommandParser : parse("Alice")
 activate FindCommandParser
 
 create FindCommand
 FindCommandParser -> FindCommand
 activate FindCommand
 
-FindCommand --> FindCommandParser : d
+FindCommand --> FindCommandParser : f
 deactivate FindCommand
 
-FindCommandParser --> PawbookParser : d
+FindCommandParser --> PawbookParser : f
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FindCommandParser -[hidden]-> PawbookParser
 destroy FindCommandParser
 
-PawbookParser --> LogicManager : d
+PawbookParser --> LogicManager : f
 deactivate PawbookParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : generateRelatedEntitiesList(1, model)
+FindCommand -> Model : update filtered list
 activate Model
 
 Model --> FindCommand

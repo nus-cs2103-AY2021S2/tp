@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PawbookParser" as PawbookParser LOGIC_COLOR
 participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
-participant "d:ViewCommand" as ViewCommand LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,22 +33,22 @@ create ViewCommand
 ViewCommandParser -> ViewCommand
 activate ViewCommand
 
-ViewCommand --> ViewCommandParser : d
+ViewCommand --> ViewCommandParser : v
 deactivate ViewCommand
 
-ViewCommandParser --> PawbookParser : d
+ViewCommandParser --> PawbookParser : v
 deactivate ViewCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ViewCommandParser -[hidden]-> PawbookParser
 destroy ViewCommandParser
 
-PawbookParser --> LogicManager : d
+PawbookParser --> LogicManager : v
 deactivate PawbookParser
 
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
 
-ViewCommand -> Model : generateRelatedEntitiesList(1, model)
+ViewCommand -> Model : update filtered list
 activate Model
 
 Model --> ViewCommand

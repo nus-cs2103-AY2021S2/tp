@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+participant "imp:IdMatchPredicate" as IdMatchPredicate LOGIC_COLOR
+
+participant "vcc:ViewCommandComparator" as ViewCommandComparator LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ViewCommand : execute()
+
+activate ViewCommand
+
+ViewCommand -> Model : generate related entity list
+activate Model
+Model --> ViewCommand
+deactivate Model
+
+create IdMatchPredicate
+ViewCommand -> IdMatchPredicate
+activate IdMatchPredicate
+IdMatchPredicate --> ViewCommand
+deactivate IdMatchPredicate
+
+ViewCommand -> Model : updateFilteredEntityList(imp)
+activate Model
+Model --> ViewCommand
+deactivate Model
+
+create ViewCommandComparator
+ViewCommand -> ViewCommandComparator
+activate ViewCommandComparator
+ViewCommandComparator --> ViewCommand
+deactivate ViewCommandComparator
+
+ViewCommand -> Model : sortEntities(vcc)
+activate Model
+Model --> ViewCommand
+deactivate Model
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+[<-- ViewCommand : cr
+deactivate ViewCommand
+
+@enduml
