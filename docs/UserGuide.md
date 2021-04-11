@@ -29,7 +29,7 @@ includes a [quick-start](#3-quick-start) section that helps you get started.
 
 This guide uses the following features to make it easier for you to navigate around:
 
-* Words that look like [this](#2-about) can be clicked to jump to the related section.
+* Words that look like [this](#2-about) are hyperlinks, where clicking on it will redirect the user to the related section.
 * Words that look like `this` refer to keywords used as part of commands or responses from TutorBuddy.
 * Words that look like <kbd>this</kbd> refer to keyboard keys that you can press.
 
@@ -177,7 +177,7 @@ This section provides information about all commands that is available in TutorB
 This section details the format of the commands available in TutorBuddy. We will adhere to the following:
 
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters / information to be supplied by the user.<br>
   e.g. in `add_student n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -261,7 +261,7 @@ Format: `exit`
 
 ##### Adding a student: `add_student`
 
-Adds a student to TutorBuddy.
+Adds a student to TutorBuddy with their respective guardian and study information.
 
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
@@ -453,9 +453,9 @@ before and after 2021-03-31 as shown below.
 
 #### 4.2.5 Fees
 
-##### Calculating monthly fee for a particular student: `fee`
+##### Calculating monthly session fee for a particular student: `fee`
 
-Calculates and displays the monthly fee for a particular student for a particular month and year.
+Calculates and displays the total monthly session fee for a particular student for a particular month and year.
 
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
