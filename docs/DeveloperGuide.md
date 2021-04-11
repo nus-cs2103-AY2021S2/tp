@@ -281,13 +281,18 @@ new empty HashSet. The copy of the task with the updated assignees field replace
 Step 4. Once the execution is completed, the message `MESSAGE_CLEARED_ASSIGNEES_SUCCESS` is used to return a new Command Result
 with the attached message.
 
-The following sequence diagram shows how the clear all assignees of a Task mechanism behaves. 
+The following sequence diagram shows how the clear all assignees of a task mechanism works: 
 
 ![#Interactions Inside the Logic Component for the `clearAssignees 1` Command](images/ClearAssigneeSequenceDiagram.png)
 
-* Note: The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
-  but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
-  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
+but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `clearAssignees` command: 
+
+![#Activity Diagram for the clearAssignees command](images/ClearAssigneesActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
