@@ -33,7 +33,7 @@ SocheduleParser -[hidden]->[
 LogicManager -> TodayTaskCommand : execute()
 activate TodayTaskCommand
 
-TodayTaskCommand -> Model : updateFilteredList(Predicate<Task> predicate)
+TodayTaskCommand -> Model : updateFilteredTaskList(Predicate<Task> predicate)
 activate Model
 TodayTaskCommand <-- Model
 deactivate Model
