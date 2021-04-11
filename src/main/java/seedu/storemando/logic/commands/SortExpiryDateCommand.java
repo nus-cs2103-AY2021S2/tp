@@ -19,7 +19,7 @@ public class SortExpiryDateCommand extends SortCommand {
         requireNonNull(model);
         List<Item> currentList = model.getFilteredItemList();
 
-        if (currentList.size() == 0) {
+        if (currentList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
         }
 

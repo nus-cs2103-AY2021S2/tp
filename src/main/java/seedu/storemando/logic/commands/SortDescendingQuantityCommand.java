@@ -19,7 +19,7 @@ public class SortDescendingQuantityCommand extends SortCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> currentList = model.getFilteredItemList();
-        if (currentList.size() == 0) {
+        if (currentList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
         }
 

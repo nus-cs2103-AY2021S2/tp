@@ -19,7 +19,7 @@ import seedu.storemando.model.item.LocationContainsPredicate;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String CLEAR_MESSAGE_SUCCESS = "All items in the list are cleared!";
+    public static final String CLEAR_MESSAGE_SUCCESS = "All items in the inventory are cleared!";
     public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location are cleared!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear items in storemando or a specified location. "
         + "Parameters: "
@@ -42,7 +42,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> currentList = model.getFilteredItemList();
-        if (currentList.size() == 0) {
+        if (currentList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
         }
         model.clearLocation(predicate);

@@ -71,7 +71,7 @@ public class ListCommand extends Command {
         String message = getMessage();
         requireNonNull(model);
         List<Item> currentList = model.getFilteredItemList();
-        if (currentList.size() == 0 && !predicate.equals(PREDICATE_SHOW_ALL_ITEMS)) {
+        if (currentList.isEmpty() && !predicate.equals(PREDICATE_SHOW_ALL_ITEMS)) {
             throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
         }
         model.updateCurrentPredicate(predicate);
