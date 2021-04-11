@@ -2,13 +2,9 @@
 
 The Difficulty level of implementing PartyPlanet was high, owing mainly to two reasons: 1) refactoring the command set and 2) implementing and integrating the event book.
 
-1. The previous command set had several redundancies. We thus refactored the entire command set to be more concise, cohesive and disjoint, condensing all the operations into the essential `add`, `edit`, `delete` and `list` (along with the event book equivalents) to support a more streamlined and consistent workflow. This is arguably comparable to the implementation for AB3.<br><br>
-   In order to create this new and improved command set, we had to think about which commands would facilitate a fast workflow for users. After determining the 4 main commands, we had to craft optional tags to these commands, to fine tune the effects of the command.
+1. The previous command set had several redundancies. We thus refactored the entire command set to be more concise, cohesive and disjoint, condensing all the operations into the essential `add`, `edit`, `delete` and `list` (along with the event book equivalents) to support a more streamlined and consistent workflow. In order to create this new and improved command set, we had to think about which commands would facilitate a fast workflow for users. After determining the 4 main commands, we had to craft optional tags to these commands, to fine tune the effects of the command.
 
-
-2. The difficulty of implementing the event book is self-explanatory. Beyond the difficulties of implementation, we also had to integrate it properly and cohesively with the existing address book, so that PartyPlanet would feel like a refined product, as opposed to an application with two disjoint books.<br><br>
-   This integration is facilitated by having both books appear on the same GUI, allowing users to easily cross reference the details of the CCA members or vendors, and then add planning remarks to the events being planned.
-
+2. The difficulty of implementing the event book is self-explanatory. Beyond that, we also had to integrate it properly and cohesively with the existing address book, so that PartyPlanet would feel like a refined product. This integration is facilitated by having both books appear on the same GUI, allowing users to easily cross reference the details of the CCA members or vendors, and then add planning remarks to the events being planned.
 
 ### Achievements of the project
 
