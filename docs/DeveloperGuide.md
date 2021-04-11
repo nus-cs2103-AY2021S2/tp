@@ -1194,6 +1194,38 @@ Given below are instructions to test the app manually.
        Expected: An error message about the invalid command format is shown. <br><br>
     4. Test Case: `delete_reminder -1` <br>
        Expected: An error message about the invalid command format is shown. <br><br>
+
+### Adding a Grade
+
+1. Adding a grade
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided
+        2. There should not be any duplicate grade (equal `subject` and equal `graded item`) existing in the list.
+        3. `grade letter` must follow the [Singapore-GCE O'Level grading system](#Glossary).
+    2. Test Case: `add_grade s/Geography gi/CA1 gr/A1` <br>
+       Expected: Adds a grade with subject `Geography`, graded item `CA1` and a grade `A1` <br><br>
+    3. Test Case: `add_grade s/Geography gi/CA1 gr/A1`  <br>
+       Expected: The grade is not added. An error message saying that the grade already exists (assuming you did the previous
+       test case) is shown <br><br>
+    3. Test Case: `add_grade s/Geography gi/CA1 gr/A2`  <br>
+       Expected: The grade is not added. An error message saying that the grade already exists (assuming you did the first
+       test case) is shown <br><br>
+    5. Test Case: `add_grade s/Geography gi/Final Exam gr/A3` <br>
+       Expected: The grade is not added. An error message saying that the grade letter is in the wrong format is shown <br><br>
+
+### Deleting a Grade
+
+1. Deleting a Reminder
+    1. Prerequisites:
+        1. List all grade(s) using the `list_grades` command. Multiple grades in the list.
+        2. The grade to be deleted must exist.
+        3. Index must be a positive integer and must be smaller or equal to the largest index of the list.
+    2. Test Case: `delete_grade 1` <br>
+       Expected: The first grade displayed in the list is deleted. <br><br>
+    3. Test Case: `delete_grade` <br>
+       Expected: An error message about the invalid command format is shown. <br><br>
+    4. Test Case: `delete_grade -1` <br>
+       Expected: An error message about the invalid command format is shown. <br><br>
        
 ### Saving data
 
