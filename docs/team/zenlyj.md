@@ -46,6 +46,7 @@ Given below are my contributions to the project.
     * Updated the user guide and developer guide with information regarding the Statistics functionality. [#90](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/90)
     * Added non-functional requirements and instruction of manual testing for Edit and Statistics to the developer guide. [#105](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/105/files)
     * Added use cases for Add functionality in developer guide. [#39](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/39)
+    * Added effort segment for Statistics in developer guide. [#182](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/182)
   
 * **Pull Request Reviews**:
     * [#66](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/66), [#60](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/60), [#65](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/65)
