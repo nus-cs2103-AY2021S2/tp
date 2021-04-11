@@ -44,7 +44,7 @@ opt room exists
     Model --> AddIssueCommand
     deactivate Model
 
-    opt toAdd does not exists
+    opt toAdd does not exist
 
         AddIssueCommand -> Model : addIssue(toAdd)
         activate Model

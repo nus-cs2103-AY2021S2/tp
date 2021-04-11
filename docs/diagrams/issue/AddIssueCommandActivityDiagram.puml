@@ -7,7 +7,7 @@ if () then ([all parameters are valid])
     :Construct Issue
     with given parameters;
     if () then ([issue's room exists])
-        if () then ([issue does not exists])
+        if () then ([issue does not exist])
             :Add issue to SunRez;
             note left
             Adding the issue
@@ -24,7 +24,7 @@ if () then ([all parameters are valid])
         endif
     else ([else])
         :Show room does
-        not exists error
+        not exist error
         to user;
         stop
     endif
