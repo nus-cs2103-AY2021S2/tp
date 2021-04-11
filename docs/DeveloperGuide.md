@@ -397,33 +397,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User <ins>lists tasks (UC01)</ins>.
-
-2.  User requests to mark a task as not done.
-
-3.  ModuleBook3.5 marks the task as not done.
-
-    Use case ends.
+Same as <ins>Mark task as done (UC03)</ins>, except that task is marked as not done instead of done.
 
 **Extensions**
 
-* 2a. The list is empty.
+Same as extensions for <ins>Mark task as done (UC03)</ins>, but with one exception:
 
-    * 2a1. ModuleBook3.5 shows an error message.
-
-      Use case ends.
-    
-
-* 3a. The given index is out of range.
-
-    * 3a1. ModuleBook3.5 shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The task at given index is not done yet.
+* 3b. The task at given index is already not done.
 
     * 3b1. ModuleBook3.5 shows a not done message.
-    
+
+      Use case resumes at step 2.
 
 **Use case 05: Add a task**
 
