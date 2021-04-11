@@ -792,6 +792,57 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
 ### Editing a person: `edit`
 
+Prerequisites: List all person using the `list` command. There is at least a person present in the list.
+
+1. Editing an existing person in FriendDex
+    1. Editing a person with valid fields provided
+       * `edit 1 n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (all fields provided)
+       * `edit 1 p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (some fields provided, any combination of fields can be used here)
+       * `edit 1 b/01-01-1998` (one field provided, any field can be used here)
+
+       Expected: The first person in the friend panel is updated with the newly provided information.
+       A success message is shown in the status message.
+
+    2. Editing a person's name to a different case
+       * Prerequisite: The first person's name should be `John Doe`.
+       * Test case: `edit 1 n/john doe`
+
+       Expected: Similar to previous
+
+    3. Editing a person at an invalid index
+       * `edit 0 n/John Doe`
+       * `edit x n/John Doe` (where x is larger than the list size)
+
+       Expected: No person is edited. Error details shown in the status message.
+
+    4. Editing a person with no fields provided <br>
+       Test case: `edit 1` <br>
+       Expected: Similar to previous
+
+2. Editing an existing person in FriendDex with invalid fields
+    * These arguments should be replaced with their proper datetime representation.
+       * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
+
+    1. Editing a person's name to the name of another person in FriendDex
+       * Prerequisite: A person with the name `john doe` must already be in FriendDex and is not the first person.
+       * Test case: `edit 1 n/John Doe`
+
+       Expected: No person is edited. Error details shown in the status message.
+
+    2. Editing a person's birthday to a date after an existing meeting/special date
+       * Prerequisite: The first person has at least one meeting or special date before today's date.
+       * Test case: `edit 1 b/TODAY_DATE`
+
+       Expected: Similar to previous
+
+    3. Editing a person's email to an invalid email <br>
+       Test case: `edit 1 e/john@.example.com` <br>
+       Expected: Similar to previous
+
+    4. Editing a person's name to an invalid name <br>
+       Test case: `edit 1 n/ジョン` <br>
+       Expected: Similar to previous
+
 ### Exiting the program: `exit`
 
 1. Exiting the program
