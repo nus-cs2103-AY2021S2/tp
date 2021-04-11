@@ -96,6 +96,23 @@ Action | Format, Examples
 **up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
 
 
+Prefix | Format
+--------|------------------
+**n/** | `n/NAME`
+**p/** | `p/PHONE_NUMBER find [e/bob /AND p/98761234] /OR b/1999 10 11`
+**e/** | `e/EMAIL`
+**a/** | `a/ADDRESS`
+**b/** | `b/DATE_OF_BIRTH` 
+**t/** | `t/TAG`
+**c/** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED\|COE_EXPIRY_DATE`
+**cp/** | `cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED`
+**coe/** | `coe/COE_EXPIRY_DATE`
+**AND/** | `n/NAME AND/ a/ADDRESS`
+**OR/** | `n/NAME OR/ a/ADDRESS`
+**NOT/** | `NOT/ n/NAME`
+**+** | `CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED` `CAR_BRAND_OWNED+CAR_TYPE_OWNED` <br> Joins car brand and car type
+**\|** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED\|COE_EXPIRY_DATE` <br> joins car with COE expiry date
+
 ### Adding a customer: `add`
 
 Adds a customer to the contact list.
