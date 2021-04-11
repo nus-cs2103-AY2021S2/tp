@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-JJIMY is a **desktop app for managing your restaurant, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JJIMY can get your restaurant management tasks done faster than traditional GUI apps.
+JJIMY is a **desktop app for managing your restaurant, optimized for use via a Command Line Interface** (CLI)[<sup>1</sup>](#glossary) while still having the benefits of a Graphical User Interface (GUI)[<sup>3</sup>](#glossary). If you can type fast, JJIMY can get your restaurant management tasks done faster than traditional GUI[<sup>3</sup>](#glossary) apps.
 
-<details>
+<details open>
 <summary>Table of Contents</summary>
 
 - [Quick start](#quick-start)
@@ -45,6 +45,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     + [Find an ingredient](#inventory-find)
       </span>
 - [FAQ](#faq)
+- [Glossary](#glossary)
 
 </details>
 
@@ -54,16 +55,16 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 <details open>
 <summary class="dropdown-1">Quick start</summary>
 
-1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) or above installed in your Computer.
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) [<sup>2</sup>](#glossary) or above installed in your Computer.
 
 2. Download the latest `JJIMY.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for JJIMY.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI[<sup>3</sup>](#glossary) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/UiUG.png)
 
-5. Type in command in the command box and press Enter to execute it.
+5. Type in command in the `command box` and press Enter to execute it.
 
 6. Refer to the [Features](#features) below for command details.
 </details>
@@ -78,17 +79,34 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 
 Commands have this general format:
 ```
-component command /prefix [input] -flag
+component command prefix/[INPUT] -flag
 ```
 
-- `component` - list to apply the command to (e.g. `customer`, `menu`)
-- `command` - command to run (e.g. `list`, `add`)
-- `/prefix [input]` - specify details (e.g. `n/Thomas Tan`)
-- `-flag` - change behavior (e.g. `-f`)
-
-Optional parts of the command will be wrapped in round brackets.
-
+- `component` - Component to apply the command to. (e.g. `customer`, `menu`)  
+  
+- `command` - Command to run. (e.g. `list`, `add`)  
+  
+- `prefix/[INPUT]` - Item in `[ ]` are the input to be supplied by the user. (e.g. `n/Thomas`)  
+  
+- `-flag` - change behavior. (e.g. `-f`, `-a`)
+  
 >   <b><u>Things to note</u></b>  
+>   - Items with `...` after them can be used multiple times including zero times.<br>
+>   Example:
+>       ```
+>       menu add n/[NAME] p/[PRICE] i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...
+>       ```
+>       `i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...` can be used as ` ` (i.e. 0 times) or `i/2 q/3 i/3 q/4`.
+>   <p>&nbsp;</p>
+>
+>   - Item in round brackets are optional.<br>
+>   Example:
+>       ```
+>       customer add n/[NAME] (t/[TAG])
+>       ```
+>       `n/[NAME] (t/[TAG])` can be used as `n/Thomas t/Friend` or as `n/Thomas Tan`
+>   <p>&nbsp;</p>
+>
 >   - Only one command can be executed at a time and any words after a valid command is entered will be ignored.  
 >   Example:
 >       ```
@@ -97,8 +115,21 @@ Optional parts of the command will be wrapped in round brackets.
 >       The command above will execute `customer list` and ignore `JJIMY is the best!`
 >   <p>&nbsp;</p>
 >
+>   - Items that have DATETIME as a parameter has `DD-MM-YYYY HH:MM` format.  
+>   Example:
+>       ```
+>       dt/07-05-2021
+>       ```
+>       The example shown above is a valid DATETIME parameter input.
+>   <p>&nbsp;</p>
+>
+>   - Parameters can be in any order.  
+>   Example:  
+>   If the command specifies `n/NAME s/SUBJECT`, `s/SUBJECT n/NAME` is also acceptable.
+>   <p>&nbsp;</p>
+>
 >   - Only the latest input for any duplicated prefixes will be taken, any input for previous duplicated prefixes will be ignored.  
->   Examples:
+>   Example:
 >       ```
 >       menu edit 5 n/Fries1 n/Fries2 p/5 p/6
 >       ```
@@ -158,7 +189,7 @@ Optional parts of the command will be wrapped in round brackets.
          customer list
          ```
 
-         The above command would list all the customers in the left column of the GUI in the sequence that they were added, with the most recent being at the top.
+         The above command would list all the customers in the left column of the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
         
         <p>&nbsp;</p>
       
@@ -291,7 +322,7 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         menu list (-a)
         ```
-        To list the current available dishes only, a `-a` flag has to be added to the end of the command. The above command would list all the available/all dishes in the      right column of  the GUI in the sequence that they were added, with the most recent being at the top.
+        To list the current available dishes only, a `-a` flag has to be added to the end of the command. The above command would list all the available/all dishes in the      right column of  the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
         Examples:
         ```
         menu list
@@ -316,7 +347,7 @@ Optional parts of the command will be wrapped in round brackets.
 
         Format:
         ```
-        menu add n/[NAME] p/[PRICE] i/[INGREDIENT_ID] q/[INGREDIENT_QUANTITY] (i/[INGREDIENT_ID] q/[INGREDIENT QUANTITY])...
+        menu add n/[NAME] p/[PRICE] i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...
         ```
 
         Ingredient ID and quantity must come in pairs. At least one pair must be specified, but more can be added.
@@ -369,7 +400,7 @@ Optional parts of the command will be wrapped in round brackets.
 
         Format:
         ```
-        menu edit [INDEX] (n/[NAME] p/[PRICE] i/[INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
+        menu edit [INDEX] (n/[NAME]) (p/[PRICE]) (i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...)
         ```
 
         At least one of the fields in round brackets must be specified.
@@ -415,7 +446,7 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         order list
         ```
-        The above command would list all the order in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
+        The above command would list all the order in the right column of the GUI[<sup>3</sup>](#glossary). The list is in chronological sequence based on the order's date and time.
 
         <p>&nbsp;</p>
         
@@ -430,7 +461,7 @@ Optional parts of the command will be wrapped in round brackets.
         Creates an order and adds it to the order list.
         Format:
         ```
-        order add n/[CUSTOMER_ID] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_ID] q/[QUANTITY]...
+        order add n/[CUSTOMER_ID] dt/[DELIVERY_DATETIME] d/[DISH_ID]... q/[QUANTITY]...
         ```
         Example:
         ![OrderAddExample](images/order/OrderAddExample.png)
@@ -470,10 +501,10 @@ Optional parts of the command will be wrapped in round brackets.
 
         Format:
         ```
-        order edit [INDEX] (n/[CUSTOMER_ID]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_ID] q/[QUANTITY]...)
+        order edit [INDEX] (n/[CUSTOMER_ID]) (dt/[DELIVERY_DATETIME]) (d/[DISH_ID]... q/[QUANTITY]...)
         ```
 
-        At least one of the fields in brackets must be present in the edit command.
+        At least one of the fields in round brackets must be present in the edit command.
       
         <p>&nbsp;</p>
         
@@ -526,7 +557,7 @@ Optional parts of the command will be wrapped in round brackets.
         order history
         ```
  
-        The above command displays the history of completed and cancelled orders in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
+        The above command displays the history of completed and cancelled orders in the right column of the GUI[<sup>3</sup>](#glossary). The list is in chronological sequence based on the order's date and time.
         
         <p>&nbsp;</p>
         
@@ -549,7 +580,7 @@ Optional parts of the command will be wrapped in round brackets.
         inventory list
         ```
         
-        The above command would list all the ingredients in the inventory in the right column of the GUI in the sequence that they were added, with the most recent being at the top.
+        The above command would list all the ingredients in the inventory in the right column of the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
         
         <p>&nbsp;</p>
         
@@ -659,8 +690,6 @@ Optional parts of the command will be wrapped in round brackets.
 
         <p>&nbsp;</p>
         
-        ---
-        
         </details>
 
     </details>
@@ -673,12 +702,27 @@ Optional parts of the command will be wrapped in round brackets.
 <details open>
 <summary class="dropdown-1">FAQ</summary>
 
-In progress
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JJIMY home folder.
+![MoveData](images/MoveData.png)
 
 </details>
 
 --------------------------------------------------------------------------------------------------------------------
 
+<a name="glossary"></a>
+<details open>
+<summary class="dropdown-1">Glossary</summary>
+
+1. **CLI** - Command Line Interface. A CLI processess commands to a computer program in the form of lines of text.
+2. **Java** - Java is a class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.
+3. **GUI** - Graphical User Interface. GUI is a form of user interface that allows user to interact an application through graphical icons and audio indicator such as primary notation.
+
+</details>
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 <a href="#" class="float">
-   <img src="images/up.png" alt="settings">
+   <img src="images/up.png">
 </a>
