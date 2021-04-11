@@ -369,8 +369,7 @@ Examples:
 Edits the existing room record at a specified index.
 
 Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
-* `INDEX` refers to the index number shown in the displayed room list. 
-  `INDEX` **must be a positive integer 1, 2, 3, …**.
+* `INDEX` refers to the index number shown in the displayed room list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `oedit` will block editing of a room number **if the room is occupied**. Run `dealloc` to deallocate the room before 
@@ -405,8 +404,7 @@ Example:
 Deletes the room at a specified index.
 
 Format: `odel INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. 
-  `INDEX` **must be a positive integer 1,2,3, ...**.
+* `INDEX` refers to the index number shown in the displayed room list.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
   See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
 * `odel` will be blocked if the there are issues associated with the room.
