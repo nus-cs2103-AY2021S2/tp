@@ -44,11 +44,17 @@ public class Type {
         return value;
     }
 
+    /**
+     * Returns true if the value of the type is the same regardless of case.
+     *
+     * @param other Object to compare with
+     * @return whether the two are equal (case insensitive)
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Type // instanceof handles nulls
-                && value.equals(((Type) other).value)); // state check
+                && value.equalsIgnoreCase(((Type) other).value)); // state check
     }
 
     @Override
