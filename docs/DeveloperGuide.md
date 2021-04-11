@@ -736,7 +736,7 @@ Prerequisites: List all person using the `list` command. There is at least a per
 person on the list has at least one date.
 
 1. Deleting a date from an existing person
-    
+
     1. Test case: `del-date 1 i/1` <br>
        Expected: The first contact's first date is deleted. A success message is shown in the status message.
 
