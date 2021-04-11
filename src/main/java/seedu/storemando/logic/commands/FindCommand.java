@@ -27,6 +27,9 @@ public class FindCommand extends Command {
         + "1. " + COMMAND_WORD + " potato chip \n"
         + "2. " + COMMAND_WORD + " */cheese egg";
 
+    public static final String MESSAGE_LESS_THAN_TWO_ITEMS_FOUND_OVERVIEW = "%1$d item found!";
+    public static final String MESSAGE_MORE_THAN_ONE_ITEM_FOUND_OVERVIEW = "%1$d items found!";
+
     private final Predicate<Item> predicate;
 
     public FindCommand(ItemNameContainsKeywordsPredicate predicate) {
@@ -49,10 +52,10 @@ public class FindCommand extends Command {
         int numberOfItems = model.getFilteredItemList().size();
         if (numberOfItems > 1) {
             return new CommandResult(
-                String.format(Messages.MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW, numberOfItems));
+                String.format(MESSAGE_MORE_THAN_ONE_ITEM_FOUND_OVERVIEW, numberOfItems));
         } else {
             return new CommandResult(
-                String.format(Messages.MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW, numberOfItems));
+                String.format(MESSAGE_LESS_THAN_TWO_ITEMS_FOUND_OVERVIEW, numberOfItems));
         }
     }
 
