@@ -19,6 +19,10 @@ Interface ReadOnlyAppointmentSchedule <<Interface>>
 
 Package Person {
 Class Person
+Class Patient
+Class Doctor
+Class DoctorMap
+Class PatientMap
 Class Address
 Class Email
 Class Name
@@ -29,34 +33,29 @@ Class UniquePersonList
 Package Tag {
 Class Tag
 }
-}
 
-Package Patient{
-Class Patient
-}
-
-Package Doctor{
-Class Doctor
-}
 
 Package Appointment {
 Class Appointment
 Class Timeslot
 Class NonConflictingAppointmentList
 }
+}
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+AddressBook ..|> ReadOnlyAddressBook
 AppointmentSchedule .up.|> ReadOnlyAppointmentSchedule
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
+Doctor ..> DoctorMap
+Patient ..> PatientMap
 ModelManager o--> "1" AddressBook
 ModelManager o--> "1" AppointmentSchedule
-ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+ModelManager o--> "1" UserPrefs
+UserPrefs ..|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 AppointmentSchedule *--> "1" NonConflictingAppointmentList
@@ -77,5 +76,7 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Patient
+ModelManager ----->" ~* filtered list" Doctor
+ModelManager ----->" ~* filtered list" Appointment
 @enduml
