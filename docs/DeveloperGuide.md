@@ -473,6 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Add a duration to a task**
 
 **MSS**
+
 1. User <u>adds a task</u> to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to add a duration to a specified task.
@@ -556,15 +557,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Sort tasks according to date**
 
 **MSS**
-1. User <u>adds a task</u> with a deadline to the list.
+1. User <u>adds a task</u> with a dates to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to sort tasks either in ascending or descending deadlines with tasks that have 
-   no deadlines considered to be the latest.
+3. User enters command to sort tasks either in ascending or descending dates.
 
    Use case ends.
 
 **Extensions**
-* 4a. There are no deadlines to all tasks.
+* 4a. There are no dates to all tasks.
     * 4a1. PlanIt shows tasks to have no change in terms of order.
 
       Use case ends.
