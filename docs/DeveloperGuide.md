@@ -54,7 +54,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Structure of the UI Component](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -63,11 +63,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GarmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -79,9 +79,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `WardrobeParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -98,17 +98,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Garment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Description` list in the `Wardrobe`, which `Garment` references. This allows `Wardrobe` to only require one `Description` object per unique `Description`, instead of each `Garment` needing their own `Description` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -118,60 +118,52 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the wardrobe data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add
-
-### Remove
-
-### Edit
-
-### [Proposed] List feature
+### [Completed] Default Sorting Order of Garments in Wardrobe
 
 #### Proposed Implementation
 
-The proposed `list` mechanism extends the `list` mechanism of `Addressbook`, which lists out the garments based on 
-the order in which they have been input into the system. The extended `list` mechanism sorts the list of garments
-based on the date and time that they were last used, and outputs the entries in that order.
+The proposed default sorting order of Garments in the Wardrobe, which lists out the Garments based on when they have been last used. The new default sorting order sorts the list of garments
+based on the date that they were last used, and outputs the entries from the earliest used date to the latest used date.
 
-This is achieved through the creation of the `LastUse` attribute that is tied to the `Garment` object, that gives the 
-it a date and time as to when it was last used.
+This is achieved through the creation of the `LastUse` attribute that is tied to the `Garment` object, that gives a date as to when it was last used.
 
-`ListCommand` is updated to allow the garments to be sorted by the `LastUse` attribute.
+The Wardrobe is sorted at the `UniqueGarmentList` level with the help of `GarmentComparator`.
 
-The following sequence diagram shows how the list operation works:
+The following diagram shows where sorting occurs in the Model component (higher level elements omitted).
 
-The following activity diagram summarizes what happens when a user executes a new command:
+![Structure of the Model Component for sorting](images/SortingModelDiagram.png)
 
 #### Design Consideration:
 
-##### Aspect: Listing the garments
-* **Alternative 1 (Preferred implementation)**: <br>
-  Lists out the garments based on chronological ordering of the `LastUse` attribute.
+##### Aspect: Sorting the garments
+* **Alternative 1 (Chosen implementation)**: <br>
+  Sorts the Garments based on chronological ordering of the `LastUse` attribute.
   * Pros: Garments that have not been used for a longer period of time come up earlier in the list, which would 
     encourage and remind users to wear all their clothes.
   * Cons: Garments may not have been used for a reason, which may result in user taking a longer time to sieve 
     through the list.
 * **Alternative 2**: <br>
-  Lists out the garments based on reverse chronological ordering of the `LastUse` attribute.
-  * Pros: Garments that have been used often could be better suited for the users' needs, and making them come 
-    earlier in the list results in the users sieving through the list quicker.
-  * Cons: Users may forget about the garments that they have not worn in some time.
+  Sorts Garments based on reverse chronological ordering of the `LastUse` attribute, from the latest used date to the earliest used date.
+  * Pros: Garments that are often used could be better suited for the users' needs, and making them come 
+    earlier in the list allows users sieving through the list quicker.
+  * Cons: Users may forget about the Garments that they have not worn in some time.
 * **Alternative 3**: <br>
-    Lists out the garments based on chronological or reverse chronological ordering of the `LastUse` attribute.
+    Sorts the Garments based on chronological or reverse chronological ordering of the `LastUse` attribute based on user input.
   * Pros: Allows users to choose which ordering they want, and they can get the respective benefits as above.
   * Cons: Requires more time to implement.
 
@@ -276,41 +268,53 @@ with multiple attributes (i.e. `c/` for Colour, `d/` for dressCode and `t/` for 
     * Pros: Can generate a full outfit with one match command.
     * Cons: Difficult to implement.
 
-### [Proposed] Select feature
+### Select feature
 
-#### Proposed Implementation
+#### Implementation
 The proposed `select` mechanism is facilitated by the `SelectCommand` class
 The mechanism allows for the `LastUse` attribute to be updated in the specified Garment.
 `LastUse` is an attribute of `Garment` which implements the `Model` interface.
 It implements the following operations:
-* `Select()` - Takes the specified object and updates the LastUse attribute
+* `addGarment()` - Adds a duplicate garment with the updated `LastUse` attribute.
+* `deleteGarment()` - delete the original object with the outdated `LastUse` attribute.
 
 Given below is an example usage scenario and how the Select mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The Wardrobe will be initialized with the stored garments.
+1. The user launches the application for the first time. The Wardrobe will be initialized with the stored garments.
 Each garment has the distinct attributes: Colour, DressCode, LastUse, Name, Size, Type.
+   
 
-Step 2. The user executes add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE to add a new garment to the existing list.
-The LastUse attribute of this garment is instantiated with the local time and date.
+2. The user executes add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE to add a new garment to the existing list.
+The LastUse attribute of this garment is instantiated with a null value: `Never`, indicating the garment is newly added.
+   
 
-Step 3. The user decides that they would like to indicate that a particular garment was worn. They can do this
-by viewing the garments by using List, following which they can use the Select Command by specifying the garment's index.
+3. The user decides that they would like to indicate that a particular garment was worn. They can do this
+by viewing the garments, following which they can use the Select Command by specifying the garment's index.
+The selected garment is duplicated, with the `LastUse` attribute being updated to the current local date.
+The original selected garment with now obsolete `LastUse` attribute is deleted. 
+This signifies to the wardrobe that the user has checked out the garment to be worn today. 
 
 The following sequence diagram shows how the select operation works:
 
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
-#### Design consideration:
+![SelectActivityDiagram](images/SelectActivityDiagram.png)
 
-##### Aspect: How select executes
+#### Design Consideration
 
-* **Alternative 1 (current choice):** Uses index of garment object to select it
+* **Alternative 1 (current choice):** Select garment via `INDEX`
     * Pros: Easy to implement.
-    * Cons: The garment indexing is not fixed. The User has to use the List command to use the correct index.
+    * Cons: The garment indexing is not fixed. When three garments are picked for `view`, the `view` listing puts the
+      garments under different indexes as compared their regular indexes from the command `list`. Therefore, although
+      selectable from the `view` command garment list, the garments should be selected from the list displayed after 
+      the `list` command.
 
-* **Alternative 2:** Use a set of attributes to select it
-    * Pros: User can use either Find or List command to view relevant garments.
-    * Cons: User will need to key in more information in the GUI.
+* **Alternative 2:** Select garment via unique attributes
+    * Pros: User only requires a unique attribute, e.g. `Name` to be entered.
+    * Cons: Harder to implement as the `Name` attribute has its own drawbacks, e.g `Name` could be
+      a extremely long phrase, which could be hard for the user to remember or input into the application.
 
 ## Appendix: Requirements
 

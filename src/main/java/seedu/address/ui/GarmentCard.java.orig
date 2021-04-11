@@ -72,16 +72,11 @@ public class GarmentCard extends UiPart<Region> {
         sampleView.setFitHeight(80);
         sampleView.setPreserveRatio(true);
         sampleImage.setGraphic(sampleView);
-<<<<<<< HEAD
-        descriptions.setMaxWidth(1);
-=======
-
         Image dcImage = new Image(DressCodeSample);
         ImageView dressCodeSampleView = new ImageView(dcImage);
         dressCodeSampleView.setFitHeight(80);
         dressCodeSampleView.setPreserveRatio(true);
         dressCodeImage.setGraphic(dressCodeSampleView);
->>>>>>> Branch-Stable-AddDressCodePhoto
     }
 
     @Override
