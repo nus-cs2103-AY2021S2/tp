@@ -84,6 +84,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -105,6 +107,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic Component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -124,6 +128,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LearnCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model Component
 
 <img src="images/ModelClassDiagram.png" width="550" />
@@ -142,6 +148,7 @@ The `Model`,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage Component
 
@@ -160,6 +167,8 @@ package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -172,6 +181,8 @@ both displayed. Tagging and deletion of tags is also only available in this mode
 The following activity diagram summarizes what happens when a user attempts to enter Learn Mode:
 
 ![LearnModeActivityDiagram](images/LearnModeActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### [Implemented] Tagging Flashcards
 
@@ -188,6 +199,8 @@ The following activity diagram summarizes what happens when a user adds a new ta
 The tags function ties together with the Start, Learn and Quiz function of the application,
 as users can choose to start a quiz, enter Start Mode or enter Learn Mode with a filtered set of flashcards.
 
+<div style="page-break-after: always;"></div>
+
 ### [Implemented] Deleting Tags from Flashcards
 
 This mechanism works with the above flashcard tagging feature to allow users to customise tags for their flashcards
@@ -197,6 +210,8 @@ The following sequence diagram summarises how the DeleteTagCommand works:
 ![QuizSequenceDiagram](images/DeleteTagSequenceDiagram.png)
 
 Default tags cannot be deleted by this command and will throw an error if the user attempts to do so.
+
+<div style="page-break-after: always;"></div>
 
 ### [Implemented] Quiz Feature
 
@@ -283,6 +298,8 @@ switching UI display the other way around is similar.
 
 ![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Design consideration:
 
 ##### Aspect: How to represent `Score` in the application
@@ -309,6 +326,8 @@ difficult if they so wish to.
 `Model#Quiz` will implement the following operation:
 * `Quiz#updateDifficult`: Adds the current `flashcard` to the list of difficult flashcards.
 
+<div style="page-break-after: always;"></div>
+
 ### [Proposed] Tag Search
 The tag searching feature will allow users to view and search through the tags that exist, such that they can easily
 know what tags are available to be used. `Tag` will store a static map of each tag to the number of flashcards with
@@ -334,6 +353,8 @@ These operations will be executed through `ShowTagsCommand` and `SearchTagsComma
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -350,6 +371,7 @@ These operations will be executed through `ShowTagsCommand` and `SearchTagsComma
 
 **Value proposition**: Ability to learn the Japanese language through flashcards in an efficient, fun and interactive manner
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -370,7 +392,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | competitive user   | see the duration of a Quiz                 | gauge how fast I am at answering questions      |
 | `* *`    | user               | see my past quiz attempts                  | track my progress      |
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -438,6 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -464,6 +488,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Score**: Calculated during a quiz session. Calculated by: number of user correct attempts / number of user checks.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
