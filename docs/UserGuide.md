@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-EzManage is a **desktop app for managing students, tutors and classes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is named as EzManage as it allows tuition centres managers to easily manage students, tutors and classes all in one single web application.
+EzManage is a **desktop app for managing students, tutors and sessions, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is named as EzManage as it allows tuition centres managers to easily manage students, tutors and sessions all in one single web application.
 
 * Table of Contents
 {:toc}
@@ -30,9 +30,9 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
    * **`delete_person`**`t/1` : Deletes the tutor with the ID `t/1` from the Contact list.
      
-   * **`assign`** : `s/3 t/2 c/1` Assigns student(s) or tutor to a specific class.
+   * **`assign`** `s/3 t/2 c/1` : Assigns student(s) or tutor to a specific session.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all students, tutors and sessions.
 
    * **`exit`** : Exits the app.
 
@@ -78,29 +78,7 @@ Format: `help`
 
 User can add either a student, or a tutor
 
-####Adding a Tutor to EzManage
-
-Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A Tutor can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/chemistry`
-
-Before entering the command:
-
-![add tutor initial](images/AddTutorInitial.png)
-
-After entering the command:
-
-![add tutor after](images/AddTutorAfter.png)
-
-### Adding a student: `add_person`
-
-####Adding a Student to EzManage
+#### Adding a Student to EzManage
 
 Format: `add_person pt/student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
@@ -120,6 +98,26 @@ After entering the command:
 
 ![add student after](images/AddStudentAfter.png)
 
+#### Adding a Tutor to EzManage
+
+Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A Tutor can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/chemistry`
+
+Before entering the command:
+
+![add tutor initial](images/AddTutorInitial.png)
+
+After entering the command:
+
+![add tutor after](images/AddTutorAfter.png)
+
 ### Adding a session: `add_session`
 
 Adds a session to EzManage.
@@ -138,7 +136,7 @@ A session can have any number of tags (including 0)
 * Note that while persons added to EzManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
 
 Examples:
-* `add_session d/Saturday ts/13:00 to 15:00 su/Math tag/Hard![img.png](img.png)`
+* `add_session d/Saturday ts/13:00 to 15:00 su/Math tag/Hard!`
 
 Before entering the command:
 
@@ -214,47 +212,59 @@ Example:
 * `view_session c/1` views the details of the session with session ID c/1 on the Left Panel
 and views the list of assigned students (e.g. students s/1, s/2) on the Right Panel.
 
-### Editing a student : `edit_person`
+### Editing a person : `edit_person`
 
-Edits an existing student in the address book.
+Edits an existing person in EzManage.
+
+#### Editing a Student in EzManage
+
+Edits an existing student in EzManage.
 
 Format: `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
 
 * Edits the student at the specified student ID (in the format `s/ID`). The student ID can be found from the displayed student list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `tag/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `tag/` without
   specifying any tags after it.
 
 Examples:
-*  `edit_person s/1 p/91234567 e/connorsmith@example.com` Edits the phone number and email address of the student with the ID of `s/1` to be `91234567` and `johndoe@example.com` respectively.
-*  `edit_person s/2 n/Betsy Crower tag/` Edits the name of the student with the ID of `s/2` to be `Betsy Crower` and clears all existing tags.
+*  `edit_person s/1 p/91234567 e/alexy@example.com` edits the phone number and email address of the student with the ID of `s/1` to be `91234567` and `e/alexy@example.com` respectively.
+*  `edit_person s/2 n/Betsy Crower tag/` edits the name of the student with the ID of `s/2` to be `Betsy Crower` and clears all existing tags.
 
 Before entering the command:
 
-![edit person initial](images/EditPersonInitial.png)
+![edit student initial](images/EditStudentInitial.png)
 
 After entering the command:
 
-![edit person after](images/EditPersonAfter.png)
+![edit student after](images/EditStudentAfter.png)
 
-### Editing a tutor : `edit_person`
+#### Editing a Tutor in EzManage
 
-Edits an existing tutor in the address book.
+Edits an existing tutor in EzManage.
 
 Format: `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
 
-* Edits the tutor at the specified tutor ID (in the format `s/ID`). The tutor ID can be found from the displayed tutor list.
+* Edits the tutor at the specified tutor ID (in the format `t/ID`). The tutor ID can be found from the displayed tutor list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `tag/` without
+* When editing tags, the existing tags of the tutor will be removed i.e adding of tags is not cumulative.
+* You can remove all the tutor's tags by typing `tag/` without
   specifying any tags after it.
 
 Examples:
-*  `edit_person t/1 p/88888888 e/sarahwong@example.com` Edits the phone number and email address of the tutor with the ID of `t/1` to be `88888888` and `sarahwong@example.com` respectively.
+*  `edit_person t/1 p/88888888 e/irfanibrahim@example.com` Edits the phone number and email address of the tutor with the ID of `t/1` to be `88888888` and `irfanibrahim@example.com` respectively.
 *  `edit_person t/2 n/Oliver Tan tag/` Edits the name of the tutor with the ID of `t/2` to be `Oliver Tan` and clears all existing tags.
+
+Before entering the command:
+
+![edit tutor initial](images/EditTutorInitial.png)
+
+After entering the command:
+
+![edit tutor after](images/EditTutorAfter.png)
 
 ### Editing a session : `edit_session`
 
@@ -274,7 +284,7 @@ Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`
 
 Examples:
 *  `edit_session c/1 d/Monday su/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
-*  `edit_session c/2 ts/12:00 to 13:00 tag/haha` Edits the timeslot and tag of the session c/2 to be `12:00 to 13:00` and `haha` respectively.
+*  `edit_session c/2 ts/12:00 to 13:00 tag/Hard` Edits the timeslot and tag of the session c/2 to be `12:00 to 13:00` and `Hard` respectively.
 
 ### Locating persons by name: `find`
 
@@ -294,29 +304,49 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a student : `delete_person`
+### Deleting a person : `delete_person`
 
-Deletes the specified student from the address book.
+Deletes the specified person from EzManage
+
+#### Deleting a Student from EzManage
+
+Deletes the specified student from EzManage.
 
 Format: `delete_person s/ID`
 
 * Deletes the student with the specified `s/ID`.
-* The s/ID refers to the student ID shown in the displayed person list.
+* The `s/ID` refers to the student ID shown in the displayed person list.
 
 Examples:
-* `delete_person s/2` deletes the student with student ID s/2 in the address book.
+* `delete_person s/2` deletes the student with student ID `s/2` in EzManage.
 
-### Deleting a tutor : `delete_person`
+Before entering the command:
 
-Deletes the specified tutor from the address book.
+![delete student initial](images/DeleteStudentInitial.png)
+
+After entering the command:
+
+![delete student after](images/DeleteStudentAfter.png)
+
+#### Deleting a Tutor from EzManage
+
+Deletes the specified tutor from EzManage.
 
 Format: `delete_person t/ID`
 
 * Deletes the tutor with the specified `t/ID`.
-* The t/ID refers to the tutor ID shown in the displayed person list.
+* The `t/ID` refers to the tutor ID shown in the displayed person list.
 
 Examples:
-* `delete_person t/1` deletes the tutor with tutor ID t/1 in the address book.
+* `delete_person t/1` deletes the tutor with tutor ID `t/1` in EzManage.
+
+Before entering the command:
+
+![delete tutor initial](images/DeleteTutorInitial.png)
+
+After entering the command:
+
+![delete tutor after](images/DeleteTutorAfter.png)
 
 ### Deleting a session : `delete_session`
 
@@ -330,9 +360,9 @@ Format: `delete_session c/ID`
 Examples:
 * `delete_session c/1` deletes the session with session ID c/1 in the address book.
 
-### Assigning student(s)/tutor to session:`assign`
+### Assigning student(s)/tutor to session : `assign`
 
-Assigns a student or multiple student and/or a tutor to a specific class
+Assigns a student or multiple student and/or a tutor to a specific session.
 
 Format: `unassign [s/ID]… [t/ID] c/ID`
 
@@ -399,12 +429,8 @@ EzManage data are saved in the hard disk automatically after any command that ch
 EzManage data are saved as a JSON file `[JAR file location]/data/persons.json` and `[JAR file location]/data/session.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, EzManage will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -419,14 +445,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | For Person:`add_person pt/PERSON_TYPE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person pt/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math`
+**Add** | For Person:`add_person pt/PERSON_TYPE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Tower p/1234567 tag/Sec 3`<br><br> For Session: `add_session d/DAY ts/TIMESLOT su/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 su/Math tag/Hard!`
 **Clear** | `clear`
-**Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
-**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
-
+**Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/2` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/1`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/1`
+**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/irfanibrahim@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday su/Biology`
 **Assign** | `assign [s/ID]… [t/ID] c/ID`<br> e.g., `assign s/1 s/2 t/1 c/1`
 **Unassign** | `unassign [s/ID]… [t/ID] c/ID`<br> e.g., `unassign s/1 s/2 t/1 c/1`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Alex David`
 **List** | For All Persons: <br>`list persons` <br><br> For All Students: <br>`list students` <br><br> For All Tutors: <br>`list tutors` <br><br> For All Sessions: <br>`list sessions`
-**View** | For Student: <br>`view_person s/ID`<br> e.g. `view_person s/1` <br> <br> For Tutor: <br> `view_person t/ID`<br> e.g. `view_person t/1` <br> <br>  For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
+**View** | For Student: <br>`view_person s/ID`<br> e.g. `view_person s/1` <br> <br> For Tutor: <br> `view_person t/ID`<br> e.g. `view_person t/1` <br> <br>  For Session: <br> `view_session c/ID` <br> e.g., `view_session c/1`
 **Help** | `help`
