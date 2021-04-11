@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import seedu.address.model.tutor.Email;
 
 public class EmailFilter implements Predicate<Email> {
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-@";
+    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.\\-@";
     public static final String MESSAGE_CONSTRAINTS =
             "Email filters should only contain alphanumeric characters and these special characters, "
             + "excluding the parentheses, (" + SPECIAL_CHARACTERS + "), and it should not be blank.";
