@@ -1,17 +1,15 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_PROGRAM_PREDICATE;
+import static dog.pawbook.model.managedentity.program.Session.DATETIME_FORMATTER;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 
-import java.time.Clock;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,8 +26,8 @@ import dog.pawbook.testutil.ProgramBuilder;
  */
 public class ScheduleCommandTest {
 
-    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
-    private Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
 
     @BeforeEach
     public void setUp() {
@@ -39,23 +37,22 @@ public class ScheduleCommandTest {
     @Test
     public void execute_emptyArguments_success() {
 
-        // Credit: https://www.baeldung.com/java-override-system-time
-        Clock clock = Clock.fixed(Instant.parse("2022-01-01T00:00:00Z"), ZoneId.of("UTC"));
-        LocalDate testDate = LocalDate.now(clock);
+        LocalDateTime targetDateTime = LocalDateTime.now();
 
         // Test no programs success
-        expectedModel.updateFilteredEntityList(IS_PROGRAM_PREDICATE.and(new ProgramOccursOnDatePredicate(testDate)));
+        expectedModel.updateFilteredEntityList(IS_PROGRAM_PREDICATE.and(
+                new ProgramOccursOnDatePredicate(targetDateTime.toLocalDate())));
         assertCommandSuccess(new ScheduleCommand(LocalDate.of(2022, 01, 01)), model,
                ScheduleCommand.MESSAGE_SUCCESS_NO_SCHEDULE, expectedModel);
 
         // Test one program success
         Program program1 = new ProgramBuilder().withName(VALID_NAME_OBEDIENCE_TRAINING)
-                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING).withTags(VALID_TAG_ALL).build();
+                .withSessions(targetDateTime.format(DATETIME_FORMATTER)).withTags(VALID_TAG_ALL).build();
 
         model.addEntity(program1);
         expectedModel.addEntity(program1);
 
-        assertCommandSuccess(new ScheduleCommand(testDate), model,
+        assertCommandSuccess(new ScheduleCommand(targetDateTime.toLocalDate()), model,
                 ScheduleCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

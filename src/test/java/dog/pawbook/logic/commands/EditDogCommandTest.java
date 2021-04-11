@@ -16,7 +16,6 @@ import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_THREE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -49,16 +48,15 @@ public class EditDogCommandTest {
 
     @Test
     public void execute_allFieldsSpecified_success() {
-        Pair<Integer, Entity> firstIdEntity = model.getDatabase().getEntityList().get(1);
-        Dog editedDog = new DogBuilder((Dog) firstIdEntity.getValue()).build();
-        EditDogCommand.EditDogDescriptor descriptor = new EditDogDescriptorBuilder(editedDog).build();
-        EditDogCommand editDogCommand = new EditDogCommand(firstIdEntity.getKey(), descriptor);
+        Dog dog = (Dog) model.getEntity(ID_TWO);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_DOG_SUCCESS, editedDog);
+        EditDogDescriptor descriptor = new EditDogDescriptorBuilder(dog).build();
+        EditDogCommand editDogCommand = new EditDogCommand(ID_TWO, descriptor);
+
+        String expectedMessage = String.format(MESSAGE_EDIT_DOG_SUCCESS, dog);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.setEntity(firstIdEntity.getKey(), editedDog);
-        expectedModel.updateFilteredEntityList(new IdMatchPredicate(firstIdEntity.getKey()));
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_TWO));
 
         assertCommandSuccess(editDogCommand, model, expectedMessage, expectedModel);
     }
@@ -137,22 +135,6 @@ public class EditDogCommandTest {
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_TWO));
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_getSuccessMessage_success() {
-        Dog toEditDog = (Dog) model.getEntity(ID_TWO);
-
-        DogBuilder dogInList = new DogBuilder(toEditDog);
-        Dog editedDog = dogInList.withName(VALID_NAME_BELL).withBreed(VALID_BREED_BELL)
-                .withTags(VALID_TAG_FRIENDLY).build();
-
-        EditDogCommand.EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withName(VALID_NAME_BELL)
-                .withBreed(VALID_BREED_BELL).withTags(VALID_TAG_FRIENDLY).build();
-        EditDogCommand editEntityCommand = new EditDogCommand(ID_TWO, descriptor);
-
-        assertEquals(editEntityCommand.getSuccessMessage(editedDog),
-                String.format(MESSAGE_EDIT_DOG_SUCCESS, editedDog));
     }
 
     @Test

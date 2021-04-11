@@ -154,7 +154,6 @@ public class CommandTestUtil {
     public static final String EMPTY_STRING = "";
     public static final String WHITESPACE_STRING = "   ";
     public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Long.MAX_VALUE);
-    public static final String VALID_NAME_APPLE = "Apple";
 
     public static final String INVALID_NEGATIVE_DOGID_DESC = " " + PREFIX_DOGID + INVALID_NEGATIVE_ID_STRING;
     public static final String INVALID_NEGATIVE_PROGRAMID_DESC = " " + PREFIX_PROGRAMID + INVALID_NEGATIVE_ID_STRING;
