@@ -235,6 +235,7 @@ Format: `doToday [-a OR -r] INDEX`
 - Flag to add or remove must be specified: `-a` to add a daily task, `-r` to remove a daily task.
 - For add flag `-a`: Index must be available on the task list else an error will be thrown.
 - For remove flag `-r`: Index must be available on the daily task list else an error will be thrown.
+- Note: the daily task list only exists within the session. Once the user quits the application, no data from the daily task list will be saved, and the next time the user opens the application, the daily task list will be empty.
 
 ### Undo last command: `undo`
 
