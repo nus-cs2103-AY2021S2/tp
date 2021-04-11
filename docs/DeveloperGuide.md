@@ -1,13 +1,13 @@
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Proposed] Enquire if time interval is free
+### Enquire if time interval is free
 
 The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
 
 An outline of the proposed implementation is as follows:
 
-The `AddressBookParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
+The `TeachingAssistantParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
 back to Logic Manager.
 
 This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as:
@@ -45,7 +45,7 @@ Below, we can see the before and after activity diagrams involving this merger.
 **After:** \
 ![Entry Activity](images/EntryActivityDiagram.png)
 
-### [Proposed] Filtering entries via tags
+### Filtering entries via tags
 Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence,
 this proposal aims to allow filtering these entries via their tags.
 
@@ -61,12 +61,12 @@ The following diagram omits the parser object created, namely `FilterEntryComman
 1. Allow filtering by more than one tag.
 1. Decide whether the filtering above considers Union or Intersection of tags.
 
-### [Proposed] List entry feature
+### List entry feature
 The proposed list entry mechanism allows users to see all of their schedules, or see them by day or by week.
 
 An outline of the proposed implementation is as follows:
 
-The AddressBookParser should accept another case of command word `elist` which eventually returns a `ListEntryCommand` 
+The `TeachingAssistantParser` should accept another case of command word `elist` which eventually returns a `ListEntryCommand` 
 back to `LogicManager`. This command can take in three arguments: an empty string, the string “day” or the string “week”. 
 The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of `ListEntryFormatPredicate`.
 Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
@@ -81,6 +81,23 @@ The following sequence diagram (Fig 2.3.2) shows how the list entry operation wo
 
 ![Listing entries](images/ListEntrySequenceDiagram.png)
 Fig 2.3.2
+
+### Clear overdue entry feature
+Clear overdue entry feature allows users to quickly discard entries that are no longer relevant i.e. entries with end dates
+that have passed.
+
+An outline of the implementation is as follows:
+
+The `TeachingAssistantParser` should accept another case of command word `eclear` which eventually returns a
+`ClearOverdueEntriesCommand` back to `LogicManager`. This command has no arguments and will immediately call
+`clearOverdueEntries` method in `Model` interface. Finally, a new `CommandResult` is created to handle the result
+of this command.
+
+The following sequence diagram (Fig 2.3.3) shows how clear overdue entry command works:
+
+![Clear overdue entries diagram](images/ClearOverdueSequenceDiagram.png)
+
+Fig 2.3.3
 
 # Appendix: Requirements
 
