@@ -36,7 +36,6 @@ public class EditModeSaveCommand extends Command {
         Note editedNote = noteToEdit.createEditedNote(model.getEditedNoteShownContent(), noteToEdit.getTags(),
             noteToEdit.getCreateTime(), now(), noteToEdit.isDone());
 
-
         if (model.hasNote(editedNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }

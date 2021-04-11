@@ -21,6 +21,13 @@ public class TypicalNoteContentConfig {
         return new NoteContentConfigStubEditMode();
     }
 
+    public static NoteContentConfig getTypicalNoteContentConfigEditModeNoteSame() {
+        return new NoteContentConfigStubEditModeNoteSame();
+    }
+
+    public static NoteContentConfig getNoteContentConfigStubEditModeNoteEditedDuplicate() {
+        return new NoteContentConfigStubEditModeNoteEditedDuplicate();
+    }
     /**
      * A stub for note content config for failure test
      */
@@ -59,56 +66,22 @@ public class TypicalNoteContentConfig {
     /**
      * A stub for note content config for success test
      */
-    private static class NoteContentConfigStubWithNote implements NoteContentConfig {
-        @Override
-        public void setNote(Note note) {
-
-        }
+    private static class NoteContentConfigStubWithNote extends NoteContentConfigStubWithoutNote {
 
         @Override
         public boolean haveNote() {
             return true;
-        }
-
-        @Override
-        public void resetNote() {
-
-        }
-
-        @Override
-        public String getEditedContent() {
-            return null;
-        }
-
-        @Override
-        public Note getNote() {
-            return null;
-        }
-
-        @Override
-        public boolean onEditMode() {
-            return false;
         }
     }
 
     /**
      * A stub for note content config for success test
      */
-    private static class NoteContentConfigStubEditMode implements NoteContentConfig {
-        private Note note;
+    private static class NoteContentConfigStubEditMode extends NoteContentConfigStubWithNote {
+        protected Note note;
         @Override
         public void setNote(Note note) {
             this.note = note;
-        }
-
-        @Override
-        public boolean haveNote() {
-            return true;
-        }
-
-        @Override
-        public void resetNote() {
-
         }
 
         @Override
@@ -125,5 +98,27 @@ public class TypicalNoteContentConfig {
         public boolean onEditMode() {
             return true;
         }
+    }
+
+    /**
+     * A stub for note content config for note not change
+     */
+    private static class NoteContentConfigStubEditModeNoteSame extends NoteContentConfigStubEditMode {
+        @Override
+        public String getEditedContent() {
+            return note.getNote();
+        }
+    }
+
+    /**
+     * A stub for note content config for duplicate test
+     */
+    private static class NoteContentConfigStubEditModeNoteEditedDuplicate extends NoteContentConfigStubEditModeNoteSame {
+
+        @Override
+        public Note getNote() {
+            return new Note("");
+        }
+
     }
 }
