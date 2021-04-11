@@ -603,6 +603,6 @@ Prefix  | Description
 **r/** | Requests placed by the customer for an order.
 **s/** | Status of the order (undelivered, delivered or cancelled).
 
-## Acknowledgements
+## **8. Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
