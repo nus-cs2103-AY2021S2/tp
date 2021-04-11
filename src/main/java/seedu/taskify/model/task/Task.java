@@ -50,6 +50,10 @@ public class Task {
         return status;
     }
 
+    public StatusType getStatusType() {
+        return this.status.getStatusType();
+    }
+
     public Date getDate() {
         return date;
     }
@@ -61,11 +65,16 @@ public class Task {
 
     public boolean isTaskExpired() {
         LocalDateTime timeNow = LocalDateTime.now();
-        if (this.date.getLocalDateTime().isBefore(timeNow)) {
+        if (this.date.getLocalDateTime().isAfter(timeNow)) {
+            if (this.getStatusType().equals(StatusType.EXPIRED)) {
+                this.status = new Status(StatusType.UNCOMPLETED);
+            }
+            return false;
+        } else {
             this.status = new Status(StatusType.EXPIRED);
             return true;
         }
-        return false;
+
     }
 
     public boolean isTaskCompleted() {
