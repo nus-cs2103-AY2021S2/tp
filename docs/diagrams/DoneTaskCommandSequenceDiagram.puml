@@ -71,6 +71,7 @@ LogicManager <-- DoneTaskCommand: result
 deactivate DoneTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DoneTaskCommand -[hidden]->[
+destroy DoneTaskCommand
 
 [<-- LogicManager :
 @enduml
