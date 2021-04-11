@@ -7,6 +7,16 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+ParentPal is a desktop application designed for parents to manage their children-related contacts and appointments.
+ParentPal is built for use via a Command Line Interface (CLI), the Graphical User Interface (GUI) is primarily meant
+for displaying key information. 
+
+ParentPal is largely built with Java. GUI related functionality is powered by JavaFX and CSS.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -14,6 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+The following section provides details of the architecture and a few selected functionalities of the application.
 
 ### Architecture
 
@@ -141,15 +152,13 @@ The `tag` command allows for the appending of tags to an existing
 `Contact` without having to replace existing tags as offered by `edit` and is facilitated by 
 the `TagCommand` and `TagCommandParser` classes.
 
-[Placeholder: Class Diagram of Tag and related classes here... ]
+![Tag Class Diagram](images/TagCommandClassDiagram.png)
 
 As part of the `Model` component, other components interact with tags through the `Model.java` API.
 As `Contact` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
 involve creating a new `Contact` and replacing the original `Contact` through `Model#setPerson()`.
 
 Given below is an example usage scenario of the `tag` command and how the application behaves through its execution.
-
-[Placeholder: screenshot of initial AddressBook before operation]
 
 Step 1. The user executes `tag 1 tc/Adam t/formteacher` to add tags to a previous contact they have added.
 
@@ -169,24 +178,30 @@ and subsequently `LogicManager`.
 Step 6. `LogicManager` then calls the `execute` method of the newly created `TagCommand`.
 
 Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Contact` object 
-though the `createTaggedPerson` method which will have its tags appended withe the new `Set<Tag>` defined by the command.
+though the `createTaggedPerson` method which will have its tags appended with the new `Set<Tag>` defined by the command.
 
 Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Contact` and a `CommandResult`
 representing success is returned to the `LogicManager`.
 
 Shown below is the sequence diagram that visualises the above operations of a `tag` command.
 
-[Placeholder: Sequence diagram describing the program in the above steps]
+![Tag Sequence Diagram](images/TagSequenceDiagram.png)
 
 When displaying the tags in the UI as a `PersonCard`, a customised `TagComparator` that implements
 `Comparator<Tag>` is used to sort the tags such that `ChildTag` will be placed first before regular
 `Tag`. During the generation of the `Label` for the each `Tag` a different background color is then set
-for `ChildTag` resulting in the UI view shown below.
-
-[Placeholder: UI screenshot of AddressBook after operation]
+for `ChildTag`.
 
 
-#### \[Proposed\] Potential Improvements
+#### Design Considerations
+
+The decision to implement `ChildTag` as its own class rather than a boolean in the `Tag` class was to allow for the 
+future extensibility of the program in being able to create more types of Tags in the future. 
+
+This also allows for `ChildTag` to store its own seperate information from regular `Tag` if needed 
+such as other details of the child itself. Extending `ChildTag` from the original `Tag` class allows for them to be 
+stored within the same data structure allowing for easier manipulation by other commands that may deal with tags such
+as `find`.
 
 ### Help feature
 
@@ -208,13 +223,19 @@ Given below are 2 example usage scenarios and how the help mechanism behaves in 
 
 Scenario 1: User enters `help` without specifying commands.
 
-1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, which is an empty string in this case. The empty string is passed to `HelpCommandParser#parse()`.
-2. A new `HelpCommand()` is returned.
-3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeNonSpecific()`.
-4. The command summary table in the user guide is parsed so that each row is displayed as "commandName: description" in the `helpMessage` with the help of `HelpCommand#commandSummaryParser()`.
-5. The `helpMessage` is returned via a `CommandResult`. A default `helpTitle` is also returned via the `CommandResult`.
-6. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage` via `HelpWindow#setHelpText()`.
-7. The help window is display.
+Step 1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, which is an empty string in this case. The empty string is passed to `HelpCommandParser#parse()`.
+
+Step 2. A new `HelpCommand()` is returned.
+
+Step 3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeNonSpecific()`.
+
+Step 4. The command summary table in the user guide is parsed so that each row is displayed as "commandName: description" in the `helpMessage` with the help of `HelpCommand#commandSummaryParser()`.
+
+Step 5. The `helpMessage` is returned via a `CommandResult`. A default `helpTitle` is also returned via the `CommandResult`.
+
+Step 6. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand`, which sets the help window header to `helpTitle` and the content to `helpMessage` via `HelpWindow#setHelpText()`.
+
+Step 7. The help window is displayed.
 
 The following sequence diagram shows how the 'help' operation works in this scenario:
 
@@ -222,15 +243,23 @@ The following sequence diagram shows how the 'help' operation works in this scen
 
 Scenario 2: User enters `help find`.
 
-1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, `find`. `find` is passed to `HelpCommandParser#parse(find)`.
-2. A new `HelpCommand(find)` is returned.
-3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeSpecific()`.
-4. The user guide is searched for the section containing information on `find`.
-5. The information under the `find` section is parsed and appended to `helpMessage`.
-6. The `find` section heading is parsed and assigned to `helpTitle`. 
-7. The `helpMessage` and `helpTitle` are returned via a `CommandResult`.
-8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand()`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
-9. The help window is display.
+Step 1. `LogicManager#execute(userInput)` calls `AddressBookParser#parseCommand(userInput)`, which then parses the input into the command word and arguments, `find`. `find` is passed to `HelpCommandParser#parse(find)`.
+
+Step 2. A new `HelpCommand(find)` is returned.
+
+Step 3. `LogicManager#execute()` calls `HelpCommand#execute()`, which then calls `HelpCommand#executeSpecific()`.
+
+Step 4. The user guide is searched for the section containing information on `find`.
+
+Step 5. The information under the `find` section is parsed and appended to `helpMessage`.
+
+Step 6. The `find` section heading is parsed and assigned to `helpTitle`. 
+
+Step 7. The `helpMessage` and `helpTitle` are returned via a `CommandResult`.
+
+Step 8. `LogicManager#execute(userInput)` returns the `CommandResult` to `MainWindow#executeCommand()`, which sets the help window header to `helpTitle` and the content to `helpMessage`.
+
+Step 9. The help window is displayed.
 
 The following sequence diagram shows how the 'help' operation works in this scenario:
 
@@ -455,13 +484,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -624,28 +646,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts and appointments without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should work on both 32-bit and 64-bit environments.
 5.  A user who is new to the app should be able to familiarise themselves with it within a few uses.
 6.  All commands should be explained in the user guide, including the format of the command and examples of how it is used.
-7.  Should be able to restore address book with up to 1000 contacts from backup file within seconds if app crashes and in-app data is lost.
+7.  Should be able to restore app with up to 1000 contacts and appointments from backup file within seconds if app crashes and in-app data is lost.
 8.  Should be able to locate local backup file easily.
 9.  App UI should look uniform across different OSes to ensure that usage of application is similar regardless of OS.
 10. Should be able to view all data with or without app window maximised.
 11. Should be able to customise colour scheme of app for comfortable viewing without having to search up hexadecimal codes.
 12. Project is expected to adhere to a schedule that delivers a feature set every two weeks.
 
-*{More to be added}*
-
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Contact/Contact**: Entry in the address book containing a contact's contact information
-* **Index**: Index number shown in the displayed contact list
-* **Backup file**: JSON file that stores address book data in the hard disk
 * **Action**: Executed command
-* **List**: Currently displayed list of contacts
+* **Address book**: Section of the application that stores and manages data related to contacts
+* **Appointment**: Entry in the appointment book containing an appointment's information
+* **Appointment list**: List of appointments displayed
+* **Appointment book**: Section of the application that stores and manages data related to appointments
+* **Backup file**: JSON file that stores address and appointment book data in the hard disk
+* **Contact**: Entry in the address book containing a contact's contact information
+* **Contact list**: List of contacts displayed
+* **Index**: Index number shown in the displayed contact/appointment list
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
 

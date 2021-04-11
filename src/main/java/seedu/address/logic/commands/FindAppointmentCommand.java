@@ -76,4 +76,11 @@ public class FindAppointmentCommand extends Command {
                         model.getFilteredAppointmentList().size()));
 
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindAppointmentCommand // instanceof handles nulls
+                && predicate.equals(((FindAppointmentCommand) other).predicate)); // state check
+    }
 }

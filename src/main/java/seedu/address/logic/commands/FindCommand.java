@@ -51,8 +51,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_MISSING_PHONE_ARGS = "Please add some values to find contacts by phone number.";
     public static final String MESSAGE_MISSING_EMAIL_ARGS = "Please add some values to find contacts by email.";
     public static final String MESSAGE_MISSING_TAG_ARGS = "Please add some tags to find contacts by tags.";
-
-
+    public static final String MESSAGE_MISSING_TAG_PREFIX = "Please include 't/' "
+            + "before the tag when searching by tags.";
     private final Predicate<Contact> predicate;
 
     /**

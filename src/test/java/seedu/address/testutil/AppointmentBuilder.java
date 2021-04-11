@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class AppointmentBuilder {
 
     public static final String DEFAULT_NAME = "Parent teacher meeting";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_DATE = "09/01/2021 00:00";
+    public static final String DEFAULT_DATE = LocalDateTime.now().plusDays(4).format(DateTime.DATE_TIME_FORMATTER);
     // public static final String DEFAULT_CONTACTS = "1";
 
     private Name name;

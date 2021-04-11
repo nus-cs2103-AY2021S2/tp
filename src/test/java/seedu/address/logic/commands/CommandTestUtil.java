@@ -40,10 +40,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_NAME_PTM = "PTM";
     public static final String VALID_ADDRESS_PTM = "Child 1's school";
-    public static final String VALID_DATE_PTM = "09/01/2021 00:00";
+    public static final String VALID_DATE_PTM = "09/07/2021 00:00";
     public static final String VALID_NAME_PLAY_DATE = "Play date with xyz";
     public static final String VALID_ADDRESS_PLAY_DATE = "xyz's house";
-    public static final String VALID_DATE_PLAY_DATE = "30/03/2021 10:00";
+    public static final String VALID_DATE_PLAY_DATE = "30/07/2021 10:00";
     public static final String VALID_NAME_BALLET_RECITAL = "ballet recital";
     public static final String VALID_ADDRESS_BALLET_RECITAL = "child 1's school";
     public static final String VALID_DATE_BALLET_RECITAL = "23/12/2021 18:00";

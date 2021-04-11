@@ -120,8 +120,17 @@ public class ParserUtil {
     public static DateTime parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
+        if (!DateTime.isNotBlank(trimmedDate)) {
+            throw new ParseException(DateTime.MESSAGE_BLANK);
+        }
+        if (!DateTime.isValidFormat(trimmedDate)) {
+            throw new ParseException(DateTime.MESSAGE_INVALID_FORMAT);
+        }
         if (!DateTime.isValidDateTime(trimmedDate)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateTime.MESSAGE_INVALID_DATETIME);
+        }
+        if (!DateTime.isFutureDateTime(trimmedDate)) {
+            throw new ParseException(DateTime.MESSAGE_PAST_CURRENT);
         }
         return new DateTime(trimmedDate);
     }

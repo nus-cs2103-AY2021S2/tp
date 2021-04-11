@@ -36,8 +36,8 @@ public class TagCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "form teacher";
-    public static final String MESSAGE_TAG_CONTACT_SUCCESS = "Tagged Contact: %1$s";
-    public static final String MESSAGE_TAG_REPLACE_CONTACT_SUCCESS = "Tags replaced for: %1$s";
+    public static final String MESSAGE_TAG_CONTACT_SUCCESS = "Tagged Contact: \n%1$s";
+    public static final String MESSAGE_TAG_REPLACE_CONTACT_SUCCESS = "Tags replaced for: \n%1$s";
 
     private final Index index;
     private final boolean isReplace;

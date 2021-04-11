@@ -24,7 +24,8 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code HeliBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code JsonAddressBookStorage},
+     * {@code JsonAppointmentBookStorage} and {@code UserPrefsStorage}.
      */
     public StorageManager(JsonAddressBookStorage addressBookStorage, JsonAppointmentBookStorage appointmentBookStorage,
                           UserPrefsStorage userPrefsStorage) {

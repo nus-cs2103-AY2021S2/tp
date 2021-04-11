@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_CHILD + "Alex "
             + PREFIX_TAG + "friends";
 
-    public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New contact added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the address book";
 
     private final Contact toAdd;

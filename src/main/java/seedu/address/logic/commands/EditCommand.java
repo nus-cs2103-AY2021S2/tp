@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Address;
 import seedu.address.model.Model;
 import seedu.address.model.Name;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Favourite;
@@ -49,7 +51,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Edited Contact: %1$s";
+    public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Edited Contact: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the address book.";
 
@@ -85,7 +87,8 @@ public class EditCommand extends Command {
         }
 
         model.setContact(contactToEdit, editedContact);
-        // model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        checkAppointment(model, contactToEdit, editedContact);
+
         return new CommandResult(String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact));
     }
 
@@ -105,6 +108,41 @@ public class EditCommand extends Command {
         Favourite favourite = editContactDescriptor.getFavourite().orElse(contactToEdit.getFavourite());
 
         return new Contact(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, timeAdded, favourite);
+    }
+
+    /**
+     * Checks if appointment's contacts need to be edited as well.
+     */
+    public static void checkAppointment(Model model, Contact contactToEdit, Contact newContact) {
+        for (Appointment appointment : model.getFilteredAppointmentList()) {
+            Set<Contact> contacts = appointment.getContacts();
+            Boolean haveContactToEdit = contacts.stream().anyMatch(contact -> contact.equals(contactToEdit));
+            if (haveContactToEdit) {
+                editAppointment(model, appointment, contactToEdit, newContact);
+            }
+        }
+    }
+
+    /**
+     * Edits contacts that have been edited in {@code appointment}.
+     */
+    public static void editAppointment(Model model, Appointment appointment, Contact contactToEdit,
+                                       Contact newContact) {
+        List<Contact> newContacts = new ArrayList<>();
+        Set<Contact> contacts = appointment.getContacts();
+        contacts.forEach(contact -> {
+            if (contact.equals(contactToEdit)) {
+                newContacts.add(newContact);
+            } else {
+                newContacts.add(contact);
+            }
+        });
+
+        Set<Contact> updatedContacts = new HashSet<>(newContacts);
+
+        Appointment newAppointment = new Appointment(appointment.getName(), appointment.getAddress(),
+                appointment.getDateTime(), updatedContacts, appointment.getTags());
+        model.setAppointment(appointment, newAppointment);
     }
 
     @Override
