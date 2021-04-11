@@ -570,7 +570,7 @@ The relevant methods include:
 
 Given below is an example usage scenario and how the edit task mechanism behaves at each step.
 
-**Step 1**: User executes `Edit_task 1 n/t1` command to Edit the task at the given index.
+**Step 1**: User executes `edit_task 1 n/t1` command to Edit the task at the given index.
 An `EditTaskCommandParser` object is created, and the `EditTaskCommandParser#parse(String args)` method is called.
 The method parses the `1 n/t1` and conducts validation checks to ensure that it complies with the specification.
 An `EditTaskDescriptor` object is created, and it contains all the field a task needed.
