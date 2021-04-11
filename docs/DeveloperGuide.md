@@ -1964,16 +1964,18 @@ Use case ends.
    
 **Extensions**
 
-* 2a. SOChedule notifies that there is no free time slots.
-
+* 2a. There is no free time on the given date.
+  
+   * 2a1. SOChedule notifies user that there is no free time. <br>
   Use case ends.
   <br><br>
   
-* 3a. The given date is invalid.
+* 2b. The given date is invalid.
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the date. <br>
-      Use case ends.
-      <br><br>
+    * 2b1. SOChedule displays an error message. <br>
+   Use case ends.
+   <br><br>
+      
 
 **Use case: UC23 - Getting a summary of SOChedule**
 
