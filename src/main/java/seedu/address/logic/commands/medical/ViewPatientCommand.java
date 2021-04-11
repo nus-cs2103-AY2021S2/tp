@@ -10,10 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-
-
-
+import seedu.address.model.person.Patient;
 
 
 /**
@@ -44,13 +41,21 @@ public class ViewPatientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person personToView = lastShownList.get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName()),
-                            false, false, personToView, false);
+        Patient patientToView = lastShownList.get(index.getZeroBased());
+        model.selectPatient(patientToView);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName()),
+                            false, false, patientToView, null, null, null, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewPatientCommand // instanceof handles nulls
+                && index.equals(((ViewPatientCommand) other).index)); // state check
     }
 }

@@ -2,57 +2,78 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
+    "dateOfBirth" : "31121996",
+    "gender" : "F",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "bloodType" : "B-",
     "height": "169cm",
     "weight": "69kg",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
+    "dateOfBirth" : "04041990",
+    "gender" : "M",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "bloodType" : "AB+",
     "height": "162cm",
     "weight": "64kg",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
+    "dateOfBirth" : "10062001",
+    "gender" : "M",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "bloodType" : "O+",
     "height": "182cm",
     "weight": "72kg",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
+    "dateOfBirth" : "09091975",
+    "gender" : "M",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "bloodType" : "AB-",
     "height": "168cm",
     "weight": "76kg",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
+    "dateOfBirth" : "18072002",
+    "gender" : "F",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "bloodType" : "A+",
     "height": "175cm",
     "weight": "65kg",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
+    "dateOfBirth": "29031999",
+    "gender" : "F",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "bloodType" : "AB+",
     "height": "160cm",
     "weight": "55kg",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
+    "dateOfBirth" : "01011990",
+    "gender" : "M",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "bloodType" : "O+",
     "height": "182cm",
     "weight": "59kg",
     "tagged" : [ ]

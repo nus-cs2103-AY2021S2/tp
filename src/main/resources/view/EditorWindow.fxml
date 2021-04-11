@@ -11,8 +11,10 @@
 <?import java.net.URL?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ListView?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="New Medical Record" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="New Medical Record" minWidth="550" minHeight="750" onCloseRequest="#handleExit">
     <icons>
         <Image url="@/images/bob_builder_32.png"/>
     </icons>
@@ -24,32 +26,34 @@
             </stylesheets>
 
             <VBox>
-                <StackPane VBox.vgrow="NEVER" styleClass="pane-with-border">
+                <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-border">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
-                    <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8"
-                               xmlns:fx="http://javafx.com/fxml/1">
-                        <TextArea  	prefRowCount="30" wrapText="true" fx:id="textField"
-                                   promptText="Enter command here..."/>
-                    </StackPane>
-                </StackPane>
-
-                <VBox styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                      VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
-                    <StackPane VBox.vgrow="ALWAYS">
-                    <Button fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturn" text="Save Record">
-                        <HBox.margin>
-                            <Insets left="5.0" />
-                        </HBox.margin>
-                    </Button>
+                    <StackPane fx:id="sectionListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                        <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                            <ListView fx:id="sectionListView" VBox.vgrow="ALWAYS"/>
+                        </VBox>
                     </StackPane>
                 </VBox>
 
-                <StackPane VBox.vgrow="NEVER"/>
+                <SplitPane styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                           HBox.hgrow="ALWAYS">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <Button fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturn" text="Save Record">
+                        <HBox.margin>
+                            <Insets left="5.0"/>
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="newSectionButton" mnemonicParsing="false" onAction="#handleNewSection"
+                            text="New Section">
+                        <HBox.margin>
+                            <Insets left="5.0"/>
+                        </HBox.margin>
+                    </Button>
+                </SplitPane>
             </VBox>
         </Scene>
     </scene>

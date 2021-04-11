@@ -3,11 +3,10 @@ package seedu.address.logic.commands.medical;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDateTime;
@@ -21,8 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.medical.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
@@ -43,6 +41,7 @@ public class AddAppointmentCommandTest {
         assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
+    /*
     @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -60,6 +59,20 @@ public class AddAppointmentCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personWithAppointment);
 
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+    }
+
+     */
+
+    @Test
+    public void execute_addAppointmentToArchivedPerson_failure() {
+        Model newModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Patient newAlice = new PersonBuilder(ALICE).build();
+        newModel.addPerson(newAlice);
+        newModel.archivePerson(newAlice);
+        LocalDateTime dateTime = LocalDateTime.of(2021, 12, 12, 18, 00);
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, dateTime);
+
+        assertCommandFailure(addAppointmentCommand, newModel, AddAppointmentCommand.MESSAGE_ARCHIVED_PERSON);
     }
 
     @Test

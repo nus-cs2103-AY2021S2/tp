@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.medical.Appointment;
+import seedu.address.model.medical.MedicalRecord;
+import seedu.address.model.person.Patient;
 
 /**
  * Represents the result of a command execution.
@@ -20,7 +23,16 @@ public class CommandResult {
     private final boolean showEdit;
 
     /** Patient whose view box will be shown to the user. */
-    private final Person patient;
+    private final Patient patient;
+
+    /** MedicalRecord to be viewed/edited. */
+    private final MedicalRecord medicalRecord;
+
+    /** List of appointments that should be shown to the user. */
+    private final List<Appointment> appointments;
+
+    /** Message to be displayed. */
+    private final String displayMessage;
 
     /** The application should exit. */
     private final boolean exit;
@@ -28,11 +40,16 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEdit, Person patient, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEdit,
+                         Patient patient, MedicalRecord medicalRecord, List<Appointment> appointments,
+                         String displayMessage, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showEdit = showEdit;
         this.patient = patient;
+        this.medicalRecord = medicalRecord;
+        this.appointments = appointments;
+        this.displayMessage = displayMessage;
         this.exit = exit;
     }
 
@@ -41,7 +58,7 @@ public class CommandResult {
      * set to default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, false, null, exit);
+        this(feedbackToUser, showHelp, false, null, null, null, null, exit);
     }
 
     /**
@@ -68,12 +85,32 @@ public class CommandResult {
         return patient != null;
     }
 
+    public boolean showAppointments() {
+        return appointments != null;
+    }
+
+    public boolean isDisplayMessage() {
+        return displayMessage != null;
+    }
+
     public boolean isExit() {
         return exit;
     }
 
-    public Person getPatient() {
+    public Patient getPatient() {
         return patient;
+    }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public String getDisplayMessage() {
+        return displayMessage;
     }
 
     @Override
@@ -90,12 +127,17 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
+                && showEdit == otherCommandResult.showEdit
+                && patient == otherCommandResult.patient
+                && medicalRecord == otherCommandResult.medicalRecord
+                && appointments == otherCommandResult.appointments
+                && displayMessage == otherCommandResult.displayMessage
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, showEdit, patient, exit);
     }
 
 }

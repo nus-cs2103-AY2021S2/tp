@@ -2,11 +2,10 @@ package seedu.address.logic.commands.medical;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PATIENTS;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,26 +14,23 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.medical.Appointment;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Weight;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medical.MedicalRecord;
+import seedu.address.model.person.Patient;
 
 public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "appt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment with a patient "
-            + "identified by the index number used in the displayed person list. \n"
+            + "identified by the index number used in the displayed patient list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE] \n" + Appointment.MESSAGE_CONSTRAINTS_DATE_FORMAT
             + "\nExample: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "24051800";
 
     public static final String MESSAGE_SUCCESS = "Appointment added: %s";
+
+    public static final String MESSAGE_ARCHIVED_PERSON = "You cannot add appointments to an archived patient.\n"
+            + "Unarchive the patient and try again.";
 
     private final Index index;
     private final LocalDateTime date;
@@ -54,40 +50,27 @@ public class AddAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person person = lastShownList.get(index.getZeroBased());
+        Patient patient = lastShownList.get(index.getZeroBased());
+        for (MedicalRecord rec : patient.getRecords()) {
+            System.out.println(rec.toString());
+        }
+
+        if (patient.isArchived()) {
+            throw new CommandException(MESSAGE_ARCHIVED_PERSON);
+        }
         Appointment appointment = new Appointment(date);
-        Person editedPerson = createPersonWithAppointment(person, appointment);
-
-        model.setPerson(person, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment.getDateDisplay()));
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Person createPersonWithAppointment(Person personToEdit, Appointment appt) {
-        assert personToEdit != null;
-        // copy everything
-        Name updatedName = personToEdit.getName();
-        Phone updatedPhone = personToEdit.getPhone();
-        Email updatedEmail = personToEdit.getEmail();
-        Address updatedAddress = personToEdit.getAddress();
-        Height updatedHeight = personToEdit.getHeight();
-        Weight updatedWeight = personToEdit.getWeight();
-        Set<Tag> updatedTags = personToEdit.getTags();
-        List<Appointment> updatedAppointments = personToEdit.getAppointments();
-        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
-                updatedTags, updatedAppointments);
-        p.addAppointment(appt);
-        return p;
+        patient.addAppointment(appointment);
+        model.setPerson(patient, patient);
+        model.selectPatient(patient);
+        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment.getDateDisplay()),
+                false, false, patient, null, null, null, false);
     }
 
     @Override
