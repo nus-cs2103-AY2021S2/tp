@@ -217,17 +217,17 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Motivation
 
-It would not be a good user experience if there was no easy way for the user to quickly retrieve the insurance policy URLs 
-from ClientBook. Since the application's contact card interface does not support direct copy-paste functionality, a new approach 
+It would not be a good user experience if there is no easy way for the user to quickly retrieve the insurance policy URLs 
+from ClientBook. Since the application's contact card user interface does not support direct copy-paste functionality, a new approach 
 to display and facilitate retrieval of this essential information had to be implemented. Below is a succinct but complete 
-explanation of how the chosen approach, which is to implement a `PolicyCommand` `Command`, works. Other alternatives 
+explanation of how the chosen approach, which is to implement a `PolicyCommand`, works. Other alternatives 
 we considered and the design considerations are further elaborated below.
 
 #### Implementation
 
 A new command `PolicyCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute` 
 method. When `PolicyCommand#execute()` is called, all the insurance policies and their associated policy URLs are fetched from the 
-selected `Person` client through `Person#getPersonNameAndAllPoliciesInString()`.
+selected `Person` through `Person#getPersonNameAndAllPoliciesInString()`.
 
 Below is an example usage scenario and how the information and data are passed around at each step.
 
@@ -238,7 +238,7 @@ Below is an example usage scenario and how the information and data are passed a
 **Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
 `PolicyCommand`, which would contain the index of the selected client in the displayed list (which in this case is 1).
 
-**Step 4.** `PolicyCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the concatenated string 
+**Step 4.** `PolicyCommand#execute()` is called by `LogicManager`, returning a `CommandResult`. This `CommandResult` contains the concatenated string 
 of all the insurance policies and their associated URLs as the feedback. The `CommandResult` also contains a `boolean` value 
 indicating whether a popup window is to be displayed. This `boolean` value can be retrieved using the method `CommandResult#isShowPolicies()`.
 
@@ -258,12 +258,12 @@ its methods strictly resembled those of its fellow `Command` classes.
 
 * **Alternative 1 (current choice):** Display the insurance policies and their URLs in a popup window, retrieve URL through a 'Copy URL button'
   * Have a popup window to display the insurance policies and their associated URLs.
-  * The window should also have a 'Copy URL' button similar to that in the 'help' window that appears then `help` is called.
+  * The window should also have a 'Copy URL' button similar to that in the 'help' window that appears when `help` is called.
   * Pros: Easy to implement a button.
-  * Cons: Not the best way to display a hyperlink/URL.
+  * Cons: Not the best way to display a URL.
     
 
-* **Alternative 2:** Display the insurance policies and their URls in a popup window, where the URLs upon click launches the browser
+* **Alternative 2:** Display the insurance policies and their URLs in a popup window, where the URLs launches the browser to the selected webpage upon click
   * Pros: More intuitive in terms of user experience.
   * Cons: Harder to implement.
 
@@ -630,11 +630,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | find clients by insurance policy    | find my clients who share the same insurance policy                    |
 | `* * *`  | insurance agent                            | link contact to portfolio      | access my clients' portfolio  easily                                                     |
 | `* * *`  | insurance agent                            | edit individual client details |                               |
+| `* * *`  | insurance agent                            | view all the insurance policies that a particular client signed with me | prepare the policy documents before meeting up with them   |
+| `* * *`  | busy insurance agent                       | change the policy ID of a policy co-owned by multiple clients | save time by not having to edit policy ID for each client individually   |
 | `* *`    | disorganised user                          | display only certain attributes queried| avoid cluttering the screen with unnecessary information               |
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
 | `* *`    | insurance agent                            | schedule meetings with clients | check what meetings I have with my clients                             |
-| `*`      | busy insurance agents                      | have access to keyboard commands e.g. CTRL + J | minimize time spent typing.                         |
+| `* *`    | busy insurance agent                       | edit details common to multiple clients at once | save time by not having to edit details for each client individually |
+| `* *`    | busy insurance agent                       | delete multiple client contacts at once | save time by not having to delete each client individually |
+| `*`      | busy insurance agents                      | have access to keyboard commands e.g. CTRL + J | minimize time spent typing                         |
 
 ### Use cases
 
@@ -954,13 +958,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 16: Launch policies window**
+**Use case 16: View insurance policies of selected client**
 
 **MSS**
 
 1.  User requests to display policies associated with a selected client.
 
-2.  Window showing all policies associated with this client is launched.
+2.  ClientBook shows all policies associated with this client.
 
     Use case ends.
 
@@ -968,13 +972,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The selected client has no policies.
 
-    * 1a1. Window launched shows that selected client has no associated policies.
+    * 1a1. ClientBook shows message indicating that no policies are associated with the selected client.
 
       Use case ends.
 
-* 1a. The given index is invalid.
+* 1b. One or more of the given arguments are invalid.
 
-    * 1a1. ClientBook shows an error message.
+    * 1b1. ClientBook shows an error message.
 
       Use case resumes at step 1.
 
@@ -984,27 +988,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to display policies associated with a selected client.
+1.  User <ins>views insurance policies of selected client (UC16)</ins>.
 
-2.  Window showing all policies associated with this client is launched.
-
-3.  User retrieves URL from the launched window.
+2.  User retrieves URL from ClientBook.
 
     Use case ends.
-
-**Extensions**
-
-* 1a. The selected client has no policies.
-
-    * 1a1. Window launched shows that selected client has no associated policies.
-
-      Use case ends.
-
-* 1a. The given index is invalid.
-
-    * 1a1. ClientBook shows an error message.
-
-      Use case resumes at step 1.
 
 <br>
 
@@ -1012,7 +1000,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to change the policy ID of a policy shared by multiple customers.
+1.  User requests to change the details of several clients.
 
 2.  ClientBook updates the details.
 
@@ -1020,13 +1008,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given indices are invalid.
-
-    * 1a1. ClientBook shows an error message.
-
-      Use case resumes at step 1.
-
-* 1a. The given arguments are invalid.
+* 1a. One or more of the given arguments are invalid.
 
     * 1a1. ClientBook shows an error message.
 
@@ -1040,13 +1022,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to delete several clients at once.
 
-2.  ClientBook removes the client contacts from the list.
+2.  ClientBook deletes the client contacts.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given indices are invalid.
+* 1a. One or more of the given arguments are invalid.
 
     * 1a1. ClientBook shows an error message.
 
