@@ -13,8 +13,8 @@ Given below are my contributions to the project:
 
   - What it does: Added functionality to simply mark Events as Done
   - Justification: Enhance functionality as an event management application, so that user's can easily mark their done events.
-  - Highlights: This affects the logic and model components of Focuris in the future.
-  - Testing: Added test cases and test factory for the commands written.
+  - Highlights: This is an extra feature and command to help users quickly manage their events.
+  - Testing: Added test cases for the command written.
   
 - **Enhancements to existing features:**
 
