@@ -557,7 +557,47 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-      
+
+### Adding a student
+
+1. Adding a student not currently in Vax@NUS
+    1. Prerequisites: Sample data of students and appointments shown in the list.
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+
+       Expected: Adds a student (John Doe) to the list. Details of the added student is shown in the status message.
+       John Doe's student details appear in the GUI.
+       
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+        This test case assumes that the test case above was performed first. 
+       
+       Expected: No student is added. Error details shown in the status message telling user that there already exists a student
+    in Vax@NUS.
+    
+    1. Test case: `add A7654321J n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`   
+           Expected: Adds a student (Betsy Crowe) to the list. Details of the added student is shown in the status message. John Doe's student details appear in the GUI.
+           Betsy Crowe's `School Residence` defaults to `DOES NOT LIVE ON CAMPUS`.
+
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the correct `matriculation number`
+       format should be A + 7 digit numeric sequence + alphabet.
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/not vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the `vaccination status` should only be
+       `vaccinated` or `unvaccinated`
+    1. Test case: `add A0241234N n/Jane Doe f/SoC p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the `faculty` should only be
+       one of those shown.
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/kent Ridge
+       `   
+       Expected: No student is added. Error details shown in the status telling user that the `school residence` should only be
+       one of those shown.
+    1. Other incorrect add commands to try: `add`, `add x ...` (where x is not a valid `matriculation number`), `add... f/com r/capt`(where `faculty` and `school residence`
+       are spelt in lowercase) 
+       Expected: Similar to previous.
+
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -580,34 +620,32 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
       
-### Adding a student
+### Editing an appointment 
 
-1. Adding a student not currently in the list
-    1. Prerequisites: List all students using the list command. Sample data of students and appointments shown in the list.
-    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+1. Editing an appointment in the Vax@NUS records. 
+    1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/14:00
+       `
+       Expected: Alex Yeoh's appointment is changed to the given date and time
+       
+    1. Test case: `editAppt A1234567X d/2021-11-13 ts/14:00
+       `
+       Expected: No appointment is edited. Error details shown in the status message telling user that the requested appointment does not exist. 
+       
+    1. Test case: `editAppt A0182345T d/2021-11-130 ts/15:00
+       `
+       Expected: No appointment is edited. Error details shown in the status message telling the user that the date should be of the format `YYYY-MM-DD`.
+       
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/125:00
+       `
+       Expected: No appointment is edited. Error details shown in the status message telling the user that the time should be of a valid form `HH:00` or `HH:30`
+       
+    1. Other incorrect editAppt commands to try: `editAppt`, `editAppt x d/... ts/...`, where x is not a valid matriculation number
+    and date and time are of the wrong format. 
     
-        Expected: Adds a student (John Doe) to the list. Details of the added student is shown in the status message. 
-    John Doe's student details appear in the GUI
-    1. Test case: `add A123456799X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
-       `   
-       Expected: No student is added. Error details shown in the status message telling user that the correct `matriculation number`
-       format should be A + 7 digit numeric sequence + alphabet.
-    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/not vaccinated m/peanut allergy r/RVRC
-       `   
-       Expected: No student is added. Error details shown in the status message telling user that the `vaccination status` should only be 
-       `vaccinated` or `unvaccinated`
-    1. Test case: `add A1234567X n/John Doe f/SoC p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
-       `   
-       Expected: No student is added. Error details shown in the status message telling user that the `faculty` should only be
-       one of those shown.
-    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/kent Ridge
-       `   
-       Expected: No student is added. Error details shown in the status telling user that the `School Residence` should only be 
-       one of those shown.
-    1. Test case: `add A1234567X n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012
-       `   
-       Expected: Adds a student (Betsy Crowe) to the list. Details of the added student is shown in the status message. John Doe's student details appear in the GUI.
-       Betsy Crowe's `School Residence` defaults to `DOES NOT LIVE ON CAMPUS`. 
+
+      
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
