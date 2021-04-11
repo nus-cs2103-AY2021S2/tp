@@ -455,9 +455,53 @@ The parsed command will be identified as the exit command.
 - [DevOps guide](DevOps.md)
 
 
-## **Appendix A: Effort**
-### Challenges & Effort Required
-### Achievements
+## **Appendix A: Challenges Faced**
+
+### Challenges Faced & Rationale
+
+1. One of the most significant challenges on the creation of The Food Diary was refactoring and redefining classes and
+ methods to match the implementation of a Food Diary, and in doing so do away with previous implementations
+ that would otherwise suggest the implementation of an address book.
+ 
+ * This thus involved major refactoring of the code base, followed by converting/creating several entities to match
+ a Food Diary, such as the `Pricing` and `Rating` classes etc. pertaining to a journal entry in The Food Diary.
+ 
+ * Creating these new entities entailed creating the appropriate classes in the `Model` package to manage and process
+ these new entities in the app's memory.
+ 
+2. We explored several design options when creating new features such as the `revise` and `view` features. We realised
+ that while users could rely majorly on the keyboard to execute most of the app's features, this was however not the
+ best, since users would miss the capability to view the different fields of their entries in full,
+ which would have otherwise further enhanced their usage of the app.
+
+    * This led us to create new separate windows that would pop up and allow users to view/revise the fields of their
+    specified entry in greater detail, without compromising their ability to edit. For `revise`, users could choose to
+    select which field to edit by clicking, or by using keyboard shortcuts; this did not compromise the
+    keyboard-intensive interface that users might rely on.
+    
+    * We nonetheless still implemented the keyboard-based `edit` feature, and deemed that it was still useful for users
+     who had minor edits to perform on their specified entry, which would make having to open up a separate window
+     more inconvenient.
+     
+    * In all, design decisions had to be made, and we put ourselves in the perspectives of our users and implemented
+     features and designs to what we felt best fitted them.
+     
+3. We constantly questioned ourselves as to how The Food Diary could be catered more towards NUS students.
+
+    * As such, we preserved the user interface element of typing to execute functions/features in The Food Diary,
+     given that our target users, NUS students would be comfortable using the app via keyboard-reliant interface.
+     
+    * Additionally, we matched the colour scheme of The Food Diary to subtly reflect the colours of NUS and make 
+    The Food Diary appealing to the patronage of NUS students.
+    
+    * Entries in the Food Diray featured tags that were based off NUS locations. Given the multitude of eateries dotted
+    around NUS, this would make identifying entries based on NUS locations essential to an NUS student
+    who would have referenced back to previous entries in their usage over the longer term.
+    
+4. Finally, working together to deliver what we set out to do proved hectic at times of immense commitment from the team
+ to other responsibilities in school. Nonetheless, with good planning, open communication and a strong sense of
+ ownership for the effort in the work we have done, we have produced what we believe was usable and useful for the
+ NUS students to patronise and enjoy.
 
 ## **Appendix B: Product scope**
 
