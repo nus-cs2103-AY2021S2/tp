@@ -451,7 +451,7 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
   (i.e. adding of tags/categories is not cumulative)
 * Edited task cannot be the same as the original task or equivalent to another existing task in the task list. <br>
   Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
-* When editing tags, the order of tags given in the input and the order of tags shown in the UI can be different. <br>
+* When editing tags and categories, the order given in the input and the order as shown in the UI can be different. <br>
   For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, but `tag2` may appear in the UI before `tag1`.
 
 <div markdown="block" class="alert alert-info">
@@ -735,7 +735,9 @@ Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDAT
 * The `ENDDATE` and `ENDTIME` provided cannot be a past date and time.
 * When editing tags/categories, the existing tags/categories of the event will be removed. <br>
   (i.e. adding of tags/categories is not cumulative)
-
+* When editing tags and categories, the order given in the input and the order as shown in the UI can be different. <br>
+  For example, in input `edit_event 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, but `tag2` may appear in the UI before `tag1`.
+  
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
