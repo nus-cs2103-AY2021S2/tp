@@ -78,7 +78,7 @@ Format: `help`
 
 User can add either a student, or a tutor
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** If a person with the same name and phone number OR the same name and email as an existing person in EzManage is being added, it will be identified as adding a duplicate person.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** If a person with the same name and phone number OR the same name and email as an existing person in EzManage is being added, it will be identified as adding a duplicate person.</div>
 
 #### Adding a Student to EzManage
 
@@ -218,7 +218,7 @@ and views the list of assigned students (e.g. students s/1, s/2) on the Right Pa
 
 Edits an existing person in EzManage.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** If a person is being edited to have the same name and phone number OR the same name and email as an existing person in EzManage, it will be identified as a duplicate person and the user will be prevented from making such an edit.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** If a person is being edited to have the same name and phone number OR the same name and email as an existing person in EzManage, it will be identified as a duplicate person and the user will be prevented from making such an edit.</div>
 
 #### Editing a Student in EzManage
 
