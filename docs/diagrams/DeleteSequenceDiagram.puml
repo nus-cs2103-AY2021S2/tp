@@ -63,6 +63,8 @@ deactivate CommandResult
 
 DeleteIssueCommand --> LogicManager : r
 deactivate DeleteIssueCommand
+DeleteIssueCommand -[hidden]-> LogicManager
+destroy DeleteIssueCommand
 
 [<--LogicManager : r
 deactivate LogicManager
