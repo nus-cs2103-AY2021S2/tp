@@ -144,10 +144,8 @@ The `Model`,
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardBook`, which `Flashcard` references. This allows `FlashcardBook` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
+<img src="images/BetterModelClassDiagram.png" width="550" />
 
-<p align="center">
-  <img src="images/BetterModelClassDiagram.png" width="550" />
-</p>
 
 </div>
 
