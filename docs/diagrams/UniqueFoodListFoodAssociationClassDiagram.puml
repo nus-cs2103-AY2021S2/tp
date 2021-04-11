@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+left to right direction
+
+class UniqueFoodList {
+}
+
+class Food {
+  name: String
+  carbos: double
+  fats: double
+  proteins: double
+  kiloCalories: double
+}
+
+UniqueFoodList --> "*" Food
+@enduml

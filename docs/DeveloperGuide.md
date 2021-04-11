@@ -113,7 +113,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -129,17 +129,17 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `DietLahParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("food_delete n/grape")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteFoodItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -239,11 +239,45 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
   * Flexible to changes since only an update command is called to change the value
 * Cons:
   * More prone to bugs as the components can be changed freely
-* Alternative 1: Make Food components immutable.
+* Alternative 1: Make `Food` components immutable.
   * Pros:
     * Less prone to bugs
   * Cons:
     * More overhead to update items as a new object is created every time
+
+### UniqueFoodList Object
+
+<img src="images/UnqueFoodListClassDiagram.png" width="287" />
+
+The UniqueFoodList class represents a list of food recorded by the user.
+
+<img src="images/UnqueFoodListFoodAssociationClassDiagram.png" width="287" />
+
+The UniqueFoodList class stores an ObservableList of Food:
+1. `ObservableList<Food>`: Represents the list of recorded `Food`
+
+Additionally, here are some information to note:
+1. `Food` with similar names to existing items will not be allowed to be added in. More information on the information is provided in the section below.
+
+#### Design consideration
+
+##### Aspect: A single `UniqueFoodList` used for the program
+
+* Current Choice:
+    * A single `UniqueFoodList` is used to store all the `Food` item(s) by the user
+
+* Pros:
+    * Easier management for all the `Food` items
+    * No duplicated record for a certain `Food` item
+
+* Cons:
+    * Reduces the convenience of storing multiple nutrients' value for a certain `Food` item
+
+* Alternative 1: Keep multiple `UniqueFoodList`
+    * Pros:
+        * Similar `Food` items can store multiple nutrients' value across
+    * Cons:
+        * Referencing a particular value from multiple lists can be quite complicated and buggy
 
 ### Add food item feature
 
