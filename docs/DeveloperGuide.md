@@ -650,6 +650,27 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Finding a property
+
+1. Finding properties
+    
+    1. Prerequisites: Using default example data (make sure when `list property` is entered, you can see the property `Woodlands Crescent`)
+    
+    1. Test case: `find property n/woodlands`<br>
+        Expected: `Woodlands Crescent` property is shown in the list with no properties that do not contain the word `woodlands` being shown. 
+       
+    1. Test case: `find property pm/$700000 t/hdb`<br>
+        Expected: `Woodlands Crescent` property is shown in the list, properties with price less than $700,000 or are not HDB are not shown. 
+        
+    1. Test case: `find property n/`<br>
+        Expected: Property list not updated. Error details shown in the status message. 
+        
+    1. Test case: `find property pm/abc`<br>
+        Expected: Property list not updated. Error details shown in the status message. 
+        
+    1. Other incorrect find property commands to try: `find property x/ `, where x is any of the permissible options. 
+        Expected: Similar to previous. 
+        
 ## **Appendix G: Effort**
 
 ### Introduction
