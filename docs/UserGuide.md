@@ -16,6 +16,8 @@ on ModuleBook3.5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+1. This user guide is best read at a zoom level of 125% on your browser. 
+   For viewing images in greater clarity, you may need to use 150% zoom or above.
 
 1. ModuleBook3.5 can run on a computer installed with a major operating system (e.g. Windows/Mac/Linux) and Java 11.
 
@@ -23,7 +25,7 @@ on ModuleBook3.5.
 
 1. Once the jar file is ready, simply double-click the file in the download section.
 
-1. Read through the `Features` section and `Command Notes` to understand how the application should be used.
+1. Read through the [Features](#Features) section and [Command Notes](#Command Notes) to understand how the application should be used.
 
 1. Go through the tutorial in the given order. Simply look out for blue boxes with a bulb icon and titled "Tutorial Example:", 
    such as the one below.
@@ -40,7 +42,7 @@ Commands for this tutorial are arranged in the sequential order of this User Gui
 <div style="page-break-after: always;"></div>
 
 ## Features
-<img src="images/UiAnnotated.png" width="700">
+<img src="images/UiAnnotated.png" width="730px">
 
 * At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
@@ -56,17 +58,6 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-* Tasks are colour coded based on done status. 
-   1. Done tasks are coloured pink. 
-   2. Tasks that are not done are classified into 4 different categories (colors):
-
-Color | Time to deadline 
---------|------------------
-**Green** | More than 3 days
-**Yellow** | Between 1 to 3 days
-**Orange** | Less than 1 day      
-**Purple** | Expired
-
 * The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
    2. The workload of each module is counted by summing up the workload counts of all tasks for the module 
@@ -81,6 +72,17 @@ Input Parameter | Workload Rating
 **w/3** | High
 
 E.g. for a low workload rating, key in `w/1`.
+
+* Tasks are colour coded based on done status.
+    1. Done tasks are coloured pink.
+    2. Tasks that are not done are classified into 4 different categories (colors):
+
+Color | Time to deadline
+--------|------------------
+**Green** | More than 3 days
+**Yellow** | Between 1 to 3 days
+**Orange** | Less than 1 day
+**Purple** | Expired
 
 <div style="page-break-after: always;"></div>
 
@@ -124,52 +126,6 @@ you may use a substitute module code based on the subject description.
 
 ## Command Notes
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are parameters to be supplied by you.<br>
-  e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
-
-* Parameters in square brackets are optional. Parameters without square brackets are compulsory.<br>
-  If you wish to include any optional parameter, you must follow its format, 
-  otherwise command parsing will fail even if all the compulsory fields are valid.<br>
-  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
-  
-* For commands that take in an `INDEX`, only one index is to be supplied.<br>
-  e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
-  
-* The `INDEX` starts from 1 and is taken relative to the list of tasks that is currently displayed.<br>
-  e.g. If you do `mod CS2101` and a task at position 4 is pushed up to position 1, the `INDEX` for this task
-  will be `1` for the next command.
-
-* For `NAME`, the length of name should not be greater than 60 English characters. We do not guarantee a correct display 
-  with the minimum window size if you exceed this limit.<br>
-
-* For `DESCRIPTION` and `TAG`, the length of these fields should not be greater than 100 English characters. We do not 
-  guarantee a correct display with the minimum window size if you exceed this limit.<br>
-
-* For `MODULE`, the letters in module code should be upper-case.<br>
-  e.g. `CS2103T` and not `cs2103t`.
-  
-* For `START TIME` and `DEADLINE`, the accepted date-time formats are: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time).<br>
-  e.g. `2021-03-21 10:10` or `2021-03-21`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Minimax`, `t/Minimax t/CSP` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
-  
-* If a parameter is expected only once in the command but you specified it multiple times, 
-  only the last occurrence of the parameter will be taken. Please refer to [Duplicate Parameters](#Duplicate Parameters).<br>
-  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS3243 Assignment 4` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-
-</div>
-
 ### Parameter Prefixes
 Below is a table of prefixes mapped to the respective parameters:<br>
 
@@ -183,6 +139,50 @@ b/ | DEADLINE | "finish BY"
 w/ | WORKLOAD |
 r/ | RECURRENCE |
 t/ | TAG |
+
+
+### Parameter Descriptions
+
+* Words in `UPPER_CASE` are parameters to be supplied by you.<br>
+  e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
+
+* Parameters in square brackets are optional. Parameters without square brackets are compulsory.<br>
+  If you wish to include any optional parameter, you must follow its format,
+  otherwise command parsing will fail even if all the compulsory fields are valid.<br>
+  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
+
+* For commands that take in an `INDEX`, only one index is to be supplied.<br>
+  e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
+
+* The `INDEX` starts from 1 and is taken relative to the list of tasks that is currently displayed.<br>
+  e.g. If you do `mod CS2101` and a task at position 4 is pushed up to position 1, the `INDEX` for this task
+  will be `1` for the next command.
+
+* For `NAME`, the length of name should not be greater than 60 English characters. We do not guarantee a correct display
+  with the minimum window size if you exceed this limit.<br>
+
+* For `DESCRIPTION` and `TAG`, the length of these fields should not be greater than 100 English characters. We do not
+  guarantee a correct display with the minimum window size if you exceed this limit.<br>
+
+* For `MODULE`, the letters in module code should be upper-case.<br>
+  e.g. `CS2103T` and not `cs2103t`.
+
+* For `START TIME` and `DEADLINE`, the accepted date-time formats are: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time).<br>
+  e.g. `2021-03-21 10:10` or `2021-03-21`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Minimax`, `t/Minimax t/CSP` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times,
+  only the last occurrence of the parameter will be taken. Please refer to [Duplicate Parameters](#Duplicate Parameters).<br>
+  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS3243 Assignment 4` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+  
 
 ### Duplicate Parameters
 1. Most commands take in only one instance of a unique parameter. In such cases, the last instance of the parameter is accepted.
@@ -210,38 +210,39 @@ t/ | TAG |
 
 
 ## Command list
+This list serves to categorise commands based on similarities in functionality and are not arranged in tutorial order:
 
-* **`list`** : List out tasks
+* [**`list`**](#list-out-tasks--list) : List out tasks
 
-* **`add`** : Add a task
+* [**`add`**](#add-a-task-add) : Add a task
 
-* **`clear`** : Delete all tasks
+* [**`clear`**](#delete-all-tasks-clear) : Delete all tasks
 
-* **`delete`** : Delete a task
+* [**`delete`**](#delete-a-task--delete) : Delete a task
 
-* **`done`** : Mark a task as done
+* [**`done`**](#mark-a-task-as-done--done) : Mark a task as done
 
-* **`notdone`** : Mark a task as not done
+* [**`notdone`**](#mark-a-task-as-not-done--notdone) : Mark a task as not done
 
-* **`tag`** : Add a tag to a task
+* [**`tag`**](#add-tags-tag) : Add a tag to a task
 
-* **`find`** : Search for tasks with name
+* [**`find`**](#search-tasks-with-name-of-task-find) : Search for tasks with name
 
-* **`findTag`** : Search for tasks with tag
+* [**`findTag`**](#search-tasks-with-tag-findtag) : Search for tasks with tag
 
-* **`deleteTag`** : Delete a tag of a task
+* [**`deleteTag`**](#delete-tag-of-task-deletetag) : Delete a tag of a task
 
-* **`mod`** : Search for tasks of a specific module
+* [**`mod`**](#search-tasks-associated-to-a-module-mod) : Search for tasks of a specific module
 
-* **`edit`** : Edit task
+* [**`edit`**](#edit-a-task-edit) : Edit task
 
-* **`sort`** : Sort tasks
+* [**`sort`**](#sort-tasks--sort) : Sort tasks
 
-* **`recur`** : Recur tasks
+* [**`recur`**](#recur-tasks-recur) : Recur tasks
 
-* **`refresh`** : Refresh all showing tasks
+* [**`refresh`**](#refresh-all-tasks-refresh) : Refresh all showing tasks
 
-* **`exit`** : Close the app
+* [**`exit`**](#close-app-exit) : Close the app
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,7 +261,7 @@ For this tutorial, let's start by clearing out any existing tasks. Type:<br>
 `clear` in the command line and press `ENTER` on your keyboard.
 </div>
 
-<img src="images/clearCommand.png" width="700">
+<img src="images/clearCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -291,7 +292,7 @@ Now, key in the following commands in this order:<br>
 Note that your tasks may have a different colour from the one in the screenshots.
 </div>
 
-<img src="images/addCommand.png" width="700">
+<img src="images/addCommand.png" width="730px">
 
 Other Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
@@ -317,7 +318,7 @@ Format: `done INDEX`
 `done 2`
 </div>
 
-<img src="images/doneCommand.png" width="700">
+<img src="images/doneCommand.png" width="730px">
 
 Other Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
@@ -343,7 +344,7 @@ Format: `notdone INDEX`
 `notdone 2`
 </div>
 
-<img src="images/notdoneCommand.png" width="700">
+<img src="images/notdoneCommand.png" width="730px">
 
 Other Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
@@ -368,7 +369,7 @@ Format: `tag INDEX t/TAG [t/MORETAGS]...​`
 `tag 3 t/Ethics t/Quiz`
 </div>
 
-<img src="images/tagCommand.png" width="700">
+<img src="images/tagCommand.png" width="730px">
 
 Other Examples:
 * `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
@@ -395,7 +396,7 @@ Format: `find KEYWORD`
 but rather, tasks that have the word "Green" in their names.)
 </div>
 
-<img src="images/findCommand.png" width="700">
+<img src="images/findCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -413,7 +414,7 @@ Format: `list`
 `list`
 </div>
 
-<img src="images/listCommand.png" width="700">
+<img src="images/listCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -436,7 +437,7 @@ Format: `findTag KEYWORD`
 `findTag ethics` (To demonstrate that finding tags is case-insensitive.)
 </div>
 
-<img src="images/findTagCommand.png" width="700">
+<img src="images/findTagCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -458,7 +459,7 @@ Format: `mod MODULE`
 this command still works.)
 </div>
 
-<img src="images/findModuleCommand.png" width="700">
+<img src="images/findModuleCommand.png" width="730px">
 
 Other Examples:
 * `mod CS3243` lists out tasks associated with module CS3243.
@@ -485,7 +486,7 @@ Format: `deleteTag INDEX t/TAG`
 2. `deleteTag 3 t/Quiz`
 </div>
 
-<img src="images/deleteTagCommand.png" width="700">
+<img src="images/deleteTagCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -512,7 +513,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 `edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-10`
 </div>
 
-<img src="images/editCommand.png" width="700">
+<img src="images/editCommand.png" width="730px">
 
 In this screenshot, the colour of task 1 changed because the new deadline is closer.
 
@@ -544,7 +545,7 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 `sort n/`
 </div>
 
-<img src="images/sortCommand.png" width="700">
+<img src="images/sortCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -570,7 +571,7 @@ Format: `recur INDEX r/RECURRENCE`
 `recur 1 r/weekly`
 </div>
 
-<img src="images/recurCommand.png" width="700">
+<img src="images/recurCommand.png" width="730px">
 
 Other Examples:
 * `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
@@ -592,7 +593,7 @@ Format: `refresh`
 2. `refresh` 
 </div>
 
-<img src="images/refreshCommand.png" width="700">
+<img src="images/refreshCommand.png" width="730px">
 
 Note that you may get a new deadline for task 1 that is different from what is in the screenshot.
 
@@ -616,7 +617,7 @@ Format: `delete INDEX`
 `delete 2`
 </div>
 
-<img src="images/deleteCommand.png" width="700">
+<img src="images/deleteCommand.png" width="730px">
 
 Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.

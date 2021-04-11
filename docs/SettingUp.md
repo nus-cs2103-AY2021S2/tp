@@ -48,4 +48,4 @@ If you plan to use Intellij IDEA (highly recommended):
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [ModuleBook’s architecture](DeveloperGuide.md#architecture).
 
 1. **Do the tutorials**
-   MB-3.5 has a similar structure to AB-3. We recommend following the tutorials under AB-3: [_[se-edu/guides] Setting up and getting started_](https://se-education.org/addressbook-level3/SettingUp.html)
+   MB3.5 has a similar structure to AB-3. We recommend following the tutorials under AB-3: [_[se-edu/guides] Setting up and getting started_](https://se-education.org/addressbook-level3/SettingUp.html)

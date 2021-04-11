@@ -1,12 +1,12 @@
 ---
 layout: page
-title: ModuleBook Level-3.5
+title: ModuleBook3.5
 ---
 
 [![CI Status](https://github.com/AY2021S2-CS2103T-T13-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T13-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T13-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103T-T13-2/tp)
 
-<img src="images/Ui.png" width="700">
+<img src="images/Ui.png" width="730px">
 
 **ModuleBook3.5 is a desktop application for managing your tasks in an *Easy, Seamless and Straightforward* manner.** 
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
