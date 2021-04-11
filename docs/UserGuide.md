@@ -7,7 +7,7 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 
 ## Table of Contents
 * Table of Contents
-* {:toc}
+  {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
