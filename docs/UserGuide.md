@@ -93,7 +93,7 @@ There are three main areas in TutorBuddy:
    display box, which is located directly above the command box. This area is always present in all tabs.
     * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
-  Using the **sample data** provided, here are some example commands you can try:
+  Using the [sample data](#sample-data) provided, here are some example commands you can try:
   * **`list`** : Lists all students and sessions.
   * **`add_student`** `n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
@@ -167,6 +167,12 @@ Click the 'Today' button to be brought back to this week's view.
 Commands are the main way you interact with TutorBuddy.
 
 This section provides information about all commands that is available in TutorBuddy.
+
+<div markdown="block" class="alert alert-info">
+:information_source: All examples from this point onwards are based on the sample data unless otherwise stated. <br>
+Each example is run independently of the other examples. <br>
+The sample data can be found <a href="#sample-data">[here]</a>.
+</div>
 
 #### 4.2.1 Command Format
 
@@ -583,4 +589,18 @@ This glossary provides definitions for the special terms used in this user guide
 
 **URL:** The address of a web page.
 
+## 8. **Appendix**
+
+### Sample Data
+
+#### Sample Data (Students)
+
+![sample_student_1](images/enhao/sample1.PNG)
+![sample_student_2](images/enhao/sample2.PNG)
+![sample_student_3](images/enhao/sample3.PNG)
+
+#### Sample Data (Sessions)
+
+![sample_session_1](images/enhao/sample_ses1.PNG)
+![sample_session_2](images/enhao/sample_ses2.PNG)
 --------------------------------------------------------------------------------------------------------------------
