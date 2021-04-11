@@ -489,8 +489,8 @@ Format: `list_task`
 Marks one or more task from the task list as completed.
 
 Format: `done_task INDEX1 [INDEX2] ...`
-* Marks the task(s) at the specified INDEX(es) as complete.
-* Specified task(s) must not be complete.
+* Marks the task(s) at the specified INDEX(es) as completed.
+* Specified task(s) must not be completed.
 * Multiple indices are to be separated by a whitespace, e.g. `1 2`.
 * All specified tasks must be **uncompleted and existing** before calling this command.
 * **Duplicate indices** are not allowed. <br>
