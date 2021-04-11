@@ -40,6 +40,7 @@ Given below are my contributions to the project.
 
 **Project management**:
 * Managed releases `v1.3` - `v1.4` (2 releases) on GitHub
+* Set milestones `v1.1`, `v1.2`, `mid-v1.2`, `1.3` on GitHub
 
 **Documentation**:
 * User Guide:
