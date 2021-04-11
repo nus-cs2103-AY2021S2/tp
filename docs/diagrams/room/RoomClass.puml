@@ -22,8 +22,8 @@ Class Tag
 }
 }
 
-AddressBook *--> UniqueRoomList
-UniqueRoomList "1" *--> "*" Room
+AddressBook --> "1" UniqueRoomList
+UniqueRoomList "1" --> "*" Room
 Room *--> RoomNumber
 Room *--> RoomType
 Room *--> IsOccupied
