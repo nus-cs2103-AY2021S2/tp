@@ -48,13 +48,13 @@ deactivate HeyMatezParser
 LogicManager -> DoneTaskCommand : execute()
 activate DoneTaskCommand
 
-DoneTaskCommand -> DoneTaskCommand : createDoneTask(taskToDone)
+DoneTaskCommand -> DoneTaskCommand : createDoneTask(taskToMarkDone)
 activate DoneTaskCommand
 
 DoneTaskCommand --> DoneTaskCommand : doneTask
 deactivate DoneTaskCommand
 
-DoneTaskCommand -> Model : setTask(taskToDone, doneTask)
+DoneTaskCommand -> Model : setTask(taskToMarkDone, doneTask)
 activate Model
 
 Model --> DoneTaskCommand
@@ -67,8 +67,10 @@ activate CommandResult
 CommandResult --> DoneTaskCommand
 deactivate CommandResult
 
-DoneTaskCommand --> LogicManager : result
+DoneTaskCommand --> LogicManager
 deactivate DoneTaskCommand
+DoneTaskCommand -[hidden]-> LogicManager
+destroy DoneTaskCommand
 
 [<--LogicManager
 deactivate LogicManager

@@ -83,7 +83,7 @@ The `UI` component,
 
 1. `Logic` uses the `HeyMatezParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -129,49 +129,49 @@ This section documents some of the noteworthy details on how certain features ar
 
 ### Mark as completed / uncompleted features
 
-The implementation of the mark as `completed` and `uncompleted` features are facilitated by the `DoneTaskCommand` and `
-UndoTaskCommand` classes respectively, both of which extends from the Command abstract class.
+The implementation of the mark as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` classes respectively, both of which extends from the Command abstract class.
 
 The execution of the command is also facilitated by the following Parser Classes:
 * `DoneTaskCommandParser`
 * `UndoTaskCommandParser`
 
-The above mentioned Parser classes all inherit the `#parse` method from the Parser interface.
+The above mentioned Parser classes inherit the `#parse` method from the `Parser` interface.
 
-* `DoneTaskCommandParser#parse` - checks if the arguments passed to the current DoneCommand is valid and creates an DoneTaskCommand instance if it is.
-* `UndoTaskCommandParser#parse` - checks if the arguments passed to the current Undo Command is valid and creates an UndoTaskCommand instance if it is.
+* `DoneTaskCommandParser#parse` - checks if the arguments passed to the current DoneTaskCommand is valid and creates an DoneTaskCommand instance if it is.
+* `UndoTaskCommandParser#parse` - checks if the arguments passed to the current UndoTaskCommand is valid and creates an UndoTaskCommand instance if it is.
 
 Subsequently, the created `DoneTaskCommand` / `UndoTaskCommand` object contains an `#execute` method which is responsible for
 updating the status of the Task to `completed` or `uncompleted`. This is achieved by creating a new `Task` object with the
-same fields and values but updating the `TaskStatus` field according to the input.
+same fields and values but updating the `TaskStatus` field depending on which command is being executed.
 
-Below is the usage scenario and how the mark the task as completed mechanism behaves.
+<br/>
+Below is the usage scenario and how the mark task as completed mechanism behaves.
 
 Assumptions:
 1. User has already launched the app
 2. HEY MATEz application has an existing task whose status is `uncompleted`
 
-Step 1. User executes the `done 1` command to mark the task with index number 1 in the task list of HEY MATEz to be marked as `completed`. 
- A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments.
+Step 1. User executes the `done 1` command to mark the task with index number 1 in the task list of HEY MATEz as `completed`. 
+ A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments given.
 
-Step 2. `DoneTaskCommandParser#parse` method will check on the validity of the arguments for a `DoneTaskCommand`. If it
+Step 2. The `DoneTaskCommandParser#parse` method will check the validity of the argument given for a `DoneTaskCommand`. If it
 is valid, it will create a new `DoneTaskCommand` instance by calling the constructor of `DoneTaskCommand`.
 
-Step 3. The `DoneTaskCommand#execute` is then called by the `LogicManager`. The task with the same `Index` is retrieved and
-a copy of the task is created with the same attribute values. However, the `TaskStatus` value is updated to be `completed`. The task copy
+Step 3. The `DoneTaskCommand#execute` method is then called by the `LogicManager`. The task with the same `Index` is retrieved and
+a copy of the task is created with the same attribute values. However, the `TaskStatus` value is updated to `completed`. The task copy
 with the updated status replaces the old task in the `Model`.
 
 Step 4. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
 with the attached message.
 
-Below is the sequence diagram:
+Below is the sequence diagram to show how the mark task as completed mechanism works:
 
 ![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
 
 ### Find Tasks with deadline before a selected date feature
 
-The implementation of the finding of tasks with deadline before a selected date is facilitated by the `FindTasksBeforeCommand`
-class, from the Command abstract class.
+The implementation of the finding of tasks with deadlines before a selected date is facilitated by the `FindTasksBeforeCommand`
+class, which extends from the Command abstract class.
 
 It is also facilitated by the following Parser Class:
 * `FindTasksBeforeCommandParser`
@@ -191,13 +191,13 @@ Assumptions:
 1. User has already launched the app
 2. HEY MATEz application has existing tasks with their corresponding deadlines
 
-Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in the task list of HEY MATEz with deadline before 2021-04-04.  A
+Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in the task list of HEY MATEz with deadlines before 2021-04-04.  A
 `FindTasksBeforeCommandParser` is created and it calls `FindTasksBeforeParser#parse` on the arguments
 
-Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If it is
+Step 2. The `FindTasksBeforeCommandParser#parse` method will check the validity of the deadline argument for a `FindTasksBeforeCommand`. If it is
 valid,  it will create a new `FindTasksBeforeCommand` instance by calling the constructor with the DeadlineBeforeDatePredicate.
 
-Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
+Step 3. The `FindTasksBeforeCommand#execute` method is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
 DeadlineBeforeDatePredicate.
 
 Step 4. Once the execution is completed, the message `MESSAGE_TASKS_LISTED_OVERVIEW,` is used to return a new Command Result
@@ -209,12 +209,12 @@ Below is the sequence diagram:
 
 ### Delete a Task feature
 
-The implementation of the deleting a Task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
+The implementation of the delete a Task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
 
 It is also enabled by the following Parser class:
 * `DeleteTaskCommandParser`
 
-The above mentioned Parser class inherits from the `#parse method` from the Parser interface.
+The above mentioned Parser class inherits the `#parse method` from the Parser interface.
 
 * `DeleteTaskCommandParser#parse` - checks if the arguments passed to the current DeleteTaskCommand is valid. 
   If the arguments are valid, it creates a DeleteTaskCommand instance.
@@ -232,10 +232,10 @@ Assumptions:
 Step 1. User executes the `deleteTask 1` command to delete the task at the 1st index in the task list of HEY MATEz. 
 A `DeleteTaskCommandParser` object is created and calls the `DeleteTaskCommandParser#parse` on the arguments.
 
-Step 2. `DeleteTaskCommandParser#parse` method then checks on the validity of the arguments for a `DeleteTaskCommand`. 
+Step 2. The `DeleteTaskCommandParser#parse` method then checks on the validity of the arguments given for a `DeleteTaskCommand`. 
 If it is valid, it will create a new `DeleteTaskCommand` instance by calling the constructor along with the task `Index`.
 
-Step 3. The `DeleteTaskCommand#execute` is then called by `Logic Manager`. The task with the same `Index` is retrieved
+Step 3. The `DeleteTaskCommand#execute` method is then called by `Logic Manager`. The task with the same `Index` is retrieved
 and deleted from the task list when `Model#deleteTask` is called.
 
 Step 4. Once the execution is completed, the message `MESSAGE_DELETE_TASK_SUCCESS` is used to return a 
@@ -247,7 +247,7 @@ Below is the sequence diagram:
 
 ### Clear all Assignees of a Task feature
 
-The implementation of clearing all assignees of a Task feature is facilitated by the `ClearAssigneeCommand` 
+The implementation of the Clear all Assignees of a Task feature is facilitated by the `ClearAssigneeCommand` 
 class which extends from the Command abstract class.
 
 It is also facilitated by the following Parser Classes:
@@ -262,7 +262,7 @@ Subsequently, the created `ClearAssigneeCommand` object contains an `#execute` m
 clearing all assignees of the Task, with respect to its index. This is achieved by creating a new 
 `Task` object with the same fields and values as before but setting the `Set<Assignee>` field as a new empty HashSet. 
 
-Below is the usage scenario of how clear all assignees of a Task mechanism behaves.
+Below is the usage scenario of how the clear all assignees of a Task mechanism behaves.
 
 Assumptions:
 1. User has already launched the app
@@ -271,10 +271,10 @@ Assumptions:
 Step 1. User executes the `clearAssignees 1` command to clear all the assignees of the task at index 1 in the task list of 
 HEY MATEz. A ` ClearAssigneesCommandParser` object is created and it calls `ClearAssigneesCommandParser#parse` on the arguments.
 
-Step 2. `ClearAssigneesCommandParser#parse` method will check on the validity of the arguments for a `ClearAssigneesCommand`. 
+Step 2. The `ClearAssigneesCommandParser#parse` method will check on the validity of the arguments given for a `ClearAssigneesCommand`. 
 If it is valid, it will create a new `ClearAssigneesCommand` instance by calling the constructor of `ClearAssigneesCommand`.
 
-Step 3. The `ClearAssigneesCommand#execute` is then called by the `LogicManager`. The task with the same `Index` 
+Step 3. The `ClearAssigneesCommand#execute` method is then called by the `LogicManager`. The task with the same `Index` 
 is retrieved and a copy of the task is created with the same attribute values but with the `Set<Assignee>` field  
 updated to be a new empty HashSet. The copy of the task with the updated `Set<Assignee>` field replaces the old task in
 the `Model` class.
@@ -309,7 +309,7 @@ Below is the sequence diagram:
 * Prefer desktop apps over other types
 * Prefers typing to mouse interactions
 
-**Value proposition**: Manage the tracking and distribution of tasks quickly and efficiently.
+**Value proposition**: Manage the members and tasks of a club quickly and efficiently.
 
 
 ### User stories
@@ -324,8 +324,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CCA leader whose tasks' details need to be updated constantly | be able to edit the details of the tasks accordingly | keep the tasks' details updated |
 | `* * *`  | CCA leader with tasks that are no longer relevant | be able to delete tasks that are either completed or unnecessary | keep the list organized and clear |
 | `* * *`  | CCA leader with projects and tasks piling up | be able to view a list of tasks that is to be completed by members of the CCA | be updated with what needs to be done |
-| `* * *`  | CCA leader who has members leaving the CCA | be able to remove details of the user from that application | better manage my members |
-| `* * *`  | CCA leader whose members’ details have changed | be able to edit the details of the user in the application | keep my contacts up-to-date |
+| `* * *`  | CCA leader who has members leaving the CCA | be able to remove details of the members from the application | better manage my members |
+| `* * *`  | CCA leader whose members’ details have changed | be able to edit the details of the members in the application | keep my contacts up-to-date |
 | `* * *` | CCA leader with many deadlines to meet | be able to set deadlines for specific tasks | keep track of the tasks' deadlines |
 | `* * *` | CCA leader with tasks to be distributed | be able to assign tasks to students | track the distribution of tasks to certain members|
 | `* * `  | CCA leader with tasks that are being completed every other week | be able to mark tasks as ‘completed’  | track which tasks are completed |
