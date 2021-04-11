@@ -44,7 +44,8 @@ Given below are my contributions to the project.
    * Update AttributesContainsPredicateTest. (PR: [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35))
    * Update FindCommandTest, FindCommandParserTest, AddCommandParserTest, DoneCommandParserTest,
      DeleteCommandParserTest, ParserUtilTest. (PR: [#127](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/127))
-    
+   * Update JsonAdaptedCustomerTests to integrate date.(
+     PR: [#128](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/128)) 
 
 * **Enhancement to existing features**:
 
