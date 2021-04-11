@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteRecurringSessionCommandParser" as DeleteRecurringSessionCommandParser LOGIC_COLOR
-participant ":AddSessionCommand" as AddSessionCommand LOGIC_COLOR
+participant ":DeleteRecurringSessionCommand" as DeleteRecurringSessionCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -29,12 +29,12 @@ deactivate DeleteRecurringSessionCommandParser
 AddressBookParser -> DeleteRecurringSessionCommandParser: parse(...)
 activate DeleteRecurringSessionCommandParser
 
-create AddSessionCommand
-DeleteRecurringSessionCommandParser -> AddSessionCommand
-activate AddSessionCommand
+create DeleteRecurringSessionCommand
+DeleteRecurringSessionCommandParser -> DeleteRecurringSessionCommand
+activate DeleteRecurringSessionCommand
 
-AddSessionCommand --> DeleteRecurringSessionCommandParser
-deactivate AddSessionCommand
+DeleteRecurringSessionCommand --> DeleteRecurringSessionCommandParser
+deactivate DeleteRecurringSessionCommand
 
 DeleteRecurringSessionCommandParser --> AddressBookParser
 deactivate DeleteRecurringSessionCommandParser
@@ -46,30 +46,30 @@ destroy DeleteRecurringSessionCommandParser
 AddressBookParser --> LogicManager
 deactivate AddressBookParser
 
-LogicManager -> AddSessionCommand : execute()
-activate AddSessionCommand
+LogicManager -> DeleteRecurringSessionCommand : execute()
+activate DeleteRecurringSessionCommand
 
-AddSessionCommand -> Model : hasName(studentName)
+DeleteRecurringSessionCommand -> Model : hasName(studentName)
 activate Model
 deactivate Model
 
-AddSessionCommand -> Model : getStudentWithName(studentName)
+DeleteRecurringSessionCommand -> Model : getStudentWithName(studentName)
 activate Model
 deactivate Model
 
-AddSessionCommand -> Model : deleteSessionInRecurringSession\n(studentName, targetIndex, sessionDate)
+DeleteRecurringSessionCommand -> Model : deleteSessionInRecurringSession\n(studentName, targetIndex, sessionDate)
 activate Model
 deactivate Model
 
 create CommandResult
-AddSessionCommand -> CommandResult
+DeleteRecurringSessionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddSessionCommand
+CommandResult --> DeleteRecurringSessionCommand : result
 deactivate CommandResult
 
-AddSessionCommand --> LogicManager : result
-deactivate AddSessionCommand
+DeleteRecurringSessionCommand --> LogicManager : result
+deactivate DeleteRecurringSessionCommand
 
 [<--LogicManager
 deactivate LogicManager

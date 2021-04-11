@@ -6,7 +6,7 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([all prefixes are present])
-    : Parse all student's arguments;
+    : Parse all delete recurring session command arguments;
     if () then ([all arguments are valid])
         :Logic executes the command;
         if () then ([index points to a valid recurring session])

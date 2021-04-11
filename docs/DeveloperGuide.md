@@ -133,6 +133,32 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### General
+#### List Feature
+The list feature displays a list of existing students, and a list of sessions of those students in the TutorBuddy application.
+
+##### Implementation
+This feature is facilitated by `ListCommand` which extends `Command`.
+The method `ListCommand#execute` updates the filtered student list, and the filtered session list by calling the method
+`Model#updateFilteredStudentList` exposed in the `Model` interface.
+
+Given below is an example of how the list student
+1. The user executes the list command with the input `list`.
+2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
+3. `AddressBookParser` identifies the correct command and creates a new `ListCommand`.
+4. `AddressBookParser` returns the new `ListCommand` to `LogicManager`.
+5. `LogicManager` executes the `ListCommand`.
+6. `ListCommand` now calls `Model` to update the `filteredStudents` and  to show all students.
+
+The following sequence diagram shows the interactions when user executes the `list` command:
+![ListSequenceDiagram](images/choonwei/ListSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `list` command.
+![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
+
 ### Students
 Students in TutorBuddy is facilitated by the `Student` class which stores specific details of
 a `student` within one `student` object. Students are not allowed to have duplicated names.
@@ -374,32 +400,6 @@ an abstracted `FeeUtil` method, we will only need to update the methods in `FeeU
 to the rest of the features that uses this method. This allows the UI to make use of the `FeeUtil` methods when calculating the 
 3 months fees as well. Although this results in increased coupling, with proper testing in place, we could mitigate the risk 
 as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour of the other feature.
-
-### General
-#### List Feature
-The list feature displays a list of existing students, and a list of sessions of those students in the TutorBuddy application.
-
-##### Implementation
-This feature is facilitated by `ListCommand` which extends `Command`.
-The method `ListCommand#execute` updates the filtered student list, and the filtered session list by calling the method
-`Model#updateFilteredStudentList` exposed in the `Model` interface.
-
-Given below is an example of how the list student
-1. The user executes the list command with the input `list`.
-2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
-3. `AddressBookParser` identifies the correct command and creates a new `ListCommand`.
-4. `AddressBookParser` returns the new `ListCommand` to `LogicManager`.
-5. `LogicManager` executes the `ListCommand`.
-6. `ListCommand` now calls `Model` to update the `filteredStudents` and  to show all students.
-
-The following sequence diagram shows the interactions when user executes the `list` command:
-![ListSequenceDiagram](images/choonwei/ListSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteRecurringSessionCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-The following activity diagram summarizes what happens when a user executes the `list` command.
-![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------

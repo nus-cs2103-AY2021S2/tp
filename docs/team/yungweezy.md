@@ -2,17 +2,12 @@
 layout: page
 title: Choon Wei's Project Portfolio Page
 ---
-
 ## Project: TutorBuddy
-
 TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students’ contacts,
 provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation.
 TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities effectively.
-
 ## Summary of Contributions
-
 Given below is a summary of my contributions to the development of TutorBuddy.
-
 ### Major Enhancement
 
 * Overlapping Sessions Check
@@ -41,7 +36,6 @@ Given below is a summary of my contributions to the development of TutorBuddy.
 * Added list of session attribute to `Student` class
 * Added a `Tuition` class to bind `Student` with `Session` utilised in the Calendar page
 * Modifying several command feedback description to be in check with user guide specification
-* Added a `Tuition` linker class that was supposed to be used to avoid cyclic dependencies between `Student` and `Session`. (Deprecated)
 
 ### Other Contribution
 * Project Management
@@ -63,3 +57,4 @@ Given below is a summary of my contributions to the development of TutorBuddy.
         * Added implementation details for the `delete_rec_session` command along with the relevant sequence and activity diagram ([PR #303])(https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/303)
     * Codes Contributed
         * [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=yungweezy&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+    

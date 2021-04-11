@@ -41,7 +41,7 @@ create CommandResult
 ListCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListCommand
+CommandResult --> ListCommand : result
 deactivate CommandResult
 
 ListCommand --> LogicManager : result
