@@ -34,7 +34,7 @@ public class Name implements Comparable<Name> {
         requireNonNull(name);
         checkArgument(isValidLength(name), INVALID_LENGTH_MESSAGE);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        fullName = name.toUpperCase(Locale.ROOT);
     }
 
 
