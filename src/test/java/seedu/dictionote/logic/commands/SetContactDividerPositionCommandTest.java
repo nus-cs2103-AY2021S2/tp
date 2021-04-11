@@ -1,6 +1,8 @@
 package seedu.dictionote.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -50,5 +52,27 @@ public class SetContactDividerPositionCommandTest {
             assertCommandFailure(new SetContactDividerPositionCommand(invalidPosition[i]), model,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetContactDividerPositionCommand.MESSAGE_USAGE));
         }
+    }
+
+    @Test
+    public void equal() {
+        SetContactDividerPositionCommand command1 = new SetContactDividerPositionCommand(1);
+        SetContactDividerPositionCommand command2 = new SetContactDividerPositionCommand(1);
+        SetContactDividerPositionCommand command3 = new SetContactDividerPositionCommand(2);
+
+        // same object -> returns true
+        assertTrue(command1.equals(command1));
+
+        // same values -> returns true
+        assertTrue(command1.equals(command2));
+
+        // different values -> returns false
+        assertFalse(command1.equals(command3));
+
+        // different types -> returns false
+        assertFalse(command1.equals(1));
+
+        // null -> returns false
+        assertFalse(command1.equals(null));
     }
 }

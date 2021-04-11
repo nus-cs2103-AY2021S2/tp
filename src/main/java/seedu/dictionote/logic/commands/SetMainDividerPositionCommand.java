@@ -9,7 +9,7 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 
 /**
- * Sets the position of contact divider.
+ * Sets the position of main divider.
  */
 public class SetMainDividerPositionCommand extends SetDividerPositionCommand {
 
@@ -23,7 +23,9 @@ public class SetMainDividerPositionCommand extends SetDividerPositionCommand {
     public static final String MESSAGE_SET_DIVIDER_SUCCESS = "Main Divider Position Set to ";
 
     /**
-     * Creates an SetMainDividerPositionCommand that set the main divider to a the specified position
+     * Creates an SetMainDividerPositionCommand that set the main divider to a the specified position.
+     *
+     * @param position position of divider.
      */
     public SetMainDividerPositionCommand(int position) {
         super(position);
