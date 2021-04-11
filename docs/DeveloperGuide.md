@@ -57,24 +57,18 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
- 
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -98,7 +92,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -114,7 +108,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `SocheduleParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -126,7 +120,11 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete_task 1` Command](images/DeleteTaskCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser`should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+The lifeline for `DeleteTaskCommandParser`should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
 [Return to Table of Contents](#table-of-contents)  
@@ -230,7 +228,7 @@ checking for all fields entered by the user. We chose to check for all fields fo
 
 #### 3.4.3 Design considerations for `Name` Object
 When implementing the Name class, one of the considerations we need to decide is about its maximum length. 
-Due to constraints in GUI, if the task or event has an extremely long name, only part of the name can be displayed
+Due to constraints in GUI, if the task or event has an extremely long name, only part of the name can be displayed,
 and the rest will be hidden and cannot be viewed. This is something undesirable.
 
 <table>
@@ -271,7 +269,6 @@ and the rest will be hidden and cannot be viewed. This is something undesirable.
         </td>
     </tr>
 </table>
-
 
 We chose Alternative 1 because this is the most suitable option given the limited development time 
 and more controllable impacts on other components of the application. More importantly, we estimate that 
@@ -317,14 +314,15 @@ specified by users while the event list is used to accommodate different events 
 While both task list and event list can be updated independently by their corresponding commands (e.g. `add_task`, 
 `delete_event`), there are some SOChedule-Level commands listed as follows that can act on both task list and event list:
 
-* `clear`
-* `summary`
-* `find_schedule`
+* [`clear`](#implementation-of-clear-command)
+* [`summary`](#implementation-of-summary-command)
+* [`find_schedule`](#implementation-of-find_schedule-command)
 
 #### 4.1.2 Implementation of SOChedule-Level Commands
 
-**Implementation of ClearCommand**  
-The following is a detailed explanation on how ClearCommand is implemented.
+#### Implementation of `clear` command
+In SOChedule, the governing logic behind the `clear` command is laid out in [`ClearCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCommand.java)
+The following is a detailed explanation on how `ClearCommand.java` is implemented.
 
 **Step 1**: User executes `clear` command to clear task and event lists.
 An `ClearCommandParser` object is created, and the `ClearCommandParser#parse(String args)` method is called.
@@ -343,19 +341,21 @@ The sequence diagram for `ClearCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
-**Implementation of SummaryCommand**  
-The following is a detailed explanation on how SummaryCommand is implemented.
+
+#### Implementation of `summary` command
+In SOChedule, the governing logic behind the `summary` command is laid out in [`SummaryCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/SummaryCommand.java)
+The following is a detailed explanation on how `SummaryCommand.java` is implemented.
 
 **Step 1**: User executes `summary` command to get a summary of the current completion status of tasks and events.
 An `SummaryCommandParser` object is created, and the `SummaryCommandParser#parse(String args)` method is called.
 A `SummaryCommand` object is returned.
 
-**Step 2**: On `SummaryCommand#execute()`, `Model#getNumCompletedTask()`,
-`Model#getFilteredTaskList()`,
-`Model#getNumOverdueTask()`,
-`Model#getNumIncompleteTask()`,
-`Model#getNumIncomingEvents()` are called.
-This will get different statistics on task and event completion.
+**Step 2**: In `SummaryCommand#execute()`, the following methods care called to get different statistics on task and event completion:
+* `Model#getNumCompletedTask()`
+* `Model#getFilteredTaskList()`
+* `Model#getNumOverdueTask()`
+* `Model#getNumIncompleteTask()`
+* `Model#getNumIncomingEvents()` <br>
 For brevity, lower level implementation is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
@@ -367,9 +367,9 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
-#### 4.1.2.3 Find Schedule feature
-**Implementation of FindScheduleCommand**  
 
+#### Implementation of `find_schedule` command
+In SOChedule, the governing logic behind the `clear` command is laid out in [`FindScheduleCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindScheduleCommand.java)
 The find schedule mechanism is supported mainly by `FindScheduleCommand` and `FindScheduleCommandParser`.
 
 The relevant methods include:
@@ -381,7 +381,7 @@ Given below is an example usage scenario and how the find schedule mechanism beh
 
 **Step 1**: User executes `find_schedule 2021-04-01` command to find the ongoing tasks and events before or on the given date.
 An `FindScheduleCommandParser` object is created, and the `FindScheduleCommandParser#parse(String args)` method is called.
-The method parses the `2021-04-01` and conducts validation checks to ensure that it complies with the specification.
+The method parses the `2021-04-01` and conducts validation checks.
 Two predicates, `TaskFindSchedulePredicate(Date date)` and `EventFindSchedulePredicate(Date date)` are created based on the given date.
 Then, a `FindScheduleCommand` object is created given the two predicates and returned.
 
@@ -400,10 +400,13 @@ The sequence diagram for a sample usage of `FindScheduleCommand` can be found be
 
 ![Sequence Diagram of FindSchedule Command](images/FindScheduleCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** Due to the size constraint, the argument `taskPredicate` is not shown in the sequence diagram 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+Due to the size constraint and brevity, the argument `taskPredicate` is not shown in the sequence diagram 
 when calling the method `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)`.
 Same for the method `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)`.
+
 </div>
 
 **Design Considerations**
@@ -416,8 +419,8 @@ is before the given date) and events which have ended before the given date (i.e
 should not be selected. This leads to only finding events that are ongoing at the specified date 
 (i.e. with start date before or on and end date after or on the specified date). 
 
-For tasks, it is rather debatable. Tasks which are completed should not selected. However, it needs some
-considerations with regards to what kinds of uncompleted tasks to be selected.
+For tasks, it is debatable. Completed tasks should not shown. However, some
+considerations is needed to determine which incomplete tasks to display.
 
 <table>
     <tr>
@@ -427,7 +430,7 @@ considerations with regards to what kinds of uncompleted tasks to be selected.
     <tr>
         <td> 
             <ul>
-                <li> Select uncompleted tasks with deadlines before or on the given date.</li>
+                <li> Select incomplete tasks with deadlines before or on the given date.</li>
                 <li> Pros:
                     <ul>
                         <li>Less tasks are being shown. This may be more helpful as users can focus more on these tasks with an earlier deadline than the other tasks.</li>
@@ -463,6 +466,7 @@ helpful for users to know what tasks should be dealt with first and improve thei
 
 [Return to Table of Contents](#table-of-contents)  
 
+
 ### 4.2 Task
 
 #### 4.2.1 Overview
@@ -481,30 +485,33 @@ equal correspondingly.
 
 Our `Task` supports the following features through a `LogicManager`.
 
-* `add_task`
-* `delete_task`
-* `edit_task`
-* `list_task`
-* `done_task`
-* `undone_task`
-* `today_task`
-* `find_task`
-* `sort_task`
-* `pin_task`
-* `unpin_task`
-* `clear_completed_task`
-* `clear_expired_task`
+* [`add_task`](#implementation-of-add_task-command)
+* [`delete_task`](#implementation-of-delete_task-command)
+* [`edit_task`](#implementation-of-edit_task-command)
+* `list_task` (Omitted for brevity and simplicity)
+* [`done_task`](#implementation-of-done_task-command)
+* [`undone_task`](#implementation-of-undone_task-command)
+* [`today_task`](#implementation-of-today_task-command)
+* [`find_task`](#implementation-of-find_task-command)
+* [`sort_task`](#implementation-of-sort_task-command)
+* [`pin_task`/`unpin_task`](#implementation-of-pin_taskunpin_task-commands)
+* [`clear_completed_task`](#implementation-of-clear_completed_task-command)
+* [`clear_expired_task`](#implementation-of-clear_expired_task-command)
 
-The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are 
-omitted here because their implementation is similar to that of other features.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:**
+
+The implementation of the noteworthy ones will be listed in the next section.
+Some implementations of features are omitted because their implementation is similar to that of other features.
+
+</div>
 
 #### 4.2.2 Implementation
 
-#### 4.2.2.1 Add Task Feature
-
-**Implementation of AddTaskCommand**
-
-The following is a detailed explanation on how AddTaskCommand is implemented.
+#### Implementation of `add_task` command
+In SOChedule, the governing logic behind the `add_task` command is laid out in [`AddTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/AddTaskCommand.java)
+The following is a detailed explanation on how `AddTaskCommand.java` is implemented.
 
 **Step1**: User executes `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` command to add the 
 specific task with given arguments. An `AddTaskCommandParser` object is created, and the 
@@ -525,15 +532,14 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
-#### 4.2.2.2 Delete Task Feature
 
-**Implementation of DeleteTaskCommand**  
+#### Implementation of `delete_task` command  
+In SOChedule, the governing logic behind the `delete_task` command is laid out in [`ClearCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java)
+The following is a detailed explanation on how `DeleteTaskCommand.java` is implemented.
 
-The following is a detailed explanation on how DeleteTaskCommand is implemented.
-
-**Step 1**: User executes `delete_task Index` command to delete the task at the given index.
+**Step 1**: User executes `delete_task INDEX` command to delete the task at the given index.
 A `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String args)` method is called.
-The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+The method conducts parses the `INDEX` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteTaskCommand` object is returned.
 
 **Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTasks(Task taskToDelete)` is called.
@@ -550,10 +556,9 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.2.6 Edit Task feature
 
-**Implementation of EditTaskCommand**
-
+#### Implementation of `edit_task` command**
+In SOChedule, the governing logic behind the `edit_task` command is laid out in [`EditTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditTaskCommand.java)
 The edit task mechanism is supported mainly by `EditTaskCommand` and `EditTaskCommandParser`.
 
 The relevant methods include:
@@ -599,16 +604,12 @@ One of the challenges is if we should allow overdue tasks (task with deadlines b
                 <li> Overdue tasks can be edited. </li>
                 <li> Pros:
                     <ul>
-                        <li>At very frequent occasions, users may need to edit an overdue task. For example, users may wish to
-        extend the deadline of an overdue task, or increasing its priority to remind themselves that this task
-          needs more attention.</li>
+                        <li> Users may need to edit an overdue task frequently to extend the deadline of an overdue task. </li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li> At very rare occasions, users may not want overdue tasks to be edited. 
-          For example, they wanted to evaluate their overall progress for this week and do not wish
-          overdue tasks to be accidentally edited.</li>
+                        <li> Users may not want overdue tasks to be edited </li>
                     </ul>
                 </li>
             </ul>
@@ -639,10 +640,8 @@ editing a task or editing it back quickly if they realize they have edited the w
 [Return to Table of Contents](#table-of-contents)
 
 
-#### 4.2.2.3 Done Task feature
-
-**Implementation of DoneTaskCommand**
-
+#### Implementation of `done_task` command**
+In SOChedule, the governing logic behind the `done_task` command is laid out in [`DoneTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DoneTaskCommand.java)
 The done task mechanism is supported mainly by `DoneTaskCommand` and `DoneTaskCommandParser`.
 
 The relevant methods include:
@@ -652,14 +651,13 @@ The relevant methods include:
 Given below is an example usage scenario and how the done task mechanism behaves at each step.
 
 **Step 1**: User executes `done_task 1 2`.
-Let us call these task the target tasks.
+These tasks will be known as target tasks.
 A `DoneTaskCommandParser` object is created, and the `DoneTaskCommandParser#parse(String args)` method is called.
-The method parses the `1 2` and conducts validation checks to ensure that the given indexes are all valid unsigned non-zero integers.
+The method parses `1 2` and conducts validation checks to ensure that the given indexes are all valid unsigned non-zero integers.
 A `DoneTaskCommand` object is returned.
 
 **Step 2**: On `DoneTaskCommand#execute()`, 
-the indexes are further checked to ensure the tasks they refer to exist in the task list
-and all target tasks are uncompleted.
+the indices are further checked to ensure the target tasks exist in the task list and they are not completed.
 Afterwards, the information of the target tasks are copied and completed tasks with exactly the same information as the target tasks are created.
 Finally, `Model#setTask(Task taskToDone, Task completedTask)` are called two times to update the respective target tasks in the task list.
 `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method is called to refresh the UI and show the update.
@@ -669,13 +667,16 @@ and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_DONE_TASK_SUCCESS`.
 
-The sequence diagram for a sample usage of `DoneTaskCommand`can be found below.
+The sequence diagram for a sample usage of `DoneTaskCommand`can be found below, using the aforementioned as an example.
 
 ![Sequence Diagram of DoneTask Command](images/DoneTaskCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
+
 </div>
 
 **Design Considerations**
@@ -699,22 +700,24 @@ Here are our considerations.
                 </li>
                 <li> Cons:
                     <ul>
-                        <li> More restrictive and users may need slightly more time to done the tasks.</li>
+                        <li> More restrictive.</li>
+                        <li> Users may need slightly more time to done the tasks as multiple command entries are necessary.</li>
                     </ul>
                 </li>
             </ul>
         </td>
         <td> 
             <ul>
-                <li>Done task can mark more than one tasks as uncompleted.</li>
+                <li>Done task can mark more than one tasks as complete.</li>
                 <li> Pros:
                     <ul>
-                        <li>Users may frequently need to done multiple tasks. This can save a significant amount of time.</li>
+                        <li>Users may frequently need to mark multiple tasks as completed, thus saving a significant amount of time.</li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>More time-consuming to implement, increases difficulty in testing and integration with other commands and components.</li>
+                        <li>More time-consuming to implement.</li>
+                        <li>Additional ifficulty in testing and integration with other commands and components.</li>
                     </ul>
                 </li>
             </ul>
@@ -723,15 +726,14 @@ Here are our considerations.
 </table>
 
 Alternative 2 is chosen because we believe this implementation is a more suitable choice. 
-Unlike undone task, users are likely to have the demand to done multiple tasks frequently
-under normal usage. Thus, we feel alternative 1 is necessary to serve our users efficiently.
+Unlike `undone_task`, users are likely to have the demand to mark multiple tasks as complete
+under normal usage. Thus, we feel alternative 2 is necessary to serve our users efficiently.
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.2.4 Undone Task feature
 
-**Implementation of UndoneTaskCommand**
-
+#### Implementation of `undone_task` command
+In SOChedule, the governing logic behind the `undone_task` command is laid out in [`UndoneTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UndoneTaskCommand.java)
 The undone task mechanism is supported mainly by `UndoneTaskCommand` and `UndoneTaskCommandParser`.
 
 The relevant methods include:
@@ -741,13 +743,13 @@ The relevant methods include:
 Given below is an example usage scenario and how the undone task mechanism behaves at each step.
 
 **Step 1**: User executes `undone_task 1` command to mark the completed task at the given index as uncompleted. 
-Let us call this task the target task.
+This task will be known as the target task.
 A `UndoneTaskCommandParser` object is created, and the `UndoneTaskCommandParser#parse(String args)` method is called.
 The method parses the `1` and conducts validation checks to ensure that the given index is a valid unsigned non-zero integer.
 A `UndoneTaskCommand` object is returned.
 
-**Step 2**: On `UndoneTaskCommand#execute()`, the index is further checked to ensure it is not out of range (i.e. larger than the size of task list)
-and the target task is indeed a completed task.
+**Step 2**: On `UndoneTaskCommand#execute()`,
+the indices are further checked to ensure the target task exist in the task list, and they are not incomplete to begin with.
 Afterwards, the information of the target task is copied ,and an uncompleted task with exactly the same information as the target task is created.
 Finally, `Model#setTask(Task taskToUndone, Task uncompletedTask)` and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method are called.
 These two methods update the target task in the task list and refresh the UI to show the update.
@@ -757,13 +759,16 @@ and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
 
-The sequence diagram for a sample usage of `UndoneTaskCommand` can be found below.
+The sequence diagram for a sample usage of `UndoneTaskCommand` can be found below, using the aforementioned as an example.
 
 ![Sequence Diagram of UndoneTask Command](images/UndoneTaskCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
+
 </div>
 
 The activity diagram that summaries what happens when users execute the `UndoneTaskCommand` can be found below.
@@ -784,7 +789,7 @@ Here are our considerations.
     <tr>
         <td> 
             <ul>
-                <li> Undone task only marks one task as uncompleted. </li>
+                <li> Undone task only marks one task as incomplete. </li>
                 <li> Pros:
                     <ul>
                         <li>Easier to implement, maintain and integrate with other commands and components.</li>
@@ -799,7 +804,7 @@ Here are our considerations.
         </td>
         <td> 
             <ul>
-                <li>Undone task can mark more than one tasks as uncompleted.</li>
+                <li>Undone task can mark more than one tasks as incomplete.</li>
                 <li> Pros:
                     <ul>
                         <li>May save a small amount of time when users need to undone multiple tasks.</li>
@@ -807,7 +812,8 @@ Here are our considerations.
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>More time-consuming to implement, increases difficulty in testing and integration with other commands and components.</li>
+                        <li>More time-consuming to implement.</li>
+                        <li>Increases difficulty in testing and integration with other commands and components.</li>
                     </ul>
                 </li>
             </ul>
@@ -816,16 +822,15 @@ Here are our considerations.
 </table>
 
 Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited development and
-testing time. More importantly, unlike done task, users are unlikely to have the demand to undone multiple tasks frequently 
+testing time. More importantly, unlike `done_task`, users are unlikely to have the demand to mark multiple tasks as incomplete at one go
 under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.2.5 Today Task Feature
 
-**Implementation of TodayTaskCommand**
-
-The following is a detailed explanation on how TodayTaskCommand is implemented.
+#### Implementation of `today_task` command**
+In SOChedule, the governing logic behind the `today_task` command is laid out in [`TodayTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TodayTaskCommand.java)
+The following is a detailed explanation on how `TodayTaskCommand.java` is implemented.
 
 The TodayTaskCommand is supported mainly by `TodayTaskCommand`.
 
@@ -853,11 +858,10 @@ The sequence diagram for TodayTaskCommand can be found below.
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.2.6 Find Task Feature
 
-**Implementation of FindTaskCommand**
-
-The following is a detailed explanation on how FindTaskCommand is implemented.
+#### Implementation of `find_task` command
+In SOChedule, the governing logic behind the `find_task` command is laid out in [`FindTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindTaskCommand.java)
+The following is a detailed explanation on how `FindTaskCommand.java` is implemented.
 
 The FindTaskCommand is supported mainly by `FindTaskCommand` and `FindTaskCommandParser`.
 
@@ -870,11 +874,11 @@ Given below is an example usage scenario and how the find task mechanism behaves
 
 **Step 1**: User executes `find_task homework assignment` to find all tasks whose names contain any of `homework` or 
 `assignment`.
-Let us call these task the target tasks.
+These tasks will be known as the target tasks.
 A `FindTaskCommandParser` object is created, and the `FindTaskCommandParser#parse(String args)` method is called.
 The method parses the `homework assignment` into a list of strings : [`homwork`, `assignment`], which is the original
-string splitted by whitespace. This list of strings will be passed into the constructor of 
-`TaskNameContainsKeywordPredicate`, which will then be passed into the constuctor of a `FindTaskCommand`.
+string delimited using whitespace. This list of strings will be passed into the constructor of 
+`TaskNameContainsKeywordPredicate`, which will then be passed into the constucter of `FindTaskCommand`.
 The `FindTaskCommand` object with input predicate is returned.
 
 **Step 2**:
@@ -886,35 +890,44 @@ will update the filtered task list with the predicate specified by the input pre
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_TASKS_LISTED_OVERVIEW`.
 
-The sequence diagram for `FindTaskCommand` can be found below.
+The sequence diagram for `FindTaskCommand` can be found below, using `find_task homework assignment` as an example.
 
 ![Sequence Diagram of FindTaskCommand](images/FindTaskCommandSequenceDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)
 
 
-**Implementation of SortTaskCommand**  
-The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
+#### Implementation of `sort_task` command
+In SOChedule, the governing logic behind the `sort_task` command is laid out in [`SortTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/SortTaskCommand.java)
+The following is a detailed explanation on how `SortTaskCommand.java` is implemented in the Logic component.
 
-**Step 1**: User executes `sort SORT_VAR` command to sort the tasks based on the `SORT_VAR` provided.
+The SortTaskCommand is supported mainly by `SortTaskCommand` and `SortTaskCommandParser`.
+
+The relevant methods include:
+* `SortTaskCommandParser#parse(String args)` - Parses the user input into a list of keywords.
+* `SortTaskCommand#execute(Model model)` - Updates the task list on UI to based on the `ARGUMENT` given.
+  
+Given below is an example usage scenario and how the sort task mechanism behaves at each step, using `sort_task name` as an example.
+
+**Step 1**: User executes `sort_task name` command to sort the tasks based on the `SORT_VAR` provided.
 An `SortTaskCommandParser` object is created, and the `SortTaskCommandParser#parse(String args)` method is called. 
-The method conducts parses the `SORT_VAR` and conducts validation checks to ensure that it complies with the specification.
+The method conducts parses `name` and conducts validation checks to ensure that it complies with the specification.
 A `SortTaskCommand` object is returned.
 
 **Step 2**: On `SortTaskCommand#execute()`, `Model#sortTasks(String comparingVar)` is called.
-This will cause the task list to sort itself, based on the provided `comparingVar`.
+This will cause the task list to sort itself, based on the provided `comparingVar` (`name`, in this case).
 For brevity, lower level implementation of `Model#sortTasks(String comparingVar)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS`.
 The UI will also update as the underlying task list has been modified.
 
-The sequence diagram for `sortTaskCommand` can be found below, using `sort_task name` as an example.
+The sequence diagram for `sortTaskCommand` can be found below, using the aforementioned as an example.
 
 ![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
 
 ***Lower Level implementation***  
-The following is a brief explanation , as shown in a sequence diagram, of how sorting is implemented inside the Model component.
+The following is a brief explanation , as illustrated by a sequence diagram, of how sorting is implemented inside the Model component.
 ![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
 
 ***Design Considerations for `SortTaskCommand`***
@@ -926,32 +939,32 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
     <tr>
         <td> 
             <ul>
-                <li>Persistent Sorting using a Comparator</li>
+                <li>More Persistent Sorting using a Comparator</li>
                 <li> Pros:
                     <ul>
-                        <li>UX considerations when users expect sorting to be persistent over multiple order-altering commands</li>
+                        <li>UX considerations when users expect sorting to be persistent over multiple order-altering commands.</li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>Additional Testing of Comparator needed</li>
-                        <li>Additional component added might add to complexity</li>
+                        <li>Additional Testing of Comparator needed.</li>
+                        <li>Additional component added might add to complexity.</li>
                     </ul>
                 </li>
             </ul>
         </td>
         <td> 
             <ul>
-                <li>Transient Sorting by sorting the UniqueTaskList directly</li>
+                <li>More Transient Sorting by sorting the UniqueTaskList directly.</li>
                 <li> Pros:
                     <ul>
-                        <li>Straightforward implementation</li>
-                        <li>Less testing required due to less components</li>
+                        <li>Straightforward implementation.</li>
+                        <li>Less testing required due to less components.</li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>UX might be compromised as order is not maintained over order-altering command executions</li>
+                        <li>UX might be compromised as order is not maintained over order-altering command executions.</li>
                     </ul>
                 </li>
             </ul>
@@ -970,18 +983,30 @@ This would enable SOChedule to better serve the needs of its user base.
 
 [Return to Table of Contents](#table-of-contents)
 
-**Implementation of PinTaskCommand/UnpinTaskCommand**  
-The following is a detailed explanation on how PinTaskCommand is implemented.
-UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
 
-**Step 1**: User executes `pin_task INDEX` command to pin the task at the given index.
+#### Implementation of `pin_task`/`unpin_task` commands
+In SOChedule, the governing logic behind the `pin_task` command is laid out in [`PinTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/PinTaskCommand.java),
+while the governing logic behind `unpin_task` command is laid out in [`UnpinTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/UnpinTaskCommand.java)
+
+The following is a detailed explanation on how `PinTaskCommand.java` is implemented.
+Since UnpinTaskCommand is largely similar in implementation to PinTaskCommand, it will be omitted for brevity.
+
+The PinTaskCommand is supported mainly by `PinTaskCommand` and `PinTaskCommandParser`.
+
+The relevant methods include:
+* `PinTaskCommandParser#parse(String args)` - Parses the user input into a given `INDEX`.
+* `PinTaskCommand#execute(Model model)` - Marks target task as pinned, and updates the UI accordingly.
+
+Given below is an example usage scenario and how the pin task mechanism behaves at each step, using `pin_task 1` as an example.
+
+**Step 1**: User executes `pin_task 1` command to pin the task at the given index.
 An `PinTaskCommandParser` object is created, and the `PinTaskCommandParser#parse(String args)` method is called.
-The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+The method conducts parses `1` and conducts validation checks to ensure that it complies with the specification.
 A `PinTaskCommand` object is returned.
 
 **Step 2**: On `PinTaskCommand#execute()`, `Model#pinTask(Task task)` is called.
 This will pin the task at the specified index.
-Subsequently, the underlying task list will be sorted by calling `Model#sortTasksDefault()`, with pinned tasks being first in priority, followed by the last sorted variable 
+Subsequently, the underlying task list will be sorted by calling `Model#sortTasksDefault()`, with pinned tasks being first in priority, followed by the last argument used for sorting 
 (if `sort_task` was not called before, task list will be sorted by name).
 For brevity, lower level implementation of `Model#pinTask(Task task)` is omitted.
 
@@ -997,13 +1022,15 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
 The below activity diagram summarises what happens when `pin_task` is called, using `pin_task 1` as an example.
-It can also be similarly extrapolated to apply to `unpin_task`.
+It can also be similarly extrapolated and applied to `unpin_task`.
 
 ![Activity Diagram of PinTaskCommand](images/PinTaskActivityDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)  
 
-**Implementation of ClearCompletedTaskCommand**  
+
+#### Implementation of `clear_completed_task` command
+In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`CLearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
 The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
 
 **Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
@@ -1022,8 +1049,10 @@ The sequence diagram for `ClearCompletedTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
-**Implementation of ClearExpiredTaskCommand**  
-The following is a detailed explanation on how ClearExpiredTaskCommand is implemented.
+
+#### Implementation of `clear_expired_task` command  
+In SOChedule, the governing logic behind the `clear_expired_task` command is laid out in [`ClearExpiredTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearExpiredTaskCommand.java)
+The following is a detailed explanation on how `ClearExpiredTaskCommand.java` is implemented.
 
 **Step 1**: User executes `clear_expired_task` command to clear expired tasks in task list.
 A `ClearExpiredTaskCommand` object is created and returned.
@@ -1040,6 +1069,7 @@ The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 ![Sequence Diagram of Clear Command](images/ClearExpiredTaskCommandSequenceDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)  
+
 
 ### 4.3 Event
 
@@ -1061,13 +1091,13 @@ are equal correspondingly.
 
 Our `Event` supports the following features through a `LogicManager`
 
-* `add_event`
-* `delete_event`
-* `edit_event`
-* `list_event`
-* `today_event`
-* `find_event`
-* `clear_expired_event`
+* [`add_event`](#implementation-of-add_event-command)
+* [`delete_event`](#implementation-of-delete_event-command)
+* [`edit_event`](#implementation-of-edit_event-command)
+* `list_event` (Omitted for brevity and simplicity)
+* [`today_event`](#implementation-of-today_event-command)
+* [`find_event`](#implementation-of-find_event-command))
+* [`clear_expired_event`](#implementation-of-clear_expired_event-command)
 
 The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are
 omitted here because their implementation is similar to that of other features.
@@ -1075,10 +1105,11 @@ omitted here because their implementation is similar to that of other features.
 
 #### 4.3.2 Implementation
 
-**Implementation of AddEventCommand**
-The following is a detailed explanation on how AddEventCommand is implemented.
+#### Implementation of `add_event` command
+In SOChedule, the governing logic behind the `add_event` command is laid out in [`AddEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/AddEventCommand.java)
+The following is a detailed explanation on how `AddEventCommand.java` is implemented.
 
-**Step1**: User executes `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...` 
+**Step 1**: User executes `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...` 
 command to add the specific event with given arguments. An `AddEventCommandParser` object is created, and the 
 `AddEventParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
 checks to ensure that it compiles with the specification. An `AddEventCommand` object is returned.
@@ -1097,8 +1128,9 @@ The sequence diagram for `AddEventCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
-**Implementation of DeleteEventCommand**  
 
+#### Implementation of `delete_event` command  
+In SOChedule, the governing logic behind the `delete_event` command is laid out in [`DeleteEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteEventCommand.java)
 The following is a detailed explanation on how DeleteEventCommand is implemented.
 
 **Step 1**: User executes `delete_event 1` command to delete the event at the given index.
@@ -1118,7 +1150,12 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 ![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
 
-**Implementation of EditEventCommand**  
+
+[Return to Table of Contents](#table-of-contents)
+
+
+#### Implementation of `edit_event` command
+In SOChedule, the governing logic behind the `edit_event` command is laid out in [`EditEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditEventCommand.java)
 The following is a detailed explanation on how EditEventCommand is implemented.
 
 The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
@@ -1141,16 +1178,14 @@ These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Eve
 A success message `EditEventCommand#MESSAGE_EDIT_EVENT_SUCCESS` will be displayed.
 The UI will also update as the underlying event list has been modified.
 
-The sequence diagram for `EditEventCommand` can be found below.
+The sequence diagram for `EditEventCommand` can be found below, using the aforementioned as an example.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
 
 The following activity diagram summarises what happens when a user executes a EditEventCommand:
 (For brevity, "Show error" actions are omitted.)
 
-
 <img src="images/EditEventCommandActivityDiagram.png" width="250" />›
-
 
 ***Design Considerations for `EditEventCommand`***
 <table>
@@ -1161,51 +1196,49 @@ The following activity diagram summarises what happens when a user executes a Ed
     <tr>
         <td> 
             <ul>
-                <li>Allows an expired event to be edited only when end date time need to be extended to an unexpired time</li>
+                <li>Allows an expired event to be edited only when end date time need to be extended to an unexpired time.</li>
                 <li> Pros:
                     <ul>
-                        <li>Similar checks to AddEventCommand</li>
+                        <li>Similar checks to AddEventCommand.</li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>Only end date time of an unexpired event can be edited</li>
-                        <li>Affects other classes</li>
+                        <li>Only end date time of an unexpired event can be edited.</li>
+                        <li>Affects other classes.</li>
                     </ul>
                 </li>
             </ul>
         </td>
         <td> 
             <ul>
-                <li>Allows all fields in an expired event to be edited</li>
+                <li>Allows all fields in an expired event to be edited.</li>
                 <li> Pros:
                     <ul>
-                        <li>Users have more freedom to edited things</li>
+                        <li>Users have more freedom to edited things.</li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>Needs to add extra checks in EditEventCommand</li>
+                        <li>Needs to add extra checks in EditEventCommand.</li>
                     </ul>
                 </li>
             </ul>
         </td>
     </tr>
 </table>
-<div markdown="block">
 
-We chose alternative 1 because if the event in the real world ended, it’s meaningless to let users make changes
+We chose alternative 1 because when an event ends, it is meaningless to let users make changes
 on any field other than end date and time. We did consider the fact that an event in the real world could be extended,
 so we allow users to make changes on end date and time from an expired timestamp to an unexpired timestamp. Besides,
 we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become
 an “overdue task”, while there’s no “overdue event”.
 
-
 [Return to Table of Contents](#table-of-contents)
 
 
-**Implementation of TodayEventCommand**
-
+#### Implementation of `today_event` command
+In SOChedule, the governing logic behind the `today_event` command is laid out in [`TodayEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TodayEventCommand.java)
 The following is a detailed explanation on how TodayEventCommand is implemented.
 
 The TodayEventCommand is supported mainly by `TodayEventCommand`.
@@ -1236,8 +1269,8 @@ The sequence diagram for TodayEventCommand can be found below.
 [Return to Table of Contents](#table-of-contents)
 
 
-**Implementation of FindEventCommand**
-
+#### Implementation of `find_event` command
+In SOChedule, the governing logic behind the `find_event` command is laid out in [`FindEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindEventCommand.java)
 The following is a detailed explanation on how FindEventCommand is implemented.
 
 The FindEventCommand is supported mainly by `FindEventCommand` and `FindEventCommandParser`.
@@ -1267,14 +1300,15 @@ will update the filtered event list with the predicate specified by the input pr
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_EVENTS_LISTED_OVERVIEW`.
 
-The sequence diagram for `FindEventCommand` can be found below.
+The sequence diagram for `FindEventCommand` can be found below, using the aforementioned as an example.
 
 ![Sequence Diagram of FindEventCommand](images/FindEventCommandSequenceDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)
 
 
-**Implementation of ClearExpiredEventCommand**  
+#### Implementation of `clear_expired_event` command
+In SOChedule, the governing logic behind the `clear_expired_event` command is laid out in [`ClearExpiredEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearExpiredEventCommand.java)
 The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
 
 **Step 1**: User executes `clear_expired_event` command to clear expired events in the event list.
@@ -1291,8 +1325,11 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)
 
-**Implementation of FindFreeTimeCommand**  
+
+#### Implementation of `find_free` command
+In SOChedule, the governing logic behind the `find_free` command is laid out in [`FindFreeTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindFreeTaskCommand.java)
 The following is a detailed explanation on how FindFreeTaskCommand is implemented.
 
 **Step 1**: User executes `free_time DATE` command to find free time slots in the given day.
@@ -1324,46 +1361,43 @@ The below activity diagram summarises what happens when `free_time` is called.
     <tr>
         <td> 
             <ul>
-                <li>Several helper functions were implemented in UniqueEventList class</li>
+                <li>Several helper functions were implemented in UniqueEventList class.</li>
                 <li> Pros:
                     <ul>
-                        <li>Each function handles a small part of logic</li>
-                        <li>Easier to detect bugs</li>
-                        <li>Better readability of code</li>
+                        <li>Each function handles a small part of logic.</li>
+                        <li>Easier to detect bugs.</li>
+                        <li>Better readability of code.</li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>Longer lines of code</li>
-                        <li>Affects other classes</li>
+                        <li>Longer lines of code.</li>
+                        <li>Affects other classes.</li>
                     </ul>
                 </li>
             </ul>
         </td>
         <td> 
             <ul>
-                <li>Write methods in FindFreeTimeCommand class directly</li>
+                <li>Write methods in FindFreeTimeCommand class directly.</li>
                 <li> Pros:
                     <ul>
-                        <li>Straightforward implementation</li>
-                        <li>Less testing required due to less components</li>
+                        <li>Straightforward implementation.</li>
+                        <li>Less testing required due to less components.</li>
                     </ul>
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>Strong dependency on Event class and UniqueEventList class</li>
+                        <li>Strong dependency on Event class and UniqueEventList class.</li>
                     </ul>
                 </li>
             </ul>
         </td>
     </tr>
 </table>
-<div markdown="block">
 
 We choose alternative 1 because it presents code in a clearer way. Breaking up long methods into shorter methods will improve
-readability of the code. Implementing codes under UniqueEventList also reduces dependency.
-
-[Return to Table of Contents](#table-of-contents)  
+readability of the code. Implementing code under UniqueEventList also reduces dependency.
 
 [Return to Table of Contents](#table-of-contents)  
 
