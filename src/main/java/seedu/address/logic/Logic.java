@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTeachingAssistant;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 
@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TeachingAssistant.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getTeachingAssistant()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTeachingAssistant getTeachingAssistant();
 
     /** Returns an unmodifiable view of the filtered list of contacts */
     ObservableList<Contact> getFilteredContactList();
@@ -38,9 +38,9 @@ public interface Logic {
     ObservableList<Entry> getFilteredEntryList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' teaching assistant file path.
      */
-    Path getAddressBookFilePath();
+    Path getTeachingAssistantFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -12,10 +12,10 @@ import seedu.address.model.entry.NonOverlappingEntryList;
 
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the teaching-assistant level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TeachingAssistant implements ReadOnlyTeachingAssistant {
 
     private final UniqueContactList contacts;
     private final NonOverlappingEntryList entries;
@@ -32,12 +32,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         contacts = new UniqueContactList();
     }
 
-    public AddressBook() {}
+    public TeachingAssistant() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an TeachingAssistant using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TeachingAssistant(ReadOnlyTeachingAssistant toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -61,9 +61,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TeachingAssistant} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTeachingAssistant newData) {
         requireNonNull(newData);
         setContacts(newData.getContactList());
         setEntries(newData.getEntryList());
@@ -178,8 +178,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && contacts.equals(((AddressBook) other).contacts));
+                || (other instanceof TeachingAssistant // instanceof handles nulls
+                && contacts.equals(((TeachingAssistant) other).contacts));
     }
 
     @Override

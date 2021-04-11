@@ -41,20 +41,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTeachingAssistantFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTeachingAssistantFilePath(Path teachingAssistantFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code teachingAssistant}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTeachingAssistant(ReadOnlyTeachingAssistant teachingAssistant);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TeachingAssistant */
+    ReadOnlyTeachingAssistant getTeachingAssistant();
 
     // ====== Contact ======
 

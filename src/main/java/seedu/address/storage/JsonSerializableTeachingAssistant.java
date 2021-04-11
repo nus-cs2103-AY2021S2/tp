@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTeachingAssistant;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TeachingAssistant that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "teachingassistant")
+class JsonSerializableTeachingAssistant {
 
     public static final String MESSAGE_DUPLICATE_CONTACT = "Contact list contains duplicate contacts(s).";
     public static final String MESSAGE_DUPLICATE_ENTRY = "Entry List contains duplicate entry(s)";
@@ -28,52 +28,52 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedEntry> entries = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given contacts.
+     * Constructs a {@code JsonSerializableTeachingAssistant} with the given contacts.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("contacts") List<JsonAdaptedContact> contacts,
+    public JsonSerializableTeachingAssistant(@JsonProperty("contacts") List<JsonAdaptedContact> contacts,
                                        @JsonProperty("entries") List<JsonAdaptedEntry> entries) {
         this.contacts.addAll(contacts);
         this.entries.addAll(entries);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTeachingAssistant} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTeachingAssistant}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableTeachingAssistant(ReadOnlyTeachingAssistant source) {
         contacts.addAll(source.getContactList().stream().map(JsonAdaptedContact::new).collect(Collectors.toList()));
         entries.addAll(source.getEntryList().stream().map(JsonAdaptedEntry::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this teaching assistant into the model's {@code TeachingAssistant} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public TeachingAssistant toModelType() throws IllegalValueException {
+        TeachingAssistant teachingAssistant = new TeachingAssistant();
         for (JsonAdaptedContact jsonAdaptedContact : contacts) {
             Contact contact = jsonAdaptedContact.toModelType();
-            if (addressBook.hasContact(contact)) {
+            if (teachingAssistant.hasContact(contact)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CONTACT);
             }
-            addressBook.addContact(contact);
+            teachingAssistant.addContact(contact);
         }
 
         for (JsonAdaptedEntry jsonAdaptedEntry : entries) {
             Entry entry = jsonAdaptedEntry.toModelType();
-            if (addressBook.hasEntry(entry)) {
+            if (teachingAssistant.hasEntry(entry)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
             }
 
-            if (addressBook.isOverlappingEntry(entry)) {
+            if (teachingAssistant.isOverlappingEntry(entry)) {
                 throw new IllegalValueException(MESSAGE_OVERLAPPING_ENTRY);
             }
-            addressBook.addEntry(entry);
+            teachingAssistant.addEntry(entry);
         }
-        return addressBook;
+        return teachingAssistant;
     }
 
 }

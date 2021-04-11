@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactsAddressBook;
+import static seedu.address.testutil.TypicalContacts.getTypicalContactsTeachingAssistant;
 import static seedu.address.testutil.TypicalIndices.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndices.INDEX_SECOND;
 
@@ -21,9 +21,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand.EditContactDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.testutil.ContactBuilder;
@@ -35,7 +35,7 @@ import seedu.address.testutil.EditContactDescriptorBuilder;
 
 public class EditContactCommandTest {
 
-    private Model model = new ModelManager(getTypicalContactsAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalContactsTeachingAssistant(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,7 +45,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
         assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
@@ -66,7 +66,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
         expectedModel.setContact(lastContact, editedContact);
 
         assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
@@ -80,7 +80,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
 
         assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
     }
@@ -96,7 +96,7 @@ public class EditContactCommandTest {
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TeachingAssistant(model.getTeachingAssistant()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
 
         assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
@@ -115,8 +115,8 @@ public class EditContactCommandTest {
     public void execute_duplicateContactFilteredList_failure() {
         showContactAtIndex(model, INDEX_FIRST);
 
-        // edit Contact in filtered list into a duplicate in address book
-        Contact contactInList = model.getAddressBook().getContactList().get(INDEX_SECOND.getZeroBased());
+        // edit Contact in filtered list into a duplicate in teaching assistant
+        Contact contactInList = model.getTeachingAssistant().getContactList().get(INDEX_SECOND.getZeroBased());
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST,
                 new EditContactDescriptorBuilder(contactInList).build());
 
@@ -140,8 +140,8 @@ public class EditContactCommandTest {
     public void execute_invalidContactIndexFilteredList_failure() {
         showContactAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getContactList().size());
+        // ensures that outOfBoundIndex is still in bounds of teaching assistant list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTeachingAssistant().getContactList().size());
 
         EditContactCommand editContactCommand = new EditContactCommand(outOfBoundIndex,
                 new EditContactDescriptorBuilder().withContactName(VALID_NAME_BOB).build());

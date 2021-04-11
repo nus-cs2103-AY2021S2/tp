@@ -5,9 +5,9 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of Teaching Assistant
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTeachingAssistant {
 
     /**
      * Returns an unmodifiable view of the contacts list.

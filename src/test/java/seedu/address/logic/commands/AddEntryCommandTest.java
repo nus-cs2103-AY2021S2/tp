@@ -10,9 +10,9 @@ import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.exceptions.OverdueEntryException;
@@ -23,7 +23,7 @@ import seedu.address.testutil.EntryBuilder;
  * Contains integration tests (interaction with the Model) for {@code AddEntryCommand}.
  */
 public class AddEntryCommandTest {
-    private Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
+    private Model emptyModel = new ModelManager(new TeachingAssistant(), new UserPrefs());
     private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
 
     @Test

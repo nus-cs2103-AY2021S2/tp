@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 
@@ -70,8 +70,8 @@ public class TypicalTeachingAssistant {
 
     private TypicalTeachingAssistant() {} // prevents instantiation
 
-    public static AddressBook getTypicalTeachingAssistant() {
-        AddressBook ab = new AddressBook();
+    public static TeachingAssistant getTypicalTeachingAssistant() {
+        TeachingAssistant ab = new TeachingAssistant();
         for (Contact contact : getTypicalContacts()) {
             ab.addContact(contact);
         }

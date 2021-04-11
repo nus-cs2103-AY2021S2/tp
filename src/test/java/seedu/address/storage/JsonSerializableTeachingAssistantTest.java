@@ -10,12 +10,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TeachingAssistant;
 import seedu.address.testutil.TypicalTeachingAssistant;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableTeachingAssistantTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
+    private static final Path TEST_DATA_FOLDER = Paths
+            .get("src", "test", "data", "JsonSerializableTeachingAssistantTest");
     private static final Path INVALID_CONTACT_FILE = TEST_DATA_FOLDER.resolve("invalidContactTeachingAssistant.json");
     private static final Path DUPLICATE_CONTACT_FILE = TEST_DATA_FOLDER.resolve(
                                                                     "duplicateContactTeachingAssistant.json");
@@ -25,33 +26,33 @@ public class JsonSerializableAddressBookTest {
                                                                     "overlappingEntryTeachingAssistant.json");
     @Test
     public void toModelType_typicalTeachingAssistantFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TEACHING_ASSISTANT_FILE,
-                JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalTeachingAssistant = TypicalTeachingAssistant.getTypicalTeachingAssistant();
-        assertEquals(addressBookFromFile, typicalTeachingAssistant);
+        JsonSerializableTeachingAssistant dataFromFile = JsonUtil.readJsonFile(TYPICAL_TEACHING_ASSISTANT_FILE,
+                JsonSerializableTeachingAssistant.class).get();
+        TeachingAssistant teachingAssistantFromFile = dataFromFile.toModelType();
+        TeachingAssistant typicalTeachingAssistant = TypicalTeachingAssistant.getTypicalTeachingAssistant();
+        assertEquals(teachingAssistantFromFile, typicalTeachingAssistant);
     }
 
     @Test
     public void toModelType_overlappingEntries_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(OVERLAPPING_ENTRY_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_OVERLAPPING_ENTRY,
+        JsonSerializableTeachingAssistant dataFromFile = JsonUtil.readJsonFile(OVERLAPPING_ENTRY_FILE,
+                JsonSerializableTeachingAssistant.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTeachingAssistant.MESSAGE_OVERLAPPING_ENTRY,
                 dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateContacts_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CONTACT_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_CONTACT,
+        JsonSerializableTeachingAssistant dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CONTACT_FILE,
+                JsonSerializableTeachingAssistant.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableTeachingAssistant.MESSAGE_DUPLICATE_CONTACT,
                 dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_invalidContact_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_CONTACT_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableTeachingAssistant dataFromFile = JsonUtil.readJsonFile(INVALID_CONTACT_FILE,
+                JsonSerializableTeachingAssistant.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
