@@ -66,11 +66,15 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
 
 * Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
   Values out of this valid integer range will be treated as invalid inputs.
+  
+* The following images represent email, phone and address respectively.
+
+![email](images/email.png) ![phone](images/smartphone.png) ![address](images/house.png)  
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
