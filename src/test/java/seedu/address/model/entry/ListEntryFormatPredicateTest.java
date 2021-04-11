@@ -11,6 +11,11 @@ import static seedu.address.model.entry.EntryDate.DEFAULT_FORMATTER;
 
 public class ListEntryFormatPredicateTest {
 
+    @Test void test_emptyPredicate_returnTrue() {
+        ListEntryFormatPredicate predicate = new ListEntryFormatPredicate("");
+        assertTrue(predicate.test(new EntryBuilder().build()));
+    }
+
     @Test
     public void test_dayPredicateEntryStartToday_returnTrue() {
         String testStartDate = LocalDateTime.now().format(DEFAULT_FORMATTER);
@@ -130,5 +135,22 @@ public class ListEntryFormatPredicateTest {
                 .withEndDate(testEndDate).build();
 
         assertFalse(predicate.test(todayEntry));
+    }
+
+    @Test
+    public void equals() {
+        ListEntryFormatPredicate predicate = new ListEntryFormatPredicate("day");
+
+        // same object -> return true
+        assertTrue(predicate.equals(predicate));
+
+        // same keyword -> return true
+        assertTrue(predicate.equals(new ListEntryFormatPredicate("day")));
+
+        // null -> return false
+        assertFalse(predicate.equals(null));
+
+        // different keyword -> return false
+        assertFalse(predicate.equals(new ListEntryFormatPredicate("week")));
     }
 }
