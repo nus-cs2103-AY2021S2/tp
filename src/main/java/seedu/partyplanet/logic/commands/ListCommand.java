@@ -43,7 +43,6 @@ public class ListCommand extends Command {
     private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
     private String parseArguments;
-    private String parseCriteria;
 
     /**
      * Default empty ListCommand.
@@ -71,6 +70,14 @@ public class ListCommand extends Command {
         this.predicate = predicate;
         this.comparator = comparator;
         this.parseArguments = parseArguments;
+    }
+
+    /**
+     * Returns the comparator used to sort the filtered list.
+     * Getter implemented to expose {@code comparator} for testing.
+     */
+    public Comparator<Person> getComparator() {
+        return comparator;
     }
 
     @Override

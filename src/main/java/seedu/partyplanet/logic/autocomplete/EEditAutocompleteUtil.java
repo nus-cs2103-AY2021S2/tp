@@ -1,6 +1,7 @@
 package seedu.partyplanet.logic.autocomplete;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -9,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
+import seedu.partyplanet.logic.commands.EEditCommand;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
 import seedu.partyplanet.logic.parser.ArgumentTokenizer;
@@ -20,33 +21,41 @@ import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.event.Event;
 
-public class EEditAutocompleteUtil {
+public class EEditAutocompleteUtil implements AutocompleteUtil {
 
-    private static final String INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE = "Index not specified!";
+    private static final String INDEX_OUT_OF_BOUNDS_ERROR = "Index provided does not match any event!";
+
+    private final String input;
+
+    /**
+     * EEditAutocompleteUtil Constructor.
+     */
+    public EEditAutocompleteUtil(String input) {
+        requireNonNull(input);
+        this.input = input;
+    }
 
     /**
      * Parses an edit command to autocomplete remark.
-     * @param arguments User's input command.
      * @param model Model instance containing address book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.
      */
-    public String parseCommand(String arguments, Model model) throws ParseException, CommandException {
-        requireNonNull(arguments);
+    public String parse(Model model) throws ParseException, CommandException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_DATE, PREFIX_REMARK);
+                ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_DATE, PREFIX_REMARK);
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble().split(" ")[0]);
         } catch (ParseException pe) {
-            throw new ParseException(INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EEditCommand.MESSAGE_USAGE), pe);
         }
 
         ObservableList<Event> filteredEventsList = model.getFilteredEventList();
         if (index.getZeroBased() >= filteredEventsList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+            throw new CommandException(INDEX_OUT_OF_BOUNDS_ERROR);
         }
 
         Event event = filteredEventsList.get(index.getZeroBased());
@@ -55,7 +64,7 @@ public class EEditAutocompleteUtil {
         Map<Prefix, String> prefixMethodMap = Map.of(
             PREFIX_DATE, event.getEventDate().value,
             PREFIX_NAME, event.getName().fullName,
-            PREFIX_REMARK, event.getDetails().value
+            PREFIX_REMARK, event.getRemark().value
         );
 
         String output = "eedit " + argMultimap.getPreamble();
@@ -92,6 +101,19 @@ public class EEditAutocompleteUtil {
         }
 
         return output;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof EEditAutocompleteUtil)) {
+            return false;
+        }
+
+        return this.input.equals(((EEditAutocompleteUtil) obj).input);
     }
 
 }

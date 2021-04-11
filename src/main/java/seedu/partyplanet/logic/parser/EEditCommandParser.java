@@ -42,7 +42,7 @@ public class EEditCommandParser implements Parser<EEditCommand> {
             editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            editEventDescriptor.setDetail(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
+            editEventDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {

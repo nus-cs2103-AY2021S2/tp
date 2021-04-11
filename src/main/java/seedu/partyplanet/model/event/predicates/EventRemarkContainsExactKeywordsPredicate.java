@@ -9,23 +9,23 @@ import seedu.partyplanet.model.event.Event;
  * Match is case-insensitive to account for fact that two names stored in alternate
  * case are semantically the same to the user.
  */
-public class EventDetailContainsExactKeywordsPredicate implements Predicate<Event> {
+public class EventRemarkContainsExactKeywordsPredicate implements Predicate<Event> {
     private final String keywords;
 
-    public EventDetailContainsExactKeywordsPredicate(String keywords) {
+    public EventRemarkContainsExactKeywordsPredicate(String keywords) {
         this.keywords = keywords.toLowerCase();
     }
 
     @Override
     public boolean test(Event event) {
-        return event.getDetails().value.toLowerCase().equals(this.keywords);
+        return event.getRemark().value.toLowerCase().equals(this.keywords);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EventDetailContainsExactKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((EventDetailContainsExactKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof EventRemarkContainsExactKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((EventRemarkContainsExactKeywordsPredicate) other).keywords)); // state check
     }
 
 }

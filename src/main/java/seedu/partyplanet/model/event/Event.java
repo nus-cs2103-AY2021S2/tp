@@ -1,7 +1,7 @@
 package seedu.partyplanet.model.event;
 
-import seedu.partyplanet.model.person.Name;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.name.Name;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * Represents a Event in PartyPlanet.
@@ -14,26 +14,26 @@ public class Event {
 
     // Data fields
     private EventDate eventDate;
-    private Remark details;
+    private Remark remark;
     private boolean isDone;
 
     /**
      * Default Event constructor
      */
-    public Event(Name name, EventDate eventDate, Remark details) {
+    public Event(Name name, EventDate eventDate, Remark remark) {
         this.name = name;
         this.eventDate = eventDate;
-        this.details = details;
+        this.remark = remark;
         this.isDone = false;
     }
 
     /**
      * Event constructor with a field for isDone
      */
-    public Event(Name name, EventDate eventDate, Remark details, boolean isDone) {
+    public Event(Name name, EventDate eventDate, Remark remark, boolean isDone) {
         this.name = name;
         this.eventDate = eventDate;
-        this.details = details;
+        this.remark = remark;
         this.isDone = isDone;
     }
 
@@ -53,10 +53,10 @@ public class Event {
     }
 
     /**
-     * Returns details of event
+     * Returns remark of event
      */
-    public Remark getDetails() {
-        return details;
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -78,7 +78,7 @@ public class Event {
      * Returns an Event object that is done.
      */
     public Event setDone() {
-        return new Event(getName(), getEventDate(), getDetails(), true);
+        return new Event(getName(), getEventDate(), getRemark(), true);
     }
 
     /**
@@ -111,7 +111,7 @@ public class Event {
         Event event = (Event) other;
         return getName().equals(event.getName())
                 && getEventDate().equals(event.getEventDate())
-                && getDetails().equals(event.getDetails())
+                && getRemark().equals(event.getRemark())
                 && isDone == event.isDone;
 
     }
@@ -125,9 +125,9 @@ public class Event {
             builder.append(("; Date: "))
                     .append(getEventDate());
         }
-        if (!Remark.isEmptyRemark(getDetails())) {
-            builder.append("; Details: ")
-                    .append(getDetails());
+        if (!Remark.isEmptyRemark(getRemark())) {
+            builder.append("; Remark: ")
+                    .append(getRemark());
         }
         return builder.toString();
     }

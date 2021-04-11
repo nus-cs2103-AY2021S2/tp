@@ -37,3 +37,5 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**` | Busy Welfare IC | Sort through the list of events | Look at upcoming events  |
 | `*` | Busy Welfare IC | Search for events by details | Find similar events to refer to for planning |
 | `**` | Busy Welfare IC | Search for events by title | Filter out particular events with that title  |
+| `**` | Expert User | Retrieve recent inputs | Save time when using similar command multiple times |
+| `**` | Returning User | Delete multiple entries at one go | Efficiently remove multiple contacts from the app |

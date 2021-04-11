@@ -36,13 +36,6 @@ public class Birthday extends Date {
     }
 
     /**
-     * Returns true if a given date string is a valid date not in the future.
-     */
-    public static boolean isFuture(String test) {
-        return isFuture(test, LocalDate.now());
-    }
-
-    /**
      * Returns true if a given date string is a valid date not after {@code reference}.
      * Exposes {@reference} date as a parameter for unit testing.
      * Note: Dates without years which are parsed successfully are always considered not from the future.

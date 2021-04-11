@@ -52,9 +52,7 @@ This section describes some noteworthy details on how certain features are imple
 
 {% include_relative developerGuide/feature/Autocomplete.md %}
 
-{% include_relative developerGuide/feature/DataArchiving.md %}
-
-{% include_relative developerGuide/feature/SortByDate.md %}
+{% include_relative developerGuide/feature/Theme.md %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,4 +92,10 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-{% include_relative developerGuide/testing/index.md %}
+{% include_relative developerGuide/testing/testing.md %}
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+The effort put into PartyPlanet was larger than the effort required to implement AB3.
+{% include_relative developerGuide/effort/effort.md %}

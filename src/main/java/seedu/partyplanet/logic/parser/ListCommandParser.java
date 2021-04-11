@@ -70,32 +70,31 @@ public class ListCommandParser implements Parser<ListCommand> {
     private List<Predicate<Person>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Person>> predicates = new ArrayList<>();
+        List<String> allNames = ListCommandUtil.getParsedNames(argMap);
+        List<String> allTags = ListCommandUtil.getParsedTags(argMap);
+
         if (isExactSearch) {
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact name: " + String.join(", ", allNames);
+                stringFind += ListCommandUtil.getCriteriaString("exact name", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new NameContainsExactKeywordsPredicate(name));
             }
-            List<String> allTags = argMap.getAllValues(PREFIX_TAG);
             if (!allTags.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact tag: " + String.join(", ", allTags);
+                stringFind += ListCommandUtil.getCriteriaString("exact tag", allTags);
             }
             for (String tag : allTags) {
                 predicates.add(new TagsContainsExactTagPredicate(tag));
             }
         } else {
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial name: " + String.join(", ", allNames);
+                stringFind += ListCommandUtil.getCriteriaString("partial name", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new NameContainsKeywordsPredicate(name));
             }
-            List<String> allTags = argMap.getAllValues(PREFIX_TAG);
             if (!allTags.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial tag: " + String.join(", ", allTags);
+                stringFind += ListCommandUtil.getCriteriaString("partial tag", allTags);
             }
             for (String tag : allTags) {
                 predicates.add(new TagsContainsTagPredicate(tag));
@@ -103,7 +102,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
         List<String> allMonths = argMap.getAllValues(PREFIX_BIRTHDAY);
         if (!allMonths.isEmpty()) {
-            stringFind += "\n\u2022 Requires birthday month: " + String.join(", ", allMonths);
+            stringFind += ListCommandUtil.getCriteriaString("birthday month", allMonths);
         }
         for (String month : allMonths) {
             predicates.add(new BirthdayContainsMonthPredicate(month));

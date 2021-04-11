@@ -68,14 +68,13 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.helpWindow = new HelpWindow();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setUiTheme(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -162,6 +161,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
+        logger.info("Activated help window from menu bar.");
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -242,15 +242,21 @@ public class MainWindow extends UiPart<Stage> {
     private void setTheme(Theme theme) {
         scene.getStylesheets().clear();
         scene.getStylesheets().addAll(Theme.getStyleSheets(theme));
+
+        this.helpWindow.setTheme(theme);
+
         logic.setGuiSettings(new GuiSettings(theme));
         this.theme = theme;
+        logger.info("Theme set to " + theme.name());
     }
     @FXML
     private void setThemePastel() {
+        logger.info("Activated theme selector from menu bar.");
         setTheme(Theme.PASTEL);
     }
     @FXML
     private void setThemeDark() {
+        logger.info("Activated theme selector from menu bar.");
         setTheme(Theme.DARK);
     }
 }

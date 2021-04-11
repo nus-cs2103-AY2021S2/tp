@@ -17,15 +17,12 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
-Class Date
 
 Package Person {
 Class Person
 Class Address
 Class Birthday
-Class Remark
 Class Email
-Class Name
 Class Phone
 Class UniquePersonList
 }
@@ -33,16 +30,26 @@ Class UniquePersonList
 Package Event {
 Class Event
 Class EventDate
-Class Title
-Class Detail
-Class Email
 Class UniqueEventList
 }
 
 Package Tag {
 Class Tag
 }
+
+Package Name {
+Class Name
 }
+
+package Date {
+Class Date
+}
+
+Package Remark {
+Class Remark
+}
+}
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -64,28 +71,20 @@ UniquePersonList o--> "*" Person
 Person *--> "1" Name
 Person *--> "0..1" Phone
 Person *--> "0..1" Email
-Person *--> "0..1" Birthday
 Person *--> "0..1" Address
 Person *--> "0..1" Remark
+Person *--> "0..1" Birthday
 Person *--> "*" Tag
 
 EventBook *--> "1" UniqueEventList
 UniqueEventList o--> "*" Event
-Event *--> "1" Title
-Event *--> "0..1" Detail
+Event *--> "1" Name
+Event *--> "0..1" Remark
 Event *--> "0..1" EventDate
 
 Birthday --|> Date
 EventDate --|> Date
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-Email -[hidden]right-> Remark
-Remark -[hidden]right-> Birthday
-
-EventDate -[hidden]right-> Detail
-Detail -[hidden]right-> Title
+Tag -[hidden]-> Phone
 
 ModelManager ------>" ~* filtered list" Person
 ModelManager ------>" ~* filtered list" Event

@@ -14,25 +14,33 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
+import seedu.partyplanet.model.date.Date;
+import seedu.partyplanet.model.event.EventDate;
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Address;
+import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Phone;
+import seedu.partyplanet.model.remark.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_REMARK = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_REMARK = "Got some spare chicken puffs";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DATE_ISO = "2020-05-02";
+    private static final String VALID_MONTHDAY_ISO = "--05-02";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -126,6 +134,19 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseRemark() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark(null));
+
+        // Test with whitespace
+        String remarkWithWhitespace = WHITESPACE + VALID_REMARK + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
+
+        // Test invalid value
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(INVALID_REMARK));
+    }
+
+    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
@@ -192,5 +213,66 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseMonthInteger() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMonthInteger(null));
+
+        // Check string months
+        assertEquals(ParserUtil.parseMonthInteger("jan"), 1);
+        assertEquals(ParserUtil.parseMonthInteger(WHITESPACE + "jan" + WHITESPACE), 1); // trimmed input
+        assertEquals(ParserUtil.parseMonthInteger("feb"), 2);
+        assertEquals(ParserUtil.parseMonthInteger("DEC"), 12);
+        assertEquals(ParserUtil.parseMonthInteger("DeceMBeR"), 12);
+
+        // Check integer months
+        assertEquals(ParserUtil.parseMonthInteger("1"), 1);
+        assertEquals(ParserUtil.parseMonthInteger("12"), 12);
+        assertEquals(ParserUtil.parseMonthInteger(WHITESPACE + "5" + WHITESPACE), 5);
+
+        // Check empty months
+        assertEquals(ParserUtil.parseMonthInteger(""), Date.EMPTY_MONTH);
+        assertEquals(ParserUtil.parseMonthInteger("0"), Date.EMPTY_MONTH);
+        assertEquals(ParserUtil.parseMonthInteger(WHITESPACE), Date.EMPTY_MONTH); // trimmed input
+
+        // Invalid input
+        assertThrows(ParseException.class, () -> ParserUtil.parseMonthInteger("2.0"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMonthInteger("13"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMonthInteger("1 3"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMonthInteger("M"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMonthInteger("M AY")); // inner whitespace
+    }
+
+    @Test
+    public void parseEventDate() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventDate(null));
+
+        // Check valid datetime formats
+        EventDate validDate = new EventDate(VALID_DATE_ISO);
+        assertEquals(validDate, ParserUtil.parseEventDate(VALID_DATE_ISO));
+        assertEquals(validDate, ParserUtil.parseEventDate(WHITESPACE + VALID_DATE_ISO + WHITESPACE));
+
+        // Check invalid datetime formats
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate("2020-5-2")); // incorrect ISO format
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate("2020-05-32")); // invalid event date
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventDate("--05-02")); // missing year
+    }
+
+    @Test
+    public void parseBirthday() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBirthday(null));
+
+        // Check valid datetime formats
+        Birthday validDate = new Birthday(VALID_DATE_ISO);
+        assertEquals(validDate, ParserUtil.parseBirthday(VALID_DATE_ISO));
+        assertEquals(validDate, ParserUtil.parseBirthday(WHITESPACE + VALID_DATE_ISO + WHITESPACE));
+
+        Birthday validDateWithoutYear = new Birthday(VALID_MONTHDAY_ISO);
+        assertEquals(validDateWithoutYear, ParserUtil.parseBirthday(VALID_MONTHDAY_ISO));
+
+        // Check invalid datetime formats
+        assertThrows(ParseException.class, () -> ParserUtil.parseBirthday("2020-5-2")); // incorrect ISO format
+        assertThrows(ParseException.class, () -> ParserUtil.parseBirthday("3998-05-32")); // future date
     }
 }

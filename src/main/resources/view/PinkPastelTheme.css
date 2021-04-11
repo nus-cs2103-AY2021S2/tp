@@ -366,3 +366,16 @@
 .help-box {
     -fx-font-size: 12pt;
 }
+
+.help-window {
+    -fx-background-color: derive(rgb(243, 229, 231), -10%);
+}
+
+.help-button {
+    -fx-text-fill: black;
+    -fx-background-color: derive(rgb(183, 159, 153), 10%);
+}
+
+.help-button:hover {
+    -fx-background-color: derive(rgb(243, 229, 231), -10%);
+}

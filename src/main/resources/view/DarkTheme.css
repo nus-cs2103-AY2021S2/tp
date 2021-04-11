@@ -355,3 +355,11 @@
 .help-box {
     -fx-font-size: 12pt;
 }
+
+.help-box .list-cell {
+    -fx-text-fill: white;
+}
+
+.help-window {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}

@@ -13,6 +13,8 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class EventListPanel
+Class EventCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -34,20 +36,25 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
+MainWindow *-down-> EventListPanel
 MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+PersonListPanel --> PersonCard
+EventListPanel --> EventCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
+EventListPanel --|> UiPart
 PersonCard --|> UiPart
+EventCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+PersonCard ..-> Model
+EventCard ..-> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

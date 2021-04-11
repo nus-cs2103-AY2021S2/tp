@@ -1,6 +1,6 @@
 ### [Feature] Undo/redo
 
-#### Current Implementation
+#### Implementation
 
 The undo/redo mechanism is facilitated by `StateHistory` and `State`. It extends `PartyPlanet` with an undo/redo history, stored internally as an `ArrayList<State>` with a `currentStatePointer`, where a `State` stores the `AddressBook` and `EventBook` at any given point in time. Additionally, it implements the following operations:
 

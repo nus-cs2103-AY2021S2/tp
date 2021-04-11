@@ -83,7 +83,8 @@ public class EDeleteEventCommand extends EDeleteCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EDeleteEventCommand // instanceof handles nulls
-                && targetIndexes.equals(((EDeleteEventCommand) other).targetIndexes)); // state check
+                && targetIndexes.equals(((EDeleteEventCommand) other).targetIndexes) // state check
+                && invalidIndexes.equals(((EDeleteEventCommand) other).invalidIndexes)); // state check
     }
 }
 

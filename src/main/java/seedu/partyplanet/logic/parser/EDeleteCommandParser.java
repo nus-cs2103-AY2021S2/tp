@@ -31,14 +31,7 @@ public class EDeleteCommandParser implements Parser<EDeleteCommand> {
             return new EDeleteClearCommand();
         }
 
-        try {
-
-            return createEDeleteEventCommand(argMultimap.getPreamble());
-
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EDeleteCommand.MESSAGE_USAGE), pe);
-        }
+        return createEDeleteEventCommand(argMultimap.getPreamble());
     }
 
 

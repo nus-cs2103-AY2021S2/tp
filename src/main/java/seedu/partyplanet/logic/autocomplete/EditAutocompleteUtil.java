@@ -1,6 +1,7 @@
 package seedu.partyplanet.logic.autocomplete;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -16,8 +17,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
+import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
 import seedu.partyplanet.logic.parser.ArgumentTokenizer;
@@ -28,14 +29,24 @@ import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.tag.Tag;
 
-public class EditAutocompleteUtil {
+public class EditAutocompleteUtil implements AutocompleteUtil {
 
-    private static final String INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE = "Index not specified or invalid!";
+    private static final String INDEX_OUT_OF_BOUNDS_ERROR = "Index provided does not match any user!";
+
+    private final String input;
+
+    /**
+     * EditAutocompleteUtil Constructor.
+     */
+    public EditAutocompleteUtil(String input) {
+        requireNonNull(input);
+        this.input = input;
+    }
 
     /**
      * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
      */
-    private static String getTagsAsAutocompletedString(Set<Tag> tags) {
+    protected static String getTagsAsAutocompletedString(Set<Tag> tags) {
         return tags
             .stream()
             .map(t -> t.tagName)
@@ -46,28 +57,26 @@ public class EditAutocompleteUtil {
 
     /**
      * Parses an edit command to autocomplete remark.
-     * @param arguments User's input command.
      * @param model Model instance containing address book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.
      */
-    public String parseCommand(String arguments, Model model) throws ParseException, CommandException {
-        requireNonNull(arguments);
+    public String parse(Model model) throws ParseException, CommandException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble().split(" ")[0]);
         } catch (ParseException pe) {
-            throw new ParseException(INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
         if (index.getZeroBased() >= filteredPersonList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(INDEX_OUT_OF_BOUNDS_ERROR);
         }
 
         Person person = filteredPersonList.get(index.getZeroBased());
@@ -155,6 +164,19 @@ public class EditAutocompleteUtil {
         }
 
         return output;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof EditAutocompleteUtil)) {
+            return false;
+        }
+
+        return this.input.equals(((EditAutocompleteUtil) obj).input);
     }
 
 }

@@ -9,8 +9,8 @@ import seedu.partyplanet.commons.exceptions.IllegalValueException;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Name;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.name.Name;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * Jackson-friendly version of {@link Event}.
@@ -21,7 +21,7 @@ class JsonAdaptedEvent {
 
     private final String name;
     private final String eventDate;
-    private final String detail;
+    private final String remark;
     private final String isDone;
 
     /**
@@ -29,10 +29,10 @@ class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("eventDate") String eventDate,
-                            @JsonProperty("remark") String detail, @JsonProperty("isDone") String isDone) {
+                            @JsonProperty("remark") String remark, @JsonProperty("isDone") String isDone) {
         this.name = name;
         this.eventDate = eventDate;
-        this.detail = detail;
+        this.remark = remark;
         this.isDone = isDone;
     }
 
@@ -42,7 +42,7 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event source) {
         name = source.getName().fullName;
         eventDate = source.getEventDate().value;
-        detail = source.getDetails().value;
+        remark = source.getRemark().value;
         isDone = source.isDone() ? "1" : "0";
     }
 
@@ -77,16 +77,16 @@ class JsonAdaptedEvent {
             }
         }
 
-        Remark modelDetail;
-        if (detail == null) {
+        Remark modelRemark;
+        if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
-        if (detail.equals(Remark.EMPTY_REMARK_STRING)) {
-            modelDetail = Remark.EMPTY_REMARK;
-        } else if (!Remark.isValidRemark(detail)) {
+        if (remark.equals(Remark.EMPTY_REMARK_STRING)) {
+            modelRemark = Remark.EMPTY_REMARK;
+        } else if (!Remark.isValidRemark(remark)) {
             throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
         } else {
-            modelDetail = new Remark(detail);
+            modelRemark = new Remark(remark);
         }
 
         boolean modelIsDone;
@@ -101,7 +101,7 @@ class JsonAdaptedEvent {
             throw new IllegalValueException("isDone should be either \"1\" or \"0\"");
         }
 
-        return new Event(modelName, modelDate, modelDetail, modelIsDone);
+        return new Event(modelName, modelDate, modelRemark, modelIsDone);
     }
 
 }

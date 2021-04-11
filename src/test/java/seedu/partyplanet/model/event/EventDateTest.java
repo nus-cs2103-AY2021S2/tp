@@ -13,16 +13,17 @@ import org.junit.jupiter.api.Test;
 
 public class EventDateTest {
 
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new EventDate(null));
     }
 
     @Test
-    public void constructor_invalidEventDate_throwsDateTimeException() {
-        String invalidEventDate = "";
-        assertThrows(DateTimeException.class, () -> new EventDate(invalidEventDate));
+    public void constructor_invalidEventDate() {
+        assertThrows(DateTimeException.class, () -> new EventDate("")); // wrong format
+        assertThrows(DateTimeException.class, () -> new EventDate("2020-5-2")); // incorrect ISO format
+        assertThrows(DateTimeException.class, () -> new EventDate("2020-05-32")); // invalid event date
+        assertThrows(IllegalArgumentException.class, () -> new EventDate("--05-02")); // not valid year
     }
 
     @Test
@@ -72,5 +73,6 @@ public class EventDateTest {
         assertTrue(EventDate.isValidEventDate("2025-06-06"));
         assertTrue(EventDate.isValidEventDate("9999-06-07"));
     }
+
 }
 

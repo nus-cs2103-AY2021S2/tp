@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.partyplanet.model.name.Name;
+import seedu.partyplanet.model.remark.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**

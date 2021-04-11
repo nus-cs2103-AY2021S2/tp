@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Glenn Lee
@@ -22,13 +20,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://pyuxiang.com/)]
 [[github](https://github.com/pyuxiang)]
-[[portfolio](team/justin.md)]
+[[portfolio](team/pyuxiang.md)]
 
 ### Foo Chuan Le, Nicholas
 
 <img src="images/nickyfoo.png" width="200px">
 
 [[github](http://github.com/nickyfoo)]
+[[portfolio](team/nickyfoo.md)]
 
 
 ### Gary Lee Jia Jin
@@ -42,6 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhengruoxin.png" width="200px">
 
 [[github](https://github.com/zhengruoxin)]
+[[portfolio](team/zhengruoxin.md)]
 
 ### Lee Pai Joo Yvelle
 

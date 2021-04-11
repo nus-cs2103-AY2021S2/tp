@@ -2,8 +2,8 @@ package seedu.partyplanet.testutil;
 
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Name;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.name.Name;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * A utility class to help with building Person objects.
@@ -12,11 +12,11 @@ public class EventBuilder {
 
     public static final String DEFAULT_NAME = "CNY";
     public static final String DEFAULT_DATE = "2021-02-01";
-    public static final String DEFAULT_DETAIL = "buy food";
+    public static final String DEFAULT_REMARK = "buy food";
 
     private Name name;
     private EventDate eventDate;
-    private Remark detail;
+    private Remark remark;
 
     /**
      * Creates a {@code EventBuilder} with the default details.
@@ -24,7 +24,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         eventDate = new EventDate(DEFAULT_DATE);
-        detail = new Remark(DEFAULT_DETAIL);
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -33,7 +33,16 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         eventDate = eventToCopy.getEventDate();
-        detail = eventToCopy.getDetails();
+        remark = eventToCopy.getRemark();
+    }
+
+    /**
+     * Creates an {@code EventBuilder} with only name specified.
+     */
+    public EventBuilder(String nameString) {
+        name = new Name(nameString);
+        eventDate = EventDate.EMPTY_EVENT_DATE;
+        remark = Remark.EMPTY_REMARK;
     }
 
     /**
@@ -47,8 +56,8 @@ public class EventBuilder {
     /**
      * Sets the {@code Remark} of the {@code Event} that we are building.
      */
-    public EventBuilder withDetail(String detail) {
-        this.detail = new Remark(detail);
+    public EventBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
         return this;
     }
 
@@ -61,7 +70,7 @@ public class EventBuilder {
     }
 
     public Event build() {
-        return new Event(name, eventDate, detail);
+        return new Event(name, eventDate, remark);
     }
 
 }

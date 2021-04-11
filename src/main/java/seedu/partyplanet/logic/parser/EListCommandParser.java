@@ -21,10 +21,10 @@ import java.util.function.Predicate;
 import seedu.partyplanet.logic.commands.EListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.event.predicates.EventDetailContainsExactKeywordsPredicate;
-import seedu.partyplanet.model.event.predicates.EventDetailContainsKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsExactKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredicate;
+import seedu.partyplanet.model.event.predicates.EventRemarkContainsExactKeywordsPredicate;
+import seedu.partyplanet.model.event.predicates.EventRemarkContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ListCommand object
@@ -68,40 +68,35 @@ public class EListCommandParser implements Parser<EListCommand> {
     private List<Predicate<Event>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Event>> predicates = new ArrayList<>();
-        if (isExactSearch) {
+        List<String> allNames = ListCommandUtil.getParsedNames(argMap);
+        List<String> allRemarks = ListCommandUtil.getParsedRemarks(argMap);
 
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
+        if (isExactSearch) {
             if (!allNames.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact event name: " + String.join(", ", allNames);
+                stringFind += ListCommandUtil.getCriteriaString("exact event name", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
             }
-
-            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            if (!allDetails.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact event detail: " + String.join(", ", allDetails);
+            if (!allRemarks.isEmpty()) {
+                stringFind += ListCommandUtil.getCriteriaString("exact event remark", allRemarks);
             }
-            for (String detail : allDetails) {
-                predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
+            for (String remark : allRemarks) {
+                predicates.add(new EventRemarkContainsExactKeywordsPredicate(remark));
             }
 
         } else {
-
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial event name: " + String.join(", ", allNames);
+                stringFind += ListCommandUtil.getCriteriaString("partial event name", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
             }
-
-            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            if (!allDetails.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial event detail: " + String.join(", ", allDetails);
+            if (!allRemarks.isEmpty()) {
+                stringFind += ListCommandUtil.getCriteriaString("partial event remark", allRemarks);
             }
-            for (String detail : allDetails) {
-                predicates.add(new EventDetailContainsKeywordsPredicate(detail));
+            for (String remark : allRemarks) {
+                predicates.add(new EventRemarkContainsKeywordsPredicate(remark));
             }
         }
         if (isExactSearch && predicates.isEmpty()) {

@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.partyplanet.commons.core.GuiSettings;
 import seedu.partyplanet.commons.core.LogsCenter;
 import seedu.partyplanet.logic.autocomplete.AutocompleteParser;
+import seedu.partyplanet.logic.autocomplete.AutocompleteUtil;
+import seedu.partyplanet.logic.autocomplete.exceptions.AutocompleteException;
 import seedu.partyplanet.logic.commands.Command;
 import seedu.partyplanet.logic.commands.CommandResult;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
@@ -67,7 +69,16 @@ public class LogicManager implements Logic {
     @Override
     public String autoComplete(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER REQUEST AUTOCOMPLETE][" + commandText + "]");
-        return autocompleteParser.parse(commandText, model);
+
+        AutocompleteUtil autocompleteUtil;
+        try {
+            autocompleteUtil = autocompleteParser.parseCommand(commandText);
+        } catch (AutocompleteException e) {
+            logger.info(e.getMessage());
+            return commandText;
+        }
+
+        return autocompleteUtil.parse(this.model);
     }
 
     @Override

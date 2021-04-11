@@ -1,8 +1,6 @@
 package seedu.partyplanet.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.model.date.Date.EMPTY_MONTH;
-import static seedu.partyplanet.model.date.Date.MONTH_NAME_MAPPING;
 
 import java.time.DateTimeException;
 import java.util.Collection;
@@ -14,12 +12,12 @@ import seedu.partyplanet.commons.util.StringUtil;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.date.Date;
 import seedu.partyplanet.model.event.EventDate;
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Phone;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.remark.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -52,22 +50,23 @@ public class ParserUtil {
      * @throws ParseException if the specified number is not a valid month nor integer in [0, 12].
      */
     public static int parseMonthInteger(String input) throws ParseException {
+        requireNonNull(input);
         String trimmedInput = input.trim().toLowerCase();
         if (trimmedInput.isEmpty()) {
             return Date.EMPTY_MONTH;
         }
 
         // Check if is month name
-        if (MONTH_NAME_MAPPING.containsKey(trimmedInput)) {
-            return MONTH_NAME_MAPPING.get(trimmedInput);
+        if (Date.MONTH_NAME_MAPPING.containsKey(trimmedInput)) {
+            return Date.MONTH_NAME_MAPPING.get(trimmedInput);
         }
 
-        // Most general, check if is integer
+        // Check if is integer, and within [0,12] bounds
         int monthValue;
         try {
             monthValue = Integer.parseInt(trimmedInput);
             if (monthValue == 0) {
-                return EMPTY_MONTH;
+                return Date.EMPTY_MONTH;
             }
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_MONTH);
