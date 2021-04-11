@@ -46,6 +46,7 @@ MainWindow *-down-> StatusBarFooter
 MainWindow --> ImportantDatesWindow
 MainWindow --> ScheduleWindow
 ImportantDatesWindow *-down-> DateListPanel
+PersonDetails *-down-> LessonListPanel
 ScheduleWindow *-down-> LessonListPanel
 
 PersonListPanel -down-> PersonCard

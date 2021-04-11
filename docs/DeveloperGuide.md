@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -10,6 +11,8 @@ title: Developer Guide
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,6 +60,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -72,6 +77,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Logic component
 
@@ -92,6 +99,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Model component
 
@@ -114,6 +123,7 @@ The `Model`,
 
 </div>
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Storage component
 
@@ -125,9 +135,13 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,6 +210,8 @@ The activity diagram shows the workflow when an add command is executed:
     * Pros: More standardized and easier to track.
     * Cons: Certain fields of a new student may not be known by the user at once.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Edit feature
 
 #### Implementation
@@ -263,7 +279,9 @@ whereas name and phone are compulsory details which must not be blank at any tim
 * **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after their respective prefixes.
     * Pros: User can alter students' information more freely.
     * Cons: User might lose track of important personal details if they accidentally leave the field blank after any prefix.
-  
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Delete feature
 
 #### Implementation
@@ -316,6 +334,8 @@ The activity diagram shows the workflow when a delete command is executed:
     * Pros: Unnecessary information can be removed easily.
     * Cons: Certain fields such as subjects and lessons can already be cleared easily with the `edit` command.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Detail feature
 
 #### Implementation
@@ -367,7 +387,9 @@ The activity diagram shows the workflow when a delete command is executed:
 * **Alternative 2:** Provide options to display multiple Students objects.
     * Pros: Able to user to multi-task.
     * Cons: GUI space restriction.
-    
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Search feature
 
 #### Implementation
@@ -430,7 +452,9 @@ The activity diagram shows the workflow when a `search` command is executed:
     * Pros: Allows for a more general search which searches through all the contact's details. Easier to implement, less prone to errors.
     * Cons: Less accurate search result due to nature of contact details. 
       For example a student's name and a guardian's name might be the same.
-      
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Sort feature
 
 #### Implementation
@@ -543,6 +567,8 @@ The activity diagram shows the workflow when a levelup command is executed:
     majority.
   * Cons: Seems redundant, cases where a majority of the students do not advance is slim.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Demote levels feature
 
 #### Implementation
@@ -597,6 +623,8 @@ The activity diagram shows the workflow when a levelup command is executed:
 * **Alternative 2:** Combine the two commands to have one levelchange command.
   * Pros: Neater code, since the two commands manipulate the same data.
   * Cons: Messy, because the two commands have different purposes.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Add important date feature
 
@@ -660,6 +688,8 @@ The activity diagram shows the workflow when an add important date command is ex
     * Pros: More convenient for the user as it allows user to input recurring important dates in advance, with the same description.
     * Cons: May cause confusion if date with the same description is added by accident by the user.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Delete important date feature
 
 #### Implementation
@@ -713,6 +743,8 @@ The activity diagram shows the workflow when a delete command is executed:
     * Cons: The index displayed next to each of the dates in the important dates list must correspond to the sequence it has been added in. 
       A separate command will have to be implemented in order to show the user the important dates sorted according to details (time and date).
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### List important dates feature
 
 #### Implementation
@@ -757,6 +789,8 @@ The activity diagram shows the workflow when a list important dates command is e
 * **Alternative 2:** Displays the list within the main window.
     * Pros: Users do not have to switch between windows when they want to enter commands to modify the important dates in the list.
     * Cons: Having too much information in the main window might appear to be overwhelming, especially for the new users.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Schedule feature
 
@@ -824,91 +858,7 @@ window continues to display the correct list of lessons for each day.
     For example, when schedule window is opened and user adds or edits a contact, the change will not be reflected 
       real time on the opened schedule window. It is only reflected when the schedule window is closed and reopened.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1142,6 +1092,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -1159,12 +1111,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Glossary
 
 * **Private tuition teachers**: Freelance tuition teachers not belonging to any organisations
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Novice**: A user that is new to using TutorsPet
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1194,6 +1150,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -1211,6 +1169,27 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing a student contact details
+
+1. Viewing a student contact details while all students are being shown
+
+  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+  1. Test case: `detail 1`<br>
+     Expected: Details of the first contact from the list is displayed on the Contact Detail panel.
+
+  1. Test case: `detail 0`<br>
+     Expected: No student detail is displayed. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -1218,6 +1197,8 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Adding an important date
 
@@ -1240,6 +1221,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect add important date commands to try: `add-date`, `add-date x`, `...` (where x is the description or details without the `d/` or `dt/` prefix)<br>
        Expected: Similar to previous.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Deleting an important date
 
@@ -1256,6 +1238,8 @@ testers are expected to do more *exploratory* testing.
       1. Other incorrect delete important date commands to try: `delete-date`, `delete x`, `...` (where x is larger than the list size, larger than 2147483647 or not a positive integer)<br>
          Expected: Similar to previous.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Listing all important dates
 
 1. List all important dates.
@@ -1264,3 +1248,5 @@ testers are expected to do more *exploratory* testing.
        Expected: Opens window with a list of important dates. Success details is shown in the status message.
     
     1. Incorrect list important date commands include cases where the command entered is not `list-date`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>

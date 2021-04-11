@@ -322,13 +322,8 @@ Format: `detail INDEX`
 
 :bulb:**Tips:** <br>
 
-* Views the contact at the specified `INDEX`.
-
 * Student details of a searched list can be displayed using this command.
-
-* The index refers to the index number shown in the displayed student list.
-
-* The index **must be a positive integer** ranging from 1 to 2147483647.
+* Contains a lesson panel to view your schedule with the specified student.
 
 </div>
 
