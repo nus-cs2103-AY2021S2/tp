@@ -24,9 +24,9 @@ Class Tag
 
 AddressBook --> "1" UniqueRoomList
 UniqueRoomList "1" --> "*" Room
-Room *--> RoomNumber
-Room *--> RoomType
-Room *--> IsOccupied
+Room *--> "1" RoomNumber
+Room *--> "1" RoomType
+Room *--> "1  " IsOccupied
 Room *--> "*" Tag
 RoomType *--> "1  " RoomTypeOptions
 @enduml
