@@ -269,8 +269,8 @@ public class ParserUtil {
         if (argMultimap.getValue(prefix).get().isEmpty()) {
             return true;
         }
-        throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_PREFIX, argMultimap.getValue(prefix).get()));
+        throw new ParseException(String.format(Messages.MESSAGE_INVALID_PREFIX,
+                prefix.getPrefix() + argMultimap.getValue(prefix).get()));
     }
     /**
      * Parses a {@code String company} into an {@code Company}.

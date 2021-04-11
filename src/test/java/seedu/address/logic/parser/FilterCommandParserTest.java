@@ -85,7 +85,7 @@ class FilterCommandParserTest {
 
         // valid followed by invalid prefix
         assertParseFailure(parser, FORCE_PREAMBLE + PREFIX_PHONE + " " + INVALID_PREFIX,
-                String.format(MESSAGE_INVALID_PREFIX, INVALID_PREFIX) + "\n"
+                String.format(MESSAGE_INVALID_PREFIX, PREFIX_PHONE + INVALID_PREFIX) + "\n"
                         + FilterCommand.MESSAGE_USAGE);
     }
 
