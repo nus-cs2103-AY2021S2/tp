@@ -5,7 +5,7 @@ title: Chanell Ng 's Project Portfolio Page
 
 ## Project: EzManage
 
-EzManage - EzManage is a desktop address book application used for the management of a tuition centre's sessions, students and tutors. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+EzManage - EzManage is a desktop application used for the management of a tuition centre's sessions, students and tutors. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -47,7 +47,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete_session`, `edit_session` and `view_session`. (Pull requests [\#6](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/6), [\#44](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/44) , [\#84](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/84))
+    * Added documentation for the features `delete_session`, `edit_session` and `view_session`. (Pull requests [\#6](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/6), [\#44](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/44) , [\#84](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/84) , [\#214](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/214))
   * Developer Guide:
     * Added implementation details of the `delete_session` and `edit_session` features. (Pull request [\#161](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/161))
 

@@ -2,13 +2,14 @@
 layout: page
 title: User Guide
 ---
-
-EzManage is a **desktop app for managing students, tutors and sessions, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is named as EzManage as it allows tuition centres managers to easily manage students, tutors and sessions all in one single web application.
-
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
+
+## Introduction
+
+EzManage is a **desktop app for managing students, tutors and sessions, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is named as EzManage as it allows tuition centres managers to easily manage students, tutors and sessions all in one single web application.
 
 ## Quick start
 
@@ -24,9 +25,9 @@ EzManage is a **desktop app for managing students, tutors and sessions, optimize
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list persons`** : Lists all students and tutors.
+   - **`list persons`** : Lists all students and tutors.
 
-   * **`add_person`**`pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
+   - **`add_person`**`pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
    * **`delete_person`**`t/1` : Deletes the tutor with the ID `t/1` from the Contact list.
      
@@ -34,11 +35,12 @@ EzManage is a **desktop app for managing students, tutors and sessions, optimize
 
    * **`clear`** : Deletes all students, tutors and sessions.
 
-   * **`exit`** : Exits the app.
+
+   - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -46,22 +48,22 @@ EzManage is a **desktop app for managing students, tutors and sessions, optimize
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add_person n/NAME`, `NAME` is a parameter which can be used as `add_person n/John Doe`.
 
-* Items in square brackets are optional.<br>
+- Items in square brackets are optional.<br>
   e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
+- Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
-* Parameters can be in any order.<br>
+- Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -124,8 +126,7 @@ After entering the command:
 
 Adds a session to EzManage.
 
-Format: `add_session d/DAY t/TIMESLOT su/SUBJECT [tag/TAG] …
-`
+Format: `add_session d/DAY t/TIMESLOT su/SUBJECT [tag/TAG] … `
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A session can have any number of tags (including 0)
@@ -148,55 +149,40 @@ After entering the command:
 
 ![add session after](images/AddSessionAfter.png)
 
+### Listing all persons/students/tutors/sessions : `list`
 
-### Listing all persons : `list`
+Shows a list of all persons/students/tutors/sessions in EzManage.
 
-Shows a list of all persons in the address book.
+Formats:
 
-Format: `list persons`
+1. `list persons`
 
-### Listing all students : `list`
+   - This lists all the persons currently in EzManage
 
-Shows a list of all students in the address book.
+2. `list students`
 
-Format: `list students`
+   - This lists all the students currently in EzManage
 
-### Listing all tutors : `list`
+3. `list tutors`
+   - This lists all the tutors currently in EzManage
 
-Shows a list of all tutors in the address book.
+4. `list sessions`
+   - This lists all the sessoins currently in EzManage
 
-Format: `list tutors`
+### Viewing a tutor/student : `view_person`
 
-### Listing all sessions : `list`
+Views an existing tutor/student's details.
 
-Format: `list sessions`
+Format: `view_person t/ID` for tutor or `view_person s/ID` for student
 
-Shows a list of all sessions in the address book.
-
-### Viewing a tutor : `view_person`
-
-Views an existing tutor's details.
-
-Format: `view_person t/ID`
-
-* Views the tutor with the specified tutor ID.
+* Views the tutor/student with the specified tutor ID.
 * Tutor’s information such as name, contact number, address etc will be displayed on the left panel
-* Sessions assigned to the tutor will be displayed on the right panel
+* Sessions assigned to the tutor/student will be displayed on the right panel
 
 Example:
+
 * `view_person t/1` views the details of the tutor with tutor ID 1.
 
-### Viewing a student : `view_person`
-
-Views an existing student's details.
-
-Format: `view_person s/ID`
-
-* Views the student with the specified student ID.
-* Student’s information such as name, contact number, address etc will be displayed on the left panel
-* Sessions assigned to the student will be displayed on the right panel
-
-Example:
 * `view_person s/1` views the details of the student with student ID 1.
 
 ### Viewing a session : `view_session`
@@ -208,11 +194,20 @@ Format: `view_session c/ID`
 * Views the specified session with the specified session ID.
 * Left Panel will show the session's information such as the session ID, day
   time slot, subject, tags and assigned tutor (if any).
-* Right Panel will show the specifed session's list of assigned students (if any).
+* Right Panel will show the session's list of assigned students (if any).
 
 Example:
+
 * `view_session c/1` views the details of the session with session ID c/1 on the Left Panel
-and views the list of assigned students (e.g. students s/1, s/2) on the Right Panel.
+  and views the list of assigned students (e.g. students s/1, s/2) on the Right Panel.
+
+Before entering the command:
+
+![view session_before](images/ViewSessionBefore.png)
+
+After entering the command:
+
+![view session_after](images/ViewSessionAfter.png)
 
 ### Editing a person : `edit_person`
 
@@ -290,22 +285,31 @@ Examples:
 *  `edit_session c/1 d/Monday su/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
 *  `edit_session c/2 ts/12:00 to 13:00 tag/Hard` Edits the timeslot and tag of the session c/2 to be `12:00 to 13:00` and `Hard` respectively.
 
+Before entering the command:
+
+![edit session_before](images/EditSessionBefore.png)
+
+After entering the command:
+
+![edit session_after](images/EditSessionAfter.png)
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+- The search is case-insensitive. e.g `hans` will match `Hans`
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- Only the name is searched.
+- Only full words will be matched e.g. `Han` will not match `Hans`
+- Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+- `find John` returns `john` and `John Doe`
+- `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete_person`
@@ -358,27 +362,39 @@ Deletes the specified session from EzManage.
 
 Format: `delete_session c/ID`
 
-* Deletes the session with the specified `c/ID`.
-* The c/ID refers to the session ID shown in the displayed session list.
+- Deletes the session with the specified `c/ID`.
+- The c/ID refers to the session ID shown in the displayed session list.
 
 Examples:
-* `delete_session c/1` deletes the session with session ID c/1 in the address book.
+
+- `delete_session c/1` deletes the session with session ID c/1 in EzManage.
+
+Before entering the command:
+
+![delete session_before](images/DeleteSessionBefore.png)
+
+After entering the command:
+
+![delete session_after](images/DeleteSessionAfter.png)
 
 ### Assigning student(s)/tutor to session : `assign`
 
 Assigns a student or multiple student and/or a tutor to a specific session.
 
-Format: `unassign [s/ID]… [t/ID] c/ID`
+Formats: 
 
-* Assigns students with the specified `s/ID` to the session with the specified `c/ID`
-* Assigns the tutor with the specified `t/ID` to the session with the specified `c/ID`
-* At least one of the optional fields must be provided.
-* Any number of students can be assigned at the same time (including 0)
+1. `assign s/ID…​ c/ID`
 
-Examples:
-* `assign s/2 s/1 c/1` assigns students of `s/2` and `s/1` to session `c/1`
-* `assign t/1 c/1` assigns a tutor of `t/1` to session of `c/1`
-* `assign s/1 t/1 c/1` assigns student of `s/1`, and tutor of `t/1` to the session `c/1`
+   - This assigns student(s) of `s/ID…` to a session of `c/ID`
+   - Example : `assign s/2 s/1 c/1` assigns students of `s/2` and `s/1` to session `c/1`
+
+2. `assign t/ID c/ID`
+
+   - This assigns a tutor of `t/ID` to a session of `c/ID`
+   - Example: `assign t/1 c/1` assigns a tutor of `t/1` to session of `c/1`
+
+3. `assign s/ID…​ t/ID c/ID`
+   - This assigns student(s) of `s/ID…` and a tutor of `t/ID` to a session of `c/ID`
 
 `view_session c/1` before entering the command:
 
@@ -392,17 +408,20 @@ Examples:
 
 Unassigns the specified people from a session.
 
-Format: `unassign [s/ID]… [t/ID] c/ID`
+Formats:
 
-* Unassigns students with the specified `s/ID` from the session with the specified `c/ID`
-* Unassigns the tutor with the specified `t/ID` from the session with the specified `c/ID`
-* At least one of the optional fields must be provided.
-* Any number of students can be unassigned at the same time (including 0)
+1. `unassign s/ID…​ c/ID`
 
-Examples:
-* `unassign s/1 c/1` unassigns the student with student ID s/1 from the session with session ID c/1.
-* `unassign c/1 t/1` unassigns the tutor with tutor ID t/1 from the session with session ID c/1.
-* `unassign s/1 s/2 t/1 c/1` unassigns students with student IDs s/1 and s/2, and the tutor with tutor ID t/1 from the session with session ID c/1.
+   - This unassigns student(s) of `s/ID…` from a session of `c/ID`
+   - Example : `unassign s/2 s/1 c/1` unassigns students of `s/2` and `s/1` from session `c/1`
+
+2. `unassign t/ID c/ID`
+
+   - This unassigns a tutor of `t/ID` from a session of `c/ID`
+   - Example: `unassign c/1 t/1` unassigns a tutor of `t/1` from session of `c/1`
+
+3. `unassign s/ID…​ t/ID c/ID`
+   - This unassigns student(s) of `s/ID…` and a tutor of `t/ID` from a session of `c/ID`
 
 `view_session c/1` before entering the command:
 
@@ -443,7 +462,7 @@ If your changes to the data file makes its format invalid, EzManage will discard
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EzManage home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
