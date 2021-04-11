@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -182,6 +183,9 @@ public class ParserUtil {
         requireNonNull(indices);
         final Set<Index> indicesSet = new HashSet<>();
         for (String index : indices) {
+            if (index.isBlank() || !index.chars().allMatch(Character::isDigit)) {
+                throw new ParseException(MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+            }
             indicesSet.add(parseIndex(index));
         }
         return indicesSet;
