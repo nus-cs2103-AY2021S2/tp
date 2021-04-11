@@ -13,9 +13,9 @@ import seedu.address.model.pool.Pool;
  * Finds and lists all passengers in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class TripCommand extends Command {
+public class FindPoolCommand extends Command {
 
-    public static final String COMMAND_WORD = "trip";
+    public static final String COMMAND_WORD = "findPool";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of trips where passenger's name contains "
             + "the keyword\n"
@@ -24,7 +24,7 @@ public class TripCommand extends Command {
 
     private final Predicate<Pool> predicate;
 
-    public TripCommand(Predicate<Pool> predicate) {
+    public FindPoolCommand(Predicate<Pool> predicate) {
         this.predicate = predicate;
     }
 
@@ -35,14 +35,14 @@ public class TripCommand extends Command {
 
         model.updateFilteredPoolList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TRIPS_LISTED_OVERVIEW,
+                String.format(Messages.MESSAGE_POOLS_LISTED_OVERVIEW,
                         model.getFilteredPoolList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TripCommand // instanceof handles nulls
-                && predicate.equals(((TripCommand) other).predicate)); // state check
+                || (other instanceof FindPoolCommand // instanceof handles nulls
+                && predicate.equals(((FindPoolCommand) other).predicate)); // state check
     }
 }

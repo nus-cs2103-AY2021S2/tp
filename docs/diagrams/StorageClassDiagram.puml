@@ -16,9 +16,17 @@ StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePassenger
-JsonSerializablePassenger .right.> JsonAdaptedTag
+JsonAddressBookStorage .down.> JsonSerializableAddressBook
+JsonSerializableAddressBook .right.> JsonAdaptedPassenger
+JsonSerializableAddressBook .right.> JsonAdaptedPool
+JsonAdaptedPassenger .right.> JsonAdaptedTag
+JsonAdaptedPool .right.> JsonAdaptedDriver
+
+JsonAdaptedPool -[hidden]up- JsonAdaptedPassenger
+JsonAdaptedPassenger -[hidden]down- JsonAdaptedPool
 @enduml

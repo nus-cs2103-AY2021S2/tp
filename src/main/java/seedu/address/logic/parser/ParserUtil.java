@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -15,12 +16,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_NO_ARGS = "No indexes were provided.";
 
     /**
      * Prevents ParserUtil from being instantiated.
@@ -122,8 +124,8 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String tripDay} into a {@code TripDay}.
-     * Leading and trailing whitespaces will be trimmed.
-     * and converted to uppercase for case-insensitive enum instantiation of {@code DayOfWeek}.
+     * Leading and trailing whitespaces will be trimmed and converted to uppercase for case-insensitive enum
+     * instantiation of {@code DayOfWeek}.
      * @throws ParseException if the given {@code tripDay} is invalid.
      */
     public static TripDay parseTripDay(String tripDay) throws ParseException {
@@ -181,6 +183,9 @@ public class ParserUtil {
         requireNonNull(indices);
         final Set<Index> indicesSet = new HashSet<>();
         for (String index : indices) {
+            if (index.isBlank() || !index.chars().allMatch(Character::isDigit)) {
+                throw new ParseException(MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+            }
             indicesSet.add(parseIndex(index));
         }
         return indicesSet;
@@ -202,6 +207,10 @@ public class ParserUtil {
             }
         }
 
-        return indexes;
+        if (indexes.size() > 0) {
+            return indexes;
+        } else {
+            throw new ParseException(MESSAGE_NO_ARGS);
+        }
     }
 }

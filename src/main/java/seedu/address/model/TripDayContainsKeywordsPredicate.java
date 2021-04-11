@@ -1,4 +1,4 @@
-package seedu.address.model.pool;
+package seedu.address.model;
 
 import java.util.List;
 import java.util.function.Predicate;

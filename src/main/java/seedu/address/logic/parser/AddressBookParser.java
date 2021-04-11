@@ -13,10 +13,11 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindPoolCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListPoolCommand;
 import seedu.address.logic.commands.PoolCommand;
-import seedu.address.logic.commands.TripCommand;
 import seedu.address.logic.commands.UnpoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -62,8 +63,14 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindPoolCommand.COMMAND_WORD:
+            return new FindPoolCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListPoolCommand.COMMAND_WORD:
+            return new ListPoolCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -73,9 +80,6 @@ public class AddressBookParser {
 
         case PoolCommand.COMMAND_WORD:
             return new PoolCommandParser().parse(arguments);
-
-        case TripCommand.COMMAND_WORD:
-            return new TripCommandParser().parse(arguments);
 
         case UnpoolCommand.COMMAND_WORD:
             return new UnpoolCommandParser().parse(arguments);

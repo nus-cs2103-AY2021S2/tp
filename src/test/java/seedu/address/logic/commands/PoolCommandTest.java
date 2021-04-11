@@ -1,29 +1,50 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDrivers.DRIVER_ALICE;
+import static seedu.address.testutil.TypicalDrivers.DRIVER_BOB;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
+import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPassengers;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.driver.Driver;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
+import seedu.address.model.pool.Pool;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
+import seedu.address.testutil.PoolBuilder;
 
 public class PoolCommandTest {
 
     private final Driver driver = new DriverBuilder().build();
     private final Set<Index> commuters = new CommuterBuilder().build();
-    private final TripDay tripDay = new TripDay(VALID_TRIPDAY_MONDAY);
-    private final TripTime tripTime = new TripTime(VALID_TRIPTIME_MORNING);
-    private final Set<Tag> tags = new HashSet<>();
+    private final TripDay tripDay = new TripDay(VALID_TRIPDAY_FRIDAY);
+    private final TripTime tripTimeMorning = new TripTime(VALID_TRIPTIME_MORNING);
+    private final TripTime tripTimeEvening = new TripTime(VALID_TRIPTIME_EVENING);
+    private final Set<Tag> tags = SampleDataUtil.getTagSet(VALID_TAG_IT);
+
+    private final Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
 
     @Test
     public void constructor_nullArguments_throwsNullPointerException() {
@@ -31,191 +52,82 @@ public class PoolCommandTest {
             null, null));
     }
 
-    // TODO to fix test cases
-    //    @Test
-    //    public void execute_passengerAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingPoolAdded modelStub = new ModelStubAcceptingPoolAdded();
-    //        Pool validPool = new PoolBuilder().build();
-    //
-    //        CommandResult commandResult = new PoolCommand(driver,
-    //        commuters, tripDay, tripTime, tags).execute(modelStub);
-    //
-    //        assertEquals(String.format(PoolCommand.MESSAGE_POOL_SUCCESS, validPool),
-    //        commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validPool), modelStub.poolsAdded);
-    //    }
+    @Test
+    public void execute_poolAcceptedByModel_addSuccessfulWithWarning() throws Exception {
+        Pool validPool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST)
+                .withIndex(INDEX_SECOND).withTripDay(VALID_TRIPDAY_FRIDAY).withTags(VALID_TAG_IT).build();
 
-    //    @Test
-    //    public void execute_duplicatePassenger_throwsCommandException() {
-    //        Passenger validPassenger = new PassengerBuilder().build();
-    //        AddCommand addCommand = new PoolCommand(validPassenger);
-    //        ModelStub modelStub = new ModelStubWithPassenger(validPassenger);
-    //
-    //        assertThrows(CommandException.class,
-    //                AddCommand.MESSAGE_DUPLICATE_PASSENGER, () -> addCommand.execute(modelStub)
-    //        );
-    //    }
-    //
-    //    @Test
-    //    public void equals() {
-    //        Passenger alice = new PassengerBuilder().withName("Alice").build();
-    //        Passenger bob = new PassengerBuilder().withName("Bob").build();
-    //        AddCommand addAliceCommand = new PoolCommand(alice);
-    //        AddCommand addBobCommand = new PoolCommand(bob);
-    //
-    //        // same object -> returns true
-    //        assertTrue(addAliceCommand.equals(addAliceCommand));
-    //
-    //        // same values -> returns true
-    //        AddCommand addAliceCommandCopy = new PoolCommand(alice);
-    //        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-    //
-    //        // different types -> returns false
-    //        assertFalse(addAliceCommand.equals(1));
-    //
-    //        // null -> returns false
-    //        assertFalse(addAliceCommand.equals(null));
-    //
-    //        // different passenger -> returns false
-    //        assertFalse(addAliceCommand.equals(addBobCommand));
-    //    }
-    //
-    //    /**
-    //     * A default model stub that have all of the methods failing.
-    //     */
-    //    private class ModelStub implements Model {
-    //        @Override
-    //        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public ReadOnlyUserPrefs getUserPrefs() {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public GuiSettings getGuiSettings() {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void setGuiSettings(GuiSettings guiSettings) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public Path getAddressBookFilePath() {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void setAddressBookFilePath(Path addressBookFilePath) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void addPassenger(Passenger passenger) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void addPool(Pool pool) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void setAddressBook(ReadOnlyAddressBook newData) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public ReadOnlyAddressBook getAddressBook() {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public boolean hasPassenger(Passenger passenger) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public boolean hasPool(Pool pool) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void deletePassenger(Passenger passenger) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void deletePool(Pool pool) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public void setPassenger(Passenger target, Passenger editedPassenger) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //        public ObservableList<Passenger> getFilteredPassengerList() {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //
-    //        @Override
-    //
-    //        public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
-    //            throw new AssertionError("This method should not be called.");
-    //        }
-    //    }
-    //
-    //    /**
-    //     * A Model stub that contains a single pool.
-    //     */
-    //    private class ModelStubWithPool extends ModelStub {
-    //        private final Pool pool;
-    //
-    //        ModelStubWithPool(Pool pool) {
-    //            requireNonNull(pool);
-    //            this.pool = pool;
-    //        }
-    //
-    //        @Override
-    //        public boolean hasPool(Pool pool) {
-    //            requireNonNull(pool);
-    //            return this.pool.isSamePool(pool);
-    //        }
-    //    }
-    //
-    //    /**
-    //     * A Model stub that always accept the passenger being added.
-    //     */
-    //    private class ModelStubAcceptingPoolAdded extends ModelStub {
-    //        private final ArrayList<Pool> poolsAdded = new ArrayList<>();
-    //
-    //        @Override
-    //        public boolean hasPool(Pool pool) {
-    //            requireNonNull(pool);
-    //            return poolsAdded.stream().anyMatch(pool::isSamePool);
-    //        }
-    //
-    //        @Override
-    //        public void addPool(Pool pool) {
-    //            requireNonNull(pool);
-    //            poolsAdded.add(pool);
-    //        }
-    //
-    //        @Override
-    //        public ReadOnlyAddressBook getAddressBook() {
-    //            return new AddressBook();
-    //        }
-    //
-    //        @Override
-    //        public ObservableList<Passenger> getFilteredPassengerList() {
-    //            return poolsAdded;
-    //        }
-    //    }
+        CommandResult commandResult = new PoolCommand(driver, commuters, tripDay, tripTimeMorning, tags).execute(model);
 
+        String driverName = validPool.getDriverAsStr();
+        String passengerNames = validPool.getPassengerNames();
+
+        assertEquals(String.format(PoolCommand.MESSAGE_POOL_SUCCESS_WITH_WARNING, driverName, passengerNames),
+                commandResult.getFeedbackToUser());
+        assertTrue(model.hasPool(validPool));
+    }
+
+    @Test
+    public void execute_poolAcceptedByModel_addSuccessfulNoWarning() throws Exception {
+        Pool validPool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST)
+                .withIndex(INDEX_SECOND).withTripDay(VALID_TRIPDAY_FRIDAY)
+                .withTripTime(VALID_TRIPTIME_EVENING).withTags(VALID_TAG_IT).build();
+
+        CommandResult commandResult = new PoolCommand(driver, commuters, tripDay, tripTimeEvening, tags).execute(model);
+
+        String driverName = validPool.getDriverAsStr();
+        String passengerNames = validPool.getPassengerNames();
+
+        assertEquals(String.format(PoolCommand.MESSAGE_POOL_SUCCESS, driverName, passengerNames),
+                commandResult.getFeedbackToUser());
+        assertTrue(model.hasPool(validPool));
+    }
+
+    @Test
+    public void execute_duplicatePool_throwsCommandException() {
+        Pool duplicatePool = new PoolBuilder().withModel(model).withIndex(INDEX_THIRD)
+                .withTags(VALID_TAG_IT).withTripTime(VALID_TRIPTIME_EVENING)
+                .withTripDay(VALID_TRIPDAY_FRIDAY).build();
+
+        model.addPool(duplicatePool);
+
+        PoolCommand poolCommand = new PoolCommand(driver, commuters, tripDay, tripTimeEvening, tags);
+
+        assertThrows(CommandException.class,
+                PoolCommand.MESSAGE_DUPLICATE_POOL, () -> poolCommand.execute(model)
+        );
+    }
+
+    @Test
+    public void execute_tripdayMismatch_throwsCommandException() {
+        final TripDay mismatchedTripDay = new TripDay(VALID_TRIPDAY_MONDAY);
+
+        PoolCommand poolCommand = new PoolCommand(driver, commuters, mismatchedTripDay, tripTimeEvening, tags);
+        assertThrows(CommandException.class,
+                PoolCommand.MESSAGE_TRIPDAY_MISMATCH, () -> poolCommand.execute(model)
+        );
+    }
+
+    @Test
+    public void equals() {
+        PoolCommand poolAliceDrivingCommand = new PoolCommand(DRIVER_ALICE, commuters, tripDay, tripTimeEvening, tags);
+        PoolCommand poolBobDrivingCommand = new PoolCommand(DRIVER_BOB, commuters, tripDay, tripTimeEvening, tags);
+
+        // same object -> returns true
+        assertTrue(poolAliceDrivingCommand.equals(poolAliceDrivingCommand));
+
+        // same values -> returns true
+        PoolCommand poolAliceDrivingCommandCopy = new PoolCommand(DRIVER_ALICE, commuters, tripDay, tripTimeEvening,
+                tags);
+        assertTrue(poolAliceDrivingCommand.equals(poolAliceDrivingCommandCopy));
+
+        // different types -> returns false
+        assertFalse(poolAliceDrivingCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(poolAliceDrivingCommand.equals(null));
+
+        // different passenger -> returns false
+        assertFalse(poolAliceDrivingCommand.equals(poolBobDrivingCommand));
+    }
 }

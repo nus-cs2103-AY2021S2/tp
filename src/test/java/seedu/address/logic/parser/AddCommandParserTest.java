@@ -24,8 +24,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -36,12 +36,12 @@ import static seedu.address.testutil.TypicalPassengers.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PassengerBuilder;
 
@@ -51,9 +51,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Passenger expectedPassenger = new PassengerBuilder(BOB)
-                .withTags(VALID_TAG_FRIEND).withPrice(VALID_PRICE_BOB).build();
-
-        //todo edit PRICE_DESC_BOB here if needed
+                .withTags(VALID_TAG_IT).withPrice(VALID_PRICE_BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
@@ -77,7 +75,7 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Passenger expectedPassengerMultipleTags = new PassengerBuilder(BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_GOLF).withPrice(VALID_PRICE_BOB).build();
+                .withTags(VALID_TAG_IT, VALID_TAG_HR).withPrice(VALID_PRICE_BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
                 + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
                 + TAG_DESC_GOLF + TAG_DESC_FRIEND, new AddCommand(expectedPassengerMultipleTags));
@@ -95,8 +93,6 @@ public class AddCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-
-        //todo edit PRICE_DESC_BOB here if needed
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
@@ -130,8 +126,6 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
 
-        //todo edit PRICE_DESC_BOB here if needed
-
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
                 + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
@@ -160,7 +154,7 @@ public class AddCommandParserTest {
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY
                 + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_IT, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported (Name)
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_ADDRESS_DESC

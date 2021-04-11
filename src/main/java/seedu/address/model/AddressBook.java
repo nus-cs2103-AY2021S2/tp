@@ -56,8 +56,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the pool list with {@code pool}.
      * {@code pool} must not contain duplicate pool.
      */
-    public void setPools(List<Pool> pool) {
-        this.pools.setPools(pool);
+    public void setPools(List<Pool> pools) {
+        this.pools.setPools(pools);
     }
 
     /**
@@ -78,6 +78,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPassenger(Passenger passenger) {
         requireNonNull(passenger);
         return passengers.contains(passenger);
+    }
+
+    /**
+     * Returns true if a passenger equal to {@code passenger} exists in the address book.
+     */
+    public boolean hasEqualPassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        return passengers.containsEqual(passenger);
     }
 
     /**
@@ -104,14 +112,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
-     * @return true if {@code key} has been removed, false if a {@code Pool} references {@code key}.
      */
-    public boolean removePassenger(Passenger key) {
-        if (pools.containsPassenger(key)) {
-            return false;
-        }
+    public void removePassenger(Passenger key) {
         passengers.remove(key);
-        return true;
     }
 
 
@@ -123,6 +126,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPool(Pool pool) {
         requireNonNull(pool);
         return pools.contains(pool);
+    }
+
+    /**
+     * Returns true if a pool that contains the given {@code passenger} exists in the address book.
+     */
+    public boolean hasPoolWithPassenger(Passenger passenger) {
+        return pools.containsPassenger(passenger);
     }
 
     /**
@@ -182,7 +192,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        //TODO might need to change if got collisions
         return Objects.hash(passengers, pools);
     }
 }

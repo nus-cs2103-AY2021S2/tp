@@ -14,11 +14,11 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 public class PoolCommandParser implements Parser<PoolCommand> {
@@ -43,7 +43,6 @@ public class PoolCommandParser implements Parser<PoolCommand> {
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        // TODO perhaps could refactor diver creation to a parser util else delete this todo
         Driver driver = new Driver(name, phone);
 
         return new PoolCommand(driver, commuterSet, tripDay, tripTime, tagList);

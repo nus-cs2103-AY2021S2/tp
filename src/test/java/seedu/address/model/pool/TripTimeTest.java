@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.TripTime;
+
 public class TripTimeTest {
     @Test
     public void constructor_null_throwsNullPointerException() {

@@ -3,26 +3,25 @@ layout: page
 title: User Guide
 ---
 
-GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
-
+GreenMileageEfforts (GME) is a platform that helps the HR executive of any company quickly arrange carpooling among its employees in order to lower the carbon footprint of the company.
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Introduction
+# 1. Introduction
 
-### 1.1 About Green Mileage Efforts
-Green Mileage Efforts(GME) is a holistic carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of groups of employees looking to carpool to and from their office. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
+## 1.1 About Green Mileage Efforts
+Green Mileage Efforts(GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
 
-GME is a platform that follows a Command-Line Interface (CLI) such that power users that are familiar can efficiently navigate the program.
+GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that power users that are familiar can efficiently navigate the program.
 
-### 1.2 Navigating the User Guide
-For help regarding the set up of GME, refer to the [“Quick Start"](#quickstart) section.
+## 1.2 Navigating the User Guide
+For help regarding the set up of GME, refer to the [“Quick Start"](#2-quick-start-) section.
 
-For a full list and more information about GME's features and commands, use the [“Features”](#features) section.
+For a full list and more information about GME's features and commands, use the [“Features”](#3-features-) section.
 
-For a quick overview of GME’s commands, refer to the [“Command Summary”](#summary) section.
+For a quick overview of GME’s commands, refer to the [“Command Summary”](#5-command-summary-) section.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -35,18 +34,24 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Quick start <a name = "quickstart"></a>
+# 2. Quick start <a name = "quickstart"></a>
 
-1. Ensure you have java 11 or above installed in your computer
-2. Download the latest `GreenMileageEfforts.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
-3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
-4. Double click the file to start the app.
-5. Type the command in the command box and press `Enter` to execute it
-6. Refer to the [Features](#features) below for the details on each command.
+1. Ensure you have Java 11 or above installed in your computer.
+2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
+3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
+4. Double click the file to start the aplication.
+5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
+   * `list`: Lists all [passengers](#6-glossary) currently stored in the GME system.
+   * `pool n/Doctor Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Dr. Iver as the driver.
+   * `listPool`: Lists all [pools](#6-glossary) currently stored in the GME system.
+   * `unpool 2`: Removes the pool at index 2.
+   * `exit`: closes the GME application.
+
+6. Refer to the [Features](#3-features-) below for the details on each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features <a name = "features"></a>
+# 3. Features <a name = "features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -56,10 +61,10 @@ Please note the following symbols used in the User Guide which may serve as poin
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
+  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/finance` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -72,45 +77,91 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 </div>
 
-### 3.1 Viewing help : `help`
+## 3.1 General Purpose Features
 
-Shows a message explaning how to access the help page.
+## 3.1.1 User Interface
+
+The various sections of the User Interface are described as in the picture below.
+![Ui_labelled](images/Ui_labelled.png)
+
+### 3.1.1 Viewing help : `help`
+
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+**Format:** `help`
 
+### 3.1.2 Clearing all entries : `clear`
 
-### 3.2 Add passengers: `add`
+Clears all entries from the passenger list and pool list.
+
+**Format:** `clear`
+
+### 3.1.3 Exiting the program : `exit`
+
+Exits the program.
+
+**Format:** `exit`
+
+### 3.1.4 Saving the data
+
+GME data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### 3.1.5 Editing the data file
+
+GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: GME will replace the JSON file with a new one if it cannot read the file**<br> 
+* Make a backup before any changes
+* Edit at your own risk
+
+</div>
+
+## 3.2 Passenger Features
+
+### 3.2.1 Adding passengers: `add`
 
 Adds a new passenger in the GME terminal.
 
-Format: `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [tag/TAG]`
+**Format:** `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [pr/PRICE] [tag/TAG tag/TAG ...]`
 
-* Day is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
-* Time is required to be in the 24-hour format. e.g. `0530` or `2359` 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the add command:**<br>
+* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
+* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
+* [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
+* [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It is required to be a positive whole number or a positive decimal number rounded to 2 decimal places.
+* The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
+* As the current iteration of GME(`v1.4`) is only a minimum viable product, each passenger can only specify one day and time a week for their carpooling time.
+</div>
 
 **Examples:**
 * `add n/Ben Dover p/91234567 a/Geylang d/FRIDAY t/1800`
 * `add n/Jenny Talia p/98765432 a/Yishun Avenue 4 d/SATURDAY t/0830 tag/female`
+* `add n/Jane Wong p/97654321 a/Create Way d/MONDAY t/1200 tag/female tag/finance tag/management`
 
-### 3.3 Listing all passengers : `list`
+### 3.2.2 Listing all passengers : `list`
 
 Lists the passengers currently stored in the GME terminal.
 
-Format: `list`
+**Format:** `list`
 
-### 3.4 Editing a person : `edit`
+### 3.2.3 Editing a person : `edit`
 
 Edits an existing person in the GME terminal.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…​`
+**Format:** `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]​`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the edit command:**<br>
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -119,37 +170,41 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…
 </div>
 
 **Examples:**
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567` respectively.
 * `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### 3.5 Locating passengers by name: `find`
+### 3.2.4 Locating passengers by prefixes: `find`
 
 Finds passengers whose names contain any of the given keywords.
 
-Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`
+**Format:** `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`, `pr`, `all`, `d`, `t`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the find command:**<br>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Only **one type of prefix** can be specified
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Only **one type of prefix** can be specified.
+* More than 1 keyword can be specified for a single prefix.
 * Keywords separated by space will require both keywords to be matched.
-  e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
-* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`
+  e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`.
+* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
+* `all` prefix for searching across names, addresses, tags and phone numbers quickly.
 </div>
 
 **Examples:**
-* `find n/John` returns `john` and `John Doe`
-* `find a/serangoon` returns `Bernice Yu`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`.
+* `find a/serangoon` returns `Bernice Yu`, `David Li`.<br>
   ![result for 'find serangoon'](images/findAddress.png)
+* `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`.
+  ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
 
-### 3.6 Delete passengers: `delete`
+### 3.2.5 Deleting passengers: `delete`
 
 Deletes the specific passenger from the GME terminal.
 
-Format: `delete INDEX [INDEX]`
+**Format:** <code>delete INDEX [<a title="These extra parameters are optional.">INDEX INDEX...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -165,24 +220,29 @@ Format: `delete INDEX [INDEX]`
 
 **Examples:**
 * `list` followed by `delete 3` deletes the *3rd* person in the passenger list.
-* `delete 1 2 5` deletes the 1st, 2nd and 4th person in the passenger list. 
+* `delete 1 2 5` deletes the 1st, 2nd and 5th person in the passenger list. 
 
 
-### 3.7 Select passengers to arrange a carpool: `pool`
+## 3.3 Pool features
 
-Selects passengers from the current view in the GME terminal to arrange a carpool.
+### 3.3.1 Selecting passengers to arrange a carpool: `pool`
 
-Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX...] [tag/TAG]`
+Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
+
+**Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These extra parameters are optional.">c/INDEX c/INDEX ...</a>] [tag/TAG]</code>
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the pool command:**<br>
 
+* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
+* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359`.
+* Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The order of the passengers' index does not matter
-* You must select at least 1 person to pool with one command
+* The index refers to the index number shown in the displayed passenger list.
+* The index **must be a positive integer** 1, 2, 3, …​.
+* The order of the passengers' index does not matter.
+* You must select at least 1 person to pool with one command.
 </div>
 
 **Examples**:
@@ -190,96 +250,86 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX
   results of `find tag/female` command, and assigns *Alice* with number *91234567* to be the driver of the passengers specified by the indices.
 
 
-### 3.8 Remove pools: `unpool`
+### 3.3.2 Removing pools: `unpool`
 
-Removes the pool specified by an index from the GME terminal.
+Removes the [pool](#6-glossary) specified by an index from the GME terminal.
 
-Format: `unpool INDEX`
+**Format:** `unpool INDEX`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the unpool command:**<br>
 
-* Removes the pool at the specified `INDEX`.
-* The index refers to the index number shown in the current displayed pool list.
+* Removes the [pool](#6-glossary) at the specified `INDEX`.
+* The index refers to the index number shown in the current displayed [pool](#6-glossary) list.
 * The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
 **Examples:**
-* `findPool n/Aileen` followed by `delete 3` deletes the *3rd* person in the results of `findPool n/Aileen` command.
+* `findPool n/Aileen` followed by `unpool 3` removes the *3rd* pool listed in the results of `findPool n/Aileen` command.
 
-### 3.9 Filtering pools: `findPool`
+### 3.3.3 Filtering pools: `findPool`
 
 Filtering pools where the name of the pool's passengers contain any of the given keywords.
 
-Format: `findPool n/KEYWORD [n/KEYWORD c/KEYWORD...]`
+**Format:** <code>findPool n/KEYWORD [<a title="These extra parameters are optional.">n/KEYWORD n/KEYWORD ...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the findPool command:**<br>
 
-* The search is case-insensitive. e.g `alex` will match `Alex`
-* Only full words will be matched e.g. `alex` will not match `Alexis`
+* The search is case-insensitive. e.g `alex` will match `Alex`.
+* Only full words will be matched e.g. `alex` will not match `Alexis`.
 </div>
 
 **Examples:**
 * `findPool n/alex` returns `Alex`
 ![result for `findPool n/Alex`](images/findPoolAlexResult.png)
 
-### 3.10 Clearing all entries : `clear`
+### 3.3.4 Listing all passengers : `listPool`
 
-Clears all entries from the passenger list.
+Lists the pools currently stored in the GME terminal.
 
-Format: `clear`
-
-### 3.11 Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### 3.12 Saving the data
-
-GME data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### 3.13 Editing the data file
-
-GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="block" class="alert-warning">
-
-**:warning: GME will replace the JSON file with a new one if it cannot read the file, do make a backup and edit at your own risk.**
-
-</div>
+**Format:** `listPool`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ <a name = "faq"></a>
+# 4. FAQ <a name = "faq"></a>
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
+**A:** The json file containing the data stored is named `GMEdata.json` and can be found in the `data` folder in the same directory where `GreenMileageEfforts.jar` file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary <a name = "summary"></a>
+# 5. Command summary <a name = "summary"></a>
 
 Action | Format, Examples
 --------|------------------
-**add** | `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [tag/TAG]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
-**list** | `list`
-**edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
-**delete** | `delete INDEX`<br> e.g.,`delete 3`
-**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
+**help** | `help`
+**add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
+**list** | `list` 
+**edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
+**delete** | `delete INDEX [INDEX INDEX...]`<br> e.g.`delete 1 3`
+**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...]`<br> e.g., `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`
 **unpool** | `unpool INDEX`<br> e.g, `unpool 3`
-**find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
+**listpool** | `listPool`
+**find** | `find a/ADDRESS [a/ADDRESS a/ADDRESS ...]` or `find n/NAME [n/NAME n/NAME ...]` or `find p/PHONE NUMBER [p/PHONE NUMBER p/PHONE NUMBER ...]` or `find tag/TAG [tag/TAG tag/TAG ...]` or `find all/KEYWORD [all/KEYWORD all/KEYWORD ...]` or `find d/DAY [d/DAY d/DAY ...]` or `find t/TIME [t/TIME t/TIME ...]` <br> e.g., `find tag/female`
+**findPool** | `findPool n/PASSENGER_NAME` <br> eg., `findpool n/Alex`
+**clear** | `clear`
+**exit** | `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Glossary
+# 6. Glossary
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger.
-Passenger | An employee carpooling with at least one driver.
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver.
+TripDay | Day of the intended carpooling trip.
+TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
+Price | The amount of money a passenger is willing to pay for the carpooling trip.
+Alphanumeric | A combination of letters and numbers only.
+Home Folder | The folder where the app's data will be stored
+Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist.

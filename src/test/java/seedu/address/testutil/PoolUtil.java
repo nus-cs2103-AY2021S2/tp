@@ -9,9 +9,9 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PoolCommand;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.driver.Driver;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,7 +35,7 @@ public class PoolUtil {
             sb.append(PREFIX_COMMUTER + String.valueOf(idx.getOneBased()) + " ");
         }
 
-        tags.stream().forEach(
+        tags.forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
 

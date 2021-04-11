@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":PoolCommandParser" as PoolCommandParser LOGIC_COLOR
+participant "p:PoolCommand" as PoolCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "toAdd:Pool" as Pool MODEL_COLOR
+end box
+
+[-> LogicManager : execute(command)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(command)
+activate AddressBookParser
+
+create PoolCommandParser
+AddressBookParser -> PoolCommandParser
+activate PoolCommandParser
+
+PoolCommandParser --> AddressBookParser
+deactivate PoolCommandParser
+
+AddressBookParser -> PoolCommandParser : parse("n/Alice p/91234567 d/monday t/1930 c/2 c/3")
+activate PoolCommandParser
+
+create PoolCommand
+PoolCommandParser -> PoolCommand
+activate PoolCommand
+
+PoolCommand --> PoolCommandParser : p
+deactivate PoolCommand
+
+PoolCommandParser --> AddressBookParser : p
+deactivate PoolCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PoolCommandParser -[hidden]-> AddressBookParser
+destroy PoolCommandParser
+
+AddressBookParser --> LogicManager : p
+deactivate AddressBookParser
+
+LogicManager -> PoolCommand : execute(model)
+activate PoolCommand
+
+PoolCommand -> PoolCommand : getPassengersFromIndexes()
+activate PoolCommand
+
+PoolCommand -> Model : getFilteredPassengerList()
+activate Model
+
+Model --> PoolCommand : lastShownList
+deactivate Model
+deactivate PoolCommand
+
+create Pool
+PoolCommand -> Pool
+activate Pool
+Pool --> PoolCommand : toAdd
+deactivate Pool
+
+PoolCommand -> Model : addPool(toAdd)
+activate Model
+Model --> PoolCommand
+deactivate Model
+
+PoolCommand -> Model : updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS)
+activate Model
+Model --> PoolCommand
+deactivate Model
+
+create CommandResult
+PoolCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PoolCommand
+deactivate CommandResult
+
+PoolCommand --> LogicManager : result
+deactivate PoolCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

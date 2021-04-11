@@ -10,6 +10,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringJoiner;
 
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.tag.Tag;
@@ -137,8 +139,8 @@ public class Pool {
     }
 
     /**
-     * Returns true if both passengers have the same identity and data fields.
-     * This defines a stronger notion of equality between two passengers.
+     * Returns true if both pools have the same identity and data fields.
+     * This defines a stronger notion of equality between two pools.
      */
     @Override
     public boolean equals(Object other) {

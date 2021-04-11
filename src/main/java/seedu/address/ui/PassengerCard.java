@@ -18,8 +18,9 @@ import seedu.address.model.person.passenger.Passenger;
 public class PassengerCard extends UiPart<Region> {
 
     private static final String FXML = "PassengerListCard.fxml";
-    private static final String ICON_PATH_PHONE = "/images/phone.png";
     private static final String ICON_PATH_ADDRESS = "/images/address.png";
+    private static final String ICON_PATH_PHONE = "/images/phone.png";
+    private static final String ICON_PATH_PRICE = "/images/price.png";
     private static final String ICON_PATH_TIME = "/images/time.png";
 
     /**
@@ -61,6 +62,11 @@ public class PassengerCard extends UiPart<Region> {
         cardFields.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
+        passenger.getPrice()
+                .filter(price -> price.value != 0)
+                .ifPresent(
+                    presentPrice ->
+                            cardFields.add(new LabelWithIcon(ICON_PATH_PRICE, presentPrice.toString()).getRoot()));
         cardFieldContainer.getChildren().addAll(cardFields);
     }
 
