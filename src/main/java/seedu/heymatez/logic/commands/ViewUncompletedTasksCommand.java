@@ -13,7 +13,7 @@ public class ViewUncompletedTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "viewUncompletedTasks";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Uncompleted Tasks";
+    public static final String MESSAGE_SUCCESS = "Listed all Uncompleted Tasks.";
 
     public static final String MESSAGE_NO_UNCOMPLETED_TASKS = "There are no uncompleted tasks found!";
 

@@ -29,7 +29,7 @@ public class AddMemberCommand extends Command {
             + PREFIX_ROLE + "Vice president";
 
     public static final String MESSAGE_SUCCESS = "New Member Added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in HeyMatez";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in HeyMatez!";
 
     private final Person toAdd;
 

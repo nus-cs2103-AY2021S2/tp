@@ -37,7 +37,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same title already exists in the HeyMatez "
-            + "task board! Pick another title!";
+            + "task board! Pick another Task title.";
 
     private final Task toAddTask;
 

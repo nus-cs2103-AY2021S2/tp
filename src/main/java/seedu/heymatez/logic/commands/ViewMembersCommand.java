@@ -14,7 +14,7 @@ public class ViewMembersCommand extends Command {
 
     public static final String COMMAND_WORD = "viewMembers";
 
-    public static final String MESSAGE_SUCCESS = "Listed all members in this CCA!";
+    public static final String MESSAGE_SUCCESS = "Listed all members in this Club.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
