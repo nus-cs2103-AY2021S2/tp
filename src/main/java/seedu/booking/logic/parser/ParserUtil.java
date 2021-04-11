@@ -142,10 +142,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String userInput} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code userInput} is invalid.
      */
-    public static Description parseBookingDescription(String userInput) throws ParseException {
+    public static Description parseBookingDescription(String userInput) {
         requireNonNull(userInput);
         String trimmedDescription = userInput.trim();
         if (trimmedDescription.isEmpty()) {
@@ -157,9 +155,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String description} into a {@code String description}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
-    public static String parseDescription(String description) throws ParseException {
+    public static String parseDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (trimmedDescription.isEmpty()) {
@@ -171,11 +168,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String descKeywords} into a {@code VenueDescContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code descKeywords} is invalid.
      */
-    public static VenueDescContainsKeywordsPredicate parseVenueDescContainsKeywordsPredicate(String descKeywords)
-            throws ParseException {
+    public static VenueDescContainsKeywordsPredicate parseVenueDescContainsKeywordsPredicate(String descKeywords) {
         requireNonNull(descKeywords);
         String trimmedDescKeywords = descKeywords.trim();
         if (trimmedDescKeywords.isEmpty()) {
