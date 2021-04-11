@@ -1077,6 +1077,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: Add a new important date**
+
+**MSS**
+
+1.  User keys in the important date to be added.
+2.  TutorsPet adds the important date and indicates success.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given description or details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. There exists an important date in TutorsPet with the same description.
+  
+  * 1b1. TutorsPet shows an error message.
+  
+    Use case ends.
+
+**Use case: Deletes a new important date**
+
+**MSS**
+
+1.  User requests to list important dates.
+2.  TutorsPet shows a list of important dates.
+3.  User requests to delete a specific important date from the list.
+4.  TutorsPet deletes the important date.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+  
+    Use case ends.
+
+* 3a. The given index of the important date is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
+**Use case: Lists important dates**
+
+**MSS**
+
+1.  User requests to list important dates.
+2.  TutorsPet shows a list of important dates.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is in an invalid format.
+  
+  * 1a1. TutorsPet shows an error message.
+  
+    Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
