@@ -400,7 +400,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: Requirements**
 
 ### Product scope
 
@@ -1232,7 +1232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     * The response to any command should be shown _within 1 second_.
 * Constraints:
     * CoLAB should be _backward compatible_ with data files produced by earlier versions as much as possible. If one release is not compatible with earlier versions, a migration guide should be provided.
-    * CoLAB must be open source under [the MIT License](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
+    * CoLAB must be open source under the [MIT License](https://raw.githubusercontent.com/AY2021S2-CS2103T-T11-2/tp/master/LICENSE).
 * Quality requirements:
     * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
     * A user familiar with CLI tools should find CoLAB commands very intuitive.
@@ -1249,7 +1249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -1312,3 +1312,53 @@ testers are expected to do more *exploratory* testing.
 
     1. Launch the app by runing `java -jar CoLAB.jar` in the console.<br>
        Expected: The GUI should pop up with no entry. The console output should give warnings about incorrect data file format.
+
+## **Appendix C: Effort**
+
+If the effort required to create **AB3** is 100, we would place the effort required to implement the current version of **CoLAB** at 200.
+
+Each of us have put in a significant amount of effort to get CoLAB to the current state. As evidence, we currently have over 20,000 lines of code [contributed](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103T-T11-2%2Ftp&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19) and over 500 automated tests. Below, we list some notable changes that required a significant amount of effort.
+
+### Notable Changes
+
+1. **Adding projects model**
+
+    In order to support projects, our team had to add a projects model. While some sections of the code could be adapted from AB3's Person model, the majority had to be redesigned. 
+    
+    Firstly, we had to create a new model for `Event`, `Deadline`, `Todo` and `Groupmate`. Each of these models exposes their functionality via an interface.
+    
+    Secondly, we had to create the projects model itself. This required the creation of the `EventList`, `DeadlineList`, `TodoList` and `GroupmateList` classes. These classes had their own challenges, as we had to maintain each of these lists in sorted order.
+    
+    Lastly, we had to integrate all these models with the existing code to save persons to a data file in AB3. This required the creation of many classes and major refactoring of existing classes to support multiple models.
+
+2. **Redesigned GUI** 
+
+    Compared to AB3, CoLAB has more than double the number of UI components. Each of these components had to be painstakingly designed and styled.
+    
+    In addition, in line with our focus on user experience, we had to design a new `UiCommand` class to allow each command to display their own combination of UI components.
+    
+    We also had to implement a combination of listeners to ensure CoLAB's UI is also navigable using a mouse. This involved a complex combination of event listeners to ensure that the behaviour of each button is consistent with the corresponding command, and the correct buttons or list cells are highlighted in the side panel.
+    
+    Each of the Ui components are also responsive and work on a large range of screen sizes. To handle edge cases, we had to find a way to allow horizontal scrolling of each component individually without affecting the ability to scroll the entire window vertically.
+
+3. **Automated GUI Testing**
+
+    We implemented automated GUI testing using the TestFX library. Although we were able to reference AB4's codebase, we still had to spend many hours integrating it with our project because,
+        - Libraries in AB4 were outdated and had to be upgraded to the newest versions.
+        - As AB4 did not use github actions, we had to spend time to make sure automated GUI tests ran properly with github actions.
+        - Since our GUI and Model were so different compared to AB4, we had to spend countless hours adapting AB4's code for our project. We also had to write our own GUI tests, which took up a lot more effort than expected.
+
+4. **CRUD operations**
+
+    We had to implement create, read, update, and delete (CRUD) operations for each of the new models we created. This was not as simple due to the complexity and size of our models. For example, we had to ensure that the operations were executed on the correct task as the index shown to the user may not be the same as the index in the list (as the list displayed to the user is sorted). We also had to ensure that the many lists were all updated correctly and kept in sync with each other.
+
+5. **Undo/Redo**
+
+    We implemented the `Undo/Redo` feature in CoLAB. Unlike other similar projects where the `Undo/Redo` command simply reverts the data to the previous state, we wanted our Undo/Redo command to keep track of the state of the UI when a command is executed. This meant that we could not take reference from existing projects and had to design our own implementation of the `Undo/Redo` command.
+
+    In addition, since many of our commands did not change any data, we had to design a way to save only selected commands.
+
+6. **Command History**
+
+    Keeping in mind that CoLAB is a CLI based application, we implemented the Command History feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition our solution had to take into account the current command the user was typing in order to better mimic a real command line. 
+   
