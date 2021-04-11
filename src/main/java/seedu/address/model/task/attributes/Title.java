@@ -3,6 +3,8 @@ package seedu.address.model.task.attributes;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.conditions.ConstraintManager;
+
 /**
  * Represents a Task's title in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
@@ -12,7 +14,7 @@ public class Title implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should only contain alphanumeric characters and spaces (not line breaks)"
-                    + ", and it should not be blank. Leading and trailing whitespace/line breaks are trimmed.";
+                    + ", and it should not be blank.";
 
     /*
      * The first character of the title must not be a whitespace,
@@ -37,7 +39,7 @@ public class Title implements Attribute {
      * Returns true if a given string is a valid title.
      */
     public static boolean isValidTitle(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= ConstraintManager.MAX_TITLE_LENGTH;
     }
 
     public boolean isEmptyValue() {

@@ -208,42 +208,40 @@ Below is an activity diagram of the above 3 methods which illustrates the genera
 Below is also an example of the default method of find by title general process description followed by the sequence diagram illustration.
 
 ##### Find by title
-1. After the `find` command is entered by the user, the input argument is passed to `LogicManager`.
-2. The same argument will then be parsed into `PlannerParser`.
-2. `FindCommandParser` will be generated when the command word `find` is detected by the `PlannerParser`.
-3. `FindCommandParser` will then parses the keywords to `TitleContainsKeywordsPredicate`.
-4. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
-5. `FindCommandParser` will send the predicate value to `FindCommand`.
-6. `FindCommand` will be generated and returns the command to the `LogicManager`.
-7. `FindCommand` will call `execute(model)` function and it will pass predicate value into the `Model` through `updateFilteredTaskList`.
-8. `filteredTasks` list will be updated accordingly in `ModelManager` and the filtered list display in PlanIT will be updated.
-9. `CommandResult` will eventually be returned to the `LogicManager` and feedback will be given to the user.
+1. `FindCommandParser` will parses the keywords to `TitleContainsKeywordsPredicate`.
+2. `TitleContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
+3. `FindCommandParser` will send the predicate value to `FindCommand`.
+4. `FindCommand` will be generated and returns the command to the `FindCommandParser`.
+5. `FindCommand` will call `execute(model)` function and it will pass predicate value into the `Model` through `updateFilteredTaskList`.
+6. `filteredTasks` list will be updated accordingly in `ModelManager` and the filtered list display in PlanIT will be updated.
+7. `CommandResult` will eventually be returned and feedback will be given to the user.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description,
 the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and
 DescriptionContainsKeywordsPredicate 
 respectively in place of TitleContainsKeywordsPredicate </div>
 
-<img src="images/FindSequenceDiagram.png" width="1800" />
+![FindSequenceDiagram](images/FindByTitleSequenceDiagram.png)
 
 ##### Design Considerations
 For the `find` command, there are 2 design choices being considered in whether to split the 3 implementation methods
-like `findTag`,
-`findTitle`, `findDescription`  into three different commands separately 
+like `findTag`, `findTitle`, `findDescription`  into three different commands separately 
 or just use a single command `find` in addition with command line prefix to perform 3 different implementations. 
 
 1. **Current design**: Having a single command `find` to perform 3 different implementations.
 
     - Advantages:
         - From the user point of view, they do not have to remember extra commands since there are a lot of commands
-          within PlanIT
-          and it is quite intuitive to remember the command line prefix like `t/` `d/`since these prefix will be used for most commands in the PlanIT.
-        - The problem of duplicate codes will be minimised since the general process from LogicManager -> PlannerParser 
-          -> FindCommandParser -> FindCommand to Model and CommandResult are similar for the 3 different methods. The place where they differ
-          is only from FindCommand Parser to TitleContainsKeyWordsPredicate, DescriptionContainsKeywordsPredicate and TagContainsKeywordsPredicate.
-
+          within PlanIT and it is quite intuitive to remember the command line prefix like `t/` `d/`
+          since these prefix will be used for most commands in the PlanIT.
+        - The problem of duplicate codes will be minimised since the general process from FindCommandParser -> 
+          FindCommand to Model and CommandResult are similar for the 3 different methods. The place where they differ
+          is only from FindCommandParser to TitleContainsKeyWordsPredicate, FindCommandParser 
+          to DescriptionContainsKeywordsPredicate and FindCommandParser to TagContainsKeywordsPredicate respectively.
+          
     - Disadvantages:
         - The code will be cluttered in a FindCommandParser for the 3 different implementation methods.
+
 
 2. **Alternative design**: Having 3 different commands `findTag`, `findTitle`, `findDescription`
    to perform 3 different implementations.
@@ -254,8 +252,59 @@ or just use a single command `find` in addition with command line prefix to perf
     - Disadvantages:
         - There is a need to use 3 parser and 3 commands in code implementation which increase the likelihood of code
           duplication.
-        - Since there are more commands for the user to remember, it is highly likely for the user to keep referring to the user guide 
-          if the user keeps forgetting the various commands.
+        - Since there are more commands for the user to remember, it is highly likely for the user to
+          keep referring to the user guide if the user keeps forgetting the various commands.
+
+![SortSequenceDiagram](images/SortByDateSequenceDiagram.png)
+
+#### 4. Sorting tasks
+
+The `Sort` command applies to tasks in List. Both `sort by a` and the `sort by d`
+follow similar implementations with slight differences. Below we will look into the implementation of 
+the `sort by a`.
+
+The `sort by a` feature sorts the tasks based on the different dates of the tasks from the earliest task
+to the last task in chronological order. For tasks with no dates, they would appear last.
+1. When the command is executed by the user, the input it passed into
+   the `LogicManager` and gets parsed and identified in `AddressBookParser`.
+2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
+   , the corresponding `SortCommandParser` object is formed. The user input then goes
+   through another level of parsing in `SortCommandParser`
+3. The `SortCommandParser` identifies the order in which the tasks are to be sort and creates a
+   `SortComparator` comparator object accordingly.
+4. The ```SortCommandParser``` creates a ```SortCommand``` with the above comparator. The command
+   is returned to the ```LogicManager```.
+5. The ```LogicManager``` calls ```SortCommand#execute()```, which adds a new duplicate list of tasks that is
+   sorted in chronological order in ```List``` via the ```Model``` interface.
+6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
+
+##### Design Considerations
+For the `SortCommand`, we had several considerations that we made on whether to sort the list manually through
+the `sort` command or to automatically sort the list for every task that is added or edited.
+
+1. Alternative 1 (current choice): User has the option to sort the list manually in both ascending and descending format.
+   The list will not be automatically sorted when a task has been added or changed.
+
+    - Pros:
+        - If the user types in wrong information for a certain task, he is able to see the task at the bottom rather
+          than filtering through a sorted list which makes it easier to fix the error that he has made.
+        - Code will be easier to implement as we so not need to implement the auto sort phase.
+
+    - Cons:
+        - User has to manually sort the list, using the `sort` command, after keying in the new tasks to obtain an
+          ordered list.
+
+2. Alternative 2: The list will be automatically sorted every time the user makes a new list or edits one.
+
+    - Pros:
+        - Tasks will always be in chronological order and user does not have to key in any command to sort the list.
+
+    - Cons:
+        - If the user adds in a task with wrong details to a huge list, it will be difficult to find the task.
+          If the previous method was used the new task added will be at the bottom of the list.
+        - The code will be much more complex compared to alternative 1.
+        - User will not be have the ability to sort the list in different orders.
+
 
 
 ### Removing a field from a task
@@ -366,7 +415,7 @@ Thus, `CalendarPanel` and `ObservableCalendarDate` conforms to the observer patt
 * Users prefer desktop applications over other types of devices
 * Users are able to type quickly
 * Users prefer typing over mouse interactions
-* User is reasonably comfortable with using CLI applications
+* User is reasonably comfortable with using Command Line Interface (CLI) applications
 
 **Value proposition**:
 * Ability to manage tasks faster than with a typical mouse/GUI driven app
@@ -384,16 +433,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ---------- | --------------- | ------------------ |
 | `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App  |
 | `* * *`  | user | add a date to a task | know when to complete it by |
+| `* * *`  | computing student | add tag(s) to a task | easily see tasks associated with a certain category |
 | `* * *`  | user | mark a task as done | remove tasks from the list after completing them |
 | `* * *`  | user | view when a task is due | understand how much time I have to complete it |
 | `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
-| `* * *`  | user | search using keywords from the task title | find matching tasks quickly when I only can remember the title|
-| `* * *`  | user | search using keywords from the tag(s) of task|  find matching tasks from the same category quickly when I only can remember the tag(s).|
-| `* * *`  | user | search using keywords from the task description | find matching tasks quickly when I only can remember the description |
-| `* * *`  | user | view all my tasks in a list | track tasks I have not done |
+| `* * *`  | computing student | search using keywords from the task title | find matching tasks quickly when I only can remember the title|
+| `* * *`  | computing student | search using keywords from the tag(s) of task|  find matching tasks from the same category quickly when I only can remember the tag(s).|
+| `* * *`  | computing student | search using keywords from the task description | find matching tasks quickly when I only can remember the description |
+| `* * *`  | computing student | view all my tasks in a list | review tasks whenever I want  |
+| `* * *`  | computing student | view all uncompleted tasks in a list | know what tasks are left to be done |
+| `* * *`  | computing student | edit my task | make any changes to the task when required |
 | `* * *`  | user | remove tasks from the list | reduce clutter or remove a mistakenly added task |
 | `* * *`  | user | remove specific fields from a task in the list | manage the details in a task |
-| `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
+| `* * *`  | computing student | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
 | `* * *`  | user | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
 | `* * *`  | user | see all the statistics for the tasks | track my progress |
 | `* * *`  | user | view all the tasks on a specific date | schedule new tasks during the free time on that day |
@@ -440,14 +492,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
+* 1a. User enters an invalid input format.
+    * 1a1. PlanIt display an error message.
+    
+* 1b. PlanIT detects a command to view only uncompleted tasks.
 
-* 1a. PlanIT detects a command to view only uncompleted tasks.
-
-    * 1a1. PlanIT displays only uncompleted tasks.
+    * 1b1. PlanIT displays only uncompleted tasks.
 
     Use case ends.
 
 #### **Use case: Add a date to a task**
+
+**Precondition: The task does not have a recurring schedule.**
 
 **MSS**
 1. User <u>adds a task</u> to the list.
@@ -456,20 +512,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. PlanIt shows task with updated date and updates list.
 5. This task can be viewed in the Calendar User Interface on the day of the date.
 
+   Use case ends.
+
 **Extensions**
 * 4a. The given index is invalid.
     * 4a1. PlanIt shows error message.
 
       Use case resumes at step 3.
     
-#### **Use case: Add a start time to a task**
+#### **Use case: Add a duration to a task**
+
+**Precondition: The task has a title and has a deadline date .**
 
 **MSS**
-1. User <u>adds a task</u> with deadline to the list.
+
+1. User <u>adds a task</u> to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to add a start time to a specified task.
-4. PlanIt shows task with updated start time and updates list.
-5. The start time details can be viewed in the Calendar User Interface on the day of the task.
+3. User enters command to add a duration to a specified task.
+4. PlanIt shows task with updated duration and updates list.
+5. The duration details can be viewed in the Calendar User Interface on the day of the task.
+
+   Use case ends.
 
 **Extensions**
 * 4a. The given timeslot on that date is already taken.
@@ -479,20 +542,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 #### **Use case: Add a recurring schedule to the task**
 
-**Precondition: The task does not have a date, only repeats in weekly or biweekly basis.**
+**Precondition: The task has a title, does not have a deadline date and only repeats in weekly or biweekly basis.**
 
 **MSS**
-1. User enters command to <u>adds a task</u> with recurring schedule to the list.
+1. User <u>adds a task</u> with recurring schedule consisting of end date, 
+   day of week and week frequency to the list.
 2. PlanIt shows task with the recurring dates based on the conditions specified by th the user.
 
-**Extensions**
-* 1a. User enters an invalid input format.
-    * 1a1. PlanIt display an error message.
+   Use case ends.
 
-* 1b. User enters a date that has expired or less than a week from current system date.
+**Extensions**
+* 1a. The given input format is invalid.
+    * 1a1. PlanIt display an error message.
+    * 1a2. User enters the new details.
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. Use case resumes from Step 2.
+
+* 1b. The given input has an end date that has passed the current system date or less than a week from current system date.
     * 1b1. PlanIt display an error message.
-      
-      Use case ends.   
+    * 1b2. User enters the new details.
+    Steps 1b1 to 1b2 are repeated until the user input end date is valid. Use case resumes from Step 2.
     
 #### **Use case: Remove a task**
 
@@ -501,6 +569,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to remove a specified task.
 4. PlanIt shows task that was removed and updates list.
+
+   Use case ends.
 
 **Extensions**
 * 4a. The given index is invalid.
@@ -516,7 +586,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. PlanIT shows task added to the list and updates list.
 3. User enters command to remove the removable field from the task.
 4. PlanIT shows task with field removed and updates list.
-   
+
+   Use case ends.
+
 **Extensions**
 * 4a. The given index is invalid.
     * 4a1. PlanIT shows error message for invalid index.
@@ -537,13 +609,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Sort tasks according to date**
 
 **MSS**
-1. User <u>adds a task</u> with a deadline to the list.
+1. User <u>adds a task</u> with a dates to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to sort tasks either in ascending or descending deadlines with tasks that have 
-   no deadlines considered to be the latest.
+3. User enters command to sort tasks either in ascending or descending dates.
+
+   Use case ends.
 
 **Extensions**
-* 4a. There are no deadlines to all tasks.
+* 4a. There are no dates to all tasks.
     * 4a1. PlanIt shows tasks to have no change in terms of order.
 
       Use case ends.
@@ -554,9 +627,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User <u>adds a task</u> with title to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to find tasks with given keywords from the task title.
-4. PlanIt shows all tasks that matches any full word from the given keywords.
+4. PlanIt shows all tasks that matches any full word from the title.
+
+   Use case ends.
 
 **Extensions**
+* 3a. The given input format is invalid.
+    * 3a1. PlanIt display an error message.
+    * 3a2. User enters the new details.
+    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+      
 * 4a. There are no matching tasks.
     * 4a1. PlanIt shows no matching tasks.
 
@@ -568,9 +648,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User <u>adds a task</u> with tag(s) to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to find tasks with given keyword(s) from the task tag(s).
-4. PlanIt shows all tasks that matches the full keyword for the tag.
+4. PlanIt shows all tasks that matches the full keyword of the tag.
+
+   Use case ends.
 
 **Extensions**
+* 3a. The given input format is invalid.
+    * 3a1. PlanIt display an error message.
+    * 3a2. User enters the new details.
+    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+      
 * 4a. There are no matching tasks.
     * 4a1. PlanIt shows no matching tasks.
 
@@ -582,9 +669,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User <u>adds a task</u> with multi-line description to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to find tasks with given keyword(s) from the task description.
-4. PlanIt shows all tasks that matches any keyword from the description.
+4. PlanIt shows all tasks that matches any full keyword from the description.
+
+   Use case ends.
 
 **Extensions**
+* 3a. The given input format is invalid.
+    * 3a1. PlanIt display an error message.
+    * 3a2. User enters the new details. 
+    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+      
 * 4a. There are no matching tasks.
     * 4a1. PlanIt shows no matching tasks.
 
@@ -599,6 +693,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. PlanIt updates Task in the model with Status updated to 'done'.
 5. PlanIt displays doneCommand success message.
 
+   Use case ends.
+
 **Extensions**
 * 3a. The task selected already has a Status: 'done'
     * 4a1. PlanIt displays task already done message.
@@ -612,6 +708,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. PlanIT shows task added to the list and updates list.
 3. User enters command to display number of days left to task's date.
 4. PlanIT displays number of days left to task's date.
+
+   Use case ends.
 
 **Extensions** 
 * 3a. The task selected does not have a date.
@@ -633,6 +731,8 @@ Preconditions: There is at least one task in PlanIT.
 1. User enters command to display statistics of PlanIT.
 2. PlanIT displays its statistics.
 
+   Use case ends.
+
 #### **Use case: View tasks on a date**
 
 **MSS**
@@ -640,6 +740,8 @@ Preconditions: There is at least one task in PlanIT.
 2. PlanIt shows all the tasks that have their dates on the given date, if any.
 3. PlanIt changes the calendar's date to the given date.
 4. PlanIt displays a success message.
+
+   Use case ends.
 
 **Extensions**
 * 1a. PlanIt detects an error in the entered command.
@@ -684,10 +786,11 @@ of external database management system.
 * The features within the system is only catered to a single user.
 * The system is catered to user who can type fast and prefer typing over any other means.
 
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Recurring Schedule**: A type of task that repeats itself within the same period interval
+* **Recurring Schedule**: A type of task that repeats itself within the same period, can be weekly or biweekly
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -706,7 +809,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample tasks. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -714,6 +817,123 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+### Adding a recurring schedule 
+1.  Adding a recurring schedule to a new task in PlanIT's task list
+    1. Prerequisites: The task has a title.
+    
+    1. Test case: `mk n/CS2103 r/30/05/2021monweekly`<br>
+    Expected: No task with recurring schedule will be added. 
+    An error message stating invalid input format of recurring schedule will be shown in the result display.
+    
+    1. Test case: `mk n/CS2103 r/[30/05/2021][monday][weekly]`<br>
+    Expected: No task with recurring schedule will be added.
+    An error message stating invalid input format of recurring schedule will be shown in the result display.
+       
+    1. Test case: `mk n/CS2103 r/[30/05/2021][mon][fortnight]`<br>
+    Expected: No task with recurring schedule will be added.
+    An error message stating invalid input format of recurring schedule will be shown in the result display.
+
+    1. Test case: `mk n/CS2103 r/[31/06/2021][mon][weekly]`<br>
+    Expected: No task with recurring schedule will be added.
+    An error message stating invalid date input of recurring schedule will be shown in the result display
+    since there are no 31 days in the month of June.
+       
+    1. Test case: `mk n/CS2103 r/[30/06/2020][mon][weekly]`<br>
+    Expected: No task with recurring schedule will be added.
+    An error message stating invalid end date input of recurring schedule will be shown in the result display 
+    since it should be ahead of current system date.
+       
+    1. Test case: `mk n/CS2103 r/   [30/05/2021] [mon]  [weekly]`<br>
+    Expected: No task with recurring schedule will be added.
+    An error message stating invalid input format of recurring schedule will be shown in the result display.
+       
+    1. Test case: `mk n/CS2103 r/[30/06/2021][mon][weekly]`<br>
+    Expected: The task with recurring schedule will be added and recurring dates
+    up till `30/06/2020` every `mon` `weekly` will be generated in the result display section of PlanIT. 
+    Note that if the day of user input also falls on Monday, it will be excluded and it will only start on the next
+    upcoming Monday. Only the upcoming 3 recurring dates for the task will be shown in the task display section.
+
+### Listing tasks in PlanIT
+1. Using ls command to list all tasks or uncompleted tasks within PlanIT
+       
+    1. Test case: `ls`<br>
+    Expected: Listed all tasks within PlanIT.
+
+    1. Test case: `ls not done`<br>
+    Expected: Listed all uncompleted tasks within PlanIT.
+
+### Searching a task by title
+1. Using find command to find matching tasks by title and returns a filtered list with the matching tasks 
+   in the task display section.
+       
+    1. Test case: `find`<br>
+    Expected: No filtered list will be returned.
+    An error message stating invalid input format of find command will be shown in the result display.
+
+   1. Test case: `find n/CS2103 d/hello`<br>
+   Expected: No filtered list will be returned.
+   An error message stating multiple prefixes detected in find command will be shown in the result display.
+      
+   1. Test case: `find n/CS2103`<br>
+   Expected: A filtered list will be returned if there exists tasks within PlanIT
+   that has keyword `CS2103` in the title.
+    
+### Searching a task by tag
+1.  Using find command to find matching tasks by tag(s) and returns a filtered list with the matching tasks
+    in the task display section.
+
+    1. Test case: `find`<br>
+       Expected: No filtered list will be returned.
+       An error message stating invalid input format of find command will be shown in the result display.
+
+    1. Test case: `find t/CS2103 d/hello`<br>
+       Expected: No filtered list will be returned.
+       An error message stating multiple prefixes will be shown in the result display 
+       and it is not allowed to mix description prefix in search task by tag query.
+
+    1. Test case: `find t/    Project`<br>
+       Expected: No filtered list will be returned.
+       An error message stating no whitespaces allowed right after the `t/` tag prefix in search task by tag query.
+    
+    1. Test case: `find t/Project`<br>
+       Expected: A filtered list will be returned if there exists tasks within PlanIT
+       that has the full tag keyword `Project` (case-insensitive).
+       
+    1. Test case: `find t/Project t/CS2105`<br>
+       Expected: A filtered list will be returned if there exists tasks within PlanIT
+       that has the 2 different tags with full case-insensitive keywords `Project` and `CS2105`.
+
+    1. Test case: `find t/Project CS2105`<br>
+       Expected: Similar to the fourth test case, a filtered list will be returned if there exists tasks within PlanIT
+       that has the 2 different tags with full case-insensitive keywords `Project` and `CS2105`.
+
+### Searching a task by description
+1.  Using find command to find matching tasks by description and returns a filtered list with the matching tasks
+    in the task display section.
+
+    1. Test case: `find`<br>
+       Expected: No filtered list will be returned.
+       An error message stating invalid input format of find command will be shown in the result display.
+
+    1. Test case: `find d/hello t/CS2103`<br>
+       Expected: No filtered list will be returned.
+       An error message stating multiple prefixes will be shown in the result display
+       and it is not allowed to mix tag prefix in search task by description query.
+
+    1. Test case: `find d/Project d/CS2105`<br>
+       Expected: No filtered list will be returned.
+       An error message stating multiple prefixes will be shown in the result display
+       and it is not allowed to have more than one `d/` description prefix in search task by description query.
+
+    1. Test case: `find d/    hello`<br>
+       Expected: No filtered list will be returned.
+       An error message stating no whitespaces allowed right after the `d/` description 
+       prefix in search task by description query.
+
+    1. Test case: `find d/hello`<br>
+       Expected: A filtered list will be returned if there exists tasks within PlanIT
+       that has the full description keyword `hello` (case-insensitive).
 
 ### Removing a task
 
@@ -739,3 +959,4 @@ testers are expected to do more *exploratory* testing.
       
    1. Test case: Remove an attribute of a task, or fill in an attribute with the wrong format.<br>
       Expected: PlanIt launches with an empty list.
+
