@@ -12,10 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="personDetails" alignment="CENTER" minHeight="-Infinity" minWidth="800.0" prefHeight="459.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="personDetails" alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
-      <GridPane styleClass="detail_heading">
+      <GridPane maxHeight="30.0" minHeight="30.0" styleClass="detail_heading" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -23,28 +23,28 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" minHeight="40.0" minWidth="-Infinity" prefHeight="40.0" text="Details" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" minHeight="15.0" text="Details" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
          </children>
          <VBox.margin>
-            <Insets right="5.0" />
+            <Insets />
          </VBox.margin>
       </GridPane>
-      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <HBox VBox.vgrow="ALWAYS">
          <children>
-            <GridPane prefHeight="460.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+            <GridPane HBox.hgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="420.0" minHeight="10.0" prefHeight="213.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="292.0" minHeight="10.0" prefHeight="245.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="250.0" vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox prefHeight="228.0" prefWidth="424.0" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS">
+                  <HBox GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="120.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" translateY="30.0" HBox.hgrow="ALWAYS">
                            <HBox.margin>
@@ -54,7 +54,7 @@
                                 <Image url="@/images/profile.png" />
                             </image>
                         </ImageView>
-                        <GridPane prefHeight="119.0" prefWidth="388.0" styleClass="basic_contact_box" translateX="-10.0" translateY="20.0" HBox.hgrow="ALWAYS">
+                        <GridPane alignment="CENTER" styleClass="basic_contact_box" translateX="-10.0" translateY="20.0" HBox.hgrow="ALWAYS">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="-Infinity" prefWidth="89.0" />
                             <ColumnConstraints hgrow="SOMETIMES" />
@@ -86,15 +86,15 @@
                         </GridPane>
                      </children>
                   </HBox>
-                  <GridPane gridLinesVisible="true" minHeight="280.0" prefWidth="424.0" styleClass="contact_box" translateY="-28.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <GridPane gridLinesVisible="true" styleClass="contact_box" translateY="-28.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="165.0" prefWidth="172.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="217.5" prefWidth="419.5" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="90.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="90.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="90.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label styleClass="cell_big_label" text="Address:" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
