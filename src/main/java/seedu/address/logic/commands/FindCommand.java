@@ -23,8 +23,10 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all garments whose names, colours, sizes, "
             + "dresscodes or descriptions contain any of the specified\n"
             + "keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute\n"
-            + "Example: " + COMMAND_WORD + " n/worn out jeans";
+            + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute.\n"
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
+            + "For dress code, [KEYWORD] must be either casual, formal, or active\n"
+            + "For type, [KEYWORD] must be upper, lower, or footwear.";
 
     private final AttributesContainsKeywordsPredicate predicates;
 

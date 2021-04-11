@@ -8,9 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
+import seedu.address.model.garment.Size;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -42,7 +45,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(predicates);
     }
 
-    //maybe can separate to each prefix, but that sorta forces each prefic to be present
+    //maybe can separate to each prefix, but that sorta forces each prefix to be present
     /**
      * Returns true if the argumentMultiMap has valid prefixes and is non-empty
      */
@@ -55,7 +58,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
+        Optional<String> dressCode = argMultimap.getValue(PREFIX_DRESSCODE);
+        if (dressCode.isPresent() && isValidDressCode(dressCode)) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
@@ -65,7 +69,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords = argMultimap.getValue(PREFIX_COLOUR).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
+        Optional<String> size = argMultimap.getValue(PREFIX_SIZE);
+        if (argMultimap.getValue(PREFIX_SIZE).isPresent() && isValidSize(size)) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_SIZE).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
@@ -75,12 +80,59 @@ public class FindCommandParser implements Parser<FindCommand> {
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+        Optional<String> type = argMultimap.getValue(PREFIX_TYPE);
+        if (type.isPresent() && isValidType(type)) {
             isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_TYPE).get().split("\\s+");
             isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
         return isValidSyntax && isNotEmpty;
+    }
+
+    /**
+     * Returns true if the all query dress codes are valid
+     */
+    public static boolean isValidDressCode(Optional<String> dressCode) {
+        boolean isValid = true;
+        String[] dressCodes = dressCode.get().split(" ");
+        for (String d : dressCodes) {
+            if (!d.equalsIgnoreCase("casual")
+                    && !d.equalsIgnoreCase("formal")
+                    && !d.equalsIgnoreCase("active")) {
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+
+    /**
+     * Returns true if the all query types are valid
+     */
+    public static boolean isValidType(Optional<String> type) {
+        boolean isValid = true;
+        String[] types = type.get().split(" ");
+        for (String t : types) {
+            if (!t.equalsIgnoreCase("upper")
+                    && !t.equalsIgnoreCase("lower")
+                    && !t.equalsIgnoreCase("footwear")) {
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+
+    /**
+     * Returns true if the all query sizes are valid
+     */
+    public static boolean isValidSize(Optional<String> size) {
+        boolean isValid = true;
+        String[] sizes = size.get().split(" ");
+        for (String s : sizes) {
+            if (!Size.isValidSize(s)) {
+                isValid = false;
+            }
+        }
+        return isValid;
     }
 
     /**
