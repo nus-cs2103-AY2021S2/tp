@@ -176,14 +176,14 @@ Below is an example activity diagram for a valid add command from the user.
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
 Below is an example sequence diagram for a valid add command from the user.
-![AddSequenceDiagram](diagrams/AddSequenceDiagram.puml)
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
 Below is an example activity diagram for a valid delete command from the user.
 
-![DeleteActivityDiagram](diagrams/DeleteActivityDiagram.puml)
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 Below is an example sequence diagram for a valid delete command from the user.
-![AddSequenceDiagram](diagrams/DeleteSequenceDiagram.puml)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 ### Edit feature
 Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit`  some features of an owner. By entering the edit command with the correct identification number of the owner to be edited, the specified features of the owner will be modified accordingly.
