@@ -26,7 +26,7 @@ Diary especially caters to students mainly on 4 aspects:
 1. The ability for users to save food diary entries for future reference.
 2. The ability for users to find entries based on specific fields.
 3. The ability for users to have multiple food reviews for a food place.
-4. The option for users to use Commands / UI to perform some tasks quickly.
+4. The option for users to use Commands / Ui to perform some tasks quickly.
 
 ## **Design**
 ### Architecture
@@ -41,13 +41,13 @@ Given below is a quick overview of each component.
 `Commons` represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
-* `UI`: The UI of the App.
+* `Ui`: The Ui of the App.
 * `Logic`: The command executor.
 * `Model`: Holds the data of the App in memory.
 * `Storage`: Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
-* defines its API in an `interface` with the same name as the Component. 
+* defines its API in an interface with the same name as the Component. 
 * exposes its functionality using a concrete `{Component Name}Manager` 
   class which implements the corresponding API interface mentioned in the previous point.
 
@@ -65,24 +65,24 @@ where the user issues the command `addon 1 re/i like this food`.
 
 The sections below give more details of each component. 
 
-### UI component
+### Ui component
 ![Model Architecture Diagram](images/UiClassDiagram.png)
 **API:** [`Ui.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Ui.java)
 
 * The `Ui` interface consists of a `MainWindow` that is made up of smaller Ui parts. Namely, from top to bottom
  these are: `CommandBox`, `ResultDisplay`, `EntryListPanel`, `StatusBarFooter`.
-* The `MainWindow` also intialises 3 other windows that are used in The Food Diary. Namely, these are:
+* The `MainWindow` also initialises 3 other windows that are used in The Food Diary. Namely, these are:
  `HelpWindow`, `ViewWindow` and `ReviseWindow`.
-* All of these Ui parts and windows, including the `MainWindow`, inheerit from the abstract `UiPart` class
-* In addition, the `UI` component also uses the JavaFX UI framework. THe layout of these UI parts are each defined in
+* All of these Ui parts and windows, including the `MainWindow`, inherit from the abstract `UiPart` class.
+* In addition, the `Ui` component also uses the JavaFX Ui framework. The layout of these Ui parts are each defined in
  their corresponding `.fxml` files that can be loated in the `src/main/resources/view` folder.
-* For example, the layout of the HelpWindow is specified in the `HelpWindow.fxml` file
+* For example, the layout of the HelpWindow is specified in the `HelpWindow.fxml` file.
 * A universal styling theme is applied to all components, and the styling is defined in 2 files:
  `DarkTheme.css` and `Extensions.css`. Both are located in the `src/main/resources/view` folder.
 * Images/icons used throughout the app windows are located in the `src/main/resources/images` folder.
  
-1. The `UI` component executes user commands using the `Logic` component.
-2. The `UI` component also listens for changes to the `Model` data, to which the UI will be updated to reflect the
+1. The `Ui` component executes user commands using the `Logic` component.
+2. The `Ui` component also listens for changes to the `Model` data, to which the Ui will be updated to reflect the
  modified data.
  
 
@@ -93,7 +93,7 @@ The sections below give more details of each component.
 
 1. `Logic` uses the `FoodDiaryParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
-3. The command execution can affect the `Model` (e.g. adding an entry to the Food Diary)
+3. The command execution can affect the `Model` (e.g. adding an entry to the Food Diary).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is
 passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions,
@@ -112,8 +112,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 - stores a `UserPref` object that represents the user’s preferences.
 - stores the user's food entries data.
-- exposes an unmodifiable `ObservableList<Entry>` that can be ‘observed’ e.g. the UI can be bound to this list so that 
-  the UI automatically updates when the data in the list change.
+- exposes an unmodifiable `ObservableList<Entry>` that can be ‘observed’ e.g. the Ui can be bound to this list so that 
+  the Ui automatically updates when the data in the list change.
 - does not depend on any of the other three components.
 
 
@@ -146,9 +146,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### AddOn Feature
 The AddOn feature allows the user to add review(s) and/or a price to a single entry of a food place. This will be useful
-for users who frequently visit a particular place and would like to enter their reviews and the price spent on each visit.
-The reviews are added to the user specifed entry and the price added on will be reflected as a price range of the user's spending history 
-(e.g. if the current entry has a price of $5, adding on a price of 10 will update the current price of 5 to a price range of $5-10).
+for users who frequently visit a particular place and would like to enter their reviews, and the price spent on each visit.
+The reviews are added to the user specified entry, and the price added on will be reflected as a price range of the user's spending history 
+(e.g. if the current entry has a price of $5, adding on a price of $10 will update the current price of $5 to a price range of $5-$10).
 
 Given below is an example usage scenario:
 
@@ -159,7 +159,7 @@ The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`,
 Step 2. (Optional) The user executes `list` command to list out all the entries and select the entry to add on details.
 
 Step 3. The user executes `addon 1 re/I like this food a lot! p/7` command to add on details to an existing entry. 
-The command contains values such as a "I like this food a lot!" review and a price value of 7 dollars.
+The command contains values such as a "I like this food a lot!" review and a price value of $7.
 
 Step 4. If the parameters entered by the user is valid, the application will create a new `entry` and stores the information in `Model` and `Storage`.
 Else, the FoodDiary will display an appropriate error message. 
@@ -167,37 +167,36 @@ Else, the FoodDiary will display an appropriate error message.
 The following sequence diagram shows how the AddOn feature works:
 ![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
 
-The following activity diagram summaries the flow of event when a user executes the `addon` command:
+The following activity diagram summaries the flow of events when a user executes the `addon` command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
 #### Design Consideration
 
-##### Aspect: Whether entry class should have a List of Reviews or a single Review as an attribute (for adding on reviews to an existing entry)
-* **Alternative 1 (current choice):** Entry containing a List of Reviews as an attribute
-    * Pros: Looks neater in a design perspective, as additional reviews added on will just be appended to the list of reviews.
+##### Aspect: Whether entry class should have a list of Reviews or a single Review as an attribute (for adding on reviews to an existing entry)
+* **Alternative 1 (current choice):** Entry containing a list of Reviews as an attribute
+    * Pros: Looks neater from a design perspective, as additional reviews added on will just be appended to the list of reviews.
       Easily extendable in the future (e.g. deleting a specific review in an entry).
-    * Cons: A lot of refactoring is needed. Takes some time.
-* **Alternative 2:** Entry containing a single review attribute 
+    * Cons: A lot of refactoring will be needed. Time-consuming.
+* **Alternative 2:** Entry containing a single Review attribute 
     * Pros: Easy to implement, as additional reviews can be concatenated as a string to the current review
     * Cons: This cannot be easily extended in the future (e.g. deleting a specific review in an entry).
 
 ### List Feature
 The List feature allows a user to list all entries that they have keyed in thus far. This will be useful when a user
-wants an overview of all the entry he/she has keyed in previously.
+wants an overview of all the entries he/she has keyed in previously.
 
 Given below is an example usage scenario:
 
 Step 1. The user is in the Food Diary application. 
 
-Step 2. The user executes list. The Food Diary application lists all the entries in the user's database. 
+Step 2. The user executes `list`. The Food Diary application lists all the entries in the user's database. 
 Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `TagCategory` and `TagSchool`.
 
 This feature was brought over to The Food Diary from AB3. 
-There were not much changes apart from modifying it to list
-entries instead. Similiar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()`
+There were not many changes apart from modifying it to list
+entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()`
 will be called to parse the user input in `FoodDiaryParser#parseCommand()`. 
-The parsed command will be identified
-as a list command.
+The parsed command will be identified as a list command.
 
 ### Find Feature
 The Find feature allows a user to find entries that match **ANY** of the keywords provided by the user.
@@ -208,7 +207,7 @@ This feature is implemented through the `find` command, where the user will prov
 they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
 The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
 `TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
-fields of all entries, and return all entries that match at least one of the keywords provided. The UI will then
+fields of all entries, and return all entries that match at least one of the keywords provided. The Ui will then
 be updated to display the list of entries that were returned as a search result.
 
 Given below is an example usage scenario:
@@ -260,7 +259,7 @@ This feature is implemented through the `findall` command, where the user will p
 they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
 The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
 `TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
-fields of all entries, and return all entries that match all the keywords provided. The UI will then
+fields of all entries, and return all entries that match all the keywords provided. The Ui will then
 be updated to display the list of entries that were returned as a search result.
 
 The FindAll feature is similar to the Find feature. The Find feature finds for all entries that meet
@@ -309,7 +308,7 @@ mutually exclusive with the edit feature or the slower alternative. This feature
 while also adding into multiple sections in an entry. The edit and addon features are still necessities for making 
 quick and small chanegs to an entry.
 
-The command opens an additional window when a user enters the command in the UI, the command will be passed into 
+The command opens an additional window when a user enters the command in the Ui, the command will be passed into 
 `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
 With the window for revision of the entry, a user can easily make changes to the sections all at once. 
@@ -326,10 +325,10 @@ The following activity diagram summarises the events that take place when a user
 
 #### Design Consideration
 
-##### Aspect: Whether to revise entry in command line or in a new UI window.
-* **Alternative 1 (current choice):** Revise entry in a new UI window.
+##### Aspect: Whether to revise entry in command line or in a new Ui window.
+* **Alternative 1 (current choice):** Revise entry in a new Ui window.
     * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
-    * Cons: Revise is not done purely in command line, but rather in a UI window.
+    * Cons: Revise is not done purely in command line, but rather in a Ui window.
 * **Alternative 2:** Revise entry in command line.
   * Pros: Revise is purely done in the command line.
   * Cons: For entry with lengthy details, it will flood the command line space and be difficult for revising.
@@ -348,7 +347,7 @@ When the edit command is called the command will be passed into `MainWindow#exec
  the index of the command.
  
 If the command `edit 1 re/New review` is passed, the `edit` command essentially replaces the old entry with a new
- entry that has the new review. The `edit` coammand calls `Model#setEntry()`, which calls
+ entry that has the new review. The `edit` command calls `Model#setEntry()`, which calls
  `ModelManager#setEntry()`, that calls `FoodDiary#setEntry()` to eventually change the target entry with a new entry.
 
 The following sequence diagram shows how Edit feature works:
@@ -361,14 +360,14 @@ command:
 
 ##### Design Consideration
 
-##### Aspect: Whether to edit a command in the command line or in a new UI window.
+##### Aspect: Whether to edit a command in the command line or in a new Ui window.
 * **Alternative 1 (current choice):** Edit entry in command line. 
   * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
   * Cons: For entries with lengthy details, typing long commands in the command line fills up the text field space
   and makes it difficult for editing.
-* **Alternative 2:** Edit the entry in a new UI window. 
+* **Alternative 2:** Edit the entry in a new Ui window. 
   * Pros: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
-  * Cons: Edit is not done purely in command line, but rather in a UI window. This might pose an inconvenience
+  * Cons: Edit is not done purely in command line, but rather in a Ui window. This might pose an inconvenience
   for the user given the added step to edit a field of an entry.
   
   As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
@@ -376,20 +375,20 @@ command:
 
 ### Help Feature
 
-The `help` feature primarly helps the user by showing a help guide whenever a user wishes to see it.
+The `help` feature primarily helps the user by showing a help guide whenever a user wishes to see it.
  
-* The help guide is a succint version of all the commands and keywords for certan input parameters.
+* The help guide is a succinct version of all the commands and keywords for certain input parameters.
 
-* The help guide also dislays examples related to each command for users to quickly get a sense of what
+* The help guide also displays examples related to each command for users to quickly get a sense of what
  each command does.
     
 * The help guide also contains the link to our User Guide where users can copy the link from
- and visit for more information
+ and visit for more information.
 
-An additional `HelpWindow` is opened when a user enters the `help` command in the UI. The command will be passed into 
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the
+An additional `HelpWindow` is opened when a user enters the `help` command in the Ui. 
+The command will be passed into `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the
 user input in `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
-A `HelpWindow` is returned at the end.
+At the end, a `HelpWindow` is returned.
 
 The following sequence diagram shows how the Help feature works:
 ![Help Sequence Diagram](images/HelpSequenceDiagram.png)
@@ -400,7 +399,7 @@ The following activity diagram summarizes what happens when a user executes the 
 ### View Feature
 `view`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
 all the details of an entry. This feature is mainly used to read lengthy food reviews which cannot be shown on the Main 
-UI window.
+Ui window.
 
 Given below is an example usage scenario:
 
@@ -413,10 +412,10 @@ Step 2. The user executes `view <INDEX>`, for whichever entry with lengthy revie
 Step 3. If the user input is invalid, an error message will be displayed in the command box, If the entry specified do
 not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
 
-The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into
+The mechanism works in such a way where after the user enters a command in the Ui, the command will be passed into
 `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
 `FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a `view` command and executed to 
-retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
+retrieve all the details related to the specified entry. The result of this execution will be passed back to the Ui and 
 shown in a new window.
 
 The following sequence diagram shows how the View feature works:
@@ -432,12 +431,12 @@ will show the correct syntax to use for the `view` command.
 </div>
 
 #### Design Consideration
-##### Aspect: Whether to view entry with lengthy reviews in the Main UI or in a new window.
+##### Aspect: Whether to view entry with lengthy reviews in the Main Ui or in a new window.
 * **Alternative 1 (current choice):** View entry with lengthy reviews in a new window.
-    * Pros: Easier to implement, do not need to deal with complex UI codes. Entry information looks neater.
+    * Pros: Easier to implement, do not need to deal with complex Ui codes. Entry information looks neater.
     * Cons: User has to close/minimize the window to return to Main Window.
-* **Alternative 2:** View entry with lengthy reviews in the Main UI.
-    * Pros: Design is integrated within Main UI, which gives it a cleaner look.
+* **Alternative 2:** View entry with lengthy reviews in the Main Ui.
+    * Pros: Design is integrated within Main Ui, which gives it a cleaner look.
     * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
 
 ### Clear Feature
@@ -451,8 +450,8 @@ The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`,
 
 Step 2. The user executes `clear` to clear all entries in The Food Diary.
 
-This feature was brought over to The Food Diary from AB3. There were not much changes apart from modifying it to clear
-entries instead. Similiar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()` 
+This feature was brought over to The Food Diary from AB3. There were not many changes apart from modifying it to clear
+entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()` 
 will be called to parse the user input in `FoodDiaryParser#parseCommand()`. The parsed command will be identified
 as a `clear` command.
 
@@ -466,7 +465,7 @@ Step 1. The user is the midst of using The Food Diary application. The user has 
 Step 2. The user executes `exit` and closes the application.
 
 This feature was brought over to The Food Diary from AB3. 
-There were no changes. Similiar to other commands,MainWindow#executeCommand() runs and Logic#execute()
+There were no changes. Similar to other commands,MainWindow#executeCommand() runs and Logic#execute()
 will be called to parse the user input in FoodDiaryParser#parseCommand().
 The parsed command will be identified as the exit command.
 
@@ -518,12 +517,12 @@ The parsed command will be identified as the exit command.
     * Additionally, we matched the colour scheme of The Food Diary to subtly reflect the colours of NUS and make 
     The Food Diary appealing to the patronage of NUS students.
     
-    * Entries in the Food Diray featured tags that were based off NUS locations. Given the multitude of eateries dotted
+    * Entries in the Food Diary featured tags that were based off NUS locations. Given the multitude of eateries dotted
     around NUS, this would make identifying entries based on NUS locations essential to an NUS student
     who would have referenced back to previous entries in their usage over the longer term.
     
 4. Finally, working together to deliver what we set out to do proved hectic at times of immense commitment from the team
- to other responsibilities in school. Nonetheless, with good planning, open communication and a strong sense of
+ to other responsibilities in school. Nonetheless, with good planning, open communication, and a strong sense of
  ownership for the effort in the work we have done, we have produced what we believe was usable and useful for the
  NUS students to patronise and enjoy.
 
@@ -540,7 +539,7 @@ keeping records of food options tasted in the vicinity of NUS.
 
 * is reasonably comfortable using CLI apps
 
-* occasionally prefers to use ui for certain tasks
+* occasionally prefers to use Ui for certain tasks
 
 
 **Value proposition**
@@ -770,7 +769,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case resumes from step 2.
 
-* 2a. User key in non-existent index in list
+* 2a. User key in a non-existent index in list
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
@@ -832,8 +831,8 @@ and the back-end, which handles data management and operations.
 ### Performance requirements
 
 * The system should be loaded up within 2 seconds or less.
-* The UI should appear within 2 seconds or less and be responsive to User input.
-* The back-end should be responsive to processing User input at the same time the UI appears.
+* The Ui should appear within 2 seconds or less and be responsive to User input.
+* The back-end should be responsive to processing User input at the same time the Ui appears.
 * The back-end should be able to handle 1,000 or more data entries (Food Diary entries) without noticeable sluggishness
   in performance for typical usage.
 
@@ -844,15 +843,15 @@ and the back-end, which handles data management and operations.
 
 ### Project scope
 * The system should mainly comprise the handling of Food Diary-entry addition, deletion, and listing.
-* The system would not be responsible for features involving multiple users
+* The system would not be responsible for features involving multiple users.
 
 ### Scalability requirements
-* The system can handle a larger user base with many more food reviews being added to it
-* Program is extendable for future addition of features easily
+* The system can handle a larger user base with many more food reviews being added to it.
+* Program is extendable for future addition of features easily.
 
 ### Other Noteworthy Points
 
-* The system should preserve data keyed in by the user
+* The system should preserve data keyed in by the user.
 
 ## **Appendix F: Glossary**
 The glossary serves to ensure that all stakeholders, including users, have a common understanding of the noteworthy terms, and abbreviations.
@@ -869,7 +868,7 @@ to work on.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder.
 
     2. Double-click the jar file Expected: Shows the GUI with a set of sample food Diary entries. The window size may not be optimum.
 
@@ -882,7 +881,7 @@ to work on.
        
 ### Add an entry
 
-1. Add an entry with the provided details.
+1. Add an entry with the provided details
    
     1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
 
@@ -926,7 +925,7 @@ to work on.
     2. Test case: `addon 1 re/I like this food a lot! p/7`
     
         Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
-       out of the initial price range dispalyed in the entry). Specified Entry will be updated with the addon on fields.
+       out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.
        
     3. Test case: `addon 1`
     
@@ -1094,10 +1093,10 @@ to work on.
     
         Expected: User will be notified about unknown command in the command box.
        
-    5. Test Case: Correct command but with non-existent index: `view 100000` (provided that entry of index 100000 
+    5. Test Case: Correct command but with a non-existent index: `view 100000` (provided that entry of index 100000 
        do not exists)
        
-        Expected: User will be notified of invalid command and the number of entries in The Food Diary.
+        Expected: User will be notified of invalid command, and the number of entries in The Food Diary.
 
 ### Revise an Entry
 1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(s)`
@@ -1214,6 +1213,6 @@ to work on.
 
        Expected: User will be notified about unknown command in the command box.
        
-## UI Mockup
+## **UI Mockup**
 
 ![Ui Mock-up](images/Ui.png)
