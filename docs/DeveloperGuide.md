@@ -1190,26 +1190,50 @@ testers are expected to do more *exploratory* testing.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Searching a student
+### Searching for a student
 
-1. Searching a student while all students are being shown
+1. Searching for a student while all students are being shown.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Test case: `search n/yeoh alex t/math`<br>
+      Expected: Displays a list of students with names (case insensitive) `alex yeoh` or `alex` or `yeoh alex` or 
+      students with subject `math`.
+   1. Test case: `search t/math t/phys`<br>
+      Expected: Displays a list of students with subjects `phys`, because only the last occurrence of the parameter will be taken into account.
+   1. Test case: `search n/`<br>
+      Expected: No student is displayed. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect search commands to try: `search`, `search s/`, `search s/ t/`, `search x` (where x is any keyword)<br>
+      Expected: Similar to previous.
+1. Searching for a student not displayed while a search result is displayed 
+   1. Prerequisites: Search for students using the `search t/math` command. Zero to multiple students with `math` subject displayed in the list.
+   1. Test case: `search t/phys`<br>
+      Expected: Displays a list of students with subject `phy`.
+   1. Test case: `search s/xyz`<br>
+      Expected: Displays a list of students with school names with `xyz` (case insensitive),
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing the Schedule
+
+1. Viewing the schedule while all students are being shown.
   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-  1. Test case: `search n/yeoh alex t/math`<br>
-     Expected: Displays a list of students with names (case insensitive) `alex yeoh` or `alex` or `yeoh alex` or
-     students with subject `math`.
-    
-  1. Test case: `search t/math t/phys`<br>
-     Expected: Displays a list of students with subjects `phys`, because only the last occurrence of the parameter will be taken into account.
-     
-  1. Test case: `search n/`<br>
-     Expected: No student is displayed. Error details shown in the status message. Status bar remains the same.
-
-  1. Other incorrect search commands to try: `search`, `search s/`, `search s/ t/`, `search x` (where x is any keyword)<br>
+  1. Test case: `schedule`<br>
+     Expected: Opens up the schedule window.
+  1. Test case: `schedulexyz`<br>
+     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+1. Viewing the schedule window while adding or editing student contact.
+  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
+     Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact) 
+     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+1. Viewing the schedule window while schedule window is already opened.
+   1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+   1. Test case: `schedule` <br>
+   1. Expected: Focuses back on the schedule window.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
