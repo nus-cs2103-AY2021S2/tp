@@ -1,7 +1,6 @@
 @startuml
 start
 : user enters an add_recurring_session command\n in the command box;
-: AddRecurringSessionCommandParser \n parses the input;
 if () then ([else])
     : throws ParseException \n with command usage direction;
 else ([all prefixes are present]))
