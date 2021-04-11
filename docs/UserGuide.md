@@ -174,7 +174,7 @@ Example:
 Adds a cheese to CHIM.
 
 Format: `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]`
-* The specified `QUANTITY` must be a positive integer and less than 1000.
+* The specified `QUANTITY` must be a positive integer and less than or equals to 1000.
 * All dates must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
 * The specified `MANUFACTURE_DATE` must be any date up to the current date, and not in the future.
 If `MANUFACTURE_DATE` is not specified, it will default to the current date.
@@ -371,7 +371,7 @@ Examples:
 * `findorder n/bernice s/incomplete`
 
 ![find_order_2](images/ug_examples/FindOrder2.png)
-  
+
 * `findorder p/93210283`
 
 ![find_order_3](images/ug_examples/FindOrder3.png)
