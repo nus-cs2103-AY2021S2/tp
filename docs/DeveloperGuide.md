@@ -941,7 +941,7 @@ The following is a brief explanation , as illustrated by a sequence diagram, of 
     <tr>
         <td> 
             <ul>
-                <li>More Persistent Sorting using a Comparator</li>
+                <li>More persistent Sorting using a Comparator</li>
                 <li> Pros:
                     <ul>
                         <li>UX considerations when users expect sorting to be persistent over multiple order-altering commands.</li>
@@ -957,7 +957,7 @@ The following is a brief explanation , as illustrated by a sequence diagram, of 
         </td>
         <td> 
             <ul>
-                <li>More Transient Sorting by sorting the UniqueTaskList directly.</li>
+                <li>More transient Sorting by sorting the UniqueTaskList directly.</li>
                 <li> Pros:
                     <ul>
                         <li>Straightforward implementation.</li>
