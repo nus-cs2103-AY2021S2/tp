@@ -224,7 +224,7 @@ As CakeCollate is adapted from the AddressBook-Level3 project, the original find
       * Creating many classes causes increased coupling.
       * Hard to implement `OR` searches.
 
-### Find feature
+### Remind feature
 
 The intended usage of the Remind feature is for users to locate impending undelivered orders within a certain time frame which the user can specify. 
 The user specifies the number of days from the current date for all undelivered orders they want to locate. <br>
