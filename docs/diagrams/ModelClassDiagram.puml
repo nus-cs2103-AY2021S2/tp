@@ -18,12 +18,17 @@ Class ObservableCalendarDate
 
 Package Task {
 Class Task
+
+Package Attributes {
+Interface Attribute <<Interface>>
 Class Date
 Class RecurringSchedule
 Class Title
 Class Status
 Class Duration
 Class Description
+}
+
 Class UniqueTaskList
 }
 
@@ -56,6 +61,13 @@ Task *--> RecurringSchedule
 Task *--> Description
 Task *--> Status
 Task o--> "*" Tag
+
+Title .down.|> Attribute
+Date .down.|> Attribute
+Duration .down.|> Attribute
+RecurringSchedule .down.|> Attribute
+Description .down.|> Attribute
+Status .down.|> Attribute
 
 Title -[hidden]right-> Date
 Date -[hidden]right-> Duration
