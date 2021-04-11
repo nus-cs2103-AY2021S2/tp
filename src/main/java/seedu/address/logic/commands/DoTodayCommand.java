@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class DoTodayCommand extends Command {
      * Constructs a {@code DoTodayCommand}.
      */
     public DoTodayCommand(Index targetIndex, OperationFlag operationFlag) {
+        requireAllNonNull(targetIndex, operationFlag);
         this.targetIndex = targetIndex;
         this.operationFlag = operationFlag;
     }
