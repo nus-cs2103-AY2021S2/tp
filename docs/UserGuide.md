@@ -6,15 +6,15 @@ title: User Guide
 TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
 ## How to Navigate User Guide
-* To get an overview of this user guide, head to [1. About](#1-about)!
-* To start your journey with TutorsPet, head to [2. Quick Start](#2-quick-start)!
-* To learn about all our features, head to [3. Features](#3-features)!
-* To see some exciting features in our future version, head to [4. Coming soon](#4-coming-soon)!
-* To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-faq)!
-* To learn about the field formats of a student contact, head to [6.1 Field Format Summary](#61-field-format-summary)!
-* To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary)!
+* To get an overview of this user guide, head to [1. About](#1-about).
+* To start your journey with TutorsPet, head to [2. Quick Start](#2-quick-start).
+* To learn about all our features, head to [3. Features](#3-features).
+* To see some exciting features in our future version, head to [4. Coming soon](#4-coming-soon).
+* To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-faq).
+* To learn about the field formats of a student contact, head to [6.1 Field Format Summary](#61-field-format-summary).
+* To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary).
 
-Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step! 
+Feel free to check out our [Table of Contents](#table-of-contents), to get familiar with TutorsPet step by step. 
 
 You can return to Table of Contents by clicking this button <a href="#table-of-contents"> <button>Back to Table of Contents </button></a> below each session.
 
@@ -27,7 +27,7 @@ This document can be thought of as a manual, and a reference guide for TutorsPet
 Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorsPet. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
-It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with TutorsPet.
+It is generally advised for new users to at least read through the [Quick Start](#2-quick-start) section to familiarise themselves with TutorsPet.
 
 Note the following symbols and formatting used in this document:
 
@@ -84,7 +84,7 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#3-features) below for details of each command.
 
 1. All sample data in TutorsPet can be cleared at once using the `clear` command.
 
@@ -169,13 +169,13 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`, which are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
   They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tuition, 
   as well as graduated students who are less likely to need private tuition.
-  For more details, see the [Field Format Summary](#field-format-summary) below.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `lit`, `mal` `math`, `phys`, `sci`, `tam` which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Literature, Malay, Mathematics, Physics, Science and Tamil respectively, which are
   subjects which students are more likely to need private tuition.
-  For more details, see the [Field Format Summary](#field-format-summary) below.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * A student’s contact can have any number of subjects (including 0). 
   
@@ -213,6 +213,7 @@ Example:
 * Before `add` command is entered
 
 ![BeforeAdd](images/DemoBeforeAddCommand.png)
+
 
 * After `add` command is entered
 
@@ -253,7 +254,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`, which are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
   They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution,
   as well as graduated students who are less likely to need private tuition.
-  For more details, see the [Field Format Summary](#field-format-summary) below.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
   
@@ -265,7 +266,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
-  For more details, see the [Field Format Summary](#field-format-summary) below.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
 * If the student name to be edited already exists in TutorsPet, a warning
   `This student name Alex Yeoh already exists with a different phone number. Do you wish to proceed? y/n` will be shown.
@@ -288,9 +289,10 @@ Example:
 
 `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 
-* After [`detail 1`](#323) is successfully executed and all details of Alex Yeoh are displayed
+* After [`detail 1`](#323-viewing-a-contact-details--detail) is successfully executed and all details of Alex Yeoh are displayed
 
 ![BeforeEdit](images/DemoBeforeEditCommand.png)
+
 
 * Then `edit` command is entered. Changes are displayed immediately.
 
@@ -406,7 +408,7 @@ Prefix | Searching Criteria
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
-  For more details, see the [Field Format Summary](#field-format-summary) below.
+  For more details, see the [Field Format Summary](#61-field-format-summary) below.
   
 </div>
 
@@ -504,7 +506,7 @@ Examples:
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass undo of `levelup` or indicate retainees. 
 
-If only some students' levels need to be changed, [edit](#editing-a-contact--edit) can be used instead.
+If only some students' levels need to be changed, [edit](#322-editing-a-contact--edit) can be used instead.
 
 Format: `leveldown ex/[INDEX]...`
 
