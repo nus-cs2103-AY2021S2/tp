@@ -106,7 +106,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-> **NOTE:** student book contains data of student records and student appointments. 
+> **NOTE:** student book contains all student records and appointment data. 
 > 
 >
 ### Storage component
@@ -190,8 +190,6 @@ The following activity diagram summarizes what happens when a user executes the 
     
 In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. However, the cost of having multiple bugs could be greater. Moreover, the user can use the edit command afterwards to fix any incorrect information added. This would help to mitigate some downsides of this implementation.
 
-_{more aspects and alternatives to be added}_
-
 ### Delete Student `delete`
 
 #### Actual Implementation
@@ -232,7 +230,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons:
         * User is required to know the student's matriculation number to perform the action.
 
-* **Alternative 2:** Find student using student's name
+* **Alternative 2:** Delete student using student's name
     * Pros:
         * User is not required to know the student's matriculation number.
     * Cons:
@@ -306,7 +304,7 @@ Step 1: The user executes `find A0175678U` into Vax@NUS.
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
 
-Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record of the particular student and the corresponding appointment belonging to the student from `Model` if it exists.
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record and the appointment belonging to the  particular student from `Model`.
 
 Step 4: Display the particular student record and appointment onto the UI. 
 
@@ -374,7 +372,7 @@ Ian finds it difficult to sieve information and is prone to making human errors.
 * Reasonably comfortable using CLI apps
 * Tired of looking at multiple rows and columns in Excel for long hours daily
 
-**Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students
+**Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students.
 
 ### User stories
 
@@ -463,24 +461,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find a specific student.
-2.  System prompts for student's matriculation number.
-3.  User inputs the matriculation number.
-4.  System finds the student. 
+1.  User requests to find a specific student record and his/her appointment.
+2.  System finds the particular student record and appointment. 
+3.  System shows the student records and appointment of the particular student.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Specified student does not exist.
-
+        
+* 1a. The given matriculation number is invalid.        
+        
     * 1a1. System shows an error message.
   
         Use case ends.
+        
+* 2a. Specified student does not exist.
 
-* 3a. User input matriculation number in the wrong format.
+    * 2a1. System shows an error message.
+  
+        Use case ends.
+        
+* 3a. Specified student does not have an appointment.
 
-    * 3a1. System shows an error message.
+    * 3a1. System shows an empty appointment list.
   
         Use case ends.
         
@@ -507,6 +511,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. User does not confirm.
 
   Use case ends.
+  
+  **Use case: Delete a student**
+  
+  **MSS**
+  
+  1.  User requests to delete a specific student.
+  2.  System prompts for confirmation of deletion.
+  3.  User confirms.
+  4.  System deletes the student. 
+  
+      Use case ends.
+  
+  **Extensions**
+  
+  * 1a. Specified student does not exist.
+  
+      * 1a1. System shows an error message.
+    
+          Use case ends.
+  
+  
+  * 3a. User does not confirm.
+  
+    Use case ends.
+
+**Use case: Filter all student records**
+
+**MSS**
+
+1.  User requests to filter all student records.
+2.  System displays a list of filtered records.
+
+    Use case ends.
+
+* 1a. Given filter condition is invalid.
+
+    * 1a1. System shows an error message.
+  
+        Use case ends.
 
 
 ### Non-Functional Requirements
@@ -585,23 +628,25 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
 
-### Filtering student records
+### Finding a student
 
-1. Filter student records based on vaccination status/faculty/school residence while all students are being shown
+1. Finding a student while all students are being shown
 
    1. Prerequisites: List all students using the `list` command. Sample data of students and appointments shown in the list.
 
-   1. Test case: `filter MED`<br>
-      Expected: GUI will show David Li with a matriculation number of 
-
-   1. Test case: `delete A1212121J`<br>
-      Expected: No student is deleted. Error details shown in the status message telling user no student with the specified matriculation number exists. 
-
-   1. Test case: `delete A12345J`<br>
-      Expected: No student is deleted. Error details shown in the status message telling user the input is not a valid matriculation number.
- 
-   1. Test case: `delete aBc 123`<br>
-      Expected: No student is deleted. Error details shown in the status message telling user the input is not a valid matriculation number.
+   1. Test case: `find A0221234N`<br>
+      Expected: The student record and appointment belonging to Roy Balakrishnan whose matriculation number matches "A0221234N" will be shown.  
       
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
-      Expected: Similar to previous.      
+   1. Test case: `find A1209478T`<br>
+      Expected: No student is found. Error details shown in the status message telling user no student with the specified matriculation number is found. 
+
+   1. Test case: `find A09876321T` <br>
+      Expected: No student is found. Error details shown in the status message telling user the input is not a valid matriculation number.
+ 
+   1. Test case: `find A1239874 T`<br>
+      Expected: No student is found. Error details shown in the status message telling user the input is not a valid matriculation number.
+      
+   1. Other incorrect delete commands to try: `find`, `find x`, `...` (where x is not a valid matriculation number) <br>
+      Expected: Similar to previous.
+      
+    
