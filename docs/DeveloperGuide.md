@@ -128,7 +128,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `rdel 1`.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `rdel 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -291,8 +291,8 @@ This process is summarised in the diagram below
 
 ##### Detailed execution pathway
 
-The diagram below details how the user's command to add a resident propagates through the system to eventually 
-add a resident. 
+The diagram below details how the user's command to add a resident propagates through the system to eventually
+add a resident.
 
 ![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png){:height="75%" width="75%"}
 
@@ -333,7 +333,7 @@ The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBoo
 * **Alternative 2:** Leave fields of Room as member variables of the Room class
     * Pros:
         * Everything is self-contained within the Room class, single source of "truth"
-    * Cons
+    * Cons:
         * Field verification becomes a responsibility of the Room class which is not desirable (Violation of SRP)
         * Changes to individual fields would impact the Room class which may unintentionally break other things
         * Less object oriented approach which goes against the principles of how this project was set up
@@ -355,7 +355,7 @@ The `AddRoomCommand` inherits from the `Command` object and overrides the `execu
 already has the room being inserted, and if it does not, it will insert the room.
 
 The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing
-with the specific implemetations of each `Command` object.
+with the specific implementations of each `Command` object.
 
 ##### Execution pathway
 The diagram below details how the user's command to add a room propagates through the system to eventually add a room.
@@ -390,10 +390,10 @@ The `alloc` command will do the following:
 
 Example: `alloc ri/1 oi/2`
 * Check that the 1st resident exists.
-* Check that the 2nd room exists exists.
+* Check that the 2nd room exists.
 * Check that the 1st resident has not already been allocated to the 2nd room.
 * Check that no other room is allocated to the 2nd resident.
-* Check that room the 2nd room is not occupied by any resident.
+* Check that the 2nd room is not occupied by any resident.
 
   **If all the above is true,**
 * Set the `ROOM` of the resident to be the room number of the room.
@@ -465,7 +465,7 @@ This process is summarised in the diagram below
 
 The `AddIssueCommand` inherits from the `Command` object and overrides the `execute()` method.
 
-The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implementations of each `Command` object.
 
 ##### Execution pathway
 The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
@@ -723,9 +723,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | power user | create aliases for longer commands | shorten commands to be more efficient to type |
 | `* *` | power user | delete aliases that are no longer needed | avoid triggering the wrong command |
 
-## Use cases
+## **Use cases**
 
-(For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code)
+For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code.
 
 
 ### UC-001 Add a resident
@@ -1092,7 +1092,7 @@ Use case ends.
 
       Use case ends.
 
-## Non-Functional Requirements
+## **Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 records (residents, rooms and issues) without more than 1 second of lag for
@@ -1107,7 +1107,7 @@ Use case ends.
 9. The data should not be stored in a Database Management System (DBMS).
 10. Should not depend on any remote server.
 
-### Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Residential College (RC)**: A university residence for students that offers a 2-year program at NUS
@@ -1149,7 +1149,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Re-launch the app by double-clicking the jar file. Check the command history again with `history`. <br>
        Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
 
-### Resident Data
+### Resident
 
 1. Adding residents
     1. Prerequisites: There is no existing resident named `John Doe`.
@@ -1191,7 +1191,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `rfind KEYWORD` <br>
        Expected: Residents whose names have words fully matching `KEYWORD` are listed.
 
-### Rooms
+### Room
 
 1. Adding a room
 
@@ -1272,16 +1272,16 @@ starting point for testers to work on; testers are expected to do more *explorat
         * `iedit x` with at least 1 valid parameter given and where `x` is either a non-positive number or not a number at all. E.g. `iedit -1 r/01-234` and `iedit a d/ABCDEF`. <br>
           Expected: An error message indicating the type of error.
         * `iedit x` with at least 1 invalid parameter given and where `x` is a valid index. <br>
-          Expected: An error message indicating the constraints of the invalid paramter.
+          Expected: An error message indicating the constraints of the invalid parameter.
 
 5. Closing issues
 
     1. Prerequisites: There is at least 1 issue with status `Pending`.
 
-    2. Test case: `iclo x` where x is the index of a issue with status `Pending`. <br>
+    2. Test case: `iclo x` where x is the index of an issue with status `Pending`. <br>
        Expected: The issue's status is set to `Closed`.
 
-    3. Test case: `iclo x` where x is the index of a issue with status `Closed`. <br>
+    3. Test case: `iclo x` where x is the index of an issue with status `Closed`. <br>
        Expected: An error message indicating that the issue is already closed.
 
 6. Delete issues
@@ -1353,14 +1353,14 @@ e.g. `radd`, `redit`, `idel`, `clear`, etc.
 
 **:information_source: Shortcuts to undo:**<br>
 1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`Z` (Windows, Linux) or `CMD`+`Z` (Mac).
 
 These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
 command history.
 
 **:information_source: Shortcuts to redo:**<br>
 1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`SHIFT`+`Z` (Windows, Linux) or `CMD`+`SHIFT`+`Z` (Mac).
 
 These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
 command history.
