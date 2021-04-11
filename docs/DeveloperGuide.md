@@ -28,7 +28,7 @@ This developer's guide assumes its readers to have a **basic understanding** of 
 For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
 However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. <br>
 
-Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. <br>
+Readers are also advised to download our latest releases from our [main website](https://imposter-dev.tk) in order to test out the application. <br>
 
 ## **Navigating this Developer Guide**
 
@@ -893,7 +893,7 @@ Given below are instructions to test the app manually.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file. <br>
       Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
@@ -934,30 +934,30 @@ Given below are instructions to test the app manually.
 
 1. Add an endpoint
 
-    1. There are less than 100 endpoints in the endpoint list, and endpoint that is to be added is not the same as any currently in the list.
+   1. There are less than 100 endpoints in the endpoint list, and endpoint that is to be added is not the same as any currently in the list.
 
-    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us` <br>
+   1. Test case: `add -x get -u https://sg.yahoo.com/?p=us` <br>
        Expected: A new endpoint with the `GET` method and `https://sg.yahoo.com/?p=us` address is added into the endpoint list.
 
-    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -t yahoo` <br>
+   1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -t yahoo` <br>
        Expected: A new endpoint with the `GET` method, `https://sg.yahoo.com/?p=us` address and `yahoo` tag is added into the endpoint list.
 
-    1. Test case: `add -x get -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -h "key: value" -t common` <br>
+   1. Test case: `add -x get -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -h "key: value" -t common` <br>
        Expected: A new endpoint with the `GET` method, `https://reqres.in/api/users` address, `{"name": "john doe", "job": "developer"}` data, `"key: value"` header and `common` tag is added into the endpoint list.
 
-    1. Test case: `add` <br>
+   1. Test case: `add` <br>
        Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
-    1. Test case: `add -x get` <br>
+   1. Test case: `add -x get` <br>
        Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Invalid command format!...`
 
-    1. Test case: `add -x get -u invalidurl\\` <br>
+   1. Test case: `add -x get -u invalidurl\\` <br>
        Expected: No endpoint is added. Error details shown in the result display, with a result message saying `URL provided has to be valid...` <br>
 
-    1. Test case: `add -x abc -u https://sg.yahoo.com/?p=us` <br>
+   1. Test case: `add -x abc -u https://sg.yahoo.com/?p=us` <br>
        Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Methods only consists...`
 
-    1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -d abc` <br>
+   1. Test case: `add -x get -u https://sg.yahoo.com/?p=us -d abc` <br>
        Expected: No endpoint is added. Error details shown in the result display, with a result message saying `Data must be...`
 
 ### Edit an endpoint
@@ -1087,25 +1087,25 @@ Given below are instructions to test the app manually.
 
 1. List all endpoints
 
-  1. Prerequisites: There exists multiple endpoints in the list.
+   1. Prerequisites: There exists multiple endpoints in the list.
 
-  1. Test case: `list`<br>
+   1. Test case: `list`<br>
      Expected: All endpoints are shown in the endpoint list, with a
      result message saying `Listed all saved...`.
 
 2. List all endpoints from the endpoint list after a `find` command
 
-  1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list.
+   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list.
      Perform a `find` command such that the endpoint list shows less than actual number of endpoints.
 
-  1. Test case: `list`<br>
+   1. Test case: `list`<br>
      Expected: Filter from the `find` will be cleared and all endpoints are shown in the endpoint list, with a result message saying `Listed all saved...`.
 
 3. List all endpoints from the endpoint list after a `clear` command
 
    1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list. 
      
-   1.Perform a `clear` command such that all endpoints are cleared from the endpoint list.
+   1. Perform a `clear` command such that all endpoints are cleared from the endpoint list.
 
    1. Test case: `list`<br>
       Expected: No endpoints are shown in the endpoint list, with a result message saying `It seems like your list is empty!...`.
