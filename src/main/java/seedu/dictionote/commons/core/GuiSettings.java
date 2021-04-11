@@ -246,7 +246,9 @@ public class GuiSettings implements Serializable {
             && isNoteListPanelVisible == o.isNoteListPanelVisible
             && isNoteContentPanelVisible == o.isNoteContentPanelVisible
             && isDictionaryListPanelVisible == o.isDictionaryListPanelVisible
-            && isDictionaryContentPanelVisible == o.isDictionaryContentPanelVisible;
+            && isDictionaryContentPanelVisible == o.isDictionaryContentPanelVisible
+            && isDictionaryPanelVerticial == o.isDictionaryPanelVerticial
+            && isNotePanelVerticial == o.isNotePanelVerticial;
     }
 
     @Override

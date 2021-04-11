@@ -1,6 +1,8 @@
 package seedu.dictionote.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.dictionote.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,6 +11,7 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.dictionote.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalContacts.AMY;
+import static seedu.dictionote.testutil.TypicalContacts.getTypicalContacts;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,6 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.ListContactCommand;
@@ -34,6 +38,7 @@ import seedu.dictionote.storage.JsonNoteBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
 import seedu.dictionote.storage.StorageManager;
 import seedu.dictionote.testutil.ContactBuilder;
+import seedu.dictionote.testutil.TypicalDictionaryContentConfig;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -110,6 +115,51 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredContactList().remove(0));
     }
 
+    @Test
+    public void getFilteredNoteList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredNoteList().remove(0));
+    }
+
+    @Test
+    public void getFilteredContentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredContentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredDefinitionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDefinitionList().remove(0));
+    }
+    @Test
+    public void getFilteredCurrentDictionaryList_modifyList_throwsUnsupportedOperationException() {
+        model.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCurrentDictionaryList().remove(0));
+    }
+
+    @Test
+    void getContactsList() {
+        assertEquals(logic.getContactsList(),model.getContactsList());
+    }
+
+    @Test
+    void getContactsListFilePath() {
+        assertEquals(logic.getContactsListFilePath(),model.getContactsListFilePath());
+    }
+
+    @Test
+    void getGuiSettings() {
+        assertEquals(logic.getGuiSettings(),model.getGuiSettings());
+    }
+
+    @Test
+    void setGuiSettings() {
+        GuiSettings newSetting = new GuiSettings();
+        newSetting.toggleDictionaryPanelOrientation();
+        assertNotEquals(logic.getGuiSettings(), newSetting);
+        logic.setGuiSettings(newSetting);
+        assertEquals(logic.getGuiSettings(), newSetting);
+    }
+
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
@@ -163,6 +213,8 @@ public class LogicManagerTest {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
+
+
 
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
