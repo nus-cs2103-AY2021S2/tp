@@ -88,7 +88,7 @@ public class TimetableView extends UiPart<Region> {
      */
     private TimetablePlacementPolicy timetablePlacementPolicy;
 
-    private ObservableList<? extends Schedulable> timetableSlots;
+    private ObservableList<? extends Schedulable> schedulables;
 
     private ObservableValue<LocalDate> firstDayOfTimetable;
 
@@ -102,7 +102,7 @@ public class TimetableView extends UiPart<Region> {
 
     private final ChangeListener<LocalDate> dateListener = (observable, oldValue, newValue) -> {
         timetablePlacementPolicy = new TimetablePlacementPolicy(newValue);
-        populateWithData(timetableSlots);
+        populateWithData(schedulables);
         refreshDayLabels(newValue);
     };
 
@@ -119,21 +119,21 @@ public class TimetableView extends UiPart<Region> {
      * -Filters out relevant meetings to be displayed
      * -Finds the meeting position and column to slot in given the timeTablePlacementPolicy.
      * -Puts it into the timetable.
-     * @param timetableSlots
+     * @param schedulables
      */
 
-    public TimetableView(ObservableList<? extends Schedulable> timetableSlots,
+    public TimetableView(ObservableList<? extends Schedulable> schedulables,
                          ObservableValue<LocalDate> firstDayOfTimetable) {
         super(FXML);
-        requireNonNull(timetableSlots);
+        requireNonNull(schedulables);
         requireNonNull(firstDayOfTimetable);
-        this.timetableSlots = timetableSlots;
+        this.schedulables = schedulables;
         this.firstDayOfTimetable = firstDayOfTimetable;
         this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable.getValue());
-        populateWithData(timetableSlots);
+        populateWithData(schedulables);
         refreshDayLabels(firstDayOfTimetable.getValue());
         //add Listener
-        timetableSlots.addListener(this.meetingsListener);
+        schedulables.addListener(this.meetingsListener);
         firstDayOfTimetable.addListener(this.dateListener);
     }
 
