@@ -369,6 +369,10 @@ Example:
 Please note that the following session commands can only be used after you have at least 1 student in TutorBuddy.
 Click [here](#423-managing-students) if you want to find out more on how to add your first student.
 
+<div markdown="block" class="alert alert-info">
+:information_source: Note that the examples in this section are done in a single instance with a student already existing in TutorBuddy.
+</div>
+
 ##### Adding a single tuition session: `add_session`
 
 Adds a single tuition session to TutorBuddy.
@@ -393,7 +397,7 @@ This is done as we do not except tutors to teach lessons beyond the day itself.
 
 Example:
 1. You would like to add a new session for **John Doe** on the date **2021-01-01** at **18:00** where you will teach **Biology** for **120** minutes and charge a fee of **$80**.
-2. Type in `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80` to add the session information into TutorBuddy and press <kbd>enter</kbd>.
+2. Type in `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80` and press <kbd>Enter</kbd> to add the session information into TutorBuddy.
 
 ![add_session_example](images/choonwei/add_session.png)
 
@@ -417,7 +421,7 @@ Arguments similar to `add_session` command except the following:
 Example:
 1. You would like to add a new recurring session for **John Doe** on the date **2021-01-01** at **18:00** where you will teach
    **Math** for **120** minutes and charge a fee of **$80** for each lesson. The session will occur every **7** days until **2021-01-29**.
-2. Type in `add_rec_session n/John Doe d/2021-01-02 e/2021-01-30 b/7 t/18:00 k/120 s/Math f/80` to add the session information into TutorBuddy and press <kbd>enter</kbd>.
+2. Type in `add_rec_session n/John Doe d/2021-01-02 e/2021-01-30 b/7 t/18:00 k/120 s/Math f/80` and press <kbd>Enter</kbd> to add the session information into TutorBuddy.
 
 ![add_recurring_session_example](images/choonwei/add_recurring_session.png)
 
@@ -446,7 +450,7 @@ Example:
 
 ![delete_session_example](images/choonwei/delete_session.png)
    
-3. Using the index from step 2, type in `delete_session n/John Doe i/1` which deletes John Doe's **first** session.
+3. Using the index from step 2, type in `delete_session n/John Doe i/1` and press <kbd>Enter</kbd> to deletes John Doe's **first** session.
 4. You will now see that the session has been deleted.
 
 ![delete_session_result_example](images/choonwei/delete_session_result.png)
@@ -470,9 +474,9 @@ Example:
 
 ![delete_recurring_session_example](images/choonwei/delete_recurring_session.png)
 
-3. Using the index from step 2, type in `delete_rec_session n/John Doe i/1 d/2021-01-16` which deletes a single session from **John Doe**'s recurring session.
-4. You will now see that this splits the original recurring session into two recurring session from **2021-01-02** to **2021-01-09** and
-   another from **2021-01-23** to **2021-01-30**.
+3. Using the index from step 2, type in `delete_rec_session n/John Doe i/1 d/2021-01-16` and press <kbd>Enter</kbd> to delete a single session from **John Doe**'s recurring session.
+4. You will now see that this splits the original recurring session into two recurring session from **02 Jan 2021** to **09 Jan 2021** and
+   another from **23 Jan 2021** to **30 Jan 2021**.
 
 ![delete_recurring_session_result_example](images/choonwei/delete_recurring_session_result.png)
   
