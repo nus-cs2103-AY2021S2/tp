@@ -207,7 +207,7 @@ have upcoming birthdays, a pop-up box will be served to the user to remind them 
 
 The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
 risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
-zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it 
+zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it
 to 2 decimal places.
 
 
@@ -481,5 +481,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
-
 -->

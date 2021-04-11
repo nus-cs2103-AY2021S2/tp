@@ -437,9 +437,9 @@ the JSON file directly. The Link.me team does not take any responsibility in dat
 invalid inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, 
+If your changes to the data file make its format invalid,
 Link.me will try to discard all data and start with an empty data file at the next run,
-but if the damage is too excessive, Link.me may be unable to start up. 
+but if the damage is too excessive, Link.me may be unable to start up.
 In the case that this happens, please manually discard the data file to start the app.
 </div>
 

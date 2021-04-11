@@ -97,4 +97,3 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
       [\#282](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/282),
       [\#283](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/283),
       [\#284](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/284)
-    
