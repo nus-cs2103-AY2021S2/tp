@@ -18,7 +18,7 @@ public class RemindCommand extends Command {
     public static final String MESSAGE_MULTIPLE_INPUTS = "Only one input for remind command is accepted!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders whose delivery dates "
             + "are within X days from the current date, as a list with index numbers.\n"
-            + "Parameters: DAYS (Integer more than 0 but less than 2147483647) \n"
+            + "Parameters: DAYS (Integer more than equal to 0 but less than or equal to 2147483647) \n"
             + "Example: " + COMMAND_WORD + " 3";
 
     private final ReminderDatePredicate predicate;
