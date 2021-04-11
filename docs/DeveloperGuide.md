@@ -344,9 +344,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Missing mandatory dog/owner/program details.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies missing details.
-
-      Use case resumes at step 2.
+    * 1a2. User supplies missing details. <br>
+        Steps 1a1-1a2 are repeated until the command entered is correct.
+      
+    Use case resumes at step 2.
 
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
@@ -364,11 +365,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given dog/owner/program ID is invalid or not specified.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies the corrected dog/owner/program ID.
+    * 1a2. User supplies the corrected dog/owner/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
 
       Use case resumes at step 2.
 
-**Use case: UC03 - List**
+**Use case: UC03 - Edit a dog/owner profile or program**
+
+**MSS**
+
+1.  User requests to edit a specific dog/owner/program in the list.
+2.  Pawbook edits the dog/owner/program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given dog/owner/program ID is invalid or does not correspond to the entity specified. 
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies the corrected dog/owner/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+
+      Use case resumes at step 2.
+
+**Use case: UC04 - Show the specified entity list.**
 
 **MSS**
 
@@ -377,7 +398,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC04 - Enrol dog to program**
+**Extensions**
+
+* 1a. User requests to list something that is none of the three entities.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies the corrected dog/owner/program parameter. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+
+      Use case resumes at step 2.
+
+**Use case UC05 - View an entity and all its related entities.**
+
+**MSS**
+
+1. User types in view command with the target ID. 
+2. Pawbook supplies the results matching the keyword(s).
+3. Use case ends.
+
+**Extensions**
+
+* 1a. The ID is not provided.
+  
+    * 1a1. Pawbook shows an error message. 
+    * 1a2. User supplies a valid ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+
+  Use case resumes at step 2.
+
+* 1b. The ID is invalid (negative, out of bounds, not in database etc.).
+  
+  * 1b1. Pawbook shows an error message. 
+  * 1b2. User supplies a valid ID.<br>
+    Steps 1b1-1b2 are repeated until the command entered is correct.
+    
+
+**Use case UC06 - Find entity**
+
+**MSS**
+
+1. User types in find command with one or more keywords.
+2. Pawbook supplies the results matching the keyword(s).
+3. Use case ends.
+
+**Extensions**
+
+* 1a. The keyword is not provided.
+
+    * 1a1. Pawbook shows an error message and requests keyword.
+    * 1a2. User supplies keywords.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+
+    Use case resumes at step 2.
+
+**Use case: UC07 - Enrol dog to a program**
 
 **MSS**
 
@@ -391,7 +465,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The dog/program ID is invalid/not specified.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies correct dog/program ID.
+    * 1a2. User supplies correct dog/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
 
       Use case resumes at step 2.
     
@@ -416,10 +491,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The dog/program ID is invalid/not specified.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies correct dog/program ID.
+    * 1a2. User supplies correct dog/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
 
       Use case resumes at step 2.
-
+    
 * 1b. The user requests to drop multiple dogs from multiple programs.
 
     * 1b1. Pawbook shows an error message.
@@ -431,35 +507,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to view schedule.
+1.  User requests to view schedule with a specified date. 
 2.  Pawbook shows the schedule.
 
     Use case ends.
 
-**Use case: UC07 - View Help**
+**Extensions**
+
+* 1a. The date is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies correct date. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+      
+    Use case resumes at step 2.
+
+
+**Use case: UC07 - View Help Window**
 
 **MSS**
 
-1.  User requests to for help with using the application.
-2.  User enters `help` command into the command box and presses <kbd>enter</kbd>.   
-3.  Pawbook opens a help window containing the link to the user guide
+1.  User enters `help` command into the command box and presses <kbd>enter</kbd>.   
+2.  Pawbook opens a help window containing the link to the user guide
 and also a command summary for the user.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The given command/format is invalid.
-    - 2a1. Pawbook shows an error message to the user.
-    Use case resumes at step 2.
+- 1a. The given command/format is invalid. 
+    - 1a1. Pawbook shows an error message to the user.
+    - 1a2. User supplies the correct command. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+    Use case resumes at step 3.
       
 
 **Use case: UC08 - Exit Pawbook**
 
 **MSS**
 
-1.  User requests to exit Pawbook.
-2.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.    
+
+1.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.    
 2.  Pawbook shows goodbye message.
 3.  Pawbook terminates.
 
@@ -467,9 +555,11 @@ and also a command summary for the user.
 
 **Extensions**
 
-- 2a. The given command/format is invalid.
-    - 2a1. Pawbook shows an error message to the user.
-      Use case resumes at step 2.
+- 1a. The given command/format is invalid.
+    - 1a1. Pawbook shows an error message to the user.
+    - 1a2. User supplies the correct command. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+      Use case resumes at step 3.
 
 
 *{More to be added}*
