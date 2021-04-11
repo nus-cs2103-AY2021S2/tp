@@ -13,7 +13,7 @@ public class ViewUnassignedTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "viewUnassignedTasks";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Unassigned Tasks";
+    public static final String MESSAGE_SUCCESS = "Listed all Unassigned Tasks.";
 
     public static final String MESSAGE_NO_UNASSIGNED_TASKS = "There are no unassigned tasks found!";
 

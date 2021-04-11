@@ -29,9 +29,9 @@ public class DoneTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task is marked as completed!";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Task has been marked as completed.";
 
-    public static final String MESSAGE_TASK_ALREADY_MARKED_DONE = "Task is already marked completed!";
+    public static final String MESSAGE_TASK_ALREADY_MARKED_DONE = "Task has already been marked completed!";
 
     private final Index index;
 

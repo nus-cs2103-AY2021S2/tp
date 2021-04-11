@@ -14,7 +14,7 @@ public class ViewTasksCommand extends Command {
 
     public static final String COMMAND_WORD = "viewTasks";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Tasks!";
+    public static final String MESSAGE_SUCCESS = "Listed all Tasks.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

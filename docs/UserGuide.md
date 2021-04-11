@@ -238,8 +238,9 @@ any of the specified keywords.
 
 Format: `findMembers KEYWORD [MORE_KEYWORDS]...`
 
-* KEYWORD must match an entire word, case-insensitive, in order for the particular member to be found. 
+* KEYWORD must match an entire word in order for the particular member to be found. 
   * e.g. `Rachel` will not match with `Rach`.
+* The search using KEYWORD is case-insensitive
   * e.g. `Rachel` will match with `rachel`. 
 
 Examples: 
@@ -358,7 +359,7 @@ Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 
 * KEYWORD must match an entire word in order for the particular task to be found.
   * e.g. `Meeting` will not match with `Meet`.
-* The search using KEYWORD is case-sensitive.
+* The search using KEYWORD is case-insensitive.
   * e.g. `Meeting` will match with `meeting`.
 
 Examples: 
