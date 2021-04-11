@@ -29,11 +29,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/modulebook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T13-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/Main.java) and [`MainApp`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/module/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/module/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -70,7 +70,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/module/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -86,7 +86,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/module/logic/Logic.java)
 
 1. `Logic` uses the `ModuleBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -115,7 +115,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/module/model/Model.java)
 
 The `Model`,
 
@@ -125,17 +125,11 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ModuleBook`, which `Task` references. This allows `ModuleBook` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/modulebook-level3/tree/master/src/main/java/seedu/module/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/module/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -190,6 +184,7 @@ The notdone mechanism is similar to that of the done mechanism, except that the 
 
 <div style="page-break-after: always;"></div>
 
+
 ### Recur feature
 
 #### Implementation
@@ -219,6 +214,30 @@ The following sequence diagram shows how the `recur` feature works.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RecurCommand` and `RecurCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+### Workload Distribution feature
+
+#### Implementation
+
+The workload distribution feature is implemented by `ModuleManager`. It uses HashMap and an OberservableList to monitor the workload of each module and PieChart in javaFX to visualizes it. More explicitly, it is implemented by 4 HashMaps using Module as key. The first three maps are used in the ModuleList while the map of weighted sum is used in the PieChart.
+
+* `moduleLowWorkLoadDistribution` - the value corresponds to the number of tasks with low workload.
+* `moduleMediumWorkLoadDistribution` - the value corresponds to the number of tasks with medium workload.
+* `moduleHighWorkLoadDistribution` - the value corresponds to the number of tasks with high workload.
+
+* `moduleWorkLoadDistribution` - the value corresponds to the weighted sum of workload where low workload is counted as 1, medium workload is counted as 2, high workload is counted as 3.
+
+It also implements following method:
+
+* `increaseCorrectWorkloadDistribution(Module module, Task task)` —  Based on the workload of the task, increases the value of corresponding map and the `moduleWorkloadDistribution`.
+
+* `decreaseCorrectWorkloadDistribution(Module module, Task task)` —  Based on the workload of the task, decreases the value of corresponding map and the `moduleWorkloadDistribution`.
+
+The following class diagram shows the classes related to implementing workload distribution:
+
+![WorkloadDistributionDiagram](images/WorkloadDistributionClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -432,33 +451,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User <ins>lists tasks (UC01)</ins>.
-
-2.  User requests to mark a task as not done.
-
-3.  ModuleBook3.5 marks the task as not done.
-
-    Use case ends.
+Same as <ins>Mark task as done (UC03)</ins>, except that task is marked as not done instead of done.
 
 **Extensions**
 
-* 2a. The list is empty.
+Same as extensions for <ins>Mark task as done (UC03)</ins>, but with one exception:
 
-    * 2a1. ModuleBook3.5 shows an error message.
-
-      Use case ends.
-    
-
-* 3a. The given index is out of range.
-
-    * 3a1. ModuleBook3.5 shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The task at given index is not done yet.
+* 3b. The task at given index is already not done.
 
     * 3b1. ModuleBook3.5 shows a not done message.
-    
+
+      Use case resumes at step 2.
 
 **Use case 05: Add a task**
 
