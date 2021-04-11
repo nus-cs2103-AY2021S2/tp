@@ -252,11 +252,21 @@ Classes used by both `Task` and `Event` are in the `seedu.address.model.common` 
 
 ## 4 Implementation
 
-This section describes some noteworthy details on how [Sochedule](#41-sochedule), [Task](#42-task) and [Event](#43-event) are implemented.
+This section describes some noteworthy details on how [SOChedule](#41-sochedule), [Task](#42-task) and [Event](#43-event) are implemented.
 
-### 4.1 Sochedule
+### 4.1 SOChedule
 
 #### 4.1.1 Overview
+
+SOChedule consists of two lists: a task list and an event list. The task list is used to accommodate different tasks
+specified by users while the event list is used to accommodate different events specified by users.
+
+While both task list and event list can be updated independently by their corresponding commands (e.g. `add_task`, 
+`delete_event`), there are some SOChedule-Level commands listed as follows that can act on both task list and event list:
+
+* `clear`
+* `summary`
+* `find_schedule`
 
 #### 4.1.2 Implementation of SOChedule-Level Commands
 
@@ -311,7 +321,7 @@ The find schedule mechanism is supported mainly by `FindScheduleCommand` and `Fi
 
 The relevant methods include:
 * `FindScheduleCommandParser#parse(String args)` - Parses the user input into a Date object.
-* `FindScheduleCommand#execute(Model model)` - Finds the tasks with deadline before or on the specified date and
+* `FindScheduleCommand#execute(Model model)` - Finds the uncompleted tasks with deadlines before or on the specified date and
 events with start date before or on and end date after or on the specified date.
 
 Given below is an example usage scenario and how the find schedule mechanism behaves at each step.
@@ -369,7 +379,7 @@ considerations with regards to what kinds of uncompleted tasks to be selected.
         * The date provided is not adding useful value here and users may find this implementation less helpful.
 
 Alternative 1 is chosen because we believe this implementation can make better use of the date provided and can be more 
-helpful for users to know what tasks should be dealt with first and improve their efficiecny in task and event managements.
+helpful for users to know what tasks should be dealt with first and improve their efficiency in task and event managements.
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -377,9 +387,43 @@ helpful for users to know what tasks should be dealt with first and improve thei
 
 #### 4.2.1 Overview
 
+`Task` is a type of activity that comes with a `Deadline` attribute and can be marked as complete or incomplete. It is
+specified by the following attributes:
+
+* `Name`
+* `Deadline`
+* `Priority`
+* `[Category] ...` (Optional, can be multiple)
+* `[Tag] ...` (Optional, can be multiple)
+
+Note that a `Task` is defined to be the same as another `Task` if and only if all of their attributes listed above are
+equal correspondingly.
+
+Our `Task` supports the following features through a `LogicManager`.
+
+* `add_task`
+* `delete_task`
+* `edit_task`
+* `list_task`
+* `done_task`
+* `undone_task`
+* `today_task`
+* `find_task`
+* `sort_task`
+* `pin_task`
+* `unpin_task`
+* `clear_completed_task`
+* `clear_expired_task`
+
+The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are 
+omitted here because their implementation is similar to that of other features.
+
 #### 4.2.2 Implementation
 
+#### 4.2.2.1 Add Task Feature
+
 **Implementation of AddTaskCommand**
+
 The following is a detailed explanation on how AddTaskCommand is implemented.
 
 **Step1**: User executes `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` command to add the 
@@ -401,7 +445,10 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
+#### 4.2.2.2 Delete Task Feature
+
 **Implementation of DeleteTaskCommand**  
+
 The following is a detailed explanation on how DeleteTaskCommand is implemented.
 
 **Step 1**: User executes `delete_task Index` command to delete the task at the given index.
@@ -421,11 +468,13 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Table of Contents](#table-of-contents)
 
-#### 4.2.3.3 Done Task feature
+
+#### 4.2.2.3 Done Task feature
 
 **Implementation of DoneTaskCommand**
+
 The done task mechanism is supported mainly by `DoneTaskCommand` and `DoneTaskCommandParser`.
 
 The relevant methods include:
@@ -485,7 +534,7 @@ under normal usage. Thus, we feel alternative 1 is necessary to serve our users 
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.3.4 Undone Task feature
+#### 4.2.2.4 Undone Task feature
 
 **Implementation of UndoneTaskCommand**
 
@@ -525,7 +574,7 @@ when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`
 
 The activity diagram that summaries what happens when users execute the `UndoneTaskCommand` can be found below.
 
-![Acitivity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
+![Activity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
 
 **Design Considerations**
 
@@ -543,15 +592,86 @@ Here are our considerations.
     * Pros:
         * May save a small amount of time when users need to undone multiple tasks.
     * Cons:
-        * More time-consuming to implement, increases difficulty in testing and integeration with other commands and components.
+        * More time-consuming to implement, increases difficulty in testing and integration with other commands and components.
 
-Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited developement and
+Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited development and
 testing time. More importantly, unlike done task, users are unlikely to have the demand to undone multiple tasks frequently 
 under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.3.5 Edit Task feature
+#### 4.2.2.5 Today Task Feature
+
+**Implementation of TodayTaskCommand**
+
+The following is a detailed explanation on how TodayTaskCommand is implemented.
+
+The TodayTaskCommand is supported mainly by `TodayTaskCommand`.
+
+The relevant methods include:
+* `TodayTaskCommand#execute(Model model)` - Updates the task list on UI to show all the tasks that has deadline on 
+  today which are stored in the internal task list.
+
+Given below is an example usage scenario and how the `today_task` mechanism behaves at each step.
+
+**Step 1**: User executes `today_task` command to list all the tasks with deadline on today in the task list.
+A `TodayTaskCommand` object is returned
+
+**Step 2**: On `TodayTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This 
+will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
+`TaskDeadlineIsTodayPredicate`. For brevity, lower level implementation of 
+`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+
+**Step 3**: On execution completion, a `CommandResult` is created. A success message will be appended with
+`CommandResult#MESSAGE_TODAY_TASK_SUCCESS` and `MESSAGE_TASK_LISTED_OVERVIEW`. The UI will also update as the underlying 
+task list that has been modified.
+
+The sequence diagram for TodayTaskCommand can be found below.
+
+![Sequence Diagram of TodayTaskCommand](images/TodayTaskCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 4.2.2.6 Find Task Feature
+
+**Implementation of FindTaskCommand**
+
+The following is a detailed explanation on how FindTaskCommand is implemented.
+
+The FindTaskCommand is supported mainly by `FindTaskCommand` and `FindTaskCommandParser`.
+
+The relevant methods include:
+* `FindTaskCommandParser#parse(String args)` - Parses the user input into a list of keywords.
+* `FindTaskCommand#execute(Model model)` - Updates the task list on UI to show all the tasks whose names contain any of 
+  the given keywords from the internal task list.
+
+Given below is an example usage scenario and how the find task mechanism behaves at each step.
+
+**Step 1**: User executes `find_task homework assignment` to find all tasks whose names contain any of `homework` or 
+`assignment`.
+Let us call these task the target tasks.
+A `FindTaskCommandParser` object is created, and the `FindTaskCommandParser#parse(String args)` method is called.
+The method parses the `homework assignment` into a list of strings : [`homwork`, `assignment`], which is the original
+string splitted by whitespace. This list of strings will be passed into the constructor of 
+`TaskNameContainsKeywordPredicate`, which will then be passed into the constuctor of a `FindTaskCommand`.
+The `FindTaskCommand` object with input predicate is returned.
+
+**Step 2**:
+On `FindTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This
+will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
+`TaskNameContainsKeywordPredicate`. For brevity, lower level implementation of
+`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_TASKS_LISTED_OVERVIEW`.
+
+The sequence diagram for `FindTaskCommand` can be found below.
+
+![Sequence Diagram of FindTaskCommand](images/FindTaskCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 4.2.2.6 Edit Task feature
 
 **Implementation of EditTaskCommand**  
 
@@ -591,7 +711,7 @@ One of the challenges is if we should allow overdue tasks (task with deadlines b
 
 * Alternative 1 (current implementation): Overdue tasks can be edited.
     * Pros:
-        * At very frequent occasions, users may need to edit an over task. For example, users may wish to
+        * At very frequent occasions, users may need to edit an overdue task. For example, users may wish to
         extend the deadline of an overdue task, or increasing its priority to remind themselves that this task
           needs more attention.
     * Cons:
@@ -602,7 +722,7 @@ One of the challenges is if we should allow overdue tasks (task with deadlines b
 
 * Alternative 2: Overdue tasks cannot be edited.
     * Pros:
-        * May sastify the demand of users as described in cons of alternative 1.
+        * May satisfy the demand of users as described in cons of alternative 1.
     * Cons:
         * May not meet the requirements of users as described in pros of alternative 1.
 
@@ -687,7 +807,7 @@ By implementing it in this way, our group is able to ensure that the sort order 
 
 This would enable SOChedule to better serve the needs of its user base. 
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Table of Contents](#table-of-contents)
 
 **Implementation of PinTaskCommand/UnpinTaskCommand**  
 The following is a detailed explanation on how PinTaskCommand is implemented.
@@ -764,6 +884,34 @@ The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 
 #### 4.3.1 Overview
 
+`Event` is a type of activity that has a specific `StartDate` and `StartTime` following an `EndDate` and `EndTime`.
+It is specified by the following attributes:
+
+* `Name`
+* `StartDate`
+* `StartTime`
+* `EndDate`
+* `EndTime`
+* `[Category] ...` (Optional, can be multiple)
+* `[Tag] ...` (Optional, can be multiple)
+
+Note that an `Event` is defined to be the same as another `Event` if and only if all of their attributes listed above 
+are equal correspondingly.
+
+Our `Event` supports the following features through a `LogicManager`
+
+* `add_event`
+* `delete_event`
+* `edit_event`
+* `list_event`
+* `today_event`
+* `find_event`
+* `clear_expired_event`
+
+The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are
+omitted here because their implementation is similar to that of other features.
+
+
 #### 4.3.2 Implementation
 
 **Implementation of AddEventCommand**
@@ -808,7 +956,77 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 ![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Table of Contents](#table-of-contents)
+
+**Implementation of TodayEventCommand**
+
+The following is a detailed explanation on how TodayEventCommand is implemented.
+
+The TodayEventCommand is supported mainly by `TodayEventCommand`.
+
+The relevant methods include:
+* `TodayEventCommand#execute(Model model)` - Updates the event list on UI to show all the events whose time duration has
+  overlaps with today in the event list.
+
+Given below is an example usage scenario and how the `today_event` mechanism behaves at each step.
+
+**Step 1**: User executes `today_event` command to list all the events whose duration has overlap with today
+in the event list.
+A `TodayEventCommand` object is returned
+
+**Step 2**: On `TodayEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This
+will update the filtered event list with the predicate specified by the input predicate, which is a predicate of type
+`EventCoversTodayPredicate`. For brevity, lower level implementation of
+`Model#updateFilteredEvents(Predicate<Event> predicate)` is omitted.
+
+**Step 3**: On execution completion, a `CommandResult` is created. A success message will be appended with
+`CommandResult#MESSAGE_TODAY_EVENT_SUCCESS` and `MESSAGE_EVENT_LISTED_OVERVIEW`. The UI will also update as the underlying
+event list that has been modified.
+
+The sequence diagram for TodayEventCommand can be found below.
+
+![Sequence Diagram of TodayEventCommand](images/TodayEventCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
+
+**Implementation of FindEventCommand**
+
+The following is a detailed explanation on how FindEventCommand is implemented.
+
+The FindEventCommand is supported mainly by `FindEventCommand` and `FindEventCommandParser`.
+
+The relevant methods include:
+* `FindEventCommandParser#parse(String args)` - Parses the user input into a list of keywords.
+* `FindEventCommand#execute(Model model)` - Updates the event list on UI to show all the events whose names contain any of
+  the given keywords from the internal event list.
+
+Given below is an example usage scenario and how the find event mechanism behaves at each step.
+
+**Step 1**: User executes `find_event project meeting` to find all events whose names contain any of `project` or
+`meeting`.
+Let us call these task the target tasks.
+A `FindEventCommandParser` object is created, and the `FindEventCommandParser#parse(String args)` method is called.
+The method parses the `project meeting` into a list of strings : [`project`, `meeting`], which is the original
+string splitted by whitespace. This list of strings will be passed into the constructor of
+`EventNameContainsKeywordPredicate`, which will then be passed into the constuctor of a `FindEventCommand`.
+The `FindEventCommand` object with input predicate is returned.
+
+**Step 2**:
+On `FindEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This
+will update the filtered event list with the predicate specified by the input predicate, which is a predicate of type
+`EventNameContainsKeywordPredicate`. For brevity, lower level implementation of
+`Model#updateFilteredEvents(Predicate<Eventk> predicate)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_EVENTS_LISTED_OVERVIEW`.
+
+The sequence diagram for `FindEventCommand` can be found below.
+
+![Sequence Diagram of FindEventCommand](images/FindEventCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
 
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
@@ -891,7 +1109,8 @@ we allowed an expired task to be edited is because if the task is expired but no
 an “overdue task”, while there’s no “overdue event”.
 
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Table of Contents](#table-of-contents)
+
 
 **Implementation of FindFreeTimeCommand**  
 The following is a detailed explanation on how FindFreeTaskCommand is implemented.
@@ -928,7 +1147,7 @@ The below activity diagram summarises what happens when `free_time` is called.
                 <li>Several helper functions were implemented in UniqueEventList class</li>
                 <li> Pros:
                     <ul>
-                        <li>Each function hanles a small part of logic</li>
+                        <li>Each function handles a small part of logic</li>
                         <li>Easier to detect bugs</li>
                         <li>Better readability of code</li>
                     </ul>
@@ -1026,7 +1245,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
 | -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `* * *`  | SOC Student                           | Add a task to my schedule                                              | I can track my task better                                                   |
-| `* * *`  | SOC Student                           | Delete a task from my schedule from my schedule                        | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Delete a task from my schedule                                         | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | Edit tasks in my schedule                                              | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | View tasks in my schedule                                              | I can have a better sense of what will happen in the following days or weeks |
 | `* *`    | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
@@ -1082,16 +1301,16 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Some required information about the event is missing in the command.
+* 2a. Some required information about the task is missing in the command.
 
     * 1a1. SOChedule displays an error message suggesting that information provided when creating
-      the event is incomplete.
+      the task is incomplete.
       Use case ends.
 
 
-* 2b. The date provided for the event is invalid
+* 2b. The date provided for the deadline of task is invalid
 
-    * 1b1. SOChedule displays an error message suggesting that date provied for the event
+    * 2b1. SOChedule displays an error message suggesting that date provided for the event
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
@@ -1099,7 +1318,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to delete a task.
 4. User enters the index of the task to be deleted.
@@ -1125,7 +1344,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to edit a task.
 4. SOChedule edits the task and displays a success message for editing the task.
@@ -1149,7 +1368,7 @@ Use case ends.
     
 * 3b. The input by user has an invalid command format.
   Some (but not all) examples may include that no index is given, 
-  index provided is not a valid positive integer or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+  index provided is not a valid positive integer.
 
     * 3b1. SOChedule shows an error message.
 
@@ -1195,13 +1414,27 @@ Use case ends.
 
 **Use case: UC04 - List tasks**
 
+**MSS**
+
+1. User requests to list all tasks in the SOChedule.
+1. SOChedule displays a list of all tasks added.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No task have been added.
+
+    * 1a1. SOChedule displays an empty list and informs user that the task list is empty.
+
+      Use case ends.
 
 
 **Use case: UC05 - Marking one or more tasks as completed**
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to mark one or more tasks as completed.
 4. SOChedule displays a success message for marking the task as completed.
@@ -1230,8 +1463,7 @@ Use case ends.
 
 
 * 3c. The input by user has an invalid command format.
-  Some examples may include that no index is given, any of the indexes provided is not a positive integer
-  or any of the indexes provided is larger than 2147483647 (the maximum value of Integer object in Java).
+  Some examples may include that no index is given, any of the indexes provided is not a valid positive integer.
 
     * 3c1. SOChedule shows an error message.
 
@@ -1243,7 +1475,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to mark a task as uncompleted.
 4. SOChedule displays a success message for marking the task as uncompleted.
@@ -1272,8 +1504,7 @@ Use case ends.
 
 
 * 3c. The input by user has an invalid command format.
-  Some examples may include that no index is given, index provided is not a positive integer
-  or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+  Some examples may include that no index is given, index provided is not a valid positive integer.
 
     * 3c1. SOChedule shows an error message.
 
@@ -1281,13 +1512,43 @@ Use case ends.
 
 **Use case: UC07 - Getting tasks today**
 
-`<pending>`
+**MSS**
 
-**Use case: UC08 - Sorting all tasks**
+1. User requests to list all tasks with deadline on today in the SOChedule.
+2. SOChedule displays a list of all tasks with deadline on today.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No task have deadline on today.
+
+    * 1a1. SOChedule displays an empty list and informs user that the 0 task has been listed.
+
+      Use case ends.
+
+**Use case: UC08 - Finding tasks by name**
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to search all the tasks whose name contains any of the input keywords.
+2. SOChedule displays a list of all tasks with name containing any of the input keywords.
+    <br><br>
+   Use case ends.
+   
+**Extensions**
+
+* 1a. No task name contains any of the given keywords.
+
+    * 1a1. SOChedule displays an empty list and informs user that 0 task has been listed.
+    
+        Use case ends.
+
+**Use case: UC09 - Sorting all tasks**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to sort task.
 4. User enters the sort parameter.
@@ -1308,14 +1569,14 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC09 - Pinning a task**
+**Use case: UC10 - Pinning a task**
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User requests to pin a specific task in the list.
-4. SOChedule pins the task, <u> sorts the task list (UC08)</u>, and displays a success message for pinning the task.
+4. SOChedule pins the task, <u> sorts the task list (UC09)</u>, and displays a success message for pinning the task.
    <br><br>
    Use case ends.
 
@@ -1338,14 +1599,14 @@ Use case ends.
 
       Use Case resumes at step 2.
 
-**Use case: UC10 - Unpinning a task**
+**Use case: UC11 - Unpinning a task**
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User requests to unpin a specific task in the list.
-4. SOChedule unpins the task, <u> sorts the task list (UC08)</u>, and displays a success message for unpinning the task.
+4. SOChedule unpins the task, <u> sorts the task list (UC09)</u>, and displays a success message for unpinning the task.
    <br><br>
    Use case ends.
 
@@ -1368,21 +1629,21 @@ Use case ends.
     
       Use Case resumes at step 2.
 
-**Use case: UC11 - Clearing all completed tasks**
+**Use case: UC12 - Clearing all completed tasks**
 
 1. User requests to clear all completed tasks.
 1. SOChedule displays a success message for clearing all completed tasks.
 <br><br>
 Use case ends.
 
-**Use case: UC12 - Clearing all expired tasks**
+**Use case: UC13 - Clearing all expired tasks**
 
 1. User requests to clear all expired tasks.
 1. SOChedule displays a success message for clearing all expired tasks.
 <br><br>
 Use case ends.
 
-**Use case: UC13 - Adding an event**
+**Use case: UC14 - Adding an event**
 
 **MSS**
 
@@ -1406,11 +1667,11 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC14 - Deleting an event**
+**Use case: UC15 - Deleting an event**
 
 **MSS**
 
-1. User requests to <u> list events (UC16)</u>.
+1. User requests to <u> list events (UC17)</u>.
 1. SOChedule shows a list of events.
 1. User requests to delete a specific event in the list.
 1. SOChedule displays a success message for deleting the event.
@@ -1430,9 +1691,9 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC15 - Editing an event**
+**Use case: UC16 - Editing an event**
 
-1. User requests to <u> list events (UC16)</u>.
+1. User requests to <u> list events (UC17)</u>.
 1. SOChedule shows a list of events.
 1. User requests to edit a specific event in the list.
 1. SOChedule displays a success message for editing the event.
@@ -1474,12 +1735,12 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC16 - Listing events**
+**Use case: UC17 - Listing events**
 
 **MSS**
 
 1. User requests to list all events in the SOChedule.
-1. SOChedule displays a list of all events added.
+2. SOChedule displays a list of all events added.
    <br><br>
    Use case ends.
 
@@ -1487,31 +1748,60 @@ Use case ends.
 
 * 1a. No events have been added.
 
-    * 1a1. SOChedule displays an empty list.
+    * 1a1. SOChedule displays an empty list and informs user that the event list is empty.
     
       Use case ends.
 
-**Use case: UC17 - Getting today's events**
+**Use case: UC18 - Getting today's events**
 
-`<pending>`
+**MSS**
 
-**Use case: UC18 - Find an event**
+1. User requests to list all events that are happening on today in the SOChedule.
+1. SOChedule displays a list of all events that are happening on today.
+   <br><br>
+   Use case ends.
 
-`<pending>`
+**Extensions**
 
-**Use case: UC19 - Clearing expired events**
+* 1a. No event is happening on today.
+
+    * 1a1. SOChedule displays an empty list and informs user that the 0 event has been listed.
+
+      Use case ends.
+
+
+
+**Use case: UC19 - Find an event**
+
+**MSS**
+
+1. User requests to search all the events whose name contains any of the input keywords.
+2. SOChedule displays a list of all events with name containing any of the input keywords.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No event name contains any of the given keywords.
+
+    * 1a1. SOChedule displays an empty list and informs user that 0 event has been listed.
+
+      Use case ends.
+
+
+**Use case: UC20 - Clearing expired events**
 
 1. User requests to clear all expired events.
 1. SOChedule displays a success message for clearing all expired events.
 <br><br>
 Use case ends.
-
-**Use case: UC20 - Finding Schedule**
+   
+**Use case: UC21 - Finding Schedule Given a Date**
 
 **MSS**
-1. User requests to <u> list events (UC06)</u>.
+1. User requests to <u> list events (UC17)</u>.
 2. SOChedule shows a list of events.
-3. User requests to <u> list tasks (UC02)</u>.
+3. User requests to <u> list tasks (UC04)</u>.
 4. SOChedule shows a list of tasks.
 5. User wishes to find schedule given a specified date.
 6. SOChedule shows uncompleted tasks that are due before or on the specified date (if any)
@@ -1543,7 +1833,7 @@ Use case ends.
       Use case ends.
 
 
-**Use case: UC21 - Finding free time slots**
+**Use case: UC22 - Finding free time slots**
 
 **MSS**
 
@@ -1564,7 +1854,7 @@ Use case ends.
 
       Use case ends.
 
-**Use case: UC22 - Getting a summary of SOChedule**
+**Use case: UC23 - Getting a summary of SOChedule**
 
 **MSS**
 
@@ -1572,7 +1862,7 @@ Use case ends.
 2. SOChedule shows a list of different types of tasks and events happening in the next 7 days.
    Use case ends.
 
-**Use case: UC23 - Clearing SOChedule**
+**Use case: UC24 - Clearing SOChedule**
 
 **MSS**
 
@@ -1598,7 +1888,8 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: Activities that start at a specific time and ends at a specific time.
-* **Task**: Activities to be undertaken that can be marked complete/incomplete. Optionally it has a date field to indicate deadlines.
+* **Task**: Activities to be undertaken that can be marked complete/incomplete. It also has a compulsory date field to 
+  indicate its deadline.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1619,6 +1910,27 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
 
+### Adding a task
+
+1. Adding a task
+
+    1. Prerequisites: No duplicates tasks could exist.
+
+    1. Test case: `add_task n/Homework 1 d/2021-05-10 p/8`
+       
+        Expected: Task successfully added, detailed information shown in the status bar.
+
+    1. Test case: `add_task n/Assignment d/2021-05-11 p/9 c/Assignment`
+       
+        Expected: Task successfully added, detailed information shown in the status bar.
+
+    1. Test case: `add_task n/Past Task d/2021-01-07 p/7`
+       Expected: Task is not added, since deadline is past. Detailed error message shown in the status bar.
+
+    1. Other incorrect commands to try: `add_task`, `add_task n/Task 1`, etc.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a task (Not in use yet)
 
 1. Deleting a task while all tasks are being shown
@@ -1638,7 +1950,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a task
 1. Edits an uncompleted task in the task list
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
        Currently, no tasks in the task list has a task name `task1`.
 
     1. Test case: `edit_task 1 n/task1` <br>
@@ -1649,12 +1961,12 @@ testers are expected to do more *exploratory* testing.
 ### Marking one or more tasks as done
 1. Marks one or more uncompleted tasks from the task list as completed
 
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty.
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
        All of the tasks to be completed are currently marked as uncompleted.
 
     1. Test case: `done 1 2` <br>
        Expected: The first and second task in the task list are marked as completed.
-       "Completed 2 Task(s)" to appear in status bar.
+       "Completed 2 Task(s)." to appear in status bar.
        
     1. Other incorrect command to try : `done abc`.
 
@@ -1662,14 +1974,38 @@ testers are expected to do more *exploratory* testing.
 
 1. Marks a completed task from the task list as uncompleted
 
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
        The task to be uncompleted is currently marked as completed.
     
     1. Test case: `undone 1` <br>
     Expected: The first task in the task list are marked as uncompleted.
-       Details of the uncompleted task to appear in status bar.
+       "Uncompleted 1 Task." to appear in status bar.
        
     1. Other incorrect command to try : `undone abc`.
+
+### Listing all tasks
+
+1. Listing all tasks
+
+    1. Test case: `list_task`<br>
+       Expected: All the tasks currently present in the task list will be shown. If the task list is currently empty,
+       a message `There is no task present!` will be shown. Otherwise, a message `Listed all task(s).` will be shown.
+
+### Getting today's tasks
+
+1. Getting today's tasks
+
+    1. Test case: `today_task`<br>
+        Expected: All the tasks with deadline on today will be shown. A message `Listed all tasks whose deadline
+       is today` and `x task(s) listed!` will be shown, where `x` is the number of tasks with deadline on today.
+
+### Finding tasks by names
+
+1. Finding tasks by names
+
+    1. Test case: `find_task homework assignment`<br>
+       Expected: All the tasks whose name contains any of `homework` or `assignment` in the task list will be shown.
+       A message `x task(s) listed!` will be shown, where `x` is the number of tasks that satisfies the condition.
 
 ### Sorting the task list
 
@@ -1699,10 +2035,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `pin_task 0`<br>
       Expected: This is an invalid input. "Invalid command format!" to appear in status bar. No task is pinned and task list remains unchanged.
    
-   1. Test case: `pin_task 1` (Assuming Task 1 is already pinned<br>
+   1. Test case: `pin_task 1` (Assuming Task 1 is already pinned)<br>
       Expected: This is an invalid input. "This task is already pinned." to appear in status bar. Task list remains unchanged.
 
-   1. Test case: `pin_task 999` (Assuming there are less than 999 tasks in task list<br>
+   1. Test case: `pin_task 999` (Assuming there are less than 999 tasks in task list)<br>
       Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
 
     1. Other incorrect delete commands to try: `pin_task`, `pin_task x` (where x is larger than the list size)<br>
@@ -1722,10 +2058,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `unpin_task 0`<br>
       Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
 
-   1. Test case: `unpin_task 3` (Assuming Task 3 exists and is not pinned<br>
+   1. Test case: `unpin_task 3` (Assuming Task 3 exists and is not pinned)<br>
       Expected: This is an invalid input. "This task is not pinned to begin with." to appear in status bar. Task list remains unchanged.
 
-   1. Test case: `unpin_task 999` (Assuming there are less than 999 tasks in task list<br>
+   1. Test case: `unpin_task 999` (Assuming there are less than 999 tasks in task list)<br>
       Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
 
    1. Other incorrect delete commands to try: `unpin_task`, `unpin_task x` (where x is larger than the list size)<br>
@@ -1802,6 +2138,31 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
 
 
+### Listing all events
+
+1. Listing all events
+
+    1. Test case: `list_event`<br>
+       Expected: All the events currently present in the event list will be shown. If the event list is currently empty,
+       a message `There is no event present!` will be shown. Otherwise, a message `Listed all event(s).` will be shown.
+
+### Getting today's events
+
+1. Getting today's events
+
+    1. Test case: `today_event`<br>
+       Expected: All the events that happening on today will be shown. A message `Listed events happen on today` and 
+       `x event(s) listed!` will be shown, where `x` is the number of events that happen on today.
+
+### Finding events by names
+
+1. Finding events by names
+
+    1. Test case: `find_event project meeting`<br>
+       Expected: All the events whose name contains any of `project` or `meeting` in the event list will be shown.
+       A message `x event(s) listed!` will be shown, where `x` is the number of events that satisfies the condition.
+
+
 ### Clearing expired events
 
 1. Clearing expired events
@@ -1810,7 +2171,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired event or not.
 
-### Finding tasks and events before or on a given date
+### Finding schedule given a date
 
 1. Finding uncompleted tasks that are due before or on the specified date
    and events with start date before or on the specified date and end date after or on specified date.
@@ -1819,7 +2180,7 @@ testers are expected to do more *exploratory* testing.
       
      1. Test case: `find_schedule 2021-05-01` <br>
         1. Assuming task list only has one task and its deadline is at `2021-05-01` and 
-        event list only has one event and its start date is at `2021-04-01` and end date is at `2021-06-01`.) 
+        event list only has one event and its start date is at `2021-04-01` and end date is at `2021-06-01`.
     
         1. Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
         and events with start date before or on `2021-05-01` and end date after or on `2021-05-01`.
@@ -1837,7 +2198,7 @@ testers are expected to do more *exploratory* testing.
        will be shown if free time slots were found.
             
        1. if there are available free time slots, a list of free time slots will be displayed after the success message.
-       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the sucess message.
+       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the success message.
        3. if no free time slots were found, `There is no free time in the day!` will be displayed.
 
 ### Getting a summary of SOChedule
@@ -1863,7 +2224,7 @@ testers are expected to do more *exploratory* testing.
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
 
 ### Effort
-SOChedule morphs Addressbook 3(AB3) to an application that help NUS School of Computing (SoC) students
+SOChedule morphs AddressBook 3(AB3) to an application that help NUS School of Computing (SoC) students
 to effectively manage their tasks and events. Since we are not building our product based on AB3, significant amount of efforts
 are needed to convert the AB3 code base to suit the needs of SOChedule. This involves rewriting the major components including
 Model, Logic, UI, Storage and more. Even before we started to implement our unique features, efforts 
@@ -1878,10 +2239,10 @@ Some of them are used by both `Task` and `Event`, like `Name` and `Date`.
 
 Because of these additional attributes, Logic component needs more parsers to handle various inputs and commands to achieve
 the features we designed to improve the efficiency of our users. Such examples include parsing and validating of `Date` and `Time` from user inputs.
-Some of the challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
+Some challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
 Also, we need to add further constraints with our commands to ensure users do not perform invalid operations with our commands. 
-Fro example, users cannot edit an event to make its start date time later than end date time. 
-All of these require significant amount of efforts in designing, developing and testing.
+For example, users cannot edit an event to make its start date time later than end date time. 
+All of these require a significant amount of efforts in designing, developing and testing.
 
 Similarly, Storage component needs to deal with more complicated data and data structures that involve both tasks and events. 
 

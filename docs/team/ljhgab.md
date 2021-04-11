@@ -47,7 +47,7 @@ Computing, National University of Singapore (NUS).
     - What it does:
       
         Morphed the Logic component, including `add`, `delete`, `list` and `find` features into `add_task`, 
-      `delete_task`, `done_task`, `list_task` and `find_task` and their corresponding unit 
+      `delete_task`, `done_task`, `list_task`, `list_event`, `find_task` and `find_event` and their corresponding unit 
       tests to the ones usable for SOChedule.
       
     - Justification:
@@ -88,7 +88,10 @@ Computing, National University of Singapore (NUS).
 #### Contributions to the DG
 * Updated `Logic` diagram.
 * Wrote three overview sections for SOChedule, Task and Event.
-* Added implementation details of `add_task`, `delete_task` and `list_task`.
+* Added implementation details of `add_task`, `delete_task`, `find_task`, `find_event`, `today_task`, `today_event`.
+* Added use cases for `add_task`, `delete_task`, `list_task`, `today_task`, `today_event`, `find_task`, `find_event`.
+* Added instructions for manual testing for `add_task`, `delete_task`, `list_task`, `list_event`, `today_task`, 
+  `today_event`, `find_task`, `find_event`.
 * Updated the NFR part of Developer Guide.
 
 #### Contributions to team-based tasks
@@ -96,7 +99,7 @@ Computing, National University of Singapore (NUS).
 * Managed release v1.3.1.
 
 #### Review/mentoring contributions
-* PR reviewed (28 Pull Requests):
+* PR reviewed:
 [#41](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/41)
   [#43](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/43)
   [#44](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/44)
@@ -124,6 +127,7 @@ Computing, National University of Singapore (NUS).
   [#327](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/327)
   [#330](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/330)
   [#340](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/340)
+  [#363](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/363)
   
 #### Contribution beyond the project team
   

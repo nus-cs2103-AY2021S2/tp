@@ -39,7 +39,7 @@ public class AddEventCommand extends Command {
             + PREFIX_TAG + "TeamProject";
 
     public static final String MESSAGE_ADD_EVENT_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in Sochedule";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event list.";
 
     private final Event toAdd;
 
