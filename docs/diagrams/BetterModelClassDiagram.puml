@@ -4,8 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-TimesForWheels *-right-> "1" UniqueCustomerList
-TimesForWheels *-right-> "1" UniqueTagList
+DeliveryList *-right-> "1" UniqueCustomerList
+DeliveryList *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueCustomerList
 UniqueTagList -[hidden]down- UniqueCustomerList
 
