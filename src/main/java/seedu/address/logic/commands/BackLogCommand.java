@@ -12,7 +12,7 @@ import seedu.address.model.event.Event;
 public class BackLogCommand extends Command {
     public static final String COMMAND_WORD = "log";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Event with the status of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event with the status of "
             + "BACKLOG to Focuris. "
             + "Parameters: "
             + PREFIX_NAME + "NAME " + " "
