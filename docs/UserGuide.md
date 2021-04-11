@@ -151,8 +151,8 @@ Example output:
 ![showMcsExample](images/showMcsExample.png)
 
 
-### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
-Format: `Show CAP`
+### Calculate and show the current CAP (Cumulative academic points) of the student: `show cap`
+Format: `show cap`
 
 This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP using this formula:
 
