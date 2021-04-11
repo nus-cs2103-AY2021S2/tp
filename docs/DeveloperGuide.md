@@ -334,9 +334,6 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 ### Mass Blacklist feature
 The mass blacklist/unblacklist mechanism is facilitated by `MassBlacklistCommand`.
 Below is an example usage scenario for mass blacklist. The usage for mass unblacklist is similar. 
@@ -372,9 +369,7 @@ The following activity diagram summarizes what happens when a user executes a ma
   * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
     well-suited to parse such input formats.
   * Cons: There are more prefixes for the user to remember.
-
-=======
->>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
+  
 ### Mass Delete feature
 The mass delete mechanism is facilitated by `MassDeleteCommand`.
 Below is an example usage scenario.
@@ -391,15 +386,10 @@ Step 4: After deletion, `filteredPersons` in `ModelManager` is updated to reflec
 
 The following sequence diagram illustrates how the mass delete operation works:
 ![MassDeleteSequenceDiagram](images/MassDeleteSequenceDiagram.png)
-<<<<<<< HEAD
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-=======
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the
-destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
->>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 
 The following activity diagram summarizes what happens when a user executes a mass delete command:
 ![MassDeleteActivityDiagram](images/MassDeleteActivityDiagram.png)
@@ -453,11 +443,7 @@ The following activity diagram summarizes what happens when a user executes a re
     * Pros: Easier to implement as the edit command already has a parser and many helper methods.
     * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
       class even bigger and thus more difficult to maintain.
-
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
+      
 ### Sort feature
 The sort mechanism is facilitated by `SortCommand`.
 Below is an example usage scenario.
@@ -474,19 +460,11 @@ Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect
 
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    
-=======
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-=======
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
->>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 ![SortActivityDiagram](images/SortActivityDiagram.png)
