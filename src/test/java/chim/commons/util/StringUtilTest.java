@@ -44,6 +44,9 @@ public class StringUtilTest {
         // EP: valid numbers, should return true
         assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
+
+        // EP: parse number beyond integer range;
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("1234123415232"));
     }
 
 

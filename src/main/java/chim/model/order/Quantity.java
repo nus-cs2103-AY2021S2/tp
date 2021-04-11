@@ -7,7 +7,7 @@ import static chim.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(int)}
  */
 public class Quantity {
-    public static final String MESSAGE_CONSTRAINTS = "Quantity must be a positive number.";
+    public static final String MESSAGE_CONSTRAINTS = "Quantity must be a positive integer number.";
 
     public final int value;
 

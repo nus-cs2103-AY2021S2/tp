@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/daniellau88.png" width="200px">
 
 [[github](http://github.com/daniellau88)]
-[[portfolio](team/daniellau.md)]
+[[portfolio](team/daniellau88.md)]
 
 * Role: Developer
 * Responsibilities: DevOps (CI)
@@ -35,7 +35,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/laurenlhy.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: Documentation
 
 ### Lim Li Quan
 
@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/ahquanz.md)]
 
 * Role: Developer
-* Responsibilities:
+* Responsibilities: Software Testing
 
 ### Ng Wei Xue
 
@@ -55,4 +55,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/weixue123.md)]
 
 * Role: Developer
-* Responsibilities: Documentation
+* Responsibilities: UI Designer

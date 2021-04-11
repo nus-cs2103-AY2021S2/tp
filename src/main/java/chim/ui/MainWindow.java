@@ -254,6 +254,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (Exception | Error e) {
+            logger.info("An error has occurred");
+            logger.info(e.getMessage());
+            resultDisplay.setFeedbackToUser("An error has occurred. Please refer to the logs for more details.");
+            throw e;
         }
     }
 }

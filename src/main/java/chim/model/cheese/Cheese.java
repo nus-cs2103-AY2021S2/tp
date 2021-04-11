@@ -73,7 +73,7 @@ public class Cheese {
         checkArgument(isBeforeToday(manufactureDate), "The manufacture date cannot be after today.");
 
         if (expiryDate != null) {
-            checkArgument(expiryDate.isAfter(manufactureDate),
+            checkArgument(expiryDate.isAfterOrEquals(manufactureDate),
                 "The expiry date of the cheese should be after the manufacture date.");
         }
     }

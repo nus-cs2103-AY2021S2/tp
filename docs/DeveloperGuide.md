@@ -733,6 +733,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+
+1. Should be able to recover latest state of CHIM (before the command that causes the crash was executed) if the application crashes.
+
+1. Should be able to hold up to 1000 customers, cheeses and orders without a noticeable sluggishness in performance for typical usage.
+
+1. General queries (especially filter queries) should be completed within 5 seconds.
+
+1. Should be able to handle string data (e.g. name, addresses) with length less than 1000 without a noticeable sluggishness in performance for typical usage.
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -775,7 +785,7 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `addcustomer n/Tim p/96284715 e/tim@example.com a/Blk 55 Woodlands Street 99, #99-23`.
 
-        Expected: Customer is added into CHIM. The new customer appears at the bottom. 
+        Expected: Customer is added into CHIM. The new customer appears at the bottom.
         Details of the new customer is shown in the status message.
 
     3. Test case: `addcustomer n/Jerry p/841264562 e/jerry@example.com a/Blk 381 Yishun Ave 23, #55-25`.
@@ -852,7 +862,7 @@ testers are expected to do more *exploratory* testing.
 
    4. Test case : `findcustomer`.
 
-        Expected: Error message with command requirements is shown in the status message. 
+        Expected: Error message with command requirements is shown in the status message.
 
     5. Other incorrect `findcustomer` to try: include any invalid keyword prefix like `findcustomer n/A B C u/TEST`.
 
@@ -865,8 +875,8 @@ testers are expected to do more *exploratory* testing.
         Expected: all customers are listed.
 
 ### Adding an Order
-1. Adding an Order into CHIM. 
-    1. Prerequisites: 
+1. Adding an Order into CHIM.
+    1. Prerequisites:
        - Arguments are valid and compulsory parameters are provided.
        - There are some customer in CHIM, customer with phone number provided exist in CHIM.
        - `ORDER_DATE` must be any date up to current date , and not in the future.
@@ -965,7 +975,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a cheese into CHIM.
     1. Prerequisites:
         - Arguments are valid and compulsory parameters are provided.
-        - If `MANUFACTURE_DATE` is given , it must be any date up to current date , not in the future. 
+        - If `MANUFACTURE_DATE` is given , it must be any date up to current date , not in the future.
         - If `MANUFACTURE_DATE` is not given, it defaults to current date.
         - `EXPIRY_DATE` if given must occur after `MANUFACTURE_DATE`.
 
@@ -1006,8 +1016,8 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `editcheese x d/31/12/9999` (where x is the index of the cheese that is not assigned)
 
-        Expected: similar to previous 
-    
+        Expected: similar to previous
+
     5. Test case: `editcheese x e/DATE` (where DATE occurs before `MANUFACTURE_DATE`)
 
         Expected: similar to previous
@@ -1034,7 +1044,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No cheese is deleted, Error message is shown in the status message.
 
     5. Other incorrect commands to try: `deleteorder x` (where x is a negative index or index outside of the number of cheese).
-    
+
 ### Finding Cheeses
 1. Finding cheeses in CHIM.
     1. Prerequisites:
@@ -1047,7 +1057,7 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `findcheese t/Cam Brie s/assigned`
 
-       Expected: Cheese with cheese type that contains the prefix of `Cam` or `Brie` 
+       Expected: Cheese with cheese type that contains the prefix of `Cam` or `Brie`
             and assignment status of `assigned` will be shown.
 
     4. Test case: `findcheese s/TEST`
@@ -1068,8 +1078,62 @@ testers are expected to do more *exploratory* testing.
 
        Expected: all cheeses in CHIM are listed
 
+
 ### Clear data
 1. Clearing all data in the inventory
     1. Test case: `clear`
-        
+
         Expected: All customers , orders and cheeses are cleared in CHIM
+
+## **Appendix: Efforts**
+
+Difficulty Level: 4 / 5
+
+Challenges Faced:
+* Restructuring of models in `AddressBook` to fit the functional requirements of `CHIM` (Effort Required: 4 / 5)
+  * Implementation of a normalized class structure
+    * To properly manage the different types of dependencies between the 3 different entities in CHIM,
+      we decided to implement a normalized class structure, where each entity is stored in a separate list,
+      and the relationship between them are specified using IDs.
+    * For example, in CHIM, a `Cheese` assigned to an `Order` would have the `Order`'s ID while unassigned
+      `Cheese`s will not contain any `Order`'s ID.
+  * Additional features implemented along with the architecture such as Delete Cascading, Unique ID
+    Generation and Two-way Storage Fields
+    * For example, each object needs to have a unique ID, to ensure that the relationship between 2 objects
+      will not collide with one other.
+* Modifying `AddressBook`'s display to be able to switch between the 3 different lists (`Cheese`, `Order`
+  and `Customer`) (Effort Required: 4 / 5)
+  * The existing panels in AB3 was modified to allow display of `Cheese` and `Order` list, which contains different
+    types of fields.
+  * The UI also needs to be capable of switching between the different displays upon calling certain commands.
+
+    For example, the `listcheeses` command should be able to change the display to show the list of cheeses
+    even if previously it was displaying a different list such as the `Customer` list.
+* Implementation of the `add`, `delete`, `edit` and `find` command for `Order` and `Cheese` (Effort Required: 4 / 5)
+  * The methods above (implemented in AB3 for the `Person`'s class) were implemented for the new models
+    `Order` and `Cheese`.
+
+    There were many considerations:
+    * New types of fields (such as `Date`) needs to be able to be correctly parsed.
+    * Invalid creation of entities need to be forbidden by doing extensive checking on the values given.
+  * Extensive testing for the new commands, to ensure that they work as intended.
+* Addition of limitations and validations for `AddressBook`'s original operations (Effort required: 3 / 5)
+  * To prevent incorrect edits to the data in CHIM, additional validations and limitations were added to it.
+    These limitations came as a result of our rigorous testing of the system, to ensure that every operation performed
+    in `CHIM` will lead to a valid final state.
+  * Some limitations are:
+    * Disallowing edits on assigned `Order`s and `Cheese`s, to prevent .
+    * Ensuring that the `ExpiryDate` of a `Cheese` is always after its `ManufactureDate`.
+    * Restrict creation of dates to the time now to restrict completion of future orders.
+* Addition of new commands to `CHIM` (e.g. `done`) (Effort Required: 5 / 5)
+  * The `done` command was an entirely new command that needs to be implemented (where `Cheese`s are assigned to
+    incomplete `Order`s to fulfil them). Since it involves interaction between the `Order` and `Cheese` class,
+    the design of the logic needs to be precise, to ensure both entities are updated correctly.
+
+    For example, completed `Order`s need to have a `CompletedDate`, while all the `Cheese` in the `Order` needs
+    to be marked `Assigned`.
+
+Achievements:
+* Extensive testing for all `add` and `edit` commands to minimize bugs in the system.
+* Toggling of displays for the different entities.
+* Extensive checking to ensure accuracy of `CHIM`'s state at any point in time.

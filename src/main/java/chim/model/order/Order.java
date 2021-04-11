@@ -136,7 +136,7 @@ public class Order {
             checkArgument(cheeses.size() == 0, "The cheese set for an incomplete order should be empty.");
         } else {
             // Checks for completed orders
-            checkArgument(completedDate.isAfter(orderDate), "The completed date of an order should be after the"
+            checkArgument(completedDate.isAfterOrEquals(orderDate), "The completed date of an order should be after the"
                 + " order date.");
             checkArgument(cheeses.size() == quantity.value, "The number of cheeses in the order does not"
                 + " match the specified quantity.");
