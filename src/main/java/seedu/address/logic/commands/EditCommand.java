@@ -20,13 +20,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,8 +53,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PASSENGER_SUCCESS = "Edited Passenger: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
-    //todo remove STUB_VALID_PRICE declaration
-    private static final Optional<Price> STUB_VALID_PRICE = Optional.of(new Price(1.69));
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
@@ -106,9 +104,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPassengerDescriptor.getTags().orElse(passengerToEdit.getTags());
         TripDay updatedTripDay = editPassengerDescriptor.getTripDay().orElse(passengerToEdit.getTripDay());
         TripTime updatedTripTime = editPassengerDescriptor.getTripTime().orElse(passengerToEdit.getTripTime());
-
-        //todo remove STUB_VALID_PRICE
-        Optional<Price> updatedPrice = STUB_VALID_PRICE;
+        Optional<Price> updatedPrice = editPassengerDescriptor.getPrice().or(passengerToEdit::getPrice);
 
         return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice,
                 updatedTags);
@@ -158,14 +154,14 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setTripDay(toCopy.tripDay);
             setTripTime(toCopy.tripTime);
-            setPrice(price);
+            setPrice(toCopy.price);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, price, tags);
         }
 
         public void setName(Name name) {

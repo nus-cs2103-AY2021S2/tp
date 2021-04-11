@@ -23,14 +23,6 @@ public class Driver extends Person {
     }
 
     /**
-     * Takes in a string and parse as a name and a phone to be passed to parent constructor
-     */
-    public Driver(String driverToString) {
-        super(new Name(driverToString.split("; Phone: ")[0]),
-                new Phone(driverToString.split("; Phone: ")[1]));
-    }
-
-    /**
      * Returns true if both drivers have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -40,7 +32,8 @@ public class Driver extends Person {
         }
 
         return otherDriver != null
-                && otherDriver.getName().equals(getName());
+                && otherDriver.getName().equals(getName())
+                && otherDriver.getPhone().equals(getPhone());
     }
 
     /**

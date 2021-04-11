@@ -19,16 +19,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPassengerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
-
-    //todo remove STUB_VALID_PRICE declaration
-    private static final Price STUB_VALID_PRICE = new Price(1.69);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -39,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY,
-                        PREFIX_TRIPTIME, PREFIX_TAG);
+                        PREFIX_TRIPTIME, PREFIX_TAG, PREFIX_PRICE);
 
         Index index;
 
@@ -65,9 +61,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_TRIPTIME).isPresent()) {
             editPassengerDescriptor.setTripTime(ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get()));
         }
-        //todo remove stub
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            editPassengerDescriptor.setPrice(STUB_VALID_PRICE);
+            editPassengerDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPassengerDescriptor::setTags);

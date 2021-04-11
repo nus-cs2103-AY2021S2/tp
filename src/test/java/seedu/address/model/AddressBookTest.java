@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPassengers.ALICE;
-import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPassengers;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.exceptions.DuplicatePassengerException;
+import seedu.address.model.pool.Pool;
 import seedu.address.testutil.PassengerBuilder;
 
 public class AddressBookTest {
@@ -38,7 +39,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = getTypicalAddressBookPassengers();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -46,7 +47,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePassengers_throwsDuplicatePassengerException() {
         // Two passengers with the same identity fields
-        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
         List<Passenger> newPassengers = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPassengers);
@@ -73,7 +74,7 @@ public class AddressBookTest {
     @Test
     public void hasPassenger_passengerWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPassenger(ALICE);
-        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
         assertTrue(addressBook.hasPassenger(editedAlice));
     }
@@ -83,11 +84,14 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPassengerList().remove(0));
     }
 
+
+    // TODO add pool test
     /**
      * A stub ReadOnlyAddressBook whose passengers list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Passenger> passengers = FXCollections.observableArrayList();
+        private final ObservableList<Pool> pools = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Passenger> passengers) {
             this.passengers.setAll(passengers);
@@ -96,6 +100,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Passenger> getPassengerList() {
             return passengers;
+        }
+
+        @Override
+        public ObservableList<Pool> getPoolList() {
+            return pools;
         }
     }
 

@@ -1,14 +1,11 @@
 package seedu.address.ui;
 
-import static seedu.address.ui.DriverCard.newDriverCard;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -21,9 +18,9 @@ import seedu.address.model.person.passenger.Passenger;
 public class PassengerCard extends UiPart<Region> {
 
     private static final String FXML = "PassengerListCard.fxml";
-    private static final String ICON_PATH_PHONE = "/images/phone.png";
     private static final String ICON_PATH_ADDRESS = "/images/address.png";
-    private static final String ICON_PATH_DRIVER = "/images/driver.png";
+    private static final String ICON_PATH_PHONE = "/images/phone.png";
+    private static final String ICON_PATH_PRICE = "/images/price.png";
     private static final String ICON_PATH_TIME = "/images/time.png";
 
     /**
@@ -45,13 +42,7 @@ public class PassengerCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private DriverCard driverCard;
-    @FXML
-    private VBox driverCardContainer;
-    @FXML
     private VBox cardFieldContainer;
-    @FXML
-    private ColumnConstraints columnConstraints;
 
     /**
      * Creates a {@code PassengerCard} with the given {@code Passenger} and index to display.
@@ -71,15 +62,9 @@ public class PassengerCard extends UiPart<Region> {
         cardFields.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
-        cardFields.add(new LabelWithIcon(ICON_PATH_DRIVER, passenger.getDriverAsStr()).getRoot());
+        passenger.getPrice().ifPresent(
+            price -> cardFields.add(new LabelWithIcon(ICON_PATH_PRICE, price.toString()).getRoot()));
         cardFieldContainer.getChildren().addAll(cardFields);
-
-        //if there is a driver, create the driverCard and display the info, else release the reserved width
-        passenger.getDriver().ifPresentOrElse(x -> {
-                driverCard = newDriverCard(x);
-                driverCardContainer.getChildren().add(driverCard.getRoot());
-            }, () -> columnConstraints.setPercentWidth(0)
-        );
     }
 
     @Override

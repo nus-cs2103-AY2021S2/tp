@@ -101,8 +101,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Passenger>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the GME terminal data.
+* exposes an unmodifiable `ObservableList<Passenger>` and `ObservableList<Pool>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -128,6 +128,68 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Pool feature
+This feature allows users to create and add a pool to the list of pools, through the use of a `pool` command.
+
+Design considerations include the `pool` command being able to be used in complement with the `find` command. For instance, the user would
+first use `find tag/female` and then followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`.
+The `find tag/female` command first filters the list of displayed passengers, such that only passengers with the `female` tag would be displayed. Calling the `pool` command
+would then assign `Alice` with number `91234567` to be the driver of the passengers specified by the indices for the currently displayed list.
+
+The activity diagram below encapsulates the user workflow of adding passengers, finding passengers and then pooling the passengers:
+
+![Activity Diagram for a User Using Pool](images/PoolActivityDiagram.png)
+
+The rationale behind this implementation was because once the GME terminal is populated with a large number of passengers, it would be rather difficult for the user to find a specific passenger.
+By allowing the user to first filter the passengers then subsequently pooling from the filtered list would greatly enhance the feature, thereby making the product much more cohesive as features work well together.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3")` command.
+![Interactions Inside the Logic Component for the `pool n/Alice p/91234567 d/monday t/1930 c/2 c/3` Command](images/PoolSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**  The `command` argument that is passed into
+`execute()`, represents the string `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"`, and has been abstracted for readability.
+<br>
+The lifeline for `PoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"` command.
+1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to
+   `PoolCommandParser` which creates and returns a `PoolCommand`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
+    that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
+1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
+1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
+1. Finally, a `CommandResult` would be returned back to `LogicManager` to indicate the completion status of the command.
+
+It is worth noting that in the case of adding a passenger, a `Passenger` object is created by `AddCommandParser` and used in the constructor of `AddCommand`.
+However, in the case of adding a pool, a `PoolCommand` is constructed using the details specified and parsed from `PoolCommandParser`, instead of creating and passing a `Pool` object.
+The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions with the model.
+The current implementation thus encapsulates all the interactions with model, within the methods of `PoolCommand`.
+
+### Unpool feature
+This feature allows users to remove a pool from the pool list through the specification of an index.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("unpool 1")`.
+![Interactions Inside the Logic Component for the `unpool 1` Command](images/UnpoolSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnpoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
+1. `AddressBookParser` class is then instantiated, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` would then have its `parse()` method invoked, passing the argument `"1"` to `UnpoolCommandParser`.
+1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be created and returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
+1. This would update the model by deleting the specified pool at the first index, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -144,13 +206,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 **Target user profile**:
 
-- has a need to find a driver/passenger to travel between workspace and home
+- a HR executive who is required to find and pool passengers with drivers from an already existing database.
 - prefer desktop apps over other types
-- can type fast
+- is able to type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Eliminate the need for human interaction such as requiring HR personnel to manage to maintain social distancing
+**Value proposition**: Greater ease of use in managing driver and passenger profiles as compared to an Excel sheet.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,30 +220,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-|Priority|As a …​                    |I want to …​                                                     |So that                                                                                         |
-|--------|---------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-|* * *   |Driver                     |select passengers to be picked up                                |I can carpool with my colleagues                                                                |
-|* * *   |Driver                     |search for specific type of passengers                           |I can see if any passengers fulfil my criteria and view their carpool details                   |
-|* * *   |Driver                     |list all passengers                                              |I can see all the passengers available                                                                                                |
-|* * *   |Passenger                  |create my profile                                                |I can find carpooling drivers and be contacted by the driver if needed                                                                                                |
-|* * *   |Passenger                  |delete my profile                                                |my data will not be stored when I have stopped the service                                      |
-|* *     |Driver                     |filter passengers' destination and pickup point based on location|I don't have to spend too long to pick up or drop off passengers and minimise my travelling time|
-|* *     |Female Passenger           |find only female drivers                                         |I can be comfortable                                                                            |
-|*       |User concerned with privacy|limit the information I want to disclose                         |my private information exposed is limited                                                       |
-|*       |Driver                     |Indicate one-off trips                                           |my passengers would understand this is not a recurring trip                                                                                                |
-|* *     |Passenger                  |edit drop off location                                           |change the destination if needed and be more flexible                                           |
-|*       |Passenger                  |indicate the price willing to pay                                |I can incentivise the drivers to more likely to choose me and pick me up on time                |
+|Priority|As a …​    |I want to …​                                                  |So that                                                                                         |
+|--------|--------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+|* * *   |HR Executive  |allocate drivers to passengers to be picked up                   |I can arrange carpooling trips for my colleagues                                                |
+|* * *   |HR Executive  |search for specific type of passengers                           |I can see if any passengers fulfil a criteria and view their carpool details                    |
+|* * *   |HR Executive  |list all passengers                                              |I can see all the passengers available                                                          |
+|* * *   |HR Executive  |create a profile                                                 |I can easily manage and track drivers and passengers                                            |
+|* * *   |HR Executive  |delete employee profile                                          |passenger's data will not be stored when they are no longer looking to carpool                  |
+|* *     |HR Executive  |filter passengers' destination and pickup point based on location|drivers are not heavily inconvenienced to pick up passengers                                    |
+|* *     |HR Executive  |match only with female drivers                                   |so that female colleagues looking to carpool only with female drivers can be easily accomodated |
+|* *     |HR Executive  |edit drop off location                                           |passengers and drivers who have negotiated a new drop off location can be easily updated        |
+|*       |HR Executive  |indicate the price willing to pay                                |drivers are more likely to choose these passengers                                              |
 
 
 ## Use Cases
 
-**Use case: Select a passenger to be picked up**
+**Use case: Allocate drivers to passengers to be picked up**
 
-1. Search or list out passengers available to be picked up
-2. GME shows a list of passengers
-3. Driver choose and view the details of the specific passenger
-4. Driver requests to add the specific passenger to the driver's carpooling group 
-   
+**MSS:**
+1. Search or list out passengers available to be picked up.
+2. GME shows a list of passengers.
+3. HR executive chooses and view the details of the specific passenger.
+4. HR executive allocates drivers to specific passenger to the driver's carpooling group.
+
     Use case ends.
 
 ***Extensions***
@@ -194,69 +255,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 **Use case: Search for specific type of passengers**
 
-1. Driver chooses the criteria that the passengers need to fulfil in order to be picked up
-2. Driver initiates the search
-3. GME shows a list of passengers that fulfils the criteria
-   
+**MSS:**
+1. HR executive chooses the criteria that the passengers need to fulfil in order to be picked up.
+2. HR exective initiates the search.
+3. GME shows a list of passengers that fulfils the criteria.
+
    Use case ends.
 
 ***Extensions***
 
-* 3a. No passenger fulfils the criteria
+* 3a. No passenger fulfils the criteria.
+  * 3a1. GME shows empty list.
 
   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: Creates a passenger profile**
+**Use case: Create a passenger profile**
 
-1. Passenger fills out their name, contact number and pickup address
-2. GME verifies that all the required fields are not empty
-3. GME asks the passenger to confirm all data input is correct
+**MSS:**
+1. HR exeuctive fills out the passenger's name, contact number and pickup address.
+2. GME verifies that all the required fields are not empty.
+3. GME adds passenger's details to GME.
 
-   Use case ends
+   Use case ends.
 
 ***Extensions***
 
-* 1a. Any required field is missing 
-  * 1a1. GME warns the user to input the data missing
-    
-    Use case ends.
+* 2a. Any required field is missing.
+  * 2a1. GME warns the user to input the data missing.
 
-* 1b. User indicates to cancel
-  
     Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: Delete a passenger** **profile**
+**Use case: Delete a passenger profile**
 
-1. Passenger indicates they would like to delete their profile
-2. GME warns the passenger that the action is irreversible and data cannot be recovered
-3. GME verifies that the passenger wish to continue with the action
-4. GME deletes the specific passenger's profile
+**MSS:**
+1. HR exeuctive indicates they would like to delete a passenger profile.
+2. GME verifies that passenger exists.
+3. GME deletes the specific passenger's profile.
+
+   Use case ends.
 
 ***Extensions***
 
-* 1a. User indicates to cancel
+* 2a. Index number of passenger does not exist.
+  * 2a1. GME warns that no such passenger exists.
 
-  Use case ends.
+    Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case:** **Find only female drivers**
+**Use case:** **Match only with female drivers**
 
-1. Passenger creates the carpooling event.
-2. Passenger choose the criteria with `Driver: female only`
-3. Only female driver will be able to search the passenger that indicated the preference
+**Pre-conditions:** Female passenger profile indicating that they are looking for female drivers only have been created
 
-***Extensions***
+**MSS:**
+1. HR Executive finds passengers only looking for female drivers.
+2. HR Executive then matches female drivers to female passengers looking for female drivers only.
 
-- No female driver searches for passenger
-
-  The passenger will not be shown on any list to be chosen to be picked up
-
-  Use case ends
+    Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -284,8 +343,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
-- **Green cars**: Electric or hybrid passenger cars
+- **Driver**: An employee that is in-charge of driving passengers within the pool to their location.
+- **GME**: GreenMileageEfforts, this software that is used to arrange carpooling.
+- **Mainstream OS**: Windows, Linux, Unix, MacOS.
+- **Pool**: A group of employees carpooling together. Consists of one driver and at least one passenger.
+- **Passenger**: An employee carpooling with at least one driver.
+- **Tag**: A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

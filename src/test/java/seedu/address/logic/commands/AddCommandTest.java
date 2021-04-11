@@ -20,8 +20,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 import seedu.address.testutil.PassengerBuilder;
 
 public class AddCommandTest {
@@ -80,7 +80,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -117,6 +117,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPool(Pool pool) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -132,7 +137,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePassenger(Passenger passenger) {
+        public boolean hasPool(Pool pool) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean deletePassenger(Passenger passenger) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePool(Pool pool) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,18 +162,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Passenger> getPassengerListByHasDriver() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Passenger> getFilteredPassengerListByDriver(Driver driver) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-
         public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Pool> getFilteredPoolList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPoolList(Predicate<Pool> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

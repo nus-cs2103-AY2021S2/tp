@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STRING_LIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
@@ -23,6 +24,7 @@ public class FindCommand extends Command {
             + ", defined by prefixes (case-sensitive),  contain any of the specified keywords (case-insensitive) and"
             + " displays them as a list with index numbers.\n"
             + "Do note that only 1 type of prefix can be provided.\n"
+            + "Prefixes you can use are: " + PREFIX_STRING_LIST + "\n"
             + "Parameters: PREFIX + KEYWORD\n"
             + "Example: \n1. " + COMMAND_WORD + " " + PREFIX_NAME + "alice"
             + "\n2. " + COMMAND_WORD + " " + PREFIX_TAG + "female"
