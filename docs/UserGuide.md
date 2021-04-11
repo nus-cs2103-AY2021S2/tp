@@ -536,11 +536,12 @@ Finds tasks whose names contain any of the given keywords from the task list.
 Format: `find_task KEYWORD1 [KEYWORD2] ...`
 * The search is **case-insensitive**. e.g. `homework` will match `Homework`.
 * The search scope is the **full** task list.
-* The order of the keywords does not matter. e.g. `Practice Problems` will match `Problems Practice`.
+* The order of the keywords does not matter. <br>
+  E.g. `Practice Problems` will match `Problems Practice`.
 * Only the name of the tasks is searched.
 * Only full words will be matched. e.g. `CS` will not match `CS2103`.
-* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Homework` will return
-  `ST2131 Homework`, `CS2103 Quiz`.
+* Tasks matching at least one keyword will be returned (i.e. `OR` search). <br>
+  E.g. `CS2103 Homework` will return `ST2131 Homework`, `CS2103 Quiz`.
 
 Examples:
 * `find_task Homework` returns `st2131 homework` and `Homework 1`
