@@ -87,6 +87,13 @@ The `Model`,
 
 
 ### Storage Component
+![Storage Architecture Diagram](images/Storage.png)
+
+**API :** `Storage.java`
+
+The `Storage` component,
+- can save `UserPref` objects in json format and read it back.
+- can save the food diary data in json format and read it back.
 
 ### Common classes
 Classes used by multiple components are in the seedu.fooddiary.commons package.
