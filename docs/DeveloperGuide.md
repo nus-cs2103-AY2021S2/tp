@@ -1498,8 +1498,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### A3. Use cases
 
-(For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
-
 **Use case: UC01 - Adding a task**
 
 **MSS**
@@ -1797,6 +1795,8 @@ Use case ends.
 
 **Use case: UC12 - Clearing all completed tasks**
 
+**MSS**
+
 1. User requests to clear all completed tasks.
 1. SOChedule displays a success message for clearing all completed tasks.
    <br><br>
@@ -1804,6 +1804,8 @@ Use case ends.
    <br><br>
    
 **Use case: UC13 - Clearing all expired tasks**
+
+**MSS**
 
 1. User requests to clear all expired tasks.
 1. SOChedule displays a success message for clearing all expired tasks.
@@ -1859,6 +1861,8 @@ Use case ends.
       <br><br>
 
 **Use case: UC16 - Editing an event**
+
+**MSS**
 
 1. User requests to <u> list events (UC17)</u>.
 1. SOChedule shows a list of events.
@@ -1934,12 +1938,14 @@ Use case ends.
 
 **Use case: UC20 - Clearing expired events**
 
+**MSS**
+
 1. User requests to clear all expired events.
 1. SOChedule displays a success message for clearing all expired events.
    <br><br>
    Use case ends.
    
-**Use case: UC21 - Finding Schedule aiven a date**
+**Use case: UC21 - Finding schedule given a date**
 
 **MSS**
 1. User wishes to find schedule given a specified date.
