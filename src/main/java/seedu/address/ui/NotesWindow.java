@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import seedu.address.model.person.Person;
 
@@ -8,6 +10,9 @@ import seedu.address.model.person.Person;
  * Window that shows notes.
  */
 public class NotesWindow extends Alert {
+    private final ScrollPane scroll;
+    private final Label label;
+
     /**
      * Creates a new NotesWindow.
      * @param owner Stage to use as the root of the NotesWindow.
@@ -17,6 +22,14 @@ public class NotesWindow extends Alert {
         getDialogPane().getStylesheets().add("view/DarkTheme.css");
         setTitle("Notes");
         initOwner(owner);
+        scroll = new ScrollPane();
+        label = new Label();
+        getDialogPane().setMaxWidth(500);
+        label.setWrapText(true);
+        label.setMaxWidth(500);
+        scroll.setPrefViewportWidth(500);
+        scroll.setFitToWidth(true);
+        scroll.setPrefViewportHeight(400);
     }
 
     /**
@@ -24,6 +37,8 @@ public class NotesWindow extends Alert {
      */
     public void setMessage(Person personWithNotes) {
         setHeaderText(String.format("Notes for %s:", personWithNotes.getName()));
-        setContentText(personWithNotes.getNotesString());
+        label.setText(personWithNotes.getNotesString());
+        scroll.setContent(label);
+        getDialogPane().setContent(scroll);
     }
 }

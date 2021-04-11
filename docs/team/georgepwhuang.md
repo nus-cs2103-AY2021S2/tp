@@ -1,46 +1,99 @@
 ---
-layout: page
-title: Huang Po-Wei's Project Portfolio Page
+layout: page title: Huang Po-Wei's Project Portfolio Page
 ---
 
-## Project: Link.me
+# Project: Link.me
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+## Project Overview
 
-Given below are my contributions to the project.
+Link.me is a desktop client managing book application aimed for insurance agents to manage their contacts. The basic
+Link.me codebase is adapted from AddressBook Level 3, an address book app created under the Seedu Initiative. The user
+interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 14 kLoC.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+## Contribution Summary
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature 1**: Added the ability to schedule meeting.
+  [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/dd8f4186422b19d0a37b66e36c7deeeb8ac54068),
+  [PR](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/25)
+    * What it does: allows user to schedule meetings with specific clients.
+    * Justification: This feature improves the product significantly because it now includes an entirely new aspect --
+      meeting scheduling into the application.
+    * Highlights: This command required a separate list to store meetings. Allowing list displays for the person and the
+      meeting in order of time was mildly tricky.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&zFR=false&tabType=authorship&tabAuthor=georgepwhuang&tabRepo=AY2021S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=)
+* **New Feature 2**: Added the ability to unschedule meeting.
+  [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/d01310146e6c840a8ef09c154a99b4218eabf071),
+  [PR](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/57)
+    * What it does: allows user to unschedule meetings with specific clients.
+    * Justification: This feature is the counterpart of the previous feature.
+    * Highlights: This feature needs to edit the meeting list set up on the previous feature, allow parsing for both
+      index numbers and other particular options, and execute different operations depending on the input option.
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **New Feature 3**: Added a notification function.
+  [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/8e30ab16f842111aee627c2cafe970eabc602df8),
+  [PR](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/40)
+    * What it does: reminds the user of upcoming birthdays and meetings.
+    * Justification: This feature allows users to be reminds of important events without having to go through the entire
+      list of information.
+    * Highlights: This feature required a separate window to be displayed.
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Did most of the GUI changes from AB-3 to the current version, including integrating of the meeting list, arranged
+      the current layout, and other beautifications, including insurance plan tags.
+
+* **Other code contributions**:
+    * Fully wrote tests for new features implemented on my part.
+    * Came up with the input syntax for combining multiple features into one command.
+    * Drafted the OOP implementation framework for notification and notes windows.
+
+* **Code contributed**:
+  [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=georgepwhuang&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=georgepwhuang&tabRepo=AY2021S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+  ,
+  [Pull requests](https://github.com/AY2021S2-CS2103T-W12-3/tp/pulls?q=is%3Apr+author%3Ageorgepwhuang),
+  [Commits](https://github.com/AY2021S2-CS2103T-W12-3/tp/commits?author=georgepwhuang)
 
 * **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * User Guide:
+        * Added the layout introduction section.
+        * Drafted the functionality overview.
+        * Added documentation for the features `schedule`, `unschedule`, and `notif`.
+    * Developer Guide:
+        * Added implementation details of the `schedule` and `notif` feature.
+        * Drafted three sequence diagrams, one activity and updated three class diagrams.
+        * Drafted three use cases: adding a person, editing a person, and filtering by tag.
+    * Other Documents:
+        * Drafted first iteration of [index.md](index.md).
+        * Drafted [README.md](https://github.com/AY2021S2-CS2103T-W12-3/tp#readme).
+
+* **Team Tasks**:
+    * Came up with the meeting aspect of the application
+    * Designed and created the product icon.
+    * Maintained the issue tracker
+    * Managed releases `v1.3` (1 release) on GitHub
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * PRs reviewed (comments given in person or offline):
+      [\#12](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/12),
+      [\#21](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/21),
+      [\#26](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/26),
+      [\#37](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/37),
+      [\#38](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/38),
+      [\#47](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/47),
+      [\#52](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/52),
+      [\#61](https://github.com/AY2021S2-CS2103T-W12-3/tp/pull/61)
+    * Contributed to forum discussions
+      [\#26](https://github.com/nus-cs2103-AY2021S2/forum/issues/26#issuecomment-764430687),
+      [\#55](https://github.com/nus-cs2103-AY2021S2/forum/issues/55#issuecomment-768124175),
+      [\#65](https://github.com/nus-cs2103-AY2021S2/forum/issues/65#issuecomment-769633356),
+      [\#106](https://github.com/nus-cs2103-AY2021S2/forum/issues/106#issuecomment-773179460),
+      [\#108](https://github.com/nus-cs2103-AY2021S2/forum/issues/108#issuecomment-773184636),
+      [\#145](https://github.com/nus-cs2103-AY2021S2/forum/issues/145#issuecomment-779881367)
+    * Reported potential bug in JavaFX [\#267](https://github.com/nus-cs2103-AY2021S2/forum/issues/267)
+    * Reported bugs and suggestions for other teams in the class (e.g.
+      [\#278](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/278),
+      [\#279](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/279),
+      [\#280](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/280),
+      [\#281](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/281),
+      [\#282](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/282),
+      [\#283](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/283),
+      [\#284](https://github.com/AY2021S2-CS2103-W16-3/tp/issues/284)

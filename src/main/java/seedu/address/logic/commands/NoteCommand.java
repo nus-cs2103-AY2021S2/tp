@@ -23,12 +23,14 @@ public class NoteCommand extends Command {
 
     public static final String COMMAND_WORD = "note";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " INDEX " + PREFIX_NOTE_RECORD + "NOTE"
-            + ": Records note for specified client. " + "New note will be added to list of notes.\n"
-            + COMMAND_WORD + " INDEX " + PREFIX_NOTE_VIEW
-            + ": Displays all notes for specified client.\n"
-            + COMMAND_WORD + " INDEX " + PREFIX_CLEAR
-            + ": Clears all notes for specified client.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Record a note/ View notes/ Clear notes for "
+            + "the client identified by the index number used in the displayed client list.\n"
+            + "Parameters to record a note: "
+            + COMMAND_WORD + " INDEX (must be a positive integer) " + PREFIX_NOTE_RECORD + "NOTE" + "\n"
+            + "Parameters to view all notes: "
+            + COMMAND_WORD + " INDEX (must be a positive integer) " + PREFIX_NOTE_VIEW + "\n"
+            + "Parameters to clear all notes: "
+            + COMMAND_WORD + " INDEX (must be a positive integer) " + PREFIX_CLEAR;
 
     public static final String MESSAGE_RECORD_SUCCESS = "Recorded note \"%2$s\" for: %1$s";
     public static final String MESSAGE_VIEW_SUCCESS = "Displaying notes for: %1$s";
