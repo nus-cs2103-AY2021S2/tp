@@ -34,8 +34,6 @@ their profile pictures.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
-
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below (after glossary) for details of each command.
@@ -71,7 +69,7 @@ their profile pictures.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
 * Note that for all date arguments, if the day is less than or equal to 31 and 
@@ -231,12 +229,6 @@ to their gravatar account. The profile picture will be automatically displayed u
 If there is a problem obtaining the image, a default blue circle icon will be displayed
 instead.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -372,7 +364,6 @@ Format: `list`
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `add n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
-**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3` <br> <br> `deletem INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` <br> <br> `editm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> <br> `findg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findg badminton` <br>
