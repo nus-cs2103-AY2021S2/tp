@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 * **Team tasks**:
   * Introduced Conventional Commits and discussed its usage pertaining to the project.
     * Conventional Commits is to standardize commit messages so as to help with understanding what the commit is about.
-  * Set up user stories and tasks for the team in various sprints.
+  * Set up [user stories and tasks](https://github.com/AY2021S2-CS2103-T14-1/tp/issues?q=is%3Aissue+author%3Astein414+as+a+) for the team in various sprints.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#103](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/103), [#175](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/175), [#330](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/330).
