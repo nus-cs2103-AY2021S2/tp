@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import javax.swing.JLabel;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
