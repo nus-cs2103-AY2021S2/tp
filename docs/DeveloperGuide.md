@@ -13,7 +13,9 @@ title: Developer Guide
 <!-- prettier-ignore-end -->
 
 ---
+
 ## **Introduction**
+
 Focuris is a desktop application for managing events with a KanBan board, which is a board where your events displayed
 according to the level of completion of each event, which consists of Backlog, Todo, In-Progress and Done. It functions
 via a Command-Line Interface (CLI) that allows more efficient management of events.
@@ -154,6 +156,15 @@ The following class diagram illustrates how the priority feature is implemented:
 
 ![Structure of the Event Component](diagrams/EventClassDiagram.png)
 
+### Event `identifier` attribute
+
+Events in Focuris have a unique `identifier` attached to them.
+
+- Identifier is an integer attribute inside the Event model, which increments each time the constructor is called. This means, identifier will increment irregardless of whether an Event is successfully added in EventBook.
+- Identifier gets re-allocated each time Focuris restarts.
+- Identifiers never get reset or decremented in a single session. This ensures that even with a potential undo feature in the future, Focuris' Events are not at risk of having duplicate identifiers.
+- This implementation of an identifier which does not reset or decrement is in line with other kanban boards, such as GitHub or Jira.
+
 #### Design consideration:
 
 ##### Aspect: Optional Priority
@@ -195,27 +206,28 @@ The following class diagram illustrates how the priority feature is implemented:
 
 **Value proposition**:
 
-- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-- Ability to find a common timeslot where all your friends are available to meet based on their schedules added
-- See events that are taken in conjunction with your friends
-- Prioritize your tasks and events by assigning priorities to each event
+- Adding of various different types of events with descriptions.
+- Prioritise work based on priority level by labeling events as Low, Medium, or High priority.
+- Split work into progressions such as Backlog, ToDo, In Progress, and Done.
+- Get an overview via the List view so that you can find the event that you need easily.
+- Quickly updating events on the go as you complete them.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                              | So that I can…​                                                      |
+| Priority | As a …​  | I want to …​                                        | So that I can…​                                                   |
 | -------- | -------- | --------------------------------------------------------- | -------------------------------------------------------------------- |
 | `* * *`  | new user | see usage instructions                                    | refer to instructions when I forget how to use the App               |
 | `* * *`  | user     | add a new TODO event                                      | keep track of events that I have to work on                          |
 | `* * *`  | user     | add a new BACKLOG event                                   | keep track of the events that I have upcoming                        |
 | `* * *`  | user     | add a new IN PROGRESS event                               | keep track of the events that I am currently working on              |
 | `* * *`  | user     | get an overview of all the events by status               | keep track of all events and what stages of completion they are in   |
-| `* * *`  | user     | edit an existing event                                    |                                                                      |
-| `* * *`  | user     | delete an existing event                                  |                                                                      |
+| `* * *`  | user     | edit an existing event                                    | update events on the go as I work through my events                  |
+| `* * *`  | user     | delete an existing event                                  | remove events that have already finished or are no longer needed     |
 | `* * *`  | user     | remove all existing tasks to make way for the next sprint | focus on tasks to work on in the new sprint                          |
-| `* * *`  | user     |                                                           | get an overview of how busy the coming week is                       |
 | `* *`    | user     | find an event by name                                     | locate specific events without scrolling through list                |
+| `* *`    | user     | mark events as completed quickly                          | work on the next task and see that I am making progress              |
 | `* *`    | user     | attach priorities to different events                     | manage time better by working on events with higher priorities first |
 
 ### Use cases
@@ -406,23 +418,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-
 ### Glossary
 
 **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 **Event**: A task that needs to be completed by the user.
+
 - An event consists of a title, description and identifier that we use
   to track each event.
 - The stage of completion of an event can be split into four types:
-    1) Backlog
-    2) Todo
-    3) In Progress
-    4) Done
+  1. Backlog
+  2. Todo
+  3. In Progress
+  4. Done
 - An event can also have three different degrees of priorities:
-    1) High
-    2) Medium
-    3) Low
+  1. High
+  2. Medium
+  3. Low
 
 **Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being
 planned to be worked on or pending or any upcoming events, but we leave the definition loose up to the user.
@@ -438,7 +450,6 @@ planned to be worked on or pending, but we leave the definition loose up to the 
 **Kanban**: Meaning signboard or billboard in Japanese. It is a method of managing and improving work flow across human
 systems. It is often used via a Kanban Board, where cards are used to represent work items and columns are used to
 represent each stage of the work process. An example of a Kanban Board is our application itself.
-
 
 **Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
 
