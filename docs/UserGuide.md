@@ -19,6 +19,14 @@ title: User Guide
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+The name SOChedule is case-insensitive in the text and images in this User Guide.<br>
+i.e. SOChedule, SoChedule, Sochedule can be used interchangeably.
+
+</div>
 
 
 ## Introduction
