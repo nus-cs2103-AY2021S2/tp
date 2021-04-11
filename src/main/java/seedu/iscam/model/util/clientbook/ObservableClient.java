@@ -15,6 +15,17 @@ public class ObservableClient implements ObservableObjectValue<Client> {
     private Client client;
     private final List<ChangeListener<? super Client>> listeners = new ArrayList<>();
 
+    /**
+     * Creates a new ObservableClient from the suppied Observable client
+     */
+    public ObservableClient(ObservableClient oc) {
+        this.client = oc.client;
+        this.listeners.addAll(oc.listeners);
+    }
+
+    public ObservableClient() {
+    }
+
     public void setClient(Client newClient) {
         Client oldClient = this.client;
         this.client = newClient;

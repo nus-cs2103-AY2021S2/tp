@@ -108,11 +108,15 @@ Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE
 
 * LOCATION in `l/LOCATION` should not be blank or longer than 100 characters. <br>
   e.g `l/Starbucks @ Frontier` is acceptable
+  
+* IMAGE_FILE in `i/IMAGE_FILE` should be a single file name with no whitespaces and must end with
+  a file extension either `.jpg, .jpeg or .png`.  
+  e.g. `john_doe.png` is a acceptable   
 
 * INSURANCE_PLAN in `ip/INSURANCE_PLAN` should not be longer than 50 alphanumeric characters. <br>
   e.g `ip/Premium Savings Plan 2` is acceptable
 
-* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
+* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters and cannot contain spaces. <br>
   e.g `t/friend` is acceptable
   
 </div> <br>
@@ -171,11 +175,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 * You can also remove the client's existing insurance plan by typing `ip/` without specifying any insurance plan after it.
-* When specifying which `IMAGE_FILE` to use, the file extension must be included in the `IMAGE_FILE` name.
+* When specifying which `IMAGE_FILE` to use, the file extension must be included in the `IMAGE_FILE` name 
+  and must not contain whitespaces.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively
-*  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and remove insurance plan
+*  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and insurance plans
 
 #### Finding clients by name: `find`
 
@@ -250,7 +255,7 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 
 **:information_source: Notes about the limit for inputs:**<br>
 
-* CLIENT_NAME in `c/CLIENT_NAME` should not be longer than 50 alphanumeric characters. <br>
+    * CLIENT_NAME in `c/CLIENT_NAME` should not be longer than 50 alphanumeric characters. <br>
   e.g `c/John Doe 123` is acceptable
 
 * DATE_TIME in `on/DATE_TIME` should be in the format of `dd-MM-yyyy HH:mm` <br>
@@ -264,7 +269,7 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 * DESCRIPTION in `d/DESCRIPTION` should not be blank or longer than 1000 characters. <br>
   e.g `d/Plan expiring soon.` is acceptable
 
-* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
+* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters and cannot contain spaces. <br>
   e.g `t/friend` is acceptable
 
 </div> <br>
@@ -409,7 +414,7 @@ Format: `exit`
 
 Images for clients can be added by placing an image in the `/data` folder, with the
 `clientbook.json` and `meetingbook.json` files. Any `IMAGE_FILE` used must be of file
-type `.jpg`, `.jpeg` or `.png`.
+type `.jpg`, `.jpeg` or `.png` and the name of the file must not contain whitespaces.
 
 ### Managing Data Files
 #### Saving the data

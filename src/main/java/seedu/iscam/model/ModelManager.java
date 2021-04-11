@@ -42,7 +42,9 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given clientBook and userPrefs.
      */
-    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyMeetingBook meetingBook,
+                        ObservableClient observableClient,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(clientBook, meetingBook, userPrefs);
 
@@ -52,13 +54,17 @@ public class ModelManager implements Model {
 
         this.clientBook = new ClientBook(clientBook);
         this.filteredClients = new FilteredList<>(this.clientBook.getClientList());
-        this.detailedClient = new ObservableClient();
+        this.detailedClient = new ObservableClient(observableClient);
 
         this.meetingBook = new MeetingBook(meetingBook);
         this.filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         this.detailedMeeting = new ObservableMeeting();
 
         this.userPrefs = new UserPrefs(userPrefs);
+    }
+
+    public ModelManager(ReadOnlyClientBook clientBook, ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
+        this(clientBook, meetingBook, new ObservableClient(), userPrefs);
     }
 
     public ModelManager() {

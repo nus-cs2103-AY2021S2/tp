@@ -67,12 +67,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setClientBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setClientBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setClientBookFilePath_validPath_setsClientBookFilePath() {
         Path path = Paths.get("iscam/book/file/path");
         modelManager.setClientBookFilePath(path);
         assertEquals(path, modelManager.getClientBookFilePath());
@@ -84,12 +84,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasClient_clientNotInAddressBook_returnsFalse() {
+    public void hasClient_clientNotInClientBook_returnsFalse() {
         assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void hasClient_clientInAddressBook_returnsTrue() {
+    public void hasClient_clientInClientBook_returnsTrue() {
         modelManager.addClient(ALICE);
         assertTrue(modelManager.hasClient(ALICE));
     }

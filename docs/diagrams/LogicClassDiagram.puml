@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class BookParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -39,8 +39,8 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" BookParser
+BookParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser .left.|> Parser
@@ -60,7 +60,7 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note right of XYZCommand: XYZCommand includes \nboth Client Commands \nand Meeting Commands, \ne.g. FindCommand, \nAddMeetingCommand etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

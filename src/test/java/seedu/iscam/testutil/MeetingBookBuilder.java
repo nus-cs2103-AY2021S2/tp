@@ -6,7 +6,7 @@ import seedu.iscam.model.util.meetingbook.MeetingBook;
 /**
  * A utility class to help with building MeetingBook objects.
  * Example usage: <br>
- *     {@code MeetingBook ab = new MeetingBookBuilder().withMeeting(new Meeting(...)).build();}
+ *     {@code MeetingBook mb = new MeetingBookBuilder().withMeeting(new Meeting(...)).build();}
  */
 public class MeetingBookBuilder {
 

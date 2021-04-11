@@ -6,7 +6,7 @@ import seedu.iscam.model.util.clientbook.ClientBook;
 /**
  * A utility class to help with building ClientBook objects.
  * Example usage: <br>
- *     {@code ClientBook ab = new ClientBookBuilder().withClient("John", "Doe").build();}
+ *     {@code ClientBook cb = new ClientBookBuilder().withClient("John", "Doe").build();}
  */
 public class ClientBookBuilder {
 
