@@ -4,26 +4,27 @@ left to right direction
 !include <office/Concepts/documents>
 !include <office/Users/user>
 !include style.puml
+hide stereotypes
 
 Package " "<<Rectangle>>{
-    Class UI UI_COLOR
-    Class Logic LOGIC_COLOR_DARK
-    Class Storage STORAGE_COLOR
-    Class Model MODEL_COLOR
+    Class UI <<ui>> UI_COLOR
+    Class Logic <<logic>> LOGIC_COLOR
+    Class Storage <<storage>> STORAGE_COLOR
+    Class Model <<model>> MODEL_COLOR
     Class Main #grey
-    Class Commons LOGIC_COLOR
+    Class Commons LOGIC_COLOR_T1
 }
 
 skinparam roundCorner 10
 
-Class "<$user>" as User MODEL_COLOR
-Class "<$documents>" as File UI_COLOR_DARK
+Class "<$user>" as User <<model>> MODEL_COLOR
+Class "<$documents>" as File <<ui>> UI_COLOR
 
 
 UI -[#green]-> Logic
 UI -right[#green]-> Model
-Logic -[LOGIC_COLOR_DARK]-> Storage
-Logic -down[LOGIC_COLOR_DARK]-> Model
+Logic -[LOGIC_COLOR]-> Storage
+Logic -down[LOGIC_COLOR]-> Model
 Main -[#grey]-> UI
 Main -[#grey]-> Logic
 Main -[#grey]-> Storage
