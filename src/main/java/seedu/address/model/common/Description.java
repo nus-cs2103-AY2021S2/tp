@@ -9,13 +9,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
-            "Description can take any values, and it should not be blank";
+            "Description can take any values, and it should be at least 1 character long" +
+                    "and at most 30 characters long";
 
     /*
      * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+//    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s].{1,30}";
 
     public final String value;
 
