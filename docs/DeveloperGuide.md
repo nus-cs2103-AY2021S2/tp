@@ -179,18 +179,45 @@ when he completes one and finds another task with the same description still lef
 In our application, we require users to minimally provide the name, deadline and priority when creating a task.
 To ensure duplicates are handled, our team went through several alternatives and here are our considerations.
 
-* Alternative 1 (Chosen Implementation): `isSameTask(Task task)` method should check if the name, priority, deadline, 
-  tags (if any) and categories (if any) are equal.
-  * Pros:  
-    * Tasks with same name but different deadline, priority and/or any other fields are allowed.
-  * Cons:
-    * Harder to implement.
-* Alternative 2 : `isSameTask(Task task)` method should check for the equality of task name only.
-    * Pros:
-        * Easier to implement.
-        * Ensure that the task names are always distinct.
-    * Cons:
-        * Less flexibility and may not meet some users' need because task with same name but other different fields are not allowed.
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li> isSameTask(Task task) method should check if the name, priority, deadline, tags (if any) and categories (if any) are equal.</li>
+                <li> Pros:
+                    <ul>
+                        <li>Tasks with same name but different deadline, priority and/or any other fields are allowed.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Harder to implement.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>isSameTask(Task task) method should check for the equality of task name only.</li>
+                <li> Pros:
+                    <ul>
+                        <li>Easier to implement.</li>
+                        <li>Ensure that the task names are always distinct.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Less flexibility and may not meet some users' need because task with same name but other different fields are not allowed.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
 We chose Alternative 1 because it is more flexible and suitable for users' need. 
 There can be multiple tasks with same name but other different fields, like deadlines. 
@@ -206,19 +233,45 @@ When implementing the Name class, one of the considerations we need to decide is
 Due to constraints in GUI, if the task or event has an extremely long name, only part of the name can be displayed
 and the rest will be hidden and cannot be viewed. This is something undesirable.
 
-* Alternative 1 (Chosen Implementation): set the maximum length to 30 characters long.
-    * Pros:
-        * Resolved the potential bug where tasks or events with excessively long names are displayed
-        incompletely.
-    * Cons:
-        * More restrictive as a hard maximum limit has been set to disallow users from creating a 
-        task or event with a name of longer than 20 characters.
-* Alternative 2: do not set a maximum length and find other potential solutions.
-    * Pros:
-        * Users can have more freedom in creating or editing the tasks and events.
-    * Cons:
-        * May require major changes to the design and implementation of GUI, which may be time consuming and 
-          lead to other undesirable bugs.
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li> Set the maximum length to 30 characters long.</li>
+                <li> Pros:
+                    <ul>
+                        <li>Resolved the potential bug where tasks or events with excessively long names are displayed incompletely.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li> More restrictive as a hard maximum limit has been set to disallow users from creating a task or event with a name of longer than 20 characters.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Do not set a maximum length and find other potential solutions.</li>
+                <li> Pros:
+                    <ul>
+                        <li>Users can have more freedom in creating or editing the tasks and events.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>May require major changes to the design and implementation of GUI, which may be time consuming and lead to other undesirable bugs.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
 
 We chose Alternative 1 because this is the most suitable option given the limited development time 
 and more controllable impacts on other components of the application. More importantly, we estimate that 
@@ -366,17 +419,44 @@ should not be selected. This leads to only finding events that are ongoing at th
 For tasks, it is rather debatable. Tasks which are completed should not selected. However, it needs some
 considerations with regards to what kinds of uncompleted tasks to be selected.
 
-* Alternative 1 (current implementation): Select uncompleted tasks with deadline before or on the given date.
-    * Pros:
-        * Less tasks are being shown. This may be more helpful as users can focus more on these tasks with an earlier deadline
-            than the other tasks.
-    * Cons:
-        * More restrictive and less tasks being shown also means that less information may be provided to users.
-* Alternative 2: Select all existing uncompleted tasks.
-    * Pros:
-        * More tasks are being shown and presented to users.
-    * Cons:
-        * The date provided is not adding useful value here and users may find this implementation less helpful.
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li> Select uncompleted tasks with deadlines before or on the given date.</li>
+                <li> Pros:
+                    <ul>
+                        <li>Less tasks are being shown. This may be more helpful as users can focus more on these tasks with an earlier deadline than the other tasks.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li> More restrictive and less tasks being shown also means that less information may be provided to users.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Select all existing uncompleted tasks.</li>
+                <li> Pros:
+                    <ul>
+                        <li>More tasks are being shown and presented to users.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>The date provided is not adding useful value here and users may find this implementation less helpful.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
 Alternative 1 is chosen because we believe this implementation can make better use of the date provided and can be more 
 helpful for users to know what tasks should be dealt with first and improve their efficiency in task and event managements.
@@ -515,18 +595,44 @@ when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`
 One of the challenges is if we should add additional support to allow done task command to mark more than one tasks as completed.
 Here are our considerations.
 
-* Alternative 1: Done task only marks one task as uncompleted.
-    * Pros:
-        * Easier to implement, maintain and integrate with other commands and components.
-    * Cons:
-        * More restrictive and users may need slightly more time to done the tasks.
-
-
-* Alternative 2 (current implementation): Done task can mark more than one tasks as uncompleted.
-    * Pros:
-        * Users may frequently need to done multiple tasks. This can save a significant amount of time.
-    * Cons:
-        * More time-consuming to implement, increases difficulty in testing and integration with other commands and components.
+<table>
+    <tr>
+        <th> Alternative 1  </th>
+        <th> Alternative 2 (Chosen Implementation) </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li> Done task only marks one task as uncompleted.</li>
+                <li> Pros:
+                    <ul>
+                        <li>Easier to implement, maintain and integrate with other commands and components.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li> More restrictive and users may need slightly more time to done the tasks.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Done task can mark more than one tasks as uncompleted.</li>
+                <li> Pros:
+                    <ul>
+                        <li>Users may frequently need to done multiple tasks. This can save a significant amount of time.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>More time-consuming to implement, increases difficulty in testing and integration with other commands and components.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
 Alternative 2 is chosen because we believe this implementation is a more suitable choice. 
 Unlike undone task, users are likely to have the demand to done multiple tasks frequently
@@ -573,6 +679,7 @@ when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`
 </div>
 
 The activity diagram that summaries what happens when users execute the `UndoneTaskCommand` can be found below.
+(For brevity, we assume user command format is valid and 'show errors' actions are omitted.)
 
 ![Activity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
 
@@ -581,18 +688,44 @@ The activity diagram that summaries what happens when users execute the `UndoneT
 One of the challenges is if we should add additional support to allow undone task command to mark more than one tasks as uncompleted.
 Here are our considerations.
 
-* Alternative 1 (current implementation): Undone task only marks one task as uncompleted.
-    * Pros:
-        * Easier to implement, maintain and integrate with other commands and components.
-    * Cons:
-        * More restrictive and users may need slightly more time to undone the tasks.
-    
-
-* Alternative 2: Undone task can mark more than one tasks as uncompleted.
-    * Pros:
-        * May save a small amount of time when users need to undone multiple tasks.
-    * Cons:
-        * More time-consuming to implement, increases difficulty in testing and integration with other commands and components.
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li> Undone task only marks one task as uncompleted. </li>
+                <li> Pros:
+                    <ul>
+                        <li>Easier to implement, maintain and integrate with other commands and components.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li> More restrictive and users may need slightly more time to undone the tasks.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Undone task can mark more than one tasks as uncompleted.</li>
+                <li> Pros:
+                    <ul>
+                        <li>May save a small amount of time when users need to undone multiple tasks.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>More time-consuming to implement, increases difficulty in testing and integration with other commands and components.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
 Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited development and
 testing time. More importantly, unlike done task, users are unlikely to have the demand to undone multiple tasks frequently 
@@ -709,22 +842,49 @@ The sequence diagram for a sample usage of `EditTaskCommand` can be found below.
 
 One of the challenges is if we should allow overdue tasks (task with deadlines before today) to be edited.
 
-* Alternative 1 (current implementation): Overdue tasks can be edited.
-    * Pros:
-        * At very frequent occasions, users may need to edit an overdue task. For example, users may wish to
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li> Overdue tasks can be edited. </li>
+                <li> Pros:
+                    <ul>
+                        <li>At very frequent occasions, users may need to edit an overdue task. For example, users may wish to
         extend the deadline of an overdue task, or increasing its priority to remind themselves that this task
-          needs more attention.
-    * Cons:
-        * At very rare occasions, users may not want overdue tasks to be edited. 
+          needs more attention.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li> At very rare occasions, users may not want overdue tasks to be edited. 
           For example, they wanted to evaluate their overall progress for this week and do not wish
-          overdue tasks to be accidentally edited.
-          
+          overdue tasks to be accidentally edited.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Overdue tasks cannot be edited.</li>
+                <li> Pros:
+                    <ul>
+                        <li>May satisfy the demand of users as described in cons of alternative 1.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>May not meet the requirements of users as described in pros of alternative 1.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
-* Alternative 2: Overdue tasks cannot be edited.
-    * Pros:
-        * May satisfy the demand of users as described in cons of alternative 1.
-    * Cons:
-        * May not meet the requirements of users as described in pros of alternative 1.
 
 Alternative 1 is chosen because we believe this implementation is a more suitable choice given our users' need at
 normal usage. Furthermore, if users wish to their overall progress for this week, they may choose to act with caution before
@@ -1059,7 +1219,8 @@ The sequence diagram for `EditEventCommand` can be found below.
 The following activity diagram summarises what happens when a user executes a EditEventCommand:
 (For brevity, "Show error" actions are omitted.)
 
-<img src="images/EditEventCommandActivityDiagram.png" width="250" />
+
+<img src="images/EditEventCommandActivityDiagram.png" width="250" />›
 
 
 ***Design Considerations for `EditEventCommand`***

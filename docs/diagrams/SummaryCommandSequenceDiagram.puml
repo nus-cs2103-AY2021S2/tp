@@ -13,18 +13,26 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(summary)
+[-> LogicManager : execute("summary")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(undo)
+LogicManager -> SocheduleParser : parseCommand("summary")
 activate SocheduleParser
 
-SocheduleParser -> SummaryCommandParser: parse(args)
+create SummaryCommandParser
+SocheduleParser -> SummaryCommandParser
+activate SummaryCommandParser
+
+SummaryCommandParser --> SocheduleParser
+deactivate SummaryCommandParser
+
+SocheduleParser -> SummaryCommandParser: parse("summary")
 activate SummaryCommandParser
 
 create SummaryCommand
 SummaryCommandParser -> SummaryCommand
 activate SummaryCommand
+
 SummaryCommandParser <--SummaryCommand : s
 deactivate SummaryCommand
 
@@ -37,8 +45,7 @@ destroy SummaryCommandParser
 LogicManager <-- SocheduleParser : s
 deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SocheduleParser -[hidden]->[
-destroy SocheduleParser
+
 
 LogicManager -> SummaryCommand : execute()
 activate SummaryCommand
