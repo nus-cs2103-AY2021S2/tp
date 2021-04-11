@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.TripDay;
 import seedu.address.model.TripTime;
@@ -182,6 +184,9 @@ public class ParserUtil {
         requireNonNull(indices);
         final Set<Index> indicesSet = new HashSet<>();
         for (String index : indices) {
+            if (!index.chars().allMatch(Character::isDigit)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            }
             indicesSet.add(parseIndex(index));
         }
         return indicesSet;
