@@ -45,7 +45,7 @@ destroy SelectCommandParser
 WardrobeParser --> Command : c
 deactivate WardrobeParser
 
-Command -> SelectCommand : execute()
+Command -> SelectCommand : execute(model)
 activate SelectCommand
 
 SelectCommand -> Model : addGarment(garmentChanged)
