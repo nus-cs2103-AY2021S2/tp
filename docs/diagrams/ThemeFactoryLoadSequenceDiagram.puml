@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Ui UI_COLOR_T1
+participant ":ThemeFactory" as ThemeFactory << class >> UI_COLOR
+end box
+
+[->  ThemeFactory : load(themePath)
+
+alt themePath starts with '@'
+
+    ThemeFactory -> ThemeFactory : loadFromResource(themePath)
+
+    ThemeFactory --> ThemeFactory : theme
+
+else
+
+    ThemeFactory -> ThemeFactory : loadFromFile(themePath)
+
+    ThemeFactory --> ThemeFactory : theme
+
+end
+
+[<-- ThemeFactory : theme
+
+@enduml

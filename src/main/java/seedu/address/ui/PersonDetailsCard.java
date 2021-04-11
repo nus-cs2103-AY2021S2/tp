@@ -48,7 +48,7 @@ public class PersonDetailsCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        debt.setText("Debt: " + person.getDebt().value.toString());
+        debt.setText("Debt: " + person.getDebt().toUi());
         birthday.setText(person.getBirthday().toUi());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -88,16 +88,15 @@ public class Debt {
     }
 
     /**
-     * Compares this Debt with the specified debt.
-     * @param debt value to which this Debt is being compared to
-     * @return -1, 0 or 1 if this Debt is smaller than, equal to or greater than debt respectively
+     * Returns the string to be printed onto the Ui.
+     * @return String to be printed onto the Ui.
      */
-    public int compareTo(Debt debt) {
-        return this.value.compareTo(debt.value);
-    }
-
     public String toUi() {
-        return String.format("$%.2f", value);
+        if (value.signum() != -1) {
+            return String.format("$%.2f", value);
+        } else {
+            return String.format("-$%.2f", value.abs());
+        }
     }
 
     @Override
