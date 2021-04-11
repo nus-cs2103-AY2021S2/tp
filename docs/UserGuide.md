@@ -707,8 +707,6 @@ Format: `delete_event INDEX`
 * Deletes the event at the specified INDEX.
 * Note that only one `INDEX` is accepted, multiple `INDEX` will lead to input format error.
 * The `INDEX` refers to the index number shown in the **displayed** event list.
-* The `INDEX` must be a positive and valid integer 1, 2, 3, ... i.e. `0`, negative integers and integers greater than
-  `2147482637` will lead to input format error.
 
 Examples:
 * `delete_event 3` deletes the third event from the event list.
