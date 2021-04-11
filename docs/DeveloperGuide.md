@@ -709,7 +709,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIT displays task already done message.
 
       Use case ends.
+      
+#### **Use case: Postpone task's date**
 
+**MSS**
+1. User <u>adds a task</u> to the list.
+2. User <u>adds a duration</u> to the task.
+3. User enters command to snooze the task.
+4. PlanIT updates Task in the model with Date postponed by the specified amount.
+5. PlanIT displays snoozeCommand success message.
+
+   Use case ends.
+
+**Extensions**
+* 3a. The number of days to postpone the task is more than 365
+    * 4a1. PlanIT displays snoozeCommand error message.
+
+      Use case ends.
+      
 #### **Use case: Counting down to a task's date**
 
 **MSS**
@@ -956,6 +973,41 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect remove commands to try: `rmt`, `rmt x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Setting a task status as done
+
+1. Index is invalid
+    
+    1. Test case: `done 0`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+    1. Test case: `done 99999999999999999999`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+1. Task status is 'done'
+
+    1. Test case: `done 1`<br>
+    Expected: Error message informing the user that the tasks status is already done. No changes to the status of the 
+    task.
+    
+### Snooze
+1. Task to snooze has no date
+    
+    1. Test case: `snooze 1`<br>
+    Expected: Error message to indicate that task has no date.
+    
+1. Index is invalid
+    
+    1. Test case: `snooze 0`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+    1. Test case: `snooze 99999999999999999999`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+1. Snooze amount is more that 365
+    
+    1. Test case: `snooze 1 400`<br>
+    Expected: Error message to reflect that snooze amount cannot be more that 365 days will be reflected.
 
 ### Saving data
 
