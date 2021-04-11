@@ -125,13 +125,11 @@ cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE b/DATE_OF_BIRTH`
   that `abc` is a subsequence of `addbddc`) will be matched. Note that this is the only field for which we match 
   a subsequence instead of a simple substring.
   
-- for `e/EMAIL`, all email containing the given parameter will be valid, but note that domain name is not checked.
+- for `e/EMAIL`, all email containing the given parameter will be valid.
     - eg `find e/abc` will return profiles with the following emails:
         -  `abcd@gmail.com`
         -  `bbabc@gmail.com`
-    - It will _not_ return:
-        - `xxx@abc.com`
-        - `axbyc@hhh.com`
+
 
 
 Further details about the search options are as follows:
