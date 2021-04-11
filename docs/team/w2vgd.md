@@ -19,19 +19,18 @@ Given below are my contributions to the project:
     * Highlights: Each `Property` may contain several optional attributes, such as remarks, tags and client's information. Each attribute also has nicely formatted output to be shown to the user in the GUI.
 
 
-* **Enhancement**: Added the functionality to add properties and appointments through the two different `add` commands.
-  * What it does: Allows the user to add a property or appointment to the application.
-  * Justification: These basic core commands are required for users to add new information to the application.  
-  * Highlights: Highly optimized and provides increased convenience for fast typists by allowing for a great range of attributes (both mandatory and optional) to be entered in one shot.
-
+* **Enhancement**: Implemented parsing support for all the attributes of `Property` and `Appointment`.
+  * What it does: Performs strict input validation on user input arguments for each of the attributes of both `Property` and `Appointment`. Ensure that user input for each field is correctly validated. Upon invalid inputs, descriptive error messages are shown to user.
+  * Justification: The creation and storage of every `Property` and `Appointment` is heavily dependent on the correct parsing of user input. Without ensuring correct parsing of user input commands, the application will not be able to store the data of the user accurately.
+  * Highlights: Strict but yet flexible regex validation on user input for client's asking price, allowing for optional dollar sign and optional commas separating the numbers for greater ease of inputting large prices. Strict validation is also performed on user input date and time arguments, with error messages tailored to incorrect input format and invalid dates and times. The implementation was challenging as it required knowledge of regular expressions to construct all the validation regex.
 
 <div style="page-break-after: always;"></div>
 
 
-* **Enhancement**: Implemented parsing support for all the attributes of `Property` and `Appointment`.
-    * What it does: Performs strict input validation on user input arguments for each of the attributes of both `Property` and `Appointment`. Ensure that user input for each field is correctly validated. Upon invalid inputs, descriptive error messages are shown to user.
-    * Justification: The creation and storage of every `Property` and `Appointment` is heavily dependent on the correct parsing of user input. Without ensuring correct parsing of user input commands, the application will not be able to store the data of the user accurately.
-    * Highlights: Strict but yet flexible regex validation on user input for client's asking price, allowing for optional dollar sign and optional commas separating the numbers for greater ease of inputting large prices. Strict validation is also performed on user input date and time arguments, with error messages tailored to incorrect input format and invalid dates and times. The implementation was challenging as it required knowledge of regular expressions to construct all the validation regex.
+* **Enhancement**: Added the functionality to add properties and appointments through the two different `add` commands.
+  * What it does: Allows the user to add a property or appointment to the application.
+  * Justification: These basic core commands are required for users to add new information to the application.  
+  * Highlights: Highly optimized and provides increased convenience for fast typists by allowing for a great range of attributes (both mandatory and optional) to be entered in one shot.
 
 
 * **Additional Enhancements**:
