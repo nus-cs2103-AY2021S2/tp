@@ -207,6 +207,12 @@ that uses the list of keywords to find the search results based on the supplied 
 This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the
 CommandResult instance that is then passed on in the LogicManager.
 
+Below is an example sequence diagram for a valid view command from the user.
+
+![FindActivityDiagram](images/FindSequenceDiagram.png)
+
+Below is an example activity diagram for a valid view command from the user.
+
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### View feature
@@ -221,8 +227,11 @@ Based on the class type of the target entity, we will reveal the search results 
 
 This list is subsequently passed on to the `RelatedEntityPredicate` that will later be used in the ModelManager's `updatefilteredEntityList())` method to finally reveal the search results.
 
+Below is an example sequence diagram for a valid view command from the user. 
 
-Below is an example activitiy diagram for a valid view command from the user.
+![ViewActivityDiagram](images/ViewSequenceDiagram.png)
+
+Below is an example activity diagram for a valid view command from the user.
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
@@ -298,18 +307,22 @@ However, this requires there to be no duplicate dog or program names.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Dog school manager   | Create a list of dogs and their respective owners in the dog school        | Keep track of the dogs we are responsible for     |
-| `* * *`  | Busy owner          | Delete dog profiles and owner profiles            | Remove dogs or owners that are no longer in the school                                                           |
-| `* * *`  | Dog school manager   | Add dog profiles and owner profiles             |  Add new dogs or owners that join the school         |
-| `* * *`  | Dog school manager   | Get instructions         | Get help when I do not know how to use the application |
-| `* * *`  | Dog school manager   | Exit the application   |           |
-| `* *`    | Dog school manager   | Edit a dog profile when the information is wrong/outdated |                                             |
-| `* *`    | Dog school manager   | Create a dog program for the dog students            |                                                  |
-| `* *`    | Dog school manager   | Enrol dogs into a specific dog program | Dogs who recently joined a program are added to the class list |
-| `* *`    | Dog school manager   | Drop dogs out of a specific dog program | Dogs that have left the class are no longer in the class list  |
-| `* *`    | Advanced user        | Edit in bulk quickly without having to be familiar with the app | Minimize chance of someone else seeing them by accident |
+| Priority | As a …​           | I want to …​                                                            | So that I can…​                    |
+| -------- | -------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | Dog school manager   | Have a list of dogs, owners, and programs in the school                    | Keep track of the operations and dogs we are responsible for     |
+| `* * *`  | Dog school manager   | Easily switch between the different lists for dogs, owners and programs    | Quickly view all the profiles of one entity type     |
+| `* * *`  | Dog school manager   | Add dog/owner/program profiles                                             | Keep track of the operations and parties involved in the school|
+| `* * *`  | Dog school manager   | Delete dog/owner/program profiles                                          | Keep track of the operations and parties involved in the school|
+| `* * *`  | Dog school manager   | Edit a dog/owner/program profile                                           | Correct/update a profile when it is incorrect.|
+| `* * *`  | Dog school manager   | View a dog/owner/program profile                                           | Easily find out information on the target party|
+| `* * *`  | Dog school manager   | Find profiles using keywords instead of ID                                 | Easily find a target dog/owner/program very quickly |
+| `* * *`  | Dog school manager   | Enrol dogs into a specific dog program                                     | Dogs who recently joined a program are added to the class list |
+| `* *`    | Dog school manager   | Drop dogs out of a specific dog program                                    | Dogs that have left the class are no longer in the class list  |
+| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day. |
+| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes.  |
+| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Minimize chance of someone else seeing them by accident |
+| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command. |
+| `* * `   | User                 | Exit the application                                                       |           |
 
 *{More to be added}*
 
