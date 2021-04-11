@@ -11,7 +11,8 @@ public class ModuleCode implements Comparable<ModuleCode> {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Codes should begin with uppercase CS, have 4 digits, end optionally with a "
-            + "uppercase character, and it should not be blank";
+            + "uppercase character, and it should not be blank.\n"
+            + "Only module codes between CS1XXX - CS6XXX are accepted.";
 
     public static final String VALIDATION_REGEX = "[C][S][1-6]\\d{3}[A-Z]?";
 

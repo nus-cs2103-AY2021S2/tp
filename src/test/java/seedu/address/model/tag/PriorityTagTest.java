@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 
 
 public class PriorityTagTest {
-    public static final String low = "LOW";
-    public static final String medium = "MEDIUM";
-    public static final String high = "HIGH";
+    public static final String LOW = "LOW";
+    public static final String MEDIUM = "MEDIUM";
+    public static final String HIGH = "HIGH";
 
 
 
@@ -26,14 +26,14 @@ public class PriorityTagTest {
         assertTrue(PriorityTag.validateTag("LOW"));
         assertTrue(PriorityTag.validateTag("MEDIUM"));
         assertTrue(PriorityTag.validateTag("HIGH"));
-        assertTrue(PriorityTag.validateTag(high));
-        assertTrue(PriorityTag.validateTag(medium));
-        assertTrue(PriorityTag.validateTag(high));
+        assertTrue(PriorityTag.validateTag(HIGH));
+        assertTrue(PriorityTag.validateTag(MEDIUM));
+        assertTrue(PriorityTag.validateTag(HIGH));
 
         // valid tags after constructing
-        PriorityTag pt1 = new PriorityTag(low);
-        PriorityTag pt2 = new PriorityTag(medium);
-        PriorityTag pt3 = new PriorityTag(high);
+        PriorityTag pt1 = new PriorityTag(LOW);
+        PriorityTag pt2 = new PriorityTag(MEDIUM);
+        PriorityTag pt3 = new PriorityTag(HIGH);
 
         assertTrue(PriorityTag.validateTag(pt1.getTagName()));
         assertTrue(PriorityTag.validateTag(pt2.getTagName()));
@@ -56,13 +56,13 @@ public class PriorityTagTest {
     @Test
     public void isEqualPriorityTag() {
         // valid tags after constructing
-        PriorityTag pt1 = new PriorityTag(low);
-        PriorityTag pt2 = new PriorityTag(medium);
-        PriorityTag pt3 = new PriorityTag(high);
+        PriorityTag pt1 = new PriorityTag(LOW);
+        PriorityTag pt2 = new PriorityTag(MEDIUM);
+        PriorityTag pt3 = new PriorityTag(HIGH);
 
-        PriorityTag pt1Copy = new PriorityTag(low);
-        PriorityTag pt2Copy = new PriorityTag(medium);
-        PriorityTag pt3Copy = new PriorityTag(high);
+        PriorityTag pt1Copy = new PriorityTag(LOW);
+        PriorityTag pt2Copy = new PriorityTag(MEDIUM);
+        PriorityTag pt3Copy = new PriorityTag(HIGH);
 
         assertTrue(pt1.equals(pt1Copy));
         assertTrue(pt2.equals(pt2Copy));
@@ -74,13 +74,13 @@ public class PriorityTagTest {
     @Test
     public void isNotEqualPriorityTag() {
         // valid tags after constructing
-        PriorityTag pt1 = new PriorityTag(low);
-        PriorityTag pt2 = new PriorityTag(medium);
-        PriorityTag pt3 = new PriorityTag(high);
+        PriorityTag pt1 = new PriorityTag(LOW);
+        PriorityTag pt2 = new PriorityTag(MEDIUM);
+        PriorityTag pt3 = new PriorityTag(HIGH);
 
-        PriorityTag pt1Copy = new PriorityTag(low);
-        PriorityTag pt2Copy = new PriorityTag(medium);
-        PriorityTag pt3Copy = new PriorityTag(high);
+        PriorityTag pt1Copy = new PriorityTag(LOW);
+        PriorityTag pt2Copy = new PriorityTag(MEDIUM);
+        PriorityTag pt3Copy = new PriorityTag(HIGH);
 
         // not equal tags
         assertFalse(pt1.equals(pt2Copy));

@@ -21,6 +21,7 @@ public class DeadlineDateInRangePredicate implements Predicate<Task> {
     private static DeadlineDate today = new DeadlineDate(LocalDate.now().format(dateDateFormatter));
 
     private final DeadlineDate endDate;
+    private final long numberOfDays;
 
     /**
      * A predicate to check deadlinedate of a task
@@ -38,6 +39,7 @@ public class DeadlineDateInRangePredicate implements Predicate<Task> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DueInCommand.MESSAGE_USAGE));
         }
+        this.numberOfDays = numberOfDays;
         this.endDate = minimumOf(dateSpecifiedByUser, maxDate);
     }
 
@@ -71,6 +73,6 @@ public class DeadlineDateInRangePredicate implements Predicate<Task> {
 
     @Override
     public String toString() {
-        return " Show deadline from today until " + this.endDate.toString();
+        return " Show deadline for the next " + numberOfDays + " days";
     }
 }

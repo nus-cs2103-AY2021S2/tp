@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -55,8 +55,7 @@ public class DoTodayCommand extends Command {
             List<Task> lastShownList = model.getFilteredTaskList();
 
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoTodayCommand.MESSAGE_USAGE));
+                throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
 
             Task taskToAdd = lastShownList.get(targetIndex.getZeroBased());
@@ -70,8 +69,7 @@ public class DoTodayCommand extends Command {
             List<Task> lastShownDailyTaskList = model.getDailyTaskList();
 
             if (targetIndex.getZeroBased() >= lastShownDailyTaskList.size()) {
-                throw new CommandException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoTodayCommand.MESSAGE_USAGE));
+                throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
 
             Task taskToRemove = lastShownDailyTaskList.get(targetIndex.getZeroBased());

@@ -14,6 +14,7 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class VersionedTaskTracker
 
 Package Task {
 Class Task
@@ -41,10 +42,12 @@ TaskTracker .up.|> ReadOnlyTaskTracker
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" TaskTracker
+ModelManager o--> "1" VersionedTaskTracker
+VersionedTaskTracker --|> TaskTracker
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-TaskTracker *--> "1" UniqueTaskList
+TaskTracker *--> "2" UniqueTaskList
 UniqueTaskList o--> "*" Task
 Task *--> "1" TaskName
 Task *--> "1" ModuleCode

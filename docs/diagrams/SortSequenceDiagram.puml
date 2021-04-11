@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskTrackerParser" as TaskTrackerParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "flag:SortingFlag" as SortingFlag LOGIC_COLOR
+participant "cmd:SortCommand" as SortCommand LOGIC_COLOR
+participant "comparator:ModuleCodeComparator" as ModuleCodeComparator LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+[-> LogicManager : execute(sort)
+activate LogicManager
+
+LogicManager -> TaskTrackerParser : parseCommand(sort moduleCode)
+activate TaskTrackerParser
+
+create SortCommandParser
+TaskTrackerParser -> SortCommandParser
+activate SortCommandParser
+create SortingFlag
+SortCommandParser -> SortingFlag : moduleCode
+activate SortingFlag
+SortingFlag --> SortCommandParser : moduleCodeFlag
+deactivate SortingFlag
+
+create SortCommand
+SortCommandParser -> SortCommand : moduleCodeFlag
+activate SortCommand
+create ModuleCodeComparator
+SortCommand -> ModuleCodeComparator
+activate ModuleCodeComparator
+ModuleCodeComparator -> SortCommand
+deactivate ModuleCodeComparator
+SortCommand --> SortCommandParser : cmd
+deactivate SortCommand
+SortCommandParser --> TaskTrackerParser
+destroy SortCommandParser
+
+TaskTrackerParser --> LogicManager : cmd
+deactivate TaskTrackerParser
+
+LogicManager -> SortCommand : execute()
+activate SortCommand
+
+SortCommand -> ModelManager : sortTasks(comparator)
+activate ModelManager
+
+ModelManager --> SortCommand
+deactivate ModelManager
+SortCommand --> LogicManager : result
+destroy SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -56,8 +56,7 @@ public class DoneCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
 
-        assertCommandFailure(doneCommand, model,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+        assertCommandFailure(doneCommand, model, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
@@ -95,8 +94,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
 
-        assertCommandFailure(doneCommand, model,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+        assertCommandFailure(doneCommand, model, MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
