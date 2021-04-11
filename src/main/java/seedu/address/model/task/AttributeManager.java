@@ -10,7 +10,6 @@ import seedu.address.model.task.attributes.Status;
 import seedu.address.model.task.attributes.Title;
 
 public class AttributeManager {
-    private final Task task;
     private final Date date;
     private final Description description;
     private final Duration duration;
@@ -24,7 +23,6 @@ public class AttributeManager {
      * @param task The task's attribute we are interested to access.
      */
     public AttributeManager(Task task) {
-        this.task = task;
         this.date = task.getDate();
         this.description = task.getDescription();
         this.duration = task.getDuration();
@@ -86,6 +84,33 @@ public class AttributeManager {
     }
 
     /**
+     * Checks if the Duration attribute contains any data.
+     *
+     * @return true if the String of Duration isEmpty, false otherwise.
+     */
+    public boolean isEmptyDuration() {
+        return duration.isEmptyValue();
+    }
+
+    /**
+     * Checks if the Title attribute contains any data.
+     *
+     * @return true if the String of Title isEmpty, false otherwise.
+     */
+    public boolean isEmptyTitle() {
+        return title.isEmptyValue();
+    }
+
+    /**
+     * Checks if the RecurringSchedule attribute contains any data.
+     *
+     * @return true if the String of RecurringSchedule isEmpty, false otherwise.
+     */
+    public boolean isEmptyRecurringSchedule() {
+        return recurringSchedule.isEmptyValue();
+    }
+
+    /**
      * Returns true if this task is already done.
      */
     public boolean isDone() {
@@ -94,5 +119,9 @@ public class AttributeManager {
 
     public boolean isWithinSevenDays(LocalDate currentDate) {
         return date.isWithinSevenDays(currentDate);
+    }
+
+    public String getTitleString() {
+        return title.fullTitle;
     }
 }

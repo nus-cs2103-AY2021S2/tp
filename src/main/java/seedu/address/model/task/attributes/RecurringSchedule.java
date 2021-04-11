@@ -102,7 +102,7 @@ public class RecurringSchedule implements Attribute {
     private String formatRecurringSchedule() {
 
         String outputDate = FORMATTER.format(endDate.get());
-        String outputRecurringScheduleDetail = " every " + dayOfWeek + " " + weekFreq + " until " + outputDate;
+        String outputRecurringScheduleDetail = " Every " + dayOfWeek + " " + weekFreq + " until " + outputDate;
 
         return outputRecurringScheduleDetail;
     }

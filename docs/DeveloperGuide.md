@@ -127,6 +127,49 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Enforcing conditions
+
+When executing commands, the planner has to enforce certain logical constraints to prevent unintended command behaviour.
+Here is a list of constraints:
+ * A task should not have a duration attribute without a date or recurring schedule attribute.
+ * A task should not have an empty title.
+ * A task should have a title with at most 40 characters.
+
+Note that certain constraints may be relevant to specific commands. For instance (this list is not exhaustive):
+ * Checking if the date attribute is empty for commands like `count` which counts down the days from today's date
+ * The index specified by the user for commands that require a INDEX parameter,
+  should be positive and within the range of the list of displayed tasks.
+ 
+#### Design considerations
+##### Bad designs not chosen:
+While the task is a composition of the various attributes like: title, status, etc, there is a violation of the Single
+Responsibility Principle when the Task class is checking for whether the date of a task object has passed today's date,
+or checking if the change in a date is valid.
+
+In addition, checking the constraints in each of the command's execute method (which is the case in v1.2, and some
+commands in v1.3) violates the Don't Repeat Yourself principle. As shown in the list of constraints above, there are
+many repeated constraints which will be checked across different commands. This also violates the Dependency Inversion
+principle when the command's execute method depends on methods from lower level classes such as Date.
+
+##### Chosen design:
+Therefore, enforcing conditions has been implemented as shown in the class diagram below.
+![ConditionClassDiagram](images/ConditionClassDiagram.png)
+
+1. When a XYZCommand runs the execute method, it might call the ConditionLogic class. This acts as the main facade
+class.
+2. ConditionLogic will then call the relevant condition or constraint manager class.
+3. The relevant classes will then create an AttributeManager object to access the functionalities provided by 
+each of the attribute classes.
+
+From point 2, the choice to split the ConditionLogic class into secondary facade classes: ConstraintManager,
+IndexManager, DateVerifier, RecurringScheduleVerifier, is to ensure that single responsibility principle is upheld.
+
+From point 3, the various secondary facade classes could directly access the attribute classes. However, that would
+violate the Law of Demeter, hence the AttributeManager class provides access to the functionalities of the attributes.
+
+The separation of attributes and conditions into their own packages increases cohesion and allows for the future
+creation of commands to reuse the code when enforcing conditions.
+
 ### Mark task as done
 
 A task has a Status attribute which can be marked as done, using the Done command.

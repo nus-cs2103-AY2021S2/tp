@@ -12,6 +12,7 @@ import seedu.address.model.task.Task;
  */
 public class ConditionLogic {
     private final Task task;
+    private final RecurringScheduleVerifier recurringScheduleVerifier;
     private final DateVerifier dateVerifier;
     private final ConstraintManager constraintManager;
 
@@ -22,6 +23,7 @@ public class ConditionLogic {
      */
     public ConditionLogic(Task task) {
         this.task = task;
+        this.recurringScheduleVerifier = new RecurringScheduleVerifier(task);
         this.dateVerifier = new DateVerifier(task);
         this.constraintManager = new ConstraintManager(task);
     }
@@ -43,7 +45,7 @@ public class ConditionLogic {
      * @throws CommandException
      */
     public void checkInvalidDateRange() throws CommandException {
-        dateVerifier.checkInvalidDateRange();
+        recurringScheduleVerifier.checkInvalidDateRange();
     }
 
     /**
@@ -52,7 +54,7 @@ public class ConditionLogic {
      * @throws CommandException
      */
     public void checkForExpiredDate() throws CommandException {
-        dateVerifier.checkForExpiredDate();
+        recurringScheduleVerifier.checkForExpiredDate();
     }
 
     /**
@@ -74,6 +76,24 @@ public class ConditionLogic {
      */
     public void enforceTitleLength() throws CommandException {
         constraintManager.enforceTitleLength();
+    }
+
+    /**
+     * Checks that a task has a Date attribute.
+     *
+     * @throws CommandException If the Date attribute is missing.
+     */
+    public void enforceNonEmptyDate() throws CommandException {
+        dateVerifier.enforceNonEmptyDate();
+    }
+
+    /**
+     * Checks that the Date of a task is not over the current date according to the system.
+     *
+     * @throws CommandException
+     */
+    public void enforceDateNotOver() throws CommandException {
+        dateVerifier.enforceDateNotOver();
     }
 
 }
