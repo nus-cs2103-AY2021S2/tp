@@ -19,9 +19,8 @@ public class DeleteApptCommand extends Command {
     public static final String COMMAND_WORD = "deleteAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the appointment of the student identified by their unique matriculation number"
-            + " assigned by NUS.\n"
-            + "Parameters: Matriculation Number \n"
+            + ": Deletes the appointment of the student identified by their unique matriculation number. \n"
+            + "Parameters: Matriculation Number in the format of A + 7 digit numeric sequence + alphabet. \n"
             + "Example: " + COMMAND_WORD + " A1234567X";
 
     public static final String MESSAGE_DELETE_APPT_SUCCESS = "Deleted Appointment: Name; %s, %s"; // appointment
