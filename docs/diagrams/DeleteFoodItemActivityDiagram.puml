@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Parse command input;
+if () then ([Food exists in UniqueFoodList])
+  :Delete Food item;
+  :Display result;
+else ([else])
+  :Display error message;
+endif
+stop
+
+@enduml
