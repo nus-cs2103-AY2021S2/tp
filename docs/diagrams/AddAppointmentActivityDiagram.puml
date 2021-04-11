@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes AddAppt command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([input is valid & appointment does not exist in StudentBook])
+    :Parse Command;
+    :Save new appointment to StudentBook;
+else ([else])
+endif
+stop
+@enduml

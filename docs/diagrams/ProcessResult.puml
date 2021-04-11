@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Processing the result of the command
+
+
+class Logic as "__logic:LogicManager__"
+
+class Command as "__command:Command__"
+
+class StudentBookParser as "__studentBookParser:StudentBookParser__"
+
+class AddCommandParser as "__:AddCommandParser__"
+
+class AddCommand as "__:AddCommand__"
+
+class Student as "__student:Student__"
+
+class Model as "__:Model__"
+
+Logic -down- Command
+Command -down- StudentBookParser
+StudentBookParser -right- AddCommandParser
+AddCommandParser -up- AddCommand
+AddCommand -up- Student
+Student -up- Model
+Model -left- Logic
+@end
