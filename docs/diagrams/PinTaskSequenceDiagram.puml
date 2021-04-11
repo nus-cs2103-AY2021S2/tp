@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(pin)
+[-> LogicManager : parse("pin_task 1")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(pin)
+LogicManager -> SocheduleParser : parseCommand("pin_task 1")
 activate SocheduleParser
 
 create PinTaskCommandParser
@@ -25,7 +25,7 @@ activate PinTaskCommandParser
 SocheduleParser <-- PinTaskCommandParser
 deactivate PinTaskCommandParser
 
-SocheduleParser -> PinTaskCommandParser: parse(args)
+SocheduleParser -> PinTaskCommandParser: parse("1")
 activate PinTaskCommandParser
 
 create PinTaskCommand

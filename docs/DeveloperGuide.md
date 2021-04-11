@@ -748,7 +748,7 @@ For brevity, lower level implementation of `Model#sortTasks(String comparingVar)
 A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS`.
 The UI will also update as the underlying task list has been modified.
 
-The sequence diagram for `sortTaskCommand` can be found below.
+The sequence diagram for `sortTaskCommand` can be found below, using `sort_task name` as an example.
 
 ![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
 
@@ -835,7 +835,7 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
-The below activity diagram summarises what happens when `pin_task` is called.
+The below activity diagram summarises what happens when `pin_task` is called, using `pin_task 1` as an example.
 It can also be similarly extrapolated to apply to `unpin_task`.
 
 ![Activity Diagram of PinTaskCommand](images/PinTaskActivityDiagram.png)
