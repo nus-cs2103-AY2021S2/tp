@@ -1100,9 +1100,9 @@ The sequence diagram for `AddEventCommand` can be found below.
 
 The following is a detailed explanation on how DeleteEventCommand is implemented.
 
-**Step 1**: User executes `delete_event Index` command to delete the event at the given index.
+**Step 1**: User executes `delete_event 1` command to delete the event at the given index.
 A `DeleteEventParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
-The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+The method conducts parses the `1` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteEventCommand` object is returned.
 
 **Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvents(Event eventToDelete)` is called.
@@ -1193,11 +1193,12 @@ The sequence diagram for `FindEventCommand` can be found below.
 The following is a detailed explanation on how EditEventCommand is implemented.
 
 The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
+
 <img src="images/EditEventCommandClassDiagram.png" width="550" />
 
-**Step 1**: User executes `edit_event Index` command to Edit the event at the given index.
+**Step 1**: User executes `edit_event 1 n/e1` command to Edit the event at the given index.
 An `EditEventCommandParser` object is created, and the `EditEventCommandParser#parse(String args)` method is called.
-The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+The method conducts parses the `1 n/e1` and conducts validation checks to ensure that it complies with the specification.
 An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
 If the field is edited, then store the edited one; otherwise, store the original value.
 An `EditEventCommand` object (with the `EditEventDescriptor` as a parameter) is returned.
