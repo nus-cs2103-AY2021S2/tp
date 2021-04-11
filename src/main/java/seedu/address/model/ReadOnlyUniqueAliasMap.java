@@ -1,6 +1,7 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
+import java.util.List;
+
 import javafx.collections.ObservableMap;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.CommandAlias;
@@ -11,16 +12,16 @@ import seedu.address.model.alias.CommandAlias;
 public interface ReadOnlyUniqueAliasMap {
 
     /**
-     * Returns the command mapped to alias if alias is found in aliases.
+     * Returns the command mapped to alias if alias is found in command aliases.
      * Otherwise, userInput is returned.
      */
     String parseAliasToCommand(String userInput);
 
     /**
-     * Returns an unmodifiable map of the aliases.
+     * Returns an unmodifiable map of the command aliases.
      * This map will not contain any duplicate aliases.
      */
-    ObservableMap<Alias, CommandAlias> getAliases();
+    ObservableMap<Alias, CommandAlias> getCommandAliases();
 
     /**
      * Returns the number of aliases.
@@ -28,9 +29,8 @@ public interface ReadOnlyUniqueAliasMap {
     int getNumOfAlias();
 
     /**
-     * Returns an unmodifiable ObservableList of the aliases in String.
-     * This list will not contain any duplicate aliases.
+     * Returns a list of command aliases in String.
      */
-    ObservableList<String> getObservableStringAliases();
+    List<String> getCommandAliasesStringList();
 
 }

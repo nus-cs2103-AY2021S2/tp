@@ -106,7 +106,7 @@ public class AddressBookParser {
     /**
      * Returns true if a given user input is a valid command to be aliased.
      *
-     * @param userInput full user input string
+     * @param userInput full user input string of command to alias
      */
     public boolean isValidCommandToAlias(String userInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -149,8 +149,54 @@ public class AddressBookParser {
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().isValidCommandToAlias(arguments);
 
+        case EmailCommand.COMMAND_WORD:
+            return new EmailCommandParser().isValidCommandToAlias(arguments);
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().isValidCommandToAlias(arguments);
+
         default:
             return false;
+        }
+    }
+
+    /**
+     * Returns true if a given user input is a valid alias to be aliased.
+     *
+     * @param userInput full user input string of alias to alias
+     */
+    public boolean isValidAliasToAlias(String userInput) {
+        switch (userInput) {
+
+        case ClearCommand.COMMAND_WORD:
+
+        case ListCommand.COMMAND_WORD:
+
+        case ExitCommand.COMMAND_WORD:
+
+        case HelpCommand.COMMAND_WORD:
+
+        case FindCommand.COMMAND_WORD:
+
+        case AddCommand.COMMAND_WORD:
+
+        case EditCommand.COMMAND_WORD:
+
+        case DeleteCommand.COMMAND_WORD:
+
+        case AliasCommand.COMMAND_WORD:
+
+        case TagCommand.COMMAND_WORD:
+
+        case SelectCommand.COMMAND_WORD:
+
+        case FilterCommand.COMMAND_WORD:
+
+        case EmailCommand.COMMAND_WORD:
+            return false;
+
+        default:
+            return true;
         }
     }
 

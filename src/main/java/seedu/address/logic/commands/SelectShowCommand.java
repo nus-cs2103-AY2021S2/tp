@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class SelectShowCommand extends SelectCommand {
 
-    public static final String MESSAGE_SUCCESS = "Showing selected items";
+    public static final String MESSAGE_SUCCESS = "Showing selected person(s)";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
