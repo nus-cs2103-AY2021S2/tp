@@ -89,8 +89,9 @@ Given below are my contributions to the project.
       * Added use cases of the `view_tutor` feature [#84](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/84/)
       * Added use cases of the `add_grade`, `delete_grade`, `list_grade`, `edit_grade` features [#307](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/307)
       * Added implementation details of the Grade Book feature [#329](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/329)
-      * Added class diagram of Grade [#333](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/333) </br>
-
+      * Added class diagram of Grade [#333](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/333)
+      * Added manual tests for features `add_grade`, `delete_grade` [#333](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/333) </br>
+  
 * **Community**:
   * Constantly approved PRs of all group members.
   * Reported bugs and suggestions for other teams in the class.
