@@ -106,8 +106,6 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-</div>
-
 
 ### Storage component
 
@@ -116,8 +114,8 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* has the ability to save `UserPref` objects in JSON format and parse it back to an object after.
-* has the ability to save `Student` objects in JSON format, nested with its associated list of `Session` or `RecurringSession` objects, and parse it back after.
+* can save `UserPref` objects in json format and read it back.
+* can save the address book data in json format and read it back.
 
 ### Common classes
 
@@ -129,35 +127,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### General
-#### List Feature
-The list feature displays a list of existing students, and a list of sessions of those students in the TutorBuddy application.
-
-##### Implementation
-This feature is facilitated by `ListCommand` which extends `Command`.
-The method `ListCommand#execute` updates the filtered student list, and the filtered session list by calling the method
-`Model#updateFilteredStudentList` exposed in the `Model` interface.
-
-Given below is an example of how the list student
-1. The user executes the list command with the input `list`.
-2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
-3. `AddressBookParser` identifies the correct command and creates a new `ListCommand`.
-4. `AddressBookParser` returns the new `ListCommand` to `LogicManager`.
-5. `LogicManager` executes the `ListCommand`.
-6. `ListCommand` now calls `Model` to update the `filteredStudents` and  to show all students.
-
-The following sequence diagram shows the interactions when user executes the `list` command:
-![ListSequenceDiagram](images/choonwei/ListSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-The following activity diagram summarizes what happens when a user executes the `list` command.
-![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
-
 ### Students
 Students in TutorBuddy is facilitated by the `Student` class which stores specific details of
 a `student` within one `student` object. Students are not allowed to have duplicated names.
+
+#### List Student Feature
+The list student feature displays a list of existing students in the TutorBuddy application.
+
+##### Implementation
+This feature is facilitated by `ListStudentCommand` which extends `Command`.
+The method `ListStudentCommand#execute` updates the filtered student list by calling the method
+`Model#updateFilteredStudentList` exposed in the `Model` interface.
+
+Given below is an example of how the list student
+1. The user executes the list student command with the input `list_student`.
+2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
+3. `AddressBookParser` identifies the correct command and creates a new `ListStudentCommand`.
+4. `AddressBookParser` returns the new `ListStudentCommand` to `LogicManager`.
+5. `LogicManager` executes the `ListStudentCommand`.
+6. `ListStudentCommand` now calls `Model` to update the `filteredStudentList` to show all students.
+
+The following sequence diagram shows the interactions when user executes the `list_student` command:
+![ListStudentSequenceDiagram](images/choonwei/ListStudentSequenceDiagram.png)
+
+NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not shown due to the limitations of PlantUML.
+
+The following activity diagram summarizes what happens when a user executes the `list_student` command.
+![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
 
 #### Add Student Feature
 The add student feature allows user to add a student to the TutorBuddy Application.
@@ -264,10 +260,10 @@ an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME
 3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
 4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
-5. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui.
+5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
 ##### Design Considerations
-Aspect 1: Type of input for `AddSessionCommand`
+Aspect 1: Type of input for AddSessionCommand
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
         * Easier for user to add sessions without constantly having to refer to the application for student id
@@ -295,60 +291,6 @@ The following sequence diagram shows how deleting a session works:
 ![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
-
-#### Delete Recurring Session Feature
-The delete recurring session feature allows users to remove a single session from an existing recurring session.
-
-This section explains the implementation of the `delete_rec_session` command and highlights the design considerations
-taken into account when implementing this feature.
-
-##### Implementation
-
-The deletion of a single session in an existing recurring session is facilitated by the `DeleteRecurringSessionCommand` and it extends `Command`.
-The method `DeleteRecurringSessionCommand#execute()` performs a validity check on the student name, target index, and session date to be deleted
-before deleting the single session.
-
-The following sequence diagram shows the interactions between the Model and Logic components during the execution of a `DeleteRecurringSessionCommand`
-with user input `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE`:
-![DeleteSessionSequenceDiagram](images/choonwei/DeleteRecurringSessionSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteRecurringSessionCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
-2. A new instance of a `DeleteRecurringSessionCommand` would be created by the `DeleteRecurringSessionCommandParser` and returned to `AddressBookParser`.
-3. `AddressBookParser` encapsulates the `DeleteRecurringSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
-4. The execution calls `hasName(studentName)` to validate an existing student in TutorBuddy, and `hasSessionOnDate(sessionDate)` to validate
-   the session date belongs to a recurring session.
-5. It also calls `getStudentWithName(studentName)` to get the student name before calling `deleteSessionInRecurringSession(studentName, targetIndex, sessionDate)`
-which splits the recurring session into two recurring session(s)/session(s), one exclusively before the session date, and another exclusively after the session date.
-6. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui to display the updated list of sessions.
-
-The following activity diagram summarizes what happens when a user executes the `delete_rec_session` command.
-![ListActivityDiagram](images/choonwei/DeleteRecurringSessionActivityDiagram.png)
-
-##### Design Considerations
-Aspect 1: Exclusion of the single session from the recurring session
-* **Alternative 1 (current choice)**: Splits the recurring session into two recurring session(s)/session(s), one
-  exclusively before the session date, and another exclusively after the session date.
-    * Pros:
-        * Easier for user to keep track of their sessions since they only need to read the start and end date of the recurring sessions.
-        * Easier to handle session entries when displaying recurring sessions in `Calendar`, `Reminders`, and `Fees` components.
-    * Cons:
-        * More work required for TutorBuddy to execute the splitting of sessions.
-
-* **Alternative 2**: Store a `List<SessionDate>` inside of each `Session` for excluded sessions.
-    * Pros:
-        * Allows quick exclusion of session dates since we only need to store the session date in the session.
-    * Cons:
-        * Requires a lot of book-keeping when displaying recurring sessions in `Calendar`, `Reminders`, and `Fees` components.
-        * Tedious for user to keep track of their sessions by regularly checking if the date is excluded.
-    
-Alternative 1 was chosen because of the pros of implementing alternative 1 outweighs the cons that comes along with it.
-Although it requires TutorBuddy to do more of the processing work to split the recurring session, it makes it easier to
-display recurring sessions in the Calendar view, display upcoming recurring sessions in reminders, and calculation of fees.
-It also makes it more intuitive and convenient for the user to see if a recurring session occurs on a certain date without
-having to check if the date is excluded when they refer to the `Tuition` page.
 
 ### Monthly Fees
 Monthly Fees in TutorBuddy is calculated based on the session `fee`. It makes uses of the FeeUtil static method
@@ -396,7 +338,6 @@ an abstracted `FeeUtil` method, we will only need to update the methods in `FeeU
 to the rest of the features that uses this method. This allows the UI to make use of the `FeeUtil` methods when calculating the 
 3 months fees as well. Although this results in increased coupling, with proper testing in place, we could mitigate the risk 
 as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour of the other feature.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -461,9 +402,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: UC01 - Create a student profile**
+#### UC01 - Create a student profile
 
-MSS:
+**MSS:**
 
 1. User enters the `add_student` command, together with the student details.
 2. TutorBuddy creates the profile in the background.
@@ -471,32 +412,32 @@ MSS:
 
     Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 1a. TutorBuddy detects an error in the entered data.
     * 1a1. TutorBuddy displays an error message.
 
     Use case ends.
 
-**Use case: UC02 - Find a student’s profile**
+#### UC02 - Find a student’s profile
 
-MSS:
+**MSS:**
 
 1. User enters the `find_student` command, along with a keyword from the student’s name.
 2. TutorBuddy displays all students’ profiles matching the keyword if any.
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 1a. TutorBuddy detects empty keyword field
     * 1a1. TutorBuddy displays an error message for no keyword specified.
 
   Use case ends.
 
-**Use case: UC03 - Delete a student profile**
+#### UC03 - Delete a student profile
 
-MSS:
+**MSS:**
 
 1. User enters the `delete_student` command, along with the student’s name.
 2. TutorBuddy verifies that the inputs are valid and student profile exists.
@@ -504,16 +445,16 @@ MSS:
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
-**Use case: UC04 - Edit student details**
+#### UC04 - Edit student details
 
-MSS:
+**MSS:**
 
 1. User enters the `edit_student` command with the appropriate input.
 2. TutorBuddy verifies that the inputs are valid and student profile exists.
@@ -522,16 +463,16 @@ MSS:
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
     
   Use case ends.
 
-**Use case: UC05 - Create a session**
+#### UC05 - Create a session
 
-MSS:
+**MSS:**
 
 1. User enters the `add_session` command, together with the session details.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -552,9 +493,9 @@ MSS:
 
   Use case ends.
 
-**Use case: UC06 - Create a recurring session**
+#### UC06 - Create a recurring session
 
-MSS:
+**MSS:**
 
 1. User enters the `add_rec_session` command, together with the session details.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -575,9 +516,9 @@ MSS:
 
   Use case ends.
 
-**Use case: UC07 - Delete a session or the entire recurring session**
+#### UC07 - Delete a session or the entire recurring session
 
-MSS:
+**MSS:**
 
 1. User enters the `delete_session` command with the appropriate inputs.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -593,9 +534,9 @@ MSS:
 
   Use case ends.
 
-**Use case: UC08 - Delete a single session from a recurring session**
+#### UC08 - Delete a single session from a recurring session
 
-MSS:
+**MSS:**
 
 1. User enters the `delete_rec_session` command with the appropriate inputs.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -611,18 +552,18 @@ MSS:
 
   Use case ends.
 
-**Use case: UC09 - List all students and sessions**
+#### UC09 - List all students and sessions
 
-MSS:
+**MSS:**
 
 1. User enters the `list` command.
 2. TutorBuddy shows all the students and sessions information on the `tuition` tab.
 
    Use case ends.
 
-**Use case: UC10 -  Getting the emails from the application**
+#### UC10 -  Getting the emails from the application
 
-MSS:
+**MSS:**
 
 1. User enters the command to get the email from TutorBuddy.
 2. TutorBuddy returns a list of all the email addresses to the user.
@@ -630,9 +571,9 @@ MSS:
 
    Use case ends.
 
-**Use case: UC11 - Calculate fee for a student of a particular month and year**
+#### UC11 - Calculate fee for a student of a particular month and year
 
-MSS:
+**MSS:**
 
 1. User enters the `fee` commands with the appropriate inputs.
 2. TutorBuddy verifies that the inputs are valid and student profile exists.
@@ -640,41 +581,41 @@ MSS:
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
-**Use case: UC12 - View 3 months monthly fee**
+#### UC12 - View 3 months monthly fee
 
-MSS:
+**MSS:**
 
 1. User toggles to the `Home` tab.
 2. TutorBuddy shows the monthly fee that the user would have received for the past 3 months based on current sessions in the application.
 
    Use case ends.
 
-**Use case: UC13 - Reminders for upcoming sessions**
+#### UC13 - Reminders for upcoming sessions
 
-MSS:
+**MSS:**
 
 1. User toggles to the `Home` tab.
 2. TutorBuddy shows a list of upcoming sessions that would happen, within the next 3 days.
 
    Use case ends.
 
-**Use case: UC14 - Calendar View**
+#### UC14 - Calendar View
 
-MSS:
+**MSS:**
 
 1. User toggles to the `Calendar` tab.
 2. TutorBuddy shows a calendar representation of the sessions, showing the schedule of the current week.
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
 
@@ -682,18 +623,18 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC15 - Show help**
+#### UC15 - Show help
 
-MSS:
+**MSS:**
 
 1. User enters the `help` command.
 2. TutorBuddy displays a help window that contains a list of commands available on the application, and a link to our user guide.
 
    Use case ends.
 
-**Use case: UC16 - Sample data for new users**
+#### UC16 - Sample data for new users
 
-MSS:
+**MSS:**
 
 1. A new user opens up the application.
 2. TutorBuddy detects that the user does not have a .json file in the data folder.
@@ -701,25 +642,23 @@ MSS:
 
    Use case ends.
 
-**Use case: UC17 - Clear data**
+#### UC17 - Clear data
 
-MSS:
+**MSS:**
 
 1. User enters the `clear` command.
 2. TutorBuddy deletes all the current data from the application.
 
    Use case ends.
 
-**Use case: UC18 - Exit application**
+#### UC18 - Exit application
 
-MSS:
+**MSS:**
 
 1. User enters the `exit` command.
 2. TutorBuddy closes.
 
    Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 * Technical requirements:
@@ -753,112 +692,35 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
+
 </div>
 
+### Launch and shutdown
 
-### General
+1. Initial launch
 
-#### Launching TutorBuddy
-1. Download the jar file and copy into an empty folder
-1. Double-click the jar file<br>
-   Expected: Shows the GUI with sample students and tuition sessions. The window size may not be optimum.
+   1. Download the jar file and copy into an empty folder
 
-#### Saving Window Preferences
-1. Resize the window to an optimum size (Note that TutorBuddy has a resolution size limit). Move the window to a different location. 
-   Close the window.
-1. Re-launch the app by double-clicking the jar file.<br>
-   Expected: The most recent window size and location is retained.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-#### Clearing all data
+1. Saving window preferences
 
-<div markdown="span" class="alert alert-info">
-:information_source: **WARNING:** Do not clear all data if you have important information in TutorBuddy!
-</div>
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-1. Prerequisites: None.
-1. Test case: `clear`<br>
-   Expected: Student list view and Session list view becomes empty.
-1. To get back the sample data in TutorBuddy, simply delete the data folder in the home folder and restart TutorBuddy.
+   1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
 
-#### Listing all students and sessions
-1. Prerequisites: None.
-1. Test case: `list`<br>
-   Expected: On the Tuition tab, all students and sessions will be displayed in the Student list view and Session list view respectively.
+### Deleting a student
 
-### Managing Students
+1. Deleting a student while all students are being shown
 
-#### Adding a student
-1. Prerequisites: None.
-1. Test case: `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`<br>
-   Expected: The student with the fields entered should be added into the Student view list on the Tuition tab.
-1. Incorrect commands to try: `add_student n/John Doe`, `add_student n/John Doe p/28765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/9542 r/Mother`<br>
-   Expected: No student is added. Error details shown in the status message.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-#### Finding a student
-1. Prerequisites: There must be at least 1 student with the name `Alex` currently displayed on the Student view list.
-1. Test case: `find_student alex`<br>
-   Expected: Displays all students that has name matching to the keyword `alex` (case-insensitive).
-1. Test case: `find_student alex yu`<br>
-   Expected: Displays all students that has name matching to the keyword `alex` or `yu` (case-insensitive).
-1. Incorrect command to try: `find_student`<br>
-   Expected: Student view list does not get updated. Error details shown in the status message.
+   1. Test case: `delete_student 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-#### Editing a student
-1. Prerequisites: There must be at least 1 student currently displayed on the Student view list.
-1. Test case: `edit_student 1 p/99999999`<br>
-   Expected: The first student displayed in the Student view list his/her `Phone` field changed to `99999999`.
-1. Incorrect commands to try: `edit_student` or `edit_student x` (where x is larger than the size of the student list) <br>
-   Expected: No student is edited. Error details shown in the status message.
+   1. Test case: `delete_student 0`<br>
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-#### Deleting a student
-1. Prerequisites: There must be at least 1 student currently displayed on the Student view list.
-1. Test case: `delete_student 1`<br>
-   Expected: First student deleted from the list. Details of the deleted student shown in the status message.
-1. Incorrect commands to try: `delete_student 0` or `delete_student x` (where x is larger than the size of the student list) <br>
-   Expected: No student is deleted. Error details shown in the status message.
-
-### Managing Sessions
-
-#### Adding a session
-1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
-1. Test case: `add_session n/Alex Yeoh d/2021-04-10 t/12:00 k/120 s/Math f/100`<br>
-   Expected: The session with the fields will be added to the Session list view under the Student's name. The session will have a light blue "I" labelled
-   at the bottom right of the session card. If this session falls within 3 days from the current day (today, tomorrow, day after tomorrow),
-   this session will be displayed in the reminder list view on the Home tab.
-1. Incorrect commands to try: `add_session` or `add_session n/Alex Yeoh d/10-04-2021 t/12:00 k/120 s/Math f/100` <br>
-   Expected: No session is added. Error details shown in the status message.
-
-#### Adding a recurring session
-1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
-1. Test case: `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-06-26 b/7 t/12:00 k/120 s/Math f/100`<br>
-   Expected: The session with the fields will be added to the Session list view under the Student's name. The session will have a orange "R" labelled
-   at the bottom right of the session card. If there is a session that falls within 3 days from the current day (today, tomorrow, day after tomorrow),
-   this session will be displayed in the reminder list view on the Home tab.
-1. Incorrect commands to try: `add_rec_session` or `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-06-28 b/7 t/12:00 k/120 s/Math f/100` <br>
-   Expected: No recurring session is added. Error details shown in the status message.
-
-#### Deleting a session or recurring session
-1. Prerequisites: There must be at least 1 session or recurring session for the student named `Alex Yeoh`.
-1. Test case: `delete_session n/Alex Yeoh i/1`<br>
-   Expected: First session from Alex Yeoh will be deleted from the list. Details of the deleted session shown in the status message.
-1. Incorrect commands to try: `delete_session n/anonymous i/1` (name does not exist in the student list) or
-   `delete_session n/Alex Yeoh i/x` (where x is larger than the size of the session list for `Alex Yeoh`) <br>
-   Expected: No session is deleted. Error details shown in the status message.
-
-#### Deleting a single session from a recurring session
-1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
-1. Test case: Firstly, add the recurring session with this command: `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-04-15 b/1 t/10:00 k/60 s/Math f/100`.
-   Next, delete the single session with this command: `delete_rec_session n/John Doe i/x d/2021-04-12`(where x is the index of the recurring session).<br>
-   Expected: Two recurring sessions will be displayed on the Session list view for `Alex Yeoh` with the first session that starts on `2021-04-10` that ends on `2021-04-11`
-   and the second session that starts on `2021-04-13` that ends on `2021-04-15`.
-1. Incorrect commands to try: `delete_rec_session` or `delete_rec_session n/anonymous` (name does not exist in the student list)<br>
-   Expected: No single session is deleted. Error details shown in the status message.
-
-### Managing Fees
-
-#### Checking a monthly fee
-1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
-1. Test case: `fee n/John Doe m/4 y/2021`<br>
-   Expected: Displays 2021 April's fee on the status message
-1. Incorrect commands to try: `fee` or `fee n/anonymous m/4 y/2021` (name does not exist in the student list) <br>
-   Expected: No fee is shown. Error details shown in the status message.
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
