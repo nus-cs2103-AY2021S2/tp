@@ -1,7 +1,7 @@
-﻿# Developer Guide
+﻿# NuFash Guide
 ---
 layout: page
-title: Developer Guide
+title: NuFash Developer Guide
 ---
 * Table of Contents
   {:toc}
@@ -18,7 +18,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -103,12 +103,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the wardrobe data.
 * exposes an unmodifiable `ObservableList<Garment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Description` list in the `Wardrobe`, which `Garment` references. This allows `Wardrobe` to only require one `Description` object per unique `Description`, instead of each `Garment` needing their own `Description` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -301,7 +302,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value Proposition:**
 
-* Ability to organise clothing items based on attributes such as colour, size, material, type of clothing
+* Ability to organise garments based on attributes such as colour, size, material, type of clothing
 
 * Maintain outfit schedules to prevent repetitive dressing
 
@@ -314,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​ | I want to …​ | So that I can…​ |  
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |  
 | `* * *`  | new user                                   | have a tutorial to teach me how to use the app| so that I will be able to learn how to use the app quicker                 |  
-| `* * *`  | user                                       | add an item of clothing               |        keep a record of clothing items                                                                |  
+| `* * *`  | user                                       | add an item of clothing               |        keep a record of garments                                                                |  
 | `* * *`  | user                                       | edit details of clothing logged in                | correct incorrect details pertaining to items          |  
 | `* * *`  | user                                       | find a clothing by name          | locate details of clothing without having to go through the entire list |  
 | `* *`    | user                                       | remove an item of clothing from my wardrobe   | so that I can reflect that an item of clothing has been discarded                |  
@@ -324,20 +325,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 ### Use cases
-(For all use cases below, the System is the `nufash` and the Actor is the `user`, unless specified otherwise)
+(For all use cases below, the System is the `NuFash` and the Actor is the `user`, unless specified otherwise)
 
-**Use case: Add a clothing item**
+**Use case: Add a garment**
 
 **MSS**
 
-1. User requests to add a clothing item with specified attributes
-2. nufash adds the specified clothing item to list of existing clothing items
+1. User requests to add a garment with specified attributes
+2. NuFash adds the specified garment to list of existing garments
 
    Use case ends.
 
 **Extensions**
 * 1a. The specified attributes are in an invalid format.
-    * 1a1. nufash shows an error message with the valid format.
+    * 1a1. NuFash shows an error message with the valid format.
 
     * 1a2. User enters new data.
     
@@ -346,14 +347,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case resumes from step 2.
 
       
-**Use case: Delete a clothing item**
+**Use case: Delete a garment**
 
 **MSS**
 
-1. User requests to list all clothing items
-2. nufash shows a list of clothing items
-3. User requests to delete a specific clothing item in the list
-4. nufash deletes the specified clothing item 
+1. User requests to list all garments
+2. NuFash shows a list of garments
+3. User requests to delete a specific garment in the list
+4. NuFash deletes the specified garment 
    
     Use case ends.
 
@@ -363,9 +364,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. nufash shows an error message.
+    * 3a1. NuFash shows an error message.
       
         Use case resumes at step 2.
+
+**Use case: Select a garment**
+
+**MSS**
+
+1. User requests to list all garments
+2. NuFash shows a list of garments
+3. User requests to select a specific garment in the list
+4. NuFash selects the specified garment
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. NuFash shows an error message.
+
+      Use case resumes at step 2.
 <br><br>
 
 **Non-Functional Requirements:**
