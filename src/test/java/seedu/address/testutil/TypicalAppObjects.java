@@ -215,7 +215,7 @@ public class TypicalAppObjects {
     }
 
     public static List<Doctor> getTypicalDoctors() {
-        return new ArrayList<>(Arrays.asList(DR_GREY, DR_WHO, DR_STRANGE, DR_JEKYLL, DR_MURPHY, DR_DRAKE));
+        return new ArrayList<>(Arrays.asList(DR_GREY, DR_WHO, DR_STRANGE, DR_JEKYLL));
     }
 
     /**
