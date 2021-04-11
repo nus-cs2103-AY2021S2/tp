@@ -662,8 +662,8 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                                   |
 | **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                            |
 | **List Alias**   | `alias list`                                                                                                                                                                                                                                 |
-| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag add 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                   |
-| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG ...` <br> e.g., `tag delete shown -t Illustrator`                                                                                                                                         |
+| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag add shown -t Illustrator`                                                                                                                                   |
+| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                         |
 
 # Field Summary
 
