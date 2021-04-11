@@ -2013,7 +2013,6 @@ Use case ends.
 * **Task**: Activities to be undertaken that can be marked complete/uncompleted. It also has a compulsory date field to 
   indicate its deadline.
 
---------------------------------------------------------------------------------------------------------------------
 
 ### A6. Instructions for manual testing
 
