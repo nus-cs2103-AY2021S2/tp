@@ -12,9 +12,9 @@ command box provided.
 Given below are my contributions to the project.
 
 * **Code Refactoring**: Code Quality Improvements
-  * Increase defensive coding, exceptions and assertions.
+  * Apply assertions to ensure maintain defensive coding.
   * Update Javadoc comments so that it fits the current context.
-  * General housekeeping of code quality during development.
+  * Improve code quality during development.
   * Ensure the MESSAGE_USAGE is synchronised for all command.
   
 * **Code Testing**: Update and improve test cases
