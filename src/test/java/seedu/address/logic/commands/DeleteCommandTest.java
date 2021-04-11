@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.identifier.Identifier;
+import seedu.address.model.EventBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -70,6 +71,16 @@ public class DeleteCommandTest {
         expectedModel.deleteEvent(eventToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyEventBook_fail() {
+        model = new ModelManager(new UserPrefs(), new EventBook());
+        DeleteCommand deleteCommand = new DeleteCommand(IDENTIFIER_FIRST_EVENT);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS;
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
     @Test
