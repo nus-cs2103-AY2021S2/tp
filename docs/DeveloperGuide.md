@@ -152,18 +152,18 @@ The following diagram shows where sorting occurs in the Model component (higher 
 
 ##### Aspect: Sorting the garments
 * **Alternative 1 (Chosen implementation)**: <br>
-  Lists out the garments based on chronological ordering of the `LastUse` attribute.
+  Sorts the Garments based on chronological ordering of the `LastUse` attribute.
   * Pros: Garments that have not been used for a longer period of time come up earlier in the list, which would 
     encourage and remind users to wear all their clothes.
   * Cons: Garments may not have been used for a reason, which may result in user taking a longer time to sieve 
     through the list.
 * **Alternative 2**: <br>
-  Sorts garments based on reverse chronological ordering of the `LastUse` attribute, from the latest used date to the earliest used date.
+  Sorts Garments based on reverse chronological ordering of the `LastUse` attribute, from the latest used date to the earliest used date.
   * Pros: Garments that are often used could be better suited for the users' needs, and making them come 
     earlier in the list allows users sieving through the list quicker.
   * Cons: Users may forget about the Garments that they have not worn in some time.
 * **Alternative 3**: <br>
-    Sorts the garments based on chronological or reverse chronological ordering of the `LastUse` attribute based on user input.
+    Sorts the Garments based on chronological or reverse chronological ordering of the `LastUse` attribute based on user input.
   * Pros: Allows users to choose which ordering they want, and they can get the respective benefits as above.
   * Cons: Requires more time to implement.
 
