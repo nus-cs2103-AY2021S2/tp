@@ -14,7 +14,6 @@ import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
-import seedu.cakecollate.logic.commands.AddOrderItemCommand;
 import seedu.cakecollate.logic.commands.RemindCommand;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
