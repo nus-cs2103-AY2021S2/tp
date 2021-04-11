@@ -26,12 +26,12 @@ public class ReminderCommand extends Command {
     public static final String MESSAGE_SUCCESS_EXPIRING_ITEM = "Display all items that are expiring within %d %s or has"
         + " already expired.";
     public static final String MESSAGE_SUCCESS_EXPIRED_ITEM = "Display all items that has been expired for at least"
-        + " %d %s";
+        + " %d %s.";
     public static final String MESSAGE_SUCCESS_EXPIRING_TODAY_ITEM = "Display all items that are expiring today or "
         + "has already expired.";
 
     public static final String MESSAGE_INCORRECT_INTEGER = "Number provided must be greater than -366 "
-        + "and cannot exceed 365";
+        + "and cannot exceed 365.";
 
     private final ItemExpiringPredicate predicate;
     private final long numOfDaysOrWeeksFromToday;
