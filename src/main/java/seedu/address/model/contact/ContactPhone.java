@@ -11,7 +11,7 @@ public class ContactPhone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers are 8 digits long and it must not start with a 0.";
+            "Phone numbers are 8 digits long, must not start with a 0 and should not have symbols.";
     public static final String VALIDATION_REGEX = "^[1-9]\\d{7}$";
     public final String value;
 

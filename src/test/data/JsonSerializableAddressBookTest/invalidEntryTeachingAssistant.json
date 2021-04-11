@@ -1,0 +1,9 @@
+{
+  "contacts": [ ],
+  "entries" : [ {
+      "entryName" : "Go do@@ something important",
+      "startDate" : "2022-02-04 09:00",
+      "endDate" : "2022-02-04 09:30",
+      "tagged" : [ "Important", "Stuff" ]
+    } ]
+}
