@@ -1,54 +1,53 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_PROGRAM;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID;
 import static dog.pawbook.logic.commands.CommandTestUtil.DESC_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.DESC_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.logic.commands.CommandTestUtil.getOutOfBoundId;
+import static dog.pawbook.logic.commands.EditProgramCommand.MESSAGE_EDIT_PROGRAM_SUCCESS;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_SIXTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
-import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.EditProgramCommand.EditProgramDescriptor;
 import dog.pawbook.model.Database;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.testutil.EditProgramDescriptorBuilder;
 import dog.pawbook.testutil.ProgramBuilder;
-import javafx.util.Pair;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditProgramCommand.
  */
 public class EditProgramCommandTest {
 
-    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model expectedModel;
 
     @Test
     public void execute_allFieldsSpecified_success() {
-        Pair<Integer, Entity> firstIdEntity = model.getDatabase().getEntityList().get(14);
-        Program editedProgram = new ProgramBuilder((Program) firstIdEntity.getValue()).build();
-        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder(editedProgram).build();
-        EditProgramCommand editProgramCommand = new EditProgramCommand(firstIdEntity.getKey(), descriptor);
+        Program firstProgram = (Program) model.getEntity(ID_FIFTEEN);
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder(firstProgram).build();
+        EditProgramCommand editProgramCommand = new EditProgramCommand(ID_FIFTEEN, descriptor);
 
-        String expectedMessage = String.format(EditProgramCommand.MESSAGE_EDIT_PROGRAM_SUCCESS, editedProgram);
+        String expectedMessage = String.format(MESSAGE_EDIT_PROGRAM_SUCCESS, firstProgram);
 
-        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.setEntity(firstIdEntity.getKey(), editedProgram);
-        expectedModel.updateFilteredEntityList(new IdMatchPredicate(firstIdEntity.getKey()));
+        expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_FIFTEEN));
 
         assertCommandSuccess(editProgramCommand, model, expectedMessage, expectedModel);
     }
@@ -59,45 +58,60 @@ public class EditProgramCommandTest {
         ProgramBuilder programInList = new ProgramBuilder(toEditProgram);
         Program editedProgram = programInList.withName(VALID_NAME_OBEDIENCE_TRAINING)
                 .withSessions(VALID_SESSION_OBEDIENCE_TRAINING)
-                .withTags(VALID_TAG_ALL).build();
+                .build();
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_OBEDIENCE_TRAINING)
-                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING)
-                .withTags(VALID_TAG_ALL).build();
-        EditProgramCommand editEntityCommand = new EditProgramCommand(ID_FIFTEEN, descriptor);
+                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING).build();
+        EditProgramCommand editProgramCommand = new EditProgramCommand(ID_FIFTEEN, descriptor);
 
-        String expectedMessage = String.format(EditProgramCommand.MESSAGE_EDIT_PROGRAM_SUCCESS, editedProgram);
+        String expectedMessage = String.format(MESSAGE_EDIT_PROGRAM_SUCCESS, editedProgram);
 
-        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+        expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(ID_FIFTEEN, editedProgram);
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_FIFTEEN));
 
-        assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editProgramCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecified_success() {
-        EditProgramCommand editEntityCommand = new EditProgramCommand(ID_FIFTEEN, new EditProgramDescriptor());
-        Program editedProgram = (Program) model.getEntity(ID_FIFTEEN);
+        EditProgramCommand editEntityCommand = new EditProgramCommand(ID_SIXTEEN, new EditProgramDescriptor());
+        Program editedProgram = (Program) model.getEntity(ID_SIXTEEN);
 
-        String expectedMessage = String.format(EditProgramCommand.MESSAGE_EDIT_PROGRAM_SUCCESS, editedProgram);
+        String expectedMessage = String.format(MESSAGE_EDIT_PROGRAM_SUCCESS, editedProgram);
 
-        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_FIFTEEN));
+        expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_SIXTEEN));
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void execute_duplicateProgram_failure() {
+        Program firstProgram = (Program) model.getEntity(ID_FIFTEEN);
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder(firstProgram).build();
+        EditProgramCommand editProgramCommand = new EditProgramCommand(ID_SIXTEEN, descriptor);
+
+        assertCommandFailure(editProgramCommand, model, MESSAGE_DUPLICATE_PROGRAM);
+    }
 
     @Test
-    public void execute_invalidProgramId_failure() {
-        Integer outOfBoundId = model.getUnfilteredEntityList().stream()
-                .map(Pair::getKey).sorted().collect(toList()).get(model.getUnfilteredEntityList().size() - 1) + 1;
+    public void execute_outOfBoundProgramId_failure() {
+        int outOfBoundId = getOutOfBoundId(model);
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
                 .withName(VALID_NAME_OBEDIENCE_TRAINING).build();
-        EditProgramCommand editEntityCommand = new EditProgramCommand(outOfBoundId, descriptor);
+        EditProgramCommand editProgramCommand = new EditProgramCommand(outOfBoundId, descriptor);
 
-        assertCommandFailure(editEntityCommand, model, Messages.MESSAGE_INVALID_PROGRAM_ID);
+        assertCommandFailure(editProgramCommand, model, MESSAGE_INVALID_PROGRAM_ID);
+    }
+
+    @Test
+    public void execute_validIdDifferentEntityType_failure() {
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
+                .withName(VALID_NAME_OBEDIENCE_TRAINING).build();
+        EditProgramCommand editProgramCommand = new EditProgramCommand(ID_ONE, descriptor);
+
+        assertCommandFailure(editProgramCommand, model, MESSAGE_INVALID_PROGRAM_ID);
     }
 
     @Test
@@ -107,21 +121,21 @@ public class EditProgramCommandTest {
         // same values -> returns true
         EditProgramDescriptor copyDescriptor = new EditProgramDescriptor(DESC_OBEDIENCE_TRAINING);
         EditProgramCommand commandWithSameValues = new EditProgramCommand(ID_ONE, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(commandWithSameValues, standardCommand);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(standardCommand, null);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new HelpCommand()));
+        assertNotEquals(new HelpCommand(), standardCommand);
 
         // different id -> returns false
-        assertFalse(standardCommand.equals(new EditProgramCommand(ID_TWO, DESC_OBEDIENCE_TRAINING)));
+        assertNotEquals(new EditProgramCommand(ID_TWO, DESC_OBEDIENCE_TRAINING), standardCommand);
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditProgramCommand(ID_ONE, DESC_POTTY_TRAINING)));
+        assertNotEquals(new EditProgramCommand(ID_ONE, DESC_POTTY_TRAINING), standardCommand);
     }
 }
