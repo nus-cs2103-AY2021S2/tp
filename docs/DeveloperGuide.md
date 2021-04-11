@@ -184,6 +184,7 @@ The notdone mechanism is similar to that of the done mechanism, except that the 
 
 <div style="page-break-after: always;"></div>
 
+
 ### Recur feature
 
 #### Implementation
@@ -237,7 +238,10 @@ The following class diagram shows the classes related to implementing workload d
 ![WorkloadDistributionDiagram](images/WorkloadDistributionClassDiagram.png)
 
 <div style="page-break-after: always;"></div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a39930683a3c4e47505478a14d57d4e8feb0d246
 
 ### \[Proposed\] Undo/redo feature
 
