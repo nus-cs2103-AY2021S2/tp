@@ -33,7 +33,7 @@ public class DoneCommandTest {
         Identifier eventIdentifier = Identifier.fromIdentifier(eventToBeDone.getIdentifier());
         DoneCommand doneCommand = new DoneCommand(eventIdentifier);
 
-        String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_EVENT_SUCCESS, eventToBeDone);
+        String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_EVENT_SUCCESS, doneCommand);
         Event doneEvent = new Event(eventToBeDone.getName(), EventStatus.DONE, eventToBeDone.getPriority(),
                 eventToBeDone.getDescription(), eventIdentifier.getValue());
         ModelManager expectedModel = new ModelManager(new UserPrefs(), new EventBook(model.getEventBook()));
