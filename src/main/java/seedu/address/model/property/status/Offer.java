@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Represents a buyer's offer price for a property.
  * Guarantees: immutable; is valid as declared in {@link #isValidOffer(String)}.
@@ -19,6 +21,8 @@ public class Offer implements Comparable<Offer> {
             + "where each comma should separate every three digits from the back.\n"
             + "E.g.\n"
             + "$1000000 or $1,000,000 are valid but $1000,000 or $100,00,00 are not valid.";
+    public static final String PRICE_CONSTRAINT =
+            "Please do not enter a price larger than $9,223,372,036,854,775,807";
 
     /*
      * Dollar sign is optional.
@@ -41,10 +45,10 @@ public class Offer implements Comparable<Offer> {
      *
      * @param offer A valid offer price.
      */
-    public Offer(String offer) {
+    public Offer(Long offer) {
         requireNonNull(offer);
-        checkArgument(isValidOffer(offer), MESSAGE_CONSTRAINTS);
-        this.offer = parse(offer);
+        checkArgument(offer >= 0, MESSAGE_CONSTRAINTS);
+        this.offer = offer;
     }
 
     /**
@@ -64,12 +68,16 @@ public class Offer implements Comparable<Offer> {
      * @return an integer representing the value of the offer.
      * @see #isValidOffer
      */
-    public static long parse(String offerString) {
+    public static long parse(String offerString) throws ParseException {
         final Matcher matcher = PRICE_FORMAT.matcher(offerString);
         checkArgument(matcher.matches(), MESSAGE_CONSTRAINTS);
         String amount = matcher.group("offer");
         String amountWithoutCommas = amount.replace(",", "");
-        return Long.parseLong(amountWithoutCommas);
+        try {
+            return Long.parseLong(amountWithoutCommas);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(PRICE_CONSTRAINT);
+        }
     }
 
     @Override

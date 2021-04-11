@@ -1,0 +1,59 @@
+{
+  "properties": [
+    {
+      "name": "Mayfair",
+      "propertyType": "Condo",
+      "address": "1 Jurong East Street 32, #08-111",
+      "remark": null,
+      "postalCode": "609477",
+      "deadline": "Dec 31, 2021",
+      "client": "Client Name: Bob; Client Contact: 98664535; Client Email: bob@gmail.com; Client Asking Price: $800,000",
+      "tagged": [
+        "4 bedrooms",
+        "No renovation"
+      ],
+      "status": null
+    },
+    {
+      "name": "Burghley Drive",
+      "propertyType": "Landed",
+      "address": "12 Burghley Drive",
+      "remark": "Lowest selling price is $5,040,0000",
+      "postalCode": "558977",
+      "deadline": "Jul 31, 2021",
+      "client": null,
+      "tagged": [
+        "99 year leasehold",
+        "Balcony"
+      ],
+      "status": null
+    },
+    {
+      "name": "Woodlands Crescent",
+      "propertyType": "Hdb",
+      "address": "Blk 784 Woodlands Crescent #01-01",
+      "remark": null,
+      "postalCode": "731784",
+      "deadline": "Aug 01, 2021",
+      "client": "Client Name: Caleb; Client Contact: 84459627; Client Email: caleb_goh@gmail.com; Client Asking Price: $350,000",
+      "tagged": [
+        "2 bedrooms",
+        "65 square metres"
+      ],
+      "status": null
+    },
+    {
+      "name": "Jurong",
+      "propertyType": "Hdb",
+      "address": "Jurong Ave 1, #01-01",
+      "remark": null,
+      "postalCode": "640111",
+      "deadline": "Apr 01, 2021",
+      "client": "Client Name: Darren; Client Contact: 81347564; Client Email: darren_likes_swe@hotmail.com.sg; Client Asking Price: $2,000,000",
+      "tagged": [
+        "3 bedrooms",
+        "100 square metres"
+      ],
+      "status": null
+    } ]
+}
