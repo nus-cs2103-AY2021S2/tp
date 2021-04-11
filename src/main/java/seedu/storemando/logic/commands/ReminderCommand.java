@@ -20,18 +20,18 @@ public class ReminderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all items whose expiry date is within "
         + "the user-specified number of days/weeks from the current date. \n"
-        + "Parameters: Days/Weeks (must be an integer) [TimeUnitKeyWord] (days/weeks (day/week accepted for -1/0/1)\n"
-        + "Example: \n- " + COMMAND_WORD + " 3 days\n- " + COMMAND_WORD + " 1 week";
+        + "Parameters: Days/Weeks (must be an integer) [TimeUnitKeyWord] (days/weeks (day/week accepted for -1/0/1))\n"
+        + "Example: \n1. " + COMMAND_WORD + " 3 days\n2. " + COMMAND_WORD + " 1 week";
 
     public static final String MESSAGE_SUCCESS_EXPIRING_ITEM = "Display all items that are expiring within %d %s or has"
         + " already expired.";
     public static final String MESSAGE_SUCCESS_EXPIRED_ITEM = "Display all items that has been expired for at least"
-        + " %d %s";
+        + " %d %s.";
     public static final String MESSAGE_SUCCESS_EXPIRING_TODAY_ITEM = "Display all items that are expiring today or "
         + "has already expired.";
 
     public static final String MESSAGE_INCORRECT_INTEGER = "Number provided must be greater than -366 "
-        + "and cannot exceed 365";
+        + "and cannot exceed 365.";
 
     private final ItemExpiringPredicate predicate;
     private final long numOfDaysOrWeeksFromToday;

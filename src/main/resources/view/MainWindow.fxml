@@ -12,16 +12,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.control.Label?>
-<fx:root fullScreen="true" minHeight="600" minWidth="400" onCloseRequest="#handleExit" resizable="true" title="STOREMANDO" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         title="STOREMANDO" minWidth="400" minHeight="600" fullScreen="true" resizable="false" onCloseRequest="#handleExit">
     <scene>
         <Scene>
             <stylesheets>
                 <URL value="@MainTheme.css" />
                 <URL value="@Extensions.css" />
             </stylesheets>
-
             <VBox>
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="Shortcuts">
@@ -74,7 +76,6 @@
                         </VBox>
                     </GridPane>
                 </VBox>
-
             </VBox>
         </Scene>
     </scene>
