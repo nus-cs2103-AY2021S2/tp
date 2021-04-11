@@ -550,6 +550,94 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)
 
+#### 4.2.2.6 Edit Task feature
+
+**Implementation of EditTaskCommand**
+
+The edit task mechanism is supported mainly by `EditTaskCommand` and `EditTaskCommandParser`.
+
+The relevant methods include:
+* `EditTaskCommandParser#parse(String args)` - Parses the user input arguments.
+* `EditTaskCommand#execute(Model model)` - Edits the task at the specified index and updates its respective
+  values with the supplied values.
+
+Given below is an example usage scenario and how the edit task mechanism behaves at each step.
+
+**Step 1**: User executes `Edit_task 1 n/t1` command to Edit the task at the given index.
+An `EditTaskCommandParser` object is created, and the `EditTaskCommandParser#parse(String args)` method is called.
+The method parses the `1 n/t1` and conducts validation checks to ensure that it complies with the specification.
+An `EditTaskDescriptor` object is created, and it contains all the field a task needed.
+If the field is edited, then store the edited one; otherwise, store the original value.
+An `EditTaskCommand` object (with the `EditTaskDescriptor` as a parameter) is returned.
+
+**Step 2**: On `EditTaskCommand#execute()`, `Model#getFilteredTaskList()` and
+`Model#createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)` are called.
+These will create the edited Task. Then, `Model#setTask(Task taskToEdit, Task editedTask)` and
+`Model#updateFilteredTaskList()` are called. These will update the edited Task into the task list.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `EditTaskCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
+
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for a sample usage of `EditTaskCommand` can be found below.
+
+![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
+
+**Design Considerations**
+
+One of the challenges is if we should allow overdue tasks (task with deadlines before today) to be edited.
+
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li> Overdue tasks can be edited. </li>
+                <li> Pros:
+                    <ul>
+                        <li>At very frequent occasions, users may need to edit an overdue task. For example, users may wish to
+        extend the deadline of an overdue task, or increasing its priority to remind themselves that this task
+          needs more attention.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li> At very rare occasions, users may not want overdue tasks to be edited. 
+          For example, they wanted to evaluate their overall progress for this week and do not wish
+          overdue tasks to be accidentally edited.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Overdue tasks cannot be edited.</li>
+                <li> Pros:
+                    <ul>
+                        <li>May satisfy the demand of users as described in cons of alternative 1.</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>May not meet the requirements of users as described in pros of alternative 1.</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+Alternative 1 is chosen because we believe this implementation is a more suitable choice given our users' need at
+normal usage. Furthermore, if users wish to their overall progress for this week, they may choose to act with caution before
+editing a task or editing it back quickly if they realize they have edited the wrong task.
+
+[Return to Table of Contents](#table-of-contents)
+
 
 #### 4.2.2.3 Done Task feature
 
@@ -804,93 +892,6 @@ The sequence diagram for `FindTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.2.6 Edit Task feature
-
-**Implementation of EditTaskCommand**  
-
-The edit task mechanism is supported mainly by `EditTaskCommand` and `EditTaskCommandParser`.
-
-The relevant methods include:
-* `EditTaskCommandParser#parse(String args)` - Parses the user input arguments.
-* `EditTaskCommand#execute(Model model)` - Edits the task at the specified index and updates its respective
-values with the supplied values.
-
-Given below is an example usage scenario and how the edit task mechanism behaves at each step.
-
-**Step 1**: User executes `Edit_task 1 n/t1` command to Edit the task at the given index.
-An `EditTaskCommandParser` object is created, and the `EditTaskCommandParser#parse(String args)` method is called.
-The method parses the `1 n/t1` and conducts validation checks to ensure that it complies with the specification.
-An `EditTaskDescriptor` object is created, and it contains all the field a task needed. 
-If the field is edited, then store the edited one; otherwise, store the original value.
-An `EditTaskCommand` object (with the `EditTaskDescriptor` as a parameter) is returned.
-
-**Step 2**: On `EditTaskCommand#execute()`, `Model#getFilteredTaskList()` and 
-`Model#createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)` are called.
-These will create the edited Task. Then, `Model#setTask(Task taskToEdit, Task editedTask)` and 
-`Model#updateFilteredTaskList()` are called. These will update the edited Task into the task list.
-
-**Step 3**: On execution completion a `CommandResult` is created.
-A success message `EditTaskCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
-
-The UI will also update as the underlying task list has been modified.
-
-The sequence diagram for a sample usage of `EditTaskCommand` can be found below.
-
-![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
-
-**Design Considerations**
-
-One of the challenges is if we should allow overdue tasks (task with deadlines before today) to be edited.
-
-<table>
-    <tr>
-        <th> Alternative 1 (Chosen Implementation) </th>
-        <th> Alternative 2 </th>
-    </tr>
-    <tr>
-        <td> 
-            <ul>
-                <li> Overdue tasks can be edited. </li>
-                <li> Pros:
-                    <ul>
-                        <li>At very frequent occasions, users may need to edit an overdue task. For example, users may wish to
-        extend the deadline of an overdue task, or increasing its priority to remind themselves that this task
-          needs more attention.</li>
-                    </ul>
-                </li>
-                <li> Cons:
-                    <ul>
-                        <li> At very rare occasions, users may not want overdue tasks to be edited. 
-          For example, they wanted to evaluate their overall progress for this week and do not wish
-          overdue tasks to be accidentally edited.</li>
-                    </ul>
-                </li>
-            </ul>
-        </td>
-        <td> 
-            <ul>
-                <li>Overdue tasks cannot be edited.</li>
-                <li> Pros:
-                    <ul>
-                        <li>May satisfy the demand of users as described in cons of alternative 1.</li>
-                    </ul>
-                </li>
-                <li> Cons:
-                    <ul>
-                        <li>May not meet the requirements of users as described in pros of alternative 1.</li>
-                    </ul>
-                </li>
-            </ul>
-        </td>
-    </tr>
-</table>
-
-
-Alternative 1 is chosen because we believe this implementation is a more suitable choice given our users' need at
-normal usage. Furthermore, if users wish to their overall progress for this week, they may choose to act with caution before
-editing a task or editing it back quickly if they realize they have edited the wrong task.
-
-[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of SortTaskCommand**  
 The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
@@ -908,7 +909,7 @@ For brevity, lower level implementation of `Model#sortTasks(String comparingVar)
 A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS`.
 The UI will also update as the underlying task list has been modified.
 
-The sequence diagram for `sortTaskCommand` can be found below.
+The sequence diagram for `sortTaskCommand` can be found below, using `sort_task name` as an example.
 
 ![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
 
@@ -995,7 +996,7 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
-The below activity diagram summarises what happens when `pin_task` is called.
+The below activity diagram summarises what happens when `pin_task` is called, using `pin_task 1` as an example.
 It can also be similarly extrapolated to apply to `unpin_task`.
 
 ![Activity Diagram of PinTaskCommand](images/PinTaskActivityDiagram.png)
@@ -1117,7 +1118,91 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 ![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
 
+**Implementation of EditEventCommand**  
+The following is a detailed explanation on how EditEventCommand is implemented.
+
+The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
+
+<img src="images/EditEventCommandClassDiagram.png" width="550" />
+
+**Step 1**: User executes `edit_event 1 n/e1` command to Edit the event at the given index.
+An `EditEventCommandParser` object is created, and the `EditEventCommandParser#parse(String args)` method is called.
+The method conducts parses the `1 n/e1` and conducts validation checks to ensure that it complies with the specification.
+An `EditEventDescriptor` object is created, and it contains all the field an Event needed.
+If the field is edited, then store the edited one; otherwise, store the original value.
+An `EditEventCommand` object (with the `EditEventDescriptor` as a parameter) is returned.
+
+**Step 2**: On `EditEventCommand#execute()`, `Model#getFilteredEventList()` and
+`Model#createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)` are called.
+These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Event editedEvent)` and
+`Model#updateFilteredEventList()` are called. These will update the edited Event into the event list.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `EditEventCommand#MESSAGE_EDIT_EVENT_SUCCESS` will be displayed.
+The UI will also update as the underlying event list has been modified.
+
+The sequence diagram for `EditEventCommand` can be found below.
+
+![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes a EditEventCommand:
+(For brevity, "Show error" actions are omitted.)
+
+
+<img src="images/EditEventCommandActivityDiagram.png" width="250" />›
+
+
+***Design Considerations for `EditEventCommand`***
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li>Allows an expired event to be edited only when end date time need to be extended to an unexpired time</li>
+                <li> Pros:
+                    <ul>
+                        <li>Similar checks to AddEventCommand</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Only end date time of an unexpired event can be edited</li>
+                        <li>Affects other classes</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Allows all fields in an expired event to be edited</li>
+                <li> Pros:
+                    <ul>
+                        <li>Users have more freedom to edited things</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Needs to add extra checks in EditEventCommand</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<div markdown="block">
+
+We chose alternative 1 because if the event in the real world ended, it’s meaningless to let users make changes
+on any field other than end date and time. We did consider the fact that an event in the real world could be extended,
+so we allow users to make changes on end date and time from an expired timestamp to an unexpired timestamp. Besides,
+we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become
+an “overdue task”, while there’s no “overdue event”.
+
+
 [Return to Table of Contents](#table-of-contents)
+
 
 **Implementation of TodayEventCommand**
 
@@ -1189,90 +1274,22 @@ The sequence diagram for `FindEventCommand` can be found below.
 [Return to Table of Contents](#table-of-contents)
 
 
-**Implementation of EditEventCommand**  
-The following is a detailed explanation on how EditEventCommand is implemented.
+**Implementation of ClearExpiredEventCommand**  
+The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
 
-The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
+**Step 1**: User executes `clear_expired_event` command to clear expired events in the event list.
+A `ClearExpiredEventCommand` object is created and returned.
 
-<img src="images/EditEventCommandClassDiagram.png" width="550" />
-
-**Step 1**: User executes `edit_event 1 n/e1` command to Edit the event at the given index.
-An `EditEventCommandParser` object is created, and the `EditEventCommandParser#parse(String args)` method is called.
-The method conducts parses the `1 n/e1` and conducts validation checks to ensure that it complies with the specification.
-An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
-If the field is edited, then store the edited one; otherwise, store the original value.
-An `EditEventCommand` object (with the `EditEventDescriptor` as a parameter) is returned.
-
-**Step 2**: On `EditEventCommand#execute()`, `Model#getFilteredEventList()` and 
-`Model#createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)` are called.
-These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Event editedEvent)` and 
-`Model#updateFilteredEventList()` are called. These will update the edited Event into the event list.
+**Step 2**: On `ClearExpiredEventCommand#execute()`, `Model#clearExpiredEvents()` is called.
+This will delete all expired events whose end date time have already passed.
+For brevity, lower level implementation of `Model#clearExpiredEvents()` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
-A success message `EditEventCommand#MESSAGE_EDIT_EVENT_SUCCESS` will be displayed.
-The UI will also update as the underlying event list has been modified.
+A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_EXPIRED_EVENT_SUCCESS` will be displayed.
 
-The sequence diagram for `EditEventCommand` can be found below.
+The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
-![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
-
-The following activity diagram summarises what happens when a user executes a EditEventCommand:
-(For brevity, "Show error" actions are omitted.)
-
-
-<img src="images/EditEventCommandActivityDiagram.png" width="250" />›
-
-
-***Design Considerations for `EditEventCommand`***
-<table>
-    <tr>
-        <th> Alternative 1 (Chosen Implementation) </th>
-        <th> Alternative 2 </th>
-    </tr>
-    <tr>
-        <td> 
-            <ul>
-                <li>Allows an expired event to be edited only when end date time need to be extended to an unexpired time</li>
-                <li> Pros:
-                    <ul>
-                        <li>Similar checks to AddEventCommand</li>
-                    </ul>
-                </li>
-                <li> Cons:
-                    <ul>
-                        <li>Only end date time of an unexpired event can be edited</li>
-                        <li>Affects other classes</li>
-                    </ul>
-                </li>
-            </ul>
-        </td>
-        <td> 
-            <ul>
-                <li>Allows all fields in an expired event to be edited</li>
-                <li> Pros:
-                    <ul>
-                        <li>Users have more freedom to edited things</li>
-                    </ul>
-                </li>
-                <li> Cons:
-                    <ul>
-                        <li>Needs to add extra checks in EditEventCommand</li>
-                    </ul>
-                </li>
-            </ul>
-        </td>
-    </tr>
-</table>
-<div markdown="block">
-
-We chose alternative 1 because if the event in the real world ended, it’s meaningless to let users make changes 
-on any field other than end date and time. We did consider the fact that an event in the real world could be extended, 
-so we allow users to make changes on end date and time from an expired timestamp to an unexpired timestamp. Besides, 
-we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become 
-an “overdue task”, while there’s no “overdue event”.
-
-
-[Return to Table of Contents](#table-of-contents)
+![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
 
 
 **Implementation of FindFreeTimeCommand**  
@@ -1347,24 +1364,6 @@ We choose alternative 1 because it presents code in a clearer way. Breaking up l
 readability of the code. Implementing codes under UniqueEventList also reduces dependency.
 
 [Return to Table of Contents](#table-of-contents)  
-
-**Implementation of ClearExpiredEventCommand**  
-The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
-
-**Step 1**: User executes `clear_expired_event` command to clear expired events in the event list.
-A `ClearExpiredEventCommand` object is created and returned.
-
-**Step 2**: On `ClearExpiredEventCommand#execute()`, `Model#clearExpiredEvents()` is called.
-This will delete all expired events whose end date time have already passed.
-For brevity, lower level implementation of `Model#clearExpiredEvents()` is omitted.
-
-**Step 3**: On execution completion a `CommandResult` is created.
-A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_EXPIRED_EVENT_SUCCESS` will be displayed.
-
-The sequence diagram for `ClearExpiredEventCommand` can be found below.
-
-![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
-
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -1457,8 +1456,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User wishes to add a new task.
-2. User enters the required parameters.
-3. SOChedule displays a success message for adding the task.
+1. User enters the required parameters.
+1. SOChedule displays a success message for adding the task.
 <br><br>
 Use case ends.
 
@@ -1467,114 +1466,63 @@ Use case ends.
 * 2a. Some required information about the task is missing in the command.
 
     * 2a1. SOChedule displays an error message suggesting that information provided when creating
-      the task is incomplete.
+      the task is incomplete. <br>
       Use case ends.
-
-
+      <br><br>
+      
 * 2b. The date provided for the deadline of task is invalid
 
-    * 2b1. SOChedule displays an error message suggesting that date provided for the event
-      is invalid, or not following the `YYYY-MM-DD` format.
+    * 2b1. SOChedule displays an error message. <br>
       Use case ends.
-
+      <br><br>
+      
 **Use case: UC02 - Deleting a task**
 
 **MSS**
 
 1. User requests to <u> list tasks (UC04)</u>.
-2. SOChedule shows a list of tasks.
-3. User chooses to delete a task.
-4. User enters the index of the task to be deleted.
-5. SOChedule displays a success message for deleting the task.
+1. SOChedule shows a list of tasks.
+1. User chooses to delete a task.
+1. User enters the index of the task to be deleted.
+1. SOChedule displays a success message for deleting the task.
    <br><br>
    Use case ends.
 
 **Extensions**
 
-* 2a. The task list is empty.
-
+* 2a. The task list is empty. <br>
   Use case ends.
-
-  <br>
-
+  <br><br>
+  
 * 3a. The given index is invalid.
-
-    * 3a1. SOChedule shows an error message.
-
+  
+    * 3a1. SOChedule displays an error message. <br>
       Use case resumes at step 2.
-
+      <br><br>
+      
 **Use case: UC03 - Editing a task**
 
 **MSS**
 
 1. User requests to <u> list tasks (UC04)</u>.
-2. SOChedule shows a list of tasks.
-3. User chooses to edit a task.
-4. SOChedule edits the task and displays a success message for editing the task.
+1. SOChedule shows a list of tasks.
+1. User chooses to edit a task.
+1. SOChedule edits the task and displays a success message for editing the task.
    <br><br>
    Use case ends.
    
 **Extensions**
 
-* 2a. The task list is empty.
-
+* 2a. The task list is empty.<br>
   Use case ends.
+  <br><br>
 
-  <br>
-
-* 3a. The task specified by the user is not found in the current task list.
-
-    * 3a1. SOChedule shows an error message.
-
-      Use case resumes at step 2.
-    
-    
-* 3b. The input by user has an invalid command format.
-  Some (but not all) examples may include that no index is given, 
-  index provided is not a valid positive integer.
-
-    * 3b1. SOChedule shows an error message.
-
-      Use case resumes at step 2.
-
-
-* 3c. Any of the given attribute by user is invalid.
-  Some examples may include that `p/10` is given to update the priority of the task,
-  but priority can only be a single digit integer from 0 to 9 inclusive.
+* 3a. User enters erroneous input.
   
-    * 3c1. SOChedule shows an error message.
-
+    * 3a1. SOChedule shows an error message.<br>
       Use case resumes at step 2.
-
-
-* 3d. No field to edit is provided. An example may be `edit_task 1`.
-
-  * 3d1. SOChedule shows an error message.
-
-      Use case resumes at step 2.
-
-    
-* 3e. No field to edit is provided. An example may be `edit_task 1`.
-
-    * 3e1. SOChedule shows an error message.
-
-      Use case resumes at step 2.
-    
-
-* 3f. The edited task is equivalent to the original task.
-
-    * 3f1. SOChedule shows an error message.
-
-      Use case resumes at step 2.
-
-
-* 3g. The edited task is equivalent to an existing task in the task list.
-
-    * 3g1. SOChedule shows an error message.
-
-      Use case resumes at step 2.
-    
-
+      <br><br>
+      
 **Use case: UC04 - Listing tasks**
 
 **MSS**
@@ -1588,60 +1536,53 @@ Use case ends.
 
 * 1a. No task have been added.
 
-    * 1a1. SOChedule displays an empty list and informs user that the task list is empty.
-
+    * 1a1. SOChedule displays an empty list and informs user that the task list is empty.<br>
       Use case ends.
-
+      <br><br>
 
 **Use case: UC05 - Marking one or more tasks as completed**
 
 **MSS**
 
 1. User requests to <u> list tasks (UC04)</u>.
-2. SOChedule shows a list of tasks.
-3. User chooses to mark one or more tasks as completed.
-4. SOChedule displays a success message for marking the task as completed.
+1. SOChedule shows a list of tasks.
+1. User chooses to mark one or more tasks as completed.
+1. SOChedule displays a success message for marking the task as completed.
    <br><br>
    Use case ends.
 
 **Extensions**
 
-* 2a. The task list is empty.
-
+* 2a. The task list is empty.<br>
   Use case ends.
-
-
+  <br><br>
+  
 * 3a. Any of the tasks specified by the user is not found in the current task list.
 
-    * 3a1. SOChedule shows an error message.
-
+    * 3a1. SOChedule shows an error message. <br>
       Use case resumes at step 2.
-
-
-* 3b. Any of the task specified by the user is already marked as completed.
-
-    * 3b1. SOChedule shows an error message.
-
+      <br><br>
+      
+* 3b. Any of the task specified by the user is already marked as completed. 
+  
+    * 3b1. SOChedule shows an error message. <br>
       Use case resumes at step 2.
+      <br><br>
+      
+* 3c. User enters erroneous input.
 
-
-* 3c. The input by user has an invalid command format.
-  Some examples may include that no index is given, any of the indexes provided is not a valid positive integer.
-
-    * 3c1. SOChedule shows an error message.
-
+    * 3c1. SOChedule shows an error message. <br>
       Use case resumes at step 2.
+      <br><br>
 
-
-
-**Use case: UC06 - Undone a task**
+**Use case: UC06 - Un-done a task**
 
 **MSS**
 
 1. User requests to <u> list tasks (UC04)</u>.
-2. SOChedule shows a list of tasks.
-3. User chooses to mark a task as uncompleted.
-4. SOChedule displays a success message for marking the task as uncompleted.
+1. SOChedule shows a list of tasks.
+1. User chooses to mark a task as uncompleted.
+1. SOChedule displays a success message for marking the task as uncompleted.
    <br><br>
    Use case ends.
 
@@ -1649,36 +1590,33 @@ Use case ends.
 
 * 2a. The task list is empty.
 
-  Use case ends.
-
+   Use case ends.
+   <br><br>
 
 * 3a. The task specified by the user is not found in the current task list.
-
-    * 3a1. SOChedule shows an error message.
-
+  
+    * 3a1. SOChedule shows an error message. <br>
       Use case resumes at step 2.
-
+      <br><br>
 
 * 3b. The task specified by the user is already marked as uncompleted.
 
-    * 3b1. SOChedule shows an error message.
-
+    * 3b1. SOChedule shows an error message. <br>
       Use case resumes at step 2.
+      <br><br>
+      
+* 3c. User enters erroneous input.
 
-
-* 3c. The input by user has an invalid command format.
-  Some examples may include that no index is given, index provided is not a valid positive integer.
-
-    * 3c1. SOChedule shows an error message.
-
+    * 3c1. SOChedule shows an error message. <br>
       Use case resumes at step 2.
-
+      <br><br>
+      
 **Use case: UC07 - Getting tasks today**
 
 **MSS**
 
 1. User requests to list all tasks with deadline on today in the SOChedule.
-2. SOChedule displays a list of all tasks with deadline on today.
+1. SOChedule displays a list of all tasks with deadline on today.
    <br><br>
    Use case ends.
 
@@ -1686,9 +1624,9 @@ Use case ends.
 
 * 1a. No task have deadline on today.
 
-    * 1a1. SOChedule displays an empty list and informs user that the 0 task has been listed.
-
+    * 1a1. SOChedule displays an empty list and informs user that the 0 task has been listed. <br>
       Use case ends.
+      <br><br>
 
 **Use case: UC08 - Finding tasks by name**
 
@@ -1696,49 +1634,49 @@ Use case ends.
 
 1. User requests to search all the tasks whose name contains any of the input keywords.
 2. SOChedule displays a list of all tasks with name containing any of the input keywords.
-    <br><br>
+   <br><br>
    Use case ends.
    
 **Extensions**
 
 * 1a. No task name contains any of the given keywords.
 
-    * 1a1. SOChedule displays an empty list and informs user that 0 task has been listed.
-    
+    * 1a1. SOChedule displays an empty list and informs user that 0 task has been listed. <br>
         Use case ends.
+        <br><br>
 
 **Use case: UC09 - Sorting all tasks**
 
 **MSS**
 
 1. User requests to <u> list tasks (UC04)</u>.
-2. SOChedule shows a list of tasks.
-3. User chooses to sort the task list based on a sort parameter.
-4. SOChedule sorts the task list, and displays a success message.
+1. SOChedule shows a list of tasks.
+1. User chooses to sort the task list based on a sort parameter.
+1. SOChedule sorts the task list, and displays a success message.
    <br><br>
    Use case ends.
 
 **Extensions**
 
 * 2a. The task list is empty.
-
+  
   Use case ends.
 
 
 * 3a. The given sort argument is invalid.
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the sort argument.
-
+    * 3a1. SOChedule shows an error message indicating the invalidity of the sort argument. <br>
       Use case resumes at step 2.
+      <br><br>
 
 **Use case: UC10 - Pinning a task**
 
 **MSS**
 
 1. User requests to <u> list tasks (UC04)</u>.
-2. SOChedule shows a list of tasks.
-3. User requests to pin a specific task in the list.
-4. SOChedule pins the task, <u> sorts the task list (UC09)</u>, and displays a success message for pinning the task.
+1. SOChedule shows a list of tasks.
+1. User requests to pin a specific task in the list.
+1. SOChedule pins the task, <u> sorts the task list (UC09)</u>, and displays a success message for pinning the task.
    <br><br>
    Use case ends.
 
@@ -1747,28 +1685,34 @@ Use case ends.
 * 2a. The task list is empty.
 
   Use case ends.
+  <br><br>
 
+* 3a. The task specified by the user is not found in the current task list.
 
-* 3a. The given index is invalid.
-
-    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
-
-      Use case resumes at step 2.
+   * 3a1. SOChedule shows an error message. <br>
+     Use case resumes at step 2.
+     <br><br>
         
 * 3b. The task specified by index is already pinned
 
-    * 3b1. SOChedule shows an error message indicating that task is already pinned.
+   * 3b1. SOChedule shows an error message. <br>
+     Use Case resumes at step 2.
+     <br><br>
 
-      Use Case resumes at step 2.
+* 3c. User enters erroneous input.
+
+   * 3c1. SOChedule shows an error message. <br>
+     Use case resumes at step 2.
+     <br><br>
 
 **Use case: UC11 - Unpinning a task**
 
 **MSS**
 
 1. User requests to <u> list tasks (UC04)</u>.
-2. SOChedule shows a list of tasks.
-3. User requests to unpin a specific task in the list.
-4. SOChedule unpins the task, <u> sorts the task list (UC09)</u>, and displays a success message for unpinning the task.
+1. SOChedule shows a list of tasks.
+1. User requests to unpin a specific task in the list.
+1. SOChedule unpins the task, <u> sorts the task list (UC09)</u>, and displays a success message for unpinning the task.
    <br><br>
    Use case ends.
 
@@ -1777,33 +1721,41 @@ Use case ends.
 * 2a. The task list is empty.
 
   Use case ends.
+  <br><br>
 
+* 3a. The task specified by the user is not found in the current task list.
 
-* 3a. The given index is invalid (negative or out of range).
+   * 3a1. SOChedule shows an error message. <br>
+     Use case resumes at step 2.
+     <br><br>
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
-
-      Use case resumes at step 2.
-    
 * 3b. The task specified by index is not pinned
 
-    * 3b1. SOChedule shows an error message indicating that task is not pinned.
-    
-      Use Case resumes at step 2.
+   * 3b1. SOChedule shows an error message. <br>
+     Use Case resumes at step 2.
+     <br><br>
+
+* 3c. User enters erroneous input.
+
+   * 3c1. SOChedule shows an error message. <br>
+     Use case resumes at step 2.
+     <br><br>
 
 **Use case: UC12 - Clearing all completed tasks**
 
 1. User requests to clear all completed tasks.
 1. SOChedule displays a success message for clearing all completed tasks.
-<br><br>
-Use case ends.
-
+   <br><br>
+   Use case ends.
+   <br><br>
+   
 **Use case: UC13 - Clearing all expired tasks**
 
 1. User requests to clear all expired tasks.
 1. SOChedule displays a success message for clearing all expired tasks.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
+   <br><br>
 
 **Use case: UC14 - Adding an event**
 
@@ -1811,23 +1763,22 @@ Use case ends.
 
 1. User requests to add a new event.
 1. SOChedule displays a success message for adding the event.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
 
 **Extensions**
 
 * 1a. Some required information about the event is missing in the command.
 
-    * 1a1. SOChedule displays an error message suggesting that information provided when creating
-      the event is incomplete.
+    * 1a1. SOChedule displays an error message. <br>
       Use case ends.
-
-
+      <br><br>
+      
 * 1b. The date provided for the event is invalid
 
-    * 1b1. SOChedule displays an error message suggesting that date provided for the event
-      is invalid, or not following the `YYYY-MM-DD` format.
+    * 1b1. SOChedule displays an error message. <br>
       Use case ends.
+      <br><br>
 
 **Use case: UC15 - Deleting an event**
 
@@ -1837,21 +1788,21 @@ Use case ends.
 1. SOChedule shows a list of events.
 1. User requests to delete a specific event in the list.
 1. SOChedule displays a success message for deleting the event.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
 
 **Extensions**
 
 * 2a. The event list is empty.
-
+  
   Use case ends.
-
+  <br><br>
 
 * 3a. The given index is invalid.
 
-    * 3a1. SOChedule shows an error message.
-
+    * 3a1. SOChedule shows an error message. <br>
       Use case resumes at step 2.
+      <br><br>
 
 **Use case: UC16 - Editing an event**
 
@@ -1866,27 +1817,22 @@ Use case ends.
    
 * 3a. No edited field is provided
 
-    * 3a1. SOChedule displays an error message suggesting that information provided when editing
-      the event is incomplete.
+    * 3a1. SOChedule displays an error message. <br>
       Use case resumes at step 2.
+      <br><br>
 
 * 3b. The event to be edited is expired
-
-    * 3b1. SOChedule displays an error message suggesting that an expired event cannot be edited.
+  
+    * 3b1. SOChedule displays an error message. <br>
       Use case resumes at step 2.
-      
-* 3c. The date provided for the event is invalid
+      <br><br>
 
-    * 3c1. SOChedule displays an error message suggesting that date provided for the event
-      is invalid, or not following the `YYYY-MM-DD` format.
-      Use case resumes at step 2.
-      
-* 3d. The given index is invalid.
+* 3c. User enters erroneous input.
 
-    * 3d1. SOChedule shows an error message.
-      Use case resumes at step 2.
-
-
+   * 3c1. SOChedule shows an error message.<br>
+     Use case resumes at step 2.
+     <br><br>
+     
 **Use case: UC17 - Listing events**
 
 **MSS**
@@ -1900,9 +1846,9 @@ Use case ends.
 
 * 1a. No events have been added.
 
-    * 1a1. SOChedule displays an empty list and informs user that the event list is empty.
-    
+    * 1a1. SOChedule displays an empty list and informs user that the event list is empty. <br>
       Use case ends.
+      <br><br>
 
 **Use case: UC18 - Getting today's events**
 
@@ -1917,18 +1863,16 @@ Use case ends.
 
 * 1a. No event is happening on today.
 
-    * 1a1. SOChedule displays an empty list and informs user that the 0 event has been listed.
-
+    * 1a1. SOChedule displays an empty list and informs user that the 0 event has been listed. <br>
       Use case ends.
-
-
+      <br><br>
 
 **Use case: UC19 - Find an event**
 
 **MSS**
 
 1. User requests to search all the events whose name contains any of the input keywords.
-2. SOChedule displays a list of all events with name containing any of the input keywords.
+1. SOChedule displays a list of all events with name containing any of the input keywords.
    <br><br>
    Use case ends.
 
@@ -1936,53 +1880,38 @@ Use case ends.
 
 * 1a. No event name contains any of the given keywords.
 
-    * 1a1. SOChedule displays an empty list and informs user that 0 event has been listed.
-
+    * 1a1. SOChedule displays an empty list. <br>
       Use case ends.
-
+      <br><br>
 
 **Use case: UC20 - Clearing expired events**
 
 1. User requests to clear all expired events.
 1. SOChedule displays a success message for clearing all expired events.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
    
 **Use case: UC21 - Finding Schedule Given a Date**
 
 **MSS**
-1. User requests to <u> list events (UC17)</u>.
-2. SOChedule shows a list of events.
-3. User requests to <u> list tasks (UC04)</u>.
-4. SOChedule shows a list of tasks.
-5. User wishes to find schedule given a specified date.
-6. SOChedule shows uncompleted tasks that are due before or on the specified date (if any)
-   and events that are ongoing given the specified date (if any).
+1. User wishes to find schedule given a specified date.
+1. SOChedule shows the schedule of the user.
    <br><br>
    Use case ends.
 
 **Extensions**
 
-* 5a. The specified date is invalid or does not follow the required format.
+* 2a. User enters erroneous input.
 
-    * 5a1. SOChedule shows an error message.
+   * 2a1. SOChedule shows an error message.<br>
+     Use case resumes at step 1.
+     <br><br>
+     
+* 2b. Both task list and event list are empty.
 
-      Use case resumes at step 4.
-
-
-* 5b. The input by user has an invalid command format.
-  Some examples may include that no date is provided.
-  
-    * 5b1. SOChedule shows an error message.
-
-      Use case resumes at step 4.
-
-
-* 5c. Both task list and event list are empty.
-
-    * 5c1. SOChedule shows an empty task list and event list.
-
+    * 2b1. SOChedule shows an empty task list and event list. <br>
       Use case ends.
+      <br><br>
 
 
 **Use case: UC22 - Finding free time slots**
@@ -1991,20 +1920,21 @@ Use case ends.
 
 1. User requests to find free time slots on a given date.
 2. SOChedule shows a list of free time slots on that date.
+   <br><br>
    Use case ends.
-
+   
 **Extensions**
 
 * 2a. SOChedule notifies that there is no free time slots.
 
   Use case ends.
-
-
+  <br><br>
+  
 * 3a. The given date is invalid.
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the date.
-
+    * 3a1. SOChedule shows an error message indicating the invalidity of the date. <br>
       Use case ends.
+      <br><br>
 
 **Use case: UC23 - Getting a summary of SOChedule**
 
@@ -2012,6 +1942,7 @@ Use case ends.
 
 1. User requests to have a summary.
 2. SOChedule shows a list of different types of tasks and events happening in the next 7 days.
+   <br><br>
    Use case ends.
 
 **Use case: UC24 - Clearing SOChedule**
@@ -2021,8 +1952,8 @@ Use case ends.
 1. User requests to clear the whole SOChedule.
 2. SOChedule clears all tasks and events stored.
 3. SOChedule shows an empty list of tasks and events.
-
-*{More to be added}*
+   <br><br>
+   Use case ends.
 
 ### A4. Non-Functional Requirements
 
@@ -2049,8 +1980,10 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** 
+These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 </div>
 
@@ -2369,13 +2302,13 @@ testers are expected to do more *exploratory* testing.
        Expected: All Tasks and Events in SOChedule are cleared. Success message `Sochedule has been cleared!`
        will always be shown in the status message, regardless of whether there is any Task or Event.
        
-### A8. Saving data
+### A7. Saving data
 
 1. Dealing with missing/corrupted/missing data files
 
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
 
-### Effort
+### A8. Effort
 Creating SOChedule took considerable effort and required significant effort from all members.
 To achieve this, all members committed to meticulous planning, regular team meetings, effective communication
 and strong collaboration to ensure that SOChedule is delivered on time and in a satisfactory state.

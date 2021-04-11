@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(sort)
+[-> LogicManager : parse("sort_task name")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(sort)
+LogicManager -> SocheduleParser : parseCommand("sort_task name")
 activate SocheduleParser
 
 create SortTaskCommandParser
@@ -25,7 +25,7 @@ activate SortTaskCommandParser
 SocheduleParser <-- SortTaskCommandParser
 deactivate SortTaskCommandParser
 
-SocheduleParser -> SortTaskCommandParser: parse(args)
+SocheduleParser -> SortTaskCommandParser: parse("name")
 activate SortTaskCommandParser
 
 create SortTaskCommand
