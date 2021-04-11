@@ -407,12 +407,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a specific student entry.
-2.  System prompts for student's details.
-3.  User inputs the respective details.
-4.  System adds the student entry.
-
-    Use case ends.
+1.  User requests to add a student by the student's matriculation number and other details, including:
+    
+    * Name
+    * Address
+    * Email
+    * Phone number
+    * Faculty
+    * Vaccination status
+    * Medical details
+    * School residence
+1.  System adds the student. 
+    
+Use case ends
 
 **Extensions**
 
@@ -421,13 +428,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
   
         Use case ends.
+    
+* 2a. User does not give sufficient inputs to add a student entry.
 
-
-* 3a. User does not give sufficient inputs to add a student entry.
-
-    * 3a1. System shows an error message.
+    * 2a1. System shows an error message.
   
         Use case ends.  
+* 3a. System detects the error in the entered parameter
+
+    * 3a1. System shows an error message.
+    
+        Use case ends. 
+
+        
 
 **Use case: Add a vaccination appointment**
 
