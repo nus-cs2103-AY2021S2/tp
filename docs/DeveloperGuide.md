@@ -133,20 +133,20 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Proposed] List feature
+### [Completed] List feature
 
 #### Proposed Implementation
 
-The proposed `list` mechanism extends the `list` mechanism of `AddressBook`, which lists out the garments based on 
-the order in which they have been input into the system. The extended `list` mechanism sorts the list of garments
+The proposed `list` mechanism extends the `list` mechanism of `AddressBook`, which lists out the garments based on when they have been last used. The extended `list` mechanism sorts the list of garments
 based on the date and time that they were last used, and outputs the entries in that order.
 
-This is achieved through the creation of the `LastUse` attribute that is tied to the `Garment` object, that gives the 
-it a date and time as to when it was last used.
+This is achieved through the creation of the `LastUse` attribute that is tied to the `Garment` object, that gives a date as to when it was last used.
 
 `ListCommand` is updated to allow the garments to be sorted by the `LastUse` attribute.
 
 The following sequence diagram shows how the list operation works:
+
+
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
