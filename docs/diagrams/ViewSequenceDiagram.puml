@@ -48,7 +48,7 @@ deactivate PawbookParser
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
 
-ViewCommand -> Model : update filtered list
+ViewCommand -> Model : update filtered entity list
 activate Model
 
 Model --> ViewCommand

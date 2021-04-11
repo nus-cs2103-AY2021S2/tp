@@ -48,7 +48,7 @@ deactivate PawbookParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : update filtered list
+FindCommand -> Model : update filtered entity list
 activate Model
 
 Model --> FindCommand

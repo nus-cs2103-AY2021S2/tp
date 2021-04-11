@@ -207,11 +207,25 @@ that uses the list of keywords to find the search results based on the supplied 
 This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the
 CommandResult instance that is then passed on in the LogicManager.
 
-Below is an example sequence diagram for a valid view command from the user.
+Below is an example sequence diagram for a valid find command from the user.
 
 ![FindActivityDiagram](images/FindSequenceDiagram.png)
 
-Below is an example activity diagram for a valid view command from the user.
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+2. The `PawbookParser` identifies the user command and creates a `FindCommandParser` object. It then calls the `FindCommandParser`'s `parse()`method with user input as the parameter.
+3. In the `parse()` method, the `FindCommandParser` will then generate the `FindCommand` object. This is then returned all the way back to the `LogicManager`.
+4. The `LogicManager` will then proceed to call the `execute()` method.
+5. The `execute()` method is further explored below. The high level understanding is that a CommandResult is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![ViewSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) 
+
+1. Upon calling the `execute()` method, the find command updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
+2. It then sorts the entity using the `sortEntities()` in increasing order. 
+3. From here, Find Command creates a command result and returns it to the `LogicManager`. 
+
+Below is an example activity diagram for a valid find command from the user.
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
