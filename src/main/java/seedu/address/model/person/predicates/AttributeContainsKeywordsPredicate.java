@@ -1,9 +1,12 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.logic.parser.FilterKeywordChecker;
+import seedu.address.model.insurance.predicates.PlansContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.predicates.TagsContainsKeywordsPredicate;
 
 public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
 
