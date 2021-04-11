@@ -504,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Delete an appointment**
 
 **MSS**
-1.  User requests to delete a student's appointment by the students matriculation number.
+1.  User requests to delete a student's appointment by the student's matriculation number.
 1.  System deletes the student's appointment.
 
     Use case ends.
