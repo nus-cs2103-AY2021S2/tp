@@ -8,7 +8,7 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 and inexperienced.
 * The overall design is very client-oriented, as personal details and other information will
 be displayed under a client.
-  * Meetings and events will be shown in a client-list format as well.
+* Meetings and events are displayed in a separate list.
 * The project is an ongoing software project for a desktop application (called _Link.me_) used for client management.
   * The project is written in OOP fashion with a dash of FP in stream usage.
   * It comes with a **reasonable level of user and developer documentation**.

@@ -1,9 +1,8 @@
 ---
-layout: page
-title: Developer Guide
+layout: page title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,15 +18,23 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ![Architecture Diagram](images/ArchitectureDiagram.png)
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of
+each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
+Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
+diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes
+called [`Main`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
+is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -43,12 +50,13 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
+  API `interface` mentioned in the previous point.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+the command `delete 1`.
 
 ![Sequence Diagram of the Architecture](images/ArchitectureSequenceDiagram.png)
 
@@ -61,9 +69,15 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+, `StatusBarFooter` etc. The `NotifWindow` and `NotesWindow` classes inherit from the `Alert` class. All other classes, 
+including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
+in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -81,9 +95,11 @@ The `UI` component,
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
+   help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -94,24 +110,26 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : 
+**API** :
 [`Model.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
+  the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
+
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
@@ -125,61 +143,89 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Representing gender of clients
+
+The gender of each client is represented as a `String` with the full gender (Male/ Female/ Non-binary). However, the
+parse will accept any of {M, F, N, Male, Female, Non-binary} with any combination of upper and lower case, and then
+convert it to the full gender.
+
+### Representing birthdate of clients
+
+The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to
+use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from
+`1900-01-01` to `LocalDate.now()`.
+
+
+### Representing insurance premiums of insurance plans
+
+The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
+risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
+zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it
+to 2 decimal places.
+
+### Recording, viewing and clearing notes for clients
+![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
+
+The `NoteCommand` is created and parsed similar to other commands, as show in the sequence diagram above. The `Prefix` 
+that the user called the command with (`/r` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
+additional parameter in the `NoteCommand`.
+
+
+![NoteSequenceDiagramRef](images/NoteSequenceDiagramRef.png)
+
+Upon executing a `NoteCommand`, a different sequence of actions is performed by the `NoteCommand`, depending on the
+`Prefix` stored in the `NoteCommand`. 
+
+Recording and clearing notes will call the respective methods of the appropriate
+`Person` that the user has indicated. The `Person` will return an updated `Person` object, and `NoteCommand`
+will proceed to call the `ModelManager` to replace the original `Person` with the updated `Person`. A `CommandResult`
+is then created and returned.
+
+Viewing notes will simple create and return a `CommandResult`. This `CommandResult` contains the `Person` object
+representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
+`Person` in the `NotesWindow`.
 
 ### Scheduling meetings and Meeting List Display
-
-#### Design consideration:
-
-##### The current implementation
 
 ![ScheduleSequenceDiagramLogic](images/ScheduleSequenceDiagramLogic.png)
 ![ScheduleSequenceDiagramModel](images/ScheduleSequenceDiagramModel.png)
 
-Currently, the implementation of the `Meeting` class is placing the `Meeting` as an attribute of  `Person`.
-While it certainly makes more sense for extensions and many-to-many relations to adopt such a implementation, 
-it would cause an issue where we would have to examine and update every meeting object to edit the person 
-if we were to update and change a Person as the current implementation does not give the `Person` object an immutable 
-unique identifier upon construction. As a result, the current implementation of the Meeting list takes in the `Person` class as the element of the list, and 
-accesses the meeting attribute within the `Person` object when needed.
+Currently, the implementation of the `Meeting` class is placing the `Meeting` as an attribute of  `Person`. While it
+certainly makes more sense for extensions and many-to-many relations to adopt such a implementation, it would cause an
+issue where we would have to examine and update every meeting object to edit the person if we were to update and change
+a Person as the current implementation does not give the `Person` object an immutable unique identifier upon
+construction. As a result, the current implementation of the Meeting list takes in the `Person` class as the element of
+the list, and accesses the meeting attribute within the `Person` object when needed.
 
 In regard to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
 every time the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
-as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as 
+as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as
 is.
 
+### Unscheduling meetings
+
+The implementation of unscheduling meetings is very similar to scheduling meetings, so we skip the details of the
+implementations here and ask you to refer to the implementation of scheduling meetings as reference.
+
+The behavior of the unscheduling command and its options are shown as below.
+![UnscheduleActivityDiagram](images/UnscheduleActivityDiagram.png)
+
+The internal operation of removing a meeting involves locating the meeting owner on the internal list first, then use
+the meeting (the key) to remove the owner (the value) from the treemap, then exporting the values in the treemap back
+into the internal list.
+
 ### Displaying Notifications
+
 ![NotifSequenceDiagram](images/NotifSequenceDiagram.png)
 
-The implementation of showing notifications is separated into two parts. First part handles the input command and 
-returns the result to see whether the command is a notification command and returns it back to the main window. For the 
-second part of the implementation, the `MainWindow` handles the notification command and requests the notifications from 
-`Logic`, which in turn requests from model. The `MainWindow` then sends the notification string to the `NotifWindow` to 
+The implementation of showing notifications is separated into two parts. First part handles the input command and
+returns the result to see whether the command is a notification command and returns it back to the main window. For the
+second part of the implementation, the `MainWindow` handles the notification command and requests the notifications from
+`Logic`, which in turn requests from model. The `MainWindow` then sends the notification string to the `NotifWindow` to
 be displayed.
-
-
-### Representing birthdates of clients
-
-#### Current Implementation
-The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to 
-use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from 
-`1900-01-01` to `LocalDate.now()`.
-
-#### Proposed Extension
-One of the planned features is to alert the user if the birthday of a client is occurring in the upcoming week. This 
-requires us to check through each person stored within the app to see whether their birthday (derived from their 
-birthdate) occurs before `LocalDate.now().plusDays(7)`. This check will be done upon launching the app. If >=1 persons
-have upcoming birthdays, a pop-up box will be served to the user to remind them of the birthdays.
-
-### Representing premiums of insurance plans
-
-The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
-risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
-zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it 
-to 2 decimal places.
-
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -209,9 +255,10 @@ to 2 decimal places.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
+
 * manage contacts faster than a typical mouse/GUI driven app
-* maintain notes on their client, their needs, their likes/dislikes, insurance plans, applications for insurance claims, etc.
-* get automated reminders about upcoming meetups/ notifications if they haven’t contacted clients in a long time.
+* maintain notes on their client, their needs, their likes/dislikes, insurance plans etc.
+* get automated reminders about upcoming meetups/ notifications on the client's birthday.
 
 ### User stories
 
@@ -259,19 +306,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
+otherwise)
 
 **Use case: Add a client**
 
 **MSS**
+
 1.  User adds a client with corresponding information.
 2.  AddressBook shows the list of clients.
 3.  Use case ends.
 
 **Extensions**
+
 * 1a. The user's input format is invalid.
-  * 1a1. AddressBook shows an error message. 
-  * Use case resumes at step 1.
+    * 1a1. AddressBook shows an error message.
+    * Use case resumes at step 1.
 
 * 1b. The given tag is invalid/nonexistent.
     * 1b1. AddressBook shows an error message.
@@ -287,23 +337,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  AddressBook edits the client
 5.  Use case ends.
 
+
 **Extensions**
+
 * 2a. The list is empty.
-  * Use case ends.
+    * Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. AddressBook shows an error message.
-  * Use case resumes at step 2.
+    * 3a1. AddressBook shows an error message.
+    * Use case resumes at step 2.
 
 * 3b. No optional fields are given.
-  * 3b1. AddressBook shows an error message.
-  *  Use case resumes at step 2.
+    * 3b1. AddressBook shows an error message.
+    * Use case resumes at step 2.
 
 * 3c. The user input is invalid.
-  * 3a1. AddressBook shows an error message. 
-  * Use case resumes at step 2.
-
-
+    * 3a1. AddressBook shows an error message.
+    * Use case resumes at step 2.
 
 **Use case: Delete a client**
 
@@ -314,43 +364,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  AddressBook deletes the client
 5.  Use case ends.
 
+
 **Extensions**
+
 * 2a. The list is empty.
-  * Use case ends.
+    * Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. AddressBook shows an error message.
-  * Use case resumes at step 2.
+    * 3a1. AddressBook shows an error message.
+    * Use case resumes at step 2.
 
 **Use case: Scheduling a meetup with a client**
 
 **MSS**
-1.  User requests to list clients
-2.  AddressBook shows a list of clients
-3.  User requests to schedule a meeting a specific client in the list at a specified date and time
-4.  AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list 
-5.  Use case ends.
+
+1. User requests to list clients
+2. AddressBook shows a list of clients
+3. User requests to schedule a meeting a specific client in the list at a specified date and time
+4. AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list
+5. Use case ends.
 
 **Extensions**
+
 * 2a. The list is empty.
-  * Use case ends.
+    * Use case ends.
 
 * 3a. The given index is invalid.
-  * 3a1. AddressBook shows an error message. 
-  * Use case resumes at step 2.
+    * 3a1. AddressBook shows an error message.
+    * Use case resumes at step 2.
 
-* 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd_HH:MM)
-  * 3b1. AddressBook shows an error message and reminds the user of the correct format.
-  * Use case resumes at step 2.
+* 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd HH:MM)
+    * 3b1. AddressBook shows an error message and reminds the user of the correct format.
+    * Use case resumes at step 2.
 
-* 3c. The given date-and-time is invalid (eg. user input 2020-02-31_14:30)
-  * 3c1. AddressBook shows an error message 
-  * Use case resumes at step 2.
+* 3c. The given date-and-time is invalid (eg. user input 2020-02-31 14:30)
+    * 3c1. AddressBook shows an error message
+    * Use case resumes at step 2.
 
-* 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting 2 different clients at the same date and time)
-  * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client
-      and asks the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
-  * If Y, use case continues to step 4. If N, user case resumes at step 2.
+* 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting 2 different clients at
+  the same date and time)
+    * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client and asks
+      the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
+    * If Y, use case continues to step 4. If N, user case resumes at step 2.
 
 **Use case: Filter according to tag**
 
@@ -360,13 +415,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  Use case ends.
 
 **Extensions**
-* 1a. The list is empty. 
-  * Use case ends.
+
+* 1a. The list is empty.
+    * Use case ends.
 
 * 2a. The given tag is invalid/nonexistent.
-  * 2a1. AddressBook shows an error message.
-  * Use case resumes at step 1.
-    
+    * 2a1. AddressBook shows an error message.
+    * Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
@@ -381,8 +436,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9.  The project is expected to adhere to a schedule that delivers a new iteration every two weeks.
 10. The project JAR file should not exceed 100MB.
 11. Project PDF files should not exceed 15MB each.
-12. The Developer Guide and User Guide should be PDF-friendly and should not contain expandable panels, embedded videos and animated GIFs.
-
+12. The Developer Guide and User Guide should be PDF-friendly and should not contain expandable panels, embedded videos
+    and animated GIFs.
 
 ### Glossary
 
@@ -391,7 +446,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Tag**: ...
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!--
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -442,3 +497,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+-->
