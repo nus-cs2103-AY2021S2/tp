@@ -43,7 +43,9 @@ public class CloseCommand extends Command {
     private final UiActionOption uiActionOption;
 
     /**
-     * Creates an CloseCommand of a the specified UI Action Option {@code UiActionOption}
+     * Creates an CloseCommand of a the specified UI Action Option.
+     *
+     * @param uiActionOption UI action option for UI.
      */
     public CloseCommand(UiActionOption uiActionOption) {
         requireNonNull(uiActionOption);
