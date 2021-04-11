@@ -346,7 +346,7 @@ Breaking any of the below restrictions will result in a invalid command format e
 
    * **`list_task`** : Lists all tasks.
 
-   * **`add_task`**`n/CS2103 assignment d/2021-04-07 p/1 c/schoolwork t/urgent` : Adds a task named `CS2103 assignment` to the SOChedule with its respective attributes. Please verify the validity of the date parameter.
+   * **`add_task`**`n/CS2103 assignment d/2022-04-07 p/1 c/schoolwork t/urgent` : Adds a task named `CS2103 assignment` to the SOChedule with its respective attributes. Please verify the validity of the date parameter.
 
    * **`delete_task`**`3` : Deletes the 3rd task shown in the current list.
 
@@ -933,7 +933,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2022-02-27 p/1 c/school work t/urgent`
+**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent`
 **Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
 **Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g., `done_task 1 2`
 **Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
