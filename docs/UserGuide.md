@@ -187,7 +187,6 @@ Examples:
   Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
   <div style="page-break-after: always;"></div><br>
-  
   After executing command `delete 2`: <br><br>
   ![UIAfterDelete](./images/UiAfterDelete.png)
 
