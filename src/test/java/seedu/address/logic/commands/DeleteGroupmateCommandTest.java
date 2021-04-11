@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_DELETE_GROUPMATE_SUCCESS;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
@@ -81,6 +82,16 @@ public class DeleteGroupmateCommandTest {
                 CommandException.class,
                 Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, () -> deleteGroupmateCommand.execute(model)
         );
+    }
+
+    @Test
+    public void execute_invalidGroupmateIndex_throwsCommandException() {
+        Index projectIndex = INDEX_FIRST;
+        Index groupmateIndex = Index.fromOneBased(100);
+
+        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(projectIndex, groupmateIndex);
+
+        assertCommandFailure(deleteGroupmateCommand, model, Messages.MESSAGE_INVALID_GROUPMATE_DISPLAYED_INDEX);
     }
 
     @Test
