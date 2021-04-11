@@ -180,7 +180,7 @@ The following activity diagram summaries the flow of event when a user executes 
     * Pros: Easy to implement, as additional reviews can be concatenated as a string to the current review
     * Cons: This cannot be easily extended in the future (e.g. deleting a specific review in an entry).
 
-###List Feature
+### List Feature
 The List feature allows a user to list all entries that they have keyed in thus far. This will be useful when a user
 wants an overview of all the entry he/she has keyed in previously.
 
@@ -228,7 +228,7 @@ implementation is largely the same.
 
 #### Design Considerations
 
-##### Aspect: Whether the syntax used for the `find` command should be similar to the `add` command
+##### Aspect: Whether the syntax used for the find command should be similar to the add command
 * **Alternative 1 (current choice):** Implement the `find` command without using similar syntax to the `add`
   command (eg. `find 5/5 $4-6 western` instead of `find ra/5 p/4-6 c/western`)
     * Pros: Lesser syntax required, making the command more user-friendly (**Important as the `find` command
@@ -239,7 +239,7 @@ implementation is largely the same.
     * Cons: Greatly slows down the efficiency of performing searches on the FoodDiary, which will negatively
     impact the user experience
 
-##### Aspect: How the user input keywords for the `Rating` and `Price` fields should be implemented
+##### Aspect: How the user input keywords for the Rating and Price fields should be implemented
 * **Alternative 1 (current choice):** Implement the rating and price fields with additional syntax (eg. Rating
   implemented as `RATING/5` instead of `RATING`, and price implemented as `$PRICE` or `$PRICE-PRICE` instead
   of `PRICE` or `PRICE-PRICE`)
@@ -461,7 +461,7 @@ The parsed command will be identified as the exit command.
 
 ## **Appendix B: Product scope**
 
-**Target user profile**:
+**Target user profile**
 
 This product caters to food-fervent NUS students who would ideally benefit from
 keeping records of food options tasted in the vicinity of NUS.
@@ -475,13 +475,13 @@ keeping records of food options tasted in the vicinity of NUS.
 * occasionally prefers to use ui for certain tasks
 
 
-**Value proposition**:
+**Value proposition**
 
+Product Scope:
 The Food Diary will allow NUS foodies to save time and effort when finding places to eat around the NUS vicinity.
-The Food Diary especially caters to students chiefly on 3 aspects
-– One, the ability for users to log personal food reviews tagged under different categories for future reference;
-Two, the ability to effortlessly reference food options based on relevant filters in a user-friendly GUI;
-and Three, the ability to import and export their personal food diary to share with friends.
+The Food Diary especially caters to students chiefly on 2 aspects – One, the ability for users to log personal food
+reviews tagged under different NUS-related location categories for future reference; and two, the ability to
+effortlessly reference food options based on relevant filters in a user-friendly GUI.
 
 ## **Appendix C: User stories**
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -508,6 +508,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Food Diary` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC01: Add an Entry**
+
 Preconditions: There are lesser than 1 000 000 entries in the Food Diary application.
 
 **MSS**
@@ -756,11 +757,11 @@ Non-functional requirements specify the constraints under which the system for T
 The Food Diary system is made up of the front-end, which is interchangeably referred to as the User Interface (UI),
 and the back-end, which handles data management and operations.
 
-### Technical requirements:
+### Technical requirements
 
 * The system should be operable on Windows, MacOS and Linux operating systems, with Java 11 or above installed.
 
-### Performance requirements:
+### Performance requirements
 
 * The system should be loaded up within 2 seconds or less.
 * The UI should appear within 2 seconds or less and be responsive to User input.
@@ -768,20 +769,20 @@ and the back-end, which handles data management and operations.
 * The back-end should be able to handle 1,000 or more data entries (Food Diary entries) without noticeable sluggishness
   in performance for typical usage.
 
-### Usability requirements:
+### Usability requirements
 
 * The user should have access to a keyboard, and be proficient with typing alphanumeric English characters for commands
   to accomplish most of the usages of The Food Diary.
 
-### Project scope:
+### Project scope
 * The system should mainly comprise the handling of Food Diary-entry addition, deletion, and listing.
 * The system would not be responsible for features involving multiple users
 
-### Scalability requirements:
+### Scalability requirements
 * The system can handle a larger user base with many more food reviews being added to it
 * Program is extendable for future addition of features easily
 
-### Other Noteworthy Points:
+### Other Noteworthy Points
 
 * The system should preserve data keyed in by the user
 
@@ -812,7 +813,9 @@ to work on.
        Expected: The most recent window size and location is retained.
        
 ### Add an entry
+
 1. Add an entry with the provided details.
+   
     1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
 
     2. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
@@ -840,34 +843,42 @@ to work on.
     9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)
 
-## Add on to an entry
+### Add on to an entry
 1. Add on to an entry with the provided details
+   
     1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.
+       
     2. Test case: `addon 1 re/I like this food a lot! p/7`
     <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
        out of the initial price range dispalyed in the entry). Specified Entry will be updated with the addon on fields.
+       
     3. Test case: addon 1
     <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
+       
     4. Test case: addon 1 re/
     <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.
+       
     5. Test case: addon 1 re/Good Food p/1000
     <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
+       
     6. Other incorrect `addon` commands to try: addon 10000000000 re/Good Food (invalid index)
     
-## Delete an Entry
+### Delete an Entry
 1. Delete a booking specified by booking ID.
+   
     1. Prerequisite: `list` all entries to find out the name of the entry to delete
 
-    Test case: delete 1
+    2. Test case: delete 1
     <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
-    
-    Test case: delete x (where x is non-existent booking ID)
+   
+    3. Test case: delete x (where x is non-existent booking ID)
     <br>Expected: Error of invalid entry shown in result display. No entry is deleted.
 
-    Other incorrect delete commands to try: delete, delete Starbucks
+    4. Other incorrect delete commands to try: delete, delete Starbucks
     <br>Expected: Invalid command format error. No entry is deleted.
+   
     
-### Find for entries
+### Find entries
 
 1. Finding for entries using the `find` command
    
@@ -881,21 +892,21 @@ to work on.
         - 4 default entries will be shown.
        
     3. Test case: `find $7`
-
+       
        Expected:
        - All entries shown with a price of $7, or a range of price that contains $7. 
        - Success message displayed informing the user of the number of entries found.
        - 1 default entry will be shown.
        
     4. Test case: `find western 5/5 $5-10`
-
+       
        Expected:
        - All entries shown which contain at least one of the three keywords provided.
        - Success message displayed informing the user of the number of entries found.
        - 9 default entries will be shown.
        
     5. Test case: `find 3/7`
-
+       
        Expected:
        - All entries shown which contain the provided keyword: `3/7`, if any.
        - Success message displayed informing the user of the number of entries found.
@@ -904,7 +915,7 @@ to work on.
        - 0 default entries will be shown.
        
     6. Test case: `find $5-`
-
+       
         Expected:
         - All entries shown which contain the provided keyword: `$5-`, if any.
         - Success message displayed informing the user of the number of entries found.
@@ -913,7 +924,7 @@ to work on.
         - 0 default entries will be shown.
        
     7. Test case: `find 3/7 $5-`
-
+       
         Expected:
         - All entries shown which contain either of the keywords provided, if any.
         - Success message displayed informing the user of the number of entries found.
@@ -921,7 +932,7 @@ to work on.
         and a price search, providing directions to correct the typos.
         - 0 default entries will be shown.
        
-### Find for specific entries
+### Find specific entries
 
 1. Finding for entries using the `findall` command
    
@@ -985,18 +996,22 @@ to work on.
 
 ### View an entry
 1. View an expanded view of an entry with lengthy review
+   
     1. Prerequisite: Must have entries listed out in the Main Window    
 
     2. Test Case: Correct command with valid parameters:`view 1` (provided that entry of index 1 already exists)
         
         Expected: A window pops up which shows all details of the specified entry.
+       
     3. Test Case: Command without parameters: `view`
        
         Expected: User will be notified that invalid command format is provided. The command box
-        Will show the correct syntax for `view` command.
+        will show the correct syntax for `view` command.
+       
     4. Test Case: Command not in lower-case: `ViEw 1` (provided that entry of index 1 already exists)
     
         Expected: User will be notified about unknown command in the command box.
+       
     5. Test Case: Correct command but with non-existent index: `view 100000` (provided that entry of index 100000 
        do not exists)
        
@@ -1004,6 +1019,7 @@ to work on.
 
 ### Revise an Entry
 1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(s)`
+   
     1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line, execute `Revise <Index>`. 
                     `Index` refers to index of Entry to revise in view.
        
@@ -1047,6 +1063,7 @@ to work on.
     
 ### Clear all entries
 1. Remove all entries from The Food Diary
+   
     1. Prerequisite: None
     
     2. Test Case: Correct command:`clear` 
