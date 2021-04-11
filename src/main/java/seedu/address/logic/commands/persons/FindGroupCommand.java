@@ -14,7 +14,7 @@ import seedu.address.model.group.GroupContainsKeywordsPredicate;
  */
 public class FindGroupCommand extends Command {
 
-    public static final String COMMAND_WORD = "findg";
+    public static final String COMMAND_WORD = "findpg";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose groups contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
