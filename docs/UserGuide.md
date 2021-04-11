@@ -6,7 +6,8 @@ title: User Guide
 TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
 ## Table of Contents
-* {:toc}
+* Table of Contents 
+{:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
