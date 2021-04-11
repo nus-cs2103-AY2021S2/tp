@@ -6,7 +6,8 @@ title: Wang Yuchen's Project Portfolio Page
 ## Project: PocketEstate
 
 PocketEstate enables easy organisation of mass clientele property information through sorting of information by price,
-location and housing type, that may otherwise be difficult to manage.
+location and housing type, that may otherwise be difficult to manage. I have been tasked with greatly expanding the capabilities of 
+the search function, as well as some documentation and testing. 
 
 Given below are my contributions to the project.
 
@@ -29,7 +30,9 @@ Given below are my contributions to the project.
     * Contributed to unit tests for: 
         * `PocketEstateParser`, which is the main parser that reads raw user input
 * **Team-based tasks**: 
-    * Reported bugs as issues for better tracking
+    * Reported bugs as issues for better tracking. 
+    * Updated Java CI codecov badges from AB3's to PocketEstate's. 
 * **Review/mentoring**: 
     * Reviewed and merged pull requests
-    * Helped to resolve merge conflicts in other members' pull requests
+    * Helped to resolve merge conflicts in other members' pull requests. 
+    * Implemented several bugfixes. 
