@@ -159,11 +159,6 @@ We can combine in the following way :
 Note that for `find A /AND B /OR C /OR D /AND E` , the implicit bracketing considered is `find A /AND [B /OR [C /OR [D 
 /AND E]]]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A customer can have any number of tags (including 0)
-</div>
-
-
 ## Deleting a customer : `delete`
 
 Deletes the specified customer from the contact list.
