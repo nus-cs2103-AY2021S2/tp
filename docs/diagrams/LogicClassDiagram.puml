@@ -1,15 +1,24 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
+skinparam arrowThickness 2
+skinparam arrowColor LOGIC_COLOR
 skinparam classBackgroundColor LOGIC_COLOR
+
+skinparam Note {
+    BackgroundColor #white
+}
 
 package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
-Class XYZCommandParser
+Class JJIMYParser
+Interface ComponentParser <<Interface>>
+Class CustomerParser
+Class MenuParser
+Class OrderParser
+Class InventoryParser
+Class ComponentXYZCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -34,26 +43,35 @@ Class HiddenModel #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
-LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager --> "1" JJIMYParser
+JJIMYParser .right.> ComponentParser: creates >
+CustomerParser .up.|> ComponentParser
+MenuParser .up.|> ComponentParser
+OrderParser .up.|> ComponentParser
+InventoryParser .up.|> ComponentParser
+CustomerParser ..> ComponentXYZCommandParser: creates >
+MenuParser ..> ComponentXYZCommandParser: creates >
+OrderParser ..> ComponentXYZCommandParser: creates >
+InventoryParser ..> ComponentXYZCommandParser: creates >
 
-XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
+ComponentXYZCommandParser ..> XYZCommand: creates >
+ComponentXYZCommandParser .left.|> Parser : \t\t\t
+ComponentXYZCommandParser ..> ArgumentMultimap
+ComponentXYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
+ComponentXYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
+ComponentXYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
+
+LogicManager .up.|> Logic
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+LogicManager -left-> Model
+Command .left.> Model
+'note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
