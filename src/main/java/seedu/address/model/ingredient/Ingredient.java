@@ -11,8 +11,8 @@ public class Ingredient implements Item {
 
     /**
      * Ingredient constructor
-     * @param name
-     * @param quantity
+     * @param name name of ingredient
+     * @param quantity quantity of ingredient
      */
     @JsonCreator
     public Ingredient(@JsonProperty("name") String name, @JsonProperty("quantity") int quantity) {

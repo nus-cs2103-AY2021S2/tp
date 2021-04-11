@@ -18,7 +18,7 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
 
     /**
      * Constructor to copy ingredient book
-     * @param toBeCopied
+     * @param toBeCopied ingredient book to be copied
      */
     public IngredientBook(ReadOnlyBook<Ingredient> toBeCopied) {
         this();
@@ -36,7 +36,7 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
 
     /**
      * Set ingredients from list
-     * @param ingredients
+     * @param ingredients list of ingredients used to replace
      */
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients.setItems(ingredients);
@@ -44,7 +44,7 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
 
     /**
      * Reset list data using new data
-     * @param newData
+     * @param newData new book data to be used
      */
     public void resetData(ReadOnlyBook<Ingredient> newData) {
         requireNonNull(newData);
@@ -54,7 +54,7 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
 
     /**
      * Check if ingredient exists
-     * @param ingredient
+     * @param ingredient ingredient to check for
      * @return result
      */
     public boolean hasIngredient(Ingredient ingredient) {
@@ -63,6 +63,12 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
         return ingredients.contains(ingredient);
     }
 
+    /**
+     * Check if there are sufficient ingredients
+     * @param ingredient ingredient to look for
+     * @param quantity quantity needed
+     * @return if there are sufficient ingredients
+     */
     public boolean hasSufficientIngredients(Ingredient ingredient, int quantity) {
         for (Ingredient i : ingredients) {
             if (i.isSame(ingredient)) {
@@ -74,16 +80,16 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
 
     /**
      * Add new ingredient
-     * @param o
+     * @param ingredient ingreident to add
      */
-    public void addIngredient(Ingredient o) {
-        ingredients.add(o);
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
     }
 
     /**
      * Set ingredient details
-     * @param target
-     * @param editedIngredient
+     * @param target target ingredient to be edited
+     * @param editedIngredient edited version of ingredient
      */
     public void setIngredient(Ingredient target, Ingredient editedIngredient) {
         requireNonNull(editedIngredient);
@@ -92,7 +98,7 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
 
     /**
      * Remove ingredient
-     * @param key
+     * @param key ingredient to remove
      */
     public void removeIngredient(Ingredient key) {
         ingredients.remove(key);

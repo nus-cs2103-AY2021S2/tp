@@ -2,9 +2,16 @@ package seedu.address.model.ingredient;
 
 import java.util.function.Predicate;
 
+/**
+ * Predicate that checks if ingredient's quantity has less than this number.
+ */
 public class IngredientQuantityLessThanPredicate implements Predicate<Ingredient> {
     private final int quantity;
 
+    /**
+     * Initialize predicate with quantity
+     * @param quantity less than quantity to check for
+     */
     public IngredientQuantityLessThanPredicate(int quantity) {
         this.quantity = quantity;
     }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that an order contains customer name that has these keywords
  */
 public class OrderContainsCustomerNamesPredicate implements Predicate<Order> {
     private final List<String> keywords;

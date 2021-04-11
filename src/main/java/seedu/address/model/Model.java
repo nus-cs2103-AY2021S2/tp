@@ -93,7 +93,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @param predicate
+     * @param predicate predicate to filter persons by.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<? super Person> predicate);
@@ -101,15 +101,15 @@ public interface Model {
     //=========== DishBook ================================================================================
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces dish book data with the data in {@code addressBook}.
      */
     void setDishBook(ReadOnlyBook<Dish> dishBook);
 
-    /** Returns the AddressBook */
+    /** Returns the DishBook */
     ReadOnlyBook<Dish> getDishBook();
 
     /**
-     * Returns true if a dish with the same name as {@code dish} exists in the address book.
+     * Returns true if a dish with the same name as {@code dish} exists in the dish book.
      */
     boolean hasDish(Dish dish);
 
@@ -137,7 +137,7 @@ public interface Model {
      */
     void setDish(Dish target, Dish editedDish);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered dish list */
     ObservableList<Dish> getFilteredDishList();
 
     /**
@@ -164,7 +164,7 @@ public interface Model {
 
     //=========== IngredientBook ================================================================================
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces ingredient book data with the data in {@code ingredientBook}.
      */
     void setIngredientBook(ReadOnlyBook<Ingredient> ingredientBook);
 
@@ -238,15 +238,15 @@ public interface Model {
 
     //=========== OrderBook ================================================================================
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces order book data with the data in {@code orderBook}.
      */
     void setOrderBook(ReadOnlyBook<Order> orderBook);
 
-    /** Returns the AddressBook */
+    /** Returns the OrderBook */
     ReadOnlyBook<Order> getOrderBook();
 
     /**
-     * Returns true if a dish with the same name as {@code dish} exists in the address book.
+     * Returns true if a order exists in the address book.
      */
     boolean hasOrder(Order order);
 
@@ -290,14 +290,14 @@ public interface Model {
     List<Order> getIncompleteOrders();
 
     /**
-     * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
      * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<? super Order> predicate);
 
     /**
-     * Updates the filtered ingredient list by sorting it with {@code comparator}.
+     * Updates the filtered order list by sorting it with {@code comparator}.
      * @param comparator
      * @throws NullPointerException if {@code predicate} is null.
      */

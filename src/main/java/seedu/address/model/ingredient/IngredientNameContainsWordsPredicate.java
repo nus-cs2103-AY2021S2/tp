@@ -5,9 +5,16 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+/**
+ * Predicate that checks if ingredient's name has specified keywords
+ */
 public class IngredientNameContainsWordsPredicate implements Predicate<Ingredient> {
     private final List<String> keywords;
 
+    /**
+     * Initialize predicate with list of keywords
+     * @param keywords keywords to search for
+     */
     public IngredientNameContainsWordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

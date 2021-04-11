@@ -15,7 +15,6 @@ import seedu.address.logic.parser.components.CustomerParser;
 import seedu.address.logic.parser.components.InventoryParser;
 import seedu.address.logic.parser.components.MenuParser;
 import seedu.address.logic.parser.components.OrderParser;
-import seedu.address.logic.parser.components.ShoppingParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -56,9 +55,6 @@ public class JJIMYParser {
 
         case InventoryParser.COMPONENT_WORD:
             return new InventoryParser().parseCommand(arguments);
-
-        case ShoppingParser.COMPONENT_WORD:
-            return new ShoppingParser().parseCommand(arguments);
 
         case MenuParser.COMPONENT_WORD:
             return new MenuParser().parseCommand(arguments);
