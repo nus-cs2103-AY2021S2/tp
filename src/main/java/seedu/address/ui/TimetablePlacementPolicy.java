@@ -35,6 +35,7 @@ public class TimetablePlacementPolicy {
     public static final long SECONDS_IN_DAY = 86400;
 
     public static final double TIMETABLE_DISPLAY_SIZE = 5760;
+    public static final int NUMBER_OF_COLUMNS = 7;
 
     private final int startHour;
     private final int startMinute;
@@ -57,7 +58,7 @@ public class TimetablePlacementPolicy {
         this.startHour = startHour;
         this.startMinute = startMinute;
         this.startDateTime = startDate.atTime(startHour, startMinute);
-        this.endDateTime = startDateTime.plusDays(TimetableView.NUMBER_OF_COLUMNS);
+        this.endDateTime = startDateTime.plusDays(NUMBER_OF_COLUMNS);
     }
 
     /**

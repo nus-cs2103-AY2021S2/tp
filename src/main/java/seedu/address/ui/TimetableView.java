@@ -30,8 +30,6 @@ import static java.util.Objects.requireNonNull;
 
 public class TimetableView extends UiPart<Region> {
 
-    public static final int NUMBER_OF_COLUMNS = 7;
-
     private static final String FXML = "TimetableWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(TimetableView.class);
