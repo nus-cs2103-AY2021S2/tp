@@ -41,9 +41,9 @@ public class TypicalFlashcards {
             .withQuestion("け").withAnswer("ke").withTags("gojuon").build();
 
     // Manually added - Flashcard's details found in {@code CommandTestUtil}
-    public static final Flashcard AMY = new FlashcardBuilder()
+    public static final Flashcard A = new FlashcardBuilder()
             .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_EASY).build();
-    public static final Flashcard BOB = new FlashcardBuilder()
+    public static final Flashcard I = new FlashcardBuilder()
             .withQuestion(VALID_QUESTION_I).withAnswer(VALID_ANSWER_I).withTags(VALID_TAG_DIFFICULT, VALID_TAG_EASY)
             .build();
 

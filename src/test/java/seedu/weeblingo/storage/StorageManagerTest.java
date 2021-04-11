@@ -2,6 +2,7 @@ package seedu.weeblingo.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.weeblingo.testutil.TypicalFlashcards.getTypicalFlashcardBook;
 
 import java.nio.file.Path;
 
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.weeblingo.commons.core.GuiSettings;
+import seedu.weeblingo.model.FlashcardBook;
+import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -44,19 +47,19 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    //    @Test
-    //    public void addressBookReadSave() throws Exception {
-    //        /*
-    //         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //         * {@link JsonFlashcardBookStorage} class.
-    //         * More extensive testing of UserPref saving/reading is done in {@link JsonFlashcardBookStorageTest}
-    //         * class.
-    //         */
-    //        FlashcardBook original = getTypicalAddressBook();
-    //        storageManager.saveAddressBook(original);
-    //        ReadOnlyFlashcardBook retrieved = storageManager.readAddressBook().get();
-    //        assertEquals(original, new FlashcardBook(retrieved));
-    //    }
+    @Test
+    public void addressBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonFlashcardBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonFlashcardBookStorageTest}
+         * class.
+         */
+        FlashcardBook original = getTypicalFlashcardBook();
+        storageManager.saveFlashcardBook(original);
+        ReadOnlyFlashcardBook retrieved = storageManager.readFlashcardBook().get();
+        assertEquals(original, new FlashcardBook(retrieved));
+    }
 
     @Test
     public void getFlashcardBookFilePath() {

@@ -211,6 +211,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Changes the content for flashcardListPanelPlaceholder, depending on the boolean argument.
+     *
+     * @param isShowingHistory True if the app is trying to change the display content to history.
+     *                         False if the app is trying to change the display content to flashcards list.
+     */
     private void changePlaceHolderContent(boolean isShowingHistory) {
         int index = -1;
         if (isShowingHistory) {

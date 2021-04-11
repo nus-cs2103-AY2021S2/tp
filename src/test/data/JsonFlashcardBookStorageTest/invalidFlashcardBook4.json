@@ -1,0 +1,14 @@
+{
+  "flashcards" : [ {
+    "question" : "あ",
+    "answer" : "a",
+    "tagged" : [ ],
+    "userTagged" : [ ]
+  }, {
+    "question" : "い",
+    "answer" : "i",
+    "tagged" : [ "gojuon", "hiragana" ],
+    "userTagged" : [ ]
+  }],
+  "scores" : ["I am dead"]
+}

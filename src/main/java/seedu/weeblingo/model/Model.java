@@ -144,14 +144,19 @@ public interface Model {
 
     void switchModeLearn() throws CommandException;
 
+    /** Switches the GUI display mode to be 'menu' */
     void switchModeMenu();
 
+    /** Switches the GUI display mode to be 'quiz' */
     void switchModeQuizSession();
 
+    /** Switches the GUI display mode to be 'answer-check-success' */
     void switchModeCheckSuccess();
 
+    /** Switches the GUI display mode to be 'history' */
     void switchModeHistory();
 
+    /** Switches the GUI display mode to be 'end-of-quiz-session' */
     void switchModeQuizSessionEnded();
 
     /** Gets the statistics information as a string for display purposes */

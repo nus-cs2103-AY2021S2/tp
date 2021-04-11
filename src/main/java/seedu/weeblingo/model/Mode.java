@@ -18,30 +18,37 @@ public class Mode {
         this.currentMode = MODE_MENU;
     }
 
+    /** Switches to quiz mode */
     public void switchModeQuiz() {
         this.currentMode = MODE_QUIZ;
     }
 
+    /** Switches to learn mode */
     public void switchModeLearn() {
         this.currentMode = MODE_LEARN;
     }
 
+    /** Switches to menu mode */
     public void switchModeMenu() {
         this.currentMode = MODE_MENU;
     }
 
+    /** Switches to quiz-session mode */
     public void switchModeQuizSession() {
         this.currentMode = MODE_QUIZ_SESSION;
     }
 
+    /** Switches to answer-check-success mode */
     public void switchModeCheckSuccess() {
         this.currentMode = MODE_CHECK_SUCCESS;
     }
 
+    /** Switches to history mode */
     public void switchModeHistory() {
         this.currentMode = MODE_HISTORY;
     }
 
+    /** Switches to end-of-quiz mode */
     public void switchModeQuizSessionEnded() {
         this.currentMode = MODE_QUIZ_SESSION_ENDED;
     }
