@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":RemindCommandParser" as RemindCommandParser LOGIC_COLOR
+participant ":ReminderDatePredicate" as ReminderDatePredicate LOGIC_COLOR
+participant ":RemindCommand" as RemindCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> RemindCommandParser : parse("7")
+activate RemindCommandParser
+
+create ReminderDatePredicate
+RemindCommandParser -> ReminderDatePredicate
+activate ReminderDatePredicate
+
+ReminderDatePredicate --> RemindCommandParser : c
+deactivate ReminderDatePredicate
+
+create RemindCommand
+RemindCommandParser -> RemindCommand : RemindCommand(c)
+activate RemindCommand
+
+RemindCommand --> RemindCommandParser : f
+deactivate RemindCommand
+
+[<-- RemindCommandParser : f
+deactivate RemindCommandParser
+[<-[hidden]- RemindCommandParser
+destroy RemindCommandParser
+
+[-> RemindCommand : execute()
+activate RemindCommand
+
+RemindCommand -> Model : updateFilteredOrderList(c)
+activate Model
+
+deactivate Model
+
+create CommandResult
+RemindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemindCommand : cr
+deactivate CommandResult
+
+[<-- RemindCommand : cr
+deactivate RemindCommand
+
+@enduml
