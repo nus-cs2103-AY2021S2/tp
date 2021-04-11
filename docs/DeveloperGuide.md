@@ -106,7 +106,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
-* Use `GUISettings` from the `Logic`component to update the UI with new settings.
+* Use `Logic` component to update the UI with new settings.
 * `DictionaryContentPanel` use` DictionaryListPanelConfig` to detect `DictionaryListPanel`display status
 * Model Component can request for content change using `DictionaryContentConfig` and `NoteContentConfig`
 
@@ -220,7 +220,7 @@ Note that if the user does not have a mail client software set as default in the
 Dictionote has an interactive user interface that allows the user to open and close any panel through command.
 Furthermore, when any command is executed, 
 Dictionote should be able to change the user interface based on the command type/requirement.
-All commands should be able to open and close the required UI panel. 
+All commands should be able to open and close its required UI panel. 
 The user will also be able to open and close the UI via user command.
 The feature is implemented using `CommandResult`, which is returned by all `Command` in the system.
 
@@ -230,54 +230,55 @@ be show on the `ResultDisplay` indicating the command feedback after execution.
 `uiAction` indicate the action the command want the `UI` to take.
 e.g `UiAction.OPEN`, `UiAction.CLOSE`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
 It indicate the specific option available for the `UiAction`.
-e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
+e.g `UiActionOption.CONTACT` for `UiAction.OPEN` mean open contact panel.
 
 The following is the sequence diagram for executing a command to open a panel.
 
 ![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
 
 #### Design Consideration
-* **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
+* **Alternative 1 (current choice):** Make use of the existing `CommandResult` class
     * Pros: Make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting) (desire behaviour)
 * Alternative 2: Make use of the `Model` component as an intermediary between Command and UI.
   The command will call a method available on the `Model` component to change the UI settings,
-  the `Ui` will listen to the setting on the `Model` Component.
-    * Pros: Only the class that requires to change in UI will be needed to call the method.
+  the `UI` will listen to the setting on the `Model` component.
+    * Pros: Only the class that requires to change the UI will be needed to call the method.
     * Cons: Increasing coupling.
     
 #### Manipulation UI Settings through Command
 #####  Implementation
-While All Command has the ability to open and close a UI. There are some UI settings that are more specific.
-In this case, we don't want all commands to access its behavior, so using `CommandResult` isn't ideal.
-Because the `UI` component already uses `GuiSettings` to store its settings when it exits.
-We can make use the existing component by making existing UI component actively listen for changes to the `GuiSettings`.
+While all `Command` has the ability to open and close the UI. There are some UI settings that are more specific.
+In this case, we don't want all commands to implement its behavior, so using `CommandResult` isn't ideal.
+Since the `UI` component is already uses `GuiSettings` to store its settings when Dictionote close.
+We can make use of the existing structure by making the `UI` component 
+to actively listen for changes to the `GuiSettings`.
 The features are implemented in all `toggledivider` and `setdividerposition` commands.
 
 The command will change the `GuiSettings` located in `Model` componenet. 
-When the `CommandResult` is returned to the `Ui` component.
-The `Ui` Componenet will check for changes in `GuiSettings` and update it Ui according.
+When the `CommandResult` is returned to the `UI` component.
+The `UI` component will check for changes in `GuiSettings` and update it Ui according.
 
 The following is the sequence diagram for executing a command to set note divider position.
 
 ![OpenCommandSequenceDiagram](images/ToggleCommandSequenceDiagram.png)
 
 In the sequence diagram, `executeUiAction(action,option)` is called.
-This is show that the command ensure that the user receives proper feedback when the divider position changes.
-The command will open all related panels that were affected by the divider position change.
-Note divider affect both `NoteListPanel` and `NoteContentPanel`, 
-hence if its  is closed, they will be open. If they remain closed, the user will not be able to notice the changes.
-The execution of the command will result in NoteListPanel and NoteContentPanel are both visible,
-with their divider positions adjusted to the desired position
+This is to show that the command ensure that the user receives proper feedback when the divider position changes.
+The command will open all panels that were affected by the divider position change.
+If the affected panel remain closed, the user will not be able to notice the changes.
+Note divider affect both `NoteListPanel` and `NoteContentPanel`, hence if its  is closed, they will be open. 
+The execution of the command will make both `NoteListPanel` and `NoteContentPanel` visible,
+and the note divider positions will be adjusted to the desired position
 
 #### Design Consideration
-* Alternative 1 Make use of the existing command `CommandResult` class
+* Alternative 1 Make use of the existing `CommandResult` class
     * Pros: Make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting)
 * **Alternative 2(current choice):**: Make use of the `Model` component as an intermediary between Command and UI.
   The command will call a method available on the `Model` component to change the UI settings, 
-  the `Ui` will listen to the setting on the `Model` Component.
-    * Pros: Only the class that requires to change in UI will be needed to call the method.
+  the `UI` will listen to the setting on the `Model` component.
+    * Pros: Only the class that requires to change the UI will be needed to call the method.
     * Cons: Increasing coupling.
 
 
