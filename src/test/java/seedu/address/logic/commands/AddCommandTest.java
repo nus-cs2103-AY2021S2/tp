@@ -203,22 +203,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public int size() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public double getPercentage() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public int getNumberDue() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-
-        @Override
         public String countdownTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
