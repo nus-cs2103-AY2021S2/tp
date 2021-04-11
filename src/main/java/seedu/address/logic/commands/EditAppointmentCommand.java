@@ -40,7 +40,7 @@ public class EditAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Edited appointment: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-            "Another appointment with the same date and time already exist in the app";
+            "Another appointment with the same date and time already exists in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

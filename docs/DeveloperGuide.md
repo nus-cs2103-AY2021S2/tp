@@ -650,6 +650,50 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Editing a property
+
+1. Editing a property.
+
+    1. Prerequisites: Property list has at least 1 property
+
+    1. Test case: `edit property 1 n/Bishan Village` <br>
+       Expected: The first property in the property list is edited to have the name `Bishan Village`. The result display panel shows the full details of the edited property.
+
+    1. Test case: `edit property` <br>
+       Expected: No property is edited. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect edit property commands to try: `edit property n/Bishan Village`, `edit property +1` <br>
+       Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
+
+1. Editing to a duplicate property.
+
+    1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app that is not the first property in the property list.
+
+    1. Test case: `edit property 1 a/Blk 150 Bishan Street 11 #02-101 p/570150` <br>
+       Expected: No property is edited. An error message `Another property with the same address and postal code already exists in the app` is shown in the result display.
+
+### Editing an appointment
+
+1. Editing an appointment.
+
+    1. Prerequisites: The appointment list is not empty
+
+    1. Test case: `edit appointment 1 n/Meet Nathaniel` <br>
+       Expected: The first appointment in the appointment list has the name changed to `Meet Nathaniel`. The result display panel shows the full details of the edited appointment.
+
+    1. Test case: `edit appointment` <br>
+       Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect edit appointment commands to try: `edit appointment n/Meet Nathaniel`, `edit appointment +1 n/Meet Nathaniel`<br>
+       Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
+
+1. Editing to a duplicate appointment.
+
+    1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app that is not the first appointment in the appointment list.
+
+    1. Test case: `edit appointment 1 d/19-05-2021 t/1930` <br>
+       Expected: No appointment is edited. An error message `Another appointment with the same date and time already exists in the app` is shown in the result display.
+
 ## **Appendix G: Effort**
 
 ### Introduction
