@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to enter learn mode.
-2.  WeebLingo shows a list of flashcards on the screen.
+2.  Weeblingo shows a list of flashcards on the screen.
 
     Use case ends.
 
@@ -388,24 +388,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to enter quiz mode.
-2.  WeebLingo shows a new question on the screen.
+2.  Weeblingo shows a new question on the screen.
 3.  User enters and checks his answer.
-4.  WeebLingo shows whether user's answer is correct/wrong.
+4.  Weeblingo shows whether user's answer is correct/wrong.
 5.  User requests to see the next question.
-6.  WeebLingo removes this question from the list of questions for this session.
+6.  Weeblingo removes this question from the list of questions for this session.
 7.  Go to step 2 again.
 
 **Extensions**
 
 * 2a. All questions have been shown.
 
-    * 2a1. WeebLingo informs user that the quiz is over.
+    * 2a1. Weeblingo informs user that the quiz is over.
 
       Use case ends.
 
 * 3a. User already got the question correct.
 
-    * 3a1. WeebLingo prompts user to proceed to the next question.
+    * 3a1. Weeblingo prompts user to proceed to the next question.
 
       Use case resumes at step 5.
 
@@ -421,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4b. User got the question correct.
 
-    * 4b1. WeebLingo prompts user to proceed to the next question.
+    * 4b1. Weeblingo prompts user to proceed to the next question.
 
       Use case resumes at step 5.
 
@@ -430,7 +430,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to see the history of past attempts.
-2.  WeebLingo shows the history, including relevant details of the quiz attempts.
+2.  Weeblingo shows the history, including relevant details of the quiz attempts.
 
     Use case ends.
 
