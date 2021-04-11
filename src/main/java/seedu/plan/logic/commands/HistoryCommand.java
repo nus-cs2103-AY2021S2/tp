@@ -2,9 +2,13 @@ package seedu.plan.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.plan.commons.core.LogsCenter;
 import seedu.plan.logic.commands.exceptions.CommandException;
 import seedu.plan.model.Model;
 import seedu.plan.model.util.History;
+
 
 /**
  * Adds a plan to the address book.
@@ -18,6 +22,7 @@ public class HistoryCommand extends Command {
             + "None\n"
             + "The current semester is the semester that was marked using the `current s/SEM_NUM` command.\n"
             + "The master plan is the plan that was marked using the `master p/PLAN_NUM` command.";
+    private final Logger logger = LogsCenter.getLogger(HistoryCommand.class);
 
     /**
      * Outputs all completed semesters (up until but excluding the current semester) and modules of the
@@ -29,8 +34,10 @@ public class HistoryCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("----------------[EXECUTE][START]");
         requireNonNull(model);
         History history = model.getHistory();
+        logger.info("----------------[EXECUTE][END]");
         return new CommandResult(String.format(MESSAGE_SUCCESS, history.toString()));
     }
 
