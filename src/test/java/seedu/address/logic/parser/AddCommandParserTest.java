@@ -128,12 +128,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
-        // invalid tag
-        String tags = INVALID_TAG_DESC + VALID_TAG_FRIEND;
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, String.format("Tag given: %s\n%s",
-                tags.substring(3), Tag.MESSAGE_CONSTRAINTS));
-
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
                 String.format("Name given: %s\n%s", INVALID_NAME_DESC.substring(3), Name.MESSAGE_CONSTRAINTS));
