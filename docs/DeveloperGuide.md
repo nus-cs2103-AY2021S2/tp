@@ -203,28 +203,29 @@ The edit mechanism is facilitated by `EditCommand` and `EditCommandParser`.
 
 `EditCommand` extends `Command` and implements the following operation:
 
-* `EditCommand#execute()` — edits the student with personal details if the details are valid, and returns a new
+* `EditCommand#execute()` — edits the student with new personal details if the details are valid, and returns a new
   `CommandResult` with a success message.
 
 `EditCommandParser` implements the `Parser` interface and implements the following operation:
 
 * `EditCommandParser#parse()`  —  parses the user's input and returns a `EditCommand` if the command format
-  is valid
+  is valid.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently 1st student in TutorsPet. 
-Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's address being added with `edit` command is used.
+Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's subject being added with `edit` command is used.
 </div>
 
-Step 1. The user executes `edit 1 p/98765431 a/311, Clementi Ave 2, #02-25` command to edit the existing student John Doe 
-to change his phone number and add in his address.
+Step 1. The user executes `edit 1 p/98765431 t/bio` command to edit the existing student John Doe 
+to change his phone number and add in his subject.
 
 Step 2. The user input is parsed by `AddressBookParser`, which passes the edit command's argument to `EditCommandParser`.
 
-Step 3. `EditCommandParser` creates a new `Person` object for the edited student and returns a new `EditCommand` 
-if the argument is valid. Otherwise, a `ParseException` is thrown.
+Step 3. `EditCommandParser` creates a new `EditPersonDescriptor` object to include the new values of the fields to be changed to.
+The student index `1` and the `EditPersonDescriptor` object are passed into the `SearchCommand` constructor as the arguments, if they are valid. 
+Otherwise, a `ParseException` is thrown.
 
 Step 4. `LogicManager` then calls `EditCommand#execute()`.
 
@@ -256,7 +257,7 @@ whereas name and phone are compulsory details which must not be blank at any tim
 * **Alternative 1 (current choice):** Only subjects and lessons can be cleared by leaving the space blank after their respective prefixes.
     * Pros: Fewer fields need to be taken care of and are easier to remember. 
       Subjects and lessons taken by the students could be removed.
-    * Cons: Deletion of a wrong piece of information is disallowed once it is stored in the application and no new information is available. 
+    * Cons: Deletion of a wrong piece of information is disallowed once it is stored in TutorsPet and no new information is available. 
       It might cause confusion in the future.
 
 * **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after its prefix.
@@ -956,14 +957,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TutorPets` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a new contact**
 
 **MSS**
 
 1.  User keys in the contact to be added
-2.  TutorPets shows the added contact into the list
+2.  TutorsPet shows the added contact into the list
 
     Use case ends.
 
@@ -971,7 +972,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -980,7 +981,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters clears all entries contact command
-2.  TutorPets clears all the contact in list
+2.  TutorsPet clears all the contact in list
 
     Use case ends.
 
@@ -988,7 +989,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -997,9 +998,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list contacts
-2.  TutorPets shows a list of students’ contact
+2.  TutorsPet shows a list of students’ contact
 3.  User requests to delete a specific contact from the list
-4.  TutorPets deletes the person
+4.  TutorsPet deletes the person
 
     Use case ends.
 
@@ -1011,7 +1012,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. TutorPets shows an error message.
+    * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
@@ -1020,9 +1021,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list contacts
-2.  TutorPets shows a list of students’ contact
+2.  TutorsPet shows a list of students’ contact
 3.  User requests to edit a specific contact from the list
-4.  TutorPets edits the selected contact
+4.  TutorsPet edits the selected contact
 
     Use case ends.
 
@@ -1030,7 +1031,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -1040,16 +1041,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. TutorPets shows an error message.
+    * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Exit TutorPets**
+**Use case: Exit TutorsPet**
 
 **MSS**
 
 1.  User enters exit into command prompt
-2.  TutorPets saves the current contact in the list and exits.
+2.  TutorsPet saves the current contact in the list and exits.
 
     Use case ends.
 
@@ -1057,7 +1058,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
@@ -1066,7 +1067,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters the student name or specified keyword to be searched.
-2.  TutorPets shows a list of searched students.
+2.  TutorsPet shows a list of searched students.
 
     Use case ends.
 
@@ -1075,6 +1076,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The search result list is empty.
 
   Use case ends.
+
+**Use case: Add a new important date**
+
+**MSS**
+
+1.  User keys in the important date to be added.
+2.  TutorsPet adds the important date and indicates success.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given description or details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. There exists an important date in TutorsPet with the same description.
+  
+  * 1b1. TutorsPet shows an error message.
+  
+    Use case ends.
+
+**Use case: Deletes a new important date**
+
+**MSS**
+
+1.  User requests to list important dates.
+2.  TutorsPet shows a list of important dates.
+3.  User requests to delete a specific important date from the list.
+4.  TutorsPet deletes the important date.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+  
+    Use case ends.
+
+* 3a. The given index of the important date is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
+**Use case: Lists important dates**
+
+**MSS**
+
+1.  User requests to list important dates.
+2.  TutorsPet shows a list of important dates.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is in an invalid format.
+  
+  * 1a1. TutorsPet shows an error message.
+  
+    Use case ends.
 
 *{More to be added}*
 
@@ -1130,17 +1194,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -1154,3 +1218,49 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding an important date
+
+1. Adding an important date while all important dates are being shown
+
+    1. Prerequisites: List all important dates using the `list-date` command. Multiple important dates in the list.
+  
+    1. Test case: `add-date d/math exam dt/2021-11-03 0800`<br>
+       Expected: Adds an important date with the description `math exam` and details `2021-11-03 0800`. Details of the added important date is shown in the status message. List is updated. 
+  
+    1. Test case: `add-date d/math exam`<br>
+       Expected: No important date is added. Error details shown in the status message.
+       
+    1. Test case: `add-date dt/2021-11-03 0800`<br>
+       Expected: Similar to previous.
+       
+    1. Test case: `add-date d/math exam dt/2021/11/03 8am`<br>
+       Expected: Similar to previous.
+  
+    1. Other incorrect add important date commands to try: `add-date`, `add-date x`, `...` (where x is the description or details without the `d/` or `dt/` prefix)<br>
+       Expected: Similar to previous.
+
+
+### Deleting an important date
+
+1. Deleting an important date while all important dates are being shown
+   
+    1. Prerequisites: List all important dates using the `list-date` command. Multiple important dates in the list.
+    
+      1. Test case: `delete-date 1`<br>
+         Expected: First important date is deleted from the list. Details of the deleted important date is shown in the status message.
+    
+      1. Test case: `delete-date 0`<br>
+         Expected: No important date is deleted. Error details shown in the status message.
+    
+      1. Other incorrect delete important date commands to try: `delete-date`, `delete x`, `...` (where x is larger than the list size, larger than 2147483647 or not a positive integer)<br>
+         Expected: Similar to previous.
+
+### Listing all important dates
+
+1. List all important dates.
+
+    1. Test case: `list-date 2`<br>
+       Expected: Opens window with a list of important dates. Success details is shown in the status message.
+    
+    1. Incorrect list important date commands include cases where the command entered is not `list-date`

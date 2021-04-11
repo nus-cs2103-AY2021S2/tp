@@ -5,8 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
-participant "student:Person" as Person LOGIC_COLOR
-participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":Person" as Person LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -60,6 +60,8 @@ AddCommand -> Model : addPersonToLesson(student)
 activate Model
 
 AddCommand -> Model : addPerson(student)
+
+AddCommand -> Model : setSavedState(false)
 
 Model --> AddCommand
 deactivate Model

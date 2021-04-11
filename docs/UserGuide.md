@@ -6,9 +6,10 @@ title: User Guide
 TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
 ## Table of Contents
-* {:toc}
+* Table of Contents 
+{:toc}
 --------------------------------------------------------------------------------------------------------------------
-## About
+## 1. About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
 Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorsPet. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
@@ -41,7 +42,7 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -78,7 +79,7 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -105,7 +106,37 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Adding a contact: `add`
+### 3.1 General
+
+#### 3.1.1 Clearing all entries : `clear`
+
+Clears all entries from TutorsPet.
+
+Format: `clear`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+#### 3.1.2 Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+#### 3.1.3 Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### 3.2 Student Management
+
+#### 3.2.1 Adding a contact: `add`
 
 Adds a student’s contact to TutorsPet.
 
@@ -116,17 +147,18 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 :bulb:**Tips:** <br>
 
-* `n/NAME p/PHONE` are compulsory fields that must be provided. **Phone can uniquely identify a student.** i.e. Students cannot share the same phone number, while duplicate names are allowed.
+* `n/NAME p/PHONE` are compulsory fields that must be provided. **Phone can uniquely identify a student.** i.e. Students cannot share the same phone number, while duplicate names are allowed. 
+  Note that names are **case-insensitive** in TutorsPet,  e.g. `john`, `JOHN`, `John` are read as the same name.
   
 * `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
 
-* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`.
-  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution, 
+* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`, which are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
+  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tuition, 
   as well as graduated students who are less likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `Bio`, `BIO`, `bio` are equivalent.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
@@ -168,7 +200,7 @@ Examples:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Editing a contact : `edit`
+#### 3.2.2 Editing a contact : `edit`
 
 Edits an existing student in TutorsPet.
 
@@ -190,8 +222,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
 * Optional fields which were not available when a student's contact was initially saved in TutorsPet can be added in.
 
-* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`.
+* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`, which are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
   They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution,
   as well as graduated students who are less likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
@@ -202,7 +234,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
   
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `Bio`, `BIO`, `bio` are equivalent.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
@@ -232,7 +264,7 @@ Examples:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Viewing a contact details: `detail`
+#### 3.2.3 Viewing a contact details: `detail`
 
 View the full details of the specified student's contact from TutorsPet.
 The specified student's name, school, phone number, email, address, guardian name and guardian's phone number will
@@ -262,7 +294,7 @@ detail 1    | displays the details of the 1st student in the list
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Deleting a contact : `delete`
+#### 3.2.4 Deleting a contact : `delete`
 
 Permanently deletes the specified student's contact from TutorsPet.
 
@@ -293,7 +325,7 @@ Command     | Result
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Searching for a contact: `search`
+#### 3.2.5 Searching for a contact: `search`
 
 Searches for a student’s contact whose details contain any of the given keywords.
 
@@ -325,7 +357,7 @@ Prefix | Searching Criteria
   
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `Bio`, `BIO`, `bio` are equivalent.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
@@ -343,7 +375,7 @@ Examples:
 
 <a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
-### Sorting contacts: `sort`
+#### 3.2.6 Sorting contacts: `sort`
 Sorts the student contacts list by name, school, subjects or lessons.
 
 Format: `sort PREFIX`
@@ -376,7 +408,7 @@ Examples:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Listing all contacts : `list`
+#### 3.2.7 Listing all contacts : `list`
 
 Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
 
@@ -384,17 +416,7 @@ Format: `list`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Viewing schedule : `schedule`
-
-Shows a weekly schedule that displays lessons for the week.
-
-Format: `schedule`
-
-![schedule popup](images/scheduleWindow.png)
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-### Advancing all students: `levelup`
+#### 3.2.8 Advancing all students: `levelup`
 
 Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass update all the student's levels at the start of the school year.
@@ -432,7 +454,7 @@ Examples:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Demoting all students: `leveldown`
+#### 3.2.9 Demoting all students: `leveldown`
 
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass undo of `levelup` or indicate retainees. 
@@ -469,7 +491,9 @@ Examples:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Adding an important date: `add-date`
+### 3.3 Important Date Management
+
+#### 3.3.1 Adding an important date: `add-date`
 
 Adds an important date to TutorsPet.
 
@@ -496,7 +520,7 @@ Command     | Result
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Listing all important dates : `list-date`
+#### 3.3.2 Listing all important dates : `list-date`
 
 Shows a list of all important dates in TutorsPet.
 
@@ -506,7 +530,7 @@ Format: `list-date`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Deleting an important date : `delete-date`
+#### 3.3.3 Deleting an important date : `delete-date`
 
 Permanently deletes the specified important date from TutorsPet.
 
@@ -533,37 +557,25 @@ Command     | Result
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Clearing all entries : `clear`
+### 3.4 Lesson Planning
 
-Clears all entries from TutorsPet.
+#### 3.4.1 Viewing schedule : `schedule`
 
-Format: `clear`
+Shows a weekly schedule that displays lessons for the week.
 
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+Format: `schedule`
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+![schedule popup](images/scheduleWindow.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Viewing help : `help`
+### 3.5 Data Management
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
-
-### Saving the data
+#### 3.5.1 Saving the data
 
 TutorsPet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### 3.5.2 Editing the data file
 
 TutorsPet data are saved into three different JSON files: <br>
 1. `[JAR file location]/data/addressbook.json` for storing contact details. 
@@ -579,30 +591,32 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-## Coming soon
+## 4. Coming soon
 
-### Add a subject to teach`[coming in v2.0]`
+### 4.1 Add a subject to teach`[coming in v2.0]`
 
 _Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
 while in v2.0, more personalised subjects can be added in._
 
-### Add profile picture for each contact`[coming in v2.0]`
+### 4.2 Add profile picture for each contact`[coming in v2.0]`
 _Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
 by providing the file path to the picture._
 --------------------------------------------------------------------------------------------------------------------
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-## FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsPet home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Field Format Summary
+## 6. Summary
 
-Student Contact Field   | Prefix | Optional?| Notes
+### 6.1 Field Format Summary
+
+Student Contact Field   | Prefix | Optional?|Notes
 ------------------------| -------|--------- |------------------------------------
 Name                    | `n/`   | Y        | Contains alphanumeric characters and spaces only
 Phone number            | `p/`   | Y        | Contains numbers only; at least 3 digits long
@@ -624,24 +638,25 @@ like chem and bio.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-## Command summary
+### 6.2 Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/geo`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Exit** | `exit`
+**Help** | `help`
+**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/geo`
 **Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Detail** | `detail INDEX` <br> e.g., `detail 1`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
-**Schedule** | `schedule`
 **Sort** | `sort PREFIX` <br> e.g., `sort [n/]`, `sort [s/]`
+**List** | `list`
 **Level Up** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/2 4`
 **Level Down** | `leveldown [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/1 2`
-**Detail** | `detail INDEX` <br> e.g., `detail 1`
-**List** | `list`
 **Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
 **List dates** | `list-date`
-**Help** | `help`
+**Schedule** | `schedule`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
