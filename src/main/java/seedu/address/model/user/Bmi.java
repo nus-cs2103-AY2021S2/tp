@@ -9,7 +9,7 @@ public class Bmi {
                     + " and may include a decimal.";
     private static final double HEALTHY_BMI_LOWER_BOUND = 18.5;
     private static final double HEALTHY_BMI_UPPER_BOUND = 22.9;
-    private static final String VALIDATION_REGEX = "^[1-9](\\d+)?$|^[1-9](\\d+)?.(\\d+)$";
+    private static final String VALIDATION_REGEX = "^(0)*[1-9](\\d+)?$|^(0)*[1-9](\\d+)?.(\\d+)$";
 
     // Identity fields
 
