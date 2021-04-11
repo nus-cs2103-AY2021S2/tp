@@ -499,6 +499,12 @@ Get rid of all existing records and populate it with the sample template data.
   <img src="images/user-guide/reset-template.png">
 </p>
 
+### 5.3 Exit the application
+
+Closes the application.
+
+**Command Format:** `exit`
+
 ---
 
 ## Command summary
@@ -527,6 +533,7 @@ Action | Format, Examples
 **Generate progress report** | `progress`
 **Reset application data** | `reset t/blank`
 **Populate application with sample template data** | `reset t/template`
+**Exit the application** | `exit`
 
 ---
 
