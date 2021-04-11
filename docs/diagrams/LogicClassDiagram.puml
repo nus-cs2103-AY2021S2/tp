@@ -35,7 +35,11 @@ Interface Logic <<Interface>>
 Class LogicManager
 }
 
-package Model{
+package Model {
+Class HiddenModel #FFFFFF
+}
+
+package Storage {
 Class HiddenModel #FFFFFF
 }
 
@@ -66,6 +70,7 @@ ConditionLogic --> IndexManager
 ConditionLogic --> ConstraintManager
 ConditionLogic --> RecurringScheduleVerifier
 
+LogicManager -right-> Storage
 LogicManager --> Model
 Command .left.> Model
 
