@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://pyuxiang.com/)]
 [[github](https://github.com/pyuxiang)]
-[[portfolio](team/justin.md)]
+[[portfolio](team/pyuxiang.md)]
 
 ### Foo Chuan Le, Nicholas
 

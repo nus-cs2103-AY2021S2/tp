@@ -8,15 +8,15 @@ as well as store their theme preferences for subsequent use.
 The theme selection is primarily enabled by the `Theme` enumeration.
 The selection of themes can be triggered via three alternative mechanisms:
 
-1. Via the specific theme selection from within the menu bar.
+1. Upon application start up.
 
-![](images/themeMenuScreenshot.png)
+2. Via the specific theme selection from within the menu bar.
 
-2. Upon application start up.
+   ![](images/themeMenuScreenshot.png)
 
 3. Via the singular `theme` command which toggles between themes.
 
-![](images/themeCliScreenshot.png)
+   ![](images/themeCliScreenshot.png)
 
 The `setTheme` method within `MainWindow` is directly responsible for modifying the look-and-feel of the user interface,
 achieved by replacing the stylesheets associated with the requested theme. This method is indirectly exposed to the user
