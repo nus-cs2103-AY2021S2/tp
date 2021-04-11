@@ -21,8 +21,8 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete_tutor";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the Tutor identified by the index number used in the "
-            + "displayed person list.\n"
+            + ": Deletes the tutor identified by the index number used in the "
+            + "displayed tutor list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
