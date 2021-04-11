@@ -136,7 +136,6 @@ Examples:
 Shows all student records in Vax@NUS that matches the specified vaccination status, faculty or school residence.
 
 :information_source: NOTE: The filter command only changes the view of the student list and not the view of the appointment list.
-The student and appointment list view will be reverted to the original view for commands executing after filter and find command.
 
 Format: <br>
 `filter VACCINATION_STATUS`
@@ -266,8 +265,6 @@ Format: `list`
 ### Finding a student and their appointment : `find`
 
 Shows personal information, including appointment details if present, of the student that matches the specified matriculation number.
-
-:information_source: NOTE: The student and appointment list view will be reverted to the original view for commands executing after filter and find command.
 
 Format: `find MATRICULATION_NUMBER`
 
