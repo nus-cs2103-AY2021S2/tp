@@ -95,6 +95,11 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
+    public List<CategoryStatistics> getAllUnsortedCategoryStatistics() {
+        return statistics.getAllUnsortedCategories();
+    }
+
+    @Override
     public Path getBudgetBabyFilePath() {
         return model.getBudgetBabyFilePath();
     }

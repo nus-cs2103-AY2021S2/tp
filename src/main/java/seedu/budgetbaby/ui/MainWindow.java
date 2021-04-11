@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategoryStatistics());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getAllUnsortedCategoryStatistics());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
@@ -163,7 +163,7 @@ public class MainWindow extends UiPart<Stage> {
         // Automatically updates UI when changes are made to BudgetTracker
         logic.getBudgetTracker().addListener(observable -> {
             budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
-            budgetDisplay.updateTopCategoriesUi(logic.getTopCategoryStatistics());
+            budgetDisplay.updateAllCategoriesUi(logic.getAllUnsortedCategoryStatistics());
             financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
             categoryStatsWindow.updateStatistics(logic.getTopCategoryStatistics());
             monthStatsWindow.updateStatistics(logic.getPastMonthStatistics());

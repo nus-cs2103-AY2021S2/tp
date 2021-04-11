@@ -39,17 +39,7 @@ public class DeleteFrCommandTest {
         String actualOutput = expectedModel.getFilteredFinancialRecordList().toString();
 
         assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_DELETE_LUNCH, actualOutput);
-
-        //assertCommandSuccess(deleteCommand, model, expectedOutput, expectedModel);
     }
-
-    //    @Test
-    //    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-    //        List<Index> outOfBoundIndex = new ArrayList<>(model.getFilteredFinancialRecordList().size() + 1);
-    //        DeleteFrCommand deleteCommand = new DeleteFrCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
 
     @Test
     public void execute_validIndexFilteredList_success() throws CommandException {
@@ -62,22 +52,7 @@ public class DeleteFrCommandTest {
         String actualOutput = expectedModel.getFilteredFinancialRecordList().toString();
 
         assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_EMPTY, actualOutput);
-
-        //assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
-
-    //    @Test
-    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        showFrAtIndex(model, INDEX_FIRST_FR);
-    //
-    //        List<Index> outOfBoundIndex = INDEX_FIRST_FR;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.get(0).getZeroBased() < model.getBudgetTracker().getMonthList().size());
-    //
-    //        DeleteFrCommand deleteCommand = new DeleteFrCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
 
     @Test
     public void execute_validMultipleIndexFilteredList_throwsCommandException() throws CommandException {
@@ -91,22 +66,7 @@ public class DeleteFrCommandTest {
         String actualOutput = expectedModel.getFilteredFinancialRecordList().toString();
 
         assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_EMPTY, actualOutput);
-
-        //assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-
-    //    @Test
-    //    public void execute_invalidMultipleIndexFilteredList_throwsCommandException() {
-    //        showFrAtIndex(model, INDEX_FIRST_FR);
-    //
-    //        List<Index> outOfBoundIndex = INDEX_FIRST_FR;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.get(0).getZeroBased() < model.getBudgetTracker().getMonthList().size());
-    //
-    //        DeleteFrCommand deleteCommand = new DeleteFrCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
 
     @Test
     public void equals() {

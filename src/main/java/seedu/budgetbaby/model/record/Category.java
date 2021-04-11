@@ -10,8 +10,8 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 public class Category {
 
     public static final String MESSAGE_CONSTRAINTS = "Category labels should "
-            + "contain at least 1 non-whitespace character but no longer than 15 characters";
-    public static final String VALIDATION_REGEX = "^.{1,15}$";
+            + "contain at least 1 non-whitespace character but no longer than 20 characters";
+    public static final String VALIDATION_REGEX = "^.{1,20}$";
 
     public final String category;
 
