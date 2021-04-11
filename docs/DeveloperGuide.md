@@ -288,6 +288,7 @@ along with each quiz session.
 
 <p float="left">
   <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" width="310" />
+  <img src="images/blank.png" width="20" />
   <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" width="310" />
 </p>
 
