@@ -88,8 +88,8 @@ Format: `validate`
 
 > Tip: A plan is valid if the modules contained in its history match those of the current Master Plan.
 > This ensures that any valid plan is a viable option for the user.
-> 
-> ### Clearing all entries : `clear`
+
+### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
