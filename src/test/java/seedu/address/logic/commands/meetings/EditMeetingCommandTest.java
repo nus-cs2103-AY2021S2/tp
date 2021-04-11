@@ -85,6 +85,23 @@ public class EditMeetingCommandTest {
     }
 
     @Test
+    public void execute_filteredList_success() {
+        showMeetingAtIndex(model, INDEX_FIRST);
+
+        Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST.getZeroBased());
+        Meeting editedMeeting = new MeetingBuilder(meetingInFilteredList).withName(VALID_NAME_MEETING1).build();
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST,
+                new EditMeetingDescriptorBuilder().withName(VALID_NAME_MEETING1).build());
+
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
+
+        Model expectedModel = new ModelManager(new MeetingBook(model.getMeetingBook()), new UserPrefs());
+        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
+
+        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_duplicateMeetingUnfilteredList_failure() {
         Meeting firstMeeting = model.getFilteredMeetingList().get(INDEX_FIRST.getZeroBased());
         EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(firstMeeting).build();
