@@ -258,7 +258,7 @@ Constraints:
 The NUS Module Planner app is designed to help students track their typical study plans.
 Hence, user inputs for indexes such as plan numbers or semester numbers are only guaranteed to work within reasonable limits. For example a student should never have 2 billion semesters in their study plan as this would exceed the typical human lifetime.
 
-Explicitly, the following should take on values between 1 and 100 only.
+Explicitly, the following should take on values between 1 and 100 only. Correct behaviour of the app is not guaranteed beyond these bounds.
 * Semester number
 * Plan number
 * Number of modules in a plan or semester
