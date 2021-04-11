@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'tutortracker.jar'
 }
 
 defaultTasks 'clean', 'test'
