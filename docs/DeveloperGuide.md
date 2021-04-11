@@ -290,19 +290,21 @@ and Three, the ability to import and export their personal food diary to share w
 ## **Appendix C: User stories**
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority| As a …​                                                       | I want to …​                                  | So that I can…​                                             |
-| ------- | ---------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------- |
-| `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                  | refer back to the particular element that defined my food experience  |
-| `* * *` | User with little patience and time                               | Add names of places I have visited               | efficiently add a review to a place I have visited               |
-| `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had          | easily show them to my friends              |
-| `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before         | decide where I shall re-visit                                          |
-| `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
-| `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
-| `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
-| `* * *` | User who wants to read lengthy reviews of an entry | Glance through reviews of an entry | Quickly arrive at a conclusion for a food place|
-| `* *`   | User frequently revisiting a place                          | Add multiple reviews to a single place           | Store all my food experiences with the place   |
-| `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | visit the best food places without overspending
-| `* * *`   | User who made a mistake in an entry           | Perform revisions and updates to the entry | keep accurate and up-to-date information of food places
+| Priority| As a …​                                                           | I want to …​                                                        | So that I can…​                                                                    |
+| ------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                          | Refer back to the particular element that defined my food experience              |
+| `* * *` | User with little patience and time                               | Add names of places I have visited                                 | Efficiently add a review to a place I have visited                                |
+| `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had                            | Easily show them to my friends                                                    |
+| `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before                           | Decide where I shall re-visit                                                     |
+| `* * *` | User who would like to create custom category of food place      | Add the category of the place                                      | I can have a specific view of certain places                                      |
+| `* * *` | User who does not want to visit a place again                    | Remove the place                                                   | Reduce redundant food places in my list                                           |
+| `* * *` | User who wants to remember food ratings                          | Give a rating on the overall food experience                       | I can gauge/ballpark the satisfaction level I get against other food experiences  |
+| `* * *` | User who wants to read lengthy reviews of an entry               | Glance through reviews of an entry                                 | Quickly arrive at a conclusion for a food place                                   |
+| `* *`   | User frequently revisiting a place                               | Add multiple reviews to a single place                             | Store all my food experiences with the place                                      |
+| `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | Visit the best food places without overspending                                   |
+| `* *`   | User who wants identify a place he/she ate at previously by name | Find entries that match the name of the place I last visited       | Judge if I would like to go back to that place and eat there.                     |
+| `* * *` | User who made a mistake in an entry                              | Perform revisions and updates to the entry                         | Keep accurate and up-to-date information of food places                           |
+
 
 
 ## **Appendix D: Use cases**
@@ -320,25 +322,22 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 **Extensions**
 
 * 1a.  Food Diary detects invalid command from user.
-
     *   1a1. Food Diary warns user about invalid command syntax.
-
     *	1a2. User enters correct command syntax.
 
          Use case resumes from step 2.
 
 * 2a. Food Diary detects duplicate entry that is already stored in the application.
-
     *	2a1. Food Diary warns user that the entry to be added already exists in the application.
 
          Use case ends.
 
-**UC02: List all restaurants**
+**UC02: List all entries**
 
 **MSS**
 
-1.  User requests to list all restaurants.
-2.  Food Diary displays all the restaurants.
+1.  User requests to list all entries.
+2.  Food Diary displays all the entries.
 
 **Extensions**
 
@@ -349,9 +348,9 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 
       Use case resumes from step 2.
 
-* 2a. No Restaurants to display.
+* 2a. No entries to display.
 
-    * 2a1. Tells users that there are no restaurants.
+    * 2a1. Tells users that there are no entries.
     * 1a2. User enters correct syntax.
 
       Use case ends.
@@ -465,7 +464,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
-      Use case ends.
+      Use case resumes from step 2.
 
 * 2a. User key in non-existent index in list
     * 2a1. Food Diary tells user that no entry was found.
@@ -497,6 +496,48 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
+      
+**UC12: Edit an Entry**
+
+**MSS**
+1. User requests to edit entry field(s) of a specific entry.
+2. Food Diary edits the entry with the updated field(s).
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+      
+* 1b. User keys in non-existent index in list
+    * 1b1. Food Diary tells user that no entry was found.
+
+      Use case ends.
+
+
+**UC13: Get Help**
+
+**MSS**
+1. User requests to get help on what commands to use.
+2. Food Diary returns a succint help guide with the information he needs.
+3. User reads the help guide and is now familiar with the commands to use.
+4. User requests to close help guide after use.
+5. Food Diary closes help guide.
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+      
+* 2a. User reads help guide but is still unclear of what command to use.
+    * 2a1. User requests to see User Guide for more information
+    * 2a2. Food Diary returns User Guide link for the user to access
+
+      Use case resumes from step 3.
+      
 
 ## **Appendix E: Non-Functional Requirements**
 
