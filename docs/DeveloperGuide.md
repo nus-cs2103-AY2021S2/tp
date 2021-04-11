@@ -633,50 +633,50 @@ testers are expected to do more *exploratory* testing.
       Expected: Member is successfully added, with the details of the member displayed in the status bar.
    
    1. Test case: `addMember Charlie p/12345678 e/Charlie.com `<br>
-      Expected: No person is added since the email given is invalid. Error details shown in the status bar.
+      Expected: No member is added since the email given is invalid. Error details shown in the status bar.
 
    1. Test case: `addMember Charlie p/12 e/Charlie@gmail.com`<br>
-      Expected: No person is added since the email given is invalid. Error details shown in the status bar.
+      Expected: No member is added since the phone number given is invalid. Error details shown in the status bar.
 
    1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com` <br>
-      Expected: similar to previous
+      Expected: similar to previous.
 
 ### Viewing members
 
 1. Lists all members within HEY MATEz
 
    1. Test case: `viewMembers`<br>
-      Expected: Lists all members within HEY MATEz
+      Expected: Lists all members within HEY MATEz.
 
 ### Mark a task as completed
 
 1. Mark a task as completed:
 
-   1. Prerequisites: List all tasks with the viewTasks command. There exists a task at index 1 whose task status is **uncompleted**.
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **uncompleted**.
 
    1. Test case: `done 1`<br>
-      Expected: Updates the status of task at index 1 to **completed**. Successful task status update message is shown in the status bar.
+      Expected: Status of task at index 1 is updated to **completed**. Successful task status update message is shown in the status bar.
       
    1. Test case: `done 0`<br>
       Expected: No task marked as **completed**. Error details is shown in the status bar.      
       
    1. Other incorrect commands to try: `done`, `done -1` 
-      Expected: Similar to previous 
+      Expected: Similar to previous. 
       
 ### Mark a task as uncompleted
 
-1. Mark a task as completed: 
+1. Mark a task as uncompleted: 
 
-   1. Prerequisites: List all tasks with the viewTasks command. There exists a task at index 1 whose task status is **completed**.
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **completed**.
 
    1. Test case: `undo 1`<br>
-      Expected: Updates the status of task at index 1 to **uncompleted**. Successful task status update message is shown in the status bar.
+      Expected: Status of task at index 1 is updated to **uncompleted**. Successful task status update message is shown in the status bar.
       
    1. Test case: `undo 0`<br>
       Expected: No task marked as **uncompleted**. Error details is shown in the status bar.      
       
    1. Other incorrect commands to try: `undo`, `undo -1` 
-      Expected: Similar to previous   
+      Expected: Similar to previous.   
 
 ### Find tasks by priority
 
@@ -701,13 +701,13 @@ testers are expected to do more *exploratory* testing.
       Expected: Error message displayed in the status bar.
 
    1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc.
-      Expected: Similar to previous   
+      Expected: Similar to previous.   
 
 ### Find tasks assigned to a member
 
 1. Lists all tasks assigned to a member
 
-   1. Prerequisites: There exists a member Alice and a task in HEY MATEz which is assigned to Alice.
+   1. Prerequisites: There exists a member with the name of Alice and a task assigned to Alice within HEY MATEz.
    
    1. Test case: `findTasksFor Alice`<br>
       Expected: Lists the task which is assigned to Alice.
