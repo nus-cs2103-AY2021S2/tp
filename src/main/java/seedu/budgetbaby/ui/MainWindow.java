@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategoryStatistics());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getAllUnsortedCategoryStatistics());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());

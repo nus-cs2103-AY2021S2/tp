@@ -40,7 +40,7 @@ public class BudgetDisplay extends UiPart<Region> {
     private Label budgetPercentage;
 
     @FXML
-    private ListView<String> topCategories;
+    private ListView<String> allCategories;
 
     /**
      * Creates a {@code BudgetDisplay} with the given {@code Month}.
@@ -95,14 +95,14 @@ public class BudgetDisplay extends UiPart<Region> {
     /**
      * Updates a {@code BudgetDisplay} with the top categories list.
      */
-    public void updateTopCategoriesUi(List<CategoryStatistics> topCategoriesList) {
-        this.topCategories.getItems().clear();
-        for (CategoryStatistics item : topCategoriesList) {
+    public void updateTopCategoriesUi(List<CategoryStatistics> allCategoriesList) {
+        this.allCategories.getItems().clear();
+        for (CategoryStatistics item : allCategoriesList) {
             String itemName = item.getCategory().toString();
             itemName = itemName.substring(1, itemName.length() - 1); // category name with [ and ] stripped
             String itemValue = String.format("$%.2f", item.getAmount());
             String topCategoryItem = itemName + ": " + itemValue;
-            this.topCategories.getItems().add(topCategoryItem);
+            this.allCategories.getItems().add(topCategoryItem);
         }
     }
 }
