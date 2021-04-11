@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -15,8 +17,9 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-
+    private final ArrayList<String> previousCommands = new ArrayList<>();
     private final CommandExecutor commandExecutor;
+    private int past = 0;
 
     @FXML
     private TextField commandTextField;
@@ -36,10 +39,25 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        String commandText = commandTextField.getText();
+        String commandText = commandTextField.getText().trim();
+
         if (commandText.equals("")) {
             return;
         }
+
+        if (commandText.trim().startsWith("/up")) {
+            past++;
+            if (past >= previousCommands.size()) {
+                commandTextField.setText("!!!");
+                setStyleToIndicateCommandFailure();
+            } else {
+                commandTextField.setText(previousCommands.get(previousCommands.size() - past));
+            }
+            return;
+        }
+
+        past = 0;
+        previousCommands.add(commandText);
 
         try {
             commandExecutor.execute(commandText);

@@ -3,7 +3,13 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# Welcome to Car@leads
+Car@leads is a **desktop app for a car salesperson to manage customer contacts** (CLI).
+<br> Users can add new customer contacts which include details such as customer's car brand and car type preferences along with other personal information.
+<br> Users can filter through the customer data using specific filters, such as filtering out customers who prefer a specific car brand and follow up with them for sales opportunities.
+<br> Car@leads is optimized for use via a Command Line Interface, while still having the benefits of a Graphical User Interface (GUI).
+<br> If you can type fast, Car@leads can get your contact management tasks done faster than traditional GUI apps.
+
 
 * Table of Contents
 {:toc}
@@ -13,26 +19,28 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+   <br>Note how the app contains some sample data to provide a example of how app usage.
+   <br>Remember to clear these sample data using the clear command before use. <br>
    ![Ui](images/Ui.png)
-
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+      : Adds a contact named `Bob Ang`
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`find`**`n/Bob Ang cp/BMW+Coupe`
+      : Finds a contact named `Bob Ang` whose preferred car is a BMW Coupe.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
 
-   * **`clear`** : Deletes all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`clear`** : Deletes all contacts.
+
+    * **`exit`** : Exits the app.
+
+    * **`help`** : Get a legend of commands.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -62,131 +70,190 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD
+  * Example: `2013 12 31`
+  * This is the same input format as `DATE_OF_BIRTH`
+* `|` joins car with COE expiry date
+* `+` joins car brand and car type
+
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG]…​ [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED\|COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]`<br> e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+**find** | `find [e/bob /AND p/98761234] /OR b/1999 10 11`
+**delete** | `delete NAME`<br> e.g., `delete John doe`
+**list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
+**clear** | `clear` Clears the contact list, erasing all saved data.
+**exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
+**help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
+**email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
+**up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
+
+
+### Adding a customer: `add`
+
+Adds a customer to the contact list.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG]…​ [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED|COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A customer can have any number of tags, carsOwned, carPreferred (including 0)
+</div>
+
+Examples:
+* `add n/John Wayne p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10`
+* `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  t/friend c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+### Finding a customer: `find` 
+
+Find customers from the contact list that matches specified filters.
+
+Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+OWNED_CARTYPE] [coe/COE_EXPIRY_DATE] [t/TAGs] 
+[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]`
+
+**IMP** : All arguments are optional. In particular:
+- for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to 
+  separate.
+  
+- for `cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE` user can either give brand or type information, or both using the 
+  `+` sign to separate.
+  
+- for `n/NAME` giving a partial name is also okay - all names which have the given parameter as a subsequence (Note 
+  that `abc` is a subsequence of `addbddc`) will be matched. Note that this is the only field for which we match 
+  a subsequence instead of a simple substring.
+  
+- for `e/EMAIL`, all email containing the given parameter will be valid, but note that domain name is not checked.
+    - eg `find e/abc` will return profiles with the following emails:
+        -  `abcd@gmail.com`
+        -  `bbabc@gmail.com`
+    - It will _not_ return:
+        - `xxx@abc.com`
+        - `axbyc@hhh.com`
+
+
+Further details about the search options are as follows:
+
+- For `coe/COE_EXPIRY_DATE`, using `coe/exp` will search for all customers with an expired COE on any of the cars they own.
+  it is a special case alias for the search `coe/0`, where `coe/NON_NEGATIVE_NUMBER` will search for any customers with
+  at least one car that will expire in `NON_NEGATIVE_NUMBER` years *or less*.
+  
+- for `a/ADDRESS` partial addresses are also acceptable
+
+- for `b/DATE_OF_BIRTH` partial dates also work. Note that `find b/1999` is a more generic search than `find b/1999 
+  02` and hence will return more items.
+  
+- for `t/TAGS` all customers satisfying _any_ tag will be returned. In particular, `find t/TAG_A TAG_B TAG_C` is a more 
+  generic 
+  query than `find t/TAG_A` 
+  
+
+**COMBINING FIND PARAMETERS**
+
+We can combine in the following way : 
+-   `find a/Orchard /AND n/John /AND /NOT t/CRIMINAL`
+-   `find a/Orchard /AND n/John /AND [ t/RICH /OR /NOT t/CRIMINAL ]`
+
+Note that for `find A /AND B /OR C /OR D /AND E` , the implicit bracketing considered is `find A /AND [B /OR [C /OR [D 
+/AND E]]]`
+
+## Deleting a customer : `delete`
+
+Deletes the specified customer from the contact list.
+
+Format: `delete name`
+
+* Deletes the customer with the specified `name`.
+* The name refers to the customer name shown in the displayed customer contact list.
+* The name **must be valid** does not contain special characters  …​
+
+## Listing all customers : `list`
+
+Shows a list of all customers in the system
+
+Format: `list`
+
+## Clear all customers : `clear`
+* **`clear`** : Deletes all customers in the system.
+
+## Repeat last Command : `/up`
+* **`/up{X}`** : Loads in the previous command. `{X}` can be any string of characters, usually the previous command.
+* Examples: `/updelete John Doe`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+There does not need to be a space after /up, so long as it is the first part of the 'command'
+</div>
+
+eg: The command Box is as follows
+
+    - find e/Apple
+    - find e/AppleChain
+    - /up
+    - /up
+Result:  
+    - `find e/Apple`
+
+
+
+## Exiting app: `exit`
+* **`exit`** : Exits the app safely.
+
+## Quick help: `help`
+* **`help`** : Overview of commands and input syntax.
+
+## Email Contact person: `email`
+* **`email`** : Opens a simplified mailbox interface enabling user to send email through Simple Mail Transfer Protocol(SMTP).
+  Please ensure that you enable google to allow for less secure access - this is the term by google, which means an action
+  to disable 2-step verification for logging in.
+  Note: This feature only allows for out going SMTP server access, the application do not have access to your incoming mails
+  as it is on a different server.
+  ![Ui](images/helps/googleHelp4.png)
+  
+  
+  If you face any difficulty enabling access, please follow through below guide, or check out the help window for steps
+  in setting up.
+  1. Go to google security(URL: https://myaccount.google.com/security)
+  ![Ui](images/helps/googleHelp1.png)
+  2. Scroll down or use the search function and type in 'Less secure app access' without quotation marks.
+  ![Ui](images/helps/googleHelp2.png)
+  3. Turn on the feature and this grants application access to only the Mail sending server. This feature disables the 
+  feature for 2-Step Authentication. 
+  ![Ui](images/helps/googleHelp3.png)  
+     
+  After set up:
+  You will be required to fill in the respective fields, please note that current version does not support multiple 
+  authentication attempts, hence you will be required to restart the application if your email or password details are
+  filled incorrectly.
+  ![Ui](images/helps/emailLogin.png)
+  
+  
+  **Successful Login**
+  You will receive a confirmation message 'Message Sent' when email is successfully sent out. 
+  Please note that in this we have blocked multiple log in and authentication, the email and password box will be disabled 
+  after successful authentication. If you have been successfully authenticated, a green text will be shown in the bottom 
+  left corner of the interface 'You are logged in'.
+  You may continue to send email to other receiver addresses without having to re-enter the password.
+  ![Ui](images/helps/Sentmail.png)
+  
+ 
+  Please note that if you input a non-existing receiver email, message will still mark as sent. You will however receive a 
+  sending fail message at your gmail inbox, but since this application does not have access to this information, we
+  are unable to check validity of email.
+  ![Ui](images/helps/LoginSuccWrongToemail.png)
+
+  Please note that this version does not support identification of invalid domain name, but only absence of domain. Hence
+  your email will still be mark as sent. However you will be receiving a failed message in your email inbox.
+  ![Ui](images/helps/invalidDomain.png)
+
+  **Failed Login**
+
+  If you have failed the authentication, either due to mismatching email and password, you will be required to restart
+  the application, as support for multiple logins are blocked. The password you entered will be cleared, together with the 
+  email and password fields removed. You will see a red text appearing at the bottom left of the interface 'Please restart
+  the program'.
+  ![Ui](images/helps/FailedLogin1.png)
+  
+  For more info : https://support.google.com/mail/answer/7126229?hl=en&authuser=6
+--------------------------------------------------------------------------------------------------------------------

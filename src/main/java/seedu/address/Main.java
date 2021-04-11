@@ -19,6 +19,10 @@ import javafx.application.Application;
  * to be the entry point of the application, we avoid this issue.
  */
 public class Main {
+    /**
+     * Main method start the application running.
+     * @param args Arguments keyed into the CLI app to interact with app.
+     */
     public static void main(String[] args) {
         Application.launch(MainApp.class, args);
     }

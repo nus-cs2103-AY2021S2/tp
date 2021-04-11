@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.stage.Stage?>
+
+<fx:root resizable="false" title="Email" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <scene>
+      <Scene>
+         <root>
+            <AnchorPane prefHeight="423.0" prefWidth="600.0">
+                <children>
+                    <Label layoutX="94.0" layoutY="18.0" text="Send to" />
+                    <TextField fx:id="emailToField" layoutX="217.0" layoutY="13.0" prefHeight="27.0" prefWidth="200.0" promptText="Example@example.com" />
+                    <Label layoutX="94.0" layoutY="63.0" text="Send from" />
+                    <TextField fx:id="emailFromField" layoutX="217.0" layoutY="58.0" prefHeight="27.0" prefWidth="200.0" promptText="cs2103emailtest@gmail.com" />
+                    <Label layoutX="434.0" layoutY="63.0" text="Please use gmail only" />
+                    <Label layoutX="94.0" layoutY="98.0" text="Password" />
+                    <PasswordField fx:id="emailPasswordField" layoutX="217.0" layoutY="92.0" prefHeight="27.0" prefWidth="200.0" promptText="emailtest1" />
+                    <Label layoutX="94.0" layoutY="144.0" text="Subject" />
+                    <TextField fx:id="emailSubjectField" layoutX="217.0" layoutY="139.0" prefHeight="27.0" prefWidth="200.0" text="New Arrival!" />
+                    <Label layoutX="94.0" layoutY="207.0" text="Message" />
+                    <TextArea fx:id="emailMessageField" layoutX="217.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0" text="Good Day, a car of your preference has newly arrived! Please feel free to contact me if you are interested in viewing!" wrapText="true" />
+                    <Button fx:id="sendEmailButton" layoutX="492.0" layoutY="259.0" mnemonicParsing="false" onAction="#sendEmail" text="Send" textFill="#121212" />
+                    <Label fx:id="sentBoolValue" layoutX="474.0" layoutY="338.0" text="Message Sent!" visible="false" />
+                    <Label fx:id="invalidEmailSignal" layoutX="455.0" layoutY="320.0" text="Invalid Email entered!" textFill="#f30000" visible="false" />
+                    <Label fx:id="invalidPasswordSignal" layoutX="430.0" layoutY="300.0" prefHeight="57.0" prefWidth="182.0" text="Invalid Username/Password entered! Please restart application!" textFill="#f30000" visible="false" wrapText="true" />
+                  <Label layoutX="432.0" layoutY="63.0" prefHeight="132.0" prefWidth="166.0" text="If unable to send, please read the end section of User guide for guide to set up." textFill="#0062ff" wrapText="true">
+                     <font>
+                        <Font size="11.0" />
+                     </font></Label>
+                  <Button fx:id="enableAccessButton" layoutX="432.0" layoutY="174.0" mnemonicParsing="false" onAction="#enableAccess" prefHeight="26.0" prefWidth="149.0" text="Copy URL to google security" textFill="#121212">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="emailSuccessfullyLoggedIn" layoutX="25.0" layoutY="386.0" prefHeight="17.0" prefWidth="104.0" text="You are logged in!" textFill="#00a329" visible="false" />
+                  <Label fx:id="emailFailedLoggedIn" layoutX="25.0" layoutY="386.0" prefHeight="17.0" prefWidth="166.0" text="Please restart program!" textFill="RED" visible="false" />
+                </children>
+            </AnchorPane>
+         </root>
+      </Scene>
+   </scene>
+</fx:root>
