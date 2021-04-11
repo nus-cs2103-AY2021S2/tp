@@ -1147,8 +1147,10 @@ StoreMando has many significant enhancements from AB3. Here are some examples:
 
 ### Working Process
 
-Our team placed heavy emphasis on communication. and efficient division of workload. With our dedicated members and 
-good team spirit, we were able to overcome the challenges mentioned above and produce a great product.
-
-We made use of github's issue trackers, which allowed efficient division and tracking of work, and also helped each 
+Our team placed heavy emphasis on communication, and efficient division of workload. We made use of github's issue trackers, which allowed efficient division and tracking of work, and also helped each
 team member visualise the tasks remaining.
+
+With our dedicated members and good team spirit, we were able to overcome the challenges mentioned 
+above and produce a great product.
+
+
