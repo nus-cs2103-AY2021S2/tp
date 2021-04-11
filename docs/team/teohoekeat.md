@@ -82,12 +82,12 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added Non-functional Requirement
       (Pull requests [\#29](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/29))
-    * Added user stories and use case for UI related feature
+    * Added user stories and use case for `UI` related feature
       (Pull requests [\#37](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/37))
-    * Added implementation details for UI related feature
+    * Added implementation details for `UI` related feature
       (Pull requests [\#149](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/149)
       , [\#260](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/260))
-    * Updated UI class diagram and UI component details
+    * Updated `UI` class diagram and `UI` component details
       (Pull requests [\#141](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/141)
       , [\#260](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/260))
 
