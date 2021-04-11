@@ -197,7 +197,7 @@ All specified search criteria must be fulfilled by each contact by default, unle
 Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (except upcoming birthdays), as below.
   
 `-s` parameter optionally sorts contacts by `SORT_FIELD`. Possible values of `SORT_FIELD`:
-* `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
+* `n`, `name`: names in (case-insensitive) lexicographical order (by default, if `-s` not specified)
 * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
 * `u`, `upcoming`: days left to next upcoming birthday (only sorts in `ascending` order regardless of `SORT_ORDER` paramter)
 
@@ -268,7 +268,7 @@ Search criteria, case-insensitive:
     * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as below.
   
 `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of `SORT_FIELD`:
-* `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
+* `n`, `name`: names (case-insensitive) in lexicographical order (by default, if `-s` not specified)
 * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
 * `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
 
