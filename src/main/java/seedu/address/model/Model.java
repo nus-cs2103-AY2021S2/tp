@@ -143,21 +143,6 @@ public interface Model {
     boolean isEmpty();
 
     /**
-     * Returns the number of tasks in the planner.
-     */
-    int size();
-
-    /**
-     * Returns the percentage of tasks completed.
-     */
-    double getPercentage();
-
-    /**
-     * Returns the number of tasks due in the next 7 days.
-     */
-    int getNumberDue();
-
-    /**
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
