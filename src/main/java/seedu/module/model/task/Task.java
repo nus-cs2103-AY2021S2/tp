@@ -344,15 +344,7 @@ public class Task {
          */
         @Override
         public int compare(Task t1, Task t2) {
-            if (t1.isDeadline() && t2.isDeadline()) {
-                return t1.getDeadline().compareTo(t2.getDeadline());
-            } else if (t1.isDeadline()) {
-                return t1.getDeadline().compareTo(t2.getStartTime());
-            } else if (t2.isDeadline()) {
-                return t1.getStartTime().compareTo(t2.getDeadline());
-            } else {
-                return t1.getStartTime().compareTo(t2.getStartTime());
-            }
+            return t1.getDeadline().compareTo(t2.getDeadline());
         }
     }
 
