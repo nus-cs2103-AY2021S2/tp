@@ -436,6 +436,9 @@ The diagram below details how the user's command to add an issue propagates thro
 
 ![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
 
+**Diagram Notes** :
+ * The `AddIssueCommand`'s execution follows the flow outlined under the section [Command parsing and execution](#command-parsing-and-execution).
+ * `toAdd` is the issue to be added which is created by `AddIssueommandParser`, and taken in as a parameter during the construction of `AddIssueCommand`. This process is omitted for brevity.
 
 ### Alias feature
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.

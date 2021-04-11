@@ -4,21 +4,34 @@ start
 :User enters command adding a issue;
 :Parse command text;
 if () then ([all parameters are valid])
-:Construct Issue
-with given parameters;
-:Add issue to model;
-note left
-Adding to the model
-involves updating
-storage too. This
-process has been
-omitted for brevity.
-end note
-:Show success message to user;
+    :Construct Issue
+    with given parameters;
+    if () then ([issue's room exists])
+        if () then ([issue does not exists])
+            :Add issue to SunRez;
+            note left
+            Adding the issue
+            involves updating
+            storage too. This
+            process has been
+            omitted for brevity.
+            end note
+            :Show success message to user;
+        else ([else])
+            :Show issue exists
+            error to user;
+            stop
+        endif
+    else ([else])
+        :Show room does
+        not exists error
+        to user;
+        stop
+    endif
 else ([else])
-:Show invalid usage
-error to user;
-stop
+    :Show invalid usage
+    error to user;
+    stop
 endif
 
 stop

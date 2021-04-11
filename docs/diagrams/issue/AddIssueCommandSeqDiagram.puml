@@ -36,26 +36,29 @@ activate Model
 Model --> AddIssueCommand
 deactivate Model
 
-AddIssueCommand -> Model : hasIssue(toAdd)
-activate Model
+opt room exists
 
-Model --> AddIssueCommand
-deactivate Model
-
-opt room exists and issue is not duplicate
-
-    AddIssueCommand -> Model : addIssue(toAdd)
+    AddIssueCommand -> Model : hasIssue(toAdd)
     activate Model
 
     Model --> AddIssueCommand
     deactivate Model
 
-    AddIssueCommand -> Model : commitAddressBook()
-    activate Model
+    opt toAdd does not exists
 
-    Model --> AddIssueCommand
-    deactivate Model
+        AddIssueCommand -> Model : addIssue(toAdd)
+        activate Model
 
+        Model --> AddIssueCommand
+        deactivate Model
+
+        AddIssueCommand -> Model : commitAddressBook()
+        activate Model
+
+        Model --> AddIssueCommand
+        deactivate Model
+
+    end
 end
 
 AddIssueCommand --> LogicManager
