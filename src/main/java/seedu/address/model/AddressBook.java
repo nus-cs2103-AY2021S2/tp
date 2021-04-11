@@ -81,6 +81,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a passenger equal to {@code passenger} exists in the address book.
+     */
+    public boolean hasEqualPassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        return passengers.containsEqual(passenger);
+    }
+
+    /**
      * Adds a passenger to the address book.
      * The passenger must not already exist in the address book.
      */
