@@ -79,6 +79,11 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ## 3.1 General Purpose Features
 
+## 3.1.1 User Interface
+
+The various sections of the User Interface are described as in the picture below.
+![Ui_labelled](images/Ui_labelled.png)
+
 ### 3.1.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -156,7 +161,7 @@ Edits an existing person in the GME terminal.
 **:information_source: Notes about the edit command:**<br>
 
 * [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -238,7 +243,7 @@ Selects passengers from the current view in the bottom left pane of the GME term
 * [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359`.
 * Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​.
 * The order of the passengers' index does not matter.
 * You must select at least 1 person to pool with one command.
