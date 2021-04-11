@@ -14,9 +14,9 @@ import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.TreeSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;

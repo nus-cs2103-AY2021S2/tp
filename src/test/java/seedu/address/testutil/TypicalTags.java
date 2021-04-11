@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import java.util.Arrays;
-import java.util.TreeSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.model.tag.Tag;
 

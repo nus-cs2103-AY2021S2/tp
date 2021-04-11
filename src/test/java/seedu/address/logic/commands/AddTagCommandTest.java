@@ -15,9 +15,9 @@ import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.TreeSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,15 +1,11 @@
 package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.COMMON_TAG;
 import static seedu.address.testutil.TypicalTags.COMMON_TAG_STRING;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.testutil.TagsUtil;
-
-import java.util.Locale;
 
 public class TagTest {
 

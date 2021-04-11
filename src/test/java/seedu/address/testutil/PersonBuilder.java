@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import java.util.TreeSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
