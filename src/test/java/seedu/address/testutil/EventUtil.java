@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.EditCommand;
@@ -23,6 +24,7 @@ public class EventUtil {
         sb.append(PREFIX_NAME + event.getName().eventName + " ");
         sb.append(PREFIX_DESCRIPTION + event.getDescription().description + " ");
         sb.append(PREFIX_STATUS + event.getStatus().name() + " ");
+        sb.append(PREFIX_PRIORITY + event.getPriority().toString() + " ");
         return sb.toString();
     }
 
@@ -34,6 +36,8 @@ public class EventUtil {
                 .append(description.description).append(" "));
         descriptor.getEventStatus().ifPresent(eventStatus -> sb.append(PREFIX_STATUS)
                 .append(eventStatus.name()).append(" "));
+        descriptor.getEventPriority().ifPresent(eventPriority -> sb.append(PREFIX_PRIORITY)
+                .append(eventPriority.toString()).append(" "));
         return sb.toString();
     }
 }

@@ -30,6 +30,7 @@ public class EditEventDescriptorBuilder {
         descriptor.setEventName(event.getName());
         descriptor.setDescription(event.getDescription());
         descriptor.setEventStatus(event.getStatus());
+        descriptor.setEventPriority(event.getPriority());
     }
 
     /**

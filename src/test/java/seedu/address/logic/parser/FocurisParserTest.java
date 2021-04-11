@@ -28,9 +28,9 @@ import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.EventUtil;
 
-public class AddressBookParserTest {
+public class FocurisParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FocurisParser parser = new FocurisParser();
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -47,7 +47,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Event event = new EventBuilder().build();
+        Event event = new EventBuilder().buildWithID();
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(event).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + IDENTIFIER_FIRST_EVENT.getOneBased() + " " + EventUtil.getEditEventDescriptorDetails(descriptor));
