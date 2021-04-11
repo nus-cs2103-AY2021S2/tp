@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic {
+class XYZCommand
+
+package Conditions {
+class ConditionLogic
+class ConstraintManager
+class IndexManager
+class DateVerifier
+class RecurringScheduleVerifier
+}
+}
+
+Package Model {
+class AttributeManager MODEL_COLOR
+
+Package Attributes {
+Class Date MODEL_COLOR
+Class RecurringSchedule MODEL_COLOR
+Class Title MODEL_COLOR
+Class Status MODEL_COLOR
+Class Duration MODEL_COLOR
+Class Description MODEL_COLOR
+}
+}
+note right of XYZCommand: XYZCommand = \nAddCommand, \nDoneCommand, \nFindCommand, \netc
+
+XYZCommand ..> ConditionLogic
+ConditionLogic --> DateVerifier
+ConditionLogic --> IndexManager
+ConditionLogic --> ConstraintManager
+ConditionLogic --> RecurringScheduleVerifier
+
+DateVerifier --> AttributeManager
+ConstraintManager --> AttributeManager
+RecurringScheduleVerifier --> AttributeManager
+
+AttributeManager *--> Title MODEL_COLOR
+AttributeManager *--> Date MODEL_COLOR
+AttributeManager *--> RecurringSchedule MODEL_COLOR
+AttributeManager *--> Status MODEL_COLOR
+AttributeManager *--> Duration MODEL_COLOR
+AttributeManager *--> Description MODEL_COLOR
+@enduml
+
