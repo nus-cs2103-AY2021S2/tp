@@ -3,7 +3,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="tableView" minWidth="100" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TableView fx:id="tableView" minWidth="100" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
   <columns>
     <TableColumn fx:id="numberOfDays" editable="false" sortable="false" text="Number of days" />
     <TableColumn fx:id="numberOfItems" editable="false" sortable="false" text="Number of Items" />
