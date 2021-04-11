@@ -1,5 +1,6 @@
 package seedu.address.model.dish;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -10,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.order.Order;
 
 public class Dish implements Item, Aggregator<Ingredient> {
     private String name;
@@ -75,6 +77,18 @@ public class Dish implements Item, Aggregator<Ingredient> {
         }
 
         return ingredientsBuilder.toString();
+    }
+
+    public Dish updateIngredient(Ingredient target, Ingredient editedIngredient) {
+        List<Pair<Ingredient, Integer>> updatedQuantityList = new ArrayList<>();
+        for (Pair<Ingredient, Integer> p : ingredientQuantityList) {
+            if (p.getKey().equals(target)) {
+                updatedQuantityList.add(new Pair<>(editedIngredient, p.getValue()));
+            } else {
+                updatedQuantityList.add(p);
+            }
+        }
+        return new Dish(name, price, updatedQuantityList);
     }
 
     @Override

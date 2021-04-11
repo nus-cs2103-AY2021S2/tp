@@ -175,8 +175,9 @@ public class ModelManager implements Model {
 
         personBook.setPerson(target, editedPerson);
         List<Order> ordersFromTarget = getOrdersFromPerson(target);
-        for (Order o : ordersFromTarget) {
-            o.updateCustomer(editedPerson);
+        for (Order orderFromTarget : ordersFromTarget) {
+            Order updatedOrder = orderFromTarget.updateCustomer(editedPerson);
+            setOrder(orderFromTarget, updatedOrder);
         }
     }
 
@@ -211,6 +212,18 @@ public class ModelManager implements Model {
             }
         }
         return incompleteAndContainsDishOrders;
+    }
+
+    //@@ author kangtinglee
+    @Override
+    public List<Order> getOrdersContainingDish(Dish target) {
+        List<Order> ordersContainingDish = new ArrayList<>();
+        for (Order o : getOrderBook().getOrderList()) {
+            if (o.contains(target)) {
+                ordersContainingDish.add(o);
+            }
+        }
+        return ordersContainingDish;
     }
 
     @Override
@@ -275,6 +288,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedDish);
 
         dishBook.setDish(target, editedDish);
+        List<Order> orderContainingDish = getIncompleteOrdersContainingDish(target);
+        for (Order targetOrder : orderContainingDish) {
+            Order updatedOrder = targetOrder.updateDish(target, editedDish);
+            setOrder(targetOrder, updatedOrder);
+        }
     }
 
     /** Returns an unmodifiable view of the filtered person list */
@@ -348,6 +366,14 @@ public class ModelManager implements Model {
      */
     public void deleteIngredient(Ingredient target) {
         ingredientBook.removeIngredient(target);
+
+        List<Dish> dishesToDelete = getDishesByIngredients(target);
+        for (Dish targetDish : dishesToDelete) {
+            deleteDish(targetDish);
+
+            assert !hasDish(targetDish);
+            logger.fine(String.format("Dish %s which contains %s deleted by cascade", targetDish, target));
+        }
     }
 
     /**
@@ -367,6 +393,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedIngredient);
 
         ingredientBook.setIngredient(target, editedIngredient);
+        List<Dish> dishesToEdit = getDishesByIngredients(target);
+        for (Dish targetDish : dishesToEdit) {
+            Dish updatedDish = targetDish.updateIngredient(target, editedIngredient);
+            setDish(targetDish, updatedDish);
+        }
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -71,8 +72,20 @@ public class Order implements Item, Aggregator<Dish> {
         return dishesBuilder.toString();
     }
 
-    public void updateCustomer(Person editedPerson) {
-        this.customer = editedPerson;
+    public Order updateCustomer(Person editedPerson) {
+        return new Order(dateTime, editedPerson, dishQuantityList);
+    }
+
+    public Order updateDish(Dish target, Dish editedDish) {
+        List<Pair<Dish, Integer>> updatedQuantityList = new ArrayList<>();
+        for (Pair<Dish, Integer> p : dishQuantityList) {
+            if (p.getKey().equals(target)) {
+                updatedQuantityList.add(new Pair<>(editedDish, p.getValue()));
+            } else {
+                updatedQuantityList.add(p);
+            }
+        }
+        return new Order(dateTime, customer, updatedQuantityList);
     }
 
     public double getTotalPrice() {
