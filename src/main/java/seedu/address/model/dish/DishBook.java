@@ -18,7 +18,7 @@ public class DishBook implements ReadOnlyBook<Dish> {
 
     /**
      * Constructor to copy dishbook
-     * @param toBeCopied
+     * @param toBeCopied dish to be copied
      */
     public DishBook(ReadOnlyBook<Dish> toBeCopied) {
         this();
@@ -27,7 +27,7 @@ public class DishBook implements ReadOnlyBook<Dish> {
 
     /**
      * Set dishes from list
-     * @param dishes
+     * @param dishes list of dishes used to replace
      */
     public void setDishes(List<Dish> dishes) {
         this.dishes.setItems(dishes);
@@ -56,16 +56,16 @@ public class DishBook implements ReadOnlyBook<Dish> {
 
     /**
      * Add new dish
-     * @param o
+     * @param dish dish to be added
      */
-    public void addDish(Dish o) {
-        dishes.add(o);
+    public void addDish(Dish dish) {
+        dishes.add(dish);
     }
 
     /**
      * Set details of new dish
-     * @param target
-     * @param editedDish
+     * @param target target dish to be edited
+     * @param editedDish edited version of dish
      */
     public void setDish(Dish target, Dish editedDish) {
         requireNonNull(editedDish);
@@ -74,7 +74,7 @@ public class DishBook implements ReadOnlyBook<Dish> {
 
     /**
      * Remove dish
-     * @param key
+     * @param key dish to be removed
      */
     public void removeDish(Dish key) {
         dishes.remove(key);
