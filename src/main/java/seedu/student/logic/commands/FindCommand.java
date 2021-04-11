@@ -18,7 +18,6 @@ import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistExc
  */
 public class FindCommand extends Command {
 
-
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -32,7 +31,6 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_NO_STUDENT_FOUND =
             "No student with matriculation number %s was found. \n";
-
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 

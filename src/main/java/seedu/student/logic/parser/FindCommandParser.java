@@ -1,18 +1,13 @@
 package seedu.student.logic.parser;
-import java.util.logging.Logger;
 
-import seedu.student.commons.core.LogsCenter;
-import seedu.student.logic.LogicManager;
-import seedu.student.logic.commands.DeleteApptCommand;
+import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.student.logic.commands.FindCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
 import seedu.student.model.appointment.AppointmentListContainsMatriculationNumberPredicate;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
-
-import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 
 /**
  * Parses input arguments and creates a new FindCommand object

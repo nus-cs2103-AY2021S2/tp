@@ -5,11 +5,8 @@ import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 
 import java.util.function.Predicate;
-import java.util.logging.Logger;
 
-import seedu.student.commons.core.LogsCenter;
 import seedu.student.model.Model;
-import seedu.student.model.ModelManager;
 import seedu.student.model.student.Faculty;
 import seedu.student.model.student.SchoolResidence;
 import seedu.student.model.student.Student;
@@ -21,15 +18,14 @@ import seedu.student.model.student.VaccinationStatus;
  */
 public class FilterCommand extends Command {
 
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     public static final String COMMAND_WORD = "filter";
-    public static  String MESSAGE_NO_STUDENTS_ARE_LISTED = "No %s students exist in VAX@NUS's record.";
-    public static  String MESSAGE_STUDENTS_ARE_LISTED = "All %s students listed.";
-
     private static String vaccinationStatus = VaccinationStatus.getStringVaccinationStatus();
     private static String faculties = Faculty.getStringFaculties();
     private static String residences = SchoolResidence.getStringResidences();
+
+    private static String messageNoStudentsAreListed = "No %s students exist in Vax@NUS's record.";
+    private static String messageStudentsAreListed = "All %s students listed.";
+    private static final String DEFAULT_RESIDENCE = "DOES_NOT_LIVE_ON_CAMPUS";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays the list of student of the requested entity: \n"
@@ -42,7 +38,6 @@ public class FilterCommand extends Command {
     private final Predicate<Student> predicate;
     private final String input;
 
-
     /**
      * Constructor
      * @param predicate
@@ -52,25 +47,26 @@ public class FilterCommand extends Command {
     public FilterCommand(Predicate<Student> predicate, String input) {
         this.predicate = predicate;
         this.input = input;
-
-        if(input.equals("DOES_NOT_LIVE_ON_CAMPUS")){
-            MESSAGE_NO_STUDENTS_ARE_LISTED = "No students that does not live on campus exists in VAX@NUS's records";
-            MESSAGE_STUDENTS_ARE_LISTED =  "All students that does not live on campus are listed";
-        }
     }
 
     @Override
     public CommandResult execute(Model model) {
+
+        if (input.contains(DEFAULT_RESIDENCE)) {
+            messageNoStudentsAreListed = "No students that does not live on campus exist in Vax@NUS's record";
+        } else {
+            messageStudentsAreListed = "All students that does not live on campus exist in Vax@NUS's record";
+        }
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_LISTS, PREDICATE_SHOW_ALL_APPOINTMENTS);
 
         if (model.getFilteredStudentList().size() == 0) {
             return new CommandResult(
-                    String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, input, model.getFilteredStudentList().size()));
+                    String.format(messageNoStudentsAreListed, input, model.getFilteredStudentList().size()));
         } else {
             return new CommandResult(
-                    String.format(MESSAGE_STUDENTS_ARE_LISTED, input, model.getFilteredStudentList().size()));
+                    String.format(messageStudentsAreListed, input, model.getFilteredStudentList().size()));
         }
     }
 
