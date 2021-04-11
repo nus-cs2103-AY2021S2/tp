@@ -57,7 +57,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
 ### Commands Related to Both Task and Event
-* Finding schedule given a date: [`find_schedule`](#finding-schedule-given-a-date)
+* Finding schedule given a date: [`find_schedule`](#finding-schedule-given-a-date-find_schedule)
 * Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
 * Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
@@ -191,7 +191,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 [Return to Table of Contents](#table-of-contents)
 
 ## Common Arguments
-Below are a few arguments commonly found in SOChedule commands, and their corresponding restrictions, command-specific restrictions notwithstanding. 
+Below are a few arguments commonly found in SOChedule commands, and their corresponding restrictions, command-specific restrictions notwithstanding.
+Breaking any of the below restrictions will result in a invalid command format error.
 
 <table>
     <tr>
@@ -248,7 +249,7 @@ Below are a few arguments commonly found in SOChedule commands, and their corres
         <td>
             <ul>
                 <li>Follows the format of YYYY-MM-DD</li>
-                <li>`Y` means the year, `M` means the month and `D` means the day</li>
+                <li><code>y</code> means the year, <code>M</code> means the month and <code>D</code> means the day</li>
                 <li>All characters are integers, less delimiters</li>
                 <li>Must be a valid date</li>
                 <li>Subject to command-specific restrictions</li>
@@ -273,6 +274,43 @@ Below are a few arguments commonly found in SOChedule commands, and their corres
                 <li><code>!#&%</code></li>
                 <li><code>XXXX-XX-XX</code></li>
                 <li><code>2021-02-29</code></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Time-related arguments 
+            <ul>
+                <li><code>STARTTIME</code> (For Event)</li>
+                <li><code>ENDTIME</code> (For Event)</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>Follows the format of hh:mm, in a 24-hour format</li>
+                <li><code>h</code> means the hour, <code>m</code> means the time</li>
+                <li>All characters are integers, less delimiters</li>
+                <li>Must be a valid time</li>
+                <li>Subject to command-specific restrictions</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><code>add_event</code></li>
+                <li><code>edit_event</code></li>
+            </ul>
+        </td>
+        <td>
+            Valid:
+            <ul>
+                <li><code>23:59</code></li>
+                <li><code>08:00</code></li>
+                <li><code>00:00</code></li>
+            </ul>
+            Invalid:
+            <ul>
+                <li><code>!#&%</code></li>
+                <li><code>XX:XX</code></li>
+                <li><code>24:00</code></li>
             </ul>
         </td>
     </tr>
@@ -357,9 +395,9 @@ Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
   Deadline cannot be a past date.
 * `p/` is followed by the priority, with 0 being highest and 9 being lowest. <br>
   Other inputs are not accepted.
-* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1` `c/c2`). <br>
+* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1 c/c2`). <br>
   It is optional.
-* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). <br>
+* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1 t/t2`). <br>
   It is optional.
 
 <div markdown="block" class="alert alert-info">
@@ -397,10 +435,12 @@ Edits an **existing and uncompleted** task in the task list.
 
 Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
 * Edits the task at the specified `INDEX`. 
-* Only an **existing and uncompleted** task can be edited.
+* Only an **existing and uncompleted** task can be edited. <br>
+  (i.e. Completed tasks cannot be edited)
 * **At least one** of the optional fields must be provided.
 * `DEADLINE` provided cannot be a past date.
-* When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
+* When editing tags/categories, the existing tags/categories of the task will be removed. <br>
+  (i.e. adding of tags/categories is not cumulative)
 * Edited task cannot be the same as the original task or equivalent to another existing task in the task list. <br>
   Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
 * When editing tags, the order of tags given in the input and the order of tags shown in the UI can be different. <br>
@@ -441,19 +481,21 @@ Format: `list_task`
 Marks one or more task from the task list as completed.
 
 Format: `done_task INDEX1 [INDEX2] ...`
-* Marks the task(s) at the specified INDEX(es) as complete. 
-  The index refers to the index number shown in the displayed task list.
-  The index must be an **integer larger than zero**. A valid example can be `1`.
-* When multiple indexes are provided, they need to be separated by a whitespace, e.g. `1 2`.
+* Marks the task(s) at the specified INDEX(es) as complete.
+* Specified task(s) must not be complete.
+* Multiple indices are to be separated by a whitespace, e.g. `1 2`.
 * All specified tasks must be **uncompleted and existing** before calling this command.
-* If more than 1 indexes are provided, these indexes **cannot contain duplicates**. 
+* **Duplicate indices** are not allowed. <br>
   Otherwise, an error message indicating invalid command format will be returned.
-* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned. 
-* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java), 
-  it is not a valid integer in our definition. 
-  Thus, an error message indicating invalid command format will be returned.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
 * If indexes provided include both an index for a task not existing in task list and an index for a completed task,
   the error message will only be about the non-existing task.
+
+</div>
 
 Examples:
 * `done_task 1 2` marks the first and second task in the task list as completed.
@@ -469,13 +511,7 @@ Marks a completed task from the task list as uncompleted.
 
 Format: `undone_task INDEX`
 * Marks the task at the specified INDEX as uncompleted.
-  The index refers to the index number shown in the displayed task list.
-  The index must be an **integer larger than zero**. A valid example can be `1`.
-* The specified task must be completed before calling this command.
-* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned.
-* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java),
-  it is not a valid integer in our definition.
-  Thus, an error message indicating invalid command format will be returned.
+* Specified task must be complete.
 
 Examples:
 * `undone_task 1` marks the first task in the task list as uncompleted.
@@ -498,7 +534,7 @@ Format: `today_task`
 Finds tasks whose names contain any of the given keywords from the task list.
 
 Format: `find_task KEYWORD1 [KEYWORD2] ...`
-* The search is case-insensitive. e.g. `homework` will match `Homework`.
+* The search is **case-insensitive**. e.g. `homework` will match `Homework`.
 * The search scope is the **full** task list.
 * The order of the keywords does not matter. e.g. `Practice Problems` will match `Problems Practice`.
 * Only the name of the tasks is searched.
@@ -548,10 +584,10 @@ Format: `pin_task INDEX`
 * Pins the task at the specified INDEX.
 * Already pinned tasks will be unable to be pinned a second time.
 * The index refers to the index number shown in the displayed task list.
-* The index must be a positive and valid integer 1, 2, 3, ...
 * After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default). See [here](#illustration-of-the-interaction-between-pin_task-and-sort_task).
     * Should there be two or more pinned tasks, the pinned tasks will be sorted as well.
-    * Only the fact that pinned tasks will appear over the unpinned tasks is guaranteed. Internal order of pinned tasks is not persistent over `sort_task`.
+    * Only the fact that pinned tasks will appear over the unpinned tasks is guaranteed. <br>
+      Internal order of pinned tasks is not persistent over `sort_task`.
 * Pinned tasks are persistent over instances of SOChedule.
 
 Examples:
@@ -571,7 +607,7 @@ Unpins a task from the task list.
 
 Format: `unpin_task INDEX`
 * Unpins the task at the specified INDEX.
-* Follows similar restrictions to `pin_task`
+* Follows similar restrictions to `pin_task`.
 
 Examples:
 * `unpin_task 1` unpins the first task in the task list
@@ -586,8 +622,16 @@ Examples:
 Clear tasks marked as completed from the task list.
 
 Format: `clear_completed_task`
-* If there's no completed task in the list (or even no any task in the list), this command is still able to be executed
-and return success message `Completed tasks (if any) have been cleared!` (In this case, no task is cleared since no task is completed.)
+  
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* This command is still able to be executed on a task list without any completed tasks. <br>
+  In this case, success message `Completed tasks (if any) have been cleared!` will still be displayed. <br>
+  However, no task will be cleared since there are no completed tasks.
+
+</div>
 
 #### Illustration of usage of `clear_completed_task`:
 ![Example of usage of `clear_completed_task`](images/ClearCompletedTaskUsage.png)
@@ -599,10 +643,18 @@ and return success message `Completed tasks (if any) have been cleared!` (In thi
 Clear tasks with past deadlines from the task list.
 
 Format: `clear_expired_task`
-* For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
-hence changing of date on a computer could affect the judgement of expiration.
-* If there's no expired task in the list (or even no any task in the list), this command is still able to be executed
-and return success message `Expired tasks (if any) have been cleared!` (In this case, no task is cleared since no task is expired.)
+* For a task to be considered expired, the task's `deadline` should be an earlier date as compared to the local date on the user's computer. <br> 
+  Hence, changing of date on a computer could affect the judgement of expiration.
+  
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* This command is still able to be executed on a task list without any expired tasks. <br>
+  In this case, success message `Expired tasks (if any) have been cleared!` will still be displayed. <br>
+  However, no task will be cleared since there are no expired tasks.
+
+</div>
 
 #### Illustration of usage of `clear_expired_task`:
 ![Example of usage of `clear_expired_task`](images/ClearExpiredTaskUsage.png)
@@ -615,21 +667,31 @@ Adds an event to the event list.
 
 Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the event name, it is case-sensitive.
-* `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
-* `st/` is followed by the time in the 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
-* `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
-* `et/` is followed by the time in the 24-hour format and in the format of **hh:mm**.
-* The `STARTDATE` and `STARTTIME` provided can be in the past (ongoing event).
-* The `ENDDATE` and `ENDTIME` provided should be after `STARTDATE` and `STARTTIME`.
-* The `ENDDATE` and `ENDTIME` provided cannot be a past date time.
-* Time overlapping events are allowed.
-* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1` `c/c2`). It is optional.
-* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
-* Note that any valid prefixes and input arguments (e.g. `n/Meeting 1` or `st/14:00`) followed by invalid prefixes and 
-input arguments (e.g. `name/Name`, `tag/Tag` or `Ev@nt`) will lead to an error.
-* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one 
-would be taken (i.e. `n/n2`).
+* `sd/` is followed by the starting date, in the format of **YYYY-MM-DD**.
+* `st/` is followed by the starting time in the 24-hour format and in the format of **hh:mm**
+* `ed/` is followed by the ending date.
+* `et/` is followed by the ending time in the 24-hour format.
+* The `ENDDATE` and `ENDTIME` provided must be **after** `STARTDATE` and `STARTTIME`.
+* The `ENDDATE` and `ENDTIME` provided cannot be a past date and time.
+* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1 c/c2`). <br>
+  It is optional.
+* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1 t/t2`). <br>
+  It is optional.
   
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* The `STARTDATE` and `STARTTIME` provided can be in the past for ongoing events.
+  
+* Events that overlap in time are allowed.
+  
+* Any valid prefixes and input arguments (e.g. <code>n/Meeting 1</code> or <code>st/14:00</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>E@ent</code>) will lead to an error.
+
+* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1 n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>).
+
+</div>
+
 Examples:
 * `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its 
   respective attributes to the event list.
@@ -657,18 +719,32 @@ Examples:
 Edits an **existing and uncompleted** event in the event list.
 
 Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. 
-The index must be an **integer larger than zero**. A valid example can be `1`.
-* An expired event could only be edited when users edit the past end date and time to unexpired end date and time (extend the event).
-* Other than the condition above, you can only edit the details of an **unexpired** event.
+* Edits the event at the specified `INDEX`.
+* An expired event could only be edited when users edit the past end date and time to an unexpired end date and time. <br>
+  (i.e. top extend the event).
+* Except the condition above, only **unexpired** event can be edited.
 * **At least one** of the optional fields must be provided.
-* The `STARTDATE` and `STARTTIME` provided can be in the past (ongoing event).
-* The `ENDDATE` and `ENDTIME` provided should be after `STARTDATE` and `STARTTIME`.
-* The `ENDDATE` and `ENDTIME` provided cannot be a past date time.
-* When editing tags/categories, the existing tags/categories of the event will be removed i.e. adding of tags/categories
-  is not cumulative.
-* You can remove all the event’s tags by typing `t/` without specifying any tags after it. 
-  Similarly, you can remove all the event’s categories by typing `c/` without specifying any categories after it.
+* The `ENDDATE` and `ENDTIME` provided must be **after** `STARTDATE` and `STARTTIME`.
+* The `ENDDATE` and `ENDTIME` provided cannot be a past date and time.
+* When editing tags/categories, the existing tags/categories of the event will be removed. <br>
+  (i.e. adding of tags/categories is not cumulative)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* The `STARTDATE` and `STARTTIME` provided can be in the past for ongoing events.
+
+* Events that overlap in time are allowed.
+  
+* Any valid prefixes and input arguments (e.g. <code>n/Meeting</code> or <code>st/00:00</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>E@ent</code>) will lead to an error.
+
+* You can remove all the event’s tags by typing <code>t/</code> without specifying any tags after it.<br>
+  Similarly, you can remove all the event’s categories by typing <code>c/</code> without specifying any categories after it
+
+* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1</code> <code>n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>).
+
+</div>
 
 Examples:
 * `edit_event 1 n/editedEventName` edits the name of the first event (if present in the event list) to be 
@@ -719,10 +795,18 @@ Examples:
 Clears events with past end date time from the event list.
 
 Format: `clear_expired_event`
-* For an event to be considered expired, the event should have past end date time compare to the local time on the user's computer, 
-hence changing of timing on a computer could affect the judgement of expiration.
-* If there's no expired event in the list (or even no any event in the list), this command is still able to be executed
-and return success message `Expired events (if any) have been cleared!` (In this case, no event is cleared since no event is expired.)
+* For an event to be considered expired, the event should have earlier end date and time as compared to the local time on the user's computer. <br> 
+  Hence, changing of timing on a computer could affect the judgement of expiration.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* This command is still able to be executed on a event list without any expired event. <br>
+  In this case, success message `Expired events (if any) have been cleared!` will still be displayed. <br>
+  However, no event will be cleared since there are no expired event.
+
+</div>
 
 #### Illustration of usage of `clear_expired_event`:
 ![Example of usage of `clear_expired_event`](images/ClearExpiredEventUsage.png)
@@ -735,21 +819,25 @@ Given a specified date, finds uncompleted tasks that are due before or on the da
 and events that are ongoing on the date.
 
 Format: `find_schedule DATE`
-* Tasks to be found here are uncompleted tasks with deadlines before or on the specified date.
-* Events to be found here are events with start date before or on the specified date and end date after or on the specified date, 
-  i.e., ongoing events.
-* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`. 
+* Tasks found will be incomplete tasks with deadlines before or on the specified date.
+* Events found will be events where specified date falls between start date (inclusive) and end date (inclusive). <br>
+  (i.e. **ongoing events**)
+* Date entered must be in the format of `YYYY-MM-DD`. <br>
   It can be a date that is earlier than today.
 * Only one single date can be entered. 
-  If more than one dates are supplied, program will return an error message indicating invalid date format. 
-  If no date is given, an error message indicating invalid command format will be returned.
-* After running `find_schedule`, if you wish to view all existing tasks and all existing events, 
-  please use the `list_task` and `list_event` respectively.
+  
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+
+* After running `find_schedule`, `list_task` and `list_event` can be used to display the whole task list and event list respectively.
+
+</div>
 
 Examples:
-* `find_schedule 2021-04-10` finds all existing uncompleted tasks with deadlines before or on the specified date
-  and all existing events with start date before or on the specified date and end date after or on 
-  before or on the specified date.
+* `find_schedule 2021-04-10` finds:
+  * All existing uncompleted tasks with deadlines before or on `2021-04-10`.
+  * All existing events where `2021-04-10` falls between start date (inclusive) and end date (inclusive).
 
 #### Illustration of usage of `find_schedule`:
 
@@ -770,14 +858,13 @@ For event list:
 Finds all free time slots on the given date from the event list.
 
 Format: `free_time DATE`
-* **Free time slots** refer to all times in the given date without any event happening.
-* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`.
+* **Free time slots** refer to all times in the given date without any ongoing event.
+* Date entered must be a valid date and in the format of `YYYY-MM-DD`.
 * Date entered must be a date from current date onwards.
-* Only one single date can be entered. If more than one dates are supplied, program will return an error message
-  indicating invalid date.
+* Only one single date can be entered.
 
 Examples:
-* `free_time 2022-02-01` finds all free time slots on the given date `10th April 2021`.
+* `free_time 2022-02-01` finds all free time slots on the given date `2022-02-01`.
 
 #### Illustration of usage of `free_time`:
 ![Example of usage of `free_time`](images/FindFreeTimeExample.png)
@@ -785,15 +872,14 @@ Examples:
 [Return to Feature List](#feature-list)
 
 ### Summarising tasks and events statistics: `summary`
-Displays a summary of tasks completion status and events upcoming in the next 7 days.
+Displays a summary of tasks completion status and events upcoming for the next 7 days.
 
 Format: `summary`
 * **Completed tasks** refer to tasks that are done regardless of when the deadline is.
-* **Overdue tasks** refer to tasks that are uncompleted and the current date now has passed the deadline,
-  i.e., `completionStatus is INCOMPLETE` and `deadline is before current date`
-* **Tasks to be completed before deadline** refer to tasks that are incomplete and the current date now has not passed the deadline,
-  i.e., `completionStatus is INCOMPLETE` and `deadline is after current date`
-* **Events upcoming in the next 7 days** refer to events that are going to happen in the next 7 days. Events that are happening today are not included.
+* **Overdue tasks** refer to incomplete tasks, and current date has passed the deadline.
+* **Tasks to be completed before deadline** refer to incomplete tasks, and current date now has not passed the deadline.
+* **Events upcoming in the next 7 days** refer to events that are going to happen in the next 7 days. <br>
+  Events that are happening today are not included.
 
 #### Illustration of usage of `summary`:
 ![Example of usage of `summary`](images/SummaryExample.png)
@@ -837,7 +923,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
+**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2022-02-27 p/1 c/school work t/urgent`
 **Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
 **Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g., `done_task 1 2`
 **Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
@@ -855,19 +941,19 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00`
+**Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2022-02-27 st/15:00 ed/2022-02-27 et/17:00`
 **Delete** | `delete_event INDEX`<br>e.g., `delete_event 3`
 **List** | `list_event`
 **Today** | `today_event`
 **Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
 **Clear Completed** | `clear_expired_event`
-**Find Free Time** | `free_time DATE` <br>e.g., `free_time 2021-01-01`
+**Find Free Time** | `free_time DATE` <br>e.g., `free_time 2022-01-01`
 
 ### Commands related to both task and event
 
 Action | Format, Examples
 --------|------------------
-**Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`
+**Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2022-06-01`
 **Clear Schedule** | `clear`
 **Summary** | `summary`
 
