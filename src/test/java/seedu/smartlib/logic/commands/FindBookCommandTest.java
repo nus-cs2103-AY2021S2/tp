@@ -133,7 +133,7 @@ public class FindBookCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code BookNameContainsKeywordsPredicate}.
      */
     private BookNameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new BookNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));

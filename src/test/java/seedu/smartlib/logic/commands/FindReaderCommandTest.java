@@ -386,7 +386,7 @@ public class FindReaderCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TagContainsKeywordsPredicate}.
      */
     private TagContainsKeywordsPredicate prepareTagPredicate(String userInput) {
         String[] nameKeywords = userInput.split("\\s+");

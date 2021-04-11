@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
+import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
+import seedu.smartlib.model.reader.TagContainsKeywordsPredicate;
 import seedu.smartlib.model.record.RecordContainsBookNamePredicate;
 
 public class FindRecordCommandTest {
@@ -95,9 +97,9 @@ public class FindRecordCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(RECORD_A, RECORD_B), model.getFilteredRecordList());
     }
-    
+
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code RecordContainsBookNamePredicate}.
      */
     private RecordContainsBookNamePredicate preparePredicate(String userInput) {
         return new RecordContainsBookNamePredicate(Arrays.asList(userInput.split("\\s+")));
