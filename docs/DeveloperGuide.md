@@ -49,6 +49,7 @@ title: Developer Guide
     * [Sort feature](#sort-feature)
     * [UndoRedo feature](#undoredo-feature)
     * [Alias feature](#alias-feature)
+    * [Statistics feature](#statistics-feature)  
     * [UI improvement](#ui-improvement)
 
 --------------------------------------------------------------------------------------------------------------------
