@@ -4,6 +4,7 @@ package seedu.address.model.user;
  * Represents a User's age.
  */
 public class Age {
+    //@@author SoonKeatNeo
     public static final String MESSAGE_CONSTRAINTS =
             "Ages should only contain numbers, and it should fall between 1 and 100!";
     private static final String VALIDATION_REGEX = "^[1-9][0-9]?$|^100$";
