@@ -23,7 +23,7 @@ public class ClearLocationCommandTest {
 
         assertCommandFailure(new ClearAllCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
-    
+
     @Test
     public void execute_nonEmptyStoreMando_clearSpecificLocationSuccess() {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
