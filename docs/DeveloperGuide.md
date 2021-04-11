@@ -245,7 +245,7 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
-The following activity diagram below summarizes what happens when a user executes the delete task command:
+The following activity diagram below summarizes what happens when a user executes the `deleteTask` command:
 
 ![#Activity Diagram for Delete Task](images/DeleteTaskActivityDiagram.png)
 

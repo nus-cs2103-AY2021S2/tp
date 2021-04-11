@@ -2,9 +2,9 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User executes delete task command;
+:User executes deleteTask command;
 if () then ([Index input is valid])
-    :Fetch task with given index from task list;
+    :Fetch task with the given index from task list;
     :Delete the fetched task from task list;
     :Update user interface with the updated task list;
 else ([Else])
