@@ -261,8 +261,8 @@ Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 * `p/` is followed by the priority, with 0 being highest and 9 being lowest. Other inputs are not accepted.
 * `c/` is followed by the category. Different categories are separated by white space. It is optional.
 * `t/` is followed by the tag. Different tags are separated by white space. It is optional.
-* Note that any valid prefixes and input arguments (e.g. n/Homework 1) followed by invalid prefixes and input arguments
-  (e.g. name/Name, tag/Tag or cat/Category) will lead to an invalid format error of the valid input.
+* Note that any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments
+  (e.g. name/Name, tag/Tag or T&sk) will lead to an error.
 
 Examples:
 * `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
