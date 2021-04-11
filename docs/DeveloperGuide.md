@@ -257,7 +257,7 @@ or just use a single command `find` in addition with command line prefix to perf
 
 ![SortSequenceDiagram](images/SortByDateSequenceDiagram.png)
 
-#### 4. Sorting tasks
+#### Sorting tasks
 
 The `Sort` command applies to tasks in List. Both `sort by a` and the `sort by d`
 follow similar implementations with slight differences. Below we will look into the implementation of 
