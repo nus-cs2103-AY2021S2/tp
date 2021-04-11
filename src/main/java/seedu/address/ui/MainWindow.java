@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -35,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private EmailWindow emailWindow;
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -124,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -190,16 +192,23 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        if(commandText.trim().startsWith("/up")) {
-
-        }
         try {
+            System.out.println(commandText);
+            if(commandText.trim().startsWith("/up")) {
+                CommandHistory commandHistory = CommandHistory.getInstance();
+                System.out.println("gfdgsdg s");
+                String result = commandHistory.retrievePreviousCommand();
+                resultDisplay.setFeedbackToUser("");
+                System.out.println(result);
+                commandBox.setCommandTextField(result);
+                return new CommandResult("");
+            }
 
-
-
+            CommandHistory.getInstance().addCommandToHistory(commandText);
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandBox.setCommandTextField("");
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

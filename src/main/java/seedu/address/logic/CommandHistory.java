@@ -2,6 +2,8 @@ package seedu.address.logic;
 
 import java.util.ArrayList;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 public class CommandHistory {
     public static final String MESSAGE_TOO_FAR_BACK = "Do not have more history commands - execute a new command!"
         + "\n Note that executing an erroneous command will also allow you to start using /up from the latest "
@@ -27,13 +29,13 @@ public class CommandHistory {
         resetCounter();
     }
 
-    public String retrievePreviousCommand() {
+    public String retrievePreviousCommand() throws CommandException{
         return retrievePreviousCommand(counter++);
     }
 
-    public String retrievePreviousCommand(int previousIndex) {
+    public String retrievePreviousCommand(int previousIndex) throws CommandException {
         if (previousIndex >= previousCommands.size()) {
-            return MESSAGE_TOO_FAR_BACK;
+            throw new CommandException(MESSAGE_TOO_FAR_BACK);
         }
 
         return previousCommands.get(previousCommands.size() - previousIndex - 1);

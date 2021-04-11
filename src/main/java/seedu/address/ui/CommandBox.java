@@ -44,7 +44,7 @@ public class CommandBox extends UiPart<Region> {
         if (commandText.equals("")) {
             return;
         }
-
+        /*
         if (commandText.trim().startsWith("/up")) {
             if (past >= previousCommands.size()) {
                 commandTextField.setText("No previous commands found!! Try executing a new command now!");
@@ -59,10 +59,9 @@ public class CommandBox extends UiPart<Region> {
 
         past = 0;
         previousCommands.add(commandText);
-
+        */
         try {
             commandExecutor.execute(commandText);
-            commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -99,6 +98,10 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.address.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    public void setCommandTextField(String text) {
+        commandTextField.setText(text);
     }
 
 }
