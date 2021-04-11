@@ -1,5 +1,6 @@
 package seedu.cakecollate.testutil;
 
+import static seedu.cakecollate.testutil.TypicalOrderItems.BLACK_FOREST;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +29,12 @@ public class OrderBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_ORDER_DESCRIPTION = "Mango Cheesecake";
+
+    // ensures that default order description is always in the model
+    // this makes sense bc for every order descriptions to add, there should be a corresponding entry in order items
+    // model. and some tests add this order to the orders model without adding the order item --> errors are thrown
+    // as expected order item will be lacking compared to actual order item
+    public static final String DEFAULT_ORDER_DESCRIPTION = stringify(BLACK_FOREST);
     public static final String DEFAULT_DELIVERY_DATE = "01/01/2022";
     public static final String DEFAULT_REQUEST = "";
 
