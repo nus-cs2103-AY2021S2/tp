@@ -151,7 +151,7 @@ public class ViewPatientBox extends UiPart<Region> {
         phoneLabel.setText("Phone: ");
         addressLabel.setText("Address: ");
         emailLabel.setText("Email: ");
-        bloodTypeLabel.setText("Blood Type: ");
+        bloodTypeLabel.setText("ABO: ");
         heightLabel.setText("Height: ");
         weightLabel.setText("Weight: ");
         appointmentLabel.setText("Appointments");
