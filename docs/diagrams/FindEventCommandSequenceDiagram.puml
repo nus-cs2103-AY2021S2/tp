@@ -63,6 +63,9 @@ deactivate CommandResult
 
 FindEventCommand --> LogicManager : result
 deactivate FindEventCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindEventCommand -[hidden]->[
+destroy FindEventCommand
 
 [<--LogicManager
 deactivate LogicManager
