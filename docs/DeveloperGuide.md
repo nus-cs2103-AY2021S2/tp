@@ -13,12 +13,15 @@ title: Developer Guide
 - [Implementation](#implementation)
   - [Blacklist](#blacklist-feature)
   - [Collect](#collect-feature)
-  - [Find](#finding-persons-by-details-feature)
+  - [Find](#finding-contacts-by-details)
   - [Light/Dark] >Ryan
   - [Mass Blacklist] >JB
-  - [Mass Delete] >JB  
-  - [Mode of Contact](#mode-of-contact-feature)  
-  - [Remark] >JB
+  - [Mode of Contact](#mode-of-contact-feature)
+  - [Remark](#remark-feature)
+  - [Mass Delete](#mass-delete-feature)
+  - [Mode of Contact](#mode-of-contact-feature)
+  - [Navigate Previous Commands](#navigate-previous-commands-feature)
+  - [Remark](#remark-feature)
   - [Sort](#sort-feature)
   - [Undo](#undo-feature)
 - [Additional guides](#documentation-logging-testing-configuration-dev-ops)
@@ -35,12 +38,13 @@ title: Developer Guide
   - [Changing blacklist status of a contact](#changing-blacklist-status-of-a-contact)
   - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
   - [Editing remark for a contact] >JB
-  - [Finding persons by details] >JQ
+  - [Filtering contacts](#filtering-contacts)
   - [Performing mass blacklist] >JB
   - [Performing mass delete] >JB
   - [Sorting visible contact list] >JB
   - [Transitioning between light and dark mode] >Ryan
-  - [Undoing a command] >JQ
+  - [Undoing previous operations](#undoing-previous-operations)
+  - [Navigating through commands](#navigating-through-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -244,14 +248,14 @@ The following sequence diagram shows how the `collect` command works.
     * Pros: Able to be used for more situations.
     * Cons: More complicated implementation resulting in possibly more bugs.
 
-### Find persons by other fields
+### Finding contacts by details
 This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS] p/[PHONE] e/[EMAIL] b/[IS_BLACKLISTED] m/[MODE_OF_CONTACT]`.
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
 
-To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`. 
+To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`.
 
-The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns 
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns
 true.
 
 The following sequence diagram shows how the `find` command works:
@@ -330,6 +334,7 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 ### Mass Blacklist feature
@@ -368,6 +373,8 @@ The following activity diagram summarizes what happens when a user executes a ma
     well-suited to parse such input formats.
   * Cons: There are more prefixes for the user to remember.
 
+=======
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 ### Mass Delete feature
 The mass delete mechanism is facilitated by `MassDeleteCommand`.
 Below is an example usage scenario.
@@ -384,10 +391,15 @@ Step 4: After deletion, `filteredPersons` in `ModelManager` is updated to reflec
 
 The following sequence diagram illustrates how the mass delete operation works:
 ![MassDeleteSequenceDiagram](images/MassDeleteSequenceDiagram.png)
+<<<<<<< HEAD
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+=======
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 
 The following activity diagram summarizes what happens when a user executes a mass delete command:
 ![MassDeleteActivityDiagram](images/MassDeleteActivityDiagram.png)
@@ -442,27 +454,27 @@ The following activity diagram summarizes what happens when a user executes a re
     * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
       class even bigger and thus more difficult to maintain.
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 ### Sort feature
-The sort feature is implemented in the `SortCommand` class.
+The sort mechanism is facilitated by `SortCommand`.
 Below is an example usage scenario.
 
-Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
-The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
+Step 1: The user executes `sort ascending` to sort the contact list by name in ascending order. The
+string is passed to the `Logic` component.
 
 Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
 
-Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
-the `Model` component.
+Step 3: The `SortCommand` object calls `Model#sortByName()` to sort the
+internal `AddressBook`.
 
-Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
-component is called to update the file.
-
-Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
-it back to the `UI` component to display it to the user.
+Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect the change.
 
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     
 =======
@@ -471,6 +483,10 @@ The following sequence diagram illustrates how the sort operation works:
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+=======
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 ![SortActivityDiagram](images/SortActivityDiagram.png)
@@ -529,7 +545,10 @@ Similarly, when the user presses the down arrow key, there are two possible scen
     * Pros: Easier implementation. Most operations have been provided by Java.
     * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 ### Undo feature
 
 #### Implementation
@@ -567,7 +586,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 , causing the command to return an error to the user rather than attempting to perform the undo.
 
 </div>
- 
+
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
@@ -592,49 +611,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-### Navigating previous commands
-
-#### Implementation
-
-The implementation of this feature is facilitated by `CommandList` class, which is a self-implemented linked list class.
-Whenever a command is executed, regardless of validity, a new node containing the command will be created and added into the linked list.
-The nodes in the linked list are implemented using `CommandNode` class, which keeps track of the following information:
-
-* Command executed
-* A reference to the previous `CommandNode` in the linked list.
-* A reference to the next `CommandNode` in the linked list.
-
-In addition, a `cursor` is introduced in `CommandList` class to help with navigation of the commands.
-The `cursor` keeps track of the current command while users are traversing through the commands using up and down arrow keys.
-Its position will be reset to the newly added `CommandNode`, which is the last node in the list, once a new command has been executed.
-
-When the user presses the up arrow key, there are two possible scenarios:
-* The `cursor` is at the first node in the list.
-  * Nothing happens.
-* The `cursor` is not at the first node in the list.
-  * The `cursor` is moved to the previous node and a new command is retrieved.
-    
-![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramUp.png)
-
-Similarly, when the user presses the down arrow key, there are two possible scenarios:
-* The `cursor` is at the last node in the list.
-  * Nothing happens.
-* The `cursor` is not at the last node in the list.
-  * The `cursor` is moved to the next node and a new command is retrieved.
-
-![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramDown.png)
-
-#### Design considerations:
-
-#### Aspect: Data structure used to model the list of commands
-
-* **Alternative 1 (Current choice)**: Use a self-implemented linked list.
-  * Pros: More control on the implementation. Cursor lies on the element themselves.
-  * Cons: Higher chance of errors in implementation, especially when it comes to addition of nodes.
-* **Alternative 2**: Use the `LinkedList` class provided by Java.
-  * Pros: Easier implementation. Most operations have been provided by Java.
-  * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -756,7 +732,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list contacts
 2. SpamEZ shows a list of contacts
-3. User requests to change the blacklist status of a specific contact 
+3. User requests to change the blacklist status of a specific contact
    in the list
 4. SpamEZ changes the blacklist status of the contact
 
@@ -856,8 +832,6 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</div>
-
 ### Launch and shutdown
 
 1. Initial launch
@@ -894,7 +868,7 @@ testers are expected to do more *exploratory* testing.
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-### Filtering the contacts
+### Filtering contacts
 
 1. Filter the list of contacts based on the keywords provided.
 
@@ -951,7 +925,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect collect commands to try: `collect m/`, `collect n/ e/`, `...` (trying to collect multiple types of details at once)<br>
        Expected: Similar to previous.
 
-### Undo previous operations
+### Undoing previous operations
 1. Undo previous operations.
    1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
    1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420` followed by `undo`. <br>

@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes remark command;
+:Parser parses the input arguments;
+if () then ([arguments are valid])
+    :Remark command is executed;
+if () then ([remark is non-empty])
+    :Updates the remark of the specified person;
+else ([remark is empty])
+    :Changes the remark of the specified person to "No remark";
+endif
+:Save changes to storage;
+else ([else])
+    :UI displays error message;
+endif
+stop
+@enduml
