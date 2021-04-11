@@ -46,6 +46,7 @@ title: User Guide
   * [5. Miscellaneous](#5-miscellaneous)
      * [5.1 Reset application to blank](#51-reset-application-to-blank)
      * [5.2 Populate application with sample template data](#52-populate-application-with-sample-template-data)
+     * [5.3 Exit the application](#53-exit-the-application)
 * [Command summary](#command-summary)
 * [Glossary](#glossary)
 * [Appendix](#appendix)
@@ -122,7 +123,7 @@ DietLAH! uses the following date format for command inputs: `dd Mmm yyyy` which 
 
 Legend | Description
 -------|-------------
-d | Day in the calendar month, ranging from 0 - 31, without leading zeroes
+dd | Day in the calendar month, ranging from 0 - 31, without leading zeroes
 Mmm | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
 yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 
@@ -179,7 +180,7 @@ From time to time, we may have lost or gained weight following our diet plan. Th
 **Expected output:**
 
 <p align="center">
-  <img src="images/user-guide/bmi-result.png">
+  <img src="images/user-guide/update-bmi-result.png">
 </p>
 
 ## 2. Diet Plan Selector
@@ -362,7 +363,7 @@ Record your food intake for the specified date using an existing food from your 
 **Expected output:**
 
 <p align="center">
-  <img src="images/user-guide/add-food-intake-new-food-item-result.png">
+  <img src="images/user-guide/add-food-intake-existing-food-item-result.png">
 </p>
 
 #### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
@@ -499,6 +500,12 @@ Get rid of all existing records and populate it with the sample template data.
   <img src="images/user-guide/reset-template.png">
 </p>
 
+### 5.3 Exit the application
+
+Closes the application.
+
+**Command Format:** `exit`
+
 ---
 
 ## Command summary
@@ -527,6 +534,7 @@ Action | Format, Examples
 **Generate progress report** | `progress`
 **Reset application data** | `reset t/blank`
 **Populate application with sample template data** | `reset t/template`
+**Exit the application** | `exit`
 
 ---
 
