@@ -35,7 +35,7 @@ This project has four types of tests:
    e.g. `seedu.address.commons.StringUtilTest`
 1. *Integration tests* that are checking the integration of multiple code units (those code units are assumed to be working).<br>
    e.g. `seedu.address.storage.StorageManagerTest`
-1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how they are connected together.<br>
+1. *Hybrids of unit and integration tests* that check multiple code units as well as how they are connected together.<br>
    e.g. `seedu.address.logic.LogicManagerTest`
-1. *GUI tests* that test GUI features by simulating user interactions. These  include both tnit tests and integration tests.<br>
+1. *GUI tests* that test GUI features by simulating user interactions. These include both unit tests and integration tests.<br>
     e.g. `seedu/address/ui/MainWindowTest`

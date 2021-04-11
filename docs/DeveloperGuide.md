@@ -406,17 +406,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-Our target users are student currently enrolled in a university who,
+Our target users are students currently enrolled in a university who,
 
 * need to manage school projects
-* prefers using desktop apps over other types
-* can type fast and prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* prefer using desktop apps over other types
+* can type fast and prefer typing to mouse interactions
+* are reasonably comfortable using CLI apps
 
 **Value proposition**:
 
 * Organise information by projects
-    * Unlike other similar applications, CoLAB organises our users' tasks by project rather than by weeks. We believe this is better as students are likely already familiar with their weekly schedule. Grouping it by project allows us to give more emphasis to project tasks and deadlines rather than weekly recurring classes.
+    * Unlike other similar applications, CoLAB organises our users' tasks by project rather than by week. We believe this is better as students are likely already familiar with their weekly schedule. Grouping it by project allows us to give more emphasis to project tasks and deadlines rather than weekly recurring classes.
 
 * Minimalistic and Designed for Students
     * CoLAB is designed to be simple and clutter free. We only add features students are likely to use and use terms that are appropriate for students. This improves the user experience for students.
@@ -1317,7 +1317,7 @@ testers are expected to do more *exploratory* testing.
 
 If the effort required to create **AB3** is 100, we would place the effort required to implement the current version of **CoLAB** at 200.
 
-Each of us have put in a significant amount of effort to get CoLAB to the current state. As evidence, we currently have over [20,000 lines of code contributed](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103T-T11-2%2Ftp&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19) and over 500 automated tests. Below, we list some notable changes that required a significant amount of effort.
+Our team has put in a significant amount of effort to get CoLAB to the current state. As evidence, we currently have over [20,000 lines of code contributed](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103T-T11-2%2Ftp&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19) and over 500 automated tests. Below, we list some notable changes that required a significant amount of effort.
 
 ### Notable Changes
 
@@ -1325,7 +1325,7 @@ Each of us have put in a significant amount of effort to get CoLAB to the curren
 
     In order to support projects, our team had to add a projects model. While some sections of the code could be adapted from AB3's Person model, the majority had to be redesigned.
 
-    Firstly, we had to create a new model for `Event`, `Deadline`, `Todo` and `Groupmate`. Each of these models exposes their functionality via an interface.
+    Firstly, we had to create a new model for `Event`, `Deadline`, `Todo` and `Groupmate`. Each of these models exposes its functionality via an interface.
 
     Secondly, we had to create the projects model itself. This required the creation of the `EventList`, `DeadlineList`, `TodoList` and `GroupmateList` classes. These classes had their own challenges, as we had to maintain each of these lists in sorted order.
 
@@ -1356,7 +1356,7 @@ Each of us have put in a significant amount of effort to get CoLAB to the curren
 
     We implemented the `Undo/Redo` feature in CoLAB. Unlike other similar projects where the `Undo/Redo` command simply reverts the data to the previous state, we wanted our Undo/Redo command to keep track of the state of the UI when a command is executed. This meant that we could not take reference from existing projects and had to design our own implementation of the `Undo/Redo` command.
 
-    In addition, since many of our commands did not change any data, we had to design a way to save only selected commands.
+    In addition, since many of our commands did not change any data, we had to design a way to save data only after executing some selected commands.
 
 6. **Command History**
 
