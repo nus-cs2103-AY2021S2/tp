@@ -42,7 +42,7 @@ Given below are my contributions to the project.
     * Drafted three sequence diagrams and updated two class diagrams.
     * Drafted three use cases: adding a person, editing a person, and filtering by tag.
   * Other Documents:
-    * Drafted [index.md](index.md).
+    * Drafted first iteration of [index.md](index.md).
     * Drafted [README.md](https://github.com/AY2021S2-CS2103T-W12-3/tp#readme).
   
 * **Team Tasks**:

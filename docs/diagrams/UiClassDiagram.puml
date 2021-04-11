@@ -10,6 +10,8 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class NotesWindow
+Class NotifWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
@@ -33,6 +35,8 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow
+MainWindow --> NotesWindow
+MainWindow --> NotifWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
@@ -53,6 +57,8 @@ MeetingListPanel --|> UiPart
 MeetingCard ---|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+NotesWindow  --|> UiPart
+NotifWindow --|> UiPart
 
 PersonCard ....> Model
 MeetingCard ....> Model
@@ -63,7 +69,9 @@ MeetingCard -[hidden]left- PersonCard
 
 MeetingListPanel -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+HelpWindow -[hidden]left- NotifWindow
+NotifWindow -[hidden]left- NotesWindow
+NotesWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 

@@ -297,6 +297,8 @@ Example:
 
 * `note 4 v/` generates a popup box displaying the notes taken for the 4th client.
 
+![note message](images/noteMessage.png)
+
 
 ### Arranging Meetings with Clients
 #### Scheduling a meeting : `schedule`
@@ -427,8 +429,7 @@ Link.me data is saved in the hard disk automatically after any command that modi
 #### Editing the data file
 
 Link.me data is saved as a JSON file `[JAR file location]/data/linkme.json`. 
-We generally discourage editing the JSON file directly. 
-<!---We have locked the JSON as a precaution, but users are still able to unlock the file and forcibly edit the file.--->
+We encourage only advanced users to edit the JSON file directly.
 The Link.me team does not take any responsibility in data loss or startup failures following invalid inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
