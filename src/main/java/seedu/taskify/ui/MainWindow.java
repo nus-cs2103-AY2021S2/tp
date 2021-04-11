@@ -26,11 +26,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
-    private static final int HOME = 0;
-    private static final int EXPIRED = 1;
-    private static final int COMPLETED = 2;
-    private static final int UNCOMPLETED = 3;
-
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -160,6 +155,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        logger.info("Filled up UI components");
     }
 
     /**
@@ -190,6 +186,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    /**
+     * Tab switching ideas adapted from
+     * https://github.com/AY2021S1-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java
+     */
+
     @FXML
     private void switchTab(int tabNumber) {
         tabsPane.getSelectionModel().getSelectedItem().setDisable(true);
@@ -197,6 +198,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
         tabsPane.getSelectionModel().select(tabNumber);
         tabsPane.getSelectionModel().getSelectedItem().setDisable(false);
+        logger.info("Switched Tab");
     }
 
 
@@ -210,11 +212,9 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        logger.info("Exit Taskify");
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
 
     /**
      * Executes the command and returns the result.
@@ -235,20 +235,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isHomeTab()) {
-                switchTab(HOME);
-            }
-
-            if (commandResult.isExpiredTab()) {
-                switchTab(EXPIRED);
-            }
-
-            if (commandResult.isCompletedTab()) {
-                switchTab(COMPLETED);
-            }
-
-            if (commandResult.isUncompletedTab()) {
-                switchTab(UNCOMPLETED);
+            for (int i = 0; i < CommandResult.getTabBoolean().size(); i++) {
+                if (CommandResult.getTabBoolean().get(i)) {
+                    switchTab(i);
+                }
             }
 
             return commandResult;
