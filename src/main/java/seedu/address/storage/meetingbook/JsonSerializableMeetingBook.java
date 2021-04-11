@@ -42,7 +42,7 @@ public class JsonSerializableMeetingBook {
     }
 
     /**
-     * Converts this address book into the model's {@code MeetingBook} object.
+     * Converts this meeting book into the model's {@code MeetingBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

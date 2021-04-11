@@ -23,7 +23,7 @@ public class JsonSerializableConnection {
     private final List<JsonAdaptedPersonMeetingConnection> connections = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMeetingBook} with the given persons.
+     * Constructs a {@code JsonSerializableConnection} with the given list of jsonAdaptedPersonMeetingConnections.
      */
     @JsonCreator
     public JsonSerializableConnection(@JsonProperty("connections") List<JsonAdaptedPersonMeetingConnection> connection) {
@@ -31,9 +31,9 @@ public class JsonSerializableConnection {
     }
 
     /**
-     * Converts a given {@code ReadOnlyMeetingBook} into this class for Jackson use.
+     * Converts a given {@code PersonMeetingConnection} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableMeetingBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableConnection}.
      */
     public JsonSerializableConnection(PersonMeetingConnection source) {
         HashMap<Person, UniqueMeetingList> map = source.getMeetingPersonMap();
@@ -46,7 +46,7 @@ public class JsonSerializableConnection {
     }
 
     /**
-     * Converts this address book into the model's {@code MeetingBook} object.
+     * Converts this JsonAdaptedPersonMeetingConnection into the model's {@code PersonMeetingConnection} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
