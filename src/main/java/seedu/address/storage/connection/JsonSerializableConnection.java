@@ -16,9 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Objects.requireNonNull;
+
 @JsonRootName(value = "connection")
 public class JsonSerializableConnection {
-    public static final String MESSAGE_DUPLICATE_CONNECTION = "Connections List contains duplicate connection(s).";
 
     private final List<JsonAdaptedPersonMeetingConnection> connections = new ArrayList<>();
 
@@ -36,6 +37,7 @@ public class JsonSerializableConnection {
      * @param source future changes to this will not affect the created {@code JsonSerializableConnection}.
      */
     public JsonSerializableConnection(PersonMeetingConnection source) {
+        requireNonNull(source);
         HashMap<Person, UniqueMeetingList> map = source.getMeetingPersonMap();
         for (Map.Entry<Person, UniqueMeetingList> dict : map.entrySet()) {
             Person personKey = dict.getKey();
