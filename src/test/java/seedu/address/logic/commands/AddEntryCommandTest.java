@@ -99,12 +99,12 @@ public class AddEntryCommandTest {
     }
 
     @Test
-    public void execute_overdueEntry_throwsOverdueEntryException() {
+    public void execute_overdueEntry_commandSuccess() {
         Entry overdueEntry = new EntryBuilder(CONSULTATION)
                 .withStartDate("2000-01-01 01:00")
                 .withEndDate("2000-01-01 02:00")
                 .build();
-        assertThrows(OverdueEntryException.class, () -> emptyModel.addEntry(overdueEntry));
+        emptyModel.addEntry(overdueEntry);
     }
 
 }

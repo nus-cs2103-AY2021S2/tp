@@ -75,10 +75,6 @@ public class EditEntryCommand extends Command {
         Set<Tag> updatedTags = tempEntry.getTags().orElse(targetEntry.getTags());
         Entry updatedEntry = new Entry(updatedEntryName, updatedEntryStartDate, updatedEntryEndDate, updatedTags);
 
-        if (updatedEntry.isOverdue()) {
-            throw new CommandException(MESSAGE_ENTRY_END_DATE_IN_PAST);
-        }
-
         if (!updatedEntryStartDate.isBefore(updatedEntryEndDate)) {
             throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
         }

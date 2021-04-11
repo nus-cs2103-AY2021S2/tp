@@ -52,10 +52,6 @@ public class AddEntryCommand extends Command {
             throw new CommandException(MESSAGE_OVERLAPPING_ENTRY);
         }
 
-        if (toAdd.isOverdue()) {
-            throw new CommandException(MESSAGE_ENTRY_END_DATE_IN_PAST);
-        }
-
         model.addEntry(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

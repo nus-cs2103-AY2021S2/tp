@@ -43,9 +43,7 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
         if (overlapsWith(toAdd)) {
             throw new OverlappingEntryException();
         }
-        if (toAdd.isOverdue()) {
-            throw new OverdueEntryException();
-        }
+
         internalList.add(toAdd);
         FXCollections.sort(internalList, new EntryComparator());
     }
