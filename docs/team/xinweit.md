@@ -23,8 +23,8 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product because it allows the user to 
       roughly control the time spent on a quiz session, enhancing user experience and flexibility.
     * Highlights: This feature is essential to the application. Without it, each quiz session will test 
-      all the flashcards in the database, requiring the user to spend long periods
-      of time on the quiz session with no flexibility provided.
+      all the flashcards in the database. This requires the user to spend long periods
+      of time to complete the quiz session with no flexibility provided.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=xinweit&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=xinweit&tabRepo=AY2021S2-CS2103T-T13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=false)
 
