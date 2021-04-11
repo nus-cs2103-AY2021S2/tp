@@ -33,9 +33,10 @@ public class DoneCommandTest {
         Identifier eventIdentifier = Identifier.fromIdentifier(eventToBeDone.getIdentifier());
         DoneCommand doneCommand = new DoneCommand(eventIdentifier);
 
-        String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_EVENT_SUCCESS, doneCommand);
         Event doneEvent = new Event(eventToBeDone.getName(), EventStatus.DONE, eventToBeDone.getPriority(),
                 eventToBeDone.getDescription(), eventIdentifier.getValue());
+        String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_EVENT_SUCCESS, doneEvent);
+
         ModelManager expectedModel = new ModelManager(new UserPrefs(), new EventBook(model.getEventBook()));
         expectedModel.setEvent(eventToBeDone, doneEvent);
 
@@ -50,35 +51,6 @@ public class DoneCommandTest {
         assertCommandFailure(doneCommand, model,
                 String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER, outOfBoundIndex.getValue()));
     }
-
-    //    @Test
-    //    public void execute_validIndexFilteredList_success() {
-    //        showPersonAtIndex(model, IDENTIFIER_FIRST_PERSON);
-    //
-    //        Person personToDelete = model.getFilteredPersonList().get(IDENTIFIER_FIRST_PERSON.getZeroBased());
-    //        DeleteCommand deleteCommand = new DeleteCommand(IDENTIFIER_FIRST_PERSON);
-    //
-    //        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
-    //
-    //        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getEventBook());
-    //        expectedModel.deletePerson(personToDelete);
-    //        showNoPerson(expectedModel);
-    //
-    //        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    //    }
-
-    //    @Test
-    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        showPersonAtIndex(model, IDENTIFIER_FIRST_PERSON);
-    //
-    //        Index outOfBoundIndex = IDENTIFIER_SECOND_PERSON;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-    //
-    //        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
 
     @Test
     public void equals() {
