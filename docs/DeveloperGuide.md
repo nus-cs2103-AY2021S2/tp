@@ -128,7 +128,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `rdel 1`.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `rdel 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -333,7 +333,7 @@ The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBoo
 * **Alternative 2:** Leave fields of Room as member variables of the Room class
     * Pros:
         * Everything is self-contained within the Room class, single source of "truth"
-    * Cons
+    * Cons:
         * Field verification becomes a responsibility of the Room class which is not desirable (Violation of SRP)
         * Changes to individual fields would impact the Room class which may unintentionally break other things
         * Less object oriented approach which goes against the principles of how this project was set up
@@ -725,7 +725,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Use cases
 
-(For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code)
+For all use cases below, the **System** is the `SunRez` and the **Actor** is the `user`, unless specified otherwise. All Use Cases are prefixed with `UC` followed by a 3 digit code.
 
 
 ### UC-001 Add a resident
@@ -1149,7 +1149,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Re-launch the app by double-clicking the jar file. Check the command history again with `history`. <br>
        Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
 
-### Resident Data
+### Resident
 
 1. Adding residents
     1. Prerequisites: There is no existing resident named `John Doe`.
@@ -1191,7 +1191,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `rfind KEYWORD` <br>
        Expected: Residents whose names have words fully matching `KEYWORD` are listed.
 
-### Rooms
+### Room
 
 1. Adding a room
 

@@ -32,7 +32,7 @@ features a Graphical User Interface (GUI) but is optimized for use via a Command
    ![Ui](images/Ui.png)
 
 5. Type a command in the command box and press `Enter` to execute it.
-   E.g. typing `help` and pressing `Enter` will open the help window.<br>
+   e.g. typing `help` and pressing `Enter` will open the help window.<br>
 
    Some example commands you can try:
 
@@ -378,7 +378,7 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]...`
 * `oedit` will block editing of a room number **if the room is occupied**. Run `dealloc` to deallocate the room before
   making further edits.
   * This is done to prevent residents from being assigned to non-existent rooms by editing away a room's number after
-    allocating a resident to it
+    allocating a resident to it.
 * The occupancy status is not controllable through the `oedit` command.
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or
   deallocated. See [allocate a resident](#allocate-resident-to-room--alloc) or
@@ -386,7 +386,7 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]...`
 * `oedit` will block editing of a room number **if there are issues tagged to the room**. Run `idel` to
   [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
     * This is done to prevent issues from being assigned to non-existent rooms by editing away a room's number after
-      assigning an issue to it
+      assigning an issue to it.
 
 <div markdown="block" class="alert alert-info">
 :information_source: Room numbers are editable *in general* as renovation or re-numbering exercises may take place.
@@ -496,7 +496,7 @@ Format: `ilist`
 Finds all issues that contain any of the given keywords in the room number, description or tags.
 
 <div markdown="block" class="alert alert-info">
-:information_source: `ifind` currently only searches through issues via room number and tags. Searching by status will be implemented in the future.
+:information_source: `ifind` currently only searches through issues via room number, description or tags. Searching by status will be implemented in the future.
 </div>
 
 Format: `ifind KEYWORD [MORE_KEYWORDS]`
