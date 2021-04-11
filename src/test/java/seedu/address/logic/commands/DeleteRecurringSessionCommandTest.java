@@ -115,20 +115,28 @@ class DeleteRecurringSessionCommandTest {
         RecurringSession copyRecurringSessionA =
                 new RecurringSessionBuilder()
                         .withSessionDate(VALID_START_DATE_A, VALID_TIME)
-                        .withLastSessionDate(VALID_START_DATE_A, VALID_TIME).build();
+                        .withLastSessionDate(VALID_END_DATE_A, VALID_TIME).build();
         RecurringSession recurringSessionB =
                 new RecurringSessionBuilder()
                         .withSessionDate(VALID_START_DATE_B, VALID_TIME)
-                        .withLastSessionDate(VALID_START_DATE_B, VALID_TIME).build();
+                        .withLastSessionDate(VALID_END_DATE_B, VALID_TIME).build();
         Student exampleStudent1 = new StudentBuilder().withName("Father John").build();
         Student copyExampleStudent1 = new StudentBuilder().withName("Father John").build();
         Student exampleStudent2 = new StudentBuilder().withName("Mother Mary").build();
+        // testingModel add student -> Name: Father John
         testingModel.addStudent(exampleStudent1);
-        comparedModel.addStudent(copyExampleStudent1);
+        // testingModel add student -> Name: Mother Mary
         testingModel.addStudent(exampleStudent2);
+        // testingModel add student -> Name: Father John (same name but different object)
+        comparedModel.addStudent(copyExampleStudent1);
+
+        // testingModel -> exampleStudent1 add session -> Start: 2021-04-01 12:00 End: 2021-05-06 12:00
         exampleStudent1.addSession(recurringSessionA);
-        copyExampleStudent1.addSession(copyRecurringSessionA);
+        // testingModel -> exampleStudent2 add session -> Start: 2021-04-01 12:00 End: 2021-05-06 12:00
         exampleStudent2.addSession(recurringSessionA);
+        // comparedModel -> copyExampleStudent1 add session -> Start: 2021-04-01 12:00 End: 2021-05-06 12:00
+        copyExampleStudent1.addSession(copyRecurringSessionA);
+        // comparedModel -> copyExampleStudent1 add session -> Start: 2021-04-01 12:00 End: 2021-05-06 12:00
         copyExampleStudent1.addSession(recurringSessionA);
 
         DeleteRecurringSessionCommand deleteRecurringSessionCommand =
@@ -165,6 +173,7 @@ class DeleteRecurringSessionCommandTest {
         assertFalse(deleteRecurringSessionCommand.equals(differentIndexDeleteRecurringSessionCommand));
 
         copyExampleStudent1.getListOfSessions().clear();
+        // comparedModel -> copyExampleStudent1 add session -> Start: 2021-04-02 12:00 End: 2021-05-07 12:00
         copyExampleStudent1.addSession(recurringSessionB);
 
         DeleteRecurringSessionCommand differentSessionDateDeleteRecurringSessionCommand =
