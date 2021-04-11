@@ -19,7 +19,9 @@ Package "Managed Entity" {
 Class UniqueEntityList
 abstract Class Entity
 Class Name
-
+Package Tag {
+Class Tag
+}
 
 Package Owner {
 Class Owner
@@ -28,20 +30,16 @@ Class Email
 Class Phone
 }
 
-Package Dog {
-Class Dog
-Class Breed
-Class DateOfBirth
-Class Sex
-}
-
 Package Program {
 Class Program
 Class Session
 }
 
-Package Tag {
-Class Tag
+Package Dog {
+Class Dog
+Class Breed
+Class DateOfBirth
+Class Sex
 }
 
 }
@@ -84,5 +82,5 @@ Address -[hidden]right-> Email
 Sex -[hidden]right-> Breed
 Breed -[hidden]right-> DateOfBirth
 
-ModelManager ------>"~* filtered list" Entity
+ModelManager ----->"~* filtered list" Entity
 @enduml
