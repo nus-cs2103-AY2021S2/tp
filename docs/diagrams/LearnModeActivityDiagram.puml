@@ -1,0 +1,18 @@
+@startuml
+start
+:User enters learn command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Additional tags are specified])
+    if () then ([The tag(s) entered are invalid])
+        :Display error message;
+    else ([else])
+        :Display only flashcards with the provided tag(s);
+    endif
+else ([else])
+    :All flashcards are shown to the user;
+endif
+stop
+@enduml

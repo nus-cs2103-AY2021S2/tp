@@ -11,9 +11,13 @@ public interface ReadOnlyFlashcardBook {
 
     /**
      * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate flashcards.
      */
     ObservableList<Flashcard> getFlashcardList();
 
+    /**
+     * Returns an unmodifiable view of the history score list.
+     * This list will not contain any duplicate history scores.
+     */
     ObservableList<Score> getScoreHistoryList();
 }

@@ -19,7 +19,7 @@ public class RegexUtil {
             "[(\\p{InHIRAGANA}|\\p{InKATAKANA})|\\p{InCJK_Unified_Ideographs}|"
             + "\\p{InCJK_Symbols_and_Punctuation}|\\p{Alnum}|\\p{Punct}]"
             + "[(\\p{InHIRAGANA}|\\p{InKATAKANA})|\\p{InCJK_Unified_Ideographs}|"
-                    + "\\p{InCJK_Symbols_and_Punctuation}|\\p{Alnum}|\\p{Punct} ]*";
+            + "\\p{InCJK_Symbols_and_Punctuation}|\\p{Alnum}|\\p{Punct} ]*";
     public static final String REGEX_ENG_WORDS = "[\\p{Alpha}][\\p{Alpha} ]*";
     public static final String REGEX_ENG_SENTENCE = "[\\p{Alnum}|\\p{Punct}]"
             + "[\\p{Alnum}|\\p{Punct} ]*";

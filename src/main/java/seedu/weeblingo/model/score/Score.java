@@ -2,10 +2,12 @@ package seedu.weeblingo.model.score;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
 
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.model.exceptions.EmptyStringInputException;
 import seedu.weeblingo.model.exceptions.NullInputException;
 
 /**
@@ -37,9 +39,16 @@ public class Score implements Comparable<Score> {
         if (questionAttempted < questionCorrect) {
             throw new NullInputException("Questions attempted must be larger or equal to questions correct.");
         }
-        if (durationString.equals("")) {
-            throw new NullInputException("Duration string cannot be empty.");
+        if (durationString.matches("\\s*")) {
+            throw new EmptyStringInputException();
         }
+
+        try {
+            DateTimeFormatter.ofPattern("HH:mm:ss").parse(durationString);
+        } catch (DateTimeParseException e) {
+            throw e;
+        }
+
         this.datetime = datetime;
         this.questionAttempted = questionAttempted;
         this.questionCorrect = questionCorrect;
@@ -82,9 +91,14 @@ public class Score implements Comparable<Score> {
         return result;
     }
 
+    /**
+     * Get the correct ratio of the current quiz instance.
+     *
+     * @return The ratio questionCorrect / questionAttempted in a float point manner.
+     * If there are no attempts, the ratio would be 0 by default.
+     */
     private Double getCorrectRatio() {
         assert questionAttempted != null;
-        assert questionAttempted > 0;
         assert questionCorrect != null;
         assert questionCorrect >= 0;
         if (questionAttempted == 0) {
@@ -143,7 +157,7 @@ public class Score implements Comparable<Score> {
      * @return The String representation of the the date and time when the score is awarded in this Score object.
      */
     public String getCompletedTime() {
-        return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime).toString();
+        return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime);
     }
 
     /**
