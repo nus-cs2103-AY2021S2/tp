@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials and writing notes about them. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
+**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials, writing notes about them, and sharing these notes with others. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -369,6 +369,10 @@ Examples:
 
 ### Contact Features
 
+For the following contact features, irrelevant panels of the user interface were closed (see [Closing UI Panel](./UserGuide.md#closing-ui-panel-close) below). <br>
+Thus, for the upcoming examples, assume the following as the current state of Dictionote:
+![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.png)
+
 #### Adding a contact: `addcontact`
 
 Adds a contact to the contacts list.
@@ -378,6 +382,9 @@ Format: `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
 </div>
+
+* Contacts may share names, addresses, and tags.
+* Contacts **must not** share phone numbers or emails, as they are considered unique to each contact.
 
 Examples:
 * `addcontact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -398,6 +405,7 @@ Format: `editcontact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contacts list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* The new phone number or email-if specified-**must not** be present as a value for any other existing contact.
 * When editing tags, the existing tags of the contact will be removed (i.e., adding of tags is not cumulative).
 * You can remove all of the contact’s tags by typing `t/` without
   specifying any tags after it.
@@ -425,9 +433,13 @@ Format: `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...
 
 Examples:
 * `findcontact n/John` returns `john` and `John Doe`
+* `findcontact n/jack e/@email.net t/friends t/university` returns all contacts containing `Jack` in their name, `@email.net` in their email, and both `Friends` and `University` as part of their tags.
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-* (More examples to be added...)
+  ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.png)
+* `findcontact t/colleagues t/friends` returns `Bernice Yu` <br>
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.png)
+* `findcontact t/colleagues n/roy` returns `Roy Balakrishnan` <br>
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact3.png)
 
 #### Deleting a contact : `deletecontact`
 
@@ -443,17 +455,22 @@ Format: `deletecontact INDEX`
 
 Opens a new window to send an email to the specified contact from the contacts list.
 
-Format: `emailcontact INDEX`
+Format: `emailcontact INDEX [ni/NOTE_INDEX]`
 
 * Opens a new message composition window with the *to* field containing the email address of the contact at the specified `INDEX`.
+* If `ni/NOTE_INDEX` is provided, the contents of the note at `NOTE_INDEX` will be copied to the *body* field of the new message.
 * The application uses the user's default mailing application to provide email features.
 * The application **does not guarantee** the success of sending an email, as it is handled by the mailing application used.
-* The index refers to the index number shown in the displayed contacts list.
+* The index refers to the index number shown in the displayed contacts list or notes list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
+* `listcontact` followed by `emailcontact 3 ni/1` opens a new message composition window targeting `Charlotte Oliveiro` with the body containing `CS2103T exam is coming.`. <br>
+    * This example uses Microsoft Outlook as a mailing application on a Windows 10 machine. 
+  ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.png) <br>
+  ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.png) 
 
 #### Sorting the contacts list by most frequently-contacted: `mostfreqcontact`
 
@@ -461,8 +478,19 @@ Sorts the contacts list in descending order based on the number of email sending
 
 Format: `mostfreqcontact`
 
-* Each sucessful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
+
+* This command sorts the entire contacts list, including the contacts that did not match the latest `findcontact` query.
+* Each successful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
 * The ordering of the contacts list after sorting will replace the original ordering. (i.e., the sorted ordering is stored by Dictionote)
+
+Example:
+* Assume the following:
+    * Five emails were sent to `Charlotte Oliveiro`.
+    * Four emails were sent to `David Li`.
+    * Two emails were sent to `Bernice Yu`.
+    * One email was sent to `Alex Yeoh`.
+* `mostfreqcontact` results in the following: <br>
+  ![result for 'mostfreqcontact'](images/ContactMostFreqContact.png)
 
 #### Clearing the contacts list : `clearcontact`
 
@@ -717,7 +745,7 @@ Action | Format, Examples
 **Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
 **Find contacts** | `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James e/@mail.com t/family`
 **Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
-**Send email to contact** | `emailcontact INDEX`<br> e.g., `emailcontact 2`
+**Send email to contact** | `emailcontact INDEX [ni/NOTE_INDEX]`<br> e.g., `emailcontact 2 ni/1`
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 ***UI Features*** | -
