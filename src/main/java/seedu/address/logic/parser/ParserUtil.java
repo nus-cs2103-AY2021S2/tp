@@ -23,7 +23,8 @@ import seedu.address.model.task.attributes.Title;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index should be positive and within the range of the list.\n"
+            + "Additionally, at least 1 prefix must be provided.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
