@@ -93,6 +93,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+Given below is another Sequence Diagram for interactions within the `Logic` component for the more complicated command  `execute("showm1")` API call.
+
+![Interactions Inside the Logic Component for the `showm 1` Command](images/ShowPersonsInMeetingSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ShowMeetingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -172,13 +178,34 @@ Pros: A Ui can listen to the model and the display can be updated quickly with e
 
 Cons: Takes up more space. Problems handling meetings with not nice start and ending times.
 
+### Notes feature (has already been implemented, but will only be introduced in subsequent iterations)
 
+The note feature has been implemented to help the user insert and delete personal notes.
+This feature is introduced with the intention to help users manage their personal notes, and to make
+MeetBuddy a more attractive one-stop application for users to manage their contacts, store their meeting 
+information, and also keep track of various personal notes. While this feature has already been implemented,
+it will only be made available in subsequent iterations, after the storage is made more mature for handling notes.
+
+Just like the AddressBook for managing contacts and MeetingBook for managing meeting information, a NoteBook
+was implemented for users to store personal notes. The NoteBook is implemented with a Command Pattern.
+
+The user input command is first passed to the LogicManager class, which then makes use of the MeetBuddyParser
+for deciding the type of command. Commands can be related to contacts, meetings, notes or timetable. This is decided
+based on the command word. A specific command parser, such as AddNoteCommandParser, will be called which return
+a Command such as AddNoteCommand. This command will be executed by the Logic Manager, before encapsulating
+the result as a CommandResult object for passing back to the Model. The Ui component may then be invoked to display
+the results (e.g. the notes) to the user.
+
+
+### \[Proposed\] Undo/redo feature
+=======
 ### Person Meeting Connection feature (Written by: Chen Yuheng (Github: skinnychenpi))
 MeetBuddy allows users to track and record the contacts related with their meetings.
 #### Implementation
 A PersonMeetingConnection class stores all of the relevant information of persons in the contact related to certain meetings. The class diagram below shows how all the different components interact to allow the person meeting connection feature to function. Note that the XYZConnectionCommand and XYZConnectionCommandParser refers to all Connection related commands like add, delete etc.
 ![UndoRedoState0](images/PersonMeetingConnectionCommandClassDiagram.png)
 A PersonMeetingConnection(PMC) slot is represented by the PMC class which contains 2 key attributes, personsInMeeting and meetingsInPerson. Both of them are HashMaps. The attribute personsInMeeting is a hashmap whose key is a Meeting object and its value is a UniquePersonList. Another attribute meetingsInPerson is reversed, whose key is a Person object and its value is a UniqueMeetingList.
+>>>>>>> master
 
 The XYZPMCCommand class represent classes that extend the abstract class Command and allows the users to add and delete the PMC to MeetBuddy. These XYZPMCCommands are created by the respective XYZPMCCommandParsers.
 

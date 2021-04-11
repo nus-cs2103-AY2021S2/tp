@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MeetBuddyParser" as MeetBuddyParser LOGIC_COLOR
+participant ":ShowMeetingCommandParser" as ShowMeetingCommandParser LOGIC_COLOR
+participant "sm:ShowMeetingCommand" as ShowMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":PersonInMeetingPredicate" as PersonInMeetingPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute("showm 1")
+activate LogicManager
+
+LogicManager -> MeetBuddyParser : parseCommand("showm 1")
+activate MeetBuddyParser
+
+create ShowMeetingCommandParser
+MeetBuddyParser -> ShowMeetingCommandParser
+activate ShowMeetingCommandParser
+
+ShowMeetingCommandParser --> MeetBuddyParser
+deactivate ShowMeetingCommandParser
+
+MeetBuddyParser -> ShowMeetingCommandParser : parse("1")
+activate ShowMeetingCommandParser
+
+create ShowMeetingCommand
+ShowMeetingCommandParser -> ShowMeetingCommand
+activate ShowMeetingCommand
+
+ShowMeetingCommand --> ShowMeetingCommandParser : sm
+deactivate ShowMeetingCommand
+
+ShowMeetingCommandParser --> MeetBuddyParser : sm
+deactivate ShowMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ShowMeetingCommandParser -[hidden]-> MeetBuddyParser
+destroy ShowMeetingCommandParser
+
+MeetBuddyParser --> LogicManager : sm
+deactivate MeetBuddyParser
+
+LogicManager -> ShowMeetingCommand : execute()
+activate ShowMeetingCommand
+
+ShowMeetingCommand -> PersonInMeetingPredicate
+activate PersonInMeetingPredicate
+
+PersonInMeetingPredicate --> ShowMeetingCommand : pred
+deactivate PersonInMeetingPredicate
+
+ShowMeetingCommand -> Model : updateFilteredPersonList(pred)
+activate Model
+
+Model --> ShowMeetingCommand
+deactivate Model
+
+create CommandResult
+ShowMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> Model : getFilteredPersonList()
+activate Model
+
+Model --> CommandResult : fpl
+deactivate Model
+
+CommandResult --> ShowMeetingCommand
+deactivate CommandResult
+
+ShowMeetingCommand --> LogicManager : result
+deactivate ShowMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

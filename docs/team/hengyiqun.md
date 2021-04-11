@@ -3,44 +3,50 @@ layout: page
 title: Yi Qun's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: MeetBuddy
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+MeetBuddy is a desktop application used for managing contacts and meetings. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+The target users are NUS computing minor students who are busy moving about for their lectures, internship and social life. These students would likely want to manage their school and social life in one app, where they can easily keep track of their contacts and have their family, social and academic commitments well-organised.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to find persons by group (findg command).
+  * What it does: Allows the user to find all contacts associated with a group.
+  * Justification: This feature improves the product considerably because a user may want to find all his contacts in a particular group. For instance, he may want to quickly access his contacts that are in his class for sending an invitation.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. The API of this command is necessary for creating the meeting people connection, which is required for finding all persons in a meeting. A meeting may have groups involved and this API allows us to extract all people in the groups of a meeting.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to find all persons by meeting (showm command).
+  * What it does: Allows the user to find all contacts associated with a meeting. 
+  * Justification: This feature improves the product significantly, as it allows the user to filter the contact list to only those in a meeting. The user can now find the contacts he is meeting very conveniently.
+  * Highlights: Presently, the team has decided that showm would only show contacts who are directly associated with the meeting, instead of the contacts who are in groups that are in the meeting. For subsequently iterations when the storage is more mature, showm will be updated to show those in the groups in the meeting as well. The implementation is already available in the code base, but is not executed.
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added the ability to edit a meeting (editm command).
+  * What it does: Allows the user to edit the different fields of an existing meeting.
+  * Justification: This feature improves the product significantly because a user can make mistakes in adding a meeting, or the meeting deatials may change over time. This feature offers a convenient way to rectify them the mistake, and for users to change meeting details, without having to delete the meeting and add it back again subsequently.
+
+* **New Feature**: Added the ability for users to add notes. It has already been implemented in the code base, but will only be introduced in subsequently iterations.
+  * What it does: Allows the user to add in and delete notes so that he can store a list of personal rmeinders.
+  * Justification: This feature improves the product significantly as it allows the user may wish to store personal notes. It makes the application more comprehensive, by allowing users to manage contact list, store meeting information and maintain his personal notes in just one application.
+  * Highlights: This feature is termed the NoteBook, like the AddressBook for managing contacts, and MeetingBook for managing meetings
+  
+* **New Feature**: Added the ability for list meetings (listm) and list both meetings and contacts (list).
+  * What it does: Allows the user to find see all available meetings and contacts easily.
+  * Justification: This feature improves the product significantly because a user may want to find all his contacts in a particular group. For instance, he may want to quickly access his contacts that are in his class for sending an invitation.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. The API of this command is necessary for creating the meeting people connection, which is required for finding all persons in a meeting. A meeting may have groups involved and this API allows us to extract all people in the groups of a meeting.
+
+* **Team-tasks contributions**:
+  * Created over 20 Pull Requests to the project
+  * Resolved bug reports on GitHub
+  * Organised online zoom meetings
+  * Included comprehensive unite tests for various classes
+  
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=hengyiqun)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
+  * Managed releases `v1.3.trial` and `v1.3.1` (2 releases) on GitHub
+  
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the aforementioned features such as `findg` and `showm`
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * Added implementation details of the aforementioned features such as `findg` and `showm`
