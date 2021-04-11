@@ -22,11 +22,30 @@ public class TypicalConnections {
         PersonMeetingConnection typicalPersonMeetingConnection = new PersonMeetingConnection();
         List<Person> personList = typicalAddressBook.getPersonList();
         List<Meeting> meetingList = typicalMeetingBook.getMeetingList();
+
+        /*
+        * Add all (person,meeting) grouped by person, i,e
+        * do not all all the person connection involving person(0) s should be added together in on
+        * group.
+        */
         typicalPersonMeetingConnection.addPersonMeetingConnection(
                 personList.get(0),
                 meetingList.get(1)
         );
+        typicalPersonMeetingConnection.addPersonMeetingConnection(
+                personList.get(0),
+                meetingList.get(2)
+        );
 
+        typicalPersonMeetingConnection.addPersonMeetingConnection(
+                personList.get(1),
+                meetingList.get(0)
+        );
+
+        typicalPersonMeetingConnection.addPersonMeetingConnection(
+                personList.get(1),
+                meetingList.get(2)
+        );
         return typicalPersonMeetingConnection;
     }
 }

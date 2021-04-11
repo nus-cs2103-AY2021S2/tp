@@ -71,6 +71,19 @@ public class StorageManagerTest {
          * {@link MeetingBookStorage} class
          * Note: This is an integration test that verifies Storage Manager is properly wired to
          * {@link PersonMeetingConnection} class.
+         *
+         *
+         * Note that due to the way how Person- Meeting class equals(), is implemented,
+         * Two Person - Meeting Connections could differ due to the inner ordering of their unique meeting
+         * lists. As such certain test cases would not work if the person meeting connections are not put in a certain
+         * order. IT IS THEREFORE HIGHLY IMPORTANT TO NOT MODIFY THE ORDER IN WHICH PERSON_MEETINGS are put into the
+         * PersonMeetingConnection in TypicalConnections.
+         *
+         * However this will be easily fixed in v1.5 by chaging the internal implementation to a HashSet instead
+         * where ordering is not important. For now the typical meeting connections are added in a certain ordering
+         * that would maintain the order after saving and reading. This ensures that the tests will still achieve
+         * the target of making sure that the files are read and saved correctly and no data is lost.
+         *
          */
 
         AddressBook originalAddressBook = getTypicalAddressBook();
