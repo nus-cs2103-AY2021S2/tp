@@ -5,7 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -24,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/icelenaugust.png" width="200px">
 
 [[github](http://github.com/icelenaugust)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/icelenaugust.md)]
 
 * Role: Developer
 * Responsibilities: Tasks Team
@@ -44,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/souluseless.png" width="200px">
 
 [[github](http://github.com/souluseless)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/souluseless.md)]
 
 * Role: Developer
 * Responsibilities: Tasks Team
@@ -57,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/litone01.md)]
 
 * Role: Developer
-* Responsibilities: Events Team
+* Responsibilities: Tasks Team, Logic

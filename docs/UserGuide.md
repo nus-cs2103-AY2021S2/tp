@@ -68,7 +68,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 ### Commands Related to Both Task and Event
 * Finding schedule given a date: [`find_schedule`](#finding-schedule-given-a-date-find_schedule)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
-* Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
+* Clearing SOChedule: [`clear`](#clearing-sochedule-clear)
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -413,7 +413,7 @@ Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 **:information_source: Note:** <br>
 
 * Any valid prefixes and input arguments (e.g. <code>n/Homework 1</code> or <code>p/1</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>T&sk</code>) will lead to an error.
-* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1 n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>).
+* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1 n/n2 n/n3</code>), only the last occurrence would be taken (i.e. <code>n/n3</code>).
 
 </div>
 
@@ -452,7 +452,8 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * Edited task cannot be the same as the original task or equivalent to another existing task in the task list. <br>
   Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
 * When editing tags and categories, the order given in the input and the order as shown in the UI can be different. <br>
-  For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, but `tag2` may appear in the UI before `tag1`.
+  For example, in input `edit_task 1 t/t2 t/t10`, `t/t2` is before `t/10`, but `t10` may appear in the UI before `t2`.
+  Lexicographical order is followed.
 
 <div markdown="block" class="alert alert-info">
 
@@ -542,7 +543,7 @@ Format: `today_task`
 Finds tasks whose names contain any of the given keywords from the task list.
 
 Format: `find_task KEYWORD1 [KEYWORD2] ...`
-* The search is **case-insensitive**. e.g. `homework` will match `Homework`.
+* The search is **case-insensitive**, e.g. `homework` will match `Homework`.
 * The search scope is the **full** task list.
 * The order of the keywords does not matter. <br>
   E.g. `Practice Problems` will match `Problems Practice`.
@@ -573,7 +574,7 @@ Format: `sort_task ARGUMENT`
 * On subsequent boots, the following will happen:
    * Relative order from previous launch will be preserved.
    * However, if any order-altering command (`pin_task`, `unpin_task`, and `find_task`) is issued, tasks will be sorted by name by default, unless otherwise stated by another `sort_task` command.
-   * Marking a task as complete (`done_task`) or incomplete (`undone_task`) does not constitute an order-altering command.
+   * Marking a task as complete (`done_task`) or incomplete (`undone_task`) or adding (`add_task`) and editing (`edit_task`) tasks does not constitute an order-altering command.
     
 Examples:
 * `sort_task completion` sorts the task list by completion status.
@@ -628,7 +629,7 @@ Examples:
 
 
 ### Clearing completed tasks: `clear_completed_task`
-Clear tasks marked as completed from the task list.
+Clears tasks marked as completed from the task list.
 
 Format: `clear_completed_task`
   
@@ -697,7 +698,7 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
   
 * Any valid prefixes and input arguments (e.g. <code>n/Meeting 1</code> or <code>st/14:00</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>E@ent</code>) will lead to an error.
 
-* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1 n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>).
+* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1 n/n2 n/n3</code>), only the last occurrence would be taken (i.e. <code>n/n3</code>).
 
 </div>
 
@@ -784,7 +785,7 @@ Format: `today_event`
 Finds events whose names contain any of the given keywords from the event list.
 
 Format: `find_event KEYWORD1 [KEYWORD2] ...`
-* The search is case-insensitive. e.g. `meeting` will match `Meeting`.
+* The search is case-insensitive, e.g. `meeting` will match `Meeting`.
 * The search scope is the **full** task list.
 * The order of the keywords does not matter. <br>
   E.g. `Attending Lecture` will match `Lecture Attending`.
@@ -898,7 +899,7 @@ Format: `summary`
 [Return to Feature List](#feature-list)
 
 
-### Clearing Sochedule: `clear`
+### Clearing SOChedule: `clear`
 Clears all tasks and events in the SOChedule's task list and event list.
 
 Format: `clear`
@@ -934,17 +935,17 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent`
-**Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
-**Edit** | `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g., `edit_task 1 n/editedTaskName`
+**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g. `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent`
+**Delete** | `delete_task INDEX`<br>e.g. `delete_task 1`
+**Edit** | `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g. `edit_task 1 n/editedTaskName`
 **List** | `list_task`
-**Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g., `done_task 1 2`
-**Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
+**Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g. `done_task 1 2`
+**Undone** | `undone_task INDEX`<br>e.g. `undone_task 1`
 **Today** | `today_task`
-**Find** | `find_task KEYWORDS`<br>e.g., `find_task homework`
-**Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
-**Pin** | `pin_task INDEX`<br>e.g., `pin_task 1`
-**Unpin** | `unpin_task INDEX`<br>e.g., `unpin_task 1`
+**Find** | `find_task KEYWORD1 [KEYWORD2] ...`<br>e.g. `find_task homework`
+**Sort** | `sort_task ARGUMENT`<br>e.g. `sort_task name`
+**Pin** | `pin_task INDEX`<br>e.g. `pin_task 1`
+**Unpin** | `unpin_task INDEX`<br>e.g. `unpin_task 1`
 **Clear Completed** | `clear_completed_task`
 **Clear Expired** | `clear_expired_task`
 
@@ -952,20 +953,20 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2022-02-27 st/15:00 ed/2022-02-27 et/17:00`
-**Delete** | `delete_event INDEX`<br>e.g., `delete_event 3`
-**Edit** | `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...` <br> e.g., `edit_event 1 n/editedEventName`
+**Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g. `add_event n/CS2103 meeting sd/2022-02-27 st/15:00 ed/2022-02-27 et/17:00`
+**Delete** | `delete_event INDEX`<br>e.g. `delete_event 3`
+**Edit** | `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...` <br> e.g. `edit_event 1 n/editedEventName`
 **List** | `list_event`
 **Today** | `today_event`
-**Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
+**Find** | `find_event KEYWORD1 [KEYWORD2] ...`<br>e.g. `find_event meeting`
 **Clear Expired** | `clear_expired_event`
-**Find Free Time** | `free_time DATE` <br>e.g., `free_time 2022-01-01`
+**Find Free Time** | `free_time DATE` <br>e.g. `free_time 2022-01-01`
 
 ### Commands related to both task and event
 
 Action | Format, Examples
 --------|------------------
-**Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2022-06-01`
+**Find Schedule** | `find_schedule DATE` <br>e.g. `find_schedule 2022-06-01`
 **Clear Schedule** | `clear`
 **Summary** | `summary`
 

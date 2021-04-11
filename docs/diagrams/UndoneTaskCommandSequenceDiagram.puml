@@ -66,6 +66,7 @@ LogicManager <-- UndoneTaskCommand: result
 deactivate UndoneTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 UndoneTaskCommand -[hidden]->[
+destroy UndoneTaskCommand
 
 [<-- LogicManager :
 @enduml

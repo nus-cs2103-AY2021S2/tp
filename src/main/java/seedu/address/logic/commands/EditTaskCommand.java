@@ -35,7 +35,7 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the uncompleted task identified "
             + "by the index number. \n"
-            + "Parameters: INDEX (must be a valid positive integer)"
+            + "Parameters: INDEX (must be a valid positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_PRIORITY + "PRIORITY] "
