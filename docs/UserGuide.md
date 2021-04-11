@@ -185,7 +185,9 @@ Finds passengers whose names contain any of the given keywords.
 * Keywords separated by space will require both keywords to be matched.
   e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
+* Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. e.g. searching `n/alex   yeoh` will return both `Alex Yeoh` and `Alex   Yeoh`
 * `all` prefix for searching across names, addresses, tags and phone numbers quickly.
+* However, if any or all of the words are invalid arguments, searching with `all` will not tell you it is invalid. It will only show that no passengers with those arguments are found.
 </div>
 
 **Examples:**
