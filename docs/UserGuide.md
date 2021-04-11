@@ -12,6 +12,7 @@ Graphical User Interface (GUI). This document aims to guide users in using Budge
 the functions and intended usage of the application.
 
 - [Quick Start](#quick-start)
+- [UI Overview](#ui-overview)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
@@ -44,6 +45,60 @@ the functions and intended usage of the application.
    that the app contains some sample data for you when it starts that may differ from what is shown below.<br>
 
    <img src="images/Ui.png" width="600px">
+
+## UI Overview
+
+<img src="images/Ui_Components.png" width="600px">
+
+The main GUI window consists of UI components that work together to help you to perform tasks.
+These components include:
+1. [Menu Bar](#menu-bar)
+2. [Budget Display](#budget-display)
+3. [Financial Record List](#financial-record-list)
+4. [Command Box](#command-box)
+5. [Result Display](#result-display)
+6. [Status Bar](#status-bar)
+
+### Menu Bar
+
+The `Menu Bar` contains drop-down menus which provides access to common useful functions.
+These functions include:
+- [Exit](#exiting-the-program-:-`exit`) - Exits the program
+- `Toggling CLI's visibility` - Shows/Hides the [Command Box](#command-box) and [Result Display](#result-display)
+- [Category Statistics](#viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
+- [Month Statistics](#viewing-budget-for-the-current-month) - Opens the Month statistics window
+- [Help](#viewing-help-:-`help`) - Opens the Help window
+
+### Budget Display
+
+The `Budget Display` interactively display the details of a given month.
+You get to see the given month's budget in the form of a text and a progress bar. On top of that, there is a 'Top Categories' section where the top six categories of the given month based on their total amount is being shown in <strong>descending order</strong>.
+
+### Financial Record List
+
+The `Financial Record List` interactively display all the financial records of a given month.
+Each record in the list contain details like description, amount, timestamp as well as tagged categories.
+
+### Command Box
+
+The `Command Box` is where you can supply your command inputs. The application will processs these inputs and make changes to your data when necessary. The available command inputs (format and examples) can be found in the [Features](#features) section.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:**<br>
+
+- You may press the `UP` and `DOWN` arrow keys to access past command inputs.
+
+</div>
+
+### Result Display
+
+The `Result Display` interactively display results of a given command so you can identify its details and check whether the given command was executed successfully.
+
+### Status Bar
+
+The `Status Bar` displays the location of the data file being used by the application.
+To find out more about how the data file is being managed, please refer to [Saving the data](#saving-the-data) and [Editing the data file](#editing-the-data-file)
 
 ## Features
 
