@@ -173,6 +173,25 @@ Pros: A Ui can listen to the model and the display can be updated quickly with e
 Cons: Takes up more space. Problems handling meetings with not nice start and ending times.
 
 
+### Notes feature (has already been implemented, but will only be introduced in subsequent iterations)
+
+The note feature has been implemented to help the user insert and delete personal notes.
+This feature is introduced with the intention to help users manage their personal notes, and to make
+MeetBuddy a more attractive one-stop application for users to manage their contacts, store their meeting 
+information, and also keep track of various personal notes. While this feature has already been implemented,
+it will only be made available in subsequent iterations, after the storage is made more mature for handling notes.
+
+Just like the AddressBook for managing contacts and MeetingBook for managing meeting information, a NoteBook
+was implemented for users to store personal notes. The NoteBook is implemented with a Command Pattern.
+
+The user input command is first passed to the LogicManager class, which then makes use of the MeetBuddyParser
+for deciding the type of command. Commands can be related to contacts, meetings, notes or timetable. This is decided
+based on the command word. A specific command parser, such as AddNoteCommandParser, will be called which return
+a Command such as AddNoteCommand. This command will be executed by the Logic Manager, before encapsulating
+the result as a CommandResult object for passing back to the Model. The Ui component may then be invoked to display
+the results (e.g. the notes) to the user.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
