@@ -62,7 +62,7 @@ create CommandResult
 AddStudentCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddStudentCommand
+CommandResult --> AddStudentCommand : result
 deactivate CommandResult
 
 AddStudentCommand --> LogicManager : result
