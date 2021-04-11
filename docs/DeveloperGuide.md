@@ -134,7 +134,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Pool feature
 This feature allows users to create and add a pool to the list of pools, through the use of a `pool` command.
 
-Design considerations include the `pool` command being able to be used in complement with the `find` command. For instance, the user would
+Design considerations include the `pool` command being able to be used in conjunction with the `find` command. For instance, the user would
 first use `find tag/female` and then followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`.
 The `find tag/female` command first filters the list of displayed passengers, such that only passengers with the `female` tag would be displayed. Calling the `pool` command
 would then assign `Alice` with number `91234567` to be the driver of the passengers specified by the indices for the currently displayed list.
@@ -219,7 +219,7 @@ From the diagram illustrated above:
 1. `FindPoolCommandParser` then creates a `FindPoolCommand`, and provides the newly created `PooledPassengerContainsKeywordPredicate` to it. The FindPoolCommand object is then returned to LogicManager.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `FindPoolCommand`, which turn calls the `updateFilteredPoolList()` method in `Model`, causing the shown pool list to be updated according to the predicate in the FindPoolCommand object.
 1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
-1. Finally, a `CommandResult` would be returned back to `LogicManager` to indicate the completion status of the command.
+1. Finally, a `CommandResult` would be returned to `LogicManager` to indicate the completion status of the command.
 
 --------------------------------------------------------------------------------------------------------------------
 
