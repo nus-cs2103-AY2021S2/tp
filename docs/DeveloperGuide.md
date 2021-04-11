@@ -316,21 +316,52 @@ Favouriting a contact is done by
 Given below is an example usage scenario and how the favourite mechanism behaves at each step.
 
 The following sequence diagram shows how the favourite operation works:
-
+[comment]: <> (add sequence diagram)
 
 #### Design consideration:
 
 ##### Aspect: How to implement the favourite feature
 
-* **Alternative 1 (current choice):** 
-    * Pros:
-  * Cons:
+* **Alternative 1 (current choice):** Favouriting contacts is done using its own `FavouriteCommand`.
+    * Pros: Most intuitive from a user's point of view. 
+      In a clickable GUI, users would typically click on a star button to star the contacts.
+      For a CLI, having a favourite command would be the most similar to that.
+    * Cons: This involves editing the contact, which means it should use some implementation of the `EditCommand`.
 
-* **Alternative 2:**
-    * Pros:
-    * Cons:
+* **Alternative 2:** Favouriting contacts is done as a subset of `EditCommand`.
+    * Pros: Makes sense because we are essentially editing a field of the contact.
+    * Cons: Does not look intuitive from the perspective of a user. 
+      In a clickable GUI, users would not go to the edit contacts page just to favourite a contact.
+      The editing is usually only for fields directly related to the details of the contact, 
+      such as their name, phone or email.
 
-Alternative 1 was eventually chosen as 
+* **Alternative 2:** Favouriting contacts is done as a subset of `TagCommand`.
+    * Pros: Makes sense if we add favourite as a tag.
+    * Cons: This could add clutter to the interface as there are already a lot of tags, and there are also child tags.
+
+Alternative 1 was eventually chosen as being user-centric is a key aspect of software engineering.
+Making the app intuitive to users is important, and in this case, it does not sacrifice too much in terms of implementation.
+As such, that is the alternative that was chosen.
+
+##### Aspect: How to save the favourite
+
+* **Alternative 1 (current choice):** Create a `Favourite` class, each contact has a `favourite` attribute 
+  and favourited contacts have a star icon next to their name.
+    * Pros: Standardised with other fields that the contacts have.
+    * Cons: More troublesome to implement.
+
+* **Alternative 2:** Favourite is saved and shown as a special tag.
+    * Pros: Standardised style as the child tag, can be implemented the same way.
+    * Cons: Might add unnecessary clutter when we have the word "favourite", as it could be easily represented by an icon.
+    This is in contrast to tags which are best represented as text.
+
+* **Alternative 3:** Favourite is saved as a boolean value under each contact,
+  and favourited contacts have a star icon next to their name.
+    * Pros: Simple to implement.
+    * Cons: Not standardised with other contact fields, 
+      might not be as readable to have a random boolean variable appear.
+
+Alternative 1 was eventually chosen as
 As such, that is the alternative that was chosen.
 
 ### Add feature
