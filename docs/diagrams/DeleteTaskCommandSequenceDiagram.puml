@@ -65,6 +65,7 @@ LogicManager <-- DeleteTaskCommand
 deactivate DeleteTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteTaskCommand -[hidden]->[
+destroy DeleteTaskCommand
 
 [<-- LogicManager : CommandResult
 @enduml
