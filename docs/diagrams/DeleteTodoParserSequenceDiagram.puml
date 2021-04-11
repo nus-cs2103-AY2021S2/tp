@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+
+participant ":DeleteTodoCommandParser" as DeleteTodoCommandParser LOGIC_COLOR_T4
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR_T3
+participant ":DeleteTodoCommand" as DeleteTodoCommand LOGIC_COLOR_T2
+
+[-> DeleteTodoCommandParser : parse(args)
+activate DeleteTodoCommandParser
+
+DeleteTodoCommandParser -> ParserUtil : parseIndex
+activate ParserUtil
+ParserUtil --> DeleteTodoCommandParser
+deactivate ParserUtil
+
+DeleteTodoCommandParser -> ParserUtil : parseIndex
+activate ParserUtil
+ParserUtil --> DeleteTodoCommandParser
+deactivate ParserUtil
+
+create DeleteTodoCommand
+DeleteTodoCommandParser -> DeleteTodoCommand
+activate DeleteTodoCommand
+DeleteTodoCommand --> DeleteTodoCommandParser
+deactivate DeleteTodoCommand
+
+[<-- DeleteTodoCommandParser 
+deactivate DeleteTodoCommandParser
+@enduml
