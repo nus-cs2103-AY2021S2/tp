@@ -38,7 +38,6 @@ import seedu.booking.logic.parser.promptparsers.PromptBookingEndParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingStartParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingTagsParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingVenueParser;
-import seedu.booking.logic.parser.promptparsers.PromptEmailParser;
 import seedu.booking.logic.parser.promptparsers.PromptPersonEmailParser;
 import seedu.booking.logic.parser.promptparsers.PromptPersonNameParser;
 import seedu.booking.logic.parser.promptparsers.PromptPersonPhoneParser;
@@ -76,9 +75,6 @@ public class BookingSystemParser {
                 String currentState = StatefulLogicManager.getState();
                 switch (currentState) {
                 /* booking related states */
-                case AddBookingCommandState.STATE_EMAIL:
-                    return new PromptEmailParser().parse(userInput);
-
                 case AddBookingCommandState.STATE_VENUE:
                     return new PromptBookingVenueParser().parse(userInput);
 
