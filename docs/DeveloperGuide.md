@@ -1057,7 +1057,8 @@ The sequence diagram for `EditEventCommand` can be found below.
 The following activity diagram summarises what happens when a user executes a EditEventCommand:
 (For brevity, "Show error" actions are omitted.)
 
-<img src="images/EditEventCommandActivityDiagram.png" width="250" />
+
+<img src="images/EditEventCommandActivityDiagram.png" width="250" />›
 
 
 ***Design Considerations for `EditEventCommand`***
