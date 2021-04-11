@@ -129,7 +129,7 @@ public class Date implements Attribute {
     }
 
     /**
-     * Check if there is a value present.
+     * Checks if there is a value present.
      *
      * @return true is value is null, false otherwise.
      */
