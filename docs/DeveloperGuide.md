@@ -696,35 +696,112 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
-### Launch and shutdown
 
-1. Initial launch
+### General
 
-   1. Download the jar file and copy into an empty folder
+#### Launching TutorBuddy
+1. Download the jar file and copy into an empty folder
+1. Double-click the jar file<br>
+   Expected: Shows the GUI with sample students and tuition sessions. The window size may not be optimum.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+#### Saving Window Preferences
+1. Resize the window to an optimum size (Note that TutorBuddy has a resolution size limit). Move the window to a different location. 
+   Close the window.
+1. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
 
-1. Saving window preferences
+#### Clearing all data
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+<div markdown="span" class="alert alert-info">
+:information_source: **WARNING:** Do not clear all data if you have important information in TutorBuddy!
+</div>
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. Prerequisites: None.
+1. Test case: `clear`<br>
+   Expected: Student list view and Session list view becomes empty.
+1. To get back the sample data in TutorBuddy, simply delete the data folder in the home folder and restart TutorBuddy.
 
-### Deleting a student
+#### Listing all students and sessions
+1. Prerequisites: None.
+1. Test case: `list`<br>
+   Expected: On the Tuition tab, all students and sessions will be displayed in the Student list view and Session list view respectively.
 
-1. Deleting a student while all students are being shown
+### Managing Students
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+#### Adding a student
+1. Prerequisites: None.
+1. Test case: `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`<br>
+   Expected: The student with the fields entered should be added into the Student view list on the Tuition tab.
+1. Incorrect commands to try: `add_student n/John Doe`, `add_student n/John Doe p/28765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/9542 r/Mother`<br>
+   Expected: No student is added. Error details shown in the status message.
 
-   1. Test case: `delete_student 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### Finding a student
+1. Prerequisites: There must be at least 1 student with the name `Alex` currently displayed on the Student view list.
+1. Test case: `find_student alex`<br>
+   Expected: Displays all students that has name matching to the keyword `alex` (case-insensitive).
+1. Test case: `find_student alex yu`<br>
+   Expected: Displays all students that has name matching to the keyword `alex` or `yu` (case-insensitive).
+1. Incorrect command to try: `find_student`<br>
+   Expected: Student view list does not get updated. Error details shown in the status message.
 
-   1. Test case: `delete_student 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+#### Editing a student
+1. Prerequisites: There must be at least 1 student currently displayed on the Student view list.
+1. Test case: `edit_student 1 p/99999999`<br>
+   Expected: The first student displayed in the Student view list his/her `Phone` field changed to `99999999`.
+1. Incorrect commands to try: `edit_student` or `edit_student x` (where x is larger than the size of the student list) <br>
+   Expected: No student is edited. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### Deleting a student
+1. Prerequisites: There must be at least 1 student currently displayed on the Student view list.
+1. Test case: `delete_student 1`<br>
+   Expected: First student deleted from the list. Details of the deleted student shown in the status message.
+1. Incorrect commands to try: `delete_student 0` or `delete_student x` (where x is larger than the size of the student list) <br>
+   Expected: No student is deleted. Error details shown in the status message.
+
+### Managing Sessions
+
+#### Adding a session
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: `add_session n/Alex Yeoh d/2021-04-10 t/12:00 k/120 s/Math f/100`<br>
+   Expected: The session with the fields will be added to the Session list view under the Student's name. The session will have a light blue "I" labelled
+   at the bottom right of the session card. If this session falls within 3 days from the current day (today, tomorrow, day after tomorrow),
+   this session will be displayed in the reminder list view on the Home tab.
+1. Incorrect commands to try: `add_session` or `add_session n/Alex Yeoh d/10-04-2021 t/12:00 k/120 s/Math f/100` <br>
+   Expected: No session is added. Error details shown in the status message.
+
+#### Adding a recurring session
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-06-26 b/7 t/12:00 k/120 s/Math f/100`<br>
+   Expected: The session with the fields will be added to the Session list view under the Student's name. The session will have a orange "R" labelled
+   at the bottom right of the session card. If there is a session that falls within 3 days from the current day (today, tomorrow, day after tomorrow),
+   this session will be displayed in the reminder list view on the Home tab.
+1. Incorrect commands to try: `add_rec_session` or `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-06-28 b/7 t/12:00 k/120 s/Math f/100` <br>
+   Expected: No recurring session is added. Error details shown in the status message.
+
+#### Deleting a session or recurring session
+1. Prerequisites: There must be at least 1 session or recurring session for the student named `Alex Yeoh`.
+1. Test case: `delete_session n/Alex Yeoh i/1`<br>
+   Expected: First session from Alex Yeoh will be deleted from the list. Details of the deleted session shown in the status message.
+1. Incorrect commands to try: `delete_session n/anonymous i/1` (name does not exist in the student list) or
+   `delete_session n/Alex Yeoh i/x` (where x is larger than the size of the session list for `Alex Yeoh`) <br>
+   Expected: No session is deleted. Error details shown in the status message.
+
+#### Deleting a single session from a recurring session
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: Firstly, add the recurring session with this command: `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-04-15 b/1 t/10:00 k/60 s/Math f/100`.
+   Next, delete the single session with this command: `delete_rec_session n/John Doe i/x d/2021-04-12`(where x is the index of the recurring session).<br>
+   Expected: Two recurring sessions will be displayed on the Session list view for `Alex Yeoh` with the first session that starts on `2021-04-10` that ends on `2021-04-11`
+   and the second session that starts on `2021-04-13` that ends on `2021-04-15`.
+1. Incorrect commands to try: `delete_rec_session` or `delete_rec_session n/anonymous` (name does not exist in the student list)<br>
+   Expected: No single session is deleted. Error details shown in the status message.
+
+### Managing Fees
+
+#### Checking a monthly fee
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
+1. Test case: `fee n/John Doe m/4 y/2021`<br>
+   Expected: Displays 2021 April's fee on the status message
+1. Incorrect commands to try: `fee` or `fee n/anonymous m/4 y/2021` (name does not exist in the student list) <br>
+   Expected: No fee is shown. Error details shown in the status message.
