@@ -1030,8 +1030,8 @@ testers are expected to do more *exploratory* testing.
 1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
-        <br><div style="page-break-after: always;"></div>
-    
+       <div style="page-break-after: always;"></div>
+       
     1. Test case: `stats` <br>
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
