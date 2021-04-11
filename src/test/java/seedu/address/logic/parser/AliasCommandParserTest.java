@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAlias;
 
 import org.junit.jupiter.api.Test;
 

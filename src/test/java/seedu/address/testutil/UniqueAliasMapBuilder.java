@@ -6,30 +6,31 @@ import seedu.address.model.alias.CommandAlias;
 /**
  * A utility class to help with building UniqueAliasMap objects.
  * Example usage: <br>
- *     {@code UniqueAliasMap aliases = new UniqueAliasMapBuilder().withCommandAlias("a").withCommandAlias("e").build();}
+ *     {@code UniqueAliasMap aliasMap =
+ *         new UniqueAliasMapBuilder().withCommandAlias("a").withCommandAlias("e").build();}
  */
 public class UniqueAliasMapBuilder {
 
-    private UniqueAliasMap aliases;
+    private UniqueAliasMap aliasMap;
 
     public UniqueAliasMapBuilder() {
-        aliases = new UniqueAliasMap();
+        aliasMap = new UniqueAliasMap();
     }
 
-    public UniqueAliasMapBuilder(UniqueAliasMap aliases) {
-        this.aliases = aliases;
+    public UniqueAliasMapBuilder(UniqueAliasMap aliasMap) {
+        this.aliasMap = aliasMap;
     }
 
     /**
      * Adds a new {@code CommandAlias} to the {@code UniqueAliasMap} that we are building.
      */
     public UniqueAliasMapBuilder withCommandAlias(CommandAlias commandAlias) {
-        aliases.addAlias(commandAlias);
+        aliasMap.addAlias(commandAlias);
         return this;
     }
 
     public UniqueAliasMap build() {
-        return aliases;
+        return aliasMap;
     }
 
 }

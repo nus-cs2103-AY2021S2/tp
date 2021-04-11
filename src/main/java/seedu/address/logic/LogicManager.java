@@ -66,14 +66,14 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText, model.getAliases());
+        Command command = addressBookParser.parseCommand(commandText, model.getAliasMap());
         commandResult = command.execute(model);
 
         shouldReturnAlias = commandResult.isShowAlias();
 
         try {
             storage.saveAddressBook(model.getAddressBook());
-            storage.saveAliases(model.getAliases());
+            storage.saveAliasMap(model.getAliasMap());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -87,13 +87,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyUniqueAliasMap getAliases() {
-        return model.getAliases();
-    }
-
-    @Override
-    public ObservableList<String> getObservableStringAliases() {
-        return model.getObservableStringAliases();
+    public ReadOnlyUniqueAliasMap getAliasMap() {
+        return model.getAliasMap();
     }
 
     @Override
@@ -141,7 +136,7 @@ public class LogicManager implements Logic {
 
         if (shouldReturnAlias) {
             shouldReturnAlias = false;
-            return getObservableStringAliases();
+            return FXCollections.observableList(getCommandAliasesStringList());
         } else {
             if (value == null || value.isEmpty()) {
                 return FXCollections.observableList(commandList);
@@ -238,5 +233,10 @@ public class LogicManager implements Logic {
     @Override
     public Predicate<Person> getSelectedPersonPredicate() {
         return model.getSelectedPersonPredicate();
+    }
+
+    @Override
+    public List<String> getCommandAliasesStringList() {
+        return model.getCommandAliasesStringList();
     }
 }
