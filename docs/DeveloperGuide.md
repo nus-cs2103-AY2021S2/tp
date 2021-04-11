@@ -803,13 +803,19 @@ Prerequisites: List all person using the `list` command. There is at least a per
        Expected: The first person in the friend panel is updated with the newly provided information.
        A success message is shown in the status message.
 
-    2. Editing a person at an invalid index
+    2. Editing a person's name to a different case
+       * Prerequisite: The first person's name should be `John Doe`.
+       * Test case: `edit 1 n/john doe`
+
+       Expected: Similar to previous
+
+    3. Editing a person at an invalid index
        * `edit 0 n/John Doe`
        * `edit x n/John Doe` (where x is larger than the list size)
 
        Expected: No person is edited. Error details shown in the status message.
 
-    3. Editing a person with no fields provided <br>
+    4. Editing a person with no fields provided <br>
        Test case: `edit 1` <br>
        Expected: Similar to previous
 
@@ -818,7 +824,7 @@ Prerequisites: List all person using the `list` command. There is at least a per
        * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
 
     1. Editing a person's name to the name of another person in FriendDex
-       * Prerequisite: A person with the name `john doe` must already be in FriendDex.
+       * Prerequisite: A person with the name `john doe` must already be in FriendDex and is not the first person.
        * Test case: `edit 1 n/John Doe`
 
        Expected: No person is edited. Error details shown in the status message.
