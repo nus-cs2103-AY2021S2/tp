@@ -66,12 +66,15 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the feature `snooze`[\#128](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/128)
+    * Added documentation for the feature `snooze` and `done`: [\#128](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/128)
     * Added 'How to use this guide' section: [\#128](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/128)
     * Added 'Summary of attributes' section: [\#128](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/128)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
+    * Update Model and Logic class diagrams based on new architecture: [\#219](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/219)
+    * Add documentation and class diagram for enforcing constraints: [\#219](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/219)
+    * Add documentation, class diagram, activity diagram and use case for Done command: [\#88](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/88)
+    * Add user story: 
+    
 * **Community**:
   * PRs reviewed (with non-trivial review comments or bugs found): 
   [\#74](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/74), 
