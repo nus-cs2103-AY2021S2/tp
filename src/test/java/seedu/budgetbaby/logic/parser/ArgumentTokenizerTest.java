@@ -1,4 +1,4 @@
-package seedu.budgetbaby.ablogic.parser;
+package seedu.budgetbaby.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,10 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.budgetbaby.logic.parser.ArgumentMultimap;
-import seedu.budgetbaby.logic.parser.ArgumentTokenizer;
-import seedu.budgetbaby.logic.parser.Prefix;
 
 public class ArgumentTokenizerTest {
 
