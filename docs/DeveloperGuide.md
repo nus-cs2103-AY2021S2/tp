@@ -83,7 +83,7 @@ The following sequence diagram (Fig 2.3.2) shows how the list entry operation wo
 Fig 2.3.2
 
 ### Clear overdue entry feature
-Clear overdue entry feature allows users to quickly discard entries that are no longer relevant i.e. entries with end dates
+Clear overdue entry feature allows users to quickly discard entries that are no longer relevant. i.e. entries with end dates
 that have passed.
 
 An outline of the implementation is as follows:
@@ -161,7 +161,7 @@ Priority | As a... | I want to... | So that I can...
 high | forgetful user | be prompted for the commands’ syntax | type all commands without memorising their syntax
 medium | teacher | access the guide or the commands list | eliminate the need to memorise all the commands
 low | teacher | confirm crucial commands with a confirmation message | avoid entering the wrong command
-low | user adopting this products | clear all my contacts from the address book | clear dummy data easily when I use the app for testing
+low | user adopting this products | clear all my contacts from Teaching Assistant | clear dummy data easily when I use the app for testing
 
 ---
 
