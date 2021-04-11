@@ -109,7 +109,6 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 ### Model component
-***** change picture: person->order
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -131,8 +130,6 @@ The `Model`:
 
 
 ### Storage component
-
-****** Change picture, storage of order items
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
