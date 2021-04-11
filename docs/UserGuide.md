@@ -410,6 +410,19 @@ Retrieves previously entered input.
 * `CTRL + Z`(PC) or `CMD + Z` (Mac) key combination undoes the last change to the address or event books.
 * `CTRL + SHIFT + Z` or `CTRL + Y` (PC) or `CMD + SHIFT + Z` or `CMD + Y` (Mac) key combinations redo the last undone change to the address or event books.
 
+#### Data path display :
+
+* Displays the absolute path to the folder where the data is stored at the bottom of PartyPlanet.
+* Note to place the `PartyPlanet.jar` in a folder of length less than 60 characters to ensure that this feature 
+  works well.
+
+<div markdown="block" class="alert-warning">
+
+**:warning: When the length of the path is more than 60 characters, there is a chance that the path will be 
+concatenated with a trailing `...`.**
+
+</div>
+
 ### Coming Soon (Additional Features)
 * Archiving of Data Files
 * Custom fonts
