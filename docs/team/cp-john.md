@@ -34,7 +34,6 @@ Given below are my contributions to the project:
         * `undo` command
 * **Team-based tasks**:
     * Reported bugs as issues for better tracking.
-    * Updated Java CI codecov badges from AB3's to PocketEstate's.
 * **Review/mentoring**:
     * Reviewed and merged pull requests
     * Implemented several bugfixes.
