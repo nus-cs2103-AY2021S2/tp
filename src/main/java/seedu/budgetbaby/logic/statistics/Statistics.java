@@ -1,9 +1,6 @@
 package seedu.budgetbaby.logic.statistics;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -66,7 +63,14 @@ public class Statistics {
     }
 
     public List<CategoryStatistics> getAllUnsortedCategories() {
-        return allCategories();
+        List<CategoryStatistics> list = allCategories();
+        Collections.sort(list, new Comparator<CategoryStatistics>() {
+            @Override
+            public int compare(CategoryStatistics cs1, CategoryStatistics cs2) {
+                return cs1.getCategory().getCategory().compareTo(cs2.getCategory().getCategory());
+            }
+        });
+        return list;
     }
 
     /**

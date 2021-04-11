@@ -45,12 +45,12 @@ public class BudgetDisplay extends UiPart<Region> {
     /**
      * Creates a {@code BudgetDisplay} with the given {@code Month}.
      */
-    public BudgetDisplay(ObservableList<Month> budgetMonthList, List<CategoryStatistics> topCategoriesList) {
+    public BudgetDisplay(ObservableList<Month> budgetMonthList, List<CategoryStatistics> allCategoriesList) {
         super(FXML);
 
         addProgressBarListener();
         updateBudgetUi(budgetMonthList);
-        updateTopCategoriesUi(topCategoriesList);
+        updateAllCategoriesUi(allCategoriesList);
     }
 
     /**
@@ -95,7 +95,7 @@ public class BudgetDisplay extends UiPart<Region> {
     /**
      * Updates a {@code BudgetDisplay} with the top categories list.
      */
-    public void updateTopCategoriesUi(List<CategoryStatistics> allCategoriesList) {
+    public void updateAllCategoriesUi(List<CategoryStatistics> allCategoriesList) {
         this.allCategories.getItems().clear();
         for (CategoryStatistics item : allCategoriesList) {
             String itemName = item.getCategory().toString();
