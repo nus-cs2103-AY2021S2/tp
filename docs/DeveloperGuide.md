@@ -957,14 +957,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TutorPets` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a new contact**
 
 **MSS**
 
 1.  User keys in the contact to be added
-2.  TutorPets shows the added contact into the list
+2.  TutorsPet shows the added contact into the list
 
     Use case ends.
 
@@ -972,7 +972,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -981,7 +981,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters clears all entries contact command
-2.  TutorPets clears all the contact in list
+2.  TutorsPet clears all the contact in list
 
     Use case ends.
 
@@ -989,7 +989,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -998,9 +998,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list contacts
-2.  TutorPets shows a list of students’ contact
+2.  TutorsPet shows a list of students’ contact
 3.  User requests to delete a specific contact from the list
-4.  TutorPets deletes the person
+4.  TutorsPet deletes the person
 
     Use case ends.
 
@@ -1012,7 +1012,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. TutorPets shows an error message.
+    * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
@@ -1021,9 +1021,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list contacts
-2.  TutorPets shows a list of students’ contact
+2.  TutorsPet shows a list of students’ contact
 3.  User requests to edit a specific contact from the list
-4.  TutorPets edits the selected contact
+4.  TutorsPet edits the selected contact
 
     Use case ends.
 
@@ -1031,7 +1031,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -1041,16 +1041,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. TutorPets shows an error message.
+    * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Exit TutorPets**
+**Use case: Exit TutorsPet**
 
 **MSS**
 
 1.  User enters exit into command prompt
-2.  TutorPets saves the current contact in the list and exits.
+2.  TutorsPet saves the current contact in the list and exits.
 
     Use case ends.
 
@@ -1058,7 +1058,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
@@ -1067,7 +1067,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters the student name or specified keyword to be searched.
-2.  TutorPets shows a list of searched students.
+2.  TutorsPet shows a list of searched students.
 
     Use case ends.
 
