@@ -15,13 +15,13 @@ import seedu.student.model.Model;
 import seedu.student.model.student.Student;
 
 /**
- * Adds a person to the address book.
+ * Adds a student to the student book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the student book. "
             + "Parameters: "
             + "MATRICULATION NUMBER "
             + PREFIX_NAME + "NAME "
