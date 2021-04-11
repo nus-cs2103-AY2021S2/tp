@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
+import static seedu.address.logic.parser.CliSyntax.OPTION_REPLACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -44,7 +45,7 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         if (option.isPresent()) {
             String unboxedOption = option.get();
-            if (unboxedOption.equals("rt")) {
+            if (unboxedOption.equals(OPTION_REPLACE)) {
                 isReplace = true;
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_OPTION, unboxedOption));
