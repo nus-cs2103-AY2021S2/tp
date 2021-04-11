@@ -1561,6 +1561,12 @@ Use case ends.
     * 3a1. SOChedule shows an error message.<br>
       Use case resumes at step 2.
       <br><br>
+
+* 3b. The task to be edited is completed
+
+   * 3b1. SOChedule displays an error message. <br>
+     Use case resumes at step 2.
+     <br><br>
       
 **Use case: UC04 - Listing tasks**
 
@@ -1614,7 +1620,7 @@ Use case ends.
       Use case resumes at step 2.
       <br><br>
 
-**Use case: UC06 - Un-done a task**
+**Use case: UC06 - Marking a task as uncompleted**
 
 **MSS**
 
@@ -1853,22 +1859,16 @@ Use case ends.
    Use case ends.
    
 **Extensions**
-   
-* 3a. No edited field is provided
 
-    * 3a1. SOChedule displays an error message. <br>
-      Use case resumes at step 2.
-      <br><br>
+* 3a. User enters erroneous input.
+
+   * 3a1. SOChedule shows an error message.<br>
+     Use case resumes at step 2.
+     <br><br>
 
 * 3b. The event to be edited is expired
-  
-    * 3b1. SOChedule displays an error message. <br>
-      Use case resumes at step 2.
-      <br><br>
 
-* 3c. User enters erroneous input.
-
-   * 3c1. SOChedule shows an error message.<br>
+   * 3b1. SOChedule displays an error message. <br>
      Use case resumes at step 2.
      <br><br>
      
@@ -1930,7 +1930,7 @@ Use case ends.
    <br><br>
    Use case ends.
    
-**Use case: UC21 - Finding Schedule Given a Date**
+**Use case: UC21 - Finding Schedule aiven a date**
 
 **MSS**
 1. User wishes to find schedule given a specified date.
