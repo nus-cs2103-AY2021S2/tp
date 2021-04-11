@@ -574,7 +574,7 @@ Format: `sort_task ARGUMENT`
 * On subsequent boots, the following will happen:
    * Relative order from previous launch will be preserved.
    * However, if any order-altering command (`pin_task`, `unpin_task`, and `find_task`) is issued, tasks will be sorted by name by default, unless otherwise stated by another `sort_task` command.
-   * Marking a task as complete (`done_task`) or incomplete (`undone_task`) does not constitute an order-altering command.
+   * Marking a task as complete (`done_task`) or incomplete (`undone_task`) or adding (`add_task`) and editing (`edit_task`) tasks does not constitute an order-altering command.
     
 Examples:
 * `sort_task completion` sorts the task list by completion status.

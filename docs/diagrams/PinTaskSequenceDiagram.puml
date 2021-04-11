@@ -42,9 +42,6 @@ destroy PinTaskCommandParser
 
 LogicManager <-- SocheduleParser : p
 deactivate SocheduleParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-SocheduleParser -[hidden]->[
-destroy SocheduleParser
 
 LogicManager -> PinTaskCommand : execute()
 activate PinTaskCommand
