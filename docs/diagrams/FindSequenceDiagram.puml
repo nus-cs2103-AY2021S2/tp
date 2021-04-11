@@ -54,7 +54,7 @@ destroy FindCommandParser
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
-LogicManager -> FindCommand : execute()
+LogicManager -> FindCommand : execute(model)
 activate FindCommand
 
 FindCommand -> Model : updateFilteredPassengerList(predicate)
