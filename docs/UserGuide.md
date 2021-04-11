@@ -624,7 +624,8 @@ Gui-related settings such as theme preference are saved in the same directory un
 Advanced users are welcome to update the data directly by making edits to these files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FriendDex will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid or FriendDex cannot find an image that is referenced in the data file,
+FriendDex will discard all data and start with an empty data file at the next run.
 </div>
 
 ## Defining your own theme
