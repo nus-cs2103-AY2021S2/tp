@@ -1,14 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,12 +18,28 @@ public class TypicalContacts {
             .withEmail("alice@example.com")
             .withTags("friends")
             .build();
+
+    public static final Contact AMY = new ContactBuilder()
+            .withName("Amy Bee")
+            .withPhone("11111111")
+            .withEmail("amy@example.com")
+            .withTags("friends")
+            .build();
+
     public static final Contact BENSON = new ContactBuilder()
             .withName("Benson Meier")
             .withPhone("98765432")
             .withEmail("johnd@example.com")
             .withTags("owesMoney", "friends")
             .build();
+
+    public static final Contact BOB = new ContactBuilder()
+            .withName("Bob Choo")
+            .withPhone("22222222")
+            .withEmail("bob@example.com")
+            .withTags("owesMoney", "friends")
+            .build();
+
     public static final Contact CARL = new ContactBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
@@ -61,11 +68,6 @@ public class TypicalContacts {
             .build();
 
     // Manually added - Contact's details found in {@code CommandTestUtil}
-    public static final Contact AMY = new ContactBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Contact BOB = new ContactBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
 
     private TypicalContacts() {} // prevents instantiation
 
