@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
-participant ":NameContainsKeywordPredicate" as NameContainsKeywordPredicate LOGIC_COLOR
+participant "predicate:NameContainsKeywordPredicate" as NameContainsKeywordPredicate LOGIC_COLOR
 participant "d:FindCommand" as FindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
