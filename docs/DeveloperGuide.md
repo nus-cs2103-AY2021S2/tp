@@ -542,7 +542,36 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a patient
+
+1. Adding a patient
+
+   1. Test case: `add n/NAME y/DATEOFBIRTH g/GENDER p/PHONENUMBER e/EMAIL a/ADDRESS b/BLOODTYPE h/HEIGHT w/WEIGHT [t/TAG]`<br>
+      Expected: Patient with appropriate information (with a tag) added
+
+   1. Test case: `add n/NAME y/DATEOFBIRTH g/GENDER p/PHONENUMBER e/EMAIL a/ADDRESS b/BLOODTYPE h/HEIGHT w/WEIGHT`<br>
+      Expected: Patient with appropriate information (without a tag) added
+
+   1. Other incorrect delete commands to try: `add`, `add x`, `...` (where x is not in the above specified format)<br>
+      Expected: Similar to previous.
+
+1. Adding a patient in archieved list
+
+   1. Prerequisites: List all patients using the `archivelist` command. Multiple patients in the archieved list.
+
+   1. Test case: `archive 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      
+   1. Other incorrect delete commands to try: `archive`,<br>
+      Expected: Similar to previous.
+
+1. Adding a medical record to a patient
+
+   1. Test case: `mrec 1`<br>
+      Expected: Opens a notepad to add medical record to the patient with index 1
+      
+  1. Other incorrect delete commands to try: `mrec`, `mrec x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### Deleting a patient
 
@@ -559,7 +588,18 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a patient in archieved list
+
+   1. Prerequisites: List all patients using the `archivelist` command. Multiple patients in the archieved list.
+
+   1. Test case: `unarchive 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `unarchive 0`<br>
+      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `unarchive`, `unarchive x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
@@ -567,4 +607,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+
