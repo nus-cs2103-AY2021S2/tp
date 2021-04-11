@@ -13,7 +13,9 @@ title: Developer Guide
 <!-- prettier-ignore-end -->
 
 ---
+
 ## **Introduction**
+
 Focuris is a desktop application for managing events with a KanBan board, which is a board where your events displayed
 according to the level of completion of each event, which consists of Backlog, Todo, In-Progress and Done. It functions
 via a Command-Line Interface (CLI) that allows more efficient management of events.
@@ -153,6 +155,15 @@ a set of members named HIGH, MEDIUM, LOW. If the User decides not to add a prior
 The following class diagram illustrates how the priority feature is implemented:
 
 ![Structure of the Event Component](diagrams/EventClassDiagram.png)
+
+### Event `identifier` attribute
+
+Events in Focuris have a unique `identifier` attached to them.
+
+- Identifier is an integer attribute inside the Event model, which increments each time the constructor is called. This means, identifier will increment irregardless of whether an Event is successfully added in EventBook.
+- Identifier gets re-allocated each time Focuris restarts.
+- Identifiers never get reset or decremented in a single session. This ensures that even with a potential undo feature in the future, Focuris' Events are not at risk of having duplicate identifiers.
+- This implementation of an identifier which does not reset or decrement is in line with other kanban boards, such as GitHub or Jira.
 
 #### Design consideration:
 
@@ -382,23 +393,23 @@ Use case ends.
 2.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-
 ### Glossary
 
 **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 **Event**: A task that needs to be completed by the user.
+
 - An event consists of a title, description and identifier that we use
   to track each event.
 - The stage of completion of an event can be split into four types:
-    1) Backlog
-    2) Todo
-    3) In Progress
-    4) Done
+  1. Backlog
+  2. Todo
+  3. In Progress
+  4. Done
 - An event can also have three different degrees of priorities:
-    1) High
-    2) Medium
-    3) Low
+  1. High
+  2. Medium
+  3. Low
 
 **Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being
 planned to be worked on or pending or any upcoming events, but we leave the definition loose up to the user.
@@ -414,7 +425,6 @@ planned to be worked on or pending, but we leave the definition loose up to the 
 **Kanban**: Meaning signboard or billboard in Japanese. It is a method of managing and improving work flow across human
 systems. It is often used via a Kanban Board, where cards are used to represent work items and columns are used to
 represent each stage of the work process. An example of a Kanban Board is our application itself.
-
 
 **Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
 
