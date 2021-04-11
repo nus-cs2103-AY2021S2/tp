@@ -63,11 +63,11 @@ deactivate TaskifyParser
 LogicManager -> DeleteByStatusCommand : execute()
 activate DeleteByStatusCommand
 
-DeleteByStatusCommand -> Model : getFilteredTaskList()
-activate Model
-
-Model --> DeleteByStatusCommand
-deactivate Model
+'DeleteByStatusCommand -> Model : getFilteredTaskList()
+'activate Model
+'
+'Model --> DeleteByStatusCommand
+'deactivate Model
 
 DeleteByStatusCommand -> DeleteUtil : getTasksToDelete(...)
 activate DeleteUtil

@@ -62,11 +62,11 @@ deactivate TaskifyParser
 LogicManager -> DeleteMultipleCommand : execute()
 activate DeleteMultipleCommand
 
-DeleteMultipleCommand -> Model : getFilteredTaskList()
-activate Model
-
-Model --> DeleteMultipleCommand
-deactivate Model
+'DeleteMultipleCommand -> Model : getFilteredTaskList()
+'activate Model
+'
+'Model --> DeleteMultipleCommand
+'deactivate Model
 
 DeleteMultipleCommand -> DeleteUtil : getTasksToDelete(...)
 activate DeleteUtil
