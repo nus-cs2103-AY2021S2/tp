@@ -21,7 +21,7 @@ public class JsonAdaptedTagTest {
     private static final String INVALID_TAG_4 = "This_INVALID";
 
     @Test
-    public void toModelType_ValidTagTest() {
+    public void toModelType_validTagTest() {
         //valid tag
         assertTrue(Tag.isValidTagName(VALID_TAG_1)); // CS 1k mod
         assertTrue(Tag.isValidTagName(VALID_TAG_2)); // CS 1k mod

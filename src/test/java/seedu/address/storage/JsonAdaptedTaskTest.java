@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.DeadlineDate;
+import seedu.address.model.person.DeadlineTime;
+import seedu.address.model.person.ModuleCode;
+import seedu.address.model.person.TaskName;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.PriorityTag;
 
 public class JsonAdaptedTaskTest {
