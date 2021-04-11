@@ -1360,5 +1360,5 @@ Each of us have put in a significant amount of effort to get CoLAB to the curren
 
 6. **Command History**
 
-    Keeping in mind that CoLAB is a CLI based application, we implemented the Command History feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition our solution had to take into account the current command the user was typing in order to better mimic a real command line. 
+    Keeping in mind that CoLAB is a CLI based application, we implemented the Command History feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition, our solution had to take into account the current command the user was typing in order to better mimic a real command line. 
    
