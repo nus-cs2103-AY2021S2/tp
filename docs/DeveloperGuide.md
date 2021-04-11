@@ -80,7 +80,8 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultBarFooter`, `FilterPanel`, `TutorListPanel` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -119,7 +120,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the TutorTracker data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<XYZ>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 ### Storage component
 
@@ -140,7 +141,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 ### [Proposed] Favourite Feature
-####Proposed Implementation
+#### Proposed Implementation
 The proposed favourite feature is to facilitate the user to keep track of his/her favourites out of the entire list of tutors. 
 It implements the following operations:
 * `Favourite tutor` - Add a tutor to the list of favourite tutors.
@@ -152,7 +153,7 @@ These operations are exposed in the `Logic` interface by parsing respective `Fav
 
 Given below are example usage scenarios and how the favourite feature behaves at each step.
 
-### [Proposed] Note Feature
+### Note Feature
 #### Proposed Implementation
 Tutor Tracker's Notes feature allows users to create notes that are tagged to specific tutors and export them into a text file.
 
@@ -199,7 +200,7 @@ Steps for the execution of the `AddNoteCommand` (assuming that no errors are enc
 
 #### Design Consideration
 
-**Displaying Schedule in the GUI**
+**Displaying Notes in the GUI**
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
@@ -728,7 +729,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
 
-    User case ends.
+    Use case ends.
 
 <hr/>
 
@@ -753,7 +754,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. No appointment matches the search value.
     * 3a1. TutorTracker displays an empty list.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -941,7 +942,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. The date is invalid.
     * 3a1. TutorTracker shows an error message.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -959,7 +960,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 3a. The index is out of bound.
     * 3a1. TutorTracker shows an error message.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -1002,15 +1003,15 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1. User requests to view the list of reminders.
 2. TutorTracker displays the list of reminders to the user.
-3.  User requests to delete a specific reminder in the list by indicating the index shown.
-4.  TutorTracker deletes that specific reminder.
+3. User requests to delete a specific reminder in the list by indicating the index shown.
+4. TutorTracker deletes that specific reminder.
 
 **Extensions**
 
 * 3a. The index is out of bound.
     * 3a1. TutorTracker shows an error message.
 
-  User case ends.
+  Use case ends.
 
 <hr/>
 
@@ -1026,12 +1027,12 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * 1a. The date is empty.
     * 1a1. TutorTracker set the default date is today.
 
-    User case resumes at step 2.
+    Use case resumes at step 2.
 
 * 1b. The given date is invalid.
     * 1b1. TutorTracker shows an error message.
-
-      Use case ends.
+      
+    Use case ends.
 
 <hr/>
 
@@ -1065,7 +1066,9 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Appointment**: An event in user's local schedule with related details, including tutor's name, date of appointment, start and end time and location(optional).
+* **Event**: Something happening on the day.
+* **Appointment**: An event that refers to a tuition session with a particular tutor. Information stored including the tutor's name, date of appointment, start and end time and location.
+* **Schedule**: An event that is closely related to tuition, such as allocating time to do tuition homework or assessments.
 * **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
 * **Years of Experience**: Years of experience of tutoring a specific subject.
 * **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
@@ -1077,11 +1080,6 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
 
 ### Launch and shutdown
 
@@ -1117,6 +1115,42 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a Schedule
+
+1. Adding a schedule
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided 
+        2. The date must be in the form `yyyy-mm-dd`. 
+        3. The time must be in the form ` hh:mm a`.
+        4. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+        5. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
+        6. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
+        7. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
+        8. The schedule's timeslot must not clash with existing appointments & schedules. <br><br>
+        9. `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`). <br>
+    2. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
+       Expected: Adds a schedule by the name `Maths Tuition Homework`, happening from `Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM` <br><br>
+    3. Test Case: `add_schedule t/Science Tuition Homework d/2021-6-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6` <br>
+       Expected: Adds a schedule by the name `Science Tuition Homework`, happening from `Jun 30 2021 06:00 PM to Jun 30 2021 07:00 PM` <br><br>
+    4. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
+       Expected: The schedule is not added. An error message saying that the schedule already exists (assuming you did the first
+       test case) is shown <br><br>
+    5. Test Case: `add_schedule t/Maths Tuition Homework d/2/5/2021 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
+       Expected: The task is not added. An error message saying that the date is in the wrong format is shown <br><br>
+    6. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/15:00pm to/7:00pm ds/Calculus Topic` <br>
+      Expected: The task is not added. An error message saying that the time is in the wrong format is shown <br><br>
+    7. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/7:00pm to/5:00pm ds/Calculus Topic` <br>
+      Expected: The task is not added. An error message saying that the time range is invalid is shown <br><br>
+    8. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/5:00am to/10:00am ds/Calculus Topic` <br>
+      Expected: The task is not added. An error message saying that the start time is invalid is shown <br><br>
+    9. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/10:00pm to/1:00am ds/Calculus Topic` <br>
+      Expected: The task is not added. An error message saying that the end time is invalid is shown <br><br>
+    10. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/5:31pm to/8:46pm ds/Calculus Topic` <br>
+      Expected: The task is not added. An error message saying that the time minutes are not in blocks of 30 or 60 minutes is shown <br><br>
+    11. Test Case: `add_schedule t/English Tuition Homework d/2021-6-2 fr/4:00pm to/8:00pm ds/Calculus Topic` <br>
+      Expected: The schedule is not added. An error message saying that the schedule clashes with another appointment or schedule (assuming you did the first
+      test case) is shown <br><br>
+        
 ### Saving data
 
 1. Dealing with missing/corrupted data files

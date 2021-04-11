@@ -13,8 +13,10 @@ Class HelpWindow
 Class ResultDisplay
 Class XYZListPanel
 Class XYZCard
-Class StatusBarFooter
+Class ResultBarFooter
 Class CommandBox
+Class FilterPanel
+Class TimeTableWindow
 }
 
 package Model <<Rectangle>> {
@@ -30,12 +32,14 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
-MainWindow *-down-> ResultDisplay
-MainWindow *-down-> XYZListPanel
-MainWindow *-down-> StatusBarFooter
 
+MainWindow --> TimeTableWindow
+MainWindow --> HelpWindow
+MainWindow *-down-> ResultDisplay
+MainWindow *-down-> CommandBox
+MainWindow *-down-> ResultBarFooter
+MainWindow *-down-> XYZListPanel
+MainWindow *-down-> FilterPanel
 XYZListPanel -down-> XYZCard
 
 MainWindow -left-|> UiPart
@@ -44,17 +48,23 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 XYZListPanel --|> UiPart
 XYZCard --|> UiPart
-StatusBarFooter --|> UiPart
+ResultBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+TimeTableWindow --|> UiPart
+FilterPanel --|> UiPart
 
+FilterPanel ..> Model
+TimeTableWindow .right.> Model
 XYZCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-XYZListPanel -[hidden]left- HelpWindow
+XYZListPanel -[hidden]left- FilterPanel
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- ResultBarFooter
+TimeTableWindow -[hidden]left- HelpWindow
+FilterPanel -[hidden]left- TimeTableWindow
 
 MainWindow -[hidden]-|> UiPart
 
