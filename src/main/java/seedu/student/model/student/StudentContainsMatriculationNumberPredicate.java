@@ -14,6 +14,7 @@ public class StudentContainsMatriculationNumberPredicate implements Predicate<St
 
     @Override
     public boolean test(Student student) {
+
         return keyword.equals((student.getMatriculationNumber()));
     }
 

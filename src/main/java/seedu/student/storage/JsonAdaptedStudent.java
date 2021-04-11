@@ -145,7 +145,6 @@ class JsonAdaptedStudent {
 
         final VaccinationStatus modelVacStatus = new VaccinationStatus(vaccinationStatus);
 
-
         if (medicalDetails == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MedicalDetails.class.getSimpleName()));
@@ -164,7 +163,6 @@ class JsonAdaptedStudent {
         } else {
             modelSchoolRes = new SchoolResidence(schoolResidence);
         }
-
         return new Student(modelName, modelMatric, modelFaculty, modelPhone, modelEmail, modelAddress, modelVacStatus,
                 modelMedDetails, modelSchoolRes);
     }

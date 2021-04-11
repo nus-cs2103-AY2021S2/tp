@@ -91,7 +91,7 @@ public class Student {
     }
 
     public boolean isVaccinated() {
-        return this.vaccinationStatus.status == VaccinationStatus.VaccinationStatusAbbreviation.VACCINATED;
+        return this.vaccinationStatus.status == VaccinationStatus.VaccinationStatusKeywords.VACCINATED;
     }
 
     /**
@@ -144,8 +144,6 @@ public class Student {
                 .append(getVaccinationStatus())
                 .append("; Medical Details: ")
                 .append(getMedicalDetails())
-                .append("; Vaccination Status: ")
-                .append(getVaccinationStatus())
                 .append("; School Residence: ")
                 .append(getSchoolResidence().toString()); // DOES NOT LIVE ON CAMPUS -> For UI
         return builder.toString();

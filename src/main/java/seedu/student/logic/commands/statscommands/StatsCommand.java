@@ -19,10 +19,10 @@ public abstract class StatsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays statistics of the requested entity: \n"
-            + "Faculties - Parameters: " + stringFaculties + "\n"
-            + "Residences - Parameters: " + stringResidences + "\n"
-            + "Entire NUS - Parameter: " + "NUS \n"
-            + "All Faculties and Residences - Parameter: " + "all \n"
+            + "Faculties - Parameters: " + stringFaculties + " (case-sensitive)" + "\n"
+            + "Residences - Parameters: " + stringResidences + " (case-sensitive)" + "\n"
+            + "Entire NUS - Parameter: " + "NUS  (case-sensitive) \n"
+            + "All Faculties and Residences - Parameter: " + "all (case-sensitive) \n"
             + "Please enter only one parameter." + " Examples: " + COMMAND_WORD + " COM, " + COMMAND_WORD + " PGPR, "
             + COMMAND_WORD + " NUS, " + COMMAND_WORD + " all" + "\n";
 

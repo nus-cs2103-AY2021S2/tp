@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.student.commons.core.Messages;
 import seedu.student.commons.core.index.Index;
 import seedu.student.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.Model;
 import seedu.student.model.ModelManager;
 import seedu.student.model.StudentBook;
@@ -81,7 +82,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws ParseException {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
@@ -107,7 +108,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateStudentFilteredList_failure() {
+    public void execute_duplicateStudentFilteredList_failure() throws ParseException {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         // edit student in filtered list into a duplicate in address book
@@ -132,7 +133,7 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidStudentIndexFilteredList_failure() {
+    public void execute_invalidStudentIndexFilteredList_failure() throws ParseException {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list

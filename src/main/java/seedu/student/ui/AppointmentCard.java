@@ -1,5 +1,7 @@
 package seedu.student.ui;
 
+import java.util.Optional;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -83,13 +85,13 @@ public class AppointmentCard extends UiPart<Region> {
     private static void studentBind(AppointmentCard apptCard, ObservableList<Student> studentList) {
         ListChangeListener<Student> listener = change -> {
             while (change.next()) {
-                Student student = change.getList().stream().filter(s -> s.getMatriculationNumber()
-                        .equals(apptCard.student.getMatriculationNumber())).findFirst().get();
-                if (!apptCard.student.equals(student)) {
-                    apptCard.student = student;
-                    apptCard.name.setText(student.getName().toString());
-                    apptCard.phone.setText(student.getPhone().value);
-                    apptCard.email.setText(student.getEmail().value);
+                Optional<? extends Student> student = change.getList().stream().filter(s -> s.getMatriculationNumber()
+                        .equals(apptCard.student.getMatriculationNumber())).findFirst();
+                if (student.isPresent() && !apptCard.student.equals(student)) {
+                    apptCard.student = student.get();
+                    apptCard.name.setText(apptCard.student.getName().toString());
+                    apptCard.phone.setText(apptCard.student.getPhone().value);
+                    apptCard.email.setText(apptCard.student.getEmail().value);
                 }
             }
         };

@@ -2,8 +2,6 @@ package seedu.student.logic.parser;
 
 import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.List;
-
 import seedu.student.logic.commands.FilterCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.student.Faculty;
@@ -18,11 +16,6 @@ import seedu.student.model.student.VaccinationStatusContainsKeywords;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
-    //VACCINATED_STATUS contains VACCINATED and NOT_VACCINATED
-    private static final List<String> VACCINATED_STATUS = VaccinationStatus.getVaccinationStatusAbbreviation();
-    private static final List<String> FACULTY = Faculty.getFacultyAbbreviation();
-    private static final List<String> SCHOOL_RESIDENCE = SchoolResidence.getResidenceAbbreviation();
-    private static final String UNVACCINATED_STATUS = "not_vaccinated";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
@@ -34,23 +27,17 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String condition = args.trim();
 
-        if (condition.equals("not_vaccinated")) {
-            condition = "";
-        }
-
-        if (condition.equals("not vaccinated")) {
-            condition = UNVACCINATED_STATUS;
-        }
-
-        if (VACCINATED_STATUS.contains(condition)) {
-            return new FilterCommand(new VaccinationStatusContainsKeywords(condition));
-        } else if (FACULTY.contains(condition)) {
-            return new FilterCommand(new FacultyContainsKeywords(condition));
-        } else if (SCHOOL_RESIDENCE.contains(condition)) {
-            return new FilterCommand(new SchoolResidenceContainsKeywords(condition));
+        if (VaccinationStatus.isValidStatus(condition.toUpperCase())) {
+            return new FilterCommand(new VaccinationStatusContainsKeywords(condition.toUpperCase()),
+                    condition.toLowerCase());
+        } else if (Faculty.isValidFaculty(condition)) {
+            return new FilterCommand(new FacultyContainsKeywords(condition), condition);
+        } else if (SchoolResidence.isValidResidence(condition)) {
+            return new FilterCommand(new SchoolResidenceContainsKeywords(condition), condition);
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
     }
+
 }

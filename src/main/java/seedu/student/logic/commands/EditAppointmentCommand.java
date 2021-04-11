@@ -33,7 +33,7 @@ public class EditAppointmentCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment overlaps with another appointment.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment clashes with another appointment.";
     public static final String MESSAGE_APPOINTMENT_DOES_NOT_EXIST = "The requested appointment does not exist.";
 
     private final MatriculationNumber matriculationNumber;
@@ -55,7 +55,6 @@ public class EditAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
 
         Appointment appointmentToEdit = model.getAppointmentToEdit(matriculationNumber);
         if (appointmentToEdit == null) {
@@ -119,6 +118,11 @@ public class EditAppointmentCommand extends Command {
             setMatriculationNumber(toCopy.matriculationNumber);
             setDate(toCopy.date);
             setStartTime(toCopy.startTime);
+        }
+
+        @Override
+        public String toString() {
+            return matriculationNumber.toString() + " " + date.toString() + " " + startTime.toString();
         }
 
         /**

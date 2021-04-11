@@ -34,5 +34,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentListContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentContainsMatriculationNumberPredicate(matriculationNumber));
+
     }
 }
