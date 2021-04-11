@@ -45,7 +45,7 @@ deactivate CommandResult
 EmailCommand --> LogicManager : result
 deactivate EmailCommand
 
-[<--LogicManager : result
+[<--LogicManager
 destroy EmailCommand
 deactivate LogicManager
 @enduml
