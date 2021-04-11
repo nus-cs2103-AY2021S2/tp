@@ -46,6 +46,7 @@ title: User Guide
   * [5. Miscellaneous](#5-miscellaneous)
      * [5.1 Reset application to blank](#51-reset-application-to-blank)
      * [5.2 Populate application with sample template data](#52-populate-application-with-sample-template-data)
+     * [5.3 Exit the application](#53-exit-the-application)
 * [Command summary](#command-summary)
 * [Glossary](#glossary)
 * [Appendix](#appendix)
@@ -122,7 +123,7 @@ DietLAH! uses the following date format for command inputs: `dd Mmm yyyy` which 
 
 Legend | Description
 -------|-------------
-d | Day in the calendar month, ranging from 0 - 31, without leading zeroes
+dd | Day in the calendar month, ranging from 0 - 31, without leading zeroes
 Mmm | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
 yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 
