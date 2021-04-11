@@ -641,25 +641,9 @@ testers are expected to do more *exploratory* testing.
     2. Close the app using the `exit` command. <br>
         Expected: Both the help and main window should be closed.
 
-### Viewing Help 
-
-1. Viewing help 
-
-    1. Test case: `help` <br>
-        Expected: A help window is being displayed. 
-
-### Clearing Data
-
-1. Clearing all the data in the app
-   
-    1. Prerequisites: There is at least 1 member in the members list or 1 task in the task list.
-
-    2. Test case: `clear` <br>
-       Expected: All the data in HEY MATEz is cleared.
-       
 ### Adding a member
 
-1. Adding a member 
+1. Adding a member
 
    1. Prerequisites: No duplicate members exist.
 
@@ -680,7 +664,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing members
 
-1. Lists all members within HEY MATEz
+1. View all members
 
    1. Test case: `viewMembers`<br>
       Expected: Lists all members within HEY MATEz.
@@ -729,7 +713,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding Members by Keywords
 
-1. Finding members in HEY MATEz whose details (i.e. name, phone number, email, role) contain any of the specified keywords
+1. Finding members whose details (i.e. name, phone number, email, role) contain any of the specified keywords
 
     1. Prerequisites: HEY MATEz contains 2 members with the following details: <br>
         * 1. Name: Alice, Phone Number: 98887777, Email: alice@gmail.com, Role: Secretary
@@ -752,14 +736,14 @@ testers are expected to do more *exploratory* testing.
        
 ### Viewing tasks
 
-1. Lists all tasks within HEY MATEz. 
+1. View all tasks 
    
     1. Test case: `viewTasks`<br>
        Expected: Lists all tasks within the HEY MATEz.
        
 ### Deleting a Task
 
-1. Deleting a Task while all tasks are being shown.
+1. Deleting a Task
 
     1. Prerequisites: List all tasks using the `viewTasks` command. 3 different tasks in the list. 
        All 3 tasks have different indexes(1, 2, 3).
@@ -773,9 +757,9 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1`, `...` <br>
        Expected: similar to previous test case.
        
-### Mark a task as completed
+### Marking a task as completed
 
-1. Mark a task as completed
+1. Marking a task as completed
 
    1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status 
    is uncompleted. There also exists a task at index 2 whose task status is completed.
@@ -786,15 +770,15 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `done 0`<br>
       Expected: No task marked as completed. Error details is shown in the status bar.      
 
-    1. Test case: `done 2`<br>
+   1. Test case: `done 2`<br>
       Expected: Since the task already has a status of completed, an error message is shown in the status bar. 
       
    1. Other incorrect commands to try: `done`, `done -1` 
       Expected: similar to previous test case.
       
-### Mark a task as uncompleted
+### Marking a task as uncompleted
 
-1. Mark a task as uncompleted
+1. Marking a task as uncompleted
 
    1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status 
    is completed. There also exists a task at index 2 whose task status is uncompleted.
@@ -813,21 +797,21 @@ testers are expected to do more *exploratory* testing.
       
 ### Viewing a list of unassigned tasks
 
-1. Lists all unassigned tasks within HEY MATEz.
+1. View all unassigned tasks 
 
     1. Test case: `viewUnassignedTasks`<br>
        Expected: Lists all tasks that are unassigned within the HEY MATEz.
 
 ### Viewing a list of uncompleted tasks
 
-1. Lists all uncompleted tasks within HEY MATEz.
+1. View all uncompleted tasks 
 
-    1. Test case: `viewUncompletedTasks`<br>
-       Expected: Lists all tasks that are uncompleted within the HEY MATEz.
+   1. Test case: `viewUncompletedTasks`<br>
+      Expected: Lists all tasks that are uncompleted within the HEY MATEz.
 
-### Find tasks by priority
+### Finding tasks by priority
 
-1. Find all tasks within HEY MATEz with the specified priority
+1. Finding tasks by priority
 
    1. Test case: `findPriority high`<br>
       Expected: Lists all tasks within HEY MATEz whose priority is **high**.
@@ -850,9 +834,9 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc.
       Expected: similar to previous test case.   
 
-### Find tasks assigned to a member
+### Finding tasks assigned to a member
 
-1. Lists all tasks assigned to a member
+1. Finding all tasks in HEY MATEz assigned to a member
 
    1. Prerequisites: There exists a member with the name of Alice and a task assigned to Alice within HEY MATEz.
    
@@ -864,17 +848,17 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding Tasks by Keywords
 
-1. Finding tasks in HEY MATEz whose title or description contain any of the specified keywords
+1. Finding all tasks whose title or description contain any of the specified keywords
 
     1. Prerequisites: HEY MATEz contains 2 tasks, T1 and T2, with the following details: <br>
         * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach session
         * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline for EXCO event 
 
     2. Test case: `findTasks Community`<br>
-        Expected: Task T1 is listed in the task list. 
+       Expected: Task T1 is listed in the task list. 
 
     3. Test case: `findTasks Community EXCO` <br>
-        Expected: Both task T1 and T2 are listed in the task list.
+       Expected: Both task T1 and T2 are listed in the task list.
 
     4. Test case: `findTasks proposal`<br>
        Expected: Both task T1 and T2 are listed in the task list since keywords specified are case-insensitive.
@@ -888,8 +872,9 @@ testers are expected to do more *exploratory* testing.
 ### Clearing all Assignees of a Task
 
 1. Clearing all Assignees of a Task
-    1. Prerequisites: List all tasks using the `viewTasks` command. There exists a task at index 1 with at least 1 member 
-       assigned to it.
+
+   1. Prerequisites: List all tasks using the `viewTasks` command. There exists a task at index 1 with at least 1 member 
+      assigned to it.
 
    2. Test case: `clearAssignees 1`<br>
       Expected: All members assigned to the task at index 1 is cleared. Details of the task being cleared is shown
