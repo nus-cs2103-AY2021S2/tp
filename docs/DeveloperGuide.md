@@ -559,7 +559,7 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 [Return to Overview](#421-overview)
 
 
-#### Implementation of `edit_task` command**
+#### Implementation of `edit_task` command
 In SOChedule, the governing logic behind the `edit_task` command is laid out in [`EditTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/EditTaskCommand.java)
 The edit task mechanism is supported mainly by `EditTaskCommand` and `EditTaskCommandParser`.
 
