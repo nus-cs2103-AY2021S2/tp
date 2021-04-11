@@ -287,6 +287,7 @@ The following sequence diagram shows how the FindAll feature works:
 
 The following activity diagram summarises the events that take place when a user executes the `findAll`
 command:
+
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
 #### Design Consideration
@@ -909,14 +910,15 @@ to work on.
     <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br />
     <br />
     9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)
+    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
 
 ### Add on to an entry
 1. Add on to an entry with the provided details
    
-    1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.
+    1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.<br>
        
     2. Test case: `addon 1 re/I like this food a lot! p/7`
+
     <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
        out of the initial price range dispalyed in the entry). Specified Entry will be updated with the addon on fields.<br />
     <br />
@@ -929,13 +931,14 @@ to work on.
     5. Test case: addon 1 re/Good Food p/1000
     <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
     <br />
+
     6. Other incorrect `addon` commands to try: addon 10000000000 re/Good Food (invalid index)
     
 ### Delete an Entry
 1. Delete a booking specified by booking ID.
    
-    1. Prerequisite: `list` all entries to find out the name of the entry to delete
-
+    1. Prerequisite: `list` all entries to find out the name of the entry to delete<br>
+       
     2. Test case: delete 1
     <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
     <br />
@@ -943,7 +946,8 @@ to work on.
     <br>Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
     <br />
     4. Other incorrect delete commands to try: delete, delete Starbucks
-    <br>Expected: Invalid command format error. No entry is deleted.
+    
+        Expected: Invalid command format error. No entry is deleted.
    
     
 ### Find entries
