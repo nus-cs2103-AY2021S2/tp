@@ -256,7 +256,7 @@ The FindAll feature allows a user to find entries that match **ALL** the keyword
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
 
-This feature is implemented through the `findll` command, where the user will provide a list of keywords that
+This feature is implemented through the `findall` command, where the user will provide a list of keywords that
 they would like the FoodDiary to utilise to search through the various fields from the FoodDiary entries.
 The fields that can be searched through include `Name`, `Rating`, `Price`, `Address`, `TagCategory` and
 `TagSchool`. Using the provided list of keywords, the FoodDiary will search through all the specified searchable
@@ -285,7 +285,7 @@ Step 4: User decides to visit that particular food place.
 The following sequence diagram shows how the FindAll feature works:
 ![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the `findAll`
+The following activity diagram summarises the events that take place when a user executes the `findall`
 command:
 
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
@@ -321,8 +321,7 @@ prefix and the EditCommand.
 The following sequence diagram shows how Revise feature works:
 ![Revise Sequence Diagram](images/ReviseSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the `revise
-command`:
+The following activity diagram summarises the events that take place when a user executes the `revise` command:
 ![Revise Activity Diagram](images/ReviseActivityDiagram.png)
 
 #### Design Consideration
@@ -345,10 +344,10 @@ At its core, the `edit` feature allows a user to edit multiple fields pertaining
  
 When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which
  `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
- The user input will be parsed as an `Edit` command and executed to edit the entry specified by
+ The user input will be parsed as an `edit` command and executed to edit the entry specified by
  the index of the command.
  
-If the command `edit 1 re/New review is passed`, the `edit` command essentially replaces the old entry with a new
+If the command `edit 1 re/New review` is passed, the `edit` command essentially replaces the old entry with a new
  entry that has the new review. The `edit` coammand calls `Model#setEntry()`, which calls
  `ModelManager#setEntry()`, that calls `FoodDiary#setEntry()` to eventually change the target entry with a new entry.
 
@@ -416,7 +415,7 @@ not exist, the filteredEntryList will be empty and no entry will be displayed on
 
 The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into
 `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
-`FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a 'View' command and executed to 
+`FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a `view` command and executed to 
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
 shown in a new window.
 
@@ -429,7 +428,7 @@ The following activity diagram summarizes what happens when a user executes the 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** If the index specified by the user do not exist in The Food Diary, a CommandException will be thrown and the
 error will be displayed to the user in the command box. If index is not specified, the error message in the command box
-will show the correct syntax to use for the `View` command.
+will show the correct syntax to use for the `view` command.
 </div>
 
 #### Design Consideration
@@ -482,7 +481,7 @@ The parsed command will be identified as the exit command.
 
 ## **Appendix A: Challenges Faced**
 
-### Challenges Faced & Rationalez
+### Challenges Faced & Rationales
 
 1. One of the most significant challenges on the creation of The Food Diary was refactoring and redefining classes and
  methods to match the implementation of a Food Diary, and in doing so do away with previous implementations
@@ -929,34 +928,34 @@ to work on.
         Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
        out of the initial price range dispalyed in the entry). Specified Entry will be updated with the addon on fields.
        
-    3. Test case: addon 1
+    3. Test case: `addon 1`
     
         Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
        
-    4. Test case: addon 1 re/
+    4. Test case: `addon 1 re/`
     
         Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.
        
-    5. Test case: addon 1 re/Good Food p/1000
+    5. Test case: `addon 1 re/Good Food p/1000`
     
         Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
        
-    6. Other incorrect `addon` commands to try: addon 10000000000 re/Good Food (invalid index)
+    6. Other incorrect `addon` commands to try: `addon 10000000000 re/Good Food` (invalid index)
     
 ### Delete an Entry
 1. Delete a booking specified by booking ID.
-   
+
     1. Prerequisite: `list` all entries to find out the name of the entry to delete<br>
        
-    2. Test case: delete 1
+    2. Test case: `delete 1`
     
         Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
     
-    3. Test case: delete x (where x is non-existent booking ID)
+    3. Test case: `delete x` (where x is non-existent booking ID)
        
         Expected: Error of invalid entry shown in result display. No entry is deleted.
 
-    4. Other incorrect delete commands to try: delete, delete Starbucks
+    4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
     
         Expected: Invalid command format error. No entry is deleted.
    
