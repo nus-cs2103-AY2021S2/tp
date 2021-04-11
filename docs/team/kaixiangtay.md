@@ -66,7 +66,7 @@ Given below are my contributions to the project.
 
 * **Documentation in Developer Guide**:
   * Added sequence and activity diagram of the `find` feature.
-  * Added the non-functional requirements, some user stories and use cases.
+  * Added the non-functional requirements, some user stories, use cases and test cases to manual testing.
   
 
 * **Contributions to team-based tasks**:
@@ -101,8 +101,8 @@ Given below are my contributions to the project.
     (3) [Pull Request #103](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/103)
     
     (4) [Pull Request #209](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/209)
-    
-    
+
+    (5) [Pull Request #213](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/213)
   
 * **Contributions beyond the project team**:
     * Detected bugs as a tester during PED : number of bugs reported is 12.
