@@ -316,7 +316,7 @@ Examples:
 
 ##### By book title:
 
-You can use this command to find books whose title contains any of the given keywords.
+You can use this command to find books whose titles contain any of the given keywords.
 
 Format: `findbook KEYWORD [MORE_KEYWORDS]`
 

@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `addreader`, `deletereader` and `findbook` [\#72]()
+        * Added documentation for the features `addreader`, `deletereader` and `findbook` (Pull request [\#74](), [\#323]()).
     * Developer Guide:
         * Added implementation details of the `return` feature (Pull request [\#198]()).
         * Added implementation details of the `addreader` feature (Pull request [\#154]()).
