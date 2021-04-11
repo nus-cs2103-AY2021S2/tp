@@ -7,6 +7,7 @@ import static seedu.plan.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.plan.commons.core.Messages;
 import seedu.plan.logic.commands.InfoCommand;
 import seedu.plan.logic.parser.ArgumentMultimap;
 import seedu.plan.logic.parser.ArgumentTokenizer;
@@ -47,12 +48,20 @@ public class InfoCommandParserTest {
         InfoCommandParser parser = new InfoCommandParser();
         try {
             assertEquals(parser.parse("").getModuleCode(), new InfoCommand().getModuleCode());
+
             assertEquals(parser.parse(" m/cs2103").getModuleCode(),
                     new InfoCommand("cs2103").getModuleCode());
             assertEquals(parser.parse(" m/       ;askldghl;kdshgkl;dsj;flksd;ghk;sdf asdfsadfsda").getModuleCode(),
                     new InfoCommand(";askldghl;kdshgkl;dsj;flksd;ghk;sdf asdfsadfsda").getModuleCode());
         } catch (ParseException p) {
             System.out.println("Parsing error");
+        }
+
+        try {
+            parser.parse(" CS1101S");
+        } catch (ParseException p) {
+            assertEquals(p.getMessage(), String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    InfoCommand.MESSAGE_USAGE));
         }
     }
 }
