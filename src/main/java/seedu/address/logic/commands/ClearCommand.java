@@ -69,6 +69,7 @@ public class ClearCommand extends Command {
 
     private void checkSafeToClear(List<Contact> contactsToDelete,
                              ObservableList<Appointment> appointmentList) throws CommandException {
+        assert !contactsToDelete.isEmpty();
         ArrayList<Contact> contactsInvolvedInAppts = new ArrayList<>();
         for (Contact contact : contactsToDelete) {
             if (checkContactInvolvedInAppointment(contact, appointmentList)) {
