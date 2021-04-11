@@ -235,7 +235,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   2. User enters the requested details of patient.
   3. DocBob adds the client and displays the new log of clients.
     
-    `Use case ends.`
+    Use case ends.
 
 **Extensions**
 
@@ -244,8 +244,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *    2a2. User enters new data.
   *    Steps 2a1-2a2 are repeated until the data entered are correct.
   
-      `Use case resumes from step 3.`
-      `Use case ends.`
+      Use case resumes from step 3.
+      Use case ends.
 
 **Use case: Listing all patients**
 
@@ -294,7 +294,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *1a. the given index is invalid
   *    1a.1 DocBob shows an error message
   
-       `Use case resumes at step 1.`
+   `Use case resumes at step 1.`
   
 **Use case: Find a patient**
 
@@ -312,12 +312,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *1a1. the given keyword is a partial word
   *     1a1.1 DocBob shows an error message
   
-        `Use case resumes at step 1
+    `Use case resumes at step 1'
         
   *1a2. the given patient is in the list user is currently in
   *     1a2.1 DocBob a message to indicate user is in wrong list
-  
-        `Use case resumes at step 1
+
+    `Use case resumes at step 1'
         
 **Use case: Edit a patient's information**
 
@@ -341,7 +341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *1a3. there is no corresponding field to be editted
   *     1a2.1 DocBob shows an error message
   
-        `Use case resumes at step 1
+       `Use case resumes at step 1
 
 **Use case: Adding a new appointment to a patient**
 
@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User request to view patients medical record.
 2. DocBob provides patient's medical record
     
-    `Use case ends.`
+     `Use case ends.`
 
 **Extensions**
 
@@ -422,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   2. User enters the requested index of patient to add to archive.
   3. Bob adds the client and displays the new log of clients.
     
-    `Use case ends.`
+      `Use case ends.`
 
 **Extensions**
 
@@ -452,13 +452,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all patients that have been archived.
 2. DocBob shows a list of patients.
 
-    `Use case ends.`
+      `Use case ends.`
 
 **Extensions**
 
   *2a. The list is empty
 
-      Use case ends.
+       Use case ends.
 
 **Use case: Clear patients in from DocBob**
 
