@@ -331,13 +331,13 @@ Use case ends.
 1. User enters the `list-patient` command
 2. App-Ointment displays all patients in the patient records.
 
-### UC09: Add a doctor
-**MSS**
-1. User enters the `add-doctor` command and corresponding subcommands.
-2. App-Ointment adds a new doctor to the doctor records.
+### UC09: Add a doctor 
+**MSS** 
+1. User enters the `add-doctor` command and corresponding subcommands. 
+2. App-Ointment adds a new doctor to the doctor records. 
 
-**Extensions**
-* Similar to `add-patient` command.
+**Extensions** 
+* Similar to `add-patient` command. 
 
 ### UC10: Clear Doctor Records
 **MSS**
