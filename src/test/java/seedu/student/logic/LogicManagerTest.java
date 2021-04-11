@@ -3,7 +3,16 @@ package seedu.student.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.student.commons.core.Messages.MESSAGE_NONEXISTENT_MATRIC_NUM;
 import static seedu.student.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.student.logic.commands.CommandTestUtil.*;
+import static seedu.student.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.DETAILS_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.FACULTY_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.RESIDENCE_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_AMY;
+
 import static seedu.student.testutil.Assert.assertThrows;
 import static seedu.student.testutil.TypicalStudents.AMY;
 
