@@ -979,6 +979,8 @@ Use case ends.
 3. User requests to allocate a resident to a room.
 4. SunRez allocates the resident to the room and saves the changes.
 
+Use case ends.
+
 **Extensions**
 
 * 2a. There are no unassigned residents.
@@ -1003,6 +1005,8 @@ Use case ends.
 2. SunRez displays residents, each with its corresponding allocated room, if any.
 3. User requests to deallocate a resident from its room.
 4. SunRez deallocates the resident from its room and saves the changes.
+
+Use case ends.
 
 **Extensions**
 
