@@ -1,5 +1,6 @@
 ---
-layout: page title: Michael's Project Portfolio Page
+layout: page
+title: Michael's Project Portfolio Page
 ---
 
 ## Project: RemindMe
