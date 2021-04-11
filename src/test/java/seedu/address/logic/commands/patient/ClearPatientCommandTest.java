@@ -59,7 +59,7 @@ public class ClearPatientCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAppointmentScheduleNonEmptyPatientRecords_failure() {
+    public void execute_nonEmptyPatientRecordsNonEmptyAppointmentSchedule_failure() {
         Model emptyDoctorRecordsModel = new ModelManager(getTypicalPatientRecords(), getEmptyDoctorRecords(),
                 getTypicalAppointmentSchedule(), new UserPrefs());
 
