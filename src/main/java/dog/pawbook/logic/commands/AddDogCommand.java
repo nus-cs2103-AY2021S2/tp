@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_DOG;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -56,7 +57,7 @@ public class AddDogCommand extends AddCommand<Dog> {
 
     @Override
     protected String getDuplicateMessage() {
-        return Messages.MESSAGE_DUPLICATE_DOG;
+        return MESSAGE_DUPLICATE_DOG;
     }
 
     @Override

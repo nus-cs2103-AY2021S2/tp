@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_OWNER;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -7,7 +8,6 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.model.managedentity.owner.Owner.ENTITY_WORD;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.model.managedentity.owner.Owner;
 
 /**
@@ -52,6 +52,6 @@ public class AddOwnerCommand extends AddCommand<Owner> {
 
     @Override
     protected String getDuplicateMessage() {
-        return Messages.MESSAGE_DUPLICATE_OWNER;
+        return MESSAGE_DUPLICATE_OWNER;
     }
 }
