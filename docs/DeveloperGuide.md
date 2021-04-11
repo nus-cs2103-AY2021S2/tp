@@ -493,14 +493,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
     
-#### **Use case: Add a start time to a task**
+#### **Use case: Add a duration to a task**
 
 **MSS**
-1. User <u>adds a task</u> with deadline to the list.
+1. User <u>adds a task</u> with dates to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to add a start time to a specified task.
-4. PlanIt shows task with updated start time and updates list.
-5. The start time details can be viewed in the Calendar User Interface on the day of the task.
+3. User enters command to add a duration to a specified task.
+4. PlanIt shows task with updated duration and updates list.
+5. The duration details can be viewed in the Calendar User Interface on the day of the task.
 
 **Extensions**
 * 4a. The given timeslot on that date is already taken.
@@ -542,13 +542,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Sort tasks according to date**
 
 **MSS**
-1. User <u>adds a task</u> with a deadline to the list.
+1. User <u>adds a task</u> with a dates to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to sort tasks either in ascending or descending deadlines with tasks that have 
-   no deadlines considered to be the latest.
+3. User enters command to sort tasks either in ascending or descending dates.
 
 **Extensions**
-* 4a. There are no deadlines to all tasks.
+* 4a. There are no dates to all tasks.
     * 4a1. PlanIt shows tasks to have no change in terms of order.
 
       Use case ends.
