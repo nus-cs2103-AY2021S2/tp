@@ -21,6 +21,8 @@ Class DressCode
 Class Colour
 Class Name
 Class Size
+Class Type
+Class LastUse
 Class UniqueGarmentList
 }
 
@@ -46,6 +48,8 @@ Garment *--> Name
 Garment *--> Size
 Garment *--> Colour
 Garment *--> DressCode
+Garment *--> Type
+Garment *--> LastUse
 Garment *--> "*" Description
 
 Name -[hidden]right-> Size

@@ -122,28 +122,22 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the wardrobe data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add
-
-### Remove
-
-### Edit
-
 ### [Proposed] List feature
 
 #### Proposed Implementation
 
-The proposed `list` mechanism extends the `list` mechanism of `Addressbook`, which lists out the garments based on 
+The proposed `list` mechanism extends the `list` mechanism of `AddressBook`, which lists out the garments based on 
 the order in which they have been input into the system. The extended `list` mechanism sorts the list of garments
 based on the date and time that they were last used, and outputs the entries in that order.
 
