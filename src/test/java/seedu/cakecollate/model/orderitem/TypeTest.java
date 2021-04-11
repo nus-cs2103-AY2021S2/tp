@@ -2,7 +2,6 @@ package seedu.cakecollate.model.orderitem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 
@@ -47,7 +46,7 @@ public class TypeTest {
         Type typeThree = new Type("strawberry cake");
 
         assertEquals(typeOne, typeThree); //same value for type
-        assertNotEquals(typeOne, typeTwo); //type is case sensitive
+        assertEquals(typeOne, typeTwo); //type is case insensitive
     }
 
     @Test

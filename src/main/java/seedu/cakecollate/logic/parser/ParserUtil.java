@@ -14,6 +14,8 @@ import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
+import seedu.cakecollate.logic.commands.AddOrderItemCommand;
+import seedu.cakecollate.logic.commands.RemindCommand;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
@@ -273,4 +275,30 @@ public class ParserUtil {
         }
         return new OrderItem(new Type(trimmedOrderItemDescription));
     }
+
+    /**
+     * Parses a {@code String days} into a valid day}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code daus} is invalid.
+     */
+
+    public static int parseDays(String days) throws ParseException {
+        requireNonNull(days);
+        String[] inputs = days.replaceFirst("^\\s", "").split("\\s+");
+        boolean isMoreThanOneInput = inputs.length > 1;
+        String trimmedDays = days.trim();
+        if (isMoreThanOneInput) {
+            throw new ParseException(RemindCommand.MESSAGE_MULTIPLE_INPUTS);
+        }
+        if (trimmedDays.isEmpty()) {
+            throw new ParseException(RemindCommand.MESSAGE_EMPTY);
+        }
+        if (!StringUtil.isUnsignedInteger(trimmedDays)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
+        }
+        return Integer.parseInt(trimmedDays);
+    }
 }
+
