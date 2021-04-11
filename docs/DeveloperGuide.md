@@ -417,12 +417,22 @@ list that is viewed by the user.
 
 #### 3.5.2 Design consideration:
 
-##### Aspect: How Update executes
+##### Aspect: How Find executes
 
 The following activity diagram summarizes what happens when a user executes a `FindAppointmentCommand`:
 
 ![FindAppointmentActivityDiagram](images/FindActivityDiagram.png)
 
+##### Aspect: How predicates of the same type interact with each other
+
+* **Initial implementation**: Conjunction of all predicates where all predicates are combined with logical **`AND`**. 
+    * Pros: Easy to implement. 
+    * Cons: Very restrictive for users, testers also complained that this felt unintuitive. 
+    
+* **Current implementation**: All predicates of the same type are first combined with logical **`OR`**, then combined 
+with other predicates with logical **`AND`**. 
+    * Pros: Allows for more flexible searches. 
+    * Cons: More difficult to implement and test.    
 
 --------------------------------------------------------------------------------------------------------------------
 
