@@ -55,7 +55,7 @@ Given below are my contributions to the project. All features include unit testi
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=maxxng&tabRepo=AY2021S2-CS2103T-T10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 
-* **Documentation** (T:
+* **Documentation**:
   * User Guide:
     * Added documentation for the feature `snooze` and `done`: [\#128](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/128)
     * Added 'How to use this guide' section: [\#128](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/128)
