@@ -37,12 +37,12 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
     private TableColumn<ExpiredItems, String> numberOfItems;
 
     /**
-     * Creates a {@code TablePanel} with the given {@code ObservableList}.
+     * Creates a {@code ExpiredTablePanel} with the given {@code ObservableList}.
      */
     public ExpiredTablePanel(ObservableList<Item> itemList) {
         super(FXML);
         this.itemList = itemList;
-        tableView.setItems(getExpiredItemss(itemList));
+        tableView.setItems(getExpiredItems(itemList));
     }
 
     /**
@@ -50,7 +50,7 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
      * @param itemList The list of data required by the table.
      * @return A list of items expiring in a week.
      */
-    private ObservableList<ExpiredItems> getExpiredItemss(ObservableList<Item> itemList) {
+    private ObservableList<ExpiredItems> getExpiredItems(ObservableList<Item> itemList) {
         ObservableList<ExpiredItems> tableRows = FXCollections.observableArrayList();
         for (int i = -1; i >= -7; i--) {
             tableRows.add(new ExpiredItems(i, itemList));

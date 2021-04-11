@@ -36,7 +36,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
     private TableColumn<ExpiringItem, String> numberOfItems;
 
     /**
-     * Creates a {@code TablePanel} with the given {@code ObservableList}.
+     * Creates a {@code ExpiringTablePanel} with the given {@code ObservableList}.
      */
     public ExpiringTablePanel(ObservableList<Item> itemList) {
         super(FXML);
