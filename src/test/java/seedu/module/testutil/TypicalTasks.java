@@ -38,6 +38,11 @@ public class TypicalTasks {
             .withModule("CS3243").withDeadline("2021-12-12 08:30").withDoneStatus(NOT_DONE_STRING)
             .withRecurrence("biweekly").withTags("highPriority").build();
 
+    public static final Task MOCK_MIDTERM = new TaskBuilder().withName("Mock Midterm").withStartTime("2021-12-10 06:30")
+            .withDescription("Not include CSP.").withWorkload("1")
+            .withModule("CS3243").withDeadline("2021-12-11 08:30").withDoneStatus(NOT_DONE_STRING)
+            .withRecurrence("biweekly").withTags("highPriority").build();
+
     public static final Task RECURRING_MIDTERM = new TaskBuilder().withName("Midterm").withStartTime("2021-12-12 06:30")
             .withDescription("Not include CSP.").withWorkload("2")
             .withModule("CS3243").withDeadline("2021-12-26 08:30").withDoneStatus(NOT_DONE_STRING)
@@ -114,90 +119,90 @@ public class TypicalTasks {
      * Returns an {@code ModuleBook} with all the typical tasks sorted by deadline.
      */
     public static ModuleBook getSortedTypicalModuleBookByDeadline() {
-        ModuleBook ab = new ModuleBook();
-        ab.addTask(QUIZ); // 02-01
-        ab.addTask(PROJECT); // 02-28
-        ab.addTask(TUTORIAL); // 03-02
-        ab.addTask(PAQ); // 03-05
-        ab.addTask(TP); // 03-14
-        ab.addTask(OP); // 04-02
-        ab.addTask(MIDTERM); // 12-12
-        return ab;
+        ModuleBook mb = new ModuleBook();
+        mb.addTask(QUIZ); // 02-01
+        mb.addTask(PROJECT); // 02-28
+        mb.addTask(TUTORIAL); // 03-02
+        mb.addTask(PAQ); // 03-05
+        mb.addTask(TP); // 03-14
+        mb.addTask(OP); // 04-02
+        mb.addTask(MIDTERM); // 12-12
+        return mb;
     }
 
     /**
      * Returns an {@code ModuleBook} with all the typical tasks sorted by workload.
      */
     public static ModuleBook getSortedTypicalModuleBookByWorkload() {
-        ModuleBook ab = new ModuleBook();
-        ab.addTask(TP); // 3
-        ab.addTask(PROJECT); // 3
-        ab.addTask(MIDTERM); // 2
-        ab.addTask(TUTORIAL); // 2
-        ab.addTask(OP); // 2
-        ab.addTask(QUIZ); // 1
-        ab.addTask(PAQ); // 1
-        return ab;
+        ModuleBook mb = new ModuleBook();
+        mb.addTask(TP); // 3
+        mb.addTask(PROJECT); // 3
+        mb.addTask(MIDTERM); // 2
+        mb.addTask(TUTORIAL); // 2
+        mb.addTask(OP); // 2
+        mb.addTask(QUIZ); // 1
+        mb.addTask(PAQ); // 1
+        return mb;
     }
 
     /**
      * Returns an {@code ModuleBook} with all the typical tasks sorted by module.
      */
     public static ModuleBook getSortedTypicalModuleBookByModule() {
-        ModuleBook ab = new ModuleBook();
-        ab.addTask(TUTORIAL); // ST2131
-        ab.addTask(PAQ); // IS1103
-        ab.addTask(QUIZ); // CS3243
-        ab.addTask(MIDTERM); // CS3243
-        ab.addTask(PROJECT); // CS3243
-        ab.addTask(TP); // CS2103T
-        ab.addTask(OP); // CS2101
-        return ab;
+        ModuleBook mb = new ModuleBook();
+        mb.addTask(TUTORIAL); // ST2131
+        mb.addTask(PAQ); // IS1103
+        mb.addTask(QUIZ); // CS3243
+        mb.addTask(MIDTERM); // CS3243
+        mb.addTask(PROJECT); // CS3243
+        mb.addTask(TP); // CS2103T
+        mb.addTask(OP); // CS2101
+        return mb;
     }
 
     /**
      * Returns an {@code ModuleBook} with all the typical tasks sorted by task name.
      */
     public static ModuleBook getSortedTypicalModuleBookByName() {
-        ModuleBook ab = new ModuleBook();
-        ab.addTask(MIDTERM);
-        ab.addTask(OP);
-        ab.addTask(PAQ);
-        ab.addTask(PROJECT);
-        ab.addTask(QUIZ);
-        ab.addTask(TP);
-        ab.addTask(TUTORIAL);
-        return ab;
+        ModuleBook mb = new ModuleBook();
+        mb.addTask(MIDTERM);
+        mb.addTask(OP);
+        mb.addTask(PAQ);
+        mb.addTask(PROJECT);
+        mb.addTask(QUIZ);
+        mb.addTask(TP);
+        mb.addTask(TUTORIAL);
+        return mb;
     }
 
     /**
      * Returns an {@code ModuleBook} with all the typical tasks sorted by description.
      */
     public static ModuleBook getSortedTypicalModuleBookByDescription() {
-        ModuleBook ab = new ModuleBook();
-        ab.addTask(OP); // Need to divide ourselves into two groups.
-        ab.addTask(QUIZ); // About Artificial Intelligence.
-        ab.addTask(PROJECT); // This is really challenging.
-        ab.addTask(TUTORIAL); // Try to get full mark.
-        ab.addTask(PAQ); // Strange questions.
-        ab.addTask(MIDTERM); // Not include CSP.
-        ab.addTask(TP); // Wrap up v1.2.
-        return ab;
+        ModuleBook mb = new ModuleBook();
+        mb.addTask(OP); // Need to divide ourselves into two groups.
+        mb.addTask(QUIZ); // mbout Artificial Intelligence.
+        mb.addTask(PROJECT); // This is really challenging.
+        mb.addTask(TUTORIAL); // Try to get full mark.
+        mb.addTask(PAQ); // Strange questions.
+        mb.addTask(MIDTERM); // Not include CSP.
+        mb.addTask(TP); // Wrap up v1.2.
+        return mb;
     }
 
     /**
      * Returns an {@code ModuleBook} with all the typical tasks sorted by number of tags.
      */
     public static ModuleBook getSortedTypicalModuleBookByTag() {
-        ModuleBook ab = new ModuleBook();
-        ab.addTask(QUIZ); // 1
-        ab.addTask(MIDTERM); // 1
-        ab.addTask(TUTORIAL); // 1
-        ab.addTask(TP); // 0
-        ab.addTask(PROJECT); // 0
-        ab.addTask(PAQ); // 0
-        ab.addTask(OP); // 0
-        return ab;
+        ModuleBook mb = new ModuleBook();
+        mb.addTask(QUIZ); // 1
+        mb.addTask(MIDTERM); // 1
+        mb.addTask(TUTORIAL); // 1
+        mb.addTask(TP); // 0
+        mb.addTask(PROJECT); // 0
+        mb.addTask(PAQ); // 0
+        mb.addTask(OP); // 0
+        return mb;
     }
 
     public static List<Task> getTypicalTasks() {
