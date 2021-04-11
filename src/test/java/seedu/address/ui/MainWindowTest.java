@@ -300,6 +300,47 @@ public class MainWindowTest extends GuiUnitTest {
         inputCommand("deleteP " + projectIndex);
     }
 
+    @Test
+    public void undoAndRedo_success() {
+        inputCommand("addP n/project");
+        inputCommand("addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01");
+
+        Project project = new ProjectBuilder()
+                .withName("project")
+                .build();
+
+        Contact contact = new ContactBuilder()
+                .withName("John Doe")
+                .withPhone("98765432")
+                .withEmail("johnd@example.com")
+                .withAddress("John street, block 123, #01-01")
+                .build();
+
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+        assertTrue(logic.getFilteredContactList().contains(contact));
+
+        inputCommand("undo");
+
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+        assertFalse(logic.getFilteredContactList().contains(contact));
+        assertTrue(mainWindowHandle.contains(MainWindow.PROJECT_PANEL_ID));
+
+        inputCommand("undo");
+        assertFalse(logic.getFilteredProjectsList().contains(project));
+        assertFalse(logic.getFilteredContactList().contains(contact));
+        assertTrue(mainWindowHandle.contains(MainWindow.TODAY_PANEL_ID));
+
+        inputCommand("redo");
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+        assertFalse(logic.getFilteredContactList().contains(contact));
+        assertTrue(mainWindowHandle.contains(MainWindow.PROJECT_PANEL_ID));
+
+        inputCommand("redo");
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+        assertTrue(logic.getFilteredContactList().contains(contact));
+        assertTrue(mainWindowHandle.contains(MainWindow.CONTACT_LIST_PANEL_ID));
+    }
+
     private void inputCommand(String command) {
         guiRobot.clickOn("#commandTextField");
         textInputControl.setText(command);
