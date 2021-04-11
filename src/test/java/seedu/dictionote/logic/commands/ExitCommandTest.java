@@ -28,9 +28,10 @@ public class ExitCommandTest {
     public void execute_onEditMode_fail() {
         Model editModeModel = new ModelManager();
         editModeModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
-        assertCommandFailure(new DeleteNoteCommand(INDEX_FIRST_NOTE), editModeModel,
+        assertCommandFailure(new ExitCommand(), editModeModel,
             Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
     }
+
     @Test
     public void execute_exit_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, UiAction.EXIT);
