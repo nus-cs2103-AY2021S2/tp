@@ -313,7 +313,7 @@ public class ModelManager implements Model {
         this.dictionaryContentConfig = dictionaryContentConfig;
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Contact Book ================================================================================
 
     @Override
     public void setContactsList(ReadOnlyContactsList contactsList) {
@@ -413,12 +413,14 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredContentList(Predicate<Content> predicate) {
         requireNonNull(predicate);
+        dictionaryContentConfig.openContentDisplay();
         filteredContent.setPredicate(predicate);
     }
 
     @Override
     public void updateFilteredDefinitionList(Predicate<Definition> predicate) {
         requireNonNull(predicate);
+        dictionaryContentConfig.openDefinitionDisplay();
         filteredDefinition.setPredicate(predicate);
     }
 

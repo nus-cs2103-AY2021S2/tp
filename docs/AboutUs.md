@@ -24,10 +24,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jessen11.png" width="200px">
 
 [[github](http://github.com/jessen11)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/jessen11.md)]
 
-* Role: Developer
-* Responsibilities: Full Stack Developer
+* Role: Member
+* Responsibilities: Implementation and Documentation of Note Feature.
 
 ### Otto Alexander Sutianto
 
