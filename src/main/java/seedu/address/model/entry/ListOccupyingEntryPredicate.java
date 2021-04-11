@@ -28,11 +28,7 @@ public class ListOccupyingEntryPredicate implements Predicate<Entry> {
     public boolean test(Entry entry) {
         LocalDateTime entryStart = entry.getStartDate();
         LocalDateTime entryEnd = entry.getEndDate();
-        if ((entryStart).equals(entryEnd)) {
-            return false;
-        } else {
-            return (targetStart.isBefore(entryEnd) && entryStart.isBefore(targetEnd));
-        }
+        return (targetStart.isBefore(entryEnd) && entryStart.isBefore(targetEnd));
     }
 }
 
