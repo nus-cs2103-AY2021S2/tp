@@ -8,10 +8,18 @@ start
 if () then ([user input is valid])
     :Parse Command;
     if () then ([student exists in StudentBook])
-        :Display the particular student entry;
+        :Display the particular student record;
+         if () then ([student has an appointment in StudentBook])
+                :Display the corresponding appointment ;
+
+         else ([else])
+                :Display an empty list of appointments ;
+         endif
     else ([else])
         :Show no student found message;
+
     endif
+
 else ([else])
     : Show invalid message;
 endif
