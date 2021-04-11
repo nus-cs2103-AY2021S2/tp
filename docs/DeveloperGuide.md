@@ -707,10 +707,12 @@ testers are expected to do more *exploratory* testing.
 
 #### Launching TutorBuddy
 1. Download the jar file and copy into an empty folder
-1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. Double-click the jar file<br>
+   Expected: Shows the GUI with sample students and tuition sessions. The window size may not be optimum.
 
 #### Saving Window Preferences
-1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Resize the window to an optimum size (Note that TutorBuddy has a resolution size limit). Move the window to a different location. 
+   Close the window.
 1. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
@@ -728,7 +730,7 @@ testers are expected to do more *exploratory* testing.
 #### Listing all students and sessions
 1. Prerequisites: None.
 1. Test case: `list`<br>
-   Expected: List all students and sessions on the Student list view and the Session list view if any.
+   Expected: On the Tuition tab, all students and sessions will be displayed in the Student list view and Session list view respectively.
 
 ### Managing Students
 
@@ -791,7 +793,7 @@ testers are expected to do more *exploratory* testing.
    Expected: No session is deleted. Error details shown in the status message.
 
 #### Deleting a single session from a recurring session
-1. Prerequisites: There must be a recurring session in the session list for the student named `Alex Yeoh`.
+1. Prerequisites: There must be at least 1 student named `Alex Yeoh` currently displayed on the Student view list.
 1. Test case: Firstly, add the recurring session with this command: `add_rec_session n/Alex Yeoh d/2021-04-10 e/2021-04-15 b/1 t/10:00 k/60 s/Math f/100`.
    Next, delete the single session with this command: `delete_rec_session n/John Doe i/x d/2021-04-12`(where x is the index of the recurring session).<br>
    Expected: Two recurring sessions will be displayed on the Session list view for `Alex Yeoh` with the first session that starts on `2021-04-10` that ends on `2021-04-11`
