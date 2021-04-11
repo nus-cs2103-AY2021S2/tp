@@ -5,9 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.UniqueItemList;
 
-public class DishBook implements ReadOnlyDishBook {
+public class DishBook implements ReadOnlyBook<Dish> {
     private final UniqueItemList<Dish> dishes;
     {
         dishes = new UniqueItemList<Dish>();
@@ -19,7 +20,7 @@ public class DishBook implements ReadOnlyDishBook {
      * Constructor to copy dishbook
      * @param toBeCopied
      */
-    public DishBook(ReadOnlyDishBook toBeCopied) {
+    public DishBook(ReadOnlyBook<Dish> toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -36,10 +37,10 @@ public class DishBook implements ReadOnlyDishBook {
      * Reset list data using new data
      * @param newData
      */
-    public void resetData(ReadOnlyDishBook newData) {
+    public void resetData(ReadOnlyBook<Dish> newData) {
         requireNonNull(newData);
 
-        setDishes(newData.getDishList());
+        setDishes(newData.getItemList());
     }
 
     /**
@@ -87,7 +88,7 @@ public class DishBook implements ReadOnlyDishBook {
     }
 
     @Override
-    public ObservableList<Dish> getDishList() {
+    public ObservableList<Dish> getItemList() {
         return dishes.asUnmodifiableObservableList();
     }
 

@@ -11,9 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.storage.dish.JsonDishBookStorage;
 import seedu.address.storage.ingredient.JsonIngredientBookStorage;
 import seedu.address.storage.order.JsonOrderBookStorage;
@@ -67,7 +68,7 @@ public class StorageManagerTest {
          */
         PersonBook original = getTypicalAddressBook();
         storageManager.savePersonBook(original);
-        ReadOnlyPersonBook retrieved = storageManager.readPersonBook().get();
+        ReadOnlyBook<Person> retrieved = storageManager.readPersonBook().get();
         assertEquals(original, new PersonBook(retrieved));
     }
 

@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientBook;
-import seedu.address.model.ingredient.ReadOnlyIngredientBook;
 
 /**
  * An immutable IngredientBook that is serializable to JSON format.
@@ -26,8 +26,8 @@ public class JsonSerializableIngredientBook {
         this.ingredients.addAll(ingredients);
     }
 
-    public JsonSerializableIngredientBook(ReadOnlyIngredientBook source) {
-        ingredients.addAll(source.getIngredientList());
+    public JsonSerializableIngredientBook(ReadOnlyBook<Ingredient> source) {
+        ingredients.addAll(source.getItemList());
     }
 
     /**

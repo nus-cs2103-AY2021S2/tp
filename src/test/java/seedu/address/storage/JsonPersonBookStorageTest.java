@@ -16,8 +16,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyBook;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.storage.person.JsonPersonBookStorage;
 
 public class JsonPersonBookStorageTest {
@@ -31,7 +32,7 @@ public class JsonPersonBookStorageTest {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyPersonBook> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyBook<Person>> readAddressBook(String filePath) throws Exception {
         return new JsonPersonBookStorage(Paths.get(filePath)).readBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -70,7 +71,7 @@ public class JsonPersonBookStorageTest {
 
         // Save in new file and read back
         jsonPersonBookStorage.saveBook(original, filePath);
-        ReadOnlyPersonBook readBack = jsonPersonBookStorage.readBook(filePath).get();
+        ReadOnlyBook<Person> readBack = jsonPersonBookStorage.readBook(filePath).get();
         assertEquals(original, new PersonBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -96,7 +97,7 @@ public class JsonPersonBookStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyPersonBook addressBook, String filePath) {
+    private void saveAddressBook(ReadOnlyBook<Person> addressBook, String filePath) {
         try {
             new JsonPersonBookStorage(Paths.get(filePath))
                     .saveBook(addressBook, addToTestDataPathIfNotNull(filePath));

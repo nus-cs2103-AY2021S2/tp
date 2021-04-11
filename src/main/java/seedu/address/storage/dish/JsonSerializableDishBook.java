@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.DishBook;
-import seedu.address.model.dish.ReadOnlyDishBook;
 
 /**
  * An immutable DishBook that is serializable to JSON format.
@@ -26,8 +26,8 @@ public class JsonSerializableDishBook {
         this.dishes.addAll(dishes);
     }
 
-    public JsonSerializableDishBook(ReadOnlyDishBook source) {
-        dishes.addAll(source.getDishList());
+    public JsonSerializableDishBook(ReadOnlyBook<Dish> source) {
+        dishes.addAll(source.getItemList());
     }
 
     /**
