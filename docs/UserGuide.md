@@ -138,6 +138,7 @@ Finds all contacts whose name contain all of the specified keywords and displays
 * Command word - `cfind`
 * Parameters - `KEYWORD`, `MORE_KEYWORDS`
 
+
 * Only names are searched.
 * The search is case-insensitive e.g. `amy` will match `Amy`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -163,6 +164,7 @@ Filters all contacts that have the tags of the specified keywords and displays t
 **Breakdown**:
 * Command word - `cfilter`
 * Parameters - `KEYWORD`, `MORE_KEYWORDS`
+
 
 * Only tags are searched.
 * The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
@@ -192,6 +194,7 @@ Edits an existing contact with the specified index in Teaching Assistant.
 * Command word - `cedit`
 * Prefixes - `n/`, `p/`, `e/`, `t/`
 * Parameters - `INDEX`, `NAME`, `NUMBER`, `EMAIL`, `TAG`
+
 
 * `INDEX` refers to the index numer shown in the displayed entry list.
 * `INDEX` must be a positive integer 1,2,3, ...
@@ -232,6 +235,7 @@ Deletes an existing contact with the specified index in Teaching Assistant.
 * Command word - `cdelete`
 * Parameters - `INDEX`
 
+
 * `INDEX` refers to the index number shown in the displayed person list.
 * `INDEX` must be a positive integer 1, 2, 3, ...
 
@@ -255,6 +259,7 @@ Adds a new entry into Teaching Assistant.
 * Prefixes - `n/`, `sd/`, `ed/`, `t/`
 * Parameters - `NAME`, `START_DATE`, `END_DATE`, `TAG`
 
+
 * `START DATE` and `END DATE` are in the format `yyyy-mm-dd HH:MM`.
 * `START DATE` should be before `END DATE`.
 * Entries cannot overlap. i.e. Entries with overlapping timings will not be added.
@@ -275,6 +280,7 @@ Finds all entries whose name contain all of the specified keywords and displays 
 **Breakdown**:
 * Command word - `efind`
 * Parameters - `KEYWORD`, `MORE_KEYWORDS`
+
 
 * Only names are searched.
 * The search is case-insensitive e.g. `meeting` will match `Meeting`.
@@ -300,6 +306,7 @@ Filters all entries that have the tags of the specified keywords and displays th
 **Breakdown**:
 * Command word - `efilter`
 * Parameters - `KEYWORD`, `MORE_KEYWORDS`
+
 
 * Only tags are searched.
 * The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
@@ -328,6 +335,7 @@ Edits an existing entry with the specified index in Teaching Assistant.
 * Prefixes - `n/`, `sd/`, `ed/`, `t/`
 * Parameters - `INDEX`, `NAME`, `START_DATE`, `END_DATE`, `TAG`
 
+
 * `INDEX` refers to the index numer shown in the displayed entry list.
 * `INDEX` must be a positive integer 1,2,3, ...
 * At least one of the optional fields must be provided.
@@ -354,6 +362,7 @@ Lists all entries in Teaching Assistant by displaying them as a list sorted by d
 * Command word - `elist`
 * Parameters - `FORMAT`
 
+
 * No argument: listing all entries
 * `FORMAT` is only restricted to the following cases
     * `day`: listing entries for today
@@ -379,6 +388,7 @@ interval will be shown in the entries list.
 * Prefixes - `sd/`, `ed/`
 * Parameters - `START_DATE`, `END_DATE`
 
+
 * `START DATE` and `END DATE` are in the format `yyyy-mm-dd HH:MM`.
 * `START DATE` should be before `END DATE`.
 
@@ -399,6 +409,7 @@ Deletes an existing entry with the specified index in Teaching Assistant.
 **Breakdown**:
 * Command word - `edelete`
 * Parameters - `INDEX`
+
 
 * `INDEX` refers to the index number shown in the displayed person list.
 * `INDEX` must be a positive integer 1, 2, 3, ...
