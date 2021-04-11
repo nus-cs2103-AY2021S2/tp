@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREAMBLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
@@ -36,25 +37,20 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE, PREFIX_DURATION,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE, PREFIX_DURATION,
                         PREFIX_RECURRINGSCHEDULE, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_TAG);
 
-        try {
-            handleMissingCompulsoryFields(argMultimap);
-            Task task = createTaskWithGivenArguments(argMultimap);
+        handleMissingCompulsoryFields(argMultimap);
 
-            return new AddCommand(task);
-        } catch (ParseException pe) {
-            throw pe;
-        }
+        Task task = createTaskWithGivenArguments(argMultimap);
+        return new AddCommand(task);
     }
 
     private void handleMissingCompulsoryFields(ArgumentMultimap argumentMultimap) throws ParseException {
         boolean hasPrefixesMissing = !arePrefixesPresent(argumentMultimap, PREFIX_TITLE);
         boolean hasInvalidPreamble = !argumentMultimap.getPreamble().isEmpty();
         if (hasInvalidPreamble) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PREAMBLE));
         }
         if (hasPrefixesMissing) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
