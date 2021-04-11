@@ -22,14 +22,14 @@ public class AddContactCommandTest {
     }
 
     @Test
-    public void execute_contactAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_contactAcceptedByModel_addSuccessful() throws CommandException {
         Contact validContact = new ContactBuilder().build();
         CommandResult commandResult = new AddContactCommand(validContact).execute(model);
         String feedBack = commandResult.getFeedbackToUser();
         assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), feedBack);
     }
     @Test
-    public void execute_duplicateContact_throwsCommandException() {
+    public void execute_duplicateContact_throwsDuplicateContactException() {
         Contact validContact = new ContactBuilder().build();
         AddContactCommand addContactCommand = new AddContactCommand(validContact);
         model.addContact(validContact);

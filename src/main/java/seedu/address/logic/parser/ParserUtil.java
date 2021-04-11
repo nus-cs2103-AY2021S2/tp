@@ -160,7 +160,7 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
+        String trimmedTag = tag.trim().substring(0, 6);
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(String.format("Tag given: %s\n%s", trimmedTag, Tag.MESSAGE_CONSTRAINTS));
         }

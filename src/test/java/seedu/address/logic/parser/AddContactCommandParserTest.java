@@ -105,27 +105,30 @@ public class AddContactCommandParserTest {
         String expectedMsg = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE);
         // invalid name
         assertParseFailure(parser, invalidUserInput, expectedMsg);
+        expectedMsg = String.format("Phone number given: %s\n%s",
+                INVALID_PHONE_DESC.substring(3), ContactPhone.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, "Phone number given: 911a\n" + ContactPhone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, expectedMsg);
 
         // invalid email
+        expectedMsg = String.format("Email given: %s\n%s",
+                INVALID_EMAIL_DESC.substring(3), ContactEmail.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, "Email given: bob!yahoo\n" + ContactEmail.MESSAGE_CONSTRAINTS);
-
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMsg);
+        expectedMsg = String.format("Tag given: %s\n%s", INVALID_TAG_DESC.substring(3), Tag.MESSAGE_CONSTRAINTS);
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, "Tag given: hubby*friend\n" + Tag.MESSAGE_CONSTRAINTS);
-
+                + INVALID_TAG_DESC + VALID_TAG_FRIEND, expectedMsg);
+        expectedMsg = String.format("Name given: %s\n%s",
+                INVALID_NAME_DESC.substring(3), ContactName.MESSAGE_CONSTRAINTS);
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB,
-                "Name given: James&\n" + ContactName.MESSAGE_CONSTRAINTS);
-
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB, expectedMsg);
+        expectedMsg = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE);
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMsg);
     }
 }
 
