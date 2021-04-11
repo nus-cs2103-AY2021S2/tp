@@ -6,12 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRICE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRIPDAY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRIPTIME;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GOLF;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_FRIDAY;
@@ -23,6 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
@@ -45,6 +48,7 @@ import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPassengerDescriptorBuilder;
 
@@ -91,6 +95,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TRIPDAY, TripDay.MESSAGE_CONSTRAINTS); // invalid tripDay
         assertParseFailure(parser, "1" + INVALID_TRIPTIME, TripTime.MESSAGE_CONSTRAINTS); // invalid tripTime
+        assertParseFailure(parser, "1" + INVALID_PRICE, Price.MESSAGE_CONSTRAINTS); // invalid price
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
@@ -111,12 +116,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_GOLF
-                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + TRIPDAY_DESC_MONDAY + TRIPTIME_DESC_MORNING;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_GOLF + ADDRESS_DESC_AMY
+                + NAME_DESC_AMY + TAG_DESC_FRIEND + TRIPDAY_DESC_MONDAY + TRIPTIME_DESC_MORNING + PRICE_DESC_AMY;
 
         EditCommand.EditPassengerDescriptor descriptor = new EditPassengerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_AMY)
-                .withTripDay(VALID_TRIPDAY_MONDAY).withTripTime(VALID_TRIPTIME_MORNING)
+                .withTripDay(VALID_TRIPDAY_MONDAY).withTripTime(VALID_TRIPTIME_MORNING).withPrice(VALID_PRICE_AMY)
                 .withTags(VALID_TAG_HR, VALID_TAG_IT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -166,6 +171,12 @@ public class EditCommandParserTest {
         // tripTime
         userInput = targetIndex.getOneBased() + TRIPTIME_DESC_EVENING;
         descriptor = new EditPassengerDescriptorBuilder().withTripTime(VALID_TRIPTIME_EVENING).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // price
+        userInput = targetIndex.getOneBased() + PRICE_DESC_AMY;
+        descriptor = new EditPassengerDescriptorBuilder().withPrice(VALID_PRICE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
