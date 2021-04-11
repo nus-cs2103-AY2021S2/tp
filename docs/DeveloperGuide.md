@@ -231,7 +231,7 @@ their grades of different tests and different subjects. With Grade Book, users c
 related information on the same application instead of using multiple applications.
 
 #### Implementation
-A grade is composed of a `subject`, `graded item` and `grade letter`, which are used to identify a grade uniquely. 
+A grade is composed of a `subject`, `graded item` and `grade letter`, out of which `subject` and `graded item` are used to identify a grade uniquely. 
 
 All the user's grades are stored internally in the `GradeList`. Grade Book consist of the following operations
 that can be performed on the grade:   
@@ -263,12 +263,11 @@ then create a `CommandResult` object and return the result.
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
-| **Option 1** <br> Display grades with budget and reminder in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate grades, budget and reminders if a considerable number of them are all listed together.|
-| **Option 2 (current choice)** <br> Display grades in a separate tab from budget and reminder. | Clear segregation between grades, budget and reminder. | May impose inconvenience as users have to switch tabs between grades, budget and reminder depending on their needs |
+| **Option 1** <br> Display grades with budget and reminder in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate grades, budget and reminders if a considerable number of them are listed all together.|
+| **Option 2 (current choice)** <br> Display grades in a separate tab from budget and reminder in a `Your Information` panel. | Clear segregation between grades, budget and reminder. | May impose inconvenience as users have to switch tabs between grades, budget and reminder depending on their needs |
 
 Reason for choosing option 2:
 * As we do not wish to overwhelm the user with too much information to provide a better user experience, we decided that option 2 may be a better option.
-* Viewing grades, reminders and budgets in the same panel is later proposed as a different solution in the `Your Information` Feature.
 
 The following activity diagram summarizes what happens when the `add_grade` command is executed.
 
@@ -1085,7 +1084,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
 * **Years of Experience**: Years of experience of tutoring a specific subject.
 * **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
-* **Index**: Index number shown in the displayed tutor list. The index must be a positive integer 1, 2, 3, …​
+* **Index**: Index number shown in the displayed list. The index must be a positive integer 1, 2, 3, …​
 * **Unfavourite**: Reverse the action of adding as a favourite
 
 --------------------------------------------------------------------------------------------------------------------
