@@ -100,6 +100,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
                 <li>Maximum 15 characters in length each</li>
                 <li>None, single or multiple Categories can be assigned to a single element</li>
                 <li>No spaces are allowed</li>
+                <li>When there are multiple Categories, they will be sorted by lexicographical order (dictionary order)</li>
             </ul>
         </td>
     </tr>
@@ -111,6 +112,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
                 <li>Maximum 15 characters in length each</li>
                 <li>None, single or multiple Tags can be assigned to a single element</li>
                 <li>No spaces are allowed</li>
+                <li>When there are multiple Tags, they will be sorted by lexicographical order (dictionary order)</li>
             </ul>
         </td>
     </tr>
@@ -452,7 +454,7 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * Edited task cannot be the same as the original task or equivalent to another existing task in the task list. <br>
   Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
 * When editing tags and categories, the order given in the input and the order as shown in the UI can be different. <br>
-  For example, in input `edit_task 1 t/t2 t/t10`, `t/t2` is before `t/10`, but `t10` may appear in the UI before `t2`.
+  For example, in input `edit_task 1 t/t2 t/t10`, `t/t2` is before `t/t10` in the input, but `t10` may appear in the UI before `t2`.
   Lexicographical order is followed.
 
 <div markdown="block" class="alert alert-info">
