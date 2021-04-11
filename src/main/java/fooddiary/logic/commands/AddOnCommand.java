@@ -40,7 +40,7 @@ public class AddOnCommand extends Command {
             + "Existing values will be added on to the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_REVIEW + "REVIEW] "
-            + "[" + CliSyntax.PREFIX_PRICE + "PRICE] "
+            + "[" + CliSyntax.PREFIX_PRICE + "PRICE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_REVIEW + "I like this food a lot! "
             + CliSyntax.PREFIX_PRICE + "5";
