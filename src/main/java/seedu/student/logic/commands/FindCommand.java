@@ -13,17 +13,17 @@ import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistException;
 
 /**
- * Finds and lists all persons in student book whose name contains any of the argument keywords.
+ * Finds and lists all student in student book whose name contains any of the argument keywords.
  * Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
 
-
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student and appointment whose "
-            + "matriculation number matches the specified keywords (case-sensitive) and displays it.\n"
-            + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + " A01234567R";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds the student identified and their appointment by their unique matriculation number.\n"
+            + "Parameters: Matriculation Number in the format of A + 7 digit numeric sequence + alphabet. \n"
+            + "Example: " + COMMAND_WORD + " A0221234N";
 
     public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND =
             "A student with matriculation number %s is found \n"
@@ -31,7 +31,6 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_NO_STUDENT_FOUND =
             "No student with matriculation number %s was found. \n";
-
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -76,6 +75,8 @@ public class FindCommand extends Command {
                     predicate.getKeyword()));
 
         } else if (filteredAppointmentListSize == 0) {
+            logger.info("Student with a matriculation number of " + predicate.getKeyword()
+                    + "has no appointment");
             return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     model.getFilteredStudentList().size()));
         } else {
