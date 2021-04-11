@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
+import static seedu.address.logic.commands.FavouriteCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_REMOVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
@@ -19,6 +21,12 @@ public class FavouriteCommandParser implements Parser<FavouriteCommand> {
     @Override
     public FavouriteCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
         Index index;
         boolean isFav;
