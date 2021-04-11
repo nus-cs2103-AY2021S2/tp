@@ -14,6 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nhzaci.png" width="200px">
 
 [[github](https://github.com/nhzaci)]
+[[portfolio](./team/nhzaci.md)]
 
 - Role: Team Lead
 
@@ -23,8 +24,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/toahi)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
 
 ### Kieron Koh
 
@@ -41,14 +42,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/jrvslam)]
 
-* Role: Developer
-* Responsibilities: Logic
+- Role: Developer
+- Responsibilities: Logic
 
 ### Jerard Soh
 
 <img src="images/jerardsoh.png" width="200px">
 
 [[github](http://github.com/jerardsoh)]
+[[portfolio](./team/jerardsoh.md)]
 
 - Role: Developer
 - Responsibilities: Storage

@@ -33,7 +33,7 @@ public class EventTest {
         // name differs in case, all other attrs same -> returns false
         Event editedCS2030 = new EventBuilder(CS2030)
                 .withName(VALID_NAME_CS2030.toLowerCase()).build();
-        assertFalse(CS2030.isSameEvent(editedCS2030));
+        assertTrue(CS2030.isSameEvent(editedCS2030));
 
         // name has trailing spaces, all other attrs same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_CS2030 + " ";

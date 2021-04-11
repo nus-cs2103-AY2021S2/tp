@@ -1,22 +1,15 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -26,6 +19,11 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     * Error Cases:
+     * 1. Integer out of range
+     * 1a. Integer negative
+     * 1b. Integer larger than 2^31 - 1 or less than -2^31
+     * 2. No descriptors are present
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
@@ -38,8 +36,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             identifier = ParserUtil.parseIdentifier(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n\n"
-                    + String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)
+                    || pe.getMessage().equals(ParserUtil.MESSAGE_EMPTY_IDENTIFIER)) {
+                throw new ParseException(pe.getMessage()
+                        + EditCommand.MESSAGE_USAGE);
+            }
+            throw new ParseException(pe.getMessage());
         }
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptor();
@@ -58,29 +60,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             editEventDescriptor.setEventPriority(ParserUtil.parseEventPriority(
                     argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
-        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEventDescriptor::setTags);
-        // Commented out for v1.2
 
         if (!editEventDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(identifier, editEventDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
 }

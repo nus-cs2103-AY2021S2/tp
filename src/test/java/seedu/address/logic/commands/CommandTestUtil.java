@@ -2,26 +2,27 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.identifier.Index;
+import seedu.address.commons.core.identifier.Identifier;
+//import seedu.address.commons.core.identifier.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventContainsKeywordsPredicate;
+import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+//import seedu.address.model.person.NameContainsKeywordsPredicate;
+//import seedu.address.model.person.Person;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 
 /**
@@ -32,18 +33,15 @@ public class CommandTestUtil {
     public static final String VALID_NAME_CS2030 = "CS2030";
     public static final String VALID_NAME_CS2107 = "CS2107";
     public static final String VALID_NAME_CS2100 = "CS2100";
-    public static final String VALID_DESCRIPTION_CS2030 = "Object oriented Programming";
+    public static final String VALID_DESCRIPTION_CS2030 = "Object oriented Programming module";
     public static final String VALID_DESCRIPTION_CS2107 = "Introduction to Information Security";
     public static final String VALID_DESCRIPTION_CS2100 = "Computer Organisation";
     public static final EventStatus VALID_STATUS_CS2030 = EventStatus.DONE;
     public static final EventStatus VALID_STATUS_CS2107 = EventStatus.IN_PROGRESS;
     public static final EventStatus VALID_STATUS_CS2100 = EventStatus.IN_PROGRESS;
-    public static final String VALID_TIME_START_CS2030 = "12/12/2021 12:00";
-    public static final String VALID_TIME_END_CS2030 = "10/01/2020 10:00";
-    public static final String VALID_TIME_START_CS2107 = "10/03/2021 10:00";
-    public static final String VALID_TIME_END_CS2107 = "30/01/2022 12:00";
-    public static final String VALID_TIME_START_CS2100 = "23/03/2021 09:00";
-    public static final String VALID_TIME_END_CS2100 = "10/04/2022 15:00";
+    public static final EventPriority VALID_PRIORITY_CS2030 = EventPriority.HIGH;
+    public static final EventPriority VALID_PRIORITY_CS2107 = EventPriority.MEDIUM;
+    public static final EventPriority VALID_PRIORITY_CS2100 = EventPriority.LOW;
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -56,6 +54,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    /*
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -66,6 +65,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+     */
 
     //Event
     public static final String EVENTNAME_DESC_CS2030 = " " + PREFIX_NAME + VALID_NAME_CS2030;
@@ -74,14 +74,19 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_CS2107 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CS2107;
     public static final String EVENTSTATUS_DESC_CS2030 = " " + PREFIX_STATUS + VALID_STATUS_CS2030;
     public static final String EVENTSTATUS_DESC_CS2107 = " " + PREFIX_STATUS + VALID_STATUS_CS2107;
+    public static final String EVENTPRIORITY_DESC_CS2030 = " " + PREFIX_PRIORITY + VALID_PRIORITY_CS2030;
+    public static final String EVENTPRIORITY_DESC_CS2107 = " " + PREFIX_PRIORITY + VALID_PRIORITY_CS2107;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+
+    /*
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+     */
 
     //Event
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "CS2030&"; // '&' not allowed in names
     public static final String INVALID_EVENTSTATUS_DESC = " " + PREFIX_STATUS + "tdo"; // eventStatus must be valid
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -134,25 +139,25 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        EventBook expectedEventBook = new EventBook(actualModel.getEventBook());
+        List<Event> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEventList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedEventBook, actualModel.getEventBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredEventList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIdentifier} in the
+     * {@code model}'s event book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showEventAtIdentifier(Model model, Identifier targetIdentifier) {
+        assertTrue(targetIdentifier.getZeroBased() < model.getFilteredEventList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Event event = model.getFilteredEventList().get(targetIdentifier.getZeroBased());
+        final String[] splitName = event.getName().eventName.split("\\s+");
+        model.updateFilteredEventList(new EventContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }

@@ -34,6 +34,7 @@ public class InProgressCommandParser implements Parser<InProgressCommand> {
 
         EventName eventName = ParserUtil.parseEventName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+
         Event event;
 
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {

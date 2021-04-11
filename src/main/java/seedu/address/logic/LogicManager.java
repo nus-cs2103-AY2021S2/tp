@@ -14,10 +14,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.FocurisParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -64,13 +63,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ReadOnlyEventBook getEventBook() {
+        return model.getEventBook();
     }
 
     @Override
@@ -101,11 +95,6 @@ public class LogicManager implements Logic {
     @Override
     public Path getEventBookFilePath() {
         return model.getEventBookFilePath();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
     }
 
     @Override

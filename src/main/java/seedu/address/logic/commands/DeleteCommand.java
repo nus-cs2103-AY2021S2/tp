@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Optional;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -11,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a event identified using it's displayed identifier from Focuris.
  */
 public class DeleteCommand extends Command {
 
@@ -38,9 +36,10 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Optional<Event> optEventToDelete = model.getEventByIdentifier(targetIdentifier.getValue());
-        Event eventToDelete = optEventToDelete
-                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+        Event eventToDelete = model.getEventByIdentifier(targetIdentifier.getValue())
+                .orElseThrow(() -> new CommandException(
+                        String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER,
+                                targetIdentifier.getValue())));
 
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));

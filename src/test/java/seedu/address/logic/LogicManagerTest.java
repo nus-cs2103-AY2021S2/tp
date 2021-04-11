@@ -3,12 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,22 +12,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonEventBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -45,12 +35,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonEventBookStorage eventBookStorage =
                 new JsonEventBookStorage(temporaryFolder.resolve("eventBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(eventBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -72,31 +60,31 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
+    /*
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonEventBookIoExceptionThrowingStub
         JsonEventBookStorage eventBookStorage =
                 new JsonEventBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionEventBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, eventBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(eventBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        // Execute Todo command
+        String todoCommand = TodoCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Event expectedEvent = new EventBuilder(CS2030).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addEvent(expectedEvent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(todoCommand, CommandException.class, expectedMessage, expectedModel);
     }
+     */
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredEventList().remove(0));
     }
 
     /**
@@ -135,7 +123,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getEventBook());
+        Model expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -150,20 +138,6 @@ public class LogicManagerTest {
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
-    }
-
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-        @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
     }
 
     /**

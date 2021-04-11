@@ -19,16 +19,16 @@ public class InProgressCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_PRIORITY + "PRIORITY]" + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Household Chores"
+            + PREFIX_NAME + "Household Chores" + " "
             + PREFIX_DESCRIPTION + "Clean my room and wash the dishes";
 
-    public static final String MESSAGE_SUCCESS = "New Event added with the Status of IN-PROGERSS: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "An Event with the same NAME already exists in Focuris";
+    public static final String MESSAGE_SUCCESS = "New Event added with the Status of IN-PROGERSS: %1$s.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "An Event with the same NAME already exists in Focuris.";
 
     private final Event toAdd;
 
     /**
-     * Creates an TodoCommand to add the specified Todo Event {@code Event}
+     * Creates an InProgressCommand to add the specified In-Progress Event {@code Event}
      */
     public InProgressCommand(Event event) {
         requireNonNull(event);
