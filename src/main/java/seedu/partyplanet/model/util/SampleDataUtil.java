@@ -35,12 +35,12 @@ public class SampleDataUtil {
                     new Birthday("1998-05-20"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     new Remark("hates pink"), getTagSet("choir", "year2")),
             new Person(new Name("David Li"), new Phone("91031282"), Email.EMPTY_EMAIL,
-                    new Birthday("1999-11-21"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                    new Birthday("1998-01-13"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     new Remark("loves meat"), getTagSet("choir")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                    new Birthday("2000-08-23"), new Address("Blk 47 Tampines Street 20, #17-35"),
+                    new Birthday("2000-05-23"), new Address("Blk 47 Tampines Street 20, #17-35"),
                     new Remark("hates blue"), getTagSet("dance", "year4")),
-            new Person(new Name("John Trump"), new Phone("92624417"), new Email("royb@example.com"),
+            new Person(new Name("John Trump"), new Phone("92624417"), new Email("jtrump@example.com"),
                     Birthday.EMPTY_BIRTHDAY, new Address("Blk 45 Aljunied Street 85, #11-31"),
                     new Remark("hates black"), getTagSet("dance", "year3"))
         };
@@ -50,9 +50,9 @@ public class SampleDataUtil {
     public static Event[] getSampleEvents() {
         return new Event[] {
             new Event(new Name("Jan celebration"), new EventDate("2021-01-01"), new Remark("10 people")),
-            new Event(new Name("CNY celebration"), new EventDate("2021-02-01"), new Remark("get pineapple tarts"))
+            new Event(new Name("CNY celebration"), new EventDate("2021-02-12"), new Remark("get pineapple tarts")),
+            new Event(new Name("Feb celebration"), new EventDate("2021-02-01"), new Remark("2 people"))
                     .setDone(),
-            new Event(new Name("Feb celebration"), new EventDate("2021-02-01"), new Remark("2 people")).setDone(),
             new Event(new Name("March celebration"), new EventDate("2021-03-01"), new Remark("do outside school")),
             new Event(new Name("May celebrations"), new EventDate("2021-05-01"), new Remark("4 people")),
             new Event(new Name("Christmas celebration"), new EventDate("2021-12-01"), new Remark("get turkey"))
@@ -61,6 +61,9 @@ public class SampleDataUtil {
             new Event(new Name("End of tP"), new EventDate("2021-04-31"), Remark.EMPTY_REMARK)
         };
     }
+
+
+
 
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
