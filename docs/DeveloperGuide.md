@@ -159,15 +159,19 @@ Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..`
 
 #### Implementation
 
-The actual execution of these commands are largely the same and can be easily reimplemented to include more verification to the data if necessary, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number.
+![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png)
 
-In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
+The actual execution of the different add/delete commands are highly similar and often differ only by the extra entity-specific checks, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number.
+
+![AddDeleteCommandParserClassDiagram](images/AddDeleteCommandParserClassDiagram.png)
+
+In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to generate the actual add/delete commands.
 
 Given below is an example usage scenario and how the add command behaves at each step.
 
 Step 1. The user launches the application and executes `add owner n/BRUCE p/92019201 e/bruce@example.com a/BLK 123 Adam Road t/friendly` to save an owner.
 
-Step 2. The owner  is added to the model.
+Step 2. The owner is added to the model.
 
 Below is an example activity diagram for a valid add command from the user.
 
