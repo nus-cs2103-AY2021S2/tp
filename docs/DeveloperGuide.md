@@ -636,7 +636,42 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is a name which does not exist in the list)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Viewing tasks
+
+1. Lists all tasks within HEY MATEz. 
+   
+    1. Test case: `viewTasks`<br>
+       Expected: Lists all tasks within the HEY MATEz.
+       
+### Deleting a Task
+
+1. Deleting a Task while all tasks are being shown.
+
+    1. Prerequisites: List all tasks using the `viewTasks` command. 3 different tasks in the list. 
+       All 3 tasks have different indexes(1, 2, 3).
+
+    2. Test case: `deleteTask 1`<br>
+       Expected: Task with the index `1` is deleted from the list. Details of the deleted task shown in the status message.
+
+    3. Test case: `deleteTask 4`<br>
+       Expected: No task is deleted. Error details shown in the status message(Index is invalid).
+
+    4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1`, `...` <br>
+       Expected: Similar to previous.
+
+### Viewing a list of unassigned tasks
+
+1. Lists all unassigned tasks within HEY MATEz.
+
+    1. Test case: `viewUnassignedTasks`<br>
+       Expected: Lists all tasks that are unassigned within the HEY MATEz.
+
+### Viewing a list of uncompleted tasks
+
+1. Lists all uncompleted tasks within HEY MATEz.
+
+    1. Test case: `viewUncompletedTasks`<br>
+       Expected: Lists all tasks that are uncompleted within the HEY MATEz.
 
 ### Saving data
 
