@@ -35,11 +35,11 @@ jobs:
           java-version: '11'
           java-package: jdk
 
-      - name: Build and check with Gradle (linux)
+      - name: Build and check with Gradle (Linux)
         if: runner.os == 'Linux'
         run: ./gradlew headless check coverage guiTests
 
-      - name: Build and check with Gradle (macOS & windows)
+      - name: Build and check with Gradle (macOS & Windows)
         if: runner.os != 'Linux'
         run: ./gradlew headless check coverage
 
