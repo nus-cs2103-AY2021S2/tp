@@ -1128,7 +1128,66 @@ to work on.
     already exists, invalid Categories `westen` and Schools `Com`. 
     
 ### Edit an entry
+1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(-ies)`
+   
+    1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line,
+    execute `edit <INDEX> <KEYWORD> ...`. 
     
+    * `INDEX` refers to index of Entry to revise in view.
+    
+    * The following test cases will test different permutations and numbers of `KEYWORD`(s).
+       
+    2. Test case: `edit 1 n/McDonalds`
+    
+       Expected:
+       - First entry has named changed to "McDonalds".
+       - All entries remained shown
+       - Success message displayed informing the user of change.
+
+    3. Test case: `edit 2 ra/0`
+
+       Expected:
+       - Second entry has rating changed to 0. (0/5)
+       - All entries remained shown (with the first entry remaining edited as done previously).
+       - Success message displayed informing the user of change.
+
+    4. Test case: `edit 3 a/50 West Coast Road`
+
+       Expected:
+       - Third entry has address changed to "50 West Coast Road".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+
+    5. Test case: `edit 4 re/I had a great time here.`
+
+        Expected:
+       - Fourth entry has review changed to "I had a great time here".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+
+    6. Test case: `edit 5 p/20`
+
+       Expected:
+       - Fifth entry has price changed to "20". ($20)
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+
+    7. Test case: `edit 1 n/Hwangs ra/4 p/7 a/NUS re/Korean food makes me happy. s/Utown c/Korean`
+
+       Expected:
+       - First entry has name changed to "Hwangs", rating changed to "4" (4/5), price changed to "7" ($7),
+        review changed to "Korean food makes me happy.", school location tags changed to "UTOWN", and 
+        food category changed to "Korean".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+       
+    8. Test case: `edit 1 c/Korean c/Others`
+
+       Expected:
+       - First entry has food category changed to "Korean" and "Others".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+  
 ### Clear all entries
 1. Remove all entries from The Food Diary
    
