@@ -1,33 +1,68 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 !include style.puml
 
-Actor User as user USER_COLOR
-Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PawbookParser" as PawbookParser LOGIC_COLOR
+participant ":EnrolDropCommandParser" as EnrolDropCommandParser LOGIC_COLOR
+participant "d:DropCommand" as DropCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-user -[USER_COLOR]> ui : "drop d/2 p/3"
-activate ui UI_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
-ui -[UI_COLOR]> logic : execute("drop d/2 p/3")
-activate logic LOGIC_COLOR
+[-> LogicManager : execute("drop d/2 p/3")
+activate LogicManager
+LogicManager -> PawbookParser : parseCommand("drop d/2 p/3")
+activate PawbookParser
 
-logic -[LOGIC_COLOR]> model : setEntity(3, editedProgram)
-activate model MODEL_COLOR
+create EnrolDropCommandParser
+PawbookParser -> EnrolDropCommandParser
+activate EnrolDropCommandParser
 
-model -[MODEL_COLOR]-> logic
-deactivate model
+EnrolDropCommandParser --> PawbookParser
+deactivate EnrolDropCommandParser
 
-logic -[LOGIC_COLOR]> storage : saveDatabase(database)
-activate storage STORAGE_COLOR
+PawbookParser -> EnrolDropCommandParser : parse("d/2 p/3")
+activate EnrolDropCommandParser
 
-storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-storage --[STORAGE_COLOR]> storage
-deactivate storage
+create DropCommand
+EnrolDropCommandParser -> DropCommand
+activate DropCommand
 
-storage --[STORAGE_COLOR]> logic
-deactivate storage
+DropCommand --> EnrolDropCommandParser : d
+deactivate DropCommand
+
+EnrolDropCommandParser --> PawbookParser : d
+deactivate EnrolDropCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EnrolDropCommandParser -[hidden]-> PawbookParser
+destroy EnrolDropCommandParser
+
+PawbookParser --> LogicManager : d
+deactivate PawbookParser
+
+LogicManager -> DropCommand : execute()
+activate DropCommand
+
+DropCommand -> Model : update filtered entity list
+activate Model
+
+Model --> DropCommand
+deactivate Model
+
+create CommandResult
+DropCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DropCommand
+deactivate CommandResult
+
+DropCommand --> LogicManager : result
+deactivate DropCommand
+
+[<--LogicManager
+deactivate LogicManager
 @enduml
