@@ -1,6 +1,7 @@
 package seedu.cakecollate.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +14,7 @@ import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
+import seedu.cakecollate.logic.commands.AddOrderItemCommand;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
@@ -251,7 +253,6 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String orderItemType} into an {@code OrderItem}.
-     * The {@code Cost} is set to a default value of 10 for now.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param orderItemType Type of the order item as entered by the user.
@@ -261,8 +262,15 @@ public class ParserUtil {
     public static OrderItem parseOrderItem(String orderItemType) throws ParseException {
         requireNonNull(orderItemType);
         String trimmedOrderItemDescription = orderItemType.trim();
+        if (trimmedOrderItemDescription.isEmpty()) {
+            throw new ParseException(OrderDescription.MESSAGE_EMPTY);
+        }
+        if (trimmedOrderItemDescription.length() > ORDER_DESCRIPTION_LENGTH) {
+            throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
+        }
         if (!Type.isValidType(trimmedOrderItemDescription)) {
-            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+            throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderItemCommand.MESSAGE_USAGE));
         }
         return new OrderItem(new Type(trimmedOrderItemDescription));
     }
