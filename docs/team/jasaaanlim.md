@@ -24,12 +24,12 @@ Given below are my contributions to the project.
     * Justification: Much like file names in macOS and Windows, when there are multiple food intake names with the same name, the user needs an intuitive way to identify them and allow them to quickly delete/update the specific food intake they want. We decided to not use the index for food and foodintake commands because we want the user to be sure of what they are updating, hence, a duplicate count is the easiest way to identify the food intake they are entering.
 
 * **New Feature**: Updated Storage to store the list of FoodIntakes in the FoodIntakeList
-    * What it does: Allows for the saving and loading of food intake records from the .txt file.
+    * What it does: Allows for the saving and loading of food intake records from the .json file.
     * Justification: This is required as we want our users to be able to save their food intake lists and regain them when they reopen the application.
 
 * **New Feature**: Implemented part of `TemplateInitializer` alongside Soon Wee + `reset` command
     * What it does: The TemplateInitializer initialises a set of default sample template data used during the first load or when the reset command is used. The reset command resets the data in the application to blank, or the provided sample data. 
-    * Justification: When the user loads DietLAH! for the first time or without an existing data, sample data will be loaded to the application to give the user a feel of how it works and test the functionalities. Reset command: At any time, the user may wish to reset the data in the application to either the blank state, or to the sample data provided (e.g. to test out the application for the first time). This provides an easy way to do so, without having to manually edit the .txt files which may be unfamiliar to some.
+    * Justification: When the user loads DietLAH! for the first time or without an existing data, sample data will be loaded to the application to give the user a feel of how it works and test the functionalities. Reset command: At any time, the user may wish to reset the data in the application to either the blank state, or to the sample data provided (e.g. to test out the application for the first time). This provides an easy way to do so, without having to manually edit the .json files which may be unfamiliar to some.
 
 * **Project management**:
     * Created issues for relevant issues and user stories and linked to relevant PRs
