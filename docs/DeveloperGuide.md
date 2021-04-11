@@ -160,6 +160,7 @@ To ensure that after every command, the list was always sorted, each command sen
 
 (explain with more code later)
 
+
 ### Find feature
 
 The intended usage of the Find feature is for users to locate their orders in CakeCollate quickly and efficiently.
@@ -223,6 +224,65 @@ As CakeCollate is adapted from the AddressBook-Level3 project, the original find
       * Creating many classes causes increased coupling.
       * Hard to implement `OR` searches.
 
+### Find feature
+
+The intended usage of the Remind feature is for users to locate impending undelivered orders within a certain time frame which the user can specify. 
+The user specifies the number of days from the current date for all undelivered orders they want to locate. <br>
+
+The remind mechanism is facilitated by `ReminderDatePredicate` which implements Java's `Predicate` interface.
+The conditions (date period) on which undelivered orders to locate is then captured in this `Predicate`.
+The orders in CakeCollate are extracted and stored in a JavaFX `FilteredList`.
+It is then updated through the usage of `FilteredList#setPredicate(Predicate)` while passing `ReminderDatePredicate` into the method.
+This updated `FilteredList` is then displayed, showing the results of the find command.
+
+This operation is exposed in the `Model` interface as `Model#updateFilteredOrderList`.
+
+If users want to locate all undelivered orders for today, they can use the command `remind 0`.
+If users want to locate all undelivered orders for 1 week, assuming today's date is 11 April 2021, they can use the command `remind 7`. The remind command
+returns all undelivered orders within the time frame of 11 April 2021 - 18 April 2021.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+*Step 1.* The user keys in and execute the command `remind 7` to locates all undelivered orders within 1 week from today.
+
+*Step 2.* The command is parsed by `RemindCommandParser`. The prefixes and their respective keywords are extracted and saved in an `ArgumentMultimap`. Refer to the [Logic Component](#logic-component) for more details.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, a `ReminderDatePredicate` and a `RemindCommand` will be created.
+
+*Step 4.* The `RemindCommand#execute` is called which updates the `FilteredList` that is currently being displayed.
+
+The following sequence diagram shows how this works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates RemindCommandParser and calls parse("7") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+##### Aspect: How to allow users to receive reminders
+
+* **Alternative 1 (current choice):** Create a `remind` command that allows users to specify the time frame to
+for the result of undelivered orders.
+    * Pros:
+      * Gives users flexibility in specifying the time frame they want to receive reminders for
+      * Easy to implement, and to use.
+    * Cons:
+      * User has to remember to use the remind function in order to receive reminders.
+
+* **Alternative 2:** Automated reminders for impending undelivered orders within a 
+time frame of 1 week that pops out whenever the user opens the application.
+    * Pros:
+      * User does not have to remember to use the remind function since it is automated.
+    * Cons:
+      * User has no flexibility to specify the time range he/she wants to receive reminders for.
+      * If user want to check for reminders again he has to reopen the application.
+      
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
