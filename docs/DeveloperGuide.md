@@ -297,7 +297,7 @@ The find student feature helps users to locate a particular student record by th
 
 This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
 `FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
-`FindCommand` will invoke a method to search for the particular student record and the corresponding appointment in `Model` and return the specific student record if the student exists and corresponding appointment if there is an appointment belonging to the student.
+`FindCommand` will invoke a method to search for the particular student record and the corresponding appointment in `Model` and return the specific student record if the student exists and corresponding appointment if an appointment belong to the student.
 
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
@@ -306,9 +306,9 @@ Step 1: The user executes `find A0175678U` into Vax@NUS.
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
 
-Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record of the particular student and corresponding appointment from `Model` if the student and corresponding appointment exists.
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record of the particular student and the corresponding appointment belonging to the student from `Model` if it exists.
 
-Step 4: Display the particular student record onto the UI. 
+Step 4: Display the particular student record and appointment onto the UI. 
 
 The following sequence diagram shows how the find operation works:
 
@@ -324,8 +324,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 * **Alternative 1 (current choice):** Find student based on student's matriculation number.
     * Pros:
-        * Each student record found uniquely identifies a student.
-        * Only one student record is shown if the particular student exists in the system. 
+        * Each student record found uniquely identifies a student. 
+        * Only one student record and one appointment is shown if the particular student exists and has an appointment in the system. 
     * Cons:
         * The user is required to know the student's matriculation number to perform the action. 
         
@@ -334,8 +334,10 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros:
         * User is not required to know the student's matriculation number.
     * Cons:
-        * Multiple student records will be shown for students with the same name. The user might have to look through multiple entires to find the particular student hence causing inconvenience to them. 
+        * Multiple student records and appointments will be shown for students with the same name. Users will have to manually look through all entries to find the desired student and appointment records.
         * The user has to type more words if the student name is too long. 
+
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. 
 
 --------------------------------------------------------------------------------------------------------------------
 

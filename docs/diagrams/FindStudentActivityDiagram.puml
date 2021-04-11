@@ -13,7 +13,7 @@ if () then ([user input is valid])
                 :Display the corresponding appointment ;
 
          else ([else])
-                :Display no appointments ;
+                :Display an empty list of appointments ;
          endif
     else ([else])
         :Show no student found message;
