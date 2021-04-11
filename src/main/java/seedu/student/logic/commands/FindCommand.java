@@ -71,7 +71,7 @@ public class FindCommand extends Command {
                     Model.PREDICATE_SHOW_ALL_APPOINTMENTS);
 
             logger.info("Student with a matriculation number of " + predicate.getKeyword()
-                    + "does not exist in VAX@NUS");
+                    + "does not exist in Vax@NUS");
 
             throw new MatriculationNumberDoesNotExistException(String.format(MESSAGE_NO_STUDENT_FOUND,
                     predicate.getKeyword()));

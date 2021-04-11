@@ -20,13 +20,13 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String COMMAND_SUMMARY = " Here is a list of commonly used commands in Vax@NUS" + DIVIDER
             + "\n Tips: Words in capital are compulsory while the words in square bracket are optional."
-            + "\n\n Add a student: add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL"
+            + "\n\n Add a student: add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL"
             + "\n                        a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE] "
-            + "\n\n Edit a student: edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] "
+            + "\n\n Edit a student: edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] "
             + "\n                       [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]"
             + "\n\n Delete a student: delete MATRICULATION_NUMBER"
-            + "\n\n Add an appointment: addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME"
-            + "\n\n Edit an appointment: editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM"
+            + "\n\n Add an appointment: addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME"
+            + "\n\n Edit an appointment: editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME"
             + "\n\n Delete an appointment: deleteAppt MATRICULATION_NUMBER"
             + "\n\n List all students and appointments : list"
             + "\n\n Exit Program: exit";
