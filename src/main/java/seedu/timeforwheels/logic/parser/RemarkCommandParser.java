@@ -9,8 +9,11 @@ import seedu.timeforwheels.logic.commands.RemarkCommand;
 import seedu.timeforwheels.logic.parser.exceptions.ParseException;
 import seedu.timeforwheels.model.customer.Remark;
 
-
+/**
+ * Parses input arguments and creates a new RemarkCommand object.
+ */
 public class RemarkCommandParser implements Parser<RemarkCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.

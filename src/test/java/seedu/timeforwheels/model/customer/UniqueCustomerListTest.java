@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HEAVY;
 import static seedu.timeforwheels.testutil.Assert.assertThrows;
 import static seedu.timeforwheels.testutil.TypicalCustomers.ALICE;
@@ -41,10 +43,11 @@ public class UniqueCustomerListTest {
 
     @Test
     public void contains_customerWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueCustomerList.add(ALICE);
-        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HEAVY)
+        uniqueCustomerList.add(BOB);
+        Customer editedBob = new CustomerBuilder(BOB).withAddress(VALID_ADDRESS_BOB)
+                .withEmail(VALID_EMAIL_BOB).withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HEAVY)
                 .build();
-        assertTrue(uniqueCustomerList.contains(editedAlice));
+        assertTrue(uniqueCustomerList.contains(editedBob));
     }
 
     @Test

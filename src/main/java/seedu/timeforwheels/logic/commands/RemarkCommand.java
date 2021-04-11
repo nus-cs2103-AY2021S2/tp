@@ -13,7 +13,9 @@ import seedu.timeforwheels.model.customer.Customer;
 import seedu.timeforwheels.model.customer.Remark;
 
 
-
+/**
+ * Adds a remark to the existing delivery task in the delivery list.
+ */
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
@@ -35,7 +37,7 @@ public class RemarkCommand extends Command {
 
 
     /**
-     * @param index of the customer in the filtered customer list to edit the remark
+     * @param index of the delivery tasks in the filtered delivery list to edit the remark
      * @param remark of the customer to be updated to
      */
     public RemarkCommand(Index index, Remark remark) {

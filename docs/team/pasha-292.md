@@ -12,11 +12,17 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=pasha&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=pasha-292&tabRepo=AY2021S2-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+
+
 * **Repository Link**:  [Repository Link](https://github.com/pasha-292/tp)
+
+
 
 * **Project management**:
     * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
     * Released `v1.1` and `v1.3` on GitHub.
+
+
 * **Features**:
    * Add the date feature to TimesForWheels to take into account the delivery date.(PRs: 
      [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35), 
@@ -26,10 +32,20 @@ Given below are my contributions to the project.
      [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47),
      [#63](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/63)) 
 
+* **GUI Changes**
+   * Add the date field to the GUI.(
+     PR: [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47),
+     [#48](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/48))
+   * Change icon for the app. (
+     PR: [#118](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/118))
+
 * **Tests**:
    * Add Date Tests to check if dates are valid. (PR: [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35))
    * Update AttributesContainsPredicateTest. (PR: [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35))
-    
+   * Update FindCommandTest, FindCommandParserTest, AddCommandParserTest, DoneCommandParserTest,
+     DeleteCommandParserTest, ParserUtilTest. (PR: [#127](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/127))
+   * Update JsonAdaptedCustomerTests to integrate date.(
+     PR: [#128](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/128)) 
 
 * **Enhancement to existing features**:
 
@@ -57,7 +73,10 @@ Given below are my contributions to the project.
    [#113](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/113))
 2. Update Developer Guide, by updating the information about the find command.(
    PR: [#55](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/55))
-   
+3. Update Existing Developer Guide diagrams to make them more in line with the project.(
+   PR: [#124](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/124))
+4. Update DG to include three UML diagrams for the Find Command and add them to DG.(
+   PR: [#124](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/124))   
 
 * **Community**:
 

@@ -32,7 +32,7 @@ public class Customer {
      */
     public Customer(Name name, Phone phone, Email email, Address address, Remark remark,
                     Date date, Set<Tag> tags, Done done) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags, date);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -93,7 +93,11 @@ public class Customer {
         }
 
         return otherCustomer != null
-                && otherCustomer.getName().equals(getName());
+                && otherCustomer.getName().equals(getName())
+                && otherCustomer.getEmail().equals(getEmail())
+                && otherCustomer.getPhone().equals(getPhone())
+                && otherCustomer.getAddress().equals(getAddress())
+                && otherCustomer.getDate().equals(getDate());
     }
 
     /**

@@ -591,18 +591,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Software System: Delivery App**
 
-**Use case: UC11 - Find all delivery entries by the keyword(s).**
+**Use case: UC11 - Find all delivery entries by the keyword(s) that match an attribute.**
 
 **Actor: Delivery driver (app user)**
 
 **Guarantees:**
 
-* Getting the list of existing delivery entries with details containing the specified keyword(s).
+* Getting the list of existing delivery entries with attributes matching the specified keyword(s).
 
 **MSS**
 
 1.  User requests to see all delivery entries with the matching keyword(s).
-2.  Delivery App lists out all existing delivery entries with details containing the specified keyword(s).
+2.  Delivery App lists out all existing delivery entries with attributes matching the specified keyword(s).
 
     Use case ends.
 
@@ -617,6 +617,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. Delivery App informs the User that there are no delivery entries with details containing the specified keyword(s).
 
   Use case ends.
+
+Below is an illustration of the find command sequence diagram
+
+![Find Command Sequence Diagram](images/FindCommandSequenceDiagram.png)
+
+Below is a further breakdown of the logic component of the find command using a sequence diagram
+
+![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
+
+Below is an activity diagram to show a more simplified representation of the find command
+
+![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
 **Software System: Delivery App**
 
@@ -822,18 +834,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 2. **Reliability**:
-    - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds
-    - Should be able to detect and inform users of duplicate delivery entries and confirm with user if they wish to proceed in adding them to the list
+    - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds.
+    - Should be able to detect and inform users of duplicate delivery entries.
 
 3. **Security:**
-    - Users that request for any delivery entry data to be deleted will have the data permanently erased from memory
+    - Users that request for any delivery entry data to be deleted will have the data permanently erased from memory.
 
 4. **Integrity**
-    - For any time-related data presented to the user, the date formats will be `DD-MM-YYYY`
-    - Delivery entries made by the user will be stored in a _JSON_ file inside the hard disks
+    - For any time-related data presented to the user, the date formats will be `YYYY-MM-DD`.
+    - Delivery entries made by the user will be stored in a _JSON_ file inside the hard disks.
 
 5. **Flexibility**
-    - TimeforWheels should be able to handle as many date format inputs as possible by the user and convert the date format to `DD-MM-YYYY`
+    - TimeforWheels should be able to make it easy for users to find the delivery information stored inside such as name, date, address, tags etc.
 
 *{More to be added}*
 

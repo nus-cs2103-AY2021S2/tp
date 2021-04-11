@@ -2,26 +2,26 @@
 layout: page
 title: User Guide
 ---
-
-TimeForWheels is an app for delivery drivers to manage their orders efficiently. It is optimized for use via a Command
-Line Interface while still having the benefits of a Graphical User Interface(GUI). Overall, TimeForWheels aims to
-increase work productivity for delivery drivers by simplifying the delivery management and planning process.
+Welcome fellow drivers!<br>
+TimeForWheels is a delivery task management app for delivery drivers to manage and track their own workflow. 
+It is optimized for use via a Command Line Interface while still having the benefits of a Graphical User Interface(GUI). 
+Overall, TimeForWheels aims to be your perfect delivery companion by improving productivity and simplifying the delivery planning process.
 
 * **Table of Contents**
     * Quick Start
     * Features
         * Viewing help
         * Add a delivery task
-        * Edit a delivery task
         * Add a remark to a delivery task
+        * Edit a delivery task
+        * Find delivery task using keyword matching any attribute  
         * Delete a delivery task
         * Clear all delivery tasks
         * List all delivery tasks
         * Mark delivery task as done
-        * Find delivery task using keyword matching any attribute  
-        * Statistics of delivery workflow
         * View completed delivery tasks
         * View uncompleted delivery tasks
+        * Statistics of delivery workflow
         * Exit application
 
 --------------------------------------------------------------------------------------------------------------------
@@ -42,12 +42,12 @@ increase work productivity for delivery drivers by simplifying the delivery mana
    open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all delivery points
+    * **`list`** : Lists all delivery tasks
 
-    * **`add`**`n/Johnathan Tan p/98723456 a/108 Bishan street, block 123, #01-01 e/johnathan@gmail.com d/2021-05-05` : Adds a delivery with address `108 Bishan street, block 123, #01-01` to the
-      Delivery list.
+    * **`add`**`n/Johnathan Tan p/98723456 a/108 Bishan street, block 123, #01-01 e/johnathan@gmail.com d/2021-05-05` : Adds a delivery task with address `108 Bishan street, block 123, #01-01` to the
+      delivery list.
 
-    * **`delete`**`3` : Deletes the 3rd delivery point shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd delivery task shown in the current delivery list.
 
     * **`done`**`3` : Marks the 3rd delivery task as done.
 
@@ -63,23 +63,25 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Attributes of a delivery tasks includes name, phone number, address, email, date, tags, date.
+
+* Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Spa t/fragile` or as `n/John Spa`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/fragile`, `t/hot t/cold` etc.
 
-* Parameters can be in any order.<br>
+* Inputs can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+* If an input is expected only once in the command but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* For commands that do not take in any inputs (such as `help`, `list`, `exit` and `clear`), any inputs will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -93,8 +95,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Examples:**
 
-* `help` - Help returns Adding a delivery task: add Deleting a delivery task: delete Listing the delivery task: list
-  Finding a delivery task: find Seeking for tech-support: help
+* `help` - Help returns a list of available commands, examples and User Guide link.
 
 ![Ui](images/HelpCommand.png)
 
@@ -102,50 +103,50 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Purpose:** Adds a delivery task to the delivery list.
 
-**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATE`
+**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATE [t/TAG]`
 
 **Examples:**
 
-* `add n/Mark p/92841234 a/20 Watten Estate e/mark1998@gmail.com d/2021-02-02
+* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/2021-10-10
   `
   
 ![Ui](images/AddCommand.png)
 
 
-### Edit a delivery task: `edit INDEX PREFIX/ATTRIBUTE`
+### Edit a delivery task: `edit TASK_NUMBER PREFIX/ATTRIBUTE`
 
-**Purpose:** Edits any selected attribute of the delivery entry except the remark.
+**Purpose:** Edits any selected attribute of the delivery tasks except the remark.
 
-**Prefix:** `n/`, `p/`, `a/`, `e/`, `t/`, `d/`
+**PREFIX:** `n/` for name , `p/` for phone number , `a/` for address , `e/` for email, `t/` for tags, `d/` for date
 
-**Attribute:** Enter information based on the format of the attribute specified.
+**ATTRIBUTE:** Enter information based on the format of the attribute specified.
 
 **Note:** 
   * You can edit multiple attributes.
   * Remark can be edited separately through the remark command.
-  * INDEX refers to the number shown in front of each delivery
+  * TASK_NUMBER refers to the number shown in front of each delivery
 
-**Format:** `edit INDEX PREFIX/ATTRIBUTE`
+**Format:** `edit TASK_NUMBER PREFIX/ATTRIBUTE`
 
 **Examples:**
 
-* `edit 8 n/Joshua`
+* `edit 7 n/Joshua`
 
 ![Ui](images/EditSingleAttribute.png)
 
-* `edit 8 a/Clementi Road d/2021-10-01`
+* `edit 7 a/Clementi Road d/2021-10-01`
 
 ![Ui](images/EditMultipleAttribute.png)
 
-### Add a remark to a delivery tasks: `add`
+### Add a remark to a delivery tasks: `remark`
 
 **Purpose:** Adds a remark to a delivery task in the delivery list.
 
-**Format:** `remark TASK NUMBER r/REMARK`
+**Format:** `remark TASK_NUMBER r/REMARK`
 
 **Examples:**
 
-* `remark 1 r/needs utensils
+* `remark 7 r/needs utensils
   `
 
 ![Ui](images/RemarkCommand.png)
@@ -154,27 +155,27 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Purpose:** Deletes the delivery task from the delivery list.
 
-**Format:** `delete TASK NUMBER``
+**Format:** `delete TASK_NUMBER``
 
 * Deletes a delivery task from the list.
-* The TASK NUMBER refers to the number shown in the displayed delivery list.
-* The index must be a positive number 1, 2, 3,
+* The TASK_NUMBER refers to the number shown in the displayed delivery list.
+* The TASK_NUMBER must be a positive number 1, 2, 3,
 
 **Examples:**
 
-* `delete 2` - delete 2 will delete the second delivery task in the delivery list.
+* `delete 7` - delete 7 will delete the seventh delivery task in the delivery list.
   
 ![Ui](images/DeleteCommand.png)
 
 ### List all delivery tasks : `list`
 
-**Purpose:** Shows all the delivery points
+**Purpose:** Shows all the delivery tasks
 
 **Format:** `list`
 
 **Examples:**
 
-* `list` - Lists all the delivery points
+* `list` - Lists all the delivery tasks
 
 ![Ui](images/ListCommand.png)
 
@@ -194,12 +195,12 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Purpose:** Set a delivery task in the delivery list to done or not done
 
-**Format:** `done TASK NUMBER`
+**Format:** `done TASK_NUMBER`
 
 * Sets the delivery task as done [✓].
-* The TASK NUMBER refers to the number shown in the displayed delivery list.
-* The TASK NUMBER must be a positive number such as 1, 2, 3
-* If the delivery task is already marked as done [✓], running this command will mark it as not done [X]
+* The TASK_NUMBER refers to the number shown in the displayed delivery list.
+* The TASK_NUMBER must be a positive number such as 1, 2, 3
+* If the delivery task is already marked as done [✓], running this command will mark it as not done [X] instead
 
 **Example:**
 
@@ -209,9 +210,9 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 
 ### Find deliveries using keywords matching any attribute: `find KEYWORDS`
-**Attributes:** Name, Telephone Number, Address, Date, Remark, Done, Email
+**Attributes:** Name, Phone number, Address, Date, Remark, Done, Email, Tags
 
-**Purpose** Find deliveries that match certain attribute
+**Purpose** Find deliveries with attributes that match the KEYWORDS
 
 **Notes:**
 * It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
@@ -219,6 +220,8 @@ increase work productivity for delivery drivers by simplifying the delivery mana
   but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
 * Incomplete keywords are disabled in order to reduce the number of unnecessary search results which
   may defeat the aim of the feature.
+* When finding dates, the format of the `KEYWORD` should be in YYYY-MM-DD format. For example, 
+  when finding 4th January 2021, use `find 2021-01-04`.
   
 **Format** `find KEYWORDS`
 
@@ -251,6 +254,21 @@ increase work productivity for delivery drivers by simplifying the delivery mana
    ![Ui](images/FindDate.png)
 
 
+### Sort delivery tasks in the list: `sort`
+
+**Purpose** Sort delivery tasks first by completion status (incomplete first), 
+then urgency tags (only applicable for incomplete tasks), and lastly date.
+
+**Format:** `sort`
+
+**Examples:**
+
+* `sort` - Lists all incomplete delivery tasks (urgent ones first) followed by completed delivery tasks, which are all
+sorted by date.
+
+   ![Ui](images/Sort.png)
+
+
 ### Statistics of delivery workflow : `stats`
 
 **Purpose:** Get a summary report of the current delivery workflow
@@ -262,6 +280,8 @@ increase work productivity for delivery drivers by simplifying the delivery mana
   * Fragile Deliveries , Liquid Deliveries, Food Deliveries, Hot Deliveries
   * Cold Deliveries , Heavy Deliveries, Bulky Deliveries, Urgent Deliveries
   * Other Deliveries
+  
+**Definition:**
   * `Deliveries Done` are Deliveries that have been marked done
   * `Deliveries Not Done` are Deliveries that have not been marked as done
   * `Deliveries Due` are Deliveries that have exceeded their delivery date and are still marked as not done
@@ -284,40 +304,41 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 **Example:**
 
 * `stats` - outputs the calculated figures as shown below
+       ![Ui](images/Stats.png)
 
 ### View completed delivery tasks: `completed`
 
-**Purpose:** Filter out the completed deliveries in the delivery list
+**Purpose:** Filter out the completed delivery tasks in the delivery list
 
 **Format:** `completed`
 
 **Example:**
 
-* `completed` - outputs the list of completed deliveries
+* `completed` - outputs the list of completed delivery tasks
 
 ![Ui](images/CompletedCommand.png)
 
 ### View uncompleted delivery tasks: `uncompleted`
 
-**Purpose:** Filter out the uncompleted deliveries in the delivery list
+**Purpose:** Filter out the uncompleted delivery tasks in the delivery list
 
 **Format:** `uncompleted`
 
 **Example:**
 
-* `uncompleted` - outputs the list of uncompleted deliveries
+* `uncompleted` - outputs the list of uncompleted delivery tasks
 
 ![Ui](images/UncompletedCommand.png)
 
 ### Exit application : `exit`
 
-**Purpose:** Exits the program.
+**Purpose:** Exits the application.
 
 **Format:** `exit`
 
 **Examples:**
 
-* `exit` - Exits the program
+* `exit` - Exits the application
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -325,7 +346,10 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous TimeforWheels home folder.
+
+**Q**: Where can I find the data stored in TimeforWheels?<br>
+**A**: All delivery list data is stored in a file named deliverylist.json and can be found in the same directory where TimeforWheels.jar file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -335,17 +359,26 @@ Action | Format,<br> Example(s)
 --------|------------------
 **Help** | `help`<br> e.g., `help`
 **Add** | `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
-**Edit** | `edit INDEX n/NAME`, `p/PHONE`, `a/ADDRESS`, `e/EMAIL`, `t/TAG`, `d/DATE `<br> e.g.,`edit 1 a/102 Bishan Street`
-**Remark** | `remark INDEX r/REMARK`<br> e.g.,`remark 1 r/needs untensils`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit TASK_NUMBER n/NAME`, `p/PHONE`, `a/ADDRESS`, `e/EMAIL`, `t/TAG`, `d/DATE `<br> e.g.,`edit 1 a/102 Bishan Street`
+**Remark** | `remark TASK_NUMBER r/REMARK`<br> e.g.,`remark 1 r/needs untensils`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 3`
 **Clear** | `clear`<br> e.g., `clear`
 **List** | `list`<br> e.g., `list`
-**Done** | `done INDEX`<br> e.g., `done 2`
+**Done** | `done TASK_NUMBER`<br> e.g., `done 2`
 **Find** | `find <keyword>` e.g., `find alex`
 **Stats** | `stats` <br> e.g., `stats`
 **Completed** | `completed` <br> e.g., `completed`
 **Uncompleted** | `uncompleted` <br> e.g., `uncompleted`
 **Exit** | `exit`<br> e.g., `exit`
+
+
+## Glossary
+
+Term | Definition,<br>
+--------|------------------
+**ATTRIBUTE** | `A key detail of a delivery task`<br> e.g., `name`
+**TASK_NUMBER** | `The delivery task number shown in the delivery list` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
+**PREFIX** | `refers to the letter representing the respective attribute.` <br> e.g., Letter a for attribute ADDRESS`
 
 
 
