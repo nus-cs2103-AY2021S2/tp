@@ -415,6 +415,14 @@ Step 7: `FindAppointmentCommand` creates a single `Predicate` by calling `Appoin
 Step 8: `FindAppointmentCommand` calls `Model#updateFilteredAppointmentList` with the new `Predicate` to update the filtered 
 list that is viewed by the user. 
 
+#### 3.5.2 Design consideration:
+
+##### Aspect: How Update executes
+
+The following activity diagram summarizes what happens when a user executes a `FindAppointmentCommand`:
+
+![FindAppointmentActivityDiagram](images/FindActivityDiagram.png)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
