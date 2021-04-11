@@ -73,7 +73,6 @@ public class OrderEditCommand extends Command {
         Order orderToEdit = lastShownList.get(index.getZeroBased());
 
         if (orderToEdit.getState() != Order.State.UNCOMPLETED) {
-            System.out.println("not uncompleted");
             throw new CommandException(MESSAGE_NOT_UNCOMPLETED_ORDER);
         }
 
