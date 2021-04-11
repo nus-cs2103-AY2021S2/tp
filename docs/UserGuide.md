@@ -44,11 +44,15 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 ![Main Window UI](images/Ui.png)
 
-**Notes about the User Interface:** 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
 
 On start up of The Food Diary, users are greeted with the main window display.
  The main window displays all entries of the in The Food Diary on start up,
  in the order that the entries were added in.
+
+</div>
 
 ### Main Window
 
