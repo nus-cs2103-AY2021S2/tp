@@ -37,7 +37,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `sort` [\#82](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/82), [\#130](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/130), [\#218](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/218)
+    * Added documentation for the features `sort` [\#82](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/82), [\#130](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/130), [\#218](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/218), [\#268](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/268)
     * Morphed the basic description from AddressBook 3 to ModuleBook3.5 [\#39](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/39)
   * Developer Guide:
     * Updated NFR and glossary parts of ModuleBook3.5 [\#37](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/37), [\#56](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/56)
@@ -45,6 +45,8 @@ Given below are my contributions to the project.
         * SortSequenceDiagram
     	* ModelClassDiagram
     	* UiClassDiagram
+    	* WorkloadDistributionClassDiagram
+    * Add the descripition of feature Workload Distribution [\#275](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/275) 
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/90), [\#84](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/84), [\#64](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/64), [\#83](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/83)
