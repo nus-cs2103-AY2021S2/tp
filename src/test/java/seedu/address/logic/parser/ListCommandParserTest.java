@@ -1,8 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ListCommand;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
 import static seedu.address.logic.commands.ListCommand.MESSAGE_USAGE;
@@ -10,9 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.OPTION_FAVOURITE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.ListCommand;
+
 public class ListCommandParserTest {
 
-    ListCommandParser parser = new ListCommandParser();
+    private ListCommandParser parser = new ListCommandParser();
 
     @Test void parse_emptyArgs_returnListCommand() {
         assertParseSuccess(parser, "   ", new ListCommand());

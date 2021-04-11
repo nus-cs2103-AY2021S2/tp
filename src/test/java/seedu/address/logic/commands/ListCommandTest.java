@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.ListCommand.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_LIST_FAV_SUCCESS;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.ListCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_FAVOURITE;
 import static seedu.address.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;

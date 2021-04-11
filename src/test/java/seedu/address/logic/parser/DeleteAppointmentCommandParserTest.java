@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 
 public class DeleteAppointmentCommandParserTest {
-    DeleteAppointmentCommandParser parser = new DeleteAppointmentCommandParser();
+    private DeleteAppointmentCommandParser parser = new DeleteAppointmentCommandParser();
 
     @Test
     public void parse_emptyArgs_throwsException() {
