@@ -254,6 +254,25 @@ Below is an example sequence diagram for a valid drop command from the user.
 
 ![DropSequenceDiagram](images/DropSequenceDiagram.png)
 
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+1. The `PawbookParser` will identify the command given by the user based on the first command word and pass the user input down to `EnrolDropCommandParser`.
+1. The `EnrolDropCommandParser` will then create a `dropCommand` object with the user input `dogIdSet` and `programIdSet` as input parameters, in this case,
+`dogIdSet` will be [2] and `programIdSet` will be [3].
+1. The `EnrolDropCommandParser` will then return a `enrolCommand` object.
+1. The `LogicManager` will now call the execute method in the `dropCommand` object.
+1. The `DropCommand` will now call the `updateFilteredEntityList` method of the existing `Model` object.
+1. The `DropCommand` will now create a `CommandResult` object and returns it, indicating a successful execution of the `DropCommand`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![DropSequenceDiagramSpecific](images/DropSequenceDiagramSpecific.png)
+
+1. The `LogicManager` will call the execute method in the `DropCommand` object. 
+1. The `DropCommand` will then call the `checkIdValidity` method of the existing `Model` object.
+1. If the ID is valid, the `DropCommand` will create an `IdMatchPredicate` object.
+1. The `DropCommand` will call the `updateFilteredEntityList` method of the existing `Model` object update the `IdMatchPredicate` object into Pawbook.
+1. The `DropCommand` then creates a `CommandResult` object and returns it, indicating the successful updating of the `IdMatchPredicate` object. 
+
 ### Alternate implementations
 
 As dogs and programs can also be identified by their respective names instead of IDs, another implementation could be replacing the parameters of `dogId` and `programId` with their respective names.
@@ -583,13 +602,13 @@ testers are expected to do more *exploratory* testing.
        Expected: Dog with ID 2 is deleted from the list. The dogs will also be removed from all programs they were previously
        enrolled in.
 
-   1. Test case: `delete dog 0`<br>
+    1. Test case: `delete dog 0`<br>
       Expected: No dog is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Test case: `delete dog 1`<br>
+    1. Test case: `delete dog 1`<br>
       Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete dog`, `delete dog x`, `delete dog -x` (where x is larger than list size or negative)<br>
+    1. Other incorrect delete commands to try: `delete dog`, `delete dog x`, `delete dog -x` (where x is larger than list size or negative)<br>
       Expected: Similar to previous.
 
 1. Deleting a program while all programs are being shown

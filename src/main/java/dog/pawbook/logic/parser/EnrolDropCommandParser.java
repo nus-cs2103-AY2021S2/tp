@@ -62,7 +62,7 @@ public class EnrolDropCommandParser extends CommandWithCompulsoryPrefixNoPreambl
         Set<Integer> programIdList = ParserUtil.parseIds(argMultimap.getAllValues(PREFIX_PROGRAMID));
 
         /*
-         * Since we both prefixes are compulsory, it is safe to assume that number of both IDs are > 1 respectively
+         * Since both prefixes are compulsory, it is safe to assume that the number of both IDs are > 1 respectively
          * but we don't support enrollment of multiple dogs into multiple programs since that is error-prone for the
          * user.
          */
