@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDietLah;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.diet.DietPlanList;
@@ -16,13 +16,13 @@ import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.user.User;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of DietLah data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
-    private AddressBookStorage addressBookStorage;
+    private DietLahStorage dietLahStorage;
     private UniqueFoodListStorage uniqueFoodListStorage;
     private FoodIntakeListStorage foodIntakeListStorage;
     private DietPlanListStorage dietPlanListStorage;
@@ -30,14 +30,14 @@ public class StorageManager implements Storage {
     private UserStorage userStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UniqueFoodListStorage}
+     * Creates a {@code StorageManager} with the given {@code DietLahStorage}, {@code UniqueFoodListStorage}
      * and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UniqueFoodListStorage uniqueFoodListStorage,
+    public StorageManager(DietLahStorage dietLahStorage, UniqueFoodListStorage uniqueFoodListStorage,
                           FoodIntakeListStorage foodIntakeListStorage, DietPlanListStorage dietPlanListStorage,
                           UserPrefsStorage userPrefsStorage, UserStorage userStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.dietLahStorage = dietLahStorage;
         this.uniqueFoodListStorage = uniqueFoodListStorage;
         this.foodIntakeListStorage = foodIntakeListStorage;
         this.dietPlanListStorage = dietPlanListStorage;
@@ -62,33 +62,33 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-    // ================ AddressBook methods ==============================
+    // ================ DietLah methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getDietLahFilePath() {
+        return dietLahStorage.getDietLahFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyDietLah> readDietLah() throws DataConversionException, IOException {
+        return readDietLah(dietLahStorage.getDietLahFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyDietLah> readDietLah(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return dietLahStorage.readDietLah(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveDietLah(ReadOnlyDietLah dietLah) throws IOException {
+        saveDietLah(dietLah, dietLahStorage.getDietLahFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveDietLah(ReadOnlyDietLah dietLah, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        dietLahStorage.saveDietLah(dietLah, filePath);
     }
 
     // ================ UniqueFoodList methods ==============================

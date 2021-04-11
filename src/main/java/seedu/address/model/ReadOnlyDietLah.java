@@ -5,9 +5,9 @@ import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of DietLAH!
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyDietLah {
 
     /**
      * Returns an unmodifiable view of the persons list.

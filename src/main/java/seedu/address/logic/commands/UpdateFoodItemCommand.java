@@ -46,7 +46,7 @@ public class UpdateFoodItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Food> foodList = model.getAddressBook().getFoodList().getFoodList();
+        List<Food> foodList = model.getDietLah().getFoodList().getFoodList();
 
         for (Food food : foodList) {
             if (food.getName().equals(editedFood.getName().get())) {

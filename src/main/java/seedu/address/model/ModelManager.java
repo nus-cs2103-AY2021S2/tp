@@ -32,7 +32,7 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final DietLah dietLah;
     private final UserPrefs userPrefs;
     private final UniqueFoodList uniqueFoodList;
     private final FoodIntakeList foodIntakeList;
@@ -40,31 +40,31 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given dietLah and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList,
+    public ModelManager(ReadOnlyDietLah dietLah, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList,
                         DietPlanList dietPlanList, ReadOnlyUserPrefs userPrefs, User user) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(dietLah, userPrefs);
 
-        this.addressBook = new AddressBook(addressBook, uniqueFoodList, foodIntakeList, user);
+        this.dietLah = new DietLah(dietLah, uniqueFoodList, foodIntakeList, user);
         this.uniqueFoodList = uniqueFoodList;
         this.foodIntakeList = foodIntakeList;
         this.dietPlanList = dietPlanList;
         this.userPrefs = new UserPrefs(userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook
+        logger.fine("Initializing with dietLah: " + dietLah
                 + ", unique food list: " + uniqueFoodList + ", food intake list: " + foodIntakeList
                 + ", diet plan list: " + dietPlanList + " and user prefs " + userPrefs);
 
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.dietLah.getPersonList());
     }
 
     /**
      * Initializes a ModelManager.
      */
     public ModelManager() {
-        this(new AddressBook(), new UniqueFoodList(),
+        this(new DietLah(), new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), new UserPrefs(), null);
     }
 
@@ -93,42 +93,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getDietLahFilePath() {
+        return userPrefs.getDietLahFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setDietLahFilePath(Path dietLahFilePath) {
+        requireNonNull(dietLahFilePath);
+        userPrefs.setDietLahFilePath(dietLahFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== DietLah ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setDietLah(ReadOnlyDietLah dietLah) {
+        this.dietLah.resetData(dietLah);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyDietLah getDietLah() {
+        return dietLah;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return dietLah.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        dietLah.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        dietLah.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -136,14 +136,14 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        dietLah.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedDietLah}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -170,7 +170,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return dietLah.equals(other.dietLah)
                 && userPrefs.equals(other.userPrefs)
                 && uniqueFoodList.equals(other.uniqueFoodList)
                 && foodIntakeList.equals(other.foodIntakeList)
@@ -187,51 +187,51 @@ public class ModelManager implements Model {
     @Override
     public boolean hasFoodItem(Food food) {
         requireNonNull(food);
-        return addressBook.hasFoodItem(food);
+        return dietLah.hasFoodItem(food);
     }
 
     @Override
     public void addFoodItem(Food food) {
-        addressBook.addFoodItem(food);
+        dietLah.addFoodItem(food);
     }
 
     @Override
     public void updateFoodItem(Food food) {
-        addressBook.updateFoodItem(food);
+        dietLah.updateFoodItem(food);
     }
 
     @Override
     public void deleteFoodItem(int index) {
-        addressBook.deleteFoodItem(index);
+        dietLah.deleteFoodItem(index);
     }
 
     @Override
     public String listFoodItem() {
-        return addressBook.listFoodItem();
+        return dietLah.listFoodItem();
     }
 
     @Override
     public void addUser(User user) {
-        addressBook.addUser(user);
+        dietLah.addUser(user);
     }
 
     @Override
     public boolean hasUser() {
-        return addressBook.hasUser();
+        return dietLah.hasUser();
     }
 
     @Override
     public void editUser(User updateUser) {
-        User oldUser = addressBook.getUser();
+        User oldUser = dietLah.getUser();
         User newUser = new User(updateUser.getBmi(), oldUser.getFoodList(),
                 oldUser.getFoodIntakeList(), updateUser.getAge(),
                 updateUser.getGender(), updateUser.getIdealWeight());
-        addressBook.addUser(newUser);
+        dietLah.addUser(newUser);
     }
 
     @Override
     public String listUser() {
-        User user = addressBook.getUser();
+        User user = dietLah.getUser();
         Bmi bmi = user.getBmi();
         String details = "Here is your current information:\nLast Updated on: "
                 + user.getLastUpdated() + "\nWeight: " + bmi.getWeight()
@@ -251,12 +251,12 @@ public class ModelManager implements Model {
 
     @Override
     public User getUser() {
-        return addressBook.getUser();
+        return dietLah.getUser();
     }
 
     @Override
     public PlanType getUserGoal() {
-        User user = addressBook.getUser();
+        User user = dietLah.getUser();
         Bmi bmi = user.getBmi();
 
         if (bmi.getWeight() <= bmi.getLowerBoundWeight()) {
@@ -271,7 +271,7 @@ public class ModelManager implements Model {
 
     @Override
     public double getUserBmi() {
-        User user = addressBook.getUser();
+        User user = dietLah.getUser();
         Bmi bmi = user.getBmi();
 
         return bmi.getBmi();
@@ -281,12 +281,12 @@ public class ModelManager implements Model {
 
     @Override
     public Food addFoodIntake(LocalDate date, Food food) {
-        return addressBook.addFoodIntake(date, food);
+        return dietLah.addFoodIntake(date, food);
     }
 
     @Override
     public void updateFoodIntake(int index, FoodIntake foodIntake) {
-        addressBook.updateFoodIntake(index, foodIntake);
+        dietLah.updateFoodIntake(index, foodIntake);
     }
 
     @Override
@@ -303,13 +303,13 @@ public class ModelManager implements Model {
 
     @Override
     public void setActiveDiet(DietPlan dietPlan) {
-        User user = addressBook.getUser();
+        User user = dietLah.getUser();
         user.setActiveDietPlan(dietPlan);
     }
 
     @Override
     public DietPlan getActiveDiet() {
-        User user = addressBook.getUser();
+        User user = dietLah.getUser();
         return user.getActiveDietPlan();
     }
 
@@ -336,7 +336,7 @@ public class ModelManager implements Model {
     public void resetToTemplate() {
         this.uniqueFoodList.resetToTemplate();
         this.foodIntakeList.resetToTemplate();
-        this.addressBook.resetToTemplate(uniqueFoodList, foodIntakeList);
+        this.dietLah.resetToTemplate(uniqueFoodList, foodIntakeList);
     }
 
     /**
@@ -345,6 +345,6 @@ public class ModelManager implements Model {
     public void resetToBlank() {
         this.uniqueFoodList.resetToBlank();
         this.foodIntakeList.resetToBlank();
-        this.addressBook.resetToBlank(uniqueFoodList, foodIntakeList);
+        this.dietLah.resetToBlank(uniqueFoodList, foodIntakeList);
     }
 }

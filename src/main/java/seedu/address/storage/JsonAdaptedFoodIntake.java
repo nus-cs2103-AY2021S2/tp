@@ -70,7 +70,7 @@ public class JsonAdaptedFoodIntake {
                     FoodIntake.class.getSimpleName()));
         }
 
-        return new FoodIntake(date, name, fats, carbos, proteins);
+        return new FoodIntake(date, name, carbos, fats, proteins);
     }
 
 }

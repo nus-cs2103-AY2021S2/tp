@@ -62,7 +62,6 @@ public class TemplateInitializer {
         Gender gender = new Gender(INIT_USER_GENDER);
         Age age = new Age(INIT_USER_AGE);
         IdealWeight idealWeight = new IdealWeight(INIT_USER_IDEAL_WEIGHT);
-        System.out.println("\n -- making freshhh user -- \n");
         User user = new User(bmi, foodList.getFoodList(), foodIntakeList, age, gender, idealWeight);
         user.setActiveDietPlan(getDietPlanListTemplate().getDietPlan(INIT_USER_PLAN));
         return user;

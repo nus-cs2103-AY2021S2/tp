@@ -58,7 +58,7 @@ public class JsonAdaptedFood {
             throw new IllegalValueException(String.format(INVALID_FIELD_MESSAGE_FORMAT, Food.class.getSimpleName()));
         }
 
-        return new Food(name, fats, carbos, proteins);
+        return new Food(name, carbos, fats, proteins);
     }
 
 }
