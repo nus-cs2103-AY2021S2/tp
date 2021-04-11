@@ -29,7 +29,7 @@ application to support their needs are also welcome to explore our application w
 
 ### Overview
 
-SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books,
+SmartLib is a desktop app for managing libraries and private book loaning services owning less than 10,000 books,
 optimized for use via a Command Line Interface (CLI),
 while still having the benefits of a Graphical User Interface (GUI).
 
