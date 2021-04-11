@@ -158,18 +158,18 @@ guardian's name, guardian's phone, subjects and lessons are optional. Any missin
 by using Edit feature. Here, an example of a student with only compulsory details available is used.
 </div>
 
-Step 1. The user executes `add n/John Doe p/98765432` command to add a new student who is called John Doe 
+Step 1. The user executes `add n/John Doe p/98765432` command to add a new student who is called John Doe
 and has a phone number of 98765432 in TutorsPet.
 
 Step 2. The user input is parsed by `AddressBookParser`, which passes the add command's argument to `AddCommandParser`.
 
-Step 3. `AddCommandParser` creates a new `Person` object for the new student and returns a new `AddCommand` 
+Step 3. `AddCommandParser` creates a new `Person` object for the new student and returns a new `AddCommand`
 if the argument is valid. Otherwise, a `ParseException` is thrown.
 
 Step 4. `LogicManager` then calls `AddCommand#execute()`.
 
-Step 5. `AddCommand#execute()` checks if the student represented by the `Person`object exists. 
-If the student does not exist, he/she gets added and a new `CommandResult` is returned. 
+Step 5. `AddCommand#execute()` checks if the student represented by the `Person`object exists.
+If the student does not exist, he/she gets added and a new `CommandResult` is returned.
 Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add command has been successfully executed, the success message will be displayed.
@@ -186,7 +186,7 @@ The activity diagram shows the workflow when an add command is executed:
 
 #### Design consideration:
 
-##### Aspect: Whether to allow incomplete fields(i.e. some personal details can be missing when adding a new student) 
+##### Aspect: Whether to allow incomplete fields(i.e. some personal details can be missing when adding a new student)
 
 * **Alternative 1 (current choice):** Certain fields are optional when a new student are added.
     * Pros: More flexible and user-friendly.
@@ -196,6 +196,74 @@ The activity diagram shows the workflow when an add command is executed:
     * Pros: More standardized and easier to track.
     * Cons: Certain fields of a new student may not be known by the user at once.
 
+### Edit feature
+
+#### Implementation
+The edit mechanism is facilitated by `EditCommand` and `EditCommandParser`.
+
+`EditCommand` extends `Command` and implements the following operation:
+
+* `EditCommand#execute()` — edits the student with new personal details if the details are valid, and returns a new
+  `CommandResult` with a success message.
+
+`EditCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `EditCommandParser#parse()`  —  parses the user's input and returns a `EditCommand` if the command format
+  is valid.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently 1st student in TutorsPet. 
+Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's subject being added with `edit` command is used.
+</div>
+
+Step 1. The user executes `edit 1 p/98765431 t/bio` command to edit the existing student John Doe 
+to change his phone number and add in his subject.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the edit command's argument to `EditCommandParser`.
+
+Step 3. `EditCommandParser` creates a new `EditPersonDescriptor` object to include the new values of the fields to be changed to.
+The student index `1` and the `EditPersonDescriptor` object are passed into the `SearchCommand` constructor as the arguments, if they are valid. 
+Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `EditCommand#execute()`.
+
+Step 5. `EditCommand#execute()` checks if the student represented by the `Person`object exists. 
+If the student does not exist, he/she gets added and a new `CommandResult` is returned. 
+Otherwise, a `CommandException` is thrown.
+
+Step 6. If the edit command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the edit feature works:
+![Sequence Diagram for Edit Command](images/EditSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when an edit command is executed:
+![Activity Diagram for Edit Command](images/EditActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to enable every optional field to clear the current values under a field with blank space after its prefix
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Optional fields here refer to school, email, address,guardian's name, guardian's phone, subjects and lessons, 
+whereas name and phone are compulsory details which must not be blank at any time.
+</div>
+
+* **Alternative 1 (current choice):** Only subjects and lessons can be cleared by leaving the space blank after their respective prefixes.
+    * Pros: Fewer fields need to be taken care of and are easier to remember. 
+      Subjects and lessons taken by the students could be removed.
+    * Cons: Deletion of a wrong piece of information is disallowed once it is stored in TutorsPet and no new information is available. 
+      It might cause confusion in the future.
+
+* **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after its prefix.
+    * Pros: User can alter students' information more freely.
+    * Cons: User might lose track of important personal details if they accidentally leave the field blank after any prefix.
+  
 ### Delete feature
 
 #### Implementation
@@ -267,7 +335,7 @@ Given below is an example usage scenario and how the detail mechanism behaves at
 
 Step 1. The user executes `detail 1` command to display the details of the 1st student in TutorsPet.
 
-Step 2. The user input is parsed by `AddressBookParser`, which passes the delete command's argument to `DetailCommandParser`.
+Step 2. The user input is parsed by `AddressBookParser`, which passes the detail command's argument to `DetailCommandParser`.
 
 Step 3. `DetailCommandParser` returns a new `DetailCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
 
@@ -363,6 +431,173 @@ The activity diagram shows the workflow when a `search` command is executed:
     * Cons: Less accurate search result due to nature of contact details. 
       For example a student's name and a guardian's name might be the same.
       
+### Sort feature
+
+#### Implementation
+
+The search mechanism is facilitated by `SortCommand` and `SortCommandParser`.
+
+`SortCommand` extends `Command` and contains a `Predicate` and a `Comparator`. It implements the following operation:
+
+* `SortCommand#execute()`  —  displays a list of students who has been sorted according to either their name, 
+  school, subject or lesson if the sorting prefix is valid, then returns a new `CommandResult` with a message indicating how the list has been sorted, and the number of students displayed.
+
+`SortCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `SortCommandParser#parse()`  —  parses the user's input and returns a new `SortCommand` with the prefix specified
+  by the user.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user executes `sort n/` command to sort students by the alphabetical order of their `Name`.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the sort command's argument to `SortCommandParser`.
+
+Step 3. `SortCommandParser` returns a new `SortCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `SortCommand` internally assigns the appropriate comparator and predicate to its fields.
+
+Step 5. `LogicManager` then calls `SortCommand#execute()`.
+
+Step 6. `SortCommand#execute()` uses the right comparator and predicate according to its fields and 
+a new `CommandResult` is returned. 
+
+Step 7. If the sort command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+The sequence diagram below shows how the `search` feature works:
+
+![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
+
+#### Activity Diagram
+The activity diagram shows the workflow when a `sort` command is executed:
+
+![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to display students without the attribute to be sorted as well.
+
+* **Alternative 1 (current choice):** Filter out students without the attribute to be sorted.
+  * Pros: Neater results list.
+  * Cons: List is not complete.
+
+* **Alternative 2:** Leave all the students without the attribute to be sorted in the list display,
+  perhaps at the start or end of the list.
+  * Pros: List shows all the students every time.
+  * Cons: Might clutter the GUI with people the user does not want to see.
+
+### Advance levels feature
+
+#### Implementation
+The advancing levels mechanism is facilitated by `LevelUpCommand` and `LevelUpCommandParser`.
+
+`LevelUpCommand` extends `Command` and implements the following operation:
+
+* `LevelUpCommand#execute()` — advances all the student by one education level, unless students are excluded, and returns a new
+  `CommandResult` with a success message.
+
+`LevelUpCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `LevelUpCommandParser#parse()`  —  parses the user's exclusions (if any) and returns a `LevelUpCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the advancing mechanism behaves at each step.
+
+Step 1. The user executes `levelup ex/1` command to advance all the students except the 1st student by 
+one education level in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the advancing command's argument to `LevelUpCommandParser`.
+
+Step 3. `LevelUpCommandParser` returns a new `LevelUpCommand` with a lists of excluded indexes if the argument is valid. 
+Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `levelUpCommand#execute()`.
+
+Step 5. `LevelUpCommand#execute()` checks if the indexes correspond to valid students, then the rest of the students
+are advanced by one education level. Otherwise, a `CommandException` is thrown.
+
+Step 6. If the advancing command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the levelup feature works:
+![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a levelup command is executed:
+![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to also add an option to only advance some students
+
+* **Alternative 1 (current choice):** Only have option to exclude students and not include students.
+  * Pros: Fits the purpose of the command, which is to advance all students at the start of the year, 
+    except for those who retain a year.
+  * Cons: Does not cover the case where most of the students end up retaining.
+
+* **Alternative 2:** Provide the option to include students as well.
+  * Pros: Allows for the mass advancement of a group of students that is still smaller than the
+    majority.
+  * Cons: Seems redundant, cases where a majority of the students do not advance is slim.
+
+### Demote levels feature
+
+#### Implementation
+The demoting levels mechanism is facilitated by `LevelDownCommand` and `LevelDownCommandParser`.
+
+`LevelDownCommand` extends `Command` and implements the following operation:
+
+* `LevelDownCommand#execute()` — demotes all the student by one education level, unless students are excluded, and returns a new
+  `CommandResult` with a success message.
+
+`LevelDownCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `LevelDownCommandParser#parse()`  —  parses the user's exclusions (if any) and returns a `LevelDownCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the advancing mechanism behaves at each step.
+
+Step 1. The user executes `leveldown ex/1` command to demote all the students except the 1st student by
+one education level in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the advancing command's argument to `LevelUpCommandParser`.
+
+Step 3. `LevelDownCommandParser` returns a new `LevelDownCommand` with a lists of excluded indexes if the argument is valid.
+Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `LevelDownCommand#execute()`.
+
+Step 5. `LevelDownCommand#execute()` checks if the indexes correspond to valid students, then the rest of the students
+are advanced by one education level. Otherwise, a `CommandException` is thrown.
+
+Step 6. If the advancing command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the levelup feature works:
+![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a levelup command is executed:
+![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to combine the leveldown command with the levelup command
+
+* **Alternative 1 (current choice):** Separate the leveldown command from the levelup command
+  * Pros: Clearly separates the two commands, because they have different purposes; levelup is meant to be used
+    at the start of the school year, while leveldown is mostly to undo levelup if a mistake is made
+  * Cons: Redundant code.
+
+* **Alternative 2:** Combine the two commands to have one levelchange command.
+  * Pros: Neater code, since the two commands manipulate the same data.
+  * Cons: Messy, because the two commands have different purposes.
+
 ### Add important date feature
 
 #### Implementation
@@ -722,14 +957,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TutorPets` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorsPet` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a new contact**
 
 **MSS**
 
 1.  User keys in the contact to be added
-2.  TutorPets shows the added contact into the list
+2.  TutorsPet shows the added contact into the list
 
     Use case ends.
 
@@ -737,7 +972,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -746,7 +981,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters clears all entries contact command
-2.  TutorPets clears all the contact in list
+2.  TutorsPet clears all the contact in list
 
     Use case ends.
 
@@ -754,7 +989,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -763,9 +998,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list contacts
-2.  TutorPets shows a list of students’ contact
+2.  TutorsPet shows a list of students’ contact
 3.  User requests to delete a specific contact from the list
-4.  TutorPets deletes the person
+4.  TutorsPet deletes the person
 
     Use case ends.
 
@@ -777,7 +1012,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. TutorPets shows an error message.
+    * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
@@ -786,9 +1021,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list contacts
-2.  TutorPets shows a list of students’ contact
+2.  TutorsPet shows a list of students’ contact
 3.  User requests to edit a specific contact from the list
-4.  TutorPets edits the selected contact
+4.  TutorsPet edits the selected contact
 
     Use case ends.
 
@@ -796,7 +1031,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case ends.
 
@@ -806,16 +1041,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. TutorPets shows an error message.
+    * 3a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Exit TutorPets**
+**Use case: Exit TutorsPet**
 
 **MSS**
 
 1.  User enters exit into command prompt
-2.  TutorPets saves the current contact in the list and exits.
+2.  TutorsPet saves the current contact in the list and exits.
 
     Use case ends.
 
@@ -823,7 +1058,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given details is in an incorrect format.
 
-    * 1a1. TutorPets shows an error message.
+    * 1a1. TutorsPet shows an error message.
 
       Use case resumes at step 2.
 
@@ -832,7 +1067,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User enters the student name or specified keyword to be searched.
-2.  TutorPets shows a list of searched students.
+2.  TutorsPet shows a list of searched students.
 
     Use case ends.
 
@@ -841,6 +1076,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The search result list is empty.
 
   Use case ends.
+
+**Use case: Add a new important date**
+
+**MSS**
+
+1.  User keys in the important date to be added.
+2.  TutorsPet adds the important date and indicates success.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given description or details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. There exists an important date in TutorsPet with the same description.
+  
+  * 1b1. TutorsPet shows an error message.
+  
+    Use case ends.
+
+**Use case: Deletes a new important date**
+
+**MSS**
+
+1.  User requests to list important dates.
+2.  TutorsPet shows a list of important dates.
+3.  User requests to delete a specific important date from the list.
+4.  TutorsPet deletes the important date.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+  
+    Use case ends.
+
+* 3a. The given index of the important date is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
+**Use case: Lists important dates**
+
+**MSS**
+
+1.  User requests to list important dates.
+2.  TutorsPet shows a list of important dates.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is in an invalid format.
+  
+  * 1a1. TutorsPet shows an error message.
+  
+    Use case ends.
 
 *{More to be added}*
 
@@ -896,17 +1194,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -920,3 +1218,49 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding an important date
+
+1. Adding an important date while all important dates are being shown
+
+    1. Prerequisites: List all important dates using the `list-date` command. Multiple important dates in the list.
+  
+    1. Test case: `add-date d/math exam dt/2021-11-03 0800`<br>
+       Expected: Adds an important date with the description `math exam` and details `2021-11-03 0800`. Details of the added important date is shown in the status message. List is updated. 
+  
+    1. Test case: `add-date d/math exam`<br>
+       Expected: No important date is added. Error details shown in the status message.
+       
+    1. Test case: `add-date dt/2021-11-03 0800`<br>
+       Expected: Similar to previous.
+       
+    1. Test case: `add-date d/math exam dt/2021/11/03 8am`<br>
+       Expected: Similar to previous.
+  
+    1. Other incorrect add important date commands to try: `add-date`, `add-date x`, `...` (where x is the description or details without the `d/` or `dt/` prefix)<br>
+       Expected: Similar to previous.
+
+
+### Deleting an important date
+
+1. Deleting an important date while all important dates are being shown
+   
+    1. Prerequisites: List all important dates using the `list-date` command. Multiple important dates in the list.
+    
+      1. Test case: `delete-date 1`<br>
+         Expected: First important date is deleted from the list. Details of the deleted important date is shown in the status message.
+    
+      1. Test case: `delete-date 0`<br>
+         Expected: No important date is deleted. Error details shown in the status message.
+    
+      1. Other incorrect delete important date commands to try: `delete-date`, `delete x`, `...` (where x is larger than the list size, larger than 2147483647 or not a positive integer)<br>
+         Expected: Similar to previous.
+
+### Listing all important dates
+
+1. List all important dates.
+
+    1. Test case: `list-date 2`<br>
+       Expected: Opens window with a list of important dates. Success details is shown in the status message.
+    
+    1. Incorrect list important date commands include cases where the command entered is not `list-date`

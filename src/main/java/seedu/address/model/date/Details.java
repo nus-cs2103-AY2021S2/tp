@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 public class Details implements Comparable<Details> {
 
     public static final String MESSAGE_CONSTRAINTS = "Details should be in yyyy-mm-dd HHmm format.";
-    private static final String DATE_TIME_FORMAT = "MMM dd yyyy h:mm a";
+    private static final String DATE_TIME_FORMAT = "MMM dd yyyy HHmm";
     private static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
 
     public final LocalDateTime details;

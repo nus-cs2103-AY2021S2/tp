@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LevelUpCommandParser" as LevelUpCommandParser LOGIC_COLOR
+participant "lv:LevelUpCommand" as LevelUpCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("levelup ex/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("levelup ex/1")
+activate AddressBookParser
+
+create LevelUpCommandParser
+AddressBookParser -> LevelUpCommandParser
+activate LevelUpCommandParser
+
+LevelUpCommandParser --> AddressBookParser
+deactivate LevelUpCommandParser
+
+AddressBookParser -> LevelUpCommandParser : parse("ex/1")
+activate levelUpCommandParser
+
+create LevelUpCommand
+LevelUpCommandParser -> LevelUpCommand
+activate levelUpCommand
+
+LevelUpCommand --> LevelUpCommandParser : lv
+deactivate LevelUpCommand
+
+LevelUpCommandParser --> AddressBookParser : lv
+deactivate LevelUpCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LevelUpCommandParser -[hidden]-> AddressBookParser
+destroy LevelUpCommandParser
+
+AddressBookParser --> LogicManager : lv
+deactivate AddressBookParser
+
+LogicManager -> LevelUpCommand : execute()
+activate LevelUpCommand
+
+LevelUpCommand -> Model : filterIndicesThenTransformPersonList(indices, new PersonLevelUpFunction())
+activate Model
+
+Model --> LevelUpCommand
+deactivate Model
+
+create CommandResult
+LevelUpCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LevelUpCommand
+deactivate CommandResult
+
+LevelUpCommand --> LogicManager : result
+deactivate LevelUpCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

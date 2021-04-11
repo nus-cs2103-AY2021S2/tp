@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -50,7 +51,6 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             nameKeywords = extractKeywordsAsArray(argMultimap, PREFIX_NAME);
-
         }
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             schoolKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SCHOOL);
@@ -119,7 +119,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         case "subject":
             String[] test = trimmedKeyword.split("\\s+");
             for (int i = 0; i < test.length; i++) {
-                if (!Subject.isValidSubjectName(test[i])) {
+                if (!Subject.isValidSubjectName(test[i].toLowerCase(Locale.ROOT))) {
                     throw new ParseException(
                         String.format(MESSAGE_INVALID_KEYWORD_SUPPLIED, Subject.MESSAGE_CONSTRAINTS));
                 }

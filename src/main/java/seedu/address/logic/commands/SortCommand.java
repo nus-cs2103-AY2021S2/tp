@@ -30,7 +30,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort students according to specified sorting criteria ie name, school, subject, lesson."
-            + "The first valid sorting criteria listed will be the sorting criteria used. \n "
+            + "The last valid sorting criteria listed will be the sorting criteria used. \n "
             + "Parameters: "
             + "[" + PREFIX_NAME + "] "
             + "OR [" + PREFIX_SCHOOL + "] "
@@ -38,11 +38,12 @@ public class SortCommand extends Command {
             + "OR [" + PREFIX_LESSON + "]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SCHOOL;
 
-    public static final String MESSAGE_SUCCESS = "Sorted all students by lesson day and time";
+    public static final String MESSAGE_SUCCESS = "Sorted students by %1$s. ";
 
     private final Prefix prefix;
-    private final Comparator<Person> comparator;
+    private final String prefixString;
     private final Predicate<Person> predicate;
+    private final Comparator<Person> comparator;
 
     /**
      * Creates a SortCommand object that has a specific {@code Predicate} and {@code comparator}.
@@ -50,17 +51,21 @@ public class SortCommand extends Command {
     public SortCommand(Prefix prefix) {
         this.prefix = prefix;
         if (prefix.equals(PREFIX_NAME)) {
-            this.comparator = new PersonNameComparator();
+            this.prefixString = "name";
             this.predicate = new HasNamePredicate();
+            this.comparator = new PersonNameComparator();
         } else if (prefix.equals(PREFIX_SCHOOL)) {
-            this.comparator = new PersonSchoolComparator();
+            this.prefixString = "school";
             this.predicate = new HasSchoolPredicate();
+            this.comparator = new PersonSchoolComparator();
         } else if (prefix.equals(PREFIX_SUBJECT)) {
-            this.comparator = new PersonSubjectComparator();
+            this.prefixString = "subject";
             this.predicate = new HasSubjectPredicate();
+            this.comparator = new PersonSubjectComparator();
         } else {
-            this.comparator = new PersonLessonComparator();
+            this.prefixString = "lesson";
             this.predicate = new HasLessonPredicate();
+            this.comparator = new PersonLessonComparator();
         }
     }
 
@@ -68,8 +73,8 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.filterThenSortPersonList(predicate, comparator);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getTransformedPersonList().size()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prefixString)
+                + String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getTransformedPersonList().size()));
     }
 
     @Override
