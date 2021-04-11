@@ -266,9 +266,9 @@ the `sort by a`.
 The `sort by a` feature sorts the tasks based on the different dates of the tasks from the earliest task
 to the last task in chronological order. For tasks with no dates, they would appear last.
 1. When the command is executed by the user, the input it passed into
-   the `LogicManager` and gets parsed and identified in `AddressBookParser`.
-2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
-   , the corresponding `SortCommandParser` object is formed. The user input then goes
+   the `LogicManager` and gets parsed and identified in `PlannerParser`.
+2. Upon identifying the relevant `COMMAND_WORD`, 
+   the corresponding `SortCommandParser` object is formed. The user input then goes
    through another level of parsing in `SortCommandParser`
 3. The `SortCommandParser` identifies the order in which the tasks are to be sort and creates a
    `SortComparator` comparator object accordingly.
@@ -506,23 +506,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Precondition: The task does not have a recurring schedule.**
 
 **MSS**
-1. User <u>adds a task</u> to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to add a date to a specified task.
-4. PlanIT shows task with updated date and updates list.
-5. This task can be viewed in the Calendar User Interface on the day of the date.
+1. User enters command to add task with a date to a specified task.
+2. PlanIT shows task with updated date and updates list.
+3. This task can be viewed in the Calendar User Interface on the day of the date.
 
    Use case ends.
 
 **Extensions**
-* 4a. The given index is invalid.
-    * 4a1. PlanIt shows error message.
+* 2a. The given index is invalid.
+    * 2a1. PlanIt shows error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 1.
     
 #### **Use case: Add a duration to a task**
 
-**Precondition: The task has a title and has a deadline date .**
+**Precondition: The task has a title and has a deadline date or recurring schedule.**
 
 **MSS**
 
@@ -547,7 +545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User <u>adds a task</u> with recurring schedule consisting of end date, 
    day of week and week frequency to the list.
-2. PlanIT shows task with the recurring dates based on the conditions specified by th the user.
+2. PlanIT shows task with the recurring dates based on the conditions specified by the user.
 
    Use case ends.
 
@@ -958,7 +956,28 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find d/hello`<br>
        Expected: A filtered list will be returned if there exists tasks within PlanIT
        that has the full description keyword `hello` (case-insensitive).
+       
+### Sorting tasks in PlanIT
+1. Using sort command to sort all tasks or uncompleted tasks within PlanIT either in ascending or descending dates.
 
+    1. Test case: `sort by a`<br>
+       Expected: Sorts all tasks within PlanIT in ascending order. task with no dates would appear last.
+
+    1. Test case: `sort by d`<br>
+       Expected: Sorts all tasks within PlanIT in ascending order. task with no dates would appear first.
+
+    1. Test case: `sort`<br>
+       Expected: No sorted list will be returned.
+       An error message stating invalid input format of find command will be shown in the result display.
+
+    1. Test case: `sort by first`<br>
+       Expected: No sorted list will be returned.
+       An error message stating the list can only be sorted by a or by d.
+
+    1. Test case: `sort by last`<br>
+       Expected: No sorted list will be returned.
+       An error message stating the list can only be sorted by a or by d.
+       
 ### Removing a task
 
 1. Removing a task while all tasks are being shown
