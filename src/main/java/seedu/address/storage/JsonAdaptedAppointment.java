@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.subject.SubjectName;
@@ -69,25 +70,25 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Address.class.getSimpleName()));
         }
+
         if (!Address.isValidAddress(location)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(location);
-
 
         if (timeFrom == null || timeTo == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AppointmentDateTime.class.getSimpleName()));
         }
 
-        if (!AppointmentDateTime.isValidDateTime(timeFrom)
-                || !AppointmentDateTime.isValidDateTime(timeTo)) {
+        if (!AppointmentDateTime.isValidDateTime(timeFrom) || !AppointmentDateTime.isValidDateTime(timeTo)) {
             throw new IllegalValueException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
 
         final AppointmentDateTime fromDateTime = new AppointmentDateTime(timeFrom);
         final AppointmentDateTime toDateTime = new AppointmentDateTime(timeTo);
 
+        DateTimeValidationUtil.validateJsonAdaptedEvent(fromDateTime, toDateTime);
 
         if (subject == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

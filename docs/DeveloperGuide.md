@@ -339,6 +339,8 @@ Reminders are date but not time-sensitive, users can add as many reminders as th
 #### Implementation
 A reminder is composed of `description` and `date`, which are used to identify a reminder uniquely.
 
+![Class Diagram of Reminder](images/reminder/ReminderClassDiagram.png)
+
 All the user's reminders are stored internally in the `reminderList`.
 Reminder Tracker consist of the following operations that can be performed on reminders:
 * `Add a reminder` - Add a new reminder and store it in the user's `reminderList`.

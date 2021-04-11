@@ -4,12 +4,10 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-ScheduleTracker *-right-> "1" ScheduleList
+ReminderTracker *-right-> "1" ReminderList
 
-ScheduleList o-right-> Schedule
+ReminderList o-right-> Reminder
 
-Schedule *--> Title
-Schedule *--> TimeFrom
-Schedule *--> TimeTo
-Schedule *--> Description
+Reminder *--> ReminderDate
+Reminder *--> Description
 @enduml
