@@ -23,7 +23,7 @@ Given below is an example usage scenario and how the `edit` mechanism behaves.
 
 3. `AddressBookParser` recognises the command word `edit` and creates an `EditCommandParser`.
 
-4. `AddressBookParser` calls `parse("--remove -t friends -t pilot"")` of `EditCommandParser`.
+4. `AddressBookParser` calls `parse("--remove -t friends -t pilot")` of `EditCommandParser`.
 
 5. `EditCommandParser` detects flag `--remove` and calls `parseTags(argMultimap.getAllValues(PREFIX_TAG)` of `ParserUtil`
    to processes the input tags into a `Set<Tag>`.
