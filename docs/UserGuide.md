@@ -29,25 +29,25 @@ An image of our UI is shown below!
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help)
-    - [Contact](#adding-a-contact)
-        - [Add](#adding-a-contact)
-        - [Find](#finding-a-contact)
-        - [Filter](#filter-contact-tags)
-        - [Edit](#editing-a-contact)
-        - [List](#listing-contacts)
-        - [Delete](#deleting-a-contact)
-    - [Entry](#adding-an-entry)
-        - [Add](#adding-an-entry)
-        - [Find](#finding-an-entry)
-        - [Filter](#filter-entry-tags)
-        - [Edit](#editing-an-entry)
-        - [List](#listing-entries)
-        - [Free](#checking-if-time-interval-is-free)
-        - [Delete](#deleting-an-entry)
-        - [Clear](#clearing-overdue-entries)
-    - [Clear](#clearing-all-data)
-    - [Exit](#exiting-the-program)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Contact](#adding-a-contact-cadd)
+        - [Add: `cadd`](#adding-a-contact-cadd)
+        - [Find: `cfind`](#finding-a-contact-cfind)
+        - [Filter: `cfilter`](#filter-contact-tags-cfilter)
+        - [Edit: `cedit`](#editing-a-contact-cedit)
+        - [List: `clist`](#listing-contacts-clist)
+        - [Delete: `cdelete`](#deleting-a-contact-cdelete)
+    - [Entry](#adding-an-entry-eadd)
+        - [Add: `eadd`](#adding-an-entry-eadd)
+        - [Find: `efind`](#finding-an-entry-efind)
+        - [Filter: `efilter`](#filter-entry-tags-efilter)
+        - [Edit: `eedit`](#editing-an-entry-eedit)
+        - [List: `elist`](#listing-entries-elist)
+        - [Free: `free`](#checking-if-time-interval-is-free-free)
+        - [Delete: `edelete`](#deleting-an-entry-edelete)
+        - [Clear: `eclear`](#clearing-overdue-entries-eclear)
+    - [Clear: `clear`](#clearing-all-data-clear)
+    - [Exit: `exit`](#exiting-the-program-exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
@@ -89,7 +89,7 @@ An image of our UI is shown below!
 
 ---
 
-### Viewing help
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -97,14 +97,14 @@ Format: `help`
 
 ---
 
-### Adding a contact
+### Adding a contact: `cadd`
 
 Adds a contact into Teaching Assistant.
 
 Format: `cadd n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact can be tagged to an entry to easily filter for contacts related an entry.
+A entry's name can be tagged to a contact to easily filter for contacts related an entry.
 </div>
 
 Example(s):
@@ -112,7 +112,7 @@ Example(s):
 * `cadd n/Danny p/98765432 e/danny@email.com t/consultation 1`
 * `cadd n/Amy p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
 
-### Finding a contact
+### Finding a contact: `cfind`
 
 Finds all contacts whose name contain all of the specified keywords and displays them as a list.
 
@@ -129,7 +129,7 @@ Example(s):
 * `cfind John` returns `john` and `John Doe`
 * `cfind alex yeoh` returns only `Alex Yeoh`
 
-### Filter contact tags
+### Filter contact tags: `cfilter`
 
 Filters all contacts that have the tags of the specified keywords and displays them as a list with index numbers.
 
@@ -148,7 +148,7 @@ Example(s):
 * `cfilter student english`
 * `cfilter colleagues`
 
-### Editing a contact
+### Editing a contact: `cedit`
 
 Edits an existing contact with the specified index in Teaching Assistant.
 
@@ -168,13 +168,13 @@ Example(s):
 * `cedit 1 n/Bernice Yu Xiao Ling t/` Edits the name of the contact corresponding to index 1 to be `Bernice Yu Xiao Ling` 
   and clears all existing tags.
 
-### Listing contacts
+### Listing contacts: `clist`
 
 Lists all the contacts in Teaching Assistant.
 
 Format: `clist`
 
-### Deleting a contact
+### Deleting a contact: `cdelete`
 
 Deletes an existing contact with the specified index in Teaching Assistant.
 
@@ -189,7 +189,7 @@ Example(s):
 
 ---
 
-### Adding an entry
+### Adding an entry: `eadd`
 
 Adds a new entry into Teaching Assistant.
 
@@ -204,7 +204,7 @@ Example(s):
 * `eadd n/meeting sd/2021-02-15 21:00 ed/2021-02-15 23:00`
 * `eadd n/consultation sd/2021-02-15 22:00 ed/2021-02-15 23:00 t/consultation`
 
-### Finding an entry
+### Finding an entry: `efind`
 
 Finds all entries whose name contain all of the specified keywords and displays them as a list.
 
@@ -222,7 +222,7 @@ Example(s):
 * `efind assignment` returns `assignment 1` and `assignment 2`
 * `efind assignment 2` returns only `assignment 2`
 
-### Filter entry tags
+### Filter entry tags: `efilter`
 
 Filters all entries that have the tags of the specified keywords and displays them as a list.
 
@@ -241,7 +241,7 @@ Example(s):
 * `efilter CS2103T`
 * `efilter CS2100 Meeting`
 
-### Editing an entry
+### Editing an entry: `eedit`
 
 Edits an existing entry with the specified index in Teaching Assistant.
 
@@ -260,7 +260,7 @@ Example(s):
   be `2021-05-03 13:00` and `2021-05-03 14:00` respectively.
 * `eedit 1 t/` Edits the entry corresponding to index 1 by clearing all existing tags.
 
-### Listing entries
+### Listing entries: `elist`
 
 Lists all entries in Teaching Assistant by displaying them as a list sorted by date. Entries can also be listed by day/week.
 
@@ -277,7 +277,7 @@ Example(s):
 * `elist day`
 * `elist week`
 
-### Checking if time interval is free
+### Checking if time interval is free: `free`
 
 Indicates if an interval is free. If free, a message indicating that will be shown. If not, entries occupying that
 interval will be shown in the entries list.
@@ -293,7 +293,7 @@ Example(s):
   free!"_ message is shown. If not, a message _"Sorry, you're not free. Entries occupying that time interval listed
   below!"_ will be shown, accompanied by occupying entries in the entry list.
 
-### Deleting an entry
+### Deleting an entry: `edelete`
 
 Deletes an existing entry with the specified index in Teaching Assistant.
 
@@ -306,7 +306,7 @@ Example(s):
 
 * `edelete 1`
 
-### Clearing overdue entries
+### Clearing overdue entries: `eclear`
 
 Clears all entries that have dates before today's date.
 
@@ -314,13 +314,13 @@ Format: `eclear`
 
 ---
 
-### Clearing all data
+### Clearing all data: `clear`
 
 Clears all contacts and entries from Teaching Assistant.
 
 Format: `clear`
 
-### Exiting the program
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -363,10 +363,10 @@ Action | Format
 
 Action | Format
 -------- | ------------------
-**Add** | `cadd n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+**Add** | `cadd n/NAME p/NUMBER e/EMAIL [t/TAG]...`
 **Find** | `cfind KEYWORD [MORE_KEYWORDS]...`
 **Filter tags** | `cfilter KEYWORD [MORE_KEYWORDS]...`
-**Edit** | `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+**Edit** | `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
 **List** | `clist`
 **Delete** | `cdelete INDEX`
 
