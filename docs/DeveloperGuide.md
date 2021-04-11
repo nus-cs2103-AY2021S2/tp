@@ -763,45 +763,118 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+### Add Client
+1. Adding a new client
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
+   
+        Expected: The application displays a message to indicate a new client has been added and the UI is updated to add a new entry at the bottom of the client list.
+    
+1. Adding an existing client
+    1. Prerequisite: The client list already contains a client named `John Doe`.
+    1. Test case: `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
+        
+        Expected: The application displays a message to tell the user that the client already exists in the iScam book.
+    
+1. Adding a client with incorrect parameters
+    1. Test case: `add n/Jane Smith p/abcdefg`
+        
+        Expected: The application displays a message indicating an incorrect format was entered.
 
-   1. Download the jar file and copy into an empty folder
+### Edit Client
+1. Editing a client with valid index
+    1. Prerequisite: The client list contains at least 1 client.
+    1. Test case: `edit 1 l/02 Singapore Central, #01-23`
+        
+        Expected: The application displays a message to indicate the edited client, and the UI updated the first client entry's location field. 
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. Editing a non-existing client
+    1. Prerequisite: The client list don't contain any client.
+    1. Test case: `edit 1 l/02 Singapore Central, #01-23`
+        
+        Expected: The application displays a message to indicate that the client index does not exist in the current client list.
 
-1. Saving window preferences
+1. Editing a client without changing any parameter
+    1. Prerequisite: The client list contains a client named `John Doe` and is represented by the first entry in the client list.
+    1. Test case: `edit 1 n/John Doe`
+        
+        Expected: The application displays a message to indicate that no changes were found in any of the edited field.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Delete Client
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. Deleting an existing client
+    1. Prerequisite: The client list contains at least 1 client.
+    2. Test case: `delete 1`
+    
+        Expected: The application displays a message to mention the deleted client and the UI is updated to reflect the removal of the first client in the list.
 
-1. _{ more test cases …​ }_
+1. Deleting a non-existing client
+    1. Prerequisite: The client list contains no client.
+    1. Test case: `delete 1`
+    
+        Expected: The application displays a message to indicate that the given index does not exist in the list. 
 
-### Deleting a client
+1. Deleting without providing an index
+    1. Test case: `delete`
+        
+        Expected: The application displays a message to indicate an incorrect command format was entered.
 
-1. Deleting a client while all clients are being shown
+### Add Meeting
 
-   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+1. Adding a meeting
+    1. Test case: `addmeet c/John Doe on/31-10-2025 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy t/Urgent t/Premium`
+    
+        Expected: The application displays a message to indicate a new meeting has been added, and the UI is updated to add a new entry at the bottom of the meeting list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Adding a meeting that is in conflict with an existing meeting
+    1. Prerequisite: The meeting list already contains a meeting that is taking place on `31-10-2025 10:00`.
+    1. Test case: `addmeet c/Jonson Smith on/31-10-2025 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy`
+        
+        Expected: The application displays a message to indicate a meeting with that date and time already exists in the iScam book.
 
-   1. Test case: `delete 0`<br>
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+1. Adding a meeting with incorrect date-time format
+    1. Test case: `addmeet c/Angela Smith on/2-3-2025 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy`
+        
+        Expected: The application displays a message indicating that the date-time is invalid and is possibly due to incorrect format or the date being invalid.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### Edit Meeting
 
-1. _{ more test cases …​ }_
+1. Editing an existing meeting
+    1. Prerequisite: The meeting list contains at least 1 meeting.
+    1. Test case: `editmeet 1 l/KFC, Singapore Central`
+        
+        Expected: The application displays a message to indicate the edited meeting and the UI updated the first meeting entry's location field to `KFC, Singapore Central`. 
 
-### Saving data
+1. Editing a non-existing meeting
+    1. Prerequisite: The meeting list don't contain any meeting.
+    1. Test case: `editmeet 1 l/02 Singapore Central, #01-23`
+        
+        Expected: The application displays a message to indicate that the meeting index provided does not exist in the current meeting list.
+    
+1. Editing a meeting without changing any parameter
+    1. Prerequisite: The meeting list contains at least 1 meeting and the first meeting is taking placing in `KFC, Singapore Central`.
+    1. Test case: `editmeet 1 l/KFC, Singapore Central`
+        
+        Expected: The application displays a message to indicate that there is no changes in any field.
 
-1. Dealing with missing/corrupted data files
+### Delete Meeting
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Deleting an existing meeting
+    1. Prerequisite: The meeting list contains at least 1 meeting.
+    2. Test case: `deletemeet 1`
+    
+        Expected: The application displays a message to mention the deleted meeting and the UI is updated to reflect the removal of the first meeting in the list.
 
-1. _{ more test cases …​ }_
+1. Deleting a non-existing meeting
+    1. Prerequisite: The meeting list contains no meeting.
+    1. Test case: `deletemeet 1`
+    
+        Expected: The application displays a message to indicate that the given index does not exist in the list. 
+
+1. Deleting without providing an index
+    1. Deleting without providing an index
+    1. Test case: `deletemeet`
+        
+        Expected: The application displays a message to indicate an incorrect command format was entered.
 
 ## Effort
 iScam is a product that has been developed from AddressBook Level 3. While AddressBook is a generic contact storing product, iScam is more targeted towards Insurance Agents, allowing them to keep track of their clients and meetings.
