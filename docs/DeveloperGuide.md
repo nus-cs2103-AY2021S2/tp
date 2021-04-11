@@ -261,7 +261,7 @@ Below is an example sequence diagram for a valid drop command from the user.
 1. The `EnrolDropCommandParser` will then return a `enrolCommand` object.
 1. The `LogicManager` will now call the execute method in the `dropCommand` object.
 1. The `DropCommand` will now call the `updateFilteredEntityList` method of the existing `Model` object.
-1. The `DropCommand` will now create a `CommandResult` object and returns it, indicating a successful execution of the `DropCommand`.
+1. The high level understanding is that a `CommandResult` is returned and finally passed back to `LogicManager`.
 
 Here is a more specific breakdown of the command's `execute` method.
 
