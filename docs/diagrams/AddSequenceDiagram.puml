@@ -61,6 +61,8 @@ activate Model
 
 AddCommand -> Model : addPerson(student)
 
+AddCommand -> Model : setSavedState(false)
+
 Model --> AddCommand
 deactivate Model
 
