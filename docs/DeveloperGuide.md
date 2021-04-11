@@ -536,7 +536,7 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 
 #### Implementation of `delete_task` command  
-In SOChedule, the governing logic behind the `delete_task` command is laid out in [`ClearCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteCommand.java)
+In SOChedule, the governing logic behind the `delete_task` command is laid out in [`DeleteTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DeleteTaskCommand.java)
 The following is a detailed explanation on how `DeleteTaskCommand.java` is implemented.
 
 **Step 1**: User executes `delete_task INDEX` command to delete the task at the given index.
