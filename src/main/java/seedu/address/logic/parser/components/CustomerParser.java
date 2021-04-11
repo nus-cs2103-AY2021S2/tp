@@ -66,7 +66,7 @@ public class CustomerParser implements ComponentParser {
             return new CustomerListCommand();
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE));
         }
     }
 }

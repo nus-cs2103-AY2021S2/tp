@@ -10,13 +10,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Pair;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.person.Person;
 
 
-public class Order implements Item, Aggregator<Dish> {
+public class Order implements Item {
     public enum State {
         UNCOMPLETED, COMPLETED, CANCELLED
     }
@@ -72,10 +71,23 @@ public class Order implements Item, Aggregator<Dish> {
         return dishesBuilder.toString();
     }
 
+    /**
+     * Returns a new Order object which is a copy of the current one but
+     * with {@code customer} replaced with {@code editedPerson}.
+     * @param editedPerson New (updated) {@code Customer} object to replace with
+     * @return Copy of {@code Order} object with {@code editedPerson} in the customer attribute instead
+     */
     public Order updateCustomer(Person editedPerson) {
         return new Order(dateTime, editedPerson, dishQuantityList);
     }
 
+    /**
+     * Returns a new Order object which is a copy of the current one but
+     * with {@code target} dish replaced with {@code editedDish}.
+     * @param target {@code Dish} object to be replaced with {@code editedDish}
+     * @param editedDish New (updated) {@code Dish} object
+     * @return Copy of {@code Order} object with {@code editedDish} in the {@code dishQuantityList} attribute instead
+     */
     public Order updateDish(Dish target, Dish editedDish) {
         List<Pair<Dish, Integer>> updatedQuantityList = new ArrayList<>();
         for (Pair<Dish, Integer> p : dishQuantityList) {
@@ -159,7 +171,6 @@ public class Order implements Item, Aggregator<Dish> {
      *
      * @param dish
      */
-    @Override
     public boolean contains(Dish dish) {
         for (Pair<Dish, Integer> p : dishQuantityList) {
             if (p.getKey().isSame(dish)) {

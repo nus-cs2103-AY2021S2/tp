@@ -7,8 +7,8 @@ public class Messages {
 
     // General
     public static final String MESSAGE_WELCOME = "Welcome to JJIMY, the friendly restaurant management app.";
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command! Please see\n%1$s";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! Please see\n%1$s";
 
     // Items
     public static final String ITEM_PERSON = "person";

@@ -70,10 +70,10 @@ public class OrderAddCommand extends Command {
 
         Order toAdd = new Order(dateTime, customer, dishQuantityList);
 
-        if (OrderCommandUtil.isValidOrderAddition(toAdd, model)) {
-            model.addOrder(toAdd);
-            model.decreaseIngredientByOrder(toAdd);
-        }
+        // isValidOrderAddition throws a CommandException and hence acts as a guard clause
+        OrderCommandUtil.isValidOrderAddition(toAdd, model);
+        model.addOrder(toAdd);
+        model.decreaseIngredientByOrder(toAdd);
 
         model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
         Comparator<Order> comparator = (first, second) ->
