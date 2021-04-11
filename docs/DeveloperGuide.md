@@ -127,7 +127,7 @@ Classes used by multiple components are in the `seedu.heymatez.commons` package.
 ## **Implementation**
 This section documents some of the noteworthy details on how certain features are implemented
 
-### Mark as completed / uncompleted features
+### Mark as completed / uncompleted feature
 
 The implementation of the mark as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` classes respectively, both of which extends from the Command abstract class.
 
@@ -144,7 +144,6 @@ Subsequently, the created `DoneTaskCommand` / `UndoTaskCommand` object contains 
 updating the status of the Task to `completed` or `uncompleted`. This is achieved by creating a new `Task` object with the
 same fields and values but updating the `TaskStatus` field depending on which command is being executed.
 
-<br/>
 Below is the usage scenario and how the mark task as completed mechanism behaves.
 
 Assumptions:
@@ -164,13 +163,19 @@ with the updated status replaces the old task in the `Model`.
 Step 4. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
 with the attached message.
 
+<br/>
+
 Below is the sequence diagram to show how the mark task as completed mechanism works:
 
 ![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
 
+<br/>
+
 The following activity diagram summarizes what happens when a user executes the mark task as completed command:
 
 ![#Activity Diagram for Mark task as done](images/DoneTaskActivityDiagram.png)
+
+<br/>
 
 
 ### Find Tasks with deadline before a selected date feature
