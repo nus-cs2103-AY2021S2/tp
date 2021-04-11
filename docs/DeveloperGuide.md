@@ -728,14 +728,163 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 7.  Errors should display vividly and differently from the rest of the normal input such that users are aware something has gone wrong.
 8.  Should be easily deployable to all systems running any _mainstream OS_ once compiled executable is distributed via a release.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-*{More to be added}*
 
 
 ### References
 
 Frankenfield, D., Roth-Yousey L. & Compher C. (2005). Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review. *Journal of the American Dietetic Association*, 105(5), 775-89. doi: 10.1016/j.jada.2005.02.005.
+
+## **Appendix: Instructions for Manual Testing**
+
+Included in this section are some basic instructions developers may make use of to test features implemented in the app.
+
+### On-boarding and closing the app
+
+1. Initial launch
+
+    1. Download the latest release of the JAR file from the [releases](https://github.com/AY2021S2-CS2103T-T12-2/tp/releases) section and copy into your desired empty folder.
+
+    1. Launch the JAR file with the Java 11 runtime. You should see the app with a welcome screen, along with some sample data already pre-loaded into the app.
+
+1. Closing the app
+
+    1. You may type `exit` in the command box at the top to exit the application.
+
+### Clear sample data
+
+1. As we populate the data files with sample information on first launch, some of the commands may return unexpected results unless you clear this data first.
+    1. Thus, to clear the data and enter a "blank slate", type `reset t/blank`.
+    1. Alternatively, if you want to prepare the app for showcase and populate some sample data, you can reset it to the template with `reset t/template`.
+
+### Record, show or update BMI information
+
+1. After clearing the sample data (instructions provided above), you are now ready to record, show and update your BMI information.
+    1. Test case: `bmi_query`
+       Result: Error message printed because no BMI information is available after clearing the sample data.
+       
+    1. Using the command `bmi g/F a/30 h/170 w/70 i/50`, this will create a new user information with the given parameters.
+       Result: Success message with User object created with the corresponding values.
+       
+    1. Test case: `bmi_query`
+      Result: BMI information corresponding to above values is printed.
+       
+    1. Test case: `bmi g/F a/30 h/170 w/70 i/50`
+       Result: Error message is printed as the User object already exists.
+       
+    1. Test case: `bmi_update g/F a/30 h/165 w/65 i/45`
+       Result: Success message with User object updated to the corresponding values.
+
+### Diet Plan Selector
+
+1. Show ALL available diet plans
+    1. Test case: `plan_list`
+       Result: All 6 currently implemented diet plans are shown in a list-fashion.
+
+1. Get recommended diet plans
+
+    1. Test case: `plan_recommend`
+        Result: As the BMI is in the overweight range, and the ideal weight is lower, weight-loss plans are recommended. (Standard Ketogenic and High-Protein Ketogenic diets)
+       
+    1. Test case: `bmi_update g/F a/30 h/165 w/40 i/60`; `plan_recommend`
+        Result: As the BMI is in the underweight range, and the ideal weight is higher, weight-gain plans are recommended. (Balanced Weight Gain, Bulk and High Carbo diets)
+    
+1. Get information on diet plan:
+    1. Test case: `plan p/2`
+        Result: Shows information on plan 2, the "High-Protein Ketogenic Diet"
+       
+1. Select and view selected diet plan
+    1. Test case: `plan_set p/2`
+        Result: Shown that you have selected "High-Protein Ketogenic Diet"
+       
+       1. Test case: `plan_current`
+        Result: Shown that you have selected "High-Protein Ketogenic Diet"
+          
+### Manage food items
+
+1. Add food item
+    1. Test case: `food_add n/tomato c/10 f/10 p/10`
+        Result: Tomato food item added.
+       
+    1. Test case: `food_add n/tomato c/10.1555 f/10 p/10`
+        Result: Error message that macronutrients can only be up to 2 decimal places long.
+
+1. Update food item
+    1. Test case: `food_update n/tomato c/20 f/30 p/40`
+        Result: Tomato food item updated.
+       
+    1. Test case: `food_update n/tomato c/20.1515 f/30 p/40`
+        Result: Error message that macronutrients can only be up to 2 decimal places long.
+       
+1. List food items
+    1. Test case: `food_list`
+        Result: List of food is printed (only tomato should exist at this point).
+       
+1. Delete food items
+    1. Test case: `food_delete n/tomato`
+        Result: Tomato food item deleted.
+       
+### Manage food intake
+1. Add food intake for a food item that is not in the food list
+    1. Test case: `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
+        Result: Food item with name "tomato" is added into FoodIntake list for 31 Mar 2021.
+       
+1. Add food intake for a food item that is already in the food list
+    1. Prerequisite: `food_add n/potato c/10 f/10 p/10`
+    1. Test case: `food_intake_add d/31 Mar 2021 n/potato`
+        Result: Food item that was in the list "potato" is added into FoodIntake list for 31 Mar 2021.
+
+1. Add food intake for a food item that is already in the food list, but with different nutritional values
+    1. Test case: `food_intake_add d/31 Mar 2021 n/potato c/20 f/35 p/50`
+        Result: Food item that was in the list "potato" is added into FoodIntake list for 31 Mar 2021, but with the new nutritional values.
+       
+1. Update food intake
+    1. Test case: `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
+        Result: "tomato" that was in the list for 31 Mar 2021 is updated with the new nutritional values.
+       
+    1. Test case: `food_intake_update d/31 Mar 2021 n/asdasdf c/20 f/40 p/50`
+        Result: Error message that the food item could not be found.
+       
+1. Delete food intake
+    1. Test case: `food_intake_delete d/31 Mar 2021 n/tomato`
+        Result: "tomato" deleted from the FoodIntake list for 31 Mar 2021.
+       
+    1. Test case: `food_intake_delete d/31 Mar 2021 n/asdasdad`
+        Result: Error message that the food item could not be found.
+       
+1. List food intake
+    1. Test case: `food_intake_query d/31 Mar 2021`
+        Result: Food intake for 31 Mar 2021 is listed.
+       
+    1. Test case: `food_intake_query d/32 Mar 2021`
+        Result: Error message that date format is wrong.
+       
+    1. Test case: `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
+        Result: Food intake from 1 Mar to 31 Mar is listed.
+       
+### Progress Report
+
+1. Show progress report
+    1. Test case: `progress`
+        Result: Progress report is printed.
+
+### Print help message
+
+1. Print help message
+
+    1. Test case: `help`
+       Expected: The initial launch message is printed.
+
+## **Appendix: Effort**
+
+If AB3 required an implementation effort of 10, DietLAH!'s implementation effort is 18.
+
+This is primarily due to the fact that AB3 primarily simply took information in and showcased it back to the user (input-output).
+
+In DietLAH!'s case, we have to deal with several different aspects such as:
+1. Storage of not just the User class and object, but also of varying supporting functions such as the FoodIntake list and the FoodList. This is done separately to allow for more flexibility in the future.
+
+1. Adding functionality to track the user's progress and putting in design considerations that would allow for the user to update their BMI, and selected diet plans at a later time (Rationale: People lose/gain weight, and sometimes they may feel a plan does not actually suit them halfway in)
