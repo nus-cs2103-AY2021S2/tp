@@ -47,14 +47,15 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+    
+* Prefixed parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   
-* For commands with prefixed parameters,
-  
-   * Parameters can be in any order.<br>
-   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
-   * If a parameter is expected only once in the command but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
-   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a prefixed parameter is expected only once in the command but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+   
+* Parameters without prefix must strictly adhere to the order shown in the command.<br>
+
   
 
 </div>
