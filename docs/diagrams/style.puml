@@ -33,6 +33,14 @@
 
 !define USER_COLOR #000000
 
+!define APPOINTMENT_COLOR #1D8900
+!define PATIENT_MAP_COLOR #9D0012
+!define DOCTOR_MAP_COLOR #9D0012
+!define PERSON_COLOR #3333C4
+!define PATIENT_COLOR #101086
+!define DOCTOR_COLOR #101086
+!define TIMESLOT_COLOR #A38300
+
 skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
