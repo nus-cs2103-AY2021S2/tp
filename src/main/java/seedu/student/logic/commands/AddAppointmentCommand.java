@@ -2,7 +2,6 @@ package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import seedu.student.logic.commands.exceptions.CommandException;
@@ -18,11 +17,10 @@ public class AddAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "addAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to Vax@NUS. "
-            + "Parameters: "
-            + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER "
+            + "Parameters: MATRICULATION NUMBER "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START TIME \n"
-            + PREFIX_MATRICULATION_NUMBER + "A1234567X "
+            + "A1234567X "
             + PREFIX_DATE + "2021-03-14 "
             + PREFIX_START_TIME + "10:00 \n";
 
