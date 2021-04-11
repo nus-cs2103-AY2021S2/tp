@@ -331,7 +331,7 @@ Example 2:
 
 ![find_student_example](images/enhao/find_student%20-%20edited.png)
 
-3. The student and session list will be filtered and should only contains students and sessions of students whose name contains the keywords specified.
+3. The student and session list will be filtered and only contains students and sessions of students whose name contains the keywords specified.
 
 ![find_student_result_example](images/enhao/find_student_result%20-%20edited.png)
 
