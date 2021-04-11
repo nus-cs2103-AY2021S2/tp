@@ -6,6 +6,7 @@ import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.timeforwheels.logic.commands.exceptions.CommandException;
 import seedu.timeforwheels.model.Model;
@@ -29,9 +30,10 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_DATE + "2021-10-10";
+            + PREFIX_EMAIL + "johnd@gmail.com "
+            + PREFIX_ADDRESS + "Blk 311, Clementi Ave 2, #01-12 "
+            + PREFIX_DATE + "2021-10-10"
+            + PREFIX_TAG + "urgent";
 
     public static final String MESSAGE_SUCCESS = "The following new customer has been added: %1$s";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the delivery list";
