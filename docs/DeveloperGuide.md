@@ -154,14 +154,72 @@ Given below are example usage scenarios and how the favourite feature behaves at
 
 ### [Proposed] Note Feature
 #### Proposed Implementation
-The proposed note feature is to facilitate the user to keep track of his/her own note of different tutors.
-Additionally, it implements the following operations:
-* `Add note` - Add a note
-* `Delete note` - Delete a note
-* `Edit note` - Edit a note
-* `List note` - List tutor(s) that has note added
+Tutor Tracker's Notes feature allows users to create notes that are tagged to specific tutors and export them into a text file.
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, we have also considered 
+that users may also wish to add notes to specific tutors to keep track of miscellaneous information that the user might have. 
+We also considered that the user might want to export details and notes of a tutor into a text file for ease of reference and sharing.
+
+#### Implementation
+The proposed note feature is to facilitate the user to keep track of his/her own note of different tutors and export them.
+The notes feature consists of the following operations that can be performed on tutors:
+* `Add note` - Adds a note to a tutor
+* `Delete note` - Deletes the note of a tutor
+* `Edit note` - Edits a note of a tutor
+* `List note` - List tutor(s) that has a note
+* `Export tutor` - Exports the details and attached notes into a text file 
+
+These operations are exposed in the `Logic` interface by parsing respective `AddNoteCommand`,
+`DeleteNoteCommand`, `EditNoteCommand`, `ListNoteCommand` and `ExportCommand`.
 
 Given below are example usage scenarios and how the note feature behaves at each step.
+
+When the user enters any of the aforementioned commands, 
+the user input command undergoes the same command 
+parsing as described in the [Logic component](#logic-component).
+
+To add, delete or edit a `Notes` of a `Tutor`, we use of an `EditTutorDescriptor`. The `EditTutorDescriptor` describes the 
+attributes of a tutor to be edited. To add a `Notes` to a `Tutor`, we can simply create an `EditTutorDescriptor` which a 
+`Notes` descriptor, and edit the corresponding `Tutor` with this descriptor. The following shows an example of how an
+`AddNoteCommand` is executed.
+
+Steps for the execution of the `AddNoteCommand` (assuming that no errors are encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddNoteCommandParser`.
+3. The `AddNoteCommandParser` will then parse and validate the inputs, and creates a `AddNoteCommand` with a target index number, 
+   and an `EditTutorDescriptor` with a `Notes` descriptor.
+4. The `execute()` method of the created `AddNoteCommand` will be called.
+5. The `AddNoteCommand` will validate both the index number and the `EditTutorDescriptor` and call the `ModelManager`'s 
+   `setTutor()` command which will add a new `Notes` to the existing tutor. 
+6. After the new `Notes` has been successfully added to a tutor, it will update the GUI with the new `Notes`, and return
+   a `CommandResult` to provide feedback of the command's execution.
+
+![Sequence Diagram of Add Schedule](images/notes/NotesSequenceDiagram.png)
+
+#### Design Consideration
+
+**Displaying Schedule in the GUI**
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1 (current choice)** <br> Display tutors with attached notes in the same list view. | Allows users to view everything in a single panel. | The tutor panel might look cluttered when the notes are long.|
+| **Option 2** <br> Display notes with a pop up when a tutor is selected. | Prevents the GUI from being too cluttered with information. | May impose inconvenience as users would have to select a tutor in order to view their notes |
+
+Reason for choosing option 1:
+* We want the user to be able to see their notes easily and having to type in another command to select and show the notes
+  in a separate pop up poses too much of an inconvenience.
+* The window to display the notes has been made static, and a scrollbar is added when the notes are too long to fit into the
+  static window. This can help make the GUI look less cluttered.
+  
+The following activity diagram summarizes what happens when the `add_note` command is executed.
+
+![Activity Diagram of Add Schedule](images/notes/NotesActivityDiagram.png)
+
+To export the details and notes of a `Tutor` into a text file, we use the `export` command. The `export` command would
+create a new folder `/export` in the root directory. Details and notes of a `Tutor` would be converted into human-readable
+text form and exported into the `/export` folder.
+
 
 ### [Proposed] Grade Feature
 #### Proposed Implementation
@@ -220,7 +278,7 @@ These operations are exposed in the `Logic` interface by parsing respective `Add
 `DeleteScheduleCommand`, `EditScheduleCommand` and `ViewScheduleCommand`.
 
 When the user enters the `add_schedule` command to add a new schedule, the user input command undergoes the same command parsing as described in
-[Logic component](#logic-component). 
+[Logic component](#logic-component).
 
 Steps for the execution of the `AddScheduleCommand` (assuming that no errors are encountered):
 1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.

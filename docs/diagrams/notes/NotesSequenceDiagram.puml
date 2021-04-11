@@ -1,0 +1,86 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
+participant ":AddNoteCommandParser" as AddNoteCommandParser LOGIC_COLOR
+participant "a:AddNoteCommand" as AddNoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "n:Notes" as Notes LOGIC_COLOR
+participant "e:EditTutorDescriptor" as EditTutorDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_note 1 Some notes here")
+activate LogicManager
+
+LogicManager -> TutorTrackerParser : parseCommand("add_note 1 Some notes here")
+activate TutorTrackerParser
+
+create AddNoteCommandParser
+TutorTrackerParser -> AddNoteCommandParser
+activate AddNoteCommandParser
+
+AddNoteCommandParser --> TutorTrackerParser
+deactivate AddNoteCommandParser
+
+TutorTrackerParser -> AddNoteCommandParser : parse("1", "Some notes here")
+activate AddNoteCommandParser
+
+create Notes
+AddNoteCommandParser -> Notes : Notes("Some notes here")
+activate Notes
+
+Notes --> AddNoteCommandParser : n
+deactivate Notes
+
+create EditTutorDescriptor
+AddNoteCommandParser -> EditTutorDescriptor : EditTutorDescriptor(n)
+activate EditTutorDescriptor
+
+EditTutorDescriptor --> AddNoteCommandParser : e
+deactivate EditTutorDescriptor
+
+
+create AddNoteCommand
+AddNoteCommandParser -> AddNoteCommand : AddNoteCommand(index, e)
+activate AddNoteCommand
+
+AddNoteCommand --> AddNoteCommandParser : a
+deactivate AddNoteCommand
+
+AddNoteCommandParser --> TutorTrackerParser : a
+deactivate AddNoteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddNoteCommandParser -[hidden]-> TutorTrackerParser
+destroy AddNoteCommandParser
+
+TutorTrackerParser --> LogicManager : a
+deactivate TutorTrackerParser
+
+LogicManager -> AddNoteCommand : execute()
+activate AddNoteCommand
+
+AddNoteCommand -> Model : setTutor(e)
+activate Model
+
+Model --> AddNoteCommand
+deactivate Model
+
+create CommandResult
+AddNoteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddNoteCommand
+deactivate CommandResult
+
+AddNoteCommand --> LogicManager : result
+deactivate AddNoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
