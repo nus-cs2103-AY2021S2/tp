@@ -326,6 +326,10 @@ The following sequence diagram shows how the update operation works:
 
 ### List food item feature
 
+The following activity diagram summarizes what happens when a user executes a `food_list` command:
+
+<img src="images/ListFoodItemActivityDiagram.png" width="415" />
+
 #### Description:
 
 This command lists all the food item(s) in the food list.
@@ -349,6 +353,7 @@ The following sequence diagram shows how the delete operation works:
 The following activity diagram summarizes what happens when a user executes a `food_delete` command:
 
 <img src="images/DeleteFoodItemActivityDiagram.png" width="415" />
+
 #### Description:
 
 This command deletes a valid food item from the unique food list. Food item has to exist in the food list before the deletion can be carried out.

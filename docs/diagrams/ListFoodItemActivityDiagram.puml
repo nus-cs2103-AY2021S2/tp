@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Parse command input;
+:Display result;
+stop
+
+@enduml
