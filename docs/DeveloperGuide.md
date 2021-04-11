@@ -221,7 +221,6 @@ To export the details and notes of a `Tutor` into a text file, we use the `expor
 create a new folder `/export` in the root directory. Details and notes of a `Tutor` would be converted into human-readable
 text form and exported into the `/export` folder.
 
-
 ### [Proposed] Grade Feature
 #### Proposed Implementation
 The proposed grade feature is to facilitate the user to keep track of his/her
@@ -1127,7 +1126,6 @@ Given below are instructions to test the app manually.
         6. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
         7. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
         8. The schedule's timeslot must not clash with existing appointments & schedules. <br><br>
-        9. `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`). <br>
     2. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
        Expected: Adds a schedule by the name `Maths Tuition Homework`, happening from `Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM` <br><br>
     3. Test Case: `add_schedule t/Science Tuition Homework d/2021-6-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6` <br>
@@ -1136,21 +1134,65 @@ Given below are instructions to test the app manually.
        Expected: The schedule is not added. An error message saying that the schedule already exists (assuming you did the first
        test case) is shown <br><br>
     5. Test Case: `add_schedule t/Maths Tuition Homework d/2/5/2021 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
-       Expected: The task is not added. An error message saying that the date is in the wrong format is shown <br><br>
+       Expected: The schedule is not added. An error message saying that the date is in the wrong format is shown <br><br>
     6. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/15:00pm to/7:00pm ds/Calculus Topic` <br>
-      Expected: The task is not added. An error message saying that the time is in the wrong format is shown <br><br>
+      Expected: The schedule is not added. An error message saying that the time is in the wrong format is shown <br><br>
     7. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/7:00pm to/5:00pm ds/Calculus Topic` <br>
-      Expected: The task is not added. An error message saying that the time range is invalid is shown <br><br>
+      Expected: The schedule is not added. An error message saying that the time range is invalid is shown <br><br>
     8. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/5:00am to/10:00am ds/Calculus Topic` <br>
-      Expected: The task is not added. An error message saying that the start time is invalid is shown <br><br>
+      Expected: The schedule is not added. An error message saying that the start time is invalid is shown <br><br>
     9. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/10:00pm to/1:00am ds/Calculus Topic` <br>
-      Expected: The task is not added. An error message saying that the end time is invalid is shown <br><br>
+      Expected: The schedule is not added. An error message saying that the end time is invalid is shown <br><br>
     10. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-10 fr/5:31pm to/8:46pm ds/Calculus Topic` <br>
-      Expected: The task is not added. An error message saying that the time minutes are not in blocks of 30 or 60 minutes is shown <br><br>
+      Expected: The schedule is not added. An error message saying that the time minutes are not in blocks of 30 or 60 minutes is shown <br><br>
     11. Test Case: `add_schedule t/English Tuition Homework d/2021-6-2 fr/4:00pm to/8:00pm ds/Calculus Topic` <br>
       Expected: The schedule is not added. An error message saying that the schedule clashes with another appointment or schedule (assuming you did the first
       test case) is shown <br><br>
-        
+
+### Deleting a Schedule
+
+1. Deleting a Schedule
+    1. Prerequisites: 
+        1. List all schedule(s) using the `list_schedules` command. Multiple schedules in the list. 
+        2. The schedule to be deleted must exist.
+        3. Index must be a positive integer.
+    2. Test Case: `delete_schedule 1` <br>
+       Expected: The first schedule displayed in the list is deleted. <br><br>
+    3. Test Case: `delete_schedule` <br>
+       Expected: An error message about the invalid command format is shown <br><br>
+    4. Test Case: `delete_schedule -1` <br>
+      Expected: An error message about the invalid command format is shown <br><br>
+
+### Adding a Reminder
+
+1. Adding a reminder
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided
+        2. The date must be in the form `yyyy-mm-dd`. <br><br>
+    2. Test Case: `add_reminder ds/Science Tuition Payment Due d/2021-6-2` <br>
+       Expected: Adds a reminder by the name `Science Tuition Payment Due`, to be reminded on `Jun 02 2021` <br><br>
+    3. Test Case: `add_reminder ds/Maths Tuition Payment Due d/2021-6-21` <br>
+       Expected: Adds a schedule by the name `Maths Tuition Payment Due`, to be reminded on `Jun 21 2021` <br><br>
+    4. Test Case: `add_reminder ds/Science Tuition Payment Due d/2021-6-2` <br>
+       Expected: The reminder is not added. An error message saying that the schedule already exists (assuming you did the first
+       test case) is shown <br><br>
+    5. Test Case: `add_reminder ds/Science Tuition Payment Due d/2/6/2021` <br>
+       Expected: The reminder is not added. An error message saying that the date is in the wrong format is shown <br><br>
+       
+### Deleting a Reminder
+
+1. Deleting a Reminder
+    1. Prerequisites:
+        1. List all reminder(s) using the `list_reminders` command. Multiple reminders in the list.
+        2. The reminder to be deleted must exist.
+        3. Index must be a positive integer.
+    2. Test Case: `delete_reminder 1` <br>
+       Expected: The first reminder displayed in the list is deleted. <br><br>
+    3. Test Case: `delete_reminder` <br>
+       Expected: An error message about the invalid command format is shown. <br><br>
+    4. Test Case: `delete_reminder -1` <br>
+       Expected: An error message about the invalid command format is shown. <br><br>
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
