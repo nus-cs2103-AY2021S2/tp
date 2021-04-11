@@ -51,6 +51,6 @@ the sequence diagram of it. <br>
 
 ### Contributions to team-based tasks
 * Maintained the issue tracker
-* Updating the User/Developer guided not related to features as mentioned above.
+* Updating the User/Developer guide not related to features as mentioned above.
 
 
