@@ -650,7 +650,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Finding
+### Find commands
 
 1. Find
 
@@ -694,6 +694,16 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect find property commands to try: `find appointment x/ `, where x is any of the permissible options. 
         Expected: Similar to previous. 
+
+1. Finding clients
+
+    1. Prerequisite: Using default example data (or make sure when `list all` is entered, you can see the appointment `Meet Alice` and the property with `Alice` as client name). 
+    
+    1. Test case: `find client alice`
+        Expected: `Meet Alice` appointment is shown in appointment list, and properties with `Alice` in `Client Name` field are shown in property list. 
+        
+    1. Test case: `find client`
+        Expected: Both lists not updated. Error details shown in the status message. 
 
 ## **Appendix G: Effort**
 
