@@ -33,10 +33,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/godjuansan.png" width="200px">
 
-[[github](http://github.com/godjuansan)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/godjuansan)]
+[[portfolio](team/godjuansan.md)]
 
 * Role: Member
-* Responsibilities: Full-Stack Developer
+* Responsibilities: Implementation and Documentation of Note Feature.
 
 ### Teo Hoe Keat
 
