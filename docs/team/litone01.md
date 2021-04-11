@@ -44,7 +44,6 @@ Given below are my contributions to the project.
       finds the tasks and events that may interest the users the most. This helps to make our product more convenient 
       and efficient to use.
       
-
 * **Enhancements to existing features**:
     * Enhance the function of editing an existing task, `Edit task`.
         * **What it does:** Allows users to edit the details of the task at the specified index 
@@ -68,10 +67,25 @@ Given below are my contributions to the project.
     * Also, helped to develop tests for `Logic` component, such as `SocheduleParserUtil`.
     * One of the PRs significantly improved the testing coverage by `5.66%`, [\#344](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/344).
     
-#### Code contributed
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=litone01&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
-
 #### Other contributions
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=litone01&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
+* **Documentation**:
+    * User Guide:
+        * Explained the use and constraints on `edit_task`, `done_task`, `undone_task` and `find_schedule` commands.
+        * Updated command summary and added visual illustrations to the relevant commands.
+
+    * Developer Guide:
+        * Updated and explained the `Model` component.
+          Created the **class diagrams** for `Model`, `Task` and `Event`.
+          Explained the **design considerations** for comparing same tasks and events
+          and setting maximum length to `Name`, `Tag` and `Category`.
+        * Explained the **implementation details** and **design considerations** for `done_task`, `undone_task`, `edit_task` and `find_schedule`.
+          Created **sequence diagrams** for sample usages of `done_task`, `undone_task`, `edit_task` and `find_schedule`
+          Created an **activity diagram** for `undone_task` command.
+        * Added use cases and manual testing cases for `done_task`, `undone_task`, `edit_task` and `find_schedule`.
+        * Contributed to the effort section.
+          Summarised the highlights of the product, and explain the efforts the team in developing the product.
+
 * **Team-related contributions**:
   * Managed and helped releases `v1.2.1` on GitHub.
   * Participated in managing Milestone `v1.3` and `v1.3b`.
@@ -91,7 +105,6 @@ Given below are my contributions to the project.
     [\#195](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/195),
     [\#225](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/225).
     
-
 * **Community**:
     * Contributed to forum discussions: [\#16](https://github.com/nus-cs2103-AY2021S2/forum/issues/16),
       [\#31](https://github.com/nus-cs2103-AY2021S2/forum/issues/31),
@@ -101,25 +114,4 @@ Given below are my contributions to the project.
       
     * Some of my suggestions have benefited other classmates: [\#34](https://github.com/nus-cs2103-AY2021S2/forum/issues/34),
         [\#36](https://github.com/nus-cs2103-AY2021S2/forum/issues/36).
-
-<div style="page-break-after: always;"></div>
-
-### Documentation
-  * **User Guide**:
-      * Explained the use and constraints on `edit_task`, `done_task`, `undone_task` and `find_schedule` commands.
-      * Updated command summary and added visual illustrations to the relevant commands.
-
-  * **Developer Guide**:
-      * Updated and explained the `Model` component.
-        Created the **class diagrams** for `Model`, `Task` and `Event`.
-        Explained the **design considerations** for comparing same tasks and events
-        and setting maximum length to `Name`, `Tag` and `Category`.
-
-      * Explained the **implementation details** and **design considerations** for `done_task`, `undone_task`, `edit_task` and `find_schedule`.
-        Created **sequence diagrams** for sample usages of `done_task`, `undone_task`, `edit_task` and `find_schedule`
-        Created an **activity diagram** for `undone_task` command.
-      * Added use cases and manual testing cases for `done_task`, `undone_task`, `edit_task` and `find_schedule`.
-      * Contributed to the effort section.
-        Summarised the highlights of the product, and explain the efforts the team in developing the product.
       
-
