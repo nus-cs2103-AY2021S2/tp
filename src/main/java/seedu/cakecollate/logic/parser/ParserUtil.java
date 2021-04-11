@@ -2,6 +2,7 @@ package seedu.cakecollate.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.cakecollate.commons.util.StringUtil.capitaliseEachWord;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +15,6 @@ import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
-import seedu.cakecollate.logic.commands.AddOrderItemCommand;
 import seedu.cakecollate.logic.commands.RemindCommand;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
@@ -175,15 +175,16 @@ public class ParserUtil {
      */
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
-        String trimmedOrderDescription = orderDescription.trim();
-        if (trimmedOrderDescription.length() > ORDER_DESCRIPTION_LENGTH) {
+        String formattedOrderDescription = capitaliseEachWord(orderDescription.trim());
+
+        if (formattedOrderDescription.length() > ORDER_DESCRIPTION_LENGTH) {
             throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
         }
-        if (!OrderDescription.isValidOrderDescription(trimmedOrderDescription)) {
+        if (!OrderDescription.isValidOrderDescription(formattedOrderDescription)) {
             throw new ParseException(OrderDescription.MESSAGE_CONSTRAINTS);
         }
 
-        return new OrderDescription(trimmedOrderDescription);
+        return new OrderDescription(formattedOrderDescription);
     }
 
     /**
@@ -262,15 +263,15 @@ public class ParserUtil {
      */
     public static OrderItem parseOrderItem(String orderItemType) throws ParseException {
         requireNonNull(orderItemType);
-        String trimmedOrderItemDescription = orderItemType.trim();
-        if (trimmedOrderItemDescription.length() > ORDER_DESCRIPTION_LENGTH) {
+        String formattedOrderItemDescription = capitaliseEachWord(orderItemType.trim());
+
+        if (formattedOrderItemDescription.length() > ORDER_DESCRIPTION_LENGTH) {
             throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
         }
-        if (!Type.isValidType(trimmedOrderItemDescription)) {
-            throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderItemCommand.MESSAGE_USAGE));
+        if (!Type.isValidType(formattedOrderItemDescription)) {
+            throw new ParseException(String.format(Type.SHARED_CONSTRAINTS_MESSAGE, "Order description"));
         }
-        return new OrderItem(new Type(trimmedOrderItemDescription));
+        return new OrderItem(new Type(formattedOrderItemDescription));
     }
 
     /**

@@ -66,7 +66,7 @@
                   <Label text="Index" prefWidth="50" styleClass="cell_order_item_label"/>
                 </HBox>
                 <HBox>
-                  <Label text="Type" prefWidth="250" styleClass="cell_order_item_label"/>
+                  <Label text="Order Item" prefWidth="250" styleClass="cell_order_item_label"/>
                 </HBox>
               </HBox>
               <StackPane fx:id="orderItemTablePlaceholder" VBox.vgrow="ALWAYS"/>

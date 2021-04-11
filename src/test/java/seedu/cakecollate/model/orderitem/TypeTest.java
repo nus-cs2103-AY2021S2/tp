@@ -31,9 +31,12 @@ public class TypeTest {
         // valid types
         assertTrue(Type.isValidType("Strawberry cake")); //typical order type
         assertTrue(Type.isValidType("s")); // one character
-        assertTrue(Type
+        assertFalse(Type
                 .isValidType("8 \" large black forest cake with "
-                        + "buttercream frosting and chocolate drizzle topping")); // long order type
+                        + "buttercream frosting and chocolate drizzle topping")); //contains special characters
+        assertFalse(Type.isValidType("???")); //special characters
+        assertFalse(Type.isValidType("///aadjjf oi ???")); //special characters
+
     }
 
     @Test

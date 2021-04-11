@@ -4,7 +4,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "orderDescriptions": [ "2 x Strawberry Cakes" ],
+    "orderDescriptions": [ "Strawberry Cakes" ],
     "tagged": [ "friends" ],
     "deliveryDate": "02/02/2022",
     "request": "Give me more pineapples."
@@ -13,7 +13,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "orderDescriptions": [ "2 x Strawberry Cakes" ],
+    "orderDescriptions": [ "Strawberry Cakes" ],
     "tagged": [ "friends" ],
     "deliveryDate": "02/02/2022",
     "request": "Give me more pineapples."

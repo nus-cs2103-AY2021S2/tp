@@ -1,7 +1,9 @@
 package seedu.cakecollate.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.cakecollate.commons.util.StringUtil.capitaliseEachWord;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
@@ -174,4 +176,31 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    // --------------- Tests for capitalise -----------------------------------
+    @Test
+    public void capitaliseEachWordTest() {
+
+        assertEquals("Hello World", capitaliseEachWord("HELLO WORLD")); // all caps
+        assertEquals("Hello World", capitaliseEachWord("hellO wOrLd")); // random caps
+        assertEquals("Hello World", capitaliseEachWord("hello world")); // all lower case
+        assertEquals("Hello World", capitaliseEachWord("Hello World")); // input same as output
+
+        // special characters preserved
+        // include standalone special characters, special characters sandwiched/at the start/at the end of word
+        assertEquals(capitaliseEachWord("Hello w#$% world ..@@& !hello"), "Hello W#$% World ..@@& !hello");
+
+        // numbers preserved (include numbers at start of word, numbers in middle of word, numbers beside letters)
+        assertEquals("Hello 78 World", capitaliseEachWord("hello 78 world"));
+        assertEquals("Hello 78world", capitaliseEachWord("hello 78world"));
+        assertEquals("Hello Wor34ld", capitaliseEachWord("hello wor34ld"));
+        assertEquals("Hello World12", capitaliseEachWord("hello world12"));
+
+        //only one letter
+        assertEquals("Hello W", capitaliseEachWord("hello w"));
+        assertEquals("W", capitaliseEachWord("w"));
+
+        assertEquals("  ", capitaliseEachWord("  "));
+        assertEquals("", capitaliseEachWord(""));
+
+    }
 }
