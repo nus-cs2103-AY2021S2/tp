@@ -15,13 +15,12 @@ title: Developer Guide
   - [Collect](#collect-feature)
   - [Find](#finding-contacts-by-details)
   - [Light/Dark] >Ryan
-  - [Mass Blacklist] >JB
+  - [Mass Blacklist](#mass-blacklist-feature)
   - [Mode of Contact](#mode-of-contact-feature)
   - [Remark](#remark-feature)
   - [Mass Delete](#mass-delete-feature)
   - [Mode of Contact](#mode-of-contact-feature)
   - [Navigate Previous Commands](#navigate-previous-commands-feature)
-  - [Remark](#remark-feature)
   - [Sort](#sort-feature)
   - [Undo](#undo-feature)
 - [Additional guides](#documentation-logging-testing-configuration-dev-ops)
@@ -37,11 +36,11 @@ title: Developer Guide
   - [Adding a contact] >Ryan (Mode of contact)
   - [Changing blacklist status of a contact](#changing-blacklist-status-of-a-contact)
   - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
-  - [Editing remark for a contact] >JB
+  - [Editing remark for a contact](#adding-a-new-remark)
   - [Filtering contacts](#filtering-contacts)
-  - [Performing mass blacklist] >JB
-  - [Performing mass delete] >JB
-  - [Sorting visible contact list] >JB
+  - [Performing mass blacklist](#blacklisting-or-unblacklisting-multiple-contacts)
+  - [Performing mass delete](#deleting-multiple-contacts)
+  - [Sorting visible contact list](#sort-entries-by-name)
   - [Transitioning between light and dark mode] >Ryan
   - [Undoing previous operations](#undoing-previous-operations)
   - [Navigating through commands](#navigating-through-commands)
@@ -471,14 +470,16 @@ The following activity diagram summarizes what happens when a user executes a so
 
 #### Design considerations:
 
-##### Aspect: Implementation of sort
-* **Alternative 1 (current choice):** Sort command sorts the entire address book.
-  * Pros: Easy to implement.
-  * Cons:
+##### Aspect: Sort input format
+* **Alternative 1 (current choice):** `sort ascending` and `sort descending`
+  * Pros: Easier for the user to remember
+  * Cons: Difficult to extend the command to accept more parameters.
 
-* **Alternative 2:**
-  * Pros:
-  * Cons:
+* **Alternative 2:** `sort d/ascending` and `sort d/descending`
+  * Pros: This implementation makes it easier to extend the command in the future to accept more parameters. For example, `sort 
+    c/modeofcontact c/name d/descending` is a possible format that can be used to sort the list firstly by mode of contact then by name in
+    descending order. 
+  * Cons: Not as user friendly as the user will have to remember more commands.
 
 ### Navigate previous commands feature
 
@@ -522,11 +523,7 @@ Similarly, when the user presses the down arrow key, there are two possible scen
 * **Alternative 2**: Use the `LinkedList` class provided by Java.
     * Pros: Easier implementation. Most operations have been provided by Java.
     * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
-
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
+  
 ### Undo feature
 
 #### Implementation
@@ -630,28 +627,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                       | add a new contact                                    |                                                                         |
 | `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
-| `* * *`  | user                                       | find contacts by their attributes                    | minimize the time spent to find the contacts I need
+| `* * *`  | user                                       | list all contacts                                    | see the full list of my contacts                                        | 
+| `* * *`  | user                                       | edit a contact                                       | keep my contact list up-to-date                                         |
+| `* * *`  | user                                       | find contacts by their attributes                    | minimize                                                                |
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
 | `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need               |
 | `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
-| `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
-| `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
+| `* *`    | user                                       | assign each contact an additional remark    | note down specific details about certain contacts                       |
+| `* *`    | user with many contacts                    | sort contacts by name                                | work with the contact list more easily                                  |
+| `* *`    | user with many contacts                    | delete multiple contacts at once                     | remove groups of unneeded contacts more efficiently                     |
+| `* *`    | user with many contacts                    | blacklist multiple contacts at once                  | blacklist groups of contacts more efficiently                           |
 | `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list
-| `* *`    | user                                       | change between light and dark mode                   | have less strain on my eyes.
+| `* *`    | user                                       | change between light and dark mode                   | have less strain on my eyes.                                            |
+| `* *`  | user                                       | clear the entire list                                | start over from a new contact list                                      |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Delete a person**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  SpamEZ shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  SpamEZ deletes the contact
+1.  User requests to list contacts.
+2.  SpamEZ shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  SpamEZ deletes the contact.
 
     Use case ends.
 
@@ -667,7 +669,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Filter contacts by tags**
+**Use case: UC02 - Filter contacts by tags**
 
 **MSS**
 1. User requests to list contacts
@@ -687,7 +689,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Specify a preferred mode of contact for a contact**
+**Use case: UC03 - Specify a preferred mode of contact for a contact**
 
 **MSS**
 
@@ -704,7 +706,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Blacklist a contact**
+**Use case: UC04 - Blacklist a contact**
 
 **MSS**
 
@@ -728,13 +730,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Assign an optional remark to a contact**
+**Use case: UC05 - Add an optional remark to a contact**
 
 **MSS**
 
 1. User requests to list contacts.
 2. SpamEZ shows a list of contacts.
-3. User requests to add an optional remark to a specific contact in the list.
+3. User requests to add a remark to a specific contact in the list.
 4. SpamEZ adds the optional remark to the specific contact.
 5. SpamEZ shows the updated list of contacts.
    
@@ -748,13 +750,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 3.
 
-* 3b. The user enters details in the wrong format.
+* 4a. The contact already has a remark.
 
-    * 3b1. SpamEZ shows an error message and the correct format.
+    * 4a1. The old remark is replaced with the new remark.
 
-      Use case resumes at step 3.
+      Use case ends.
 
-**Use case: Sort contacts by name**
+**Use case: UC06 - Sort contacts by name**
 
 **MSS**
 
@@ -763,8 +765,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. SpamEZ displays the updated contact list.
    
    Use case ends.
-   
-**Use case: Changing to light mode**
+
+**Extensions**
+
+* 1a. The contact list currently being displayed is not the full contact list. 
+  * 1a1. SpamEZ will sort both the full contact list and the currently displayed contact list.
+    1a2. SpamEZ displays the updated partial contact list.
+    
+    Use case ends.
+
+**Use case: UC07 - Mass blacklist contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. SpamEZ shows a list of contacts.
+3. User requests to blacklist all contacts within a certain index range.
+4. SpamEZ blacklists all relevant contacts.
+5. SpamEZ displays the updated contact list.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+  * 3a1. SpamEZ shows an error message.
+    
+    Use case resumes at step 2.
+
+**Use case: UC08 - Mass delete contacts**
+
+**MSS**
+
+1. User requests to list contacts.
+2. SpamEZ shows a list of contacts.  
+3. User requests to delete all contacts within a certain index range.
+4. SpamEZ deletes all relevant contacts.
+5. SpamEZ displays the updated contact list.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+  * 3a1. SpamEZ shows an error message.
+    
+    Use case resumes at step 2.
+  
+**Use case: UC09 - Changing to light mode**
 
 **MSS**
 
@@ -777,7 +825,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.   
     
-**Use case: Changing to dark mode**
+**Use case: UC10 - Changing to dark mode**
 
 **MSS**
 
@@ -902,6 +950,69 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect collect commands to try: `collect m/`, `collect n/ e/`, `...` (trying to collect multiple types of details at once)<br>
        Expected: Similar to previous.
+
+### Blacklisting or unblacklisting multiple contacts
+
+1. Blacklisting or un-blacklisting multiple contacts while some contacts are being shown
+
+  1. Prerequisites: List some contacts using the `list` or `find` commands. At least 2 contact in the list.
+
+  1. Test case: `massblist 1-2 b/blacklist`<br>
+     Expected: The first and second contact in the list will be blacklisted. If the contact is already
+     blacklisted, then there will be no change to the contact.
+
+  1. Test case: `massblist 0-2 b/unblacklist`<br>
+     Expected: No change in the address book. Error details shown in status message.
+
+  1. Other incorrect massblacklist commands to try: `massblist`, `massblist 3-4` <br>
+     Expected: Similar to previous.
+
+### Deleting multiple contacts
+
+1. Deleting multiple contacts while some contacts are being shown
+
+1. Prerequisites: List some contacts using the `list` or `find` commands. At least 2 contact in the list.
+
+1. Test case: `massdelete 1-2` <br>
+   Expected: The first and second contact in the list will be deleted.
+
+1. Test case: `massdelete 0-3` <br>
+   Expected: No change in the address book. Error details shown in status message.
+
+1. Other incorrect massdelete commands to try: `massdelete`, `massdelete 3-` <br>
+   Expected: Similar to previous.
+
+### Adding a new remark
+
+1. Adding a new remark while some contacts are being shown
+
+  1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
+
+  1. Test case: `remark 1 r/Absent`<br>
+     Expected: The remark of the first contact in the list will be changed to 'Absent'. If the contact has an existing
+     remark, the old remark will be replaced with the new remark.
+
+  1. Test case: `remark 2`<br>
+     Expected: No contact is edited. Error details are shown in the status message.
+
+  1. Other incorrect remark commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+### Sort entries by name
+
+1. Sort the contact list
+
+  1. Prerequisites: None
+
+  1. Test case: `sort ascending`<br>
+     Expected: The entire contact list will be sorted by name in ascending alphabetical order. If only a
+     partial list is currently being displayed, the partial list will also be sorted and displayed.
+
+  1. Test case: `sort` <br>
+     Expected: No change in the address book. Error details are shown in the status message.
+
+  1. Other incorrect sort commands to try: `sort 121`, `sort ascending ascending` <br>
+     Expected: Similar to previous.
 
 ### Undoing previous operations
 1. Undo previous operations.
