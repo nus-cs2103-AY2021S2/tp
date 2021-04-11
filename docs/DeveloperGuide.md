@@ -122,7 +122,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 <div markdown="span" class="alert alert-info">
 :information_source: **Diagram note:** <br>
 
-`XYZCommand` and `XYZCommandParser` are placeholder classes. See the diagram notes in the 
+`XYZCommand` and `XYZCommandParser` are placeholder classes. See the diagram notes in the
 [Logic component section](#logic-component) for more information.
 </div>
 
@@ -169,7 +169,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `LogicManager` uses the `AddressBookParser` to parse the user command. 
+1. `LogicManager` uses the `AddressBookParser` to parse the user command.
 1. `LogicManager` may consult the `AliasMapping` in the `Model` (not shown in the diagram above) in case the user
    uses an alias. How an alias is executed is detailed [here](#alias-execution).
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -206,7 +206,7 @@ below shows the parsing and execution process for the `execute("idel 1")` API ca
 * We omit specific details of models `Resident`, `Room`, `ResidentRoom`, `Issue`, `CommandHistory` and `Alias` as they are explained
 in greater detail in their specific sections.
 
-* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the 
+* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the
   lower level sub-packages are shown in separate zoomed-in diagrams.
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -217,7 +217,7 @@ The `Model`,
 * stores a `CommandHistory` object that represents all previous commands entered by the user.
 * stores an `AliasMapping` object that represents the mapping of aliases to actual commands.
 * stores the SunRez data in a `StatefulAddressBook`.
-    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.  
+    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.
 * exposes the following unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
     * `ObservableList<Resident>`
     * `ObservableList<Room>`
@@ -228,16 +228,16 @@ The section below zooms in a **little bit** on how the `ModelManager` and `Addre
 Finer details than what is shown in the section below can be seen under the implementation section of each of the models.
 
 
-#### Zoomed-in view of Room, Resident and ResidentRoom 
+#### Zoomed-in view of Room, Resident and ResidentRoom
 ![Zoomed in view of Room, Resident and ResidentRoom](images/high-level-models/ResidentRoomZoomIn.png)
 
-#### Zoomed-in view of Issue 
+#### Zoomed-in view of Issue
 ![Zoomed in view of Issue](images/high-level-models/IssueZoomIn.png)
 
-#### Zoomed-in view of CommandHistory 
+#### Zoomed-in view of CommandHistory
 ![Zoomed in view of CommandHistory](images/high-level-models/CommandHistoryZoomIn.png)
 
-#### Zoomed-in view of Alias 
+#### Zoomed-in view of Alias
 ![Zoomed in view of Alias](images/high-level-models/AliasZoomIn.png)
 
 
@@ -306,16 +306,16 @@ add a resident.
 
 ### Room Features
 
-The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room(s) and 
+The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room(s) and
 Delete Room.
 
 #### The Room Class
-The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. 
-This allows for a low degree of coupling, and individual fields can change their input verification rules without 
-affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing 
+The Room class consists of 4 fields, each of which contain their own methods to verify their respective input.
+This allows for a low degree of coupling, and individual fields can change their input verification rules without
+affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing
 fields too.
 
-Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`, 
+Examples of verification functions in each of the fields include `RoomNumber#isValidRoomNumber()`,
 `RoomType#isValidRoomType()`, etc.
 
 ![The Room Class](images/room/RoomClass.png)
@@ -343,18 +343,18 @@ This section will detail the implementation of the Add Room feature via the `oad
 
 ##### Overview of Insertion Process
 The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc.
-The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, 
-a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a 
+The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid,
+a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a
 feedback message is displayed to the user.
 
 This process is summarised in the diagram below
 ![Adding a Room](images/room/AddRoomCommandActivityDiagram.png)
 
 ##### AddRoomCommand
-The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model 
+The `AddRoomCommand` inherits from the `Command` object and overrides the `execute()` method. It checks if the model
 already has the room being inserted, and if it does not, it will insert the room.
 
-The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing 
+The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing
 with the specific implemetations of each `Command` object.
 
 ##### Execution pathway
@@ -363,11 +363,11 @@ The diagram below details how the user's command to add a room propagates throug
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
 
 **Diagram Notes** :
-* The `AddRoomCommand`'s execution follows the flow outlined under the section 
-  [Command parsing and execution](#command-parsing-and-execution). 
+* The `AddRoomCommand`'s execution follows the flow outlined under the section
+  [Command parsing and execution](#command-parsing-and-execution).
 * `toAdd` is the room to be added which is created by `AddRoomCommandParser`, and taken in as a parameter during the
   construction of `AddRoomCommand`. This process is omitted for brevity.
-* `AddRoomCommand` is a state-changing operation. After the new room is added, the new state of AddressBook is saved 
+* `AddRoomCommand` is a state-changing operation. After the new room is added, the new state of AddressBook is saved
   using `model#commitAddressBook` in order to support undo/redo operations.
 
 ### Resident-Room allocation feature
@@ -467,11 +467,14 @@ The `AddIssueCommand` inherits from the `Command` object and overrides the `exec
 
 The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
 
-##### Detailed execution pathway
+##### Execution pathway
 The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
 
 ![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
 
+**Diagram Notes** :
+ * The `AddIssueCommand`'s execution follows the flow outlined under the section [Command parsing and execution](#command-parsing-and-execution).
+ * `toAdd` is the issue to be added which is created by `AddIssueCommandParser`, and taken in as a parameter during the construction of `AddIssueCommand`. This process is omitted for brevity.
 
 ### Alias feature
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
@@ -598,7 +601,7 @@ for the most recent command (previous), it shows the most recent one rather than
 
 Currently, SunRez uses a `SuppliedCommandHistorySelector` as its `CommandHistorySelector`. This implementation uses
 a `Supplier<ReadOnlyCommandHistory>` to obtain the current SunRez command history whenever it is called to select a new
-entry. The exact implementation used may change, so the sequence diagram above shows the interface 
+entry. The exact implementation used may change, so the sequence diagram above shows the interface
 `CommandHistorySelector` rather than a specific class.
 
 ##### Save/Load History
@@ -993,16 +996,16 @@ Use case ends.
 **Extensions**
 
 * 2a. There are no unassigned residents.
-    
+
     Use case ends.
 * 3a. The given resident or room does not exist.
-    * 3a1. SunRez shows an error message.   
-      
+    * 3a1. SunRez shows an error message.
+
         Use case resumes at step 2.
 
 * 3b. The given resident or room have already been assigned.
-    * 3b1. SunRez shows an error message. 
-      
+    * 3b1. SunRez shows an error message.
+
         Use case resumes at step 2.
 
 
@@ -1029,7 +1032,7 @@ Use case ends.
 
 * 3b. The given resident does not have an existing allocation.
     * 3b1. SunRez shows an error message.
-        
+
         Use Case resumes at step 2.
 
 ### UC-021 Access Command History
@@ -1149,7 +1152,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 ### Resident Data
 
 1. Adding residents
-    1. Prerequisites: There is no existing resident named `John Doe`. 
+    1. Prerequisites: There is no existing resident named `John Doe`.
     2. Test case: `radd n/John Doe p/98765432 e/johnd@example.com y/1` <br>
        Expected: Resident is added.
     3. Incorrect `radd` commands to try. <br>
@@ -1215,7 +1218,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
     4. Test case: `odel abc` <br>
        Expected: A message indicating the command format is invalid followed by proper usage instructions.
-       
+
 ### Issue
 
 1. Adding an issue
@@ -1404,7 +1407,7 @@ command history.
 
     4. Test case: `rdel 1` then `undo` then `rdel 1` then `redo` <br>
        Expected: An error message is shown, indicating that redo cannot be performed.
-       
+
     5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
        Expected: The `redo` operations undo the `undo` operations in reverse order.
 
