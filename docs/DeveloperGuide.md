@@ -64,8 +64,9 @@ To make the Developer Guide more comprehensible, certain labelling and highlight
 Legend | Description
 -------|-------------
 `Inline code` | Highlights Objects, Classes and Code segments
-[Tips] | Useful tips
-[Important] | Important information to take note of
+<span class="alert alert-inline alert-tip">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
+<span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
+<span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
 
 ## Design
 
@@ -74,8 +75,6 @@ Legend | Description
 <img src="images/ArchitectureDiagram.png" width="450" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-<div markdown="span" class="alert alert-primary"></div>
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -426,6 +425,12 @@ Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrie
 Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME`
 
 #### Implementation:
+
+The following sequence diagram shows how the food intake command works when adding a new food not in the `UniqueFoodList`:
+
+<img src="images/AddFoodIntakeSequenceDiagram.png" width="3060" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Since the 3 scenarios will have roughly similar sequence diagrams, we have only included one detailed diagram showcasing the more complex scenario (when a food is not in the `UniqueFoodList`) </div>
 
 The `AddFoodIntakeParser` first verifies that the expected format is met and then calls the `AddFoodIntakeCommand()` method which checks whether an existing `Food` exists in the `UniqueFoodList`.
 
