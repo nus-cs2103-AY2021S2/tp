@@ -117,13 +117,20 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data and appointment schedule data.
+* exposes unmodifiable `ObservableList<Person>` and `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in these lists change.
 * does not depend on any of the other three components.
 
+The `Person`,
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+* stores a `Person` class, which the `Doctor` class and `Patient` class inherit from.
+
+The `Appointment`,
+
+* stores a `Appointment` class, which access `Patient` object and `Doctor` object via the `PatientMap` class and `DoctorMap` class.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) Person model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. Similar design can be applied to the Appointment model.<br>
+![BetterPersonModelClassDiagram](images/BetterPersonModelClassDiagram.png)
+![BetterAppointmentModelClassDiagram](images/BetterAppointmentModelClassDiagram.png)
 
 </div>
 
