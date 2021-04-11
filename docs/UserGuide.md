@@ -8,11 +8,11 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. About BookCoin
+## **1. About BookCoin**
 BookCoin (to the Moon) is a **desktop app for managing bookings that presents users with a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). BookCoin is designed for administrative personnels of schools or organisations who need to manage bookings across a large number of facilities. If you can type fast, BookCoin can get your facility management tasks done faster than traditional GUI apps. Enjoy!
 
 
-## 2. Quick start
+## **2. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -56,7 +56,7 @@ This section gives an overview of BookCoin’s layout so that you can get starte
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Features
+## **3. Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -219,7 +219,10 @@ Example:
 Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. Inputting 
 `add_venue v/VENUE_NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the fields capacity, description and tags, which are all optional. Capacity should be entered as a digit, with the maximum limit being 500000. Default capacity without an input will be set to 10.
+After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the following optional fields in the order stated, which can be skipped by pressing the <kbd>Enter</kbd> key:
+* Venue capacity, which should be entered as a digit, with the maximum limit being 50000. Default capacity is set to 10.
+* Venue description
+* Tags, where multiple tags are required to be separated by commas. Tags should be alphanumeric without spaces, and consecutive commas without a tag in between are not allowed.
 
 Format: `add_venue v/VENUE_NAME`
 
@@ -343,7 +346,7 @@ Format `generate v/Victoria Hall`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
@@ -351,7 +354,7 @@ contains the data of your previous BookCoin home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 Action | Format, Example
 --------|------------------

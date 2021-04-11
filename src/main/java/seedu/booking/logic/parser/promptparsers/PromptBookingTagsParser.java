@@ -4,10 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.booking.logic.commands.PromptBookingTagsCommand;
+import seedu.booking.logic.parser.Parser;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Tag;
 
-public class PromptBookingTagsParser {
+public class PromptBookingTagsParser implements Parser<PromptBookingTagsCommand> {
 
     /**
      * Parses user input for booking tags

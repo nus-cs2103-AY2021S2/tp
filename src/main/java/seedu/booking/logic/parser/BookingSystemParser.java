@@ -6,6 +6,7 @@ import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.ClearCommand;
 import seedu.booking.logic.commands.Command;
@@ -32,11 +33,11 @@ import seedu.booking.logic.commands.states.AddPersonCommandState;
 import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.logic.parser.promptparsers.PromptBookingDescParser;
+import seedu.booking.logic.parser.promptparsers.PromptBookingEmailParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingEndParser;
-import seedu.booking.logic.parser.promptparsers.PromptBookingPersonEmailParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingStartParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingTagsParser;
-import seedu.booking.logic.parser.promptparsers.PromptBookingVenueNameParser;
+import seedu.booking.logic.parser.promptparsers.PromptBookingVenueParser;
 import seedu.booking.logic.parser.promptparsers.PromptEmailParser;
 import seedu.booking.logic.parser.promptparsers.PromptPersonEmailParser;
 import seedu.booking.logic.parser.promptparsers.PromptPersonNameParser;
@@ -46,7 +47,6 @@ import seedu.booking.logic.parser.promptparsers.PromptVenueCapacityParser;
 import seedu.booking.logic.parser.promptparsers.PromptVenueDescParser;
 import seedu.booking.logic.parser.promptparsers.PromptVenueNameParser;
 import seedu.booking.logic.parser.promptparsers.PromptVenueTagsParser;
-import seedu.booking.model.ModelManager;
 
 /**
  * Parses user input.
@@ -68,19 +68,19 @@ public class BookingSystemParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
 
-        if (ModelManager.isStateActive()) {
+        if (StatefulLogicManager.isStateActive()) {
 
             if (userInput.equals(PromptExitCommand.COMMAND_WORD)) {
                 return new PromptExitCommand();
             } else {
-                String currentState = ModelManager.getState();
+                String currentState = StatefulLogicManager.getState();
                 switch (currentState) {
                 /* booking related states */
                 case AddBookingCommandState.STATE_EMAIL:
                     return new PromptEmailParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_VENUE:
-                    return new PromptBookingVenueNameParser().parse(userInput);
+                    return new PromptBookingVenueParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_DESC:
                     return new PromptBookingDescParser().parse(userInput);
@@ -130,7 +130,7 @@ public class BookingSystemParser {
         switch (commandWord) {
 
         case PromptAddBookingCommand.COMMAND_WORD:
-            return new PromptBookingPersonEmailParser().parse(arguments);
+            return new PromptBookingEmailParser().parse(arguments);
 
         case PromptAddVenueCommand.COMMAND_WORD:
             return new PromptVenueNameParser().parse(arguments);

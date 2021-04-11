@@ -7,11 +7,11 @@ import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.logic.commands.states.AddVenueCommandState.STATE_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.venue.VenueName;
 
 /**
@@ -39,9 +39,9 @@ public class PromptAddVenueCommand extends Command {
         }
 
         CommandState commandState = new AddVenueCommandState(venueName);
-        ModelManager.setCommandState(commandState);
-        ModelManager.setStateActive();
-        ModelManager.setState(STATE_CAPACITY);
+        StatefulLogicManager.setCommandState(commandState);
+        StatefulLogicManager.setStateActive();
+        StatefulLogicManager.setState(STATE_CAPACITY);
         return new CommandResult(PROMPT_CAPACITY_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
     }
 

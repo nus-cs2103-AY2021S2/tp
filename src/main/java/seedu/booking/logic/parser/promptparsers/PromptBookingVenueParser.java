@@ -7,7 +7,7 @@ import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.venue.VenueName;
 
 
-public class PromptBookingVenueNameParser implements Parser<PromptBookingVenueCommand> {
+public class PromptBookingVenueParser implements Parser<PromptBookingVenueCommand> {
 
     /**
      * Parses user input for venue name in booking

@@ -7,9 +7,9 @@ import static seedu.booking.commons.core.Messages.PROMPT_NEWDATE_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_START_MESSAGE;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.EndTime;
 
@@ -25,12 +25,12 @@ public class PromptBookingEndCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModelManager.processStateInput(endTime);
-        ModelManager.setState(STATE_START);
+        StatefulLogicManager.processStateInput(endTime);
+        StatefulLogicManager.setState(STATE_START);
         CommandResult result;
 
         try {
-            Booking booking = (Booking) ModelManager.create();
+            Booking booking = (Booking) StatefulLogicManager.create();
             if (!booking.isValidTime()) {
                 throw new CommandException(MESSAGE_INVALID_TIME);
             }
@@ -44,8 +44,15 @@ public class PromptBookingEndCommand extends Command {
             throw new CommandException(ex.getMessage() + PROMPT_NEWDATE_MESSAGE + PROMPT_START_MESSAGE);
         }
 
-        ModelManager.setStateInactive();
+        StatefulLogicManager.setStateInactive();
 
         return result;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptBookingEndCommand // instanceof handles nulls
+                && this.endTime.equals(((PromptBookingEndCommand) other).endTime));
     }
 }
