@@ -355,5 +355,4 @@ Explain the difficulty level, challenges faced, effort required, and achievement
    <br>Challenges faced include understanding the architecture of AB3 code and refactoring existing testcase to resolve any regression bugs.
 
 1. Email feature
-
-1. 
+ 
