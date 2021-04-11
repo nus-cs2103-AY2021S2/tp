@@ -14,7 +14,7 @@ NUS Module Planner is a **desktop app for NUS students to manage and plan the mo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `XYZ.jar` from [here]().
+1. Download the latest `XYZ.jar` from [here](https://github.com/AY2021S2-CS2103-W17-1/tp/releases/tag/1.4).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -45,19 +45,19 @@ NUS Module Planner is a **desktop app for NUS students to manage and plan the mo
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addp d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `addp d/Networking Focus Area`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `d/planDesc [t/TAG]` can be used as `d/planDesc t/3 years`.
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/3 years`, `t/3 years t/2 internships` etc.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `p/PLAN_NUMBER s/SEM_NUMBER`, `s/SEM_NUMBER p/PLAN_NUMBER` is also acceptable.
 
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `d/myplan1 d/myplan2`, only `d/myplan2` will be taken.
 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -88,8 +88,8 @@ Format: `validate`
 
 > Tip: A plan is valid if the modules contained in its history match those of the current Master Plan.
 > This ensures that any valid plan is a viable option for the user.
-> 
-> ### Clearing all entries : `clear`
+
+### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
@@ -151,8 +151,8 @@ Example output:
 ![showMcsExample](images/showMcsExample.png)
 
 
-### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
-Format: `Show CAP`
+### Calculate and show the current CAP (Cumulative academic points) of the student: `show cap`
+Format: `show cap`
 
 This command takes in the grades of modules user has marked as completed and entered their grade, and calculate their CAP using this formula:
 
@@ -226,6 +226,8 @@ Constraints:
 Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
 
+> Note: As this is not a fully fledged production level project, there are limited modules for users to add. If in the future this project grows to a production piece, it will use relevant NUS APIs to collect modules for users to add. Instead, currently there are only dozens of modules for users to add, but for the purposes of testing and showcasing this product, it is sufficient.
+
 #### Example output for add module command:
 ![AddModuleCommandDemo](images/AddModuleCommandDemo.png)
 
@@ -251,4 +253,4 @@ Constraints:
 ![InfoCommandDemo](images/InfoCommandDemo.png)
 
 #### Example output for finding a specific module information
-![InfoCommandDemo](images/InfoCommandSingleModuleDemo.png)
+![InfoCommandDemoSingle](images/InfoCommandSingleModuleDemo.PNG)
