@@ -245,6 +245,7 @@ Below are a few arguments commonly found in SOChedule commands, and their corres
                 <li><code>STARTDATE</code> (For Event)</li>
                 <li><code>ENDDATE</code> (For Event)</li>
             </ul>
+        </td>
         <td>
             <ul>
                 <li>Follows the format of YYYY-MM-DD</li>
@@ -279,6 +280,7 @@ Below are a few arguments commonly found in SOChedule commands, and their corres
 </table>
 
 [Return to Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
