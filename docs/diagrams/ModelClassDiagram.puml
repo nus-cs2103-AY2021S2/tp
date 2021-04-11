@@ -14,6 +14,8 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class AppointmentSchedule
+Interface ReadOnlyAppointmentSchedule <<Interface>>
 
 Package Person {
 Class Person
@@ -47,14 +49,17 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+AppointmentSchedule .up.|> ReadOnlyAppointmentSchedule
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" AddressBook
+ModelManager o--> "1" AppointmentSchedule
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AppointmentSchedule *--> "1" NonConflictingAppointmentList
 UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone
