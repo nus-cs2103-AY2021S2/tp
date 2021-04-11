@@ -15,19 +15,12 @@ Given below are my contributions to the project.
   * Highlights: Due to the use of `mailto` links in the implemtnation of this feature, it would rely on the user's operating system (OS) default mail client to handle the email composition and sending requests, which might need to be installed if not present.
   * Credits: [TorstenH. and alexey_s from CodeProject for the Java URL invocation code](https://www.codeproject.com/questions/398241/how-to-open-url-in-java). Note that the Java method used in Dictionote's source code was not the one specified in the aforementioned posts, but a similar one from the same Java API. 
   
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-  
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to sort the contacts list by most frequently-contacted.
+  * What it does: sorts the contacts list, in descending order, based on the number of times the user had attempted to send an email to each contact.
+  * Justification: This feature provides the user with an easy way to identify their most-contacted contacts, as well as positioning them on top of the contacts list for quicker access.
+  * Highlights: In order to implement this feature, a custom helper attribute called `FrequencyCounter` was added for each contact, which starts from 0 and increments by 1 every time an `emailcontact` command targeting them executes. This allows for contacts found in previous versions of Dictionote to be easily imported to the new version, since this feature does not modify their exisiting attributes.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=w13&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=riyadh-h&tabRepo=AY2021S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
