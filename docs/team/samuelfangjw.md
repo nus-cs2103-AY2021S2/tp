@@ -50,7 +50,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `undo/redo` and `add project`.
     * Added section on command parameters.
   * Developer Guide:
-    * Updated section on design to fit CoLAB's new features. 
+    * Updated section on design to fit CoLAB's new features.
     * Added implementation details of the `view project` feature.
 
 * **Community**:

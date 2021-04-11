@@ -420,7 +420,7 @@ Our target users are student currently enrolled in a university who,
 
 * Minimalistic and Designed for Students
     * CoLAB is designed to be simple and clutter free. We only add features students are likely to use and use terms that are appropriate for students. This improves the user experience for students.
-    
+
 * Faster compared to other applications
     * Users who are comfortable with using a CLI can potentially do their project management tasks much faster than traditional applications as they can do everything from the keyboard.
 
@@ -1323,22 +1323,22 @@ Each of us have put in a significant amount of effort to get CoLAB to the curren
 
 1. **Adding projects model**
 
-    In order to support projects, our team had to add a projects model. While some sections of the code could be adapted from AB3's Person model, the majority had to be redesigned. 
-    
+    In order to support projects, our team had to add a projects model. While some sections of the code could be adapted from AB3's Person model, the majority had to be redesigned.
+
     Firstly, we had to create a new model for `Event`, `Deadline`, `Todo` and `Groupmate`. Each of these models exposes their functionality via an interface.
-    
+
     Secondly, we had to create the projects model itself. This required the creation of the `EventList`, `DeadlineList`, `TodoList` and `GroupmateList` classes. These classes had their own challenges, as we had to maintain each of these lists in sorted order.
-    
+
     Lastly, we had to integrate all these models with the existing code to save persons to a data file in AB3. This required the creation of many classes and major refactoring of existing classes to support multiple models.
 
-2. **Redesigned GUI** 
+2. **Redesigned GUI**
 
     Compared to AB3, CoLAB has more than double the number of UI components. Each of these components had to be painstakingly designed and styled.
-    
+
     In addition, in line with our focus on user experience, we had to design a new `UiCommand` class to allow each command to display their own combination of UI components.
-    
+
     We also had to implement a combination of listeners to ensure CoLAB's UI is also navigable using a mouse. This involved a complex combination of event listeners to ensure that the behaviour of each button is consistent with the corresponding command, and the correct buttons or list cells are highlighted in the side panel.
-    
+
     Each of the Ui components are also responsive and work on a large range of screen sizes. To handle edge cases, we had to find a way to allow horizontal scrolling of each component individually without affecting the ability to scroll the entire window vertically.
 
 3. **Automated GUI Testing**
@@ -1360,5 +1360,4 @@ Each of us have put in a significant amount of effort to get CoLAB to the curren
 
 6. **Command History**
 
-    Keeping in mind that CoLAB is a CLI based application, we implemented the Command History feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition, our solution had to take into account the current command the user was typing in order to better mimic a real command line. 
-   
+    Keeping in mind that CoLAB is a CLI based application, we implemented the Command History feature to provide an authentic CLI experience. This required designing a way to store previously executed commands. In addition, our solution had to take into account the current command the user was typing in order to better mimic a real command line.
