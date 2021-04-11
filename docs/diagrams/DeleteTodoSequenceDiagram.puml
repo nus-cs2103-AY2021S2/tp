@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+
+participant ":DeleteTodoCommand" as DeleteTodoCommand LOGIC_COLOR
+
+participant ":ModelManager" as ModelManager MODEL_COLOR
+
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+participant ":StorageManager" as StorageManager STORAGE_COLOR
+
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> DeleteTodoCommand : execute(model)
+activate DeleteTodoCommand
+
+DeleteTodoCommand -> ModelManager : getFilteredProjects()
+activate ModelManager
+ModelManager --> DeleteTodoCommand
+deactivate ModelManager
+
+DeleteTodoCommand -> ModelManager : deleteTodo()
+activate ModelManager
+ModelManager --> DeleteTodoCommand
+deactivate ModelManager
+
+create CommandResult
+DeleteTodoCommand -> CommandResult
+activate CommandResult
+CommandResult --> DeleteTodoCommand
+deactivate CommandResult
+
+DeleteTodoCommand --> LogicManager
+deactivate DeleteTodoCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteTodoCommand -[hidden]-> LogicManager
+destroy DeleteTodoCommand
+
+LogicManager -> StorageManager : saveColabFolder()
+activate StorageManager
+StorageManager --> LogicManager
+deactivate StorageManager
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

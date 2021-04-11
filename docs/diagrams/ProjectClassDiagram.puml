@@ -20,18 +20,18 @@ Package Role {
 Class Role
 }
 
-Package Events {
-Interface Repeatable <<Interface>>
+Package Event {
+Class "{abstract}\nRepeatable" as Repeatable
 Class Event
 }
 
 Package Deadline {
-Interface CompletableDeadline <<Interface>>
+Class "{abstract}\nCompletableDeadline" as CompletableDeadline
 Class Deadline
 }
 
 Package Todo {
-Interface CompletableTodo <<Interface>>
+Class "{abstract}\nCompletableTodo" as CompletableTodo
 Class Todo
 }
 

@@ -137,44 +137,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Model for Tasks (Todos, Deadlines & Events)
-
-The classes and implementations used to model various Tasks (e.g. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes. This design is similar to the Contact model from AB3.
-
-The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. Each `Completable` and `Repeatable` abstract class specifies specific behaviors.
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-Step 1. The user executes the command `addD`, which adds a Deadline to a project specified in the command.
-
-Step 2. The `Deadline` object is created during  the parsing of a user's command. The `Deadline` object requires a description & LocalDate.
-
-Step 3. The `Deadline` object is then passed as a parameter in a created `AddDeadlineCommand` that would be executed.
-
-Step 4. During it's execution, the `Deadline` object would be added to a `DeadlineList` that is stored in a `Project`.
-
-#### Design Considerations
-
-##### Aspect: How to store and pass around UI related instructions
-
-* **Alternative 1 (current choice):** Implement  `Todo`, `Deadline` or `Event` each with independent abstract classes (`CompletableTodo`, `CompletableDeadline` and `Repeatable` ).
-    * Pros:
-        * Design allows the behaviour of `CompletableTodo`, `CompletableDeadline` and `Repeatable` to be extended without (or with minimal) changes to `Todo`, `Deadline` or `Event`.
-        * Each `CompletableTodo`, `CompletableDeadline` and `Repeatable` encapsulates all information needed for that specific Task. For example, `Event` which implements `Repeatable` has a specific implementation that allows it to repeat in a specified interval. (Note: The intervals are defined in an `Interval` enumeration.)
-        * Design allows `TodoList`, `DeadlineList` and `EventList` to hold specifically and only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively. This ensures that implementation errors with respect to how `CompletableTodo`, `CompletableDeadline` and `Repeatable` are stored, can be minimised.
-
-    * Cons:
-        * Many classes required.
-
-* **Alternative 2 (implementation used in AB3):** Implement  `Todo`, `Deadline` or `Event` with a common `Task` abstract class.
-    * Pros:
-        * Easy to implement.
-        * Minimal changes needed if a new implementation of `Task` needs to extend behaviors already defined in `Task`.
-        * Fewer classes required.
-    * Cons:
-        * `Task` is not closed to modification. A new implementation of `Task` might require the addition of fields to store additional behaviours and attributes.
-        * Risk of having a `Todo` added to a `DeadlineList` is heightened during implementation. This is in contrast to alternative 2, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
-
 ### View Projects Feature
 
 This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
@@ -303,90 +265,31 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
-### \[Proposed\] Undo/redo feature
+### Delete Todo Feature
 
-#### Proposed Implementation
+This section explains the implementation of the Delete Todo command feature. As the implementation of deleting Deadlines, Events and Groupmates are similar, this section will focus only on the implementation of the deletion of Todos.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `DeleteTodoCommand` results in the specified todo being removed from the application. This command requires two compulsory fields Project Index & Todo Index to specify which project the todo is to be deleted from.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+This is done through the use of the `ParserUtil#parseIndex` method inside the `seedu.address.logic.parser` package, which checks and extracts the index field from the provided command string.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+If the provided project index and todo index are valid, then `DeleteTodoCommandParser` creates a `DeleteTodoCommand` object. The sequence diagram below shows how the `DeleteTodoCommand` object is created.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+For a better understanding, take a look at the Logic Class Diagram in the Logic Component section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserCommandSequenceDiagram.png)
+*Sequence Diagram for the Delete Todo command*
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
 
-Step 2. The user executes `delete 5` command to delete the 5th contact in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Depicted below is another sequence diagram that shows the interaction between `StorageManager`, `ModelManager`, `LogicManager` and `DeleteTodoCommand`, when `DeleteTodoCommand#execute` is called.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![Delete Todo Sequence Diagram](images/DeleteTodoCommandSequenceDiagram.png)
+*Sequence Diagram for `DeleteTodoCommand#execute()`*
 
-Step 3. The user executes `add n/David …​` to add a new contact. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+As shown, the original todo in CoLAB's Model Component has been deleted. Moreover, the updated list of todos has been saved to the Storage Component of CoLAB. As the operation comes to an end, the `CommandResult` object returned is used for UI purposes, where a message is displayed to the user to inform him/her about the status of their input command and the deleted todo.
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the contact was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+With this, the Delete Todo command finishes executing and CoLAB's UI displays the status messages for the user to see.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -428,21 +331,41 @@ Our target users are students currently enrolled in a university who,
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new contact               | keep track of details from peers I have crossed paths with             |
-| `* * *`  | user                                       | edit a contact's details        | update their details when there is change                              |
-| `* * *`  | user                                       | delete a contact                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a contact by name          | locate details of contacts without having to go through the entire list |
-| `* * *`  | user                                       | tag a contact with tags         | easily keep track of who the contact is                                |
-| `* *`    | University Student                         | find contacts by modules taken | easily find contacts who take the same module as me                    |
-| `* *`    | Student Teaching Assistant                 | find contacts by tutorial group| easily find contacts of students in my class                           |
-| `* *`    | user                                       | purge all data in the app      | start my address book from fresh                                       |
-| `*`      | long time user                             | archive data files             | refer to old address books when needed                                 |
-
-
-*{More to be added}*
+| Priority | As a …​                                     | I want to …​                        | So that I can…​                                                               |
+| -------- | ------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------------------- |
+| `* * *`  | University Student                         | add a new contact                  | keep track of details from peers I have crossed paths with                   |                      
+| `* * *`  | University Student                         | edit a contact's details           | update the contact's details when there is change                            |
+| `* * *`  | University Student                         | delete a contact                   | remove contacts that I no longer need                                        |
+| `* * *`  | University Student                         | find a contact by name             | locate details of contacts without having to go through an entire list       |
+| `* * *`  | University Student                         | tag a contact with tags            | easily keep track of who the contact is                                      |
+| `* * *`  | University Student                         | view all my contacts               | see the overall contents of my contact list                                  |
+| `* * *`  | University Student                         | add a new project                  | keep track of my projects                                                    |
+| `* * *`  | University Student                         | edit a project's details           | update the project's details when there is change                            |
+| `* * *`  | University Student                         | delete a project                   | remove projects that I no longer need                                        |
+| `* * *`  | University Student                         | view a project                     | see details of that project                                                  |
+| `* * *`  | University Student                         | view the overview of a project     | see my deadlines, events and groupmates of that project                      |
+| `* * *`  | University Student                         | view todos of a project            | see my todos of that project                                                 |
+| `* * *`  | University Student                         | add a new todo to a project        | keep track of my project's todos                                             |
+| `* * *`  | University Student                         | delete a todo from a project       | remove todos that I no longer need                                           |
+| `* * *`  | University Student                         | edit a todo's details              | update the todo's details when there is change                               |
+| `* * *`  | University Student                         | mark a todo as done                | know when a todo is done                                                     |
+| `* * *`  | University Student                         | add a new deadline to a project    | keep track of my project's deadline                                          |
+| `* * *`  | University Student                         | delete a deadline from a project   | remove deadlines that I no longer need                                       |
+| `* * *`  | University Student                         | edit a deadline's details          | update the deadline's details when there is change                           |
+| `* * *`  | University Student                         | mark a deadline as done            | know when a deadline is done                                                 |
+| `* * *`  | University Student                         | keep track of a deadline's date    | know when the deadline is due                                                |
+| `* * *`  | University Student                         | add an new event to a project      | keep track of my project's events                                            |
+| `* * *`  | University Student                         | delete an event from a project     | remove events that I no longer need                                          |
+| `* * *`  | University Student                         | edit an event's details            | update the event's details when there is change                              |
+| `* *`    | University Student                         | indicate an event as weekly        | have events that repeat weekly                                               |
+| `* * *`  | University Student                         | keep track of an event's date      | know when the event is                                                       |
+| `* * *`  | University Student                         | add a new groupmate to a project   | keep track of my project's groupmates                                        |
+| `* * *`  | University Student                         | delete a groupmate from a project  | remove groupmates that I no longer need                                      |
+| `* * *`  | University Student                         | edit a groupmate's details         | update the groupmate's details when there is change                          |
+| `* * *`  | University Student                         | add roles to a groupmate           | easily keep track of the groupmate's roles                                   |
+| `* *`    | University Student                         | undo an action made in the app     | revert an unintended action                                                  |
+| `* *`    | University Student                         | redo an action made in the app     | redo an action that was previously undone                                    |
+| `* *`    | University Student                         | clear all data in the app          | start my application from fresh                                              |
 
 ### Use cases
 
