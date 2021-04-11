@@ -17,15 +17,16 @@ Given below are my contributions to the project:
     * What it does: Each `Property` models a property listing, storing several attributes including the address, postal code, deadline to sell and client information of the property. Each `Appointment` models a scheduled meeting, storing several attributes including meeting date and time.
     * Justification: The core functionality of our application is heavily reliant on both of these models, as our application is about organizing both property and appointment data.
     * Highlights: Each `Property` may contain several optional attributes, such as remarks, tags and client's information. Each attribute also has nicely formatted output to be shown to the user in the GUI.
-  
-<br>
+
 
 * **Enhancement**: Added the functionality to add properties and appointments through the two different `add` commands.
   * What it does: Allows the user to add a property or appointment to the application.
   * Justification: These basic core commands are required for users to add new information to the application.  
   * Highlights: Highly optimized and provides increased convenience for fast typists by allowing for a great range of attributes (both mandatory and optional) to be entered in one shot.
 
+
 <div style="page-break-after: always;"></div>
+
 
 * **Enhancement**: Implemented parsing support for all the attributes of `Property` and `Appointment`.
     * What it does: Performs strict input validation on user input arguments for each of the attributes of both `Property` and `Appointment`. Ensure that user input for each field is correctly validated. Upon invalid inputs, descriptive error messages are shown to user.
