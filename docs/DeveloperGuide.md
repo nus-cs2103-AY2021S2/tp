@@ -220,10 +220,10 @@ To ensure duplicates are handled, our team went through several alternatives and
 
 We chose Alternative 1 because it is more flexible and suitable for users' need. 
 There can be multiple tasks with same name but other different fields, like deadlines. 
-For example, a user may need to create two tasks with the same name '2103 quiz',
+For example, a user may need to create two tasks with the same name `2103 quiz`,
 but one is due on this Monday and the other is due the next Monday. Both of these 2 tasks should be allowed in our task list.
-Another example can be that a user may want to create two tasks with the same name 'quiz', deadline '2022-01-01' 
-and priority '3', but one is with tag 'CS2103' and the other one is with tag 'CS2102'. 
+Another example can be that a user may want to create two tasks with the same name `quiz`, deadline `2022-01-01` 
+and priority `3`, but one is with tag `CS2103` and the other one is with tag `CS2102`. 
 Both of these 2 tasks should be allowed in our task list.
 
 #### 3.4.2 Design considerations for Event-related Models
