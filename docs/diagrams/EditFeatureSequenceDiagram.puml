@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":RemindMeParser" as RemindMeParser LOGIC_COLOR
-participant EditAssignmentCommandParser as EditAssignmentCommandParser LOGIC_COLOR
+participant ":EditAssignmentCommandParser" as EditAssignmentCommandParser LOGIC_COLOR
 participant "command:EditAssignmentCommand" as EditAssignmentCommand LOGIC_COLOR
 participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
 end box
