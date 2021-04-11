@@ -30,11 +30,15 @@ Given below are my contributions to the project.
     * Added a summary section for prefixes: [\#306](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/306).
     * Updated initial user guide intro: [\#10](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/10).
   * Developer Guide:
-    * Added implementation details of the `alias` feature: [\#116](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/65).
+    * Added implementation details of the `alias` feature: [\#116](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/116).
+    * Added manual testing for the `alias` feature: [\#383](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/383).
     * Wrote user case UC-022 and UC-023.
+    * Updated Storage component section: [\#407](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/407)
 
 * **Team Task**:
   * Contributed to initial draft of value proposition, target user and NFRs.
+  * Set up the GitHub team org.  
+  * Created UI mockup.  
   * Set up tasks for the team in various sprints.
   * Assisted in bug triaging and allocation after PE-D.
 
