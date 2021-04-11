@@ -244,7 +244,7 @@ Lists all the tutor with note. Will ignore all input after `list_note`.
 
 Format:`list_note`
 
-##### Export the tutor details: `export`
+#### Export the tutor details: `export`
 Export the tutor details of that index together with the notes and subject list into a text file in the directory you saved the 
 TutorTracker jar under the export folder, with the tutor's name as file name. 
 

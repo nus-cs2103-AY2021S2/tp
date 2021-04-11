@@ -200,7 +200,7 @@ Steps for the execution of the `AddNoteCommand` (assuming that no errors are enc
 
 #### Design Consideration
 
-**Displaying Notes in the GUI**
+##### Displaying Notes in the GUI
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
@@ -260,7 +260,7 @@ then create a `CommandResult` object and return the result.
 
 #### Design Consideration
 
-**Displaying Schedule in the GUI**
+##### Displaying Grades in the GUI
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
