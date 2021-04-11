@@ -36,10 +36,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `find`, `filter` and `filter`
-    * Reformat the order in which features are listed  and command summary 
+    * Added documentation for the features `find` and `filter` [\#115](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/115)) [\#151](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/151))
+    * Reformat the order in which features are listed  and command summary  [\#177](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/115)) [\#151](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/177))
   * Developer Guide:
-    * Added implementation details of the `find` and `filter` feature.
+    * Added implementation details of the `find` and `filter` feature. [\#124](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/124))
+    * Updated documentation for storage model Pull requests [\#90](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/295))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#143](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/143), [\#148](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/148), [\#159](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/159), [\#239](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/239)
