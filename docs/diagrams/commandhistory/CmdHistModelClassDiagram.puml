@@ -28,6 +28,7 @@ ReadOnlyCommandHistory <|.. CommandHistory
 CommandBox --> CommandHistorySelector : delegates\nselection logic to >
 CommandHistory *-> "*" CommandHistoryEntry : composed of >
 ModelManager *-> "1" CommandHistory
+ModelManager .> CommandHistoryEntry
 ViewHistoryCommand ..> ReadOnlyCommandHistory : formats >
 ViewHistoryCommandParser ..> ViewHistoryCommand : constructs >
 CommandHistoryStorage ..> ReadOnlyCommandHistory : serializes >
