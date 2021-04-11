@@ -80,15 +80,15 @@ of each component.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2021S2-CS2103T-W14-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 
 </div>
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2021S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/taskify/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/taskify/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -180,7 +180,7 @@ The `Model`,
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Taskify`, which `Task` references. This allows `Taskify` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -241,9 +241,35 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 * **Alternative Choice:** Switch tabs based on tab index
     * Pros: Lesser things to remember as the format command is `switch index`
-    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.    
 
-### Tag Search Feature
+### 4.2 View Command
+The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
+
+#### Implementation
+This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
+in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
+
+The following sequence diagram shows how the `view` command works. We will assume the user inputs
+`view 2021-04-12`, that is, the user intends to view all tasks that have the date 12th April 2021.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+1. The user inputs `view 2021-04-12`.
+2. TaskifyParser identifies this as a `view` command and creates a `ViewCommandParser` and call its parse method
+with the arguments specified by the user (in this case, `2021-04-12`).
+3. `ViewCommandParser` creates a new `TaskHasSameDatePredicate` with the arguments `2021-04-12`.
+4. `ViewCommandParser` creates a new `ViewCommand` with the newly created `TaskHasSameDatePredicate` object.
+5. When `ViewCommand`'s execute method is called, it prompts `Model` to call `updateFilteredTaskList()` with the 
+`TaskHasSameDatePredicate` predicate.
+6. `Model` updates the filtered list based on the predicate.
+7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
+to the user.
+   
+#### Design Consideration
+* **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
+* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
+
+### 4.3 Tag Search Command
 
 #### Implementation
 
@@ -251,7 +277,7 @@ The implementation of the Tag Search feature is facilitated by `TagContainsKeywo
 `Predicate<Task>` and has the `test` method's implementation overridden to test if a `Task` has tags that match any
 of the tags entered by the user.
 
-The `TagContainsKeywordsPredicate#test(Task)` iterates through the `keywords` of type `List<String>` and 
+The `TagContainsKeywordsPredicate#test(Task)` iterates through the `keywords` of type `List<String>` and
 checks if any of the `keywords` match the tags in the `Task`. If one or more of the tags match the function returns true.
 
 
@@ -259,11 +285,11 @@ checks if any of the `keywords` match the tags in the `Task`. If one or more of 
 * `Task#getTags()` - Return the tags of a `Task` .
 
 `TagContainsKeywordsPredicate` will be passed to `Model#updateXYZFilteredTaskList(Predicate)`
-(`updateFilteredTaskList`, `updateUncompleredFilteredTaskList`, etc.) depending on which tab is currently active. The 
+(`updateFilteredTaskList`, `updateUncompleredFilteredTaskList`, etc.) depending on which tab is currently active. The
 filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
 
 
-The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search 
+The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search
 tutorial cs2100` as input.
 
 ![TagSearchSequenceDiagram](images/TagSearchSequenceDiagram.png)
@@ -280,7 +306,6 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative Choice:** Search for tasks using a collection of tags grouped together with the same label.
     * Pros: Users can type less and save time if they have multiple tags to search for.
     * Cons: Less intuitive as user will have to keep track of which tags are under which group.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -501,7 +526,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. Taskify warns that no modifying can take place if there are no updated fields filled in.
     
         Use case ends.
+    
 ---
+
 **Use case 9: Switch to Home tab**
 
 **MSS**
@@ -509,6 +536,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to switch to Home Tab.
 2. Taskify switches to Home Tab.   
    Use case ends.
+
+    Use Case ends
 
 **Extensions**
 * 1a. If the user is currently in the Home tab 
@@ -527,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to got to Expired Tab.
+1. User requests to switch to Expired Tab.
 2. Taskify switches to Expired Tab.
 
    Use Case ends.
@@ -538,7 +567,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Taskify informs the User that it is currently in the Expired Tab.
 
       Use case ends.
-
+    
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. An error message is shown.
 
@@ -550,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to got to Completed Tab.
+1. User requests to switch to Completed Tab.
 2. Taskify switches to Completed Tab.
 
    Use Case ends.
@@ -574,7 +603,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to got to Uncompleted Tab.
+1. User requests to switch to Uncompleted Tab.
 2. Taskify switches to Uncompleted Tab.
 
    Use Case ends.
@@ -590,9 +619,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. An error message is shown.
 
       Use case ends.
+    
 ---
-
-
 
 **Use case 13: Viewing Tasks by date**
 
@@ -600,13 +628,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to view all Tasks that are due on specified date.
 2. Taskify shows the User Tasks with the same date.   
+
    Use case ends.
 
 **Extensions**
 * 1a. There are no tasks stored
     * 1a1. Taskify informs the User there are no tasks tracked   
       Use case ends.
-
+      
 ---
 
 ### 6.4 Non-Functional Requirements

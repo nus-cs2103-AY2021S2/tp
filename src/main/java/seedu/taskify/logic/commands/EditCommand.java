@@ -8,6 +8,7 @@ import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -48,7 +49,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in Taskify.";
     public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to edit!";
-    public static final String MESSAGE_CANNOT_EDIT_EXPIRED_STATUS = "You can not edit expired status of a task";
+    public static final String MESSAGE_CANNOT_EDIT_EXPIRED_STATUS =
+            "You can not edit expired status of a task to completed/uncompleted";
+    public static final String MESSAGE_EDIT_DATE_TO_PAST_DATE = "You cannot set the date and time in the past";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -63,6 +66,16 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+    }
+
+    /**
+     * Check if a edited task's date is valid
+     *
+     */
+
+    public boolean isValidDateForEditing(Date date) {
+        LocalDateTime timeNow = LocalDateTime.now();
+        return date.getLocalDateTime().isAfter(timeNow);
     }
 
     @Override
@@ -85,8 +98,13 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        if (taskToEdit.getStatus().equals(new Status(StatusType.EXPIRED))) {
+        if (taskToEdit.getStatusType().equals(StatusType.EXPIRED)
+                && !editedTask.getStatusType().equals(StatusType.EXPIRED)) {
             throw new CommandException(MESSAGE_CANNOT_EDIT_EXPIRED_STATUS);
+        }
+
+        if (!isValidDateForEditing(editedTask.getDate())) {
+            throw new CommandException(MESSAGE_EDIT_DATE_TO_PAST_DATE);
         }
 
         model.setTask(taskToEdit, editedTask);
