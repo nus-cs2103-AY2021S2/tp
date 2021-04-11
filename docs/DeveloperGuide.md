@@ -106,8 +106,6 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-</div>
-
 
 ### Storage component
 
@@ -461,9 +459,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: UC01 - Create a student profile**
+#### UC01 - Create a student profile
 
-MSS:
+**MSS:**
 
 1. User enters the `add_student` command, together with the student details.
 2. TutorBuddy creates the profile in the background.
@@ -471,32 +469,32 @@ MSS:
 
     Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 1a. TutorBuddy detects an error in the entered data.
     * 1a1. TutorBuddy displays an error message.
 
     Use case ends.
 
-**Use case: UC02 - Find a student’s profile**
+#### UC02 - Find a student’s profile
 
-MSS:
+**MSS:**
 
 1. User enters the `find_student` command, along with a keyword from the student’s name.
 2. TutorBuddy displays all students’ profiles matching the keyword if any.
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 1a. TutorBuddy detects empty keyword field
     * 1a1. TutorBuddy displays an error message for no keyword specified.
 
   Use case ends.
 
-**Use case: UC03 - Delete a student profile**
+#### UC03 - Delete a student profile
 
-MSS:
+**MSS:**
 
 1. User enters the `delete_student` command, along with the student’s name.
 2. TutorBuddy verifies that the inputs are valid and student profile exists.
@@ -504,16 +502,16 @@ MSS:
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
-**Use case: UC04 - Edit student details**
+#### UC04 - Edit student details
 
-MSS:
+**MSS:**
 
 1. User enters the `edit_student` command with the appropriate input.
 2. TutorBuddy verifies that the inputs are valid and student profile exists.
@@ -522,16 +520,16 @@ MSS:
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
     
   Use case ends.
 
-**Use case: UC05 - Create a session**
+#### UC05 - Create a session
 
-MSS:
+**MSS:**
 
 1. User enters the `add_session` command, together with the session details.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -552,9 +550,9 @@ MSS:
 
   Use case ends.
 
-**Use case: UC06 - Create a recurring session**
+#### UC06 - Create a recurring session
 
-MSS:
+**MSS:**
 
 1. User enters the `add_rec_session` command, together with the session details.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -575,9 +573,9 @@ MSS:
 
   Use case ends.
 
-**Use case: UC07 - Delete a session or the entire recurring session**
+#### UC07 - Delete a session or the entire recurring session
 
-MSS:
+**MSS:**
 
 1. User enters the `delete_session` command with the appropriate inputs.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -593,9 +591,9 @@ MSS:
 
   Use case ends.
 
-**Use case: UC08 - Delete a single session from a recurring session**
+#### UC08 - Delete a single session from a recurring session
 
-MSS:
+**MSS:**
 
 1. User enters the `delete_rec_session` command with the appropriate inputs.
 2. TutorBuddy verifies that the student exists, and the inputs are valid.
@@ -611,18 +609,18 @@ MSS:
 
   Use case ends.
 
-**Use case: UC09 - List all students and sessions**
+#### UC09 - List all students and sessions
 
-MSS:
+**MSS:**
 
 1. User enters the `list` command.
 2. TutorBuddy shows all the students and sessions information on the `tuition` tab.
 
    Use case ends.
 
-**Use case: UC10 -  Getting the emails from the application**
+#### UC10 -  Getting the emails from the application
 
-MSS:
+**MSS:**
 
 1. User enters the command to get the email from TutorBuddy.
 2. TutorBuddy returns a list of all the email addresses to the user.
@@ -630,9 +628,9 @@ MSS:
 
    Use case ends.
 
-**Use case: UC11 - Calculate fee for a student of a particular month and year**
+#### UC11 - Calculate fee for a student of a particular month and year
 
-MSS:
+**MSS:**
 
 1. User enters the `fee` commands with the appropriate inputs.
 2. TutorBuddy verifies that the inputs are valid and student profile exists.
@@ -640,41 +638,41 @@ MSS:
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
-**Use case: UC12 - View 3 months monthly fee**
+#### UC12 - View 3 months monthly fee
 
-MSS:
+**MSS:**
 
 1. User toggles to the `Home` tab.
 2. TutorBuddy shows the monthly fee that the user would have received for the past 3 months based on current sessions in the application.
 
    Use case ends.
 
-**Use case: UC13 - Reminders for upcoming sessions**
+#### UC13 - Reminders for upcoming sessions
 
-MSS:
+**MSS:**
 
 1. User toggles to the `Home` tab.
 2. TutorBuddy shows a list of upcoming sessions that would happen, within the next 3 days.
 
    Use case ends.
 
-**Use case: UC14 - Calendar View**
+#### UC14 - Calendar View
 
-MSS:
+**MSS:**
 
 1. User toggles to the `Calendar` tab.
 2. TutorBuddy shows a calendar representation of the sessions, showing the schedule of the current week.
 
    Use case ends.
 
-Extensions:
+**Extensions:**
 
 * 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
 
@@ -682,18 +680,18 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC15 - Show help**
+#### UC15 - Show help
 
-MSS:
+**MSS:**
 
 1. User enters the `help` command.
 2. TutorBuddy displays a help window that contains a list of commands available on the application, and a link to our user guide.
 
    Use case ends.
 
-**Use case: UC16 - Sample data for new users**
+#### UC16 - Sample data for new users
 
-MSS:
+**MSS:**
 
 1. A new user opens up the application.
 2. TutorBuddy detects that the user does not have a .json file in the data folder.
@@ -701,25 +699,23 @@ MSS:
 
    Use case ends.
 
-**Use case: UC17 - Clear data**
+#### UC17 - Clear data
 
-MSS:
+**MSS:**
 
 1. User enters the `clear` command.
 2. TutorBuddy deletes all the current data from the application.
 
    Use case ends.
 
-**Use case: UC18 - Exit application**
+#### UC18 - Exit application
 
-MSS:
+**MSS:**
 
 1. User enters the `exit` command.
 2. TutorBuddy closes.
 
    Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 * Technical requirements:
