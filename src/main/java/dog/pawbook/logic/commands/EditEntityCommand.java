@@ -74,9 +74,7 @@ public abstract class EditEntityCommand extends Command {
         Entity targetEntity = model.getEntity(id);
         Entity editedEntity = createEditedEntity(targetEntity, editEntityDescriptor);
 
-        if (editedEntity.getClass() != targetEntity.getClass()) {
-            throw new CommandException("Entity to edit does not match given entity type!");
-        }
+        assert editedEntity.getClass() == targetEntity.getClass() : "Entity to edit does not match given entity type!";
 
         if (!targetEntity.isSameAs(editedEntity) && model.hasEntity(editedEntity)) {
             throw new CommandException(getDuplicateEntityMessage());
