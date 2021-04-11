@@ -181,8 +181,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredContentList().size());
 
         Content content = model.getFilteredContentList().get(targetIndex.getZeroBased());
-        Predicate<Note> showSelectedContentsPredicate = x -> x.equals(content);
-        model.updateFilteredNoteList(showSelectedContentsPredicate);
+        Predicate<Content> showSelectedContentsPredicate = x -> x.equals(content);
+        model.updateFilteredContentList(showSelectedContentsPredicate);
 
         assertEquals(1, model.getFilteredContentList().size());
     }
