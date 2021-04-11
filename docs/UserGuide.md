@@ -127,7 +127,8 @@ Edits an existing person in the contacts list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MODE_OF_CONTACT] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+  The index **must be a valid positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -140,15 +141,16 @@ Examples:
 
 ### Adding a new remark or replacing an existing remark : `remark`
 
-Adds a remark to the specified person in the address book.
-If the person already has a remark, the existing remark will be replaced. To remove a remark from a contact, simply leave the remark field empty.
+Adds an optional remark to a person in the address book.
+If the person already has a remark, the existing remark will be replaced.
 
 Format: `remark INDEX r/REMARK`
 
-* Adds or replaces the remark of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index must be a valid positive integer 1, 2, 3,...
-* If a remark is removed from a contact, the contact will be displayed as having 'No remark' by default.
+* Adds or replaces the remark of the person at the specified `INDEX`. The index
+  refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, ...
+* By default, all newly added contacts will be displayed as having 'No remark'.
+* You can remove a person's remark by typing `r/` without specifying any remark after it. This will cause the person
+  will be displayed as having 'No remark'.
 
 Example:
 
@@ -163,23 +165,30 @@ Format: `blist INDEX`
 
 * Changes the blacklist status of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, …​, 2147483647
+* The index **must be a valid positive integer** 1, 2, 3, ...
 
-### Blacklisting or unblacklisting multiple contacts : `massblist`
+### Blacklisting or un-blacklisting multiple contacts : `massblist`
 
-Blacklists or unblacklists all contacts within the specified index range (inclusive).
+Blacklist or un-blacklist all contacts within the specified index range (inclusive).
 
 Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
 
-* The index refers to the index number shown in the displayed person list.
+* Changes the blacklist status of all contacts whose `INDEX` lies between the specified index range
+  to either 'blacklist' or 'unblacklist' depending on the input parameter.
 * The keyword (`blacklist` and `unblacklist`) must be in lower case. 
-* Both the start index and end index must be valid positive integers 1, 2, 3, ...
-* Start index must be strictly smaller than the end index. 
-* End index cannot be larger than the number of contacts in the list.
+* The index refers to the index number shown in the displayed person list. Both the 
+  start index and end index must be valid positive integers 1, 2, 3, ...
+* Start index must be strictly smaller than the end index and the end index cannot be larger than the number of contacts
+  currently displayed in the list.
+* The index range must be specified before the keyword. <br>
+  e.g. `massblist b/blacklist 4-5` is treated as an invalid input.
 
-Example:
-* `massblist 15-42 b/blacklist`
-* `massblist 25-39 b/unblacklist`
+Examples:
+* Suppose you start with the following contact list:
+  ![massBlacklist1](images/massBlacklist1.png)
+  Executing `massblist 1-3 b/blacklist` will blacklist the first three contacts. Since the second contact is already
+  blacklisted, it remains the same. <br>
+  ![massBlacklist2](images/massBlacklist2.png)
 
 ### Deleting a person : `delete`
 
@@ -200,10 +209,11 @@ Examples:
 Deletes all contacts within the specified index range (inclusive).
 
 Format: `massdelete START-END`
-* The index refers to the index number shown in the displayed person list.
-* Both the start index and end index must be a valid positive integer 1, 2, 3, ...
-* Start index must be strictly smaller than the end index.
-* End index cannot be larger than the number of contacts in the list.
+* Deletes all contacts whose `INDEX` lies between the specified index range.
+* The index refers to the number shown in the displayed person list. Both the start index and end index must be valid
+  positive integers 1, 2, 3, ...
+* Start index must be strictly smaller than the end index and the end index cannot be larger than the
+  number of contacts currently displayed in the list.
 
 Example:
 `massdelete 7-34`
@@ -236,11 +246,11 @@ Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 
 ### Sorting entries by name : `sort`
 
-Sorts the contacts in the entire address book by name in alphabetical order. The list can be
-sorted in either ascending or descending order.
+Sorts the contacts in the entire address book by name in alphabetical order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
-
+* `ascending` sorts the list in ascending alphabetical order and `descending` sorts the list in
+  descending alphabetical order.
 * The keyword (`ascending` or `descending`) must be in lower case.
 * Both the currently displayed list and the entire contact list will be sorted.
 * Contacts with the same name will be sorted by email in lexicographical order.
@@ -342,7 +352,7 @@ Action | Format, Examples
 **Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates a/Singapore`
 **Help** | `help`
 **List** | `list`
-**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
+**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on leave of absence`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Light** | `light`
 **Dark** | `dark`

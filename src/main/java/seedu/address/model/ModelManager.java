@@ -127,7 +127,7 @@ public class ModelManager implements Model {
     public void massDelete(int startIndex, int endIndex) {
         assert startIndex < endIndex : "Start index must be strictly smaller than the end index";
         for (int i = startIndex; i <= endIndex; i++) {
-            Person personToDelete = addressBook.getPersonList().get(startIndex - 1);
+            Person personToDelete = filteredPersons.get(startIndex - 1);
             deletePerson(personToDelete);
         }
     }
