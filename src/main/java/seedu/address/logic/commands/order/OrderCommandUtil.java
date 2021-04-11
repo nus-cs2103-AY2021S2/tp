@@ -44,13 +44,13 @@ public class OrderCommandUtil {
      * @return List of dishes corresponding to the input IDs.
      * @throws CommandException If any input IDs are invalid.
      */
-    public static List<Pair<Dish, Integer>> lookupDishIds(List<Pair<Integer, Integer>> dishNumberQuantityList,
+    public static List<Pair<Dish, Integer>> lookupDishIds(List<Pair<Index, Integer>> dishNumberQuantityList,
                                                           Model model) throws CommandException {
         List<Pair<Dish, Integer>> dishQuantityList = new ArrayList<>();
 
-        for (Pair<Integer, Integer> dishIdPair : dishNumberQuantityList) {
+        for (Pair<Index, Integer> dishIdPair : dishNumberQuantityList) {
 
-            Integer dishId = Index.fromOneBased(dishIdPair.getKey()).getZeroBased();
+            Integer dishId = dishIdPair.getKey().getZeroBased();
             Integer dishQuantity = dishIdPair.getValue();
 
             if (dishId >= model.getFilteredDishList().size()) {

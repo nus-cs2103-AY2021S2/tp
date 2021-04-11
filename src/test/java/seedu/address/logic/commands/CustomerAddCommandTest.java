@@ -21,16 +21,13 @@ import seedu.address.logic.commands.customer.CustomerAddCommand;
 import seedu.address.logic.commands.customer.CustomerCommandUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.dish.Dish;
-import seedu.address.model.dish.ReadOnlyDishBook;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.ReadOnlyIngredientBook;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.testutil.PersonBuilder;
 
 public class CustomerAddCommandTest {
@@ -125,12 +122,12 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyPersonBook newData) {
+        public void setPersonBook(ReadOnlyBook<Person> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPersonBook getAddressBook() {
+        public ReadOnlyBook<Person> getPersonBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -165,12 +162,12 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void setDishBook(ReadOnlyDishBook dishBook) {
+        public void setDishBook(ReadOnlyBook<Dish> dishBook) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyDishBook getDishBook() {
+        public ReadOnlyBook<Dish> getDishBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -230,12 +227,12 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void setIngredientBook(ReadOnlyIngredientBook ingredientBook) {
+        public void setIngredientBook(ReadOnlyBook<Ingredient> ingredientBook) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyIngredientBook getIngredientBook() {
+        public ReadOnlyBook<Ingredient> getIngredientBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -295,12 +292,12 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void setOrderBook(ReadOnlyOrderBook orderBook) {
+        public void setOrderBook(ReadOnlyBook<Order> orderBook) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyOrderBook getOrderBook() {
+        public ReadOnlyBook<Order> getOrderBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -441,7 +438,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public ReadOnlyPersonBook getAddressBook() {
+        public ReadOnlyBook<Person> getPersonBook() {
             return new PersonBook();
         }
     }

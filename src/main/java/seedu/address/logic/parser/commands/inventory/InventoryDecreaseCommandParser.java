@@ -26,7 +26,7 @@ public class InventoryDecreaseCommandParser implements Parser<InventoryDecreaseC
 
         try {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            int quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
+            int quantity = ParserUtil.parseNonNegativeInt(argMultimap.getValue(PREFIX_QUANTITY).get());
             return new InventoryDecreaseCommand(index, quantity);
         } catch (ParseException pe) {
             throw new ParseException(

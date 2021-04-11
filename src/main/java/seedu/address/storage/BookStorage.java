@@ -5,10 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Book;
-import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.model.Item;
+import seedu.address.model.ReadOnlyBook;
 
-public interface BookStorage<T extends Book> {
+public interface BookStorage<T extends Item> {
 
     /**
      * Returns the file path of the data file.
@@ -21,22 +21,22 @@ public interface BookStorage<T extends Book> {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<T> readBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyBook<T>> readBook() throws DataConversionException, IOException;
 
     /**
      * @see #getAddressBookFilePath()
      */
-    Optional<T> readBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyBook<T>> readBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyPersonBook} to the storage.
      * @param book cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveBook(T book) throws IOException;
+    void saveBook(ReadOnlyBook<T> book) throws IOException;
 
     /**
      * @see #saveBook(T)
      */
-    void saveBook(T book, Path filePath) throws IOException;
+    void saveBook(ReadOnlyBook<T> book, Path filePath) throws IOException;
 }

@@ -1,5 +1,4 @@
 package seedu.address.logic.parser.commands.menu;
-import static java.lang.Double.parseDouble;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.menu.MenuAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -36,18 +36,18 @@ public class MenuAddCommandParser implements Parser<MenuAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MenuAddCommand.MESSAGE_USAGE));
         }
 
-        String name = argMultimap.getValue(PREFIX_NAME).get().trim();
-        double price = parseDouble(argMultimap.getValue(PREFIX_PRICE).get().trim());
+        String name = ParserUtil.parseDishName(argMultimap.getValue(PREFIX_NAME).get());
+        double price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get());
+
         List<String> ingredientNumbers = argMultimap.getAllValues(PREFIX_INGREDIENT);
         List<String> ingredientQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
+        ParserUtil.validateListLengths(ingredientNumbers, ingredientQuantities);
 
-        List<Pair<Integer, Integer>> ingredientIdsQuantityList = new ArrayList<>();
-
-        // TODO: abstract out to parser, add size check
+        List<Pair<Index, Integer>> ingredientIdsQuantityList = new ArrayList<>();
         for (int i = 0; i < ingredientNumbers.size(); i++) {
-            Pair<Integer, Integer> dishComponent =
-                    new Pair<>(Integer.parseInt(ingredientNumbers.get(i)),
-                            Integer.parseInt(ingredientQuantities.get(i)));
+            Pair<Index, Integer> dishComponent =
+                    new Pair<>(ParserUtil.parseIndex(ingredientNumbers.get(i)),
+                            ParserUtil.parseNonNegativeInt(ingredientQuantities.get(i)));
             ingredientIdsQuantityList.add(dishComponent);
         }
 

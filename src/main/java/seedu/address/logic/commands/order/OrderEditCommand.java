@@ -66,7 +66,7 @@ public class OrderEditCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
-                    String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
+                    String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_ORDER));
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
@@ -90,7 +90,6 @@ public class OrderEditCommand extends Command {
                                          Model model) throws CommandException {
         assert orderToEdit != null;
 
-        // TODO fix this line
         Optional<Integer> updatedCustomerIdOptional = editOrderDescriptor.getCustomerId();
 
         Person updatedCustomer;
@@ -104,7 +103,7 @@ public class OrderEditCommand extends Command {
 
         LocalDateTime updatedDateTime = editOrderDescriptor.getDateTime().orElse(orderToEdit.getDatetime());
 
-        Optional<List<Pair<Integer, Integer>>> updatedDishIdsQuantityListOptional =
+        Optional<List<Pair<Index, Integer>>> updatedDishIdsQuantityListOptional =
                 editOrderDescriptor.getDishIdsQuantityList();
 
         List<Pair<Dish, Integer>> updatedDishQuantityList;
@@ -147,7 +146,7 @@ public class OrderEditCommand extends Command {
     public static class EditOrderDescriptor {
         private Integer customerId;
         private LocalDateTime dateTime;
-        private List<Pair<Integer, Integer>> dishIdsQuantityList;
+        private List<Pair<Index, Integer>> dishIdsQuantityList;
 
         public EditOrderDescriptor() {}
 
@@ -183,11 +182,11 @@ public class OrderEditCommand extends Command {
             return Optional.ofNullable(dateTime);
         }
 
-        public void setDishIdsQuantityList(List<Pair<Integer, Integer>> ingredientIdsQuantityList) {
+        public void setDishIdsQuantityList(List<Pair<Index, Integer>> ingredientIdsQuantityList) {
             this.dishIdsQuantityList = ingredientIdsQuantityList;
         }
 
-        public Optional<List<Pair<Integer, Integer>>> getDishIdsQuantityList() {
+        public Optional<List<Pair<Index, Integer>>> getDishIdsQuantityList() {
             return Optional.ofNullable(dishIdsQuantityList);
         }
 

@@ -6,9 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.UniqueItemList;
 
-public class OrderBook implements ReadOnlyOrderBook {
+public class OrderBook implements ReadOnlyBook<Order> {
     private final UniqueItemList<Order> orders;
     {
         orders = new UniqueItemList<Order>();
@@ -20,7 +21,7 @@ public class OrderBook implements ReadOnlyOrderBook {
      * Constructor to copy order book
      * @param toBeCopied
      */
-    public OrderBook(ReadOnlyOrderBook toBeCopied) {
+    public OrderBook(ReadOnlyBook<Order> toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -37,10 +38,10 @@ public class OrderBook implements ReadOnlyOrderBook {
      * Reset data to specified data
      * @param newData
      */
-    public void resetData(ReadOnlyOrderBook newData) {
+    public void resetData(ReadOnlyBook<Order> newData) {
         requireNonNull(newData);
 
-        setOrders(newData.getOrderList());
+        setOrders(newData.getItemList());
     }
 
     /**
@@ -111,7 +112,7 @@ public class OrderBook implements ReadOnlyOrderBook {
     }
 
     @Override
-    public ObservableList<Order> getOrderList() {
+    public ObservableList<Order> getItemList() {
         return orders.asUnmodifiableObservableList();
     }
 

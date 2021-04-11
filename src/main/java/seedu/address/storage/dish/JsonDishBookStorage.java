@@ -12,12 +12,12 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.dish.ReadOnlyDishBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBook;
+import seedu.address.model.dish.Dish;
 import seedu.address.storage.BookStorage;
 import seedu.address.storage.person.JsonPersonBookStorage;
 
-public class JsonDishBookStorage implements BookStorage<ReadOnlyDishBook> {
+public class JsonDishBookStorage implements BookStorage<Dish> {
 
     private static final Logger logger = LogsCenter.getLogger(JsonPersonBookStorage.class);
 
@@ -35,19 +35,19 @@ public class JsonDishBookStorage implements BookStorage<ReadOnlyDishBook> {
     }
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyPersonBook}.
+     * Returns AddressBook data as a {@link ReadOnlyBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    public Optional<ReadOnlyDishBook> readBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyBook<Dish>> readBook() throws DataConversionException, IOException {
         return readBook(filePath);
     }
 
     /**
      * @see #getBookFilePath()
      */
-    public Optional<ReadOnlyDishBook> readBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyBook<Dish>> readBook(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableDishBook> jsonDishBook = JsonUtil.readJsonFile(
@@ -65,18 +65,18 @@ public class JsonDishBookStorage implements BookStorage<ReadOnlyDishBook> {
     }
 
     /**
-     * Saves the given {@link ReadOnlyPersonBook} to the storage.
+     * Saves the given {@link ReadOnlyBook} to the storage.
      * @param dishBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    public void saveBook(ReadOnlyDishBook dishBook) throws IOException {
+    public void saveBook(ReadOnlyBook<Dish> dishBook) throws IOException {
         saveBook(dishBook, filePath);
     }
 
     /**
-     * @see #saveBook(ReadOnlyDishBook)
+     * @see #saveBook(ReadOnlyBook<Dish>)
      */
-    public void saveBook(ReadOnlyDishBook book, Path filePath) throws IOException {
+    public void saveBook(ReadOnlyBook<Dish> book, Path filePath) throws IOException {
         requireNonNull(book);
         requireNonNull(filePath);
 

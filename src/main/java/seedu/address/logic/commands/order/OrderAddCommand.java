@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -46,13 +47,13 @@ public class OrderAddCommand extends Command {
 
     private final LocalDateTime dateTime;
     private final Integer customerId;
-    private final List<Pair<Integer, Integer>> dishNumberQuantityList;
+    private final List<Pair<Index, Integer>> dishNumberQuantityList;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
     public OrderAddCommand(LocalDateTime dateTime, Integer customerId,
-                           List<Pair<Integer, Integer>> dishNumberQuantityList) {
+                           List<Pair<Index, Integer>> dishNumberQuantityList) {
         this.dateTime = dateTime;
         this.customerId = customerId;
         this.dishNumberQuantityList = dishNumberQuantityList;

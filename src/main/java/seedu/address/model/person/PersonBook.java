@@ -5,13 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.UniqueItemList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class PersonBook implements ReadOnlyPersonBook {
+public class PersonBook implements ReadOnlyBook<Person> {
 
     private final UniqueItemList<Person> persons;
     {
@@ -23,7 +24,7 @@ public class PersonBook implements ReadOnlyPersonBook {
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public PersonBook(ReadOnlyPersonBook toBeCopied) {
+    public PersonBook(ReadOnlyBook<Person> toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -41,10 +42,10 @@ public class PersonBook implements ReadOnlyPersonBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyPersonBook newData) {
+    public void resetData(ReadOnlyBook<Person> newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPersons(newData.getItemList());
     }
 
     //// person-level operations
@@ -93,7 +94,7 @@ public class PersonBook implements ReadOnlyPersonBook {
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Person> getItemList() {
         return persons.asUnmodifiableObservableList();
     }
 

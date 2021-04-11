@@ -15,18 +15,15 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.DishBook;
-import seedu.address.model.dish.ReadOnlyDishBook;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientBook;
-import seedu.address.model.ingredient.ReadOnlyIngredientBook;
+import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderBook;
-import seedu.address.model.order.ReadOnlyOrderBook;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.BookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -65,13 +62,13 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        BookStorage<ReadOnlyPersonBook> addressBookStorage =
+        BookStorage<Person> addressBookStorage =
                 new JsonPersonBookStorage(userPrefs.getPersonBookFilePath());
-        BookStorage<ReadOnlyDishBook> dishBookStorage =
+        BookStorage<Dish> dishBookStorage =
                 new JsonDishBookStorage(userPrefs.getDishBookFilePath());
-        BookStorage<ReadOnlyIngredientBook> ingredientBookStorage =
+        BookStorage<Ingredient> ingredientBookStorage =
                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
-        BookStorage<ReadOnlyOrderBook> orderBookStorage =
+        BookStorage<Order> orderBookStorage =
                 new JsonOrderBookStorage(userPrefs.getOrderBookFilePath());
         storage = new StorageManager(addressBookStorage, dishBookStorage,
                 ingredientBookStorage, orderBookStorage, userPrefsStorage);
@@ -91,67 +88,39 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        ReadOnlyPersonBook initialPersonBook;
-        ReadOnlyDishBook initialDishBook = null;
-        ReadOnlyIngredientBook initialIngredientBook = null;
-        ReadOnlyOrderBook initialOrderBook = null;
+        ReadOnlyBook<Person> initialPersonBook;
+        ReadOnlyBook<Dish> initialDishBook;
+        ReadOnlyBook<Ingredient> initialIngredientBook;
+        ReadOnlyBook<Order> initialOrderBook;
 
         try {
-            Optional<ReadOnlyPersonBook> personBookOptional = storage.readPersonBook();
-            if (!personBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample PersonBook");
+            Optional<ReadOnlyBook<Person>> personBookOptional = storage.readPersonBook();
+            Optional<ReadOnlyBook<Dish>> dishBookOptional = storage.readDishBook();
+            Optional<ReadOnlyBook<Ingredient>> ingredientBookOptional = storage.readIngredientBook();
+            Optional<ReadOnlyBook<Order>> orderBookOptional = storage.readOrderBook();
+            if (!personBookOptional.isPresent()
+                    || !dishBookOptional.isPresent()
+                    || !ingredientBookOptional.isPresent()
+                    || !orderBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample data for all books.");
             }
             initialPersonBook = personBookOptional.orElseGet(SampleDataUtil::getSamplePersonBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty PersonBook");
-            initialPersonBook = new PersonBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
-            initialPersonBook = new PersonBook();
-        }
-
-        try {
-            Optional<ReadOnlyDishBook> dishBookOptional = storage.readDishBook();
-            if (!dishBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample DishBook");
-            }
             initialDishBook = dishBookOptional.orElseGet(SampleDataUtil::getSampleDishBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty DishBook");
-            initialDishBook = new DishBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty DishBook");
-            initialDishBook = new DishBook();
-        }
-
-        try {
-            Optional<ReadOnlyIngredientBook> ingredientBookOptional = storage.readIngredientBook();
-            if (!ingredientBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample IngredientBook");
-            }
             initialIngredientBook = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty IngredientBook");
-            initialIngredientBook = new IngredientBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty IngredientBook");
-            initialIngredientBook = new IngredientBook();
-        }
-
-        try {
-            Optional<ReadOnlyOrderBook> orderBookOptional = storage.readOrderBook();
-            if (!orderBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample OrderBook");
-            }
             initialOrderBook = orderBookOptional.orElseGet(SampleDataUtil::getSampleOrderBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty OrderBook");
+            logger.warning("One of the data files not in the correct format. Will be starting with empty books");
+            initialPersonBook = new PersonBook();
+            initialDishBook = new DishBook();
+            initialIngredientBook = new IngredientBook();
             initialOrderBook = new OrderBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty OrderBook");
+            logger.warning("Problem while reading from the file. Will be starting with empty books");
+            initialPersonBook = new PersonBook();
+            initialDishBook = new DishBook();
+            initialIngredientBook = new IngredientBook();
             initialOrderBook = new OrderBook();
         }
-
 
         return new ModelManager(initialPersonBook, initialDishBook, initialIngredientBook, initialOrderBook, userPrefs);
     }

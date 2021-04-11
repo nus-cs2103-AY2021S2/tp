@@ -8,10 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderBook;
-import seedu.address.model.order.ReadOnlyOrderBook;
-
 /**
  * An immutable OrderBook that is serializable to JSON format.
  */
@@ -26,8 +25,8 @@ public class JsonSerializableOrderBook {
         this.orders.addAll(orders);
     }
 
-    public JsonSerializableOrderBook(ReadOnlyOrderBook source) {
-        orders.addAll(source.getOrderList());
+    public JsonSerializableOrderBook(ReadOnlyBook<Order> source) {
+        orders.addAll(source.getItemList());
     }
 
     /**

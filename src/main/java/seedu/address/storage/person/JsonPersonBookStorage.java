@@ -12,13 +12,14 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBook;
+import seedu.address.model.person.Person;
 import seedu.address.storage.BookStorage;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonPersonBookStorage implements BookStorage<ReadOnlyPersonBook> {
+public class JsonPersonBookStorage implements BookStorage<Person> {
 
     private static final Logger logger = LogsCenter.getLogger(JsonPersonBookStorage.class);
 
@@ -33,7 +34,7 @@ public class JsonPersonBookStorage implements BookStorage<ReadOnlyPersonBook> {
     }
 
     @Override
-    public Optional<ReadOnlyPersonBook> readBook() throws DataConversionException {
+    public Optional<ReadOnlyBook<Person>> readBook() throws DataConversionException {
         return readBook(filePath);
     }
 
@@ -43,11 +44,11 @@ public class JsonPersonBookStorage implements BookStorage<ReadOnlyPersonBook> {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyPersonBook> readBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyBook<Person>> readBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializablePersonBook> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializablePersonBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -61,7 +62,7 @@ public class JsonPersonBookStorage implements BookStorage<ReadOnlyPersonBook> {
     }
 
     @Override
-    public void saveBook(ReadOnlyPersonBook personBook) throws IOException {
+    public void saveBook(ReadOnlyBook<Person> personBook) throws IOException {
         saveBook(personBook, filePath);
     }
 
@@ -70,12 +71,12 @@ public class JsonPersonBookStorage implements BookStorage<ReadOnlyPersonBook> {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveBook(ReadOnlyPersonBook personBook, Path filePath) throws IOException {
+    public void saveBook(ReadOnlyBook<Person> personBook, Path filePath) throws IOException {
         requireNonNull(personBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(personBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePersonBook(personBook), filePath);
     }
 
 }

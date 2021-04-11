@@ -36,8 +36,10 @@
   --inventory-primary-color: #fca8a2;
   --inventory-secondary-color: #804242;
   --background-color: #292D3E;
+  --background-darker-color: #202431;
   --accent-color: #5b6879;
   --font-color: #e8e8e8;
+  --font-accent-color: #c3c3c3;
 }
 
 .site-title, .site-title:visited, .site-nav .page-link {
@@ -80,8 +82,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom:0;
 }
 
+.post-content h1, .post-content h2, .post-content h3,
 .post-content h4, .post-content h5, .post-content h6 {
-  margin-top:0;
+  margin-top: 0;
 }
 
 hr {
@@ -131,6 +134,14 @@ table tr:nth-child(even) {
 
 strong {
   color: var(--quaternary-color);
+}
+
+blockquote {
+  color: var(--font-accent-color);
+  font-style: normal;
+  background-color: var(--background-darker-color);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 /**

@@ -63,7 +63,7 @@ public class MenuEditCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
-                    String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
+                    String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_DISH));
         }
 
         Dish dishToEdit = lastShownList.get(index.getZeroBased());
@@ -90,7 +90,7 @@ public class MenuEditCommand extends Command {
         String updatedName = editDishDescriptor.getName().orElse(dishToEdit.getName());
         Double updatedPrice = editDishDescriptor.getPrice().orElse(dishToEdit.getPrice());
 
-        Optional<List<Pair<Integer, Integer>>> updatedIngredientIdsQuantityListOptional =
+        Optional<List<Pair<Index, Integer>>> updatedIngredientIdsQuantityListOptional =
                 editDishDescriptor.getIngredientIdsQuantityList();
 
         List<Pair<Ingredient, Integer>> updatedIngredientQuantityList;
@@ -133,7 +133,7 @@ public class MenuEditCommand extends Command {
     public static class EditDishDescriptor {
         private String name;
         private Double price;
-        private List<Pair<Integer, Integer>> ingredientIdsQuantityList;
+        private List<Pair<Index, Integer>> ingredientIdsQuantityList;
 
         public EditDishDescriptor() {}
 
@@ -170,11 +170,11 @@ public class MenuEditCommand extends Command {
             return Optional.ofNullable(price);
         }
 
-        public void setIngredientIdsQuantityList(List<Pair<Integer, Integer>> ingredientIdsQuantityList) {
+        public void setIngredientIdsQuantityList(List<Pair<Index, Integer>> ingredientIdsQuantityList) {
             this.ingredientIdsQuantityList = ingredientIdsQuantityList;
         }
 
-        public Optional<List<Pair<Integer, Integer>>> getIngredientIdsQuantityList() {
+        public Optional<List<Pair<Index, Integer>>> getIngredientIdsQuantityList() {
             return Optional.ofNullable(ingredientIdsQuantityList);
         }
 

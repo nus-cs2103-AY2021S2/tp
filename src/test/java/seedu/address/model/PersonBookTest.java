@@ -21,7 +21,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.DuplicateItemException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonBookTest {
@@ -30,7 +29,7 @@ public class PersonBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), personBook.getPersonList());
+        assertEquals(Collections.emptyList(), personBook.getItemList());
     }
 
     @Test
@@ -82,13 +81,13 @@ public class PersonBookTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> personBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> personBook.getItemList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class PersonBookStub implements ReadOnlyPersonBook {
+    private static class PersonBookStub implements ReadOnlyBook<Person> {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
         PersonBookStub(Collection<Person> persons) {
@@ -96,7 +95,7 @@ public class PersonBookTest {
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
+        public ObservableList<Person> getItemList() {
             return persons;
         }
     }

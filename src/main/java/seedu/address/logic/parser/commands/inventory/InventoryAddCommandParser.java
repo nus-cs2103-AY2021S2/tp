@@ -31,8 +31,8 @@ public class InventoryAddCommandParser implements Parser<InventoryAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InventoryAddCommand.MESSAGE_USAGE));
         }
 
-        String name = argMultimap.getValue(PREFIX_NAME).get().trim();
-        int quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get().trim());
+        String name = ParserUtil.parseIngredientName(argMultimap.getValue(PREFIX_NAME).get());
+        int quantity = ParserUtil.parseNonNegativeInt(argMultimap.getValue(PREFIX_QUANTITY).get());
 
         Ingredient ingredient = new Ingredient(name, quantity);
 

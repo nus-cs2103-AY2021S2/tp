@@ -5,9 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.UniqueItemList;
 
-public class IngredientBook implements ReadOnlyIngredientBook {
+public class IngredientBook implements ReadOnlyBook<Ingredient> {
     private final UniqueItemList<Ingredient> ingredients;
     {
         ingredients = new UniqueItemList<Ingredient>();
@@ -19,7 +20,7 @@ public class IngredientBook implements ReadOnlyIngredientBook {
      * Constructor to copy ingredient book
      * @param toBeCopied
      */
-    public IngredientBook(ReadOnlyIngredientBook toBeCopied) {
+    public IngredientBook(ReadOnlyBook<Ingredient> toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -45,10 +46,10 @@ public class IngredientBook implements ReadOnlyIngredientBook {
      * Reset list data using new data
      * @param newData
      */
-    public void resetData(ReadOnlyIngredientBook newData) {
+    public void resetData(ReadOnlyBook<Ingredient> newData) {
         requireNonNull(newData);
 
-        setIngredients(newData.getIngredientList());
+        setIngredients(newData.getItemList());
     }
 
     /**
@@ -62,7 +63,6 @@ public class IngredientBook implements ReadOnlyIngredientBook {
         return ingredients.contains(ingredient);
     }
 
-    @Override
     public boolean hasSufficientIngredients(Ingredient ingredient, int quantity) {
         for (Ingredient i : ingredients) {
             if (i.isSame(ingredient)) {
@@ -105,7 +105,7 @@ public class IngredientBook implements ReadOnlyIngredientBook {
     }
 
     @Override
-    public ObservableList<Ingredient> getIngredientList() {
+    public ObservableList<Ingredient> getItemList() {
         return ingredients.asUnmodifiableObservableList();
     }
 

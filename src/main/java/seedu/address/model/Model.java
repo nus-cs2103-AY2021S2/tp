@@ -8,13 +8,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.dish.Dish;
-import seedu.address.model.dish.ReadOnlyDishBook;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.ingredient.ReadOnlyIngredientBook;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPersonBook;
 
 /**
  * The API of the Model component.
@@ -53,15 +49,15 @@ public interface Model {
      */
     void setPersonBookFilePath(Path personBookFilePath);
 
-    //=========== AddressBook ================================================================================
+    //=========== PersonBook ================================================================================
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces person book data with the data in {@code personBook}.
      */
-    void setAddressBook(ReadOnlyPersonBook addressBook);
+    void setPersonBook(ReadOnlyBook<Person> personBook);
 
     /** Returns the AddressBook */
-    ReadOnlyPersonBook getAddressBook();
+    ReadOnlyBook<Person> getPersonBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -107,10 +103,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setDishBook(ReadOnlyDishBook dishBook);
+    void setDishBook(ReadOnlyBook<Dish> dishBook);
 
     /** Returns the AddressBook */
-    ReadOnlyDishBook getDishBook();
+    ReadOnlyBook<Dish> getDishBook();
 
     /**
      * Returns true if a dish with the same name as {@code dish} exists in the address book.
@@ -170,10 +166,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setIngredientBook(ReadOnlyIngredientBook ingredientBook);
+    void setIngredientBook(ReadOnlyBook<Ingredient> ingredientBook);
 
     /** Returns the AddressBook */
-    ReadOnlyIngredientBook getIngredientBook();
+    ReadOnlyBook<Ingredient> getIngredientBook();
 
     /**
      * Returns true if ingredient with the same name as {@code ingredient} exists in the address book.
@@ -244,10 +240,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setOrderBook(ReadOnlyOrderBook orderBook);
+    void setOrderBook(ReadOnlyBook<Order> orderBook);
 
     /** Returns the AddressBook */
-    ReadOnlyOrderBook getOrderBook();
+    ReadOnlyBook<Order> getOrderBook();
 
     /**
      * Returns true if a dish with the same name as {@code dish} exists in the address book.

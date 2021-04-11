@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -117,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
     private ToggleButton inventoryTab;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private HBox statusbarPlaceholder;
 
     private final EventHandler<ActionEvent> handleTabSelection = event -> {
         int selectedIndex = componentTabGroup.getToggles().indexOf(componentTabGroup.getSelectedToggle());
@@ -205,6 +206,27 @@ public class MainWindow extends UiPart<Stage> {
      * Configures the right corner of status bar to resize the window.
      */
     private void setResizableWindow() {
+        setOnMouseEntered();
+        setOnMousePressed();
+        setOnMouseDragged();
+        setOnMouseExited();
+    }
+
+    /**
+     * Changes mouse cursor to resize cursor when entered resizing zone
+     */
+    private void setOnMouseEntered() {
+        statusbarPlaceholder.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                primaryStage.getScene().setCursor(Cursor.NW_RESIZE);
+            }
+        });
+    }
+
+    /**
+     * Get the current coordinates of the cursor pressed.
+     */
+    private void setOnMousePressed() {
         statusbarPlaceholder.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if (isDraggable(event)) {
@@ -216,13 +238,26 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
         });
+    }
 
+    /**
+     * Calculates and resize the window based on the coordinates given by  {@link #setOnMousePressed()}
+     */
+    private void setOnMouseDragged() {
         statusbarPlaceholder.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if (isResizing) {
                     primaryStage.setWidth(event.getSceneX() + resizeX);
                     primaryStage.setHeight(event.getSceneY() + resizeY);
                 }
+            }
+        });
+    }
+
+    private void setOnMouseExited() {
+        statusbarPlaceholder.setOnMouseExited(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                primaryStage.getScene().setCursor(Cursor.DEFAULT);
             }
         });
     }
@@ -297,9 +332,6 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
         resultDisplay.setFeedbackToUser(Messages.MESSAGE_WELCOME);
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

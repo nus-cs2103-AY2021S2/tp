@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.order.OrderAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -40,18 +41,17 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OrderAddCommand.MESSAGE_USAGE));
         }
 
-        Integer customerId = Integer.parseInt(argMultimap.getValue(PREFIX_NAME).get().trim());
-        String strDateTime = argMultimap.getValue(PREFIX_DATETIME).get().trim();
+        Integer customerId = ParserUtil.parseNonNegativeInt(argMultimap.getValue(PREFIX_NAME).get());
+        String strDateTime = argMultimap.getValue(PREFIX_DATETIME).get();
         List<String> dishNumbers = argMultimap.getAllValues(PREFIX_DISH);
         List<String> dishQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
 
-        List<Pair<Integer, Integer>> dishQuantityList = new ArrayList<>();
+        List<Pair<Index, Integer>> dishQuantityList = new ArrayList<>();
 
-        // TODO: abstract out to parser, add size check
         for (int i = 0; i < dishNumbers.size(); i++) {
-            Pair<Integer, Integer> orderComponent =
-                    new Pair<>(Integer.parseInt(dishNumbers.get(i)),
-                            Integer.parseInt(dishQuantities.get(i)));
+            Pair<Index, Integer> orderComponent =
+                    new Pair<>(ParserUtil.parseIndex(dishNumbers.get(i)),
+                            ParserUtil.parseNonNegativeInt(dishQuantities.get(i)));
             dishQuantityList.add(orderComponent);
         }
 
