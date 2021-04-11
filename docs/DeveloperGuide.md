@@ -194,11 +194,7 @@ Assumptions:
 Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in the task list of HEY MATEz with deadline before 2021-04-04.  A
 `FindTasksBeforeCommandParser` is created and it calls `FindTasksBeforeParser#parse` on the arguments
 
-<<<<<<< HEAD
 Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If it is
-=======
-Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If is is
->>>>>>> d8135770783b53d5373b860af3723d5b381677c8
 valid,  it will create a new `FindTasksBeforeCommand` instance by calling the constructor with the DeadlineBeforeDatePredicate.
 
 Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
@@ -350,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HEY MATEz` and the **Actor** is the `user`, unless specified otherwise)
 
-:pencil2: **Use case: Add a member**
+:pencil2: **Use case: Add a Member**
 
 **MSS**
 
@@ -367,7 +363,7 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: View members**
+:pencil2: **Use case: View Members**
 
 **MSS**
 
@@ -376,7 +372,7 @@ Use case ends.
     
 Use case ends.
 
-:pencil2: **Use case: Delete member**
+:pencil2: **Use case: Delete a Member**
 
 **MSS**
 
@@ -388,16 +384,12 @@ Use case ends.
 
 **Extensions** 
 
-<<<<<<< HEAD
 * 2a. Member name provided by user does not exist in the list of members
-=======
-* 2a. Name specified does not exist in the currently displayed list of members
->>>>>>> d8135770783b53d5373b860af3723d5b381677c8
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
 
-:pencil2: **Use case: Edit member's details**
+:pencil2: **Use case: Edit Member's details**
 
 **MSS**
 
@@ -409,16 +401,12 @@ Use case ends.
 
 **Extensions**
 
-<<<<<<< HEAD
 * 2a. Member name provided by user does not exist in the list of members
-=======
-* 2a. Name specified does not exist in the currently displayed list of members
->>>>>>> d8135770783b53d5373b860af3723d5b381677c8
     * 2a1. HEY MATEz shows an error message
-  
+
 Use case ends.
 
-:pencil2: **Use case: Find members with keywords**
+:pencil2: **Use case: Find Members with keywords**
 
 **MSS**
 
@@ -428,7 +416,7 @@ Use case ends.
     
 Use case ends.
 
-:pencil2: **Use case: Add a task**
+:pencil2: **Use case: Add a Task**
 
 **MSS**
 
@@ -453,7 +441,7 @@ Use case ends.
     
 Use case ends.
 
-:pencil2: **Use case: Delete Task**
+:pencil2: **Use case: Delete a Task**
 
 **MSS**
 
@@ -466,7 +454,7 @@ Similar to deleting a member but user specifies task index instead of name
   
 Use case ends.
 
-:pencil2: **Use case: Edit a task**
+:pencil2: **Use case: Edit a Task**
 
 **MSS**
 
@@ -474,17 +462,12 @@ Similar to editing a member except that the user specifies task index instead of
 
 **Extensions**
 
-<<<<<<< HEAD
 * 1a. Task index does not exist in the list of tasks
     * 1a1. HEY MATEz shows an error message
-=======
-* 2a. Task does not exist (Task index out of bounds)
-    * 2a1. HEY MATEz shows an error message
->>>>>>> d8135770783b53d5373b860af3723d5b381677c8
   
 Use case ends.
 
-:pencil2: **Use case: Find tasks with keywords**
+:pencil2: **Use case: Find Tasks with keywords**
 
 **MSS**
 
@@ -507,7 +490,7 @@ Extensions
     
 Use case ends.
 
-:pencil2: **Use case: Find tasks using Priority**
+:pencil2: **Use case: Find Tasks using Priority**
 
 **MSS**
 
@@ -576,17 +559,13 @@ Use case ends.
     
 Use case ends.
 
-<<<<<<< HEAD
-:pencil2: **Use case: Find all Tasks assigned to a particular Member**
-=======
 :pencil2: **Use case: View Unassigned Tasks**
 
 **MSS**
 
 Similar to viewing a list of uncompleted tasks but a list of unassigned task is displayed instead.
 
-:pencil2: **Use case: Find all Tasks assigned to a particular Members**
->>>>>>> d8135770783b53d5373b860af3723d5b381677c8
+:pencil2: **Use case: Find all Tasks assigned to a particular Member**
 
 **MSS**
 
