@@ -137,57 +137,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Model for Tasks (Todos, Deadlines & Events)
-
-The classes and implementations used to model various Tasks (i.e. Todos, Deadlines & Events) are facilitated by `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes.
-
-The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates all information related to these Tasks. Each concrete `Todo`, `Deadline` or `Event` implements the `CompletableTodo`, `CompletableDeadline` and '`Repeatable` abstract classes respectively. 
-
-Each of the `Completable` and `Repeatable` abstract classes specify behaviors specific to them. In particular, `Completable` should support being marked as done and `Repeatable` should support repetition. Furthermore, `Completable` has been further broken down into `CompletableTodo` and `CompletableDeadline` to facilitate Deadlines having an associated date.
-
-`CompletableTodo`, `CompletableDeadline` and '`Event` are stored in `TodoList`, `DeadlineList` and '`EventList` respevtively.
-
-`CompletableTodo`
-    * Holds:
-      * `Description`: String
-      * `isDone`: Boolean
-
-`CompletableDeadline`
-    * Holds:
-      * `Description`: String
-      * `isDone`: Boolean
-      * `By`: Date
-
-
-`Repeatable` 
-    * Holds:
-      * `Description`: String
-      * `Date`: Date
-      * `Time`: Time
-      * `isWeekly`: Boolean
-
-#### Design Considerations
-
-##### Aspect: How to store and pass around UI related instructions
-
-* **Alternative 1 (current choice):** Implement  `Todo`, `Deadline` or `Event` each with independent abstract classes (`CompletableTodo`, `CompletableDeadline` and `Repeatable` ).
-    * Pros:
-        * Design allows the behaviour of `CompletableTodo`, `CompletableDeadline` and `Repeatable` to be extended without (or with minimal) changes to `Todo`, `Deadline` or `Event`.
-        * Each `CompletableTodo`, `CompletableDeadline` and `Repeatable` encapsulates all information needed for that specific Task. For example, `Event` which implements `Repeatable` has a specific implementation that allows it to repeat in a specified interval. (Note: The intervals are defined in an `Interval` enumeration.)
-        * Design allows `TodoList`, `DeadlineList` and `EventList` to hold specifically and only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively. This ensures that implementation errors with respect to how `CompletableTodo`, `CompletableDeadline` and `Repeatable` are stored, can be minimised.
-
-    * Cons:
-        * Many classes required.
-
-* **Alternative 2 (implementation used in AB3):** Implement  `Todo`, `Deadline` or `Event` with a common `Task` abstract class.
-    * Pros:
-        * Easy to implement.
-        * Minimal changes needed if a new implementation of `Task` needs to extend behaviors already defined in `Task`.
-        * Fewer classes required.
-    * Cons:
-        * `Task` is not closed to modification. A new implementation of `Task` might require the addition of fields to store additional behaviours and attributes.
-        * Heightened risk of having a `Todo` or `Event` added to a `DeadlineList` during implementation. This is in contrast to the current implementation, where each `TodoList`, `DeadlineList` and `EventList` holds only `CompletableTodo`, `CompletableDeadline` and `Repeatable` respectively.
-
 ### View Projects Feature
 
 This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
@@ -315,6 +264,54 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
+
+### Mark as Done Feature
+
+CoLAB has two mark as done commands, `markT` & `markD` for todos and deadlines respectively. They are used to mark a Todo or Deadline as done.
+
+This section explains the implementation of the `markT` feature. The implementation of the `markD` feature is similar.
+
+The `markT` command results in the UI displaying a tick beside the Todo that had been marked as done. 
+
+
+
+The mechanism to issue the command to display a new project is facilitated by `ViewProjectUiCommand`, a concrete implementation of the `UiCommand` abstract class, which encapsulates the project `Index` as well as the logic that determines which methods to call in the `MainWindow`.
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+![View Project Sequence Diagram](images/ViewProjectCommandSequenceDiagram.png)
+
+Step 1. The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
+
+Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
+
+Step 3. The `CommandResult` is passed to the `MainWindow`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
+
+Step 4. The `MainWindow` now calls `UiCommand#execute`, which will result in a call to the overridden method `ViewProjectUiCommand#execute`.
+
+Step5. Execution of this method will result in a call to `MainWindow#selectProject` with the `Index` of the first project as an argument. This will display the first project in the project list.
+
+#### Design Considerations
+
+##### Aspect: How to store and pass around UI related instructions
+
+* **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
+    * Pros:
+        * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommands`.
+        * `UiCommand` encapsulates all information needed to execute the instruction (e.g. `Index` of project). It is easy to add new commands that store different types of information.
+        * Easy to support complex `UiCommands` that perform multiple instructions or contain logic.
+
+    * Cons:
+        * Many classes required.
+        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action. 
+
+* **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
+    * Pros:
+        * Easy to implement.
+        * Minimal changes needed if the new instruction is a combination of already existing instructions as the already existing boolean fields can be set to true.
+        * No need for extra classes.
+    * Cons:
+        * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
 
 ### \[Proposed\] Undo/redo feature
 
