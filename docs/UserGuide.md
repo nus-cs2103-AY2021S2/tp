@@ -101,6 +101,7 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
 - You must replace `FR_DESCRIPTION` with the description of your financial record. The description should not exceed 100 characters.
 - You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places** (additional decimal places will be rounded to two decimal places). The upper limit for `FR_AMOUNT`is 1,000,000.
+- `CATEGORY` should not exceed 15 characters
 - The date you input must follow the format `DD-MM-YYYY` and it should be between 01-01-1970 and 31-12-2100. (e.g. 31-12-2020)
 - `DD` is the numeric value of the date, `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
 - You must use a date number with 2 digits, a month number with 2 digits, and a year number with 4 digits
@@ -147,9 +148,11 @@ Format: `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]
 
 **:bulb: Tips:**<br>
 
-- You must replace `FR_INDEX` with the index of the finacial record you want to delete.
+- You must replace `FR_INDEX` with the index of the financial record you want to delete.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
 - `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
+- Existing values will be overwritten by the input values
+- Use `c/` (leave `CATEGORY` blank) to completely remove existing categories of a record.
 - For the specifications on `FR_DESCRIPTION`, `FR_AMOUNT`, `DATE` and `CATEGORY`, please refer to `add-fr` command.
 
 </div>
