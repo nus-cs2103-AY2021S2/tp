@@ -125,6 +125,7 @@ public class ModelManager implements Model {
 
     @Override
     public void massDelete(int startIndex, int endIndex) {
+        assert startIndex < endIndex : "Start index must be strictly smaller than the end index";
         for (int i = startIndex; i <= endIndex; i++) {
             Person personToDelete = addressBook.getPersonList().get(startIndex - 1);
             deletePerson(personToDelete);
@@ -133,6 +134,7 @@ public class ModelManager implements Model {
 
     @Override
     public void massBlacklist(int startIndex, int endIndex) {
+        assert startIndex < endIndex : "Start index must be strictly smaller than the end index";
         for (int i = startIndex; i <= endIndex; i++) {
             Person personToBlacklist = addressBook.getPersonList().get(i - 1);
             if (!personToBlacklist.getBlacklistStatus()) {
@@ -143,6 +145,7 @@ public class ModelManager implements Model {
 
     @Override
     public void massUnblacklist(int startIndex, int endIndex) {
+        assert startIndex < endIndex : "Start index must be strictly smaller than the end index";
         for (int i = startIndex; i <= endIndex; i++) {
             Person personToUnblacklist = addressBook.getPersonList().get(i - 1);
             if (personToUnblacklist.getBlacklistStatus()) {

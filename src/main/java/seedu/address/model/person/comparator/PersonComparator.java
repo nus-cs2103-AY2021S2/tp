@@ -4,7 +4,11 @@ import java.util.Comparator;
 
 import seedu.address.model.person.Person;
 
-public class ContactComparator implements Comparator<Person> {
+/**
+ * Comparator to compare two Person objects. The two objects are first compared by name in
+ * alphabetical order and then by email in lexicographical order.
+ */
+public class PersonComparator implements Comparator<Person> {
 
     @Override
     public int compare(Person firstPerson, Person secondPerson) {

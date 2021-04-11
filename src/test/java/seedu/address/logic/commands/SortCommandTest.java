@@ -33,18 +33,18 @@ public class SortCommandTest {
 
     @Test
     public void execute_sortListInAscendingOrder_success() {
-        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS,
                 VALID_SORT_DIRECTION_ASCENDING);
         assertCommandSuccess(new SortCommand(SORT_ASCENDING), model,
                 expectedMessage, expectedModel);
     }
 
     @Test void execute_sortListInDescendingOrder_success() {
-        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS,
                 VALID_SORT_DIRECTION_DESCENDING);
         expectedModel.sortByName(false);
         assertCommandSuccess(new SortCommand(SORT_DESCENDING), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "descending"), expectedModel);
+                expectedMessage, expectedModel);
     }
 
     @Test

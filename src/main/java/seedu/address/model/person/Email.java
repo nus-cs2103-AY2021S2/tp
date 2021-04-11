@@ -64,9 +64,11 @@ public class Email implements Comparable<Email> {
         return value.hashCode();
     }
 
+    /**
+     * The two emails will be compared by lexicographical order.
+     */
     @Override
     public int compareTo(Email otherEmail) {
         return this.value.compareTo(otherEmail.value);
     }
-
 }

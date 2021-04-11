@@ -191,7 +191,7 @@ Step 2. The user decides to blacklist the person, and executes the `blist INDEX`
 The `blist INDEX` command will create a new `Person` with the same information as the person at `INDEX` in `AddressBook`,
 but with a new `Blacklist` with a different blacklist status, which then replaces the original person.
 
-![BlacklistState1](images/BlacklistState2.png)
+![BlacklistState2](images/BlacklistState2.png)
 
 The following sequence diagram shows how the blacklist operation works:
 
@@ -334,6 +334,47 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+### Mass Blacklist feature
+The mass blacklist/unblacklist mechanism is facilitated by `MassBlacklistCommand`.
+Below is an example usage scenario for mass blacklist. The usage for mass unblacklist is similar. 
+
+Step 1: The user executes `massblist 4-12 b/blacklist ` to blacklist all contacts within the index range 4-12.
+The string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `MassBlacklistCommand` object.
+
+Step 3: The `MassBlacklistCommand` object calls `Model#massBlacklist(4,12)` to blacklist all contacts
+in the `AddressBook` with index between 4 to 12.
+
+Step 4: After the contacts have been blacklisted, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the mass blacklist operation works:
+![MassBlacklistSequenceDiagram](images/MassBlacklistSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassBlacklistCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a mass delete command:
+![MassBlacklistActivityDiagram](images/MassBlacklistActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of mass blacklist command
+* **Alternative 1 (current choice):** Input format is `massdelete START-END`.
+  * Pros: More inutitive for the user.
+  * Cons: More difficult to implement as new methods will have to be written to parse the hyphen (-) symbol.
+
+* **Alternative 2:** Input format is `massdelete start/START end/END`.
+  * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
+    well-suited to parse such input formats.
+  * Cons: There are more prefixes for the user to remember.
+
+=======
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 ### Mass Delete feature
 The mass delete mechanism is facilitated by `MassDeleteCommand`.
 Below is an example usage scenario.
@@ -350,8 +391,15 @@ Step 4: After deletion, `filteredPersons` in `ModelManager` is updated to reflec
 
 The following sequence diagram illustrates how the mass delete operation works:
 ![MassDeleteSequenceDiagram](images/MassDeleteSequenceDiagram.png)
+<<<<<<< HEAD
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+=======
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the
 destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 
 The following activity diagram summarizes what happens when a user executes a mass delete command:
 ![MassDeleteActivityDiagram](images/MassDeleteActivityDiagram.png)
@@ -406,6 +454,10 @@ The following activity diagram summarizes what happens when a user executes a re
     * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
       class even bigger and thus more difficult to maintain.
 
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 ### Sort feature
 The sort mechanism is facilitated by `SortCommand`.
 Below is an example usage scenario.
@@ -422,8 +474,19 @@ Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect
 
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    
+=======
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+=======
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 ![SortActivityDiagram](images/SortActivityDiagram.png)
@@ -482,6 +545,10 @@ Similarly, when the user presses the down arrow key, there are two possible scen
     * Pros: Easier implementation. Most operations have been provided by Java.
     * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
 
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 ### Undo feature
 
 #### Implementation

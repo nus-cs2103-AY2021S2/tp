@@ -159,7 +159,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least one field is edited. Does not check for remark since remark
+         * cannot be changed with the Edit Command.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, modeOfContact, tags);
@@ -249,6 +250,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getRemark().equals(e.getRemark())
                     && getModeOfContact().equals(e.getModeOfContact())
                     && getTags().equals(e.getTags());
         }

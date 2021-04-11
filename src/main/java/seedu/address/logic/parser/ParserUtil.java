@@ -26,7 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_RANGE = "Invalid range format.";
+    public static final String MESSAGE_INVALID_INDEX_RANGE = "Invalid range format.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -126,12 +126,12 @@ public class ParserUtil {
         if (!SortCommand.isValidSortDirection(trimmedSortDirection)) {
             throw new ParseException(SortCommand.MESSAGE_USAGE);
         }
-        return trimmedSortDirection.equals("ascending");
+        return trimmedSortDirection.equals(SortCommand.SORT_ASCENDING_KEYWORD);
     }
 
     /**
      * Parses a {@code String blacklistKeyword} into a {@code boolean}. Returns true if the
-     * string is blacklist and false if the string is unblacklist. Leading and trailing
+     * keyword is blacklist and false if the keyword is unblacklist. Leading and trailing
      * whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code isBlacklist} is invalid.
@@ -142,7 +142,7 @@ public class ParserUtil {
         if (!MassBlacklistCommand.isValidBlacklistKeyword(trimmedBlacklistKeyword)) {
             throw new ParseException(MassBlacklistCommand.MESSAGE_USAGE);
         }
-        return trimmedBlacklistKeyword.equals("blacklist");
+        return trimmedBlacklistKeyword.equals(MassBlacklistCommand.BLACKLIST_KEYWORD);
     }
 
     /**
@@ -171,7 +171,7 @@ public class ParserUtil {
         String trimmedRange = range.trim();
         String[] splitRange = trimmedRange.split("-");
         if (splitRange.length != 2) {
-            throw new ParseException(MESSAGE_INVALID_RANGE);
+            throw new ParseException(MESSAGE_INVALID_INDEX_RANGE);
         }
         Index startIndex = parseIndex(splitRange[0]);
         Index endIndex = parseIndex(splitRange[1]);

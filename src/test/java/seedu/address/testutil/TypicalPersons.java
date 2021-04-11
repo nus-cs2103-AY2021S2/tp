@@ -101,8 +101,8 @@ public class TypicalPersons {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons. The address book
-     * is not sorted in alphabetical order to test the sort commands.
+     * Returns an {@code AddressBook} with all the typical persons but not
+     * sorted in alphabetical order to test the sort commands.
      */
     public static AddressBook getUnsortedTypicalAddressBook() {
         AddressBook ab = new AddressBook();
