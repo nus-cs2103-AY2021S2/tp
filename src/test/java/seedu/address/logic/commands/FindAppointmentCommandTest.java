@@ -122,7 +122,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void remarksTest() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
-        String remark = "To celebrate Christmas at Fullerton Hotel";
+        String remark = "Bring him around Bishan to look at the properties";
         AppointmentRemarksPredicate predicate = new AppointmentRemarksPredicate(remark);
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));
@@ -157,7 +157,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void dateNoneTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentDatePredicate predicate = new AppointmentDatePredicate(parseAppointmentDate("25-1-2040"));
+        AppointmentDatePredicate predicate = new AppointmentDatePredicate(parseAppointmentDate("25-01-2040"));
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);

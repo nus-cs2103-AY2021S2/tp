@@ -12,9 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.model.property.Deadline.MESSAGE_DEADLINE_OVER;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
 
 /**
@@ -36,13 +38,13 @@ public class AddPropertyCommand extends Command {
             + "[" + PREFIX_CLIENT_CONTACT + "CLIENT_CONTACT] "
             + "[" + PREFIX_CLIENT_EMAIL + "CLIENT_EMAIL] "
             + "[" + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE] "
-            + "[" + PREFIX_TAGS + "TAGS...]\n"
+            + "[" + PREFIX_TAGS + "TAGS_SEPARATED_BY_COMMAS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Bishan "
             + PREFIX_TYPE + "Hdb "
             + PREFIX_ADDRESS + "Blk 150 Bishan Street 11 #02-101 "
             + PREFIX_POSTAL + "570150 "
-            + PREFIX_DEADLINE + "30-6-2021 "
+            + PREFIX_DEADLINE + "30-06-2021 "
             + PREFIX_REMARK + "Urgent to sell "
             + PREFIX_CLIENT_NAME + "George "
             + PREFIX_CLIENT_CONTACT + "91124788 "
@@ -66,10 +68,16 @@ public class AddPropertyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert toAdd != null;
+        requireNonNull(toAdd);
 
         if (model.hasProperty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+        }
+
+        Deadline deadline = toAdd.getDeadline();
+
+        if (deadline.isOver()) {
+            throw new CommandException(MESSAGE_DEADLINE_OVER);
         }
 
         model.addProperty(toAdd);

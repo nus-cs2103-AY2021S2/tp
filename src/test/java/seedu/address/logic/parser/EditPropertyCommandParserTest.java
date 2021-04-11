@@ -1,12 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_POSTAL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_TYPE_DESC;
@@ -65,7 +67,7 @@ public class EditPropertyCommandParserTest {
         assertParseFailure(parser, "-5" + NAME_DESC_MAYFAIR, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_MAYFAIR, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_MAYFAIR, MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -78,12 +80,21 @@ public class EditPropertyCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, "1" + INVALID_PROPERTY_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+
         // invalid postalcode
         assertParseFailure(parser, "1" + INVALID_PROPERTY_POSTAL_DESC, PostalCode.MESSAGE_CONSTRAINTS);
-        // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_PROPERTY_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline in invalid format
+        assertParseFailure(parser, "1" + INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC,
+                Deadline.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline in valid format
+        assertParseFailure(parser, "1" + INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC,
+                Deadline.MESSAGE_INVALID_DATE);
+
         // invalid address
         assertParseFailure(parser, "1" + INVALID_PROPERTY_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS);
+
         // invalid type
         assertParseFailure(parser, "1" + INVALID_PROPERTY_TYPE_DESC, Type.MESSAGE_CONSTRAINTS);
 
@@ -98,9 +109,8 @@ public class EditPropertyCommandParserTest {
                 PostalCode.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_PROPERTY_NAME_DESC
-                        + INVALID_PROPERTY_DEADLINE_DESC + VALID_ADDRESS_MAYFAIR + VALID_POSTAL_MAYFAIR,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_PROPERTY_NAME_DESC + DEADLINE_DESC_MAYFAIR
+                + VALID_ADDRESS_MAYFAIR + INVALID_PROPERTY_POSTAL_DESC, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

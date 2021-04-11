@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title user executes "update 1 u/cancel" state
+
+
+class Property1 as "__property1:Property__"
+
+
+caption [PropertyBookStates are hidden]
+@end

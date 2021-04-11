@@ -8,11 +8,19 @@ import seedu.address.model.util.DateTimeFormat;
 
 /**
  * Represents a Property's deadline for selling.
- * Guarantees: immutable.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}.
  */
 public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline dates should be valid dates specified in the format DD-MM-YY.";
+            "Deadline dates should be valid dates specified strictly in the format DD-MM-YYYY.\n"
+            + "E.g. 01-01-2021";
+
+    public static final String MESSAGE_INVALID_DATE = "Invalid deadline entered.\n"
+            + "Please ensure that the deadline date entered is valid";
+
+    public static final String MESSAGE_DEADLINE_OVER = "Deadline is already over!!!";
+
+    private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4}";
 
     public final LocalDate deadline;
 
@@ -24,6 +32,23 @@ public class Deadline implements Comparable<Deadline> {
     public Deadline(LocalDate deadline) {
         requireNonNull(deadline);
         this.deadline = deadline;
+    }
+
+    /**
+     * Returns true if a given string is in a valid deadline format.
+     *
+     * @param test The string to test.
+     * @return True if the given string is in a valid deadline format, otherwise false.
+     */
+    public static boolean isValidDeadline(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if this {@code Deadline} has already passed.
+     */
+    public boolean isOver() {
+        return deadline.compareTo(LocalDate.now()) < 0;
     }
 
     @Override

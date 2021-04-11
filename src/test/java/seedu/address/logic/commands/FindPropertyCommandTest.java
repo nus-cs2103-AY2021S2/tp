@@ -2,36 +2,37 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_LESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 import static seedu.address.testutil.TypicalModelManager.getTypicalModelManager;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.JURONG;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.FindPropertyCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.Deadline;
+import seedu.address.model.property.PropertyAddressPredicate;
+import seedu.address.model.property.PropertyClientContactPredicate;
+import seedu.address.model.property.PropertyClientEmailPredicate;
+import seedu.address.model.property.PropertyClientNamePredicate;
+import seedu.address.model.property.PropertyDeadlinePredicate;
+import seedu.address.model.property.PropertyNamePredicate;
+import seedu.address.model.property.PropertyPostalCodePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 import seedu.address.model.property.PropertyPricePredicate;
+import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
+import seedu.address.model.util.DateTimeFormat;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindPropertyCommand}.
@@ -42,10 +43,10 @@ public class FindPropertyCommandTest {
 
     @Test
     public void equalsKeywords() {
-        PropertyContainsKeywordsPredicate firstPredicate =
-                new PropertyContainsKeywordsPredicate(Collections.singletonList("first"));
-        PropertyContainsKeywordsPredicate secondPredicate =
-                new PropertyContainsKeywordsPredicate(Collections.singletonList("second"));
+        PropertyNamePredicate firstPredicate =
+                new PropertyNamePredicate(Collections.singletonList("n/first"));
+        PropertyNamePredicate secondPredicate =
+                new PropertyNamePredicate(Collections.singletonList("n/second"));
 
         FindPropertyCommand findFirstCommand =
                 new FindPropertyCommand(
@@ -73,7 +74,7 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void equalsPrice() {
+    public void equalsPrice() throws ParseException {
         PropertyPricePredicate firstPredicate =
                 new PropertyPricePredicate("10000", true);
         PropertyPricePredicate secondPredicate =
@@ -137,17 +138,11 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void noKeywordsTest() {
-        Exception e = assertThrows(ParseException.class, () ->
-            new FindPropertyCommandParser().parse(" ").execute(model));
-        assertEquals(e.getMessage(),
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
-    }
-
-    @Test
     public void oneKeywordTest() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
-        PropertyPredicateList predicate = preparePredicate("Mayfair");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(new PropertyNamePredicate(Collections.singletonList("mayfair"))));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -157,7 +152,10 @@ public class FindPropertyCommandTest {
     @Test
     public void multiKeywordsTest() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW, 3);
-        PropertyPredicateList predicate = preparePredicate("Mayfair Woodlands Burghley");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(new PropertyNamePredicate(
+                    Arrays.asList("mayfair", "woodlands", "burghley"))));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -165,9 +163,11 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void priceMoreThanTest() {
+    public void priceMoreThanTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
-        PropertyPredicateList predicate = preparePredicate("pm/1500000");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(new PropertyPricePredicate("1500000", false)));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -175,9 +175,11 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void priceLessThanTest() {
+    public void priceLessThanTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
-        PropertyPredicateList predicate = preparePredicate("pl/400000");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(new PropertyPricePredicate("400000", true)));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -185,9 +187,11 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void priceOutsideTest() {
+    public void priceOutsideTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 0);
-        PropertyPredicateList predicate = preparePredicate("pm/9000000");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(new PropertyPricePredicate("9000000", false)));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -195,9 +199,12 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void multiPriceTest() {
+    public void multiPriceTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
-        PropertyPredicateList predicate = preparePredicate("pl/50000000 pm/1500000");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Arrays.asList(new PropertyPricePredicate("1500000", false),
+                                new PropertyPricePredicate("50000000", true)));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -207,7 +214,9 @@ public class FindPropertyCommandTest {
     @Test
     public void typeTest() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW, 2);
-        PropertyPredicateList predicate = preparePredicate("t/hdb");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(new PropertyTypePredicate("hdb")));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -215,41 +224,126 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void multiOptionTest() {
+    public void addressTest() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
-        PropertyPredicateList predicate = preparePredicate("jurong pl/50000000 pm/300 t/hdb");
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyAddressPredicate("1 Jurong East Street 32, #08-111")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(MAYFAIR), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void tagsTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyTagsPredicate("65 square metres")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(WOODLANDS_CRESCENT), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void multipleTagsTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyTagsPredicate("65 square metres, 2 bedrooms")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(WOODLANDS_CRESCENT), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void postalTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyPostalCodePredicate("731784")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(WOODLANDS_CRESCENT), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void deadlineTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyDeadlinePredicate(new Deadline(LocalDate.parse("01-08-2021",
+                                        DateTimeFormat.INPUT_DATE_FORMAT)))));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(WOODLANDS_CRESCENT), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void clientContactTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyClientContactPredicate("98664535")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(BURGHLEY_DRIVE), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void clientEmailTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyClientEmailPredicate("bob@gmail.com")));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(BURGHLEY_DRIVE), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void clientNameTest() {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Collections.singletonList(
+                                new PropertyClientNamePredicate(Collections.singletonList("bob"))));
+        FindPropertyCommand command = new FindPropertyCommand(predicate);
+        expectedModel.updateFilteredPropertyList(predicate.combine());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(BURGHLEY_DRIVE), model.getFilteredPropertyList());
+    }
+
+    @Test
+    public void multiOptionTest() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
+        PropertyPredicateList predicate =
+                new PropertyPredicateList(
+                        Arrays.asList(
+                                new PropertyNamePredicate(Collections.singletonList("jurong")),
+                                new PropertyPricePredicate("300", false),
+                                new PropertyPricePredicate("50000000", true),
+                                new PropertyAddressPredicate("Jurong Ave 1, #01-01"),
+                                new PropertyTypePredicate("hdb"),
+                                new PropertyDeadlinePredicate(parsePropertyDeadline("01-04-2021"))
+                                ));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(JURONG), model.getFilteredPropertyList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code Predicate}.
-     */
-    private PropertyPredicateList preparePredicate(String userInput) {
-        String[] nameKeywords = userInput.split("\\s+");
-
-        List<Predicate<Property>> predicates = new ArrayList<>();
-        List<String> keywords = new ArrayList<>();
-
-        for (String s : nameKeywords) {
-            if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_MORE))) {
-                predicates.add(new PropertyPricePredicate(s.split("/")[1], false));
-            } else if (s.startsWith(String.valueOf(PREFIX_PROPERTY_PRICE_LESS))) {
-                predicates.add(new PropertyPricePredicate(s.split("/")[1], true));
-            } else if (s.startsWith(String.valueOf(PREFIX_TYPE))) {
-                predicates.add(new PropertyTypePredicate(s.split("/")[1]));
-            } else {
-                keywords.add(s);
-            }
-        }
-
-        if (keywords.size() > 0) {
-            predicates.add(new PropertyContainsKeywordsPredicate(keywords));
-        }
-
-        return new PropertyPredicateList(predicates);
-
     }
 }

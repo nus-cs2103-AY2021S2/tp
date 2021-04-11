@@ -2,21 +2,19 @@ package seedu.address.model.appointment;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.remark.Remark;
-
 /**
  * Tests that an {@code Appointment}'s {@code Remarks} matches the remark given.
  */
 public class AppointmentRemarksPredicate implements Predicate<Appointment> {
-    private final Remark keywords;
+    private final String keywords;
 
     public AppointmentRemarksPredicate(String keywords) throws IllegalArgumentException {
-        this.keywords = new Remark(keywords);
+        this.keywords = keywords.toLowerCase();
     }
 
     @Override
     public boolean test(Appointment appointment) {
-        return this.keywords.equals(appointment.getRemarks());
+        return appointment.getRemarks().remark.toLowerCase().contains(this.keywords);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Type {
      */
     private static final String VALIDATION_REGEX = "^(hdb|condo|landed)$";
 
-    private final String propertyType;
+    public final String propertyType;
 
     /**
      * Constructs a {@code Type}.
@@ -30,8 +30,7 @@ public class Type {
     public Type(String propertyType) {
         requireNonNull(propertyType);
         checkArgument(isValidType(propertyType), MESSAGE_CONSTRAINTS);
-        this.propertyType = propertyType.substring(0, 1).toUpperCase()
-                + propertyType.substring(1).toLowerCase();
+        this.propertyType = convertToTitleCase(propertyType);
     }
 
     /**
@@ -43,6 +42,10 @@ public class Type {
     public static boolean isValidType(String test) {
         String lowercaseTest = test.toLowerCase();
         return lowercaseTest.matches(VALIDATION_REGEX);
+    }
+
+    private static String convertToTitleCase(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 
     @Override

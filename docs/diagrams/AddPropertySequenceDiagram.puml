@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add property n/Mayfair t/Condo \na/1 Jurong East Street 32, #08-111 \np/609477 d/31-12-2021")
+[-> LogicManager : execute("add property n/Bishan \nt/Hdb a/Blk 150 Bishan Street 11\n #02-101 p/570150 d/30-06-2021")
 activate LogicManager
 
-LogicManager -> PocketEstateParser : parseCommand("add property n/Mayfair t/Condo \na/1 Jurong East Street 32, #08-111 \np/609477 d/31-12-2021")
+LogicManager -> PocketEstateParser : parseCommand("add property n/Bishan \nt/Hdb a/Blk 150 Bishan Street 11\n #02-101 p/570150 d/30-06-2021")
 activate PocketEstateParser
 
 create AddPropertyCommandParser
@@ -26,7 +26,7 @@ activate AddPropertyCommandParser
 AddPropertyCommandParser --> PocketEstateParser
 deactivate AddPropertyCommandParser
 
-PocketEstateParser -> AddPropertyCommandParser : parse("n/Mayfair t/Condo \na/1 Jurong East Street 32, #08-111 \np/609477 d/31-12-2021")
+PocketEstateParser -> AddPropertyCommandParser : parse("n/Bishan t/Hdb \na/Blk 150 Bishan Street 11\n #02-101 p/570150 d/30-06-2021")
 activate AddPropertyCommandParser
 
 create AddPropertyCommand

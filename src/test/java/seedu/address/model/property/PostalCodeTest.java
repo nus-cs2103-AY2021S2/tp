@@ -27,14 +27,17 @@ public class PostalCodeTest {
         // invalid postal codes
         assertFalse(PostalCode.isValidPostal("")); // empty string
         assertFalse(PostalCode.isValidPostal(" ")); // spaces only
-        assertFalse(PostalCode.isValidPostal("12")); // less than 3 numbers
+        assertFalse(PostalCode.isValidPostal("1234")); // less than 5 numbers
+        assertFalse(PostalCode.isValidPostal("12345678901")); // more than 10 numbers
         assertFalse(PostalCode.isValidPostal("postal")); // non-numeric
         assertFalse(PostalCode.isValidPostal("12post34")); // alphabets within digits
         assertFalse(PostalCode.isValidPostal("123 456")); // spaces within digits
+        assertFalse(PostalCode.isValidPostal(" 123456")); // leading whitespaces
+        assertFalse(PostalCode.isValidPostal("123456 ")); // trailing whitespaces
 
         // valid postal codes
-        assertTrue(PostalCode.isValidPostal("123")); // exactly 3 numbers
+        assertTrue(PostalCode.isValidPostal("12345")); // exactly 5 numbers
+        assertTrue(PostalCode.isValidPostal("123456780")); // exactly 10 numbers
         assertTrue(PostalCode.isValidPostal("123456"));
-        assertTrue(PostalCode.isValidPostal("123456789123456789")); // long postal code
     }
 }

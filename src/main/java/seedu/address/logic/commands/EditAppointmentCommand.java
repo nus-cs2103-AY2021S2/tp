@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.model.appointment.Date.MESSAGE_DATE_OVER;
+import static seedu.address.model.appointment.Time.MESSAGE_TIME_OVER;
 
 import java.util.Optional;
 
@@ -27,19 +29,18 @@ public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "edit appointment";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an appointment in the app. \n"
-            + "Parameters: INDEX"
-            + PREFIX_NAME + "NAME "
-            + PREFIX_REMARK + "REMARK "
-            + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Meet Alex "
-            + PREFIX_REMARK + "at M hotel "
-            + PREFIX_DATE + "17-2-2021 "
-            + PREFIX_TIME + "1500 ";
+            + "Parameters: INDEX "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_TIME + "TIME]\n"
+            + "Example: " + COMMAND_WORD + " 3 "
+            + PREFIX_DATE + "21-07-2021 "
+            + PREFIX_TIME + "1500";
 
     public static final String MESSAGE_SUCCESS = "Edited appointment: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the app";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "Another appointment with the same date and time already exist in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -65,6 +66,31 @@ public class EditAppointmentCommand extends Command {
         }
 
         Appointment appointmentToEdit = model.getAppointment(index.getZeroBased());
+
+        Date originalDate = appointmentToEdit.getDate();
+        Time originalTime = appointmentToEdit.getTime();
+        if (editAppointmentDescriptor.getDate().isPresent() && editAppointmentDescriptor.getTime().isPresent()) {
+            Date editedDate = editAppointmentDescriptor.getDate().get();
+            Time editedTime = editAppointmentDescriptor.getTime().get();
+            if (editedDate.isOver()) {
+                throw new CommandException((MESSAGE_DATE_OVER));
+            } else if (editedDate.isToday() && editedTime.isOver()) {
+                throw new CommandException(MESSAGE_TIME_OVER);
+            }
+        } else if (editAppointmentDescriptor.getDate().isPresent()) {
+            Date editedDate = editAppointmentDescriptor.getDate().get();
+            if (editedDate.isOver()) {
+                throw new CommandException((MESSAGE_DATE_OVER));
+            } else if (editedDate.isToday() && originalTime.isOver()) {
+                throw new CommandException(MESSAGE_TIME_OVER);
+            }
+        } else if (editAppointmentDescriptor.getTime().isPresent()) {
+            Time editedTime = editAppointmentDescriptor.getTime().get();
+            if (originalDate.isToday() && editedTime.isOver()) {
+                throw new CommandException(MESSAGE_TIME_OVER);
+            }
+        }
+
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {

@@ -39,7 +39,14 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Adds a Appointment to the list.
+     * Returns true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
+     * Adds an Appointment to the list.
      * The Appointment must not already exist in the list.
      */
     public void add(Appointment toAdd) {

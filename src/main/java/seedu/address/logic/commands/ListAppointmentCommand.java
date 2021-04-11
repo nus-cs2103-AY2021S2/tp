@@ -10,10 +10,16 @@ public class ListAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments";
 
+    public static final String MESSAGE_FAILURE = "No existing appointments available";
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (!model.hasAppointment()) {
+            return new CommandResult(MESSAGE_FAILURE);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }

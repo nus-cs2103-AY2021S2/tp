@@ -10,8 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
+import static seedu.address.model.property.Deadline.MESSAGE_DEADLINE_OVER;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -45,30 +47,24 @@ public class EditPropertyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a property in the app. \n"
             + "Parameters: INDEX "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_TYPE + "TYPE "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_POSTAL + "POSTAL "
-            + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_REMARK + "REMARK "
-            + PREFIX_CLIENT_NAME + "CLIENT_NAME "
-            + PREFIX_CLIENT_CONTACT + "CLIENT_CONTACT "
-            + PREFIX_CLIENT_EMAIL + "CLIENT_EMAIL "
-            + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE \n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_TYPE + "TYPE] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_POSTAL + "POSTAL] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_CLIENT_NAME + "CLIENT_NAME] "
+            + "[" + PREFIX_CLIENT_CONTACT + "CLIENT_CONTACT] "
+            + "[" + PREFIX_CLIENT_EMAIL + "CLIENT_EMAIL] "
+            + "[" + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE] "
+            + "[" + PREFIX_TAGS + "TAGS_SEPARATED_BY_COMMAS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Mayfair "
-            + PREFIX_TYPE + "Condo "
-            + PREFIX_ADDRESS + "1 Jurong East Street 32 "
-            + PREFIX_POSTAL + "609477 "
-            + PREFIX_DEADLINE + "31-12-2021 "
             + PREFIX_REMARK + "Urgent to sell "
-            + PREFIX_CLIENT_NAME + "Alice "
-            + PREFIX_CLIENT_CONTACT + "91234567 "
-            + PREFIX_CLIENT_EMAIL + "alice@gmail.com "
-            + PREFIX_CLIENT_ASKING_PRICE + "$800,000";
+            + PREFIX_CLIENT_CONTACT + "96011846 ";
 
     public static final String MESSAGE_SUCCESS = "Edited property: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the app";
+    public static final String MESSAGE_DUPLICATE_PROPERTY =
+            "Another property with the same address and postal code already exist in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -91,6 +87,13 @@ public class EditPropertyCommand extends Command {
 
         if (index.getZeroBased() >= model.getPropertyListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        }
+
+        if (editPropertyDescriptor.getDeadline().isPresent()) {
+            Deadline deadline = editPropertyDescriptor.getDeadline().get();
+            if (deadline.isOver()) {
+                throw new CommandException(MESSAGE_DEADLINE_OVER);
+            }
         }
 
         Property propertyToEdit = model.getProperty(index.getZeroBased());

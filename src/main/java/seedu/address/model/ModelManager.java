@@ -16,7 +16,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.property.Property;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the property and appointment book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -142,6 +142,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProperty() {
+        return propertyBook.hasProperty();
+    }
+
+    @Override
     public void deleteProperty(Property target) {
         assert target != null;
         propertyBook.removeProperty(target);
@@ -227,9 +232,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearAppointmentBook() {
+        this.appointmentBook.clearAppointments();
+    }
+
+    @Override
+    public void clearPropertyBook() {
+        this.propertyBook.clearProperties();
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointmentBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public boolean hasAppointment() {
+        return appointmentBook.hasAppointment();
     }
 
     @Override

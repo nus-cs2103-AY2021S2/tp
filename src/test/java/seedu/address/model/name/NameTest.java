@@ -27,7 +27,7 @@ public class NameTest {
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
+        assertFalse(Name.isValidName("_")); // contains only non-alphanumeric characters
         assertFalse(Name.isValidName("mayfair*")); // contains non-alphanumeric characters
 
         // valid name
@@ -35,6 +35,7 @@ public class NameTest {
         assertTrue(Name.isValidName("12345")); // numbers only
         assertTrue(Name.isValidName("mayfair 2")); // alphanumeric characters
         assertTrue(Name.isValidName("The Mayfair")); // with capital letters
+        assertTrue(Name.isValidName("MAYFAIR")); // all capital letters
         assertTrue(Name.isValidName("The Best But Most Expensive Building In Singapore")); // long names
     }
 }

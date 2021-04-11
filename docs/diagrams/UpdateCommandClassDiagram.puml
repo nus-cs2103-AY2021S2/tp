@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "{abstract}\nCommand" as Command
+
+Package update <<Rectangle>> {
+    Class "{abstract}\nUpdateCommand" as UpdateCommand extends Command {
+        createEditedProperty()
+    }
+    Class UpdateNewCommand extends UpdateCommand {
+        +execute()
+    }
+    Class UpdateProceedCommand extends UpdateCommand {
+        +execute()
+    }
+    Class UpdateCancelCommand extends UpdateCommand {
+        +execute()
+    }
+}
+
+@enduml

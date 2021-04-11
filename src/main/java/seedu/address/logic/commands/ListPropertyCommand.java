@@ -13,10 +13,16 @@ public class ListPropertyCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all properties";
 
+    public static final String MESSAGE_FAILURE = "No existing properties available";
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (!model.hasProperty()) {
+            return new CommandResult(MESSAGE_FAILURE);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }

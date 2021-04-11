@@ -33,7 +33,7 @@ public class Property {
     private final Status status;
 
     /**
-     * Constructs a {@code Property} without any optional fields.
+     * Constructs a {@code Property}.
      * Every field passed in must be not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
@@ -52,11 +52,10 @@ public class Property {
 
     /**
      * Constructs a {@code Property} with remarks but without client's information.
-     * Every field passed in must be not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Set<Tag> tags) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, tags);
+        requireAllNonNull(name, propertyType, address, postalCode, deadline, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -70,11 +69,10 @@ public class Property {
 
     /**
      * Constructs a {@code Property} with client's information but without remarks.
-     * Every field passed in must be not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Client client, Set<Tag> tags) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, client, tags);
+        requireAllNonNull(name, propertyType, address, postalCode, deadline, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -87,12 +85,11 @@ public class Property {
     }
 
     /**
-     * Constructs a {@code Property} with all information.
-     * Every field must be present and not null.
+     * Constructs a {@code Property} with all information except status.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Client client, Set<Tag> tags) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
+        requireAllNonNull(name, propertyType, address, postalCode, deadline, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -106,11 +103,10 @@ public class Property {
 
     /**
      * Constructs a {@code Property} with all information.
-     * Every field must be present and not null.
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Client client, Set<Tag> tags, Status status) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
+        requireAllNonNull(name, propertyType, address, postalCode, deadline, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -167,7 +163,7 @@ public class Property {
     }
 
     /**
-     * Returns true if both properties have the same postal code and same address.
+     * Returns true if both properties have the same pair of address and postal code.
      * This defines a weaker notion of equality between two properties.
      */
     public boolean isSameProperty(Property otherProperty) {
@@ -199,14 +195,13 @@ public class Property {
                 && otherProperty.getPropertyType().equals(getPropertyType())
                 && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getPostalCode().equals(getPostalCode())
-                && otherProperty.getDeadline().equals(getDeadline())
-                && otherProperty.getTags().equals(getTags());
+                && otherProperty.getDeadline().equals(getDeadline());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, propertyType, address, postalCode, deadline, tags);
+        return Objects.hash(name, propertyType, address, postalCode, deadline);
     }
 
     @Override

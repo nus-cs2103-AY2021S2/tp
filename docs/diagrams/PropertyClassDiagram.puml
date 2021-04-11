@@ -20,7 +20,7 @@ Class AskingPrice
 }
 
 Package Status as StatusPackage {
-Interface Status <<Interface>>
+Class "<<Interface>>\nStatus" as Status
 Class Status
 Class Option
 Class SalesAgreement
@@ -51,11 +51,14 @@ Property *--> Address
 Property *--> PostalCode
 Property *--> Deadline
 
-Property *--> Status
+Property *-right-> "  0..1  " Status
 Option ..|> Status
 SalesAgreement ..|> Status
 Completion ..|> Status
-Status .right.> Offer
+
+Option *-up-> "   1 " Offer
+SalesAgreement *-up-> "1" Offer
+Completion *-up-> "1" Offer
 
 Property *-up-> "*" Tag
 Property *-left-> Remark

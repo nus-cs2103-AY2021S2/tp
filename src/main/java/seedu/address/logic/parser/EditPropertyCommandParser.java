@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_CONTACT;
@@ -41,9 +42,11 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        } catch (NumberFormatException nfe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPropertyCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPropertyCommand.MESSAGE_USAGE), nfe);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
         EditPropertyDescriptor editPropertyDescriptor = new EditPropertyDescriptor();

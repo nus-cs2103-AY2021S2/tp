@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeletePropertyCommand;
@@ -21,9 +22,11 @@ public class DeletePropertyCommandParser implements Parser<DeletePropertyCommand
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeletePropertyCommand(index);
-        } catch (ParseException pe) {
+        } catch (NumberFormatException nfe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePropertyCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePropertyCommand.MESSAGE_USAGE), nfe);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
     }
 

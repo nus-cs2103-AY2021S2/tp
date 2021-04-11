@@ -48,20 +48,20 @@ public class SortPropertyCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, SortPropertyCommand.COMMAND_WORD + INVALID_SORTING_ORDER
+        assertParseFailure(parser, INVALID_SORTING_ORDER
                 + DEADLINE_PROPERTY_SORTING_KEY, SortingOrder.MESSAGE_CONSTRAINTS); // invalid sorting order
-        assertParseFailure(parser, SortPropertyCommand.COMMAND_WORD + DESC_SORTING_ORDER
+        assertParseFailure(parser, DESC_SORTING_ORDER
                         + INVALID_PROPERTY_SORTING_KEY,
                 PropertySortingKey.MESSAGE_CONSTRAINTS); // invalid property sorting key
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, SortPropertyCommand.COMMAND_WORD + INVALID_SORTING_ORDER
+        assertParseFailure(parser, INVALID_SORTING_ORDER
                 + INVALID_PROPERTY_SORTING_KEY, SortingOrder.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = SortPropertyCommand.COMMAND_WORD + DESC_SORTING_ORDER + DEADLINE_PROPERTY_SORTING_KEY;
+        String userInput = DESC_SORTING_ORDER + DEADLINE_PROPERTY_SORTING_KEY;
         SortPropertyDescriptor descriptor = new SortPropertyDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withPropertySortingKey(VALID_SORTING_KEY_PROPERTY_DEADLINE).build();
@@ -72,7 +72,7 @@ public class SortPropertyCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        String userInput = SortPropertyCommand.COMMAND_WORD + DESC_SORTING_ORDER + DEADLINE_PROPERTY_SORTING_KEY
+        String userInput = DESC_SORTING_ORDER + DEADLINE_PROPERTY_SORTING_KEY
                 + DESC_SORTING_ORDER;
         SortPropertyDescriptor descriptor = new SortPropertyDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
@@ -84,7 +84,7 @@ public class SortPropertyCommandParserTest {
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
-        String userInput = SortPropertyCommand.COMMAND_WORD + INVALID_SORTING_ORDER + DESC_SORTING_ORDER
+        String userInput = INVALID_SORTING_ORDER + DESC_SORTING_ORDER
                 + DEADLINE_PROPERTY_SORTING_KEY;
         SortPropertyDescriptor descriptor = new SortPropertyDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)

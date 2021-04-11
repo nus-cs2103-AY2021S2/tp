@@ -57,14 +57,18 @@ public class StringUtil {
      *
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean isNonZeroUnsignedInteger(String s) {
+    public static boolean isNonZeroUnsignedInteger(String s) throws NumberFormatException {
         requireNonNull(s);
 
-        try {
-            int value = Integer.parseInt(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
-        } catch (NumberFormatException nfe) {
-            return false;
+        int value = Integer.parseInt(s);
+
+        if (s.startsWith("+")) {
+            throw new NumberFormatException();
         }
+
+        if (s.startsWith("-")) {
+            throw new NumberFormatException();
+        }
+        return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
     }
 }

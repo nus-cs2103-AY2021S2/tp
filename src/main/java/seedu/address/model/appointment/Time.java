@@ -8,11 +8,20 @@ import seedu.address.model.util.DateTimeFormat;
 
 /**
  * Represents an Appointment's meeting time.
- * Guarantees: immutable.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}.
  */
 public class Time implements Comparable<Time> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting times should be valid times specified in 24-hour clock in the format HHMM";
+            "Meeting times should be valid times specified in 24-hour clock in the format HHMM.\n"
+            + "E.g. 0930, 2359\n";
+
+    public static final String MESSAGE_INVALID_TIME = "Invalid time entered.\n"
+            + "Please ensure that the appointment time entered is valid\n"
+            + "Note: 2400 is not a valid time. Please enter 0000 instead.";
+
+    public static final String MESSAGE_TIME_OVER = "Appointment time is already over!!!";
+
+    private static final String VALIDATION_REGEX = "\\d{4}";
 
     public final LocalTime time;
 
@@ -24,6 +33,23 @@ public class Time implements Comparable<Time> {
     public Time(LocalTime time) {
         requireNonNull(time);
         this.time = time;
+    }
+
+    /**
+     * Returns true if a given string is in a valid time format.
+     *
+     * @param test The string to test.
+     * @return True if the given string is in a valid time format, otherwise false.
+     */
+    public static boolean isValidTime(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if this {@code Time} has already passed.
+     */
+    public boolean isOver() {
+        return time.compareTo(LocalTime.now()) <= 0;
     }
 
     @Override

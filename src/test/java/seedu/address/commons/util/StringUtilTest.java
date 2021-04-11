@@ -16,12 +16,16 @@ public class StringUtilTest {
     public void isNonZeroUnsignedInteger() {
 
         // EP: empty strings
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("  "));
+        assertThrows(NumberFormatException.class, "For input string: \"\"", ()
+            -> StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
+        assertThrows(NumberFormatException.class, "For input string: \"  \"", ()
+            -> StringUtil.isNonZeroUnsignedInteger("  "));
 
         // EP: not a number
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("a"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa"));
+        assertThrows(NumberFormatException.class, "For input string: \"a\"", ()
+            -> StringUtil.isNonZeroUnsignedInteger("a"));
+        assertThrows(NumberFormatException.class, "For input string: \"aaa\"", ()
+            -> StringUtil.isNonZeroUnsignedInteger("aaa"));
 
         // EP: zero
         assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
@@ -30,15 +34,20 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("01"));
 
         // EP: signed numbers
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
+        assertThrows(NumberFormatException.class, null, ()
+            -> StringUtil.isNonZeroUnsignedInteger("-1"));
+        assertThrows(NumberFormatException.class, null, ()
+            -> StringUtil.isNonZeroUnsignedInteger("+1"));
 
         // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
+        assertThrows(NumberFormatException.class, "For input string: \" 10 \"", ()
+            -> StringUtil.isNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
+        assertThrows(NumberFormatException.class, "For input string: \"1 0\"", ()
+            -> StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(NumberFormatException.class, null, ()
+            -> StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
 
         // EP: valid numbers, should return true
         assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value

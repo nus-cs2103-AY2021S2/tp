@@ -1,0 +1,39 @@
+@startuml
+start
+:User executes
+UpdateCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:User input is passed to
+UpdateCommandParser;
+
+if () then ([invalid input])
+    :Exception is thrown;
+else ([else])
+    if () then ([command is new])
+        :UpdateCommandParser
+        creates a new
+        UpdateNewCommand;
+        :UpdateNewCommand
+        is executed;
+    else if () then ([command is proceed])
+        :UpdateCommandParser
+        creates a new
+        UpdateProceedCommand;
+        :UpdateProceedCommand
+        is executed;
+    else if () then ([command is cancel])
+        :UpdateCommandParser
+        creates a new
+        UpdateCancelCommand;
+        :UpdateCancelCommand
+        is executed;
+    else ([else])
+        :Exception is thrown;
+    endif
+endif
+:Result is shown to the user;
+stop
+@enduml

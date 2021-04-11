@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -31,9 +32,11 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        } catch (NumberFormatException nfe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), nfe);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
@@ -49,7 +52,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
             editAppointmentDescriptor.setTime(ParserUtil.parseAppointmentTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
-
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);

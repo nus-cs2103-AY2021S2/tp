@@ -3,6 +3,9 @@ package seedu.address.model.property.status;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Represents a buyer's offer price for a property.
  * Guarantees: immutable; is valid as declared in {@link #isValidOffer(String)}.
@@ -11,20 +14,27 @@ public class Offer implements Comparable<Offer> {
     public static final String MESSAGE_CONSTRAINTS = "Note the following conditions for specifying an offer:\n"
             + "1. The dollar sign is optional.\n"
             + "2. There should not be any leading zeros in the number specified.\n"
-            + "3. The cents part is optional but if specified, it has to be exactly 2 decimal places.\n"
+            + "3. The asking price should not be negative.\n"
             + "4. Either do not use commas at all or be consistent in the usage of commas throughout, "
             + "where each comma should separate every three digits from the back.\n"
-            + "   E.g.\n"
-            + "   $1000000 or $1,000,000 are valid but $1000,000 or $100,00,00 are not valid.";
+            + "E.g.\n"
+            + "$1000000 or $1,000,000 are valid but $1000,000 or $100,00,00 are not valid.";
+
     /*
      * Dollar sign is optional.
      * No leading zeros.
-     * Either do not specify decimal portion or specify exactly two decimal places.
      * Either no commas at all or consistent usage of commas throughout.
      */
-    public static final String VALIDATION_REGEX = "\\$?([1-9]\\d*|0|[1-9]\\d{0,2}(,\\d{3})*)(\\.\\d{2})?";
+    public static final String VALIDATION_REGEX = "\\$?(?<offer>([1-9]\\d*|0|[1-9]\\d{0,2}(,\\d{3})*))";
+    public static final Pattern PRICE_FORMAT = Pattern.compile(VALIDATION_REGEX);
 
-    public final String offer;
+    /*
+     * Prints the offer as a nicely formatted string with a dollar sign
+     * and separates every 3 digits with a comma.
+     */
+    private static final String OFFER_STRING = "$%,d";
+
+    public final Long offer;
 
     /**
      * Constructs an {@code Offer}.
@@ -34,7 +44,7 @@ public class Offer implements Comparable<Offer> {
     public Offer(String offer) {
         requireNonNull(offer);
         checkArgument(isValidOffer(offer), MESSAGE_CONSTRAINTS);
-        this.offer = offer;
+        this.offer = parse(offer);
     }
 
     /**
@@ -47,9 +57,24 @@ public class Offer implements Comparable<Offer> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the value of a valid offer string.
+     *
+     * @param offerString A valid offer string.
+     * @return an integer representing the value of the offer.
+     * @see #isValidOffer
+     */
+    public static long parse(String offerString) {
+        final Matcher matcher = PRICE_FORMAT.matcher(offerString);
+        checkArgument(matcher.matches(), MESSAGE_CONSTRAINTS);
+        String amount = matcher.group("offer");
+        String amountWithoutCommas = amount.replace(",", "");
+        return Long.parseLong(amountWithoutCommas);
+    }
+
     @Override
     public String toString() {
-        return offer;
+        return String.format(OFFER_STRING, offer);
     }
 
     @Override
@@ -61,16 +86,11 @@ public class Offer implements Comparable<Offer> {
             return false;
         }
         Offer otherAskingPrice = (Offer) other;
-        return offer.equals(otherAskingPrice.offer);
+        return offer == otherAskingPrice.offer;
     }
 
     @Override
     public int compareTo(Offer another) {
-        return this.offer.compareTo(another.offer);
-    }
-
-    @Override
-    public int hashCode() {
-        return offer.hashCode();
+        return offer.compareTo(another.offer);
     }
 }

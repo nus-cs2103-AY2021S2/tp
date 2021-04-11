@@ -8,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPostal(String)}.
  */
 public class PostalCode implements Comparable<PostalCode> {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Postal code should contain only numbers, and it should be at least 3 digits long";
+    public static final String MESSAGE_CONSTRAINTS = "Note the following conditions for specifying a postal code:\n"
+            + "1. Minimum length is 5 digits and maximum length is 10 digits";
 
-    private static final String VALIDATION_REGEX = "\\d{3,}";
+    private static final String VALIDATION_REGEX = "\\d{5,10}";
 
     public final String postal;
 

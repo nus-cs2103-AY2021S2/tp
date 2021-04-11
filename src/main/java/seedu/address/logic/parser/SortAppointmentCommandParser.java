@@ -5,6 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_KEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORTING_ORDER;
 
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortAppointmentCommand.SortAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -23,6 +25,12 @@ public class SortAppointmentCommandParser implements Parser<SortAppointmentComma
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_SORTING_ORDER, PREFIX_SORTING_KEY);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_SORTING_ORDER, PREFIX_SORTING_KEY)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortAppointmentCommand.MESSAGE_USAGE));
+        }
 
         SortAppointmentDescriptor sortAppointmentDescriptor =
                 new SortAppointmentDescriptor();
@@ -44,4 +52,11 @@ public class SortAppointmentCommandParser implements Parser<SortAppointmentComma
         return new SortAppointmentCommand(sortAppointmentDescriptor);
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 }

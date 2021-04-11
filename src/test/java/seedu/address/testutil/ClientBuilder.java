@@ -11,10 +11,10 @@ import seedu.address.model.property.client.Email;
  */
 public class ClientBuilder {
 
-    public static final String DEFAULT_NAME = "Alice";
-    public static final String DEFAULT_CONTACT = "91234567";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ASKING_PRICE = "$800,000";
+    public static final String DEFAULT_NAME = "Mallory";
+    public static final String DEFAULT_CONTACT = "84237541";
+    public static final String DEFAULT_EMAIL = "mallory_7541@gmail.com";
+    public static final Long DEFAULT_ASKING_PRICE = Long.parseLong("1000000");
 
     private Name clientName;
     private Contact clientContact;
@@ -68,8 +68,40 @@ public class ClientBuilder {
     /**
      * Sets the {@code AskingPrice} of the {@code Client} that we are building.
      */
-    public ClientBuilder withClientAskingPrice(String clientAskingPrice) {
+    public ClientBuilder withClientAskingPrice(Long clientAskingPrice) {
         this.clientAskingPrice = new AskingPrice(clientAskingPrice);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} that we are building to have no name.
+     */
+    public ClientBuilder withNoClientName() {
+        clientName = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} that we are building to have no contact.
+     */
+    public ClientBuilder withNoClientContact() {
+        clientContact = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} that we are building to have no email.
+     */
+    public ClientBuilder withNoClientEmail() {
+        clientEmail = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} that we are building to have no asking price.
+     */
+    public ClientBuilder withNoClientAskingPrice() {
+        clientAskingPrice = null;
         return this;
     }
 

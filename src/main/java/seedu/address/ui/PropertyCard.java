@@ -4,7 +4,6 @@ import static seedu.address.model.property.Type.CONDO;
 import static seedu.address.model.property.Type.HDB;
 import static seedu.address.model.property.Type.LANDED;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -15,7 +14,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.AppUtil;
-import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
 import seedu.address.model.property.client.Client;
@@ -79,6 +77,17 @@ public class PropertyCard extends UiPart<Region> {
         super(FXML);
         this.property = property;
         id.setText(displayedIndex + ". ");
+        setMandatoryPropertyLabels();
+        setOptionalPropertyLabels();
+        setClientLabels();
+        greyOutPropertiesWithPastDeadlines();
+        setPropertyTypeIcon();
+    }
+
+    /**
+     * Sets mandatory property fields to display.
+     */
+    public void setMandatoryPropertyLabels() {
         name.setText(property.getName().toString());
         propertyType.setText(property.getPropertyType().toString());
         address.setText(property.getAddress().toString());
@@ -87,29 +96,16 @@ public class PropertyCard extends UiPart<Region> {
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
 
-        Deadline currentDate = new Deadline(LocalDate.now());
-        if (currentDate.compareTo(property.getDeadline()) > 0) {
-            cardPane.setStyle("-fx-background-color: #696969");
-            deadline.setStyle("-fx-text-fill: darkred");
-        }
-
+    /**
+     * Sets optional property fields to display.
+     */
+    public void setOptionalPropertyLabels() {
         if (property.getRemarks() == null) {
             remarks.setManaged(false);
         } else {
             remarks.setText(property.getRemarks().toString());
-        }
-
-        if (property.getClient() == null) {
-            askingPrice.setManaged(false);
-            clientName.setManaged(false);
-            clientContact.setManaged(false);
-            clientEmail.setManaged(false);
-        } else {
-            askingPrice.setText(property.getAskingPrice().toString());
-            clientName.setText(Client.STRING_CLIENT_NAME + property.getClient().getClientName().toString());
-            clientContact.setText(Client.STRING_CLIENT_CONTACT + property.getClient().getClientContact().toString());
-            clientEmail.setText(Client.STRING_CLIENT_EMAIL + property.getClient().getClientEmail().toString());
         }
 
         if (property.getStatus() == null) {
@@ -117,7 +113,83 @@ public class PropertyCard extends UiPart<Region> {
         } else {
             status.setText(property.getStatus().toString());
         }
+    }
 
+    /**
+     * Sets client fields to display if applicable.
+     */
+    public void setClientLabels() {
+        if (property.getClient() == null) {
+            askingPrice.setManaged(false);
+            clientName.setManaged(false);
+            clientContact.setManaged(false);
+            clientEmail.setManaged(false);
+        } else {
+            setAskingPrice();
+            setClientName();
+            setClientContact();
+            setClientEmail();
+        }
+    }
+
+    /**
+     * Sets client asking price to display if applicable.
+     */
+    public void setAskingPrice() {
+        if (property.getAskingPrice() != null) {
+            askingPrice.setText(property.getAskingPrice().toString());
+        } else {
+            askingPrice.setManaged(false);
+        }
+    }
+
+    /**
+     * Sets client name to display if applicable.
+     */
+    public void setClientName() {
+        if (property.getClient().getClientName() != null) {
+            clientName.setText(Client.STRING_CLIENT_NAME + property.getClient().getClientName().toString());
+        } else {
+            clientName.setManaged(false);
+        }
+    }
+
+    /**
+     * Sets client contact to display if applicable.
+     */
+    public void setClientContact() {
+        if (property.getClient().getClientContact() != null) {
+            clientContact.setText(Client.STRING_CLIENT_CONTACT + property.getClient().getClientContact().toString());
+        } else {
+            clientContact.setManaged(false);
+        }
+    }
+
+    /**
+     * Sets client email to display if applicable.
+     */
+    public void setClientEmail() {
+        if (property.getClient().getClientEmail() != null) {
+            clientEmail.setText(Client.STRING_CLIENT_EMAIL + property.getClient().getClientEmail().toString());
+        } else {
+            clientEmail.setManaged(false);
+        }
+    }
+
+    /**
+     * Greys out Property with expired deadline in Ui.
+     */
+    public void greyOutPropertiesWithPastDeadlines() {
+        if (property.getDeadline().isOver()) {
+            cardPane.setStyle("-fx-background-color: #696969");
+            deadline.setStyle("-fx-text-fill: darkred");
+        }
+    }
+
+    /**
+     * Sets Property Icon to display base on Property type.
+     */
+    public void setPropertyTypeIcon() {
         switch (property.getPropertyType().toString()) {
         case HDB:
             propertyTypeIcon.setImage(HDB_ICON);

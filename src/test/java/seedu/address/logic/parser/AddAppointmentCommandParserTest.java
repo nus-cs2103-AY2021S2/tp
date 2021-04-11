@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEET_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEET_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DATE_IN_INVALID_FORMAT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DATE_IN_VALID_FORMAT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_REMARK_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_TIME_IN_INVALID_FORMAT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_TIME_IN_VALID_FORMAT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MEET_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MEET_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -79,7 +81,7 @@ public class AddAppointmentCommandParserTest {
             + TIME_DESC_MEET_ALEX, expectedMessage);
 
         // missing time prefix
-        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX + VALID_DATE_MEET_ALEX
+        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX + DATE_DESC_MEET_ALEX
             + VALID_TIME_MEET_ALEX, expectedMessage);
 
         // all prefixes missing
@@ -91,27 +93,35 @@ public class AddAppointmentCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_APPOINTMENT_NAME_DESC + REMARK_DESC_MEET_ALEX + DATE_DESC_MEET_ALEX
-            + TIME_DESC_MEET_ALEX, Name.MESSAGE_CONSTRAINTS);
+                + TIME_DESC_MEET_ALEX, Name.MESSAGE_CONSTRAINTS);
 
         // invalid remark
         assertParseFailure(parser, NAME_DESC_MEET_ALEX + INVALID_APPOINTMENT_REMARK_DESC + DATE_DESC_MEET_ALEX
-            + TIME_DESC_MEET_ALEX, Remark.MESSAGE_CONSTRAINTS);
+                + TIME_DESC_MEET_ALEX, Remark.MESSAGE_CONSTRAINTS);
 
-        // invalid date
-        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX + INVALID_APPOINTMENT_DATE_DESC
-            + TIME_DESC_MEET_ALEX, Date.MESSAGE_CONSTRAINTS);
+        // invalid date in invalid format
+        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX
+                + INVALID_APPOINTMENT_DATE_IN_INVALID_FORMAT_DESC + TIME_DESC_MEET_ALEX, Date.MESSAGE_CONSTRAINTS);
 
-        // invalid time
+        // invalid date in valid format
+        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX
+                + INVALID_APPOINTMENT_DATE_IN_VALID_FORMAT_DESC + TIME_DESC_MEET_ALEX, Date.MESSAGE_INVALID_DATE);
+
+        // invalid time in invalid format
         assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX + DATE_DESC_MEET_ALEX
-            + INVALID_APPOINTMENT_TIME_DESC, Time.MESSAGE_CONSTRAINTS);
+                + INVALID_APPOINTMENT_TIME_IN_INVALID_FORMAT_DESC, Time.MESSAGE_CONSTRAINTS);
+
+        // invalid time in valid format
+        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX + DATE_DESC_MEET_ALEX
+                + INVALID_APPOINTMENT_TIME_IN_VALID_FORMAT_DESC, Time.MESSAGE_INVALID_TIME);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_APPOINTMENT_NAME_DESC + REMARK_DESC_MEET_ALEX
-                + INVALID_APPOINTMENT_DATE_DESC + TIME_DESC_MEET_ALEX, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_APPOINTMENT_DATE_IN_VALID_FORMAT_DESC + TIME_DESC_MEET_ALEX, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_MEET_ALEX
-                + REMARK_DESC_MEET_ALEX + DATE_DESC_MEET_ALEX + TIME_DESC_MEET_ALEX,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX
+                + DATE_DESC_MEET_ALEX + TIME_DESC_MEET_ALEX,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
     }
 }

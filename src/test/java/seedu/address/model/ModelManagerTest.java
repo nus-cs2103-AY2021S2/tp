@@ -28,6 +28,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AppointmentBook(), new AppointmentBook(modelManager.getAppointmentBook()));
+        assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyBook()));
     }
 
     @Test
@@ -39,6 +40,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAppointmentBookFilePath(Paths.get("appointment/book/file/path"));
+        userPrefs.setPropertyBookFilePath(Paths.get("property/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
@@ -46,6 +48,7 @@ public class ModelManagerTest {
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setAppointmentBookFilePath(Paths.get("appointment/address/book/file/path"));
+        userPrefs.setPropertyBookFilePath(Paths.get("property/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -59,6 +62,39 @@ public class ModelManagerTest {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
+    }
+
+    @Test
+    public void setPropertyBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPropertyBookFilePath(null));
+    }
+
+    @Test
+    public void setPropertyBookFilePath_validPath_setsPropertyBookFilePath() {
+        Path path = Paths.get("property/book/file/path");
+        modelManager.setPropertyBookFilePath(path);
+        assertEquals(path, modelManager.getPropertyBookFilePath());
+    }
+
+    @Test
+    public void hasProperty_nullProperty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasProperty(null));
+    }
+
+    @Test
+    public void hasProperty_propertyNotInPropertyBook_returnsFalse() {
+        assertFalse(modelManager.hasProperty(WOODLANDS_CRESCENT));
+    }
+
+    @Test
+    public void hasProperty_propertyInPropertyBook_returnsTrue() {
+        modelManager.addProperty(WOODLANDS_CRESCENT);
+        assertTrue(modelManager.hasProperty(WOODLANDS_CRESCENT));
+    }
+
+    @Test
+    public void getFilteredPropertyList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPropertyList().remove(0));
     }
 
     @Test

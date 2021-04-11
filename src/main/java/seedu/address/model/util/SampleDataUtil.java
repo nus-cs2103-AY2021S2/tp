@@ -23,6 +23,8 @@ import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
+import seedu.address.model.property.status.Offer;
+import seedu.address.model.property.status.Option;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
@@ -38,7 +40,7 @@ public class SampleDataUtil {
                 new PostalCode("609477"),
                 new Deadline(LocalDate.parse("31-12-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Client(new Name("Bob"), new Contact("98664535"),
-                    new Email("bob@gmail.com"), new AskingPrice("$800,000")),
+                    new Email("bob@gmail.com"), new AskingPrice(Long.parseLong("800000"))),
                 getTagSet("4 bedrooms", "No renovation")),
             new Property(new Name("Burghley Drive"),
                 new Type("Landed"),
@@ -51,9 +53,10 @@ public class SampleDataUtil {
                 new Address("Blk 784 Woodlands Crescent #01-01"),
                 new PostalCode("731784"),
                 new Deadline(LocalDate.parse("01-08-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                null,
                 new Client(new Name("Caleb"), new Contact("84459627"),
-                    new Email("caleb_goh@gmail.com"), new AskingPrice("$350,000")),
-                getTagSet("2 bedrooms", "65 square metres")),
+                    new Email("caleb_goh@gmail.com"), new AskingPrice(Long.parseLong("350000"))),
+                getTagSet("2 bedrooms", "65 square metres"), new Option(new Offer("330000"))),
             new Property(new Name("The Interlace"),
                 new Type("Condo"),
                 new Address("180 Depot Rd"),
@@ -61,7 +64,7 @@ public class SampleDataUtil {
                 new Deadline(LocalDate.parse("10-04-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Remark("Urgent!!!"),
                 new Client(new Name("Freddy"), new Contact("87438807"),
-                    new Email("freddy_123@hotmail.com"), new AskingPrice("$1,000,000")),
+                    new Email("freddy_123@hotmail.com"), new AskingPrice(Long.parseLong("1000000"))),
                 getTagSet("Labrador Park MRT", "2015 World Building of the Year")),
             new Property(new Name("Marina One Residences"),
                 new Type("Condo"),
@@ -70,13 +73,13 @@ public class SampleDataUtil {
                 new Deadline(LocalDate.parse("01-06-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Remark("Has overlooking city view and 99-year leasehold"),
                 new Client(new Name("Simon Lee"), new Contact("91048774"),
-                    new Email("simon_lee@hotmail.com"), new AskingPrice("$2,500,000")),
+                    new Email("simon_lee@hotmail.com"), new AskingPrice(Long.parseLong("2500000"))),
                 getTagSet("99 year leasehold")),
             new Property(new Name("Compassvale Walk"),
                 new Type("Hdb"),
                 new Address("226A Compassvale Walk #10-07"),
                 new PostalCode("540236"),
-                new Deadline(LocalDate.parse("01-2-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                new Deadline(LocalDate.parse("01-02-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Remark("Big living room"),
                 getTagSet("3 bedrooms", "Renovation needed"))
         };
@@ -85,15 +88,15 @@ public class SampleDataUtil {
     public static Appointment[] getSampleAppointments() {
         return new Appointment[]{
             new Appointment(new Name("Meet Alex"),
-                new Remark("To celebrate Christmas at Fullerton Hotel"),
+                new Remark("Bring him around Bishan to look at the properties"),
                 new Date(LocalDate.parse("25-12-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Time(LocalTime.parse("1500", DateTimeFormat.INPUT_TIME_FORMAT))),
             new Appointment(new Name("Meet Bob"),
-                new Remark("At his house"),
+                new Remark("To meet with interested client for viewing of his house"),
                 new Date(LocalDate.parse("30-04-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Time(LocalTime.parse("1030", DateTimeFormat.INPUT_TIME_FORMAT))),
             new Appointment(new Name("Meet Caleb"),
-                new Remark("At Causeway point Mcdonalds"),
+                new Remark("For renegotiation of selling price"),
                 new Date(LocalDate.parse("07-03-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Time(LocalTime.parse("1030", DateTimeFormat.INPUT_TIME_FORMAT))),
             new Appointment(new Name("Meet Darren"),
@@ -101,15 +104,15 @@ public class SampleDataUtil {
                 new Date(LocalDate.parse("12-10-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Time(LocalTime.parse("1400", DateTimeFormat.INPUT_TIME_FORMAT))),
             new Appointment(new Name("Meet Emily"),
-                new Remark("At MayFair Gardens"),
+                new Remark("For initial evaluation of her house"),
                 new Date(LocalDate.parse("15-06-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Time(LocalTime.parse("1100", DateTimeFormat.INPUT_TIME_FORMAT))),
             new Appointment(new Name("Meet Freddy"),
-                new Remark("At Orchard Centrepoint's Starbucks"),
+                new Remark("To discuss about further plans for his unsold property"),
                 new Date(LocalDate.parse("17-08-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Time(LocalTime.parse("1930", DateTimeFormat.INPUT_TIME_FORMAT))),
             new Appointment(new Name("Meet Simon"),
-                new Remark("At Queenstown MRT station"),
+                new Remark("At Queenstown MRT station before going to his house"),
                 new Date(LocalDate.parse("20-09-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Time(LocalTime.parse("1200", DateTimeFormat.INPUT_TIME_FORMAT))),
         };

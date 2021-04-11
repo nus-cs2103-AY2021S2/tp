@@ -5,10 +5,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.model.appointment.Date.MESSAGE_DATE_OVER;
+import static seedu.address.model.appointment.Time.MESSAGE_TIME_OVER;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Date;
+import seedu.address.model.appointment.Time;
 
 /**
  * Adds an appointment to the app.
@@ -24,10 +28,10 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Meet Jacob for dinner "
-            + PREFIX_REMARK + "At Lot One's food court "
-            + PREFIX_DATE + "19-4-2021 "
-            + PREFIX_TIME + "1930 ";
+            + PREFIX_NAME + "Meet Jacob "
+            + PREFIX_REMARK + "For collection of commission "
+            + PREFIX_DATE + "19-05-2021 "
+            + PREFIX_TIME + "1930";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the app";
@@ -45,10 +49,19 @@ public class AddAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert toAdd != null;
+        requireNonNull(toAdd);
 
         if (model.hasAppointment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        Date date = toAdd.getDate();
+        Time time = toAdd.getTime();
+
+        if (date.isOver()) {
+            throw new CommandException(MESSAGE_DATE_OVER);
+        } else if (date.isToday() && time.isOver()) {
+            throw new CommandException(MESSAGE_TIME_OVER);
         }
 
         model.addAppointment(toAdd);

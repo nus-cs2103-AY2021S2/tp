@@ -5,7 +5,7 @@ skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
-Interface Ui <<Interface>>
+Class "<<Interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
@@ -15,7 +15,6 @@ Class AppointmentListPanel
 Class AppointmentCard
 Class PropertyListPanel
 Class PropertyCard
-Class StatusBarFooter
 Class CommandBox
 }
 
@@ -37,7 +36,6 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> AppointmentListPanel
 MainWindow *-down-> PropertyListPanel
-MainWindow *-down-> StatusBarFooter
 
 AppointmentListPanel -down--> AppointmentCard
 PropertyListPanel -down-> PropertyCard
@@ -50,7 +48,6 @@ AppointmentListPanel --|> UiPart
 AppointmentCard --|> UiPart
 PropertyListPanel --|> UiPart
 PropertyCard --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 AppointmentCard ..> Model
@@ -62,7 +59,6 @@ AppointmentListPanel -[hidden]left- PropertyListPanel
 PropertyListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

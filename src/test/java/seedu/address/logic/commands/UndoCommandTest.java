@@ -62,7 +62,6 @@ public class UndoCommandTest {
     public void execute_undoDeletePropertyCommand_success() {
         final String commandString = "delete property 1";
         Property propertyToDelete = model.getProperty(0);
-        System.out.println(propertyToDelete);
         model.deleteProperty(propertyToDelete);
         try {
             UndoCommand.logCommand(commandString);
