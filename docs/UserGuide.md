@@ -10,7 +10,7 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 * To start your journey with TutorsPet, head to [2. Quick Start](#2-quick-start)!
 * To learn about all our features, head to [3. Features](#3-features)!
 * To see some exciting features in our future version, head to [4. Coming soon](#4-coming-soon)!
-* To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-FAQ)!
+* To see our answers to some frequently asked questions by users, head to [5. FAQ](#5-faq)!
 * To learn about the field formats of a student contact, head to [6.1 Field Format Summary](#61-field-format-summary)!
 * To get an overview of all our commands, head to [6.2 Command summary](#62-command-summary)!
 
@@ -207,7 +207,16 @@ will need to type in either y/n for confirmation to add conflicted schedule.
 </div>
 
 Example:
-* `add n/John Doe p/98612341`
+
+`add n/John Doe p/98612341`
+
+* Before `add` command is entered
+
+![BeforeAdd](images/DemoBeforeAddCommand.png)
+
+* After `add` command is entered
+
+![AfterAdd](images/DemoAfterAddCommand.png)
 
 More Examples:
 
@@ -276,7 +285,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 </div>
 
 Example:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+
+`edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+
+* After [`detail 1`](#323) is successfully executed and all details of Alex Yeoh are displayed
+
+![BeforeEdit](images/DemoBeforeEditCommand.png)
+
+* Then `edit` command is entered. Changes are displayed immediately.
+
+![AfterEdit](images/DemoAfterEditCommand.png)
    
 More Examples:
 
@@ -309,7 +327,7 @@ Format: `detail INDEX`
 
 </div>
 
-Examples: <br>
+Example: <br>
 
 `detail 2` display the details of the 2nd student in the List.
 
@@ -537,7 +555,7 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 
 </div>
 
-Examples: <br>
+Example: <br>
 
 Command     | Result
 ----------- |---------------------------------------------------
@@ -574,7 +592,7 @@ Format: `delete-date INDEX`
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 </div>
 
-Examples: <br>
+Example: <br>
 
 Command     | Result
 ----------- |---------------------------------------------------
