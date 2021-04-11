@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -14,12 +15,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditPersonCommand.EditPersonPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPersonPersonDescriptorBuilder;
+import seedu.address.testutil.EditSessionDescriptorBuilder;
+
 
 /**
  * Contains helper methods for testing commands.
@@ -36,6 +42,20 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_PERSON_TYPE_STUDENT = "student";
+    public static final String VALID_PERSON_TYPE_TUTOR = "tutor";
+    public static final String VALID_PERSON_ID_AMY = "s/1";
+    public static final String VALID_PERSON_ID_BOB = "t/1";
+    public static final String VALID_SESSION_ID_FIRST_SESSION = "c/1";
+    public static final String VALID_SESSION_ID_SECOND_SESSION = "c/2";
+    public static final String VALID_DAY_FIRST_SESSION = "MONDAY";
+    public static final String VALID_DAY_SECOND_SESSION = "TUESDAY";
+    public static final String VALID_SUBJECT_FIRST_SESSION = "SCIENCE";
+    public static final String VALID_SUBJECT_SECOND_SESSION = "MATH";
+    public static final String VALID_TIMESLOT_FIRST_SESSION = "12:00 to 13:00";
+    public static final String VALID_TIMESLOT_SECOND_SESSION = "09:00 to 10:00";
+    public static final String VALID_TAG_SESSION = "session";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,26 +67,61 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String PERSON_TYPE_DESC_STUDENT = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_STUDENT;
+    public static final String PERSON_TYPE_DESC_TUTOR = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_TUTOR;
+    public static final String PERSON_TYPE_DESC_AMY = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_STUDENT;
+    public static final String PERSON_TYPE_DESC_BOB = " " + PREFIX_PERSON_TYPE + VALID_PERSON_TYPE_TUTOR;
+    public static final String PERSON_ID_DESC_AMY = VALID_PERSON_ID_AMY;
+    public static final String PERSON_ID_DESC_BOB = VALID_PERSON_ID_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PERSON_TYPE_DESC = " " + PREFIX_PERSON_TYPE + "invalid";
+    public static final String INVALID_PERSON_ID_DESC = "wrongid";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditSessionCommand.EditSessionDescriptor DESC_FIRST_SESSION;
+    public static final EditSessionCommand.EditSessionDescriptor DESC_SECOND_SESSION;
+    public static final EditPersonPersonDescriptor DESC_AMY;
+    public static final EditPersonPersonDescriptor DESC_BOB;
+    public static final EditPersonDescriptor DESC_AMY_EDIT;
+    public static final EditPersonDescriptor DESC_BOB_EDIT;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT)
+                .withPersonId(VALID_PERSON_ID_AMY)
+                .withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPersonPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_TUTOR)
+                .withPersonId(VALID_PERSON_ID_BOB)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY_EDIT = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_STUDENT)
+                .withPersonId(VALID_PERSON_ID_AMY)
+                .withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB_EDIT = new EditPersonDescriptorBuilder().withPersonType(VALID_PERSON_TYPE_TUTOR)
+                .withPersonId(VALID_PERSON_ID_BOB)
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_FIRST_SESSION = new EditSessionDescriptorBuilder().withSessionId(VALID_SESSION_ID_FIRST_SESSION)
+                .withDay(VALID_DAY_FIRST_SESSION)
+                .withSubject(VALID_SUBJECT_FIRST_SESSION)
+                .withTimeslot(VALID_TIMESLOT_FIRST_SESSION)
+                .withTags(VALID_TAG_SESSION).build();
+        DESC_SECOND_SESSION = new EditSessionDescriptorBuilder().withSessionId(VALID_SESSION_ID_SECOND_SESSION)
+                .withDay(VALID_DAY_SECOND_SESSION)
+                .withSubject(VALID_SUBJECT_SECOND_SESSION)
+                .withTimeslot(VALID_TIMESLOT_SECOND_SESSION)
+                .withTags(VALID_TAG_SESSION).build();
     }
 
     /**

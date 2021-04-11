@@ -12,23 +12,36 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.Tutor;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "persons")
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final String studentCounter;
+    private final String tutorCounter;
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("studentCounter") String studentCounter,
+                                       @JsonProperty("tutorCounter") String tutorCounter) {
         this.persons.addAll(persons);
+
+        Student.setStudentCount(studentCounter);
+        this.studentCounter = studentCounter;
+
+        Tutor.setTutorCount(tutorCounter);
+        this.tutorCounter = tutorCounter;
+
     }
 
     /**
@@ -38,6 +51,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        this.studentCounter = Student.getStudentCount();
+        this.tutorCounter = Tutor.getTutorCount();
     }
 
     /**

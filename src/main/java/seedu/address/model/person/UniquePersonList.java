@@ -134,4 +134,13 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "list of students";
+    }
+
+    public ObservableList<Person> getInternalList() {
+        return internalList;
+    }
 }

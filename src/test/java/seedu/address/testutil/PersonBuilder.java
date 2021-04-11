@@ -1,13 +1,20 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.Tutor;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,12 +27,18 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PERSON_TYPE = "student";
+    public static final String DEFAULT_PERSON_ID = "s/1";
+
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private PersonType personType;
+    private PersonId personId;
+    private List<SessionId> sessions;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +49,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        personType = new PersonType(DEFAULT_PERSON_TYPE);
+        personId = new PersonId(DEFAULT_PERSON_ID);
+        sessions = new ArrayList<>();
     }
 
     /**
@@ -47,6 +63,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        personType = personToCopy.getPersonType();
+        personId = personToCopy.getPersonId();
+        sessions = personToCopy.getSessions();
     }
 
     /**
@@ -88,9 +107,47 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
+    /**
+     * Sets the {@code PersonType} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPersonType(String type) {
+        this.personType = new PersonType(type);
+        return this;
+    }
 
+    /**
+     * Sets the {@code PersonId} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPersonId(String id) {
+        this.personId = new PersonId(id);
+        return this;
+    }
+
+    /**
+     * Parses the {@code sessionIds} into a {@code List<SessionId>} and set it to the {@code Person}
+     * that we are building.
+     * @param sessionId
+     * @return
+     */
+    public PersonBuilder withSessions(String ... sessionId) {
+        this.sessions = SampleDataUtil.getSessionIds();
+        return this;
+    }
+
+    /**
+     * Build
+     * @return Person
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        if (this.personType.toString().equals("student")) {
+            Person student = new Student(personId, name, phone, email, address, tags);
+            student.getSessions().addAll(sessions);
+            return student;
+        } else {
+            Person tutor = new Tutor(personId, name, phone, email, address, tags);
+            tutor.getSessions().addAll(sessions);
+            return tutor;
+        }
     }
 
 }

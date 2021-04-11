@@ -1,0 +1,65 @@
+@startuml
+!include Style.puml
+
+hide footbox
+title Add Person Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddPersonCommandParser" as AddPersonCommandParser LOGIC_COLOR
+participant "command:AddPersonCommand" as command LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(add person pt/student...)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(add person pt/student...)
+activate AddressBookParser
+
+create AddPersonCommandParser
+AddressBookParser -> AddPersonCommandParser
+activate AddPersonCommandParser
+
+AddPersonCommandParser --> AddressBookParser
+deactivate AddPersonCommandParser
+
+AddressBookParser -> AddPersonCommandParser : parse(pt/student...)
+activate AddPersonCommandParser
+
+create command
+AddPersonCommandParser -> command
+activate command
+
+command --> AddPersonCommandParser
+deactivate command
+
+AddPersonCommandParser --> AddressBookParser : AddPersonCommand
+deactivate AddPersonCommandParser
+destroy AddPersonCommandParser
+
+AddressBookParser --> LogicManager : AddPersonCommand
+deactivate AddressBookParser
+
+LogicManager -> command : execute()
+activate command
+
+command -> Model : addPerson(person)
+activate Model
+
+Model --> command : commandResult
+
+deactivate Model
+
+command --> LogicManager : commandResult
+deactivate command
+
+LogicManager -->[ : commandResult
+deactivate LogicManager
+
+@enduml

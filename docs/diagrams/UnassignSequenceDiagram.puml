@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+hide footbox
+title Unassign Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UnassignCommandParser" as UnassignCommandParser LOGIC_COLOR
+participant "command:UnassignCommand" as command LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "s/1:Person" as s1 MODEL_COLOR
+participant "c/1:Session" as c1 MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unassign s/1 c/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("unassign s/1 c/1")
+activate AddressBookParser
+
+create UnassignCommandParser
+AddressBookParser -> UnassignCommandParser
+
+AddressBookParser -> UnassignCommandParser : parse("s/1 c/1")
+activate UnassignCommandParser
+
+create command
+UnassignCommandParser -> command
+
+UnassignCommandParser --> AddressBookParser : command
+deactivate UnassignCommandParser
+
+AddressBookParser -[hidden]-> UnassignCommandParser
+destroy UnassignCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> command : execute()
+activate command
+
+command -> s1 : removeSession(c/1)
+activate s1
+
+deactivate s1
+
+command -> c1 : unassignStudent(s/1)
+activate c1
+
+deactivate c1
+
+command --> LogicManager : commandResult
+deactivate command
+
+LogicManager -[hidden]-> command
+destroy command
+
+LogicManager -->[ : commandResult
+deactivate LogicManager
+@enduml
+

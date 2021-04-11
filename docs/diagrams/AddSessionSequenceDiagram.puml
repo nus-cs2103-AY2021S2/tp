@@ -1,0 +1,68 @@
+@startuml
+!include Style.puml
+
+hide footbox
+title Add Session Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddSessionCommandParser" as AddSessionCommandParser LOGIC_COLOR
+participant "command:AddSessionCommand" as command LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_session d/…")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add_session d/…")
+activate AddressBookParser
+
+create AddSessionCommandParser
+AddressBookParser -> AddSessionCommandParser
+activate AddSessionCommandParser
+
+AddSessionCommandParser -[hidden]-> AddressBookParser
+deactivate AddSessionCommandParser
+
+AddressBookParser -> AddSessionCommandParser : parse("d/Saturday …")
+activate AddSessionCommandParser
+
+create command
+AddSessionCommandParser -> command
+activate command
+
+command -[hidden]-> AddSessionCommandParser
+deactivate command
+
+AddSessionCommandParser --> AddressBookParser : command
+deactivate AddSessionCommandParser
+
+AddressBookParser -[hidden]-> AddSessionCommandParser
+destroy AddSessionCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> command : execute()
+activate command
+
+command -> Model : addSession(session)
+activate Model
+
+deactivate Model
+
+command --> LogicManager : commandResult
+deactivate command
+
+LogicManager -[hidden]-> command
+destroy command
+
+LogicManager -->[ : commandResult
+deactivate LogicManager
+@enduml
+

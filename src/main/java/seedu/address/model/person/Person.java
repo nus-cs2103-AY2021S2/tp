@@ -2,11 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.session.SessionId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +27,9 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private PersonType personType;
+    private PersonId personId;
+    private List<SessionId> sessions = new ArrayList<>();
     /**
      * Every field must be present and not null.
      */
@@ -52,6 +58,30 @@ public class Person {
         return address;
     }
 
+    public PersonType getPersonType() {
+        return personType;
+    }
+
+    public PersonId getPersonId() {
+        return personId;
+    }
+
+    public void setPersonType(PersonType personType) {
+        this.personType = personType;
+    }
+
+    public void setPersonId(PersonId personId) {
+        this.personId = personId;
+    }
+
+    public List<SessionId> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<SessionId> sessions) {
+        this.sessions = sessions;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -61,7 +91,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and phone number OR the same name and email.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -69,8 +99,42 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        boolean hasSameNameAndPhone = otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone());
+        boolean hasSameNameAndEmail = otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getEmail().equals(getEmail());
+
+        return hasSameNameAndPhone || hasSameNameAndEmail;
+    }
+
+    public boolean isStudent() {
+        return this.personType.isStudent();
+    }
+
+    public boolean isTutor() {
+        return this.personType.isTutor();
+    }
+
+    public boolean hasSession() {
+        return !this.sessions.isEmpty();
+    }
+
+    /**
+     * Adds a session to the list of sessions that this person is assigned to
+     * @param session
+     */
+    public void addSession(SessionId session) {
+        this.sessions.add(session);
+    }
+
+    /**
+     * Removes a session to the list of sessions that this person is assigned to
+     * @param session
+     */
+    public void removeSession(SessionId session) {
+        this.sessions.remove(session);
     }
 
     /**
@@ -119,5 +183,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

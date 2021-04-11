@@ -7,15 +7,21 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddSessionCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteSessionCommand;
+import seedu.address.logic.commands.EditSessionCommand;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
 import seedu.address.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.
@@ -46,7 +52,17 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            if (command instanceof ExitCommand) {
+                storage.saveSessions(model.getAddressBook());
+                storage.saveAddressBook(model.getAddressBook());
+            } else if (command instanceof AddSessionCommand
+                    || command instanceof DeleteSessionCommand
+                    || command instanceof EditSessionCommand) {
+                storage.saveSessions(model.getAddressBook());
+            } else {
+                storage.saveAddressBook(model.getAddressBook());
+                storage.saveSessions(model.getAddressBook());
+            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -64,6 +80,14 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+    /**
+     * returns a list of Sessions
+     * @return ObservableList of Session
+     */
+    public ObservableList<Session> getFilteredSessionList() {
+        return model.getFilteredSessionList();
+    }
+
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
@@ -78,4 +102,13 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    public ObservableList<Person> getUnfilteredPersonList() {
+        return model.getUnfilteredPersonList();
+    }
+
+    public ObservableList<Session> getUnfilteredSessionList() {
+        return model.getUnfilteredSessionList();
+    }
+
 }

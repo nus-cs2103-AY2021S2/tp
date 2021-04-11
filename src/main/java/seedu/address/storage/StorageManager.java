@@ -19,14 +19,17 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private AddressBookStorage sessionBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, AddressBookStorage sessionStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.sessionBookStorage = sessionStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -64,6 +67,21 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to read data from file: " + filePath);
         return addressBookStorage.readAddressBook(filePath);
     }
+    public Optional<ReadOnlyAddressBook> readSession() throws DataConversionException, IOException {
+        return readSession(sessionBookStorage.getAddressBookFilePath());
+    }
+
+    /**
+     * return an optional ReadOnlyAddressBook for sessions
+     * @param filePath
+     * @return Optional ReadOnlyAddressBook
+     * @throws DataConversionException throws dataConversionException
+     * @throws IOException throws IOException
+     */
+    public Optional<ReadOnlyAddressBook> readSession(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return sessionBookStorage.readAddressBook(filePath);
+    }
 
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
@@ -75,5 +93,21 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
+    public void saveSessions(ReadOnlyAddressBook addressBook) throws IOException {
+        saveSessions(addressBook, sessionBookStorage.getAddressBookFilePath());
+    }
+
+    /**
+     * Save Sessions
+     * @param addressBook
+     * @param filePath
+     * @throws IOException
+     */
+    public void saveSessions(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        sessionBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+
 
 }

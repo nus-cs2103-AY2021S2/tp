@@ -1,0 +1,62 @@
+@startuml
+!include Style.puml
+
+hide footbox
+title Assign Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AssignCommandParser" as AssignCommandParser LOGIC_COLOR
+participant "command:AssignCommand" as AssignCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(assign s/2 t/1 c/1)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(assign s/2 t/1 c/1))
+activate AddressBookParser
+
+create AssignCommandParser
+AddressBookParser -> AssignCommandParser
+activate AssignCommandParser
+
+AssignCommandParser --> AddressBookParser
+deactivate AssignCommandParser
+
+AddressBookParser -> AssignCommandParser : parse(s/2 t/1 c/1)
+activate AssignCommandParser
+
+create AssignCommand
+AssignCommandParser -> AssignCommand
+activate AssignCommand
+
+AssignCommand --> AssignCommandParser
+deactivate AssignCommand
+
+AssignCommandParser --> AddressBookParser : AssignCommand
+deactivate AssignCommandParser
+destroy AssignCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> AssignCommand : execute()
+activate AssignCommand
+
+AssignCommand -> AssignCommand : getStudents()
+AssignCommand -> AssignCommand : getTutor()
+AssignCommand -> AssignCommand : assignTutor()
+AssignCommand -> AssignCommand : assignStudents()
+
+AssignCommand --> LogicManager : CommandResult
+deactivate AssignCommand
+destroy AssignCommand
+
+LogicManager -->[ : commandResult
+deactivate LogicManager
+
+
+
+@enduml

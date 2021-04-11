@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonType;
+import seedu.address.model.person.PersonTypePredicate;
+import seedu.address.model.session.Session;
 
 /**
  * The API of the Model component.
@@ -13,6 +16,12 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
+    /** {@code Predicate} that evaluate to true when person type is student */
+    Predicate<Person> PREDICATE_SHOW_ALL_STUDENTS = new PersonTypePredicate(new PersonType("student"));
+    /** {@code Predicate} that evaluate to true when person type is tutor*/
+    Predicate<Person> PREDICATE_SHOW_ALL_TUTORS = new PersonTypePredicate(new PersonType("tutor"));
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +93,33 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    void addSession(Session session);
+
+    /**
+     * Deletes the given session.
+     * The session must exist in the address book.
+     */
+    void deleteSession(Session session);
+
+    /**
+     * Replaces the given session {@code target} with {@code editedSession}.
+     * {@code target} must exist in the address book.
+     */
+    void setSession(Session target, Session editedSession);
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Session} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+
+    public ObservableList<Session> getFilteredSessionList();
+
+    public void updateFilteredSessionList(Predicate<Session> predicate);
+
+    public boolean emptyPersonList();
+    public boolean emptySessionList();
+    public ObservableList<Session> getUnfilteredSessionList();
+    public ObservableList<Person> getUnfilteredPersonList();
 }

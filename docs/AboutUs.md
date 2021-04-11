@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
+### Kuek Yan Ling
 
-### John Doe
+<img src="images/yanlingkuek.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/yanlingkuek)]
+[[portfolio](team/yanlingkuek.md)]
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+- Role: Developer
+- Responsibilities: Deliverables and Deadlines
 
-* Role: Project Advisor
+### Phoe Chuan Yi, Benny
 
-### Jane Doe
+<img src="images/bennyphoe.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/Bennyphoe)]
+[[portfolio](team/bennyphoe.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+- Role: Developer
+- Responsibilities: Documentation, Scheduling & Tracking
 
-* Role: Team Lead
-* Responsibilities: UI
+### Guo Jingxue
 
-### Johnny Doe
+<img src="images/jingxueguo.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/jingxueguo)]
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[portfolio](team/jingxueguo.md)]
+
+- Role: Developer
+- Responsibilities: Code Quality
+
+### Chanell Ng
+
+<img src="images/chanellng.png" width="200px">
+
+[[github](http://github.com/chanellNg)]
+[[portfolio](team/chanellng.md)]
+
+- Role: Team Lead, Git expert
+- Responsibilities: UI
+
+### Carissa Ying
+
+<img src="images/car155.png" width="200px">
+
+[[github](https://github.com/car155)]
+[[portfolio](team/car155.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Integration, Testing
 
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI

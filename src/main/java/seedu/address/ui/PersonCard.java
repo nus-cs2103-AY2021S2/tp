@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -29,7 +30,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label personId;
+    @FXML
     private Label name;
+    @FXML
+    private Label personType;
     @FXML
     private Label id;
     @FXML
@@ -48,13 +53,25 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        personId.setText(person.getPersonId().toString());
         name.setText(person.getName().fullName);
+        personType.setText(person.getPersonType().toString());
+        if (person.getPersonType().toString().equals("student")) {
+            personType.setStyle("-fx-text-fill: pink ");
+        } else {
+            personType.setStyle("-fx-text-fill: aquamarine");
+        }
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label currTag = new Label(tag.tagName);
+                    currTag.setWrapText(true);
+                    currTag.setMaxWidth(300);
+                    tags.getChildren().add(currTag);
+                });
     }
 
     @Override

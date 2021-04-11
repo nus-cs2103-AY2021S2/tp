@@ -14,7 +14,12 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.Tutor;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +33,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String personType;
+    private final String personId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedSessionId> sessions = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +44,19 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("personType") String personType,
+            @JsonProperty("personId") String personId, @JsonProperty("sessions") List<JsonAdaptedSessionId> sessions) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        this.personType = personType;
+        this.personId = personId;
+        if (sessions != null) {
+            this.sessions.addAll(sessions);
         }
     }
 
@@ -57,6 +71,10 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        personType = source.getPersonType().toString();
+        personId = source.getPersonId().toString();
+        sessions.addAll(source.getSessions().stream().map(JsonAdaptedSessionId::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +86,10 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        final List<SessionId> sessionsList = new ArrayList<>();
+        for (JsonAdaptedSessionId session : sessions) {
+            sessionsList.add(session.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +124,36 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (personType == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonType.class.getSimpleName()));
+        }
+        if (!PersonType.isValidPersonType(personType)) {
+            throw new IllegalValueException(PersonType.MESSAGE_CONSTRAINTS);
+        }
+        final PersonType modelPersonType = new PersonType(personType);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (personId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonId.class.getSimpleName()));
+        }
+        if (!PersonId.isValidPersonId(personId)) {
+            throw new IllegalValueException(PersonId.MESSAGE_CONSTRAINTS);
+        }
+
+        final PersonId modelPersonId = new PersonId(personId);
+
+        if (modelPersonType.toString().equals("student")) {
+            Student student = new Student(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            student.getSessions().addAll(sessionsList);
+            return student;
+        } else {
+            Tutor tutor = new Tutor(modelPersonId, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            tutor.getSessions().addAll(sessionsList);
+            return tutor;
+        }
     }
 
 }

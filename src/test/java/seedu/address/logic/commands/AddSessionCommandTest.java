@@ -15,63 +15,54 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.session.Session;
+import seedu.address.testutil.SessionBuilder;
 
-public class AddCommandTest {
+public class AddSessionCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullSession_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddSessionCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_sessionAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingSessionAdded modelStub = new ModelStubAcceptingSessionAdded();
+        Session validSession = new SessionBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddSessionCommand(validSession).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertEquals(AddSessionCommand.MESSAGE_SUCCESS + validSession, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validSession), modelStub.sessionsAdded);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Session c1 = new SessionBuilder().withSessionId("c/1").build();
+        Session c2 = new SessionBuilder().withSessionId("c/2").build();
+        AddSessionCommand addC1Command = new AddSessionCommand(c1);
+        AddSessionCommand addC2Command = new AddSessionCommand(c2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addC1Command.equals(addC1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddSessionCommand addC1CommandCopy = new AddSessionCommand(c1);
+        assertTrue(addC1Command.equals(addC1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addC1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addC1Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addC1Command.equals(addC2Command));
     }
 
     /**
@@ -107,6 +98,14 @@ public class AddCommandTest {
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        }
 
         @Override
         public void addPerson(Person person) {
@@ -134,56 +133,70 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Person target, Person editedSession) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Session> getFilteredSessionList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredSessionList(Predicate<Session> predicate) {
             throw new AssertionError("This method should not be called.");
-        }
-    }
-
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public void addSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSession(Session target, Session editedSession) {
+
+        }
+
+        @Override
+        public boolean emptyPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean emptySessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getUnfilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Session> getUnfilteredSessionList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingSessionAdded extends ModelStub {
+        final ArrayList<Session> sessionsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public void addSession(Session session) {
+            requireNonNull(session);
+            sessionsAdded.add(session);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
+        public void updateFilteredSessionList(Predicate<Session> predicate) { }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {

@@ -1,6 +1,13 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTOR_ID;
+import static seedu.address.logic.parser.ListType.PERSON_TYPE_LIST;
+import static seedu.address.logic.parser.ListType.SESSION_TYPE_LIST;
+import static seedu.address.logic.parser.ListType.STUDENT_TYPE_LIST;
+import static seedu.address.logic.parser.ListType.TUTOR_TYPE_LIST;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,11 +15,19 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
+import seedu.address.model.session.Day;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionId;
+import seedu.address.model.session.Subject;
+import seedu.address.model.session.Timeslot;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,6 +111,51 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String day} into an {@code Day}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static Day parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!Day.isValidDay(trimmedDay)) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        return new Day(trimmedDay);
+    }
+
+    /**
+     * Parses a {@code String subject} into an {@code Subject}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses a {@code String time} into an {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static Timeslot parseTimeslot(String timeslot) throws ParseException {
+        requireNonNull(timeslot);
+        String trimmedTimeslot = timeslot.trim();
+        if (!Timeslot.isValidTimeslot(trimmedTimeslot)) {
+            throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
+        }
+        return new Timeslot(timeslot);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -111,6 +171,38 @@ public class ParserUtil {
     }
 
     /**
+     Parses a {@code String type} into a {@code PersonType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code type} is invalid.
+     */
+    public static PersonType parsePersonType(String type) throws ParseException {
+        requireNonNull(type);
+        type = type.toLowerCase();
+        if (!PersonType.isValidPersonType(type)) {
+            throw new ParseException(PersonType.MESSAGE_CONSTRAINTS);
+        } else {
+            return new PersonType(type);
+        }
+    }
+
+    /**
+     Parses a {@code String id} into a {@code PersonId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static PersonId parsePersonId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!PersonId.isValidPersonId(trimmedId)) {
+            throw new ParseException(PersonId.MESSAGE_CONSTRAINTS);
+        } else {
+            return new PersonId(trimmedId);
+        }
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -120,5 +212,64 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String session ID} into a {@code session ID }.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session ID} is invalid.
+     */
+    public static SessionId parseSessionId(String sessionId) throws ParseException {
+        requireNonNull(sessionId);
+        String trimmedSessionId = sessionId.trim();
+        if (!SessionId.isValidSessionId(trimmedSessionId)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new SessionId(trimmedSessionId);
+    }
+
+    /**
+     * Parses a {@code String list type}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseListType(String listType) throws ParseException {
+        requireNonNull(listType);
+        String trimmedListType = listType.trim();
+        if (trimmedListType.equals(PERSON_TYPE_LIST) || trimmedListType.equals(SESSION_TYPE_LIST)
+                || trimmedListType.equals(STUDENT_TYPE_LIST) || trimmedListType.equals(TUTOR_TYPE_LIST)) {
+            return trimmedListType;
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Parses a {@code Collection<String> person IDs} into a {@code List<PersonId> }.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code person IDs} is invalid.
+     */
+    public static Set<PersonId> parseStudentIds(Collection<String> studentIds) throws ParseException {
+        requireNonNull(studentIds);
+        final Set<PersonId> studentIdsSet = new HashSet<>();
+        for (String studentId : studentIds) {
+            studentIdsSet.add(parsePersonId(PREFIX_STUDENT_ID + studentId));
+        }
+        return studentIdsSet;
+    }
+
+    /**
+     * Parses a {@code String tutor ID} into a {@code person ID }.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutor ID} is invalid.
+     */
+    public static PersonId parseTutorId(String tutorId) throws ParseException {
+        requireNonNull(tutorId);
+        String trimmedTutorId = tutorId.trim();
+        return parsePersonId(PREFIX_TUTOR_ID + tutorId);
     }
 }

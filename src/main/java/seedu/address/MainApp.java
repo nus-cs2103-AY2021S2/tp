@@ -24,6 +24,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonSessionStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -56,8 +57,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        AddressBookStorage sessionStorage = new JsonSessionStorage(userPrefs.getSessionFilePath());
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, sessionStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,13 +77,18 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyAddressBook> sessionOptional;
         ReadOnlyAddressBook initialData;
         try {
             addressBookOptional = storage.readAddressBook();
+            sessionOptional = storage.readSession();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            ReadOnlyAddressBook personData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            ReadOnlyAddressBook sessionData = sessionOptional.orElseGet(SampleDataUtil::getSampleSessions);
+            personData.setSessions(sessionData.getSessions());
+            initialData = personData;
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();

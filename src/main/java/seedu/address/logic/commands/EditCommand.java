@@ -1,11 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -23,7 +18,11 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonId;
+import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.Tutor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,19 +32,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
-
+    public static final String MESSAGE_USAGE = "Edit command should either be edit_person or edit_session!";
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
@@ -68,7 +55,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getUnfilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -90,16 +77,25 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
+        PersonType originalType = personToEdit.getPersonType();
+        PersonId originalId = personToEdit.getPersonId();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        if (originalType.equals(new PersonType("student"))) {
+            return new Student(originalId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        } else if (originalType.equals(new PersonType("tutor"))) {
+            return new Tutor(originalId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        } else {
+            throw new CommandException("Person's original type should be student or tutor");
+        }
     }
 
     @Override
@@ -130,7 +126,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-
+        private PersonType personType;
+        private PersonId personId;
         public EditPersonDescriptor() {}
 
         /**
@@ -143,6 +140,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPersonType(toCopy.personType);
+            setPersonId(toCopy.personId);
         }
 
         /**
@@ -184,6 +183,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public PersonType getPersonType() {
+            return personType;
+        }
+
+        public void setPersonType(PersonType personType) {
+            this.personType = personType;
+        }
+
+        public PersonId getPersonId() {
+            return personId;
+        }
+
+        public void setPersonId(PersonId personId) {
+            this.personId = personId;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -220,7 +235,9 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getPersonType().equals(e.getPersonType())
+                    && getPersonId().equals(e.getPersonId());
         }
     }
 }
