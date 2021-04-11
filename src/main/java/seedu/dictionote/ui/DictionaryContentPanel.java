@@ -56,4 +56,14 @@ public class DictionaryContentPanel extends UiPart<Region> implements Dictionary
     public boolean isContentVisible() {
         return dictionaryListPanelConfig.isContentVisible();
     }
+
+    @Override
+    public void openContentDisplay() {
+        dictionaryListPanelConfig.openContentDisplay();
+    }
+
+    @Override
+    public void openDefinitionDisplay() {
+        dictionaryListPanelConfig.openDefinitionDisplay();
+    }
 }

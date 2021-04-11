@@ -1,7 +1,259 @@
 {
   "definitions" : [ {
-    "term" : "<<Insert Term here",
-    "defs" : "Paragraph 1\n\nparagraph 2\n\nparagraph 3"
+    "term": "Abstraction",
+    "defs": "Abstraction is a technique for dealing with complexity. It works by establishing a level of complexity we are interested in, and suppressing the more complex details below that level."
+  },{
+    "term": "Acceptance testing",
+    "defs": "Acceptance testing (aka User Acceptance Testing (UAT): test the system to ensure it meets the user requirements."
+  },{
+    "term": "Actor",
+    "defs": "An actor (in a use case) is a role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system."
+  },{
+    "term": "Alpha testing",
+    "defs": "Alpha testing is performed by the users, under controlled conditions set by the software development team."
+  },{
+    "term": "Architecture",
+    "defs": "Architecture: The high level structures of a software system, the discipline of creating such structures, and the documentation of these structures. These structures are needed to reason about the software system. Each structure comprises software elements, relations among them, and properties of both elements and relations. The architecture of a software system is a metaphor, analogous to the architecture of a building."
+  },{
+    "term": "Beta testing",
+    "defs": "Beta testing is performed by a selected subset of target users of the system in their natural work setting."
+  },{
+    "term": "Boundary Value Analysis",
+    "defs": "Boundary Value Analysis (BVA) is a test case design heuristic that is based on the observation that bugs often result from incorrect handling of boundaries of equivalence partitions."
+  },{
+    "term": "Brainstorming",
+    "defs": "Brainstorming: A group activity designed to generate a large number of diverse and creative ideas for the solution of a problem."
+  },{
+    "term": "Branching",
+    "defs": "Branching is the process of evolving multiple versions of the software in parallel."
+  },{
+    "term": "Brooks' Law",
+    "defs": "Brooks' law: Adding people to a late project will make it later. -- Fred Brooks (author of The Mythical Man-Month)"
+  },{
+    "term": "Buffers",
+    "defs": "A buffer is time set aside to absorb any unforeseen delays"
+  },{
+    "term": "CLI application",
+    "defs": "CLI application: An application that has a Command Line Interface. i.e. user interacts with the app by typing in commands."
+  },{
+    "term": "Capability Maturity Model Integration",
+    "defs": "CMMI (Capability Maturity Model Integration) is a process improvement approach defined by Software Engineering Institute at Carnegie Melon University. CMMI provides organizations with the essential elements of effective processes, which will improve their performance. -- adapted from http://www.sei.cmu.edu/cmmi/"
+  },{
+    "term": "Centralized RCS",
+    "defs": "Centralized RCS (CRCS for short) uses a central remote repo that is shared by the team. Team members download (‘pull’) and upload (‘push’) changes between their own local repositories and the central repository. Older RCS tools such as CVS and SVN support only this model. Note that these older RCS do not support the notion of a local repo either. Instead, they force users to do all the versioning with the remote repo."
+  },{
+    "term": "Client component/method/object",
+    "defs": "Client component/method/object: The component/method/object that is interacting with a given code."
+  },{
+    "term": "Code review",
+    "defs": "Code review is the systematic examination of code with the intention of finding where the code can be improved."
+  },{
+    "term": "Commit",
+    "defs": "Commit (noun): a change (aka a revision) saved in the Git revision history.\n\n(verb): the act of creating a commit i.e., saving a change in the working directory into the Git revision history."
+  },{
+    "term": "Coupling",
+    "defs": "Coupling: The degree of interdependence between software modules; a measure of how closely connected two routines or modules are; the strength of the relationships between modules."
+  },{
+    "term": "Critical path",
+    "defs": "Critical path is the path in which any delay can directly affect the project duration. It is important to ensure tasks on the critical path are completed on time."
+  },{
+    "term": "DRY",
+    "defs": "DRY (Don't Repeat Yourself) principle: Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. -- The Pragmatic Programmer, by Andy Hunt and Dave Thomas"
+  },{
+    "term": "Dependency Inversion Principle",
+    "defs": "Dependency inversion principle (DIP):\n\nHigh-level modules should not depend on low-level modules. Both should depend on abstractions.\nAbstractions should not depend on details. Details should depend on abstractions."
+  },{
+    "term": "Dependency injection",
+    "defs": "Dependency injection is the process of 'injecting' objects to replace current dependencies with a different object. This is often used to inject stubs to isolate the SUT from its dependencies so that it can be tested in isolation."
+  },{
+    "term": "Design pattern",
+    "defs": "Design pattern: An elegant reusable solution to a commonly recurring problem within a given context in software design."
+  },{
+    "term": "Developer testing",
+    "defs": "Developer testing is the testing done by the developers themselves as opposed to professional testers or end-users."
+  },{
+    "term": "Distributed RCS",
+    "defs": "Distributed RCS (DRCS for short, also known as Decentralized RCS) allows multiple remote repos and pulling and pushing can be done among them in arbitrary ways. The workflow can vary differently from team to team. For example, every team member can have his/her own remote repository in addition to their own local repository, as shown in the diagram below. Git and Mercurial are some prominent RCS tools that support the distributed approach."
+  },{
+    "term": "Dogfooding",
+    "defs": "Eating your own dog food (aka dogfooding), is when creators use their own product so as to test the product."
+  },{
+    "term": "Domain expert",
+    "defs": "Domain expert: An expert of a discipline to which the product is connected e.g., for a software used for Accounting, a domain expert is someone who is an expert of Accounting."
+  },{
+    "term": "Dynamic binding",
+    "defs": "Dynamic binding (aka late binding): a mechanism where method calls in code are resolved at runtime, rather than at compile time."
+  },{
+    "term": "Enterprise application",
+    "defs": "Enterprise application: ‘enterprise applications’ refer to software applications used by organizations and therefore have to meet much higher demands (such as in scalability, security, performance, and robustness) than software meant for individual use."
+  },{
+    "term": "Equivalence partition",
+    "defs": "Equivalence partition (aka equivalence class): A group of test inputs that are likely to be processed by the SUT in the same way."
+  },{
+    "term": "Exception",
+    "defs": "The term exception is shorthand for the phrase `exceptional event.` An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program's instructions. –- Java Tutorial (Oracle Inc.)"
+  },{
+    "term": "Exploratory testing",
+    "defs": "Exploratory testing: Devise test cases on-the-fly, creating new test cases based on the results of the past test cases."
+  },{
+    "term": "Feature Branch Flow",
+    "defs": "Feature branch workflow is similar to forking workflow except there are no forks. Everyone is pushing/pulling from the same remote repo. The phrase feature branch is used because each new feature (or bug fix, or any other modification) is done in a separate branch and merged to the master branch when ready. Pull requests can still be created within the central repository, from the feature branch to the main branch."
+  },{
+    "term": "Feature list",
+    "defs": "Feature list: A list of features of a product grouped according to some criteria such as aspect, priority, order of delivery, etc."
+  },{
+    "term": "Focus groups",
+    "defs": "Focus groups: A kind of informal interview within an interactive group setting."
+  },{
+    "term": "Forking workflow",
+    "defs": "In the forking workflow, the 'official' version of the software is kept in a remote repo designated as the 'main repo'. All team members fork the main repo and create pull requests from their fork to the main repo."
+  },{
+    "term": "Formal verification",
+    "defs": "Formal verification uses mathematical techniques to prove the correctness of a program."
+  },{
+    "term": "GANTT Charts",
+    "defs": "A Gantt chart is a 2-D bar-chart, drawn as time vs tasks"
+  },{
+    "term": "Glossary",
+    "defs": "Glossary: A glossary serves to ensure that all stakeholders have a common understanding of the noteworthy terms, abbreviations, acronyms etc."
+  },{
+    "term": "Integration testing",
+    "defs": "Integration testing : testing whether different parts of the software work together (i.e. integrates) as expected. Integration tests aim to discover bugs in the 'glue code' related to how components interact with each other. These bugs are often the result of misunderstanding what the parts are supposed to do vs what the parts are actually doing."
+  },{
+    "term": "Interface Segregation Principle",
+    "defs": "Interface segregation principle (ISP): No client should be forced to depend on methods it does not use."
+  },{
+    "term": "Issue Trackers",
+    "defs": "Issue trackers (sometimes called bug trackers) are commonly used to track task assignment and progress. Most online project management software such as GitHub, SourceForge, and BitBucket come with an integrated issue tracker."
+  },{
+    "term": "Iterative Models",
+    "defs": "The iterative model (sometimes called iterative and incremental) advocates having several iterations of SDLC."
+  },{
+    "term": "Law of Demeter",
+    "defs": "Law of Demeter (LoD):\n\nAn object should have limited knowledge of another object.\nAn object should only interact with objects that are closely related to it.\n\nAlso known as\n\nDon’t talk to strangers.\nPrinciple of least knowledge"
+  },{
+    "term": "Liskov substitution principle",
+    "defs": "Liskov substitution principle (LSP): Derived classes must be substitutable for their base classes. -- proposed by Barbara Liskov"
+  },{
+    "term": "Milestone",
+    "defs": "A milestone is the end of a stage which indicates significant progress."
+  },{
+    "term": "Open-closed principle",
+    "defs": "Open-closed principle (OCP): A module should be open for extension but closed for modification. That is, modules should be written so that they can be extended, without requiring them to be modified. -- proposed by Bertrand Meyer"
+  },{
+    "term": "PERT Charts",
+    "defs": "A PERT (Program Evaluation Review Technique) chart uses a graphical technique to show the order/sequence of tasks."
+  },{
+    "term": "Pair programming",
+    "defs": "Pair programming is an agile software development technique in which two programmers work together at one workstation. One, the driver, writes code while the other, the observer or navigator, reviews each line of code as it is typed in. The two programmers switch roles frequently. [source: Wikipedia]"
+  },{
+    "term": "Polymorphism",
+    "defs": "The ability of different objects to respond, each in its own way, to identical messages is called polymorphism. -- Object-Oriented Programming with Objective-C, Apple"
+  },{
+    "term": "Prototype",
+    "defs": "Prototype: A prototype is a mock up, a scaled down version, or a partial system constructed\n\nto get users’ feedback.\nto validate a technical concept (a \"proof-of-concept\" prototype).\nto give a preview of what is to come, or to compare multiple alternatives on a small scale before committing fully to one alternative.\nfor early field-testing under controlled conditions."
+  },{
+    "term": "Quality Assurance",
+    "defs": "Quality Assurance = Validation + Verification"
+  },{
+    "term": "Remote Repositories",
+    "defs": "Remote repositories are repos that are hosted on remote computers and allow remote access. They are especially useful for sharing the revision history of a codebase among team members of a multi-person project. They can also serve as a remote backup of your codebase."
+  },{
+    "term": "Repositories",
+    "defs": "Repository (repo for short): The database of the history of a directory being tracked by an RCS software (e.g. Git)."
+  },{
+    "term": "Revision",
+    "defs": "A revision (some seem to use it interchangeably with version while others seem to distinguish the two -- here, let us treat them as the same, for simplicity) is a state of a piece of information at a specific time that is a result of some changes to it e.g., if you modify the code and save the file, you have a new revision (or a version) of that file."
+  },{
+    "term": "Revision control softwar",
+    "defs": "RCS: Revision control software are the software tools that automate the process of Revision Control i.e. managing revisions of software artifacts."
+  },{
+    "term": "Scripted testing",
+    "defs": "Scripted testing: First write a set of test cases based on the expected behavior of the SUT, and then perform testing based on that set of test cases."
+  },{
+    "term": "Separation of concerns principle",
+    "defs": "Separation of concerns principle (SoC): To achieve better modularity, separate the code into distinct sections, such that each section addresses a separate concern. -- Proposed by Edsger W. Dijkstra"
+  },{
+    "term": "Sequential Models",
+    "defs": "The sequential model, also called the waterfall model, models software development as a linear process."
+  },{
+    "term": "Single responsibility principle",
+    "defs": "Single responsibility principle (SRP): A class should have one, and only one, reason to change. -- Robert C. Martin"
+  },{
+    "term": "Software Development Life cycle",
+    "defs": "Software development goes through different stages such as requirements, analysis, design, implementation and testing. These stages are collectively known as the software development life cycle (SDLC)"
+  },{
+    "term": "Software Quality Assurance",
+    "defs": "Software Quality Assurance (QA) is the process of ensuring that the software being built has the required levels of quality."
+  },{
+    "term": "Software engineering",
+    "defs": "Software engineering: Software Engineering is the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software -- IEEE Standard Glossary of Software Engineering Terminology"
+  },{
+    "term": "Stage",
+    "defs": "Stage (verb): Instructing Git to prepare a file for committing."
+  },{
+    "term": "Stakeholder",
+    "defs": "Stakeholder: A party that is potentially affected by the software project. e.g. users, sponsors, developers, interest groups, government agencies, etc."
+  },{
+    "term": "Static analysis",
+    "defs": "Static analysis is the analysis of code without actually executing the code."
+  },{
+    "term": "Static analysis",
+    "defs": "Static analysis: Static analysis is the analysis of code without actually executing the code."
+  },{
+    "term": "Static binding",
+    "defs": "Static binding (aka early binding): When a method call is resolved at compile time."
+  },{
+    "term": "Stub",
+    "defs": "A stub has the same interface as the component it replaces, but its implementation is so simple that it is unlikely to have any bugs. It mimics the responses of the component, but only for a limited set of predetermined inputs. That is, it does not know how to respond to any other inputs. Typically, these mimicked responses are hard-coded in the stub rather than computed or retrieved from elsewhere, e.g. from a database."
+  },{
+    "term": "SUT",
+    "defs": "SUT: Software Under Test"
+  },{
+    "term": "System testing",
+    "defs": "System testing: take the whole system and test it against the system specification."
+  },{
+    "term": "Test automation",
+    "defs": "An automated test case can be run programmatically and the result of the test case (pass or fail) is determined programmatically. Compared to manual testing, automated testing reduces the effort required to run tests repeatedly and increases precision of testing (because manual testing is susceptible to human errors)."
+  },{
+    "term": "Test coverage",
+    "defs": "Test coverage is a metric used to measure the extent to which testing exercises the code i.e., how much of the code is 'covered' by the tests."
+  },{
+    "term": "Test-Driven Development",
+    "defs": "Test-Driven Development(TDD) advocates writing the tests before writing the SUT, while evolving functionality and tests in small increments."
+  },{
+    "term": "Testability",
+    "defs": "Testability is an indication of how easy it is to test an SUT. As testability depends a lot on the design and implementation, you should try to increase the testability when you design and implement software. The higher the testability, the easier it is to achieve better quality software."
+  },{
+    "term": "Testing",
+    "defs": "Operating a system or component under specified conditions, observing or recording the results, and making an evaluation of some aspect of the system or component. –- source: IEEE"
+  },{
+    "term" : "Type signature",
+    "defs" : "The type signature of an operation is the type sequence of the parameters. The return type and parameter names are not part of the type signature. However, the parameter order is significant."
+  },{
+    "term" : "Unified Modeling Language",
+    "defs" : "Unified Modeling Language (UML) is a graphical notation to describe various aspects of a software system. UML is the brainchild of three software modeling specialists James Rumbaugh, Grady Booch and Ivar Jacobson (also known as the Three Amigos). Each of them had developed their own notation for modeling software systems before joining forces to create a unified modeling language (hence, the term ‘Unified’ in UML). UML is currently the de facto modeling notation used in the software industry."
+  },{
+    "term": "Unit testing",
+    "defs": "Unit testing: testing individual units (methods, classes, subsystems, ...) to ensure each piece works correctly."
+  },{
+    "term" : "Use case",
+    "defs" : "A description of a set of sequences of actions, including variants, that a system performs to yield an observable result of value to an actor.[ 📖 : uml-user-guide]"
+  },{
+    "term" : "User story",
+    "defs" : "User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. [Mike Cohn]"
+  },{
+    "term" : "User story format",
+    "defs" : "format: As a {user type/role} I can {function} so that {benefit}"
+  },{
+    "term": "Work Breakdown Structure",
+    "defs": "A Work Breakdown Structure (WBS) depicts information about tasks and their details in terms of subtasks."
+  },{
+    "term" : "Working directory",
+    "defs" : "Working directory: the root directory revision-controlled by Git (e.g., the directory in which the repo was initialized)."
+  },{
+    "term": "YAGNI",
+    "defs": "YAGNI (You Aren't Gonna Need It!) Principle: Do not add code simply because ‘you might need it in the future’"
   }
   ]
 }
