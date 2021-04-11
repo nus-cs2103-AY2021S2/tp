@@ -84,21 +84,14 @@ class UpdateGroupmateCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecified_failure() {
         Index projectIndex = INDEX_FIRST;
         UpdateGroupmateCommand updateGroupmateCommand = new UpdateGroupmateCommand(projectIndex, INDEX_FIRST,
                 new UpdateGroupmateCommand.UpdateGroupmateDescriptor());
         Groupmate editedGroupmate = model.getFilteredProjectList().get(projectIndex.getZeroBased()).getGroupmates()
                 .get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(
-                UpdateGroupmateCommand.MESSAGE_UPDATE_GROUPMATE_SUCCESS, editedGroupmate
-        );
-
-        Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
-
-        assertCommandSuccess(updateGroupmateCommand, model, expectedMessage,
-                new ViewProjectAndOverviewUiCommand(projectIndex), expectedModel);
+        assertCommandFailure(updateGroupmateCommand, model, UpdateGroupmateCommand.MESSAGE_UNCHANGED_GROUPMATE);
     }
 
     @Test
