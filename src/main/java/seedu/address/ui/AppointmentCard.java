@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.UiUtil.generateTagLabel;
+import static seedu.address.ui.UiUtil.streamTags;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -8,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
+
 
 /**
  * An UI component that displays information of a {@code Appointment}.
@@ -37,7 +41,11 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label dateTime;
     @FXML
+    private Label relevantContactLabel;
+    @FXML
     private FlowPane contacts;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code AppointmentCard} with the given {@code Appointment} and index to display.
@@ -47,13 +55,34 @@ public class AppointmentCard extends UiPart<Region> {
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getName().fullName);
-        address.setText(appointment.getAddress().value);
-        dateTime.setText(appointment.getDateTime().dateTime);
+        checkForPlaceholder(appointment.getAddress().value, address);
+        checkForPlaceholder(appointment.getDateTime().dateTime, dateTime);
+        setRelevantContactLabel();
         appointment.getContacts().stream()
                 .sorted(Comparator.comparing(contact -> contact.getName().toString()))
                 .forEach(contact -> contacts.getChildren().add(new Label(contact.getName().toString())));
+        streamTags(appointment.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
     }
 
+    /**
+     * If have contacts then "Relevant Contacts:" will be displayed above contacts, otherwise it will not be displayed.
+     */
+    private void setRelevantContactLabel() {
+        if (appointment.getContacts().isEmpty()) {
+            relevantContactLabel.setManaged(false);
+        } else {
+            relevantContactLabel.setManaged(true);
+        }
+    }
+
+    private void checkForPlaceholder(String value, Label label) {
+        if (value.equals("NIL")) {
+            label.setVisible(false);
+        } else {
+            label.setVisible(true);
+            label.setText(value);
+        }
+    }
 
     @Override
     public boolean equals(Object other) {

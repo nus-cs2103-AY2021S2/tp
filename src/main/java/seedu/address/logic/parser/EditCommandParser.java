@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -16,7 +19,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -41,30 +44,52 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            if (pe.getMessage().equals(MESSAGE_INVALID_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX, pe);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            }
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditContactDescriptor editContactDescriptor = new EditContactDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            String phone;
+            if (argMultimap.getValue(PREFIX_PHONE).get().equals("")) {
+                phone = PLACEHOLDER;
+            } else {
+                phone = argMultimap.getValue(PREFIX_PHONE).get();
+            }
+            editContactDescriptor.setPhone(ParserUtil.parsePhone(phone));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            String email;
+            if (argMultimap.getValue(PREFIX_EMAIL).get().equals("")) {
+                email = PLACEHOLDER;
+            } else {
+                email = argMultimap.getValue(PREFIX_EMAIL).get();
+            }
+            editContactDescriptor.setEmail(ParserUtil.parseEmail(email));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            String address;
+            if (argMultimap.getValue(PREFIX_ADDRESS).get().equals("")) {
+                address = PLACEHOLDER;
+            } else {
+                address = argMultimap.getValue(PREFIX_ADDRESS).get();
+            }
+            editContactDescriptor.setAddress(ParserUtil.parseAddress(address));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        parseChildTagsForEdit(argMultimap.getAllValues(PREFIX_CHILD)).ifPresent(editPersonDescriptor::addAllTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editContactDescriptor::setTags);
+        parseChildTagsForEdit(argMultimap.getAllValues(PREFIX_CHILD)).ifPresent(editContactDescriptor::addAllTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editContactDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editContactDescriptor);
     }
 
     /**

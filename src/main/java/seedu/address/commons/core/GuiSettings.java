@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * A Serializable class that contains the GUI settings.
- * Guarantees: immutable.
+ * Guarantees: immutable, except for theme
  */
 public class GuiSettings implements Serializable {
 
@@ -16,9 +16,10 @@ public class GuiSettings implements Serializable {
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+    private String theme = "dark";
 
     /**
-     * Constructs a {@code GuiSettings} with the default height, width and position.
+     * Constructs a {@code GuiSettings} with the default height, width, position and theme.
      */
     public GuiSettings() {
         windowWidth = DEFAULT_WIDTH;
@@ -35,6 +36,16 @@ public class GuiSettings implements Serializable {
         windowCoordinates = new Point(xPosition, yPosition);
     }
 
+    /**
+     * Constructs a {@code GuiSettings} with the specified height, width, position and theme.
+     */
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, String theme) {
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+        windowCoordinates = new Point(xPosition, yPosition);
+        this.theme = theme;
+    }
+
     public double getWindowWidth() {
         return windowWidth;
     }
@@ -45,6 +56,14 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
     @Override
@@ -60,12 +79,13 @@ public class GuiSettings implements Serializable {
 
         return windowWidth == o.windowWidth
                 && windowHeight == o.windowHeight
-                && Objects.equals(windowCoordinates, o.windowCoordinates);
+                && Objects.equals(windowCoordinates, o.windowCoordinates)
+                && Objects.equals(theme, o.theme);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(windowWidth, windowHeight, windowCoordinates);
+        return Objects.hash(windowWidth, windowHeight, windowCoordinates, theme);
     }
 
     @Override
@@ -74,6 +94,7 @@ public class GuiSettings implements Serializable {
         sb.append("Width : " + windowWidth + "\n");
         sb.append("Height : " + windowHeight + "\n");
         sb.append("Position : " + windowCoordinates);
+        sb.append("Theme : " + theme);
         return sb.toString();
     }
 }

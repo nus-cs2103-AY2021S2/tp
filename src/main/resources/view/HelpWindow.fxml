@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
@@ -15,13 +14,10 @@
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene>
-        <stylesheets>
-            <URL value="@DarkThemeHelpWindow.css" />
-        </stylesheets>
+    <Scene fx:id="scene">
 
         <VBox styleClass="pane-with-border">
-              <Label fx:id="helpTitle" alignment="BOTTOM_LEFT" styleClass="label-bright" text="Label">
+              <Label fx:id="helpTitle" alignment="BOTTOM_LEFT" styleClass="label-help-title" text="Label">
                <padding>
                   <Insets bottom="5.0" />
                </padding>
@@ -38,8 +34,9 @@
                             <Insets right="5.0" />
                         </HBox.margin>
                     </Label>
-                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" textAlignment="RIGHT">
-                        <HBox.margin>
+<!--                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" textAlignment="RIGHT">-->
+                    <Button fx:id="openButton" mnemonicParsing="false" onAction="#openUrl" text="OPEN URL" textAlignment="RIGHT">
+                    <HBox.margin>
                             <Insets left="5.0" />
                         </HBox.margin>
                     </Button>

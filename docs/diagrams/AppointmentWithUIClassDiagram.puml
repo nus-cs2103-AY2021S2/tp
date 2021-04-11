@@ -11,11 +11,10 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ContactListPanel
+Class ContactCard
 Class AppointmentListPanel
 Class AppointmentCard
-Class StatusBarFooter
 Class CommandBox
 }
 
@@ -35,34 +34,31 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> ContactListPanel
 MainWindow *-down-> AppointmentListPanel
-MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+ContactListPanel -down-> ContactCard
 AppointmentListPanel -down-> AppointmentCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay ---|> UiPart
 CommandBox ---|> UiPart
-PersonListPanel ---|> UiPart
-PersonCard ---|> UiPart
+ContactListPanel ---|> UiPart
+ContactCard ---|> UiPart
 AppointmentListPanel ---|> UiPart
 AppointmentCard ---|> UiPart
-StatusBarFooter ---|> UiPart
 HelpWindow -down--|> UiPart
 
-PersonCard ....> Model
+ContactCard ....> Model
 AppointmentCard ....> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ContactListPanel -[hidden]left- HelpWindow
 AppointmentListPanel -left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow ---|> UiPart
 @enduml

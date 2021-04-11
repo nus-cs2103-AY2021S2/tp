@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -32,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private AppointmentListPanel appointmentListPanel;
-    private PersonListPanel personListPanel;
+    private ContactListPanel contactListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,13 +47,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane appointmentListPanelPlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane contactListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private Scene scene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,14 +67,23 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        updateTheme(logic.getTheme());
 
         // setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(logic.getTheme());
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public String getStyle() {
+        if (scene.getStylesheets().isEmpty()) {
+            return "view/DarkTheme.css";
+        } else {
+            return scene.getStylesheets().get(0);
+        }
     }
 
     //    private void setAccelerators() {
@@ -114,17 +124,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -153,18 +160,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
-    //    @FXML
-    //    public void handleHelp(String helpMsg) {
-    //        helpWindow.setHelpMessage(helpMsg);
-    //        if (!helpWindow.isShowing()) {
-    //            helpWindow.show();
-    //        } else {
-    //            helpWindow.focus();
-    //        }
-    //    }
 
     void show() {
         primaryStage.show();
+    }
+
+    private void updateTheme(String theme) {
+        scene.getStylesheets().clear();
+        if (theme.equals("dark")) {
+            scene.getStylesheets().add("view/DarkTheme.css");
+        } else {
+            scene.getStylesheets().add("view/LightTheme.css");
+        }
     }
 
     /**
@@ -173,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getTheme());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -183,8 +190,8 @@ public class MainWindow extends UiPart<Stage> {
         return appointmentListPanel;
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ContactListPanel getContactListPanel() {
+        return contactListPanel;
     }
 
     /**
@@ -195,6 +202,12 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+
+            if (commandText.startsWith("theme")) {
+                updateTheme(logic.getTheme());
+                helpWindow.updateHelpWindowTheme(logic.getTheme());
+            }
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

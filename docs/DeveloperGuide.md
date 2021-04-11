@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Contact>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Contact` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Contact` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -134,18 +134,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 ### Tagging features
 #### Current Implementation 
-The current tagging system uses objects of the `Tag` class and its children `ChildTag`. Each `Person` in the
+The current tagging system uses objects of the `Tag` class and its children `ChildTag`. Each `Contact` in the
 `AddressBook` maintains its own set of tags as a `HashSet<Tag>`. 
 
 The `tag` command allows for the appending of tags to an existing
-`Person` without having to replace existing tags as offered by `edit` and is facilitated by 
+`Contact` without having to replace existing tags as offered by `edit` and is facilitated by 
 the `TagCommand` and `TagCommandParser` classes.
 
 [Placeholder: Class Diagram of Tag and related classes here... ]
 
 As part of the `Model` component, other components interact with tags through the `Model.java` API.
-As `Person` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
-involve creating a new `Person` and replacing the original `Person` through `Model#setPerson()`.
+As `Contact` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
+involve creating a new `Contact` and replacing the original `Contact` through `Model#setPerson()`.
 
 Given below is an example usage scenario of the `tag` command and how the application behaves through its execution.
 
@@ -168,10 +168,10 @@ and subsequently `LogicManager`.
 
 Step 6. `LogicManager` then calls the `execute` method of the newly created `TagCommand`.
 
-Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Person` object 
+Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Contact` object 
 though the `createTaggedPerson` method which will have its tags appended withe the new `Set<Tag>` defined by the command.
 
-Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Person` and a `CommandResult`
+Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Contact` and a `CommandResult`
 representing success is returned to the `LogicManager`.
 
 Shown below is the sequence diagram that visualises the above operations of a `tag` command.
@@ -192,16 +192,16 @@ for `ChildTag` resulting in the UI view shown below.
 
 #### Implementation
 
-The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If `args` specifies more than one command, a parse exception will be thrown. Otherwise, `HepCommandParser` returns a new `HelpCommand`.
+The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If `args` specifies more than one command, the last command will be taken. Otherwise, `HepCommandParser` returns a new `HelpCommand`.
 
 If no commands were specified in `args`, the `HelpCommand` constructor without any parameters will be called. If a single command was specified, the command will be passed as an argument to the `HelpCommand(specifiedCommand)` constructor.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, an exception is thrown.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, last command is taken.
 </div>
 
 To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can contain the following:
 
-* Command was not specified: A list of all available HeliBook commands that was parsed from the command summary table in the user guide.
+* Command was not specified: A list of all available ParentPal commands that was parsed from the command summary table in the user guide.
 * Command was specified: Information on the specified command taken from the user guide. If the specified command is not found in the user guide, an exception is thrown.
 
 Given below are 2 example usage scenarios and how the help mechanism behaves in each scenario.
@@ -254,9 +254,9 @@ The following activity diagram summarises what happens when a user executes the 
 
 * **Alternative 3:** Retrieve from user guide webpage.
   * Pros: Minimal updating needed when features change since only the user guide in the docs folder needs to be updated.
-  * Cons: Does not work when HeliBook is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time-consuming.
+  * Cons: Does not work when ParentPal is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time-consuming.
   
-Alternative 1 was eventually chosen as we were planning to make major changes to HeliBook over several iterations. Since we are already expected to update the user guide with each iteration, it is more efficient to simply copy the latest user guide document into the resources folder after updates are made rather than to edit each `helpMessage`. Furthermore, as long as the format of the user guide remains constant, parsing the markdown text into plain text is manageable and does not take too much time. This alternative will also work when HeliBook is used offline, making the application easy to use on the go. Lastly, alternative 1 keeps the actual code and documentation separate, making it a more logical and organised implementation. As such, that is the alternative that was chosen. 
+Alternative 1 was eventually chosen as we were planning to make major changes to ParentPal over several iterations. Since we are already expected to update the user guide with each iteration, it is more efficient to simply copy the latest user guide document into the resources folder after updates are made rather than to edit each `helpMessage`. Furthermore, as long as the format of the user guide remains constant, parsing the markdown text into plain text is manageable and does not take too much time. This alternative will also work when ParentPal is used offline, making the application easy to use on the go. Lastly, alternative 1 keeps the actual code and documentation separate, making it a more logical and organised implementation. As such, that is the alternative that was chosen. 
 
 ### Sort feature
 
@@ -272,14 +272,14 @@ The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 * `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
   and updating the `model` accordingly.
 
-Sorting by name is done by comparing `Person` objects, which implement `Comparable<Person>`.
+Sorting by name is done by comparing `Contact` objects, which implement `Comparable<Contact>`.
 
-Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Person` objects.
+Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Contact` objects.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
 Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
-The `Person` objects created will be timestamped with the `TimeAdded` attribute.
+The `Contact` objects created will be timestamped with the `TimeAdded` attribute.
 By default, they will be displayed on in the order in which they were added.
 
 [comment]: <> (add UML diagram)
@@ -324,9 +324,9 @@ The following sequence diagram shows how the add operation works:
 
 Note: Style of diagram to be updated.
 
-### \[Proposed\] Appointment feature
+### Appointment feature
 
-#### Proposed Implementation
+#### Implementation
 
 An appointment feature will be implemented in the next version of this application. It is a useful feature for parents to track any important appointments
 related to their children. For example, a parent teacher meeting or a birthday party at the house of their child's friend. 
@@ -353,29 +353,29 @@ Attributes of the `Appointment` class:
 * Name of appointment, which is a String object
 * Location of appointment, which is a String object
 * Date of appointment, which is a DateTime object
-* Contacts that parents might need to contact about the appointment. This is an ArrayList of Person objects.
+* Contacts that parents might need to contact about the appointment. This is an ArrayList of Contact objects.
 
 ##### Logic Component
 
 ![AppointmentWithLogicClassDiagram](images/AppointmentWithLogicClassDiagram.png)
 
-`HeliBookParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
+`ParentPalParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
 for that particularly command.  
 
 ![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
 
-The main methods for the appointment feature include `AddAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
+The main methods for the appointment feature include `AddAppointmentCommand`, `EditAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
 to similar methods for AddressBook. 
-* For `AddAppointmentCommand`, adding of contacts is handled by `AppointmentBook#addAppointment`, similar to how adding of addresses is handled by `AddressBook#addPerson()`. 
+* For `AddAppointmentCommand`, adding of appointments is handled by `AppointmentBook#addAppointment()`, similar to how adding of contacts is handled by `AddressBook#addContact()`. 
+* For `EditAppointmentCommand`, editing of appointments is handled by `AppointmentBook#setAppointment()`, similar to how editing of contacts is handled by `AddressBook#setContact()`.
 * For `FindAppointmentCommand`, a predicate defined by given keywords is fed to the filtered list of `Appointment` handled by `ModelManager`, and this filters the `Appointment` objects.
 * For `DeleteAppointmentCommand`, `Appointment` is selected to be deleted by the given `index`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** FindAppointmentCommand only supports finding by the name of the appointment.
-</div>
-
 ##### Storage Component
 
-![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagram.png)
+![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagramUpdated.png)
+
+The storage component now saves and reads back appointment book data on top of address book and user preference data. The implementation of the appointment book storage is similar to that of the address book storage.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -395,11 +395,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th contact in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new contact. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -407,7 +407,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the contact was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -452,7 +452,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -499,11 +499,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add a new contact               |                                                                        |
+| `* * *`  | user                                       | delete a contact                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a contact by name          | locate details of contacts without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many contacts in the address book | sort contacts by name           | locate a contact easily                                                 |
 | `* * *`  | Beginner	                                | Add contacts	                 | add contacts                                                     |
 | `* *`	   | User	                                    | Add incomplete contacts	     | easily save contacts I don't have all the contact information for easily without having to use placeholders
 | `* *`    | Beginner	                                | Add contacts easily 	         | save time
@@ -543,16 +543,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `HeliBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ParentPal` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC1: Edit a person**
+**UC1: Edit a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  HeliBook shows a list of persons
-3.  User requests to edit a specific person's detail in the list
-4.  HeliBook edits the person's details accordingly
+1.  User requests to list contacts
+2.  ParentPal shows a list of contacts
+3.  User requests to edit a specific contact's detail in the list
+4.  ParentPal edits the contact's details accordingly
 
     Use case ends.
 
@@ -564,19 +564,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. HeliBook shows an error message.
+    * 3a1. ParentPal shows an error message.
 
       Use case resumes at step 2.
     
     
-**UC2: Delete a person**
+**UC2: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  HeliBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  HeliBook deletes the person
+1.  User requests to list contacts
+2.  ParentPal shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  ParentPal deletes the contact
 
     Use case ends.
 
@@ -588,18 +588,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. HeliBook shows an error message.
+    * 3a1. ParentPal shows an error message.
 
       Use case resumes at step 2.
 
-**UC3: Add a tag to a person**
+**UC3: Add a tag to a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  HeliBook shows a list of persons
-3.  User requests to tag a specific person in the list with a specific tag name
-4.  HeliBook adds the tag to the person
+1.  User requests to list contacts
+2.  ParentPal shows a list of contacts
+3.  User requests to tag a specific contact in the list with a specific tag name
+4.  ParentPal adds the tag to the contact
 
     Use case ends.
 
@@ -611,11 +611,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. HeliBook shows an error message.
+    * 3a1. ParentPal shows an error message.
 
       Use case resumes at step 2.
     
-* 3b. The given tag name already exists for that person.
+* 3b. The given tag name already exists for that contact.
 
   Use case ends.
 
@@ -624,12 +624,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should work on both 32-bit and 64-bit environments.
 5.  A user who is new to the app should be able to familiarise themselves with it within a few uses.
 6.  All commands should be explained in the user guide, including the format of the command and examples of how it is used.
-7.  Should be able to restore address book with up to 1000 persons from backup file within seconds if app crashes and in-app data is lost.
+7.  Should be able to restore address book with up to 1000 contacts from backup file within seconds if app crashes and in-app data is lost.
 8.  Should be able to locate local backup file easily.
 9.  App UI should look uniform across different OSes to ensure that usage of application is similar regardless of OS.
 10. Should be able to view all data with or without app window maximised.
@@ -641,8 +641,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Contact/Person**: Entry in the address book containing a person's contact information
-* **Index**: Index number shown in the displayed person list
+* **Contact/Contact**: Entry in the address book containing a contact's contact information
+* **Index**: Index number shown in the displayed contact list
 * **Backup file**: JSON file that stores address book data in the hard disk
 * **Action**: Executed command
 * **List**: Currently displayed list of contacts
@@ -675,17 +675,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a contact
 
-1. Deleting a person while all persons are being shown
+1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

@@ -1,0 +1,7 @@
+{
+  "appointments": [ {
+    "name": "Appointment with invalid name field: Ha!ns Mu@ster",
+    "address": "4th street",
+    "date": "09/01/2021 00:00"
+  } ]
+}

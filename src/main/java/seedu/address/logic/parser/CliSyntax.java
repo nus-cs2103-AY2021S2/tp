@@ -15,4 +15,21 @@ public class CliSyntax {
     public static final Prefix PREFIX_CHILD = new Prefix("tc/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_CONTACT = new Prefix("c/");
+
+    /* Options Definition for PREFIX_OPTION */
+    public static final String OPTION_TAG = "tag";
+    public static final String OPTION_NAME = "name";
+    public static final String OPTION_DATE = "date";
+    public static final String OPTION_ADDRESS = "address";
+    public static final String OPTION_CONTACT = "contact";
+    public static final String OPTION_PHONE = "phone";
+    public static final String OPTION_EMAIL = "email";
+    public static final String OPTION_FAVORITE = "fav";
+    public static final String OPTION_REMOVE = "remove";
+    public static final String OPTION_CHILD = "child";
+    public static final String OPTION_DARK = "dark";
+    public static final String OPTION_LIGHT = "light";
+
+    /* Other definitions */
+    public static final String PLACEHOLDER = "NIL";
 }

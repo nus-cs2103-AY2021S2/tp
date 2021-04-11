@@ -59,12 +59,10 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        //        HeliBookStorage heliBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         JsonAppointmentBookStorage appointmentBookStorage = new JsonAppointmentBookStorage(
                 userPrefs.getAppointmentBookFilePath());
         storage = new StorageManager(addressBookStorage, appointmentBookStorage, userPrefsStorage);
-        //        storage = new StorageManager(heliBookStorage, userPrefsStorage);
 
         initLogging(config);
 

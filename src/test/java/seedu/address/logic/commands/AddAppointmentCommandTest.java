@@ -9,13 +9,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.AddressBookSettings;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
@@ -23,7 +26,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandTest {
@@ -45,12 +48,12 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateContact_throwsCommandException() {
         Appointment validAppointment = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
 
-        assertThrows(CommandException.class, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, (
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_APPOINTMENT, (
                 ) -> addAppointmentCommand.execute(modelStub));
     }
 
@@ -74,7 +77,7 @@ public class AddAppointmentCommandTest {
         // null -> returns false
         assertFalse(addPtmCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(addPtmCommand.equals(addPlayDateCommand));
     }
 
@@ -105,6 +108,36 @@ public class AddAppointmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getTheme() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTheme(String theme) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AddressBookSettings getAddressBookSettings() {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public void setAddressBookSettings(AddressBookSettings addressBookSettings) {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public Comparator<Contact> getAddressBookComparator() {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public void setAddressBookComparator(String comparator) {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
         //=========== AddressBook ================================================================================
 
         @Override
@@ -118,7 +151,7 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -133,32 +166,42 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteContact(Contact target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setContact(Contact target, Contact editedContact) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPersons(List<Person> persons) {
+        public void setContacts(List<Contact> contacts) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Contact> getFilteredContactList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredContactList(Predicate<Contact> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortContactList(String comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void orderContacts() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,35 +210,35 @@ public class AddAppointmentCommandTest {
         @Override
         public Path getAppointmentBookFilePath() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public ReadOnlyAppointmentBook getAppointmentBook() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public boolean hasAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
@@ -203,7 +246,7 @@ public class AddAppointmentCommandTest {
 
         public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
@@ -217,7 +260,7 @@ public class AddAppointmentCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single contact.
      */
     private class ModelStubWithAppointment extends ModelStub {
         private final Appointment appointment;
@@ -235,7 +278,7 @@ public class AddAppointmentCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the contact being added.
      */
     private class ModelStubAcceptingAppointmentAdded extends ModelStub {
         final ArrayList<Appointment> appointmentsAdded = new ArrayList<>();

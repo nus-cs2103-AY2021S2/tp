@@ -1,0 +1,28 @@
+.background {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    background-color: #383838; /* Used in the default.html file */
+}
+
+.label {
+	-fx-font-size: 10pt;
+	-fx-font-family: "Segoe UI Semilight";
+    -fx-text-fill: black;
+    -fx-opacity: 1;
+}
+
+.label-help-title {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 1;
+}
+
+.pane-with-border {
+}
+
+.button {
+	-fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+	-fx-font-size: 10pt;
+	-fx-text-fill: black;
+	-fx-padding: 5 22 5 22;
+}

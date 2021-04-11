@@ -3,6 +3,10 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -93,6 +97,11 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #383838;
+}
+
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
@@ -107,21 +116,12 @@
     -fx-background-color: #515658;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-}
-
 .list-cell .label {
     -fx-text-fill: white;
 }
 
 .cell_title_label {
-	-fx-font-family: "Segoe UI Light";
+	-fx-font-family: "Segoe UI Semibold";
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
 }
@@ -148,10 +148,6 @@
      -fx-border-top-width: 1px;
 }
 
-.status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
-}
-
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
@@ -161,23 +157,6 @@
 
 .result-display .label {
     -fx-text-fill: black !important;
-}
-
-.status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
-}
-
-.status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
-}
-
-.status-bar-with-border .label {
-    -fx-text-fill: white;
 }
 
 .grid-pane {
@@ -334,7 +313,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #contactListPanel, #contactWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -369,4 +348,12 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+/* Empty star */
+#favIcon {
+	-fx-shape: "m283.48045,215.49446l88.95852,0l27.48887,-84.51021l27.48888,84.51021l88.9585,0l-71.96882,52.22959l27.49029,84.51021l-71.96885,-52.23101l-71.96884,52.23101l27.4903,-84.51021l-71.96884,-52.22959z";
+	-fx-background-color: white;
+	-fx-border-color: white;
+	-fx-border-width: 0.5;
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -11,11 +12,12 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.commons.core.AddressBookSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTimeComparator;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +29,9 @@ public class ModelManager implements Model {
     private final AppointmentBook appointmentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Appointment> filteredAppointments;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Contact> filteredContacts;
+    private Predicate<Contact> contactFilter;
+    private Predicate<Appointment> appointmentFilter;
 
     /**
      * Initializes a ModelManager with the given addressBook, appointmentBook and userPrefs.
@@ -44,8 +48,10 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredContacts = new FilteredList<>(this.addressBook.getContactList());
         filteredAppointments = new FilteredList<>(this.appointmentBook.getAppointmentList());
+        contactFilter = PREDICATE_SHOW_ALL_CONTACTS;
+        appointmentFilter = PREDICATE_SHOW_ALL_APPOINTMENTS;
     }
 
     public ModelManager() {
@@ -77,6 +83,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getTheme() {
+        return userPrefs.getTheme();
+    }
+
+    @Override
+    public void setTheme(String theme) {
+        requireNonNull(theme);
+        assert(theme != "");
+        userPrefs.setTheme(theme);
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
@@ -85,6 +103,27 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public AddressBookSettings getAddressBookSettings() {
+        return userPrefs.getAddressBookSettings();
+    }
+
+    @Override
+    public void setAddressBookSettings(AddressBookSettings addressBookSettings) {
+        requireNonNull(addressBookSettings);
+        userPrefs.setAddressBookSettings(addressBookSettings);
+    }
+
+    @Override
+    public Comparator<Contact> getAddressBookComparator() {
+        return userPrefs.getAddressBookComparator();
+    }
+
+    @Override
+    public void setAddressBookComparator(String comparator) {
+        userPrefs.setAddressBookComparator(comparator);
     }
 
     //=========== AddressBook ================================================================================
@@ -100,48 +139,76 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return addressBook.hasContact(contact);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteContact(Contact target) {
+        addressBook.removeContact(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addContact(Contact contact) {
+        addressBook.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        orderContacts();
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setContact(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setContact(target, editedContact);
+        orderContacts();
     }
 
     @Override
-    public void setPersons(List<Person> persons) {
-        addressBook.setPersons(persons);
+    public void setContacts(List<Contact> contacts) {
+        addressBook.setContacts(contacts);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Contact List Accessors =============================================================
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+
+        contactFilter = predicate;
+
+        filterContactList();
+    }
+
+    private void filterContactList() {
+        filteredContacts.setPredicate(contactFilter);
+    }
+
+    //=========== Sorted Contact List Accessors =============================================================
+
+    @Override
+    public void sortContactList(String comparator) {
+        requireNonNull(comparator);
+        setAddressBookComparator(comparator);
+
+        orderContacts();
+    }
+
+    @Override
+    public void orderContacts() {
+        ObservableList<Contact> contactList = addressBook.getContactList();
+        SortedList<Contact> sortedContactList = contactList.sorted(getAddressBookComparator());
+
+        setContacts(sortedContactList);
+        filterContactList();
     }
 
     //=========== AppointmentBook ================================================================================
@@ -182,6 +249,7 @@ public class ModelManager implements Model {
     public void addAppointment(Appointment appointment) {
         appointmentBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        orderAppointments(); // ensure that appointments are loaded in increasing date order
     }
 
     @Override
@@ -189,6 +257,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedAppointment);
 
         appointmentBook.setAppointment(target, editedAppointment);
+        orderAppointments(); // ensure that appointments are loaded in increasing date order
     }
 
     @Override
@@ -210,15 +279,25 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
-        filteredAppointments.setPredicate(predicate);
+
+        appointmentFilter = predicate;
+
+        filterAppointmentList();
     }
+
+    private void filterAppointmentList() {
+        filteredAppointments.setPredicate(appointmentFilter);
+    }
+
+    //=========== Sorted Appointment List =============================================================
 
     @Override
     public void orderAppointments() {
-        ObservableList<Appointment> appointmentList = getFilteredAppointmentList();
+        ObservableList<Appointment> appointmentList = appointmentBook.getAppointmentList();
         SortedList<Appointment> sortedAppointmentList = appointmentList.sorted(new DateTimeComparator());
 
         setAppointments(sortedAppointmentList);
+        filterAppointmentList();
     }
 
     @Override
@@ -238,7 +317,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && appointmentBook.equals(other.appointmentBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+                && filteredContacts.equals(other.filteredContacts)
                 && filteredAppointments.equals(other.filteredAppointments);
     }
 

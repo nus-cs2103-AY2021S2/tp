@@ -72,7 +72,7 @@ public class ArgumentTokenizerTest {
         assertArgumentPresent(argMultimap, pSlash, "Argument value");
 
         // No preamble
-        argsString = " p/   Argument value ";
+        argsString = " p/   Argument value";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
         assertPreambleEmpty(argMultimap);
         assertArgumentPresent(argMultimap, pSlash, "Argument value");

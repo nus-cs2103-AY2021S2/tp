@@ -15,9 +15,9 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="0.0" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets bottom="10.0" left="15.0" right="5.0" top="10.0" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
@@ -26,11 +26,12 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
             </HBox>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" />
-            <Label styleClass="cell_small_label" text="Relevant Contacts:" />
+            <FlowPane fx:id="tags" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+            <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" wrapText="true" />
+            <Label fx:id="relevantContactLabel" styleClass="cell_small_label" text="Relevant Contacts:" />
             <FlowPane fx:id="contacts" />
         </VBox>
       <rowConstraints>

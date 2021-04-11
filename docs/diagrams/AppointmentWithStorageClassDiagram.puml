@@ -6,10 +6,11 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface HeliBookStorage <<Interface>>
+Interface AddressBookStorage <<Interface>>
+Interface AppointmentBookStorage <<Interface>>
 
-note "Interface with generic methods,\npreviously named AddressBookStorage" as N1
-N1 .up. HeliBookStorage
+note "Interface with appointment book methods,\nsimilar to AddressBookStorage" as N1
+N1 .left. AppointmentBookStorage
 
 Class StorageManager
 Class JsonUserPrefsStorage
@@ -18,19 +19,21 @@ Class JsonAppointmentBookStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> HeliBookStorage
+StorageManager o--> AddressBookStorage
+StorageManager o--> AppointmentBookStorage
+AddressBookStorage -right[hidden]-> AppointmentBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAppointmentBookStorage .left.|> HeliBookStorage
-JsonAddressBookStorage .right.|> HeliBookStorage
-JsonAppointmentBookStorage .down.> JsonSerializableAppointmentBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAppointmentBookStorage .down.> JsonSerializableAppointment
-JsonSerializableAddressBookStorage .down.> JsonSerializablePerson
-JsonSerializableAppointment .down.> JsonAdaptedTag
+JsonAddressBookStorage .up.|> AddressBookStorage
+JsonAppointmentBookStorage .up.|> AppointmentBookStorage
+JsonAppointmentBookStorage .down.> JsonSerializableAppointmentBook
+JsonAddressBookStorage .down.> JsonSerializableAddressBook
+JsonSerializableAppointmentBook .down.> JsonAdaptedAppointment
+JsonSerializableAddressBook .down.> JsonAdaptedContact
+JsonAdaptedAppointment .down.> JsonAdaptedTag
 note on link
     "(Extra) For tag command"
 end note
-JsonSerializablePerson .down.> JsonAdaptedTag
+JsonAdaptedContact .down.> JsonAdaptedTag
 
 @enduml

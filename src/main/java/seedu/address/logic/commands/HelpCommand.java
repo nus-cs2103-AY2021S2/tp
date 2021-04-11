@@ -85,7 +85,7 @@ public class HelpCommand extends Command {
             while (currLine != null) {
                 String[] splitSubheading = currLine.split("`");
 
-                if (currLine.startsWith("###") && splitSubheading[1].equals(specifiedCommand)) {
+                if (currLine.startsWith("####") && splitSubheading[1].toLowerCase().equals(specifiedCommand)) {
                     break;
                 }
 
@@ -110,7 +110,7 @@ public class HelpCommand extends Command {
             reader.close();
         } catch (IOException e) {
             System.out.println("Error reading file: " + e);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
         }
 
@@ -135,6 +135,8 @@ public class HelpCommand extends Command {
                 currLine = reader.readLine();
             }
 
+            helpMessage.replaceAll("…\u200B", "…");
+
             reader.close();
         } catch (IOException e) {
             System.out.println("Error reading file: " + e);
@@ -144,10 +146,21 @@ public class HelpCommand extends Command {
     }
 
     private String commandSummaryParser(String info) {
-        String[] separatedInfo = info.split("\\|");
-        String[] commandName = separatedInfo[0].split("\\*");
-        String[] commandDesc = separatedInfo[1].split("`");
+        // if (!info.startsWith("\u200B |")) {
+        if (!info.contains("| **")) {
+            String[] separatedInfo = info.split("\\|");
+            String[] commandName = separatedInfo[0].split("\\*");
+            String[] commandDesc = separatedInfo[1].split("`");
 
-        return commandName[2] + ": " + commandDesc[1] + "\n";
+            return commandName[2] + ": " + commandDesc[1] + "\n";
+        }
+
+        String[] split = info.split("\\*");
+
+        if (helpMessage.isBlank()) {
+            return "– " + split[2] + " –\n";
+        } else {
+            return "\n– " + split[2] + " –\n";
+        }
     }
 }

@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_RECEIVED_MORE_THAN_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -15,9 +17,9 @@ import seedu.address.model.Address;
 import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.appointment.DateTime;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Phone;
 import seedu.address.model.tag.ChildTag;
 import seedu.address.model.tag.Tag;
 
@@ -26,7 +28,6 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     private static Model model;
 
     public static void setModel(Model model) {
@@ -40,6 +41,10 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        String[] split = trimmedIndex.split("\\s+");
+        if (split.length > 1) {
+            throw new ParseException(MESSAGE_RECEIVED_MORE_THAN_INDEX);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -176,12 +181,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String contact} into a {@code Person}.
+     * Parses a {@code String contact} into a {@code Contact}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code person} is invalid.
+     * @throws ParseException if the given {@code contact} is invalid.
      */
-    public static Person parseContact(String contactIndex) throws ParseException {
+    public static Contact parseContact(String contactIndex) throws ParseException {
         requireNonNull(contactIndex);
 
         String trimmedArgs = contactIndex.trim();
@@ -190,26 +195,26 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
-        List<Person> contactList = model.getFilteredPersonList();
+        List<Contact> contactList = model.getFilteredContactList();
         Index targetIndex = parseIndex(contactIndex);
         int targetIndexInt = targetIndex.getZeroBased();
 
         if (targetIndexInt >= contactList.size()) {
-            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new ParseException(MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        Person contactToAdd = contactList.get(targetIndexInt);
+        Contact contactToAdd = contactList.get(targetIndexInt);
 
         return contactToAdd;
     }
 
     /**
-     * Parses {@code Collection<String> contacts} into a {@code Set<Person>}.
+     * Parses {@code Collection<String> contacts} into a {@code Set<Contact>}.
      */
-    public static Set<Person> parseContacts(Collection<String> contactsIndices) throws ParseException {
+    public static Set<Contact> parseContacts(Collection<String> contactsIndices) throws ParseException {
         requireNonNull(contactsIndices);
 
-        final Set<Person> contactSet = new HashSet<>();
+        final Set<Contact> contactSet = new HashSet<>();
 
         for (String contactIndex : contactsIndices) {
             contactSet.add(parseContact(contactIndex));

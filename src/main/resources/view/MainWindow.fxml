@@ -15,18 +15,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="HeliBook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ParentPal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
-
-      <VBox>
+    <Scene fx:id="scene">
+      <VBox minWidth="-Infinity">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -48,7 +43,7 @@
           </padding>
         </StackPane>
 
-        <GridPane>
+        <GridPane VBox.vgrow="ALWAYS">
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -58,33 +53,30 @@
           </rowConstraints>
             <children>
 
-              <VBox fx:id="personList" styleClass="pane-with-border">
+              <VBox fx:id="contactList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <Label styleClass="cell_title_label" text="Contacts">
                   <padding>
-                     <Insets bottom="5.0" top="5.0" left = "5.0"/>
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
                   </padding>
                 </Label>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="contactListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-
               <VBox fx:id="appointmentList" styleClass="pane-with-border" GridPane.columnIndex="1">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Label styleClass="cell_title_label" text="Appointments">
+                <Label minWidth="340.0" prefWidth="340.0" styleClass="cell_title_label" text="Appointments">
                   <padding>
-                     <Insets bottom="5.0" top="5.0" left = "5.0" />
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
                   </padding>
                 </Label>
                 <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
             </children>
         </GridPane>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
