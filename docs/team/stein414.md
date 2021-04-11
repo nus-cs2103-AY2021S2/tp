@@ -25,9 +25,10 @@ Given below are my contributions to the project.
     * Added manual testing instructions for the issue features.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#103](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/103), [\#175](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/175)
-  * Bug reports made for my team: [#140](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/140), [#145](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/145), [#146](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/146), and [#344](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/344)
+  * PRs reviewed (with non-trivial review comments): [#103](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/103), [#175](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/175), [#330](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/330)
+  * Bug reports made for my team: [#89](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/89), [#140](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/140), [#145](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/145), [#146](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/146), [#180](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/180), [#344](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/344), and [#397](https://github.com/AY2021S2-CS2103-T14-1/tp/issues/397)
   * Bug reports made for other teams: [ped](https://github.com/stein414/ped/issues)
+  * Forum participation: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/41)
 
 * **Tools**:
   * Integrated Visual Studio Code ([\#12](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/12))
