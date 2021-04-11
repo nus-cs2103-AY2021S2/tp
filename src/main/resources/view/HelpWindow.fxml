@@ -14,14 +14,14 @@
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="scene">
          <stylesheets>
          <URL value="@PinkPastelTheme.css" />
          <URL value="@ExtensionsPinkPastel.css" />
          </stylesheets>
-         <VBox alignment="CENTER">
+         <VBox alignment="CENTER" styleClass="help-window">
             <children>
-               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy User Guide URL">
+               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy User Guide URL" styleClass="help-button">
                   <VBox.margin>
                      <Insets bottom="5.0" />
                   </VBox.margin>
