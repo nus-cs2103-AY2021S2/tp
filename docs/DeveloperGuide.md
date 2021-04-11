@@ -231,7 +231,8 @@ their grades of different tests and different subjects. With Grade Book, users c
 related information on the same application instead of using multiple applications.
 
 #### Implementation
-A grade is composed of a `subject`, `graded item` and `grade letter`, out of which `subject` and `graded item` are used to identify a grade object uniquely. 
+A grade is composed of a `subject`, `graded item` and `grade letter`, out of which `subject` and `graded item` are used to identify a grade object uniquely.
+![Class Diagram of Grade](images/grade/GradeClassDiagram.png)
 
 All the user's grades are stored internally in the `GradeList`. Grade Book consist of the following operations
 that can be performed on the grade:   
