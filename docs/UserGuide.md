@@ -402,9 +402,26 @@ Format: `findbook KEYWORD [MORE_KEYWORDS]…`
 
 Example use:
 
+Let's assume you are trying to find all the books of the genre `Novel` in SmartLib.
+You can follow the steps below to obtain a list of books under the genre `Novel`.
+
+Steps:
+
+1. Type `findbook novel` into the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a message with the number of matching results indicating success.
+* SmartLib will list out all the books under the genre `Novel`.
+  <br><br>
+  ![result for 'findreader t/VIP'](images/findbooknovel.png)
+
+Another example use:
+
 Let's say you have many books in your book list,
-and you are trying to find more information about a certain book (e.g. books whose title contains the word `Cloud`)
-or a genre of books (e.g. `Fantasy`).
+and you are trying to find more information about a certain book which you believe has a title containing the word
+`Cloud`, and falls under the genre `Fantasy`.
 You can follow the steps below to obtain a list of books with `Cloud` in their titles, or with the genre `Fantasy`.
 
 Steps:
@@ -495,7 +512,7 @@ given below, and familiarize yourself with them.
 
 #### Borrowing a book : `borrow`
 
-You can use this command to let a reader borrow a book.
+You can use this command to get SmartLib to keep track of a reader borrowing a book.
 
 Format: `borrow bc/BARCODE r/READERNAME`
 
@@ -529,52 +546,98 @@ Outcome:
   
 #### Returning a book : `return`
 
-Records a returning activity. You need to do so whenever a reader returns a borrowed book.
+You can use this command to get SmartLib to keep track of a book being returned.
 
 Format: `return bc/BARCODE`
 
 **:information_source: Notes:**
 
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
-* Lets the reader return the book specified by barcode BARCODE.
 * The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
 
 Example use:
-* `return bc/1000000000` records a rental entry that the book with the barcode number 1000000000 has been returned.
 
-More Examples:
-* `return bc/1234567890` records that the book with barcode 1234567890 has been returned
-* `return bc/9999999999` records that the book with barcode 9999999999 has been returned
+Let's say the reader `Charlotte` would like to return the book `Cloud Nine`.
+You can follow the steps below to get SmartLib to keep track of the returning of the book.
 
 Steps:
-1. Type `return` in the _Command Box_.
-2. Type `bc/BARCODE` where `BARCODE` is to be replaced by the actual returned book's barcode
 
-Notes:
-1. Each part of command is separated by space
+1. Type `return bc/1999999999` into the _Command Box_.
+1. Press `Enter` to execute your input.
 
 Outcome:
+
 * The _Result Display_ will show a message indicating success.
 * If the book returned is an overdue book, SmartLib will show you how long it exceeded the 
-  time limit
+  original due date.
 * SmartLib will record down this returning activity.
-* The relevant parts in UI will be updated.
-  ![result for 'return bc/1000000000'](images/ReturnCommand.png)
+* The relevant parts of the GUI will be updated.
+  <br><br>
+  ![result for 'return bc/1999999999'](images/ReturnCommand.png)
 
 #### Finding records : `findrecord`
 
-Finds relevant records with book titles containing any of the given keywords.
+You can use this command to find records whose associated book titles contains any of the given keywords.
 
-Format: `findrecord KEYWORD [MORE_KEYWORDS]`
+Format: `findrecord KEYWORD [MORE_KEYWORDS]…`
 
 **:information_source: Notes:**
+
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
+* The search is case-insensitive. e.g `Harry Potter` will match `harry potter`.
+* The order of the keywords do not matter. e.g. `Potter Harry` will match `Harry Potter`.
+* Only full words will be matched e.g. `Po` will not match `Potter`.
+* The search will only display records whose associated book's title matches any of the keywords
+  (i.e. it disregards reader names, book's barcode, etc.).
+* Records matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Harry` will return records associated with either the book `Harry Potter and the Goblet of Fire` or
+  `Harry Potter and the Deathly Hallows`.
+
+Example use:
+
+Suppose you have many records in your records list, and you are trying to find a particular record
+associated with the book titled `Lilac`.
+You can follow the steps below to obtain a list of records associated with the keyword `Lilac`.
+
+Steps:
+
+1. Type `findrecord Lilac` into the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a message with the number of matching results indicating success.
+* SmartLib will list out all the records associated with the book `Lilac`.
+  <br><br>
+  ![result for 'findrecord Lilac'](images/findLilacResult.png)
 
 #### Listing all records : `listrecord`
 
-Lists all the current records related to borrowing and returning books .
+You can use this command to display a list of all records in SmartLib's record list.
 
 Format: `listrecord`
+
+**:information_source: Note:**
+
+* Any parameters stated after `listrecord` will be ignored by SmartLib.
+
+Example use:
+
+Let's say you have just performed `findrecord Lilac`,
+and you would like to head back to view the full list of records.
+You can follow the steps below to get SmartLib to display the entire list of records.
+
+Steps:
+
+1. Type `listrecord` into the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+
+* The _Result Display_ will show a message indicating success.
+* SmartLib will list out all the records in its record list.
+  <br><br>
+  ![result for 'listrecord'](images/listrecordResult.png)
 
 ### Miscellaneous commands
 
