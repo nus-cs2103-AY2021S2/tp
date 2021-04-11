@@ -50,8 +50,8 @@ the fields taken to be representative of a student class instead.
     * Added help and clear command explanation [PR #120](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/120).
     * Added tips for overlapping session and `find_student` command [PR #120](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/120).
     * Updated `find_student` description [PR #70](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/70/files).
-    * Updated the screenshots of student commands, fees and sample data [PR #311](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/311).
-    * Improve overall user guide quality based on comments given [PR #273](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/273) and [PR #302](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/302).
+    * Added the screenshots of student commands, fees and sample data [PR #311](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/311).
+    * Improved overall user guide quality based on comments given [PR #273](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/273) and [PR #302](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/302).
   * Developers Guide:
     * Added implementation details for the `add_student` command with the appropriate activity diagram [PR #93](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/93) and [PR #308](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/308).
     * Updated the application value proposition and use cases [PR #19](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/19/files), [PR #270](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/270) and [PR #279](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/279).
