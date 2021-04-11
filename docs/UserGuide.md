@@ -179,7 +179,7 @@ From time to time, we may have lost or gained weight following our diet plan. Th
 **Expected output:**
 
 <p align="center">
-  <img src="images/user-guide/bmi-result.png">
+  <img src="images/user-guide/update-bmi-result.png">
 </p>
 
 ## 2. Diet Plan Selector
@@ -362,7 +362,7 @@ Record your food intake for the specified date using an existing food from your 
 **Expected output:**
 
 <p align="center">
-  <img src="images/user-guide/add-food-intake-new-food-item-result.png">
+  <img src="images/user-guide/add-food-intake-existing-food-item-result.png">
 </p>
 
 #### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
