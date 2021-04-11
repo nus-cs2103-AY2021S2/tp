@@ -1,5 +1,20 @@
 package seedu.address.logic.commands.persons;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -9,15 +24,17 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.meetings.EditMeetingCommand;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.meeting.*;
-import seedu.address.model.person.*;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
+import seedu.address.model.meeting.UniqueMeetingList;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
+import seedu.address.model.person.Phone;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -116,7 +133,8 @@ public class EditPersonCommand extends Command {
         model.deleteAllPersonMeetingConnectionByPerson(personToEdit);
     }
 
-    private void editConnectionsToPersons(Meeting toDelete, Meeting toAdd, Model model, Person personToDelete, Person personToAdd) {
+    private void editConnectionsToPersons(Meeting toDelete, Meeting toAdd, Model model,
+                                          Person personToDelete, Person personToAdd) {
         Set<Person> prevPersonsConnection = toDelete.getConnectionToPerson();
         toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
 
@@ -134,7 +152,8 @@ public class EditPersonCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
+    private static Meeting createEditedMeeting(Meeting meetingToEdit,
+                                               EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
         MeetingName updatedMeetingName = editMeetingDescriptor

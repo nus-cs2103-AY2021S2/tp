@@ -22,24 +22,23 @@ import seedu.address.model.person.PersonSortOption;
 
 public class SortPersonCommand extends Command {
 
+    public static final String COMMAND_WORD = "sortp";
+
+    public static final List<String> ALL_OPTIONS = Arrays.stream(PersonSortOption.values())
+            .map(personSortOption -> personSortOption.getValue()).collect(Collectors.toList());
+    public static final List<String> ALL_DIRECTIONS = Arrays.stream(PersonSortDirection.values())
+            .map(PersonSortDirection -> PersonSortDirection.getValue()).collect(Collectors.toList());
+
+    public static final String MESSAGE_USAGE = "Please do: " + COMMAND_WORD + " "
+            + PREFIX_SORT_BY + ALL_OPTIONS.toString() + " "
+            + PREFIX_SORT_DIRECTION + ALL_DIRECTIONS.toString();
     private Comparator<Person> personComparator;
 
     private PersonSortOption personSortOption;
     private PersonSortDirection personSortDirection;
-
-    public static final String COMMAND_WORD = "sortp";
-
-    private static final List<String> all_options = Arrays.stream(PersonSortOption.values()).
-            map(personSortOption ->
-                    personSortOption.getValue()).collect(Collectors.toList());
-    private static final List<String> all_directions = Arrays.stream(PersonSortDirection.values()).
-            map(PersonSortDirection ->
-                    PersonSortDirection.getValue()).collect(Collectors.toList());
-
-    public static final String MESSAGE_USAGE = "Please do: " + COMMAND_WORD + " " +
-            PREFIX_SORT_BY + all_options.toString() + " " +
-            PREFIX_SORT_DIRECTION + all_directions.toString();
-
+    /**
+     * Construction for sort person command.
+     */
     public SortPersonCommand(PersonSortOption sortOption, PersonSortDirection sortDirection) {
         personSortOption = sortOption;
         personSortDirection = sortDirection;
@@ -60,6 +59,8 @@ public class SortPersonCommand extends Command {
         case ADDRESS:
             personComparator = Comparator.comparing(person -> person.getAddress().toString(),
                     String.CASE_INSENSITIVE_ORDER);
+            break;
+        default:
             break;
         }
         if (sortDirection == PersonSortDirection.DESC) {
@@ -85,8 +86,12 @@ public class SortPersonCommand extends Command {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SortPersonCommand that = (SortPersonCommand) o;
         return personSortOption == that.personSortOption && personSortDirection == that.personSortDirection;
     }

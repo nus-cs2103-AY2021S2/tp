@@ -1,16 +1,14 @@
 package seedu.address.logic.commands.meetings;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalMeetings.MEETING1;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.persons.UnsortPersonCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,7 +28,7 @@ class UnsortMeetingCommandTest {
         UnsortMeetingCommand sortCommand = new UnsortMeetingCommand();
         CommandResult results = sortCommand.execute(model);
         ObservableList<Meeting> filteredList = model.getFilteredMeetingList();
-        assertEquals(MEETING1,filteredList.get(0));
+        assertEquals(MEETING1, filteredList.get(0));
         assertEquals(new CommandResult("Unsorted the meeting list"), results);
     }
 }

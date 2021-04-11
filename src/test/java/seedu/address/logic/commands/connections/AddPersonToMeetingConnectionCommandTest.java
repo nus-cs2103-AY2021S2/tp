@@ -1,8 +1,29 @@
 package seedu.address.logic.commands.connections;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMeetings.MEETING1;
+import static seedu.address.testutil.TypicalMeetings.MEETING2;
+import static seedu.address.testutil.TypicalMeetings.MEETING3;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -23,26 +44,12 @@ import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
 
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalMeetings.*;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
-
 class AddPersonToMeetingConnectionCommandTest {
+    private static String MESSAGE_SUCCESS = "Successfully add persons related to the meeting! "
+            + "The possible duplication of persons related is automatically removed.";
     private PersonMeetingConnection connection = new PersonMeetingConnection();
     private Set<Person> personSet = new HashSet<>();
     private Set<Meeting> meetingSet = new HashSet<>();
-    private static String MESSAGE_SUCCESS = "Successfully add persons related to the meeting! "
-            + "The possible duplication of persons related is automatically removed.";
-
     public AddPersonToMeetingConnectionCommandTest() {
         connection.addPersonMeetingConnection(AMY, MEETING1);
         connection.addPersonMeetingConnection(AMY, MEETING2);
@@ -72,7 +79,8 @@ class AddPersonToMeetingConnectionCommandTest {
         // Extract the index for Meeting3, which is NO.3.
         Index meetingIndex = ParserUtil.parseIndex("3");
 
-        CommandResult commandResult = new AddPersonToMeetingConnectionCommand(meetingIndex, personIndexSet).execute(modelStub);
+        CommandResult commandResult = new AddPersonToMeetingConnectionCommand(meetingIndex,
+                personIndexSet).execute(modelStub);
 
         assertEquals(MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
     }
@@ -88,7 +96,8 @@ class AddPersonToMeetingConnectionCommandTest {
         Set<Index> personIndexSet = new HashSet<>();
         personIndexSet.add(personIndex);
 
-        assertThrows(CommandException.class, () -> new AddPersonToMeetingConnectionCommand(invalidMeetingIndex1, personIndexSet).execute(modelStub));
+        assertThrows(CommandException.class, () ->
+                new AddPersonToMeetingConnectionCommand(invalidMeetingIndex1, personIndexSet).execute(modelStub));
 
         // The person index is wrong.
         Index invalidPersonIndex1 = ParserUtil.parseIndex("3");
@@ -97,8 +106,10 @@ class AddPersonToMeetingConnectionCommandTest {
         Set<Index> invalidPersonIndexSet2 = new HashSet<>();
         invalidPersonIndexSet1.add(invalidPersonIndex1);
 
-        assertThrows(CommandException.class, () -> new AddPersonToMeetingConnectionCommand(meetingIndex, invalidPersonIndexSet1).execute(modelStub));
-        assertThrows(CommandException.class, () -> new AddPersonToMeetingConnectionCommand(meetingIndex, invalidPersonIndexSet2).execute(modelStub));
+        assertThrows(CommandException.class, () ->
+                new AddPersonToMeetingConnectionCommand(meetingIndex, invalidPersonIndexSet1).execute(modelStub));
+        assertThrows(CommandException.class, () ->
+                new AddPersonToMeetingConnectionCommand(meetingIndex, invalidPersonIndexSet2).execute(modelStub));
     }
 
     /**

@@ -1,14 +1,12 @@
 package seedu.address.logic.parser.meetings;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -20,7 +18,6 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meetings.FindMeetingCommand;
-import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -57,7 +54,7 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CONNECTION,
                 PREFIX_NAME, PREFIX_TIME, PREFIX_DESCRIPTION,
-                PREFIX_PRIORITY,PREFIX_GROUP)
+                PREFIX_PRIORITY, PREFIX_GROUP)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindMeetingCommand.MESSAGE_USAGE));
@@ -73,9 +70,6 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
 
         try {
 
-//            checkSomeNotNull(personIndexes,meetingTimes,meetingName,meetingDescription,
-//                    meetingPriority);
-
             Set<Index> personsIndexesToSearch = getPersonsSet(personIndexes);
 
             Predicate<Meeting> predicateHasTimes = handleTimes(meetingTimes);
@@ -85,7 +79,7 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             Predicate<Meeting> predicateHasPriority = handlePriority(meetingPriority);
 
             Predicate<Meeting> bigPredicate = combinePredicates(predicateHasName,
-                    predicateHasDescription,predicateHasPriority,predicateHasTimes,
+                    predicateHasDescription, predicateHasPriority, predicateHasTimes,
                     predicateHasGroups);
 
             return new FindMeetingCommand(bigPredicate, personsIndexesToSearch);
@@ -97,8 +91,8 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
 
     @SafeVarargs
     private Predicate<Meeting> combinePredicates(Predicate<Meeting> ... predicates) {
-        Predicate<Meeting> combinedPredicate = Arrays.stream(predicates).reduce(pred -> true,
-                (meetingPredicate, meetingPredicate2) -> meetingPredicate.and(meetingPredicate2));
+        Predicate<Meeting> combinedPredicate = Arrays.stream(predicates).reduce(pred -> true, (
+                meetingPredicate, meetingPredicate2) -> meetingPredicate.and(meetingPredicate2));
 
         return combinedPredicate;
     }
@@ -118,8 +112,8 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             return meeting -> true;
         }
         Set<DateTime> parsedTimes = ParserUtil.parseMeetingDateTimes(times);
-        Predicate<Meeting> timePred = meeting -> parsedTimes.stream().
-                allMatch(time -> meeting.containsTime(time));
+        Predicate<Meeting> timePred = meeting -> parsedTimes.stream()
+                .allMatch(time -> meeting.containsTime(time));
         return timePred;
     }
 
@@ -128,8 +122,8 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             return meeting -> true;
         }
         Set<Group> parsedGroups = ParserUtil.parseGroups(groups);
-        Predicate<Meeting> groupPred = meeting -> parsedGroups.stream().
-                allMatch(group -> meeting.containsGroup(group));
+        Predicate<Meeting> groupPred = meeting -> parsedGroups.stream()
+                .allMatch(group -> meeting.containsGroup(group));
         return groupPred;
     }
 

@@ -5,8 +5,8 @@ import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_PRIORITY_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING3;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING3;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.showMeetingAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -16,14 +16,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
-import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
-import seedu.address.model.note.Note;
 import seedu.address.model.note.NoteBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
@@ -128,6 +127,7 @@ public class EditMeetingCommandTest {
         EditMeetingCommand editMeetingCommand = new EditMeetingCommand(outOfBoundIndex,
                 new EditMeetingDescriptorBuilder().withName(VALID_NAME_MEETING1).build());
 
-        MeetingCommandTestUtil.assertCommandFailure(editMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        MeetingCommandTestUtil.assertCommandFailure(editMeetingCommand, model,
+                Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 }

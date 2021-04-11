@@ -1,14 +1,14 @@
 package seedu.address.logic.parser.meetings;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.time.LocalDate;
+
 import seedu.address.logic.commands.meetings.SetTimetableCommand;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.time.LocalDate;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class SetTimetableCommandParser implements Parser<SetTimetableCommand> {
 
