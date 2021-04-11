@@ -53,7 +53,7 @@ the fields taken to be representative of a student class instead.
     * Improve overall user guide quality based on comments given [PR #273](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/273).
   * Developers Guide:
     * Added implementation details for the `add_student` command with the appropriate activity diagram [PR #93](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/93).
-    * Updated the application value proposition and added 5 different use cases [PR #19](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/19/files).
-    * Updated the use cases of the project [PR #270](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/270) and [PR #279](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/279).
+    * Updated the application value proposition and use cases [PR #19](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/19/files), [PR #270](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/270) and [PR #279](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/279).
+    * Updated the screenshots of student commands, fees and sample data [PR #311](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/311).
     * Updated implementation details for students and fee command [PR #274](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/274).
 * [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
