@@ -1276,7 +1276,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all contacts using the `contacts` command. Multiple contacts in the list.
 
     1. Test case: `deleteC 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
 
     1. Test case: `deleteC 0`<br>
        Expected: No contact is deleted. Error details shown in the status message.
@@ -1284,15 +1284,15 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Deleting a project
+### Adding a project
 
-1. Test case: `deleteP 1`<br>
-    Expected: First project is deleted from the list. Details of the deleted project shown in the status message.
+1. Test case: `addP n/My Project`<br>
+    Expected: A new project named "My Project" is added to the list. The Overview Tab of the newly created project is shown.
 
-1. Test case: `deleteP 0`<br>
-    Expected: No project is deleted. Error details shown in the status message.
+1. Test case: `addP 1 n/My Project`<br>
+    Expected: No project is created. Error details shown in the status message.
 
-1. Other incorrect delete commands to try: `deleteP`, `deleteP x`, `...` (where x is larger than the number of projects)<br>
+1. Other incorrect delete commands to try: `addP`, `addP My Project`, `...`<br>
     Expected: Similar to previous.
 
 ### Saving data
