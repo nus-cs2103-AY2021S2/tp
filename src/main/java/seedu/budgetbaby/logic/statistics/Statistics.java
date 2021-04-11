@@ -2,6 +2,7 @@ package seedu.budgetbaby.logic.statistics;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,8 @@ public class Statistics {
     private List<Month> getPastMonths() {
         List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
         monthList = monthList.stream()
-                .filter(month -> month.getMonth().isAfter(this.monthList.get(0).getMonth().minusMonths(6)))
+                .filter(month -> month.getMonth().isBefore(this.monthList.get(0).getMonth().plusMonths(1))
+                        && month.getMonth().isAfter(this.monthList.get(0).getMonth().minusMonths(6)))
                 .collect(Collectors.toList());
         Collections.sort(monthList);
         return monthList.stream().limit(6).collect(Collectors.toList());
@@ -63,6 +65,17 @@ public class Statistics {
             }
         }
         return new ArrayList<>(map.values());
+    }
+
+    public List<CategoryStatistics> getAllUnsortedCategories() {
+        List<CategoryStatistics> list = allCategories();
+        Collections.sort(list, new Comparator<CategoryStatistics>() {
+            @Override
+            public int compare(CategoryStatistics cs1, CategoryStatistics cs2) {
+                return cs1.getCategory().getCategory().compareTo(cs2.getCategory().getCategory());
+            }
+        });
+        return list;
     }
 
     /**
