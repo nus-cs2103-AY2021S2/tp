@@ -36,7 +36,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `find` and `filter` [\#151](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/151))
+    * Added documentation for the features `find`, `filter` and `saving data` [\#151](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/151), [\#268](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/268)
     * Reformat the order in which features are listed  and command summary  [\#177](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/177)
   * Developer Guide:
     * Added implementation details of the `find` and `filter` feature. [\#124](https://github.com/AY2021S2-CS2103T-W10-4/tp/pull/124))
