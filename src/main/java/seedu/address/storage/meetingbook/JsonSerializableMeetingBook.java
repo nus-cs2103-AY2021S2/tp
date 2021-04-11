@@ -21,6 +21,7 @@ import seedu.address.storage.meetingbook.JsonAdaptedMeeting;
 public class JsonSerializableMeetingBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Meetings List contains duplicate meeting(s).";
+    public static final String MESSAGE_CLASHING_MEETINGS = "Meetings List contains clashing meeting(s).";
 
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
@@ -52,6 +53,9 @@ public class JsonSerializableMeetingBook {
             Meeting meeting = jsonAdaptedMeeting.toModelType();
             if (meetingBook.hasMeeting(meeting)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            if (meetingBook.clashes(meeting)) {
+                throw new IllegalValueException(MESSAGE_CLASHING_MEETINGS);
             }
             meetingBook.addMeeting(meeting);
         }
