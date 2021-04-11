@@ -73,7 +73,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer, QA Engineer
 * Responsibilities:
     * Developer for ModuleBook3.5
-    * Commons Component Checker
+    * Ui Component Checker
     * Tester
     * QA Checker
     * Project Management
