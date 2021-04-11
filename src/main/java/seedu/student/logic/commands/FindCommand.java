@@ -13,27 +13,24 @@ import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistException;
 
 /**
- * Finds and lists all persons in student book whose name contains any of the argument keywords.
+ * Finds and lists all student in student book whose name contains any of the argument keywords.
  * Keyword matching is case sensitive.
  */
 public class FindCommand extends Command {
 
-
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student and appointment whose "
-            + "matriculation number matches the specified keywords (case-sensitive) and displays it.\n"
-            + "Parameters: KEYWORD \n"
-            + "Example: " + COMMAND_WORD + " A01234567R";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds the student identified and their appointment by their unique matriculation number.\n"
+            + "Parameters: Matriculation Number in the format of A + 7 digit numeric sequence + alphabet. \n"
+            + "Example: " + COMMAND_WORD + " A0221234N";
 
     public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND =
-            "Found student with matriculation number %s \n"
+            "A student with matriculation number %s is found \n"
                     + "If they have an appointment, their appointment will also be listed.";
 
     public static final String MESSAGE_NO_STUDENT_FOUND =
             "No student with matriculation number %s was found. \n";
-
-    public static final String MESSAGE_NONEXISTENT_APPOINTMENT = "No appointment was found.";
-
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -67,17 +64,20 @@ public class FindCommand extends Command {
         assert (filteredStudentListSize >= 0 && filteredAppointmentListSize >= 0);
 
         if (filteredStudentListSize == 0) {
-            model.updateFilteredStudentList(predicate->true);
-            model.updateFilteredAppointmentList(second_predicate->true, second_predicate->true);
+            model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+            model.updateFilteredAppointmentList(Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS,
+                    Model.PREDICATE_SHOW_ALL_APPOINTMENTS);
 
             logger.info("Student with a matriculation number of " + predicate.getKeyword()
-                    + "does not exist in VAX@NUS");
+                    + "does not exist in Vax@NUS");
 
             throw new MatriculationNumberDoesNotExistException(String.format(MESSAGE_NO_STUDENT_FOUND,
                     predicate.getKeyword()));
 
         } else if (filteredAppointmentListSize == 0) {
-            return new CommandResult(String.format(MESSAGE_NONEXISTENT_APPOINTMENT,
+            logger.info("Student with a matriculation number of " + predicate.getKeyword()
+                    + "has no appointment");
+            return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     model.getFilteredStudentList().size()));
         } else {
             return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
