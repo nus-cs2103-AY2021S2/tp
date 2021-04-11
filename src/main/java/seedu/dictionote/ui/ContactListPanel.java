@@ -11,7 +11,7 @@ import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.contact.Contact;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of contact.
  */
 public class ContactListPanel extends UiPart<Region> {
     private static final String FXML = "ContactListPanel.fxml";
