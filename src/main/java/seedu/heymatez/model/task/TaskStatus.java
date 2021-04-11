@@ -10,7 +10,7 @@ public enum TaskStatus {
     COMPLETED("completed");
 
     public static final String MESSAGE_CONSTRAINTS = "Task Status should take one of the predefined values: completed "
-            + "or uncompleted (Case sensitive)";
+            + "or uncompleted (case-sensitive)";
 
     public final String status;
 
