@@ -689,7 +689,7 @@ and also a command summary for the user.
 
 ### Glossary
 
-* **Mainstream OS**: <a name="glossary-OS"></a> Windows, Linux, Unix, OS-X
+* {: #glossary-OS} **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **JSON**: JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage 
 
 --------------------------------------------------------------------------------------------------------------------
