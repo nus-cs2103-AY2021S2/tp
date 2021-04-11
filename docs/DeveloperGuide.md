@@ -304,6 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | Visit the best food places without overspending                                   |
 | `* *`   | User who wants identify a place he/she ate at previously by name | Find entries that match the name of the place I last visited       | Judge if I would like to go back to that place and eat there.                     |
 | `* * *` | User who made a mistake in an entry                              | Perform revisions and updates to the entry                         | Keep accurate and up-to-date information of food places                           |
+| `* * *` | User who is unclear of what to do with the app                   | Look at a help guide to get familiar with the app usage            | Use the app confidently and use it to its fullest extent                          |
 
 
 
