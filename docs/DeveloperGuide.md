@@ -409,16 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a student by the student's matriculation number and other details, including:
-    
-    * Name
-    * Address
-    * Email
-    * Phone number
-    * Faculty
-    * Vaccination status
-    * Medical details
-    * School residence
+1.  User requests to add a student by the student's matriculation number and other relevant details.
 1.  System adds the student. 
     
 Use case ends
