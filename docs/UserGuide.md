@@ -3,13 +3,11 @@ layout: page
 title: User Guide
 ---
 
-**PlanIT** is a task managing application made specially for NUS computing students like you, from computing students
-like us. Forgot to submit your lab worksheet, or too many assignments and you don't know where to get started? PlanIT
+**PlanIT** is a task managing application made specially for NUS computing students. PlanIT
 gives you the confidence that your busy schedule is organized and accounted for. Quickly and efficiently make and edit
 various tasks, mark dates, take note of remaining tasks, and more.
 
-PlanIt also includes a calendar and a countdown feature to better manage your deadlines. It is even optimised for all of
-you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
+PlanIt also includes a calendar and a countdown feature to better manage your deadlines. It is even optimised for people who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
 **Objective:**
@@ -168,7 +166,8 @@ A task can have any number of tags (including 0)
 Examples:
 * `mk n/eat dinner`<br>Makes a task titled 'eat dinner'.
 * `mk n/do project r/[29/06/2021][thu][Biweekly]` <br>Makes a task titled 'do project' and will 
-  generate recurring dates that is on thursday, biweekly until 29th Jun 2021.
+  generate recurring dates that is on thursday, biweekly until 29th Jun 2021. Recurring dates will be truncated like this:
+  ![mkExample](images/MkExample.png)
 
 Example of making a task with multiple lines of description:
 ```
