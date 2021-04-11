@@ -31,6 +31,6 @@ class Alias {
 show Alias members
 
 AddressBook *-right-> AliasMapping
-AliasMapping .> Alias
+AliasMapping -> Alias
 
 @enduml
