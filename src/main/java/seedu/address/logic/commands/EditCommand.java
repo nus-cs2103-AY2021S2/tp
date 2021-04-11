@@ -100,16 +100,16 @@ public class EditCommand extends Command {
         if (earliestMeeting != null && earliestMeeting.getDate().isBefore(updatedBirthday.getDate())) {
             throw new IllegalValueException(String.format(
                     Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
-                    DateUtil.toUi(updatedBirthday.getDate()),
+                    DateUtil.toErrorMessage(updatedBirthday.getDate()),
                     "meeting",
-                    DateUtil.toUi(earliestMeeting.getDate())));
+                    DateUtil.toErrorMessage(earliestMeeting.getDate())));
         }
         if (earliestDate != null && earliestDate.getDate().isBefore(updatedBirthday.getDate())) {
             throw new IllegalValueException(String.format(
                     Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
-                    DateUtil.toUi(updatedBirthday.getDate()),
+                    DateUtil.toErrorMessage(updatedBirthday.getDate()),
                     "date",
-                    DateUtil.toUi(earliestDate.getDate())));
+                    DateUtil.toErrorMessage(earliestDate.getDate())));
         }
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthday, updatedGoal,
