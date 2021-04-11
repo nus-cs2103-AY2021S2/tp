@@ -39,9 +39,7 @@ public class ClearAllCommand extends ClearCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ClearAllCommand // instanceof handles nulls
-            && predicate.equals(((ClearAllCommand) other).predicate)); // state check
-
+            || other instanceof ClearAllCommand; // instanceof handles nulls
     }
 
 }
