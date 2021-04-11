@@ -2,20 +2,26 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+
+Welcome to the PocketEstate Developer Guide! This guide will take you through the underlying components that make up PocketEstate, and provide the essential information required for you to get started with becoming a PocketEstate developer.
+
+## Table of Contents
+{: .no_toc}
+
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **1. Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **2. Design**
 
-### Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,11 +63,11 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some triangles that are used to indicate class inheritance and some solid diamonds that are used to denote composition may overlap with each other.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some triangles that are used to indicate class inheritance may overlap with each other.
 </div>
 
 **API** :
@@ -76,7 +82,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 2.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -92,14 +98,14 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object, which is passed back to the `Ui`. The feedback to the user is then displayed to the user.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021")` API call.
 
-![Interactions Inside the Logic Component for the `add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021` Command](images/AddPropertySequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` Command](images/AddPropertySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddPropertyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 2.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -118,7 +124,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
 * does not depend on any of the other three components
 
-### Storage component
+### 2.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -129,7 +135,7 @@ The `Storage` component,
 * can save the appointment book data in json format and read it back.
 * can save the property book data in json format and read it back.
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
@@ -141,33 +147,33 @@ Some examples of common classes:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Property component
+### 3.1 Property component
 
 ![Structure of the Property Component](images/PropertyClassDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some solid diamonds that are used to denote composition may overlap with each other.
 </div>
 
-#### Implementation
+#### 3.1.1 Current Implementation
 
-A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
+A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its pair of `Address` and `PostalCode`.
 
 A `Property consists of the following mandatory attributes,
   * a `Name`: the name of the property
-  * a `Type`: the housing type of the property (Hdb, Condo, Landed)
+  * a `Type`: the housing type of the property (HDB ![hdb_icon](images/hdb_16.png), Condo ![condo_icon](images/condo_16.png), Landed ![landed_icon](images/landed_16.png), etc.)
   * an `Address`: the address of the property
   * a `PostalCode`: the postal code of the property
   * a `Deadline`: the property's deadline for selling
-  * a `Tag` set: a set of zero or more `Tag` objects
 
 and the following optional attributes,
   * a `Remark`: a note about the property
   * a `Status`: represents the current stage of the selling (Option, Sales Agreement, Completion)
   * a `Client`: represents the seller of the property
+  * a `Tag` set: a set of zero or more `Tag` objects describing the property
 
 A `Client` consists of at least one of the following attributes,
   * a `Name`: the name of the client
@@ -175,7 +181,7 @@ A `Client` consists of at least one of the following attributes,
   * an `Email`: the email of the client
   * an `AskingPrice`: the asking price of the client
 
-#### Design Consideration
+#### 3.1.2 Design Consideration
 
 ##### Aspect: How each attribute of `Property` is stored
 
@@ -187,7 +193,7 @@ A `Client` consists of at least one of the following attributes,
     * Pros: Easy to implement
     * Cons: More prone to bugs
 
-#### Aspect: How each tag is stored
+##### Aspect: How each tag is stored
 
 * An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `PropertyBook`, which `Property` references. This allows `PropertyBook` to only require one `Tag` object per unique `Tag`, instead of each `Property` needing their own `Tag` object.
     * Pros: Prevents creating the same tag multiple times when each `Property` needs to refer to the tag
@@ -196,13 +202,13 @@ A `Client` consists of at least one of the following attributes,
 ![BetterModelPropertyClassDiagram](images/BetterModelPropertyClassDiagram.png)
 
 
-### Appointment component
+### 3.2 Appointment component
 
 ![Structure of the Appointment Component](images/AppointmentClassDiagram.png)
 
-#### Implementation
+#### 3.2.1 Current Implementation
 
-An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its `Date` and `Time`.
+An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its pair of `Date` and `Time`.
 
 An `Appointment` consists of the following mandatory attributes,
 * a `Name`: the name of the appointment
@@ -210,17 +216,17 @@ An `Appointment` consists of the following mandatory attributes,
 * a `Date`: the date of the appointment
 * a `Time`: the time of the appointment
 
-#### Design Consideration
+#### 3.2.2 Design Consideration
 
 ##### Aspect: How each attribute of `Appointment` is stored
 
 Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
 
-### \[Proposed\] Undo feature
+### 3.3 Undo feature
 
-#### Proposed Implementation
+#### 3.3.1 Current Implementation
 
-The proposed undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as an `previousAppointmentLists` and `previousPropertyLists`. It implements
+The undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as `previousAppointmentLists` and `previousPropertyLists` respectively.
 
 * `AppointmentBook#undo()` — Restores the previous appointment book state from its history.
 * `PropertyBook#undo()` — Restores the previous property book state from its history.
@@ -265,27 +271,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### 3.3.2 Design consideration:
 
 ##### Aspect: How undo executes
 
-* **Alternative 1:** Saves the entire appointment/property book.
+* **Alternative 1 (current choice):** Saves the entire appointment/property book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2 (current choice):** Saves the entire appointment/property list in the appointment/property book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 3:** Saves only changes made by previous commands (Similar to commit and restore in version control).
+    
+* **Alternative 2:** Saves only changes made by previous commands (Similar to commit and restore in version control).
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
   * Cons: Difficult to implement, different implementations are required to restore different changes.
+    
+### 3.4 Update feature
 
-_{more aspects and alternatives to be added}_
-
-### \[Implemented\] Update feature
-
-#### Implementation
+#### 3.4.1 Current Implementation
 
 The update mechanism is facilitated by `PocketEstate`. It implements the update feature with 3 parts, the `Status` field in `Property`, a `UpdateCommandParser` and `UpdateCommand`.
 
@@ -327,11 +327,9 @@ Step 5. The user then decides that having the `Completion` status on the first p
 
 ![UpdateStep5Cancel](images/UpdateStep5Cancel.png)
 
-
-#### Design consideration:
+#### 3.4.2 Design consideration:
 
 ##### Aspect: How Update executes
-
 
 The following activity diagram summarizes what happens when a user executes an `UpdateCommand`:
 
@@ -341,14 +339,10 @@ The following sequence diagram shows how the update operation works:
 
 ![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -358,9 +352,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
-
-### Product scope
+## **Appendix A: Product scope**
 
 **Target user profile**:
 
@@ -373,19 +365,21 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
 
 
-### User stories
+## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                |
+| Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                        |
 | -------- | ------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                                    |
 | `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                                      |
 | `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                        |
 | `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                         |
-| `* * *`  | user                                       | list all properties on sale                                                | know which properties I have to sell                                                      |
+| `* * *`  | user                                       | list all appointments I have                                               | know all the meetings I have                                                              |
+| `* * *`  | user                                       | view all properties and appointments side by side                          | simultaneously view related property and appointment data                                 |
+| `* * *`  | user                                       | view the notes/special remarks of a seller                                 | so that I keep in mind special considerations when negotiating with a potential buyer.    |
+| `* * *`  | user                                       | identify properties with expired deadlines                                 | focus on current properties that I have to sell                                           |
 | `* * *`  | user                                       | view the client asking price of a property                                 | keep the price in mind when negotiating with the buyer                                    |
-| `* * *`  | user                                       | view the properties in the order of nearest deadline                       | prioritize selling properties with a more urgent deadline                                 |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 | `* *`    | user                                       | search for properties based on some criteria                               | easily filter out the properties I want to see                                            |
 | `* *`    | user                                       | search for appointments based on some criteria                             | easily filter out the appointments I want to see                                          |
@@ -398,11 +392,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
-*{More to be added}*
 
-### Use cases
+## **Appendix C: Use Cases**
 
-(For all use cases below, the **System** is the `PocketEsate` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PocketEsate` app, and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Add a property**
 
@@ -421,6 +414,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The property to be added has a deadline that is already over.
+
+    * 1b1. PocketEstate shows an error message.
+
+      Use case ends.
 
 **Use case: UC02 - Add an appointment**
 
@@ -439,6 +437,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The appointment to be added has a date and time that is already over.
+
+    * 1b1. PocketEstate shows an error message.
+
+      Use case ends.
+
 **Use case: UC03 - Listing all properties and appointments**
 
 **MSS**
@@ -450,9 +454,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. List command used has unrecognized fields.
+* 1a. List command used has unrecognized fields.
 
-    * 3a1. PocketEstate shows an error message.
+    * 1a1. PocketEstate shows an error message.
 
       Use case ends.
 
@@ -473,6 +477,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The property to be edited has a deadline that is already over.
+
+    * 1b1. PocketEstate shows an error message.
+
+      Use case ends.
 
 **Use case: UC05 - Edit an appointment**
 
@@ -488,6 +497,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The appointment to be edited has unrecognized fields.
 
     * 1a1. PocketEstate shows an error message with the unrecognized fields.
+
+      Use case ends.
+
+* 1b. The appointment to be edited has a date and time that is already over.
+
+    * 1b1. PocketEstate shows an error message.
 
       Use case ends.
 
@@ -524,9 +539,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
 
-### Non-Functional Requirements
+## **Appendix D: Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster by using commands over the mouse.
@@ -537,17 +551,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. The app should be resizable and can be enlarged to the maximum window width.
 8. There should be sample data in the app when the user opens the app for the first time.
 
-*{More to be added}*
 
-### Glossary
+## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, and with optional attributes: Remarks, Status, Tags, Client name, Client contact, Client email, Client asking price
+* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, and with optional attributes: Remarks, Status, Client name, Client contact, Client email, Client asking price, a set of Tags (containing 0 or more tags)
 * **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date, Time
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix F: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -571,6 +584,56 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
       
+1. Exiting
+
+   1. Prerequisites: The application is running.
+
+   1. Test case: `exit` <br>
+      Expected: App shuts down.
+
+### Adding a property
+
+1. Adding a new unique property.
+
+   1. Prerequisites: None of the current properties in the app has an (address, postal code) pair of  (`Blk 150 Bishan Street 11 #02-101`, `570150`)
+
+   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br>
+      Expected: A new property is added to the property list. The result display panel shows the details of the newly added property.
+
+   1. Test case: `add property` <br>
+      Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
+
+   1. Other incorrect add property commands to try: `add property n/Bishan`, `add property t/Condo` <br>
+      Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
+
+1. Adding a duplicate property.
+
+   1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app.
+
+   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br>
+      Expected: No property is added. An error message `This property already exists in the app` is shown in the result display.
+
+### Adding an appointment
+
+1. Adding a new unique appointment.
+
+    1. Prerequisites: None of the current appointments in the app has a (date, time) pair of  (`19-05-2021`, `1930`)
+
+    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` <br>
+       Expected: A new appointment is added to the appointment list. The result display panel shows the details of the newly added appointment.
+
+    1. Test case: `add appointment` <br>
+       Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect add appointment commands to try: `add appointment n/Meet Jacob`, `add appointment d/19-05-2021 t/1930` <br>
+       Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
+
+1. Adding a duplicate appointment.
+
+    1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app.
+
+    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` <br>
+       Expected: No appointment is added. An error message `This appointment already exists in the app` is shown in the result display.
 
 ### Deleting a property
 
@@ -587,3 +650,98 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Editing a property
+
+1. Editing a property.
+
+    1. Prerequisites: Property list has at least 1 property
+
+    1. Test case: `edit property 1 n/Bishan Village` <br>
+       Expected: The first property in the property list is edited to have the name `Bishan Village`. The result display panel shows the full details of the edited property.
+
+    1. Test case: `edit property` <br>
+       Expected: No property is edited. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect edit property commands to try: `edit property n/Bishan Village`, `edit property +1` <br>
+       Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
+
+1. Editing to a duplicate property.
+
+    1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app that is not the first property in the property list.
+
+    1. Test case: `edit property 1 a/Blk 150 Bishan Street 11 #02-101 p/570150` <br>
+       Expected: No property is edited. An error message `Another property with the same address and postal code already exists in the app` is shown in the result display.
+
+### Editing an appointment
+
+1. Editing an appointment.
+
+    1. Prerequisites: The appointment list is not empty
+
+    1. Test case: `edit appointment 1 n/Meet Nathaniel` <br>
+       Expected: The first appointment in the appointment list has the name changed to `Meet Nathaniel`. The result display panel shows the full details of the edited appointment.
+
+    1. Test case: `edit appointment` <br>
+       Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect edit appointment commands to try: `edit appointment n/Meet Nathaniel`, `edit appointment +1 n/Meet Nathaniel`<br>
+       Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
+
+1. Editing to a duplicate appointment.
+
+    1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app that is not the first appointment in the appointment list.
+
+    1. Test case: `edit appointment 1 d/19-05-2021 t/1930` <br>
+       Expected: No appointment is edited. An error message `Another appointment with the same date and time already exists in the app` is shown in the result display.
+
+## **Appendix G: Effort**
+
+### Introduction
+AB3 only dealt with one entity type, but PocketEstate took twice the effort since it involved 2 entity types - Properties & Appointments. The number of commands and attributes implemented were doubled in PocketEstate, signifying greater parsing, storage and tests effort due to the numerous different commands and data types involved.
+
+To support all of that, we greatly expanded the application, increasing the lines of code from 6k to 16k. 
+
+### New Features
+**1. Update Command**
+    
+* Implementation of `update` command required effort due to addition of 3 sub commands, namely `new`, `proceed`, `cancel` commands. <br>
+  `new` command introduces a new status attribute to each property for display in Ui. <br>
+  `proceed` command moves status of the property to the next stage. <br>
+  `cancel` command removes the status bar associated with that property. 
+
+**2. Find Command**
+
+* AB3’s `find` command only searched for existence of keywords in the Names of Properties and Appointments. <br>
+  To make the `Find` command more useful and flexible, we expanded the `Find` command to apply keyword search in all attributes for Properties and Appointments. 
+
+**3. Sort Command**
+
+* Significant effort was required to implement individual comparators for each sorting key. <br>
+  For example, supporting `sort` by name requires a comparator for the `name` attribute that provides alphabetical ordering while being case insensitive.
+
+**4. Undo Command**
+
+* Great effort was necessary to retrieve and store data in the AddressBook log, as well as to save the state of property and appointment books after each command.
+
+### Challenges 1: User Interface
+
+The user interface for original AddressBook was only optimised to display only one list. During the conceptualisation of PocketEstate, we struggled to find a way to display both property and appointments list in an organised but minimalist manner due to the numerous attributes associated with properties and appointments.
+
+We found our original implementation of displaying one list at a time to be less user friendly as the user had to use `list property` or `list appointment` command before using other commands.
+
+We overcame this by displaying both properties and appointments side by side for easy referral, without having to call `list property` or `list appointment` prior to a sort or filter. This design was also optimal in allowing find features that are simultaneously done on both lists. Eg. `find client [keyword]` where keyword is searched from both property and appointment lists.
+
+The new UI structure of a side by side property and appointment list required a redesign of the user interface that was more complex, where we faced some sizing issues such as text wrapping, window issues due to the large amount of data displayed. In doing so, we also changed the colour scheme of the UI to be a light themed one in order to allow greater emphasis on some data (bolding of words) and less focus on other data Eg. Greying out of properties and appointments with expired deadlines. The original UI that was dark themed would not allow colour play with the different shades of black.
+
+### Challenges 2: Parsing
+
+Several attributes such as date, time and price are new attributes relative to AB3, so we have to implement parsing support for these attributes from scratch. The challenge was to provide maximum convenience to the user by allowing flexible inputs (such as having optional commas in prices), but at the same time ensuring correct input validation. To achieve this, a strict validation regex is implemented for all of the input attributes, and all input arguments for each attribute is validated upon the execution of a user command.
+
+There was also a challenge in determining what was considered a valid or invalid input. Eg. How do we validate postal code / email. Such problems were further reviewed during the mock practical exam, where questions to what were considered valid inputs were further raised. By considering the suggestions of our peers, we improved our input validation by implementing stricter regex.
+
+### Achievements:
+
+1. User story - We originally planned to fulfill 15 [User stories](#appendix-b-user-stories), but exceeded expectation by adding new User stories upon addition of new features,  eventually fulfilling a total of 20 user stories.
+2. Design - Kept the simplicity and cohesiveness of the features from the original AB3 project.
+
+3. Testing - Provided extensive unit and manual testing on the product, making it reliable and efficient for production usage.

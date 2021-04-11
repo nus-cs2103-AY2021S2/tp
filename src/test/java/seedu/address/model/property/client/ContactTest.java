@@ -27,11 +27,13 @@ public class ContactTest {
         // invalid contact numbers
         assertFalse(Contact.isValidContact("")); // empty string
         assertFalse(Contact.isValidContact(" ")); // spaces only
-        assertFalse(Contact.isValidContact("9111")); // less than 7 numbers
+        assertFalse(Contact.isValidContact("912345")); // less than 7 numbers
         assertFalse(Contact.isValidContact("9123456789012345")); // more than 15 numbers
         assertFalse(Contact.isValidContact("contact")); // non-numeric
         assertFalse(Contact.isValidContact("9123p456")); // alphabets within digits
         assertFalse(Contact.isValidContact("9123 4567")); // spaces within digits
+        assertFalse(Contact.isValidContact(" 91234567")); // leading whitespace
+        assertFalse(Contact.isValidContact("91234567 ")); // trailing whitespace
 
         // valid contact numbers
         assertTrue(Contact.isValidContact("9111222")); // exactly 7 numbers

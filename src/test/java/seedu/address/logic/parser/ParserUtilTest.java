@@ -8,8 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,14 +26,21 @@ import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.sort.descriptor.AppointmentSortingKey;
+import seedu.address.model.sort.descriptor.PropertySortingKey;
+import seedu.address.model.sort.descriptor.SortingOrder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.DateTimeFormat;
 
 public class ParserUtilTest {
+
+    // for testing property parser methods
     public static final String INVALID_PROPERTY_NAME = "Mayfair&"; // '&' not allowed in names
     public static final String INVALID_PROPERTY_TYPE = "apartment"; // 'apartment' is not a valid type
     public static final String INVALID_PROPERTY_ADDRESS = ""; // empty string not allowed for addresses
-    public static final String INVALID_PROPERTY_POSTAL = "12a"; // 'a' not allowed in postal codes
-    public static final String INVALID_PROPERTY_DEADLINE = "31-04-2021"; // 31st April not valid
+    public static final String INVALID_PROPERTY_POSTAL = "12345a"; // 'a' not allowed in postal codes
+    public static final String INVALID_PROPERTY_DEADLINE_INCORRECT_FORMAT = "30-4-2021"; // 1 digit in month part
+    public static final String INVALID_PROPERTY_DEADLINE_CORRECT_FORMAT = "31-04-2021"; // 31st April not valid
     public static final String INVALID_PROPERTY_REMARK = ""; // empty string not allowed for remarks
     public static final String INVALID_PROPERTY_TAG = "#Freehold"; // '#' not allowed in tags
 
@@ -45,34 +50,48 @@ public class ParserUtilTest {
     public static final String VALID_PROPERTY_POSTAL = "609477";
     public static final String VALID_PROPERTY_DEADLINE = "31-12-2021";
     public static final LocalDate VALID_PROPERTY_DEADLINE_LOCALDATE = LocalDate.parse(VALID_PROPERTY_DEADLINE,
-            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+            DateTimeFormat.INPUT_DATE_FORMAT);
     public static final String VALID_PROPERTY_REMARK = "Urgent to sell!";
     public static final String VALID_PROPERTY_TAG_1 = "Freehold";
     public static final String VALID_PROPERTY_TAG_2 = "5 bedrooms";
+    public static final String VALID_PROPERTY_TAGS = "Freehold, 5 bedrooms";
 
+    // for testing appointment parser methods
     public static final String INVALID_APPOINTMENT_NAME = "Meet Alex&"; // '&' not allowed in names
     public static final String INVALID_APPOINTMENT_REMARK = ""; // empty string not allowed for remarks
-    public static final String INVALID_APPOINTMENT_DATE = "31-04-2021"; // 31st April not valid
-    public static final String INVALID_APPOINTMENT_TIME = "1860"; // 1260 not valid
+    public static final String INVALID_APPOINTMENT_DATE_INCORRECT_FORMAT = "30-4-2021"; // 1 digit in month part
+    public static final String INVALID_APPOINTMENT_DATE_CORRECT_FORMAT = "31-04-2021"; // 31st April not valid
+    public static final String INVALID_APPOINTMENT_TIME_INCORRECT_FORMAT = "930"; // 3 digits
+    public static final String INVALID_APPOINTMENT_TIME_CORRECT_FORMAT = "1860"; // 1260 not valid
 
     public static final String VALID_APPOINTMENT_NAME = "Meet Alex";
     public static final String VALID_APPOINTMENT_REMARK = "At M Hotel";
     public static final String VALID_APPOINTMENT_DATE = "25-12-2021";
     public static final LocalDate VALID_APPOINTMENT_DATE_LOCALDATE = LocalDate.parse(VALID_APPOINTMENT_DATE,
-            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+            DateTimeFormat.INPUT_DATE_FORMAT);
     public static final String VALID_APPOINTMENT_TIME = "1900";
     public static final LocalTime VALID_APPOINTMENT_TIME_LOCALTIME = LocalTime.parse(VALID_APPOINTMENT_TIME,
-            DateTimeFormatter.ofPattern("HHmm"));
+            DateTimeFormat.INPUT_TIME_FORMAT);
 
+    // for testing client parser methods
     public static final String INVALID_CLIENT_NAME = "Alice&"; // '&' not allowed in names
     public static final String INVALID_CLIENT_CONTACT = "+91234"; // Shorter than  7 digits
     public static final String INVALID_CLIENT_EMAIL = "alice.example.com"; // missing @
-    public static final String INVALID_CLIENT_ASKING_PRICE = "$00800000"; // leading zeros not allowed
+    public static final String INVALID_CLIENT_ASKING_PRICE = "$001000000"; // leading zeros not allowed
 
     public static final String VALID_CLIENT_NAME = "Alice";
     public static final String VALID_CLIENT_CONTACT = "91234567";
     public static final String VALID_CLIENT_EMAIL = "alice@gmail.com";
-    public static final String VALID_CLIENT_ASKING_PRICE = "$800,000";
+    public static final String VALID_CLIENT_ASKING_PRICE = "$1,000,000";
+
+    // for testing sorting parser methods
+    public static final String INVALID_APPOINTMENT_SORTING_KEY = "date"; // date is not an appointment sorting key
+    public static final String INVALID_PROPERTY_SORTING_KEY = "datetime"; // datetime is not a property sorting key
+    public static final String INVALID_SORTING_ORDER = "increasing"; // increasing is not a valid sorting order
+
+    public static final String VALID_APPOINTMENT_SORTING_KEY = "datetime";
+    public static final String VALID_PROPERTY_SORTING_KEY = "price";
+    public static final String VALID_SORTING_ORDER = "asc";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -214,8 +233,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(VALID_PROPERTY_TAG_1 + ", " + VALID_PROPERTY_TAG_2);
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_PROPERTY_TAG_1),
+        Set<Tag> actualTagSet = ParserUtil.parseTags(VALID_PROPERTY_TAGS);
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_PROPERTY_TAG_1),
                 new Tag(VALID_PROPERTY_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
@@ -299,7 +318,10 @@ public class ParserUtilTest {
 
     @Test
     public void parsePropertyDeadline_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePropertyDeadline(INVALID_PROPERTY_DEADLINE));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parsePropertyDeadline(INVALID_PROPERTY_DEADLINE_INCORRECT_FORMAT));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parsePropertyDeadline(INVALID_PROPERTY_DEADLINE_CORRECT_FORMAT));
     }
 
     @Test
@@ -361,6 +383,7 @@ public class ParserUtilTest {
         Email expectedEmail = new Email(VALID_CLIENT_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseClientEmail(emailWithWhitespace));
     }
+
     @Test
     public void parseClientAskingPrice_null_returnsNull() throws Exception {
         assertNull(ParserUtil.parseClientAskingPrice((String) null));
@@ -399,7 +422,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseAppointmentDate_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentDate(INVALID_APPOINTMENT_DATE));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAppointmentDate(INVALID_APPOINTMENT_DATE_INCORRECT_FORMAT));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAppointmentDate(INVALID_APPOINTMENT_DATE_CORRECT_FORMAT));
     }
 
     @Test
@@ -422,7 +448,10 @@ public class ParserUtilTest {
 
     @Test
     public void parseAppointmentTime_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAppointmentTime(INVALID_APPOINTMENT_TIME));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAppointmentTime(INVALID_APPOINTMENT_TIME_INCORRECT_FORMAT));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAppointmentTime(INVALID_APPOINTMENT_TIME_CORRECT_FORMAT));
     }
 
     @Test
@@ -436,6 +465,89 @@ public class ParserUtilTest {
         String timeWithWhitespace = WHITESPACE + VALID_APPOINTMENT_TIME + WHITESPACE;
         Time expectedTime = new Time(VALID_APPOINTMENT_TIME_LOCALTIME);
         assertEquals(expectedTime, ParserUtil.parseAppointmentTime(timeWithWhitespace));
+    }
+
+    // ===== Tests for sorting parser methods ================================================================
+
+    @Test
+    public void parseAppointmentSortingKey_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAppointmentSortingKey((String) null));
+    }
+
+    @Test
+    public void parseAppointmentSortingKey_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseAppointmentSortingKey(INVALID_APPOINTMENT_SORTING_KEY));
+    }
+
+    @Test
+    public void parseAppointmentSortingKey_validValueWithoutWhitespace_returnsAppointmentSortingKey()
+            throws Exception {
+        AppointmentSortingKey expectedAppointmentSortingKey =
+                new AppointmentSortingKey(VALID_APPOINTMENT_SORTING_KEY);
+        assertEquals(expectedAppointmentSortingKey,
+                ParserUtil.parseAppointmentSortingKey(VALID_APPOINTMENT_SORTING_KEY));
+    }
+
+    @Test
+    public void parseAppointmentSortingKey_validValueWithWhitespace_returnsTrimmedAppointmentSortingKey()
+            throws Exception {
+        String appointmentSortingKeyWithWhitespace = WHITESPACE + VALID_APPOINTMENT_SORTING_KEY + WHITESPACE;
+        AppointmentSortingKey expectedAppointmentSortingKey =
+                new AppointmentSortingKey(VALID_APPOINTMENT_SORTING_KEY);
+        assertEquals(expectedAppointmentSortingKey,
+                ParserUtil.parseAppointmentSortingKey(appointmentSortingKeyWithWhitespace));
+    }
+
+    @Test
+    public void parsePropertySortingKey_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePropertySortingKey((String) null));
+    }
+
+    @Test
+    public void parsePropertySortingKey_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parsePropertySortingKey(INVALID_PROPERTY_SORTING_KEY));
+    }
+
+    @Test
+    public void parsePropertySortingKey_validValueWithoutWhitespace_returnsPropertySortingKey() throws Exception {
+        PropertySortingKey expectedPropertySortingKey =
+                new PropertySortingKey(VALID_PROPERTY_SORTING_KEY);
+        assertEquals(expectedPropertySortingKey,
+                ParserUtil.parsePropertySortingKey(VALID_PROPERTY_SORTING_KEY));
+    }
+
+    @Test
+    public void parsePropertySortingKey_validValueWithWhitespace_returnsTrimmedPropertySortingKey() throws Exception {
+        String propertySortingKeyWithWhitespace = WHITESPACE + VALID_PROPERTY_SORTING_KEY + WHITESPACE;
+        PropertySortingKey expectedPropertySortingKey =
+                new PropertySortingKey(VALID_PROPERTY_SORTING_KEY);
+        assertEquals(expectedPropertySortingKey,
+                ParserUtil.parsePropertySortingKey(propertySortingKeyWithWhitespace));
+    }
+
+    @Test
+    public void parseSortingOrder_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortingOrder((String) null));
+    }
+
+    @Test
+    public void parseSortingOrder_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSortingOrder(INVALID_SORTING_ORDER));
+    }
+
+    @Test
+    public void parseSortingOrder_validValueWithoutWhitespace_returnsSortingOrder() throws Exception {
+        SortingOrder expectedSortingOrder = new SortingOrder(VALID_SORTING_ORDER);
+        assertEquals(expectedSortingOrder, ParserUtil.parseSortingOrder(VALID_SORTING_ORDER));
+    }
+
+    @Test
+    public void parseSortingOrder_validValueWithWhitespace_returnsTrimmedSortingOrder() throws Exception {
+        String sortingOrderWithWhitespace = WHITESPACE + VALID_SORTING_ORDER + WHITESPACE;
+        SortingOrder expectedSortingOrder = new SortingOrder(VALID_SORTING_ORDER);
+        assertEquals(expectedSortingOrder, ParserUtil.parseSortingOrder(sortingOrderWithWhitespace));
     }
 
 }

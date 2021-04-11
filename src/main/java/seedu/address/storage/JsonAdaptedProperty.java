@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.name.Name;
 import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
@@ -205,19 +206,19 @@ class JsonAdaptedProperty {
     /**
      * Converts toString of status back to Status object.
      */
-    public static Status parseToStatus(String toString) {
+    public static Status parseToStatus(String toString) throws ParseException {
         if (toString == null) {
             return null;
         }
         Status status = null;
         if (toString.startsWith(Option.TOSTRING_MESSAGE)) {
-            Offer amount = new Offer(toString.substring(Option.TOSTRING_MESSAGE.length()));
+            Offer amount = ParserUtil.parseOffer(toString.substring(Option.TOSTRING_MESSAGE.length()));
             status = new Option(amount);
         } else if (toString.startsWith(SalesAgreement.TOSTRING_MESSAGE)) {
-            Offer amount = new Offer(toString.substring(SalesAgreement.TOSTRING_MESSAGE.length()));
+            Offer amount = ParserUtil.parseOffer(toString.substring(SalesAgreement.TOSTRING_MESSAGE.length()));
             status = new Option(amount).next();
         } else if (toString.startsWith(Completion.TOSTRING_MESSAGE)) {
-            Offer amount = new Offer(toString.substring(Completion.TOSTRING_MESSAGE.length()));
+            Offer amount = ParserUtil.parseOffer(toString.substring(Completion.TOSTRING_MESSAGE.length()));
             status = new Option(amount).next().next();
         }
         return status;

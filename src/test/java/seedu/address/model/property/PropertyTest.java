@@ -9,12 +9,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LOCALD
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_BURGHLEY_DRIVE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_BALCONY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_DRIVE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
+import static seedu.address.testutil.TypicalProperties.JURONG;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
+import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,7 @@ public class PropertyTest {
         // same address and postal code, all other attributes different -> returns true
         Property editedMayfair = new PropertyBuilder(MAYFAIR).withName(VALID_NAME_BURGHLEY_DRIVE)
                 .withType(VALID_TYPE_BURGHLEY_DRIVE).withDeadline(VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE)
-                .build();
+                .withTags().build();
         assertTrue(MAYFAIR.isSameProperty(editedMayfair));
 
         // different address, all other attributes same -> returns false
@@ -71,7 +72,6 @@ public class PropertyTest {
     }
 
     @Test
-    @DisplayName("Tests for equals. ")
     public void equals() {
         // same values -> returns true
         Property mayfairCopy = new PropertyBuilder(MAYFAIR).build();
@@ -86,7 +86,7 @@ public class PropertyTest {
         // different type -> returns false
         assertFalse(MAYFAIR.equals(5));
 
-        // different person -> returns false
+        // different property -> returns false
         assertFalse(MAYFAIR.equals(BURGHLEY_DRIVE));
 
         // different name -> returns false
@@ -109,9 +109,32 @@ public class PropertyTest {
         editedMayfair = new PropertyBuilder(MAYFAIR).withDeadline(VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE)
                 .build();
         assertFalse(MAYFAIR.equals(editedMayfair));
+    }
 
-        // different tags -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withTags(VALID_PROPERTY_TAG_BALCONY).build();
-        assertFalse(MAYFAIR.equals(editedMayfair));
+    @Test
+    public void testStringConversion() {
+        // without tags
+        Property mayfair = new PropertyBuilder(MAYFAIR).withTags().build();
+        assertEquals("Mayfair; Type: Condo; Address: 1 Jurong East Street 32, #08-111; "
+                + "Postal Code: 609477; Deadline: Dec 31, 2021",
+                mayfair.toString());
+
+        Property burghleyDrive = new PropertyBuilder(BURGHLEY_DRIVE).withTags().build();
+        assertEquals("Burghley Drive; Type: Landed; Address: 12 Burghley Drive; Postal Code: 558977; "
+                + "Deadline: Jul 31, 2021; Remarks: Lowest selling price is $5,040,0000; Client Name: Bob; "
+                + "Client Contact: 98664535; Client Email: bob@gmail.com; Client Asking Price: $800,000",
+                burghleyDrive.toString());
+
+        Property woodlandsCrescent = new PropertyBuilder(WOODLANDS_CRESCENT).withTags().build();
+        assertEquals("Woodlands Crescent; Type: Hdb; Address: Blk 784 Woodlands Crescent #01-01; "
+                + "Postal Code: 731784; Deadline: Aug 01, 2021; Client Name: Caleb; Client Contact: 84459627; "
+                + "Client Email: caleb_goh@gmail.com; Client Asking Price: $350,000",
+                woodlandsCrescent.toString());
+
+        Property jurong = new PropertyBuilder(JURONG).withTags().build();
+        assertEquals("Jurong; Type: Hdb; Address: Jurong Ave 1, #01-01; Postal Code: 640111; "
+                + "Deadline: Apr 01, 2021; Client Name: Darren; Client Contact: 81347564; "
+                + "Client Email: darren_likes_swe@hotmail.com.sg; Client Asking Price: $2,000,000",
+                jurong.toString());
     }
 }

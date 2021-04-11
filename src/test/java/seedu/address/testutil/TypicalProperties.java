@@ -28,6 +28,7 @@ public class TypicalProperties {
     public static final Property BURGHLEY_DRIVE = new PropertyBuilder().withName("Burghley Drive")
             .withType("Landed").withAddress("12 Burghley Drive")
             .withPostal("558977").withDeadline(LocalDate.parse("31-07-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withRemark("Lowest selling price is $5,040,0000")
             .withTags("99 year leasehold", "Balcony").withClient(BOB)
             .build();
     public static final Property WOODLANDS_CRESCENT = new PropertyBuilder().withName("Woodlands Crescent")

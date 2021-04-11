@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -74,13 +75,18 @@ class JsonAdaptedAppointment {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        final Date modelDate = new Date(LocalDate.parse(date, DateTimeFormat.OUTPUT_DATE_FORMAT));
 
         if (time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        final Time modelTime = new Time(LocalTime.parse(time, DateTimeFormat.OUTPUT_TIME_FORMAT));
+        try {
+            final Date modelDate = new Date(LocalDate.parse(date, DateTimeFormat.OUTPUT_DATE_FORMAT));
+            final Time modelTime = new Time(LocalTime.parse(time, DateTimeFormat.OUTPUT_TIME_FORMAT));
+            return new Appointment(modelName, modelRemark, modelDate, modelTime);
 
-        return new Appointment(modelName, modelRemark, modelDate, modelTime);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(String.format("%s\n%s", Date.MESSAGE_CONSTRAINTS,
+                    Time.MESSAGE_CONSTRAINTS));
+        }
     }
 }

@@ -35,19 +35,25 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Returns true if a given string is a valid date.
+     * Returns true if a given string is in a valid date format.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid date, otherwise false.
+     * @return True if the given string is in a valid date format, otherwise false.
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if this {@code Date} has already passed.
+     */
     public boolean isOver() {
         return date.compareTo(LocalDate.now()) < 0;
     }
 
+    /**
+     * Returns true if this {@code Date} is today's date.
+     */
     public boolean isToday() {
         return date.compareTo(LocalDate.now()) == 0;
     }

@@ -30,7 +30,9 @@ public class RemarkTest {
 
         // valid remark
         assertTrue(Remark.isValidRemark("Urgent to sell"));
-        assertTrue(Remark.isValidRemark("-")); // one character
-        assertTrue(Remark.isValidRemark("The remark for this property is a very very long string")); // long remark
+        assertTrue(Remark.isValidRemark("a")); // one character
+        assertTrue(Remark.isValidRemark("^")); // non-alphanumeric character
+        assertTrue(Remark.isValidRemark("The remark for this property is a very very long string. "
+                + "The remark for this property is a very very long string.")); // long remark
     }
 }

@@ -81,7 +81,7 @@ public class AddAppointmentCommandParserTest {
             + TIME_DESC_MEET_ALEX, expectedMessage);
 
         // missing time prefix
-        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX + VALID_DATE_MEET_ALEX
+        assertParseFailure(parser, NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX + DATE_DESC_MEET_ALEX
             + VALID_TIME_MEET_ALEX, expectedMessage);
 
         // all prefixes missing

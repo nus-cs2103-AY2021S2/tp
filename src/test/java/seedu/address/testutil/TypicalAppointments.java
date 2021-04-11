@@ -16,17 +16,17 @@ import seedu.address.model.util.DateTimeFormat;
 public class TypicalAppointments {
 
     public static final Appointment MEET_ALEX = new AppointmentBuilder().withName("Meet Alex")
-            .withRemark("To celebrate Christmas at Fullerton Hotel")
+            .withRemark("Bring him around Bishan to look at the properties")
             .withDate(LocalDate.parse("25-12-2021", DateTimeFormat.INPUT_DATE_FORMAT))
             .withTime(LocalTime.parse("1500", DateTimeFormat.INPUT_TIME_FORMAT))
             .build();
     public static final Appointment MEET_BOB = new AppointmentBuilder().withName("Meet Bob")
-            .withRemark("At his house")
+            .withRemark("To meet with interested client for viewing of his house")
             .withDate(LocalDate.parse("30-04-2021", DateTimeFormat.INPUT_DATE_FORMAT))
             .withTime(LocalTime.parse("1030", DateTimeFormat.INPUT_TIME_FORMAT))
             .build();
     public static final Appointment MEET_CALEB = new AppointmentBuilder().withName("Meet Caleb")
-            .withRemark("At Causeway point Mcdonalds")
+            .withRemark("For renegotiation of selling price")
             .withDate(LocalDate.parse("07-03-2021", DateTimeFormat.INPUT_DATE_FORMAT))
             .withTime(LocalTime.parse("1030", DateTimeFormat.INPUT_TIME_FORMAT))
             .build();
@@ -36,7 +36,7 @@ public class TypicalAppointments {
             .withTime(LocalTime.parse("1400", DateTimeFormat.INPUT_TIME_FORMAT))
             .build();
     public static final Appointment MEET_EMILY = new AppointmentBuilder().withName("Meet Emily")
-            .withRemark("At MayFair Gardens")
+            .withRemark("For initial evaluation of her house")
             .withDate(LocalDate.parse("15-06-2021", DateTimeFormat.INPUT_DATE_FORMAT))
             .withTime(LocalTime.parse("1100", DateTimeFormat.INPUT_TIME_FORMAT))
             .build();

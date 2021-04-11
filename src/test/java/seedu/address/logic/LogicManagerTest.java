@@ -3,7 +3,18 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_MAYFAIR;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_MEET_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_MAYFAIR;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MAYFAIR;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MEET_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.POSTAL_DESC_MAYFAIR;
+import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_MEET_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_MEET_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_MAYFAIR;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
+import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,6 +23,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,11 +32,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.property.Property;
 import seedu.address.storage.JsonAppointmentBookStorage;
 import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.PropertyBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -53,8 +71,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete appointment 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        String deleteAppointmentCommand = "delete appointment 9";
+        assertCommandException(deleteAppointmentCommand, MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -72,8 +90,61 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_appointmentStorageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAppointmentBookIoExceptionThrowingStub, JsonPropertyBookIoExceptionThrowingStub
+        JsonAppointmentBookStorage appointmentBookStorage =
+                new JsonAppointmentBookIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionAppointmentBook.json"));
+        JsonPropertyBookStorage propertyBookStorage =
+                new JsonPropertyBookIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionPropertyBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(appointmentBookStorage, propertyBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add appointment command
+        String addAppointmentCommand = AddAppointmentCommand.COMMAND_WORD + NAME_DESC_MEET_ALEX + REMARK_DESC_MEET_ALEX
+                + DATE_DESC_MEET_ALEX + TIME_DESC_MEET_ALEX;
+        Appointment expectedAppointment = new AppointmentBuilder(MEET_ALEX).build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addAppointment(expectedAppointment);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addAppointmentCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_propertyStorageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonAppointmentBookIoExceptionThrowingStub, JsonPropertyBookIoExceptionThrowingStub
+        JsonAppointmentBookStorage appointmentBookStorage =
+                new JsonAppointmentBookIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionAppointmentBook.json"));
+        JsonPropertyBookStorage propertyBookStorage =
+                new JsonPropertyBookIoExceptionThrowingStub(
+                        temporaryFolder.resolve("ioExceptionPropertyBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(appointmentBookStorage, propertyBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add property command
+        String addPropertyCommand = AddPropertyCommand.COMMAND_WORD + NAME_DESC_MAYFAIR + TYPE_DESC_MAYFAIR
+                + ADDRESS_DESC_MAYFAIR + POSTAL_DESC_MAYFAIR + DEADLINE_DESC_MAYFAIR;
+        Property expectedProperty = new PropertyBuilder(MAYFAIR).withTags().build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addProperty(expectedProperty);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addPropertyCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredAppointmentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPropertytList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPropertyList().remove(0));
     }
 
     /**
@@ -130,7 +201,8 @@ public class LogicManagerTest {
     }
 
     /**
-     * A stub class to throw an {@code IOException} when the save method is called.
+     * A stub class for {@code JsonAppointmentBookStorage} to throw an {@code IOException}
+     * when the save method is called.
      */
     private static class JsonAppointmentBookIoExceptionThrowingStub extends JsonAppointmentBookStorage {
         private JsonAppointmentBookIoExceptionThrowingStub(Path filePath) {
@@ -139,6 +211,21 @@ public class LogicManagerTest {
 
         @Override
         public void saveAppointmentBook(ReadOnlyAppointmentBook appointmentBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class for {@code JsonPropertyBookStorage} to throw an {@code IOException}
+     * when the save method is called.
+     */
+    private static class JsonPropertyBookIoExceptionThrowingStub extends JsonPropertyBookStorage {
+        private JsonPropertyBookIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void savePropertyBook(ReadOnlyPropertyBook propertyBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

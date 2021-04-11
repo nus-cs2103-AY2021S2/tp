@@ -29,15 +29,16 @@ public class AskingPriceTest {
         assertFalse(AskingPrice.isValidAskingPrice(" ")); // spaces only
         assertFalse(AskingPrice.isValidAskingPrice("$01000")); // leading zeros
         assertFalse(AskingPrice.isValidAskingPrice("$00")); // double zeros
-        assertFalse(AskingPrice.isValidAskingPrice("$100 000")); // spaces within digits
         assertFalse(AskingPrice.isValidAskingPrice("$1000,000")); // inconsistent commas
         assertFalse(AskingPrice.isValidAskingPrice("$10,00,00")); // inconsistent commas
         assertFalse(AskingPrice.isValidAskingPrice("$1,000000")); // inconsistent commas
         assertFalse(AskingPrice.isValidAskingPrice("$100K")); // alphabets within digits
         assertFalse(AskingPrice.isValidAskingPrice("$100000.")); // ends with a decimal point
-        assertFalse(AskingPrice.isValidAskingPrice("$1000.0")); // with cents portion
+        assertFalse(AskingPrice.isValidAskingPrice("$1000.00")); // with cents portion
+        assertFalse(AskingPrice.isValidAskingPrice("$100 000")); // spaces within digits
         assertFalse(AskingPrice.isValidAskingPrice(" $1000000")); // leading space
         assertFalse(AskingPrice.isValidAskingPrice("$1000000 ")); // trailing space
+        assertFalse(AskingPrice.isValidAskingPrice("-1000000")); // negative
 
         // valid asking price without dollar sign
         assertTrue(AskingPrice.isValidAskingPrice("1000000")); // without any commas

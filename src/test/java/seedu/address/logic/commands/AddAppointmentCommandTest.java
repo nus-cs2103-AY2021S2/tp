@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyPropertyBook;
@@ -82,25 +83,6 @@ public class AddAppointmentCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
-        @Override
-        public void clearAppointmentBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void clearPropertyBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void undoAppointmentBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void undoPropertyBook() {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
@@ -266,6 +248,27 @@ public class AddAppointmentCommandTest {
         public void sortAppointmentList(Comparator<Appointment> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void clearAppointmentBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearPropertyBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoAppointmentBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoPropertyBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
@@ -303,5 +306,11 @@ public class AddAppointmentCommandTest {
             requireNonNull(appointment);
             appointmentsAdded.add(appointment);
         }
+
+        @Override
+        public ReadOnlyAppointmentBook getAppointmentBook() {
+            return new AppointmentBook();
+        }
+
     }
 }
