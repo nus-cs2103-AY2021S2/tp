@@ -39,6 +39,10 @@ public class CommandTestUtil {
     public static final String VALID_UUID_BOB = "8e80ae4c-6435-408e-918c-3d73bc3df1e4";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_UUID_YOHN = "7734ec6c-1720-4224-b8eb-13c9a30899da";
+    public static final String VALID_UUID_ZOHN = "166c5888-76e5-4418-b1d1-e093a6044ec2";
+    public static final String VALID_NAME_YOHN = "Yohn Bee";
+    public static final String VALID_NAME_ZOHN = "Zohn Choo";
     public static final String VALID_NAME_DR_LEONARD = "Dr Leonard Hofstadter";
     public static final String VALID_NAME_DR_SHELDON = "Dr Sheldon Cooper";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -53,6 +57,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_TALL = "tall";
     public static final String VALID_TAG_FEVER = "fevre";
     public static final String VALID_TAG_SEVERE = "severe";
+    public static final String VALID_TAG_MEDICINE = "medicine";
+    public static final String VALID_TAG_INTERNAL = "internal";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
