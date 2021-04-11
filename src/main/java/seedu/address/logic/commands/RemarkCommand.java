@@ -15,38 +15,36 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
 /**
- * Add a remark a person to the address book. If the person already has a remark, the existing
- * remark will be replaced.
+ * Adds or replaces the remark of a person in the address book.
  */
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or replaces the remark of the"
-            + " person identified by the index number used in the last person listing.\n"
-            + "Parameters: INDEX (must be a positive integer) + "
-            + "[" + PREFIX_REMARK + "REMARK]\n"
+            + " person identified by the index number used in the displayed person list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_REMARK + "REMARK\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/Currently in Quarantine.";
+            + "r/Currently in quarantine";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
+    public static final String MESSAGE_CHANGE_REMARK_SUCCESS = "Changed the remark of person: %1$s";
 
     private final Index index;
     private final Remark remark;
 
     /**
-     * Creates a remark command to add or replace the remark of an existing person in the address book.
+     * Creates a remark command to add or replace the remark of a person in the address book.
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
-
         this.index = index;
         this.remark = remark;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        assert (this.remark != null) : "Remark cannot be null";
+        assert this.remark != null : "Remark cannot be null";
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -62,7 +60,7 @@ public class RemarkCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_REMARK_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_CHANGE_REMARK_SUCCESS, editedPerson));
     }
 
     @Override
@@ -71,15 +69,12 @@ public class RemarkCommand extends Command {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
-        if (!(other instanceof RemarkCommand)) {
-            return false;
+        if (other instanceof RemarkCommand) {
+            // state check
+            RemarkCommand otherRemarkCommand = (RemarkCommand) other;
+            return index.equals(otherRemarkCommand.index) && remark.equals(otherRemarkCommand.remark);
         }
-
-        // state check
-        RemarkCommand remarkCommand = (RemarkCommand) other;
-        return index.equals(remarkCommand.index)
-                && remark.equals(remarkCommand.remark);
+        return false;
     }
 }

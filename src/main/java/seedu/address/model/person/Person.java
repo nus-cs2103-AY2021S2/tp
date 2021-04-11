@@ -37,7 +37,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = new Remark("No remark");
+        this.remark = new Remark(Remark.DEFAULT_REMARK);
         this.modeOfContact = modeOfContact;
         this.blacklist = blacklist;
         this.tags.addAll(tags);
@@ -49,7 +49,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
                   ModeOfContact modeOfContact, Blacklist blacklist, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, remark, tags);
+        requireAllNonNull(name, phone, email, address, remark, modeOfContact, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -121,7 +121,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**

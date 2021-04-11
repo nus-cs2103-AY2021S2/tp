@@ -47,20 +47,31 @@ public class BlacklistCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         logger.log(Level.INFO, "Starting execution of BlacklistCommand");
+        Person editedPerson = toggleBlacklist(model);
+        logger.log(Level.INFO, "End execution of BlacklistCommand");
+        return new CommandResult(generateSuccessMessage(editedPerson));
+    }
+
+    /**
+     * Toggles the blacklist status of person in model and returns the updated person.
+     * @param model that the person is in
+     * @return editedPerson after the blacklist status is toggled
+     * @throws CommandException if the index is invalid
+     */
+    private Person toggleBlacklist(Model model) throws CommandException {
         Person personToEdit = getPerson(model);
         updateThisBlacklist(personToEdit);
 
-        logger.log(Level.INFO, "Going to replace person in model");
-        model.toggleBlacklist(personToEdit);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        logger.log(Level.INFO, "Person replaced");
-
-        Person editedPerson = getPerson(model);
+        Person editedPerson = personToEdit.toggleBlacklistStatus();
         assert(blacklist.getStatus() != editedPerson.getBlacklistStatus());
         updateThisBlacklist(editedPerson);
 
-        logger.log(Level.INFO, "End execution of BlacklistCommand");
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        logger.log(Level.INFO, "Going to replace person in model");
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        logger.log(Level.INFO, "Person replaced");
+
+        return editedPerson;
     }
 
     private Person getPerson(Model model) throws CommandException {

@@ -38,6 +38,11 @@ public class Name implements Comparable<Name> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * The two names will first be compared by case insensitive alphabetical order.
+     * If they have the same value case insensitive value, then the two names will be compared
+     * by case sensitive alphabetical order.
+     */
     @Override
     public int compareTo(Name otherName) {
         int caseInsensitiveComparison = this.fullName.compareToIgnoreCase(otherName.fullName);

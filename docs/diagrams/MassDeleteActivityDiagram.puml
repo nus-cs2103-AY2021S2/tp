@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes MassDelete command;
+:Parser parses the arguments;
+if () then ([arguments are valid])
+    :MassDelete command is executed;
+if () then ([index range is valid])
+    :Deletes all contacts within the index range;
+    :Save changes to storage;
+else ([else])
+    :UI displays error message;
+endif
+else ([else])
+    :UI displays error message;
+endif
+stop
+@enduml

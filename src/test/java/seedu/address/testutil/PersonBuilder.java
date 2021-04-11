@@ -25,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "No remark";
     public static final String DEFAULT_MODE_OF_CONTACT = "email";
+    public static final String MODE_OF_CONTACT_PHONE = "phone";
     public static final Boolean DEFAULT_BLACKLIST_STATUS = false;
 
     private Name name;

@@ -14,12 +14,12 @@ import seedu.address.model.person.Remark;
 
 
 /**
- * Parses input arguments and creates a new RemarkCommand object
+ * Parses input arguments and creates a new RemarkCommand object.
  */
 public class RemarkCommandParser implements Parser<RemarkCommand> {
 
     /**
-     * Parses the give {@code String} of arguments in the context of the RemarkCommand
+     * Parses the given {@code String} of arguments in the context of the RemarkCommand
      * and returns a RemarkCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
@@ -31,16 +31,11 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemarkCommand.MESSAGE_USAGE), ive);
-        }
-        try {
             Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
             return new RemarkCommand(index, remark);
-        } catch (NoSuchElementException ive) {
+        } catch (IllegalValueException | NoSuchElementException exception) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemarkCommand.MESSAGE_USAGE), ive);
+                    RemarkCommand.MESSAGE_USAGE), exception);
         }
     }
 }

@@ -124,27 +124,39 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void massDelete(int startIndex, int endIndex) {
+        assert startIndex < endIndex : "Start index must be strictly smaller than the end index";
+        for (int i = startIndex; i <= endIndex; i++) {
+            Person personToDelete = filteredPersons.get(startIndex - 1);
+            deletePerson(personToDelete);
+        }
+    }
+
+    @Override
+    public void massBlacklist(int startIndex, int endIndex) {
+        assert startIndex < endIndex : "Start index must be strictly smaller than the end index";
+        for (int i = startIndex; i <= endIndex; i++) {
+            Person personToBlacklist = addressBook.getPersonList().get(i - 1);
+            if (!personToBlacklist.getBlacklistStatus()) {
+                setPerson(personToBlacklist, personToBlacklist.toggleBlacklistStatus());
+            }
+        }
+    }
+
+    @Override
+    public void massUnblacklist(int startIndex, int endIndex) {
+        assert startIndex < endIndex : "Start index must be strictly smaller than the end index";
+        for (int i = startIndex; i <= endIndex; i++) {
+            Person personToUnblacklist = addressBook.getPersonList().get(i - 1);
+            if (personToUnblacklist.getBlacklistStatus()) {
+                setPerson(personToUnblacklist, personToUnblacklist.toggleBlacklistStatus());
+            }
+        }
+    }
+
+    @Override
     public void sortByName(boolean isAscending) {
         addressBook.sortByName(isAscending);
-    }
-
-    @Override
-    public void blacklistPerson(Person target) {
-        if (!target.getBlacklistStatus()) {
-            setPerson(target, target.toggleBlacklistStatus());
-        }
-    }
-
-    @Override
-    public void unblacklistPerson(Person target) {
-        if (target.getBlacklistStatus()) {
-            setPerson(target, target.toggleBlacklistStatus());
-        }
-    }
-
-    @Override
-    public void toggleBlacklist(Person target) {
-        setPerson(target, target.toggleBlacklistStatus());
     }
 
     //=========== Filtered Person List Accessors =============================================================

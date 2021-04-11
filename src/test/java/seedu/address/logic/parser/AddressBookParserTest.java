@@ -4,12 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.MASSBLACKLIST_BLACKLIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MASSBLACKLIST_KEYWORD_BLACKLIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_ASCENDING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_DESCENDING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACKLIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +36,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MassBlacklistCommand;
+import seedu.address.logic.commands.MassDeleteCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -60,6 +70,17 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_massBlacklist() throws Exception {
+        String input = MassBlacklistCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + "-"
+                + INDEX_SECOND_PERSON.getOneBased() + " " + PREFIX_BLACKLIST + " "
+                + VALID_MASSBLACKLIST_KEYWORD_BLACKLIST;
+
+        MassBlacklistCommand command = (MassBlacklistCommand) parser.parseCommand(input);
+        assertEquals(new MassBlacklistCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
+                MASSBLACKLIST_BLACKLIST), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -80,9 +101,19 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_massDelete() throws Exception {
+        String input = MassDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + "-" + INDEX_SECOND_PERSON.getOneBased();
+        MassDeleteCommand command = (MassDeleteCommand) parser.parseCommand(input);
+        assertEquals(new MassDeleteCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON), command);
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        // The remark field in the EditPersonDescriptor of the EditCommand should be null.
+        descriptor.setRemark(null);
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
@@ -126,8 +157,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_remark() throws Exception {
-        Person person = new PersonBuilder().build();
-        assertTrue(parser.parseCommand(PersonUtil.getRemarkCommand(person)) instanceof RemarkCommand);
+        assertTrue(parser.parseCommand(RemarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_REMARK + VALID_REMARK_BOB) instanceof RemarkCommand);
+        assertTrue(parser.parseCommand(RemarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_REMARK + VALID_REMARK_JANE) instanceof RemarkCommand);
     }
 
     @Test
@@ -135,7 +168,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
                 + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
-                + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
+                + VALID_SORT_DIRECTION_DESCENDING) instanceof SortCommand);
     }
 
     @Test

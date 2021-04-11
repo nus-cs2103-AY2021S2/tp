@@ -1,7 +1,6 @@
 @startuml
 !include Style.puml
 
-participant ":UI" as UI UI_COLOR
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -11,6 +10,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR_T2
+participant ":AddressBook" as AddressBook MODEL_COLOR_T2
 end box
 
 box Storage STORAGE_COLOR_T1
@@ -18,12 +18,10 @@ participant ":Storage" as Storage STORAGE_COLOR_T2
 end box
 
 
-activate UI UI_COLOR
-
-UI -> LogicManager : execute("sort c/name...")
+ -> LogicManager : execute("sort asc...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(sort...)
+LogicManager -> AddressBookParser : parseCommand("sort asc...")
 activate AddressBookParser
 
 create SortCommand
@@ -39,24 +37,36 @@ deactivate AddressBookParser
 LogicManager -> SortCommand : execute()
 activate SortCommand
 
-SortCommand -> Model : sortByName(True)
+SortCommand -> Model : sortByName(true)
 activate Model
 
-Model --> SortCommand : result
+Model -> AddressBook : sortByName(true)
+activate AddressBook
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> SortCommand :
 deactivate Model
 SortCommand --> LogicManager : result
 deactivate SortCommand
+SortCommand -[hidden]-> LogicManager : result
+destroy SortCommand
+
 
 LogicManager -> Storage : saveAddressBook(addressBook)
 activate Storage
 
 Storage -> Storage : Save to file
 activate Storage
+
+Storage --> Storage
 deactivate Storage
+
 
 Storage --> LogicManager :
 deactivate Storage
 
-LogicManager --> UI : result
-deactivate LogicManager
+<-- LogicManager
+
 @enduml

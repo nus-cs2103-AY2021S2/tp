@@ -1,0 +1,27 @@
+@startuml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After "remark 3 r/Absent"
+
+package Objects <<rectangle>> {
+    object "__:AddressBook__" as ab
+
+    object "__personToEdit:Person__" as person1
+    person1 : name = "John Doe"
+
+    object "__:Remark__" as remark1
+    remark1 : value = "No remark"
+
+    object "__editedPerson:Person__" as person2
+    person2 : name = "John Doe"
+
+    object "__:Remark__" as remark2
+    remark2 : value = "Absent"
+}
+
+person1 -> remark1
+ab -> person2
+person2 -> remark2
+person1 -[hidden]-> person2
+@enduml

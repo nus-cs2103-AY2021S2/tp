@@ -15,6 +15,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and future commands that acts on the fields of the Person Class.
   * Credits: The implementation of this feature is mainly inspired from AB3 developer guide
 
+
 * **New Feature**: Added `Light` and `Dark` command
   * What it does: Allows users change between light and dark mode.
   * Justification: This feature reduces the amount of stress on the eyes of the user.
@@ -30,8 +31,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `light` and `dark`
-    * Did cosmetic tweaks to existing documentation of features `list`, `add`, `edit`
+    * Added documentation for the features `light` and `dark`.
+    * Did cosmetic tweaks to existing documentation of features `list`, `add`, `edit`.
   * Developer Guide:
     * Added implementation details of the `Mode of Contact`, `light` and `dark`  feature.
 

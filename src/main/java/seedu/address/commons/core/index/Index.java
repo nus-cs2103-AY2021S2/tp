@@ -1,7 +1,5 @@
 package seedu.address.commons.core.index;
 
-import java.util.ArrayList;
-
 /**
  * Represents a zero-based or one-based index.
  *
@@ -33,16 +31,11 @@ public class Index {
         return zeroBasedIndex + 1;
     }
 
-    public static ArrayList<Index> getInterval(Index startIndex, Index endIndex) {
-        ArrayList<Index> intervalList = new ArrayList<>();
-        for (int i = startIndex.getZeroBased(); i <= endIndex.getZeroBased(); i++) {
-            intervalList.add(new Index(i));
-        }
-        return intervalList;
-    }
-
-    public static int getIntervalRange(Index startIndex, Index endIndex) {
-        return endIndex.zeroBasedIndex - startIndex.zeroBasedIndex;
+    /**
+     * Returns true if the start index is strictly smaller than the end index and false otherwise.
+     */
+    public static boolean isValidIndexRange(Index startIndex, Index endIndex) {
+        return endIndex.getZeroBased() > startIndex.getZeroBased();
     }
 
     /**

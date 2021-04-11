@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.SORT_ASCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.SORT_DESCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_ASCENDING;
@@ -31,17 +33,39 @@ public class SortCommandTest {
 
     @Test
     public void execute_sortListInAscendingOrder_success() {
-        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS,
                 VALID_SORT_DIRECTION_ASCENDING);
         assertCommandSuccess(new SortCommand(SORT_ASCENDING), model,
                 expectedMessage, expectedModel);
     }
 
     @Test void execute_sortListInDescendingOrder_success() {
-        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(SortCommand.MESSAGE_SORT_SUCCESS,
                 VALID_SORT_DIRECTION_DESCENDING);
         expectedModel.sortByName(false);
         assertCommandSuccess(new SortCommand(SORT_DESCENDING), model,
-                String.format(SortCommand.MESSAGE_SUCCESS, "descending"), expectedModel);
+                expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        SortCommand ascendingSortCommand = new SortCommand(SORT_ASCENDING);
+        SortCommand descendingSortCommand = new SortCommand(SORT_DESCENDING);
+
+        // same object -> returns true
+        assertTrue(ascendingSortCommand.equals(ascendingSortCommand));
+
+        // same values -> returns true
+        SortCommand ascendingSortCommandCopy = new SortCommand(SORT_ASCENDING);
+        assertTrue(ascendingSortCommand.equals(ascendingSortCommandCopy));
+
+        // different types -> returns false
+        assertFalse(ascendingSortCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(ascendingSortCommand.equals(null));
+
+        // different sort direction -> returns false
+        assertFalse(ascendingSortCommand.equals(descendingSortCommand));
     }
 }
