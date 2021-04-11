@@ -167,11 +167,9 @@ Edits an existing person in the booking system.
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 * Edits the person with the specified `EMAIL` indicated in `eo/EMAIL` (case-insensitive).  
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person. 
-* The provision of an empty `TAG` field is accepted.
 
 Example:
 * `edit_person eo/amy@example.com p/83984029 n/Jane` edits the person who currently has the email `amy@example.com`. The person's phone number is edited to `83984029` and name is edited to `Jane`.
-* `edit_person eo/lim@gmail.com e/limyi@gmail.com t/` edits the person who currently has the email `lim@gmail.com`. The person's email is edited to `limyi@gmail.com` and all associated tags, if any, are removed.
 
 #### 3.3.3. Deleting a person : `delete_person`
 
@@ -197,11 +195,9 @@ Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 * The fields that can be specified include the person's `NAME`, `PHONE`, `EMAIL`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 * Only for the `NAME` field, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
-* The provision of an empty `TAG` field is accepted.
 
 Example:
 * `find_person n/John Doe t/Student` shows a list of persons whose name contains words that fully matches any of the two specified name keywords `John` and `Doe`, and is tagged with `Student`.
-* `find_person t/` shows a list of persons who do not have tags.
 
 ### 3.4. Venue
 
@@ -233,11 +229,11 @@ Edits an existing venue in the booking system.
 Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESCRIPTION] [t/TAG]`
 * Edits the venue with the specified `VENUE_NAME` indicated in `vo/VENUE_NAME`(case-insensitive).
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified venue.
-* The provision of empty `DESCRIPTION` and `TAG` fields are accepted.
+* The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
 * `edit_venue vo/Lab max/30 d/Used for experiments` edits the venue that currently has the venue name `Lab`. The venue's maximum capacity is edited to `30`.
-* `edit_venue vo/Victoria Hall d/ t/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description and tag(s), if any, are made empty.  
+* `edit_venue vo/Victoria Hall d/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description, if any, is made empty.  
 
 
 #### 3.4.3. Deleting a venue : `delete_venue`
@@ -264,11 +260,11 @@ Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the venue's `VENUE_NAME`, `CAPACITY`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 * Only for the `NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
-* The provision of empty `TAG` and `DESCRIPTION` fields are accepted.
+* The provision of an empty `DESCRIPTION` field is accepted.
 
 Example:
 * `find_venue v/Victoria Hall max/50` shows a list of venues whose name contains words that fully matches any of the two specified venue name keywords `Victoria` and `Hall`. The venue must also have a maximum capacity of at least `50`.
-* `find_venue t/ d/` shows a list of venues that do not have description and tags.
+* `find_venue d/` shows a list of venues that do not have description.
 
 ### 3.5. Booking
 
@@ -323,11 +319,11 @@ Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION
 * The fields that can be specified include the booking's `BOOKER_EMAIL`, `DATE`, ,`VENUE_NAME`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 * Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
-* The provision of empty `TAG` and `DESCRIPTION` fields are accepted.
+* The provision of an empty `DESCRIPTION` field is accepted.
 
 Example:
 * `find_booking e/johnd@gmail.com date/2020-02-12` shows a list of bookings booked by a person with the email `johnd@gmail.com`. The booking duration must also contain the date `2020-02-12`.
-* `find_booking t/ d/` shows a list of bookings that do not have descriptions and tags.
+* `find_booking d/` shows a list of bookings that do not have descriptions.
 
 ### 3.6. Upcoming
 
