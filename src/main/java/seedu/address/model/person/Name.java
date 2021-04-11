@@ -10,12 +10,12 @@ import java.util.Locale;
  */
 public class Name implements Comparable<Name> {
 
-    public static final int MAX_CHARACTERS = 70;
+    public static final int MAX_CHARACTERS = 58;
     public static final String MESSAGE_CONSTRAINTS =
             "ERROR: Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public static final String INVALID_LENGTH_MESSAGE =
-            "ERROR: Input name should only be at most 70 characters long";
+            "ERROR: Input name should only be at most 58 characters long";
 
     /*
      * The first character of the address must not be a whitespace,
