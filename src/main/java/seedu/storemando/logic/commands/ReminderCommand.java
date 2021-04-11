@@ -66,7 +66,7 @@ public class ReminderCommand extends Command {
         return new CommandResult(message);
     }
 
-    private String getMessage() {
+    public String getMessage() {
         if (this.numOfDaysOrWeeksFromToday < 0) {
             return String.format(MESSAGE_SUCCESS_EXPIRED_ITEM, Math.abs(numOfDaysOrWeeksFromToday), timeUnit);
         } else if (this.numOfDaysOrWeeksFromToday == 0) {
