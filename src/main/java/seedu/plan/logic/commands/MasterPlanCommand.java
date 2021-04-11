@@ -42,16 +42,17 @@ public class MasterPlanCommand extends Command {
         requireNonNull(model);
         List<Plan> lastShownList = model.getFilteredPlanList();
 
+        // Check that the masterPlanIndex corresponds to a plan that is present
+        if (masterPlanIndex.getOneBased() > lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
+        }
+
         // only one plan should be valid at a time
         for (Plan p : lastShownList) {
             Plan originalPlan = p;
             p.setMasterPlan(false);
             p.setIsValid(false);
             model.setPlan(originalPlan, p);
-        }
-
-        if (masterPlanIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
 
         Plan masterPlan;
