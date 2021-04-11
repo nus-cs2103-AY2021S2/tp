@@ -595,7 +595,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC04 -  Delete a note**
+
+**MSS**
+
+1.  User requests to list notes.
+2.  Dictionote shows a list of notes.
+3.  User requests to delete a specific note in the list.
+4.  Dictionote deletes the contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Dictionote shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: UC05 -  Sort notes by Last Edit Time**
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  Dictionote shows a list of contacts.
+3.  User requests to sort notes based on the last edit time.
+4.  Dictionote shows a list of contacts, sorted by last edit time.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
