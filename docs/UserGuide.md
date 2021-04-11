@@ -311,9 +311,13 @@ Format: `detail INDEX`
 
 Examples: <br>
 
+`detail 2` display the details of the 2nd student in the List.
+
+![detail](images/detail command.png)
+
 Command     | Result                   
 ----------- |---------------------------------------------------
-detail 1    | displays the details of the 1st student in the list
+detail 2    | displays the details of the 1st student in the list
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
