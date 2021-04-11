@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if (Attribute matching keyword(s) found)
+    :Add delivery tasks with attributes matching keyword;
+    :Returns delivery list with the matching delivery tasks;
+else ([else])
+    : No matches found;
+    : Return Empty Delivery list;
+endif
+stop
+@enduml
