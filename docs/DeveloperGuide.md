@@ -154,14 +154,14 @@ This section describes some noteworthy details on how certain features are imple
 
 #### What it is
 
+![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png)
+
 Pawbook manages more than one type of entity, each with their own unique attributes. An OOP approach is used here whereby both the `AddCommand` and `DeleteCommand` are generic classes that extends the `Command` class. This way any number of other classes extending `Entity` can be added/deleted as well.
 Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..`
 
 #### Implementation
 
-![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png)
-
-The actual execution of the different add/delete commands are highly similar and often differ only by the extra entity-specific checks, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number.
+The actual execution of the different add commands are highly similar and often differ only by the extra entity-specific checks, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number. The same applies to delete commands as well.
 
 ![AddDeleteCommandParserClassDiagram](images/AddDeleteCommandParserClassDiagram.png)
 
