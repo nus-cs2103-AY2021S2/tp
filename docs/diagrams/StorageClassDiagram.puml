@@ -6,19 +6,48 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+
 
 Class StorageManager
 Class JsonUserPrefsStorage
+
+
+
+StorageManager .up.|> Storage
+StorageManager o-up-> UserPrefsStorage
+
+package "Meetingbook"{
+
+Interface MeetingBookStorage <<Interface>>
+
+StorageManager o--> MeetingBookStorage
+
+}
+
+
+
+JsonUserPrefsStorage .right.|> UserPrefsStorage
+package "Addressbook"{
+
 Class JsonAddressBookStorage
-
-StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
+Interface AddressBookStorage <<Interface>>
 StorageManager o--> AddressBookStorage
+JsonAddressBookStorage ..|> AddressBookStorage
+JsonAddressBookStorage ..> JsonSerializableAddressBook
+JsonSerializableAddressBook --> JsonSerializablePerson
+JsonSerializablePerson --> JsonSerializableGroup
+}
 
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+package "Connection"{
+Interface ConnectionStorage <<Interface>>
+
+StorageManager o--> ConnectionStorage
+
+Class JsonConnectionStorage
+
+JsonConnectionStorage ..|> ConnectionStorage
+JsonConnectionStorage .down.> JsonSerializableConnection
+JsonSerializableConnection --> JsonAdaptedPersonMeetingConnection
+}
+
 @enduml

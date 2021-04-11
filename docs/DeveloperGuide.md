@@ -118,7 +118,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component. The full diagram for MeetingBook is omitted.](images/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
