@@ -98,6 +98,11 @@ public interface Model {
      */
     ObservableList<Item> getFilteredItemList();
 
+    /**
+     * Returns an unmodifiable view of the unfiltered item list.
+     */
+    ObservableList<Item> getItemList();
+
 
     /**
      * Clears all the items in a specified location by the given {@code predicate}.

@@ -102,6 +102,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Item> getItemList() {
+        return storeMando.getItemList();
+    }
+
+    @Override
     public boolean hasItem(Item item) {
         requireNonNull(item);
         return storeMando.hasItem(item);

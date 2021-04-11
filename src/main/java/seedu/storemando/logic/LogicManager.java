@@ -66,6 +66,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Item> getItemList() {
+        return model.getItemList();
+    }
+
+    @Override
     public ObservableList<Location> getLocationList() {
         return model.getLocationList();
     }

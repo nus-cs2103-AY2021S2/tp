@@ -2,46 +2,48 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="STOREMANDO" minWidth="400" minHeight="600" fullScreen="true" resizable="false" onCloseRequest="#handleExit">
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@MainTheme.css"/>
-                <URL value="@Extensions.css"/>
+                <URL value="@MainTheme.css" />
+                <URL value="@Extensions.css" />
             </stylesheets>
-
             <VBox>
-                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" >
+                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="Shortcuts">
-                        <MenuItem fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
-                        <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+                        <MenuItem fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                        <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                     </Menu>
                 </MenuBar>
 
-                <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets top="10" right="10" bottom="5" left="10"/>
+                        <Insets bottom="5" left="10" right="10" top="10" />
                     </padding>
                 </StackPane>
 
-                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                           minHeight="150" prefHeight="150" maxHeight="150">
+                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150" minHeight="150" prefHeight="150" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets top="5" right="10" bottom="5" left="10"/>
+                        <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-                <VBox VBox.vgrow = "ALWAYS">
+                <VBox VBox.vgrow="ALWAYS">
                     <GridPane VBox.vgrow="ALWAYS">
                         <columnConstraints>
                             <ColumnConstraints percentWidth="50" />
@@ -51,31 +53,29 @@
                         <rowConstraints>
                             <RowConstraints percentHeight="100" />
                         </rowConstraints>
-                        <VBox GridPane.columnIndex="0" fx:id="itemList" styleClass="pane-with-border"
-                              VBox.vgrow="ALWAYS">
+                        <VBox fx:id="itemList" styleClass="pane-with-border" GridPane.columnIndex="0" VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets top="5" right="5" bottom="10" left="5"/>
+                                <Insets bottom="10" left="5" right="5" top="5" />
                             </padding>
-                            <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                            <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                         </VBox>
-                        <VBox GridPane.columnIndex="1" styleClass="pane-with-border"
-                              VBox.vgrow="ALWAYS">
+                        <VBox styleClass="pane-with-border" GridPane.columnIndex="1" VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets top="5" right="5" bottom="10" left="5"/>
+                                <Insets bottom="10" left="5" right="5" top="5" />
                             </padding>
-                            <StackPane fx:id="tablePanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                            <VBox>
+                                <StackPane fx:id="tablePanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                <StackPane fx:id="tablePanelPlaceholder2" VBox.vgrow="ALWAYS" />
+                            </VBox>
                         </VBox>
-
-                        <VBox GridPane.columnIndex="2" styleClass="pane-with-border"
-                              VBox.vgrow="ALWAYS">
+                        <VBox styleClass="pane-with-border" GridPane.columnIndex="2" VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets top="5" right="5" bottom="10" left="5"/>
+                                <Insets bottom="10" left="5" right="5" top="5" />
                             </padding>
-                            <StackPane fx:id="locationPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                            <StackPane fx:id="locationPanelPlaceholder" VBox.vgrow="ALWAYS" />
                         </VBox>
                     </GridPane>
                 </VBox>
-
             </VBox>
         </Scene>
     </scene>
