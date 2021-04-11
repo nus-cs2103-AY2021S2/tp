@@ -20,6 +20,7 @@ public class Messages {
     public static final String MESSAGE_DATE_AFTER_TODAY = "Invalid date. Date %1$s is after today!";
     public static final String MESSAGE_BIRTHDAY_AFTER_TODAY = "Invalid birthday. Birthday %1$s is after today!";
     public static final String MESSAGE_DATE_BEFORE_BIRTHDAY = "Invalid date. Person is not yet born on %1$s!";
+    public static final String MESSAGE_BIRTHDAY_CONSTRAINT = "New birthday (%1$s) is before first %2$s (%3$s)!";
 
     // Time
     public static final String MESSAGE_INVALID_TIME_FORMAT = "Invalid time format! \n";
