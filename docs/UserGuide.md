@@ -115,7 +115,7 @@ Prefix: `d/`
   * `dd-MM-yyyy` E.g. `31-01-2021`
   * `dd.MM.yyyy` E.g. `01.12.2021`
   * `dd MMM yyyy` E.g. `31 Dec 2021`<br>
-  :information_source: Dates and months from `1-9` should be specified as `01-09`. E.g. The first of January should be specified as `01/01` instead of `1/1`.
+  :information_source: Dates and months from `1-9` should be specified as `01-09`. E.g. The first of January should be specified as `01/01` instead of `1/1`.<br>
   :information_source: `MMM` specifies the first three characters of the month. The first character should be capitalised.
 * When adding or editing an order using the commands, the `DELIVERY_DATE` should be today's date or a future date.<br>
   I.e. the date today or a date after today.
