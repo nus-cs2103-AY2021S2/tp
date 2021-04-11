@@ -66,4 +66,4 @@ Given below are my contributions to the project.
     * Added instructions for manual testing for the commands: `add-date`, `del-date`, `details`, `edit`, and `view`
 
 * **Review contributions**:
-  * PRs reviewed (with non-trivial review comments): [\#41](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/41),  [\#61](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/61), [\#108](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/108), [\#207](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/207), [\#220](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/220)
+  * PRs reviewed (with non-trivial review comments): [\#41](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/41), [\#61](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/61), [\#108](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/108), [\#207](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/207), [\#220](https://github.com/AY2021S2-CS2103T-W14-1/tp/pull/220)
