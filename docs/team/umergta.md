@@ -16,19 +16,22 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly as users won't have to add tasks that they have to complete daily, weekly or biweekly.
   * Highlights: Implementation of the feature required modifications to be made to all components and existing commands like `add` and `edit`.
   * Challenges: Designing the recur feature. Initially, I implemented recur such that tasks duplicate and are treated as separate and unique tasks
-    with different `doneStatus` set to 'notdone' and `deadline` modified according to the recurrence. However, this resulted in overpopulation of the list of tasks.
+    with different `doneStatus` set to _notdone_ and `deadline` modified according to the recurrence. However, this resulted in overpopulation of the list of tasks.
     I then decided to implement recur as an attribute of a Task in ModuleBook3.5 that mutates the `deadline` of the task and the `donestatus` accordingly.
+
 
 * **Modifications to existing features**: Changed the prefixes of the different fields of a Task.
   * What it does: Makes adding of a Task more intuitive for a user.
   * Justification: The prefixes for the fields of AB3 were not related to ModuleBook3.5. As such, they had to be changed to fit our product.
   * Highlights: The feature required modification of the existing commands and how the fields were parsed. 
 
+
 * **Modifications to existing features**: Changed the way duplicate tasks are handled.
     * What it does: Does not allow users to input a task with `name` and `module` that is the same as any other Task in ModuleBook3.5.
     * Justification: Tasks usually have unique names and are associated to particular modules.
         Hence, to avoid over population, Tasks with the same name and module cannot be added.
- 
+<div style="page-break-after: always;"></div>
+
 * **Modifications to existing features**: Made Hours and Minutes field of Time attribute optional for users.
     * What it does: Allow Time to exist in `yyyy-MM-dd` or `yyyy-MM-dd HH:mm` format.
     * Justification: This modification is necessary as users may not know at which exact Hour and Minute should a Task be completed by.
