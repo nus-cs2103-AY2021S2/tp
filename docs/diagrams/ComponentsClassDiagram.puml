@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 2
+
+hide stereotypes
+
+class HiddenOutsideLogic<<hidden>>
+class HiddenOutsideUi<<hidden>>
+class HiddenOutsideModel<<hidden>>
+class HiddenOutsideStorage<<hidden>>
+
+package Logic {
+    Interface "<<interface>>\nLogic" as logic LOGIC_COLOR
+    Class LogicManager LOGIC_COLOR
+    package Parser {}
+    package Command {}
+}
+
+package Ui {
+    Interface "<<interface>>\nUi" as ui UI_COLOR
+    Class UiManager UI_COLOR
+}
+
+package Model {
+    Interface "<<interface>>\nModel" as model MODEL_COLOR
+    Class ModelManager MODEL_COLOR
+    package Person {}
+    package Tag {}
+}
+
+package Storage {
+    Interface "<<interface>>\nStorage" as storage STORAGE_COLOR
+    Class StorageManager STORAGE_COLOR
+}
+
+HiddenOutsideLogic .down[LOGIC_COLOR].> logic
+logic .[LOGIC_COLOR].> Command
+LogicManager .up[LOGIC_COLOR].|> logic
+LogicManager .[LOGIC_COLOR].> Command
+LogicManager -[LOGIC_COLOR]-> Parser
+Parser .right[LOGIC_COLOR].> Command
+
+
+HiddenOutsideUi .down[UI_COLOR].> ui
+UiManager .up[UI_COLOR].|> ui
+ui -right[hidden]-> model
+
+HiddenOutsideModel .down[MODEL_COLOR].> model
+ModelManager .up[MODEL_COLOR].|> model
+ModelManager ..> Person
+Person *-left-> Tag
+
+HiddenOutsideStorage .down[STORAGE_COLOR].> storage
+StorageManager .up[STORAGE_COLOR].|> storage
+
+@enduml

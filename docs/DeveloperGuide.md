@@ -74,11 +74,11 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/ComponentsClassDiagram.png)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `customer delete 1`.
 
 ![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
@@ -103,11 +103,13 @@ The `UI` component,
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+Note: ComponentXYZCommand = CustomerAddCommand, MenuAddCommand, OrderDeleteCommand etc. 
 
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `JJIMYParser` class to differentiate the user command's component and parse the arguments to respective `ComponentParser` (e.g. `MenuParser`, `OrderPaser` etc).
+1. `ComponentParser` will then creates respective `ComponentXYZCommand`.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
