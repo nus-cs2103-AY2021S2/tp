@@ -158,13 +158,13 @@ public class HelpWindow extends UiPart<Stage> {
 
         // exclude html bold formatting (**), and code formatting (`)
         String name = tokenized[0].replace("**", "")
-                .replace("`", "").trim();
+                .replace("`", "");
 
         // exclude examples (which comes after <br>), and code formatting (`)
         String desc = tokenized[1].split("<br>")[0]
                 .replace("`", "").trim();
 
-        builder.append(name).append(": ").append(desc).append("\n");
+        builder.append(name).append(" | ").append(desc).append("\n");
         return builder.toString();
     }
 }
