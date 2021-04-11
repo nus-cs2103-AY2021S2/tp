@@ -542,7 +542,7 @@ Format: `today_task`
 Finds tasks whose names contain any of the given keywords from the task list.
 
 Format: `find_task KEYWORD1 [KEYWORD2] ...`
-* The search is **case-insensitive**. e.g. `homework` will match `Homework`.
+* The search is **case-insensitive**, e.g. `homework` will match `Homework`.
 * The search scope is the **full** task list.
 * The order of the keywords does not matter. <br>
   E.g. `Practice Problems` will match `Problems Practice`.
@@ -957,7 +957,7 @@ Action | Format, Examples
 **Edit** | `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...` <br> e.g. `edit_event 1 n/editedEventName`
 **List** | `list_event`
 **Today** | `today_event`
-**Find** | `find_event KEYWORDS`<br>e.g. `find_event meeting`
+**Find** | `find_event KEYWORD1 [KEYWORD2] ...`<br>e.g. `find_event meeting`
 **Clear Expired** | `clear_expired_event`
 **Find Free Time** | `free_time DATE` <br>e.g. `free_time 2022-01-01`
 
