@@ -24,7 +24,7 @@ public class ClearOverdueEntryCommandTest {
     public void execute_nonEmptyTeachingAssistant_success() {
         Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
-        model.clearOverdueEntries();
+        expectedModel.clearOverdueEntries();
         assertCommandSuccess(new ClearOverdueEntryCommand(), model,
                 ClearOverdueEntryCommand.MESSAGE_SUCCESS, expectedModel);
     }
