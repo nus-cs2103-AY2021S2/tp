@@ -27,9 +27,7 @@ AddressBookParser --> LogicManager : t
 
 LogicManager -> ThemeCommand : execute()
 
-ThemeCommand -> ThemeFactory : load(path)
-
-ThemeFactory --> ThemeCommand : theme
+ref over ThemeCommand, ThemeFactory : ThemeFactory#load(themePath)
 
 ref over ThemeCommand, ThemeFactory : ThemeManager#setTheme(theme, themePath)
 
