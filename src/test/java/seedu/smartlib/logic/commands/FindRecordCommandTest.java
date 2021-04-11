@@ -17,8 +17,6 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
-import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
-import seedu.smartlib.model.reader.TagContainsKeywordsPredicate;
 import seedu.smartlib.model.record.RecordContainsBookNamePredicate;
 
 public class FindRecordCommandTest {
