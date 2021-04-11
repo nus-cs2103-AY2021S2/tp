@@ -159,7 +159,7 @@ The following Activity Diagram summarizes what happens when a user executes the 
 ![Delete Command Activity Diagram](images/DeleteDeliveryTaskActivityDiagram.png)
 
 
-### Find Feature `find KEYWORDS`
+### Find Feature - `find KEYWORDS`
 
 The find feature allows drivers to find a delivery based on attributes that match the keywords that have been typed in.
 
@@ -189,6 +189,13 @@ The following Activity Diagram summarizes what happens when a user executes the 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
 
+### Remark Command - `remark INDEX r/DESCRIPTION`
+
+The remark command allows the drivers to add any additional information to the delivery task
+
+Below is an activity diagram for the remark command
+
+![Remark Command Activity Diagram](images/RemarkCommandActivityDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
