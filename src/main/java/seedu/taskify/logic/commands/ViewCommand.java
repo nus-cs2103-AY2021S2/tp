@@ -20,6 +20,8 @@ public class ViewCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2021-05-21" + " | "
             + COMMAND_WORD + " today" + " | " + COMMAND_WORD + " tomorrow";
 
+    public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to view!";
+
 
     private final TaskHasSameDatePredicate predicate;
 
@@ -30,6 +32,9 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (!CommandResult.isHomeTab()) {
+            throw new CommandException(MESSAGE_SWITCH_TO_HOME);
+        }
         model.updateFilteredTaskList(predicate);
 
         return new CommandResult(

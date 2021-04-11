@@ -3,6 +3,7 @@ package seedu.taskify.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 
 /**
@@ -13,27 +14,19 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
-    public static final String MESSAGE_SUCCESS_EXPIRED = "Listed all expired tasks";
-    public static final String MESSAGE_SUCCESS_COMPLETED = "Listed all completed tasks";
-    public static final String MESSAGE_SUCCESS_UNCOMPLETED = "Listed all uncompleted tasks";
+
+    public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to list!";
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (CommandResult.isHomeTab()) {
-            model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult(MESSAGE_SUCCESS);
-        } else if (CommandResult.isExpiredTab()) {
-            model.updateExpiredFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult(MESSAGE_SUCCESS_EXPIRED);
-        } else if (CommandResult.isCompletedTab()) {
-            model.updateCompletedFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult(MESSAGE_SUCCESS_COMPLETED);
-        } else {
-            model.updateCompletedFilterTaskList(PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult(MESSAGE_SUCCESS_UNCOMPLETED);
+        if (!CommandResult.isHomeTab()) {
+            throw new CommandException(MESSAGE_SWITCH_TO_HOME);
         }
+
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

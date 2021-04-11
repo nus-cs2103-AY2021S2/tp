@@ -3,6 +3,7 @@ package seedu.taskify.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.taskify.commons.core.Messages;
+import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.task.predicates.TagContainsKeywordsPredicate;
 
@@ -20,6 +21,8 @@ public class TagSearchCommand extends Command {
                                                        + "Parameters: TAG [MORE_TAGS]...\n"
                                                        + "Example: " + COMMAND_WORD + " lab tutorial";
 
+    public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to tag search!";
+
     private final TagContainsKeywordsPredicate predicate;
 
     public TagSearchCommand(TagContainsKeywordsPredicate predicate) {
@@ -27,27 +30,15 @@ public class TagSearchCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        if (CommandResult.isExpiredTab()) {
-            model.updateExpiredFilterTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_EXPIRED, model.getExpiredFilteredTaskList().size()));
-        } else if (CommandResult.isHomeTab()) {
-            model.updateFilteredTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
-        } else if (CommandResult.isCompletedTab()) {
-            model.updateCompletedFilterTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_COMPLETED,
-                            model.getCompletedFilteredTaskList().size()));
-        } else {
-            model.updateUncompletedFilterTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_UNCOMPLETED,
-                            model.getUncompletedFilteredTaskList().size()));
+    public CommandResult execute(Model model) throws CommandException {
+
+        if (!CommandResult.isHomeTab()) {
+            throw new CommandException(MESSAGE_SWITCH_TO_HOME);
         }
+        requireNonNull(model);
+        model.updateFilteredTaskList(predicate);
+        return new CommandResult(String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW,
+                model.getFilteredTaskList().size()));
 
     }
 
