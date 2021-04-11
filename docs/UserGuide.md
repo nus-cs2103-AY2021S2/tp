@@ -3,190 +3,726 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+JJIMY is a **desktop app for managing your restaurant, optimized for use via a Command Line Interface** (CLI)[<sup>1</sup>](#glossary) while still having the benefits of a Graphical User Interface (GUI)[<sup>3</sup>](#glossary). If you can type fast, JJIMY can get your restaurant management tasks done faster than traditional GUI[<sup>3</sup>](#glossary) apps.
 
-* Table of Contents
-{:toc}
+<details open>
+<summary>Table of Contents</summary>
+
+- [Quick start](#quick-start)
+- [Features](#features)
+  * [`General`](#general)
+    + [Access help page](#help)
+    + [Exit application ](#exit)
+  * <span class="customer">[`Customer`](#customer)
+    + [List all customers](#customer-list)
+    + [Add a customers](#customer-add)
+    + [Delete customer](#customer-delete)
+    + [Edit customer information](#customer-edit)
+    + [Find contact](#customer-find)
+      </span>
+  * <span class="menu">[`Menu`](#menu)
+    + [List all dishes](#menu-list)
+    + [Add a dish](#menu-add)
+    + [Delete a dish from the menu](#menu-delete)
+    + [Edit dish information](#menu-delete)
+    + [Find dish](#menu-find)
+      </span>
+  * <span class="order">[`Order`](#order)
+    + [List all orders](#order-list)
+    + [Add an order](#order-add)
+    + [Delete an order](#order-delete)
+    + [Edit order information](#order-edit)
+    + [Find an order](#order-find)
+    + [Mark order as completed](#order-complete)
+    + [List all completed and cancelled orders](#order-history)
+      </span>
+  * <span class="inventory">[`Inventory`](#inventory)
+    + [List all ingredients](#inventory-list)
+    + [Add an ingredient](#inventory-add)
+    + [Decrease quantity of ingredient](#inventory-decrease)
+    + [Delete an ingredient](#inventory-delete)
+    + [Edit ingredient information](#inventory-edit)
+    + [Find an ingredient](#inventory-find)
+      </span>
+- [FAQ](#faq)
+- [Glossary](#glossary)
+
+</details>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+<a name="quick-start"></a>
+<details open>
+<summary class="dropdown-1">Quick start</summary>
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) [<sup>2</sup>](#glossary) or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `JJIMY.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for JJIMY.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI[<sup>3</sup>](#glossary) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/UiUG.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Type in command in the `command box` and press Enter to execute it.
 
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for command details.
+</details>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+<a name="features"></a>
+<details open>
+<summary class="dropdown-1">Features</summary>
 
-<div markdown="block" class="alert alert-info">
+### Usage
 
-**:information_source: Notes about the command format:**<br>
+Commands have this general format:
+```
+component command prefix/[INPUT] -flag
+```
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- `component` - Component to apply the command to. (e.g. `customer`, `menu`)  
+  
+- `command` - Command to run. (e.g. `list`, `add`)  
+  
+- `prefix/[INPUT]` - Item in `[ ]` are the input to be supplied by the user. (e.g. `n/Thomas`)  
+  
+- `-flag` - change behavior. (e.g. `-f`, `-a`)
+  
+>   <b><u>Things to note</u></b>  
+>   - Items with `...` after them can be used multiple times including zero times.<br>
+>   Example:
+>       ```
+>       menu add n/[NAME] p/[PRICE] i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...
+>       ```
+>       `i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...` can be used as ` ` (i.e. 0 times) or `i/2 q/3 i/3 q/4`.
+>   <p>&nbsp;</p>
+>
+>   - Item in round brackets are optional.<br>
+>   Example:
+>       ```
+>       customer add n/[NAME] (t/[TAG])
+>       ```
+>       `n/[NAME] (t/[TAG])` can be used as `n/Thomas t/Friend` or as `n/Thomas Tan`
+>   <p>&nbsp;</p>
+>
+>   - Only one command can be executed at a time and any words after a valid command is entered will be ignored.  
+>   Example:
+>       ```
+>       customer list JJIMY is the best!
+>       ```
+>       The command above will execute `customer list` and ignore `JJIMY is the best!`
+>   <p>&nbsp;</p>
+>
+>   - Items that have DATETIME as a parameter has `DD-MM-YYYY HH:MM` format.  
+>   Example:
+>       ```
+>       dt/07-05-2021
+>       ```
+>       The example shown above is a valid DATETIME parameter input.
+>   <p>&nbsp;</p>
+>
+>   - Parameters can be in any order.  
+>   Example:  
+>   If the command specifies `n/NAME s/SUBJECT`, `s/SUBJECT n/NAME` is also acceptable.
+>   <p>&nbsp;</p>
+>
+>   - Only the latest input for any duplicated prefixes will be taken, any input for previous duplicated prefixes will be ignored.  
+>   Example:
+>       ```
+>       menu edit 5 n/Fries1 n/Fries2 p/5 p/6
+>       ```
+>       The command above will only take in `n/Fries2` and `p/6`, any other input for the same prefixes will be ignored.
+<p>&nbsp;</p>
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+<a name="general"></a>
+- <details open>
+    <summary class="dropdown-2">General</summary>
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+    <a name="help"></a>
+    - <details open>
+        <summary class="dropdown-3">Access help page - <code>help</code></summary>
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+        To access the help page, input:
+        ```
+        help
+        ```
+        Alternatively, you can click on the ![settings](images/settings_white.png) icon > `help` or simply press `F1` on your keyboard.
+        Shortly it will open up the `User Guide` in your default browser.
+        
+        <p>&nbsp;</p>
+      
+        ---
+      
+        </details>
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+        <a name="exit"></a>
+    - <details open>
+        <summary class="dropdown-3">Exit application - <code>exit</code></summary>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+        To exit the application, input:
+        ```
+        exit
+        ```
+        Alternatively, you can click on the ![settings](images/settings_white.png) icons > `exit` or simply press `F2` on your keyboard.
+        
+        <p>&nbsp;</p>
+      
+        ---
+      
+        </details>
+    
+    </details>
 
-</div>
 
-### Viewing help : `help`
+<a name="customer"></a>
+- <details open class="customer">
+    <summary class="dropdown-2">Customer</summary>
 
-Shows a message explaning how to access the help page.
+    <a name="customer-list"></a>
+    - <details open>
+        <summary class="dropdown-3">List all customers - <code>list</code></summary>
 
-![help message](images/helpMessage.png)
+        Format:
+         ```
+         customer list
+         ```
 
-Format: `help`
+         The above command would list all the customers in the left column of the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
+        
+        <p>&nbsp;</p>
+      
+        ---
+        
+        </details>
 
+        <a name="customer-add"></a>
+    - <details open>
+        <summary class="dropdown-3">Add a customer - <code>add</code></summary>
 
-### Adding a person: `add`
+        Format:
+         ```
+         customer add n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] (t/[TAG])
+         ```
 
-Adds a person to the address book.
+        Example:
+         ```
+         customer add n/Alan Tan p/81236789 e/alantan@nus.edu.sg a/21 Lower Kent Ridge Road, Singapore 119077 t/Gluten Allergy
+         ```
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+        The above command would add a new contact named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
+        address "Lower Kent Ridge Road, Singapore 119077" and tagged with "Gluten Allergy".
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+        <a name="customer-delete"></a>
+    - <details open>
+        <summary class="dropdown-3">Delete customer - <code>delete</code></summary>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+        Format:
+        ```
+        customer delete [INDEX] (-f)
+        ```
 
-### Listing all persons : `list`
+        In the event that there are uncompleted orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
-Shows a list of all persons in the address book.
+        Examples:
+        ```
+        customer delete 2
+        ```
 
-Format: `list`
+        The above command would delete the second customer on the customer information pane.
 
-### Editing a person : `edit`
+        ```
+        customer delete 2 -f
+        ```
 
-Edits an existing person in the address book.
+        In the event that there are pending orders that have not been fulfilled that belong to customer 2, then deletion of the customer will not be allowed since we do not want to unknowingly delete orders that are still pending.
+        If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the customer will be deleted and will no longer be shown in the order list or order history.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+        <a name="customer-edit"></a>
+    - <details open>
+        <summary class="dropdown-3">Edit customer information - <code>edit</code></summary>
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+        Format:
+        ```
+        customer edit [INDEX] (n/[NAME]) (p/[PHONE]) (e/[EMAIL]) (a/[ADDRESS]) (t/[TAG])
+        ```
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+        At least one of the fields in brackets must be present in the edit command.
 
-### Locating persons by name: `find`
+        Examples:
 
-Finds persons whose names contain any of the given keywords.
+        ```
+        customer edit 2 n/George Tan
+        ```
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+        The above command changes the name of the second customer on the contacts pane to "George Tan".
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+        ```
+        customer edit 2 n/George Tan p/80009999
+        ```
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+        The above command changes both the name and phone number of the second customer.
 
-### Deleting a person : `delete`
+        From the examples above, more than one field can be edited at a time but at least 1 field must be specified for it to be a valid command.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
-Deletes the specified person from the address book.
+        <a name="customer-find"></a>
+    - <details open>
+        <summary class="dropdown-3">Find customer - <code>find</code></summary>
 
-Format: `delete INDEX`
+        Format:
+        ```
+        customer find n/[KEYWORD] (MORE_KEYWORDS)...
+        ```
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+        - `n/` - Finds all customers whose names contain any of the keywords (case-insensitive). Keywords are space separated.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+        Example:
+        ```
+        customer find n/George Michael Lim
+        ```
 
-### Clearing all entries : `clear`
+        The above command would display all contacts with names that contain either "George", "Michael", or "Lim". Note that at least 1 keyword must be specified, `customer find n/Thomas` is a valid command too with only 1 keyword ("Thomas").
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
-Clears all entries from the address book.
+    </details>
 
-Format: `clear`
+<a name="menu"></a>
+- <details open class="menu">
+    <summary class="dropdown-2">Menu</summary>
 
-### Exiting the program : `exit`
+    <a name="menu-list"></a>
+    - <details open>
+        <summary class="dropdown-3">List all dishes - <code>list</code></summary>
 
-Exits the program.
+        Format:
+        ```
+        menu list (-a)
+        ```
+        To list the current available dishes only, a `-a` flag has to be added to the end of the command. The above command would list all the available/all dishes in the      right column of  the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
+        Examples:
+        ```
+        menu list
+        ```
 
-Format: `exit`
+        The above command would display all dishes disregard the availability of the dish.
 
-### Saving the data
+        ```
+        menu list -a
+        ```
+        The above command will only display the dishes that are currently available based on the available ingredients.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+        <a name="menu-add"></a>
+    - <details open>
+        <summary class="dropdown-3">Add a dish - <code>add</code></summary>
 
-### Editing the data file
+        Format:
+        ```
+        menu add n/[NAME] p/[PRICE] i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...
+        ```
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+        Ingredient ID and quantity must come in pairs. At least one pair must be specified, but more can be added.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
-### Archiving data files `[coming in v2.0]`
+        <a name="menu-delete"></a>
+    - <details open>
+        <summary class="dropdown-3">Delete a dish from menu - <code>delete</code></summary>
 
-_Details coming soon ..._
+        Format:
+        ```
+        menu delete [INDEX] (-f)
+        ```
+
+        In the event that there are uncompleted orders by the dishes that is being attempted to be deleted, a `-f` flag
+        has to be added to the end of the command to confirm the command. This is to prevent you from accidentally
+        deleting orders unknowingly and leading to unhappy customers!
+
+        Examples:
+        ```
+        menu delete 2
+        ```
+
+        The above command would delete the second dishes on the menu information pane.
+
+        ```
+        menu delete 2 -f
+        ```
+
+        In the event that there are pending orders that have not been fulfilled that contains dish id 2, then deletion
+        of the dish will not be allowed since we do not want to unknowingly delete orders that are still pending.
+        If deleting any dishes that belongs to any uncompleted order is desired, then adding the `-f` at the
+        end of the command acknowledges and confirms the deletion behavior. Orders associated with the menu dish will 
+        be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="menu-edit"></a>
+    - <details open>
+        <summary class="dropdown-3">Edit dish information - <code>edit</code></summary>
+
+        Format:
+        ```
+        menu edit [INDEX] (n/[NAME]) (p/[PRICE]) (i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...)
+        ```
+
+        At least one of the fields in round brackets must be specified.
+        
+        <p>&nbsp;</p>
+      
+        ---
+        
+        </details>
+
+        <a name="menu-find"></a>
+    - <details open>
+        <summary class="dropdown-3">Find dish - <code>find</code></summary>
+
+        Format:
+        ```
+        menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD]
+        ```
+
+        At least one prefix must be specified. If both are specified, both conditions will be checked.
+
+        - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
+        - `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
+        
+        <p>&nbsp;</p>
+      
+        ---
+        
+        </details>
+
+    </details>
+
+<a name="order"></a>
+- <details open class="order">
+    <summary class="dropdown-2">Order</summary>
+
+    <a name="order-list"></a>
+    - <details open>
+        <summary class="dropdown-3">List all orders - <code>list</code></summary>
+
+        Displays the list of upcoming orders.
+        Format:
+        ```
+        order list
+        ```
+        The above command would list all the order in the right column of the GUI[<sup>3</sup>](#glossary). The list is in chronological sequence based on the order's date and time.
+
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="order-add"></a>
+    - <details open>
+        <summary class="dropdown-3">Add an order - <code>add</code></summary>
+
+        Creates an order and adds it to the order list.
+        Format:
+        ```
+        order add n/[CUSTOMER_ID] dt/[DELIVERY_DATETIME] d/[DISH_ID]... q/[QUANTITY]...
+        ```
+        Example:
+        ![OrderAddExample](images/order/OrderAddExample.png)
+        `Bernice Yu` has ordered a `burger` and 2 `chicken wings` on `14th Feb 2021 6:30pm`.
+        You can see on the customer list (right column) that `Bernice Yu` has an id of `2`.
+        While a `burger` has an id of `2`, `Chicken Wings` has an id of `3` on the menu list (right column).
+        The command to be inputted will be:
+        ```
+        order add n/2 dt/14-02-2021 18:30 d/1 q/1 d/3 q/1
+        ```
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="order-delete"></a>
+    - <details open>
+        <summary class="dropdown-3">Delete an order - <code>delete</code></summary>
+
+        Format:
+        ```
+        order delete [INDEX]
+        ```
+        The above command deletes the order based with that index.
+      
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="order-edit"></a>
+    - <details open>
+        <summary class="dropdown-3">Edit an order - <code>edit</code></summary>
+
+        Format:
+        ```
+        order edit [INDEX] (n/[CUSTOMER_ID]) (dt/[DELIVERY_DATETIME]) (d/[DISH_ID]... q/[QUANTITY]...)
+        ```
+
+        At least one of the fields in round brackets must be present in the edit command.
+      
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="order-find"></a>
+    - <details open>
+        <summary class="dropdown-3">Find an order - <code>find</code></summary>
+
+        Format:
+        ```
+        order find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD]
+        ```
+
+        At least one prefix must be specified. If both are specified, both conditions will be checked.
+
+        - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
+        - `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
+
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="order-complete"></a>
+    - <details open>
+        <summary class="dropdown-3">Mark an order as complete - <code>complete</code></summary>
+
+        Format:
+        ```
+        order complete [INDEX]
+        ```
+        The above command would mark the order of that index as complete. The order will no longer be in the order list. Instead, it will be in order history.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="order-history"></a>
+    - <details open>
+        <summary class="dropdown-3">List all completed and cancelled orders - <code>history</code></summary>
+
+        Format:
+        ```
+        order history
+        ```
+ 
+        The above command displays the history of completed and cancelled orders in the right column of the GUI[<sup>3</sup>](#glossary). The list is in chronological sequence based on the order's date and time.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+    </details>
+
+<a name="inventory"></a>
+- <details open class="inventory">
+    <summary class="dropdown-2">Inventory</summary>
+
+    <a name="inventory-list"></a>
+    - <details open>
+        <summary class="dropdown-3">List all ingredients - <code>list</code></summary>
+
+        Format:
+        ```
+        inventory list
+        ```
+        
+        The above command would list all the ingredients in the inventory in the right column of the GUI[<sup>3</sup>](#glossary) in the sequence that they were added, with the most recent being at the top.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="inventory-add"></a>
+    - <details open>
+        <summary class="dropdown-3">Add an ingredient - <code>add</code></summary>
+
+        Note:
+        If the ingredient already exists, its listed quantity will be incremented.
+
+        Format:
+        ```
+        inventory add n/[INGREDIENT_NAME] q/[QUANTITY]
+        ```
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="inventory-decrease"></a>
+    - <details open>
+        <summary class="dropdown-3">Decrease quantity of ingredient - <code>decrease</code></summary>
+
+        Format:
+        ```
+        inventory decrease [INDEX] [QUANTITY]
+        ```
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="inventory-delete"></a>
+    - <details open>
+        <summary class="dropdown-3">Delete an ingredient - <code>delete</code></summary>
+
+        Format:
+        ```
+        inventory delete [INDEX] (-f)
+        ```
+
+        In the event that there are ingredients that is needed by certain dishes that is being attempted to be deleted,
+        a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from
+        accidentally deleting dishes unknowingly and leads to invalid orders! 
+
+        Examples:
+        ```
+        inventory delete 2
+        ```
+
+        The above command would delete the second ingredient on the inventory information pane.
+
+        ```
+        inventory delete 2 -f
+        ```
+
+        In the event that there are dishes that needs ingredient id 2, then deletion
+        of the dish will not be allowed since we do not want to unknowingly delete dishes that needs the ingredient.
+        If deleting any ingredient that is needed to any dishes is desired, then adding the `-f` at the
+        end of the command acknowledges and confirms the deletion behavior. 
+        Orders associated with the ingredient will be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="inventory-edit"></a>
+    - <details open>
+        <summary class="dropdown-3">Edit an ingredient - <code>edit</code></summary>
+
+        Format:
+        ```
+        inventory edit [INDEX] (n/[INGREDIENT_NAME]) (q/[QUANTITY])
+        ```
+
+        At least one of the fields in brackets must be present in the edit command.
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
+
+        <a name="inventory-find"></a>
+    - <details open>
+        <summary class="dropdown-3">Find an ingredient - <code>find</code></summary>
+
+        Format:
+        ```
+        inventory find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN QUANTITY]
+        ```
+
+        At least one prefix must be specified. If both are specified, both conditions will be checked.
+
+        - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated.
+        - `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
+
+        <p>&nbsp;</p>
+        
+        </details>
+
+    </details>
+
+</details>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+<a name="faq"></a>
+<details open>
+<summary class="dropdown-1">FAQ</summary>
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JJIMY home folder.
+![MoveData](images/MoveData.png)
+
+</details>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+<a name="glossary"></a>
+<details open>
+<summary class="dropdown-1">Glossary</summary>
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+1. **CLI** - Command Line Interface. A CLI processess commands to a computer program in the form of lines of text.
+2. **Java** - Java is a class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.
+3. **GUI** - Graphical User Interface. GUI is a form of user interface that allows user to interact an application through graphical icons and audio indicator such as primary notation.
+
+</details>
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+<a href="#" class="float">
+   <img src="images/up.png">
+</a>

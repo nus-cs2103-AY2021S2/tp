@@ -1,11 +1,19 @@
 
+* {
+    primary-color: #b4d3ff;
+    secondary-color: #e3f0ff;
+    tertiary-color: #f9fbff;
+    quaternary-color: #90b5fd;
+    quinary-color: #506ca4;
+}
+
 .error {
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: tertiary-color;
 }
 
 .tag-selector {

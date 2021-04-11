@@ -2,32 +2,38 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.model.Item;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Item {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final String name;
+    private final String phone;
+    private final String email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final String address;
+    private final List<String> tags = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    @JsonCreator
+    public Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                  @JsonProperty("email") String email, @JsonProperty("address") String address,
+                  @JsonProperty("tags") List<String> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -36,19 +42,19 @@ public class Person {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public String getName() {
         return name;
     }
 
-    public Phone getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -56,8 +62,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public List<String> getTags() {
+        return Collections.unmodifiableList(tags);
     }
 
     /**
@@ -72,6 +78,22 @@ public class Person {
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }
+
+    @Override
+    public boolean isSame(Item other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Person)) {
+            return false;
+        }
+
+        Person otherPerson = (Person) other;
+        return otherPerson != null
+                && otherPerson.getName().equals(getName());
+    }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -112,7 +134,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
+        List<String> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);

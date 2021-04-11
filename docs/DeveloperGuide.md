@@ -2,8 +2,39 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+- [**Setting up, getting started**](#--setting-up--getting-started--)
+- [**Design**](#--design--)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+- [**Implementation**](#--implementation--)
+    * [Design enhancements](#design-enhancements)
+        + [Model update](#model-update)
+        + [Storage update](#storage-update)
+        + [Component Parser](#component-parser)
+        + [Parser validation](#parser-validation)
+        + [Data consistency](#data-consistency)
+            - [Deletion of Person objects](#deletion-of-person-objects)
+            - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
+            - [Logging of Order object](#logging-of-order-object)
+        + [Concurrent list display](#concurrent-list-display)
+        + [\[Proposed\] Data archiving](#--proposed---data-archiving)
+    * [Command enhancements](#command-enhancements)
+        + [Add command](#add-command)
+        + [Delete command](#delete-command)
+        + [List command](#list-command)
+        + [\[Proposed\] Find command](#--proposed---find-command)
+        + [\[Proposed\] Edit command](#--proposed---edit-command)
+- [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
+- [**Appendix: Requirements**](#--appendix--requirements--)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -112,7 +143,6 @@ The `Model`,
 
 </div>
 
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -133,90 +163,155 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Design enhancements
 
-#### Proposed Implementation
+#### Model update
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` classes respectively), in addition to the original `Person` class for the `contact` component.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`Person` class has had field classes `Phone`, `Address` and `Email` removed. `Tag` has also been replaced with `String` instead. The validation functionality will be moved to other classes.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+`UniquePersonList` has been adapted to `UniqueItemList<T>`, with every model class implementing the `Item` interface.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Every component has its own `Book` class which uses `UniqueItemList<T>`, which have thgir functionality exposed through the `ModelManager` class (Facade pattern).
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Storage update
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The storage has been updated to handle the new classes and their relevant `Book` classes. 
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Sample data has also been added for each book. JSON serializability of each class is ensured via the use of `Jackson` annotations.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+No `JsonAdaptedPerson` or similar classes are used. Instead, the model class is directly annotated for deserialization.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+#### Component Parser
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The `ComponentParser` mechanism is facilitated by `JJIMYParser` with a general command input format of
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+    [component] [command] [arguments]
 
-</div>
+`JJIMYParser` will read in the first word of the input which is the `[component]` and pass the command on to the respective component parser (one of `CustomerParser`, `MenuParser`, `OrderParser` and `InventoryParser`) that implements `ComponentParser`. The component word is stripped by `JJIMYParser`, so the relevant `ComponentParser` receives an input format of
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+    [command] [arguments]
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Finally, the respective `ComponentParser` will read in the `[command]` and return their respective `ComponentCommand` to be executed by `LogicManager`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+The following sequence diagram shows how a `CustomerAddCommand` operation is parsed and executed.
+![Sequence diagram for a CustomerAddCommand](images/JJIMYParserSequenceDiagram.png)
 
-</div>
+The following activity diagram summarizes what happens when a user executes a new command.
+![Activity diagram for a new command](images/JJIMYParserActivityDiagram.png)
 
-The following sequence diagram shows how the undo operation works:
+#### Parser validation
+Validation of fields through regex are moved out of the model classes and into their own classes.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+Apart from regex, validation is also done through looking up of the model to ensure that no invalid links to other model classes (E.g. an order linking to a non-existing Dish) happens.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+#### Data consistency
 
-</div>
+To ensure data consistency, some calls of the `delete` function have cascading effects. 
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+##### Deletion of Person objects
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+When a `Person` is deleted from the model, all `Order`s related to that `Person` should also be deleted, since that `Person` no longer exists. This is illustrated in the following sequence diagram:
 
-</div>
+![Diagram showing example of cascading deletion](images/CascadingDeletionCustomers.png)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+As seen from the above sequence diagram, when `deletePerson` is called on `ModelManager`, it first deletes the `Person`
+from `PersonBook`. Then, it retrieves the entire order list from `OrderBook` and checks each individual `Order`. If the
+`Order` is associated with the `Person`, then the `Order` is removed by `ModelManger` via the `deleteOrder` method. This
+check is done via `Order::isFromCustomer` which returns `true` if the `Order` is associated with the `Customer` and
+`false` otherwise.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+##### Deletion of Ingredient objects
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Another key instance of data consistency occurs between the `Ingredient` and `Dish` classes. The deletion of an Ingredient also affects all the dishes that use that ingredient and hence, those `Dish`es will also be removed.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+When an `Ingredient` is being attempted to be deleted, a check is first done to see if any `Dish` uses that `Ingredient`. If no `Dish` uses the `Ingredient`, then it is deleted immediately.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+However, in the event that there are `Dish`es that use the `Ingredient` in question, then a warning will be displayed and users will be required to re-enter their command but with a `-f` flag to confirm that they want to also delete all `Dish`es associated with the `Ingredient`.
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+##### Logging of Order object
 
-#### Design consideration:
+Data consistency extends beyond deletion. When `Order` objects are created, the `Ingredient`s and their quantities are tabulated from the `Dish`es and their respective quantities. 
+The quantity of each `Ingredient` is then decremented by the corresponding amount. 
+This automated data link ensures that the restaurant owner will be notified when they are attempting to place orders for dishes that have insufficient stock to produce.
 
-##### Aspect: How undo & redo executes
+#### Concurrent list display
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+To increase the efficiency of adding food orders, the GUI has been improved to display two lists at the same time. The customer list will always be shown on the left column whereas the right column will display one of the other components.
+ 
+Which component list is shown on the right will depend on the component of the last command input. For example, using a `menu add` command will cause the right side to display the menu list, whereas `order add` will show the right side to display the order list. However, using a command on the `customer` component will only update the left list and not affect the right list.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+#### \[Proposed\] Data archiving
 
-_{more aspects and alternatives to be added}_
+It is proposed that the general use case for removing `Order` objects from the currently displayed list will become not to delete them, but to *archive* them for future reference (e.g. accounting purposes). This will be achieved with a `completed` field within each Order object, which will determine whether they are displayed in the currently active order list or in the archived order list.
 
-### \[Proposed\] Data archiving
+### Command enhancements
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Add command
 
+The `add` command is implemented for all four components and can be called from the CLI input with the general form
+
+	[component] add [arguments...]
+	
+The arguments differ depending on what component the `add` command is being called on. (For more details, see the description of individual `add` commands in the [User Guide](https://ay2021s2-cs2103t-w15-3.github.io/tp/UserGuide.html).) 
+
+For details on how the command is parsed, refer to the explanation in the [Component Parser description](#component-parser). After the command is successfully parsed into an add `Command` object (e.g. `MenuAddCommand`), the `Command` object is executed by the `LogicManager`; the `add` commands' `execute` methods include validation routines to ensure the item to be added is both valid and not a duplicate of an item in the list.
+
+Finally, the `ModelManager` is called to add the item to the relevant `Book`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result. The following sequence diagram shows how the `MainWindow` is updated after a `menu add` command is called by the user. Note that, as detailed in the [concurrent list display description](#concurrent-list-display), the right-hand side of the `MainWindow` will be updated to show the new state of the menu.
+
+![Sequence diagram showing GUI update caused by a MenuAddCommand](images/MenuAddGUI.png)
+
+#### Delete command
+
+The `delete` command is implemented for all four components and can be called from the CLI input with the form
+
+	[component] delete [arguments...]
+
+The argument for the `delete` command is always the (1-indexed) index of the item to be deleted, *as shown in the currently displayed list* .
+
+For details on how the command is parsed, refer to the explanation in the [Component Parser description](#component-parser). After the command is successfully parsed into an delete `Command` object (e.g. `MenuDeleteCommand`), the `Command` object is executed by the `LogicManager`; the `delete` commands' `execute` methods include validation routines to ensure the index selected is a valid index.
+
+Finally, the `ModelManager` is called to delete the item from the relevant `Book`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result.
+
+In some cases, use of the `delete` command may trigger cascading `delete`s on other lists to maintain data consistency. For more information, see the [data consistency section](#data-consistency) of this Developer Guide.
+
+After execution, the GUI's displayed list is updated in a similar fashion to the GUI update caused by the [add command](#add-command).
+
+#### List command
+
+The `list` command is implemented for all four components and can be called from the CLI input with the form
+
+	[component] list
+
+There are no arguments for the `list` command. 
+
+Unlike the other commands, the `list` command has no specific parsers beyond the base component parsers (e.g. `MenuParser`; there is **no** `MenuListParser`), since there are no further arguments to parse. Therefore, the `Command` object is created directly by the base component parser and returned to be executed into a `CommandResult` object. The `CommandResult` is used to update the GUI, as explained in the [concurrent list display description](#concurrent-list-display).
+
+The following sequence diagram shows how the GUI is updated from `MainWindow` after a `menu list` command is called by the user.
+![Sequence diagram showing GUI update caused by a MenuListCommand](images/MenuListGUI.png)
+
+#### \[Proposed\] Find command
+
+The `find` command will be implemented for all four components and can be called from the CLI input with the general form
+
+	[component] find [arguments...]
+
+The arguments of the `find` command will always be the keyword(s) to be searched for.
+
+The `find` command will be parsed in a similar way to other commands (see the [Component Parser description](#component-parser)). The `find` command will update the `FilteredList` object to only contain items that match the keywords and return a `CommandResult` object to update the GUI, in a similar fashion to the GUI update caused by the [add command](#add-command).
+
+#### \[Proposed\] Edit command
+
+The `edit` command will be implemented for all four components and can be called from the CLI input with the general form
+
+	[component] edit [arguments...]
+
+Similar to the implementation of the `add` command, the arguments will differ depending on what component the `edit` command is being called on.
+
+The `edit` command will be parsed in a similar way to other commands (see the [Component Parser description](#component-parser)). The `edit` command will select an object from the *currently displayed list* via its (1-indexed) index and create a new object with the same parameters, except for the parameters given as arguments to be updated. 
+
+This new object will replace an object in the current book and return a `CommandResult` object to update the GUI from `MainWindow`, in a similar fashion to the GUI update caused by the [add command](#add-command).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -230,48 +325,110 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of contacts, orders, menu items and inventory
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts, orders, menu items and inventory faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a...                        | I want to...                                               | So that I can...                                            |
+| -------- | ------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------- |
+| `* * *`  | new user                       | see usage instructions                                     | refer to instructions when I forget how to use the App      |
+| `* * *`  | fast typer                     | be able to input by CLI                                    | key in commands faster                                      |
+| `* * *`  | restaurant owner               | add a customer's contact                                   | keep track of each customer's details                       |
+| `* * *`  | restaurant owner               | remove a customer's contact                                | remove customers who no longer patronize the restaurant     |
+| `* * *`  | restaurant owner               | add dishes to the menu                                     | keep track of dishes being offered                          |
+| `* * *`  | restaurant owner               | remove dishes from the menu                                | remove dishes that are not being offered anymore            |
+| `* * *`  | restaurant owner               | add food orders to the order list                          | keep track of the food I need to prepare                    |
+| `* * *`  | restaurant owner               | remove food orders from the order list                     | remove the order if my customers changed their minds        |
+| `* * *`  | restaurant owner               | add the ingredients that I have restocked to the inventory | know which ingredients I have in stock                      |
+| `* * *`  | restaurant owner               | remove ingredients from the food inventory                 | remove an ingredient I have just used                       |
+| `* * *`  | restaurant owner               | view a list of ingredients from the food inventory         | so I know which ingredients I have in stock                 |
+| `* * *`  | restaurant owner               | add tasks to my shopping list        			 | so I can remember which items to restock                    |
+| `* * *`  | restaurant owner               | remove tasks from my shopping list    		         | so I can remove tasks I don't need anymore                  |
+| `* * *`  | restaurant owner               | view all tasks to my shopping list                         | so I can view which items to restock                        |
+| `* * *`  | restaurant owner               | add dishes to the menu list                                | so I can keep track of the dishes being offered             |
+| `* * *`  | restaurant owner               | remove dishes to the menu list                             | so I can remove dishes that are not being offered anymore   |
+| `* * *`  | restaurant owner               | view all dishes to the menu list                           | so I can view all the dishes being offered                  |
+| `* * *`  | restaurant owner               | view the list of food orders                               | so I know which dishes to prepare                           |
+| `* *`    | restaurant owner               | edit a customer's contact                                  | rectify typos for customer errors                           |
+| `* *`    | user with many contacts        | find a customer's contact                                  | quickly locate the contact details of a particular customer |
+| `* *`    | owner with a large menu        | find a dish on the menu                                    | quickly locate details of a dish on the menu                |
+| `* *`    | owner of a busy restaurant     | find a food order from the order list                      | quickly locate the details of an order I'm working on       |
+| `* *`    | owner with a complex inventory | find the quantity of an ingredient in the food inventory   | quickly check how much of a certain ingredient I have left  |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Request help**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests help
+2.  JJIMY displays a list of commands
+
+    Use case ends.
+
+**Use case: Exit**
+
+**MSS**
+
+1.  User requests to exit
+2.  JJIMY exits
+
+    Use case ends.
+
+**Use case: Add a contact**
+
+**MSS**
+
+1.  User requests to add a contact
+2.  JJIMY adds the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. JIMMY detects duplicate
+
+	* 1a1. JIMMY shows an error message
+
+    Use case ends.
+
+**Use case: List all contacts**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  JJIMY shows a list of contacts
+
+    Use case ends.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  JJIMY shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  JJIMY deletes the contact
 
     Use case ends.
 
@@ -283,74 +440,276 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. JJIMY shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Find a contact**
+
+**MSS**
+
+1. User requests to list contacts
+2. JJIMY shows a list of contacts
+3. User requests to find contacts based on keywords.
+4. JJIMY returns a list of matching contacts for the keywords.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any contacts.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a menu item**
+
+**MSS**
+
+1.  User requests to add a menu item
+2.  JJIMY adds the menu item
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. JIMMY detects duplicate
+
+	* 1a1. JIMMY shows an error message
+
+    Use case ends.
+
+**Use case: List all menu items**
+
+**MSS**
+
+1.  User requests to list menu items
+2.  JJIMY shows a list of menu items
+
+    Use case ends.
+
+**Use case: Delete a menu item from the menu**
+
+**MSS**
+
+1.  User requests to list menu items
+2.  JJIMY shows a list of menu items
+3.  User requests to delete a specific menu item in the list
+4.  JJIMY deletes the menu item
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find a menu item**
+
+**MSS**
+
+1. User requests to list menu items
+2. JJIMY shows a list of menu items
+3. User requests to find menu items based on keywords.
+4. JJIMY returns a list of matching menu items for the keywords.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any menu item.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add an order**
+
+**MSS**
+
+1.  User requests to add an order
+2.  JJIMY adds the order
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. JIMMY detects duplicate
+
+	* 1a1. JIMMY shows an error message
+
+    Use case ends.
+
+**Use case: List all orders**
+
+**MSS**
+
+1.  User requests to list orders
+2.  JJIMY shows a list of orders
+
+    Use case ends.
+
+**Use case: Delete an order**
+
+**MSS**
+
+1.  User requests to list orders
+2.  JJIMY shows a list of orders
+3.  User requests to delete a specific order in the list
+4.  JJIMY deletes the order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Find an order**
+
+**MSS**
+
+1. User requests to list orders
+2. JJIMY shows a list of orders
+3. User requests to find orders based on keywords.
+4. JJIMY returns a list of matching orders for the keywords.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any order.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add an inventory item**
+
+**MSS**
+
+1.  User requests to add an inventory item
+2.  If the quantity is 0, JJIMY adds a new ingredient, otherwise it increments the quantity
+
+    Use case ends.
+
+**Use case: List all inventory items**
+
+**MSS**
+
+1.  User requests to list all inventory items
+2.  JJIMY shows a list of all inventory items
+
+    Use case ends.
+
+**Use case: Delete an inventory item**
+
+**MSS**
+
+1.  User requests to list all inventory items
+2.  JJIMY shows a list of all inventory items
+3.  User requests to delete a specific inventory item in the list
+4.  JJIMY deletes the inventory item
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Decrease the quantity of an inventory item**
+
+**MSS**
+
+1. User requests to list all inventory items
+2.  JJIMY shows a list of all inventory items
+3.  User requests to decrease the quantity of a specific inventory item in the list
+4.  JJIMY decreases the quantity inventory item
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Find a inventory item**
+
+**MSS**
+
+1. User requests to list all inventory items
+2. JJIMY shows a list of all inventory items
+3. User requests to find inventory items based on keywords.
+4. JJIMY returns a list of matching inventory items for the keywords.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keywords do not match any inventory item.
+
+    * 3a1. JJIMY shows an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should be able to hold up to 2000 total items (contacts, menu items, inventory stock) without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to complete any single request within 200ms.
+4.  Should work entirely client-side, without involving a remote server.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Inventory**: A list of necessary food ingredients and their associated stock quantities
+* **Mainstream OS**: Windows, Linux, Unix, OS X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

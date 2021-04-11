@@ -6,7 +6,241 @@
   "minima/skins/{{ site.minima.skin | default: 'classic' }}",
   "minima/initialize";
 
+:root {
+  //--primary-color: #b4d3ff;
+  //--secondary-color: #e3f0ff;
+  //--tertiary-color: #f9fbff;
+  //--quaternary-color: #90b5fd;
+  //--quinary-color: #506ca4;
+  //--customer-primary-color: #C7CEEA;
+  //--customer-secondary-color: #4B2882;
+  //--menu-primary-color: #B5EAD7;
+  //--menu-secondary-color: #177245;
+  //--order-primary-color: #FFDAC1;
+  //--order-secondary-color: #86611c;
+  //--inventory-primary-color: #FFB7B2;
+  //--inventory-secondary-color: #991414;
+  //--background-color: #001e45;
+  //--font-color: #e8e8e8;
+  --primary-color: #b4d3ff;
+  --secondary-color: #e3f0ff;
+  --tertiary-color: #f9fbff;
+  --quaternary-color: #90b5fd;
+  --quinary-color: #5e7bb7;
+  --customer-primary-color: #d9c7ea;
+  --customer-secondary-color: #8967a3;
+  --menu-primary-color: #B5EAD7;
+  --menu-secondary-color: #35634c;
+  --order-primary-color: #FFDAC1;
+  --order-secondary-color: #9f804b;
+  --inventory-primary-color: #fca8a2;
+  --inventory-secondary-color: #804242;
+  --background-color: #292D3E;
+  --background-darker-color: #202431;
+  --accent-color: #5b6879;
+  --font-color: #e8e8e8;
+  --font-accent-color: #c3c3c3;
+}
+
+.site-title, .site-title:visited, .site-nav .page-link {
+  color: var(--font-color);
+}
+
+.site-header {
+  border-bottom: 1px solid white;
+}
+
+body {
+  color: var(--font-color);
+  background-color: var(--background-color);
+}
+
+a, a:visited {
+  color: var(--primary-color)
+}
+
+pre,pre>code {
+  color: var(--font-color);
+  background-color: var(--quinary-color);
+}
+
+pre {
+  border: 1px solid var(--primary-color);
+  border-radius: 7px;
+}
+
+code {
+  font-size: 0.85em;
+  color: black;
+  border-radius: 7px;
+  background-color: var(--primary-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  margin-top:0;
+  margin-bottom:0;
+}
+
+.post-content h1, .post-content h2, .post-content h3,
+.post-content h4, .post-content h5, .post-content h6 {
+  margin-top: 0;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+summary {
+  color: var(--primary-color)
+}
+
+summary.dropdown-1 {
+  font-size: 1.75em;
+}
+
+summary.dropdown-2 {
+  font-size: 1.5em;
+}
+
+summary.dropdown-3 {
+  font-size: 1.25em;
+}
+
+li>span>ul, li>span>ol {
+  margin-bottom: 0;
+}
+
 .icon {
     height: 21px;
     width: 21px
+}
+
+table th {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+table tr:nth-child(odd) {
+  background-color: var(--background-color);
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+strong {
+  color: var(--quaternary-color);
+}
+
+blockquote {
+  color: var(--font-accent-color);
+  font-style: normal;
+  background-color: var(--background-darker-color);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/**
+ customer styles
+ */
+.customer summary.dropdown-2,
+.customer summary.dropdown-3{
+  color: var(--customer-primary-color);
+}
+
+.customer code{
+  background-color: var(--customer-primary-color);
+}
+
+.customer pre{
+  border: 1px solid var(--customer-primary-color);
+}
+
+.customer pre,
+.customer pre>code {
+  background-color: var(--customer-secondary-color);
+}
+
+/**
+ menu style
+ */
+.menu summary.dropdown-2,
+.menu summary.dropdown-3{
+  color: var(--menu-primary-color);
+}
+
+.menu code{
+  background-color: var(--menu-primary-color);
+}
+
+.menu pre{
+  border: 1px solid var(--menu-primary-color);
+}
+
+.menu pre,
+.menu pre>code {
+  background-color: var(--menu-secondary-color);
+}
+
+/**
+ order style
+ */
+.order summary.dropdown-2,
+.order summary.dropdown-3{
+  color: var(--order-primary-color);
+}
+
+.order code{
+  background-color: var(--order-primary-color);
+}
+
+.order pre{
+  border: 1px solid var(--order-primary-color);
+}
+
+.order pre,
+.order pre>code {
+  background-color: var(--order-secondary-color);
+}
+
+/**
+ inventory style
+ */
+.inventory summary.dropdown-2,
+.inventory summary.dropdown-3{
+  color: var(--inventory-primary-color);
+}
+
+.inventory code{
+  background-color: var(--inventory-primary-color);
+}
+
+.inventory pre{
+  border: 1px solid var(--inventory-primary-color);
+}
+
+.inventory pre,
+.inventory pre>code {
+  background-color: var(--inventory-secondary-color);
+}
+
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:20px;
+  right:20px;
+  background-color: var(--quinary-color);
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+
+  > img {
+    margin-top: 5px;
+  }
 }

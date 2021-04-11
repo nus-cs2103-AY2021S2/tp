@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "JJIMY"
 theme: minima
 
 header_pages:
@@ -6,9 +6,12 @@ header_pages:
   - DeveloperGuide.md
   - AboutUs.md
 
-markdown: kramdown
+markdown: CommonMarkGhPages
+commonmark:
+  options: ["SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table", "tagfilter", "kramdown"]
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2021S2-CS2103T-W15-3/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

@@ -7,5 +7,8 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "personBookFilePath" : "addressbook.json",
+  "dishBookFilePath" : "dishbook.json",
+  "ingredientBookFilePath" : "ingredientbook.json",
+  "orderBookFilePath" : "orderbook.json"
 }

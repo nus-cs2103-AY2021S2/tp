@@ -8,8 +8,14 @@ plugins {
 
 mainClassName = 'seedu.address.Main'
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+run {
+    enableAssertions = true
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenCentral()
@@ -17,6 +23,7 @@ repositories {
 }
 
 checkstyle {
+    ignoreFailures = true
     toolVersion = '8.29'
 }
 
@@ -66,7 +73,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'jjimy.jar'
 }
 
 defaultTasks 'clean', 'test'
