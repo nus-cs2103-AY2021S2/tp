@@ -15,13 +15,13 @@ title: Developer Guide
 1. [Implementation](#4-implementation)<br>
    4.1 [SOChedule](#41-sochedule)<br>
    &nbsp;&nbsp;4.1.1 [Overview](#411-overview)<br>
-   &nbsp;&nbsp;4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
+   &nbsp;&nbsp;4.1.2 [Implementation of SOChedule-level Commands](#412-implementation-of-sochedule-level-commands)<br>
    4.2 [Task](#42-task)<br>
    &nbsp;&nbsp;4.2.1 [Overview](#421-overview)<br>
-   &nbsp;&nbsp;4.2.2 [Implementation of Task-level Commands](#422-implementation)<br>
+   &nbsp;&nbsp;4.2.2 [Implementation of Task-level Commands](#422-implementation-of-task-level-commands)<br>
    4.3 [Event](#43-event)<br>
    &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
-   &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation)<br>
+   &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation-of-event-level-commands)<br>
 1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
@@ -30,8 +30,8 @@ title: Developer Guide
    A4. [Non-Functional Requirements](#a4-non-functional-requirements)<br>
    A5. [Glossary](#a5-glossary)<br>
    A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
-   A7. [Launch and Shutdown](#a7-launch-and-shutdown)<br>
-   A8. [Saving Data](#a8-saving-data)<br>
+   A7. [Saving Data](#a7-saving-data)<br>
+   A8. [Effort](#a8-effort)<br>
    
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
@@ -339,7 +339,7 @@ The sequence diagram for `ClearCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Overview](#411-overview)
 
 
 #### Implementation of `summary` command
@@ -365,7 +365,7 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 ![Sequence Diagram of Summary Command](images/SummaryCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Overview](#411-overview)  
 
 
 #### Implementation of `find_schedule` command
@@ -464,7 +464,9 @@ considerations is needed to determine which incomplete tasks to display.
 Alternative 1 is chosen because we believe this implementation can make better use of the date provided and can be more 
 helpful for users to know what tasks should be dealt with first and improve their efficiency in task and event managements.
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Overview](#411-overview)
+
+[Return to Table of Contents](#table-of-contents)
 
 
 ### 4.2 Task
@@ -507,7 +509,7 @@ Some implementations of features are omitted because their implementation is sim
 
 </div>
 
-#### 4.2.2 Implementation
+#### 4.2.2 Implementation of Task-level commands
 
 #### Implementation of `add_task` command
 In SOChedule, the governing logic behind the `add_task` command is laid out in [`AddTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/AddTaskCommand.java)
@@ -530,7 +532,7 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 ![Sequence Diagram of AddTask Command](images/AddTaskCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Overview](#421-overview)  
 
 
 #### Implementation of `delete_task` command  
@@ -554,7 +556,7 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `edit_task` command**
@@ -637,7 +639,7 @@ Alternative 1 is chosen because we believe this implementation is a more suitabl
 normal usage. Furthermore, if users wish to their overall progress for this week, they may choose to act with caution before
 editing a task or editing it back quickly if they realize they have edited the wrong task.
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `done_task` command**
@@ -729,7 +731,7 @@ Alternative 2 is chosen because we believe this implementation is a more suitabl
 Unlike `undone_task`, users are likely to have the demand to mark multiple tasks as complete
 under normal usage. Thus, we feel alternative 2 is necessary to serve our users efficiently.
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `undone_task` command
@@ -825,7 +827,7 @@ Alternative 1 is chosen because we believe this implementation is a more suitabl
 testing time. More importantly, unlike `done_task`, users are unlikely to have the demand to mark multiple tasks as incomplete at one go
 under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `today_task` command**
@@ -856,7 +858,7 @@ The sequence diagram for TodayTaskCommand can be found below.
 
 ![Sequence Diagram of TodayTaskCommand](images/TodayTaskCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `find_task` command
@@ -894,7 +896,7 @@ The sequence diagram for `FindTaskCommand` can be found below, using `find_task 
 
 ![Sequence Diagram of FindTaskCommand](images/FindTaskCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `sort_task` command
@@ -981,7 +983,7 @@ By implementing it in this way, our group is able to ensure that the sort order 
 
 This would enable SOChedule to better serve the needs of its user base. 
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `pin_task`/`unpin_task` commands
@@ -1026,7 +1028,7 @@ It can also be similarly extrapolated and applied to `unpin_task`.
 
 ![Activity Diagram of PinTaskCommand](images/PinTaskActivityDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Overview](#421-overview) 
 
 
 #### Implementation of `clear_completed_task` command
@@ -1047,7 +1049,7 @@ The sequence diagram for `ClearCompletedTaskCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearCompletedTaskCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Overview](#421-overview)
 
 
 #### Implementation of `clear_expired_task` command  
@@ -1067,6 +1069,8 @@ A success message `ClearExpiredTaskCommand#MESSAGE_CLEAR_EXPIRED_TASK_SUCCESS` w
 The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredTaskCommandSequenceDiagram.png)
+
+[Return to Overview](#421-overview)
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -1103,7 +1107,7 @@ The implementation of the noteworthy ones will be listed in the next section. So
 omitted here because their implementation is similar to that of other features.
 
 
-#### 4.3.2 Implementation
+#### 4.3.2 Implementation of Event-level commands
 
 #### Implementation of `add_event` command
 In SOChedule, the governing logic behind the `add_event` command is laid out in [`AddEventCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/AddEventCommand.java)
@@ -1126,7 +1130,7 @@ The sequence diagram for `AddEventCommand` can be found below.
 
 ![Sequence Diagram of AddEvent Command](images/AddEventCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Overview](#431-overview)
 
 
 #### Implementation of `delete_event` command  
@@ -1150,8 +1154,7 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 ![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
 
-
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#431-overview)
 
 
 #### Implementation of `edit_event` command
@@ -1234,7 +1237,7 @@ so we allow users to make changes on end date and time from an expired timestamp
 we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become
 an “overdue task”, while there’s no “overdue event”.
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#431-overview)
 
 
 #### Implementation of `today_event` command
@@ -1266,7 +1269,7 @@ The sequence diagram for TodayEventCommand can be found below.
 
 ![Sequence Diagram of TodayEventCommand](images/TodayEventCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#431-overview)
 
 
 #### Implementation of `find_event` command
@@ -1304,7 +1307,7 @@ The sequence diagram for `FindEventCommand` can be found below, using the aforem
 
 ![Sequence Diagram of FindEventCommand](images/FindEventCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#431-overview)
 
 
 #### Implementation of `clear_expired_event` command
@@ -1325,7 +1328,7 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)
+[Return to Overview](#431-overview)
 
 
 #### Implementation of `find_free` command
@@ -1398,6 +1401,8 @@ The below activity diagram summarises what happens when `free_time` is called.
 
 We choose alternative 1 because it presents code in a clearer way. Breaking up long methods into shorter methods will improve
 readability of the code. Implementing code under UniqueEventList also reduces dependency.
+
+[Return to Overview](#431-overview)
 
 [Return to Table of Contents](#table-of-contents)  
 
