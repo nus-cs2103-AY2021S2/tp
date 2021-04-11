@@ -20,6 +20,7 @@ import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Email;
 import seedu.address.model.tutor.Gender;
@@ -28,6 +29,9 @@ import seedu.address.model.tutor.Phone;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.TypicalTutors;
 
+/**
+ * Integration tests for TutorFilter.
+ */
 public class TutorFilterTest {
     private Set<Predicate<Name>> nameFilters;
     private Set<Predicate<Gender>> genderFilters;
@@ -54,6 +58,55 @@ public class TutorFilterTest {
         this.subjectRateFilters = new LinkedHashSet<>();
         this.subjectExperienceFilters = new LinkedHashSet<>();
         this.subjectQualificationFilters = new LinkedHashSet<>();
+    }
+
+    @Test
+    public void test() {
+        Tutor alice = TypicalTutors.ALICE;
+        Tutor benson = TypicalTutors.BENSON;
+
+        // EP 1: Tutor Details
+        nameFilters.add(new NameFilter(benson.getName().fullName));
+        genderFilters.add(new GenderFilter(benson.getGender().personGender));
+        phoneFilters.add(new PhoneFilter(benson.getPhone().value));
+        emailFilters.add(new EmailFilter(benson.getEmail().value));
+        addressFilters.add(new AddressFilter(benson.getAddress().value));
+
+        TutorFilter tutorFilter = new TutorFilter(nameFilters,
+                genderFilters, phoneFilters, emailFilters, addressFilters,
+                subjectNameFilters, subjectLevelFilters, subjectRateFilters,
+                subjectExperienceFilters, subjectQualificationFilters);
+
+        assertTrue(tutorFilter.test(benson));
+        assertFalse(tutorFilter.test(alice));
+
+        // EP 2: One Subject Details
+
+        TutorSubject subject = benson.getSubjectList().asUnmodifiableObservableList().get(0);
+        subjectNameFilters.add(new SubjectNameFilter(subject.getName().name));
+        subjectLevelFilters.add(new SubjectLevelFilter(subject.getLevel().level));
+        subjectRateFilters.add(new SubjectRateFilter(subject.getRate().rate.toString()));
+        subjectExperienceFilters.add(new SubjectExperienceFilter(subject.getExperience().experience.toString()));
+        subjectQualificationFilters.add(new SubjectQualificationFilter(subject.getQualification().qualification));
+
+        tutorFilter = new TutorFilter(nameFilters,
+                genderFilters, phoneFilters, emailFilters, addressFilters,
+                subjectNameFilters, subjectLevelFilters, subjectRateFilters,
+                subjectExperienceFilters, subjectQualificationFilters);
+
+        assertTrue(tutorFilter.test(benson));
+        assertFalse(tutorFilter.test(alice));
+
+        // EP 3: All subject details
+        subject = benson.getSubjectList().asUnmodifiableObservableList().get(1);
+        subjectNameFilters.add(new SubjectNameFilter(subject.getName().name));
+        subjectLevelFilters.add(new SubjectLevelFilter(subject.getLevel().level));
+        subjectRateFilters.add(new SubjectRateFilter(subject.getRate().rate.toString()));
+        subjectExperienceFilters.add(new SubjectExperienceFilter(subject.getExperience().experience.toString()));
+        subjectQualificationFilters.add(new SubjectQualificationFilter(subject.getQualification().qualification));
+
+        assertTrue(tutorFilter.test(benson));
+        assertFalse(tutorFilter.test(alice));
     }
 
     @Test
@@ -90,7 +143,7 @@ public class TutorFilterTest {
     }
 
     @Test
-    public void hasAny_personFilter_success() {
+    public void hasAny_tutorFilter_success() {
         Tutor amy = TypicalTutors.AMY;
         Tutor bob = TypicalTutors.BOB;
 
@@ -118,7 +171,7 @@ public class TutorFilterTest {
     }
 
     @Test
-    public void add_personFilter_success() {
+    public void add_tutorFilter_success() {
         TutorFilter tutorFilter = new TutorFilter();
 
         Tutor amy = TypicalTutors.AMY;
@@ -149,7 +202,7 @@ public class TutorFilterTest {
     }
 
     @Test
-    public void remove_personFilter_success() {
+    public void remove_tutorFilter_success() {
         Tutor amy = TypicalTutors.AMY;
         Tutor bob = TypicalTutors.BOB;
 
