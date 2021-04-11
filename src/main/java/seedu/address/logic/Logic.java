@@ -7,7 +7,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.order.Order;

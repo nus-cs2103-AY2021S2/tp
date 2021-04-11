@@ -50,7 +50,7 @@ public class ShoppingParser implements ComponentParser {
             return new ShoppingListCommand();
 
         default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_COMMAND, HelpCommand.MESSAGE_USAGE));
         }
     }
 }

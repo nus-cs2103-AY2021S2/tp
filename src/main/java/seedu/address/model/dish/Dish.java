@@ -78,6 +78,12 @@ public class Dish implements Item, Aggregator<Ingredient> {
         return ingredientsBuilder.toString();
     }
 
+    /**
+     * Returns a new Dish object which is a copy of the current one but
+     * with {@code target} replaced with {@code editedIngredient}.
+     * @param target {@code Ingredient} object to be replaced
+     * @param editedIngredient New (updated) {@code Ingredient} object to replace with
+     */
     public Dish updateIngredient(Ingredient target, Ingredient editedIngredient) {
         List<Pair<Ingredient, Integer>> updatedQuantityList = new ArrayList<>();
         for (Pair<Ingredient, Integer> p : ingredientQuantityList) {

@@ -2,7 +2,6 @@ package seedu.address.logic.commands.customer;
 
 import static java.util.Objects.requireNonNull;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;

@@ -63,6 +63,12 @@ public class IngredientBook implements ReadOnlyBook<Ingredient> {
         return ingredients.contains(ingredient);
     }
 
+    /**
+     * Checks if there is sufficient inventory for a particular ingredient
+     * @param ingredient Ingredient to be queried
+     * @param quantity Quantity of ingredient required
+     * @return true if is equal or greater amount of quantity for the queried ingredient in the invtory
+     */
     public boolean hasSufficientIngredients(Ingredient ingredient, int quantity) {
         for (Ingredient i : ingredients) {
             if (i.isSame(ingredient)) {
