@@ -33,7 +33,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> RemindMeParser
 deactivate DeleteCommandParser
 
-RemindMeParser -> DeleteCommandParser : parseCommand("m/CS2103 a/1")1")
+RemindMeParser -> DeleteCommandParser : parseCommand("m/CS2103 a/1")
 activate DeleteCommandParser
 
 create DeleteAssignmentCommandParser
