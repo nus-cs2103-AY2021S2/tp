@@ -12,7 +12,7 @@ public class Title implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should only contain alphanumeric characters and spaces (not line breaks)"
-                    + ", and it should not be blank. Leading and trailing whitespace/line breaks are trimmed.";
+                    + ", and it should not be blank.";
 
     /*
      * The first character of the title must not be a whitespace,
