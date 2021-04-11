@@ -68,9 +68,9 @@ public class SampleDataUtil {
 
     public static Note[] getSampleNotes() {
         return new Note[] {
-            new Note("CS2103T exam is coming.", getTagSet("Exam")),
-            new Note("My friend is an idiot.", getTagSet("Friends")),
-            new Note("My Teacher Best Teacher", getTagSet("Teacher"))
+            new Note("This is a sample note.", getTagSet()),
+            new Note("This is a sample note with one tag.", getTagSet("Important")),
+            new Note("This is a sample note with multiple tags.", getTagSet("Important", "Interesting"))
         };
     }
 
