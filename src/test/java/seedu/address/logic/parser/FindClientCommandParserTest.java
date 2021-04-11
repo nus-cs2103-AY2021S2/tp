@@ -9,7 +9,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindClientCommand;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
 
 public class FindClientCommandParserTest {
@@ -26,10 +26,10 @@ public class FindClientCommandParserTest {
     public void parseValidKeywordsTest() {
         PropertyClientNamePredicate propertyClientNamePredicate =
                 new PropertyClientNamePredicate(Collections.singletonList("bob"));
-        AppointmentContainsKeywordsPredicate appointmentContainsKeywordsPredicate =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("bob"));
+        AppointmentNamePredicate appointmentNamePredicate =
+                new AppointmentNamePredicate(Collections.singletonList("bob"));
         FindClientCommand expectedFindCommand =
-                new FindClientCommand(propertyClientNamePredicate, appointmentContainsKeywordsPredicate);
+                new FindClientCommand(propertyClientNamePredicate, appointmentNamePredicate);
 
         assertParseSuccess(parser, "bob", expectedFindCommand);
     }

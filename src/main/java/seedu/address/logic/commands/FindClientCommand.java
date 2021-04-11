@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
 
 /**
@@ -22,17 +22,17 @@ public class FindClientCommand extends Command {
         + "Example: " + COMMAND_WORD + " alice";
 
     private final PropertyClientNamePredicate clientPredicate;
-    private final AppointmentContainsKeywordsPredicate appointmentPredicate;
+    private final AppointmentNamePredicate appointmentPredicate;
 
     /**
      * Creates a {@code FindClientCommand} which combines a {@code PropertyClientNamePredicate}
-     * and a {@code AppointmentContainsKeywordsPredicate} to filter both the appointments and
+     * and a {@code AppointmentNamePredicate} to filter both the appointments and
      * the properties at the same time.
      * @param clientPredicate Checks for keywords in properties' client names
      * @param appointmentPredicate Checks for keywords in appointment names
      */
     public FindClientCommand(PropertyClientNamePredicate clientPredicate,
-         AppointmentContainsKeywordsPredicate appointmentPredicate) {
+         AppointmentNamePredicate appointmentPredicate) {
         this.appointmentPredicate = appointmentPredicate;
         this.clientPredicate = clientPredicate;
     }

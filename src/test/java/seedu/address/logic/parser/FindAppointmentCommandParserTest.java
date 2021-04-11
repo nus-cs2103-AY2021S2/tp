@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.AppointmentDatePredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.appointment.AppointmentPredicateList;
 import seedu.address.model.appointment.AppointmentRemarksPredicate;
 import seedu.address.model.appointment.AppointmentTimePredicate;
@@ -41,11 +41,11 @@ public class FindAppointmentCommandParserTest {
     public void parseValidKeywordsTest() {
         List<Predicate<Appointment>> predicates = new ArrayList<>();
 
-        predicates.add(new AppointmentContainsKeywordsPredicate(Arrays.asList("John", "Alex")));
+        predicates.add(new AppointmentNamePredicate(Arrays.asList("John", "Alex")));
 
         List<AppointmentPredicateList> orList = Collections.singletonList(
                 new AppointmentPredicateList(Collections.singletonList(new
-                AppointmentContainsKeywordsPredicate(Arrays.asList("John", "Alex")))));
+                        AppointmentNamePredicate(Arrays.asList("John", "Alex")))));
 
         FindAppointmentCommand expectedFindCommand =
                 new FindAppointmentCommand(new AppointmentPredicateList(new ArrayList<>(), orList));
@@ -62,8 +62,8 @@ public class FindAppointmentCommandParserTest {
         List<Predicate<Appointment>> predicates = new ArrayList<>();
 
         List<AppointmentPredicateList> orList = Collections.singletonList(new AppointmentPredicateList(Arrays.asList(new
-                AppointmentContainsKeywordsPredicate(Collections.singletonList("John")),
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("Alex")))));
+                        AppointmentNamePredicate(Collections.singletonList("John")),
+                new AppointmentNamePredicate(Collections.singletonList("Alex")))));
 
         FindAppointmentCommand expectedFindCommand =
                 new FindAppointmentCommand(new AppointmentPredicateList(predicates, orList));
