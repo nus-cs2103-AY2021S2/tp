@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY_FIRST_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
@@ -15,8 +16,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_STR_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -57,13 +61,13 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_multiPrefix_throwsParseException() {
-        String userInput = FindCommand.COMMAND_WORD + " " + "n/Alice a/Bedok";
+        String userInput = FindCommand.COMMAND_WORD + NAME_DESC_AMY_FIRST_NAME + ADDRESS_DESC_AMY;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_multiPriceArgs_throwsParseException() {
-        String userInput = FindCommand.COMMAND_WORD + " " + "pr/100.00 pr/55";
+        String userInput = FindCommand.COMMAND_WORD + " " + VALID_PRICE_STR_AMY + VALID_PRICE_STR_BOB;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -185,8 +189,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_validTripArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new TripTimeContainsKeywordsPredicate(Collections.singletonList("1930")));
+        FindCommand expectedFindCommand = new FindCommand(new TripTimeContainsKeywordsPredicate(
+                        Collections.singletonList(VALID_TRIPTIME_STR_BOB)));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + TRIPTIME_DESC_BOB + "\n \t", expectedFindCommand);

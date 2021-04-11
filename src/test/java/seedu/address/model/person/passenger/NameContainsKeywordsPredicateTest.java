@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_FIRST_NAME_MIXED_CASE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LAST_NAME_MIXED_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -63,7 +65,8 @@ public class NameContainsKeywordsPredicateTest {
 
         // Mixed-case keywords
         // Keywords changed to lowercase as parser will change all keywords to lowercase
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aMy".toLowerCase(), "beE".toLowerCase()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_FIRST_NAME_MIXED_CASE.toLowerCase(),
+                VALID_NAME_AMY_LAST_NAME_MIXED_CASE.toLowerCase()));
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
     }
 
