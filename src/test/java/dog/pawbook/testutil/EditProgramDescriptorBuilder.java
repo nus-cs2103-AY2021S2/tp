@@ -25,7 +25,7 @@ public class EditProgramDescriptorBuilder
      * Returns an {@code EditProgramDescriptor} with fields containing {@code program}'s details
      */
     public EditProgramDescriptorBuilder(Program program) {
-        super(new EditProgramDescriptor());
+        super(new EditProgramDescriptor(), program);
         descriptor.setSessions(program.getSessions());
     }
 
