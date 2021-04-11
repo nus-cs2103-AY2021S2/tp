@@ -44,7 +44,7 @@ class JsonAdaptedContact {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Contact} into this class for Jackson use.
      */
     public JsonAdaptedContact(Contact source) {
         name = source.getName().fullName;
@@ -56,7 +56,7 @@ class JsonAdaptedContact {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Contact} object.
+     * Converts this Jackson-friendly adapted contact object into the model's {@code Contact} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted contact.
      */
