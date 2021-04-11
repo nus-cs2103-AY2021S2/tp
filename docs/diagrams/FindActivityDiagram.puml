@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes find
+        command;
+
+if () then ([valid command])
+    :Application attempts to find
+        matching garments;
+
+if () then ([found matching garment(s)])
+    :Update garments list;
+    :Display query results;
+    :Output successfully
+       filtered message;
+else ([else])
+    :Output no matching
+      garments message;
+endif
+
+else ([else])
+    :Output invalid command
+             format error;
+endif
+
+stop
+@enduml
