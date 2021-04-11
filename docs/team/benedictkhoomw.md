@@ -10,8 +10,9 @@ features a Graphical User Interface (GUI) but is optimized for use via a Command
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added command history feature ([\#63](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/63) and 
-  [\#107](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/107))
+* **New Feature**: Added command history feature and tests ([\#63](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/63),
+  [\#107](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/107) and
+  [\#175](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/175)).
   * **What it does**: The `history [COUNT]` command displays (from most to least recent) successful commands previously
     executed. If the `COUNT` parameter is not specified, the entire history is displayed. Otherwise, the `COUNT` most
     recent entries are displayed. This history is saved to a file, and loaded back upon app startup. Lastly, the `UP`
