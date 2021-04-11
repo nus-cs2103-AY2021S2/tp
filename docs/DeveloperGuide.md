@@ -746,13 +746,13 @@ Given below is an example usage scenario and how the undone task mechanism behav
 
 **Step 1**: User executes `undone_task 1` command to mark the completed task at the given index as uncompleted. 
 This task will be known as the target task.
-A `UndoneTaskCommandParser` object is created, and the `UndoneTaskCommandParser#parse(String args)` method is called.
+An `UndoneTaskCommandParser` object is created, and the `UndoneTaskCommandParser#parse(String args)` method is called.
 The method parses the `1` and conducts validation checks to ensure that the given index is a valid unsigned non-zero integer.
-A `UndoneTaskCommand` object is returned.
+An `UndoneTaskCommand` object is returned.
 
 **Step 2**: On `UndoneTaskCommand#execute()`,
 the indices are further checked to ensure the target task exist in the task list, and they are not uncompleted to begin with.
-Afterwards, the information of the target task is copied ,and an uncompleted task with exactly the same information as the target task is created.
+Afterwards, the information of the target task is copied, and an uncompleted task with exactly the same information as the target task is created.
 Finally, `Model#setTask(Task taskToUndone, Task uncompletedTask)` and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method are called.
 These two methods update the target task in the task list and refresh the UI to show the update.
 For brevity, lower level implementation of `Model#setTask(Task taskToUndone, Task uncompletedTask)` 
