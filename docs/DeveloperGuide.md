@@ -475,6 +475,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 <br><br>
 
+**Use case: Matching a clothing item**
+
+**MSS**
+
+1. User specifies a garment they would like to match
+2. NuFash shows a list of garments that match the specified garments
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. NuFash shows an error message.  
+    Use case ends.
+<br><br>
+
 **Non-Functional Requirements:**
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2.  Should be able to hold up to 1000 articles of clothing without a noticeable sluggishness in performance for typical usage.
