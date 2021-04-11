@@ -315,6 +315,8 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
   For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, 
   but `tag2` may appear in the UI before `tag1`, then `tag1` on the right of `tag2`. 
   The ordering is not guaranteed and this is intended behaviour.
+* Note that any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments
+  (e.g. name/Name, tag/Tag or T&sk) will lead to an error.
 
 Examples:
 * `edit_task 1 n/t1` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
