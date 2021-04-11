@@ -18,7 +18,7 @@ public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS = "Birth date should be of the format yyyy MM dd "
         + "EG:(2011 07 06 for 6th July, 2011)" + ", avoid Invalid date inputs like 30 February";
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu MM dd")
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu MM dd")
             .withResolverStyle(ResolverStyle.STRICT);
 
     public final String birthDate;
