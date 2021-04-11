@@ -83,7 +83,7 @@ Adds a new residence to the list of residences, default for clean status is ‘c
 * Names cannot be empty. Trailing white spaces before and after a valid name will be ignored. e.g `  BLK 3  ` will be used and displayed as `BLK 3`
 * Names should only contain alpha-numeric characters. e.g `Block71 Ayer Rajah`  
 * Valid clean statuses are case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
-* Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
+* Address can take any values (even emojis) but only alphanumeric characters and symbols will be visible on the residence tracker. `@!df34!@//` is a valid address.
 * Tags should only contain alphanumeric characters. Symbols and spaces are not valid.
 * Valid tags are case-sensitive so will be used exactly as provided by the user. e.g `POPular` will be used and displayed as `POPular`
 
