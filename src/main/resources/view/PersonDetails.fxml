@@ -88,8 +88,8 @@
                   </HBox>
                   <GridPane gridLinesVisible="true" minHeight="280.0" prefWidth="424.0" styleClass="contact_box" translateY="-28.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="165.0" prefWidth="179.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="217.5" prefWidth="308.5" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="165.0" prefWidth="172.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="217.5" prefWidth="419.5" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="90.0" vgrow="SOMETIMES" />
@@ -137,7 +137,7 @@
                   </GridPane>
                </children>
             </GridPane>
-            <VBox fx:id="detailLessonList" prefHeight="424.0" prefWidth="218.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+            <VBox fx:id="detailLessonList" prefHeight="424.0" prefWidth="191.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                <children>
                   <GridPane fx:id="gridPane" prefHeight="107.0" prefWidth="167.0">
                     <columnConstraints>
