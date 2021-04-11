@@ -168,6 +168,7 @@ public class GuiSettings implements Serializable {
 
     /**
      * Sets the contact divider position.
+     *
      * @param contactSplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
      */
     public void setContactSplitRatio(double contactSplitRatio) {
@@ -178,6 +179,7 @@ public class GuiSettings implements Serializable {
 
     /**
      * Sets the dictionary divider position.
+     *
      * @param dictionarySplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
      */
     public void setDictionarySplitRatio(double dictionarySplitRatio) {
@@ -188,6 +190,7 @@ public class GuiSettings implements Serializable {
 
     /**
      * Sets the note divider position.
+     *
      * @param noteSplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
      */
     public void setNoteSplitRatio(double noteSplitRatio) {
@@ -198,6 +201,7 @@ public class GuiSettings implements Serializable {
 
     /**
      * Sets the main divider position.
+     *
      * @param mainSplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
      */
     public void setMainSplitRatio(double mainSplitRatio) {
@@ -207,14 +211,15 @@ public class GuiSettings implements Serializable {
     }
 
     /**
-     * Ensure the value of the position is within limit.
+     * Ensures the value of the position is within limit.
      */
     private boolean isValidSplitRatio(double ratio) {
         return ratio >= MIN_SPLIT_RATIO && ratio <= MAX_SPLIT_RATIO;
     }
 
     /**
-     * Avoid rounding error when saving the position by rounding to 4 decimal place.
+     * Gets the value by rounding off to 4 decimal place.
+     * use to avoids rounding error when saving the position by rounding.
      */
     private double getRoundedValue(double d) {
         return ((double) Math.round(d * 10000)) / 10000;
@@ -275,9 +280,9 @@ public class GuiSettings implements Serializable {
     }
 
     /**
-     * Gets the orientation setting of the dictionary panel as a javafx.geometry.Orientation
+     * Gets the orientation setting of the dictionary panel as a javafx.geometry.Orientation.
      *
-     * @return orientation as javafx.geometry.Orientation.VERTICAL or javafx.geometry.Orientation.HORIZONTAL
+     * @return orientation as javafx.geometry.Orientation.VERTICAL or javafx.geometry.Orientation.HORIZONTAL.
      */
     public Orientation getDictionaryPanelOrientation() {
         return isDictionaryPanelVerticial ? Orientation.VERTICAL : Orientation.HORIZONTAL;
@@ -291,9 +296,9 @@ public class GuiSettings implements Serializable {
         isDictionaryPanelVerticial = !isDictionaryPanelVerticial;
     }
     /**
-     * Gets the orientation setting of the note panel as a javafx.geometry.Orientation
+     * Gets the orientation setting of the note panel as a javafx.geometry.Orientation.
      *
-     * @return orientation as javafx.geometry.Orientation.VERTICAL or javafx.geometry.Orientation.HORIZONTAL
+     * @return orientation as javafx.geometry.Orientation.VERTICAL or javafx.geometry.Orientation.HORIZONTAL.
      */
     public Orientation getNotePanelOrientation() {
         return isNotePanelVerticial ? Orientation.VERTICAL : Orientation.HORIZONTAL;
