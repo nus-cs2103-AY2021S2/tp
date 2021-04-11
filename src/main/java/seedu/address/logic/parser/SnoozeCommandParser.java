@@ -13,9 +13,15 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
 
     public static final String MESSAGE_INVALID_ARGUMENT = "Invalid command format!\n"
             + "Snooze Command must have a compulsory INDEX"
-            + " and an optional DAYS argument, both of which are positive integers.";
+            + " and an optional DAYS argument, both of which are positive integers.\n"
+            + "The INDEX and DAYS values should have a single whitespace separating the values.";
+
+    public static final String MESSAGE_NUMBER_OUT_OF_BOUND = String.format("INDEX must be positive and within the "
+            + "range of the list. DAYS must be positive and less than %d.", SnoozeCommand.MAX_SNOOZE_AMOUNT);
 
     private static final String SNOOZE_COMMAND_REGEX = "[0-9]+\\s?[0-9]*";
+
+    private String[] argValues;
 
     /**
      * Parses the given {@code String} of arguments in the context of the SnoozeCommand
@@ -27,9 +33,10 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
      */
     public SnoozeCommand parse(String args) throws ParseException {
         validateParameter(args);
-        Index index = getIndex(args);
-        int days = getDays(args);
+        processArguments(args);
 
+        Index index = getIndex();
+        int days = getDays();
         return new SnoozeCommand(index, days);
     }
 
@@ -41,29 +48,41 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
         }
     }
 
-    private Index getIndex(String args) throws ParseException {
+    private void processArguments(String args) {
         String trimmedArgs = args.trim();
-        String[] argValues = trimmedArgs.split(" ");
+        argValues = trimmedArgs.split(" ");
+    }
 
+    private Index getIndex() throws ParseException {
         assert(argValues.length == 1 || argValues.length == 2);
 
-        if (Integer.valueOf(argValues[0]) < 1) {
-            throw new ParseException(MESSAGE_INVALID_ARGUMENT);
+        try {
+            if (Integer.valueOf(argValues[0]) < 1) {
+                throw new ParseException(MESSAGE_INVALID_ARGUMENT);
+            }
+        } catch (ParseException pe) {
+            throw pe;
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_NUMBER_OUT_OF_BOUND);
         }
         return ParserUtil.parseIndex(argValues[0]);
     }
 
-    private int getDays(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        String[] argValues = trimmedArgs.split(" ");
+    private int getDays() throws ParseException {
+        assert(argValues.length == 1 || argValues.length == 2);
 
-        if (argValues.length == 2) {
+        if (argValues.length == 1) {
+            return 1;
+        }
+        try {
             if (Integer.valueOf(argValues[1]) < 1) {
                 throw new ParseException(MESSAGE_INVALID_ARGUMENT);
             }
-            return Integer.parseInt(argValues[1]);
-        } else {
-            return 1;
+        } catch (ParseException pe) {
+            throw pe;
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_NUMBER_OUT_OF_BOUND);
         }
+        return Integer.parseInt(argValues[1]);
     }
 }
