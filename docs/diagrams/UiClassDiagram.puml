@@ -19,6 +19,9 @@ Class CommandBox
 Class ImportantDatesWindow
 Class DateCard
 Class DateListPanel
+Class DetailLessonListPanel
+Class DetailLessonListCard
+Class DetailListPanel
 Class LessonListCard
 Class LessonListPanel
 Class ScheduleWindow
@@ -46,11 +49,12 @@ MainWindow *-down-> StatusBarFooter
 MainWindow --> ImportantDatesWindow
 MainWindow --> ScheduleWindow
 ImportantDatesWindow *-down-> DateListPanel
-PersonDetails *-down-> LessonListPanel
+PersonDetails *-down-> DetailLessonListPanel
 ScheduleWindow *-down-> LessonListPanel
 
 PersonListPanel -down-> PersonCard
-DateListPanel -down->DateCard
+DateListPanel -down-> DateCard
+DetailLessonListPanel -down-> DetailLessonListCard
 LessonListPanel -down-> LessonListCard
 
 MainWindow -down-|> UiPart
@@ -66,6 +70,7 @@ ImportantDatesWindow -down-|> UiPart
 ScheduleWindow -down-|> UiPart
 DateListPanel --|> UiPart
 DateCard --|> UiPart
+DetailLessonListPanel --|> UiPart
 LessonListPanel --|> UiPart
 LessonListCard --|> UiPart
 
