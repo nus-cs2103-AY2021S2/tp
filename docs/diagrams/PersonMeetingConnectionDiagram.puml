@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MeetingBookParser" as MeetingBookParser LOGIC_COLOR
+participant ":ShowMeetingCommandParser" as ShowMeetingCommandParser LOGIC_COLOR
+participant "sm:ShowMeetingCommand" as ShowMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("showm 1")
+activate LogicManager
+
+LogicManager -> MeetingBookParser : parseCommand("showm 1")
+activate MeetingBookParser
+
+create ShowMeetingCommandParser
+MeetingBookParser -> ShowMeetingCommandParser
+activate ShowMeetingCommandParser
+
+ShowMeetingCommandParser --> MeetingBookParser
+deactivate ShowMeetingCommandParser
+
+MeetingBookParser -> ShowMeetingCommandParser : parse("1")
+activate ShowMeetingCommandParser
+
+create ShowMeetingCommand
+ShowMeetingCommandParser -> ShowMeetingCommand
+activate ShowMeetingCommand
+
+ShowMeetingCommand --> ShowMeetingCommandParser : sm
+deactivate ShowMeetingCommand
+
+ShowMeetingCommandParser --> MeetingBookParser : sm
+deactivate ShowMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ShowMeetingCommandParser -[hidden]-> MeetingBookParser
+destroy ShowMeetingCommandParser
+
+MeetingBookParser --> LogicManager : sm
+deactivate MeetingBookParser
+
+LogicManager -> ShowMeetingCommand : execute()
+activate ShowMeetingCommand
+
+ShowMeetingCommand -> Model : showMeeting(1)
+activate Model
+
+Model --> ShowMeetingCommand
+deactivate Model
+
+create CommandResult
+ShowMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ShowMeetingCommand
+deactivate CommandResult
+
+ShowMeetingCommand --> LogicManager : result
+deactivate ShowMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
