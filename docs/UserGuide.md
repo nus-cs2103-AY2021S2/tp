@@ -136,6 +136,7 @@ Examples:
 Shows all student records in Vax@NUS that matches the specified vaccination status, faculty or school residence.
 
 :information_source: NOTE: The filter command only changes the view of the student list and not the view of the appointment list.
+The student and appointment list view will be reverted to the original view for commands executing after filter and find command.
 
 Format: <br>
 `filter VACCINATION_STATUS`
@@ -266,6 +267,8 @@ Format: `list`
 
 Shows personal information, including appointment details if present, of the student that matches the specified matriculation number.
 
+:information_source: NOTE: The student and appointment list view will be reverted to the original view for commands executing after filter and find command.
+
 Format: `find MATRICULATION_NUMBER`
 
 * If the matriculation number does not exist in the records, a message will be shown to inform users that 
@@ -296,23 +299,28 @@ Format: `exit`
 
 ### Saving the data
 
-Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
+VVax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
+ 
+ :information_source: **NOTE:**  VAX@NUS will display our sample data file if no data file is found from your computer.
 
-:information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
+### Editing the data
 
-> Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
+VAX@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
 
-:information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting Vax@NUS.
+Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity. 
 
-> :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment. 
+Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
 
-:information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
+> :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+
+Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
 
-The following parameter formats must be followed:**
+The following parameter formats must be followed:
 
 ### Matriculation Number
  The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
