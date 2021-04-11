@@ -2223,28 +2223,54 @@ testers are expected to do more *exploratory* testing.
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
 
 ### Effort
-SOChedule morphs AddressBook 3(AB3) to an application that help NUS School of Computing (SoC) students
-to effectively manage their tasks and events. Since we are not building our product based on AB3, significant amount of efforts
-are needed to convert the AB3 code base to suit the needs of SOChedule. This involves rewriting the major components including
-Model, Logic, UI, Storage and more. Even before we started to implement our unique features, efforts 
-similar to than building an AB3-level product from scratch are needed. 
+Creating SOChedule took considerable effort and required significant effort from all members.
+To achieve this, all members committed to meticulous planning, regular team meetings, effective communication
+and strong collaboration to ensure that SOChedule is delivered on time and in a satisfactory state.
 
-Compared to AB3 which only stores and updates `Person`, SOChedule doubles the difficulty and handles multiple entity types. 
-Two main ones are related to `Task` and `Event`. This means our project requires more, if not doubled, efforts as compared to implementing AB3 from scratch 
-because of the additional attributes needed to be dealt with.
-Some of them are specific to `Task`, like `Completion Status` and `Priority`. 
-Some of them are specific to `Event`, like `Time`. 
-Some of them are used by both `Task` and `Event`, like `Name` and `Date`.
+#### Major Changes
 
-Because of these additional attributes, Logic component needs more parsers to handle various inputs and commands to achieve
-the features we designed to improve the efficiency of our users. Such examples include parsing and validating of `Date` and `Time` from user inputs.
-Some challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
-Also, we need to add further constraints with our commands to ensure users do not perform invalid operations with our commands. 
-For example, users cannot edit an event to make its start date time later than end date time. 
-All of these require a significant amount of efforts in designing, developing and testing.
+The original code base, Address Book 3 (AB3), was an application that was based around contacts management.
+SOChedule, on the other hand, is an application that aims to help NUS School of Computing (SoC) students
+to effectively manage their tasks and events.
+As such, much changes had to be made to the original code base to ensure that the code is conducive for SOChedule.
 
-Similarly, Storage component needs to deal with more complicated data and data structures that involve both tasks and events. 
+* Major components had to be rewritten or adapted to suit SOChedule's needs.
+  This includes `Model`, `Logic`, `UI`, `Storage`, among other smaller components.
+  This rewrite had to be completed prior to the development of additional features,
+  and demanded significant time and effort similar to building the product from scratch. 
 
-Also, we need to redesign the GUI to show both task list and event lists and the additional attributes we introduced as compared to AB3.
+* Beyond storing a single object type, `Person` in AB3, SOChedule is a major upgrade as it is able to handle two radically different object types, namely `Task` and `Event`.
+  This significantly increased the complexity of our project as most of AB3 code are no longer applicable for use in SOChedule.
+  This would mean that additional time was required to plan out the new objects and attributes thoroughly before implementation could begin.
+  Furthermore, some attributes required addition validation checks beyond a simple presence and alphanumeric check. 
+  For instance, the date-related attributes in `Event` (i.e. `START_DATE` and `END_DATE`) required more thoughtful consideration as there were more specific requirements required, such as past date checks.
+  Such considerations could also have knock-on consequences on other attributes within the same class (date-related attributes could affect the checks for time-related attributes).
+  This would naturally increase the level of complexity of this project.`
 
-Some of the achievements in SOChedule may include our `pin_task` and `sort_task` method.  
+* Additional, non-trivial UI modifications had to be made as well. Beyond simple changes to the aesthetics,
+  changes were made to how the UI functioned. Originally, AB3 only required one `ListView` to handle a single `Person` class.
+  As SOChedule contains 2 different classes, two `ListView` were required, each coming with their own interface to underlying code.
+  Additional thought was required to ensure smooth integration with backend code and smooth user experience.
+
+#### Challenges
+
+* Due to the additional attributes, there were much more attribute handling and edge case considerations.
+  As such, the planning phase was made much more complicated as there was a need for thorough consideration of the new classes and their corresponding attributes.
+  Concurrently, we also had to make sure that the code we implemented adhered to well-known coding principles to ensure code quality.
+  To solve this, we laid down the design requirements early on in the project and ensured that all members had a clear overview of each other's work and responsibilities.
+  Throughout development, regular team meetings were held to keep each other up to date on each other's progress.
+  With the open communication and frequent updates, we were able to help each other test and proofread.
+  Should there be any deviation from the intended outcome, issues were quickly raised and squashed.
+  Through this iterative process, SOChedule was refined.
+  
+* Due to the increase in complexity over AB3, there were also challenges faced throughout implementation.
+  Some challenges included requiring a thorough understanding of the existing code base and component interactions, 
+  being clear of the separation of concerns and the actual implementation of the new commands, while balancing this with the tight deadlines and other commitments.
+  To solve this, we split the workload based on components, in order to ensure that every team member could be the local expert on a component,
+  and by commands. With this setup, each team member was a jack of all trades, and master of one.
+  This smoothened the development process greatly as there was a sense of ownership with each member's commands, while also having the ability to seek clarification on any particular component.
+
+#### Conclusion
+Overall, while being undeniably tough and demanding, our group managed to unite and push through the challenges we faced incrementally.
+While the workload was relentless, the process was made much better and smoother through clear communications and careful planning.
+This made the development process much more enjoyable, and has definitely turned all of us into a better software developer in more ways than one.
