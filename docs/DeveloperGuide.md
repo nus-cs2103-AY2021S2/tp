@@ -712,3 +712,22 @@ Note: this set of test cases can be similarly performed for the doctor record js
 
     1. Test case: edit `AppointmentSchedule.json` such that there is now an invalid appointment (e.g. editing the uuid of a patient in the appointment schedule json such that the uuid does not belong to any patient in the patient records)<br>
     Expected: App-Ointment will start with an empty appointment schedule.
+
+## **Appendix: Effort**
+* Built on AB-3's Address Book, by creating an Appointment Management Software
+* Extended and modified `Person` such that `Patient` and `Doctor` classes inherit from `Person`.
+* Created `Appointment` which takes in 2 `Person`s: a `Patient` and a `Doctor`, a `Timeslot`, and `Tag`s.
+* Add, Clear, Edit, Find, List commands were added for all 3 categories of objects (`Patient`, `Doctor`, `Appointment`) (modified AB-3 Implementation for `Patient`)
+* Added Up/Down Key Toggle Features for user to toggle between the next and previous commands they have input.
+* Added prompting for the closest known command word to alert users in the event of a typographical error in the command word.
+* Handled dependency issues regarding editing of patient/doctors.
+    * Met issues with replacement of person during an edit command, 
+    * Implemented UUID field to act as a de-facto primary key for a `Person`, and use the UUIDs in an `Appointment` instead of a direct reference to the `Patient` and `Doctor` objects. This is so that an `Appointment` can uniquely identify a `Patient` as well as a `Doctor`, and still be able to listen to changes in a Patient.
+    * Handled UI display of Patient, Doctor, Appointment to not display the UUID and to show the appropriate names instead, and performed the translation with high efficiency with Java Maps.
+
+* Handled dependency issues regarding deleting of patient/doctors and clearing of patient/doctor records.
+
+* Modified `Model`, `Storage`, and `Logic` to be generic, to accept extensions of the `Person` class.
+* Added Timeslot Parser, and related enums, so that user is able to be more flexible in entering date and time for their appointments.
+
+* Added Tests regarding the new classes and commands
