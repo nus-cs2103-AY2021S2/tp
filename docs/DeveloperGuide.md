@@ -576,7 +576,7 @@ The following Activity Diagram summarizes what happens when a user executes a `s
 
 * **Alternative 2:** Change underlying list implementation from filtered list to a list that supports sorting.
     * **Pros**: Easy to maintain once implemented.
-    * **Cons**: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components
+    * **Cons**: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components 
       that depend on filtered list implementation would have to be changed as well.
 
 <br>
@@ -656,7 +656,7 @@ From the diagram above:
 1. When the user keys in an input, `execute` method of the `LogicManager` is called with the user input as parameter.
 2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
 4. The input string is separated into command keyword and arguments containing the prefixes with the updated item's
-    attribute.
+   attribute.
 5. StoreMandoParser recognises that it is a `HelpCommand` and creates a `HelpCommand` object.
 6. The `HelpCommand` is passed back to `LogicManager`.
 7. `LogicManager` then calls the `execute` method of `HelpCommand` with `Model` as argument.
@@ -986,14 +986,7 @@ testers are expected to do more *exploratory* testing.
     1. Launch the jar file using the java -jar command rather than double-clicking (reason: to ensure the jar file is 
        using the same java version that you verified above). Use double-clicking as a last resort.
        If you are on Windows, use the DOS prompt, or the PowerShell (not the WSL terminal) to run the JAR file. The 
-       window size may not be optimum.
-
-1. Saving window preferences
-
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-    1. Re-launch the app using the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       window size will be fixed and will be full screen.
 
 ### Adding an item
 

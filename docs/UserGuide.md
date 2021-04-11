@@ -41,7 +41,7 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 **Please note the following symbols used in the User Guide which may serve as points of interests:**
 
-`command` : The grey highlight indicates commands that can be executed by StoreMando.
+`command` : The lavender highlight indicates commands that can be executed by StoreMando.
 
 :information_source: : This symbol indicates information that you may wish to take note.
 
@@ -62,8 +62,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 1. Copy the file to the folder you want to use as the _home folder_ for your StoreMando.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data for you to see how the app looks.
+1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the 
+   app contains some sample data for you to see how the app looks.
 
    ![Ui](images/Ui.png)
 
@@ -97,7 +97,7 @@ Every item is made up of an item name, location and quantity. Expiry date and ta
 Expiry date of an item will be shown in orange if the item is expiring within the next 3 days. Expiry date of an item will be shown
 in red if the item has expired.
 
-2 items are identical when they have the exact same name, location and expiry date.
+Two items are identical when they have the exact same name, location and expiry date.
 StoreMando does not allow two identical items to exist. 
 
 Two items are considered to be similar if they have the same spelling for name and location but differ by letter case. 
@@ -416,7 +416,7 @@ You can use this command in 3 different ways.
 
 * #### 3.7.1. Sorting items by quantity
 
-    * #### 3.7.1.1. Ascending quantity
+    * ##### 3.7.1.1. Ascending quantity
       
       Format: `sort quantity asc`
 
@@ -434,7 +434,7 @@ You can use this command in 3 different ways.
 
       </div>
 
-    * #### 3.7.1.2. Descending quantity
+    * ##### 3.7.1.2. Descending quantity
       
       Format: `sort quantity desc`
 
@@ -584,5 +584,8 @@ Action | Format, Examples
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
-
+* **Item**: An item is made up of an item name, location, quantity, expiry date(optional) and tags(optional). 
+* **Similar Items**: Items that have the same spelling for name and location but differ by letter case.
+* **Identical Items**: Items that have the same name and location in terms of spelling and letter case, as well as the same expiry date if it exists for both.
+* **Alphanumeric**: Alphanumeric characters are those comprised of the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
 ----
