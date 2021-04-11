@@ -1429,18 +1429,20 @@ readability of the code. Implementing code under UniqueEventList also reduces de
 
 **Target user profile**:
 
-* NUS SOC Student
+* NUS SOC Students
+* Have a need to manage a significant number of tasks and events
+* Have trouble tracking their schedule
 * Prefer using CLI rather than GUI
-* Struggle to manage their schedule
-* Have a lot of commitments (6 modules, TA and RA roles while balancing a part time internship)
-* Can type fast, hate mouse
+* Reasonably comfortable using CLI apps
+* Can type fast and hate mouse
+* Prefer desktop apps over other types
+
 
 **Value proposition**:
 
-* Provide a simple platform for target users to manage their schedule
-* CLI commands to manage meetings or schedule with some contacts
-* CLI commands to add tasks and reminders
-* GUI to display the schedule of user
+* Provide a simple platform for target users to efficiently manage their schedule 
+* Track and manage users' tasks and events quickly
+* Provide useful features that improve the efficiency of users in task and event management
 
 ### A2. User stories
 
