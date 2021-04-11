@@ -247,11 +247,11 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
 
 ### UniqueFoodList Object
 
-<img src="images/UnqueFoodListClassDiagram.png" width="287" />
+<img src="images/UniqueFoodListClassDiagram.png" width="287" />
 
 The UniqueFoodList class represents a list of food recorded by the user.
 
-<img src="images/UnqueFoodListFoodAssociationClassDiagram.png" width="287" />
+<img src="images/UniqueFoodListFoodAssociationClassDiagram.png" width="287" />
 
 The UniqueFoodList class stores an ObservableList of Food:
 1. `ObservableList<Food>`: Represents the list of recorded `Food`
