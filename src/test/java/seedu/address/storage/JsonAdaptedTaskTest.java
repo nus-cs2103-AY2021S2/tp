@@ -16,6 +16,7 @@ import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.TaskName;
+import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.PriorityTag;
 
 public class JsonAdaptedTaskTest {
@@ -141,6 +142,16 @@ public class JsonAdaptedTaskTest {
                 VALID_TAGS, INVALID_PRIORITY_TAG);
         String expectedMessage = PriorityTag.MESSAGE_INVALID_INPUT;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModeType_invalidWeightage_throwsIllegalValueException() {
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_CODE, VALID_DATE,
+                VALID_TIME, VALID_STATUS, INVALID_WEIGHTAGE, VALID_REMARK,
+                VALID_TAGS, VALID_PRIORITY_TAG);
+        String expectedMessage = Weightage.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+
     }
 
 }
