@@ -112,8 +112,13 @@ public class UniquePoolList implements Iterable<Pool> {
         internalList.setAll(newList);
     }
 
+    /**
+     * Returns true if one or more pools contain a passenger that is equal to {@code key}.
+     * @param key the {@code Passenger} to search for.
+     * @return true if at least one pool contains {@code key}, false otherwise.
+     */
     public boolean containsPassenger(Passenger key) {
-        return internalList.stream().anyMatch(x -> x.hasPassenger(key));
+        return internalList.stream().anyMatch(pool -> pool.hasPassenger(key));
     }
 
     /**

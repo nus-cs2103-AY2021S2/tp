@@ -134,6 +134,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a pool that contains the given {@code passenger} exists in the address book.
+     */
+    public boolean hasPoolWithPassenger(Passenger passenger) {
+        return pools.containsPassenger(passenger);
+    }
+
+    /**
      * Adds a passenger to the address book.
      * The passenger must not already exist in the address book.
      */

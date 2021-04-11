@@ -104,6 +104,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPoolWithPassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        return addressBook.hasPoolWithPassenger(passenger);
+    }
+
+    @Override
     public boolean deletePassenger(Passenger passenger) {
         return addressBook.removePassenger(passenger);
     }
