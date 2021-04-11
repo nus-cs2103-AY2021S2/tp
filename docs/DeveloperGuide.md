@@ -184,7 +184,7 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
-##### Proposed Improvements
+#### Proposed Improvements
 1. Items with the same name, location and expiry date cannot co-exist in the inventory. Thus, every item that 
    is to be added has to be checked and validated that it is not a duplicate item. The current implementation to do so
    involves iterating through the list of all items to check if there already exists an item in the inventory that has 
@@ -193,7 +193,7 @@ The following Activity Diagram summarizes what happens when a user executes the 
    done in O(1) time. This feature was not implemented as it would introduce unnecessary complexity, and the current 
    solution meets the non-functional requirements regarding performance.
 
-##### Design Considerations:
+#### Design Considerations:
 
 ##### Aspect: Identifying the addition of duplicate item
 * **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by **name, location 
@@ -316,6 +316,8 @@ The following Activity Diagram summarizes what happens when a user executes the 
 <br>
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+#### Design Considerations:
 
 ##### Aspect: How `delete` executes
 
@@ -563,7 +565,7 @@ The following Activity Diagram summarizes what happens when a user executes a `s
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
 
-##### Design Considerations:
+#### Design Considerations:
 
 ##### Aspect: Data structure to  use to sort the list of items
 
