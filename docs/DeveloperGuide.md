@@ -29,12 +29,14 @@ title: Developer Guide
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Listing all flashcards](#listing-all-flashcards)
+    * [Adding a flashcard](#adding-a-flashcard)
     * [Deleting a flashcard](#deleting-a-flashcard)
     * [Editing a flashcard](#editing-a-flashcard)
     * [Finding flashcards](#finding-flashcards)
     * [Filtering flashcards](#filtering-flashcards)
     * [Clearing all flashcards](#clearing-all-flashcards)
     * [Viewing a flashcard](#viewing-a-flashcard)
+    * [Sorting flashcards](#sorting-flashcards)
     * [Review mode](#review-mode)
     * [Displaying statistics](#displaying-statistics)
     * [Undoing a command](#undoing-a-command)
@@ -190,7 +192,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.flashback.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -897,7 +899,7 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `find`<br>
        Expected: The list will not be updated, and an invalid command format error is shown in the result display.
-       <div style="page-break-after: always;"></div>
+       <div style="page-break-after: always;"></div><br>
        
     1. Test case: `find equa`<br>
        Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display states the number of flashcards found.
@@ -950,8 +952,10 @@ testers are expected to do more *exploratory* testing.
 ### Sorting flashcards
 1. Sorting all flashcards in FlashBack.
     1. Prerequisites: There must be at least 1 flashcard currently shown in the list.
+       
     1. Test case: `sort priority -a`
     Expected: The display list will be updated to show flashcards sorted in ascending order of priority.
+       
     1. Test case: `sort`
     Expected: No flashcards sorted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
 <div style="page-break-after: always;"></div>
@@ -1020,7 +1024,8 @@ testers are expected to do more *exploratory* testing.
 1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
-        <div style="page-break-after: always;"></div>
+        <div style="page-break-after: always;"></div><br>
+       
     1. Test case: `stats` <br>
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
