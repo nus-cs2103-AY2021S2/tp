@@ -3,45 +3,74 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
-* [Setting up, getting started](#setting-up-getting-started)
-* [Design](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-* [Implementation](#implementation)
-    * [\[New\] Delete multiple tasks with indices](#new-delete-multiple-tasks-with-indices)
-        * [Proposed Implementation](#proposed-implementation)
-        * [Design consideration:](#design-consideration)
-            * [Aspect: How undo & redo executes](#aspect-how-undo--redo-executes)
-    * [Proposed Data archiving](#proposed-data-archiving)
-* [Documentation, logging, testing, configuration, dev-ops]()
-* [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a task](#deleting-a-task)
-    * [Saving data](#saving-data)
+# Table of contents
+
+- [**1. Introduction**](#1-introduction)
+    - [1.1 Purpose](#11-purpose)
+    - [1.2 Audience](#12-audience)
+    - [1.3 Taskify Overview](#13-taskify-overview)
+    - [1.4 How to use this guide](#14-how-to-use-this-guide)
+- [**2. Setting up, getting started**](#2-setting-up-getting-started)
+- [**3. Design**](#3-design)
+    - [3.1 Architecture](#31-architecture)
+    - [3.2 UI component](#32-ui-component)
+    - [3.3 Logic component](#33-logic-component)
+    - [3.4 Model component](#34-model-component)
+    - [3.5 Storage component](#35-storage-component)
+    - [3.6 Common classes](#36-common-classes)
+- [**4. Implementation**](#4-implementation)
+- [**5. Documentation, logging, testing, configuration, dev-ops**](#5-documentation-logging-testing-configuration-dev-ops)
+- [**6. Appendix: Requirements**](#6-appendix-requirements)
+    - [6.1 Product scope](#61-product-scope)
+    - [6.2 User stories](#62-user-stories)
+    - [6.3 Use cases](#63-use-cases)
+    - [6.4 Non-Functional Requirements](#64-non-functional-requirements)
+    - [6.5 Glossary](#65-glossary)
+- [**7. Appendix: Instructions for manual testing**](#7-appendix-instructions-for-manual-testing)
+    - [7.1 Launch and shutdown](#71-launch-and-shutdown)
+    - [7.2 Deleting a task](#72-deleting-a-task)
+    - [7.3 Saving data](#73-saving-data)
+- [**8. Appendix: Effort**](#8-appendix-effort)
+  
+
+--------------------------------------------------------------------------------------------------------------------
+# **1. Introduction**
+
+## 1.1 Purpose
+
+The purpose of this Developer Guide is to describe the design, implementation and documentation of Taskify. This 
+document intends for the read to understand the relationship between the components that make up Taskify.
+
+## 1.2 Audience
+
+This Developer Guide is for anyone who wishes to understand the internal software architecture of Taskify.
+In addition, the following groups are the intended target of this documentation:
+
+* CS2103T / CS2101 Teaching Team - as a means to evaluate the design, implementation and documentation of Taskify.
+* Potential Taskify Developers - as a means to understand the internal structure of Taskify to potentially expand
+upon Taskify in the future.
+  
+## 1.3 Taskify Overview
+Taskify is a desktop app intended for university students, optimized for fast typists via a Command Line Interface 
+(CLI). Taskify helps users keep track of their tasks with a a clean and simplistic interface.
+
+## 1.4 How to use this guide
+This Developer Guide is structured in a top-down manner, starting with the overall architecture of Taskify, followed
+by in-depth descriptions and implementations.
+
+For your convenience, use the **Table of Contents** above to navigate to a section quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Setting up, getting started**
+# **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Design**
+# **3. Design**
 
-## Architecture
+## 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -51,15 +80,15 @@ of each component.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2021S2-CS2103T-W14-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 
 </div>
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2021S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/taskify/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/taskify/MainApp.java). It
 is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -94,7 +123,7 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
-## UI component
+## 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -115,7 +144,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-## Logic component
+## 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -137,7 +166,7 @@ call.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-## Model component
+## 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -151,12 +180,12 @@ The `Model`,
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Taskify`, which `Task` references. This allows `Taskify` to only require one `Tag` object per unique `Tag`, instead of each `Task` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
-## Storage component
+## 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -167,12 +196,80 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Taskify data in json format and read it back.
 
-### Common classes
+## 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.taskify.commons` package.
 
+--------------------------------------------------------------------------------------------------------------------
+# **4. Implementation**
+The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
+describes some noteworthy details on how certain features are implemented.
 
-# Implementation
+## Switch between the different tabs
+
+### Format of command
+* `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
+* `expired`: switch from the other tab to expired tab. It will throw an error if you are already in the expired tab.
+* `uncompleted`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the uncompleted tab.
+* `completed`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the completed tab.
+
+### Implementation
+
+The tab switching functionality is facilitated by the `MainWindow#switchTab(int tabNumber)` depending on which tab you
+want to switch to and what tab users are currently on now.
+
+The model manager has 5 filtered task list. They are `filteredTasks`, `expiredFilteredTasks`,
+`uncompletedFilteredTasks`, `completedFilteredTasks` and `todaysFilteredTasks`. The first 4 filtered task list is used for tab
+switching. All the filtered task list originated from UniqueTaskList.
+
+The following sequence diagram shows how the switching tabs operation works, we will take the Expired Command as
+an example to illustrate as the other tab switching commands is similar.
+
+![ExpiredSequenceDiagram](images/ExpiredSequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for \`TaskifyParser\` and \`ExpiredCommand\` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+
+The following activity diagram summarizes what happens when a user executes a switch command like `expired`:
+
+![ExpiredActivityDiagram](images/ExpiredActivityDiagram.png)
+
+### Design Consideration
+* **Current Choice:** Switch tabs based on the tab name.
+    * Pros: More intuitive to the user. The tab name corresponds to the status of the tasks for that tab.
+    * Cons: User would have to type longer sentence as compared to `switch 1`
+
+* **Alternative Choice:** Switch tabs based on tab index
+    * Pros: Lesser things to remember as the format command is `switch index`
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
+
+
+## View Command
+The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
+
+### Implementation
+This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
+in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
+
+The following sequence diagram shows how the `view` command works. We will assume the user inputs
+`view 2021-04-12`, that is, the user intends to view all tasks that have the date 12th April 2021.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+1. The user inputs `view 2021-04-12`.
+2. TaskifyParser identifies this as a `view` command and creates a `ViewCommandParser` and call its parse method
+with the arguments specified by the user (in this case, `2021-04-12`).
+3. `ViewCommandParser` creates a new `TaskHasSameDatePredicate` with the arguments `2021-04-12`.
+4. `ViewCommandParser` creates a new `ViewCommand` with the newly created `TaskHasSameDatePredicate` object.
+5. When `ViewCommand`'s execute method is called, it prompts `Model` to call `updateFilteredTaskList()` with the 
+`TaskHasSameDatePredicate` predicate.
+6. `Model` updates the filtered list based on the predicate.
+7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
+to the user.
+   
+### Design Consideration
+* **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
+* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
+
 
 ## \[New] Delete multiple tasks with indices
 This feature allows users to list out the [indices](#glossary) of tasks to delete.
@@ -195,13 +292,13 @@ The following sequence diagram traces the step-by-step execution of deleting mul
 
 #### Aspect 2: Design of solution
 * **Solution 1 (selected)**: Create a new command that is not a subclass of `DeleteCommand`
-  * Pros: Decouple the new command from `DeleteCommand` and obey SRP.
-  * Cons: Harder to implement
-    
+    * Pros: Decouple the new command from `DeleteCommand` and obey SRP.
+    * Cons: Harder to implement
+
 * **Solution 2**: Make the new command a subclass of `DeleteCommand` or include a list of `DeleteCommand` as a field in the new command
-  * Pros: Intuitive and easy to understand, easy to implement either solution
-  * Cons: Violates SRP
-    
+    * Pros: Intuitive and easy to understand, easy to implement either solution
+    * Cons: Violates SRP
+
 Solution 1 was selected for its better benefits as well as increased testability.
 
 ## \[New] Delete multiple tasks with an index range
@@ -210,7 +307,7 @@ This feature allows users to provide an index range to delete all tasks within t
 ### Implementation
 This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
 [deleting multiple tasks with **multiple indices** feature](#new-delete-multiple-tasks-with-indices), with the only difference in
-the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in 
+the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in
 `DeleteUtil#getTasksToDelete(List<Task>, List<Index>, boolean)`. This field is determined by `DeleteMultipleCommand#parse`, which checks
 if the user is deleting tasks using indices or an index range by consulting `DeleteUtil#isDeletingTasksByRange`.
 
@@ -262,9 +359,14 @@ The following sequence diagram traces the step-by-step execution of deleting all
 * **Solution 2 (selected)** : Refactor the new logic (in Solution 1) into a new command
     * Pros : Obeys SRP, cohesive code in `DeleteMultipleCommand` and the new command. Increases readibility and testability.
     * Cons : More test and main code
-    
+
 Solution 2 was selected since the amount of code to write shouldn't be a huge factor in deciding which solution is better. The other factors explained
 are much more important.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# **5. Documentation, logging, testing, configuration, dev-ops**
+
 
 # **Documentation, logging, testing, configuration, dev-ops**
 
@@ -276,9 +378,9 @@ are much more important.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix: Requirements**
+# **6. Appendix: Requirements**
 
-## Product scope
+## 6.1 Product scope
 
 **Target user profile**:
 
@@ -288,7 +390,7 @@ are much more important.
 
 **Value proposition**: help students manage their tasks in a systematic and efficient manner
 
-## User stories
+## 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -311,7 +413,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-## Use cases
+## 6.3 Use cases
 
 (For all use cases below, the **System** is the `Taskify` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -381,14 +483,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Taskify warns that the Task is already of the set status
       
         Use case ends.
+
+* 3b. The given status is expired. Even though `expired` is a valid status of a task, users cannot directly modify it.
+    * 3b1. Taskify warns that it can change the status of the task if it is either `uncompleted` or `completed` .
+
+      Use case ends.
   
-* 3b. Taskify does not recognise the status that the User wants to set
-    * 3b1. Taskify warns that it does not understand the type of status entered
+* 3c. Taskify does not recognise the status that the User wants to set
+    * 3c1. Taskify warns that it does not understand the type of status entered
     
         Use case ends.
     
-* 3c. The given index is invalid
-    * 3c1. Taskify warns that the index entered is invalid.
+* 3d. The given index is invalid
+    * 3d1. Taskify warns that the index entered is invalid.
     
         Use case ends.
 
@@ -434,11 +541,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to sort the Tasks.
 2. Taskify shows the Tasks in their sorted order.
 
-**Extensions**
-* 1a. There are two or more Tasks that have the same date & time.
-    * 1a1. Taskify sorts these Tasks in lexicographical order.
-    
-        Use case resumes from step 2
 ---
 **Use case 7: Search for Tasks using keywords (excluding tags)**
 
@@ -450,7 +552,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. Taskify cannot find any Task with the given keywords
     * 1a1. Taskify informs the User that no Tasks are found, and that keyword(s) must match a whole word in the Task's name.
-
+      
         Use case ends.
 ---
 **Use case 8: Modifying an existing Task**
@@ -475,76 +577,120 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c. Taskify warns that no modifying can take place if there are no updated fields filled in.
     
         Use case ends.
+    
+---
 
 **Use case 9: Switch to Home tab**
 
 **MSS**
 
-1. User requests to got to Home Tab.
+1. User requests to switch to Home Tab.
 2. Taskify switches to Home Tab.
 
-    Use Case ends 
-    
+    Use Case ends
 
 **Extensions**
-* 1a. The User's input is unrecognisable to Taskify
-    * 1a1. An error message is shown.
+* 1a. If the user is currently in the Home tab 
+    * 1a1. Taskify informs the User that it is currently in the Home tab.
 
       Use case ends.
+
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+      
+---
 
 **Use case 10: Switch to Expired tab**
 
 **MSS**
 
-1. User requests to got to Expired Tab.
+1. User requests to switch to Expired Tab.
 2. Taskify switches to Expired Tab.
 
    Use Case ends
 
 
 **Extensions**
-* 1a. The User's input is unrecognisable to Taskify
-    * 1a1. An error message is shown.
+
+* 1a. If the user is currently in the Expired Tab
+    * 1a1. Taskify informs the User that it is currently in the Expired Tab.
 
       Use case ends.
+    
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+
+---
 
 **Use case 11: Switch to Completed tab**
 
 **MSS**
 
-1. User requests to got to Completed Tab.
+1. User requests to switch to Completed Tab.
 2. Taskify switches to Completed Tab.
 
    Use Case ends
 
 
 **Extensions**
-* 1a. The User's input is unrecognisable to Taskify
-    * 1a1. An error message is shown.
+* 1a. If the user is currently in the Completed Tab
+    * 1a1. Taskify informs the User that it is currently in the Completed Tab.
 
       Use case ends.
 
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+
+---
+    
+
+**Use case 12: Switch to Uncompleted tab**
+
+**MSS**
+
+1. User requests to switch to Uncompleted Tab.
+2. Taskify switches to Uncompleted Tab.
+
+   Use Case ends
 
 
+**Extensions**
+* 1a. If the user is currently in the Uncompleted Tab
+    * 1a1. Taskify informs the User that it is currently in the Uncompleted Tab.
 
-**Use case 9: Viewing Tasks by date**
+      Use case ends.
+
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+    
+---
+
+**Use case 13: Viewing Tasks by date**
 
 **MSS**
 
 1. User requests to view all Tasks that are due on specified date.
-2. Taskify shows the User Tasks with the same date.
+2. Taskify shows all the User Tasks with the same date.
+   
+   Use case ends.
 
 **Extensions**
 * 1a. There are no tasks stored
-    * 1a1. Taskify informs the User there are no tasks tracked
+    * 1a1. Taskify informs the User there are no tasks with the specified date.
     
-Use case ends.
-
-*{More to be added}*
+        Use case ends.
 
 ---
 
-## Non-Functional Requirements
+## 6.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
@@ -553,14 +699,14 @@ Use case ends.
 5. The app should be able to run with or without internet connection
 6. The product should not take above 10 seconds to execute any commands.
 
-## Glossary
+## 6.5 Glossary
 * **SRP**: Single Responsibility Principle
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Indices**: Plural form of **Index**
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix: Instructions for manual testing**
+# **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -569,7 +715,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-## Launch and shutdown
+## 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -587,7 +733,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-## Deleting a task
+## 7.2 Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -605,10 +751,14 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-## Saving data
+## 7.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+# **8. Appendix: Effort**
+

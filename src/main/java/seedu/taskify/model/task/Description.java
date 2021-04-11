@@ -11,7 +11,8 @@ public class Description {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Description can take any values, and it should not be blank";
+            "Description can take any values but it should not have more than "
+            + "80 characters and should not be blank.";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
@@ -27,10 +28,11 @@ public class Description {
     }
 
     /**
-     * Returns true if a given string is a valid description.
+     * Returns true if a given string is a valid description and has length less
+     * than or equal to 80 characters
      */
     public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 80;
     }
 
     @Override

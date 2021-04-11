@@ -90,6 +90,10 @@ public class Status {
         }
     }
 
+    public StatusType getStatusType() {
+        return this.status;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
