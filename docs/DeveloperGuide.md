@@ -373,7 +373,7 @@ The sequence diagram below shows how the detail feature works:
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a detail command is executed:
 ![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
 
 #### Design consideration:
@@ -1022,7 +1022,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Deletes a new important date**
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
+
+**Use case: Deletes a important date**
 
 **MSS**
 

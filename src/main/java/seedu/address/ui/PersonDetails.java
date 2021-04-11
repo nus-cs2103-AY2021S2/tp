@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
+import seedu.address.ui.PanelList.DetailLessonListPanel;
 
 /**
  * An UI component that displays information of a {@code Person}.

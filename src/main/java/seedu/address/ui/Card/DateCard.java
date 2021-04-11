@@ -1,18 +1,19 @@
-package seedu.address.ui;
+package seedu.address.ui.Card;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.lesson.Lesson;
+import seedu.address.model.date.ImportantDate;
+import seedu.address.ui.UiPart;
 
 
 /**
  * An UI component that displays information of an {@code Important Date}.
  */
-public class DetailLessonListCard extends UiPart<Region> {
+public class DateCard extends UiPart<Region> {
 
-    private static final String FXML = "DetailLessonListCard.fxml";
+    private static final String FXML = "DateListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,24 +23,26 @@ public class DetailLessonListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Lesson lesson;
+    public final ImportantDate importantDate;
 
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label lessonDay;
+    private Label description;
     @FXML
-    private Label lessonTime;
+    private Label details;
+    @FXML
+    private Label id;
 
     /**
-     * Creates a {@code LessonListCard} with the given {@code Lesson} and index to display.
+     * Creates a {@code DateCard} with the given {@code Important Date} and index to display.
      */
-    public DetailLessonListCard(Lesson lesson) {
+    public DateCard(ImportantDate importantDate, int displayedIndex) {
         super(FXML);
-        this.lesson = lesson;
-        lessonDay.setText(lesson.getDayInString());
-        lessonTime.setText(lesson.getTimeInString());
-        cardPane.prefWidthProperty().bind(getRoot().widthProperty());
+        this.importantDate = importantDate;
+        id.setText(displayedIndex + ". ");
+        description.setText(importantDate.getDescription().description);
+        details.setText(importantDate.getDetails().toString());
     }
 
     @Override
@@ -50,13 +53,14 @@ public class DetailLessonListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof LessonListCard)) {
+        if (!(other instanceof DateCard)) {
             return false;
         }
 
         // state check
-        DetailLessonListCard card = (DetailLessonListCard) other;
-        return lessonDay.getText().equals(card.lessonDay.getText())
-                && lessonTime.getText().equals(card.lessonTime.getText());
+        DateCard card = (DateCard) other;
+        return id.getText().equals(card.id.getText())
+                && importantDate.equals(card.importantDate);
     }
+
 }
