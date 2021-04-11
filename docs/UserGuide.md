@@ -59,7 +59,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Finding schedule given a date: [`find_schedule`](#finding-schedule-given-a-date)
 * Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
-* Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
+* Clearing SOChedule: [`clear`](#clearing-sochedule-clear)
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -263,9 +263,8 @@ Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 * `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
 * Note that any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments
   (e.g. name/Name, tag/Tag or T&sk) will lead to an error.
-
-* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one
-  would be taken (i.e. `n/n2`).
+* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1 n/n2 n/n3`), only the last 
+occurrence would be taken (i.e. `n/n3`).
 
 Examples:
 * `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
@@ -397,12 +396,12 @@ Format: `today_task`
 Finds tasks whose names contain any of the given keywords from the task list.
 
 Format: `find_task KEYWORD1 [KEYWORD2] ...`
-* The search is case-insensitive. e.g. `homework` will match `Homework`.
+* The search is case-insensitive, e.g. `homework` will match `Homework`.
 * The search scope is the **full** task list.
-* The order of the keywords does not matter. e.g. `Practice Problems` will match `Problems Practice`.
+* The order of the keywords does not matter, e.g. `Practice Problems` will match `Problems Practice`.
 * Only the name of the tasks is searched.
-* Only full words will be matched. e.g. `CS` will not match `CS2103`.
-* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Homework` will return
+* Only full words will be matched, e.g. `CS` will not match `CS2103`.
+* Tasks matching at least one keyword will be returned (i.e. `OR` search), e.g. `CS2103 Homework` will return
   `ST2131 Homework`, `CS2103 Quiz`.
 
 Examples:
@@ -482,10 +481,10 @@ Examples:
 
 
 ### Clearing completed tasks: `clear_completed_task`
-Clear tasks marked as completed from the task list.
+Clears tasks marked as completed from the task list.
 
 Format: `clear_completed_task`
-* If there's no completed task in the list (or even no any task in the list), this command is still able to be executed
+* Even if there's no completed task in the list (or even no any task in the list), this command is still able to be executed
 and return success message `Completed tasks (if any) have been cleared!` (In this case, no task is cleared since no task is completed.)
 
 #### Illustration of usage of `clear_completed_task`:
@@ -500,7 +499,7 @@ Clear tasks with past deadlines from the task list.
 Format: `clear_expired_task`
 * For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
 hence changing of date on a computer could affect the judgement of expiration.
-* If there's no expired task in the list (or even no any task in the list), this command is still able to be executed
+* Even if there's no expired task in the list (or even no any task in the list), this command is still able to be executed
 and return success message `Expired tasks (if any) have been cleared!` (In this case, no task is cleared since no task is expired.)
 
 #### Illustration of usage of `clear_expired_task`:
@@ -526,8 +525,8 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
 * Note that any valid prefixes and input arguments (e.g. `n/Meeting 1` or `st/14:00`) followed by invalid prefixes and 
 input arguments (e.g. `name/Name`, `tag/Tag` or `Ev@nt`) will lead to an error.
-* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one 
-would be taken (i.e. `n/n2`).
+* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1 n/n2 n/n3`), only the last 
+occurrence would be taken (i.e. `n/n3`).
   
 Examples:
 * `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its 
@@ -598,12 +597,12 @@ Format: `today_event`
 Finds events whose names contain any of the given keywords from the event list.
 
 Format: `find_event KEYWORD1 [KEYWORD2] ...`
-* The search is case-insensitive. e.g. `meeting` will match `Meeting`.
+* The search is case-insensitive, e.g. `meeting` will match `Meeting`.
 * The search scope is the **full** task list.
-* The order of the keywords does not matter. e.g. `Attending Lecture` will match `Lecture Attending`.
+* The order of the keywords does not matter, e.g. `Attending Lecture` will match `Lecture Attending`.
 * Only the name of the events is searched.
-* Only full words will be matched. e.g. `CS` will not match `CS2103`.
-* Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Meeting` will return
+* Only full words will be matched, e.g. `CS` will not match `CS2103`.
+* Events matching at least one keyword will be returned (i.e. `OR` search), e.g. `CS2103 Meeting` will return
   `Project Meeting`, `CS2103 Lecture`.
 
 Examples:
@@ -700,7 +699,7 @@ Format: `summary`
 [Return to Feature List](#feature-list)
 
 
-### Clearing Sochedule: `clear`
+### Clearing SOChedule: `clear`
 Clears all tasks and events in the SOChedule's task list and event list.
 
 Format: `clear`
@@ -745,17 +744,17 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
-**Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
-**Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g., `done_task 1 2`
-**Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
-**Edit** | `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g., `edit_task 1 n/editedTaskName`
+**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g. `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
+**Delete** | `delete_task INDEX`<br>e.g. `delete_task 1`
+**Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g. `done_task 1 2`
+**Undone** | `undone_task INDEX`<br>e.g. `undone_task 1`
+**Edit** | `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g. `edit_task 1 n/editedTaskName`
 **List** | `list_task`
 **Today** | `today_task`
-**Find** | `find_task KEYWORDS`<br>e.g., `find_task homework`
-**Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
-**Pin** | `pin_task INDEX`<br>e.g., `pin_task 1`
-**Unpin** | `unpin_task INDEX`<br>e.g., `unpin_task 1`
+**Find** | `find_task KEYWORD1 [KEYWORD2] ...`<br>e.g. `find_task homework`
+**Sort** | `sort_task ARGUMENT`<br>e.g. `sort_task name`
+**Pin** | `pin_task INDEX`<br>e.g. `pin_task 1`
+**Unpin** | `unpin_task INDEX`<br>e.g. `unpin_task 1`
 **Clear Completed** | `clear_completed_task`
 **Clear Expired** | `clear_expired_task`
 
@@ -763,19 +762,19 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00`
-**Delete** | `delete_event INDEX`<br>e.g., `delete_event 3`
+**Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g. `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00`
+**Delete** | `delete_event INDEX`<br>e.g. `delete_event 3`
 **List** | `list_event`
 **Today** | `today_event`
-**Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
+**Find** | `find_event KEYWORD1 [KEYWORD2] ...`<br>e.g. `find_event meeting`
 **Clear Completed** | `clear_expired_event`
-**Find Free Time** | `free_time DATE` <br>e.g., `free_time 2021-01-01`
+**Find Free Time** | `free_time DATE` <br>e.g. `free_time 2021-01-01`
 
 ### Commands related to both task and event
 
 Action | Format, Examples
 --------|------------------
-**Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`
+**Find Schedule** | `find_schedule DATE` <br>e.g. `find_schedule 2021-06-01`
 **Clear Schedule** | `clear`
 **Summary** | `summary`
 
