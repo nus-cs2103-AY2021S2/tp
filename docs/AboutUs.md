@@ -1,3 +1,8 @@
+---
+layout: page
+title: About Us
+---
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
@@ -7,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/prabhakaran-gokul.png" width="200px">
 
 [[github](https://github.com/Prabhakaran-Gokul/)]
-[[portfolio](team/prabhakarangokul.md)]
+[[portfolio](team/prabhakaran-gokul.md)]
 
 * Role: Developer
 * Responsibilities: Integration
