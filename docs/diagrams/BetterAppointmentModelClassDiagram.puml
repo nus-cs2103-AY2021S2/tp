@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+AppointmentSchedule *-right-> "1" NonConflictingAppointmentList
+AppointmentSchedule *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- NonConflictingAppointmentList
+UniqueTagList -[hidden]down- NonConflictingAppointmentList
+
+UniqueTagList *-right-> "*" Tag
+NonConflictingAppointmentList o-right-> Appointment
+
+Appointment -up-> "*" Tag
+
+Appointment *--> Timeslot
+AppointmentDisplay -left-|> Appointment
+Appointment --> PatientMap
+Appointment --> DoctorMap
+PatientMap --> Patient
+DoctorMap --> Doctor
+@enduml
