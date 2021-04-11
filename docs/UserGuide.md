@@ -111,8 +111,8 @@ Examples:
 
 Find customers from the contact list that matches specified filters.
 
-Format: `find  n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE coe/COE_EXPIRY_DATE t/TAGs 
-cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE b/DATE_OF_BIRTH`
+Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+OWNED_CARTYPE] [coe/COE_EXPIRY_DATE] [t/TAGs] 
+[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]`
 
 **IMP** : All arguments are optional. In particular:
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to 
@@ -159,11 +159,6 @@ We can combine in the following way :
 Note that for `find A /AND B /OR C /OR D /AND E` , the implicit bracketing considered is `find A /AND [B /OR [C /OR [D 
 /AND E]]]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A customer can have any number of tags (including 0)
-</div>
-
-
 ## Deleting a customer : `delete`
 
 Deletes the specified customer from the contact list.
@@ -203,15 +198,62 @@ Result:
 
 
 ## Exiting app: `exit`
-* **`exit`** : Exits the app.
+* **`exit`** : Exits the app safely.
 
 ## Quick help: `help`
 * **`help`** : Overview of commands and input syntax.
 
 ## Email Contact person: `email`
-* **`email`** : Opens a simplified mailbox interface enabling user to email to the desired contact persons with a prefilled text field.
-  Currently, it only supports sending through Gmail accounts and requires enabling less secure app access on google security.
-  This feature is **only** avaliable through the menu bar currently.
-  ![Ui](images/helps/googlehelp1.png)
-  Url: https://myaccount.google.com/security
+* **`email`** : Opens a simplified mailbox interface enabling user to send email through Simple Mail Transfer Protocol(SMTP).
+  Please ensure that you enable google to allow for less secure access - this is the term by google, which means an action
+  to disable 2-step verification for logging in.
+  Note: This feature only allows for out going SMTP server access, the application do not have access to your incoming mails
+  as it is on a different server.
+  ![Ui](images/helps/googleHelp4.png)
+  
+  
+  If you face any difficulty enabling access, please follow through below guide, or check out the help window for steps
+  in setting up.
+  1. Go to google security(URL: https://myaccount.google.com/security)
+  ![Ui](images/helps/googleHelp1.png)
+  2. Scroll down or use the search function and type in 'Less secure app access' without quotation marks.
+  ![Ui](images/helps/googleHelp2.png)
+  3. Turn on the feature and this grants application access to only the Mail sending server. This feature disables the 
+  feature for 2-Step Authentication. 
+  ![Ui](images/helps/googleHelp3.png)  
+     
+  After set up:
+  You will be required to fill in the respective fields, please note that current version does not support multiple 
+  authentication attempts, hence you will be required to restart the application if your email or password details are
+  filled incorrectly.
+  ![Ui](images/helps/emailLogin.png)
+  
+  
+  **Successful Login**
+  You will receive a confirmation message 'Message Sent' when email is successfully sent out. 
+  Please note that in this we have blocked multiple log in and authentication, the email and password box will be disabled 
+  after successful authentication. If you have been successfully authenticated, a green text will be shown in the bottom 
+  left corner of the interface 'You are logged in'.
+  You may continue to send email to other receiver addresses without having to re-enter the password.
+  ![Ui](images/helps/Sentmail.png)
+  
+ 
+  Please note that if you input a non-existing receiver email, message will still mark as sent. You will however receive a 
+  sending fail message at your gmail inbox, but since this application does not have access to this information, we
+  are unable to check validity of email.
+  ![Ui](images/helps/LoginSuccWrongToemail.png)
+
+  Please note that this version does not support identification of invalid domain name, but only absence of domain. Hence
+  your email will still be mark as sent. However you will be receiving a failed message in your email inbox.
+  ![Ui](images/helps/invalidDomain.png)
+
+  **Failed Login**
+
+  If you have failed the authentication, either due to mismatching email and password, you will be required to restart
+  the application, as support for multiple logins are blocked. The password you entered will be cleared, together with the 
+  email and password fields removed. You will see a red text appearing at the bottom left of the interface 'Please restart
+  the program'.
+  ![Ui](images/helps/FailedLogin1.png)
+  
+  For more info : https://support.google.com/mail/answer/7126229?hl=en&authuser=6
 --------------------------------------------------------------------------------------------------------------------

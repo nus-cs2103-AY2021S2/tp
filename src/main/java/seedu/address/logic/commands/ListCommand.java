@@ -14,11 +14,18 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Great! List of all customers generated ";
 
+    public static final String MESSAGE_EMPTY_CUSTOMER_LIST = "Oh no! There is no customers to list, "
+            + "try adding some customers";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        if (model.getFilteredCustomerList().size() == 0) {
+            return new CommandResult(MESSAGE_EMPTY_CUSTOMER_LIST);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }

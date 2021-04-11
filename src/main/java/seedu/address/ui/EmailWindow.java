@@ -6,6 +6,7 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -35,6 +36,14 @@ public class EmailWindow extends UiPart<Stage> {
     private PasswordField emailPasswordField;
     @javafx.fxml.FXML
     private Label sentBoolValue;
+    @javafx.fxml.FXML
+    private Label invalidEmailSignal;
+    @javafx.fxml.FXML
+    private Label invalidPasswordSignal;
+    @javafx.fxml.FXML
+    private Label emailSuccessfullyLoggedIn;
+    @javafx.fxml.FXML
+    private Label emailFailedLoggedIn;
 
     /**
      * Creates a new HelpWindow.
@@ -95,17 +104,51 @@ public class EmailWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows error when invalid user email address keyed in.
+     */
+    public void handleInvalidFromEmail() {
+        invalidEmailSignal.setVisible(true);
+    }
+
+    /**
+     * Shows error when invalid user email address keyed in.
+     */
+    public void handleInvalidToEmail() {
+        invalidEmailSignal.setVisible(true);
+    }
+
+    /**
+     * Shows error when invalid email address keyed in.
+     */
+    public void handleInvalidPassword() {
+        blockSecondAttempt();
+        invalidPasswordSignal.setVisible(true);
+    }
+
+    /**
+     * hides email and password field and clears data to block re-attempts to log in.
+     */
+    public void blockSecondAttempt() {
+        emailPasswordField.clear();
+        emailFromField.setVisible(false);
+        emailPasswordField.setVisible(false);
+    }
+
+    /**
      *
      *  Sends an email to the desired address.
      */
     //@@author TheCodingByte
     //Reused from https://github.com/TheCodingByte/SendEmailJFX
     public void sendEmail() {
+        invalidEmailSignal.setVisible(false);
+        invalidPasswordSignal.setVisible(false);
+        sentBoolValue.setVisible(false);
         String to = emailToField.getText();
         String from = emailFromField.getText();
         String host = "smtp.gmail.com";
-        final String username = emailFromField.getText();
-        final String password = emailPasswordField.getText();
+        String username = emailFromField.getText();
+        String password = emailPasswordField.getText();
 
         //setup mail server
 
@@ -123,24 +166,39 @@ public class EmailWindow extends UiPart<Stage> {
         });
 
         try {
-            //create mail
-            MimeMessage m = new MimeMessage(session);
-            m.setFrom(new InternetAddress(from));
-            m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
-            m.setSubject(emailSubjectField.getText());
-            m.setText(emailMessageField.getText());
+            if (!to.contains("@")) {
+                handleInvalidToEmail();
+            } else if (!from.contains("@")) {
+                handleInvalidFromEmail();
+            } else {
+                //create mail
+                MimeMessage m = new MimeMessage(session);
+                m.setFrom(new InternetAddress(from));
+                m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
+                m.setSubject(emailSubjectField.getText());
+                m.setText(emailMessageField.getText());
 
-            //send mail
+                //send mail
 
-            Transport.send(m);
-            sentBoolValue.setVisible(true);
-            System.out.println("Message sent!");
+                Transport.send(m);
+                sentBoolValue.setVisible(true);
+                emailSuccessfullyLoggedIn.setVisible(true);
+                System.out.println("Message sent!");
+                blockSecondAttempt();
+            }
 
         } catch (MessagingException e) {
+            if (e instanceof AddressException) {
+                invalidEmailSignal.setVisible(true);
+            } else {
+                blockSecondAttempt();
+                emailFailedLoggedIn.setVisible(true);
+                handleInvalidPassword();
+            }
             e.printStackTrace();
         }
-
     }
+
     //@@author TheCodingByte
 
     /**

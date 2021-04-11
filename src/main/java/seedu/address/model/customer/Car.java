@@ -11,9 +11,10 @@ import java.util.Objects;
  */
 public class Car {
 
-    public static final String MESSAGE_CONSTRAINTS = "Car Brand + Car Type can take any values, it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "CarBrand+CarType cannot be empty \n"
+            + "Format: [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED|COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]";
 
-    /*
+    /**
      * The first character of the preferred car must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */

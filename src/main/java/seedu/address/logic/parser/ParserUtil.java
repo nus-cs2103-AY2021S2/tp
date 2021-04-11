@@ -153,7 +153,7 @@ public class ParserUtil {
 
         if (parts.length != 2) {
             throw new ParseException(
-                Car.MESSAGE_CONSTRAINTS + " and also " + CoeExpiry.MESSAGE_CONSTRAINTS + "\n" + info);
+                Car.MESSAGE_CONSTRAINTS + "\n" + CoeExpiry.MESSAGE_CONSTRAINTS + "\n" + info);
         }
 
         if (carDetails.length != 2) {
@@ -164,7 +164,7 @@ public class ParserUtil {
             return new AbstractMap.SimpleEntry<>(new Car(carDetails[0].trim(), carDetails[1].trim()),
                     new CoeExpiry(parts[1].trim()));
         } catch (Exception e) {
-            throw new ParseException(Car.MESSAGE_CONSTRAINTS + " and " + CoeExpiry.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS + "\n" + CoeExpiry.MESSAGE_CONSTRAINTS);
         }
     }
 
