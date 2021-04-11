@@ -2,5 +2,5 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **an app to help insurance agents specializing in medical insurance to keep track of their clients' information**.<br>
+* This is **an app to help doctors keep track of their patients' information, scheduled appointments and medical records**.<br>
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
