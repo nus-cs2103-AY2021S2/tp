@@ -281,11 +281,14 @@ However, this requires there to be no duplicate dog or program names.
 * is a fast typist
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* prefers a portable and lightweight application
 
 **Value proposition**:
 * manage contacts faster than a typical mouse/GUI driven app
 * saves significant time for the business owner, who beforehand had to manage the details of dogs and owners
 * consolidates information on dogs, owners and programs into one place
+* clutter free user interface
+* application is optimised for keyboard navigation 
 
 
 ### User Stories
@@ -353,8 +356,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list dogs with a given tag.
-2.  Pawbook lists the related dogs.
+1.  User requests to list dog/owner/program.
+2.  Pawbook lists the related dogs/owners/programs.
 
     Use case ends.
 
@@ -403,41 +406,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC07 - View instructions**
+**Use case: UC07 - View Help**
 
 **MSS**
 
-1.  User requests to view instructions.
-2.  Pawbook shows the list of instructions available.
+1.  User requests to for help with using the application.
+2.  User enters `help` command into the command box and presses <kbd>enter</kbd>.   
+3.  Pawbook opens a help window containing the link to the user guide
+and also a command summary for the user.
 
     Use case ends.
 
-**Use case: UC08 - Exit**
+**Extensions**
+
+- 2a. The given command/format is invalid.
+    - 2a1. Pawbook shows an error message to the user.
+    Use case resumes at step 2.
+      
+
+**Use case: UC08 - Exit Pawbook**
 
 **MSS**
 
-1.  User requests to exit the program.
+1.  User requests to exit Pawbook.
+2.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.    
 2.  Pawbook shows goodbye message.
 3.  Pawbook terminates.
 
     Use case ends.
+
+**Extensions**
+
+- 2a. The given command/format is invalid.
+    - 2a1. Pawbook shows an error message to the user.
+      Use case resumes at step 2.
 
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has `Java 11` or above installed.
+1.  Should work on any [mainstream OS](#glossary-OS) as long as it has `Java 11` or above installed.
 2.  Should be able to hold up to 1000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
 3.  Should be usable by a tech novice who is not familiar with CLI.
 4.  Should respond within 2 seconds.
-5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+    should be able to accomplish most of the tasks faster using commands than using the mouse.
 6.  A simple interface that is easy to navigate.
 7.  Not required to handle finance-related bookkeeping.
+8.  Should not crash or throw unexpected errors when internet connection is
+    unavailable.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: <a name="glossary-OS"></a> Windows, Linux, Unix, OS-X
+* **JSON**: JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -458,7 +481,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br>
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -466,6 +490,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+1. Exiting the app
+
+    1. With the application still open, enter `exit` in the command box or click on the close window button [X].<br>
+       Expected: Application terminates.   
       
 1. For the sake of all manual testing, we will be using the preset typical entities loaded from Pawbook database.
       
