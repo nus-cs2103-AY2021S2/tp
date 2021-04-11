@@ -83,10 +83,6 @@ public class Meeting implements Schedulable {
         return Collections.unmodifiableSet(groups);
     }
 
-    public PersonMeetingConnection getConnection() {
-        return this.connection;
-    }
-
     /**
      * Returns true if both meetings have the same meetingName, start and terminate time. (Use identify fields only)
      * This defines a weaker notion of equality between two meetings.
