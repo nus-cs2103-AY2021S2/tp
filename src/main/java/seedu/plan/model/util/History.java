@@ -44,7 +44,7 @@ public class History extends HashMap<Semester, List<Module>> {
         StringBuilder stringBuilder = new StringBuilder();
         for (Semester semester : sortedSemesters) {
             stringBuilder.append(semester.toString());
-            stringBuilder.append("------------------");
+            stringBuilder.append("------------------\n");
         }
         return stringBuilder.toString();
     }
