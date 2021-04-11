@@ -197,6 +197,8 @@ Description:
 Examples:
 *  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
 
+![Example property edited](images/ExampleEditProperty.PNG)
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
 To remove tags from a property, you can use the command `edit property INDEX tags/`. <br> e.g. `edit property 1 tags/` can be used to remove all the tags from the property at index 1.
@@ -216,6 +218,8 @@ Description:
 
 Examples:
 *  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
+
+![Example appointment edited](images/ExampleEditAppointment.PNG)
 
 ### 4.4 Deleting
 
@@ -306,6 +310,8 @@ Status Types:
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
+
+![Example property updated](images/ExampleUpdateNew.PNG)
 
 ### 4.7 Sorting
 
