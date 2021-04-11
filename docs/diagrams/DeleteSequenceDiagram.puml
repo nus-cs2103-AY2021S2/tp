@@ -5,18 +5,20 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete 1 2")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("delete 1 2")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -26,11 +28,17 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+AddressBookParser -> DeleteCommandParser : parse("1 2")
 activate DeleteCommandParser
 
+DeleteCommandParser -> ParserUtil : parseDeleteIndex("1 2")
+activate ParserUtil
+
+return indexes
+deactivate ParserUtil
+
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandParser -> DeleteCommand : indexes
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser : d
@@ -48,18 +56,38 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePassenger(1)
-activate Model
+loop number of passengers
+    DeleteCommand -> Model : deletePassenger(passengerIndex)
+    activate Model
 
-Model --> DeleteCommand
-deactivate Model
+    Model --> DeleteCommand
+    deactivate Model
+end
 
-create CommandResult
-DeleteCommand -> CommandResult
-activate CommandResult
+alt passenger with pools found
+    alt no other passengers deleted
+        create CommandException
+        DeleteCommand -> CommandException : MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL
+        activate CommandException
 
-CommandResult --> DeleteCommand
-deactivate CommandResult
+        CommandException --> DeleteCommand
+        deactivate CommandException
+    else other passengers without pools deleted
+        create CommandException
+        DeleteCommand -> CommandException : MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL_OTHERS_DELETED
+        activate CommandException
+
+        CommandException --> DeleteCommand
+        deactivate CommandException
+    end
+else no passenger with pools found
+    create CommandResult
+    DeleteCommand -> CommandResult : MESSAGE_DELETE_PASSENGER_SUCCESS
+    activate CommandResult
+
+    CommandResult --> DeleteCommand
+    deactivate CommandResult
+end
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
