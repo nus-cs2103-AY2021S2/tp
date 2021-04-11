@@ -3,7 +3,6 @@ package seedu.student.testutil;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_FACULTY;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_PHONE;

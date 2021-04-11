@@ -12,7 +12,6 @@ import static seedu.student.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.RESIDENCE_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_AMY;
-
 import static seedu.student.testutil.Assert.assertThrows;
 import static seedu.student.testutil.TypicalStudents.AMY;
 

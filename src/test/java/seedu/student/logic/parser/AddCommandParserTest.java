@@ -67,7 +67,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser,  VALID_MATRIC_BOB + NAME_DESC_AMY + NAME_DESC_BOB + FACULTY_DESC_BOB
+        assertParseSuccess(parser, VALID_MATRIC_BOB + NAME_DESC_AMY + NAME_DESC_BOB + FACULTY_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB
                         + RESIDENCE_DESC_BOB,
                 new AddCommand(expectedStudent));
@@ -158,14 +158,14 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser,VALID_MATRIC_BOB + VALID_NAME_BOB + FACULTY_DESC_BOB + VALID_PHONE_BOB
+        assertParseFailure(parser, VALID_MATRIC_BOB + VALID_NAME_BOB + FACULTY_DESC_BOB + VALID_PHONE_BOB
                 + VALID_EMAIL_BOB + VALID_ADDRESS_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser,VALID_MATRIC_BOB + INVALID_NAME_DESC + FACULTY_DESC_BOB + PHONE_DESC_BOB
+        assertParseFailure(parser, VALID_MATRIC_BOB + INVALID_NAME_DESC + FACULTY_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + DETAILS_DESC_BOB + RESIDENCE_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
@@ -195,7 +195,7 @@ public class AddCommandParserTest {
                         + RESIDENCE_DESC_BOB, VaccinationStatus.MESSAGE_CONSTRAINTS);
 
         // invalid medical details
-        assertParseFailure(parser,  VALID_MATRIC_BOB + NAME_DESC_BOB + FACULTY_DESC_BOB + PHONE_DESC_BOB
+        assertParseFailure(parser, VALID_MATRIC_BOB + NAME_DESC_BOB + FACULTY_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + STATUS_DESC_BOB + INVALID_DETAILS_DESC
                         + RESIDENCE_DESC_BOB,
                 MedicalDetails.MESSAGE_CONSTRAINTS);
