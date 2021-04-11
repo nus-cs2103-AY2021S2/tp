@@ -206,12 +206,14 @@ Examples:
 
 #### Starting a quiz session: `start`
 
-Starts a quiz session with randomly ordered flashcards. 
+Starts a quiz session with randomly ordered flashcards.
+
+Format: `start [n/NUMBER] [t/TAG]…`
 
 * NUMBER specifies the number of questions for the quiz session.
-* TAG specifies the categories of questions for the quiz session.
 * NUMBER specified should be a positive integer and less than number of available flashcards in the database.
 * When used without a number, either all existing flashcards (if no tag is specified) or flashcards with specified tags will be tested.
+* TAG specifies the categories of questions for the quiz session.
 * There are currently four default tags, gojuon, hiragana, katakana and numbers.
 * When used without tags, all categories of questions can be tested.
 

@@ -28,7 +28,7 @@ public class DeleteTagCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Tag(s) deleted successfully!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the requested tag(s), or all user tags from the specified flashcard is no tags are provided.\n"
+            + ": Deletes the requested tag(s), or all user tags from the specified flashcard if no tags are provided.\n"
             + "Parameters: FLASHCARD_INDEX, (optional) TAG...\n"
             + "Example: " + COMMAND_WORD + " 2";
 
