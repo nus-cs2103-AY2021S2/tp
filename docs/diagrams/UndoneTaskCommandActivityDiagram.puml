@@ -2,16 +2,13 @@
 start
 :User executes command;
 
-if () then ([command format is valid])
-    if () then ([task with given index exists])
+if () then ([index given is valid])
     :Fetch target task from task list;
         if () then ([target task is completed])
             :Mark target task as uncompleted;
             :Update UI;
         else([else])
         endif
-    else ([else])
-    endif
 else ([else])
 endif
 stop
