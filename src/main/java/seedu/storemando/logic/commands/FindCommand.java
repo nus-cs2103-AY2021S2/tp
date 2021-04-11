@@ -2,9 +2,11 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.storemando.commons.core.Messages;
+import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
@@ -36,8 +38,12 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Item> currentList = model.getFilteredItemList();
+        if (currentList.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
+        }
         model.updateCurrentPredicate(predicate);
         model.updateFilteredItemList(model.getCurrentPredicate());
         int numberOfItems = model.getFilteredItemList().size();
