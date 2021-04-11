@@ -25,9 +25,10 @@ public class History extends HashMap<Semester, List<Module>> {
      *                        previous semesters.
      */
     public History(Plan plan, Semester currentSemester) {
+        int currentSemNumber = currentSemester.getSemNumber();
         for (Semester semester : plan.getSemesters()) {
-            if (semester.equals(currentSemester)) {
-                break;
+            if (semester.getSemNumber() >= currentSemNumber) {
+                continue;
             }
             // HashMap of current semester -> modules taken in current semester
             this.put(semester, semester.getModules());
