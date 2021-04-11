@@ -21,7 +21,7 @@ public class HistoryCommandParser implements Parser<HistoryCommand> {
     public HistoryCommand parse(String args) throws ParseException {
         logger.info("----------------[PARSE][START]");
         if (!args.isBlank()) {
-            logger.info("----------------[PARSE][ADDITIONAL INPUTS SPECIFIED][" + args +"]");
+            logger.info("----------------[PARSE][ADDITIONAL INPUTS SPECIFIED][" + args + "]");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HistoryCommand.MESSAGE_USAGE));
         }
         logger.info("----------------[PARSE][END][" + args + "]");

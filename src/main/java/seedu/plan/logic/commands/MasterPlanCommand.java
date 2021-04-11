@@ -18,8 +18,6 @@ import seedu.plan.model.plan.Plan;
  * Marks a Semester as the current semester.
  */
 public class MasterPlanCommand extends Command {
-    private final Logger logger = LogsCenter.getLogger(MasterPlanCommand.class);
-
     public static final String COMMAND_WORD = "master";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -30,6 +28,7 @@ public class MasterPlanCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Successfully marked plan as master: %1$d";
 
     private final Index masterPlanIndex;
+    private final Logger logger = LogsCenter.getLogger(MasterPlanCommand.class);
 
     /**
      * Creates a MasterPlanCommand to mark the given semester number as being the current one.
