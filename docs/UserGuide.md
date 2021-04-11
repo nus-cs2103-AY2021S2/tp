@@ -2,8 +2,8 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
-  {:toc}
+* Table of Contents 
+{:toc}
 
 # Overview
 
