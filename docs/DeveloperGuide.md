@@ -163,6 +163,31 @@ The following activity diagram summarises the events that take place when a user
 command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
+### Edit Feature
+#### Implementation
+At its core, the `edit` feature allows a user to edit multiple fields pertaining to the entry specified by its `index`,
+ in a single edit command. The `edit` feature is the fundamental feature for editing an entry, and it is recommended
+ for users to use it if minor changes to an entry are to be made, typically caused by a spelling mistake or typo.
+ As such, the edit feature runs solely via the command typed in the command box. The following feature,
+ the `revise` feature, builds upon the implementation of the `edit` feature. See more below.
+ 
+When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which
+ `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+ The user input will be parsed as an `Edit` command and executed to edit the entry specified by
+ the index of the command.
+ 
+If the command `edit 1 re/New review is passed`, the `edit` command essentially replaces the old entry with a new
+ entry that has the new review. The `edit` coammand calls `Model#setEntry()`, which calls
+ `ModelManager#setEntry()`, that calls `FoodDiary#setEntry()` to eventually change the target entry with a new entry.
+
+The following sequence diagram shows how Revise feature works:
+![FindAll Sequence Diagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarises the events that take place when a user executes the Revise
+command:
+![Revise Activity Diagram](images/EditActivityDiagram.png)
+
+ 
 ### Revise Feature
 #### Implementation
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
@@ -171,7 +196,7 @@ while also adding into multiple sections in an entry. The edit and addon feature
 quick and small chanegs to an entry.
 
 The command opens an additional window when a user enters the command in the UI, the command will be passed into 
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in  `FoodDiaryParser#parseCommand()`.
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
 With the window for revision of the entry, a user can easily make changes to the sections all at once. 
 
