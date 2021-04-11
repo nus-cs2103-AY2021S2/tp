@@ -1,5 +1,7 @@
 package seedu.cakecollate.ui;
 
+import static seedu.cakecollate.logic.commands.HelpCommand.SHOWING_RETURN_MESSAGE;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -157,6 +159,8 @@ public class MainWindow extends UiPart<Stage> {
         helpPanelToMain = new Button("Return to the order list");
         helpPanelToMain.setOnAction(event -> {
             resetMainWindow();
+            logger.info("Result: " + SHOWING_RETURN_MESSAGE);
+            resultDisplay.setFeedbackToUser(SHOWING_RETURN_MESSAGE);
         });
     }
 
@@ -185,8 +189,7 @@ public class MainWindow extends UiPart<Stage> {
         replaceHelpPanelWithModels();
         removeHelpButtonFromDisplay();
 
-        logger.info("Result: " + HelpCommand.SHOWING_RETURN_MESSAGE);
-        resultDisplay.setFeedbackToUser(HelpCommand.SHOWING_RETURN_MESSAGE);
+        logger.info("Result: " + SHOWING_RETURN_MESSAGE);
 
         inHelp = false;
     }
@@ -265,8 +268,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             commandBox.updateUserInputs(commandText);
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            String result = commandResult.getFeedbackToUser();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -279,6 +281,9 @@ public class MainWindow extends UiPart<Stage> {
             if (inHelp && !commandResult.isShowHelp()) {
                 resetMainWindow();
             }
+
+            resultDisplay.setFeedbackToUser(result);
+            logger.info("Result: " + result);
 
             return commandResult;
         } catch (CommandException | ParseException e) {

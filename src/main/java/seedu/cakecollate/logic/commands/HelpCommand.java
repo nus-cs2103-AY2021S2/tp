@@ -14,10 +14,19 @@ public class HelpCommand extends Command {
             + "Example: " + COMMAND_WORD;
     public static final String SHOWING_HELP_MESSAGE = "Switched to help window.";
     public static final String SHOWING_RETURN_MESSAGE = "Switched to order window.";
-
-    private static boolean areCommandsAdded = false;
+    private static boolean isAdded = false;
 
     private static final ObservableList<String> listOfCommands = FXCollections.observableArrayList();
+
+    /**
+     * Constructor which adds the command descriptions of all the commands present in CakeCollate to the listOfCommands.
+     */
+    public HelpCommand() {
+        if (!isAdded) {
+            addAllCommands();
+            isAdded = true;
+        }
+    }
 
     /**
      * Adds all the MESSAGE_USAGE strings in all of the commands into one observable list.
@@ -33,19 +42,11 @@ public class HelpCommand extends Command {
     }
 
     public static ObservableList<String> getListOfCommands() {
-        if (!areCommandsAdded) {
-            addAllCommands();
-            areCommandsAdded = true;
-        }
         return listOfCommands;
     }
 
     @Override
     public CommandResult execute(Model model) {
-        if (!areCommandsAdded) {
-            addAllCommands();
-            areCommandsAdded = true;
-        }
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }
