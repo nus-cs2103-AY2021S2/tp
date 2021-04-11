@@ -56,7 +56,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
 ### Commands Related to Both Task and Event
-* Finding tasks and events before or on a given date: [`find_schedule`](#finding-tasks-and-events-before-or-on-a-given-date-find_schedule)
+* Finding schedule given a date: [`find_schedule`](#finding-schedule-given-a-date)
 * Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
 * Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
@@ -292,20 +292,20 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * You can only edit an **existing and uncompleted** task.
 * **At least one** of the optional fields must be provided.
 * The `DEADLINE` provided cannot be earlier than today.
-* Existing values will be updated to the input values.
+* When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
+* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
+  Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
 * If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned.
 * If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java),
   it is not a valid integer in our definition.
   Thus, an error message indicating invalid command format will be returned.
-* When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
-* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
-  Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
+* If the edited task is the same as the original task or the edited task is
+  equivalent to another existing task in the task list, error messages will be shown.
+  Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
 * When editing tags, the order of tags given in the input and the order of tags shown in the UI can be different. 
   For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, 
   but `tag2` may appear in the UI before `tag1`, then `tag1` on the right of `tag2`. 
   The ordering is not guaranteed and this is intended behaviour.
-* When editing a task, error messages will be shown if the edited task is the same as the original task or the edited task is
-equivalent to another existing task in the task list.
 
 Examples:
 * `edit_task 1 n/t1` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
@@ -340,6 +340,8 @@ Format: `done_task INDEX1 [INDEX2] ...`
 * If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java), 
   it is not a valid integer in our definition. 
   Thus, an error message indicating invalid command format will be returned.
+* If indexes provided include both an index for a task not existing in task list and an index for a completed task,
+  the error message will only be about the non-existing task.
 
 Examples:
 * `done_task 1 2` marks the first and second task in the task list as completed.
@@ -605,14 +607,14 @@ and return success message `Expired events (if any) have been cleared!` (In this
 [Return to Feature List](#feature-list)
 
 
-### Finding tasks and events before or on a given date: `find_schedule`
-Finds uncompleted tasks that are due before or on the specified date 
-and events that are ongoing given the specified date.
+### Finding schedule given a date: `find_schedule`
+Given a specified date, finds uncompleted tasks that are due before or on the date 
+and events that are ongoing on the date.
 
 Format: `find_schedule DATE`
 * Tasks to be found here are uncompleted tasks with deadlines before or on the specified date.
 * Events to be found here are events with start date before or on the specified date and end date after or on the specified date, 
-  i.e., `event start date <= given date <= event end date`.
+  i.e., ongoing events.
 * Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`. 
   It can be a date that is earlier than today.
 * Only one single date can be entered. 

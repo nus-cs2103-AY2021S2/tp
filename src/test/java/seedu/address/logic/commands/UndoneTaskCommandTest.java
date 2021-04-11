@@ -31,7 +31,7 @@ public class UndoneTaskCommandTest {
         Task taskToUndone = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         UndoneTaskCommand undoneTaskCommand = new UndoneTaskCommand(INDEX_FIRST_TASK);
 
-        String expectedMessage = String.format(UndoneTaskCommand.MESSAGE_UNDONE_TASK_SUCCESS, taskToUndone);
+        String expectedMessage = UndoneTaskCommand.MESSAGE_UNDONE_TASK_SUCCESS;
 
         ModelManager expectedModel = new ModelManager(model.getSochedule(), new UserPrefs());
         // copy the taskToUndone so that 'undone' it in expectedModel does not affect the task in actual model.
@@ -58,7 +58,7 @@ public class UndoneTaskCommandTest {
         Task uncompletedTask = new TaskBuilder(taskToUndone).build();
         UndoneTaskCommand undoneTaskCommand = new UndoneTaskCommand(INDEX_FIRST_TASK);
 
-        String expectedMessage = String.format(UndoneTaskCommand.MESSAGE_UNDONE_TASK_SUCCESS, taskToUndone);
+        String expectedMessage = UndoneTaskCommand.MESSAGE_UNDONE_TASK_SUCCESS;
 
         ModelManager expectedModel = new ModelManager(model.getSochedule(), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), uncompletedTask);
