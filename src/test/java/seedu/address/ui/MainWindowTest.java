@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,15 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.todo.Todo;
 import seedu.address.storage.JsonColabFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.TodoBuilder;
 
 public class MainWindowTest extends GuiUnitTest {
     @TempDir
@@ -118,7 +123,7 @@ public class MainWindowTest extends GuiUnitTest {
     public void projects_success() {
         inputCommand("addP n/project");
 
-        // assert contact has been added
+        // assert project has been added
         Project projectToAdd = new ProjectBuilder()
                 .withName("project")
                 .build();
@@ -143,6 +148,77 @@ public class MainWindowTest extends GuiUnitTest {
         inputCommand("deleteP " + projectIndex);
         assertFalse(logic.getFilteredProjectsList().contains(projectToUpdate));
         assertTrue(mainWindowHandle.contains(MainWindow.TODAY_PANEL_ID));
+    }
+
+    @Test
+    public void todos_success() {
+        // create project
+        inputCommand("addP n/project");
+        Project project = new ProjectBuilder()
+                .withName("project")
+                .build();
+        int projectIndex = logic.getFilteredProjectsList().size();
+
+        // add todo
+        inputCommand("addT " + projectIndex + " d/todo");
+        Todo todoToAdd = new TodoBuilder()
+                .withDescription("todo")
+                .build();
+        project.addTodo(todoToAdd);
+
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // mark as done
+        inputCommand("markT " + projectIndex + " i/1");
+        project.markTodo(0);
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        inputCommand("updateT " + projectIndex + " i/1 d/newtodo");
+        todoToAdd.setDescription("newtodo");
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // delete todo
+        inputCommand("deleteT " + projectIndex + " i/1");
+        assertFalse(logic.getFilteredProjectsList().contains(project));
+
+        // delete project
+        inputCommand("deleteP " + projectIndex);
+    }
+
+    @Test
+    public void deadlines_success() {
+        // create project
+        inputCommand("addP n/project");
+        Project project = new ProjectBuilder()
+                .withName("project")
+                .build();
+        int projectIndex = logic.getFilteredProjectsList().size();
+
+        // add deadline
+        inputCommand("addD " + projectIndex + " d/deadline by/20-02-2021");
+        Deadline deadlineToAdd = new DeadlineBuilder()
+                .withDescription("deadline")
+                .withByDate(LocalDate.of(2021, 2, 20))
+                .build();
+        project.addDeadline(deadlineToAdd);
+
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // mark as done
+        inputCommand("markD " + projectIndex + " i/1");
+        project.markDeadline(0);
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        inputCommand("updateD " + projectIndex + " i/1 d/newdeadline");
+        deadlineToAdd.setDescription("newdeadline");
+        assertTrue(logic.getFilteredProjectsList().contains(project));
+
+        // delete deadline
+        inputCommand("deleteD " + projectIndex + " i/1");
+        assertFalse(logic.getFilteredProjectsList().contains(project));
+
+        // delete project
+        inputCommand("deleteP " + projectIndex);
     }
 
     private void inputCommand(String command) {
