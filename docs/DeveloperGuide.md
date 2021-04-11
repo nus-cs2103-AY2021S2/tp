@@ -621,24 +621,99 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a member
 
-### Deleting a Member
+1. Adding a member 
+   1. Prerequisites: No duplicate members exist.
 
-1. Deleting a Member while all members are being shown
+   1. Test case: `addMember Alice p/12345678 e/Alice@gmail.com`<br>
+      Expected: Member is successfully added, with the details of the member displayed in the status bar.
 
-   1. Prerequisites: List all members using the `viewMembers` command. Multiple members in the list. A member with the name of `Alice` exists in the list. No member with the name `Barry` exists in the list.
+   1. Test case: `addMember Bryan p/45678910 e/Bryan@gmail.com r/President`<br>
+      Expected: Member is successfully added, with the details of the member displayed in the status bar.
+      
+   1. Test case: `addMember Alice p/23456789 e/Alice@hotmail.com r/Member`<br>
+      Expected: No person is added since a member with the name Alice already exists. Error details shown in the status bar.
+   
+   1. Test case: `addMember Charlie p/12345678 e/Charlie.com `<br>
+      Expected: No person is added since the email given is invalid. Error details shown in the status bar.
 
-   1. Test case: `deleteMember Alice`<br>
-      Expected: Member with the name `Alice` is deleted from the list. Details of the deleted contact shown in the status message.
+   1. Test case: `addMember Charlie p/12 e/Charlie@gmail.com`<br>
+      Expected: No person is added since the email given is invalid. Error details shown in the status bar.
 
-   1. Test case: `deleteMember Barry`<br>
-      Expected: No person is deleted. Error details shown in the status message.
+   1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com`, etc <br>
+      Expected: similar to previous
 
-   1. Other incorrect delete commands to try: `deleteMember`, `deleteMember x`, `...` (where x is a name which does not exist in the list)<br>
-      Expected: Similar to previous.
+### Viewing members
 
-1. _{ more test cases …​ }_
+1. Lists all members within HEY MATEz
+
+   1. Test case: `viewMembers`<br>
+      Expected: Lists all members within the HEY MATEz
+
+### Mark a task as completed
+
+1. Mark a task as completed: 
+   1. Prerequisites: List all tasks with the viewTasks command. There exists a task at index 1 whose task status is **uncompleted**.
+
+   1. Test case: `done 1`<br>
+      Expected: Marks first task as completed. Successful command message is shown in the status bar.
+      
+   1. Test case: `done 0`<br>
+      Expected: No task marked as completed. Error details is shown in the status bar.      
+      
+   1. Other incorrect commands to try: `done`, `done -1` 
+      Expected: Similar to previous 
+      
+### Mark a task as uncompleted
+
+1. Mark a task as completed: 
+   1. Prerequisites: List all tasks with the viewTasks command. There exists a task at index 1 whose task status is **completed**.
+
+   1. Test case: `undo 1`<br>
+      Expected: Marks first task as uncompleted. Successful command message is shown in the status bar.
+      
+   1. Test case: `undo 0`<br>
+      Expected: No task marked as uncompleted. Error details is shown in the status bar.      
+      
+   1. Other incorrect commands to try: `undo`, `undo -1` 
+      Expected: Similar to previous   
+
+### Find tasks by priority
+
+1. Find all tasks within HEY MATEz with the specified priority
+
+   1. Test case: `findPriority high`<br>
+      Expected: Lists all tasks within the HEY MATEz whose priority is high.
+
+   1. Test case: `findPriority medium`<br>
+      Expected: Lists all tasks within the HEY MATEz whose priority is medium.
+
+   1. Test case: `findPriority low`<br>
+      Expected: Lists all tasks within the HEY MATEz whose priority is low.
+
+   1. Test case: `findPriority unassigned`<br>
+      Expected: Lists all tasks within the HEY MATEz whose priority is unassigned.
+
+   1. Test case: `findPriority unsure`<br>
+      Expected: Error message displayed in the status bar.
+
+   1. Test case: `findPriority HIGH`<br>
+      Expected: Error message displayed in the status bar.
+
+   1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc.
+      Expected: Similar to previous   
+
+### Find tasks assigned to a member
+
+1. Lists all tasks assigned to a member
+   1. Prerequisites: There exists a member Alice and a task in HEY MATEz which is assigned to Alice.
+   
+   1. Test case: `findTasksFor Alice`<br>
+      Expected: Lists the task which is assigned to Alice.
+      
+   1. Test case: `findTasksFor`
+      Expected: Error message displayed in the status bar.
 
 ### Saving data
 
