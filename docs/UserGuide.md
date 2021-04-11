@@ -4,9 +4,9 @@ title: User Guide
 ---
 
 EzManage is a **desktop app for managing students, tutors and sessions, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It is named as EzManage as it allows tuition centres managers to easily manage students, tutors and sessions all in one single web application.
-
-- Table of Contents
-  {:toc}
+---
+* Table of Contents
+{:toc}
 
 ---
 
