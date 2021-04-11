@@ -1107,6 +1107,7 @@ The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Event
 
