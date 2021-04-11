@@ -1190,6 +1190,29 @@ testers are expected to do more *exploratory* testing.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+### Searching a student
+
+1. Searching a student while all students are being shown
+
+  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+  1. Test case: `search n/yeoh alex t/math`<br>
+     Expected: Displays a list of students with names (case insensitive) `alex yeoh` or `alex` or `yeoh alex` or
+     students with subject `math`.
+    
+  1. Test case: `search t/math t/phys`<br>
+     Expected: Displays a list of students with subjects `phys`, because only the last occurrence of the parameter will be taken into account.
+     
+  1. Test case: `search n/`<br>
+     Expected: No student is displayed. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect search commands to try: `search`, `search s/`, `search s/ t/`, `search x` (where x is any keyword)<br>
+     Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
