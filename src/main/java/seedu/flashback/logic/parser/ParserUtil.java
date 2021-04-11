@@ -1,0 +1,198 @@
+package seedu.flashback.logic.parser;
+
+import static java.util.Objects.requireNonNull;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import seedu.flashback.commons.core.index.Index;
+import seedu.flashback.commons.util.StringUtil;
+import seedu.flashback.logic.parser.exceptions.ParseException;
+import seedu.flashback.model.flashcard.Answer;
+import seedu.flashback.model.flashcard.Category;
+import seedu.flashback.model.flashcard.Priority;
+import seedu.flashback.model.flashcard.Question;
+import seedu.flashback.model.flashcard.SortOptions;
+import seedu.flashback.model.tag.Tag;
+
+/**
+ * Contains utility methods used for parsing strings in the various *Parser classes.
+ */
+public class ParserUtil {
+
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_KEYWORDS = "Keywords you wish to filter by should not be empty.";
+    public static final String MESSAGE_INVALID_ALIAS = "Alias cannot be blank and must be alphanumerical.";
+    public static final String ALPHANUMERICAL_REGEX = "\\p{Alnum}+";
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code question} is invalid.
+     */
+    public static Question parseQuestion(String question) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!Question.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(Question.MESSAGE_CONSTRAINTS);
+        }
+        return new Question(trimmedQuestion);
+    }
+
+    /**
+     * Parses a {@code String answer} into a {@code Answer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code answer} is invalid.
+     */
+    public static Answer parseAnswer(String answer) throws ParseException {
+        requireNonNull(answer);
+        String trimmedAnswer = answer.trim();
+        if (!Answer.isValidAnswer(trimmedAnswer)) {
+            throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Answer(trimmedAnswer);
+    }
+
+    /**
+     * Parses a {@code String priority} into an {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        return new Priority(trimmedPriority);
+    }
+
+    /**
+     * Parses a {@code String category} into an {@code Category}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code category} is invalid.
+     */
+    public static Category parseCategory(String category) throws ParseException {
+        requireNonNull(category);
+        String trimmedCategory = category.trim();
+        if (!Category.isValidCategory(trimmedCategory)) {
+            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
+        }
+        return new Category(trimmedCategory);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses a {@code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keywords} is invalid.
+     */
+    public static List<String> parseKeywordsToStringList(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (keywords.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_KEYWORDS);
+        }
+        String[] keywordsArray = trimmedKeywords.split("\\s+");
+        List<String> keywordsList = Arrays.asList(keywordsArray);
+        return keywordsList;
+    }
+
+    /**
+     * Checks the validity of flag values.
+     * @param flagValueList the supplied flag list
+     * @param validFlagValues valid flag values
+     * @return a boolean indicating whether flag values are valid
+     */
+    //@@author minnzelo-reused
+    //Reused with modifications from "https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main
+    // /java/seedu/flashcard/logic/parser/ParserUtil.java"
+    public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
+        List<String> validFlagValueList = Arrays.asList(validFlagValues);
+        boolean allValid = flagValueList.stream()
+                .allMatch(flagValue -> validFlagValueList.stream()
+                .anyMatch(validFlagValue -> validFlagValue.equals(flagValue)));
+        return allValid;
+    }
+    //@@author
+
+    /**
+     * Parses a {@code String option} and a {@code String order} into a {@code SortOptions}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code option} or {@code order} is invalid.
+     */
+    //@@author minnzelo-reused
+    //Reused with modifications from "https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main
+    // /java/seedu/flashcard/logic/parser/ParserUtil.java"
+    public static SortOptions parseSortOptions(String option, String order) throws ParseException {
+        requireNonNull(option, order);
+        String trimmedOption = option.trim();
+        String trimmedOrder = order.trim();
+        String sortOption = trimmedOption + " " + trimmedOrder;
+        if (!SortOptions.isValidOption(sortOption)) {
+            throw new ParseException(SortOptions.MESSAGE_INVALID_SORT_OPTIONS);
+        }
+        return SortOptions.getOption(sortOption);
+    }
+    //@@author
+
+    /**
+     * Parses {@code String alias} into a {@code String}.
+     */
+    public static String parseAlias(String alias) throws ParseException {
+        requireNonNull(alias);
+        if (!alias.matches(ALPHANUMERICAL_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_ALIAS);
+        }
+        return alias;
+    }
+}
