@@ -53,7 +53,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(
                 new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
-        expectedModel.setPerson(model.getSortedFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -70,10 +70,10 @@ public class EditCommandTest {
         Person editedPersonA = new PersonBuilder(personA).withPhone(phoneNumber).build();
         Person editedPersonB = new PersonBuilder(personB).withPhone(phoneNumber).build();
         expectedModel.setPerson(
-                model.getSortedFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()),
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()),
                 editedPersonA);
         expectedModel.setPerson(
-                model.getSortedFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()),
+                model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()),
                 editedPersonB);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSONS_SUCCESS, 2);
@@ -151,8 +151,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getSortedFilteredPersonList().size());
-        Person lastPerson = model.getSortedFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -176,7 +176,7 @@ public class EditCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = EditCommand.buildEditIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON),
                 new EditPersonDescriptor());
-        Person editedPerson = model.getSortedFilteredPersonList()
+        Person editedPerson = model.getFilteredPersonList()
                 .get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

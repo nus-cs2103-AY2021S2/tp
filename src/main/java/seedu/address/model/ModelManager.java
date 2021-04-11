@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -145,19 +144,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> displayFilter) {
         requireNonNull(displayFilter);
         filteredPersons.setPredicate(displayFilter);
-    }
-
-    //=========== Sorted Filtered Person List Accessors ======================================================
-
-    @Override
-    public ObservableList<Person> getSortedFilteredPersonList() {
-        return sortedFilteredPersons;
-    }
-
-    @Override
-    public void updateSortedFilteredPersonList(Comparator<Person> comparator) {
-        requireNonNull(comparator);
-        sortedFilteredPersons.setComparator(comparator);
     }
 
     //=========== Display Filter Accessors ===================================================================
