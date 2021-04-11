@@ -4,7 +4,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
-import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -14,8 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
 import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
@@ -26,10 +23,8 @@ import seedu.address.model.tuition.Tuition;
  * UI View which displays weekly calendar and its associated {@code Tuition}
  */
 public class CalendarView extends UiPart<Region> {
-    private static final Logger logger = LogsCenter.getLogger(CalendarView.class);
     private static final String FXML = "CalendarView.fxml";
 
-    private Logic logic;
     private ObservableList<Student> studentObservableList;
     private ObservableList<Tuition> tuitionList;
 

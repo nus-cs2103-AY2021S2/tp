@@ -139,15 +139,6 @@ public class StudentBuilder {
     }
 
     /**
-     * Appends a given list of sessions to the {@code sessions} of the {@code Student}.
-     */
-    public StudentBuilder withListOfSessions(List<Session> sessionList) {
-        requireAllNonNull(sessionList);
-        this.sessions.addAll(sessionList);
-        return this;
-    }
-
-    /**
      * Builds the student object.
      * @return
      */
