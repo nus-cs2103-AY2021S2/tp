@@ -1065,7 +1065,6 @@ testers are expected to do more *exploratory* testing.
       Expected: FlashBack will be updated to the previous state before `undo` is executed.
       The UI will be updated to display all flashcards in FlashBack.
       The result display shows a message: `FlashBack has been redo!`.
-<div style="page-break-after: always;"></div>
 
 ### Adding an alias
 
