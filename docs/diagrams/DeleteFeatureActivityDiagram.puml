@@ -4,8 +4,7 @@ start
 :User executes command;
 :Check input;
 if() then ([user input is valid])
-    :Create delete command;
-    :find the targeted module;
+    :Create delete command and find the targeted module;
     if() then ([if module exists])
         : Retrieve Module from uniqueModuleList;
         :Find the target assignment in the module;

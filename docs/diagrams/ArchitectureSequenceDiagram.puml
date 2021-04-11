@@ -17,6 +17,9 @@ activate logic LOGIC_COLOR
 activate model MODEL_COLOR
 logic -[LOGIC_COLOR]> model : getModule(2103)
 model -[MODEL_COLOR]> model : deleteAssignment(1)
+activate model MODEL_COLOR
+model --[MODEL_COLOR]> model
+deactivate model
 model -[MODEL_COLOR]-> logic
 deactivate model
 

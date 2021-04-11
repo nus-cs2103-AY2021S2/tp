@@ -1142,9 +1142,11 @@ Term | Meaning
 **FilteredList** | List of entries that can take a predicate and show entries that is tested true by the predicated.
 **Tokenize** | Splits the user's inputs based on the prefixes for RemindMe.
 **Prefix** | Prefixes used by RemindMe to parse user's input. <br>Prefixes used by RemindMe are `m/`, `a/`, `e/`, `n/`, `b/`, `g/`, `by/` and `on/`.
-**Preamble** | Text before the first prefix 
+**Preamble** | Text before the first prefix
 
 --------------------------------------------------------------------------------------------------------------------
+
+**[Back to Table Of Content](#table-of-contents)**
 
 ## **Appendix: Instructions for manual testing**
 
@@ -1230,3 +1232,5 @@ testers are expected to do more *exploratory* testing.
    Test case: Launch ClientBook
    
    Expected: ClientBook launches and loads the data of the sample contacts.
+
+**[Back to Table Of Content](#table-of-contents)**
