@@ -31,20 +31,20 @@ title: Developer Guide
   - [Non-Functional Requirements](#non-functional-requirements)
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a contact](#deleting-a-contact)
   - [Saving data](#saving-data)
   - [Adding a contact](#adding-a-contact)
-  - [Changing blacklist status of a contact](#changing-blacklist-status-of-a-contact)
-  - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
-  - [Editing remark for a contact](#adding-a-new-remark)
-  - [Filtering contacts](#filtering-contacts)
-  - [Performing mass blacklist](#blacklisting-or-unblacklisting-multiple-contacts)
-  - [Performing mass delete](#deleting-multiple-contacts)
-  - [Sorting visible contact list](#sort-entries-by-name)
-  - [Changing to light mode](#changing-to-light-mode)
+  - [Blacklisting or un-blacklisting a contact](#blacklisting-or-un-blacklisting-a-contact)
+  - [Blacklisting or un-blacklisting multiple contacts](#blacklisting-or-un-blacklisting-multiple-contacts)
   - [Changing to dark mode](#changing-to-dark-mode)
-  - [Undoing previous operations](#undoing-previous-operations)
+  - [Changing to light mode](#changing-to-light-mode)
+  - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
+  - [Deleting a contact](#deleting-a-contact)
+  - [Deleting multiple contacts](#deleting-multiple-contacts)
+  - [Editing remark for a contact](#editing-remark-for-a-contact)
+  - [Finding contacts](#finding-contacts)
   - [Navigating through commands](#navigating-through-commands)
+  - [Sorting entries by name](#sorting-entries-by-name)
+  - [Undoing previous operations](#undoing-previous-operations)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -625,27 +625,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                 | I want to …​                                      | So that I can…​                                                      |
 | -------- | ------------------------------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
+| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the app                  |
 | `* * *`  | user                                       | add a new contact                                    |                                                                         |
-| `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
+| `* * *`  | user                                       | delete a contact                                     | remove contacts that I no longer need                                   |
 | `* * *`  | user                                       | list all contacts                                    | see the full list of my contacts                                        | 
 | `* * *`  | user                                       | edit a contact                                       | keep my contact list up-to-date                                         |
-| `* * *`  | user                                       | find contacts by their attributes                    | minimize                                                                |
+| `* * *`  | user                                       | find contacts by keywords                            | minimize time spent to find the contacts I need                         |
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
-| `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need               |
-| `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
-| `* *`    | user                                       | assign each contact an additional remark    | note down specific details about certain contacts                       |
-| `* *`    | user with many contacts                    | sort contacts by name                                | work with the contact list more easily                                  |
-| `* *`    | user with many contacts                    | delete multiple contacts at once                     | remove groups of unneeded contacts more efficiently                     |
-| `* *`    | user with many contacts                    | blacklist multiple contacts at once                  | blacklist groups of contacts more efficiently                           |
+| `* * *`  | user                                       | undo my operations                                   | correct any recent mistakes                                             |
+| `* * *`  | user                                       | collect specified details of all contacts            | reduce time spent copying details of each contact                       |
+| `* *`    | user                                       | assign each contact an additional remark             | note down specific details about certain contacts                       |
+| `* *`    | user                                       | sort contacts by name                                | work with the contact list more easily                                  |
+| `* *`    | user                                       | delete multiple contacts at once                     | remove groups of unneeded contacts more efficiently                     |
+| `* *`    | user                                       | blacklist multiple contacts at once                  | blacklist groups of contacts more efficiently                           |
 | `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list
-| `* *`    | user                                       | change between light and dark mode                   | have less strain on my eyes.                                            |
-| `* *`  | user                                       | clear the entire list                                | start over from a new contact list                                      |
+| `* *`    | user                                       | change between light and dark mode                   | reduce the strain on my eyes                                            |
+| `* *`    | user                                       | clear the entire contact list                        | start over from a new contact list                                      |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `SpamEZ` and the **Actor** is the `User`, unless specified otherwise)
 
 **Use case: UC01 - Delete a person**
 
@@ -673,10 +673,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC02 - Filter contacts by tags**
 
 **MSS**
-1. User requests to list contacts
-2. SpamEZ shows a list of contacts
-3. User requests to find the contacts using name and/or tags
-4. SpamEZ returns a filtered list of contacts
+1. User requests to list contacts.
+2. SpamEZ shows a list of contacts.
+3. User requests to find the contacts using name and/or tags.
+4. SpamEZ returns a filtered list of contacts.
 
    Use case ends.
 
@@ -694,10 +694,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  SpamEZ shows a list of contacts
-3.  User requests to edit the preferred mode of contact for a contact
-4.  SpamEZ edits the contact
+1.  User requests to list contacts.
+2.  SpamEZ shows a list of contacts.
+3.  User requests to edit the preferred mode of contact for a contact.
+4.  SpamEZ edits the contact.
     
     Use case ends.
 
@@ -711,11 +711,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list contacts
-2. SpamEZ shows a list of contacts
+1. User requests to list contacts.
+2. SpamEZ shows a list of contacts.
 3. User requests to change the blacklist status of a specific contact
-   in the list
-4. SpamEZ changes the blacklist status of the contact
+   in the list.
+4. SpamEZ changes the blacklist status of the contact.
 
    Use case ends.
 
@@ -747,9 +747,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-  * 3a1. SpamEZ shows an error message.
-    
-    Use case resumes at step 3.
+    * 3a1. SpamEZ shows an error message.
+      
+      Use case resumes at step 3.
 
 * 4a. The contact already has a remark.
 
@@ -770,10 +770,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The contact list currently being displayed is not the full contact list. 
-  * 1a1. SpamEZ will sort both the full contact list and the currently displayed contact list.
-    1a2. SpamEZ displays the updated partial contact list.
-    
-    Use case ends.
+    * 1a1. SpamEZ will sort both the full contact list and the currently displayed contact list.
+      1a2. SpamEZ displays the updated partial contact list.
+      
+      Use case ends.
 
 **Use case: UC07 - Mass blacklist contacts**
 
@@ -809,35 +809,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. The given index is invalid.
-  * 3a1. SpamEZ shows an error message.
-    
-    Use case resumes at step 2.
+    * 3a1. SpamEZ shows an error message.
+      
+      Use case resumes at step 2.
   
 **Use case: UC09 - Changing to light mode**
 
 **MSS**
 
-1. User requests to change mode of viewing to light mode.
-2. SpamEZ changes the mode of viewing to light mode.
+1. User requests to change mode of view to light mode.
+2. SpamEZ changes the mode of view to light mode.
 
 **Extensions**
 
 * 1a. SpamEZ is already in light mode.
 
-    Use case ends.   
+  Use case ends.   
     
 **Use case: UC10 - Changing to dark mode**
 
 **MSS**
 
-1. User request to change mode of viewing to dark mode.
-2. SpamEZ changes the mode of viewing to dark mode.
+1. User request to change mode of view to dark mode.
+2. SpamEZ changes the mode of view to dark mode.
 
 **Extensions**
 
 * 1a. SpamEZ is already in dark mode.
     
-    Use case ends.    
+  Use case ends.    
 
 ### Non-Functional Requirements
 
@@ -865,9 +865,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder.
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -875,56 +876,30 @@ testers are expected to do more *exploratory* testing.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-### Deleting a contact
-
-1. Deleting a contact while all contacts are being shown
-
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
-
-    1. Test case: `delete 0`<br>
-       Expected: No contact is deleted. Error details are shown in the status message.
-
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
-
+       
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: Editing the data file to remove a name field to simulate a corrupted data file, while the app is not running.
+    1. Test case: Editing the data file to remove a name field to simulate a corrupted data file, while the app is not running.<br>
        Expected: Upon opening the app, there are no contacts in the GUI.
 
-    1. Test case: Deleting the data file.
+    1. Test case: Deleting the data file.<br>
        Expected: Upon opening the app, the default sample contacts are shown in the GUI.
 
-### Filtering contacts
+### Adding a contact
 
-1. Filter the list of contacts based on the keywords provided.
+1. Adding a new contact
+  
+    1. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/email t/friends t/owesMoney`<br>
+       Expected: New contact `John Doe`is added to the contact list.
+  
+    1. Test case: `add n/John Doe`<br>
+       Expected: No contact is added. Error details are shown in the status message.
 
-    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+### Blacklisting or un-blacklisting a contact
 
-    1. Test case: `find n/Alex Bernice` <br>
-       Expected: A list of contacts whose name contains `Alex` **or** `Bernice`. The filter is case-insensitive, so `Alex` will match with `aLeX` too, for instance.
-
-    1. Test case: `find t/friends NEIGHBOUR` <br>
-       Expected: A list of contacts whose tags contain `friends` **or** `NEIGHBOUR`.
-
-    1. Test case: `find n/Alex Bernice t/friends neighbour` <br>
-       Expected: A list of contacts whose name contains `Alex` or `Bernice` **and** tags contains `friends` or `neighbour`.
-
-    1. Test case: `find` <br>
-       Expected: No filtering is done, and the original list is presented. Error details shown in the status message.
-
-    1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
-       Expected: Similar to previous.
-
-### Changing blacklist status of a contact
-
-1. Blacklisting a contact while some contacts are being shown
+1. Blacklisting or un-blacklisting a contact while some contacts are being shown
 
     1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
     
@@ -935,7 +910,49 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `blist 0`<br>
        Expected: No contact is edited. Error details are shown in the status message.
    
-    1. Other incorrect blacklist commands to try: `blist`, `blist x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect blacklist commands to try: `blist`, `blist x`, `...` (where x is larger than the list size).<br>
+       Expected: Similar to previous.
+
+### Blacklisting or un-blacklisting multiple contacts
+
+1. Blacklisting or un-blacklisting multiple contacts while some contacts are being shown
+
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 2 contacts in the list.
+   
+    1. Test case: `massblist 1-2 b/blacklist`<br>
+       Expected: The first and second contact in the list will be blacklisted. If the contact is already 
+       blacklisted, then there will be no change to the contact.
+
+    1. Test case: `massblist 0-2 b/unblacklist`<br>
+       Expected: No change in the address book. Error details shown in status message.
+      
+    1. Other incorrect massblacklist commands to try: `massblist`, `massblist 3-4` <br>
+       Expected: Similar to previous.
+
+### Changing to dark mode
+
+1. Change the mode of view to dark mode
+  
+    1. Test case : `dark`<br>
+       Expected: Mode of view is now in dark mode.
+  
+    1. Test case : `dark 1234 `<br>
+       Expected: Mode of view is now in dark mode.
+  
+    1. Other dark commands to try: `dark light`, `dark delete 1`, `...`(any additional input after dark).<br>
+       Expected: Similar to previous.
+
+### Changing to light mode
+
+1. Change the mode of view to light mode
+  
+    1. Test case : `light`<br>
+       Expected: Mode of view is now in light mode.
+  
+    1. Test case : `light 1234 `<br>
+       Expected: Mode of view is now in light mode.
+  
+    1. Other light commands to try: `light dark`, `light delete 1`, `...`(any additional input after light).<br>
        Expected: Similar to previous.
 
 ### Collecting details from all listed contacts
@@ -955,155 +972,141 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `collect`<br>
        Expected: No details are collected. Error details are shown in the status message.
 
-    1. Other incorrect collect commands to try: `collect m/`, `collect n/ e/`, `...` (trying to collect multiple types of details at once)<br>
+    1. Other incorrect collect commands to try: `collect m/`, `collect n/ e/`, `...` (trying to collect multiple types of details at once).<br>
        Expected: Similar to previous.
 
-### Blacklisting or unblacklisting multiple contacts
+### Deleting a contact
 
-1. Blacklisting or un-blacklisting multiple contacts while some contacts are being shown
+1. Deleting a contact while all contacts are being shown
 
-  1. Prerequisites: List some contacts using the `list` or `find` commands. At least 2 contact in the list.
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
 
-  1. Test case: `massblist 1-2 b/blacklist`<br>
-     Expected: The first and second contact in the list will be blacklisted. If the contact is already
-     blacklisted, then there will be no change to the contact.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
 
-  1. Test case: `massblist 0-2 b/unblacklist`<br>
-     Expected: No change in the address book. Error details shown in status message.
+    1. Test case: `delete 0`<br>
+       Expected: No contact is deleted. Error details are shown in the status message.
 
-  1. Other incorrect massblacklist commands to try: `massblist`, `massblist 3-4` <br>
-     Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Deleting multiple contacts
 
 1. Deleting multiple contacts while some contacts are being shown
 
-1. Prerequisites: List some contacts using the `list` or `find` commands. At least 2 contact in the list.
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 2 contacts in the list.
 
-1. Test case: `massdelete 1-2` <br>
-   Expected: The first and second contact in the list will be deleted.
+    1. Test case: `massdelete 1-2` <br>
+       Expected: The first and second contact in the list will be deleted.
 
-1. Test case: `massdelete 0-3` <br>
-   Expected: No change in the address book. Error details shown in status message.
+    1. Test case: `massdelete 0-3` <br>
+       Expected: No change in the address book. Error details shown in status message.
 
-1. Other incorrect massdelete commands to try: `massdelete`, `massdelete 3-` <br>
-   Expected: Similar to previous.
+    1. Other incorrect massdelete commands to try: `massdelete`, `massdelete 3-` <br>
+       Expected: Similar to previous.
 
-### Adding a new remark
+### Editing remark for a contact
 
-1. Adding a new remark while some contacts are being shown
+1. Editing the remark for a contact while some contacts are being shown
 
-  1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
+  
+    1. Test case: `remark 1 r/Absent`<br>
+       Expected: The remark of the first contact in the list will be changed to 'Absent'. If the contact has an existing
+       remark, the old remark will be replaced with the new remark.
+  
+    1. Test case: `remark 2`<br>
+       Expected: No contact is edited. Error details are shown in the status message.
+  
+    1. Other incorrect remark commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
-  1. Test case: `remark 1 r/Absent`<br>
-     Expected: The remark of the first contact in the list will be changed to 'Absent'. If the contact has an existing
-     remark, the old remark will be replaced with the new remark.
+### Finding contacts
 
-  1. Test case: `remark 2`<br>
-     Expected: No contact is edited. Error details are shown in the status message.
+1. Finding contacts with details matching the keywords provided
 
-  1. Other incorrect remark commands to try: `remark`, `remark x`, `...` (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+  
+    1. Test case: `find n/Alex Bernice` <br>
+       Expected: A list of contacts whose name contains `Alex` **or** `Bernice`. The filter is case-insensitive, so `Alex` will match with `aLeX` too, for instance.
+  
+    1. Test case: `find t/friends NEIGHBOUR` <br>
+       Expected: A list of contacts whose tags contain `friends` **or** `NEIGHBOUR`.
+  
+    1. Test case: `find n/Alex Bernice t/friends neighbour` <br>
+       Expected: A list of contacts whose name contains `Alex` or `Bernice` **and** tags contains `friends` or `neighbour`.
+  
+    1. Test case: `find` <br>
+       Expected: No filtering is done, and the original list is presented. Error details shown in the status message.
+  
+    1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
+       Expected: Similar to previous.
 
-### Sort entries by name
+### Navigating through commands
 
-1. Sort the contact list
+1. Navigating to previous commands
 
-  1. Prerequisites: None
+    1. Test case: Execute `light`, `edit 1 n/Alex`, `find n/Alex` in this order and press up arrow key three times. <br>
+       Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Alex`, `edit 1 n/Alex` and finally `light`.
 
-  1. Test case: `sort ascending`<br>
-     Expected: The entire contact list will be sorted by name in ascending alphabetical order. If only a
-     partial list is currently being displayed, the partial list will also be sorted and displayed.
+1. Navigating to later commands
+    
+    1. Prerequisites: Perform test case 1.i.
+  
+    1. Test case: Press down arrow key.<br>
+       Expected: The command `edit 1 n/Alex` is shown.
+  
+    1. Test case: Press down arrow key again.<br>
+       Expected: The command `find n/Alex` is shown.
+  
+    1. Test case: Press down arrow key again.<br>
+       Expected: The command `find n/Alex` is shown again since this is the last command executed.
 
-  1. Test case: `sort` <br>
-     Expected: No change in the address book. Error details are shown in the status message.
+1. Attempting to navigate through commands when there are no commands executed
 
-  1. Other incorrect sort commands to try: `sort 121`, `sort ascending ascending` <br>
-     Expected: Similar to previous.
+    1. Test case: Press up arrow key.<br>
+       Expected: Nothing is shown in the command box.
+  
+    1. Test case: Press down arrow key.<br>
+       Expected: Similar to previous.
+
+1. Attempting to navigate to later commands after executing a command
+
+    1. Test case: Execute any command and press down arrow key.<br>
+       Expected: Nothing is shown in the command box.
+
+### Sorting entries by name
+
+1. Sorting the contact list
+  
+    1. Test case: `sort ascending`<br>
+       Expected: The entire contact list will be sorted by name in ascending alphabetical order. If only a
+       partial list is currently being displayed, the partial list will also be sorted and displayed.
+  
+    1. Test case: `sort`<br>
+       Expected: No change in the address book. Error details are shown in the status message.
+  
+    1. Other incorrect sort commands to try: `sort 121`, `sort ascending ascending` <br>
+       Expected: Similar to previous.
 
 ### Undoing previous operations
-1. Undo previous operations.
 
-   1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
-   1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420 m/email` followed by `undo`. <br>
+1. Undoing previous operations
+
+   1. Prerequisites: List all persons using the `list` command. Multiple contacts in the list.
+      
+   1. Test case: Execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420 m/email` followed by `undo`. <br>
       Expected: `Andy` is no longer in the contact list after `undo` is executed. Command that is undone is shown in the status message.
       
-   1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.<br>
+   1. Test case: Execute `blacklist 2`, `find b/true` and `undo` in this order.<br>
       Expected: The second contact in the list is no longer blacklisted. Command that is undone (i.e. `blacklist 2`) is shown in the status message.
 
-1. Attempt to undo when no changes are done to the contact list.<br>
+1. Attempting to undo when no changes were done to the contact list<br>
 
-   1. Prerequisite: No commands have been executed before executing the following test cases.
+   1. Prerequisites: No commands have been executed before executing the following test cases.
    
    1. Test case: `undo`<br>
       Expected: An error stating there is nothing to undo is shown in the status message.
       
    1. Test case: execute `light` and `undo` in this order.<br>
       Expected: Similar to previous.
-
-### Navigating through commands
-1. Navigating to previous commands.
-
-   1. Test case: Execute `light`, `edit 1 n/Alex`, `find n/Alex` in this order and press up arrow key three times. <br>
-      Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Alex`, `edit 1 n/Alex` and finally `light`.
-      
-1. Navigating to later commands.
-   1. Prerequisite: Retain the same setting as in Test case 1.i.
-   
-   1. Test case: Press down arrow key.<br>
-      Expected: The command `edit 1 n/Alex` is shown.
-      
-   1. Test case: Press down arrow key again.<br>
-      Expected: The command `find n/Alex` is shown.
-      
-   1. Test case: Press down arrow key again.<br>
-      Expected: The command `find n/Alex` is shown again since this is the last command executed.
-      
-1. Attempt to navigate the commands when there are no commands executed.
-
-   1. Test case: Press up arrow key.<br>
-      Expected: Nothing is shown in the command box.
-      
-   1. Test case: Press down arrow key.<br>
-      Expected: Similar to previous.
-      
-1. Attempt to navigate later commands after executing a command.
-
-   1. Test case: Execute any command and press down arrow key.<br>
-      Expected: Nothing is shown in the command box.
-
-### Adding a contact
-1. Adding a new contact.
-    1. Prerequisite: None.
-    
-    1. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/email t/friends t/owesMoney`<br>
-       Expected: New contact `John Doe`is added to the contact list.
-    
-    1. Test case: `add n/John Doe`<br>
-       Expected: No contact is added. Error details are shown in the status message.
-
-### Changing to light mode
-1. Change the mode of viewing to light mode.
-    1. Prerequisite: None.
-    
-    1. Test case : `light`<br>
-       Expected: Mode of viewing is now in light mode.      
-    
-    1. Test case : `light 1234 `
-       Expected: Mode of viewing is now in light mode.                                  
-    
-    1. Other incorrect input to try: `light dark`, `light delete 1`, `...`(any additional input after light)<br>
-       Expected: Similar to previous. 
-       
-### Changing to dark mode
-1. Change the mode of viewing to dark mode.
-    1. Prerequisite: None.
-    
-    1. Test case : `dark`<br>
-       Expected: Mode of viewing is now in dark mode.      
-    
-    1. Test case : `dark 1234 `
-       Expected: Mode of viewing is now in dark mode.                                  
-    
-    1. Other incorrect input to try: `dark light`, `dark delete 1`, `...`(any additional input after dark)<br>
-       Expected: Similar to previous.            

@@ -5,9 +5,8 @@ title: Pan Jing Bin's Project Portfolio Page
 
 ## Project: SpamEZ
 
-SpamEZ is a contact management system that aims to make it easier for the
-School of Computing staff to disseminate information to the school. The user interacts with it using a CLI, and
-it has a GUI created with JavaFX. It is written in Java.
+SpamEZ is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+It helps users to classify contacts based on their details in order to facilitate effective and efficient information dissemination to a large audience.
 
 Given below are my contributions to the project.
 

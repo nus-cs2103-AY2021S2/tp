@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Organised documents (developer guide and user guide) to improve logical flow and ease of access.
 
 * **Enhancements to existing features**:
-  * Added blacklist field for each contact (Pull request [\#29](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/29))
+  * Added blacklist field for contacts (Pull request [\#29](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/29))
 
 * **Documentation**:
   * User Guide and Developer Guide:
