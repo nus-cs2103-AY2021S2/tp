@@ -266,9 +266,9 @@ the `sort by a`.
 The `sort by a` feature sorts the tasks based on the different dates of the tasks from the earliest task
 to the last task in chronological order. For tasks with no dates, they would appear last.
 1. When the command is executed by the user, the input it passed into
-   the `LogicManager` and gets parsed and identified in `AddressBookParser`.
-2. Upon identifying the relevant `COMMAND_WORD` and by extension the `ENTITY` (through the `-` input)
-   , the corresponding `SortCommandParser` object is formed. The user input then goes
+   the `LogicManager` and gets parsed and identified in `PlannerParser`.
+2. Upon identifying the relevant `COMMAND_WORD`, 
+   the corresponding `SortCommandParser` object is formed. The user input then goes
    through another level of parsing in `SortCommandParser`
 3. The `SortCommandParser` identifies the order in which the tasks are to be sort and creates a
    `SortComparator` comparator object accordingly.
@@ -506,23 +506,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Precondition: The task does not have a recurring schedule.**
 
 **MSS**
-1. User <u>adds a task</u> to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to add a date to a specified task.
-4. PlanIT shows task with updated date and updates list.
-5. This task can be viewed in the Calendar User Interface on the day of the date.
+1. User enters command to add task with a date to a specified task.
+2. PlanIT shows task with updated date and updates list.
+3. This task can be viewed in the Calendar User Interface on the day of the date.
 
    Use case ends.
 
 **Extensions**
-* 4a. The given index is invalid.
-    * 4a1. PlanIt shows error message.
+* 2a. The given index is invalid.
+    * 2a1. PlanIt shows error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 1.
     
 #### **Use case: Add a duration to a task**
 
-**Precondition: The task has a title and has a deadline date .**
+**Precondition: The task has a title and has a deadline date or recurring schedule.**
 
 **MSS**
 
@@ -547,7 +545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User <u>adds a task</u> with recurring schedule consisting of end date, 
    day of week and week frequency to the list.
-2. PlanIT shows task with the recurring dates based on the conditions specified by th the user.
+2. PlanIT shows task with the recurring dates based on the conditions specified by the user.
 
    Use case ends.
 
@@ -709,7 +707,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIT displays task already done message.
 
       Use case ends.
+      
+#### **Use case: Postpone task's date**
 
+**MSS**
+1. User <u>adds a task</u> to the list.
+2. User <u>adds a duration</u> to the task.
+3. User enters command to snooze the task.
+4. PlanIT updates Task in the model with Date postponed by the specified amount.
+5. PlanIT displays snoozeCommand success message.
+
+   Use case ends.
+
+**Extensions**
+* 3a. The number of days to postpone the task is more than 365
+    * 4a1. PlanIT displays snoozeCommand error message.
+
+      Use case ends.
+      
 #### **Use case: Counting down to a task's date**
 
 **MSS**
@@ -825,6 +840,20 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
       
+### Making a task
+1. Making a task with a title
+    1. Test case: `mk`<br>
+    Expected: Command format error will be shown.
+       
+    1. Test case: `mk aaa`<br>
+    Expected: Command format error will be shown.
+       
+    1. Test case: `mk n/`<br>
+    Expected: Title format error will be shown.
+       
+    1. Test case: `mk n/valid task`<br>
+    Expected: Task successfully created and added to the list.
+       
 ### Adding a recurring schedule 
 1.  Adding a recurring schedule to a new task in PlanIT's task list
     1. Prerequisites: The task has a title.
@@ -941,7 +970,28 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find d/hello`<br>
        Expected: A filtered list will be returned if there exists tasks within PlanIT
        that has the full description keyword `hello` (case-insensitive).
+       
+### Sorting tasks in PlanIT
+1. Using sort command to sort all tasks or uncompleted tasks within PlanIT either in ascending or descending dates.
 
+    1. Test case: `sort by a`<br>
+       Expected: Sorts all tasks within PlanIT in ascending order. task with no dates would appear last.
+
+    1. Test case: `sort by d`<br>
+       Expected: Sorts all tasks within PlanIT in ascending order. task with no dates would appear first.
+
+    1. Test case: `sort`<br>
+       Expected: No sorted list will be returned.
+       An error message stating invalid input format of find command will be shown in the result display.
+
+    1. Test case: `sort by first`<br>
+       Expected: No sorted list will be returned.
+       An error message stating the list can only be sorted by a or by d.
+
+    1. Test case: `sort by last`<br>
+       Expected: No sorted list will be returned.
+       An error message stating the list can only be sorted by a or by d.
+       
 ### Removing a task
 
 1. Removing a task while all tasks are being shown
@@ -956,7 +1006,67 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect remove commands to try: `rmt`, `rmt x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Setting a task status as done
 
+1. Index is invalid
+    
+    1. Test case: `done 0`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+    1. Test case: `done 99999999999999999999`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+1. Task status is 'done'
+
+    1. Test case: `done 1`<br>
+    Expected: Error message informing the user that the tasks status is already done. No changes to the status of the 
+    task.
+    
+### Snooze
+1. Task to snooze has no date
+    
+    1. Test case: `snooze 1`<br>
+    Expected: Error message to indicate that task has no date.
+    
+1. Index is invalid
+    
+    1. Test case: `snooze 0`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+    1. Test case: `snooze 99999999999999999999`<br>
+    Expected: Error message will be reflected in the message box. Tasks in the list remain the same.
+    
+1. Snooze amount is more that 365
+    
+    1. Test case: `snooze 1 400`<br>
+    Expected: Error message to reflect that snooze amount cannot be more that 365 days will be reflected.
+
+### Viewing a date
+
+1. Viewing tasks that have dates or recurring schedule on the given date
+    1. Test case: `view 12/12/2021`
+    Expected: If there are tasks that have their dates or recurring schedule on 12/12/2021, they will appear on the filtered list.
+       
+    1. Test case: `view 0/0/0`
+    Expected: Date format error thrown.
+       
+    1. Test case: `view a`
+    Expected: View command format error thrown.
+       
+### Navigating the calendar
+
+1. Using `next`
+    1. Test case: `next aaa`
+    Expected: Calendar displays the next relative month.
+
+1. Using `prev`
+    1. Test case: `prev 111`
+       Expected: Calendar displays the previous relative month.
+       
+1. Using the next and prev buttons
+    1. Test case: Calendar displays the next or previous month accordingly.
+    
 ### Saving data
 
 1. Dealing with missing/corrupted data files
