@@ -2,10 +2,6 @@ package seedu.budgetbaby.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -23,31 +19,14 @@ import seedu.budgetbaby.model.record.FinancialRecord;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_BREAKFAST = "Carrot Cake";
-    public static final String VALID_NAME_LUNCH = "Chicken Chop";
-    public static final String VALID_NAME_DINNER = "Curry Chicken Noodles";
-    public static final String VALID_AMOUNT_BREAKFAST = "4.0";
-    public static final String VALID_AMOUNT_LUNCH = "5.0";
-    public static final String VALID_AMOUNT_DINNER = "6.5";
-    public static final String VALID_TIME_BREAKFAST = "2021-04-01";
-    public static final String VALID_TIME_LUNCH = "2021-04-02";
-    public static final String VALID_TIME_DINNER = "2021-04-03";
-    public static final String VALID_CATEGORY_BREAKFAST = "breakfast";
-    public static final String VALID_CATEGORY_LUNCH = "lunch";
-    public static final String VALID_CATEGORY_DINNER = "dinner";
-
-    public static final String NAME_DESC_BREAKFAST = " " + PREFIX_DESCRIPTION + VALID_NAME_BREAKFAST;
-    public static final String NAME_DESC_LUNCH = " " + PREFIX_DESCRIPTION + VALID_NAME_LUNCH;
-    public static final String NAME_DESC_DINNER = " " + PREFIX_DESCRIPTION + VALID_NAME_DINNER;
-    public static final String AMOUNT_DESC_BREAKFAST = " " + PREFIX_AMOUNT + VALID_AMOUNT_BREAKFAST;
-    public static final String AMOUNT_DESC_LUNCH = " " + PREFIX_AMOUNT + VALID_AMOUNT_LUNCH;
-    public static final String AMOUNT_DESC_BOB = " " + PREFIX_AMOUNT + VALID_AMOUNT_DINNER;
-    public static final String TIME_DESC_BREAKFAST = " " + PREFIX_TIME + VALID_TIME_BREAKFAST;
-    public static final String TIME_DESC_LUNCH = " " + PREFIX_TIME + VALID_TIME_LUNCH;
-    public static final String TIME_DESC_DINNER = " " + PREFIX_TIME + VALID_TIME_DINNER;
-    public static final String CATEGORY_DESC_BREAKFAST = " " + PREFIX_CATEGORY + VALID_CATEGORY_BREAKFAST;
-    public static final String CATEGORY_DESC_LUNCH = " " + PREFIX_CATEGORY + VALID_CATEGORY_LUNCH;
-    public static final String CATEGORY_DESC_DINNER = " " + PREFIX_CATEGORY + VALID_CATEGORY_DINNER;
+    public static final String VALID_DESCRIPTION_CAIFAN = "Caifan";
+    public static final String VALID_DESCRIPTION_EARRING = "Earing";
+    public static final String VALID_AMOUNT_CAIFAN = "4.50";
+    public static final String VALID_AMOUNT_EARRING = "18.88";
+    public static final String VALID_TIMESTAMP_CAIFAN = "11-02-2021";
+    public static final String VALID_TIMESTAMP_EARRING = "02-02-2021";
+    public static final String VALID_TAG_FOOD = "food";
+    public static final String VALID_TAG_SHOPPING = "shopping";
 
     /**
      * Executes the given {@code command}, confirms that <br>

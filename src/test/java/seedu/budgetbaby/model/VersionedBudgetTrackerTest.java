@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
-import static seedu.budgetbaby.testutil.TypicalFinancialRecords.BREAKFAST;
-import static seedu.budgetbaby.testutil.TypicalFinancialRecords.DINNER;
-import static seedu.budgetbaby.testutil.TypicalFinancialRecords.LUNCH;
+import static seedu.budgetbaby.testutil.TypicalFinancialRecord.BUBBLETEA;
+import static seedu.budgetbaby.testutil.TypicalFinancialRecord.DINNER;
+import static seedu.budgetbaby.testutil.TypicalFinancialRecord.LUNCH;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,11 +19,11 @@ import seedu.budgetbaby.testutil.BudgetTrackerBuilder;
 public class VersionedBudgetTrackerTest {
 
     private final ReadOnlyBudgetTracker budgetTrackerWithBreakfast = new BudgetTrackerBuilder()
-            .withFinancialRecord(BREAKFAST).build();
-    private final ReadOnlyBudgetTracker budgetTrackerWithLunch = new BudgetTrackerBuilder()
             .withFinancialRecord(LUNCH).build();
-    private final ReadOnlyBudgetTracker budgetTrackerWithDinner = new BudgetTrackerBuilder()
+    private final ReadOnlyBudgetTracker budgetTrackerWithLunch = new BudgetTrackerBuilder()
             .withFinancialRecord(DINNER).build();
+    private final ReadOnlyBudgetTracker budgetTrackerWithDinner = new BudgetTrackerBuilder()
+            .withFinancialRecord(BUBBLETEA).build();
     private final ReadOnlyBudgetTracker emptyBudgetTracker = new BudgetTrackerBuilder().build();
 
     @Test

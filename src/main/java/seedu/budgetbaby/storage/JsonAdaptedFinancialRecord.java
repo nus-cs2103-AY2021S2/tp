@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.budgetbaby.abstorage.JsonAdaptedTag;
 import seedu.budgetbaby.commons.exceptions.IllegalValueException;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;

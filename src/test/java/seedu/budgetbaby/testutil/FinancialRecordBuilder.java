@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.budgetbaby.logic.parser.ParserUtil;
-import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
@@ -15,10 +13,12 @@ import seedu.budgetbaby.model.util.SampleDataUtil;
 /**
  * A utility class to help with building FinancialRecord objects.
  */
+
 public class FinancialRecordBuilder {
 
-    public static final String DEFAULT_DESCRIPTION = "Ramen";
-    public static final String DEFAULT_AMOUNT = "12.5";
+    public static final String DEFAULT_DESCRIPTION = "Lunch";
+    public static final String DEFAULT_AMOUNT = "10.0";
+    public static final String DEFAULT_TIMESTAMP = "01-01-2021";
 
     private Description description;
     private Amount amount;
@@ -31,18 +31,18 @@ public class FinancialRecordBuilder {
     public FinancialRecordBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         amount = new Amount(DEFAULT_AMOUNT);
-        timestamp = new Date();
+        timestamp = FinancialRecord.getValidTimeStamp(DEFAULT_TIMESTAMP);
         categories = new HashSet<>();
     }
 
     /**
-     * Initializes the FinancialRecordBuilder with the data of {@code financialRecordToCopy}.
+     * Initializes the FinancialRecordBuilder with the data of {@code frToCopy}.
      */
-    public FinancialRecordBuilder(FinancialRecord financialRecordToCopy) {
-        description = financialRecordToCopy.getDescription();
-        amount = financialRecordToCopy.getAmount();
-        timestamp = financialRecordToCopy.getTimestamp();
-        categories = new HashSet<>(financialRecordToCopy.getCategories());
+    public FinancialRecordBuilder(FinancialRecord frToCopy) {
+        description = frToCopy.getDescription();
+        amount = frToCopy.getAmount();
+        timestamp = frToCopy.getTimestamp();
+        categories = new HashSet<>(frToCopy.getCategories());
     }
 
     /**
@@ -50,6 +50,15 @@ public class FinancialRecordBuilder {
      */
     public FinancialRecordBuilder withDescription(String description) {
         this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Parses the {@code categories} into a {@code Set<Category>} and
+     * set it to the {@code FinancialRecord} that we are building.
+     */
+    public FinancialRecordBuilder withCategories(String... categories) {
+        this.categories = SampleDataUtil.getCategorySet(categories);
         return this;
     }
 
@@ -62,23 +71,10 @@ public class FinancialRecordBuilder {
     }
 
     /**
-     * Sets the {@code Date} of the {@code FinancialRecord} that we are building.
+     * Sets the {@code Phone} of the {@code FinancialRecord} that we are building.
      */
-    public FinancialRecordBuilder withTime(String timestamp) {
-        try {
-            this.timestamp = ParserUtil.parseDate(timestamp);
-        } catch (ParseException e) {
-            this.timestamp = new Date();
-        }
-        return this;
-    }
-
-    /**
-     * Parses the {@code categories} into a {@code Set<Tag>} and
-     * set it to the {@code FinancialRecord} that we are building.
-     */
-    public FinancialRecordBuilder withCategories(String ... categories) {
-        this.categories = SampleDataUtil.getTagSet(categories);
+    public FinancialRecordBuilder withTimestamp(String timestamp) {
+        this.timestamp = FinancialRecord.getValidTimeStamp(timestamp);
         return this;
     }
 

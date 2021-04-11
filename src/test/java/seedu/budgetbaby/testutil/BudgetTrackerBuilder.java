@@ -1,6 +1,7 @@
 package seedu.budgetbaby.testutil;
 
 import seedu.budgetbaby.model.BudgetTracker;
+import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
@@ -16,6 +17,14 @@ public class BudgetTrackerBuilder {
 
     public BudgetTrackerBuilder(BudgetTracker budgetTracker) {
         this.budgetTracker = budgetTracker;
+    }
+
+    /**
+     * Adds a new {@code Month} to the {@code BudgetTracker} that we are building.
+     */
+    public BudgetTrackerBuilder withMonth(Month month) {
+        budgetTracker.addMonth(month);
+        return this;
     }
 
     /**

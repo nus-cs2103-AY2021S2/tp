@@ -12,10 +12,10 @@ Given below are my contributions to the project.
 
 * **Code Contributed**: [RepoSense Report](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=jxrrelo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
-* **New Feature**: Added `find-fr` command to that allows users to find financial records based on specified fields.
+* **New Feature**: Added `find-fr` command that allows users to find financial records based on specified fields.
   * What it does: Allows the user to specify fields such as `DESCRIPTION`, `AMOUNT` and/or `CATEGORY`. The financial records list will be filtered according to these inputs and only the financial records that match all specified fields will be displayed.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement followed from the initial implementation of `category-filter` which only allowed the filtering of financial records by category. With `find-fr`, users are provided the flexibility of finding financial records based on their own preference.
+  * Justification: This feature improves the product significantly because users are inclined to find specific records for reference, and this is an extremely tedious process to do if the application expects them to manually look for them in a long list of records.
+  * Highlights: This enhancement followed from the initial implementation of `category-filter` which only allowed the filtering of financial records by category. With `find-fr`, users are provided the flexibility of finding financial records based on specified fields.
 
 * **New Feature**: Added `remove-filter` command that allows users to view the original list of financial records.
   * What it does: Allows users to remove all filters set on the financial records list (e.g. after using `find-fr`)
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Replaced `category-filter` to `find-fr` as a general feature that caters to all fields (Pull request [\#108](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/108))
-  * Enhanced the output of `find-fr` on results with no matching records to display an empty list (Pull request [\#201][https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/201])
+  * Enhanced the output of `find-fr` on results with no matching records to display an empty list (Pull request [\#201](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/201))
   * Added maximum character limit for category to prevent overflow (Pull request [\#142](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/142), [\#201](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/201))
   * Wrote additional tests for the following features: `category`, `find-fr`, `edit-fr` and `delete-fr` to increase coverage from 0% to 100% (Pull request [\#206](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/206))
 
@@ -45,6 +45,6 @@ Given below are my contributions to the project.
     * Added use cases for all features
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#86](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/86)*
+  * PRs reviewed (with non-trivial review comments): [\#86](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/86)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/173#issuecomment-783923667), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/227))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/207), [2](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/208), [3](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/215), [4](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/214), [5](https://github.com/AY2021S2-CS2103T-W15-3/tp/issues/212))
