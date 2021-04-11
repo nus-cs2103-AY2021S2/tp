@@ -47,12 +47,12 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
 6. Refer to the [Features](#features) below for the details of the main commands.
 
 --------------------------------------------------------------------------------------------------------------------
-## Introduction
+## UI Layout
 This section introduces you to the UI of Taskify. Let us take a closer look at the different sections and fields
 present in the UI of Taskify.
 
-Here is a sample usage of Taskify:
-![TaskifyIntro](images/taskifyintro.png)
+Here is a sample usage of Taskify:  
+<img src="images/taskifyintro.png" width="700">
 
 The UI of Taskify is split into 4 main components:
 1. Task List
@@ -61,23 +61,23 @@ The UI of Taskify is split into 4 main components:
 4. Due Today List
 
 ### 1. Task list
-![TaskList](images/tasklist.png)
+<img src="images/tasklist.png" width="600">
 
 Shown above are positions of the Tabs and Tasks of a Task List. The fields of a Task include Index, Name,
 Tags, Description, Status and Date.
 
 ### 2. Command box
-![CommandBox](images/commandbox.png)
+<img src="images/commandbox.png" width="600">
 
 This is the Command Box. This is where you will input your commands.
 
 ### 3. Response Box
-![ResponseBox](images/responsebox.png)
+<img src="images/responsebox.png" width="600">
 
 This is the Response Box. This is where you will see Taskify's response to your commands.
 
 ### 4. Due Today List
-![DueTodayList](images/duetodaylist.png)
+<img src="images/duetodaylist.png" width="300">
 
 This is the Due Today List. This is where Tasks that are due today will be displayed
 for your convenience.
@@ -146,11 +146,15 @@ Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
 A Task can have any number of tags (including 0)
 </div>
 
-
 Examples:
 * `add n/CS2100 Finals desc/Revise for Finals date/2021-04-13 12:00`
 * `add n/Consult Professor desc/Discuss project with prof date/2021-04-04 10:30 t/project`
 * `add n/Buy groceries desc/Don't forget tomatoes`
+
+| Before        | After         |
+| :-----------: | :-----------: |
+| <img src="images/feature-screenshots/add-task-before.png" width="450">     | <img src="images/feature-screenshots/add-task-after.png" width="550">  |
+| Command Entered: `add n/Finish 2103 Tutorial desc/Draw UML diagram date/2021-04-13 10:30` | A new task named "Finish 2103 Tutorial has been added        |
 
 ### Listing all tasks : `list`
 
@@ -176,6 +180,12 @@ Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
 *  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
 *  `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
+
+| Before        | After         |
+| :-----------: | :-----------: |
+| <img src="images/feature-screenshots/edit-task-before.png" width="450">     | <img src="images/feature-screenshots/edit-task-after.png" width="450">  |
+| Command Entered: `edit 2 s/completed` | The status of the task at index 2 has been changed to completed       |
+
 
 ### Deleting a task : `delete`
 
@@ -221,6 +231,11 @@ Delete multiple tasks by either:
     * Notes:
         * All tasks have one of the 3 `Status`: `uncompleted`, `completed`, `expired`
         * Newly created tasks have `uncompleted` as their `Status`
+
+| Before        | After         |
+| :-----------: | :-----------: |
+| <img src="images/feature-screenshots/delete-task-before.png" width="450">     | <img src="images/feature-screenshots/delete-task-after.png" width="450">  |
+| Command Entered: `delete 2 3` | The tasks with indices 2 and 3 have been deleted       |
     
     
 
@@ -251,6 +266,11 @@ Format: `tag-search TAG [MORE_TAGS]`
 Examples:
 * `tag-search tutorial CS2103T`
 
+| Before        | After         |
+| :-----------: | :-----------: |
+| <img src="images/feature-screenshots/tag-search-task-before.png" width="450">     | <img src="images/feature-screenshots/tag-search-task-after.png" width="450">  |
+| Command Entered: `tag-search finals ` | All the tasks containing the 'finals' tag have been displayed      |
+
 ### Viewing a task based on date : `view`
 
 Find and list all tasks with the same date as the specified date. Viewing via dates can help you see what's due on a certain date easily.
@@ -274,6 +294,10 @@ which tasks to prioritise.
 
 Format: `sort`
 
+| Before        | After         |
+| :-----------: | :-----------: |
+| <img src="images/feature-screenshots/sort-task-before.png" width="450">     | <img src="images/feature-screenshots/sort-task-after.png" width="450">  |
+| Command Entered: `sort` | All the tasks have been sorted by deadline date     |
 
 
 ### Switching between tabs :`home` / `uncompleted` / `completed` / `expired`
@@ -283,6 +307,11 @@ Switch between the tabs in Taskify. Each tab displays tasks with the correspondi
 Format: `home` / `uncompleted` / `completed` / `expired`
 
 Examples: `completed` (change to the completed tab)
+
+| Before        | After         |
+| :-----------: | :-----------: |
+| <img src="images/feature-screenshots/swich-tabs-before.png" width="450">     | <img src="images/feature-screenshots/swich-tabs-after.png" width="450">  |
+| Comand Entered: `expired` | The UI has switched to display the expired tab       |
 
 
 ### Clearing all tasks : `clear`
@@ -320,10 +349,11 @@ previous computer.
 
 Term | Explanation 
 --------|--------
+**App** | Short form for application
 **CCA** | Abbreviation for Co-curricular activities
 **CLI** | Abbreviation for Command Line Interface. The command line interface is an interface that accepts text input from users which is then processed and passed as commands to Taskify.
 **GUI** | Abbreviation for Graphical User Interface. The graphical user interface is a form of user interface that allows users to interact with Taskify through graphical icons.   
-**App** | Short form for application
+**UI**  | Abbreviation for User Interface
 
 
 ## Command summary
