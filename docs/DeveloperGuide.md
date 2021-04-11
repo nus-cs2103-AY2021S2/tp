@@ -233,25 +233,34 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
 
 ### Add Event to Project Command [Implemented in v1.2]
 
-The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
+The mechanism is used to add an `Event` to the `EventList` of a `Project` specified by the `Index` in the project list shown.
 
-The client creates a concrete `AddEventCommand` that contains the specified index of project and a valid Event object. Each concrete `AddEventCommand` implements the `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+A concrete `AddEventCommand` containing the specified `Index` of `Project` and a valid `Event` object.
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
+Each concrete `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
 
-Step 1. The user executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
+Below is a sequence diagram and explanation of how an `addE` command is executed.
 
-Step 2: The input is parsed by `AddEventCommandParser`. It checks if `Event` provided is valid or not. If input is invalid, an exception will be throw and `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
+![Add Event Sequence Diagram](images/AddEventCommandSequenceDiagram.png)
+*Sequence Diagram for the Add Event command*
 
-Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provided is valid or not and if `Event` provided is duplicated. If check fails, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, the change will be made to `Project`and `Model` in the next step.
+Step 1. The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
 
-Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
+Step 2. User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
 
-Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message.
+Step 3. The `AddEventCommand` will then be executed by calling its `execute` method.
+
+Step 4. Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
+
+Step 5. From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
+
+Step 6. This `Project` will add the `Event` to its `EventList` by calling `addEvent` function. 
+
+Step 7. After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
 
 #### Design Considerations
 
-##### Aspect: How to add a new `Event` to a `Project`.
+##### Aspect: How to add a new `Event` to a `Project`, which is done in part `internally adding Event`
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
     * Pros:
