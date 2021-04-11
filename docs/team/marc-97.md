@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * What it does: Allows user to reverse a command that changes flashcard.
     * Justification: In the event that users accidentally execute a wrong command that modifies flashcards, this feature allows user to undo the action.
     * Highlights: This feature mainly involves creating a versionedFlashBack that stores the states of FlashBack.
-    * Credit: [SE-EDU](https://github.com/se-edu/addressbook-level4) on Github
+    * Credit: Implementations adapted from [SE-EDU](https://github.com/se-edu/addressbook-level4) on Github
     
 * **New features**: Added the ability to redo a command. [#88](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/88)
     * What it does: Similar to undo, except it reverses the undo command.
@@ -32,7 +32,15 @@ Given below are my contributions to the project.
     
 * **Documentation**:
     * User Guide:
-        * Added the documentation for the features `delete`, `undo`, `redo` and `alias`.[#31](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/31), [#69](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/69), [#93](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/93), [#133](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
+        * Added the documentation for the features `delete`, `undo`, `redo` and `alias`. [#31](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/31), [#69](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/69), [#93](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/93), [#133](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
+        * Standardised the note sections. [#180](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/180)
     * Developer Guide:
-        * Updated implementation details for `undo` and `redo` feature with sequence and activity diagram.[#93](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/93)
-        * Added the documentation for the features `alias`.[#133](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
+        * Updated NFR and Glossary. [#37](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/37)
+        * Updated implementation details for `undo` and `redo` feature with sequence and activity diagram. [#93](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/93)
+        * Added the documentation for the features `alias`. [#113](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
+        * Added manual testing for `undo`, `redo` and `alias` feature. [#113](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
+        * Added effort section for `undo`, `redo` and `alias` feature. [#180](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/180)
+        
+* **Other Contributions**:
+    * Refactor project package. [#183](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/183)
+    * Bug reported for other teams in PED. [W15-1](https://github.com/marc-97/ped/issues)
