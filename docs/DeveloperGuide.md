@@ -180,9 +180,11 @@ The `UI` component,
 1. `CommandHistorySelector` is responsible for the logic of navigating command history. Its implementation is detailed
    [here](#navigate-history).
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("idel 1")` API call.
-Many other commands have a similar flow, differing only by the specific command parser class, command class and 
-interaction with the model.
+#### Command parsing and execution
+
+The `Logic` component handles the parsing and execution of commands, and most of them follow the same flow, differing
+only by the specific command parser class, command class and interaction with the model. The example Sequence Diagram
+below shows the parsing and execution process for the `execute("idel 1")` API call.
 
 ![Interactions Inside the Logic Component for the `idel 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -191,6 +193,9 @@ interaction with the model.
     * `DeleteIssueCmdParser` represents the class `DeleteIssueCommandParser`
     * `DeleteIssueCmd` represents the class `DeleteIssueCommand`
     * `CmdResult` represents the class `CommandResult`
+* `delete first issue` is not an actual method; rather it is a simplification of the two-step process of getting the
+  issue to delete then deleting it. These command-specific details are not the focus of this diagram, and have thus been
+  abbreviated.
 
 ### Model component
 
