@@ -23,7 +23,7 @@ title: Developer Guide
    &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
    &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation-of-event-level-commands)<br>
 1. [Documentation, Logging, Testing, Configuration, Dev-Ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
-1. [Appendix](#appendix)<br>
+[Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
    A2. [User Stories](#a2-user-stories)<br>
    A3. [Use Cases](#a3-use-cases)<br>
@@ -524,9 +524,9 @@ specific task with given arguments. An `AddTaskCommandParser` object is created,
 `AddTaskParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
 checks to ensure that it compiles with the specification. An `AddTaskCommand` object is returned.
 
-**Step 2**: On `AddTaskCommand#execute()`, `Model#addTasks(Task taskToAdd)` is called.
+**Step 2**: On `AddTaskCommand#execute()`, `Model#addTask(Task taskToAdd)` is called.
 This will add the task specified into the task list.
-For brevity, lower level implementation of `Model#addTasks(Task taskToAdd)` is omitted.
+For brevity, lower level implementation of `Model#addTask(Task taskToAdd)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_ADD_TASK_SUCCESS`.
@@ -548,9 +548,9 @@ A `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String a
 The method conducts parses the `INDEX` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteTaskCommand` object is returned.
 
-**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTasks(Task taskToDelete)` is called.
+**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTask(Task taskToDelete)` is called.
 This will delete the task at the specified index.
-For brevity, lower level implementation of `Model#deleteTasks(Task taskToDelete)` is omitted.
+For brevity, lower level implementation of `Model#deleteTask(Task taskToDelete)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_DELETE_TASK_SUCCESS`.
@@ -852,7 +852,7 @@ A `TodayTaskCommand` object is returned
 **Step 2**: On `TodayTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This 
 will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
 `TaskDeadlineIsTodayPredicate`. For brevity, lower level implementation of 
-`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+`Model#updateFilteredTaskList(Predicate<Task> predicate)` is omitted.
 
 **Step 3**: On execution completion, a `CommandResult` is created. A success message will be appended with
 `CommandResult#MESSAGE_TODAY_TASK_SUCCESS` and `MESSAGE_TASK_LISTED_OVERVIEW`. The UI will also update as the underlying 
@@ -891,7 +891,7 @@ The `FindTaskCommand` object with input predicate is returned.
 On `FindTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This
 will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
 `TaskNameContainsKeywordPredicate`. For brevity, lower level implementation of
-`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+`Model#updateFilteredTaskList(Predicate<Task> predicate)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_TASKS_LISTED_OVERVIEW`.
@@ -1036,7 +1036,7 @@ It can also be similarly extrapolated and applied to `unpin_task`.
 
 
 #### Implementation of `clear_completed_task` command
-In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`CLearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
+In SOChedule, the governing logic behind the `clear_completed_task` command is laid out in [`ClearCompletedTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/ClearCompletedTaskCommand.java)
 The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
 
 **Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
@@ -1120,12 +1120,12 @@ The following is a detailed explanation on how `AddEventCommand.java` is impleme
 
 **Step 1**: User executes `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...` 
 command to add the specific event with given arguments. An `AddEventCommandParser` object is created, and the 
-`AddEventParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
+`AddEventCommandParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
 checks to ensure that it compiles with the specification. An `AddEventCommand` object is returned.
 
-**Step 2**: On `AddEventCommand#execute()`, `Model#addEvents(Event eventToAdd)` is called.
+**Step 2**: On `AddEventCommand#execute()`, `Model#addEvent(Event eventToAdd)` is called.
 This will add the event specified into the event list.
-For brevity, lower level implementation of `Model#addEvents(Event eventToAdd)` is omitted.
+For brevity, lower level implementation of `Model#addEvent(Event eventToAdd)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message `AddEventCommand#MESSAGE_ADD_EVENT_SUCCES` will be displayed.
@@ -1143,13 +1143,13 @@ In SOChedule, the governing logic behind the `delete_event` command is laid out 
 The following is a detailed explanation on how DeleteEventCommand is implemented.
 
 **Step 1**: User executes `delete_event 1` command to delete the event at the given index.
-A `DeleteEventParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
+A `DeleteEventCommandParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
 The method conducts parses the `1` and conducts validation checks to ensure that it complies with the specification.
 A `DeleteEventCommand` object is returned.
 
-**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvents(Event eventToDelete)` is called.
+**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvent(Event eventToDelete)` is called.
 This will delete the event at the specified index.
-For brevity, lower level implementation of `Model#deleteEvents(Event eventToDelete)` is omitted.
+For brevity, lower level implementation of `Model#deleteEvent(Event eventToDelete)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message `DeleteEventCommand#MESSAGE_DELETE_EVENT_SUCCESS` will be displayed.
