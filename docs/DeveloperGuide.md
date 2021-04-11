@@ -152,7 +152,7 @@ Assumptions:
 2. HEY MATEz application has an existing task whose status is `uncompleted`
 
 Step 1. User executes the `done 1` command to mark the task with index number 1 in the task list of HEY MATEz as `completed`. 
- A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments given.
+ A `DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments given.
 
 Step 2. The `DoneTaskCommandParser#parse` method will check the validity of the argument given for a `DoneTaskCommand`. If it
 is valid, it will create a new `DoneTaskCommand` instance by calling the constructor of `DoneTaskCommand`.
@@ -354,7 +354,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a member
 2.  HEY MATEz adds the member to the list of members
 
-    
 Use case ends.
 
 **Extensions**
@@ -371,7 +370,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to view the members
-2.  HEY MATEz lists the members in the list, and their contact details
+2.  HEY MATEz lists the members and their details
     
 Use case ends.
 
@@ -426,7 +425,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to add a task
-2.  HEY MATEz adds the task to the task board
+2.  HEY MATEz adds the task to the task list
     
 Use case ends.
 
@@ -505,12 +504,12 @@ Use case ends.
 
 1.  User requests to find tasks of a certain priority
 2.  HEY MATEz searches through each task
-3.  HEY MATEz lists tasks with a matching priority.
+3.  HEY MATEz lists tasks with a matching priority
     
 Use case ends.
 
 **Extensions**
-* 1a. The input value by the user is not a valid priority
+* 1a. The priority input provided by the user is not a valid priority
     * 1a1. HEY MATEz shows an error message
       
 Use case ends.
@@ -526,8 +525,8 @@ Use case ends.
 Use case ends.
 
 **Extensions**
-* 1a. Task index does not exist in the currently displayed list of tasks
-    * 1a1. HEY MATEz shows an error message
+* 2a. Task index does not exist in the currently displayed list of tasks
+    * 2a1. HEY MATEz shows an error message
   
 Use case ends.
 
@@ -537,13 +536,13 @@ Use case ends.
 
 1.  User requests to mark a task as uncompleted using the task's index
 2.  HEY MATEz searches for the task index 
-3.  HEY MATEzchanges the status of the task in the list to uncompleted
+3.  HEY MATEz changes the status of the task in the list to uncompleted
     
 Use case ends.
 
 **Extensions**
-* 1a. Task index does not exist in the currently displayed list of tasks
-    * 1a1. HEY MATEz shows an error message
+* 2a. Task index does not exist in the currently displayed list of tasks
+    * 2a1. HEY MATEz shows an error message
   
 Use case ends.
 
@@ -580,9 +579,9 @@ Similar to viewing a list of uncompleted tasks but a list of unassigned task is 
 
 **MSS**
 
-1.  User requests to find tasks assigned to a name
+1.  User requests to find tasks assigned to a member using the member's name
 2.  HEY MATEz searches through each task and checks the assignees of the task
-3.  HEY MATEz lists tasks with a matching assignee.
+3.  HEY MATEz lists tasks which has the specified name as an assignee
     
 Use case ends.
 
@@ -644,45 +643,73 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `clear` <br>
        Expected: All the data in HEY MATEz is cleared.
        
+### Adding a member
+
+1. Adding a member 
+
+   1. Prerequisites: No duplicate members exist.
+
+   1. Test case: `addMember Alice p/12345678 e/Alice@gmail.com`<br>
+      Expected: Member is successfully added, with the details of the member displayed in the status bar.
+
+   1. Test case: `addMember Bryan p/45678910 e/Bryan@gmail.com r/President`<br>
+      Expected: Member is successfully added, with the details of the member displayed in the status bar.
+   
+   1. Test case: `addMember Charlie p/12345678 e/Charlie.com `<br>
+      Expected: No member is added since the email given is invalid. Error details shown in the status bar.
+
+   1. Test case: `addMember Charlie p/12 e/Charlie@gmail.com`<br>
+      Expected: No member is added since the phone number given is invalid. Error details shown in the status bar.
+
+   1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com` <br>
+      Expected: similar to previous.
+
+### Viewing members
+
+1. Lists all members within HEY MATEz
+
+   1. Test case: `viewMembers`<br>
+      Expected: Lists all members within HEY MATEz.
+
 ### Deleting a Member
 
 1. Deleting a member
 
-   1. Prerequisites: List all members using the `viewMembers` command. A member with the name of Rachel exists in the members list 
-      while no members with the name of John exists.
+    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of Rachel exists in the members list
+       while no members with the name of John exists.
 
-   2. Test case: `deleteMember Rachel`<br>
-      Expected: Member with the name Rachel is deleted from the members list. Details of the deleted member is shown in the 
-      status message. 
+    2. Test case: `deleteMember Rachel`<br>
+       Expected: Member with the name Rachel is deleted from the members list. Details of the deleted member is shown in the
+       status message.
 
-   3. Test case: `deleteMember John`<br>
-      Expected: No member is deleted. Error details is shown in the status message.
+    3. Test case: `deleteMember John`<br>
+       Expected: No member is deleted. Error details is shown in the status message.
 
-   4. Other incorrect delete commands to try: `delete`, `deleteMember x` (where x is a name which does not exist in the members list) <br>
-      Expected: Similar to previous test case.
+    4. Other incorrect delete commands to try: `delete`, `deleteMember x` (where x is a name which does not exist in the members list) <br>
+       Expected: Similar to previous test case.
 
 ### Editing a Member
 
 1. Editing a member
 
     1. Prerequisites: List all members using the `viewMembers` command. Members with the name of Alice and Timothy exists
-       in the members list while no members with the name of Dylan exists. 
-      
+       in the members list while no members with the name of Dylan exists.
+
     2. Test case: `editMember Alice n/Allyson`<br>
-       Expected: Member with the name Alice is edited to have a new name of Allyson. Details of the edited member is shown 
-       in the status message. 
+       Expected: Member with the name Alice is edited to have a new name of Allyson. Details of the edited member is shown
+       in the status message.
 
     3. Test case: `editMember Alice n/Timothy`<br>
-       Expected: No member is edited since a member with the name Timothy already exists. Error details is shown in the status 
+       Expected: No member is edited since a member with the name Timothy already exists. Error details is shown in the status
        message.
-       
+
     4. Test case: `editMember Alice n/Alice Tan p/98887777 e/aliceTan@gmail.com`
        Expected: Member with the name Alice is edited to have the new details as specified. Details of the edited member is shown
        in the status message.
 
     5. Test case: `editMember Dylan`<br>
-        Expected: No member is edited. Error details is shown in the status message.
-       
+       Expected: No member is edited. Error details is shown in the status message.
+
     6. Other incorrect delete commands to try: `edit`, `editMember x` (where x is a name which does not exist in the members list) <br>
        Expected: Similar to previous test case.
 
@@ -691,23 +718,90 @@ testers are expected to do more *exploratory* testing.
 1. Finding members in HEY MATEz whose details (i.e. name, phone number, email, role) contain any of the specified keywords
 
     1. Prerequisites: HEY MATEz contains 2 members with the following details: <br>
-       * 1. Name: Alice, Phone Number: 98887777, Email: alice@gmail.com, Role: Secretary
-       * 2. Name: Bryan, Phone Number: 89996666, Email: bryan@gmail.com, Role: Secretary
-    
+        * 1. Name: Alice, Phone Number: 98887777, Email: alice@gmail.com, Role: Secretary
+        * 2. Name: Bryan, Phone Number: 89996666, Email: bryan@gmail.com, Role: Secretary
+
     2. Test case: `findMembers Alice`<br>
-       Expected: Alice is listed in the members list. 
-       
+       Expected: Alice is listed in the members list.
+
     3. Test case: `findMembers alice@gmail.com bryan@gmail.com` <br>
-        Expected: Both Alice and Bryan are listed in the members list. 
-       
+       Expected: Both Alice and Bryan are listed in the members list.
+
     4. Test case: `findMembers secretary`<br>
-        Expected: Both Alice and Bryan are listed in the members list since keywords specified are case-insensitive.
-    
-    5. Test case: `findMembers President` <br> 
-        Expected: Both Alice and Bryan are not listed since none of their details matches the specified keyword.
+       Expected: Both Alice and Bryan are listed in the members list since keywords specified are case-insensitive.
+
+    5. Test case: `findMembers President` <br>
+       Expected: Both Alice and Bryan are not listed since none of their details matches the specified keyword.
 
     6. Test case: `findMembers`<br>
-      Expected: Invalid command format, error details is shown in the status message.
+       Expected: Invalid command format, error details is shown in the status message.
+       
+### Mark a task as completed
+
+1. Mark a task as completed:
+
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **uncompleted**.
+
+   1. Test case: `done 1`<br>
+      Expected: Status of task at index 1 is updated to **completed**. Successful task status update message is shown in the status bar.
+      
+   1. Test case: `done 0`<br>
+      Expected: No task marked as **completed**. Error details is shown in the status bar.      
+      
+   1. Other incorrect commands to try: `done`, `done -1` 
+      Expected: Similar to previous. 
+      
+### Mark a task as uncompleted
+
+1. Mark a task as uncompleted: 
+
+   1. Prerequisites: List all tasks with the `viewTasks` command. There exists a task at index 1 whose task status is **completed**.
+
+   1. Test case: `undo 1`<br>
+      Expected: Status of task at index 1 is updated to **uncompleted**. Successful task status update message is shown in the status bar.
+      
+   1. Test case: `undo 0`<br>
+      Expected: No task marked as **uncompleted**. Error details is shown in the status bar.      
+      
+   1. Other incorrect commands to try: `undo`, `undo -1` 
+      Expected: Similar to previous.   
+
+### Find tasks by priority
+
+1. Find all tasks within HEY MATEz with the specified priority
+
+   1. Test case: `findPriority high`<br>
+      Expected: Lists all tasks within HEY MATEz whose priority is **high**.
+
+   1. Test case: `findPriority medium`<br>
+      Expected: Lists all tasks within HEY MATEz whose priority is **medium**.
+
+   1. Test case: `findPriority low`<br>
+      Expected: Lists all tasks within HEY MATEz whose priority is **low**.
+
+   1. Test case: `findPriority unassigned`<br>
+      Expected: Lists all tasks within HEY MATEz whose priority is **unassigned**.
+
+   1. Test case: `findPriority unsure`<br>
+      Expected: Error message displayed in the status bar.
+
+   1. Test case: `findPriority HIGH`<br>
+      Expected: Error message displayed in the status bar.
+
+   1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc.
+      Expected: Similar to previous.   
+
+### Find tasks assigned to a member
+
+1. Lists all tasks assigned to a member
+
+   1. Prerequisites: There exists a member with the name of Alice and a task assigned to Alice within HEY MATEz.
+   
+   1. Test case: `findTasksFor Alice`<br>
+      Expected: Lists the task which is assigned to Alice.
+      
+   1. Test case: `findTasksFor`
+      Expected: Error message displayed in the status bar.
 
 ### Finding Tasks by Keywords
 
