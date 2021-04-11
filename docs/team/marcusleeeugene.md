@@ -5,7 +5,7 @@ title: Marcus Lee Eugene's Project Portfolio Page
 
 ## Project: The Food Diary
 
-The Food Diary - The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI) using JavaFX. It is written in Java, and has about 7.5k LoC.
+The Food Diary - The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI) using JavaFX. It is written in Java, and has about 8.5k LoC.
 
 Given below are my contributions to the project.
 
@@ -48,6 +48,7 @@ Given below are my contributions to the project.
         * Design considerations for `revise`
         * Added component details for the Model architecture
         * Added command details and user stories for the features `view`, `clear`, `revise`
+        * Instructions for manual testing: View an entry, Clear all entries
 
 
 * **Contributions to team-based tasks**:
@@ -57,7 +58,7 @@ Given below are my contributions to the project.
     * Release management
     * Merged pull requests
     * Refactored model, logic and test codes from AB3 to fit FoodDiary
-    * Worked on Revise and View UI enhancements
+    * Worked on Revise and View features and UI enhancements
 
 
 * **Review/mentoring contributions**:
