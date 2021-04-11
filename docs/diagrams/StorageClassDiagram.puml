@@ -6,22 +6,31 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface ColabFolderStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonColabFolderStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> ColabFolderStorage
 
 Storage -|> UserPrefsStorage
-Storage -|> AddressBookStorage
+Storage -|> ColabFolderStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBook
-JsonSerializableAddressBook .right.> JsonAdaptedPerson
-JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonColabFolderStorage .left.|> ColabFolderStorage
+JsonColabFolderStorage .down.> JsonSerializableColabFolder
+
+JsonSerializableColabFolder ..> JsonAdaptedContact
+JsonSerializableColabFolder ..> JsonAdaptedProject
+
+JsonAdaptedProject ..> JsonAdaptedGroupmate
+JsonAdaptedProject ..> JsonAdaptedTodo
+JsonAdaptedProject ..> JsonAdaptedEvent
+JsonAdaptedProject ..> JsonAdaptedDeadline
+
+JsonAdaptedContact ..> JsonAdaptedTag
+JsonAdaptedGroupmate ..> JsonAdaptedRole
 @enduml

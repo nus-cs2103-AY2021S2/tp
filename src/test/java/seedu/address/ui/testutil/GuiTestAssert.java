@@ -9,13 +9,13 @@ import static seedu.address.ui.EventCard.MESSAGE_EVENT_REPEATABLE;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import guitests.guihandles.CompletableDeadlineCardHandle;
-import guitests.guihandles.CompletableTodoCardHandle;
 import guitests.guihandles.ContactCardHandle;
 import guitests.guihandles.ContactListPanelHandle;
+import guitests.guihandles.DeadlineCardHandle;
 import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
+import guitests.guihandles.TodoCardHandle;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.contact.Contact;
@@ -23,8 +23,8 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
-import seedu.address.ui.CompletableDeadlineCard;
-import seedu.address.ui.CompletableTodoCard;
+import seedu.address.ui.DeadlineCard;
+import seedu.address.ui.TodoCard;
 
 /**
  * @@author {se-edu}-reused
@@ -61,11 +61,11 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedCompletableDeadline}.
      */
     public static void assertCardDisplaysCompletableDeadline(
-            CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
+            CompletableDeadline expectedDeadline, DeadlineCardHandle actualCard) {
         assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
         assertEquals(decodeDate(expectedDeadline.getBy()), actualCard.getDate());
         assertEquals(decodeDateIntoDay(expectedDeadline.getBy()), actualCard.getDay());
-        String expectedCompletedText = CompletableDeadlineCard
+        String expectedCompletedText = DeadlineCard
                 .getTextToDisplay(expectedDeadline.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
     }
@@ -74,9 +74,9 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedCompletableTodo}.
      */
     public static void assertCardDisplaysCompletableTodo(
-            CompletableTodo expectedTodo, CompletableTodoCardHandle actualCard) {
+            CompletableTodo expectedTodo, TodoCardHandle actualCard) {
         assertEquals(expectedTodo.getDescription(), actualCard.getDescription());
-        String expectedCompletedText = CompletableTodoCard
+        String expectedCompletedText = TodoCard
                 .getTextToDisplay(expectedTodo.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
     }

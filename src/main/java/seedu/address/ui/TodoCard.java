@@ -9,9 +9,9 @@ import seedu.address.model.task.CompletableTodo;
 /**
  * An UI component that displays information of a {@code CompletableTodo}.
  */
-public class CompletableTodoCard extends UiPart<Region> {
+public class TodoCard extends UiPart<Region> {
 
-    private static final String FXML = "CompletableTodoCard.fxml";
+    private static final String FXML = "TodoCard.fxml";
 
     public final CompletableTodo todo;
 
@@ -25,9 +25,9 @@ public class CompletableTodoCard extends UiPart<Region> {
     private Label completedLabel;
 
     /**
-     * Creates a {@code CompletableTodoCard} with the given {@code CompletableTodo} and index to display.
+     * Creates a {@code TodoCard} with the given {@code CompletableTodo} and index to display.
      */
-    public CompletableTodoCard(CompletableTodo todo, int displayedIndex) {
+    public TodoCard(CompletableTodo todo, int displayedIndex) {
         super(FXML);
         this.todo = todo;
         id.setText(displayedIndex + ". ");
@@ -52,12 +52,12 @@ public class CompletableTodoCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CompletableTodoCard)) {
+        if (!(other instanceof TodoCard)) {
             return false;
         }
 
         // state check
-        CompletableTodoCard card = (CompletableTodoCard) other;
+        TodoCard card = (TodoCard) other;
         return id.getText().equals(card.id.getText())
                 && todo.equals(card.todo);
     }
