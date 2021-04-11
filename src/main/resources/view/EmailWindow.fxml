@@ -30,15 +30,18 @@
                     <Button fx:id="sendEmailButton" layoutX="492.0" layoutY="259.0" mnemonicParsing="false" onAction="#sendEmail" text="Send" textFill="#121212" />
                     <Label fx:id="sentBoolValue" layoutX="474.0" layoutY="338.0" text="Message Sent!" visible="false" />
                     <Label fx:id="invalidEmailSignal" layoutX="455.0" layoutY="320.0" text="Invalid Email entered!" textFill="#f30000" visible="false" />
-                  <Label layoutX="432.0" layoutY="63.0" prefHeight="132.0" prefWidth="166.0" text="If unable to send, please read the end section of User guide for guide to set up." textFill="#0062ff" textOverrun="CLIP" wrapText="true">
+                    <Label fx:id="invalidPasswordSignal" layoutX="430.0" layoutY="300.0" prefHeight="57.0" prefWidth="182.0" text="Invalid Username/Password entered! Please restart application!" textFill="#f30000" visible="false" wrapText="true" />
+                  <Label layoutX="432.0" layoutY="63.0" prefHeight="132.0" prefWidth="166.0" text="If unable to send, please read the end section of User guide for guide to set up." textFill="#0062ff" wrapText="true">
                      <font>
                         <Font size="11.0" />
                      </font></Label>
-                  <Button fx:id="enableAccessButton" layoutX="432.0" layoutY="174.0" mnemonicParsing="false" onAction="#enableAccess" prefHeight="26.0" prefWidth="149.0" text="URL to google security" textFill="#121212">
+                  <Button fx:id="enableAccessButton" layoutX="432.0" layoutY="174.0" mnemonicParsing="false" onAction="#enableAccess" prefHeight="26.0" prefWidth="149.0" text="Copy URL to google security" textFill="#121212">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Button>
+                  <Label fx:id="emailSuccessfullyLoggedIn" layoutX="25.0" layoutY="386.0" prefHeight="17.0" prefWidth="104.0" text="You are logged in!" textFill="#00a329" visible="false" />
+                  <Label fx:id="emailFailedLoggedIn" layoutX="25.0" layoutY="386.0" prefHeight="17.0" prefWidth="166.0" text="Please restart program!" textFill="RED" visible="false" />
                 </children>
             </AnchorPane>
          </root>
