@@ -98,8 +98,6 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-<div style="page-break-after: always;"></div>
-
 ### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -115,6 +113,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Logic component
 
