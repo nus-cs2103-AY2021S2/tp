@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 
@@ -18,9 +19,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.contact.Contact;
 import seedu.address.storage.JsonColabFolderStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.ContactBuilder;
 
 public class MainWindowTest extends GuiUnitTest {
     @TempDir
@@ -38,10 +41,10 @@ public class MainWindowTest extends GuiUnitTest {
                 new JsonColabFolderStorage(temporaryFolder.resolve("colab.json"));
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storageManager = new StorageManager(jsonColabFolderStorage, jsonUserPrefsStorage);
+        logic = new LogicManager(new ModelManager(getTypicalColabFolder(), new UserPrefs()), storageManager);
         FxToolkit.setupStage(stage -> {
             this.stage = stage;
-            mainWindow = new MainWindow(stage, new LogicManager(new ModelManager(getTypicalColabFolder(),
-                    new UserPrefs()), storageManager));
+            mainWindow = new MainWindow(stage, logic);
             mainWindow.fillInnerParts();
             mainWindowHandle = new MainWindowHandle(stage);
             mainWindowHandle.focus();
@@ -73,6 +76,40 @@ public class MainWindowTest extends GuiUnitTest {
     public void viewHelp_success() {
         inputCommand("help");
         assertTrue(mainWindowHandle.contains(MainWindow.HELP_PANEL_ID));
+    }
+
+    @Test
+    public void contacts_success() {
+        inputCommand("addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01");
+
+        // assert contact has been added
+        Contact contactToAdd = new ContactBuilder()
+                .withName("John Doe")
+                .withPhone("98765432")
+                .withEmail("johnd@example.com")
+                .withAddress("John street, block 123, #01-01")
+                .build();
+        assertTrue(logic.getFilteredContactList().contains(contactToAdd));
+
+        // assert contacts window is displayed
+        assertTrue(mainWindowHandle.contains(MainWindow.CONTACT_LIST_PANEL_ID));
+
+        int contactIndex = logic.getFilteredContactList().size();
+
+        // update contact
+        inputCommand("updateC " + contactIndex +" p/91234567 e/johndoe@example.com");
+        Contact contactToUpdate = new ContactBuilder(contactToAdd)
+                .withPhone("91234567")
+                .withEmail("johndoe@example.com")
+                .build();
+
+        assertTrue(logic.getFilteredContactList().contains(contactToUpdate));
+        assertTrue(mainWindowHandle.contains(MainWindow.CONTACT_LIST_PANEL_ID));
+
+        // delete contact
+        inputCommand("deleteC " + contactIndex);
+        assertFalse(logic.getFilteredContactList().contains(contactToUpdate));
+        assertTrue(mainWindowHandle.contains(MainWindow.CONTACT_LIST_PANEL_ID));
     }
 
     private void inputCommand(String command) {
