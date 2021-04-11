@@ -1,6 +1,7 @@
 package seedu.address.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.DateUtil.decodeDate;
 import static seedu.address.commons.util.DateUtil.decodeDateIntoDay;
 import static seedu.address.ui.EventCard.MESSAGE_EVENT_NON_REPEATABLE;
@@ -16,12 +17,14 @@ import guitests.guihandles.ContactListPanelHandle;
 import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
+import guitests.guihandles.TodayDeadlineCardHandle;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
+import seedu.address.model.task.deadline.DeadlineWithProject;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.ui.CompletableDeadlineCard;
 import seedu.address.ui.CompletableTodoCard;
@@ -58,7 +61,7 @@ public class GuiTestAssert {
     }
 
     /**
-     * Asserts that {@code actualCard} displays the details of {@code expectedCompletableDeadline}.
+     * Asserts that {@code actualCard} displays the details of {@code expectedDeadline}.
      */
     public static void assertCardDisplaysCompletableDeadline(
             CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
@@ -68,6 +71,14 @@ public class GuiTestAssert {
         String expectedCompletedText = CompletableDeadlineCard
                 .getTextToDisplay(expectedDeadline.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
+    }
+
+    /**
+     * Asserts that {@code actualCard} displays the details of {@code expectedDeadline}.
+     */
+    public static void assertCardDisplaysTodayDeadline(
+            DeadlineWithProject expectedDeadline, TodayDeadlineCardHandle actualCard) {
+        assertTrue(actualCard.equals(expectedDeadline));
     }
 
     /**

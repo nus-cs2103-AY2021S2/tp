@@ -1,22 +1,23 @@
 package seedu.address.ui;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.DateUtil.encodeDate;
-import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysCompletableDeadline;
+import static seedu.address.ui.testutil.GuiTestAssert.assertCardDisplaysTodayDeadline;
 
 import org.junit.jupiter.api.Test;
 
-import guitests.guihandles.CompletableDeadlineCardHandle;
+import guitests.guihandles.TodayDeadlineCardHandle;
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.task.CompletableDeadline;
+import seedu.address.model.task.deadline.DeadlineWithProject;
 import seedu.address.testutil.DeadlineBuilder;
 
 /**
- * Contains tests for the {@code CompletableDeadlineCard}.
+ * Contains tests for the {@code TodayDeadlineCard}.
  */
-public class CompletableDeadlineCardTest extends GuiUnitTest {
+public class TodayDeadlineCardTest extends GuiUnitTest {
 
     private static final boolean DONE = true;
     private static final boolean NOT_DONE = false;
@@ -26,25 +27,29 @@ public class CompletableDeadlineCardTest extends GuiUnitTest {
         // deadline is done
         CompletableDeadline deadlineIsDone = new DeadlineBuilder().withDescription("Display Test")
                 .withByDate(encodeDate("18-03-2021")).withIsDone(DONE).build();
-        CompletableDeadlineCard deadlineCard = new CompletableDeadlineCard(deadlineIsDone, 1);
+        DeadlineWithProject todayDeadlineIsDone = new DeadlineWithProject(deadlineIsDone, new ProjectName("project"));
+        TodayDeadlineCard deadlineCard = new TodayDeadlineCard(todayDeadlineIsDone);
         uiPartExtension.setUiPart(deadlineCard);
-        assertCardDisplay(deadlineCard, deadlineIsDone, 1);
+        assertCardDisplay(deadlineCard, todayDeadlineIsDone);
 
         // deadline is not done
         CompletableDeadline deadlineIsNotDone = new DeadlineBuilder().withDescription("Display Test")
                 .withByDate(encodeDate("18-03-2021")).withIsDone(NOT_DONE).build();
-        deadlineCard = new CompletableDeadlineCard(deadlineIsNotDone, 2);
+        DeadlineWithProject todayDeadlineIsNotDone =
+                new DeadlineWithProject(deadlineIsNotDone, new ProjectName("project"));
+        deadlineCard = new TodayDeadlineCard(todayDeadlineIsNotDone);
         uiPartExtension.setUiPart(deadlineCard);
-        assertCardDisplay(deadlineCard, deadlineIsNotDone, 2);
+        assertCardDisplay(deadlineCard, todayDeadlineIsNotDone);
     }
 
     @Test
     public void equals() {
         CompletableDeadline deadline = new DeadlineBuilder().build();
-        CompletableDeadlineCard deadlineCard = new CompletableDeadlineCard(deadline, 0);
+        DeadlineWithProject deadlineWithProject = new DeadlineWithProject(deadline, new ProjectName("project"));
+        TodayDeadlineCard deadlineCard = new TodayDeadlineCard(deadlineWithProject);
 
         // same deadline, same index -> returns true
-        CompletableDeadlineCard copy = new CompletableDeadlineCard(deadline, 0);
+        TodayDeadlineCard copy = new TodayDeadlineCard(deadlineWithProject);
         assertTrue(deadlineCard.equals(copy));
 
         // same object -> returns true
@@ -55,30 +60,19 @@ public class CompletableDeadlineCardTest extends GuiUnitTest {
 
         // different types -> returns false
         assertFalse(deadlineCard.equals(0));
-
-        // different deadline, same index -> returns false
-        CompletableDeadline differentDeadline = new DeadlineBuilder().withDescription("differentDescription").build();
-        assertFalse(deadlineCard.equals(new CompletableDeadlineCard(differentDeadline, 0)));
-
-        // same deadline, different index -> returns false
-        assertFalse(deadlineCard.equals(new CompletableDeadlineCard(deadline, 1)));
     }
 
     /**
      * Asserts that {@code deadlineCard} displays the details of {@code expectedDeadline}
-     * correctly and matches {@code expectedId}.
+     * correctly.
      */
-    private void assertCardDisplay(
-            CompletableDeadlineCard deadlineCard, CompletableDeadline expectedDeadline, int expectedId) {
+    private void assertCardDisplay(TodayDeadlineCard deadlineCard, DeadlineWithProject expectedDeadline) {
         guiRobot.pauseForHuman();
 
-        CompletableDeadlineCardHandle deadlineCardHandle =
-                new CompletableDeadlineCardHandle(deadlineCard.getRoot());
-
-        // verify id is displayed correctly
-        assertEquals(Integer.toString(expectedId) + ". ", deadlineCardHandle.getId());
+        TodayDeadlineCardHandle deadlineCardHandle =
+                new TodayDeadlineCardHandle(deadlineCard.getRoot());
 
         // verify deadline details are displayed correctly
-        assertCardDisplaysCompletableDeadline(expectedDeadline, deadlineCardHandle);
+        assertCardDisplaysTodayDeadline(expectedDeadline, deadlineCardHandle);
     }
 }
