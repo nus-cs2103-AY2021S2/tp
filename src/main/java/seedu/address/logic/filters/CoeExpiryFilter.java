@@ -29,6 +29,7 @@ public class CoeExpiryFilter extends AbstractFilter {
         requireNonNull(filterString);
         checkArgument(isValidFilter(filterString), MESSAGE_CONSTRAINTS);
         LocalDate currentDate = LocalDate.now(); // Should be the date without time
+        System.out.println(filterString);
         boolean expiredOnly = filterString.equals("exp");
         int years = 0;
         if (!expiredOnly) {
