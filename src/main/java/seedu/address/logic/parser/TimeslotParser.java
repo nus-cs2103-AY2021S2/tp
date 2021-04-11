@@ -9,7 +9,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
 import java.util.Date;
@@ -48,9 +47,6 @@ public class TimeslotParser {
             + "at/next [DAY] [TIME] or next [DAY]\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
             + "next Wednesday 12:12pm or next Wednesday";
-    public static final String MESSAGE_INVALID_PAST_DATE_TIME_FORMAT = "Invalid date and time!\n"
-            + "This timeslot has already occurred in the past."
-            + "Please input future dates and times that that have yet to occur as of now.";
     public static final String MESSAGE_INVALID_DURATION_FORMAT = "Input format for duration must be: "
             + "[%d UNIT...] where units are { H:hours, M:minutes }\n"
             + "Examples of duration inputs:\n"
@@ -67,11 +63,9 @@ public class TimeslotParser {
      *
      * @throws ParseException for the following scenarios:
      * - if the given {@code LocalDateTime} does not conform to the expected date time format.
-     * - if the given {@code LocalDateTime} is a date time that has already occurred in the past as of now.
      */
     public static LocalDateTime parseDateTime(String userInput) throws ParseException {
         String formattedInput = userInput.toUpperCase().trim();
-        boolean isOldDateTime = false;
 
         if (formattedInput.contains("NEXT")) {
             return parseNextDateTime(formattedInput);
@@ -80,18 +74,12 @@ public class TimeslotParser {
                 try {
                     LocalDateTime timeslotInput = LocalDateTime.parse(formattedInput,
                             dateTimeFormat.getDateTimeFormatter());
-                    if (timeslotInput.compareTo(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES)) < 0) {
-                        isOldDateTime = true;
-                        break;
-                    }
                     return timeslotInput;
                 } catch (DateTimeParseException e) {
                     continue;
                 }
             }
-            String messageUsage = isOldDateTime ? MESSAGE_INVALID_PAST_DATE_TIME_FORMAT
-                    : MESSAGE_INVALID_DATE_TIME_FORMAT;
-            throw new ParseException(messageUsage);
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
         }
     }
 
