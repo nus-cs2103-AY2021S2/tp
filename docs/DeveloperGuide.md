@@ -51,6 +51,7 @@ title: Developer Guide
     * [Sort feature](#sort-feature)
     * [UndoRedo feature](#undoredo-feature)
     * [Alias feature](#alias-feature)
+    * [Statistics feature](#statistics-feature)  
     * [UI improvement](#ui-improvement)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -883,17 +884,16 @@ testers are expected to do more *exploratory* testing.
        shown on the result display.
        
     1. Test case: `edit 1` <br>
-       Expected: Flashcard identified by index 1 in the list will not be edited, and an error message will be displayed to prompt
-       the user to enter at least one field to edit.
+       Expected: Flashcard identified by index 1 in the list will not be edited, the following error message will be displayed: `At least one field to edit must be provided.`
        
     1. Test case: `edit 1 p/Low` <br>
        Expected: The flashcard identified by index 1 in the list will be modified. Its priority is changed to `Low`. If the flashcard already has 
-       `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
+       `Low` priority, the following error message will be displayed: `Modified card is the same as current card!`, and no modifications will be made to the flashcard.
        
     1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms` <br>
        Expected: The flashcard identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
        and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
-       `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
+       `Mid`, as well as tags `sorting` and `algorithms`, the following error message will be displayed: `Modified card is the same as current card!`, and no modifications will be made to the flashcard.
 
 
 ### Finding flashcards
@@ -1129,6 +1129,12 @@ testers are expected to do more *exploratory* testing.
 * AB3 did not have a `alias` feature.
 * A new class `AliasMap` is created to handle the mapping.
 * As `AliasMap` is stored in `UserPrefs` which is stored as a json file as `preferences.json`, users are able to modify the mapping directly. Hence an additional check is added to ensure that the alias mapping is valid when starting the application.
+
+### Statistics feature
+* This is an entirely new feature, AB3 did not have a `stats` feature.
+* Prior to adding this feature, the `review` feature had to be extended to allow users to mark a question as correct or wrong. And this involves creating an internal command `UpdateStatisticsCommand`, which updates the statistics of the flash cards in a Model-View-Controller fashion.
+* A new class, `Statistics` was created to represent the statistics attribute of flash cards.
+* A new class, `FlashbackStats` was created to integrate the display of statistics into the existing user interface.
 
 ### UI improvement
 * There is a significant change from the initial UI of AB3 to the final UI to make the application more visually appealing.
