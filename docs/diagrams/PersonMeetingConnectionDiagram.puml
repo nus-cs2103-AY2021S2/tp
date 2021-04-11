@@ -11,6 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":PersonMeetingConnection" as PersonMeetingConnection MODEL_COLOR
 end box
 
 [-> LogicManager : execute("showm 1")
@@ -50,6 +51,12 @@ activate ShowMeetingCommand
 
 ShowMeetingCommand -> Model : showMeeting(1)
 activate Model
+
+Model -> PersonMeetingConnection
+activate PersonMeetingConnection
+
+PersonMeetingConnection -> Model
+deactivate PersonMeetingConnection
 
 Model --> ShowMeetingCommand
 deactivate Model
