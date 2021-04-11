@@ -495,7 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
       <br>Use case ends.
 
-* 1b. System detects an error in the entered parameter.
+* 1b. System detects that the given parameter is invalid.
 
     * 1b1. System shows an error message.
       <br> Use case ends.
@@ -519,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System shows an error message.
       <br> Use case ends.
 
-* 1c. System detects an error in the entered parameter.
+* 1c. System detects that the given parameter is invalid.
 
     * 1c1. System shows an error message.
       <br> Use case ends.
