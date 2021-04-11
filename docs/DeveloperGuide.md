@@ -144,7 +144,10 @@ The `Model`,
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardBook`, which `Flashcard` references. This allows `FlashcardBook` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
-<img src="images/BetterModelClassDiagram.png" width="400" />
+
+<p align="center">
+  <img src="images/BetterModelClassDiagram.png" width="550" />
+</p>
 
 </div>
 
@@ -284,8 +287,8 @@ quiz is displayed in the GUI window. The following activity diagrams summarize h
 along with each quiz session.
 
 <p float="left">
-  <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" width="250" />
-  <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" width="250" />
+  <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" width="310" />
+  <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" width="310" />
 </p>
 
 <div style="page-break-after: always;"></div>
