@@ -96,7 +96,8 @@ public class Customer {
                 && otherCustomer.getName().equals(getName())
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getPhone().equals(getPhone())
-                && otherCustomer.getAddress().equals(getAddress());
+                && otherCustomer.getAddress().equals(getAddress())
+                && otherCustomer.getDate().equals(getDate());
     }
 
     /**
