@@ -1,5 +1,7 @@
 package seedu.address.model.tag;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a priority tag in the task
  *
@@ -21,6 +23,7 @@ public class PriorityTag {
     public PriorityTag(String tagName) {
 
         boolean isValidTag = validateTag(tagName);
+        checkArgument(isValidTag);
 
         if (isValidTag) {
             setState(tagName);
