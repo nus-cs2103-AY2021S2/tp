@@ -580,6 +580,34 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
       
+### Adding a student
+
+1. Adding a student not currently in the list
+    1. Prerequisites: List all students using the list command. Sample data of students and appointments shown in the list.
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+    
+        Expected: Adds a student (John Doe) to the list. Details of the added student is shown in the status message. 
+    John Doe's student details appear in the GUI
+    1. Test case: `add A123456799X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the correct `matriculation number`
+       format should be A + 7 digit numeric sequence + alphabet.
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/not vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the `vaccination status` should only be 
+       `vaccinated` or `unvaccinated`
+    1. Test case: `add A1234567X n/John Doe f/SoC p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the `faculty` should only be
+       one of those shown.
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/kent Ridge
+       `   
+       Expected: No student is added. Error details shown in the status telling user that the `School Residence` should only be 
+       one of those shown.
+    1. Test case: `add A1234567X n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012
+       `   
+       Expected: Adds a student (Betsy Crowe) to the list. Details of the added student is shown in the status message. John Doe's student details appear in the GUI.
+       Betsy Crowe's `School Residence` defaults to `DOES NOT LIVE ON CAMPUS`. 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
