@@ -38,12 +38,33 @@ public class TypeTest {
     }
 
     @Test
-    public void equal() {
+    public void equals() {
         Type typeOne = new Type("strawberry cake");
         Type typeTwo = new Type("Strawberry Cake");
         Type typeThree = new Type("strawberry cake");
 
         assertEquals(typeOne, typeThree); //same value for type
         assertNotEquals(typeOne, typeTwo); //type is case sensitive
+    }
+
+    @Test
+    public void toStringMethod() {
+        String expectedString = "Strawberry Cake";
+        Type strawberryCake = new Type("Strawberry Cake");
+        assertEquals(expectedString, strawberryCake.toString());
+    }
+
+    @Test
+    public void toHashcodeMethod() {
+        //same type -> same hashcode
+        Type chocolateOne = new Type("Chocolate Cake");
+        Type chocolateTwo = new Type("Chocolate Cake");
+        assertEquals(chocolateOne.hashCode(), chocolateTwo.hashCode());
+    }
+
+    @Test
+    public void getValue() {
+        Type chocolate = new Type("Chocolate Cake");
+        assertEquals("Chocolate Cake", chocolate.getValue());
     }
 }
