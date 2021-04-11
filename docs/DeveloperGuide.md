@@ -534,7 +534,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions**
-
 * 1a. If the user is currently in the Expired Tab
     * 1a1. Taskify informs the User that it is currently in the Expired Tab.
 
@@ -650,9 +649,66 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutting down
 
-### 7.2 Deleting a task
+    1. Launch the help window `help` command.
+
+    1. Close the app using the `exit` command.  
+       Expected: Both the main window, and the help window should close.
+
+### 7.2 Adding a task
+
+1. Adding a task on the home tab.
+
+    1. Prerequisites: User should be on the home tab and there should not be any task with the same name in the list.
+       If there is such a task, delete it.
+
+    1. Test case: `add n/Finish 2103T Tutorial desc/Draw UML diagram date/2021-04-13 10:30 t/CS2103T`<br>
+       Expected: Task named Finish 2103T Tutorial should appear in the list of tasks on the home tab. It should 
+       appear at the bottom of the list ,and the details should be as entered.
+
+    1. Test case: `add n/Old Task desc/Draw UML diagram date/2015-04-13 10:30 t/CS2103T`<br>
+       Expected: No task is added. Error details indicating that the date should not be in the past shown in 
+       status 
+       message.
+       
+1. Adding a task on a non-home tab.
+
+    1. Prerequisites: User should be on any tab other than the home tab and there should not be any task with the same 
+       name in the list. If there is such a task, delete it.
+
+    1. Test case: `add n/Finish 2103T Tutorial desc/Draw UML diagram date/2021-04-13 10:30 t/CS2103T`<br>
+       Expected: No task is added since the user has to be on the home tab to add tasks. Error message instructing 
+       the user to switch to the home tab shown in status message.
+
+### 7.3 Editing a task
+
+1. Editing a task on the home tab.
+
+    1. Prerequisites: User should be on the home tab. There should be at least 1 task in the task list.
+
+    1. Test case: `edit 1 t/newtag`<br>
+       Expected: Task with index 1 is edited such that it will have a single tag named newtag.
+
+    1. Test case: `edit 1 s/completed desc/new description`<br>
+       Expected: Task with index 1 will be edited, and the new details should be as entered.
+
+    1. Test case: `edit 0 s/completed desc/new description`<br>
+       Expected: No event is deleted. Error details shown in the status message.
+
+    1. Other incorrect edit commands to try: `edit`, `edit x` (where x is larger than the list size).
+       Expected: Similar to previous.
+
+1. Adding a task on a non-home tab.
+
+    1. Prerequisites: User should be on any tab other than the home tab and there should be at least 1 task in the 
+       task list
+
+    1. Test case: `edit 1 s/completed desc/new description`<br>
+       Expected: No task is edited since the user has to be on the home tab to add tasks. Error message instructing
+       the user to switch to the home tab shown in status message.
+
+### 7.3 Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -668,15 +724,40 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### 7.4 Switching Tabs
 
-### 7.3 Saving data
+1. Switching to home tab
+    1. Test case: `home`<br>
+       Expected: If not already on the home tab, the UI will switch to the home tab.
+1. Switching to expired tab
+    1. Test case: `expired`<br>
+       Expected: If not already on the expired tab, the UI will switch to the home tab.
+1. Switching to completed tab      
+    1. Test case: `completed`<br>
+       Expected: If not already on the completed tab, the UI will switch to the home tab.
+1. Switching to uncompleted tab
+   1. Test case: `uncompleted`<br>
+      Expected: If not already on the uncompleted tab, the UI will switch to the home tab.
 
-1. Dealing with missing/corrupted data files
+### 7.5 Sorting Tasks
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Sorting tasks based on deadlines.
+    1. Test case: `sort`
+    1. Expected: All the tasks are sorted in ascending order of their deadline dates.
 
-1. _{ more test cases …​ }_
+### 7.6 Viewing help
+
+1. Viewing help
+   1. Test case: `help`
+   1. Expected: Help window appears.
+
+### 7.7 Clearing Data
+
+1. Clearing all data in Taskify
+    1. Test case: There should be some data in Taskify.
+    1. Test case: `clear`
+    1. Expected: All the data is cleared.
+    
 
 --------------------------------------------------------------------------------------------------------------------
 ## **8. Appendix: Effort**
