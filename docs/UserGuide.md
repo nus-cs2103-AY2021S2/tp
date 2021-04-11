@@ -141,7 +141,7 @@ Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 When you first launch DietLAH!, some sample data will already be loaded. 
 
-DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
+DietLAH! uses your information to provide personalized recommendations based on your personal goals and current characteristics.
 
 <div markdown="span" class="alert alert-primary">
     ✏️ <strong>Note:</strong> You need to enter this command before all other commands will work! Also, note that you need to clear the sample data before you can use this command!
@@ -325,7 +325,11 @@ Deletes the specified food item.
 
 ### 3.5 Input food intake
 
-For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
+For tracking your diet plan progress, you are encouraged to record your daily food intake. 
+
+You are allowed to add food intakes from the future. This is because you can use the function to perform a "food forecast" - so that you will know if eating the foods you have put in would go over your recommended daily intake of nutrients.
+
+For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
 
 <div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> If there are multiple food intakes with the same date and name, the food name will be <strong>automatically renamed</strong> to include a duplicate count for easy identification. This is because there can be multiple food intakes for the same food in the given day, and they may contain different nutrient values. <br/><br/>
