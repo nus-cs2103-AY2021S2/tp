@@ -5,8 +5,8 @@ title: Jaryl Loh's Project Portfolio Page
 
 ## Project: BudgetBaby
 
-BudgetBaby is a desktop budget tracking application used to manage finances. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
-The app supports CRUD functions and seeks to improve the financial literacy of University students in Singapore.
+BudgetBaby is a desktop budget tracking application used to manage finances. The app supports CRUD functions and seeks to improve the financial literacy of University students in Singapore.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -20,7 +20,9 @@ Given below are my contributions to the project.
   * Justification: This feature provides an option to undo the `find-fr` command completely, regardless of how many times the financial records list has been filtered. This is an essential feature that complements `find-fr` after users have completed viewing the filtered list of financial records.
 
 * **Project Management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Applied critical thinking skills and provided valuable feedback to implemented or to-be implemented features
+  * Assisted with task management and equal distribution of workload amongst the team
+  * Contributed to the opening of several major issues on the project's Github repository
 
 * **Enhancements to existing features**:
   * Replaced `category-filter` to `find-fr` as a general feature that caters to all fields (Pull request [\#108](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/108))
