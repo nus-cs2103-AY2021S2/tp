@@ -27,7 +27,7 @@ public class ClearCommand extends Command {
         + "[" + PREFIX_LOCATION + "LOCATION]\n"
         + "Example:\n"
         + "1. " + COMMAND_WORD + "\n"
-        + "2. " + COMMAND_WORD + " l/bedrcoom\n";
+        + "2. " + COMMAND_WORD + " l/bedroom\n";
 
     private final Predicate<Item> predicate;
 
