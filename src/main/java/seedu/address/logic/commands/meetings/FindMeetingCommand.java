@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -90,5 +91,16 @@ public class FindMeetingCommand extends Command {
         return personPred;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FindMeetingCommand that = (FindMeetingCommand) o;
+        return persons.equals(that.persons);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(persons);
+    }
 }
