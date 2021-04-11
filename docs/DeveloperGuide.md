@@ -341,7 +341,7 @@ books added to the book list.
 * Step 6: `SmartLib#addRecord()` will add the corresponding record to record list
 * Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file
 * Step 8: On the other hand, `ModelManager#borrowBook()` will change the borrowing status of book and reader's borrowing
-list by calling `SmartLib#borrowBook()` and
+list by calling `SmartLib#isBookBorrowed()` and
   update local storage by calling `Model#updateFilteredReaderList()` and `Model#updateFilteredBookList()`.
 * Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI
 
@@ -374,16 +374,15 @@ we assume that the user input is `return bc/1000000000`:
 * Step 2: The user inputs `return bc/1000000000` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` and `ReturnCommandParser` will check the user input, and return a `ReturnCommand` to
   the `LogicManager` if the input is valid.
-* Step 4: `LogicManager` will then call `ReturnCommand#execute()`, which in turn calls `Model#markRecordAsReturned()`
-  ,`Model#getReaderNameForReturn()`, `Model#getBookNameForReturn()` and `Model#returnBook()`.
-* Step 5: After calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`
-and `Model#updateFilteredRecordList()`
+* Step 4: `LogicManager` will then call `ReturnCommand#execute()`, which in turn calls `Model#getReaderNameForReturn()`, 
+  `Model#getBookNameForReturn()`, `Model#markRecordAsReturned()` and `Model#returnBook()`.
+* Step 5: After calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`.
 * Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the
   dateReturned to LocalDate.now()
-* Step 7: `ModelManager#updateFilteredRecordList()` will update corresponding record list in local storage file
-* Step 8: `ModelManager#returnBook()` will change the status of book and reader specified by calling
-`SmartLib#returnBook()` and
-  update local storage by calling `Model#updateFilteredReaderList()` and `Model#updateFilteredBookList()`.
+* Step 7: After calling `Model#returnBook()`, `ModelManager` will then call `ModelManager#updateFilteredRecordList()`
+  which will update the corresponding record list in local storage file
+* Step 8: `ModelManager#returnBook()` will also change the status of book and reader specified by calling
+  `SmartLib#isBookReturned()` and update local storage by calling `Model#updateFilteredReaderList()` and `Model#updateFilteredBookList()`.
 * Step 9: All reader list, book list and record list will be updated in storage and reflected on the GUI
 
 The following sequence diagram shows how the `return` operation works:
