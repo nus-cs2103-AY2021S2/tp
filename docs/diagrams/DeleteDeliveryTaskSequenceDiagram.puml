@@ -5,18 +5,18 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "command:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete 3")
 activate LogicManager
 
-LogicManager -> DeliveryListParser : parseCommand("delete 1")
+LogicManager -> DeliveryListParser : parseCommand("delete 3")
 activate DeliveryListParser
 
 create DeleteCommandParser
@@ -26,29 +26,35 @@ activate DeleteCommandParser
 DeleteCommandParser --> DeliveryListParser
 deactivate DeleteCommandParser
 
-DeliveryListParser -> DeleteCommandParser : parse("1")
+DeliveryListParser -> DeleteCommandParser : parse("3")
 activate DeleteCommandParser
 
 create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
+DeleteCommand --> DeleteCommandParser : command
 deactivate DeleteCommand
 
-DeleteCommandParser --> DeliveryListParser : d
+DeleteCommandParser --> DeliveryListParser : command
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteCommandParser -[hidden]-> DeliveryListParser
 destroy DeleteCommandParser
 
-DeliveryListParser --> LogicManager : d
+DeliveryListParser --> LogicManager : command
 deactivate DeliveryListParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : getFilteredCustomerList()
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : deleteCustomer(3)
 activate Model
 
 Model --> DeleteCommand
@@ -58,12 +64,12 @@ create CommandResult
 DeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteCommand : result
 deactivate CommandResult
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml
