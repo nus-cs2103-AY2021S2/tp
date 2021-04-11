@@ -151,6 +151,7 @@ public class CommandTestUtil {
     public static final EditProgramDescriptor DESC_POTTY_TRAINING;
 
     public static final String INVALID_NEGATIVE_ID_STRING = "-1";
+    public static final String INVALID_ZERO_ID_STRING = "0";
     public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
     public static final String EMPTY_STRING = "";
     public static final String WHITESPACE_STRING = "   ";
