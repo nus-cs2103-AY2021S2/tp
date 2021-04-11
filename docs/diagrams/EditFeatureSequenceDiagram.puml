@@ -31,6 +31,13 @@ RemindMeParser -> EditAssignmentCommandParser
 activate EditAssignmentCommandParser
 EditAssignmentCommandParser --> RemindMeParser
 RemindMeParser -> EditAssignmentCommandParser : parse("m/CS2103 a/1 d/Tut2")
+
+create EditAssignmentCommand
+EditAssignmentCommandParser -> EditAssignmentCommand
+activate EditAssignmentCommand
+EditAssignmentCommand --> EditAssignmentCommandParser : command
+deactivate EditAssignmentCommand
+
 EditAssignmentCommandParser --> RemindMeParser : command
 deactivate EditAssignmentCommandParser
 
