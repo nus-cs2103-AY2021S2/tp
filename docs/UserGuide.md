@@ -227,17 +227,26 @@ The following subsections will elaborate on the specific details of each TutorBu
 
 Displays URL to TutorBuddy's User Guide and a list of all commands and their usages.
 
-![help message](images/helpMessage.png)
+![help message window](images/helpMessageWindow.png)
 
 Format: `help`
+
+To access the help page, do one of the following:
+1. type `help` in the command box 
+2. press <kbd>f1</kbd>
+3. click the 'Help' button on the top left and click on the dropdown
+![help message](images/helpMessage.png)
 
 ##### Listing all students and sessions: `list`
 
 Displays list of all students and all sessions in TutorBuddy.
 
-![list](images/command_list.png)
-
 Format: `list` <br>
+
+For example:
+1. Type in the command `list` and press <kbd>Enter</kbd>.
+2. All students and sessions on their respective list view on the Tuition tab.
+![list](images/command_list.png)
 
 ##### Clearing all data : `clear`
 
@@ -250,14 +259,24 @@ Run the <code>clear</code> command to start working with TutorBuddy in a clean s
 
 Format: `clear`
 
+For example:
+1. Type in the command `clear` and press <kbd>Enter</kbd>.
+2. All data in TutorBuddy will be wiped clean.
+![clear_command](images/clear_command.png)
+
 ##### Exit the program: `exit`
 
 Exits the program
 
 Format: `exit`
 
-#### 4.2.3 Managing Students
+To exit the program, do one of the following:
+1. Type in the command `exit` and press <kbd>Enter</kbd>
+2. Press the 'X' at the top right of the TutorBuddy
+3. Click on the 'File' button on the top left and click on the dropdown
+![exit command](images/exit_command.png)
 
+#### 4.2.3 Managing Students
 
 ##### Adding a student: `add_student`
 
