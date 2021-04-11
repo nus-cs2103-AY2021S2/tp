@@ -19,6 +19,12 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand("done_task 1 2")
 activate SocheduleParser
 
+create DoneTaskCommandParser
+SocheduleParser -> DoneTaskCommandParser
+activate DoneTaskCommandParser
+DoneTaskCommandParser --> SocheduleParser
+deactivate DoneTaskCommandParser
+
 SocheduleParser -> DoneTaskCommandParser: parse("1 2")
 activate DoneTaskCommandParser
 

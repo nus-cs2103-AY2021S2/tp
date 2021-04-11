@@ -19,6 +19,12 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand("undone_task 1")
 activate SocheduleParser
 
+create UndoneTaskCommandParser
+SocheduleParser -> UndoneTaskCommandParser
+activate UndoneTaskCommandParser
+UndoneTaskCommandParser --> SocheduleParser
+deactivate UndoneTaskCommandParser
+
 SocheduleParser -> UndoneTaskCommandParser: parse("1")
 activate UndoneTaskCommandParser
 
