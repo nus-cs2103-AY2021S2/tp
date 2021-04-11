@@ -333,6 +333,19 @@ The following activity diagram summarizes what happens when a user executes a `f
 ### 3.3 Delete Feature
 
 #### Implementation
+
+The following activity diagram summarizes what happens when a user executes a `delete m/CS2103 a/3` command:<br>
+![DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png) 
+*[Delete Activity Diagram for `delete m/CS2103 a/3`]* 
+<br>
+<br>
+
+The following sequence diagram shows how the delete operation works: <br>
+![DeleteFeatureSequenceDiagram](images/DeleteFeatureSequenceDiagram.png)  
+*[Delete Sequence Diagram for `delete m/CS2103 a/3`]*
+<br>
+<br>
+
 RemindMe is able to delete an existing `Assignment` in an existing `Module`
 
 The diagram below shows the relationships between `DeleteAssignmentCommand` and `DeleteAssignmentCommandParser` under 
@@ -383,15 +396,6 @@ and returned to `LogicManager`.
 <br>
 
 **Step 7:** Lastly, `LogicManager` saves the updated RemindMe.
-
-The above process is shown in the following sequence diagram:
-![DeleteFeatureSequenceDiagram](images/DeleteFeatureSequenceDiagram.png)  
-*[Delete Sequence Diagram for `delete m/CS2103 a/3`]*
-
-The following activity diagram summarises the general workflow for the Delete Command:
-![DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png) 
-*[Delete Activity Diagram for `delete m/CS2103 a/3`]* 
-
 
 ### 3.4 Edit Feature
 
