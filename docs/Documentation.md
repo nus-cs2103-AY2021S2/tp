@@ -18,6 +18,7 @@ title: Documentation guide
 
 **Diagrams:**
 
+* See the [_[official draw.io guide] **Using draw.io**_](https://drawio-app.com/tutorials)
 * See the [_[se-edu/guides] **Using PlantUML**_](https://se-education.org/guides/tutorials/plantUml.html)
 
 **Converting a document to the PDF format:**
