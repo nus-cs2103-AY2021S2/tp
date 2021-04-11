@@ -46,7 +46,8 @@ public class StringUtil {
     }
 
     /**
-     * Capitalises each word in a given string, and returns other letters to lowercase, assuming words are separated by whitespace.
+     * Capitalises each word in a given string, and returns other letters to lowercase,
+     * assuming words are separated by whitespace.
      * @param words
      * @return
      */
