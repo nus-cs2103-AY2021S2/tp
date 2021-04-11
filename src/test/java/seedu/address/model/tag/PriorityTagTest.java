@@ -83,9 +83,9 @@ public class PriorityTagTest {
         PriorityTag pt3Copy = new PriorityTag(high);
 
         // not equal tags
-        assertFalse(pt1.equals(pt1Copy));
-        assertFalse(pt2.equals(pt2Copy));
-        assertFalse(pt3.equals(pt3Copy));
+        assertFalse(pt1.equals(pt2Copy));
+        assertFalse(pt2.equals(pt3Copy));
+        assertFalse(pt3.equals(pt1Copy));
 
     }
 
