@@ -372,7 +372,7 @@ Given below is an example usage scenario where the behaviour of request mechanis
 
 Step 1. The user launches the application for the first time which comes with a default list of endpoints.
 
-Step 2. The user executes `send 1` command to first retrieve the endpoint stored at index 1 (`GET` request to `https://api.github.com/repos/AY2021S2-CS2103T-T12-4/tp/readme`). The endpoint at that index will then be used to generate an `EndpointCaller` object.
+Step 2. The user executes `send 1` command. The endpoint at the first index will then be used to generate an `EndpointCaller` object.
 
 Step 3. The `send` command calls `EndpointCaller#callEndpoint()`, which in turn calls `EndpointCaller#sendRequest`. Next, a `GetRequest` object is created for the associated endpoint and its `send` method is invoked. Following this, a `HttpUriRequest` object is created and `Headers` and `Data` fields are populated with values retrieved from the endpoint. Finally, the `#execute` method from the abstract `Request` class is called and a timed execution of the API call is carried out to the targeted API service provider. A response is returned and the existing endpoint used to invoke the request will be updated with the returned response and saved into the model.
 
@@ -405,13 +405,13 @@ The following activity diagram summarizes what happens when a user executes a `s
 
 ##### Aspect: How request executes
 
-* **Alternative 1 (current choice):** The request class executes the API call and differentiates types of exceptions into multiple catch blocks.
-    * Pros: Error messages are specific enough to help the user debug the error.
-    * Cons: Individual exceptions have to be verified thoroughly to ensure that error messages do not mislead the user.
+* **Alternative 1 (current choice):** A request class is inherited by classes representing the various types of supported HTTP request methods.
+    * Pros: Common operations are abstracted out into the request class which improves code reusability and is easily extensible to support new methods.
+    * Cons: Introduces a tightly coupled relationship between the request class and its child classes as changing the request class may affect all its child classes.
 
-* **Alternative 2:** The request class executes the API call and catches all exceptions together in one catch block.
-    * Pros: Most if not all instances of failed API calls are caught.
-    * Cons: Error message is not specific enough to help the user debug the error.
+* **Alternative 2:** Each HTTP request method is represented by a single class that does not inherit from a request class.
+    * Pros: Less coupling between the request classes where the logic for each HTTP method is handled independently.
+    * Cons: Common operations are repeated in each of the method class leading to significant code duplications.
 
 <div style="page-break-after: always;"></div>
 
@@ -1262,5 +1262,21 @@ Given below are instructions to test the app manually.
 | Effort   | 10     | 20       |
 | Lines of Code | 6k | 15k     |
 
-1. _{ more details to be added …​ }_
+**Logic**
+
+The Logic of imPoster was evolved to become more complex than that of the original address book. While for the address book, its core functionality focused on adding and maintaining of contacts, imPoster took it a step further by requiring support for the sending and receiving of requests and responses.
+
+As such, to provide for this new functionality, on top of refactoring the `Person` model into an `Endpoint`, the logic for calling an endpoint also had to be written from scratch. As there were numerous approaches that can be taken to include this logic, experimenting to find the best approach turned out to be a long process that took significant time and effort as we also had to look out for possible issues that may arise from regressions.
+
+Eventually, we settled with an implementation that involved having to make an API call on a thread as well as used a GIF to indicate an API call in-progress. Such an approach was undertaken after we realised that extended API calls had the tendency to freeze up the UI of the application and is just one of the many issues that we had to resolve and adapt to along the way.
+
+The implementation of this request feature is also done in an OOP fashion, where the request logic is abstracted out in a `Request` class and then inherited by subclasses which represent the different HTTP request methods.
+
+**Ui**
+
+The Ui of imPoster was evolved to be slightly more complex than that of the original address book. This is because due to the nature of our application (which involved the receiving of API responses), we needed a much larger result display that was able to show more information.
+
+As none of our team members had any experience with JavaFX prior to this module, tampering around with the Ui required significant effort. The Ui also had to be frequently revisited as we continued with other aspects of implementation for our project. For example, when the request feature was being worked on, a GIF had to be shown to the user to indicate an API call in-progress, along with a GIF that accompanied error messages. On top of that, additional prettifying of JSON responses also had to be done for information to be shown neatly to the users. To prevent cluttering of the result display, several information were also chosen to be displayed as smaller neat tags at the top of the result display panel.
+
+Eventually, the team got more comfortable with working on the Ui and to that end, an easily extensible feature was also implemented for the Ui through the `toggle` command (which supported the switching of application theme for our users). The implementation of the `toggle` command allowed for new themes to be added through merely adding the name of the new theme in an enum as well as its corresponding css file.
 
