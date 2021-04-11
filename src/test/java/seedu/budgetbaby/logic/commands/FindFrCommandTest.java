@@ -21,16 +21,6 @@ public class FindFrCommandTest {
     private BudgetBabyModel model = new BudgetBabyModelManager(getTypicalBudgetTracker(), new UserPrefs());
     private FindFrCommandParser find = new FindFrCommandParser();
 
-    //    @Test
-    //    public void execute_withoutParams() throws ParseException, CommandException {
-    //        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-    //        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-    //        String expectedOutput = "[01-04-2021 | Breakfast | 5.0; Categories: "
-    //                + "[Food], 01-04-2021 | Lunch | 6.0; Categories: [Food]]";
-    //        find.parse("").execute(model);
-    //        assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
-    //    }
-
     @Test
     public void result_none() throws ParseException, CommandException {
         String expectedOutput = "[]";
