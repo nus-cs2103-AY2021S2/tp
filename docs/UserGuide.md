@@ -63,10 +63,10 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Getting today's events: [`today_event`](#getting-todays-events-today_event)
 * Finding events by name: [`find_event`](#finding-events-by-name-find_event)
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
+* Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 
 ### Commands Related to Both Task and Event
 * Finding schedule given a date: [`find_schedule`](#finding-schedule-given-a-date-find_schedule)
-* Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
 * Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
 
@@ -824,6 +824,24 @@ Format: `clear_expired_event`
 [Return to Feature List](#feature-list)
 
 
+### Finding free time slots: `free_time`
+Finds all free time slots on the given date from the event list.
+
+Format: `free_time DATE`
+* **Free time slots** refer to all times in the given date without any ongoing event.
+* Date entered must be a valid date and in the format of `YYYY-MM-DD`.
+* Date entered must be a date from current date onwards.
+* Only one single date can be entered.
+
+Examples:
+* `free_time 2022-02-01` finds all free time slots on the given date `2022-02-01`.
+
+#### Illustration of usage of `free_time`:
+![Example of usage of `free_time`](images/FindFreeTimeExample.png)
+
+[Return to Feature List](#feature-list)
+
+
 ### Finding schedule given a date: `find_schedule`
 Given a specified date, finds uncompleted tasks that are due before or on the date 
 and events that are ongoing on the date.
@@ -863,23 +881,6 @@ For event list:
 
 [Return to Feature List](#feature-list)
 
-
-### Finding free time slots: `free_time`
-Finds all free time slots on the given date from the event list.
-
-Format: `free_time DATE`
-* **Free time slots** refer to all times in the given date without any ongoing event.
-* Date entered must be a valid date and in the format of `YYYY-MM-DD`.
-* Date entered must be a date from current date onwards.
-* Only one single date can be entered.
-
-Examples:
-* `free_time 2022-02-01` finds all free time slots on the given date `2022-02-01`.
-
-#### Illustration of usage of `free_time`:
-![Example of usage of `free_time`](images/FindFreeTimeExample.png)
-
-[Return to Feature List](#feature-list)
 
 ### Summarising tasks and events statistics: `summary`
 Displays a summary of tasks completion status and events upcoming for the next 7 days.
@@ -935,10 +936,10 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent`
 **Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
-**Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g., `done_task 1 2`
-**Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
 **Edit** | `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g., `edit_task 1 n/editedTaskName`
 **List** | `list_task`
+**Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g., `done_task 1 2`
+**Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
 **Today** | `today_task`
 **Find** | `find_task KEYWORDS`<br>e.g., `find_task homework`
 **Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
@@ -953,10 +954,11 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2022-02-27 st/15:00 ed/2022-02-27 et/17:00`
 **Delete** | `delete_event INDEX`<br>e.g., `delete_event 3`
+**Edit** | `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...` <br> e.g., `edit_event 1 n/editedEventName`
 **List** | `list_event`
 **Today** | `today_event`
 **Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
-**Clear Completed** | `clear_expired_event`
+**Clear Expired** | `clear_expired_event`
 **Find Free Time** | `free_time DATE` <br>e.g., `free_time 2022-01-01`
 
 ### Commands related to both task and event
