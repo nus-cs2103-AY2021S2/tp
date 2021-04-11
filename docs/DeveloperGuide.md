@@ -926,23 +926,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Clears all entries contact**
-
-**MSS**
-
-1.  User enters clears all entries contact command
-2.  TutorsPet clears all the contact in list
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given details is in an incorrect format.
-
-    * 1a1. TutorsPet shows an error message.
-
-      Use case ends.
-
 **Use case: Delete a student contact**
 
 **MSS**
@@ -995,35 +978,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Exit TutorsPet**
-
-**MSS**
-
-1.  User enters exit into command prompt
-2.  TutorsPet saves the current contact in the list and exits.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given details is in an incorrect format.
-
-    * 1a1. TutorsPet shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: Search for a student contact**
 
 **MSS**
 
-1.  User enters the student name or specified keyword to be searched.
-2.  TutorsPet shows a list of searched students.
-
-    Use case ends.
+1.  User enters the specified keyword to be searched.
+1.  TutorsPet shows a list of searched students.
 
 **Extensions**
 
-* 1a. The search result list is empty.
+* 1a. The given search command is in an incorrect format. 
+  * 1a1. TutorsPet shows an error message. 
+    
+    Use case ends.
+* 1b. The given search command has two of the same parameters.
+  * 2b1. TutorsPet executes the command while taking in the last occurrence of the parameters only. 
+    
+    Use case resumes at step 2.
+* 3a. The search result list is empty.
 
   Use case ends.
 
@@ -1090,7 +1062,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-*{More to be added}*
+**Use case: Opens schedule window**
+
+**MSS**
+
+1.  User requests to open weekly schedule window.
+2.  TutorsPet opens the window schedule.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is in an invalid format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. The schedule window is already opened.
+  
+  * 1b1. TutorsPet switches focus to the schedule window. 
+    
+    Use case ends.
+
+**Use case: Clears all entries contact**
+
+**MSS**
+
+1.  User enters clears all entries contact command
+2.  TutorsPet clears all the contact in list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+**Use case: Exit TutorsPet**
+
+**MSS**
+
+1.  User enters exit into command prompt
+2.  TutorsPet saves the current contact in the list and exits.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case resumes at step 2.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
