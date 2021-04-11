@@ -8,10 +8,10 @@ Focuris helps NUS Computing Students manage their schedules by being able to add
 
 ## Value Proposition
 
-- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-- Adding of events to friends in the address book
-- Ability to find common timeslot where all your friends are available to meet based on their schedules added
-- See events that are taken in conjunction with your friends
-- Prioritize your tasks and events by assigning priorities to each event
+- Adding of various different types of events with descriptions.
+- Prioritise work based on priority level by labeling events as Low, Medium, or High priority.
+- Split work into progressions such as Backlog, ToDo, In Progress, and Done.
+- Get an overview via the List view so that you can find the event that you need easily.
+- Quickly updating events on the go as you complete them.
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
