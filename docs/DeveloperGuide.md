@@ -19,6 +19,12 @@ title: Developer Guide
     - [3.5 Storage component](#35-storage-component)
     - [3.6 Common classes](#36-common-classes)
 - [**4. Implementation**](#4-implementation)
+    - [4.1 Switch between the different tabs](#41-switch-between-the-different-tabs)
+    - [4.2 View command](#42-view-command)
+    - [4.3 Tag-Search command](#43-tag-search-command)  
+    - [4.4 Delete multiple tasks with indices](#44-delete-multiple-tasks-with-indices)
+    - [4.5 Delete multiple tasks with an index range](#45-delete-multiple-tasks-with-an-index-range)
+    - [4.6 Delete all tasks of a specified status](#46-delete-all-tasks-of-a-specified-status)
 - [**5. Documentation, logging, testing, configuration, dev-ops**](#5-documentation-logging-testing-configuration-dev-ops)
 - [**6. Appendix: Requirements**](#6-appendix-requirements)
     - [6.1 Product scope](#61-product-scope)
@@ -28,20 +34,25 @@ title: Developer Guide
     - [6.5 Glossary](#65-glossary)
 - [**7. Appendix: Instructions for manual testing**](#7-appendix-instructions-for-manual-testing)
     - [7.1 Launch and shutdown](#71-launch-and-shutdown)
-    - [7.2 Deleting a task](#72-deleting-a-task)
-    - [7.3 Saving data](#73-saving-data)
+    - [7.2 Adding a task](#72-adding-a-task)
+    - [7.3 Editing a task](#73-editing-a-task)
+    - [7.4 Deleting a task](#74-deleting-a-task)
+    - [7.5 Switching tabs](#75-switching-tabs)
+    - [7.6 Sorting tasks](#76-sorting-tasks)
+    - [7.7 Viewing help](#77-viewing-help)
+    - [7.8 Clearing data](#78-clearing-data)
 - [**8. Appendix: Effort**](#8-appendix-effort)
   
 
 --------------------------------------------------------------------------------------------------------------------
-## **1. Introduction**
+# **1. Introduction**
 
-### 1.1 Purpose
+## 1.1 Purpose
 
 The purpose of this Developer Guide is to describe the design, implementation and documentation of Taskify. This 
 document intends for the read to understand the relationship between the components that make up Taskify.
 
-### 1.2 Audience
+## 1.2 Audience
 
 This Developer Guide is for anyone who wishes to understand the internal software architecture of Taskify.
 In addition, the following groups are the intended target of this documentation:
@@ -50,11 +61,11 @@ In addition, the following groups are the intended target of this documentation:
 * Potential Taskify Developers - as a means to understand the internal structure of Taskify to potentially expand
 upon Taskify in the future.
   
-### 1.3 Taskify Overview
+## 1.3 Taskify Overview
 Taskify is a desktop app intended for university students, optimized for fast typists via a Command Line Interface 
 (CLI). Taskify helps users keep track of their tasks with a clean and simplistic interface.
 
-### 1.4 How to use this guide
+## 1.4 How to use this guide
 This Developer Guide is structured in a top-down manner, starting with the overall architecture of Taskify, followed
 by in-depth descriptions and implementations.
 
@@ -62,15 +73,15 @@ For your convenience, use the **Table of Contents** above to navigate to a secti
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **2. Setting up, getting started**
+# **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **3. Design**
+# **3. Design**
 
-### 3.1 Architecture
+## 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -123,7 +134,7 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
-### 3.2 UI component
+## 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -144,7 +155,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### 3.3 Logic component
+## 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -166,7 +177,7 @@ call.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### 3.4 Model component
+## 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -185,7 +196,7 @@ The `Model`,
 
 </div>
 
-### 3.5 Storage component
+## 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -196,54 +207,46 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Taskify data in json format and read it back.
 
-### 3.6 Common classes
+## 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-## **4. Implementation**
+# **4 Implementation**
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
 describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Switch between the different tabs
-
-#### Format of command
-* `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
-* `expired`: switch from the other tab to expired tab. It will throw an error if you are already in the expired tab.
-* `uncompleted`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the uncompleted tab.
-* `completed`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the completed tab.
+### 4.1 Add Command
 
 #### Implementation
+The add command mainly uses the Logic and Model components. The add command takes in the following parameters:
+* `n/Name`
+* `desc/Description`
+* `date/Date`
+* `t/Tags`
 
-The tab switching functionality is facilitated by the `MainWindow#switchTab(int tabNumber)` depending on which tab you
-want to switch to and what tab users are currently on now.
+The following activity diagram summarizes what happens when a user executes an add command.
+![AddActivityDiagram](images/AddCommandActivityDiagram.png)
 
-The model manager has 5 filtered task list. They are `filteredTasks`, `expiredFilteredTasks`,
-`uncompletedFilteredTasks`, `completedFilteredTasks` and `todaysFilteredTasks`. The first 4 filtered task list is used for tab
-switching. All the filtered task list originated from UniqueTaskList.
+The following sequence diagram shows the execution of the add command.
+![AddSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-The following sequence diagram shows how the switching tabs operation works, we will take the Expired Command as
-an example to illustrate as the other tab switching commands is similar.
+### 4.2 Edit Command
 
-![ExpiredSequenceDiagram](images/ExpiredSequenceDiagram.png)
+#### Implementation
+The edit command has a similar implementation to the add command, it mainly uses the Logic and Model components 
+(see Diagrams in 4.1). The only notable differences are:
+* The edit command is able to take in an extra parameter `s/Status`.
+* Edit command takes in an `index` to specify which Task in the list to edit.
 
-:information_source: **Note:** The lifeline for \`TaskifyParser\` and \`ExpiredCommand\` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The following activity diagram summarizes what happens when a user executes an edit command.
+![EditActivityDiagram](images/EditCommandActivityDiagram.png)
+
+The following sequence diagram shows the execution of the edit command.
+![EditSequenceDiagram](images/EditCommandSeqeuenceDiagram.png)
 
 
-The following activity diagram summarizes what happens when a user executes a switch command like `expired`:
-
-![ExpiredActivityDiagram](images/ExpiredActivityDiagram.png)
-
-#### Design Consideration
-* **Current Choice:** Switch tabs based on the tab name.
-    * Pros: More intuitive to the user. The tab name corresponds to the status of the tasks for that tab.
-    * Cons: User would have to type longer sentence as compared to `switch 1`
-
-* **Alternative Choice:** Switch tabs based on tab index
-    * Pros: Lesser things to remember as the format command is `switch index`
-    * Cons: Less intuitive as user will have to look up what tab one corresponds to.    
-
-### 4.2 View Command
+### 4.3 View Command
 The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
 
 #### Implementation
@@ -264,14 +267,57 @@ with the arguments specified by the user (in this case, `2021-04-12`).
 6. `Model` updates the filtered list based on the predicate.
 7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
 to the user.
+
+The following activity diagram summarizes what happens when a user executes a view command:
+![ViewActivityDiagram](images/ViewCommandActivityDiagram.png)
    
 #### Design Consideration
 * **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
-* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
+* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates. As such, users can
+input commands like `view today` or `view tomorrow` as a shortcut, instead of typing out
+  the entire date.
 
-### 4.3 Tag Search Command
+### 4.4 Switch between the different tabs
 
-#### Implementation
+### Format of command
+* `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
+* `expired`: switch from the other tab to expired tab. It will throw an error if you are already in the expired tab.
+* `uncompleted`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the uncompleted tab.
+* `completed`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the completed tab.
+
+### Implementation
+
+The tab switching functionality is facilitated by the `MainWindow#switchTab(int tabNumber)` depending on which tab you
+want to switch to and what tab users are currently on now.
+
+The model manager has 5 filtered task list. They are `filteredTasks`, `expiredFilteredTasks`,
+`uncompletedFilteredTasks`, `completedFilteredTasks` and `todaysFilteredTasks`. The first 4 filtered task list is used for tab
+switching. All the filtered task list originated from UniqueTaskList.
+
+The following sequence diagram shows how the switching tabs operation works, we will take the Expired Command as
+an example to illustrate as the other tab switching commands is similar.
+
+![ExpiredSequenceDiagram](images/ExpiredSequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for \`TaskifyParser\` and \`ExpiredCommand\` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+
+The following activity diagram summarizes what happens when a user executes a switch command like `expired`:
+
+![ExpiredActivityDiagram](images/ExpiredActivityDiagram.png)
+
+### Design Consideration
+* **Current Choice:** Switch tabs based on the tab name.
+    * Pros: More intuitive to the user. The tab name corresponds to the status of the tasks for that tab.
+    * Cons: User would have to type longer sentence as compared to `switch 1`
+
+* **Alternative Choice:** Switch tabs based on tab index
+    * Pros: Lesser things to remember as the format command is `switch index`
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
+
+### 4.5 Tag Search Command
+
+### Implementation
 
 The implementation of the Tag Search feature is facilitated by `TagContainsKeywordsPredicate` which implements
 `Predicate<Task>` and has the `test` method's implementation overridden to test if a `Task` has tags that match any
@@ -298,7 +344,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![TagSearchActivityDiagram](images/TagSearchActivityDiagram.png)
 
-#### Design Consideration
+### Design Consideration
 * **Current Choice:** Search for tasks bases on one or more tags.
     * Pros: Simple and intuitive for user to filter out similar tasks by using tags.
     * Cons: User would have to type out all the tags individually if there are multiple tasks with unique tags
@@ -307,9 +353,102 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Users can type less and save time if they have multiple tags to search for.
     * Cons: Less intuitive as user will have to keep track of which tags are under which group.
 
+
+## 4.6 Delete multiple tasks with indices
+This feature allows users to list out the [indices](#65-glossary) of tasks to delete.
+
+### Implementation
+This feature is facilitated by `DeleteMultipleCommand`, which is a `Command` that is executed with `execute()`. It relies on `DeleteUtil#hasMultipleValidIndex` as a validity check,
+which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` is called, and returns a `DeleteMultipleCommand`.
+
+The following class diagram shows the relationship between classes for a successful execution.
+<a name="classdiag">![](images/DeleteMultipleUsingIndicesClassDiag.png)</a>
+
+The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
+![](images/DeleteMultipleUsingIndicesSeqDiag.png)
+
+### Design Consideration
+
+#### Aspect 1: Problem & Solution
+* **Problem**: Deleting several tasks with the default delete feature is too cumbersome
+* **Solution**: Allow listing of multiple indices after typing `delete` once.
+
+#### Aspect 2: Design of solution
+* **Solution 1 (selected)**: Create a new command that is not a subclass of `DeleteCommand`
+    * Pros: Decouple the new command from `DeleteCommand` and obey SRP.
+    * Cons: Harder to implement
+
+* **Solution 2**: Make the new command a subclass of `DeleteCommand` or include a list of `DeleteCommand` as a field in the new command
+    * Pros: Intuitive and easy to understand, easy to implement either solution
+    * Cons: Violates SRP
+
+Solution 1 was selected for its better benefits as well as increased testability.
+
+## Delete multiple tasks with an index range
+This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
+
+### Implementation
+This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
+[deleting multiple tasks with **multiple indices** feature](#44-delete-multiple-tasks-with-indices), with the only difference in
+the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in
+`DeleteUtil#getTasksToDelete(List<Task>, List<Index>, boolean)`. This field is determined by `DeleteMultipleCommand#parse`, which checks
+if the user is deleting tasks using indices or an index range by consulting `DeleteUtil#isDeletingTasksByRange`.
+
+The responsible class diagram for this feature is [here](#classdiag), which is also the same as that in the "delete multiple tasks with indices" feature.
+
+The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
+![](images/DeleteMultUsingIndexRangeSeqDiag.png)
+### Design Consideration
+
+#### Aspect 1: Problem & Solution
+* **Problem**: Listing indices individually after typing `delete` to delete many tasks might be cumbersome as well
+* **Solution**: Allow users to delete tasks using a range.
+
+#### Aspect 2: Design of solution
+`DeleteMultipleCommand` was already implemented to store the indices of the tasks to delete. A simple solution was to parse the index range
+its individual indices, and create a `DeleteMultipleCommand` with those indices. Testability might have reduced a little by adding some
+additional exceptions to be thrown within the execution of the command, but deleting either by an index range or individual indices seems to
+be part of the same responsibility, so it likely does not violate SRP.
+
+
+
+## 4.7 Delete all tasks of a specified status
+This feature allows users to provide a `Status` to delete all tasks that are of that `Status`.
+
+### Implementation
+This feature is facilitated by the `DeleteByStatusCommand`. It does a validity check by calling `DeleteUtil#isDeletingTasksByStatus` in `TaskifyParser`,
+and `DeleteByStatusCommandParser#parse` calls `ParserUtil#parseInputToStatus` to parse the user's input arguments into the desired `Status`, which
+is stored as a field in `DeleteByStatusCommand` for use in the execution of the command (i.e `DeleteByStatusCommand#execute`).
+
+
+The following class diagram shows the relationship between classes for a successful execution. The only difference between this diagram and the class
+diagram for the previous two delete multiple tasks features is the name of the `Command` and the command's `Parser`.
+![](images/DeleteByStatusClassDiag.png)
+
+The following sequence diagram traces the step-by-step execution of deleting all tasks of a specified status.
+![](images/DeleteByStatusSeqDiag.png)
+
+### Design Consideration
+
+#### Aspect 1: Problem & Solution
+* **Problem**: Instead of deleting by indices, users might want to delete all tasks of a specific `Status`, which might be cumbersome with the existing two features for deleting multiple tasks.<br>
+  i.e The user might want to clear all `completed` or `expired` tasks quickly, but that would require the user to check all indices of the tasks with the desired `Status`.
+* **Solution**: Allow deletion of tasks by their `Status`.
+
+#### Aspect 2: Design of solution
+* **Solution 1 (originally)** : Integrate new logic into existing logic in `DeleteMultipleCommand`, since multiple tasks are to be deleted anyway.
+    * Pros : Less code
+    * Cons : Decreases cohesion in `DeleteMultipleCommand`, makes code less readable, violate SRP.
+* **Solution 2 (selected)** : Refactor the new logic (in Solution 1) into a new command
+    * Pros : Obeys SRP, cohesive code in `DeleteMultipleCommand` and the new command. Increases readibility and testability.
+    * Cons : More test and main code
+
+Solution 2 was selected since the amount of code to write shouldn't be a huge factor in deciding which solution is better. The other factors explained
+are much more important.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. Documentation, logging, testing, configuration, dev-ops**
+# **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -319,9 +458,9 @@ The following activity diagram summarizes what happens when a user executes the 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **6. Appendix: Requirements**
+# **6. Appendix: Requirements**
 
-### 6.1 Product scope
+## 6.1 Product scope
 
 **Target user profile**:
 
@@ -331,7 +470,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Value proposition**: help students manage their tasks in a systematic and efficient manner
 
-### 6.2 User stories
+## 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -354,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### 6.3 Use cases
+## 6.3 Use cases
 
 (For all use cases below, the **System** is the `Taskify` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -638,7 +777,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
 ---
 
-### 6.4 Non-Functional Requirements
+## 6.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
@@ -647,13 +786,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The app should be able to run with or without internet connection
 6. The product should not take above 10 seconds to execute any commands.
 
-### 6.5 Glossary
-
+## 6.5 Glossary
+* **SRP**: Single Responsibility Principle
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Indices**: Plural form of **Index**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **7. Appendix: Instructions for manual testing**
+# **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -662,7 +802,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 7.1 Launch and shutdown
+## 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -685,7 +825,7 @@ testers are expected to do more *exploratory* testing.
     1. Close the app using the `exit` command.  
        Expected: Both the main window, and the help window should close.
 
-### 7.2 Adding a task
+## 7.2 Adding a task
 
 1. Adding a task on the home tab.
 
@@ -710,7 +850,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No task is added since the user has to be on the home tab to add tasks. Error message instructing 
        the user to switch to the home tab shown in status message.
 
-### 7.3 Editing a task
+## 7.3 Editing a task
 
 1. Editing a task on the home tab.
 
@@ -724,7 +864,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit 0 s/completed desc/new description`<br>
        Expected: No event is deleted. Error details shown in the status message.
-
+       
     1. Other incorrect edit commands to try: `edit`, `edit x` (where x is larger than the list size).
        Expected: Similar to previous.
 
@@ -737,7 +877,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No task is edited since the user has to be on the home tab to add tasks. Error message instructing
        the user to switch to the home tab shown in status message.
 
-### 7.3 Deleting a task
+## 7.4 Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -753,7 +893,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### 7.4 Switching Tabs
+## 7.5 Switching Tabs
 
 1. Switching to home tab
     1. Test case: `home`<br>
@@ -768,19 +908,19 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `uncompleted`<br>
       Expected: If not already on the uncompleted tab, the UI will switch to the home tab.
 
-### 7.5 Sorting Tasks
+## 7.6 Sorting Tasks
 
 1. Sorting tasks based on deadlines.
     1. Test case: `sort`
     1. Expected: All the tasks are sorted in ascending order of their deadline dates.
 
-### 7.6 Viewing help
+## 7.7 Viewing help
 
 1. Viewing help
    1. Test case: `help`
    1. Expected: Help window appears.
 
-### 7.7 Clearing Data
+## 7.8 Clearing Data
 
 1. Clearing all data in Taskify
     1. Test case: There should be some data in Taskify.
@@ -789,5 +929,5 @@ testers are expected to do more *exploratory* testing.
     
 
 --------------------------------------------------------------------------------------------------------------------
-## **8. Appendix: Effort**
+# **8. Appendix: Effort**
 
