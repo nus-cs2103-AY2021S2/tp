@@ -39,7 +39,7 @@ public class EditMemberCommand extends Command {
             + PREFIX_NEW_NAME + "John Lim "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "john@example.com"
-            + PREFIX_ROLE + "Assistant treasurer";
+            + PREFIX_ROLE + " Assistant treasurer";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Member: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

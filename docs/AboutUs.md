@@ -5,7 +5,11 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the respective emails: 
+* `dylan.ghee[at]u.nus.edu`
+* `chee.erynne[at]u.nus.edu`
+* `rachel.limjt@u.nus.edu`
+* `e0424909[at]u.nus.edu`
 
 ## Project team
 
@@ -16,17 +20,18 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/zatkiller)]
 [[portfolio](team/zatkiller.md)]
 
-* Role: Software Developer
+* Role: Team Lead
+* Responsibilities: Deliverables and Scheduling, Code Quality
 
 ### Chee Erynne
 
 <img src="images/cheeerynne.png" width="200px">
 
-[[github](https://github.com/cheeerynne)] 
+[[github](http://github.com/cheeerynne)]
 [[portfolio](team/cheeerynne.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Software Developer
+* Responsibilities: Documentation, Testing 
 
 ### Lim Jean Tong, Rachel
 
@@ -35,8 +40,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/rachelljt)]
 [[portfolio](team/rachelljt.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Software Developer
+* Responsibilities: UI 
 
 ### Tasha Marion Wan hui lin
 
@@ -45,5 +50,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/tashawan23)]
 [[portfolio](team/tashawan23.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Software Developer
+* Responsibilities: Documentation, Integration 
