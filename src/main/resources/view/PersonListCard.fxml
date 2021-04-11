@@ -28,7 +28,7 @@
             </HBox>
             <GridPane>
                 <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" minWidth="300" prefWidth="300" >
-                    <FlowPane fx:id="tags"/>
+                    <FlowPane fx:id="tags" minWidth="300" prefWidth="300" />
                     <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
                     <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
                     <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
@@ -37,7 +37,7 @@
                     <Label fx:id="numNotes" styleClass="cell_small_label" text="\$numNotes"/>
                 </VBox>
                 <VBox GridPane.columnIndex="1" GridPane.hgrow="NEVER" minWidth="200" prefWidth="200" maxWidth="200">
-                    <FlowPane fx:id="plans"/>
+                    <FlowPane fx:id="plans" minWidth="200" prefWidth="200" maxWidth="200"/>
                 </VBox>
             </GridPane>
         </VBox>

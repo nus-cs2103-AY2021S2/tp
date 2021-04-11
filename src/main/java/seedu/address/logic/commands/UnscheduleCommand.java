@@ -20,9 +20,9 @@ public class UnscheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unschedules a meeting with the person identified by the "
             + "index number used in the displayed meeting list.\n"
-            + COMMAND_WORD + " all -- removes all meetings\n"
-            + COMMAND_WORD + " expired -- removes all expired meetings\n"
-            + COMMAND_WORD + " INDEX -- removes the specified meeting\n";
+            + "Parameter to removes all meetings: " + COMMAND_WORD + " all\n"
+            + "Parameter to removes all expired meetings: " + COMMAND_WORD + " expired\n"
+            + "Parameter to removes a specific meetings: " + COMMAND_WORD + " INDEX -- removes the specified meeting\n";
 
     public static final String MESSAGE_UNSCHEDULE_ALL_SUCCESS = "All meetings unscheduled.";
     public static final String MESSAGE_UNSCHEDULE_EXPIRED_SUCCESS = "All expired meetings removed";
