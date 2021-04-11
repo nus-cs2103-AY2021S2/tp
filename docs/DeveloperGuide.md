@@ -1024,13 +1024,13 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `q` <br>
        Expected: The application goes back to the main window. The result display shows the message: `Exit review mode`. 
-    
+    <div style="page-break-after: always;"></div>
+
 ### Displaying statistics
 
 1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
-       <div style="page-break-after: always;"></div>
     
     1. Test case: `stats` <br>
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
@@ -1053,7 +1053,8 @@ testers are expected to do more *exploratory* testing.
        Expected: FlashBack will be updated to the previous state before the undoable command is executed.
        The UI will be updated to display all flashcards in FlashBack.
        The result display shows a message: `FlashBack has been undo!`.
-       
+       <div style="page-break-after: always;"></div>
+    
 ### Redoing a command
 
 1. Redoing an undone command in FlashBack
