@@ -17,7 +17,7 @@ import seedu.dictionote.model.Model;
 
 
 /**
- * Format full help instructions for every command for display.
+ * Open a specific UI panel specify by the user.
  */
 public class OpenCommand extends Command {
 
@@ -43,7 +43,7 @@ public class OpenCommand extends Command {
     private final UiActionOption uiActionOption;
 
     /**
-     * Creates an OpenCommand of a the specified Option {@code UiActionOption}
+     * Creates an OpenCommand of a the specified UI Action Option {@code UiActionOption}
      */
     public OpenCommand(UiActionOption uiActionOption) {
         requireNonNull(uiActionOption);
