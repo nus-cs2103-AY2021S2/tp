@@ -182,7 +182,7 @@ This feature is facilitated by `DeleteMultipleCommand`, which is a `Command` tha
 which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` is called, and returns a `DeleteMultipleCommand`.
 
 The following class diagram shows the relationship between classes for a successful execution.
-<a name="class diag Delete Indices"></a>![](images/DeleteMultipleUsingIndicesClassDiag.png)
+<a name="classdiag">![](images/DeleteMultipleUsingIndicesClassDiag.png)</a>
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
 ![](images/DeleteMultipleUsingIndicesSeqDiag.png)
@@ -214,7 +214,7 @@ the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This fiel
 `DeleteUtil#getTasksToDelete(List<Task>, List<Index>, boolean)`. This field is determined by `DeleteMultipleCommand#parse`, which checks
 if the user is deleting tasks using indices or an index range by consulting `DeleteUtil#isDeletingTasksByRange`.
 
-The responsible class diagram for this feature is [here](#class-diag-delete-indices), which is also the same as that in the "delete multiple tasks with indices" feature.
+The responsible class diagram for this feature is [here](#classdiag), which is also the same as that in the "delete multiple tasks with indices" feature.
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
 ![](images/DeleteMultUsingIndexRangeSeqDiag.png)
@@ -230,8 +230,41 @@ its individual indices, and create a `DeleteMultipleCommand` with those indices.
 additional exceptions to be thrown within the execution of the command, but deleting either by an index range or individual indices seems to
 be part of the same responsibility, so it likely does not violate SRP.
 
-## \[New] Delete all tasks of a specified status
 
+
+## \[New] Delete all tasks of a specified status
+This feature allows users to provide a `Status` to delete all tasks that are of that `Status`.
+
+### Implementation
+This feature is facilitated by the `DeleteByStatusCommand`. It does a validity check by calling `DeleteUtil#isDeletingTasksByStatus` in `TaskifyParser`,
+and `DeleteByStatusCommandParser#parse` calls `ParserUtil#parseInputToStatus` to parse the user's input arguments into the desired `Status`, which
+is stored as a field in `DeleteByStatusCommand` for use in the execution of the command (i.e `DeleteByStatusCommand#execute`).
+
+
+The following class diagram shows the relationship between classes for a successful execution. The only difference between this diagram and the class
+diagram for the previous two delete multiple tasks features is the name of the `Command` and the command's `Parser`.
+![](images/DeleteByStatusClassDiag.png)
+
+The following sequence diagram traces the step-by-step execution of deleting all tasks of a specified status.
+![](images/DeleteByStatusSeqDiag.png)
+
+### Design Consideration
+
+#### Aspect 1: Problem & Solution
+* **Problem**: Instead of deleting by indices, users might want to delete all tasks of a specific `Status`, which might be cumbersome with the existing two features for deleting multiple tasks.<br>
+  i.e The user might want to clear all `completed` or `expired` tasks quickly, but that would require the user to check all indices of the tasks with the desired `Status`.
+* **Solution**: Allow deletion of tasks by their `Status`.
+
+#### Aspect 2: Design of solution
+* **Solution 1 (originally)** : Integrate new logic into existing logic in `DeleteMultipleCommand`, since multiple tasks are to be deleted anyway.
+    * Pros : Less code
+    * Cons : Decreases cohesion in `DeleteMultipleCommand`, makes code less readable, violate SRP.
+* **Solution 2 (selected)** : Refactor the new logic (in Solution 1) into a new command
+    * Pros : Obeys SRP, cohesive code in `DeleteMultipleCommand` and the new command. Increases readibility and testability.
+    * Cons : More test and main code
+    
+Solution 2 was selected since the amount of code to write shouldn't be a huge factor in deciding which solution is better. The other factors explained
+are much more important.
 
 # **Documentation, logging, testing, configuration, dev-ops**
 

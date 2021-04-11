@@ -19,7 +19,7 @@ end box
 [-> LogicManager : execute("delete 1-3")
 activate LogicManager
 
-LogicManager -> TaskifyParser : parseCommand("1-3")
+LogicManager -> TaskifyParser : parseCommand("delete 1-3")
 activate TaskifyParser
 
 create DeleteMultipleCommandParser
@@ -53,7 +53,6 @@ deactivate DeleteMultipleCommand
 
 DeleteMultipleCommandParser --> TaskifyParser
 deactivate DeleteMultipleCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteMultipleCommandParser -[hidden]-> TaskifyParser
 destroy DeleteMultipleCommandParser
 
@@ -63,7 +62,7 @@ deactivate TaskifyParser
 LogicManager -> DeleteMultipleCommand : execute()
 activate DeleteMultipleCommand
 
-DeleteMultipleCommand -> Model : getFilteredStudentList()
+DeleteMultipleCommand -> Model : getFilteredTaskList()
 activate Model
 
 Model --> DeleteMultipleCommand
