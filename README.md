@@ -3,17 +3,20 @@
 ![Ui](docs/images/Ui.png)
 
 # iSCAM
-Welcome to iSCAM, your new client management app. It helps catalogue and manage your clients' information, including upcoming
-appointments with them, and allows you to retrieve these data efficiently. iSCAM also presents your daily scheduled appointments
-in a one-page solution, where you can easily see your schedule for the day.
+Welcome to iSCAM (Insurance Sure Can Arrange Meeting), your new client and meeting management app. It helps catalogue and manage your clients' information, including upcoming
+appointments with them, and allows you to retrieve these data efficiently. iSCAM also presents your scheduled appointments
+in a one-page solution, where you can easily see your upcoming meetings.
 
 ## For Users
 iSCAM can store and manage your client information, such as:
 * Name
-* Gender
-* Age
-* Custom Information (e.g. food preferences)
-* Appointments you have with them
+* Contact Number
+* Address
+* Email address
+* Insurance plan
+* Custom tags (e.g. food preferences, premium status, etc)
+* Profile Picture
+* Meetings you have with them
 
 Client information may be retrieved easily through an efficient search interface, which is optimised for fast-typers too.
 

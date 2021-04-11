@@ -404,8 +404,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * is an insurance agent
 * has a need to manage a significant number of clients
-* has significant number of client meetings
-* has a need to track clients' insurance policy expiration date
+* has significant number of meetings with clients
+* has a need to track clients' insurance plan
 * has a lot of details to remember for each client
 * prefer desktop apps over other types
 * can type fast
@@ -413,10 +413,13 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* save time by generating a consolidation of meetings and deadlines with the clients
-* target clients better by receiving reminders and tips before a client meeting (client's favourite food, profile)
-* increase customer retention by receiving reminders of when the client's insurance is expiring
-* improve convenience by providing a one page solution to an insurance agent's fast pace life
+* save time by generating a consolidation of meetings with the clients
+* target clients better and increase sales by easily accessing client's information and preferences 
+  (e.g. favourite food tags, profile) to tailor client's meeting to accordingly 
+  (e.g. choosing their favourite restaurant to meet, remembering their hobbies)
+* increase sales efficiency by upselling according to their current insurance policy and needs
+* improve convenience by providing a one-page solution to manage clients and meetings 
+  in an insurance agent's fast pace life
 
 ### User stories
 
@@ -425,17 +428,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I can …​                                             | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                                  | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new client                                        |                                                                        |
-| `* * *`  | user                                       | delete a client                                         | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a client by name                                   | locate details of clients without having to go through the entire list |
-| `* * *`  | popular insurance agent                    | view all my appointments without browsing the whole app | get a quick reminder of my appointments                                |
-| `* * *`  | busy insurance agent                       | schedule my meetings with my contacts                   | know when I am meeting my clients                                      |
-| `* * *`  | insurance agent                            | track my clients’ insurance expiry                      | remind my clients to renew their contract                              |
-| `* *`    | user                                       | hide private contact details                            | minimize chance of someone else seeing them by accident                |
-| `* *`    | time-constrained insurance agent           | view my tasks and appointments in a chronological list  | know what work to prioritize                                           |
-| `* *`    | opportunistic insurance agent              | filter my clients by their existing insurance plans     | upsell a new, similar plan to them                                     |
-| `*`      | user with many clients in the location book | sort clients by name                                    | locate a client easily                                                 |
-| `*`      | insurance agent with many contacts         | save my client’s likes/dislikes                         | interact with them more clientally                                     |
+| `* * *`  | active insurance agent                     | add a new client                                        | keep track of all the clients that I can sell to                       |                                              |
+| `* * *`  | insurance agent                            | delete a client                                         | remove entries that I no longer need                                   |
+| `* * *`  | efficient insurance agent                  | find a client by name                                   | locate details of clients without having to go through the entire list |
+| `* * *`  | insurance agent                            | edit a client's information                             | update client details upon changes and add new information in existing client       |
+| `* * *`  | opportunistic insurance agent              | filter my clients by their existing insurance plans     | upsell a new, similar plan to them                                     |
+| `* * *`  | popular insurance agent                    | view all my appointments without browsing the whole app | get a quick reminder of all my appointments                            |
+| `* * *`  | busy insurance agent                       | schedule my meetings with my contacts                   | remember when I am meeting my clients                                  |
+| `* * *`  | time-constrained insurance agent           | view my appointments in a chronological list            | schedule my day efficiently according to the meetings I have           |            |
+| `* * *`  | ambitious insurance agent                  | mark my meeting as completed                            | mark my successful progress in selling insurance to clients            |
+| `* * *`  | insurance agent                            | edit my meeting's details                               | update meeting details upon changes                                    |
+| `* * *`  | accommodating insurance agent              | relocate my meeting's location                          | change the location of my meeting if client request for it             |
+| `* * *`  | accommodating insurance agent              | reschedule my meeting to another date                   | change my meeting to another date if client cannot make it on the specified date|
+| `* * *`  | insurance agent                            | delete a meeting                                        | cancel meetings that I no longer need                                  |
+| `* * *`  | busy insurance agent                       | find a meeting by client                                | locate details of meetings without having to go through the entire list|                                 |
+| `* * *`  | time-constrained insurance agent           | find a meeting by date                                  | list the meetings I have on a specific date                            |                                 |
+| `* * `   | active insurance agent                     | track my clients’ insurance expiry                      | remind my clients to renew their contract                              |
+| `* *`    | insurance agent with many contacts         | save my client’s likes/dislikes                         | interact with them more effectively and increase the chance of insurance sale |                          |
+| `*`      | user with many clients in the location book| sort clients by name                                    | locate a client easily                                                 |
+| `*`      | user                                       | hide private contact details                            | minimize chance of someone else seeing them by accident                |
 
 ### Use cases
 
@@ -444,27 +455,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a client**
 
 **MSS**
-1. User requests to add a client with parameters like name, contact details, age etc.
-2. iScam shows the client to be added.
-3. User confirm the addition.
-4. iScam adds the client.
+1. User requests to add a client with a set of parameters like name, contact details, insurance plan etc.
+2. iScam adds the client.
 
     Use case ends.
 
 **Extensions**
-* 1a. iScam detects an error in the given client.
+* 1a. iScam detects a formatting error in the parameters of given client.
     * 1a1. iScam requests for correction.
     * 1a2. User corrected the client info.
     * Steps 1a1-1a2 are repeated until the data entered are correct.
 
     Use case resumes from step 2.
 
+* 1b. iScam detects a missing compulsory parameter (e.g. name).
+    * 1b1. iScam requests to add the missing client info.
+    * 1b2. User adds the missing client info.
+    * Steps 1b1-1b2 are repeated until all required client information is provided.
 
-* 3a. User chooses to cancel the addition.
-    * 3a1. iScam requests to confirm the cancellation.
-    * 3a2. User confirms the cancellation.
-
-    Use case ends.
+    Use case resumes from either 1a or 2, depending on whether the provided parameter are invalid.
 
 **Use case: List clients**
 
@@ -480,13 +489,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Update a client**
+**Use case: Edit a client**
 
 **MSS**
 1. User requests to update a client with new parameters.
-2. iScam shows a preview of the updated client.
-3. User confirm the update.
-4. iScam updates the client.
+2. iScam updates the client.
 
     Use case ends.
 
@@ -497,41 +504,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the data entered are correct.
 
       Use case resumes from step 2.
+    
+* 1b. iScam detects that the user did not provide any parameters to edit.
+    * 1b1. iScam requests to add the client info to be changed.
+    * 1b2. User adds the updated client info. 
+    * Steps 1b1-1b2 are repeated until at least 1 parameter to edit is provided.
 
+      Use case resumes from either 1a or 2, depending on whether the provided parameter is invalid.
 
-* 3a. User chooses to cancel the update.
-    * 3a1. iScam requests to confirm the cancellation.
-    * 3a2. User confirms the cancellation.
-
-      Use case ends.
-
-**Use case: Search clients**
+**Use case: Search clients by name**
 
 **MSS**
-1. User requests to find clients that matches a search term.
+1. User requests to find clients with names that match a search term.
 2. iScam shows a list of qualified clients.
 
     Use case ends.
 
 **Extensions**
-* 1a. There is no client in ClientBook.
-    * 1a1. iScam shows a message to indicate that there is no client.
+* 1a. There is no client in ClientBook that matches the search term.
+    * 1a1. iScam shows a message to indicate that there is 0 client found.
 
         Use case ends.
 
 
 * 1b. The search term is empty.
     * 1b1. iScam shows a message to indicate that a search term is required.
+    * 1b2  User enter keywords. 
+      
+        Use case resumes from step 2.
 
-        Use case ends
+**Use case: Search clients by insurance plan**
+
+**MSS**
+1. User requests to find clients with insurance plans that match a search term.
+2. iScam shows a list of qualified clients.
+
+   Use case ends.
+
+**Extensions**
+* 1a. There is no client in ClientBook that matches the search term.
+    * 1a1. iScam shows a message to indicate that there is 0 client found.
+
+      Use case ends.
+
+
+* 1b. The search term is empty.
+    * 1b1. iScam shows a message to indicate that a search term is required.
+    * 1b2  User enter keywords.
+
+      Use case resumes from step 2.
 
 **Use case: Delete a client**
 
 **MSS**
 1. User requests to delete a client.
-2. iScam requests to confirm the deletion.
-3. User confirms the deletion.
-4. iScam delete the client.
+2. iScam delete the client.
 
     Use case ends.
 
@@ -542,14 +569,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1a1-1a2 are repeated until the client entered is valid.
 
         Use case resumes from step 2.
-
-
-* 2a. User chooses to cancel the deletion.
-    * 2a1. iScam requests to confirm the cancellation.
-    * 2a2. User confirms the cancellation.
-
-        Use case ends.
-
+    
 **Use case: Add a meeting**
 
 **MSS**
@@ -561,20 +581,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. iScam detects an error within the new parameters.
     * 1a1. iScam displays the first invalid parameter and requests for a new set of parameters.
-    * 1a2. User enters a new set of parameters.
+    * 1a2. User enters a new set of parameters. 
+    * Steps 1a1-1a2 are repeated until all the parameters entered are valid.
 
-    Steps 1a1-1a2 are repeated until all the parameters entered are valid.
-
-    Use case resume from step 2.
+    Use case resumes from step 2.
 
 
 * 1b. iScam detects that the user did not provide all required parameters.
-    * 1b1. iScam displays the expected command format and requests for a new set of parameters.
-    * 1b2. User enters a new set of parameters.
+    * 1b1. iScam requests for a new set of parameters.
+    * 1b2. User enters a new set of parameters. 
+    * Steps 1b1-1b2 are repeated until all required parameters are provided.
 
-    Steps 1b1-1b2 are repeated until all required parameters are provided.
-
-    Use case resume from either 1a or 2, depending on whether the provided parameter are invalid.
+    Use case resumes from either 1a or 2, depending on whether the provided parameter are invalid.
 
 **Use case: List meetings**
 
@@ -599,37 +617,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
+
 * 1a. iScam detects an error within the new parameters.
-    * 1a1. iScam displays the first invalid parameter and requests for a new set of parameters.
-    * 1a2. User enters a new set of parameters.
+    * 1a1. iScam requests for correction.
+    * 1a2. User corrects the error in the parameters. 
+    * Steps 1a1-1a2 are repeated until all the parameters entered are valid.
 
-    Steps 1a1-1a2 are repeated until all the parameters entered are valid.
-
-    Use case resume from step 2.
+    Use case resumes from step 2.
 
 
-* 1b. iScam detects that the user did not provide any parameter.
-    * 1b1. iScam displays the expected command format and requests for a new set of parameters.
-    * 1b2. User enters a new set of parameters.
+* 1b. iScam detects that the user did not provide any parameter to edit.
+    * 1b1. iScam requests to add the meeting info to be changed.
+    * 1b2. User adds the meeting info to be updated. 
+    * Steps 1b1-1b2 are repeated until at least 1 parameter is provided.
 
-    Steps 1b1-1b2 are repeated until at least 1 parameter is provided.
-
-    Use case resume from either 1a or 2, depending on whether the provided parameter is invalid.
+    Use case resumes from either 1a or 2, depending on whether the provided parameter is invalid.
 
 **Use case: Delete a meeting**
 
 **MSS**
-1. User requests to delete a meeting that is specified with an entered index.
-2. iScam deletes the meeting and displays a success message.
+1. User requests to delete a meeting.
+2. iScam deletes the meeting.
 
     Use case ends.
 
 **Extensions**
 * 1a. iScam cannot find the specified meeting.
-    * 1a1. iScam displays the expected command format and requests for another index.
-    * 1a2. User enters a new index.
-
-    Steps 1a1-1a2 are repeated until the given index is valid.
+    * 1a1. iScam requests for another meeting to delete.
+    * 1a2. User enters a new meeting to delete. 
+    * Steps 1a1-1a2 are repeated until the meeting to delete is found.
 
     Use case resumes from step 2.
 
@@ -643,61 +659,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. iScam did not receive any keyword.
-    * 1a1. iScam displays the expected command format and requests for keywords.
-    * 1a2 User enter keywords.
+    * 1a1. iScam requests for keywords.
+    * 1a2 User enters keywords.
     * Steps 1a1-1a2 are repeated until keywords are given.
 
         Use case resumes from step 2.
 
 **Use case: Reschedule a meeting**
-1. User requests to change the date time of a meeting by specifying with an entered index and a new date time.
+1. User requests to change the date time of a meeting.
 2. iScam changes the date time of the meeting and displays a success message.
 
     Use case ends.
 
 **MSS**
-* 1a. iScam did not receive both parameters.
-    * 1a1. iScam displays the expected command format and requests for both index and date time.
-    * 1a2. User enters an index and a date time.
-
-    Steps 1a1-1a2 are repeated until both parameters are provided.
+* 1a. iScam did not receive the required parameters.
+    * 1a1. iScam displays the expected command format and requests for addition.
+    * 1a2. User enters the meeting and the new date time it should be updated to. 
+    * Steps 1a1-1a2 are repeated until both parameters are provided.
 
     Use cases can resume from either 1b or 2, depending on whether both parameters are valid.
 
 
 * 1b. iScam receives one or more invalid parameters.
-    * 1b1. iScam displays which parameter is invalid and requests for both index and date time.
-    * 1b2. User enters an index and a location.
+    * 1b1. iScam displays invalid parameter and requests for correction.
+    * 1b2. User corrects the parameters. 
+    * Steps 1b1-1b2 are repeated until the parameters are valid.
 
-    Steps 1b1-1b2 are repeated until the both parameters are valid.
-
-    Use cases can resume from either 1a or 2, depending on whether both parameters are present.
+    Use cases can resume from either 1a or 2, depending on whether the parameters are present.
 
 **Extensions**
 
 **Use case: Relocate a meeting**
 
 **MSS**
-1. User requests to change the location of a meeting by specifying with an entered index and a new location.
+1. User requests to change the location of a meeting.
 2. iScam changes the location of the meeting and displays a success message.
 
     Use case ends.
 
 **Extensions**
 * 1a. iScam did not receive both parameters.
-    * 1a1. iScam displays the expected command format and requests for both index and location.
-    * 1a2. User enters an index and a location.
-
-    Steps 1a1-1a2 are repeated until both parameters are provided.
+    * 1a1. iScam displays the expected command format and requests for addition.
+    * 1a2. User adds the required parameters.
+    * Steps 1a1-1a2 are repeated until both parameters are provided.
 
     Use cases can resume from either 1b or 2, depending on whether both parameters are valid.
 
 
 * 1b. iScam receives one or more invalid parameters.
-    * 1b1. iScam displays which parameter is invalid and requests for both index and location.
-    * 1b2. User enters an index and a location.
-
-    Steps 1b1-1b2 are repeated until the both parameters are valid.
+    * 1b1. iScam displays which parameter is invalid and requests for correction.
+    * 1b2. User enters a correction. 
+    * Steps 1b1-1b2 are repeated until the both parameters are valid.
 
     Use cases can resume from either 1a or 2, depending on whether both parameters are present.
 
@@ -712,32 +724,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. iScam did not receive any index from the user.
     * 1a1. iScam displays the expected command format and request for an index.
-    * 1a2. User enters a new index.
-
-    Steps 1a1-1a2 are repeated until an index is provided.
+    * 1a2. User enters a new index. 
+    * Steps 1a1-1a2 are repeated until an index is provided.
 
     Use case can resume from either 1b or 2, depending on whether the index is valid.
 
 
 * 1b. iScam cannot find a meeting with the entered index.
     * 1b1. iScam displays that index is invalid and requests for another index.
-    * 1b2. User enters a new index.
-
-    Steps 1b1-1b2 are repeated until the index entered is valid.
+    * 1b2. User enters a new index. 
+    * Steps 1b1-1b2 are repeated until the index entered is valid.
 
     Use case resumes from step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 clients and meetings without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  A user should be able to quickly identify the purpose of different interface elements through larger buttons, recognizable color scheme etc.
-5.  An average user should be able to get a grasp on the user interface within a few iteration of usage
-
-*{More to be added}*
+4.  A user should be able to quickly identify the purpose of different interface elements through labels, recognizable color scheme etc.
+5.  An average user should be able to get a grasp on the user interface within a few iterations of usage
 
 ### Glossary
 
@@ -813,5 +820,6 @@ The effort required is relatively similar to that of the Individual Project, as 
 
 ## Attribution
 
-Default image for profile icons retrieved from: https://vectorified.com/facebook-profile-icon#facebook-profile-icon-10.png
+Default image for profile icons retrieved from: https://vectorified.com/facebook-profile-icon#facebook-profile-icon-10.png <br>
+Profile picture of Sample Client in Ui.png retrieved from: https://www.pexels.com/photo/men-s-wearing-black-suit-jacket-and-pants-937481 <br>
 Image for iScam icon from: https://www.flaticon.com/catkuro
