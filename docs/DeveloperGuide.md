@@ -22,7 +22,7 @@ command box provided without ever having to reach for your mouse!
 
 ## **Purpose** 
 
-This document  aims to serve as a guide for developers, testers and designers who are interested in working on Pawbook. 
+This document aims to serve as a guide for developers, testers and designers who are interested in working on Pawbook. 
 It describes both the design and architecture of Pawbook. 
 
 ## **Target User Profile**
@@ -229,7 +229,11 @@ This list is subsequently passed on to the `RelatedEntityPredicate` that will la
 
 Below is an example sequence diagram for a valid view command from the user. 
 
-![ViewActivityDiagram](images/ViewSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+Here is a more specific breakdown of the command's execute method.
+
+![ViewSequenceDiagramSpecific](images/ViewSequenceDiagramSpecific.png)
 
 Below is an example activity diagram for a valid view command from the user.
 
