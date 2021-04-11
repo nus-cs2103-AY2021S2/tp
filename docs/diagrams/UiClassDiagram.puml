@@ -11,25 +11,31 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
 Class PersonDetails
 Class StatusBarFooter
 Class CommandBox
 Class ImportantDatesWindow
-Class DateCard
+Class ScheduleWindow
+
+package PanelList <<Rectangle>> {
 Class DateListPanel
 Class DetailLessonListPanel
-Class DetailLessonListCard
-Class DetailListPanel
-Class LessonListCard
 Class LessonListPanel
-Class ScheduleWindow
+Class PersonListPanel
+}
+
+package Card <<Rectangle>> {
+class DateCard
+class DetailLessonListCard
+class LessonListCard
+Class PersonCard
+}
 }
 
 package Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
 }
+
 
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
@@ -61,24 +67,17 @@ MainWindow -down-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
 PersonDetails --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 ImportantDatesWindow -down-|> UiPart
 ScheduleWindow -down-|> UiPart
-DateListPanel --|> UiPart
-DateCard --|> UiPart
-DetailLessonListPanel --|> UiPart
-LessonListPanel --|> UiPart
-LessonListCard --|> UiPart
+PanelList --|> UiPart
+Card --|> UiPart
 
 
-PersonCard ..> Model
+Card ..> Model
 PersonDetails ..> Model
-DateCard ..> Model
-LessonListCard ..> Model
 UiManager -right-> Logic
 MainWindow -right-> Logic
 ImportantDatesWindow -right-> Logic
