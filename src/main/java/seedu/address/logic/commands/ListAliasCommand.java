@@ -14,7 +14,7 @@ public class ListAliasCommand extends AliasCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        int numOfAlias = model.getNumOfAlias();
+        int numOfAlias = model.getNumOfCommandAlias();
         return new CommandResult(String.format(SHOWING_ALIASES_MESSAGE, numOfAlias),
                 false, true, false);
     }

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.TagCommandParser.tagsToString;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -34,7 +34,7 @@ import seedu.address.testutil.TypicalIndexes;
 
 public class DeleteTagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliases());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliasMap());
 
     @Test
     public void createWithShownIndex_nullTags_throwsNullPointerException() {
@@ -61,7 +61,7 @@ public class DeleteTagCommandTest {
     @Test
     public void execute_selectedIndexTags_deleteSuccessful() throws Exception {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         Set<Tag> tags = getCommonTags();
 
         List<Person> selectedPersonList = new ArrayList<>();
@@ -88,7 +88,7 @@ public class DeleteTagCommandTest {
     @Test
     public void execute_shownIndexTags_addSuccessful() throws Exception {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         Set<Tag> tags = getTypicalTags();
 
         List<Person> personList = model.getFilteredPersonList();
@@ -110,7 +110,7 @@ public class DeleteTagCommandTest {
     @Test
     public void execute_targetIndexesTags_addSuccessful() throws Exception {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         Set<Tag> tags = getTypicalTags();
 
         List<Index> indexes = TypicalIndexes.VALID_INDEXES;

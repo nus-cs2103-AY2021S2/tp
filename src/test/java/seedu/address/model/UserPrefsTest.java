@@ -19,9 +19,9 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void setAliasesFilePath_nullPath_throwsNullPointerException() {
+    public void setAliasMapFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPrefs.setAliasesFilePath(null));
+        assertThrows(NullPointerException.class, () -> userPrefs.setAliasMapFilePath(null));
     }
 
 }
