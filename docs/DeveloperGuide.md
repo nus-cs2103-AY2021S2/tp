@@ -877,17 +877,16 @@ testers are expected to do more *exploratory* testing.
        shown on the result display.
        
     1. Test case: `edit 1` <br>
-       Expected: Flashcard identified by index 1 in the list will not be edited, and an error message will be displayed to prompt
-       the user to enter at least one field to edit.
+       Expected: Flashcard identified by index 1 in the list will not be edited, the following error message will be displayed: `At least one field to edit must be provided.`
        
     1. Test case: `edit 1 p/Low` <br>
        Expected: The flashcard identified by index 1 in the list will be modified. Its priority is changed to `Low`. If the flashcard already has 
-       `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
+       `Low` priority, the following error message will be displayed: `Modified card is the same as current card!`, and no modifications will be made to the flashcard.
        
     1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms` <br>
        Expected: The flashcard identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
        and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
-       `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
+       `Mid`, as well as tags `sorting` and `algorithms`, the following error message will be displayed: `Modified card is the same as current card!`, and no modifications will be made to the flashcard.
 
 
 ### Finding flashcards
