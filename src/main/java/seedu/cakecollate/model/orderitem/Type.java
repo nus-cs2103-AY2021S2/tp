@@ -53,7 +53,6 @@ public class Type {
         return other == this // short circuit if same object
                 || (other instanceof Type // instanceof handles nulls
                 && value.equalsIgnoreCase(((Type) other).value)); // state check
-        //
     }
 
     @Override
