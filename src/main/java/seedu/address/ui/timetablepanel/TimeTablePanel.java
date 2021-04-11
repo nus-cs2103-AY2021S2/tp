@@ -149,6 +149,7 @@ public class TimeTablePanel extends UiPart<Region> {
         return events.stream()
                 .map(event -> event.getTimeFrom().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isBefore(time2) ? time1 : time2))
+                .filter((time) -> time.isAfter(LocalTime.of(6, 0)) && time.isBefore(LocalTime.of(20, 0)))
                 .orElse(LocalTime.of(8, 0));
     }
 
@@ -161,7 +162,7 @@ public class TimeTablePanel extends UiPart<Region> {
         LocalTime endTime = events.stream()
                 .map(event -> event.getTimeTo().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isAfter(time2) ? time1 : time2))
-                .filter((time) -> time.isAfter(LocalTime.of(11, 0)))
+                .filter((time) -> time.isAfter(LocalTime.of(22, 0)))
                 .orElse(LocalTime.of(12, 0));
 
         int hourDiff = endTime.getHour() - getStartTime().getHour();
@@ -192,6 +193,7 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private void createColConstraints(int numColumns) {
+        System.out.println(gridPane.getColumnCount() != numColumns);
         if ((gridPane.getColumnCount() != numColumns)) {
             hourSlot.clear();
             timeGridPane.getChildren().clear();
