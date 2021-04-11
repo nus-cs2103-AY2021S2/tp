@@ -32,7 +32,7 @@ public class FindDoctorCommand extends Command {
         requireNonNull(model);
         model.updateFilteredDoctorList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW, model.getFilteredDoctorList().size()));
+                String.format(Messages.MESSAGE_DOCTORS_FOUND_OVERVIEW, model.getFilteredDoctorList().size()));
     }
 
     @Override

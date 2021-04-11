@@ -50,10 +50,6 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_TAG + "severe "
             + PREFIX_TAG + "brainDamage";
 
-    public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_APPOINTMENT_CONFLICT = "This appointment will result in conflicts "
-            + "in the appointment schedule";
-
     public final Index patientIndex;
     public final Index doctorIndex;
     public final Timeslot timeslot;
@@ -98,11 +94,11 @@ public class AddAppointmentCommand extends Command {
         Appointment toAdd = new Appointment(patientUuid, doctorUuid, timeslot, tagList);
 
         if (model.hasConflictingAppointment(toAdd)) {
-            throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
+            throw new CommandException(Messages.MESSAGE_ADD_APPOINTMENT_CONFLICT);
         }
 
         model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS,
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_APPOINTMENT_SUCCESS,
                 new AppointmentDisplay(patient, doctor, timeslot, tagList)));
     }
 

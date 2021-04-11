@@ -1,0 +1,23 @@
+@startuml
+!include <office/Concepts/globe_internet>
+!include <office/Concepts/documents>
+!include <office/Users/user>
+!include style.puml
+
+Class PatientMap PATIENT_MAP_COLOR
+Class DoctorMap DOCTOR_MAP_COLOR
+Class Appointment APPOINTMENT_COLOR
+Class Patient PATIENT_COLOR
+Class Doctor DOCTOR_COLOR
+Abstract Person PERSON_COLOR
+Class Timeslot TIMESLOT_COLOR
+
+Appointment --> PatientMap
+Appointment --> DoctorMap
+PatientMap --> Patient
+DoctorMap --> Doctor
+Appointment *--> Timeslot
+Doctor -|> Person
+Patient -|> Person
+
+@enduml

@@ -2,10 +2,11 @@ package seedu.address.logic.parser.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +18,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.TimeslotParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
@@ -38,10 +40,10 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DOCTOR,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PATIENT, PREFIX_DOCTOR,
                 PREFIX_TIMESLOT_START, PREFIX_TAG);
 
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DOCTOR,
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_DOCTOR,
                 PREFIX_TIMESLOT_START, PREFIX_TAG)) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
@@ -52,8 +54,8 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         List<String> timeStartKeywords = new ArrayList<String>();
         List<String> tagKeywords = new ArrayList<String>();
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            Collections.addAll(patientKeywords, listKeywords(argMultimap, PREFIX_NAME));
+        if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
+            Collections.addAll(patientKeywords, listKeywords(argMultimap, PREFIX_PATIENT));
         }
 
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
@@ -61,7 +63,21 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         }
 
         if (argMultimap.getValue(PREFIX_TIMESLOT_START).isPresent()) {
-            Collections.addAll(timeStartKeywords, listKeywords(argMultimap, PREFIX_TIMESLOT_START));
+            String[] standardDateTimeInput = listKeywords(argMultimap, PREFIX_TIMESLOT_START);
+            //align with dateTimeFormat in timeslot
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            for (int i = 0; i <= standardDateTimeInput.length - 1; i++) {
+                String s = standardDateTimeInput[i].toUpperCase().trim();
+                if (s.contains("/") || s.contains("-")) {
+                    standardDateTimeInput[i] = format.format(TimeslotParser.parseStandardDate(s));
+                }
+                if (s.contains("AM") || s.contains("PM")) {
+                    standardDateTimeInput[i] = TimeslotParser.parseStandardTime(s);
+                }
+
+            }
+            Collections.addAll(timeStartKeywords, standardDateTimeInput);
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {

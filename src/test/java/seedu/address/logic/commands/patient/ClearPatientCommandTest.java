@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -22,7 +23,7 @@ public class ClearPatientCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearPatientCommand(), model, ClearPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearPatientCommand(), model, Messages.MESSAGE_CLEAR_PATIENT_SUCCESS, expectedModel);
     }
 
     @Test
@@ -33,7 +34,7 @@ public class ClearPatientCommandTest {
                 getEmptyAppointmentSchedule(), new UserPrefs());
 
         expectedModel.setPatientRecords(new AddressBook<>());
-        assertCommandSuccess(new ClearPatientCommand(), model, ClearPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearPatientCommand(), model, Messages.MESSAGE_CLEAR_PATIENT_SUCCESS, expectedModel);
     }
 
     @Test
