@@ -61,14 +61,14 @@ I asked several questions on the forum which might helped other who have similar
 ## Contributions to the Developer Guide (Extracts)
 I drew 2 UML diagrams from scratch. These are:
 
-**`dueIn` activity diagram**
+**`dueIn` sequence diagram**
 ![DueInSequenceDiagram](../images/DueInSequenceDiagram.png)
-**`sort` activity diagram**
+**`sort` sequence diagram**
 ![SortSequenceDiagram](../images/SortSequenceDiagram.png)
 
 I also updated all the UML diagrams given by AddressBook3. Most notable ones are:
 
-**`undo` activity diagram**
+**`undo` sequence diagram**
 ![UndoSequenceDiagram](../images/UndoSequenceDiagram.png)
 **`Model` class diagram**
 ![ModelClassDiagram](../images/ModelClassDiagram.png)
