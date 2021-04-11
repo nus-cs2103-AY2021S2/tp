@@ -231,9 +231,20 @@ Below is an example sequence diagram for a valid view command from the user.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input. 
+2. The `PawbookParser` identifies the user command and creates a `ViewCommandParser` object. It then calls the `ViewCommandParser`'s `parse()`method with user input as the parameter. 
+3. In the `parse()` method, the `ViewCommandParser` will then generate the `ViewCommand` object. This is then returned all the way back to the `LogicManager`. 
+4. The `LogicManager` will then proceed to call the `execute()` method. 
+5. The `execute()` method is further explored below. The high level understanding is that a CommandResult is returned and finally passed back to `LogicManager`.
+
 Here is a more specific breakdown of the command's execute method.
 
-![ViewSequenceDiagramSpecific](images/ViewSequenceDiagramSpecific.png)
+![ViewSequenceDiagramSpecific](images/ViewSequenceDiagramSpecific.png) 
+
+1. In the execute method of `ViewCommand`, it first generates a list of related entity IDs by calling the `generateRelatedIdList()`which accesses the data in the model. 
+2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
+3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list. 
+4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial. 
 
 Below is an example activity diagram for a valid view command from the user.
 
