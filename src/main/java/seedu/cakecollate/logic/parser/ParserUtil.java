@@ -1,7 +1,6 @@
 package seedu.cakecollate.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +13,6 @@ import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
-import seedu.cakecollate.logic.commands.AddOrderItemCommand;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
@@ -269,8 +267,8 @@ public class ParserUtil {
             throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
         }
         if (!Type.isValidType(trimmedOrderItemDescription)) {
-            throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderItemCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(Type.SHARED_CONSTRAINTS_MESSAGE, "Order description")
+                            );
         }
         return new OrderItem(new Type(trimmedOrderItemDescription));
     }
