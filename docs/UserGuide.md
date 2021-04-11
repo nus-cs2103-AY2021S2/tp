@@ -532,10 +532,10 @@ Parameters:
 * [`INDEX`](#index) The index of the issue to edit.
 * [`ROOM_NUMBER`](#room_number) The room number to change the issue identified by [`INDEX`](#index) to. Room number must exist in SunRez.
 * [`DESCRIPTION`](#description) The description to change the issue identified by [`INDEX`](#index) to.
-* [`TIMESTAMP`](#timestamp) The timestamp to change the issue identified by
+* [`TIMESTAMP`](#timestamp) The timestamp to change the issue identified by [`INDEX`](#index) to.
 * [`STATUS`](#status) The status to change the issue identified by [`INDEX`](#index) to.
 * [`CATEGORY`](#category) The category to change the issue identified by [`INDEX`](#index) to.
-* [`TAG`](#tag) Optional tags that may be updated for the room identified by [`INDEX`](#index).
+* [`TAG`](#tag) Optional tags that may be updated for the issue identified by [`INDEX`](#index).
 
 Example:
 * `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
@@ -612,7 +612,7 @@ Examples:
 
 **:information_source: Shortcuts to undo:**<br>
 1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`Z` (Windows, Linux) or `CMD`+`Z` (Mac).
 
 These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
 command history.
@@ -626,7 +626,7 @@ Format: `redo`
 
 Examples:
 * `rdel 1` <br>
-  `undo` Undoes the `rdel 1` command.
+  `undo` Undoes the `rdel 1` command. <br>
   `redo` Redoes the `rdel 1` command.
 
 * `rdel 1` <br>
@@ -643,7 +643,7 @@ Examples:
 
 **:information_source: Shortcuts to redo:**<br>
 1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`SHIFT`+`Z` (Windows, Linux) or `CMD`+`SHIFT`+`Z` (Mac).
 
 These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
 command history.
@@ -779,8 +779,8 @@ Action | Format, Examples
 **Close an issue** | `iclo INDEX` <br> e.g. `iclo 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
-**Undo previous command** | `undo` <br> `CTRL+Z`/`CMD+Z` (keyboard shortcuts)
-**Redo previously undone command** | `redo` <br> `CTRL+SHIFT+Z`/`CMD+SHIFT+Z` (keyboard shortcuts)
+**Undo previous command** | `undo` <br> `CTRL`+`Z`/`CMD`+`Z` (keyboard shortcuts)
+**Redo previously undone command** | `redo` <br> `CTRL`+`SHIFT`+`Z`/`CMD`+`SHIFT`+`Z` (keyboard shortcuts)
 **Add an alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
 **Delete an alias** | `unalias a/ALIAS_NAME` <br> e.g. `unalias a/findBob`
 **List all aliases** | `aliases`

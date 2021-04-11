@@ -1353,14 +1353,14 @@ e.g. `radd`, `redit`, `idel`, `clear`, etc.
 
 **:information_source: Shortcuts to undo:**<br>
 1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`Z` (Windows, Linux) or `CMD`+`Z` (Mac).
 
 These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
 command history.
 
 **:information_source: Shortcuts to redo:**<br>
 1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
-2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+2. **Keyboard:** Press `CTRL`+`SHIFT`+`Z` (Windows, Linux) or `CMD`+`SHIFT`+`Z` (Mac).
 
 These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
 command history.
