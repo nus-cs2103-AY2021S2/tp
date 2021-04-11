@@ -778,7 +778,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a client with incorrect parameters
     1. Test case: `add n/Jane Smith p/abcdefg`
         
-        Expected: The application displays a message indicating an incorrect format was entered.
+        Expected: The application displays a message indicating an invalid command format was entered.
 
 ### Edit Client
 1. Editing a client with valid index
@@ -797,7 +797,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisite: The client list contains a client named `John Doe` and is represented by the first entry in the client list.
     1. Test case: `edit 1 n/John Doe`
         
-        Expected: The application displays a message to indicate that no changes were found in any of the edited field.
+        Expected: The application displays a message to indicate that no changes were found in any of the fields.
 
 ### Delete Client
 
@@ -810,13 +810,13 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a non-existing client
     1. Prerequisite: The client list contains no client.
     1. Test case: `delete 1`
-    
-        Expected: The application displays a message to indicate that the given index does not exist in the list. 
+
+       Expected: The application displays a message to indicate that the client index does not exist in the current client list.        
 
 1. Deleting without providing an index
     1. Test case: `delete`
         
-        Expected: The application displays a message to indicate an incorrect command format was entered.
+        Expected: The application displays a message to indicate an invalid command format was entered.
 
 ### Add Meeting
 
@@ -854,7 +854,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisite: The meeting list contains at least 1 meeting and the first meeting is taking placing in `KFC, Singapore Central`.
     1. Test case: `editmeet 1 l/KFC, Singapore Central`
         
-        Expected: The application displays a message to indicate that there is no changes in any field.
+        Expected: The application displays a message to indicate that there is no changes found in any field.
 
 ### Delete Meeting
 
@@ -874,7 +874,7 @@ testers are expected to do more *exploratory* testing.
     1. Deleting without providing an index
     1. Test case: `deletemeet`
         
-        Expected: The application displays a message to indicate an incorrect command format was entered.
+        Expected: The application displays a message to indicate an invalid command format was entered.
 
 ## Effort
 iScam is a product that has been developed from AddressBook Level 3. While AddressBook is a generic contact storing product, iScam is more targeted towards Insurance Agents, allowing them to keep track of their clients and meetings.
@@ -894,5 +894,7 @@ The effort required is relatively similar to that of the Individual Project, as 
 ## Attribution
 
 Default image for profile icons retrieved from: https://vectorified.com/facebook-profile-icon#facebook-profile-icon-10.png <br>
+
 Profile picture of Sample Client in Ui.png retrieved from: https://www.pexels.com/photo/men-s-wearing-black-suit-jacket-and-pants-937481 <br>
+
 Image for iScam icon from: https://www.flaticon.com/catkuro
