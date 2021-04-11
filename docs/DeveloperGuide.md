@@ -113,7 +113,7 @@ The `Model`,
 
 A `Contact` stores a `Name`, `Email`, `Phone` number, `Address` and zero or more `Tag`s.
 
-![Structure of the Contact Component](images/ProjectClassDiagram.png)
+![Structure of the Project Component](images/ProjectClassDiagram.png)
 
 A `Project` stores an `EventList`, `DeadlineList`, `TodoList` and a `GroupmateList`. The `EventList`, `DeadlineList`, `TodoList` and `GroupmateList` stores zero or more `Repeatable`, `CompletableDeadline`, `CompletableTodo` and `Groupmate` objects respectively.
 
