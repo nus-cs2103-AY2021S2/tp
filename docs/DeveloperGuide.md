@@ -180,7 +180,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Proposed Implementation
 
-The proposed `find` mechanism extends the `find` mechanism of `AddressBook`, which only allows users to find entries based on the "Name" attribute. This extended find mechanism allows users to find entries based on any attribute, namely:
+The proposed `find` mechanism extends the `find` mechanism of `AddressBook`, which only allows users to find entries 
+based on the "Name" attribute. This extended find mechanism allows users to find entries based on multiple attribute, namely:
 * Name
 * Size
 * Colour
@@ -191,9 +192,16 @@ The proposed `find` mechanism extends the `find` mechanism of `AddressBook`, whi
 This is achieved through the creation of new Predicates (in addition to the existing NameContainsKeywordsPredicate):
 * SizeContainsKeywordsPredicate
 * ColourContainsKeywordsPredicate
-* etc.
+* 
 
 FindCommandParser is updated to detect the prefixes for multiple attributes (i.e. `n/` for Name, `c/` for Colour, etc.) and the respective predicate is hence used to create the FindCommand Object
+
+The sequence diagram below shows how the find command works:
+![Find Sequence Diagram](images/FindSequenceDiagram.png)
+
+The activity diagram below shows the flow of what happens when a user executes the find command:
+![Find Activity Diagram](images/FindActivityDiagram.png)
+
 
 #### Design Consideration:
 
