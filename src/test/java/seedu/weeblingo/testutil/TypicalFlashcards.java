@@ -34,7 +34,7 @@ public class TypicalFlashcards {
     public static final Flashcard KI_CARD = new FlashcardBuilder()
             .withQuestion("き").withAnswer("ki").withTags("gojuon").build();
 
-    // Manually added (to be updated later)
+    // Manually added
     public static final Flashcard KU_CARD = new FlashcardBuilder()
             .withQuestion("く").withAnswer("ku").withTags("gojuon").build();
     public static final Flashcard KE_CARD = new FlashcardBuilder()
@@ -46,8 +46,6 @@ public class TypicalFlashcards {
     public static final Flashcard I = new FlashcardBuilder()
             .withQuestion(VALID_QUESTION_I).withAnswer(VALID_ANSWER_I).withTags(VALID_TAG_DIFFICULT, VALID_TAG_EASY)
             .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalFlashcards() {} // prevents instantiation
 

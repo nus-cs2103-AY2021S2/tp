@@ -82,19 +82,6 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseQuestion(INVALID_QUESTION));
     }
 
-    //    @Test
-    //    public void parseQuestion_validValueWithoutWhitespace_returnsquestion() throws Exception {
-    //        Question expectedquestion = new Question(VALID_QUESTION);
-    //        assertEquals(expectedquestion, ParserUtil.parseQuestion(VALID_QUESTION));
-    //    }
-
-    //    @Test
-    //    public void parseQuestion_validValueWithWhitespace_returnsTrimmedquestion() throws Exception {
-    //        String questionWithWhitespace = WHITESPACE + VALID_QUESTION + WHITESPACE;
-    //        Question expectedquestion = new Question(VALID_QUESTION);
-    //        assertEquals(expectedquestion, ParserUtil.parseQuestion(questionWithWhitespace));
-    //    }
-
     @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
