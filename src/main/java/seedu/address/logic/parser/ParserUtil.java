@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -252,6 +253,25 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Validates prefix arguments {@code ArgumentMultiMap}. All arguments must be a valid prefix and must be empty.
+     *
+     * @param prefix Prefix to validate.
+     * @param argMultimap Arguments of to validate.
+     * @return true if prefix exists and is valid. false if prefix does not exist.
+     * @throws ParseException if a prefix contains values. This indicates an invalid prefix provided.
+     */
+    public static boolean validatePrefixEmpty(Prefix prefix, ArgumentMultimap argMultimap)
+            throws ParseException {
+        if (argMultimap.getValue(prefix).isEmpty()) {
+            return false;
+        }
+        if (argMultimap.getValue(prefix).get().isEmpty()) {
+            return true;
+        }
+        throw new ParseException(
+                String.format(Messages.MESSAGE_INVALID_PREFIX, argMultimap.getValue(prefix).get()));
+    }
     /**
      * Parses a {@code String company} into an {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
