@@ -58,6 +58,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDate(new Date(date));
         return this;
     }
+
     /**
      * Sets the {@code Duration} of the {@code EditTaskDescriptor} that we are building.
      */

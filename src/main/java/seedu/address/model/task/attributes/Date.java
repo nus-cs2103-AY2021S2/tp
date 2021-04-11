@@ -21,7 +21,10 @@ public class Date implements Attribute {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format dd/mm/yyyy. For example, 1 July 2021 should be "
-                    + "expressed as 01/07/2021, not 1/7/2021. Note, year cannot be before 1900 and cannot be after 2099";
+                    + "expressed as 01/07/2021, not 1/7/2021."
+                    + "\n- Day, month or year should not be zeros."
+                    + "\n- Date cannot be before year 1900 or after 2099.";
+  
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
             "Date should not be before today";
 
