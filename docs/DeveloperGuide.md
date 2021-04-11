@@ -240,6 +240,25 @@ Below is an example sequence diagram for a valid enrol command from the user.
 
 ![EnrolSequenceDiagram](images/EnrolSequenceDiagram.png)
 
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+1. The `PawbookParser` will identify the command given by the user based on the first command word and pass the user input down to `EnrolDropCommandParser`.
+1. The `EnrolDropCommandParser` will then create an `enrolCommand` object with the user input `dogIdSet` and `programIdSet` as input parameters, in this case,
+`dogIdSet` will be `[2]` and `programIdSet` will be `[3]`.
+1. The `EnrolDropCommandParser` will then return an `enrolCommand` object.
+1. The `LogicManager` will now call the `execute` method in the `enrolCommand` object.
+1. The `EnrolCommand` will now call the `updateFilteredEntityList` method of the existing `Model` object.
+1. The high level understanding is that a `CommandResult` is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![EnrolSequenceSpecificDiagram](images/EnrolSequenceSpecificDiagram.png)
+
+1. The `LogicManager` will call the execute method in the `EnrolCommand` object. 
+1. The `EnrolCommand` will then call the `checkIdValidity` method of the existing `Model` object.
+1. If the ID is valid, the `EnrolCommand` will create an `IdMatchPredicate` object.
+1. The `EnrolCommand` will call the `updateFilteredEntityList` method of the existing `Model` object update the `IdMatchPredicate` object into Pawbook.
+1. The `EnrolCommand` then creates a `CommandResult` object and returns it, indicating the successful updating of the `IdMatchPredicate` object.
+
 ### Drop feature
 
 While Pawbook allows the enrolling of dogs into programs, conversely it supports dropping previously-enrolled dogs from the programs.
