@@ -99,29 +99,29 @@ public class SubjectExperienceFilterTest {
         SubjectExperienceFilter subjectExperienceFilter;
 
         // EP 1: Exact match
-        subjectExperienceFilter = new SubjectExperienceFilter("04569");
-        assertTrue(subjectExperienceFilter.test(new SubjectExperience("04569")));
+        subjectExperienceFilter = new SubjectExperienceFilter("19");
+        assertTrue(subjectExperienceFilter.test(new SubjectExperience("19")));
 
-        subjectExperienceFilter = new SubjectExperienceFilter("=04569");
-        assertTrue(subjectExperienceFilter.test(new SubjectExperience("04569")));
+        subjectExperienceFilter = new SubjectExperienceFilter("=19");
+        assertTrue(subjectExperienceFilter.test(new SubjectExperience("19")));
 
-        subjectExperienceFilter = new SubjectExperienceFilter(">=04569");
-        assertTrue(subjectExperienceFilter.test(new SubjectExperience("04569")));
+        subjectExperienceFilter = new SubjectExperienceFilter(">=19");
+        assertTrue(subjectExperienceFilter.test(new SubjectExperience("19")));
 
-        subjectExperienceFilter = new SubjectExperienceFilter("<=04569");
-        assertTrue(subjectExperienceFilter.test(new SubjectExperience("04569")));
+        subjectExperienceFilter = new SubjectExperienceFilter("<=19");
+        assertTrue(subjectExperienceFilter.test(new SubjectExperience("19")));
 
         // EP 2: More Than
-        subjectExperienceFilter = new SubjectExperienceFilter(">04569");
-        assertTrue(subjectExperienceFilter.test(new SubjectExperience("04570")));
-        assertFalse(subjectExperienceFilter.test(new SubjectExperience("04569")));
-        assertFalse(subjectExperienceFilter.test(new SubjectExperience("04568")));
+        subjectExperienceFilter = new SubjectExperienceFilter(">19");
+        assertTrue(subjectExperienceFilter.test(new SubjectExperience("20")));
+        assertFalse(subjectExperienceFilter.test(new SubjectExperience("19")));
+        assertFalse(subjectExperienceFilter.test(new SubjectExperience("18")));
 
         // EP 3: Less Than
-        subjectExperienceFilter = new SubjectExperienceFilter("<04569");
-        assertTrue(subjectExperienceFilter.test(new SubjectExperience("04568")));
-        assertFalse(subjectExperienceFilter.test(new SubjectExperience("04569")));
-        assertFalse(subjectExperienceFilter.test(new SubjectExperience("04570")));
+        subjectExperienceFilter = new SubjectExperienceFilter("<19");
+        assertTrue(subjectExperienceFilter.test(new SubjectExperience("18")));
+        assertFalse(subjectExperienceFilter.test(new SubjectExperience("19")));
+        assertFalse(subjectExperienceFilter.test(new SubjectExperience("20")));
 
         // EP 4: null
         assertFalse(subjectExperienceFilter.test(null));
