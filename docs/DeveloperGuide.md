@@ -2054,15 +2054,13 @@ These instructions only provide a starting point for testers to work on; testers
 
     1. Prerequisites: No duplicates tasks could exist.
 
-    1. Test case: `add_task n/Homework 1 d/2021-05-10 p/8`
-       
+    1. Test case: `add_task n/Homework 1 d/2021-05-10 p/8` <br>
         Expected: Task successfully added, detailed information shown in the status bar.
 
-    1. Test case: `add_task n/Assignment d/2021-05-11 p/9 c/Assignment`
-       
+    1. Test case: `add_task n/Assignment d/2021-05-11 p/9 c/Assignment` <br>
         Expected: Task successfully added, detailed information shown in the status bar.
 
-    1. Test case: `add_task n/Past Task d/2021-01-07 p/7`
+    1. Test case: `add_task n/Past Task d/2021-01-07 p/7` <br>
        Expected: Task is not added, since deadline is past. Detailed error message shown in the status bar.
 
     1. Other incorrect commands to try: `add_task`, `add_task n/Task 1`, etc.
@@ -2105,11 +2103,11 @@ These instructions only provide a starting point for testers to work on; testers
     1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
        All of the tasks to be completed are currently marked as uncompleted.
 
-    1. Test case: `done 1 2` <br>
+    1. Test case: `done_task 1 2` <br>
        Expected: The first and second task in the task list are marked as completed.
        "Completed 2 Task(s)." to appear in status bar.
        
-    1. Other incorrect command to try : `done abc`.
+    1. Other incorrect command to try : `done_task abc`.
 
 1. _{ more test cases …​ }_
 
@@ -2120,11 +2118,11 @@ These instructions only provide a starting point for testers to work on; testers
     1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
        The task to be uncompleted is currently marked as completed.
     
-    1. Test case: `undone 1` <br>
+    1. Test case: `undone_task 1` <br>
        Expected: The first task in the task list are marked as uncompleted.
        "Uncompleted 1 Task." to appear in status bar.
        
-    1. Other incorrect command to try : `undone abc`.
+    1. Other incorrect command to try : `undone_task abc`.
 
 1. _{ more test cases …​ }_
 
