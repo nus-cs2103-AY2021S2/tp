@@ -4,9 +4,12 @@
 
 ![Ui](docs/images/Ui.png)
 
-SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SmartLib can systematically manage your books and borrowers’ information in a more efficient manner than traditional GUI apps.
+SmartLib is a desktop app for managing libraries and private book loaning services owning less than 10,000 books,
+optimized for use via a Command Line Interface (CLI),
+while still having the benefits of a Graphical User Interface (GUI).
 
-Type the command in the command box and press Enter to access various features. e.g. typing listbook and pressing Enter will list all the current in-store books.
+If you can type fast, SmartLib would be a brilliant and efficient assistant in the systematic management of your books
+and borrowers' information, as compared to the traditional GUI apps currently available in the market.
 
 ## Useful links
 
