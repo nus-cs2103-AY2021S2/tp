@@ -33,20 +33,21 @@ Given below are my contributions to the project
     * Justification: Allows users to click on date box in calendar and see a list of events for that day.
     * Highlights: Require understanding of referenced code and only implementing necessary lines for the list view. 
     * Credits: Referred to the codes from https://github.com/AY2021S1-CS2103T-T12-3/tp for the design.
-    
-* **Bug Fixing**:
-    * Fix bug for calendar window not updated when add/edit/delete of events. 
-    (Issue [\#269](https://github.com/AY2021S2-CS2103T-W15-1/tp/issues/269), 
-    Pull request [\#298](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/298))
-    * Fix bug for out of window texts and truncated names for GUI.
-    (Issue [\#249](https://github.com/AY2021S2-CS2103T-W15-1/tp/issues/249), Issue [\#284](https://github.com/AY2021S2-CS2103T-W15-1/tp/issues/284),
-     Pull request [\#330](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/330)) 
-
-* **Testing**:
-    * Add test files for add commands (Pull request [\#311](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/311))
-    * Add test files for parsers for add commands (Pull request[\#349](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/349))
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=banchiang&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=banchiang&tabRepo=AY2021S2-CS2103T-W15-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=)
+
+* **Project management**:
+    * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub
+
+* **Enhancements to existing features**:
+  * Add test files for add commands (Pull request [\#311](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/311))
+  * Add test files for parsers for add commands (Pull request[\#349](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/349))
+  * Fix bug for calendar window not updated when add/edit/delete of events. 
+      (Issue [\#269](https://github.com/AY2021S2-CS2103T-W15-1/tp/issues/269), 
+      Pull request [\#298](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/298))
+  * Fix bug for out of window texts and truncated names for GUI.
+  (Issue [\#249](https://github.com/AY2021S2-CS2103T-W15-1/tp/issues/249), Issue [\#284](https://github.com/AY2021S2-CS2103T-W15-1/tp/issues/284),
+   Pull request [\#330](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/330)) 
 
 * **Documentation**:
     * User guide: 

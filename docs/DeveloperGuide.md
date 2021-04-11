@@ -211,9 +211,18 @@ The features are:
 The proposed add implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entity:
 * Persons
 * Modules
-* General Events
+* General Events 
 
-Given below is an example usage scenario and how the find mechanism behaves at each step. Input: `add m/CS2103T`
+The following activity diagram summarises the general workflow for the Add Command:
+
+![EditFeatureActivityDiagram](images/AddFeatureActivityDiagram.png)
+*[Add Feature Activity Diagram for `add m/CS2103T`]*
+  
+The following sequence diagram shows how the add operation works:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+Given below is an example usage scenario and how the add mechanism behaves at each step. Input: `add m/CS2103T`
 
 **Step 1:** Your input is parsed into `RemindMeParser` using the `parseCommand` method.
 <br>
