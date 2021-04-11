@@ -14,13 +14,13 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Adds an event to the Sochedule.
+ * Adds an event to the SOChedule.
  */
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "add_event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to Sochedule. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to SOChedule. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_STARTDATE + "YYYY-MM-DD "
@@ -39,6 +39,7 @@ public class AddEventCommand extends Command {
             + PREFIX_TAG + "TeamProject";
 
     public static final String MESSAGE_ADD_EVENT_SUCCESS = "New event added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event list.";
 
     private final Event toAdd;
