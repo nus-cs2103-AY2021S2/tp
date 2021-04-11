@@ -63,7 +63,7 @@ return
 create CommandResult
 FindCommand -> CommandResult : MESSAGE_PASSENGER_LISTED_OVERVIEW
 activate CommandResult
-return 
+return
 
 FindCommand --> LogicManager : result
 deactivate FindCommand
