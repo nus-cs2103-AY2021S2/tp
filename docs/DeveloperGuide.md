@@ -674,16 +674,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing an appointment in the Vax@NUS records. 
     1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
-    1. Test case: `editAppt A0182345T d/2021-11-13 ts/14:00`
+       
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/14:00` <br>
        Expected: Alex Yeoh's appointment is changed to the given date and time
        
-    1. Test case: `editAppt A1234567X d/2021-11-13 ts/14:00`
+    1. Test case: `editAppt A1234567X d/2021-11-13 ts/14:00` <br>
        Expected: No appointment is edited. Error details shown in the status message telling user that the requested appointment does not exist. 
        
-    1. Test case: `editAppt A0182345T d/2021-11-130 ts/15:00`
+    1. Test case: `editAppt A0182345T d/2021-11-130 ts/15:00` <br>
        Expected: No appointment is edited. Error details shown in the status message telling the user that the date should be of the format `YYYY-MM-DD`.
        
-    1. Test case: `editAppt A0182345T d/2021-11-13 ts/125:00`
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/125:00` <br>
        Expected: No appointment is edited. Error details shown in the status message telling the user that the time should be of a valid form `HH:00` or `HH:30`
        
     1. Other incorrect editAppt commands to try: `editAppt`, `editAppt x d/... ts/...`, where x is not a valid matriculation number
