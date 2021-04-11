@@ -32,6 +32,8 @@ title: Developer Guide
    A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
    A7. [Saving Data](#a7-saving-data)<br>
    A8. [Effort](#a8-effort)<br>
+   
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -41,8 +43,6 @@ The name SOChedule is case-insensitive in the text and images in this Developer 
 i.e. SOChedule, SoChedule, Sochedule can be used interchangeably.
 
 </div>
-
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
