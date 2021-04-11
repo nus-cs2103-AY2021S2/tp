@@ -32,8 +32,6 @@ title: Developer Guide
    A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
    A7. [Saving Data](#a7-saving-data)<br>
    A8. [Effort](#a8-effort)<br>
-   
-<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -704,7 +702,6 @@ The sequence diagram for a sample usage of `DoneTaskCommand`can be found below, 
 
 ![Sequence Diagram of DoneTask Command](images/DoneTaskCommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** 
 Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
