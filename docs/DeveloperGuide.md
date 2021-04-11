@@ -343,7 +343,7 @@ and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` a
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_FIND_SCHEDULE_SUCCESS`.
 
-The sequence diagram for `FindScheduleCommand` can be found below.
+The sequence diagram for a sample usage of `FindScheduleCommand` can be found below.
 
 ![Sequence Diagram of FindSchedule Command](images/FindScheduleCommandSequenceDiagram.png)
 
@@ -501,7 +501,7 @@ and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_DONE_TASK_SUCCESS`.
 
-The sequence diagram for `DoneTaskCommand` can be found below.
+The sequence diagram for a sample usage of `DoneTaskCommand`can be found below.
 
 ![Sequence Diagram of DoneTask Command](images/DoneTaskCommandSequenceDiagram.png)
 
@@ -563,7 +563,7 @@ and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
 
-The sequence diagram for `UndoneTaskCommand` can be found below.
+The sequence diagram for a sample usage of `UndoneTaskCommand` can be found below.
 
 ![Sequence Diagram of UndoneTask Command](images/UndoneTaskCommandSequenceDiagram.png)
 
@@ -701,7 +701,7 @@ A success message `EditTaskCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
 
 The UI will also update as the underlying task list has been modified.
 
-The sequence diagram for `EditTaskCommand` can be found below.
+The sequence diagram for a sample usage of `EditTaskCommand` can be found below.
 
 ![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
 
