@@ -126,6 +126,22 @@ Examples:
   Book” respectively.
 * `edit 3 n/Finals ptag/HIGH` edits the task name and priority tag of the task at index 3 to be "Finals" and "HIGH" respectively.
 
+### Add notes to a task `notes`
+
+Adds/edits notes for a task at the specified index under All Tasks.
+
+Format: `notes INDEX notes/NOTES`
+
+- Index to be inserted must be positive, and
+- Index must be available on the All Tasks list else an error will be thrown.
+- If there are currently no notes associated with the task, then it adds notes to that current task.
+- If there are existing notes for the task, the existing notes will be *overwritten* by the new notes.
+
+Example:
+
+- Assume that the first task on the All task list has no existing notes. `notes 1 notes/Hello World!` will add the note `Hello World!` to that task.
+- Assume that the second task on the All task list has an existing note `I love Python`. `notes 2 notes/I love Java` will replace the existing note `I love Python` with the new note `I love Java` for that task.
+
 ### Delete a task: `delete`
 
 Deletes the task at the specified index under All Tasks
@@ -235,6 +251,7 @@ Format: `doToday [-a OR -r] INDEX`
 - Flag to add or remove must be specified: `-a` to add a daily task, `-r` to remove a daily task.
 - For add flag `-a`: Index must be available on the task list else an error will be thrown.
 - For remove flag `-r`: Index must be available on the daily task list else an error will be thrown.
+- Note: the daily task list only exists within the session. Once the user quits the application, no data from the daily task list will be saved, and the next time the user opens the application, the daily task list will be empty.
 
 ### Undo last command: `undo`
 
