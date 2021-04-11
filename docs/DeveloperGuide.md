@@ -184,7 +184,7 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
-##### Proposed Improvements
+#### Proposed Improvements
 1. Items with the same name, location and expiry date cannot co-exist in the inventory. Thus, every item that 
    is to be added has to be checked and validated that it is not a duplicate item. The current implementation to do so
    involves iterating through the list of all items to check if there already exists an item in the inventory that has 
@@ -193,7 +193,7 @@ The following Activity Diagram summarizes what happens when a user executes the 
    done in O(1) time. This feature was not implemented as it would introduce unnecessary complexity, and the current 
    solution meets the non-functional requirements regarding performance.
 
-##### Design Considerations:
+#### Design Considerations:
 
 ##### Aspect: Identifying the addition of duplicate item
 * **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by **name, location 
@@ -316,6 +316,8 @@ The following Activity Diagram summarizes what happens when a user executes the 
 <br>
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+#### Design Considerations:
 
 ##### Aspect: How `delete` executes
 
@@ -563,7 +565,7 @@ The following Activity Diagram summarizes what happens when a user executes a `s
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
 
-##### Design Considerations:
+#### Design Considerations:
 
 ##### Aspect: Data structure to  use to sort the list of items
 
@@ -1108,3 +1110,47 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `clear l/Bedroom`<br>
        Expected: All items in the specified location are cleared.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+This section explains the challenges faced as well as the effort required to develop StoreMando.
+
+Creating StoreMando required a significant amount of effort and commitment from all the team members. Due to the 
+restrictions imposed by the pandemic, our team had to overcome and conquer the challenges of communicating and 
+collaborating virtually. In addition, we had to make sacrifices to our individual schedules to attend weekly online 
+meetings. Despite the unprecedented circumstances, our team persevered and developed a product that we are all proud of.
+
+### Major Enhancements
+
+StoreMando has many significant enhancements from AB3. Here are some examples:
+
+1. There was a need to change a large portion of the AB3 code, as we had a completely different set of variables for 
+   StoreMando. We had to do a lot of refactoring in the form of renaming class and attributes. The restrictions on 
+   fields in AB3 were also different from those in StoreMando (eg. Email in AB3 was a compulsory field whereas ExpiryDate in 
+   StoreMando is optional and must be provided in YYYY-MM-DD format), and we had to edit those restrictions respectively.
+
+2. StoreMando has a revamped UI to better tailor to the needs of our target users. The UI of AB3 only contained one 
+   panel (ListPanel). On the other hand, StoreMando has 4 panels which added additional complexity. Beyond just 
+   duplicating the panels, each panel also incorporated extended functionality of viewing all locations and reminders.
+
+3. The numerous new classes created and enhancements to existing commands meant that a lot more effort was required to 
+   implement testing for StoreMando. This is evident in our implementation of new test classes 
+   (eg. `SortAscendingQuantityCommandTest`, `SortExpiryDateCommandTest`, `ReminderCommandTest`, `ReminderCommandParserTest`, 
+   etc) and additional test cases in existing test classes (eg. `ListCommandTest`, `EditCommandTest`, etc).
+
+4. Implementing the reminder and sort features required a deep understanding of the design of AB3. Merely manipulating 
+   variables in existing code was not sufficient, and we had to create many new classes such as `ReminderCommand`, 
+   `ReminderCommandParser`, `SortAscendingQuantityCommand` and etc. We also had to come up with ways to keep track of 
+   the state of the currently displayed list, to allow users to work with a sublist of items instead of the entire 
+   inventory of items. There was not a need for this in AB3.
+
+### Working Process
+
+Our team placed heavy emphasis on communication and efficient division of workload. We made use of github's issue trackers, which allowed efficient division and tracking of work, and also helped each
+team member visualise the tasks remaining.
+
+With our dedicated members and good team spirit, we were able to overcome the challenges mentioned 
+above and produce a great product.
+
+

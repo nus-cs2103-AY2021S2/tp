@@ -2,9 +2,13 @@ package seedu.storemando.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.logic.commands.CommandTestUtil.showItemAtIndex;
 import static seedu.storemando.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -16,6 +20,7 @@ import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
 import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -70,4 +75,19 @@ public class ListCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
+    @Test
+    public void execute_noItemInList_listLocation() {
+        showEmptyListAfterFind(model, HEATER);
+        LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Kitchen"));
+
+        assertCommandFailure(new ListCommand(predicate, Arrays.asList("Kitchen")), model, MESSAGE_NO_ITEM_IN_LIST);
+    }
+
+    @Test
+    public void execute_noItemInList_listTag() {
+        showEmptyListAfterFind(model, HEATER);
+        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Arrays.asList("favourite"));
+
+        assertCommandFailure(new ListCommand(predicate, Arrays.asList("favourite")), model, MESSAGE_NO_ITEM_IN_LIST);
+    }
 }
