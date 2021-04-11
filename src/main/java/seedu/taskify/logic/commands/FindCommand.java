@@ -3,6 +3,7 @@ package seedu.taskify.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.taskify.commons.core.Messages;
+import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
 
@@ -18,6 +19,7 @@ public class FindCommand extends Command {
                        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
                        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
                        + "Example: " + COMMAND_WORD + " cs2103T Tutorial";
+    public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to find!";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -26,28 +28,14 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (CommandResult.isExpiredTab()) {
-            model.updateExpiredFilterTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_EXPIRED, model.getExpiredFilteredTaskList().size()));
-        } else if (CommandResult.isCompletedTab()) {
-            model.updateCompletedFilterTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_COMPLETED,
-                            model.getCompletedFilteredTaskList().size()));
-        } else if (CommandResult.isUncompletedTab()) {
-            model.updateUncompletedFilterTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_UNCOMPLETED,
-                            model.getUncompletedFilteredTaskList().size()));
-        } else {
-            model.updateFilteredTaskList(predicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
-
+        if (!CommandResult.isHomeTab()) {
+            throw new CommandException(MESSAGE_SWITCH_TO_HOME);
         }
+        model.updateFilteredTaskList(predicate);
+        return new CommandResult(String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW,
+                model.getFilteredTaskList().size()));
     }
 
     @Override

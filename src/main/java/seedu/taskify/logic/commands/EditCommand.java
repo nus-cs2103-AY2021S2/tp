@@ -103,7 +103,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_CANNOT_EDIT_EXPIRED_STATUS);
         }
 
-        if (!isValidDateForEditing(editedTask.getDate())) {
+        if (!isValidDateForEditing(editedTask.getDate()) && !taskToEdit.getDate().equals(editedTask.getDate())) {
             throw new CommandException(MESSAGE_EDIT_DATE_TO_PAST_DATE);
         }
 
