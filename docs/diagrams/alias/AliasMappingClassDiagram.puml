@@ -8,7 +8,6 @@ skinparam classBorderColor WHITE
 skinparam classFontColor WHITE
 skinparam classAttributeFontColor WHITE
 
-
 class AliasMapping {
     getAlias(String) : Alias
     addAlias(Alias) : void
@@ -30,7 +29,8 @@ class Alias {
 }
 show Alias members
 
-AddressBook *-right-> AliasMapping
-AliasMapping -> Alias
+AddressBook -right-> "1" AliasMapping
+AliasMapping -right-> "*" Alias
+AddressBook ..> Alias
 
 @enduml

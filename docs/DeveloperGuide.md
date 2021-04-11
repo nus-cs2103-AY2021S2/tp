@@ -493,6 +493,12 @@ User can create a new `Alias` via the `AliasCommand`. The sequence diagram below
 
 ![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
 
+**Diagram Notes** :
+* To improve readability, some class names have been shortened in the diagram:
+    * `AliasCmdParser` represents the class `AliasCommandParser`
+    * `AliasCmd` represents the class `AliasCommand`
+    * `CmdResult` represents the class `CommandResult`
+
 #### Alias execution
 When a user executes a new command, `AddressBookParser` will follow these steps:
 
