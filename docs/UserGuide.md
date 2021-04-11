@@ -42,7 +42,7 @@ head over to [Quick start](#quick-start) now to learn how to begin your journey 
 3. Copy the file to the folder you want to use as the _home folder_ for your SmartLib.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-contains some sample data.<br>
+contains some sample data.<br><br>
 ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will
@@ -69,23 +69,26 @@ list all the current books in store.<br>
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addreader r/NAME`, `NAME` is a parameter which can be used as `addreader r/John Doe`.
+  e.g. in `addreader r/NAME`, `NAME` is a parameter which can be used as `addreader r/John Doe`.<br><br>
+  For more details regarding each parameter, you may want to explore
+  [Readers' Command Parameters](#readers-command-parameters), [Books' Command Parameters](#books-command-parameters),
+  and [Records' Command Parameters](#records-command-parameters).
 
 * Items in square brackets are optional.<br>
-  e.g `r/NAME [t/TAG]` can be used as `r/John Doe t/friend` or as `r/John Doe`.
+  e.g `r/NAME [t/TAG]` can be used as `r/John Doe t/VIP` or as `r/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/VIP`, `t/VIP t/MostFrequentCustomer` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/VIP`, `t/VIP t/MostFrequentCustomer`, etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `r/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER r/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
-the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, **only the last occurrence**
+  of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
-ignored.<br>
+  ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -107,35 +110,38 @@ given below, and familiarize yourself with them.
 | `PHONE_NUMBER`  | The contact number of the reader.<br><br>It must consist only of numbers, and be at least 3 digits long.                                                                                                                                                                                                                                                      | `98765432`, `012`                                                                |
 | `EMAIL`         | The email of the client.<br><br>Emails should be in `name@domain` format, where the `name` part should only contain alphanumeric and special characters, whereas the `domain` part should only contain alphanumeric characters with a period in between.<br><br>Different readers may share the same email (as we understand that some families may do that). | `bob@bmail.com`, `bob-123@bobby.sg`                                              |
 | `ADDRESS`       | The address of the reader.<br><br>It must be made up of alphanumeric and special characters (may contain spaces), and should not be blank.<br><br>Different readers may share the same address (as we understand that some readers may come from the same family).                                                                                            | `#01-23, Blk 13, Bukit Timah Road`                                               |
-| `TAG`           | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                                             | `VIP`, `MostBorrows`                                                             |
-| `INDEX`         | The index of the reader or book in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                                                                                                                                   | `1`                                                                              |
-| `KEYWORD`       | The keyword that you would like to use to search for your target reader(s) or book(s).<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                                     | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
-| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s) or book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                          |                                                                                  |
+| `TAG`           | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.<br><br>                                                                                                                                                                                                                                     | `VIP`, `MostBorrows`                                                             |
+| `INDEX`         | The index of the reader or book in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                                                                                                                           | `1`                                                                              |
+| `KEYWORD`       | The keyword that you would like to use to search for your target reader(s) or book(s).<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                          | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
+| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s) or book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                               |                                                                                  |
 | `MORE_TAGS`     | Other tags that you may want to use to search for your target reader(s).<br><br>Each additional tag must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                                  |                                                                                  |
 
 #### Adding a reader : `addreader`
 
 You can use this command to add a new reader to SmartLib's registered reader base.
 
-Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, t/TAG, ..., t/TAG]`
+Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 **:information_source: Notes:**
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
-* Note that SmartLib uses reader's name to identify a reader. Hence, there cannot duplicate name is not allowed.
+* Note that SmartLib uses reader names to identify a reader. Hence, duplicate names are not allowed.
 * The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.   
-* The `t/TAG` parameters are optional.
+* The `[t/TAG]…` parameters are optional.
+  Duplicate tags will be ignored.
 
 Example use:
 
-Let's say a new reader wish to be registered as vip reader,
-you can follow the steps below to add the reader to SmartLib's registered reader list.
+Let's say a new reader wishes to be registered as a VIP.
+You can follow the steps below to add the reader to SmartLib's registered reader list.
 
 Steps:
-1. Type `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/vip` in the _Command Box_.
+1. Type `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/vip` in the
+   _Command Box_.
 2. Press `Enter` to execute your input.
 
 Outcome:
-* _Result Display_ will show a success message with the newly added reader's information.
+* The _Result Display_ will show a success message with the newly added reader's information.
+  <br><br>
   ![result for 'addreader_JohnDoe'](images/addreaderresult.png)
 
 #### Deleting a reader : `deletereader`
@@ -148,27 +154,30 @@ Format: `deletereader INDEX`
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * Deletes the reader at the specified `INDEX`.
 * The index refers to the index number shown in the displayed reader list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer**, i.e. 1, 2, 3, …​
 
 **:warning: Warning:**<br>
-* A reader will not be deleted if he/she has unreturned books. This is to prevent the loss books.
+* A reader cannot be deleted if he/she has unreturned books. This is to prevent the loss of your books.
+
+  To delete a reader holding on to unreturned books, you will need to first return the books borrowed by the reader
+  (see the [return command](#returning-a-book--return) for more details), before deleting him/her.
 
 Example:
 
-If a reader wish to have his/her registration cancelled and personal information erased from SmartLib, 
+If a reader wishes to have his/her registration cancelled and personal information erased from SmartLib, 
 you can follow the steps below to delete the reader from SmartLib's registered reader base.
 
 Steps:
-1. Type `deletereader 3` if the reader has an index of 1 as shown on the displayed reader list.
+1. Type `deletereader 3` if the reader has an index of 3 as shown on the displayed reader list.
 2. Press `Enter` to execute.
 
 Outcome:
-* _Result Display_ will show a success message with the deleted reader's information.
+* The _Result Display_ will show a success message with the deleted reader's information.
+  <br><br>
   ![result for 'addreader_JohnDoe'](images/deletereaderresult.png)
 
-
 Tip:
-* If you have just performed a _findreader_
+* If you have just executed a _findreader_ command,
   the displayed reader list on SmartLib will be a filtered result of the find command. 
   To delete the reader by the correct index, you could do `listreader` first to get the complete reader list. 
 
@@ -203,7 +212,7 @@ Steps:
 Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will list out all the readers with "Bob" in their name.<br><br>
-    ![result for 'findreader Bob'](images/findBobResult.png)
+  ![result for 'findreader Bob'](images/findBobResult.png)
 
 ##### By tag:
 
@@ -235,7 +244,7 @@ Steps:
 Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will list out all the readers with `VIP` in their list of tags.<br><br>
-    ![result for 'findreader t/VIP'](images/findVIPResult.png)
+  ![result for 'findreader t/VIP'](images/findVIPResult.png)
 
 #### Listing all readers : `listreader`
 
@@ -260,7 +269,7 @@ Steps:
 Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will list out all the readers.<br><br>
-    ![result for 'listreader'](images/listreaderResult.png)
+  ![result for 'listreader'](images/listreaderResult.png)
 
 ### Managing your books
 
@@ -416,6 +425,7 @@ Format: `borrow bc/BARCODE r/READERNAME`
 **:information_source: Notes:**
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 * Lets the reader with the specified name READERNAME borrow the book specified by name BOOKNAME.
+* The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.   
 
 Example Use:
 * `borrow bc/1000000000 r/Alex` records a rental entry that reader whose name is Alex borrowed
@@ -424,7 +434,6 @@ a copy of The Old Man And The Sea which barcode is 1000000000
 
 More Examples:
 * `borrow bc/1234567890125 r/Bernice` records that Bernice borrowed a copy of Cloud Atlas which barcode is 1234567890125
-
 * `borrow bc/1000000001 r/Charlotte` records that Charlotte borrowed a copy of The Hobbit which barcode is 1000000001
   
 Steps:
