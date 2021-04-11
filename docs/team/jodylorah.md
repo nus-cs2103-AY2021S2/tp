@@ -28,6 +28,8 @@ Given below are my contributions to the project.
     * Wrote test cases for meeting book storage to increase coverage from 51.30% to 52.81% and 55.87% to 67.12%. (Pull requests [\#85](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/85), [\#243](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/243))
     * Changed icon of app to be something more relevant (Pull request [\#240](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/240))
 
+<div style="page-break-after: always;"></div>
+
 * **Documentation**:
     * User Guide:
         * Added documentation for `clientbook` and `meetingbook` retrieval [\#85](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/85)
