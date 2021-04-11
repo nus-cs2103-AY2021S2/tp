@@ -13,7 +13,7 @@ title: Developer Guide
 ### Purpose
 
 The purpose of this document is to provide a brief overview of the multi-level design architecture of SmartLib,
-so that our target readers would be able to gain a better understanding of the relationship between
+so that you as the developer would be able to gain a better understanding of the relationship between
 the various components that SmartLib is made up from.
 
 ### Audience
@@ -48,7 +48,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of
 each component.
@@ -190,7 +190,7 @@ This section describes some noteworthy details on how certain features are imple
 ## Book
 
 ### Adding a book
-The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader)
+The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader#addbook)
 
 ### Deleting a book
 
@@ -240,7 +240,7 @@ The execution of listing overdue books is very similar to listing books. The onl
 When listing all books, the predicate will always return true for all books (e.g. `book -> true`), but for listing overdue books, 
 the predicate is `book -> book.isOverdue()`, which will call `Book#isOverdue()`.
 
-# Reader
+## Reader
 
 ### Adding a reader
 Adding a reader into a class requires user input from the CLI.
