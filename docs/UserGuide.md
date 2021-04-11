@@ -759,25 +759,29 @@ There are 3 ways to check out the calendar.
 <br>
 1. You can type `calendar` in the command box as shown below.
 <br>
-![calendar1](images/Calendar1.png)
+![calendar1](images/calendar1.png)
+*[Calendar command `Calendar` result display.]*
 <br>
 <br>
 
 2. Alternatively, you may type shortcut `C` in the command box as shown below.
 <br>
-![calendar2](images/Calendar2.png)
+![calendar2](images/calendar2.png)
+*[Calendar command `C` result display.]*
 <br>
 <br>
 
 3. You may also click on the drop out calendar menu.
 <br>
-![calendar3](images/Calendar3.png)
+![calendar3](images/calendar3.png)
+*[Drop out menu for calendar.]*
 <br>
 <br>
 
 The calendar window as shown below will be displayed.
 <br>
 ![calendarwindow](images/calendarwindow.png)
+*[Calendar main window display.]*
 <br>
 <br>
 You may navigate through the months by clicking the left arrow button `<` or right arrow button `>` 
@@ -809,6 +813,7 @@ A reminder will automatically pop up at the start of RemindMe, so that you are r
 and events in the next 3 days!
 
 ![Ui](images/Ui2.png)
+*[Reminder window display.]*
 <br>
 
 [Back to Table of Contents](#table-of-contents)
@@ -821,6 +826,8 @@ There are 3 ways to exit the application.
 
 ![exit1](images/exit1.png)
 
+*[Exit command `Exit` to exit the program.]*
+
 <br>
 <br>
 2. You can also type `E` in the command box as a shortcut as shown below.
@@ -828,6 +835,7 @@ There are 3 ways to exit the application.
 
 ![exit2](images/exit2.png)
 
+*[Exit command `E` to exit the program.]*
 <br>
 <br>
 3. Lastly, you may simply click the `X` button in the top right-hand corner of the
@@ -835,6 +843,8 @@ application to exit the program.
 <br>
 
 ![exit3](images/exit3.png)
+
+*[Position of `X` on GUI window to exit the program.]*
 
 [Back to Table of Contents](#table-of-contents)
 
