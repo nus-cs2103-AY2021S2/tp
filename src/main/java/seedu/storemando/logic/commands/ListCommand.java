@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.storemando.commons.core.Messages;
+import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
@@ -65,9 +67,13 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         String message = getMessage();
         requireNonNull(model);
+        List<Item> currentList = model.getFilteredItemList();
+        if (currentList.isEmpty() && !predicate.equals(PREDICATE_SHOW_ALL_ITEMS)) {
+            throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
+        }
         model.updateCurrentPredicate(predicate);
         model.updateFilteredItemList(model.getCurrentPredicate());
         return new CommandResult(message);
