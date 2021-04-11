@@ -61,6 +61,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 AppointmentSchedule *--> "1" NonConflictingAppointmentList
 UniquePersonList o--> "*" Person
+NonConflictingAppointmentList O--> "*" Appointment
 Person *--> Name
 Person *--> Phone
 Person *--> Email
