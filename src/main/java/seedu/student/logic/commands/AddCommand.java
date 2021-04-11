@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_MEDICAL_DETAILS + "peanut allergy "
             + PREFIX_SCHOOL_RESIDENCE + "PGPH \n";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the records.";
 
     private final Student toAdd;
