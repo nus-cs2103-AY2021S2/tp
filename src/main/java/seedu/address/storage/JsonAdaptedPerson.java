@@ -44,7 +44,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
-    private final String birthday;
+    private final LocalDate birthday;
     private final String debt;
     private final String goal;
     private final String address;
@@ -58,7 +58,7 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("birthday") String birthday,
+            @JsonProperty("email") String email, @JsonProperty("birthday") LocalDate birthday,
             @JsonProperty("goal") String goal, @JsonProperty("address") String address,
             @JsonProperty("picture") JsonAdaptedPicture picture,
             @JsonProperty("debt") String debt, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
@@ -92,7 +92,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        birthday = source.getBirthday().toString();
+        birthday = source.getBirthday().getDate();
         goal = source.getGoal().toString();
         Optional<Picture> srcPic = source.getPicture();
         picture = srcPic.isEmpty() ? null : new JsonAdaptedPicture(srcPic.get());
@@ -223,11 +223,10 @@ class JsonAdaptedPerson {
             throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthday.class.getSimpleName()));
         }
-        String trimmedBirthday = birthday.trim();
-        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+        if (!Birthday.isValidBirthday(birthday)) {
             throw internalIllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
-        final Birthday modelBirthday = new Birthday(trimmedBirthday);
+        final Birthday modelBirthday = new Birthday(birthday);
 
         if (goal == null) {
             throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

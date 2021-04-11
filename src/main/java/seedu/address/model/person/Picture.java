@@ -44,7 +44,7 @@ public class Picture {
      * @param path Path of the image to be validated.
      * @return true if image is valid otherwise false.
      */
-    public static boolean isValid(Path path) {
+    public static boolean isValidPicture(Path path) {
         return (FileUtil.isFileExists(path)
                 && FileUtil.hasExtension(path, ALLOWED_FILE_EXTENSIONS)
                 && hasImageFileSignature(path));
