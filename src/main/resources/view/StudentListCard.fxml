@@ -27,8 +27,13 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" style="-fx-label-padding: 0 5 0 0;" styleClass="cell_big_label" text="\$first" />
-        <Label fx:id="vaccinationStatus" styleClass="cell_small_label" text="\$vaccinationStatus" />
+        <Label fx:id="name" style="-fx-label-padding: 0 5 0 0;" styleClass="cell_big_label" text="\$first" wrapText="true"/>
+        <Label fx:id="vaccinationStatus" styleClass="cell_small_label" text="\$vaccinationStatus">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="matriculationNumber" styleClass="cell_small_label" text="\$matriculationNumber" />
@@ -37,37 +42,37 @@
         <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
           <FontIcon iconLiteral="fas-school:12:WHITE" />
         </HBox>
-        <Label fx:id="faculty" styleClass="cell_small_label, label_with_icon" text="\$faculty"
+        <Label fx:id="faculty" styleClass="cell_small_label, label_with_icon" text="\$faculty" wrapText="true"
                GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
         <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
           <FontIcon iconLiteral="fas-phone-alt:13:WHITE" />
         </HBox>
-        <Label fx:id="phone" styleClass="cell_small_label, label_with_icon" text="\$phone"
+        <Label fx:id="phone" styleClass="cell_small_label, label_with_icon" text="\$phone" wrapText="true"
                GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
         <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2">
           <FontIcon iconLiteral="fas-home:15:WHITE" />
         </HBox>
-        <Label fx:id="address" styleClass="cell_small_label, label_with_icon" text="\$address"
+        <Label fx:id="address" styleClass="cell_small_label, label_with_icon" text="\$address" wrapText="true"
                GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
         <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="3">
           <FontIcon iconLiteral="fas-envelope:14:WHITE" />
         </HBox>
-        <Label fx:id="email" styleClass="cell_small_label, label_with_icon" text="\$email"
+        <Label fx:id="email" styleClass="cell_small_label, label_with_icon" text="\$email" wrapText="true"
                GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
         <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="4">
           <FontIcon iconLiteral="fas-building:15:WHITE" />
         </HBox>
-        <Label fx:id="residence" styleClass="cell_small_label, label_with_icon" text="\$residence"
+        <Label fx:id="residence" styleClass="cell_small_label, label_with_icon" text="\$residence" wrapText="true"
                GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
         <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="5">
           <FontIcon iconLiteral="fas-file-medical:15:WHITE" />
         </HBox>
-        <Label fx:id="medicalDetails" styleClass="cell_small_label, label_with_icon" text="\$medicalDetails"
+        <Label fx:id="medicalDetails" styleClass="cell_small_label, label_with_icon" text="\$medicalDetails" wrapText="true"
                GridPane.columnIndex="1" GridPane.rowIndex="5" />
       </GridPane>
 

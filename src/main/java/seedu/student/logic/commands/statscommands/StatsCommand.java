@@ -18,11 +18,13 @@ public abstract class StatsCommand extends Command {
     private static String stringFaculties = Faculty.getStringFaculties();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists statistics of category given. Please enter only one parameter. \n"
-            + "Parameters: \n"
-            + stringResidences + "\n"
-            + stringFaculties + "\n"
-            + "Example: " + COMMAND_WORD + " COM";
+            + ": Displays statistics of the requested entity: \n"
+            + "Faculties - Parameters: " + stringFaculties + " (case-sensitive)" + "\n"
+            + "Residences - Parameters: " + stringResidences + " (case-sensitive)" + "\n"
+            + "Entire NUS - Parameter: " + "NUS  (case-sensitive) \n"
+            + "All Faculties and Residences - Parameter: " + "all (case-sensitive) \n"
+            + "Please enter only one parameter." + " Examples: " + COMMAND_WORD + " COM, " + COMMAND_WORD + " PGPR, "
+            + COMMAND_WORD + " NUS, " + COMMAND_WORD + " all" + "\n";
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;

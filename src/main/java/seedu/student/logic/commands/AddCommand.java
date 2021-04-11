@@ -33,8 +33,9 @@ public class AddCommand extends Command {
             + PREFIX_VACCINATION_STATUS + "VACCINATION STATUS "
             + PREFIX_MEDICAL_DETAILS + "MEDICAL DETAILS "
             + PREFIX_SCHOOL_RESIDENCE + "SCHOOL RESIDENCE \n"
+            + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_MATRICULATION_NUMBER + "A01234567X "
+            + PREFIX_MATRICULATION_NUMBER + "A1234567X "
             + PREFIX_FACULTY + "SCI "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
@@ -44,7 +45,7 @@ public class AddCommand extends Command {
             + PREFIX_SCHOOL_RESIDENCE + "PGPH \n";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the records";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the records.";
 
     private final Student toAdd;
 

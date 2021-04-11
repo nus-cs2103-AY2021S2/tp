@@ -15,8 +15,8 @@ import seedu.student.model.student.MatriculationNumber;
  */
 public class Appointment implements Comparable<Appointment> {
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be of the form YYYY-MM-DD";
-    public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be of the form HH:00 or HH:30";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be a valid date of the form YYYY-MM-DD";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be a valid time of the form HH:00 or HH:30";
 
     // Identity fields
     private final MatriculationNumber matriculationNumber;

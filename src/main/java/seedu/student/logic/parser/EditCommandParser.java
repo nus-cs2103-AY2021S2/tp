@@ -21,7 +21,6 @@ import seedu.student.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -47,8 +46,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_MATRICULATION_NUMBER).isPresent()) {
-            editStudentDescriptor.setMatriculationNumber(ParserUtil.parseMatric(argMultimap
-                    .getValue(PREFIX_MATRICULATION_NUMBER).get()));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_EDIT_MATRIC_FAILURE));
         }
         if (argMultimap.getValue(PREFIX_FACULTY).isPresent()) {
             editStudentDescriptor.setFaculty(ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get()));

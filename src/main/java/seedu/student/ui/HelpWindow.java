@@ -15,25 +15,23 @@ import seedu.student.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-4.github.io/tp/UserGuide.html";
-
     public static final String DIVIDER = "\n -------------------------------------------------------------------------"
             + "----------------------------------------------------";
 
-    public static final String COMMAND_SUMMARY = " Here is a list of all the commands" + DIVIDER
-            + "\n Tips: Words in capital are compulsory while the words in square bracket [ ] are optional."
-            + "\n\n Add students: add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL"
-            + "\n                        a/ADDRESS s/VACCINATION_STATUS r/[SCHOOL_RESIDENCE] m/MEDICAL_DETAILS"
-            + "\n\n Edit students: INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL]"
-            + "\n                    [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]"
-            + "\n\n Delete students: delete MATRICULATION_NUMBER"
-            + "\n\n Find students along with his/her appointment : find MATRICULATION_NUMBER"
-            + "\n\n Filter students : filter VACCINATION_STATUS, filter FACULTY, filter SCHOOL_RESIDENCE"
-            + "\n\n View student statistic:  stats all, stats NUS, stats FACULTY, stats SCHOOL_RESIDENCE"
+    public static final String COMMAND_SUMMARY = " Here is a list of commonly used commands in Vax@NUS" + DIVIDER
+            + "\n Tips: Words in capital are compulsory while the words in square bracket are optional."
+            + "\n\n Add a student: add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL"
+            + "\n                        a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE] "
+            + "\n\n Edit a student: edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] "
+            + "\n                       [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]"
+            + "\n\n Delete a student: delete MATRICULATION_NUMBER"
             + "\n\n Add an appointment: addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME"
+            + "\n\n Edit an appointment: editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM"
             + "\n\n Delete an appointment: deleteAppt MATRICULATION_NUMBER"
-            + "\n\n View appointment statistic: statsAppt"
-            + "\n\n List all students and appointments : list";
+            + "\n\n List all students and appointments : list"
+            + "\n\n Exit Program: exit";
+
+    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_MESSAGE = DIVIDER + "\n" + "Do refer to our user guide: " + USERGUIDE_URL
                                                 + " for more information.";

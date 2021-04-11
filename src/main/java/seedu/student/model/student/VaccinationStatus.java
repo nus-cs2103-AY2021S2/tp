@@ -1,3 +1,4 @@
+
 package seedu.student.model.student;
 
 import static java.util.Objects.requireNonNull;
@@ -9,14 +10,14 @@ import java.util.stream.Stream;
 
 public class VaccinationStatus {
 
-    public enum VaccinationStatusAbbreviation {
-        VACCINATED, NOT_VACCINATED
+    public enum VaccinationStatusKeywords {
+        VACCINATED, UNVACCINATED
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Vaccination status should only be of the format 'vaccinated' "
-            + "or 'not vaccinated' ";
+            + "or 'unvaccinated' ";
 
-    public final VaccinationStatusAbbreviation status; // enum for Vaccination status
+    public final VaccinationStatusKeywords status; // enum for Vaccination status
     public final String textUI; // string to display on the GUI
 
     /**
@@ -27,13 +28,12 @@ public class VaccinationStatus {
     public VaccinationStatus(String vaccinationStatus) {
         requireNonNull(vaccinationStatus);
         checkArgument(isValidStatus(vaccinationStatus), MESSAGE_CONSTRAINTS);
-        if (vaccinationStatus.equals("vaccinated")) {
-            status = VaccinationStatusAbbreviation.VACCINATED;
-            textUI = vaccinationStatus;
+        if (vaccinationStatus.toLowerCase().equals("vaccinated")) {
+            status = VaccinationStatusKeywords.VACCINATED;
         } else {
-            status = VaccinationStatusAbbreviation.NOT_VACCINATED;
-            textUI = vaccinationStatus;
+            status = VaccinationStatusKeywords.UNVACCINATED;
         }
+        textUI = status.toString().toLowerCase();
     }
 
     /**
@@ -43,20 +43,24 @@ public class VaccinationStatus {
      * @return true if test is a valid statis, false otherwise.
      */
     public static boolean isValidStatus(String test) {
-        test = test.replaceAll(" ", "_").toUpperCase();
+        test = test.toUpperCase();
         try {
-            boolean result = VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.NOT_VACCINATED
-                    || VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.VACCINATED;
+            boolean result = VaccinationStatusKeywords.valueOf(test) == VaccinationStatusKeywords.UNVACCINATED
+                    || VaccinationStatusKeywords.valueOf(test) == VaccinationStatusKeywords.VACCINATED;
             return result;
         } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
-    public static List<String> getVaccinationStatusAbbreviation() {
-        String[] statusArray = Stream.of(VaccinationStatus.VaccinationStatusAbbreviation.values())
-                .map(VaccinationStatus.VaccinationStatusAbbreviation::name).toArray(String[]::new);
-        return Arrays.asList(statusArray);
+    public static String getStringVaccinationStatus() {
+        return String.join(", ", getVaccinationStatus());
+    }
+
+    public static List<String> getVaccinationStatus() {
+        String[] residenceArray = Stream.of(VaccinationStatusKeywords.values())
+                .map(VaccinationStatusKeywords::name).toArray(String[]::new);
+        return Arrays.asList(residenceArray);
     }
 
     @Override
@@ -71,8 +75,4 @@ public class VaccinationStatus {
                 && status == ((VaccinationStatus) other).status); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return status.hashCode();
-    }
 }
