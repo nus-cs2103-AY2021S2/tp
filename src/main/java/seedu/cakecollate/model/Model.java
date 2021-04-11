@@ -108,4 +108,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered order items list */
     ObservableList<OrderItem> getFilteredOrderItemsList();
+
+    /**
+     * Replaces the data in order items with the data in {@code orderItems}.
+     */
+    void setOrderItems(ReadOnlyOrderItems orderItems);
 }

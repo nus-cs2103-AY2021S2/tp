@@ -73,16 +73,10 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ORDER, new EditCommand.EditOrderDescriptor());
-        Order editedOrder = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
-
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
-                TypicalOrderItems.getTypicalOrderItemsModel());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGE);
     }
 
     @Test

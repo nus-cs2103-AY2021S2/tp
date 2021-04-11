@@ -1,6 +1,7 @@
 package seedu.cakecollate.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import seedu.cakecollate.model.Model;
@@ -19,6 +20,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));
     }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
+import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.testutil.TypicalOrderItems;
 
@@ -28,6 +29,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
                 TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setCakeCollate(new CakeCollate());
+        expectedModel.setOrderItems(new OrderItems());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

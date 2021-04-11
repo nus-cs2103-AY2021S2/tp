@@ -17,8 +17,8 @@ public class AddOrderItemCommand extends Command {
     public static final String COMMAND_WORD = "addItem";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order item to the list of order items. \n"
-            + "Parameters: " + "ORDER ITEM\n"
-            + "Example: " + COMMAND_WORD + "Chocolate Cake";
+            + "Parameters: " + "ORDER_ITEM_DESCRIPTION\n"
+            + "Example: " + COMMAND_WORD + " Chocolate Cake";
 
     public static final String MESSAGE_SUCCESS = "New order item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER_ITEM = "This order item already exists in the list.";
