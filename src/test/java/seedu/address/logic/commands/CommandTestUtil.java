@@ -95,7 +95,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TRIPDAY = " " + PREFIX_TRIPDAY + "FUNDAY"; // not among the valid week days
     public static final String INVALID_TRIPTIME = " " + PREFIX_TRIPTIME + "21032103"; // not in the 24 hour time format
-    public static final String INVALID_PRICE = " " + PREFIX_PRICE + "1/12"; // not a decimal number
+    public static final String INVALID_PRICE = " " + PREFIX_PRICE + "-1.123"; // not a decimal number
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_COMMUTER = " " + PREFIX_COMMUTER + "a"; // 'a' not allowed in commuter
 

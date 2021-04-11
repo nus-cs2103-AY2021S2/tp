@@ -85,7 +85,7 @@ public class EditPassengerDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code TripTime} of the {@code EditPassengerDescriptor} that we are building.
+     * Sets the {@code Price} of the {@code EditPassengerDescriptor} that we are building.
      */
     public EditPassengerDescriptorBuilder withPrice(double price) {
         descriptor.setPrice(new Price(price));
