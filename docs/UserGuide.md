@@ -13,6 +13,7 @@ title: User Guide
   * [Common to both Task and Event](#common-to-both-task-and-event)
   * [Task-Specific](#task-specific)
   * [Event-Specific](#event-specific)
+* [Common Arguments](#common-arguments)
 * [Quick start](#quick-start)
 * [Features](#features)
 * [FAQ](#faq)
@@ -189,6 +190,96 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 [Return to Table of Contents](#table-of-contents)
 
+## Common Arguments
+Below are a few arguments commonly found in SOChedule commands, and their corresponding restrictions, command-specific restrictions notwithstanding. 
+
+<table>
+    <tr>
+        <th>Attribute</th>
+        <th>Restriction(s)</th>
+        <th>Used in</th>
+        <th>Valid Example</th>
+        <th>Invalid Example</th>
+    </tr>
+    <tr>
+        <td><code>INDEX</code></td>
+        <td>
+            <ul>
+                <li>Positive integer greater than zero</li>
+                <li>Not greater than <code>2147483647</code> (Due to language constraints)</li>
+                <li>Only one <code>INDEX</code> allowed per command, unless explicitly stated otherwise</li>
+                <li>Subject to command-specific restrictions</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><code>delete_task</code></li>
+                <li><code>edit_task</code></li>
+                <li><code>done_task</code></li>
+                <li><code>undone_task</code></li>
+                <li><code>pin_task</code></li>
+                <li><code>unpin_task</code></li>
+                <li><code>delete_event</code></li>
+                <li><code>edit_event</code></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><code>1</code></li>
+                <li><code>2147483647</code></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><code>!#&%</code></li>
+                <li><code>2147483648</code></li>
+                <li><code>0</code></li>
+                <li><code>-123</code></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Date-related arguments 
+            <ul>
+                <li><code>DEADLINE</code> (For Task)</li>
+                <li><code>STARTDATE</code> (For Event)</li>
+                <li><code>ENDDATE</code> (For Event)</li>
+            </ul>
+        <td>
+            <ul>
+                <li>Follows the format of YYYY-MM-DD</li>
+                <li>`Y` means the year, `M` means the month and `D` means the day</li>
+                <li>All characters are integers, less delimiters</li>
+                <li>Must be a valid date</li>
+                <li>Subject to command-specific restrictions</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><code>add_task</code></li>
+                <li><code>edit_task</code></li>
+                <li><code>add_event</code></li>
+                <li><code>edit_event</code></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><code>1990-12-25</code></li>
+                <li><code>2020-04-01</code></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><code>!#&%</code></li>
+                <li><code>XXXX-XX-XX</code></li>
+                <li><code>2021-02-29</code></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -199,8 +290,9 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SOChedule.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. A sample SOChedule is given below. There would not be pre-entered data on first launch so that users can immediately jump in and use.<br>
-   ![Ui](images/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. A sample SOChedule is given below. There would not be pre-entered data on first launch so that users start using immediately.
+    <br><br>
+    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -250,22 +342,28 @@ Shows a message explaining how to access the help page.
 
 [Return to Feature List](#feature-list)
 
+### Exiting the program: `exit`
+Exits the program.
+
+[Return to Feature List](#feature-list)
 
 ### Adding a task: `add_task`
 Adds a task into the task list.
 
 Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the task name, it is case-sensitive.
-* `d/` is followed by the date of deadline, with the format `YYYY-MM-DD`, deadline cannot be a past date. Here, `Y` means
-  the year, `M` means the month and `D` means the day and all of them has to be integers and the date must be a valid date.
+* `d/` is followed by the date of deadline, with the format `YYYY-MM-DD`. Deadline cannot be a past date.
 * `p/` is followed by the priority, with 0 being highest and 9 being lowest. Other inputs are not accepted.
 * `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1` `c/c2`). It is optional.
 * `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
-* Note that any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments
-  (e.g. name/Name, tag/Tag or T&sk) will lead to an error.
 
-* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one
-  would be taken (i.e. `n/n2`).
+<div markdown="block" class="alert alert-info">
+:information_source:
+    <ul>
+        <li>Any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments (e.g. name/Name, tag/Tag or T&sk) will lead to an error.</li>
+        <li>If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one would be taken (i.e. `n/n2`). </li>
+    </ul>
+</div>
 
 Examples:
 * `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
@@ -279,13 +377,10 @@ Deletes a task from the task list.
 
 Format: `delete_task INDEX`
 * Deletes the task at the specified INDEX.
-* Note that only one `INDEX` is accepted, multiple `INDEX` will lead to input format error.
-* The `INDEX` refers to the index number shown in the **displayed** task list.
-* The `INDEX` must be a positive and valid integer 1, 2, 3, ... i.e. `0`, negative integers and integers greater than
-  `2147482637` will lead to input format error.
+* The `INDEX` refers to the index number shown in the currently **displayed** task list.
 
 Examples:
-* `list` followed by `delete_task 2` deletes the second task in the full task list.
+* `list_task` followed by `delete_task 2` deletes the second task in the full task list.
 * `find_task homework` followed by `delete_task 1` deletes the first task in the result of the `find_task` command.
 
 [Return to Feature List](#feature-list)
@@ -296,27 +391,24 @@ Edits an **existing and uncompleted** task in the task list.
 
 Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
 * Edits the task at the specified `INDEX`. 
-  The index refers to the index number shown in the displayed task list. 
-  The index must be an **integer larger than zero**. A valid example can be `1`.
-* You can only edit an **existing and uncompleted** task.
+* Only an **existing and uncompleted** task can be edited.
 * **At least one** of the optional fields must be provided.
-* The `DEADLINE` provided cannot be earlier than today.
+* `DEADLINE` provided cannot be a past date.
 * When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
-* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
-  Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
-* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned.
-* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java),
-  it is not a valid integer in our definition.
-  Thus, an error message indicating invalid command format will be returned.
-* If the edited task is the same as the original task or the edited task is
-  equivalent to another existing task in the task list, error messages will be shown.
+* Edited task cannot be the same as the original task or equivalent to another existing task in the task list.
   Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
 * When editing tags, the order of tags given in the input and the order of tags shown in the UI can be different. 
-  For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, 
-  but `tag2` may appear in the UI before `tag1`, then `tag1` on the right of `tag2`. 
-  The ordering is not guaranteed and this is intended behaviour.
-* Note that any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments
-  (e.g. name/Name, tag/Tag or T&sk) will lead to an error.
+  For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, but `tag2` may appear in the UI before `tag1`.
+
+<div markdown="block" class="alert alert-info">
+:information_source:
+    <ul>
+        <li>Any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments (e.g. name/Name, tag/Tag or T&sk) will lead to an error.</li>
+        <li>You can remove all the task’s tags by typing `t/` without specifying any tags after it.
+            Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it</li>
+        <li>If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one would be taken (i.e. `n/n2`). </li>
+    </ul>
+</div>
 
 Examples:
 * `edit_task 1 n/t1` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
@@ -710,16 +802,7 @@ Format: `clear`
 
 [Return to Feature List](#feature-list)
 
-### Exiting the program: `exit`
-Exits the program.
-
-[Return to Feature List](#feature-list)
-
 [Return to Table of Contents](#table-of-contents)
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
