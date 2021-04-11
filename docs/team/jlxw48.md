@@ -24,8 +24,8 @@ Given below are my contributions to the project.
       * For example, some clients might co-own an insurance policy, and the policy ID of this policy might have changed. 
       This can be done easily using 1 command now instead of having to key in the same command repeatedly for numerous clients.
     * **Highlights**: This enhancement makes use of existing commands (`EditCommand` and `DeleteCommand`). 
-      The implementation was challenging as it required stellar system design to ensure that all involved components are logically related to each other, while ensuring that the behaviour of existing system 
-      components are minimally affected by this new command. 
+      The implementation was challenging as it required stellar system design to ensure that all involved components are logically related to each other,
+      while ensuring that the behaviour of existing system components are minimally affected by this new command. 
 <br><br>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=jlxw48&tabRepo=AY2021S2-CS2103T-W15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 <br><br>
@@ -42,7 +42,8 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for 
           `policy` (Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/42), [\#43](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/43)) and
-          `batch` (Pull request [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)).
+          `batch` (Pull request [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101))
+          commands.
         * Did cosmetic tweaks to existing documentation: Pull requests
               [\#61](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/61),
               [\#63](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/63), 
