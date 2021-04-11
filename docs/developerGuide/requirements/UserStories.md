@@ -7,6 +7,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `***` | Potential user | See the app populated with sample data | See how the app will look like when it is in use |
 | `***` | New user | Purge all current data | Get rid of sample data used for exploring the app |
 | `***` | New user | Record birthdays | Keep track of birthdays of CCA members |
+| `**` | New user | Add contacts without specifying all fields | Only store important fields that I need to know |
 | `**` | New user | Add contacts tagged to a subcommittee | Easily organise members in CCA |
 | `***` | New user | Add vendors tagged to a particular product/service | Easily look for vendors providing a particular service |
 | `***` | New user | Edit existing details tagged to a person | Append new information without retyping the same details |
@@ -31,6 +32,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | Satisfied user | Share the application with my family and friends | Encourage close contacts to use the application |
 | `***` | Returning user | Delete events | Reduce clutter on PartyPlanet |
 | `***` | Welfare IC | Add a birthday plan (event) to the app | Keep track of the celebration planning progress |
+| `**` | Welfare IC | Add an event without specifying all fields | Only store important fields that I need to know |
 | `***` | Welfare IC | Set a date for a birthday plan (event) | Ensure details are planned on time |
 | `**` | Busy Welfare IC | Sort through the list of events | Look at upcoming events  |
 | `*` | Busy Welfare IC | Search for events by details | Find similar events to refer to for planning |

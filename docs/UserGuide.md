@@ -31,6 +31,74 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Tutorial: Common Workflow for a Welfare IC
+
+Stated below are the steps that a Welfare IC will most likely follow while using PartyPlanet. For visualisation 
+purposes, these steps are split into a few categories.
+
+#### Adding contacts
+
+1. Add in all members in the CCA to easily track who and when to plan birthday celebrations for. All fields are 
+   optional except name so that the Welfare IC can decide what information has to be stored and what information is 
+   not important. For instance, the Welfare IC might want to store the address of a member to hold a surprise party.
+   
+2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for 
+   further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to 
+   store information such as Birthdays. This gives the Welfare IC flexibility to decide on what information needs to 
+   be stored. For instance, the Welfare IC might want to store the email of a catering company, or the address of a bakery for cake pickups.
+
+#### Adding events
+
+3. Add in past events to store for reference when planning future events. As most parties in CCAs are repetitive, it would be 
+   useful for Welfare ICs to store past events for ease of reference when planning future events that are similar.
+
+4. Add in upcoming events to plan for. Welfare ICs can add in events that are upcoming so that they can be reminded 
+   to plan for these events. All fields are optional except name so that the Welfare IC can decide what information 
+   has to be stored for each event. 
+   For instance, a farewell party for the graduating batch needs to be planned in the next month, but the date is unconfirmed. 
+   The welfare IC can add this as `eadd -n Party for graduating seniors -r Confirm availability of seniors to fix date`
+
+#### Marking events as done
+
+5. Welfare ICs can mark events as done. They can choose to use this feature in the way they prefer. 
+   These are 2 possible ways of using this feature:
+    * Mark the event as done after the planning is completed
+    * Mark the event as done after the event is over
+   As such, the Welfare ICs are given the flexibility to decide what way they want to use the feature, and hence the 
+   event will not automatically be marked as done after the date of the event passes.
+
+This image below is a screenshot of the app displaying contacts of a CCA member and a vendor, and events of different 
+dates where event 6 is marked as done. 
+
+![Add](images/tutorial-add.png)
+
+#### Search and Sort through contacts and events
+
+6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month 
+   and tag to allow for ease of searching for specific people even with lots of contacts. The sorting allows Welfare 
+   ICs an easy way of organising the people. For example, they can sort by upcoming birthdays (according to day and 
+   month only) with `list -s u` so that they can plan for the parties accordingly.
+   
+7. Welfare ICs can search and sort events by criteria. This allows them to search for events by event name and 
+   remark to allow for ease of searching for specific events even with lots of events. The sorting allows Welfare
+   ICs an easy way of organising the events. For example, they can sort by upcoming event dates (according to day, 
+   month and year) with `elist -s u` so that they can refer and plan for the upcoming parties accordingly.
+
+This image below is a screenshot of the app displaying events sorted by upcoming event dates.
+
+![Sort](images/tutorial-sort.png)
+
+#### Deleting contacts and events
+
+8. Welfare ICs can delete people by the tags they contain (eg. `AY1920`). This can allow for Welfare ICs to stop 
+   storing information about members who contain that tag (eg. graduated members).
+
+9. Welfare ICs can delete events. This can allow for Welfare ICs to stop storing information about one-off events 
+   and reduce clutter in the application.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Glossary of parameters
 
 | Parameter | Prefix | Applicable to | Description |
