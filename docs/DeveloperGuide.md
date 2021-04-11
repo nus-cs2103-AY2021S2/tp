@@ -227,17 +227,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add patient's contact.         | have a separate place to store patient-specific information            |
 | `* * *`  | user                                       | delete patient's contact       | remove unwanted patients                                               |
 | `* * *`  | user                                       | view all my patients           | view a list of all my patients                                        |
-| `* * *`  | user                                       | find a patient by name         | locate details of patients without having to go through the entire list |
-| `* * *`  | user                                       | add appointments to a patient  | know when is my next appointment with the specific patient                               |
-| `* * *`  | user                                       | view all my upcoming appointments | know when is my next appointment |
-| `* * `  | user                                       | archive a patient's contact information | reduce clutter |
-| `* *`    | user                                       | see all the commands available | know what commands to use                |
+| `* * *`  | user                                       | find a patient by name         | locate details of patients without having to go through the entire list|
+| `* * *`  | user                                       | list out all my patients       | see when is their scheduled appointments|
+| `* * *`  | user                                       | edit my patient's information  | update it as it changes and fix mistakes i make|
+| `* * *`  | user                                       | add appointments to a patient  | know when is my next appointment with the specific patient|                    
+| `* * *`  | user                                       | list appointments of patients  | view all the relevant informations like date and time|
+| `* *`    | user                                       | view all my upcoming appointments | know when is my next appointment |
+| `* *`    | user                                       | create a medical record for a patient | organise my information in sections|
+| `* *`    | user                                       | view the medical records created | refer to the information i previously keyed in|
+| `* * `   | user                                       | archive a patient's contact information | reduce clutter in main list|
+| `* *`    | user                                       | unarchive a patient's contact information | reduce clutter in archive list|
+| `* *`    | user                                       | list out patients archived     | see patients in the archived list
+| `* `     | user                                       | clear the patients in DocBob    | reduce clutter|
+| `*`      | user                                       | exit the app                    | use my computer for other stuff|
+| `***`   | user                                        | see all the commands available | know what commands to use                |
 
-*{More to be added}*
+
 
 ### Use cases
 
-(For all use cases below, the **System** is `Bob` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `DocBob` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Adding a new patient**
 
@@ -245,19 +254,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   1. User chooses to add a patient.
   2. User enters the requested details of patient.
-  3. Bob adds the client and displays the new log of clients.
-
+  3. DocBob adds the client and displays the new log of clients.
+    
     Use case ends.
 
 **Extensions**
 
-  *2a. Bob detects an error in the format of the entered data.
+  *2a. DocBob detects an error in the format of the entered data.
   *    2a1. Bob requests for the correct format of the data.
   *    2a2. User enters new data.
   *    Steps 2a1-2a2 are repeated until the data entered are correct.
 
       Use case resumes from step 3.
-
       Use case ends.
 
 **Use case: Listing all patients**
@@ -265,9 +273,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list all patients.
-2. Bob shows a list of patients.
+2. DocBob shows a list of patients.
 
-    Use case ends.
+    `Use case ends.`
 
 **Extensions**
 
@@ -282,11 +290,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to delete a specific patient in the list.
-2. Bob deletes the patient.
+2. DocBob deletes the patient.
 
-
-
-      Use case ends.
+      `Use case ends.`
 
 **Extensions**
 
@@ -295,26 +301,241 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-*{More to be added}*
+**Use case: View a patient's information**
+
+**MSS**
+
+1. User request to view patients information.
+2. DocBOb provides patient's information
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *1a. the given index is invalid
+  *    1a.1 DocBob shows an error message
+  
+   `Use case resumes at step 1.`
+  
+**Use case: Find a patient**
+
+**Pre-requisite:** Finding for patient either in an archived or unarchived list
+
+**MSS**
+
+1. User finds for a patient using a keyword which is case insensitive
+2. DocBob returns a patients
+
+   `Use case ends`
+
+**Extensions**
+
+  *1a1. the given keyword is a partial word
+  *     1a1.1 DocBob shows an error message
+  
+    `Use case resumes at step 1'
+        
+  *1a2. the given patient is in the list user is currently in
+  *     1a2.1 DocBob a message to indicate user is in wrong list
+
+    `Use case resumes at step 1'
+        
+**Use case: Edit a patient's information**
+
+**MSS**
+
+1. User request to edit information by presenting new information and specifying which patient
+2. DocBob presents the new patient with updated information
+
+**Extensions**
+
+  *1a1. there is no patient to edit information
+  *     1a1.1 DocBob shows an error message
+  
+        `Use case resumes at step 1
+        
+  *1a2. no parameters were input to be editted
+  *     1a2.1 DocBob shows an error message
+  
+        `Use case resumes at step 1
+
+  *1a3. there is no corresponding field to be editted
+  *     1a2.1 DocBob shows an error message
+  
+       `Use case resumes at step 1
+
+**Use case: Adding a new appointment to a patient**
+
+**MSS**
+
+  1. User chooses to add an appointment to a patient.
+  2. User enters the requested details of the appointment and the patient.
+  3. DocBob adds the appointment to the patient and displays updated information.
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. DocBob detects an error in the format of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+      `Use case resumes from step 3.`
+      `Use case ends.`
+
+**Use case: Listing all appointments**
+
+**MSS**
+
+1. User requests to list all appointment.
+2. DocBob shows a list of appointment.
+
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. The list is empty
+
+      Use case ends.
+
+**Use case: Creating a new medical record**
+
+**MSS**
+
+  1. User chooses to add a medical to a patient.
+  2. User enters the requested index of patient and types in the information in the text editor
+  3. Bob adds the medical record to the patient
+    
+    `Use case ends.`
+
+**Extensions**
+
+  *2a. Bob detects an error in the format (index out of bounds) of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+      `Use case resumes from step 3.`
+      `Use case ends.`
+
+**Use case: View a patient's medical record**
+
+**MSS**
+
+1. User request to view patients medical record.
+2. DocBob provides patient's medical record
+    
+     `Use case ends.`
+
+**Extensions**
+
+  *1a. the given index is invalid
+  *    1a.1 DocBob shows an error message
+  
+       `Use case resumes at step 1.`
+  
+**Use case: Adding a patient to archive**
+
+**MSS**
+
+  1. User chooses to add a patient to archive.
+  2. User enters the requested index of patient to add to archive.
+  3. Bob adds the client and displays the new log of clients.
+    
+      `Use case ends.`
+
+**Extensions**
+
+  *2a. Bob detects an error in the format (index out of bound) of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+      `Use case resumes from step 3.`
+      `Use case ends.`
+
+**Use case: Unarchiving a patient**
+
+**Pre-requisite:** Use 'archivelist' to list out the index of all the archived patients
+
+**MSS**
+
+1. User requests to unarchive a specific patient in the archieve list.
+2. DocBob unarchive the patient.
+
+      `Use case ends.`
+
+**Use case: Listing all patients in archive list**
+
+**MSS**
+
+1. User requests to list all patients that have been archived.
+2. DocBob shows a list of patients.
+
+      `Use case ends.`
+
+**Extensions**
+
+  *2a. The list is empty
+
+       Use case ends.
+
+**Use case: Clear patients in from DocBob**
+
+**MSS**
+
+1. User requests to clear patient in DocBob.
+2. DocBob clears patients.
+
+**Use case: Exit DocBob program**
+
+**MSS**
+
+1. User requests to exit DocBob.
+2. DocBob terminates program.
+
+**Use case: Get list of commands**
+
+**MSS**
+
+1. User requests list of commands from DocBob.
+2. DocBob provides list of commands.
+
 
 ### Non-Functional Requirements
 
-1. Domain rules : at least 1 user added
-2. Constraints : System should be compatible with previous version and easily scalable to add new functionalities
-3. Technical requirement : System should be able to work on any processor i.e. 32 bit or 64 bit.
-4. Technical requirement : System should be scalable enough to be able to keep up with new processors (more than 64)
-5. Technical requirement : System should be able to work on an operating system (OS) i.e. MacOS, Windows, Linux etc.
-6. Performance requirement : System should have at most a tolerable lag time but not too long that it is off putting
-7. Quality requirement : System should be straightforward enough that a novice should at the very least be able to add, edit and delete users
-8. Process requirement : i.e. the project should adhere to the schedule pre decided (subject to minor adjustments within the agreed upon room for error)
-9. Miscellaneous : the program should not contain any offending imaginary and or vulgar words/language
+| Category of Non Functional Requirements | Non Functional Requirement                                                                                    | 
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Domain rules                            | at least 1 patient added |
+| Constraints                             | System should be compatible with previous version and easily scalable to add new functionalities  |
+| Constraints                             | System should give obvious advantage to fast typers |
+| Constraints                             | System should not have elements of social networking i.e. communication between devices |
+| Technical requirement                   | System should be able to work on any processor i.e. 32 bit or 64 bit |
+| Technical requirement                   | System should be scalable enough to be able to keep up with new processors (more than 64) |
+| Technical requirement                   | System should be able to work on an operating system (OS) i.e. MacOS, Windows, Linux etc.|
+| Technical requirement                   | System should be able to work on older version of different OS i.e. Windows 7, OS x 10.3 (panther) etc.|
+| Performance requirement                 | System should have at most a tolerable lag time |
+| Performance requirement                 | Lag time of system should not be too long and result in an off putting experience|
+| Quality requirement                     | System should be straightforward enough that a novice should at the very least be able to add, edit and delete users|
+| Quality requirement                     | System should be have features that make sense so that as time pass, the users can do more with the software|
+| Quality requirement                     | System should be robust enough to handle manner of edge cases i.e. throw appropriate exceptions that guide the user|
+| Process requirement                     | the project should adhere to the schedule pre decided (subject to minor adjustments within margin of error)|
+| Notes about project scope               | the program should not have to handle printing printing of the screen |
+| Notes about project scope               | the program should not have to handle uploading information to private servers |
+| Notes about project scope               | the program should not have to handle encryption and decryption of information passed into it |
+| Miscellaneous                           | the program should not contain any offending imaginary |
+| Miscellaneous                           | the program should not contain any vulgar words/language |
+| Miscellaneous                           | the program should not contain any political imagery |
 
 
-*{More to be added}*
+
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **MSS**: Main success story which describes the most straightforward interaction for a given use case, where nothing goes wrong
+* **Case insensitive**: Capitilisation of letters do not matter.  For example shrek,SHREK,ShErK are considered the same.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -342,7 +563,36 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a patient
+
+1. Adding a patient
+
+   1. Test case: `add n/NAME y/DATEOFBIRTH g/GENDER p/PHONENUMBER e/EMAIL a/ADDRESS b/BLOODTYPE h/HEIGHT w/WEIGHT [t/TAG]`<br>
+      Expected: Patient with appropriate information (with a tag) added
+
+   1. Test case: `add n/NAME y/DATEOFBIRTH g/GENDER p/PHONENUMBER e/EMAIL a/ADDRESS b/BLOODTYPE h/HEIGHT w/WEIGHT`<br>
+      Expected: Patient with appropriate information (without a tag) added
+
+   1. Other incorrect delete commands to try: `add`, `add x`, `...` (where x is not in the above specified format)<br>
+      Expected: Similar to previous.
+
+1. Adding a patient in archieved list
+
+   1. Prerequisites: List all patients using the `archivelist` command. Multiple patients in the archieved list.
+
+   1. Test case: `archive 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      
+   1. Other incorrect delete commands to try: `archive`,<br>
+      Expected: Similar to previous.
+
+1. Adding a medical record to a patient
+
+   1. Test case: `mrec 1`<br>
+      Expected: Opens a notepad to add medical record to the patient with index 1
+      
+  1. Other incorrect delete commands to try: `mrec`, `mrec x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### Deleting a patient
 
@@ -359,7 +609,18 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a patient in archieved list
+
+   1. Prerequisites: List all patients using the `archivelist` command. Multiple patients in the archieved list.
+
+   1. Test case: `unarchive 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `unarchive 0`<br>
+      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `unarchive`, `unarchive x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
@@ -367,4 +628,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+
