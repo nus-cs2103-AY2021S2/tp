@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,8 +52,8 @@ public class CommandResultTest {
     @Test
     void getUiAction() {
         for (UiAction action : UiAction.values()) {
-            CommandResult commandResult = new CommandResult("feedback",action);
-            assertEquals(commandResult.getUiAction(),action);
+            CommandResult commandResult = new CommandResult("feedback", action);
+            assertEquals(commandResult.getUiAction(), action);
         }
     }
 
@@ -62,8 +61,8 @@ public class CommandResultTest {
     void getUiActionOption() {
         UiAction action = UiAction.OPEN;
         for (UiActionOption actionOption : UiActionOption.values()) {
-            CommandResult commandResult = new CommandResult("feedback",action, actionOption);
-            assertEquals(commandResult.getUiActionOption(),actionOption);
+            CommandResult commandResult = new CommandResult("feedback", action, actionOption);
+            assertEquals(commandResult.getUiActionOption(), actionOption);
         }
     }
 }

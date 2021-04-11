@@ -1,7 +1,6 @@
 package seedu.dictionote.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -11,7 +10,6 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.dictionote.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalContacts.AMY;
-import static seedu.dictionote.testutil.TypicalContacts.getTypicalContacts;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -52,16 +50,16 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonContactsListStorage addressBookStorage =
-                new JsonContactsListStorage(temporaryFolder.resolve("addressBook.json"));
+            new JsonContactsListStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonNoteBookStorage noteBookStorage =
-                new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
+            new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
         JsonDictionaryStorage dictionaryStorage =
-                new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+            new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
         JsonDefinitionBookStorage definitionBookStorage =
-                new JsonDefinitionBookStorage(temporaryFolder.resolve("definition.json"));
+            new JsonDefinitionBookStorage(temporaryFolder.resolve("definition.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                noteBookStorage, dictionaryStorage, definitionBookStorage);
+            noteBookStorage, dictionaryStorage, definitionBookStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -87,22 +85,22 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonContactsListStorage addressBookStorage =
-                new JsonContactsListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+            new JsonContactsListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+            new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonNoteBookStorage noteBookStorage =
-                new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
+            new JsonNoteBookStorage(temporaryFolder.resolve("notebook.json"));
         JsonDictionaryStorage dictionaryStorage =
-                new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
+            new JsonDictionaryStorage(temporaryFolder.resolve("dictionary.json"));
         JsonDefinitionBookStorage definitionBookStorage =
-                new JsonDefinitionBookStorage(temporaryFolder.resolve("definition.json"));
+            new JsonDefinitionBookStorage(temporaryFolder.resolve("definition.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                noteBookStorage, dictionaryStorage, definitionBookStorage);
+            noteBookStorage, dictionaryStorage, definitionBookStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand = AddContactCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+            + ADDRESS_DESC_AMY;
         Contact expectedContact = new ContactBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addContact(expectedContact);
@@ -129,6 +127,7 @@ public class LogicManagerTest {
     public void getFilteredDefinitionList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDefinitionList().remove(0));
     }
+
     @Test
     public void getFilteredCurrentDictionaryList_modifyList_throwsUnsupportedOperationException() {
         model.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
@@ -137,17 +136,17 @@ public class LogicManagerTest {
 
     @Test
     void getContactsList() {
-        assertEquals(logic.getContactsList(),model.getContactsList());
+        assertEquals(logic.getContactsList(), model.getContactsList());
     }
 
     @Test
     void getContactsListFilePath() {
-        assertEquals(logic.getContactsListFilePath(),model.getContactsListFilePath());
+        assertEquals(logic.getContactsListFilePath(), model.getContactsListFilePath());
     }
 
     @Test
     void getGuiSettings() {
-        assertEquals(logic.getGuiSettings(),model.getGuiSettings());
+        assertEquals(logic.getGuiSettings(), model.getGuiSettings());
     }
 
     @Test
@@ -165,10 +164,11 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+                                      Model expectedModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -176,6 +176,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -184,6 +185,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -192,12 +194,13 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
+                                      String expectedMessage) {
         Model expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
-                model.getNoteBook(), model.getDictionary(), model.getDefinitionBook());
+            model.getNoteBook(), model.getDictionary(), model.getDefinitionBook());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -206,14 +209,14 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, Model expectedModel) {
+                                      String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
-
 
 
     /**

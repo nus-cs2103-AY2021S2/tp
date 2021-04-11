@@ -9,7 +9,6 @@ import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBo
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.Test;

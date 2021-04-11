@@ -23,7 +23,6 @@ import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
 import seedu.dictionote.testutil.TypicalNoteContentConfig;
-import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -60,7 +59,7 @@ public class EditModeSaveCommandTest {
         //Note change
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
         model.showNote(model.getNoteBook().getNoteList().get(INDEX_SECOND_NOTE.getZeroBased()));
-        assertCommandSuccess(new EditModeSaveCommand(),model, MESSAGE_EDIT_MODE_EXIT_SUCCESS, expectedModel);
+        assertCommandSuccess(new EditModeSaveCommand(), model, MESSAGE_EDIT_MODE_EXIT_SUCCESS, expectedModel);
 
     }
 

@@ -3,7 +3,6 @@ package seedu.dictionote.logic.commands;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

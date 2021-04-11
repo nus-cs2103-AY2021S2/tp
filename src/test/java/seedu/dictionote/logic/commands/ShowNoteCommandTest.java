@@ -12,7 +12,6 @@ import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.Messages;
@@ -21,8 +20,6 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.note.Note;
-import seedu.dictionote.testutil.EditNoteDescriptorBuilder;
-import seedu.dictionote.testutil.TypicalDictionaryContentConfig;
 import seedu.dictionote.testutil.TypicalNoteContentConfig;
 
 /**
@@ -38,7 +35,8 @@ public class ShowNoteCommandTest {
         Model editModeModel = new ModelManager();
         editModeModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
 
-        assertCommandFailure(new ShowNoteCommand(INDEX_FIRST_NOTE), editModeModel, Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        assertCommandFailure(new ShowNoteCommand(INDEX_FIRST_NOTE), editModeModel,
+            Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
     }
 
     @Test

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dictionote.logic.commands.CommandTestUtil.showContentAtIndex;
-import static seedu.dictionote.logic.commands.CommandTestUtil.showNoteAtIndex;
 import static seedu.dictionote.logic.commands.ShowDictionaryContentCommand.MESSAGE_SHOW_CONTENT_SUCCESS;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
@@ -24,9 +23,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.dictionary.DisplayableContent;
-import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.TypicalDictionaryContentConfig;
-import seedu.dictionote.testutil.TypicalNoteContentConfig;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -34,19 +31,20 @@ import seedu.dictionote.testutil.TypicalNoteContentConfig;
  */
 public class ShowDictionaryContentCommandTest {
     private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
-            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
+        getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         model.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
 
-        DisplayableContent contentToShow = model.getFilteredCurrentDictionaryList().get(INDEX_FIRST_NOTE.getZeroBased());
+        DisplayableContent contentToShow =
+            model.getFilteredCurrentDictionaryList().get(INDEX_FIRST_NOTE.getZeroBased());
         ShowDictionaryContentCommand ShowDictionaryContentCommand = new ShowDictionaryContentCommand(INDEX_FIRST_NOTE);
 
         String expectedMessage = String.format(MESSAGE_SHOW_CONTENT_SUCCESS, contentToShow);
 
         ModelManager expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
+            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
         expectedModel.showDictionaryContent(contentToShow);
 
@@ -58,9 +56,10 @@ public class ShowDictionaryContentCommandTest {
         model.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
 
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredNoteList().size() + 1);
-        ShowDictionaryContentCommand ShowDictionaryContentCommand = new ShowDictionaryContentCommand(outOfBoundIndex);
+        ShowDictionaryContentCommand showDictionaryContentCommand = new ShowDictionaryContentCommand(outOfBoundIndex);
 
-        assertCommandFailure(ShowDictionaryContentCommand, model, Messages.MESSAGE_INVALID_DICTIONARY_CONTENT_DISPLAYED_INDEX);
+        assertCommandFailure(showDictionaryContentCommand, model,
+            Messages.MESSAGE_INVALID_DICTIONARY_CONTENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -69,17 +68,18 @@ public class ShowDictionaryContentCommandTest {
 
         showContentAtIndex(model, INDEX_FIRST_CONTENT);
 
-        DisplayableContent contentToShow = model.getFilteredCurrentDictionaryList().get(INDEX_FIRST_NOTE.getZeroBased());
-        ShowDictionaryContentCommand ShowDictionaryContentCommand = new ShowDictionaryContentCommand(INDEX_FIRST_NOTE);
+        DisplayableContent contentToShow =
+            model.getFilteredCurrentDictionaryList().get(INDEX_FIRST_NOTE.getZeroBased());
+        ShowDictionaryContentCommand showDictionaryContentCommand = new ShowDictionaryContentCommand(INDEX_FIRST_NOTE);
 
         String expectedMessage = String.format(MESSAGE_SHOW_CONTENT_SUCCESS, contentToShow);
 
         Model expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
-                getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
+            getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
         expectedModel.showDictionaryContent(contentToShow);
 
-        assertCommandSuccess(ShowDictionaryContentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(showDictionaryContentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -94,7 +94,8 @@ public class ShowDictionaryContentCommandTest {
 
         ShowDictionaryContentCommand showDictionaryContentCommand = new ShowDictionaryContentCommand(outOfBoundIndex);
 
-        assertCommandFailure(showDictionaryContentCommand, model, Messages.MESSAGE_INVALID_DICTIONARY_CONTENT_DISPLAYED_INDEX);
+        assertCommandFailure(showDictionaryContentCommand, model,
+            Messages.MESSAGE_INVALID_DICTIONARY_CONTENT_DISPLAYED_INDEX);
     }
 
     @Test

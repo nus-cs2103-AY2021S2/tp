@@ -1,10 +1,11 @@
 package seedu.dictionote.commons.core;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.jupiter.api.BeforeEach;
+import java.awt.Point;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.geometry.Orientation;
@@ -31,85 +32,84 @@ class GuiSettingsTest {
     private boolean isDictionaryListPanelVisible = false;
     private boolean isDictionaryContentPanelVisible = false;
 
+    private double[] setRatioValidCase = {0.1, 0.5, 0.9};
+    private double[] setRatioInvalidCase = {Double.MIN_VALUE, 0, 0.0999, 0.90001, 1, Double.MAX_VALUE};
 
-    double setRatioValidCase[] = {0.1,0.5,0.9};
-    double setRatioInvalidCase[] = {Double.MIN_VALUE,0,0.0999,0.90001,1,Double.MAX_VALUE};
-
-    GuiSettings DefaultSetting = new GuiSettings();
-    GuiSettings CustomSetting = new GuiSettings(windowWidth, windowHeight, xPosition, yPosition, contactSplitRatio,
-        dictionarySplitRatio, noteSplitRatio,  mainSplitRatio, isContactPanelVisible, isDictionaryContentPanelVisible,
-        isDictionaryListPanelVisible, isNoteContentPanelVisible, isNoteListPanelVisible, isDictionaryPanelVerticial,
-        isNotePanelVerticial);
-    GuiSettings CustomSetting2 = new GuiSettings(windowWidth, windowHeight, xPosition, yPosition, contactSplitRatio,
-        dictionarySplitRatio, noteSplitRatio,  mainSplitRatio, isContactPanelVisible, isDictionaryContentPanelVisible,
-        isDictionaryListPanelVisible, isNoteContentPanelVisible, isNoteListPanelVisible, isDictionaryPanelVerticial,
-        isNotePanelVerticial);
+    private GuiSettings defaultSetting = new GuiSettings();
+    private GuiSettings customSetting = new GuiSettings(windowWidth, windowHeight, xPosition, yPosition,
+        contactSplitRatio, dictionarySplitRatio, noteSplitRatio, mainSplitRatio, isContactPanelVisible,
+        isDictionaryContentPanelVisible, isDictionaryListPanelVisible, isNoteContentPanelVisible,
+        isNoteListPanelVisible, isDictionaryPanelVerticial, isNotePanelVerticial);
+    private GuiSettings customSetting2 = new GuiSettings(windowWidth, windowHeight, xPosition, yPosition,
+        contactSplitRatio, dictionarySplitRatio, noteSplitRatio, mainSplitRatio, isContactPanelVisible,
+        isDictionaryContentPanelVisible, isDictionaryListPanelVisible, isNoteContentPanelVisible,
+        isNoteListPanelVisible, isDictionaryPanelVerticial, isNotePanelVerticial);
 
     @Test
     void getWindowWidth_equal() {
-        assertEquals(CustomSetting.getWindowWidth(),windowWidth);
+        assertEquals(customSetting.getWindowWidth(), windowWidth);
     }
 
     @Test
     void getWindowHeight_equal() {
-        assertEquals(CustomSetting.getWindowHeight(),windowHeight);
+        assertEquals(customSetting.getWindowHeight(), windowHeight);
     }
 
     @Test
     void getWindowCoordinates_equal() {
-        assertEquals(CustomSetting.getWindowCoordinates(),windowCoordinates);
+        assertEquals(customSetting.getWindowCoordinates(), windowCoordinates);
     }
 
     @Test
     void isContactPanelVisible_equal() {
-        assertEquals(CustomSetting.isContactPanelVisible(),isContactPanelVisible);
+        assertEquals(customSetting.isContactPanelVisible(), isContactPanelVisible);
     }
 
     @Test
     void isNoteListPanelVisible() {
-        assertEquals(CustomSetting.isNoteListPanelVisible(),isContactPanelVisible);
+        assertEquals(customSetting.isNoteListPanelVisible(), isContactPanelVisible);
     }
 
     @Test
     void isNoteContentPanelVisible() {
-        assertEquals(CustomSetting.isNoteContentPanelVisible(),isNoteContentPanelVisible);
+        assertEquals(customSetting.isNoteContentPanelVisible(), isNoteContentPanelVisible);
     }
 
     @Test
     void isDictionaryListPanelVisible() {
-        assertEquals(CustomSetting.isDictionaryListPanelVisible(),isDictionaryListPanelVisible);
+        assertEquals(customSetting.isDictionaryListPanelVisible(), isDictionaryListPanelVisible);
     }
 
     @Test
     void isDictionaryContentPanelVisible() {
-        assertEquals(CustomSetting.isDictionaryContentPanelVisible(),isDictionaryContentPanelVisible);
+        assertEquals(customSetting.isDictionaryContentPanelVisible(), isDictionaryContentPanelVisible);
     }
 
     @Test
     void getContactSplitRatio() {
-        assertEquals(CustomSetting.getContactSplitRatio(),contactSplitRatio);
+        assertEquals(customSetting.getContactSplitRatio(), contactSplitRatio);
     }
 
     @Test
     void getDictionarySplitRatio() {
-        assertEquals(CustomSetting.getDictionarySplitRatio(),dictionarySplitRatio);
+        assertEquals(customSetting.getDictionarySplitRatio(), dictionarySplitRatio);
     }
 
     @Test
     void getNoteSplitRatio() {
-        assertEquals(CustomSetting.getNoteSplitRatio(),noteSplitRatio);
+        assertEquals(customSetting.getNoteSplitRatio(), noteSplitRatio);
     }
 
     @Test
     void getMainSplitRatio() {
-        assertEquals(CustomSetting.getMainSplitRatio(),mainSplitRatio);
+        assertEquals(customSetting.getMainSplitRatio(), mainSplitRatio);
     }
 
     @Test
     void setContactSplitRatio_success() {
-        for(int i = 0; i< setRatioValidCase.length; i++) {
-            CustomSetting.setContactSplitRatio(setRatioValidCase[i]);
-            assertEquals(CustomSetting.getContactSplitRatio(),setRatioValidCase[i]);
+        for (int i = 0; i < setRatioValidCase.length; i++) {
+            customSetting.setContactSplitRatio(setRatioValidCase[i]);
+            assertEquals(customSetting.getContactSplitRatio(), setRatioValidCase[i]);
         }
     }
 
@@ -117,120 +117,122 @@ class GuiSettingsTest {
     void setContactSplitRatio_fail() {
         //nothing change when fail
         double defaultValue = 0.5;
-        CustomSetting.setContactSplitRatio(defaultValue);
+        customSetting.setContactSplitRatio(defaultValue);
 
-        for(int i = 0; i< setRatioInvalidCase.length; i++) {
-            CustomSetting.setContactSplitRatio(setRatioInvalidCase[i]);
-            assertEquals(CustomSetting.getContactSplitRatio(),defaultValue);
+        for (int i = 0; i < setRatioInvalidCase.length; i++) {
+            customSetting.setContactSplitRatio(setRatioInvalidCase[i]);
+            assertEquals(customSetting.getContactSplitRatio(), defaultValue);
         }
     }
+
     @Test
     void setDictionarySplitRatio_success() {
-        for(int i = 0; i< setRatioValidCase.length; i++) {
-            CustomSetting.setDictionarySplitRatio(setRatioValidCase[i]);
-            assertEquals(CustomSetting.getDictionarySplitRatio(),setRatioValidCase[i]);
+        for (int i = 0; i < setRatioValidCase.length; i++) {
+            customSetting.setDictionarySplitRatio(setRatioValidCase[i]);
+            assertEquals(customSetting.getDictionarySplitRatio(), setRatioValidCase[i]);
         }
     }
 
     @Test
     void setDictionarySplitRatio_fail() {
         double defaultValue = 0.5;
-        CustomSetting.setDictionarySplitRatio(defaultValue);
+        customSetting.setDictionarySplitRatio(defaultValue);
 
-        for(int i = 0; i< setRatioInvalidCase.length; i++) {
-            CustomSetting.setDictionarySplitRatio(setRatioInvalidCase[i]);
-            assertEquals(CustomSetting.getDictionarySplitRatio(),defaultValue);
+        for (int i = 0; i < setRatioInvalidCase.length; i++) {
+            customSetting.setDictionarySplitRatio(setRatioInvalidCase[i]);
+            assertEquals(customSetting.getDictionarySplitRatio(), defaultValue);
         }
     }
 
     @Test
     void setNoteSplitRatio_success() {
-        for(int i = 0; i< setRatioValidCase.length; i++) {
-            CustomSetting.setNoteSplitRatio(setRatioValidCase[i]);
-            assertEquals(CustomSetting.getNoteSplitRatio(),setRatioValidCase[i]);
+        for (int i = 0; i < setRatioValidCase.length; i++) {
+            customSetting.setNoteSplitRatio(setRatioValidCase[i]);
+            assertEquals(customSetting.getNoteSplitRatio(), setRatioValidCase[i]);
         }
     }
 
     @Test
     void setNoteSplitRatio_fail() {
         double defaultValue = 0.5;
-        CustomSetting.setNoteSplitRatio(defaultValue);
+        customSetting.setNoteSplitRatio(defaultValue);
 
-        for(int i = 0; i< setRatioInvalidCase.length; i++) {
-            CustomSetting.setNoteSplitRatio(setRatioInvalidCase[i]);
-            assertEquals(CustomSetting.getNoteSplitRatio(), defaultValue);
+        for (int i = 0; i < setRatioInvalidCase.length; i++) {
+            customSetting.setNoteSplitRatio(setRatioInvalidCase[i]);
+            assertEquals(customSetting.getNoteSplitRatio(), defaultValue);
         }
     }
+
     @Test
     void setMainSplitRatio_success() {
-        for(int i = 0; i< setRatioValidCase.length; i++) {
-            CustomSetting.setMainSplitRatio(setRatioValidCase[i]);
-            assertEquals(CustomSetting.getMainSplitRatio(),setRatioValidCase[i]);
+        for (int i = 0; i < setRatioValidCase.length; i++) {
+            customSetting.setMainSplitRatio(setRatioValidCase[i]);
+            assertEquals(customSetting.getMainSplitRatio(), setRatioValidCase[i]);
         }
     }
 
     @Test
     void setMainSplitRatio_fail() {
         double defaultValue = 0.5;
-        CustomSetting.setMainSplitRatio(defaultValue);
+        customSetting.setMainSplitRatio(defaultValue);
 
-        for(int i = 0; i< setRatioInvalidCase.length; i++) {
-            CustomSetting.setMainSplitRatio(setRatioInvalidCase[i]);
-            assertEquals(CustomSetting.getMainSplitRatio(), defaultValue);
+        for (int i = 0; i < setRatioInvalidCase.length; i++) {
+            customSetting.setMainSplitRatio(setRatioInvalidCase[i]);
+            assertEquals(customSetting.getMainSplitRatio(), defaultValue);
         }
     }
 
     @Test
     void setMainSplitRatio() {
-        assertEquals(CustomSetting.isContactPanelVisible(),isContactPanelVisible);
+        assertEquals(customSetting.isContactPanelVisible(), isContactPanelVisible);
     }
 
     @Test
     void equals_equal() {
-        assertEquals(CustomSetting,CustomSetting2);
+        assertEquals(customSetting, customSetting2);
     }
 
     @Test
     void equals_notequal() {
-        assertNotEquals(CustomSetting,null);
-        assertNotEquals(CustomSetting,DefaultSetting);
+        assertNotEquals(customSetting, null);
+        assertNotEquals(customSetting, defaultSetting);
     }
 
     @Test
     void hashCode_equals() {
-        assertEquals(CustomSetting.hashCode(),CustomSetting2.hashCode());
+        assertEquals(customSetting.hashCode(), customSetting2.hashCode());
     }
 
     @Test
     void hashCode_notEquals() {
-        assertNotEquals(CustomSetting.hashCode(), DefaultSetting.hashCode());
+        assertNotEquals(customSetting.hashCode(), defaultSetting.hashCode());
     }
 
     @Test
     void getDictionaryPanelOrientation() {
-        assertEquals(CustomSetting.getDictionaryPanelOrientation(), Orientation.HORIZONTAL);
+        assertEquals(customSetting.getDictionaryPanelOrientation(), Orientation.HORIZONTAL);
     }
 
     @Test
     void toggleDictionaryPanelOrientation() {
-        assertEquals(CustomSetting.getDictionaryPanelOrientation(), Orientation.HORIZONTAL);
-        CustomSetting.toggleDictionaryPanelOrientation();
-        assertEquals(CustomSetting.getDictionaryPanelOrientation(), Orientation.VERTICAL);
-        CustomSetting.toggleDictionaryPanelOrientation();
-        assertEquals(CustomSetting.getDictionaryPanelOrientation(), Orientation.HORIZONTAL);
+        assertEquals(customSetting.getDictionaryPanelOrientation(), Orientation.HORIZONTAL);
+        customSetting.toggleDictionaryPanelOrientation();
+        assertEquals(customSetting.getDictionaryPanelOrientation(), Orientation.VERTICAL);
+        customSetting.toggleDictionaryPanelOrientation();
+        assertEquals(customSetting.getDictionaryPanelOrientation(), Orientation.HORIZONTAL);
     }
 
     @Test
     void getNotePanelOrientation() {
-        assertEquals(CustomSetting.getNotePanelOrientation(), Orientation.HORIZONTAL);
+        assertEquals(customSetting.getNotePanelOrientation(), Orientation.HORIZONTAL);
     }
 
     @Test
     void toggleNotePanelOrientation() {
-        assertEquals(CustomSetting.getNotePanelOrientation(), Orientation.HORIZONTAL);
-        CustomSetting.toggleNotePanelOrientation();
-        assertEquals(CustomSetting.getNotePanelOrientation(), Orientation.VERTICAL);
-        CustomSetting.toggleNotePanelOrientation();
-        assertEquals(CustomSetting.getNotePanelOrientation(), Orientation.HORIZONTAL);
+        assertEquals(customSetting.getNotePanelOrientation(), Orientation.HORIZONTAL);
+        customSetting.toggleNotePanelOrientation();
+        assertEquals(customSetting.getNotePanelOrientation(), Orientation.VERTICAL);
+        customSetting.toggleNotePanelOrientation();
+        assertEquals(customSetting.getNotePanelOrientation(), Orientation.HORIZONTAL);
     }
 }

@@ -30,7 +30,7 @@ public class ToggleNoteOrientationCommandTest {
 
         expectedModel.getGuiSettings().toggleNotePanelOrientation();
         assertCommandSuccess(new ToggleNoteOrientationCommand(), model, expectedCommandResult, expectedModel);
-        
+
         //value should be equal after toggle again
         assertEquals(model.getGuiSettings().getNotePanelOrientation(), (
             new ModelManager()).getGuiSettings().getNotePanelOrientation());

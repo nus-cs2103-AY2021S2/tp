@@ -308,31 +308,31 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_editNote() throws Exception {
-        assertTrue(parser.parseCommand(EditNoteCommand.COMMAND_WORD +" 1 " + PREFIX_CONTENT+"1")
+        assertTrue(parser.parseCommand(EditNoteCommand.COMMAND_WORD + " 1 " + PREFIX_CONTENT + "1")
             instanceof EditNoteCommand);
     }
 
     @Test
     public void parseCommand_findNoteCommand() throws Exception {
-        assertTrue(parser.parseCommand(FindNoteCommand.COMMAND_WORD +" c/1")
+        assertTrue(parser.parseCommand(FindNoteCommand.COMMAND_WORD + " c/1")
             instanceof FindNoteCommand);
     }
 
     @Test
     public void parseCommand_findDefinition() throws Exception {
-        assertTrue(parser.parseCommand(FindDefinitionCommand.COMMAND_WORD +" 1")
+        assertTrue(parser.parseCommand(FindDefinitionCommand.COMMAND_WORD + " 1")
             instanceof FindDefinitionCommand);
     }
 
     @Test
     public void parseCommand_findContent() throws Exception {
-        assertTrue(parser.parseCommand(FindContentCommand.COMMAND_WORD +" 1")
+        assertTrue(parser.parseCommand(FindContentCommand.COMMAND_WORD + " 1")
             instanceof FindContentCommand);
     }
 
     @Test
-    public void parseCommand_copyContentTONote() throws Exception {
-        assertTrue(parser.parseCommand(CopyContentToNoteCommand.COMMAND_WORD +" 1")
+    public void parseCommand_copyContentToNote() throws Exception {
+        assertTrue(parser.parseCommand(CopyContentToNoteCommand.COMMAND_WORD + " 1")
             instanceof CopyContentToNoteCommand);
     }
 
@@ -369,19 +369,19 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_markAsDoneNoteCommand() throws Exception {
-        assertTrue(parser.parseCommand(MarkAsDoneNoteCommand.COMMAND_WORD +" 1")
+        assertTrue(parser.parseCommand(MarkAsDoneNoteCommand.COMMAND_WORD + " 1")
             instanceof MarkAsDoneNoteCommand);
     }
 
     @Test
     public void parseCommand_markAsUndoneNoteCommand() throws Exception {
-        assertTrue(parser.parseCommand(MarkAsUndoneNoteCommand.COMMAND_WORD +" 1")
+        assertTrue(parser.parseCommand(MarkAsUndoneNoteCommand.COMMAND_WORD + " 1")
             instanceof MarkAsUndoneNoteCommand);
     }
 
     @Test
     public void parseCommand_convertTxtNoteCommand() throws Exception {
-        assertTrue(parser.parseCommand(ConvertTxtNoteCommand.COMMAND_WORD +" 1")
+        assertTrue(parser.parseCommand(ConvertTxtNoteCommand.COMMAND_WORD + " 1")
             instanceof ConvertTxtNoteCommand);
     }
 
@@ -399,26 +399,26 @@ public class DictionoteParserTest {
 
     @Test
     public void parseCommand_mergeNoteCommand() throws Exception {
-        assertTrue(parser.parseCommand(MergeNoteCommand.COMMAND_WORD +" 1 1")
+        assertTrue(parser.parseCommand(MergeNoteCommand.COMMAND_WORD + " 1 1")
             instanceof MergeNoteCommand);
     }
 
     @Test
     public void parseCommand_deleteNote() throws Exception {
-        assertTrue(parser.parseCommand(DeleteNoteCommand.COMMAND_WORD +" 1") instanceof DeleteNoteCommand);
+        assertTrue(parser.parseCommand(DeleteNoteCommand.COMMAND_WORD + " 1") instanceof DeleteNoteCommand);
     }
 
     @Test
     public void parseCommand_addDefinitionCommand() throws Exception {
         assertTrue(parser.parseCommand(AddDefinitionCommand.COMMAND_WORD + " " + PREFIX_TERM + "1 "
-            + PREFIX_DEFINITION +"1")
+            + PREFIX_DEFINITION + "1")
             instanceof AddDefinitionCommand);
     }
 
     @Test
-    public void parseCommand_AddContentCommand() throws Exception {
-        assertTrue(parser.parseCommand(AddContentCommand.COMMAND_WORD +" " + PREFIX_WEEK + "1 " +
-            PREFIX_HEADER + "1 " + PREFIX_MAINCONTENT +"1")
+    public void parseCommand_addContentCommand() throws Exception {
+        assertTrue(parser.parseCommand(AddContentCommand.COMMAND_WORD + " " + PREFIX_WEEK + "1 "
+            + PREFIX_HEADER + "1 " + PREFIX_MAINCONTENT + "1")
             instanceof AddContentCommand);
     }
 

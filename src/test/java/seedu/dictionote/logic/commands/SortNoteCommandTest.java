@@ -7,7 +7,6 @@ import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
 import static seedu.dictionote.testutil.TypicalDefinition.getTypicalDefinitionBook;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.BeforeEach;

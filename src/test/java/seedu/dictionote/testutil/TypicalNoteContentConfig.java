@@ -104,7 +104,8 @@ public class TypicalNoteContentConfig {
     /**
      * A stub for note content config for duplicate test
      */
-    private static class NoteContentConfigStubEditModeNoteEditedDuplicate extends NoteContentConfigStubEditModeNoteSame {
+    private static class NoteContentConfigStubEditModeNoteEditedDuplicate
+        extends NoteContentConfigStubEditModeNoteSame {
 
         @Override
         public Note getNote() {
