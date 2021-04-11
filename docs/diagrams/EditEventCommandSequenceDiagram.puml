@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(edit_event args)
+[-> LogicManager : parse("edit_event 1 n/e1")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(edit_event args)
+LogicManager -> SocheduleParser : parseCommand("edit_event 1 n/e1")
 activate SocheduleParser
 
 create EditEventCommandParser
@@ -27,7 +27,7 @@ activate EditEventCommandParser
 EditEventCommandParser --> SocheduleParser
 deactivate EditEventCommandParser
 
-SocheduleParser -> EditEventCommandParser: parse(args)
+SocheduleParser -> EditEventCommandParser: parse("1 n/e1")
 activate EditEventCommandParser
 
 create EditEventDescriptor

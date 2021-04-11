@@ -12,10 +12,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(clear_expired_task)
+[-> LogicManager : parse("clear_expired_task")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(clear_expired_task)
+LogicManager -> SocheduleParser : parseCommand("clear_expired_task")
 activate SocheduleParser
 
 create ClearExpiredTaskCommand

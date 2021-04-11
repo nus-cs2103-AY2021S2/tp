@@ -864,11 +864,11 @@ The sequence diagram for `ClearCompletedTaskCommand` can be found below.
 **Implementation of ClearExpiredTaskCommand**  
 The following is a detailed explanation on how ClearExpiredTaskCommand is implemented.
 
-**Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
+**Step 1**: User executes `clear_expired_task` command to clear expired tasks in task list.
 A `ClearExpiredTaskCommand` object is created and returned.
 
 **Step 2**: On `ClearExpiredTaskCommand#execute()`, `Model#clearExpiredTasks()` is called.
-This will delete all expired tasks whose deadline have already past.
+This will delete all expired tasks whose deadlines have already passed.
 For brevity, lower level implementation of `Model#clearExpiredTasks()` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
@@ -937,6 +937,7 @@ The sequence diagram for `AddEventCommand` can be found below.
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of DeleteEventCommand**  
+
 The following is a detailed explanation on how DeleteEventCommand is implemented.
 
 **Step 1**: User executes `delete_event Index` command to delete the event at the given index.
@@ -1035,7 +1036,7 @@ The `edit_event` feature was implemented with a static class `EditEventDescripto
 <img src="images/EditEventCommandClassDiagram.png" width="550" />
 
 **Step 1**: User executes `edit_event Index` command to Edit the event at the given index.
-An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
+An `EditEventCommandParser` object is created, and the `EditEventCommandParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
 If the field is edited, then store the edited one; otherwise, store the original value.
@@ -1047,7 +1048,7 @@ These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Eve
 `Model#updateFilteredEventList()` are called. These will update the edited Event into the event list.
 
 **Step 3**: On execution completion a `CommandResult` is created.
-A success message `EditEventCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
+A success message `EditEventCommand#MESSAGE_EDIT_EVENT_SUCCESS` will be displayed.
 The UI will also update as the underlying event list has been modified.
 
 The sequence diagram for `EditEventCommand` can be found below.
@@ -1093,7 +1094,7 @@ The following activity diagram summarises what happens when a user executes a Ed
                 </li>
                 <li> Cons:
                     <ul>
-                        <li>Need to add extra checks in EditEventCommand</li>
+                        <li>Needs to add extra checks in EditEventCommand</li>
                     </ul>
                 </li>
             </ul>
@@ -1103,8 +1104,8 @@ The following activity diagram summarises what happens when a user executes a Ed
 <div markdown="block">
 
 We chose alternative 1 because if the event in the real world ended, it’s meaningless to let users make changes 
-on any field other than end date time. We did consider the fact that an event in the real world could be extended, 
-so we allow users to make changes on end date time from an expired timestamp to an unexpired timestamp. Besides, 
+on any field other than end date and time. We did consider the fact that an event in the real world could be extended, 
+so we allow users to make changes on end date and time from an expired timestamp to an unexpired timestamp. Besides, 
 we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become 
 an “overdue task”, while there’s no “overdue event”.
 
@@ -1188,15 +1189,15 @@ readability of the code. Implementing codes under UniqueEventList also reduces d
 **Implementation of ClearExpiredEventCommand**  
 The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
 
-**Step 1**: User executes `clear_completed_event` command to clear completed events in event list.
+**Step 1**: User executes `clear_expired_event` command to clear expired events in the event list.
 A `ClearExpiredEventCommand` object is created and returned.
 
 **Step 2**: On `ClearExpiredEventCommand#execute()`, `Model#clearExpiredEvents()` is called.
-This will delete all expired events whose end date time have already past.
+This will delete all expired events whose end date time have already passed.
 For brevity, lower level implementation of `Model#clearExpiredEvents()` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
-A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_COMPLETED_TASK_SUCCESS` will be displayed.
+A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_EXPIRED_EVENT_SUCCESS` will be displayed.
 
 The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
@@ -1412,7 +1413,7 @@ Use case ends.
       Use case resumes at step 2.
     
 
-**Use case: UC04 - List tasks**
+**Use case: UC04 - Listing tasks**
 
 **MSS**
 
@@ -1680,7 +1681,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The event scheduler is empty.
+* 2a. The event list is empty.
 
   Use case ends.
 
@@ -1700,13 +1701,15 @@ Use case ends.
    <br><br>
    Use case ends.
    
+**Extensions**
+   
 * 3a. No edited field is provided
 
     * 3a1. SOChedule displays an error message suggesting that information provided when editing
       the event is incomplete.
       Use case resumes at step 2.
 
-* 3b. The event is expired
+* 3b. The event to be edited is expired
 
     * 3b1. SOChedule displays an error message suggesting that an expired event cannot be edited.
       Use case resumes at step 2.
@@ -1722,18 +1725,6 @@ Use case ends.
     * 3d1. SOChedule shows an error message.
       Use case resumes at step 2.
 
-**Extensions**
-
-* 2a. The task list is empty.
-
-  Use case ends.
-
-
-* 3a. The given index is invalid.
-
-    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
-
-      Use case resumes at step 2.
 
 **Use case: UC17 - Listing events**
 

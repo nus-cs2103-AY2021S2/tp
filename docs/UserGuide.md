@@ -508,9 +508,13 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * The `ENDDATE` and `ENDTIME` provided should be after `STARTDATE` and `STARTTIME`.
 * The `ENDDATE` and `ENDTIME` provided cannot be a past date time.
 * Time overlapping events are allowed.
-* `c/` is followed by the category. It is optional.
-* `t/` is followed by the tag. It is optional.
-
+* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1` `c/c2`). It is optional.
+* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
+* Note that any valid prefixes and input arguments (e.g. `n/Meeting 1` or `p/1`) followed by invalid prefixes and 
+input arguments (e.g. `name/Name`, `tag/Tag` or `T&sk`) will lead to an error.
+* If the same prefix (excluding `c/`, `t/`) appears multiple times in the input (e.g. `n/n1` `n/n2`), the latter one 
+would be taken (i.e. `n/n2`).
+  
 Examples:
 * `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its 
   respective attributes to the event list.
@@ -523,8 +527,10 @@ Deletes an event from the event list.
 
 Format: `delete_event INDEX`
 * Deletes the event at the specified INDEX.
-* The index refers to the index number shown in the displayed event list.
-* The index must be a positive and valid integer 1, 2, 3, ...
+* Note that only one `INDEX` is accepted, multiple `INDEX` will lead to input format error.
+* The `INDEX` refers to the index number shown in the **displayed** event list.
+* The `INDEX` must be a positive and valid integer 1, 2, 3, ... i.e. `0`, negative integers and integers greater than
+  `2147482637` will lead to input format error.
 
 Examples:
 * `delete_event 3` deletes the third event from the event list.

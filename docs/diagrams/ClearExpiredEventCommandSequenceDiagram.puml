@@ -12,10 +12,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(clear_expired_event)
+[-> LogicManager : parse("clear_expired_event")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(clear_expired_event)
+LogicManager -> SocheduleParser : parseCommand("clear_expired_event")
 activate SocheduleParser
 
 create ClearExpiredEventCommand

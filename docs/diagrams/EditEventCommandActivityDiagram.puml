@@ -13,7 +13,7 @@ if () then ([index valid])
 
     else ([else])
         if () then ([end date time provided
-AND end date time past])
+AND end date time passed])
         else ([else])
             :Create edited event;
             if () then ([edited event same

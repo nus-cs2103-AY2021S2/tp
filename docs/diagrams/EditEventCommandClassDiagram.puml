@@ -8,7 +8,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 Class "<<Interface>>\nParser"
 Class SocheduleParser
 Class EditEventCommandParser
-Class EditEventCommandParserDescriptor
+Class EditEventDescriptor
 Class SocheduleParserUtil
 Class EditEventCommand
 
@@ -19,9 +19,9 @@ SocheduleParser .left.> EditEventCommandParser: creates >
 
 EditEventCommandParser ..> EditEventCommand : creates >
 EditEventCommandParser .left.> SocheduleParserUtil
-EditEventCommandParser ..> EditEventCommandParserDescriptor : creates >
+EditEventCommandParser ..> EditEventDescriptor : creates >
 EditEventCommandParser .up.|> "<<Interface>>\nParser"
 
-EditEventCommand -->"1" EditEventCommandParserDescriptor
+EditEventCommand -->"1" EditEventDescriptor
 
 @enduml
