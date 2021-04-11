@@ -182,6 +182,7 @@ public class ModelManager implements Model {
         filteredStudents.setPredicate(predicate);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Predicate<Student> getFilteredStudentListPredicate() {
         return (Predicate<Student>) filteredStudents.getPredicate();
