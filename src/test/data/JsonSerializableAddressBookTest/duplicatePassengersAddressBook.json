@@ -3,19 +3,17 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tripDay" : "FRIDAY",
-    "tripTime" : "1800",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged": [ "friends" ]
+    "tagged": [ "marketing" ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1400",
+    "priceStr" : ""
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "address": "4th street",
-    "tripDay" : "FRIDAY",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tripTime" : "1800"
+    "tripDayStr" : "WEDNESDAY",
+    "tripTimeStr" : "2130",
+    "priceStr" : ""
   } ],
   "pools" : [ ]
 }

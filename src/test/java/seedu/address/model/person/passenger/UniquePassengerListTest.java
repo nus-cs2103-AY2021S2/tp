@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPassengers.ALICE;
 import static seedu.address.testutil.TypicalPassengers.BOB;
@@ -42,7 +42,7 @@ public class UniquePassengerListTest {
     @Test
     public void contains_passengerWithSameIdentityFieldsInList_returnsTrue() {
         uniquePassengerList.add(ALICE);
-        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_GOLF)
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
         assertTrue(uniquePassengerList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniquePassengerListTest {
     @Test
     public void setPassenger_editedPassengerHasSameIdentity_success() {
         uniquePassengerList.add(ALICE);
-        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_GOLF)
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
         uniquePassengerList.setPassenger(ALICE, editedAlice);
         UniquePassengerList expectedUniquePassengerList = new UniquePassengerList();

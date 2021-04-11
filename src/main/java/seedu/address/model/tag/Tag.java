@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric, at a maximum of 30 characters.";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric, and can only have a maximum of "
+            + "30 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;

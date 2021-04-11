@@ -32,7 +32,8 @@ public class Driver extends Person {
         }
 
         return otherDriver != null
-                && otherDriver.getName().equals(getName());
+                && otherDriver.getName().equals(getName())
+                && otherDriver.getPhone().equals(getPhone());
     }
 
     /**

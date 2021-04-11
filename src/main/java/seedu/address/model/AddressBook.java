@@ -56,8 +56,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the pool list with {@code pool}.
      * {@code pool} must not contain duplicate pool.
      */
-    public void setPools(List<Pool> pool) {
-        this.pools.setPools(pool);
+    public void setPools(List<Pool> pools) {
+        this.pools.setPools(pools);
     }
 
     /**

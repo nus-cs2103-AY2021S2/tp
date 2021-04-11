@@ -25,7 +25,6 @@ public class FindPoolCommandParser implements Parser<FindPoolCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public FindPoolCommand parse(String args) throws ParseException {
-        // todo allow more parameters to be taken in, use DriverNameContainsKeywordsPredicate
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 

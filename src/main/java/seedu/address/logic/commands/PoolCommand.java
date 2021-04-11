@@ -83,6 +83,7 @@ public class PoolCommand extends Command {
         return passengers.stream()
                 .anyMatch(x -> x.getTripTime().compareMinutes(this.tripTime) > MAX_TIME_DIFFERENCE);
     }
+
     private List<Passenger> getPassengersFromIndexes(Set<Index> indexes, Model model) throws CommandException {
 
         List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerList());
