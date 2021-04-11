@@ -1117,7 +1117,7 @@ testers are expected to do more *exploratory* testing.
 This section explains the challenges faced as well as the effort required to develop StoreMando.
 
 Creating StoreMando required a significant amount of effort and commitment from all the team members. Due to the 
-restrictions imposed by the pandemic, our team had  to overcome and conquer the challenges of communicating and 
+restrictions imposed by the pandemic, our team had to overcome and conquer the challenges of communicating and 
 collaborating virtually. In addition, we had to make sacrifices to our individual schedules to attend weekly online 
 meetings. Despite the unprecedented circumstances, our team persevered and developed a product that we are all proud of.
 
@@ -1130,8 +1130,8 @@ StoreMando has many significant enhancements from AB3. Here are some examples:
    fields in AB3 were also different from those in StoreMando (eg. Phone in AB3 must have 8 digits whereas Quantity in 
    StoreMando can only have values within the range 1 to 1000000), and we had to edit those restrictions respectively.
 
-2. StoreMando has a Revamped UI to better tailor to the needs of our target users. The Ui of AB3 only contained one 
-   panel (ListPanel). On the other hand, StoreMando has 4 panels. This added additional complexity. Beyond just 
+2. StoreMando has a revamped UI to better tailor to the needs of our target users. The UI of AB3 only contained one 
+   panel (ListPanel). On the other hand, StoreMando has 4 panels which added additional complexity. Beyond just 
    duplicating the panels, each panel also incorporated extended functionality of viewing all locations and reminders.
 
 3. The numerous new classes created and enhancements to existing commands meant that a lot more effort was required to 
