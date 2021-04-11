@@ -33,7 +33,7 @@ SocheduleParser -[hidden]->[
 LogicManager -> TodayEventCommand : execute()
 activate TodayEventCommand
 
-TodayEventCommand -> Model : updateFilteredList(Predicate<Event> predicate)
+TodayEventCommand -> Model : updateFilteredEventList(Predicate<Event> predicate)
 activate Model
 TodayEventCommand <-- Model
 deactivate Model

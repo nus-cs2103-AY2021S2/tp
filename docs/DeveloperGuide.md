@@ -896,7 +896,7 @@ will update the filtered task list with the predicate specified by the input pre
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_TASKS_LISTED_OVERVIEW`.
 
-The sequence diagram for `FindTaskCommand` can be found below, using `find_task homework assignment` as an example.
+The sequence diagram for `FindTaskCommand` can be found below, using `find_task hw1` as an example.
 
 ![Sequence Diagram of FindTaskCommand](images/FindTaskCommandSequenceDiagram.png)
 
@@ -1264,7 +1264,7 @@ A `TodayEventCommand` object is returned
 **Step 2**: On `TodayEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This
 will update the filtered event list with the predicate specified by the input predicate, which is a predicate of type
 `EventCoversTodayPredicate`. For brevity, lower level implementation of
-`Model#updateFilteredEvents(Predicate<Event> predicate)` is omitted.
+`Model#updateFilteredEventList(Predicate<Event> predicate)` is omitted.
 
 **Step 3**: On execution completion, a `CommandResult` is created. A success message will be appended with
 `CommandResult#MESSAGE_TODAY_EVENT_SUCCESS` and `MESSAGE_EVENT_LISTED_OVERVIEW`. The UI will also update as the underlying
@@ -1303,12 +1303,12 @@ The `FindEventCommand` object with input predicate is returned.
 On `FindEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This
 will update the filtered event list with the predicate specified by the input predicate, which is a predicate of type
 `EventNameContainsKeywordPredicate`. For brevity, lower level implementation of
-`Model#updateFilteredEvents(Predicate<Eventk> predicate)` is omitted.
+`Model#updateFilteredEventList(Predicate<Eventk> predicate)` is omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_EVENTS_LISTED_OVERVIEW`.
 
-The sequence diagram for `FindEventCommand` can be found below, using the aforementioned as an example.
+The sequence diagram for `FindEventCommand` can be found below, using `find_event meeting` as an example.
 
 ![Sequence Diagram of FindEventCommand](images/FindEventCommandSequenceDiagram.png)
 
