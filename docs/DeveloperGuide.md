@@ -76,7 +76,7 @@ The sections below give more details of each component.
 * All of these Ui parts and windows, including the `MainWindow`, inheerit from the abstract `UiPart` class
 * In addition, the `UI` component also uses the JavaFX UI framework. THe layout of these UI parts are each defined in
  their corresponding `.fxml` files that can be loated in the `src/main/resources/view` folder.
-* For example, the layout of the HelpWindow is specified in the HelpWindow.fxml file
+* For example, the layout of the HelpWindow is specified in the `HelpWindow.fxml` file
 * A universal styling theme is applied to all components, and the styling is defined in 2 files:
  `DarkTheme.css` and `Extensions.css`. Both are located in the `src/main/resources/view` folder.
 * Images/icons used throughout the app windows are located in the `src/main/resources/images` folder.
@@ -143,6 +143,7 @@ Notably:
 
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
+
 ### AddOn Feature
 The AddOn feature allows the user to add review(s) and/or a price to a single entry of a food place. This will be useful
 for users who frequently visit a particular place and would like to enter their reviews and the price spent on each visit.
@@ -166,7 +167,7 @@ Else, the FoodDiary will display an appropriate error message.
 The following sequence diagram shows how the AddOn feature works:
 ![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
 
-The following activity diagram summaries the flow of event when a user executes the addon command:
+The following activity diagram summaries the flow of event when a user executes the `addon` command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
 #### Design Consideration
@@ -284,7 +285,7 @@ Step 4: User decides to visit that particular food place.
 The following sequence diagram shows how the FindAll feature works:
 ![FindAll Sequence Diagram](images/FindAllSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the FindAll
+The following activity diagram summarises the events that take place when a user executes the `findAll`
 command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
@@ -319,8 +320,8 @@ prefix and the EditCommand.
 The following sequence diagram shows how Revise feature works:
 ![Revise Sequence Diagram](images/ReviseSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the Revise
-command:
+The following activity diagram summarises the events that take place when a user executes the `revise
+command`:
 ![Revise Activity Diagram](images/ReviseActivityDiagram.png)
 
 #### Design Consideration
@@ -350,10 +351,10 @@ If the command `edit 1 re/New review is passed`, the `edit` command essentially 
  entry that has the new review. The `edit` coammand calls `Model#setEntry()`, which calls
  `ModelManager#setEntry()`, that calls `FoodDiary#setEntry()` to eventually change the target entry with a new entry.
 
-The following sequence diagram shows how Revise feature works:
+The following sequence diagram shows how Edit feature works:
 ![Edit Sequence Diagram](images/EditSequenceDiagram.png)
 
-The following activity diagram summarises the events that take place when a user executes the Revise
+The following activity diagram summarises the events that take place when a user executes the `edit`
 command:
 ![Edit Activity Diagram](images/EditActivityDiagram.png)
 
@@ -372,6 +373,29 @@ command:
   
   As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
   for `edit` and the pros for the alternative.
+
+### Help Feature
+
+The `help` feature primarly helps the user by showing a help guide whenever a user wishes to see it.
+ 
+* The help guide is a succint version of all the commands and keywords for certan input parameters.
+
+* The help guide also dislays examples related to each command for users to quickly get a sense of what
+ each command does.
+    
+* The help guide also contains the link to our User Guide where users can copy the link from
+ and visit for more information
+
+An additional `HelpWindow` is opened when a user enters the `help` command in the UI. The command will be passed into 
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the
+user input in `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
+A `HelpWindow` is returned at the end.
+
+The following sequence diagram shows how the Help feature works:
+![Help Sequence Diagram](images/HelpSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `help` command:
+![Help Activity Diagram](images/HelpActivityDiagram.png)
 
 ### View Feature
 `view`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
@@ -395,7 +419,7 @@ The mechanism works in such a way where after the user enters a command in the U
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
 shown in a new window.
 
-The following sequence diagram shows how the `view` feature works:
+The following sequence diagram shows how the View feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes the `view` command:
@@ -455,9 +479,53 @@ The parsed command will be identified as the exit command.
 - [DevOps guide](DevOps.md)
 
 
-## **Appendix A: Effort**
-### Challenges & Effort Required
-### Achievements
+## **Appendix A: Challenges Faced**
+
+### Challenges Faced & Rationalez
+
+1. One of the most significant challenges on the creation of The Food Diary was refactoring and redefining classes and
+ methods to match the implementation of a Food Diary, and in doing so do away with previous implementations
+ that would otherwise suggest the implementation of an address book.
+ 
+ * This thus involved major refactoring of the code base, followed by converting/creating several entities to match
+ a Food Diary, such as the `Pricing` and `Rating` classes etc. pertaining to a journal entry in The Food Diary.
+ 
+ * Creating these new entities entailed creating the appropriate classes in the `Model` package to manage and process
+ these new entities in the app's memory.
+ 
+2. We explored several design options when creating new features such as the `revise` and `view` features. We realised
+ that while users could rely majorly on the keyboard to execute most of the app's features, this was however not the
+ best, since users would miss the capability to view the different fields of their entries in full,
+ which would have otherwise further enhanced their usage of the app.
+
+    * This led us to create new separate windows that would pop up and allow users to view/revise the fields of their
+    specified entry in greater detail, without compromising their ability to edit. For `revise`, users could choose to
+    select which field to edit by clicking, or by using keyboard shortcuts; this did not compromise the
+    keyboard-intensive interface that users might rely on.
+    
+    * We nonetheless still implemented the keyboard-based `edit` feature, and deemed that it was still useful for users
+     who had minor edits to perform on their specified entry, which would make having to open up a separate window
+     more inconvenient.
+     
+    * In all, design decisions had to be made, and we put ourselves in the perspectives of our users and implemented
+     features and designs to what we felt best fitted them.
+     
+3. We constantly questioned ourselves as to how The Food Diary could be catered more towards NUS students.
+
+    * As such, we preserved the user interface element of typing to execute functions/features in The Food Diary,
+     given that our target users, NUS students would be comfortable using the app via keyboard-reliant interface.
+     
+    * Additionally, we matched the colour scheme of The Food Diary to subtly reflect the colours of NUS and make 
+    The Food Diary appealing to the patronage of NUS students.
+    
+    * Entries in the Food Diray featured tags that were based off NUS locations. Given the multitude of eateries dotted
+    around NUS, this would make identifying entries based on NUS locations essential to an NUS student
+    who would have referenced back to previous entries in their usage over the longer term.
+    
+4. Finally, working together to deliver what we set out to do proved hectic at times of immense commitment from the team
+ to other responsibilities in school. Nonetheless, with good planning, open communication and a strong sense of
+ ownership for the effort in the work we have done, we have produced what we believe was usable and useful for the
+ NUS students to patronise and enjoy.
 
 ## **Appendix B: Product scope**
 
@@ -1060,7 +1128,66 @@ to work on.
     already exists, invalid Categories `westen` and Schools `Com`. 
     
 ### Edit an entry
+1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(-ies)`
+   
+    1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line,
+    execute `edit <INDEX> <KEYWORD> ...`. 
     
+    * `INDEX` refers to index of Entry to revise in view.
+    
+    * The following test cases will test different permutations and numbers of `KEYWORD`(s).
+       
+    2. Test case: `edit 1 n/McDonalds`
+    
+       Expected:
+       - First entry has named changed to "McDonalds".
+       - All entries remained shown
+       - Success message displayed informing the user of change.
+
+    3. Test case: `edit 2 ra/0`
+
+       Expected:
+       - Second entry has rating changed to 0. (0/5)
+       - All entries remained shown (with the first entry remaining edited as done previously).
+       - Success message displayed informing the user of change.
+
+    4. Test case: `edit 3 a/50 West Coast Road`
+
+       Expected:
+       - Third entry has address changed to "50 West Coast Road".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+
+    5. Test case: `edit 4 re/I had a great time here.`
+
+        Expected:
+       - Fourth entry has review changed to "I had a great time here".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+
+    6. Test case: `edit 5 p/20`
+
+       Expected:
+       - Fifth entry has price changed to "20". ($20)
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+
+    7. Test case: `edit 1 n/Hwangs ra/4 p/7 a/NUS re/Korean food makes me happy. s/Utown c/Korean`
+
+       Expected:
+       - First entry has name changed to "Hwangs", rating changed to "4" (4/5), price changed to "7" ($7),
+        review changed to "Korean food makes me happy.", school location tags changed to "UTOWN", and 
+        food category changed to "Korean".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+       
+    8. Test case: `edit 1 c/Korean c/Others`
+
+       Expected:
+       - First entry has food category changed to "Korean" and "Others".
+       - All entries remained shown (with all entries updated previously).
+       - Success message displayed informing the user of change.
+  
 ### Clear all entries
 1. Remove all entries from The Food Diary
    
