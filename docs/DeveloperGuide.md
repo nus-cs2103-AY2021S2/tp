@@ -287,6 +287,7 @@ The following sequence diagram shows how the FindAll feature works:
 
 The following activity diagram summarises the events that take place when a user executes the `findall`
 command:
+
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
 #### Design Consideration
@@ -480,7 +481,7 @@ The parsed command will be identified as the exit command.
 
 ## **Appendix A: Challenges Faced**
 
-### Challenges Faced & Rationalez
+### Challenges Faced & Rationales
 
 1. One of the most significant challenges on the creation of The Food Diary was refactoring and redefining classes and
  methods to match the implementation of a Food Diary, and in doing so do away with previous implementations
@@ -886,63 +887,77 @@ to work on.
     1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
 
     2. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
+    
+        Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
     FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.
     
     3. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid rating error will be shown in the result display. Entry will not be added.
+        
+        Expected: Invalid rating error will be shown in the result display. Entry will not be added.
     
     4. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid price error will be shown in the result display. Entry will not be added.
+    
+        Expected: Invalid price error will be shown in the result display. Entry will not be added.
        
     5. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid review error will be shown in the result display. Entry will not be added.
+    
+        Expected: Invalid review error will be shown in the result display. Entry will not be added.<br>
        
     6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid address error will be shown in the result display. Entry will not be added.
+    
+        Expected: Invalid address error will be shown in the result display. Entry will not be added.<br>
 
     7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
-    <br>Expected: A list of valid categories will be shown in the result display. Entry will not be added.
+    
+        Expected: A list of valid categories will be shown in the result display. Entry will not be added.<br>
 
     8. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
-    <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.
+    
+        Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br>
 
     9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)
+    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
 
 ### Add on to an entry
 1. Add on to an entry with the provided details
    
-    1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.
+    1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.<br>
        
     2. Test case: `addon 1 re/I like this food a lot! p/7`
-    <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
+    
+        Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
        out of the initial price range dispalyed in the entry). Specified Entry will be updated with the addon on fields.
        
     3. Test case: `addon 1`
-    <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
+    
+        Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
        
     4. Test case: `addon 1 re/`
-    <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.
+    
+        Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.
        
     5. Test case: `addon 1 re/Good Food p/1000`
-    <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
+    
+        Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
        
     6. Other incorrect `addon` commands to try: `addon 10000000000 re/Good Food` (invalid index)
     
 ### Delete an Entry
 1. Delete a booking specified by booking ID.
-   
-    1. Prerequisite: `list` all entries to find out the name of the entry to delete
 
+    1. Prerequisite: `list` all entries to find out the name of the entry to delete<br>
+       
     2. Test case: `delete 1`
-    <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
-   
+    
+        Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
+    
     3. Test case: `delete x` (where x is non-existent booking ID)
-    <br>Expected: Error of invalid entry shown in result display. No entry is deleted.
+       
+        Expected: Error of invalid entry shown in result display. No entry is deleted.
 
     4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
-    <br>Expected: Invalid command format error. No entry is deleted.
+    
+        Expected: Invalid command format error. No entry is deleted.
    
     
 ### Find entries

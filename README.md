@@ -1,4 +1,5 @@
-[![Java CI](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml)
+[![Java CI](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2021S2-CS2103-T14-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103-T14-2/tp)
 
 <div align="center">
     <img alt="Logo" src="docs/images/Logo.png">
