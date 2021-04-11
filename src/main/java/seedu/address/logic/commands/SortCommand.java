@@ -30,7 +30,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort students according to specified sorting criteria ie name, school, subject, lesson."
-            + "The first valid sorting criteria listed will be the sorting criteria used. \n "
+            + "The last valid sorting criteria listed will be the sorting criteria used. \n "
             + "Parameters: "
             + "[" + PREFIX_NAME + "] "
             + "OR [" + PREFIX_SCHOOL + "] "
