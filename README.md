@@ -30,13 +30,12 @@ vaccination appointments of students.
 
 #### v1.2
 
-1. On top of the fields already available in AB3, the user will be able to input the following:
+1. On top of the fields already available in AB3, excluding the `tag` feature, the user will be able to input the following:
     * Student's matriculation number
     * Vaccination status
     * Faculty
     * Residence on campus (if applicable)
     * Medical history
-1. The `tag` field inherited from AB3 will be removed. 
 1. A `filter` function that will allow the user to display a specific group of students, by 
    vaccination status, faculty or school residence. 
 1. Modify the `find` and `delete` commands to identify students by matriculation number.
@@ -49,7 +48,7 @@ vaccination appointments of students.
    the entire NUS. 
 1. Edit the details of existing vaccination appointments
 1. Delete existing vaccination appointments
-1. View the number of vaccination appointments in the past 6 days and in the next 6 days. 
+1. View the number of vaccination appointments in the past week and in the next week. 
 
 #### v1.4
 
