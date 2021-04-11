@@ -555,7 +555,7 @@ Action | Format, Examples
 **Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cc/96011846`
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/21-07-2021 t/1500`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
-**List all property and appointment** | `list all`
+**List all properties and appointments** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
 **Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
