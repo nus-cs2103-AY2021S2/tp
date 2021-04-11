@@ -260,13 +260,13 @@ The above mentioned Parser class inherits the `#parse` method from the Parser in
 
 Subsequently, the created `ClearAssigneeCommand` object contains an `#execute` method which is responsible for
 clearing all assignees of the Task, with respect to its index. This is achieved by creating a new 
-`Task` object with the same fields and values as before but with the `assignees` field set to be a new empty HashSet. 
+`Task` object with the same fields and values as before but with the assignees field set to be a new empty HashSet. 
 
 Below is the usage scenario of how the clear all assignees of a Task mechanism behaves.
 
 Assumptions:
 1. User has already launched the app
-2. HEY MATEz application has an existing task with an **assignee**
+2. HEY MATEz application has an existing task with **assignees**
 
 Step 1. User executes the `clearAssignees 1` command to clear all the assignees of the task at index 1 in the task list of 
 HEY MATEz. A ` ClearAssigneesCommandParser` object is created and it calls `ClearAssigneesCommandParser#parse` on the arguments.
@@ -275,8 +275,8 @@ Step 2. The `ClearAssigneesCommandParser#parse` method will check on the validit
 If it is valid, it will create a new `ClearAssigneesCommand` instance by calling the constructor of `ClearAssigneesCommand`.
 
 Step 3. The `ClearAssigneesCommand#execute` method is then called by the `LogicManager`. The task with the same `Index` 
-is retrieved and a copy of the task is created with the same attribute values but with the `assignees` field  
-updated to be a new empty HashSet. The copy of the task with the updated `assignees` field replaces the old task in the `Model`.
+is retrieved and a copy of the task is created with the same attribute values but with the assignees field updated to be a 
+new empty HashSet. The copy of the task with the updated assignees field replaces the old task in the `Model`.
 
 Step 4. Once the execution is completed, the message `MESSAGE_CLEARED_ASSIGNEES_SUCCESS` is used to return a new Command Result
 with the attached message.
