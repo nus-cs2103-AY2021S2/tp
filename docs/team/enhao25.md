@@ -46,7 +46,7 @@ the fields taken to be representative of a student class instead.
     * Non-trivial testing PR includes: [PR #128](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/128), [PR #165](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/165), [PR #271](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/271)
 * Documentation:
   * User Guide:
-    * Added explanation for the `FEE` command [PR #85](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/85) and [PR #254](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/254), [PR #255](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/255).
+    * Added explanation for the `Fee` command [PR #85](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/85), [PR #254](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/254) and [PR #255](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/255).
     * Added help and clear command explanation [PR #120](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/120).
     * Added tips for overlapping session and `find_student` command [PR #120](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/120).
     * Updated `find_student` description [PR #70](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/70/files).
