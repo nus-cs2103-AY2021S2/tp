@@ -112,6 +112,25 @@ The following sequence diagram shows how the AddOn feature works:
 The following activity diagram summaries the flow of event when a user executes the addon command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
+###List Feature
+The List feature allows a user to list all entries that they have keyed in thus far. This will be useful when a user
+wants an overview of all the entry he/she has keyed in previously.
+
+Given below is an example usage scenario:
+
+Step 1. The user is in the Food Diary application. 
+
+Step 2. The user executes list. The Food Diary application lists all the entries in the user's database. 
+Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `TagCategory` and `TagSchool`.
+
+This feature was brought over to The Food Diary from AB3. 
+There were not much changes apart from modifying it to list
+entries instead. Similiar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()`
+will be called to parse the user input in `FoodDiaryParser#parseCommand()`. 
+The parsed command will be identified
+as a list command.
+
+
 ### FindAll Feature
 #### Implementation
 The FindAll feature allows a user to find entries that match all the keywords provided by the user.
@@ -188,7 +207,6 @@ The following activity diagram summarizes what happens when a user executes the 
 ![View Activity Diagram](images/ViewActivityDiagram.png)
 
 #### Design Consideration
-
 ##### Aspect: Whether to view entry with lengthy reviews in the Main UI or in a new window.
 * **Alternative 1 (current choice):** View entry with lengthy reviews in a new window.
     * Pros: Easier to implement, do not need to deal with complex UI codes. Entry information looks neater.
@@ -196,6 +214,21 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative 2:** View entry with lengthy reviews in the Main UI.
     * Pros: Design is integrated within Main UI, which gives it a cleaner look.
     * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
+
+
+### Exit Feature
+The Exit feature allows a user to close the application.
+
+Given below is an example usage scenario:
+
+Step 1. The user is the midst of using The Food Diary application. The user has finished using the application.
+
+Step 2. The user executes `exit` and closes the application.
+
+This feature was brought over to The Food Diary from AB3. 
+There were no changes. Similiar to other commands,MainWindow#executeCommand() runs and Logic#execute()
+will be called to parse the user input in FoodDiaryParser#parseCommand().
+The parsed command will be identified as the exit command.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -490,6 +523,66 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers
 to work on.
 </div>
+
+### Launch and shtudown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample bookings. The window size may not be optimum.
+
+2. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    2. Re-launch the app by double-clicking the jar file.
+        Expected: The most recent window size and location is retained.
+
+###Revise an Entry
+1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(s)`
+    1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line, execute `Revise <Index>`. 
+                    `Index` refers to index of Entry to revise in view.
+       
+    2. Test case: Under Name, change name to `McDonalds`. Click `Revise` button. 
+    
+        Expected: Name of entry to be changed to `McDonalds`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+       
+    3. Test case: Under Rating, change rating to `2`. Click `Revise` button.
+
+        Expected: Rating of entry changes to 2/5, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+       
+    4. Test case: Under Price, change to `5`. Click `Revise` button.
+
+       Expected: Price of entry to be changed to `5`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+
+    5. Test case: Under Address, change to `Computing Drive`. Click `Revise` button.
+    
+       Expected: Address of entry to be changed to `Computing Drive`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+       
+    6. Test case: Under Categories, add `western`. Click `Revise` button.
+    
+       Expected: Categories of entry to add `Western`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+
+   7. Test case: Under Categories, add to `soc`. Click `Revise` button.
+
+       Expected: Categories of entry to add `SOC`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+      
+    8. Other valid test cases to try: Combine any of the above testcases before pressing `Revise`. All changes should be
+    accounted for.
+       
+    9. Other invalid test cases to try: Use non-alphanumeric names, change name and address to be the same as an Entry that 
+    already exists, invalid Categories `westen` and Schools `Com`. 
+       
+       
+        
+    
 
 ## UI Mockup
 
