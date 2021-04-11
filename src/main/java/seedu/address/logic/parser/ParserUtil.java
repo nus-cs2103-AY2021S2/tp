@@ -64,7 +64,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ContactName.isValidName(trimmedName)) {
-            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(" given: %s\n%s", trimmedName, ContactName.MESSAGE_CONSTRAINTS));
         }
         return new ContactName(trimmedName);
     }
@@ -157,7 +157,7 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException("Tags names should be alphanumeric");
+            throw new ParseException(String.format("Tag given: %s\n%s", trimmedTag, Tag.MESSAGE_CONSTRAINTS));
         }
         return new Tag(trimmedTag);
     }

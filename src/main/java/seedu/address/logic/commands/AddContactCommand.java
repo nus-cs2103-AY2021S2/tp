@@ -15,7 +15,7 @@ import seedu.address.model.contact.Contact;
  */
 public class AddContactCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "cadd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to Teaching Assistant. "
             + "Parameters: "
