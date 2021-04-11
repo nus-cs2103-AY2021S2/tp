@@ -9,7 +9,7 @@ if () then ([valid indices])
 if () then ([valid dress code and types])
     :Display all garments
         that match the
-    specified garment(s);
+      specified garment;
 
 else ([else])
     :   Output invalid dress
