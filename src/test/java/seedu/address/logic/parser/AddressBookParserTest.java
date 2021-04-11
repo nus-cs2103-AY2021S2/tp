@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAlias;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;

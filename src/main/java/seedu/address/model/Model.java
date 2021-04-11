@@ -88,41 +88,41 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns the map aliases */
-    ReadOnlyUniqueAliasMap getAliases();
+    /** Returns the alias map */
+    ReadOnlyUniqueAliasMap getAliasMap();
 
     /**
      * Adds the given command alias.
-     * {@code commandAlias} must not already exist in the aliases.
+     * {@code commandAlias} must not already exist in the alias map.
      */
     void addAlias(CommandAlias commandAlias);
 
     /**
      * Deletes the given alias.
-     * The alias must exist in the aliases.
+     * The alias must exist in the alias map.
      */
     void deleteAlias(Alias alias);
 
     /**
-     * Returns true if an alias with the same identity as {@code alias} exists in the aliases.
+     * Returns true if an alias with the same identity as {@code alias} exists in the alias map.
      */
     boolean hasAlias(Alias alias);
 
     /**
-     * Returns true if a command alias with the same identity as {@code commandAlias} exists in the aliases.
+     * Returns true if a command alias with the same identity as {@code commandAlias} exists in the alias map.
      */
     boolean hasCommandAlias(CommandAlias commandAlias);
 
     /**
-     * Returns command alias of the alias in aliases.
+     * Returns command alias of the alias in alias map.
      * If alias is not found, null is returned.
      */
     CommandAlias getCommandAlias(Alias alias);
 
     /**
-     * Returns the number of aliases.
+     * Returns the number of command aliases.
      */
-    int getNumOfAlias();
+    int getNumOfCommandAlias();
 
     /**
      * Updates display filter that determines PersonCard control visibility.
@@ -161,7 +161,7 @@ public interface Model {
     Predicate<Person> getSelectedPersonPredicate();
 
     /**
-     * Returns aliases in an ObservableList of String.
+     * Returns a list of command aliases in String.
      */
-    ObservableList<String> getObservableStringAliases();
+    List<String> getCommandAliasesStringList();
 }
