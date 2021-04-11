@@ -104,7 +104,7 @@ Adds a contact into Teaching Assistant.
 Format: `cadd n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A entry's name can be tagged to a contact to easily filter for contacts related an entry.
+An entry's name can be tagged to a contact to easily filter for contacts related an entry.
 </div>
 
 Example(s):
