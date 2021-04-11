@@ -21,7 +21,6 @@ public class EditModeCommand extends Command {
         + "type in `save` to save the edited content and quit edit mode\n"
         + "type in `quit` to quit edit mode without saving";
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

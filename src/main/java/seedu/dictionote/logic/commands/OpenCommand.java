@@ -38,8 +38,6 @@ public class OpenCommand extends Command {
         + "Example: " + COMMAND_WORD + " -c";
 
     public static final String SHOWING_OPEN_MESSAGE = "Panel opened.";
-
-
     private final UiActionOption uiActionOption;
 
     /**
@@ -52,7 +50,6 @@ public class OpenCommand extends Command {
 
         this.uiActionOption = uiActionOption;
     }
-
 
     @Override
     public CommandResult execute(Model model) {

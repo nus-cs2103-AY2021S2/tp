@@ -53,11 +53,9 @@ public class CloseCommand extends Command {
         this.uiActionOption = uiActionOption;
     }
 
-
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_CLOSE_MESSAGE, UiAction.CLOSE, uiActionOption);
-
     }
 
     @Override

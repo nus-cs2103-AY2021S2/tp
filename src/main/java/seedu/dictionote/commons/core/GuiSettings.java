@@ -48,7 +48,6 @@ public class GuiSettings implements Serializable {
     private final boolean isDictionaryListPanelVisible;
     private final boolean isDictionaryContentPanelVisible;
 
-
     /**
      * Constructs a {@code GuiSettings} with default value.
      */
