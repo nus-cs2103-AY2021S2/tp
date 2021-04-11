@@ -152,7 +152,7 @@ Assumptions:
 2. HEY MATEz application has an existing task whose status is `uncompleted`
 
 Step 1. User executes the `done 1` command to mark the task with index number 1 in the task list of HEY MATEz as `completed`. 
- A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments given.
+ A `DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments given.
 
 Step 2. The `DoneTaskCommandParser#parse` method will check the validity of the argument given for a `DoneTaskCommand`. If it
 is valid, it will create a new `DoneTaskCommand` instance by calling the constructor of `DoneTaskCommand`.
