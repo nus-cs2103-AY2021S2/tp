@@ -411,7 +411,7 @@ Action | Format, Examples
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` <br> e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`
 **List All Data** | `list`
-**Find Student and Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**Find Student And Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **View Help** | `help` 
 **Clear All Data** | `clear` 
 **Exit Program** | `exit`
