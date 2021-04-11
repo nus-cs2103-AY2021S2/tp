@@ -49,14 +49,14 @@ public class TypicalEndpoints {
             .withAddress("https://cat-fact.herokuapp.com/facts")
             .withData("{\"key\": \"value\"}")
             .withTags("tag5", "cat")
-            .withHeaders("\"key: value\"")
+            .withHeaders("\"content: accepted\"")
             .build();
     public static final Endpoint OPTIONS = new EndpointBuilder()
             .withMethod("OPTIONS")
             .withAddress("https://gorest.co.in/public-api/users")
             .withData("{\"key\": \"value\"}")
             .withTags("tag6", "cat")
-            .withHeaders("\"key: value\"")
+            .withHeaders("\"cool: accepted1\"")
             .build();
     public static final Endpoint PATCH = new EndpointBuilder()
             .withMethod("PATCH")
@@ -90,7 +90,7 @@ public class TypicalEndpoints {
     public static final Endpoint GET4 = new EndpointBuilder()
             .withMethod("GET")
             .withAddress("https://reqres.in/api/users/2")
-            .withData("{\"key\": \"value\"}")
+            .withData("{\"newData\": \"uniqueData\"}")
             .withTags("tag8", "human")
             .withHeaders("\"key: value\"")
             .build();
