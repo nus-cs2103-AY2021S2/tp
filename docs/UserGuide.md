@@ -17,7 +17,7 @@ Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficie
 
 ### 1.1 What is PocketEstate?
 
-PocketEstate is a desktop application for property agents to efficiently and effectively manage property data and appointment schedules. With PocketEstate, you can easily organize your property and clientele information, as well as keeping track of your schedules and deadlines.
+PocketEstate is a desktop application for property agents to efficiently and effectively manage property data and appointment schedules. With PocketEstate, you can easily organize your property and clientele information, as well as keep track of your schedules and deadlines.
 
 PocketEstate is also highly optimized for users who can type fast and prefer typing over other means of input, allowing fast completion of most tasks solely via Command Line Interface (CLI).
 
@@ -70,27 +70,27 @@ This user guide uses various formatting styles to facilitate reading and to comm
 </ul>
 {:/}
 
-For a quick reference of the available commands and their syntax, refer to the [Command Summary](#6-command-summary) section.
+For a quick reference of the available commands and their syntax, refer to the [Command Summary](#7-command-summary) section.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. User Interface
 
-### Design
+### 3.1 Design
 
 PocketEstate boasts a minimalist design with alternating steel blue and light blue colours for regular properties/ appointments as its main design scheme. We also feature a grey background for property and appointment listings with an expired deadline to allow users to better focus on current properties/ appointments.
 
 ![uiColorScheme](images/UiColorscheme.png)
 
-### Property Icons
+### 3.2 Property Icons
 
 We also use the following symbols for easier identification of different property types in the app:
 
 Property Types | Symbols
 --------|------------------
-<p align="center"> Hdb | <p align="center"> ![Hdb](images/hdb_16.png)
-<p align="center"> Condo | <p align="center"> ![Condo](images/condo_16.png)
-<p align="center"> Landed | <p align="center"> ![Landed](images/landed_16.png)
+{::nomarkdown}<p align="center">{:/} Hdb | {::nomarkdown}<p align="center">{:/} ![Hdb](images/hdb_16.png)
+{::nomarkdown}<p align="center">{:/} Condo | {::nomarkdown}<p align="center">{:/} ![Condo](images/condo_16.png)
+{::nomarkdown}<p align="center">{:/} Landed | {::nomarkdown}<p align="center">{:/} ![Landed](images/landed_16.png)
 
 ## 4. Commands
 
@@ -102,8 +102,8 @@ Property Types | Symbols
 * Items in square brackets are optional.<br>
   e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` can be used as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br> or as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`.
 
-* Items with `…` after them can be used multiple times, including zero times.<br>
-  e.g. `[OPTION]...` can be used as `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
+* Items with `…` after them can be used multiple times (at least one time).<br>
+  e.g. `[KEYWORD]...` can be used as `george`, `george jacob` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME r/REMARKS`, `r/REMARKS n/NAME` is also acceptable.
@@ -111,7 +111,7 @@ Property Types | Symbols
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/The Mayfair n/Mayfair`, only `n/Mayfair` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -142,18 +142,19 @@ Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE 
 
 Description:
 * Each property has a **unique pair of address and postal code**.
-  * No two properties with the exact same address and postal code can exist in the app at the same time.
+  * No two properties with the exact same pair of address and postal code can exist in the app at the same time.
 * The format for specifying a deadline date is **`DD-MM-YYYY`**.
 * Postal codes should have a **minimum of 5 digits** and a **maximum of 10 digits**.
 * Client's contact number should have a **minimum of 7 digits** and a **maximum of 15 digits**.
 * There can be multiple tags but different tags should be **separated with a comma**. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
+* The property to be added **cannot have a deadline that is already passed**.
 
 Examples:
 * `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
 
 ![Example property added](images/ExampleAddProperty.png)
 
-* `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
+* `add property n/The Estuary t/Condo a/97 Yishun Ave 1 p/769138 d/01-01-2022 r/Owner is up for negotiation of selling price cn/Sam cc/87553781 ce/sam_goh@gmail.com ca/$1,200,000 tags/99 year leasehold, Reservoir view`
 
 #### 4.2.2 Adding an appointment: `add appointment`
 
@@ -163,10 +164,11 @@ Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 
 Description:
 * Each appointment has a **unique pair of date and time**.
-  * No two appointments with the exact same meeting date and time can exist in the app at the same time.
+  * No two appointments with the exact same pair of meeting date and time can exist in the app at the same time.
 * The format for specifying a date is **`DD-MM-YYYY`**.
 * The format for specifying a time is **`HHMM`** (in 24-hour clock).
-   
+* The appointment to be added **cannot have a meeting date and time that is already passed**.
+
 Examples:
 * `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
 
@@ -193,11 +195,14 @@ Description:
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* The edited property **cannot have a deadline that is already passed**.
 
 Examples:
 *  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
 
 ![Example property edited](images/ExampleEditProperty.PNG)
+
+<br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
@@ -215,6 +220,7 @@ Description:
 * Edits the entry at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* The edited appointment **cannot have a meeting date and time that is already passed**.
 
 Examples:
 *  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
@@ -500,13 +506,22 @@ Examples:
 
 Clears all properties and appointments from the app.
 
+Format:
+* `clear all`
+
 #### 4.10.2 Clearing all properties : `clear property`
 
 Clears all properties from the app.
 
+Format:
+* `clear property`
+
 #### 4.10.3 Clearing all appointments : `clear appointment`
 
 Clears all appointments from the app.
+
+Format:
+* `clear appointment`
 
 ## 5. Storage
 
@@ -533,13 +548,9 @@ It is also possible to specify your own property and/or appointment storage data
 
 ![Edit preferences.json file](images/editPreferencesJsonFile.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to <a href="#71-launching-application-via-command-line">Appendix: Launching application via command line</a> for more information.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** For advanced users, it is also possible to specify your own configuration file, which contains your preferred preference file path. Refer to <a href="#81-launching-application-via-command-line">Appendix: Launching application via command line</a> for more information.
 
 </div>
-
-#### 5.4 Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -560,16 +571,20 @@ Action | Format, Examples
 **Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
 **Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cc/96011846`
 **Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/21-07-2021 t/1500`
-**Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
+**Delete property** | `delete property INDEX`<br><br> e.g.,`delete property 7`
+**Delete appointment** | `delete appointment INDEX`<br><br> e.g.,`delete appointment 7`
 **List all properties and appointments** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
 **Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
-**Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
+**Sort property** | `sort property o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g., `sort property o/asc k/price`
+**Sort appointment** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g., `sort appointment o/asc k/datetime`
 **Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] [ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
-**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME] [KEYWORD]` <br> e.g., `find appointment n/bob d/23-12-2021`
-**Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
-**Clear** | `clear property` <br> `clear appointment` <br> `clear all`
+**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME] [KEYWORD]` <br><br> e.g., `find appointment n/bob d/23-12-2021`
+**Find client** | `find client [KEYWORD]...` <br><br> e.g., `find client alice`
+**Clear all properties and appointments** | `clear all`
+**Clear property** | `clear property`
+**Clear appointment** | `clear appointment`
 **Undo** | `undo`
 
 ## 8. Appendix
