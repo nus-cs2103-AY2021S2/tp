@@ -44,11 +44,11 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 ![Main Window UI](images/Ui.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Notes about the User Interface:** On start up of The Food Diary, users are greeted with the main window display.
+**Notes about the User Interface:** 
+
+On start up of The Food Diary, users are greeted with the main window display.
  The main window displays all entries of the in The Food Diary on start up,
  in the order that the entries were added in.
-</div>
 
 ### Main Window
 
@@ -143,32 +143,31 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 ## Features
 
-<div markdown="span" class="alert alert-info">:information_source: 
 **Notes about the Command Format:** 
-* Words in UPPER_CASE are the parameters to be supplied by the user.
+
+Words in UPPER_CASE are the parameters to be supplied by the user.
 e.g. in add n/NAME, NAME is a parameter which can be used as add n/Frontier.
 
 * Items in angle brackets `<...>` are compulsory.
 
 * Items in square brackets `[...]` are optional.
   e.g `<n/NAME> [s/SCHOOL LOCATION]` can be used as `n/Subway t/UTOWN` or as `n/Subway` only.
-
+  
 * Items with `…​` (i.e an ellipsis) after them can be used multiple times including zero times.
   e.g. `[c/CATEGORY] …​` can be used as `c/Fastfood c/Western c/Fastfood`, or 0 times etc.
   e.g. `<KEYWORD> ...` means that there must be one keyword present in the command, and each keyword can take on
   any part of the entry as specified by the command (i.e. price, review etc.). See features for more understanding.
-
+  
 * Parameters can be in any order.
   e.g. if the command specifies `<n/NAME> <p/PRICE>`, then `<p/PRICE> <n/NAME>` is also acceptable.
-
+  
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
   e.g. if you specify `p/5 p/6`, only `p/6` will be taken.
-
+  
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+  
 * `[c/CATEGORY]`needs to be titled-cased, `[s/SCHOOL]` can be lower or upper-cased.
-</div>
 
 
 ### Add a FoodDiary entry: `add`
