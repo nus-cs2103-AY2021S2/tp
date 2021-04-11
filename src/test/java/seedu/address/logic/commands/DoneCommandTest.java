@@ -33,7 +33,7 @@ public class DoneCommandTest {
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_DONE_EVENT_SUCCESS, eventToBeDone);
 
-        ModelManager expectedModel = new ModelManager( new UserPrefs(), new EventBook(model.getEventBook()));
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), new EventBook(model.getEventBook()));
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
