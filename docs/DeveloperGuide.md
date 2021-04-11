@@ -64,6 +64,17 @@ located at the end of the lifeline. However, due to a limitation of PlantUML, an
 the X to the end of the diagram.
 </div>
 
+#### Component colors
+
+Most diagrams (e.g. architecture, class and sequence) in this guide follow a color scheme to show which of the four
+major components something belongs to. Here is the color scheme in the format `COMPONENT`: COLOR.
+* `UI`: Green
+* `Logic`: Blue
+* `Model`: Red
+* `Storage`: Yellow
+
+The four components are formally introduced below in the [design section below](#design).
+
 #### How to create and edit
 
 This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
@@ -86,6 +97,7 @@ of each component.
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -100,16 +112,23 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its Application Programming Interface (API) in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Diagram note:** <br>
+
+`XYZCommand` and `XYZCommandParser` are placeholder classes. See the diagram notes in the 
+[Logic component section](#logic-component) for more information.
+</div>
+
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `rdel 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -119,67 +138,122 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+**Diagram Notes** :
+* `XYZListPanel` is a placeholder for a concrete `ListPanel`. Currently `Resident`, `Room`, and `Issue` each have a `ListPanel` class. Similarly for `XYZCard`.
+
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListPanel`s, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
+* Delegates command history selection to the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
+**Diagram Notes** :
+* `XYZCommand` is a placeholder for a concrete command such as `AddResidentCommand`, `ExitCommand`, etc. There are many
+  commands (each with its own class), so for a placeholder has been used for simplicity. Likewise, `XYZCommandParser` is
+  a placeholder for a concrete command parser.
+* Some (but not all) command parsers make use of utility parser classes such as `CliSyntax`, `ParserUtil`,
+  `ArgumentMultimap`, `ArgumentTokenizer` and `Prefix`. These classes are not necessary for a high-level understanding
+  of the logic component, so they have been omitted from the diagram above for brevity.
+
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `LogicManager` uses the `AddressBookParser` to parse the user command. 
+1. `LogicManager` may consult the `AliasMapping` in the `Model` (not shown in the diagram above) in case the user
+   uses an alias. How an alias is executed is detailed [here](#alias-execution).
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution may affect the `Model` (e.g. adding a resident or closing an issue).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object may also instruct the `Ui` to perform certain actions, such as displaying
+   help to the user.
+1. `CommandHistorySelector` is responsible for the logic of navigating command history. Its implementation is detailed
+   [here](#navigate-history).
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+#### Command parsing and execution
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+The `Logic` component handles the parsing and execution of commands, and most of them follow the same flow, differing
+only by the specific command parser class, command class and interaction with the model. The example Sequence Diagram
+below shows the parsing and execution process for the `execute("idel 1")` API call.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `idel 1` Command](images/DeleteSequenceDiagram.png)
+
+**Diagram Notes** :
+* To improve readability, some class names have been shortened in the diagram:
+    * `DeleteIssueCmdParser` represents the class `DeleteIssueCommandParser`
+    * `DeleteIssueCmd` represents the class `DeleteIssueCommand`
+    * `CmdResult` represents the class `CommandResult`
+* `delete first issue` is not an actual method; rather it is a simplification of the two-step process of getting the
+  issue to delete then deleting it. These command-specific details are not the focus of this diagram, and have thus been
+  abbreviated.
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+**Diagram Notes** :
+* We omit specific details of models `Resident`, `Room`, `ResidentRoom`, `Issue`, `CommandHistory` and `Alias` as they are explained
+in greater detail in their specific sections.
+
+* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the 
+  lower level sub-packages are shown in separate zoomed-in diagrams.
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `CommandHistory` object that represents all previous commands entered by the user.
+* stores an `AliasMapping` object that represents the mapping of aliases to actual commands.
+* stores the SunRez data in a `StatefulAddressBook`.
+    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.  
+* exposes the following unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
+    * `ObservableList<Resident>`
+    * `ObservableList<Room>`
+    * `ObservableList<Issue>`
+* does not depend on any of the other three components (`Storage`, `Logic`, `UI`).
+
+The section below zooms in a **little bit** on how the `ModelManager` and `AddressBook`/`StatefulAddressBook` interact with the lower level sub-packages.
+Finer details than what is shown in the section below can be seen under the implementation section of each of the models.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+#### Zoomed-in view of Room, Resident and ResidentRoom 
+![Zoomed in view of Room, Resident and ResidentRoom](images/high-level-models/ResidentRoomZoomIn.png)
 
-</div>
+#### Zoomed-in view of Issue 
+![Zoomed in view of Issue](images/high-level-models/IssueZoomIn.png)
+
+#### Zoomed-in view of CommandHistory 
+![Zoomed in view of CommandHistory](images/high-level-models/CommandHistoryZoomIn.png)
+
+#### Zoomed-in view of Alias 
+![Zoomed in view of Alias](images/high-level-models/AliasZoomIn.png)
 
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
+**Diagram Notes**:
+* `Storage` inherits from `CommandHistoryStorage`, `UserPrefsStorage` and `AddressBookStorage`. However, this interface inheritance is omitted for brevity.
+
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the SunRez data in json format and read it back.
+* can save the command history data in plain text format and read it back.
 
 ### Common classes
 
@@ -345,7 +419,7 @@ The Issue class consists of 5 fields, each of which contain their own methods to
 
 Examples of verification functions in each of the fields include `Category#isValidCategory()`, `Status#isValidStatus()`, etc.
 
-![The Issue Class](images/Issue/IssueClass.png)
+![The Issue Class](images/issue/IssueClass.png)
 
 The `Issue` objects are stored in an `IssueList` which is held by `AddressBook`.
 
