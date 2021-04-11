@@ -234,7 +234,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a residence by name            | review details of specific residences without having to go through the entire list |
 | `* *`    | new user                                   | clear all sample residences         | begin using Residence Tracker with my own data quickly
 | `* *`    | user                                       | edit a residence                    | change the information of a residence when necessary           |
-|`* *`     | user                                       | exit the application                | use my computer for other stuff
+|`* *`     | user                                       | exit the application                | use my computer for other matters
 |`* *`     | user                                       | go through a tutorial guide         | quickly learn the usage of the application 
 |`* *`     | user                                       | add a new booking of a residence    | keep track of all booking information of my residences
 |`* *`     | user                                       | edit a new booking of a residence   | change the information of booking when necessary
