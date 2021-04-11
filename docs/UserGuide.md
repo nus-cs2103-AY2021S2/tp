@@ -163,6 +163,7 @@ Prefix: `n/`
 ##### `ORDER_DESCRIPTION`
 The order description of the order.<br>
 Prefix: `o/`
+* It can contain alphabetical and space characters.
 * Each order description cannot be longer than 70 characters.
 * It cannot be empty.<br>
   E.g. `Durian Cake`, `Blackforest Cake`
