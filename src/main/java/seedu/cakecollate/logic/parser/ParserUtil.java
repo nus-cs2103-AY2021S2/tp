@@ -268,13 +268,8 @@ public class ParserUtil {
         if (formattedOrderItemDescription.length() > ORDER_DESCRIPTION_LENGTH) {
             throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
         }
-        if (!Type.isValidType(trimmedOrderItemDescription)) {
-            throw new ParseException(String.format(Type.SHARED_CONSTRAINTS_MESSAGE, "Order description")
-                            );
         if (!Type.isValidType(formattedOrderItemDescription)) {
-            throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderItemCommand.MESSAGE_USAGE));
-
+            throw new ParseException(String.format(Type.SHARED_CONSTRAINTS_MESSAGE, "Order description"));
         }
         return new OrderItem(new Type(formattedOrderItemDescription));
     }
