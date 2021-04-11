@@ -203,38 +203,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | add patient's contact.                    | have a separate place to store patient-specific information            
-|
-| `* * *`  | user                                       | delete patient's contact                  | remove unwanted patients                                               
-|
-| `* * *`  | user                                       | view all my patients                      | view a list of all my patients                                        
-|
-| `* * *`  | user                                       | find a patient by name                    | locate details of patients without having to go through the entire list
-|
-| `* * *`  | user                                       | list out all my patients                  | see when is their scheduled appointments
-|
-| `* * *`  | user                                       | edit my patient's information             | update it as it changes and fix mistakes i make
-|
-| `* * *`  | user                                       | add appointments to a patient             | know when is my next appointment with the specific patient
-|                    
-| `* * *`  | user                                       | list appointments of patients             | view all the relevant informations like date and time
-|
-| `* *`    | user                                       | view all my upcoming appointments         | know when is my next appointment 
-|
-| `* *`    | user                                       | create a medical record for a patient     | organise my information in sections
-|
-| `* *`    | user                                       | view the medical records created          | refer to the information i previously keyed in
-|
-| `* * `   | user                                       | archive a patient's contact information   | reduce clutter in main list
-|
-| `* *`    | user                                       | unarchive a patient's contact information | reduce clutter in archive list
-|
-| `* `     | user                                       | clear the patients in DocBob              | reduce clutter
-|
-| `*`      | user                                       | exit the app                              | use my computer for other stuff
-|
-| `* **`    | user                                       | see all the commands available | know what commands to use                
-|
+| `* * *`  | user                                       | add patient's contact.         | have a separate place to store patient-specific information            |
+| `* * *`  | user                                       | delete patient's contact       | remove unwanted patients                                               |
+| `* * *`  | user                                       | view all my patients           | view a list of all my patients                                        |
+| `* * *`  | user                                       | find a patient by name         | locate details of patients without having to go through the entire list|
+| `* * *`  | user                                       | list out all my patients       | see when is their scheduled appointments|
+| `* * *`  | user                                       | edit my patient's information  | update it as it changes and fix mistakes i make|
+| `* * *`  | user                                       | add appointments to a patient  | know when is my next appointment with the specific patient|                    
+| `* * *`  | user                                       | list appointments of patients  | view all the relevant informations like date and time|
+| `* *`    | user                                       | view all my upcoming appointments | know when is my next appointment |
+| `* *`    | user                                       | create a medical record for a patient | organise my information in sections|
+| `* *`    | user                                       | view the medical records created | refer to the information i previously keyed in|
+| `* * `   | user                                       | archive a patient's contact information | reduce clutter in main list|
+| `* *`    | user                                       | unarchive a patient's contact information | reduce clutter in archive list|
+| `* `     | user                                       | clear the patients in DocBob    | reduce clutter|
+| `*`      | user                                       | exit the app                    | use my computer for other stuff|
+| `* **`    | user                                       | see all the commands available | know what commands to use                |
 
 
 
