@@ -31,6 +31,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
+        * Committed initial UG in markdown
         * Standardize command format and described usage
     * Developer Guide:
         * Included general outline of team contributions for Week 10 task
@@ -42,6 +43,6 @@ Given below are my contributions to the project.
 
 * **Review/mentoring contributions**:
     * As team lead, ensured project was running smoothly across milestones
-    * Reviewed PRs and advised teammates on how we should structure our code
+    * Reviewed PRs and advised teammates on code structure
     * Ensured consistency of processes and UG / DG
     
