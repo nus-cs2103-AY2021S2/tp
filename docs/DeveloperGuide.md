@@ -219,7 +219,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | list out patients archived     | see patients in the archived list
 | `* `     | user                                       | clear the patients in DocBob    | reduce clutter|
 | `*`      | user                                       | exit the app                    | use my computer for other stuff|
-| `* **`   | user                                       | see all the commands available | know what commands to use                |
+| `***`   | user                                        | see all the commands available | know what commands to use                |
 
 
 
