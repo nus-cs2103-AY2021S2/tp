@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.logic.parser.YearMonthParser;
 
 /**
@@ -121,10 +122,34 @@ public class FinancialRecord {
      */
     public static Date getValidTimeStamp(String dateStr) {
         try {
+            if (!isValidTimestamp(dateStr)) {
+                return null;
+            }
             return formatter.parse(dateStr);
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    /**
+     * Returns true if both financial records have the same identity and data fields.
+     * This defines a stronger notion of equality between two financial records.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof FinancialRecord)) {
+            return false;
+        }
+
+        FinancialRecord otherFinancialRecord = (FinancialRecord) other;
+        return otherFinancialRecord.getDescription().equals(getDescription())
+            && otherFinancialRecord.getAmount().equals(getAmount())
+            && otherFinancialRecord.getTimestamp().equals(getTimestamp())
+            && otherFinancialRecord.getCategories().equals(getCategories());
     }
 
     @Override
