@@ -31,8 +31,8 @@ public class SortCommand extends Command {
             "Sorted all clients by number of insurance policy in descending order.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of clients by "
-            + "the specified attribute in the order of the specified direction.\n"
-            + "Parameters: -ATTRIBUTE (n for name or i for number of insurance policies) -DIRECTION (asc or des)\n"
+            + "the attribute of the specified identifier in the order of the specified direction.\n"
+            + "Parameters: -IDENTIFIER (n for name or i for number of insurance policies) -DIRECTION (asc or des)\n"
             + "Example: " + COMMAND_WORD + " -n -asc";
 
     private final String attribute;

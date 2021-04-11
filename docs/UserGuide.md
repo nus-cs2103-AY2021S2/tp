@@ -372,6 +372,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 * It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use `>` to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
+* Meetings of a client cannot be added with this command.
 
 **Examples**:
 * Example of a client with insurance policy but no URL associated with insurance policy
@@ -397,6 +398,7 @@ A person can have any number of tags and insurance policies (including 0).
     * `INDEX` refers to the index number shown in the displayed client list.
     * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
+* Meetings of a client cannot be modified with this command.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -484,20 +486,20 @@ If a parameter is expected only once in the command, but you specified it multip
 * There will be a check for clashes between meetings when adding a new meeting.
 
 **Examples**:
-* Add a meeting and there are no clashes.
+* Add a meeting for a specific client and there are no clashes.
     * `meet 5 -add 20.05.2021 15:00 16:00 MRT`
       
       ![meet-clash](images/meet-add.png)
 <br><br>
-* Add a meeting but there are clashes.
+* Add a meeting for a specific client but there are clashes.
     * `meet 3 20.02.2021 12:00 15:00 KENT RIDGE MRT`
       
       ![meet-clash](images/meet-clash.png)
 <br><br>
-* Delete a meeting.
+* Delete a meeting of a specific client.
     * `meet 4 -delete 23.08.2021 09:00 12:00 CLEMENTI MRT`
 <br><br>
-* Clear all meetings.
+* Clear all meetings of a specific client.
     * `meet 1 -clear`
 
 [Return to Table of Contents](#table-of-contents)
