@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.model.score.Score;
 
+/**
+ * Panel containing the list of flashcards.
+ */
 public class ScoreHistoryListPanel extends UiPart<Region> {
     private static final String FXML = "ScoreHistoryListPanel.fxml"; // placeholder, todo: beautify UI design
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);

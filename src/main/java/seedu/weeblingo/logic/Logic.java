@@ -25,6 +25,7 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    /** Gets the ReadOnlyFlashcardBook object generated that is associated with the current Logic object. */
     ReadOnlyFlashcardBook getFlashcardBook();
 
     /** Returns an unmodifiable view of the filtered list of flashcards */
@@ -48,12 +49,12 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Set the user prefs' GUI settings.
+     * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     *
+     * Gets the Model object associated with the Logic object.
      */
     Model getModel();
 
@@ -63,14 +64,17 @@ public interface Logic {
     int getCurrentMode();
 
     /**
-     * True if flashcards should be shown.
+     * Returns true if flashcards should be shown.
      */
     boolean isPanelVisible();
 
     /**
-     * True if answer to flashcards should be shown.
+     * Returns true if answer to flashcards should be shown.
      */
     boolean isAnswerVisible();
 
+    /**
+     * Returns true if the user is viewing history mode.
+     */
     boolean isShowingHistory();
 }

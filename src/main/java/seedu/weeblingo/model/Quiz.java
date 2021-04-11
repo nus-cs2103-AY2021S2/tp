@@ -157,7 +157,7 @@ public class Quiz {
     public String getQuizSessionDuration() {
         Instant endTime = Instant.now();
         Duration duration = Duration.between(startTime, endTime);
-        String result = String.format("%d:%02d:%02d",
+        String result = String.format("%02d:%02d:%02d",
                 duration.toHours(),
                 duration.toMinutesPart(),
                 duration.toSecondsPart());

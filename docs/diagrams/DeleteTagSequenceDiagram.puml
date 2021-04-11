@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WeeblingoParser" as WeeblingoParser LOGIC_COLOR
+participant ":DeleteTagCommandParser" as DeleteTagCommandParser LOGIC_COLOR
+participant ":DeleteTagCommand" as DeleteTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deleteTag 1")
+activate LogicManager
+
+LogicManager -> WeeblingoParser : parseCommand("deleteTag 1")
+activate WeeblingoParser
+
+create DeleteTagCommandParser
+WeeblingoParser -> DeleteTagCommandParser :
+activate DeleteTagCommandParser
+
+DeleteTagCommandParser --> WeeblingoParser :
+deactivate DeleteTagCommandParser
+
+WeeblingoParser --> DeleteTagCommandParser : parse("1")
+activate DeleteTagCommandParser
+
+create DeleteTagCommand
+DeleteTagCommandParser -> DeleteTagCommand :
+activate DeleteTagCommand
+
+DeleteTagCommand --> DeleteTagCommandParser :
+deactivate DeleteTagCommand
+
+DeleteTagCommandParser --> WeeblingoParser :
+deactivate DeleteTagCommandParser
+
+DeleteTagCommandParser -[hidden]-> WeeblingoParser
+destroy DeleteTagCommandParser
+
+WeeblingoParser --> LogicManager : l
+deactivate WeeblingoParser
+
+LogicManager -> DeleteTagCommand : execute(model)
+activate DeleteTagCommand
+
+DeleteTagCommand -> Model : model.setFlashcard(\nflashcardToDeleteTags, flashcardWithDeletedTags);
+activate Model
+
+Model --> DeleteTagCommand
+deactivate Model
+
+create CommandResult
+DeleteTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteTagCommand
+deactivate CommandResult
+
+DeleteTagCommand --> LogicManager : result
+deactivate DeleteTagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
