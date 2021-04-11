@@ -3,6 +3,7 @@ layout: page
 title: User Guide
 ---
 
+
 App-Ointment is a **desktop app for managing and scheduling patient appointments, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). If you can type fast, App-Ointment can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -53,11 +54,14 @@ App-Ointment is a **desktop app for managing and scheduling patient appointments
 * Parameters with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters with prefixes (e.g. `/n`, `/p`, `/t`) can be in any order.<br>
+* Parameters with prefixes (e.g. `n/`, `p/`, `t/`) can be in any order.<br>
   e.g. if the command format specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, and you specified it multiple times instead, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Where a parameter is not expected in the command, and you specified it, it will either be ignored, or included as part of the previous parameter.<br>
+  e.g. if you specify `n/Doctor Who p/12341234` in `add-doctor` where the phone parameter is not expected, the app will interpret it as adding a doctor with name `Doctor Who p/12341234`, which is not allowed.
 
 * Extraneous parameters for commands that do not take in parameters (such as `clear-appt`, `clear-doctor`, `clear-patient`, `exit`, `help`, `list-appt`, `list-doctor` and `list-patient`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -84,8 +88,15 @@ Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
 It is recommended that tags not be too long to avoid this.<br>
+</div>
 
-</div><br>
+* Emails without Top Level Domains(TLDs) eg. `a@b` without `.com` are valid emails, and will be regarded as such in the app.
+
+* Phone numbers must contain only numbers, and should be at least 3 digits long. It has no maximum length. 
+
+* Tags must be alphanumeric, i.e. no spaces. the same applies for all other commands which use Tags.
+
+<br>
 
 Examples:
 * `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -127,6 +138,7 @@ Format: `edit-patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * When editing tags, the existing tags of the patient will be removed i.e. adding of tags is not cumulative.<br>
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.<br>
 * Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
+* An `edit-patient` command that results in the patient having the same details as the original will still result in a success.
 
 Examples:
 * `edit 1 p/91234567 e/newEmail@example.com` Edits the phone umber and email address of the 1st patient to `91234567` and `newEmail@example.com` respectively.
@@ -215,6 +227,7 @@ Format: `edit-doctor INDEX [n/NAME] [t/TAG]…​`
 * When editing tags, the existing tags of the doctor will be removed i.e. adding of tags is not cumulative.<br>
 * You can remove all the doctor’s tags by typing `t/` without specifying any tags after it.<br>
 * Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
+* An `edit-doctor` command that results in the doctor having the same details as the original will still result in a success.
 
 Examples:
 * `edit-doctor 1 n/Dr Amy` Edits the 1st doctor's name to Dr Amy.
@@ -252,7 +265,7 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLO
 
 * The `PATIENT_INDEX` and `DOCTOR_INDEX` must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
-* The `TIMESLOT_START` and `TIMESLOT_END` must be either in a recognisable datetime format or prefixed with keyword `NEXT` followed by a datetime unit (DAY, MONTH, YEAR) or weekday (MONDAY, TUESDAY …​)<br>
+* The `TIMESLOT_START` and `TIMESLOT_END` must be either in an [acceptable datetime format](#Acceptable DateTime Formats) or prefixed with keyword `NEXT` followed by a datetime unit (DAY, MONTH, YEAR) or weekday (MONDAY, TUESDAY …​)<br>
 
 * Where both fields `TIMESLOT_END` and `TIMESLOT_DURATION` are provided, priority is granted to `TIMESLOT_END`.<br>
 
@@ -316,6 +329,8 @@ Format: `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TI
 
 * Raises an exception if there are conflicts in the new appointment with the existing appointments.<br>
 
+* An `edit-appt` command that results in the appointment having the same details as the original will still result in a success.
+
 * The starting time of an appointment can be updated by command `edit-appt INDEX at/` <br>
   
 * The duration of an appointment can be updated by command `edit-appt INDEX dur/` <br>
@@ -334,24 +349,27 @@ Examples:
 ### Locating appointments by fields : `find-appt`
 Find appointments with details that contain any of the given keywords. <br>
 
-Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
+Format: `find-appt [pt/PATIENT_NAME] [MORE_KEYWORDS] [dr/DOCTOR_NAME] [MORE_KEYWORDS] [at/TIMESLOT_START] [MORE_KEYWORDS] [t/TAG] [MORE_KEYWORDS]`
 
 * At least one of the optional fields must be provided.<br>
 
-* The search is case-insensitive. e.g. `n/alex` will match `n/Alex`<br>
+* The search is case-insensitive. e.g `pt/alex` will match `pt/Alex`<br>
 
-* Only full words will be matched. e.g. `n/freddi` will not match `n/freddie`<br>
+* Only full words will be matched. e.g. `pt/freddi` will not match `pt/freddie`<br>
 
-* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find n/Alex Edward` will match both appointments with patients `Alex Karev` and `Edward Hyde`.
+* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find-appt pt/Alex Edward` will match both appointments with patients `Alex Karev` and `Edward Hyde`.
 
-* Certain fields such as datetime, phone number and email do not support a search by keywords and require a match with the entire field description for the search condition to be satisfied.
-
-* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' sub-conditions. e.g. `find n/Alex Edward dr/Jekyll` will match appointments that satisfy both:
+* Where `at/TIMESLOT_START` field is specified, the search is conditioned on the satisfaction of either or both the date and time elements. e.g.:
+  * `find-appt at/05-08-2021 12:00pm` will match appointments that satisfy both the date and time elements.
+  * `find-appt at/12:00pm` will match all appointments that occur at time `12:00pm`
+  * `find-appt at/05-08-2021` will match all appointments that occur on date `05-08-2021`
+* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find-appt n/Alex Edward Bo dr/Jekyll` will match appointments that satisfy both:
   - Jekyll in the assigned doctor's name; and
   - Either Alex or Edward in the patient's name.
 
 Examples:
-* `find-appt n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
+* `find-appt pt/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
+
 * `find-appt dr/Grey Who t/BrainSurgery` returns appointments with doctors `grey` or `who` and are tagged as `BrainSurgery`.
 
 
@@ -376,6 +394,18 @@ Shows a message with an url to this User Guide webpage.
 Format: `help` <br>
 
 ![result for 'help'](images/helpMessage.png)
+
+### Entering an Invalid Command:
+Entering an invalid command will result in the app throwing an exception, and prompting the user the closest known command, based on the smallest `minimum edit distance` (minimum amount of additions, deletions, and replacements). 
+
+This feature is meant for identifying typographical errors, and as such, no other form of Natural Language Processing (NLP) is used. If the edit distance is too much (above 10 edits), `Unknown command` will be displayed.
+
+![result for ''](images/InvalidCommandMessage.png)
+
+Examples:
+* `delete-appppt` prompts `delete-appt`
+* `list` prompts `exit`
+* `too-long-command` returns `Unknown command`
 
 ### Toggle User Inputs: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
 Format: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
@@ -405,6 +435,39 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous App-Ointment home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Acceptable DateTime Formats
+Must be any of:
+### Date:
++ DD-MM-YYYY
++ DD-MM-YY
++ YYYY-MM-DD
++ DD/MM/YYYY
++ DD/MM/YY
++ next DAY [MONDAY, TUESDAY, ...]
++ next month
++ next year
+
+### Time:
+
++ hh:mm (In 24-Hour format)
++ hh:mmam/pm
+  
+### Valid Examples:
++ 12/12/21 01:15pm
++ 12-12-21 13:15
++ next monday 13:12
++ next monday
++ next month 14:00
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* Inputs with the `next` keywords **without a user-specified time** will reflect the current time when the command is entered. For example, `add-appt pt/1 dr/1 at/next monday` when entered on *07/04/2021 12:00* will result in an appointment added on *12/04/2021 12:00*.
+* `next DAY` inputs must be spelt correctly and fully. Inputs such as`at/next MONDAYXX` or `at/next MON` is restricted. <br>
+
+</div><br>
 
 --------------------------------------------------------------------------------------------------------------------
 

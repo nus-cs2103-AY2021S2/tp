@@ -14,12 +14,19 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class AppointmentSchedule
+Interface ReadOnlyAppointmentSchedule <<Interface>>
 
 Package Person {
 Class Person
+Class Patient
+Class Doctor
+Class DoctorMap
+Class Name
+Class PatientMap
 Class Address
 Class Email
-Class Name
+
 Class Phone
 Class UniquePersonList
 }
@@ -27,30 +34,53 @@ Class UniquePersonList
 Package Tag {
 Class Tag
 }
+
+
+Package Appointment {
+Class Appointment
+Class Timeslot
+Class NonConflictingAppointmentList
+Class AppointmentDisplay
+}
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+AddressBook .right.|> ReadOnlyAddressBook
+AppointmentSchedule .up.|> ReadOnlyAppointmentSchedule
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+DoctorMap --> Doctor
+PatientMap --> Patient
+ModelManager o-right-> "1" AddressBook
+ModelManager o-left-> "1" AppointmentSchedule
 ModelManager o-left-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+UserPrefs ..|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AppointmentSchedule *--> "1" NonConflictingAppointmentList
 UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+NonConflictingAppointmentList o-left-> "*" Appointment
+Person *--right-> Name
+Patient *--> Phone
+Patient *--> Email
+Patient *--> Address
 Person *--> "*" Tag
+Patient --|> Person
+Doctor --|> Person
+AppointmentDisplay --|> Appointment
+Appointment --> PatientMap
+Appointment --> DoctorMap
+Appointment *--> Timeslot
+Appointment *--> Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----> Patient : " ~* filtered list"
+ModelManager ----> Doctor : " ~* filtered list"
+ModelManager ----> Appointment : " ~* filtered list"
 @enduml

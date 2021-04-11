@@ -2,7 +2,7 @@ package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
@@ -21,17 +21,17 @@ public class FindAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "find-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + " Finds all appointments from the appointment schedule "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": "
+            + "Finds all appointments from the appointment schedule "
             + "in which patients, doctors, timeslots, or tags contain any of "
             + "the specified keywords (case-insensitive) and "
             + "displays them as an indexed list.\n"
-            + "Parameters: (Any one or more)"
-            + PREFIX_NAME + "NAME "
+            + "Parameters: (Any one or more) "
+            + PREFIX_PATIENT + "PATIENT NAME "
             + PREFIX_DOCTOR + "DOCTOR "
             + PREFIX_TIMESLOT_START + "TIMESLOT START "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "brainDamage";
 
     private final AppointmentContainsKeywordsPredicate predicate;
@@ -45,7 +45,7 @@ public class FindAppointmentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
+                String.format(Messages.MESSAGE_APPOINTMENTS_FOUND_OVERVIEW,
                 model.getFilteredAppointmentList().size()));
     }
 
