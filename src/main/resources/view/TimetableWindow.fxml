@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+         <content>
+            <GridPane fx:id="timetableGrid">
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="NEVER" />
+                <RowConstraints vgrow="ALWAYS" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="firstDayLabel" text="Monday" textAlignment="CENTER" textFill="#6f387c">
+                           <font>
+                              <Font name="Corsiva Hebrew" size="13.0" />
+                           </font>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="secondDayLabel" text="Tuesday" textAlignment="CENTER" textFill="#89558a">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="thirdDayLabel" text="Wednesday" textAlignment="CENTER" textFill="#844c90">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="fourthDayLabel" text="Thursday" textAlignment="CENTER" textFill="#8d4a90">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="fifthDayLabel" text="Friday" textAlignment="CENTER" textFill="#6e4275">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="sixthDayLabel" text="Saturday" textAlignment="CENTER" textFill="#a4499a">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" GridPane.columnIndex="6" GridPane.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="seventhDayLabel" text="Sunday" textAlignment="CENTER" textFill="#793e72">
+                           <effect>
+                              <Glow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="NONE" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <AnchorPane fx:id="dayScheduleOne" minHeight="550.0" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <AnchorPane fx:id="dayScheduleTwo" minHeight="550.0" styleClass="odd-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <AnchorPane fx:id="dayScheduleThree" minHeight="550.0" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <AnchorPane fx:id="dayScheduleFour" minHeight="550.0" styleClass="odd-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <AnchorPane fx:id="dayScheduleFive" minHeight="550.0" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <AnchorPane fx:id="dayScheduleSix" minHeight="550.0" styleClass="odd-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+                  <AnchorPane fx:id="dayScheduleSeven" minHeight="550.0" styleClass="even-timetable-row" stylesheets="@Extensions.css" GridPane.columnIndex="6" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+               </children>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

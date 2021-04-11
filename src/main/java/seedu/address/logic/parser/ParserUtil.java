@@ -9,18 +9,24 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
+import seedu.address.model.note.Content;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index of a person or a "
+        + "meeting is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,18 +42,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code PersonName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static PersonName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new PersonName(trimmedName);
     }
 
     /**
@@ -95,30 +101,146 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    // =========================== ParserUtil for Meetings ==============================
+
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String name} into a {@code MeetingName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static MeetingName parseMeetingName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!MeetingName.isValidName(trimmedName)) {
+            throw new ParseException(MeetingName.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new MeetingName(trimmedName);
+    }
+
+    public static Set<MeetingName> parseMeetingNames(Collection<String> names) throws ParseException {
+        return parseMany(ParserUtil::parseMeetingName, names);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String datetime} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static DateTime parseMeetingDateTime(String datetime) throws ParseException {
+        requireNonNull(datetime);
+        String trimmedDatetime = datetime.trim();
+        if (!DateTime.isValidDateTime(trimmedDatetime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new DateTime(trimmedDatetime);
     }
+
+    public static Set<DateTime> parseMeetingDateTimes(Collection<String> datetimes) throws ParseException {
+        return parseMany(ParserUtil::parseMeetingDateTime, datetimes);
+    }
+
+
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Description parseMeetingDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return new Description(trimmedDescription);
+    }
+
+
+    /**
+     * Parses a {@code String priority} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Priority parseMeetingPriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        return new Priority(trimmedPriority);
+    }
+
+
+    /**
+     * Parses a {@code String group} into a {@code group}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code group} is invalid.
+     */
+    public static Group parseGroup(String group) throws ParseException {
+        requireNonNull(group);
+        String trimmedGroup = group.trim();
+        if (!Group.isValidGroupName(trimmedGroup)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
+        return new Group(trimmedGroup);
+    }
+
+    /**
+     * Parses {@code Collection<String> groups} into a {@code Set<Group>}.
+     */
+    public static Set<Group> parseGroups(Collection<String> groups) throws ParseException {
+        requireNonNull(groups);
+        final Set<Group> groupSet = new HashSet<>();
+        for (String groupName : groups) {
+            groupSet.add(parseGroup(groupName));
+        }
+        return groupSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>}.
+     */
+    public static Set<Index> parsePersonsConnection(Collection<String> oneBasedIndexes) throws ParseException {
+        requireNonNull(oneBasedIndexes);
+        final Set<Index> indexSet = new HashSet<>();
+        for (String index : oneBasedIndexes) {
+            indexSet.add(parseIndex(index));
+        }
+        return indexSet;
+    }
+
+    // =========================== ParserUtil for Note ==============================
+
+    /**
+     * Parses a {@code String content} into a {@code Content}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Content parseNoteContent(String content) {
+        requireNonNull(content);
+        String trimmedContent = content.trim();
+        return new Content(trimmedContent);
+    }
+
+
+    // =========================== Interface for Parsing Many Strings ==============================
+
+    public interface smallParseUtil<T> {
+        T parseOne(String input) throws ParseException;
+    }
+
+    /**
+     * Parse a connection of strings into a set.
+     *
+     */
+    public static <T> Set<T> parseMany(smallParseUtil<T> parseUtil, Collection<String> strings) throws ParseException {
+        requireNonNull(strings);
+        final Set<T> newSet = new HashSet<>();
+        for (String string : strings) {
+            newSet.add(parseUtil.parseOne(string));
+        }
+        return newSet;
+    }
+
 }

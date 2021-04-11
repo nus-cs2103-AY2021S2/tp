@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same personName as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -104,6 +104,9 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the meeting book data.
+* exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the connection between the person in the address book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
 * does not depend on any of the other three components.
 
 
@@ -133,89 +136,72 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Sort feature
+It can be helpful to sort the list of contacts and the list of meetings by a certain criteria.
+For example, sorting contacts by their names could complement the user experience.
+However, there were a few implementations details to consider.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Currently, an essential attribute in the model are the filtered lists, 
+which shows the results of searches and finds. 
+The indexes used in commands like "edit" are taken with respect to these filtered list.
+These filtered lists, however, are backed by immutable observable lists, 
+which helps update the JavaFX GUI. I initially tried to make copies of these observable lists,
+so that I can mutate them through sorting and filtering. However, this would not work,
+since commands like "edit" would be making changes to a copy of the data, 
+not the data itself.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The implementation I went with uses another subclass of observable lists called sorted lists.
+It goes between the link between the original immutable observable list and the filtered lists.
+Sorting would occur in the sorted list layer, and the filtering will be applied on top.
+This has the benefit of still sharing the references with the original observable list, 
+so modifications will still be reflected in the correct data structures.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+###Timetable feature
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The timetable feature will be help the user visualise the free times. 
+It also aid the user in scheduling meetings faster.
+There are two possible implementations for the model below:
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+One: Create a two-dimensional array to represent the schedule 
+with days as the row and columns being the half hour time slots
+This will serve as the model of a person's free schedule. Slots which are occupied will have
+their state marked as so. 
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Pros: A Ui can listen to the model and the display can be updated quickly with each change.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Cons: Takes up more space. Problems handling meetings with not nice start and ending times.
 
-![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+### Person Meeting Connection feature (Written by: Chen Yuheng (Github: skinnychenpi))
+MeetBuddy allows users to track and record the contacts related with their meetings.
+#### Implementation
+A PersonMeetingConnection class stores all of the relevant information of persons in the contact related to certain meetings. The class diagram below shows how all the different components interact to allow the person meeting connection feature to function. Note that the XYZConnectionCommand and XYZConnectionCommandParser refers to all Connection related commands like add, delete etc.
+![UndoRedoState0](images/PersonMeetingConnectionCommandClassDiagram.png)
+A PersonMeetingConnection(PMC) slot is represented by the PMC class which contains 2 key attributes, personsInMeeting and meetingsInPerson. Both of them are HashMaps. The attribute personsInMeeting is a hashmap whose key is a Meeting object and its value is a UniquePersonList. Another attribute meetingsInPerson is reversed, whose key is a Person object and its value is a UniqueMeetingList.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The XYZPMCCommand class represent classes that extend the abstract class Command and allows the users to add and delete the PMC to MeetBuddy. These XYZPMCCommands are created by the respective XYZPMCCommandParsers.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+The PMC object is unique in the model, and it stores all the connections.
 
-</div>
+Given the class diagram and the understanding of how the PMC class interacts with other classes, let us examine how an addPersonMeetingConnection command behaves, by using the following activity diagram of the system.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+![UndoRedoState0](images/AddPersonMeetingConnectionActivityDiagram.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The workflow above shows how a connection is added and the various checks that occurs at the different points throughout the workflow.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+To summarize the above activity diagram, there are several key checks which MeetBuddy checks for when the user is adding a connection. Firstly, MeetBuddy checks if the index for the meeting and the prefix for person (p/) are presented in the command. Also, MeetBuddy checks if all prefixes present are formatted correctly. Then, it checks if the Meeting index provided is within the range of the Meeting list. Following which, MeetBuddy will check if the persons' indices passed for the prefixes are within the range.
 
-</div>
+#### Design Considerations
+Create a Person Meeting Connection Class or Add new attributes into Person and Meeting (i.e Add meetingsRelated attribute into Person Class).
 
-The following sequence diagram shows how the undo operation works:
+|       | Alternative 1 (Current Choice): Create a Person Meeting Connection Class | Alternative 1 : Add new attribute into Person and Meeting class|
+| ------| ------------- | ------------- |
+| Pros  | Don't need to modify the signatures for Person and Meeting classes' constructors and APIs. Reduce level of coupling for both classes. Easier to manage and access connection.  | The GUI is shown based on a meeting card, hence using this way is easier to shown as the personsRelated is stored in a meeting object. Easier for storage implementation. |
+| Cons  | More difficult to manage storage, need to take care of the effect to PMC when either the meetings or persons changes.   | Increase the level of coupling and need to modify the codebase in a large scale. |
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+Reason for choosing Alternative 1: Due to the time constraint of this project, our group has decided to choose alternative 1, as it not only reduces coupling, but is sufficient for us to uniquely identify the Persons Related participating in the meeting.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -236,13 +222,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Computing minor students in NUS who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy workdays.
+* Wants to manage school life and social life together in one app, with meetups for projects, lectures, social activities, and family all organised.
+* Would like to keep track of contacts and organise them as well for easy searching and easy remembering.
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app.
+
+Can manage social life and academics by toggling between two modes <-> school activities and non-school activities. Better time management - Priorities of meetups can be ranked and less time to schedule meetings with friends, as well as keep track of existing meetings.
+Arrange activities with many people -> events not only tie with single contacts but with a group of contacts that can be added inside. Stay connected -> Keep in touch with old contacts or remove them by querying for old contacts . Keep a log and diary of past meetups, and small bios of people ,as well as images.
+
+Users would be better able to manage their social and academic commitments by toggling between both modes. With the option to rank/prioritise meetups, users can experience better time management, and can stay connected with many people easily. The app also maintains a diary of past meetups, with the inclusion of images and bios of the people.
+
 
 
 ### User stories
@@ -254,9 +247,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by personName          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`    | user                                       | assign priorities for contacts | arrange my contacts and future tasks better                            |
+| `*`      | user with many persons in the MeetBuddy address book | sort persons by personName           | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -269,9 +263,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  MeetBuddy shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  MeetBuddy deletes the person
+
 
     Use case ends.
 
@@ -283,18 +278,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MeetBuddy shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Assigning priorities to contacts**
+
+**MSS**
+
+1.  User requests to add a contact with priority
+2.  MeetBuddy shows the list of persons after adding.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The priority is out of range.
+
+    * 1a1. AddressBook shows an error message.
+
+  Use case ends.
+
+**Use case: Assigning priorities to meetings**
+
+**MSS**
+
+1.  User requests to add a meeting with priority
+2.  MeetBuddy shows the list of meetings after adding.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The priority is out of range.
+
+    * 1a1. MeetBuddy shows an error message.
+
+  Use case ends.
+
+
+
+
+New features on V1.2
+5.  Assign priorities to contacts
+6.  Notes about the contact.
+7.  Sort contacts by (priorities/personName/groups)
+8.  Last meetup date for each contact
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  The response to any use action should become visible within 2 seconds.
+5.  The source code should be open source.
 *{More to be added}*
 
 ### Glossary

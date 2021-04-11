@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<HBox id="meetingPane" fx:id="meetingPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox HBox.hgrow="ALWAYS" spacing="10">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="NEVER">
+                    <children>
+                        <Label fx:id="id" text="Label"/>
+                        <Label fx:id="name" text="A VERY LONG MEETING" wrapText="true" HBox.hgrow="ALWAYS" styleClass="meetingcard-header" stylesheets="@DarkTheme.css"/>
+                    </children>
+                    <padding>
+                        <Insets top="5.0"/>
+                    </padding>
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label text="Priority Level:"/>
+                    <Label fx:id="priority" wrapText="false"/>
+                </HBox>
+
+                <FlowPane fx:id="tags"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <Label text="From : " HBox.hgrow="NEVER"/>
+                        <Label fx:id="startDate" text="start date" wrapText="true" HBox.hgrow="NEVER"/>
+                        <Label text="to" HBox.hgrow="NEVER"/>
+                        <Label fx:id="endDate" text="end date " wrapText="true" HBox.hgrow="NEVER"/>
+                    </children>
+                </HBox>
+                <Label fx:id="description" text="Description" wrapText="true"/>
+            </children>
+            <FlowPane fx:id="personsRelated"/>
+        </VBox>
+    </children>
+    <padding>
+        <Insets top="5.0" bottom="10.0" left="5.0" right="5.0"/>
+    </padding>
+</HBox>

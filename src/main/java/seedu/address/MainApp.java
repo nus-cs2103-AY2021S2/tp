@@ -15,16 +15,27 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.NoteBook;
+import seedu.address.model.note.ReadOnlyNoteBook;
+import seedu.address.model.person.AddressBook;
+import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.addressbook.AddressBookStorage;
+import seedu.address.storage.addressbook.JsonAddressBookStorage;
+import seedu.address.storage.connection.ConnectionStorage;
+import seedu.address.storage.connection.JsonConnectionStorage;
+import seedu.address.storage.meetingbook.JsonMeetingBookStorage;
+import seedu.address.storage.notebook.JsonNoteBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.meetingbook.MeetingBookStorage;
+import seedu.address.storage.notebook.NoteBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -51,13 +62,18 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
+
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        MeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(userPrefs.getMeetingBookFilePath());
+        NoteBookStorage noteBookStorage = new JsonNoteBookStorage(userPrefs.getNoteBookFilePath());
+        ConnectionStorage connectionStorage = new JsonConnectionStorage(userPrefs.getConnectionsFilePath());
+        storage = new StorageManager(addressBookStorage, meetingBookStorage, noteBookStorage, userPrefsStorage,
+                connectionStorage);
 
         initLogging(config);
 
@@ -75,22 +91,79 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyMeetingBook> meetingBookOptional;
+        Optional<ReadOnlyNoteBook> noteBookOptional;
+        Optional<PersonMeetingConnection> personMeetingConnectionOptional;
+        ReadOnlyAddressBook initialDataAddressBook;
+        ReadOnlyMeetingBook initialDataMeetingBook;
+        ReadOnlyNoteBook initialDataNoteBook;
+        PersonMeetingConnection personMeetingConnection;
+
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialDataAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialDataAddressBook = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialDataAddressBook = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        //--============= MEETING ==================================================================================
+
+        try {
+            meetingBookOptional = storage.readMeetingBook();
+            if (!meetingBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample MeetingBook");
+            }
+            initialDataMeetingBook = meetingBookOptional.orElseGet(SampleDataUtil::getSampleMeetingBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty MeetingBook");
+            initialDataMeetingBook = new MeetingBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty MeetingBook");
+            initialDataMeetingBook = new MeetingBook();
+        }
+
+        //--============= NOTE ==================================================================================
+
+        try {
+            noteBookOptional = storage.readNoteBook();
+            if (!noteBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample NoteBook");
+            }
+            initialDataNoteBook = noteBookOptional.orElseGet(SampleDataUtil::getSampleNoteBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty NoteBook");
+            initialDataNoteBook = new NoteBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty NoteBook");
+            initialDataNoteBook = new NoteBook();
+        }
+
+        //=============== Establish Connection ========================================================================
+
+        try {
+            personMeetingConnectionOptional = storage.readConnection(initialDataMeetingBook, initialDataAddressBook);
+            if (!personMeetingConnectionOptional.isPresent()) {
+                logger.info("Date file not found. Will be starting with no person to meetings established");
+            }
+            personMeetingConnection = personMeetingConnectionOptional.orElseGet(() -> new PersonMeetingConnection());
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with no person to meeting "
+                    + "connections");
+            personMeetingConnection = new PersonMeetingConnection();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with no person to meeting "
+                    + "connections established");
+            personMeetingConnection = new PersonMeetingConnection();
+        }
+        return new ModelManager(initialDataAddressBook, initialDataMeetingBook, initialDataNoteBook,
+                userPrefs, personMeetingConnection);
     }
 
     private void initLogging(Config config) {
