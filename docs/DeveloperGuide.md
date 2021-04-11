@@ -42,6 +42,8 @@ i.e. SOChedule, SoChedule, Sochedule can be used interchangeably.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).  
@@ -112,6 +114,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -177,6 +181,8 @@ instead of each `Task` and `Event` needing their own `Tag` and `Category` object
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.4.1 Design considerations for Task-related Models
 When implementing Task-related models, it is important to avoid adding duplicate tasks. 
 For example, it is undesirable for users to add the same task, completing CS2103 Quiz before 2021-06-01, twice into the task list. 
@@ -239,6 +245,8 @@ Both of these 2 tasks should be allowed in our task list.
 Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
 checking for all fields entered by the user. We chose to check for all fields for the same reasons as mentioned above.
 
+<div style="page-break-after: always;"></div>
+
 #### 3.4.3 Design considerations for `Name` Object
 When implementing the Name class, one of the considerations we need to decide is about its maximum length. 
 Due to constraints in GUI, if the task or event has an extremely long name, only part of the name can be displayed,
@@ -293,6 +301,8 @@ Similar to `Name` Object, we face the same challenge when displaying tasks or ev
 of excessively long length. 
 We choose to set the maximum length to 15 characters long for the similar reasons as mentioned above.
 
+<div style="page-break-after: always;"></div>
+
 ### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -312,6 +322,8 @@ Classes used by both `Task` and `Event` are in the `seedu.address.model.common` 
 [Return to Table of Contents](#table-of-contents)  
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 4 Implementation
 
@@ -422,6 +434,8 @@ Same for the method `Model#updateFilteredEventList(EventFindSchedulePredicate ev
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Design Considerations**
 
 The purpose of find schedule is to find and show our users the list of tasks and events that are worth to be paid
@@ -481,6 +495,7 @@ helpful for users to know what tasks should be dealt with first and improve thei
 
 [Return to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Task
 
@@ -521,6 +536,8 @@ The implementation of the noteworthy ones will be listed in the next section.
 Some implementations of features are omitted because their implementation is similar to that of other features.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2 Implementation of Task-level commands
 
@@ -654,6 +671,7 @@ editing a task or editing it back quickly if they realize they have edited the w
 
 [Return to Overview](#421-overview)
 
+<div style="page-break-after: always;"></div>
 
 #### Implementation of `done_task` command
 In SOChedule, the governing logic behind the `done_task` command is laid out in [`DoneTaskCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/DoneTaskCommand.java)
@@ -945,6 +963,8 @@ The sequence diagram for `sortTaskCommand` can be found below, using the aforeme
 The following is a brief explanation , as illustrated by a sequence diagram, of how sorting is implemented inside the Model component.
 ![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ***Design Considerations for `SortTaskCommand`***
 <table>
     <tr>
@@ -1087,6 +1107,7 @@ The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Event
 
@@ -1203,6 +1224,8 @@ The following activity diagram summarises what happens when a user executes a Ed
 (For brevity, "Show error" actions are omitted.)
 
 <img src="images/EditEventCommandActivityDiagram.png" width="250" />›
+
+<div style="page-break-after: always;"></div>
 
 ***Design Considerations for `EditEventCommand`***
 <table>
@@ -1367,7 +1390,9 @@ The sequence diagram for `FindFreeTimeCommand` can be found below.
 
 The below activity diagram summarises what happens when `free_time` is called.
 
-![Activity Diagram of FindFreeTimeCommand](images/FindFreeTimeActivityDiagram.png)
+<img src="images/FindFreeTimeActivityDiagram.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 ***Design Considerations for `FindFreeTimeCommand`***
 <table>
@@ -1431,6 +1456,8 @@ readability of the code. Implementing code under UniqueEventList also reduces de
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix
 
@@ -2026,6 +2053,7 @@ Use case ends.
 1.  Should give a response to user's input within 5 seconds.
 1.  The source code should be open source.
 
+<div style="page-break-after: always;"></div>
 
 ### A5. Glossary
 
@@ -2361,6 +2389,8 @@ These instructions only provide a starting point for testers to work on; testers
 1. Dealing with missing/corrupted/missing data files
 
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
+
+<div style="page-break-after: always;"></div>
 
 ### A8. Effort
 Creating SOChedule took considerable effort and required significant effort from all members.
