@@ -5,7 +5,6 @@ import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_ADD;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_ADD_TIMESTAMP;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_ADD_CATEGORY;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
