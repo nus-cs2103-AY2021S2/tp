@@ -5,10 +5,9 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static dog.pawbook.model.managedentity.owner.Owner.*;
-import static dog.pawbook.testutil.TypicalEntities.*;
-import static dog.pawbook.testutil.TypicalId.ID_ONE;
-import static dog.pawbook.testutil.TypicalId.ID_TWO;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
+import static dog.pawbook.testutil.TypicalEntities.APPLE;
+import static dog.pawbook.testutil.TypicalEntities.BOB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -18,9 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.testutil.OwnerBuilder;
-
-import java.util.Collections;
-import java.util.List;
 
 public class OwnerTest {
 
@@ -105,7 +101,8 @@ public class OwnerTest {
         assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withEmail("test123@example.com").build().hashCode());
 
         // different address -> returns different hashcode
-        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withAddress("Block 123 Street 123").build().hashCode());
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withAddress("Block 123 Street 123")
+                .build().hashCode());
     }
 
     @Test
