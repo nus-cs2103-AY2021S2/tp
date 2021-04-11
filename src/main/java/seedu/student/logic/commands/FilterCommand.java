@@ -19,13 +19,13 @@ import seedu.student.model.student.VaccinationStatus;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
+    private static final String DEFAULT_RESIDENCE = "DOES_NOT_LIVE_ON_CAMPUS";
+
     private static String vaccinationStatus = VaccinationStatus.getStringVaccinationStatus();
     private static String faculties = Faculty.getStringFaculties();
     private static String residences = SchoolResidence.getStringResidences();
-
-    private static String messageNoStudentsAreListed = "No %s students exist in Vax@NUS's record.";
-    private static String messageStudentsAreListed = "All %s students listed.";
-    private static final String DEFAULT_RESIDENCE = "DOES_NOT_LIVE_ON_CAMPUS";
+    private static String messageNoStudentsAreListed;
+    private static String messageStudentsAreListed;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays the list of student of the requested entity: \n"
@@ -54,8 +54,10 @@ public class FilterCommand extends Command {
 
         if (input.contains(DEFAULT_RESIDENCE)) {
             messageNoStudentsAreListed = "No students that does not live on campus exist in Vax@NUS's record";
-        } else {
             messageStudentsAreListed = "All students that does not live on campus exist in Vax@NUS's record";
+        } else {
+            messageNoStudentsAreListed = "No %s students exist in Vax@NUS's record.";
+            messageStudentsAreListed = "All %s students listed.";
         }
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
