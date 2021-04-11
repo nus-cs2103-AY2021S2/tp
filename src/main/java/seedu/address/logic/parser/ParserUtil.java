@@ -2,31 +2,28 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.identifier.Identifier;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventPriority;
 import seedu.address.model.event.EventStatus;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_IDENTIFIER = "Identifier is not a non-zero unsigned integer"
-            + " or the input integer is too large.";
+    public static final String MESSAGE_INVALID_IDENTIFIER = "Identifier is invalid. "
+            + "Please ensure that your identifier:\n"
+            + "1. Is a value lesser than 2,147,483,647 and greater than -2,147,483,648.\n"
+            + "2. Only contains numeric characters, e.g. 0 - 9.";
+    public static final String MESSAGE_NEGATIVE_OR_ZERO_IDENTIFIER = "Identifier should be non-zero and positive.";
+    public static final String MESSAGE_ADDITIONAL_ARTEFACTS = "Please ensure your command matches with the guide: \n";
+    public static final String MESSAGE_EMPTY_IDENTIFIER = "Identifier was not provided. "
+            + "Please ensure your command matches with the guide: \n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Identifier} and returns it. Leading and trailing whitespaces will be
@@ -35,32 +32,29 @@ public class ParserUtil {
      */
     public static Identifier parseIdentifier(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_IDENTIFIER);
-        }
         int identifierInt;
+
+        // check that there's only one argument, if split by whitespace more than 1
+        // there's likely something wrong with input, e.g. wrong prefix
+        if (trimmedIndex.split(" ").length > 1) {
+            throw new ParseException(MESSAGE_ADDITIONAL_ARTEFACTS);
+        }
+
+        if (trimmedIndex.length() == 0) {
+            throw new ParseException(MESSAGE_EMPTY_IDENTIFIER);
+        }
+
         try {
             identifierInt = Integer.parseInt(trimmedIndex);
-        } catch (Exception e) {
-            System.err.println("From here");
+        } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_IDENTIFIER);
         }
-        return Identifier.fromIdentifier(identifierInt);
-    }
 
-    /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (identifierInt <= 0) {
+            throw new ParseException(MESSAGE_NEGATIVE_OR_ZERO_IDENTIFIER);
         }
-        return new Name(trimmedName);
+
+        return Identifier.fromIdentifier(identifierInt);
     }
 
     /**
@@ -72,7 +66,7 @@ public class ParserUtil {
     public static EventName parseEventName(String eventName) throws ParseException {
         requireNonNull(eventName);
         String trimmedEventName = eventName.trim();
-        if (!Name.isValidName(trimmedEventName)) {
+        if (!EventName.isValidName(trimmedEventName)) {
             throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
         }
         return new EventName(trimmedEventName);
@@ -117,77 +111,5 @@ public class ParserUtil {
         return Optional.ofNullable(status)
                 .map(EventStatus::valueOfStatus)
                 .orElseThrow(() -> new ParseException(EventStatus.MESSAGE_CONSTRAINTS));
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }

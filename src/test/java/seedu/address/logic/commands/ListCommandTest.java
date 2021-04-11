@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+//import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalEventBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getEventBook());
+        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+        expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
     }
 
     @Test
@@ -30,11 +30,13 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    /* TODO: Broken due to use of identifier
+
+    /*
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        getEventByIdentifier(model, IDENTIFIER_FIRST_PERSON);
+        getEventByIdentifier(model, IDENTIFIER_FIRST_EVENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
      */
+
 }

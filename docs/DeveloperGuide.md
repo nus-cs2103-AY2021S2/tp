@@ -13,8 +13,10 @@ title: Developer Guide
 <!-- prettier-ignore-end -->
 
 ---
+
 ## **Introduction**
-Focuris is a desktop application for managing events with a KanBan board, which is a board where your events displayed 
+
+Focuris is a desktop application for managing events with a KanBan board, which is a board where your events displayed
 according to the level of completion of each event, which consists of Backlog, Todo, In-Progress and Done. It functions
 via a Command-Line Interface (CLI) that allows more efficient management of events.
 
@@ -40,7 +42,7 @@ The **_Architecture Diagram_** given above explains the high-level design of the
 
 ### **Overall Components**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -76,11 +78,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](diagrams/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -94,7 +96,7 @@ The `UI` component,
 ![Structure of the Logic Component](diagrams/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `EventBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -113,7 +115,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](diagrams/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -126,7 +128,7 @@ The `Model`,
 
 ![Structure of the Storage Component](diagrams/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
@@ -153,6 +155,15 @@ a set of members named HIGH, MEDIUM, LOW. If the User decides not to add a prior
 The following class diagram illustrates how the priority feature is implemented:
 
 ![Structure of the Event Component](diagrams/EventClassDiagram.png)
+
+### Event `identifier` attribute
+
+Events in Focuris have a unique `identifier` attached to them.
+
+- Identifier is an integer attribute inside the Event model, which increments each time the constructor is called. This means, identifier will increment irregardless of whether an Event is successfully added in EventBook.
+- Identifier gets re-allocated each time Focuris restarts.
+- Identifiers never get reset or decremented in a single session. This ensures that even with a potential undo feature in the future, Focuris' Events are not at risk of having duplicate identifiers.
+- This implementation of an identifier which does not reset or decrement is in line with other kanban boards, such as GitHub or Jira.
 
 #### Design consideration:
 
@@ -195,50 +206,51 @@ The following class diagram illustrates how the priority feature is implemented:
 
 **Value proposition**:
 
-- Adding of various different types of events, such as, lectures, tutorials, recitations, labs, and tasks
-- Ability to find a common timeslot where all your friends are available to meet based on their schedules added
-- See events that are taken in conjunction with your friends
-- Prioritize your tasks and events by assigning priorities to each event
+- Adding of various different types of events with descriptions.
+- Prioritise work based on priority level by labeling events as Low, Medium, or High priority.
+- Split work into progressions such as Backlog, ToDo, In Progress, and Done.
+- Get an overview via the List view so that you can find the event that you need easily.
+- Quickly updating events on the go as you complete them.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                              | So that I can…​                                                      |
+| Priority | As a …​  | I want to …​                                        | So that I can…​                                                   |
 | -------- | -------- | --------------------------------------------------------- | -------------------------------------------------------------------- |
 | `* * *`  | new user | see usage instructions                                    | refer to instructions when I forget how to use the App               |
 | `* * *`  | user     | add a new TODO event                                      | keep track of events that I have to work on                          |
 | `* * *`  | user     | add a new BACKLOG event                                   | keep track of the events that I have upcoming                        |
 | `* * *`  | user     | add a new IN PROGRESS event                               | keep track of the events that I am currently working on              |
 | `* * *`  | user     | get an overview of all the events by status               | keep track of all events and what stages of completion they are in   |
-| `* * *`  | user     | edit an existing event                                    |                                                                      |
-| `* * *`  | user     | delete an existing event                                  |                                                                      |
+| `* * *`  | user     | edit an existing event                                    | update events on the go as I work through my events                  |
+| `* * *`  | user     | delete an existing event                                  | remove events that have already finished or are no longer needed     |
 | `* * *`  | user     | remove all existing tasks to make way for the next sprint | focus on tasks to work on in the new sprint                          |
-| `* * *`  | user     |                                                           | get an overview of how busy the coming week is                       |
 | `* *`    | user     | find an event by name                                     | locate specific events without scrolling through list                |
+| `* *`    | user     | mark events as completed quickly                          | work on the next task and see that I am making progress              |
 | `* *`    | user     | attach priorities to different events                     | manage time better by working on events with higher priorities first |
 
 ### Use cases
 
 (For all use cases below, the System is Focuris and the Actor is the user, unless specified otherwise)
 
-**Use case: Delete a events**
+**Use case: Delete an event**
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to delete a specific event in the list
-3.  Focuris deletes the event
+1.  Focuris currently shows events.
+2.  User requests to delete a specific event.
+3.  Focuris deletes the event.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. The list is empty.
+- 1a. There are no events.
 
   Use case ends.
 
-- 2a. The given index is invalid.
+- 2a. The given identifier is invalid.
 
   - 2a1. Focuris shows an error message.
 
@@ -248,67 +260,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to add a Event
-3.  Focuris adds the Event
+1.  Focuris currently shows events.
+2.  User requests to add an event.
+3.  Focuris adds the event.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The format to add a event is invalid.
+- 2a. The format to add an event is invalid.
 
   - 2a1. Focuris shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 - 2b. The event already exists in Focuris.
 
   - 2b1. Focuris shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
-**Use case: Edit a event**
+**Use case: Edit an event**
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to edit a specific event in the list
-3.  Focuris edits the event
+1.  Focuris currently shows events.
+2.  User requests to edit a specific event.
+3.  Focuris edits the event.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. There are no events.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given identifier is invalid.
 
-  - 3a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-- 3b. No fields are provided to edit.
-
-  - 3b1. Focuris shows an error message.
+  - 2a1. Focuris shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: Find a event**
+- 2b. No fields are provided to edit.
+
+  - 2b1. Focuris shows an error message.
+
+    Use case resumes at step 2.
+
+
+**Use case: Mark an event to be done**
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to find a event
-3.  Focuris shows a list of events whose names contain any of the given words
+1.  Focuris currently shows events.
+2.  User requests an event to be done.
+3.  Focuris marks the event as done.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. There is no such event with the given keyword
+- 1a. There are no events.
+
+  Use case ends.
+
+- 2a. The given identifier is invalid.
+
+    - 2a1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Find an event**
+
+**MSS**
+
+1.  Focuris currently shows events.
+2.  User requests to find an event.
+3.  Focuris shows events whose names contain any of the given words.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. There is no such event with the given keyword.
 
   Use case ends.
 
@@ -316,23 +352,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests help
+1.  User requests help.
 2.  Focuris shows a link to the User Guide.
 
     Use case ends.
 
-**Use case: Show list of all events**
+**Use case: Show all events**
 
 **MSS**
 
-1.  User requests to list all events in Focuris
-2.  Focuris shows all events
+1.  User requests to show all events in Focuris.
+2.  Focuris shows all events.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. There are no events.
+
+  Use case ends.
+
+**Use case: Switch to list view of all events**
+
+**MSS**
+
+1.  User requests to switch to list view of events in Focuris.
+2.  Focuris shows all events in a list view.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. There are no events.
 
   Use case ends.
 
@@ -340,14 +391,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to clear all entries of events in Focuris
+1.  User requests to clear all entries of events in Focuris.
 2.  Focuris clears the entries of events.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. The list is already cleared.
+- 1a. There are no events to be cleared.
 
   Use case ends.
 
@@ -355,25 +406,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to exit Focuris
+1.  User requests to exit Focuris.
 2.  Focuris closes.
 
     Use case ends.
 
-**Use case: Sorts Events by Priority**
-
-**MSS**
-
-1. User requests to sort list of events by priority
-2. Focuris shows list of events sorted by priority
-
-Use Case Ends.
-
-**Extensions**
-
-- 1. The list is empty
-
-Use case ends.
 
 ### Non-Functional Requirements
 
@@ -381,40 +418,39 @@ Use case ends.
 2.  Should be able to hold up to 1000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-
 ### Glossary
 
 **Mainstream OS**: Windows, Linux, Unix, OS-X
 
-**Event**: A task that needs to be completed by the user. 
-- An event consists of a title, description and identifier that we use 
-  to track each event. 
-- The stage of completion of an event can be split into four types: 
-    1) Backlog
-    2) Todo
-    3) In Progress
-    4) Done
+**Event**: A task that needs to be completed by the user.
+
+- An event consists of a title, description and identifier that we use
+  to track each event.
+- The stage of completion of an event can be split into four types:
+  1. Backlog
+  2. Todo
+  3. In Progress
+  4. Done
 - An event can also have three different degrees of priorities:
-    1) High
-    2) Medium
-    3) Low
-     
-**Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being 
+  1. High
+  2. Medium
+  3. Low
+
+**Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being
 planned to be worked on or pending or any upcoming events, but we leave the definition loose up to the user.
 
-**Todo**: A set of events that the user has to work on as effective of immediately or have been delegated to already. 
+**Todo**: A set of events that the user has to work on as effective of immediately or have been delegated to already.
 We leave the definition loose up to the user.
 
 **In Progress**: A set of events that the user is currently working on. We leave the definition loose up to the user.
 
-**Done**: A set of events that the user has completed. This could be events that are currently being 
+**Done**: A set of events that the user has completed. This could be events that are currently being
 planned to be worked on or pending, but we leave the definition loose up to the user.
-     
+
 **Kanban**: Meaning signboard or billboard in Japanese. It is a method of managing and improving work flow across human
-systems. It is often used via a Kanban Board, where cards are used to represent work items and columns are used to 
+systems. It is often used via a Kanban Board, where cards are used to represent work items and columns are used to
 represent each stage of the work process. An example of a Kanban Board is our application itself.
 
-     
 **Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
 
 ---

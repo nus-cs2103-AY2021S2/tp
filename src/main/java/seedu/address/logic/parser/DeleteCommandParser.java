@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,8 +19,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Identifier identifier = ParserUtil.parseIdentifier(args);
             return new DeleteCommand(identifier);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n\n"
-                    + String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)
+                    || pe.getMessage().equals(ParserUtil.MESSAGE_EMPTY_IDENTIFIER)) {
+                throw new ParseException(pe.getMessage()
+                        + DeleteCommand.MESSAGE_USAGE);
+            }
+            throw new ParseException(pe.getMessage());
         }
     }
 

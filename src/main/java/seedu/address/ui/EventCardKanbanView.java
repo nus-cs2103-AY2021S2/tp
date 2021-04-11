@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.event.Event;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Event}.
  */
 public class EventCardKanbanView extends UiPart<Region> {
 
@@ -38,7 +38,7 @@ public class EventCardKanbanView extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code EventCode} with the given {@code Event} and identifier to display.
      */
     public EventCardKanbanView(Event event, int displayedIndex) {
         super(FXML);
@@ -47,11 +47,6 @@ public class EventCardKanbanView extends UiPart<Region> {
 
         setInformation();
 
-        /* For v.1.3
-        event.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-         */
     }
 
     private void setInformation() {

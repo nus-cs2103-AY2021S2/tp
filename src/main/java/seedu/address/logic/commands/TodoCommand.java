@@ -24,7 +24,7 @@ public class TodoCommand extends Command {
             + PREFIX_DESCRIPTION + "Clean my room and wash the dishes";
 
     public static final String MESSAGE_SUCCESS = "New Event added with the Status of TODO: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "Another Event with the same NAME already "
+    public static final String MESSAGE_DUPLICATE_EVENT = "An Event with the same NAME already "
             + "exists in Focuris";
 
     private final Event toAdd;

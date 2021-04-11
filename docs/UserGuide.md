@@ -6,8 +6,8 @@ title: User Guide
 # Welcome to Focuris User Guide!
 
 Thank you for downloading **Focuris**! As a busy University student, Focuris helps you manage and keep track of all your
-work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making 
-your student  life a little easier! <br/>
+work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making
+your student life a little easier! <br/>
 
 Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
 **displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
@@ -19,8 +19,8 @@ Get started quickly on your journey with Focuris [here](#1-quick-start)!
 
 ## Here's why you should use Focuris:
 
-As a student, have you ever been overwhelmed by work in the middle of the semester? Or have you ever struggled to 
-keep track of all your deadlines and projects? Or perhaps have you ever wondered what work to prioritise when things 
+As a student, have you ever been overwhelmed by work in the middle of the semester? Or have you ever struggled to
+keep track of all your deadlines and projects? Or perhaps have you ever wondered what work to prioritise when things
 get hectic? Well, Focuris is here to help! Focuris can:
 
 - Help with task management and scheduling through a simple and easy to navigate interface.
@@ -37,7 +37,7 @@ get hectic? Well, Focuris is here to help! Focuris can:
 - To get answers to some FAQs, head to [3. FAQ](#3-faq)!
 - To learn more about some keywords we use, head to [4. Glossary](#4-glossary)!
 
-Feel free to read on or check out our [Table of Contents](#table-of-contents), to learn more about our features 
+Feel free to read on or check out our [Table of Contents](#table-of-contents), to learn more about our features
 and customise your experience with Focuris!
 
 ---
@@ -159,8 +159,13 @@ and [2.3](#23-event-commands).
 | [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**                          | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Please take note of the following with regards to Events in Focuris:** <br/>
+
+**:information_source: Please take note of the following with regards to Events in Focuris:** <br>
+
 - You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
+- Events of the same name are treated as case-insensitive. <br>
+  e.g. `CS2030` is the same name as `cs2030`.
+
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
@@ -184,7 +189,7 @@ The table below gives a detailed summary of the different [parameters](#paramete
 <div markdown="block" class="alert alert-info">
 **:information_source: Please take note of the following with regards to parameters in Focuris:** <br/>
 - Identifiers are not meant to be a counter of your events. It is meant to be a unique identifier for your Events in Focuris and may not count in order.
-- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events. 
+- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events.
 - Identifiers will be recalculated every time you run Focuris.
 - Identifiers do not get reset to 1 after a `clear` command.
 - Priority is set to `low` if you do not specify a priority for your event. <br/>
@@ -198,16 +203,17 @@ The table below gives a detailed summary of the different [parameters](#paramete
 
 As a new user, the image below should give you a better understanding of what each part of our graphical user interface means!
 
-There are two views in Focuris, which can be toggled between with the [`switch` command](#2310-switch-command):
+There are two views in Focuris, which can be toggled with the [`switch` command](#2310-switch-command):
 
 1. `KanBan` view <br/>
    ![Ui KanBan](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
 
 2. `List` view<br/>
    ![Ui List](images/user-guide/Annotated/UiListWithReferenceAnnotated.png)
-   
 This is how your events are displayed:
 ![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
+
+**:information_source: Please take note that Events are not sorted by their Priority in Focuris (Coming soon!)** <br/>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -608,6 +614,21 @@ switch
 
 # 3. FAQ
 
+As a new user to Focuris, you might have many unanswered queries. We hope that the Frequently Asked Questions (FAQ) addresses your concerns and you are able to start using Focuris to manage and keep track of all your work, deadlines and projects today!
+
+**Here are the areas covered in the FAQ:**
+
+- [3.1 Privacy and Data FAQ](#31-privacy-and-data-faq)
+- [3.2 Application User FAQ](#32-application-user-faq)
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
+
+## 3.1 Privacy and Data FAQ
+
+As a user, you might be concerned about your privacy and data. We seek to address your privacy and data concerns in this section.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
 
@@ -622,6 +643,23 @@ and thus we recommend keeping the text under **20 characters** for the event nam
 **Q**: Will my data be sent anywhere else or shared with third parties?<br>
 **A**: Your data is stored locally on your own computer. Focuris does not use any Internet connection so no data can be
 sent to any online servers.
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
+
+## 3.2 Application User FAQ
+
+As a new user to Focuris, you might encounter have certain queries regarding how the application logic behind Focuris works. We seek to address your queries and help you get a better understanding of how Focuris works.
+
+**Q**: Why are multiple Events of the same name not allowed in our application?<br>
+**A**: We believe that tasks should be broken down into small components such that the title should be self-descriptive of the task. Therefore, we believe that Events of the same name are not allowed since you could probably break the task down into smaller parts or add unique descriptors to the name of the task to help yourself differentiate tasks even quicker.
+
+**Q**: Why are the identifiers of my Events not in counting order?<br>
+**A**: Identifiers are meant to be unique to each task. Whenever a new Event is created, the identifier counter increases. The counter does not decrease since this could potentially lead to issues whereby the identifier is no longer unique, which would cause the functionality of Focuris to be compromised. As such, we believe that an identifier that does not reset or decrease in a single session is best suited for such a task.
+
+**Q**: Why are identifiers not resetting when I run the `clear` command to clear all Events?<br>
+**A**: Identifiers are meant to be unique to each task. Therefore, during each of your sessions on Focuris, the identifiers will not be reset. However, when you restart the application, the identifiers will be reset as each Event is being added into Focuris from the data file. This ensures that identifiers assigned to new tasks are always unique, following the practices of GitHub and Jira.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 

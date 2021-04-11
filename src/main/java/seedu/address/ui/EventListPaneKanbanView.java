@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of events.
  */
 public class EventListPaneKanbanView extends UiPart<Region> {
     private static final String FXML = "EventListPaneKanbanView.fxml";

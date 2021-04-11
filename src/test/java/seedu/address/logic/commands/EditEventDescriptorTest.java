@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2107;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_CS2107;
 
 import org.junit.jupiter.api.Test;
@@ -46,9 +47,9 @@ public class EditEventDescriptorTest {
         editedCS2030 = new EditEventDescriptorBuilder(DESC_CS2030).withEventStatus(VALID_STATUS_CS2107).build();
         assertFalse(DESC_CS2030.equals(editedCS2030));
 
-        // Commented out for v1.2
-        //        // different tags -> returns false
-        //        editedAmy = new EditEventDescriptorBuilder(DESC_CS2030).withTags(VALID_TAG_HUSBAND).build();
-        //        assertFalse(DESC_CS2030.equals(editedAmy));
+        // different eventPriority -> returns false
+        editedCS2030 = new EditEventDescriptorBuilder(DESC_CS2030).withEventPriority(VALID_PRIORITY_CS2107).build();
+        assertFalse(DESC_CS2030.equals(editedCS2030));
+
     }
 }
