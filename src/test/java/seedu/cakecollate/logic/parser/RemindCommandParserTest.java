@@ -15,13 +15,18 @@ public class RemindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", RemindCommand.MESSAGE_EMPTY);
+        assertParseFailure(parser, "1     1", RemindCommand.MESSAGE_MULTIPLE_INPUTS);
+        assertParseFailure(parser, " 1 a", RemindCommand.MESSAGE_MULTIPLE_INPUTS);
         assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "100000000000000000",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsRemindCommand() {
         assertParseSuccess(parser, "1", new RemindCommand(new ReminderDatePredicate(1)));
         assertParseSuccess(parser, "0", new RemindCommand(new ReminderDatePredicate(0)));
+        assertParseSuccess(parser, "2147483647", new RemindCommand(new ReminderDatePredicate(2147483647)));
     }
 }
