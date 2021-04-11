@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class DeleteScheduleCommand extends Command {
 
         Schedule scheduleToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteSchedule(scheduleToDelete);
+        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULE);
         return new CommandResult(String.format(MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete),
                 TabName.SCHEDULE);
     }
