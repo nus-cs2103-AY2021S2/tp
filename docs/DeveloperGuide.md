@@ -1222,6 +1222,8 @@ The following activity diagram summarises what happens when a user executes a Ed
 
 <img src="images/EditEventCommandActivityDiagram.png" width="250" />›
 
+<div style="page-break-after: always;"></div>
+
 ***Design Considerations for `EditEventCommand`***
 <table>
     <tr>
@@ -1387,6 +1389,8 @@ The below activity diagram summarises what happens when `free_time` is called.
 
 ![Activity Diagram of FindFreeTimeCommand](images/FindFreeTimeActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ***Design Considerations for `FindFreeTimeCommand`***
 <table>
     <tr>
@@ -1449,6 +1453,8 @@ readability of the code. Implementing code under UniqueEventList also reduces de
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix
 
@@ -2379,9 +2385,7 @@ These instructions only provide a starting point for testers to work on; testers
 1. Dealing with missing/corrupted/missing data files
 
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
-
-<div style="page-break-after: always;"></div>
-
+   
 ### A8. Effort
 Creating SOChedule took considerable effort and required significant effort from all members.
 To achieve this, all members committed to meticulous planning, regular team meetings, effective communication
