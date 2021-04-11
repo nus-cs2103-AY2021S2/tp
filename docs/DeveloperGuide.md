@@ -205,7 +205,68 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
 describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Switch between the different tabs
+### 4.1 Add Command
+
+#### Implementation
+The add command mainly uses the Logic and Model components. The add command takes in the following parameters:
+* `n/Name`
+* `desc/Description`
+* `date/Date`
+* `t/Tags`
+
+The following activity diagram summarizes what happens when a user executes an add command.
+![AddActivityDiagram](images/AddCommandActivityDiagram.png)
+
+The following sequence diagram shows the execution of the add command.
+![AddSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
+### 4.2 Edit Command
+
+#### Implementation
+The edit command has a similar implementation to the add command, it mainly uses the Logic and Model components 
+(see Diagrams in 4.1). The only notable differences are:
+* The edit command is able to take in an extra parameter `s/Status`.
+* Edit command takes in an `index` to specify which Task in the list to edit.
+
+The following activity diagram summarizes what happens when a user executes an edit command.
+![EditActivityDiagram](images/EditCommandActivityDiagram.png)
+
+The following sequence diagram shows the execution of the edit command.
+![EditSequenceDiagram](images/EditCommandSeqeuenceDiagram.png)
+
+
+### 4.3 View Command
+The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
+
+#### Implementation
+This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
+in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
+
+The following sequence diagram shows how the `view` command works. We will assume the user inputs
+`view 2021-04-12`, that is, the user intends to view all tasks that have the date 12th April 2021.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+1. The user inputs `view 2021-04-12`.
+2. TaskifyParser identifies this as a `view` command and creates a `ViewCommandParser` and call its parse method
+with the arguments specified by the user (in this case, `2021-04-12`).
+3. `ViewCommandParser` creates a new `TaskHasSameDatePredicate` with the arguments `2021-04-12`.
+4. `ViewCommandParser` creates a new `ViewCommand` with the newly created `TaskHasSameDatePredicate` object.
+5. When `ViewCommand`'s execute method is called, it prompts `Model` to call `updateFilteredTaskList()` with the 
+`TaskHasSameDatePredicate` predicate.
+6. `Model` updates the filtered list based on the predicate.
+7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
+to the user.
+
+The following activity diagram summarizes what happens when a user executes a view command:
+![ViewActivityDiagram](images/ViewCommandActivityDiagram.png)
+   
+#### Design Consideration
+* **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
+* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates. As such, users can
+input commands like `view today` or `view tomorrow` as a shortcut, instead of typing out
+  the entire date.
+
+### 4.4 Switch between the different tabs
 
 #### Format of command
 * `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
@@ -241,35 +302,9 @@ The following activity diagram summarizes what happens when a user executes a sw
 
 * **Alternative Choice:** Switch tabs based on tab index
     * Pros: Lesser things to remember as the format command is `switch index`
-    * Cons: Less intuitive as user will have to look up what tab one corresponds to.    
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
 
-### 4.2 View Command
-The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
-
-#### Implementation
-This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
-in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
-
-The following sequence diagram shows how the `view` command works. We will assume the user inputs
-`view 2021-04-12`, that is, the user intends to view all tasks that have the date 12th April 2021.
-
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
-1. The user inputs `view 2021-04-12`.
-2. TaskifyParser identifies this as a `view` command and creates a `ViewCommandParser` and call its parse method
-with the arguments specified by the user (in this case, `2021-04-12`).
-3. `ViewCommandParser` creates a new `TaskHasSameDatePredicate` with the arguments `2021-04-12`.
-4. `ViewCommandParser` creates a new `ViewCommand` with the newly created `TaskHasSameDatePredicate` object.
-5. When `ViewCommand`'s execute method is called, it prompts `Model` to call `updateFilteredTaskList()` with the 
-`TaskHasSameDatePredicate` predicate.
-6. `Model` updates the filtered list based on the predicate.
-7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
-to the user.
-   
-#### Design Consideration
-* **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
-* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
-
-### 4.3 Tag Search Command
+### 4.5 Tag Search Command
 
 #### Implementation
 

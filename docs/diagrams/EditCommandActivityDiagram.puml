@@ -1,0 +1,20 @@
+@startuml
+start
+:User inputs edit command;
+:Taskify parses the input;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+if() then ([Valid input])
+    if () then ([Task already exists])
+        :Throw CommandException \n to the UI;
+    else ([else])
+        : Model edits specified Task \n with input values;
+    endif
+else ([else])
+    :Throw ParseException to the UI;
+endif
+
+:UI displays success/error response to the user;
+stop
+@enduml
