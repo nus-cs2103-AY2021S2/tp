@@ -21,7 +21,8 @@ public class ClearLocationCommandTest {
     public void execute_emptyStoreMando_failure() {
         Model model = new ModelManager();
 
-        assertCommandFailure(new ClearAllCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
+        assertCommandFailure(new ClearLocationCommand(new LocationContainsPredicate("Kitchen Basket")),
+            model, Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
