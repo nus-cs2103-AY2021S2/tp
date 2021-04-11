@@ -221,19 +221,57 @@ To export the details and notes of a `Tutor` into a text file, we use the `expor
 create a new folder `/export` in the root directory. Details and notes of a `Tutor` would be converted into human-readable
 text form and exported into the `/export` folder.
 
-### [Proposed] Grade Feature
-#### Proposed Implementation
-The proposed grade feature is to facilitate the user to keep track of his/her
-own grades of different subjects for reference and future study plan, 
-which are internally stored as `GradeBook`. Additionally,
-it implements the following operations:
-* `Add a grade` - Add a grade record to user's GradeBook
-* `Delete a grade` - Delete an existing grade record at specified index
-* `Edit a grade` - Edit an existing grade record at specified index
-* `List all grades` - Display a list of all existing grade records in the GradeBook
+### Grade Book
+Tutor tracker's Grade Book is to allow users to keep track their grade records for self reference and future study planning.
+
+#### Rationale
+As Tutor Tracker is an application to aid users to manage the tutor and tuition information, we have also considered that users
+may wish to keep track and manager their academic records for self reference and future study planning. Examples are keeping track
+their grades of different tests and different subjects. With Grade Book, users can now store and manage all tuition-related and academic
+related information on the same application instead of using multiple applications.
+
+#### Implementation
+A grade is composed of a `subject`, `graded item` and `grade letter`, out of which `subject` and `graded item` are used to identify a grade object uniquely. 
+
+All the user's grades are stored internally in the `GradeList`. Grade Book consist of the following operations
+that can be performed on the grade:   
+
+* `Add a grade` - Add a grade record to user's `GradeBook`.
+* `Delete a grade` - Delete an existing grade record at specified index of the `GradeBook`.
+* `Edit a grade` - Edit an existing grade record (changing its attributes' value) at specified index displayed in the `GradeBook`.
+* `List all grades` - Display a list of all existing grade records in the `GradeBook`
 
 These operations are exposed in the `Logic` interface by parsing respective `AddGradeCommand`,
 `DeleteGradeCommand`, `EditGradeCommand` and `ListGradeCommand`.
+
+When the user enters the `add_grade` command to add a new command, the user input command undergoes
+the same command parsing as described in [Logic component](#logic-component).
+
+Steps for the execution of the `AddGradeCommand` (assuming that no errors are encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTracker`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddGradeCommandParser`.
+3. The `AddGradeCommandParser` will then parse the inputs, and creates a `AddGradeCommand`.
+4. The `AddGradeCommand` will then validate the parameters and creates a `Grade` object.
+5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addGrade()`, 
+then create a `CommandResult` object and return the result.
+6. The `Ui` component will detect this cahnge and update the GUI.
+![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram.png)
+
+#### Design Consideration
+
+**Displaying Schedule in the GUI**
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> Display grades with budget and reminder in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate grades, budget and reminders if a considerable number of them are listed all together.|
+| **Option 2 (current choice)** <br> Display grades in a separate tab from budget and reminder in a `Your Information` panel. | Clear segregation between grades, budget and reminder. | May impose inconvenience as users have to switch tabs between grades, budget and reminder depending on their needs |
+
+Reason for choosing option 2:
+* As we do not wish to overwhelm the user with too much information to provide a better user experience, we decided that option 2 may be a better option.
+
+The following activity diagram summarizes what happens when the `add_grade` command is executed.
+
+![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram.png)
 
 ### [Proposed] Filter Feature
 This Filter feature would allow users to manage filters and apply them to the list of tutors
@@ -1073,8 +1111,9 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
 * **Years of Experience**: Years of experience of tutoring a specific subject.
 * **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
-* **Index**: Index number shown in the displayed tutor list. The index must be a positive integer 1, 2, 3, …​
+* **Index**: Index number shown in the displayed list. The index must be a positive integer 1, 2, 3, …​
 * **Unfavourite**: Reverse the action of adding as a favourite
+* **Singapore-GCE O'Level grading system**: The alphanumeric grade A (1,2), B (3,4), C (5,6), D7, E8, and F9. (Reference: [Singapore-GCE O'Level grading system](https://en.wikipedia.org/wiki/Singapore-Cambridge_GCE_Ordinary_Level#Grades).)
 
 --------------------------------------------------------------------------------------------------------------------
 
