@@ -54,12 +54,14 @@ public class DeleteOrderItemCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
             }
-
             OrderItem orderItemToDelete = lastShownList.get(targetIndex.getZeroBased());
-            orderItemsToDelete.add(orderItemToDelete);
+            if (!orderItemsToDelete.contains(orderItemToDelete)) {
+                orderItemsToDelete.add(orderItemToDelete);
+            }
+        }
+        for (OrderItem orderItemToDelete:orderItemsToDelete) {
             model.deleteOrderItem(orderItemToDelete);
         }
-
         return new CommandResult(getResultString(orderItemsToDelete));
     }
 

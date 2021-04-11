@@ -164,4 +164,14 @@ public class UniqueOrderItemListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueOrderItemList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void hashCode_sameInternalList_sameHashcode() {
+        List<OrderItem> orderItemList = Collections.singletonList(STRAWBERRY);
+        UniqueOrderItemList uniqueOrderItemListOne = new UniqueOrderItemList();
+        uniqueOrderItemListOne.setOrderItems(orderItemList);
+        UniqueOrderItemList uniqueOrderItemListTwo = new UniqueOrderItemList();
+        uniqueOrderItemListTwo.setOrderItems(orderItemList);
+        assertEquals(uniqueOrderItemListOne.hashCode(), uniqueOrderItemListTwo.hashCode());
+    }
 }
