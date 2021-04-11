@@ -1,8 +1,6 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalDietLah;
 
 import java.nio.file.Path;
 
@@ -11,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.DietLah;
-import seedu.address.model.ReadOnlyDietLah;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,7 +20,6 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonDietLahStorage dietLahStorage = new JsonDietLahStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonUniqueFoodListStorage uniqueFoodListStorage =
                 new JsonUniqueFoodListStorage(getTempFilePath("foods"));
@@ -32,7 +27,7 @@ public class StorageManagerTest {
                 new JsonFoodIntakeListStorage(getTempFilePath("foodintakes"));
         JsonDietPlanListStorage dietPlanListStorage = new JsonDietPlanListStorage(getTempFilePath("plans"));
         JsonUserStorage userStorage = new JsonUserStorage(getTempFilePath("user"));
-        storageManager = new StorageManager(dietLahStorage, uniqueFoodListStorage,
+        storageManager = new StorageManager(uniqueFoodListStorage,
                 foodIntakeListStorage, dietPlanListStorage, userPrefsStorage, userStorage);
     }
 
@@ -52,24 +47,6 @@ public class StorageManagerTest {
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
-    }
-
-    @Test
-    public void dietLahReadSave() throws Exception {
-        /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonDietLahStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonDietLahStorageTest} class.
-         */
-        DietLah original = getTypicalDietLah();
-        storageManager.saveDietLah(original);
-        ReadOnlyDietLah retrieved = storageManager.readDietLah().get();
-        assertEquals(original, new DietLah(retrieved));
-    }
-
-    @Test
-    public void getDietLahFilePath() {
-        assertNotNull(storageManager.getDietPlanListFilePath());
     }
 
 }

@@ -7,11 +7,8 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.diet.DietPlan;
@@ -21,7 +18,6 @@ import seedu.address.model.food.Food;
 import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
-import seedu.address.model.person.Person;
 import seedu.address.model.user.Bmi;
 import seedu.address.model.user.User;
 
@@ -37,35 +33,49 @@ public class ModelManager implements Model {
     private final UniqueFoodList uniqueFoodList;
     private final FoodIntakeList foodIntakeList;
     private final DietPlanList dietPlanList;
-    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given dietLah and userPrefs.
      */
-    public ModelManager(ReadOnlyDietLah dietLah, UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList,
+    public ModelManager(UniqueFoodList uniqueFoodList, FoodIntakeList foodIntakeList,
                         DietPlanList dietPlanList, ReadOnlyUserPrefs userPrefs, User user) {
         super();
-        requireAllNonNull(dietLah, userPrefs);
+        requireAllNonNull(userPrefs);
 
-        this.dietLah = new DietLah(dietLah, uniqueFoodList, foodIntakeList, user);
+        this.dietLah = new DietLah(uniqueFoodList, foodIntakeList, user);
         this.uniqueFoodList = uniqueFoodList;
         this.foodIntakeList = foodIntakeList;
         this.dietPlanList = dietPlanList;
         this.userPrefs = new UserPrefs(userPrefs);
 
-        logger.fine("Initializing with dietLah: " + dietLah
+        logger.fine("Initializing with dietLah: " + this.dietLah
                 + ", unique food list: " + uniqueFoodList + ", food intake list: " + foodIntakeList
                 + ", diet plan list: " + dietPlanList + " and user prefs " + userPrefs);
-
-        filteredPersons = new FilteredList<>(this.dietLah.getPersonList());
     }
 
     /**
      * Initializes a ModelManager.
      */
     public ModelManager() {
-        this(new DietLah(), new UniqueFoodList(),
+        this(new UniqueFoodList(),
                 new FoodIntakeList(), new DietPlanList(), new UserPrefs(), null);
+    }
+
+    /**
+     * Checks whether supplied object is the same as the current modelManager
+     * @param object
+     * @return boolean
+     */
+    public boolean equals(Object object) {
+        if (object instanceof ModelManager) {
+            ModelManager modelManager = (ModelManager) object;
+            return this.dietLah.equals(modelManager.dietLah)
+                    && this.uniqueFoodList.equals(modelManager.uniqueFoodList)
+                    && this.foodIntakeList.equals(modelManager.foodIntakeList)
+                    && this.dietPlanList.equals(modelManager.dietPlanList)
+                    && this.userPrefs.equals(modelManager.userPrefs);
+        }
+        return false;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -113,68 +123,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyDietLah getDietLah() {
         return dietLah;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return dietLah.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        dietLah.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        dietLah.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        dietLah.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedDietLah}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return dietLah.equals(other.dietLah)
-                && userPrefs.equals(other.userPrefs)
-                && uniqueFoodList.equals(other.uniqueFoodList)
-                && foodIntakeList.equals(other.foodIntakeList)
-                && filteredPersons.equals(other.filteredPersons);
     }
 
     //=========== UniqueFoodList Accessors =============================================================

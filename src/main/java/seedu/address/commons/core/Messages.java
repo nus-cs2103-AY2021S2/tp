@@ -9,6 +9,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_DATETIME_FORMAT = "Invalid datetime format! "
             + "It should be in 'dd Mmm yyyy'(e.g. 13 Jan 2021)\n";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
 
 }
