@@ -1,11 +1,13 @@
 package seedu.budgetbaby.logic.commands;
 
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.budgetbaby.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.BudgetBabyModelManager;
 
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.budgetbaby.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 public class HelpCommandTest {
     private BudgetBabyModel model = new BudgetBabyModelManager();

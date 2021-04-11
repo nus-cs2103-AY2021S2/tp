@@ -2,8 +2,8 @@ package seedu.budgetbaby.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_ADD;
-import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_ADD_TIMESTAMP;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_ADD_CATEGORY;
+import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_ADD_TIMESTAMP;
 
 import org.junit.jupiter.api.Test;
 

@@ -2,24 +2,17 @@ package seedu.budgetbaby.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.budgetbaby.ablogic.commands.EditCommand;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
-import seedu.budgetbaby.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

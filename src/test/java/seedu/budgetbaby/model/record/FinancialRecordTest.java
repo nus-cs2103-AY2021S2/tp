@@ -1,17 +1,18 @@
 package seedu.budgetbaby.model.record;
 
-import org.junit.jupiter.api.Test;
-import seedu.budgetbaby.testutil.FinancialRecordBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CAIFAN;
 import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_AMOUNT_CAIFAN;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TIMESTAMP_CAIFAN;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CAIFAN;
 import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TAG_SHOPPING;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TIMESTAMP_CAIFAN;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
-import static seedu.budgetbaby.testutil.TypicalFinancialRecord.LUNCH;
 import static seedu.budgetbaby.testutil.TypicalFinancialRecord.DINNER;
+import static seedu.budgetbaby.testutil.TypicalFinancialRecord.LUNCH;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.budgetbaby.testutil.FinancialRecordBuilder;
 
 public class FinancialRecordTest {
     @Test

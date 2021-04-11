@@ -1,22 +1,22 @@
 package seedu.budgetbaby.testutil;
 
-import seedu.budgetbaby.logic.parser.YearMonthParser;
-import seedu.budgetbaby.model.month.Month;
-import seedu.budgetbaby.model.record.FinancialRecord;
+
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_AMOUNT_CAIFAN;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_AMOUNT_EARRING;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CAIFAN;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EARRING;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TAG_SHOPPING;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TIMESTAMP_CAIFAN;
+import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TIMESTAMP_EARRING;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CAIFAN;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EARRING;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_AMOUNT_CAIFAN;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_AMOUNT_EARRING;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TIMESTAMP_CAIFAN;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TIMESTAMP_EARRING;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
-import static seedu.budgetbaby.logic.commands.CommandTestUtil.VALID_TAG_SHOPPING;
-
+import seedu.budgetbaby.logic.parser.YearMonthParser;
+import seedu.budgetbaby.model.month.Month;
+import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * A utility class containing a list of {@code FinancialRecord} objects to be used in tests.
@@ -52,6 +52,9 @@ public class TypicalFinancialRecord {
         .withCategories(VALID_TAG_SHOPPING)
         .build();
 
+    public static final Month JAN = getTypicalMonth1();
+    public static final Month FEB = getTypicalMonth2();
+
     private TypicalFinancialRecord() {
     }
 
@@ -85,8 +88,5 @@ public class TypicalFinancialRecord {
     public static List<FinancialRecord> getTypicalFinancialRecords2() {
         return new ArrayList<>(Arrays.asList(CAIFAN, EARRING));
     }
-
-    public static final Month JAN = getTypicalMonth1();
-    public static final Month FEB = getTypicalMonth2();
 
 }

@@ -1,14 +1,14 @@
 package seedu.budgetbaby.testutil;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.util.SampleDataUtil;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building FinancialRecord objects.
@@ -54,7 +54,8 @@ public class FinancialRecordBuilder {
     }
 
     /**
-     * Parses the {@code categories} into a {@code Set<Category>} and set it to the {@code FinancialRecord} that we are building.
+     * Parses the {@code categories} into a {@code Set<Category>} and
+     * set it to the {@code FinancialRecord} that we are building.
      */
     public FinancialRecordBuilder withCategories(String... categories) {
         this.categories = SampleDataUtil.getCategorySet(categories);

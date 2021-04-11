@@ -1,20 +1,21 @@
 package seedu.budgetbaby.model.month;
 
-import org.junit.jupiter.api.Test;
-import seedu.budgetbaby.testutil.MonthBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
-import static seedu.budgetbaby.testutil.TypicalFinancialRecord.JAN;
 import static seedu.budgetbaby.testutil.TypicalFinancialRecord.FEB;
+import static seedu.budgetbaby.testutil.TypicalFinancialRecord.JAN;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.budgetbaby.testutil.MonthBuilder;
 
 public class MonthTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Month month = new MonthBuilder().build();
-        assertThrows(UnsupportedOperationException.class,
-            () -> month.getFinancialRecordList().remove(0));
+        assertThrows(UnsupportedOperationException.class, ()
+            -> month.getFinancialRecordList().remove(0));
     }
 
     @Test
