@@ -1,47 +1,43 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
-NOTE: to be edited by Soorya accordingly as development progresses
+title: Soorya's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: Residence Tracker
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ResidenceTracker (RT) is a **desktop app for managing residences, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a busy landlord renting out multiple residences and can type fast, RT can get your residence management tasks done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Adding Bookings to a Residence
+  * What it does: Allows users to add booking details to an existing residence.
+  * Justification: This feature is essential to the product since tracking bookings is a necessary feature of residence management that will determine when the residence needs to be cleaned or if it is available for personal use and so on.
+    By allowing the user to add details of bookings such as dates, tenant name and contact details, it improves the completeness of the product for the user in managing residences.
+    
+* **New Feature**: Automatic Sorting of Residences
+  * What it does: Allows users to view residences that need to be cleaned before residences that were already clean.
+  * Justification: This feature enhances the product by allowing the users to view the residences that need the most attention first since the unclean residences would need to be cleaned.
+  * Highlights: This feature was tricky to implement as the sorting of residences affects other commands that access the residences based on the index in the display list. Specifically, the `status` command edited the clean status of multiple residences one after the other, so the sorting could not happen until a whole command was executed. It required some effort to ensure that the implementation did not add more dependencies.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Reminder to View Residences with Upcoming Bookings
+  * What it does: Allows users to view only the upcoming residences that have bookings in the next 7 days.
+  * Justification: This feature enhances the product by allowing the users to view the residences that need the most attention and take necessary actions to ensure they are kept clean for upcoming bookings.
+    Although this feature is similar to the above, this was added to give greater importance to residences with upcoming bookings as other unclean residences need not have to be cleaned as much as these do to ensure they can be ready for tenants.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=vrsoorya&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=VRSoorya&tabRepo=AY2021S2-CS2103-T16-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Managed releases `v1.3` - `v1.4` (3 releases) on GitHub
+  * Practice of forking workflow with issues, milestones and CI/CD.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `remind` and `addb` [\#173](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/173/files)
+    * Did cosmetic tweaks to existing documentation of features `add`, `edit`, `status`
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `remind` feature.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#146](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/146)
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/110))
+  * Reported bugs and suggestions for other teams in the class (2 teams: [1](https://github.com/vrsoorya/ped/issues), [2](https://github.com/vrsoorya/pe/issues))
