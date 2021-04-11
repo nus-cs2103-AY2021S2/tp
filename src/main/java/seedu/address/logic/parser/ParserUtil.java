@@ -38,6 +38,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_DAY_NORMAL_YEAR = "Current year only has 28 days in February. "
             + "Please input a correct date.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_PARAMS = "Extra invalid parameter (/) detected. Please follow "
+            + "the respective command guide for that command.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -65,6 +67,9 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
         LocalDate localDate;
+        if (trimmedDate.contains("/")) {
+            throw new ParseException(MESSAGE_INVALID_PARAMS);
+        }
         try {
             localDate = LocalDate.parse(trimmedDate, formatter);
         } catch (DateTimeParseException de) {
@@ -97,6 +102,9 @@ public class ParserUtil {
         String trimmedValue = doubleValue.trim();
         int dotIndex = trimmedValue.indexOf(".");
         if (!trimmedValue.matches(Food.VALIDATION_POSITIVE_DOUBLE_REGEX)) {
+            if (trimmedValue.contains("/")) {
+                throw new ParseException(MESSAGE_INVALID_PARAMS);
+            }
             throw new ParseException(Food.MESSAGE_DIGIT_CONSTRAINTS);
         }
         if (trimmedValue.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
@@ -121,6 +129,9 @@ public class ParserUtil {
         if (!trimmedName.matches(Food.VALIDATION_CHAR_REGEX)
                 || trimmedName.length() == 0) {
             throw new ParseException(Food.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedName.contains("/")) {
+            throw new ParseException(MESSAGE_INVALID_PARAMS);
         }
         return trimmedName;
     }
