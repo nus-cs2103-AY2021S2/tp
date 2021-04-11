@@ -35,9 +35,9 @@ ever-increasing clients.
 
     * **`list`** : Lists all of your clients.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to your Link.me.
+    * **`add`**` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1993-05-06` : Adds a client named `John Doe` to your Link.me.
 
-    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
+    * **`delete`**` 3` : Deletes the 3rd client shown in the current list.
 
     * **`clear`** : Deletes all of your clients.
 

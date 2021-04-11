@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate persons.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Client list contains duplicate clients.";
 
     public static final String MESSAGE_CLASH_MEETING = "Meeting list contains clashed meetings.";
 
