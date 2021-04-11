@@ -11,6 +11,7 @@ import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 import java.util.Arrays;
 import java.util.Collections;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.model.Model;
@@ -18,6 +19,7 @@ import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.dictionary.DefinitionContainsKeywordsPredicate;
 import seedu.dictionote.testutil.TypicalDefinition;
+import seedu.dictionote.testutil.TypicalDictionaryContentConfig;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindContentCommand}.
@@ -27,6 +29,12 @@ public class FindDefinitionCommandTest {
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
     private Model expectedModel = new ModelManager(getTypicalContactsList(), new UserPrefs(),
             getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
+
+    @BeforeEach
+    public void init() {
+        model.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
+        expectedModel.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
+    }
 
     @Test
     public void equals() {
