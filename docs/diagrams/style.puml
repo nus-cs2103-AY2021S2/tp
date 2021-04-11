@@ -31,6 +31,10 @@
 !define STORAGE_COLOR_T3 #806600
 !define STORAGE_COLOR_T2 #544400
 
+!define CONNECTION_COLOUR #993399
+!define CONNECTION_COLOUR_T1 #a329a3
+!define CONNECTION_COLOUR_T2 #ad1fad
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF

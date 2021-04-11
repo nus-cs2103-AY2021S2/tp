@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor CONNECTION_COLOUR
+skinparam classBackgroundColor CONNECTION_COLOUR
+skinparam classFontColor #white
+skinparam classAttributeFontColor #white
+
+
+package Model <<Rectangle>> {
+interface Model
+class ModelManager
+class PersonMeetingConnection {
+-personsInMeeting
+-meetingsInPerson
+}
+}
+package Logic <<Rectangle>> {
+interface Parser
+class XYZPersonMeetingConnectionCommandParser
+abstract class Command
+class XYZPersonMeetingConnectionCommand
+}
+
+Model <|.. ModelManager
+ModelManager o-- "1" PersonMeetingConnection
+Command <|-right- XYZPersonMeetingConnectionCommand
+XYZPersonMeetingConnectionCommandParser ..> XYZPersonMeetingConnectionCommand : creates >
+XYZPersonMeetingConnectionCommandParser .left.> PersonMeetingConnection : modifies >
+Parser <|-- XYZPersonMeetingConnectionCommandParser
+note left of XYZPersonMeetingConnectionCommand: XYZPersonMeetingConnectionCommand = AddPersonMeetingConnectionCommand etc
+
+
+show PersonMeetingConnection fields
+@enduml
