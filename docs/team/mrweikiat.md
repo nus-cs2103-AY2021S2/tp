@@ -24,7 +24,8 @@ Added documentation for `priority tag` feature, as well as standardising the tea
 ##Contributions to the DG
 * I was incharge of the Storage component and therefore I drew up the Storage UML diagrams on the DG.
 * Edited the exisiting UML diagram to fit our new features into the Storage component, taking care of the refactored componenets as well
-* 
+* Wrote additional information under the Storage component with regards to our new features
+
 ##Contributions to team-based tasks
 * Refactored person classes in the Person package 
 * Helped to standardize UG and DG 
