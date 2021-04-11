@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -86,17 +87,16 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
     /**
      * Fills in the numbers of the month in the date provided into the calendar.
      *
-     * @param dateToView Date with the month that will be shown in the calendar.
+     * @param dateToView First date of the month that will be shown in the calendar.
      */
     // Solution below adapted from https://github.com/SirGoose3432/javafx-calendar/blob/master/src/FullCalendarView.java
     private void populateCalendarPage(LocalDate dateToView) {
         LocalDate dateCursor = dateToView;
         boolean isCursorOnDiffMonth = false;
-        while (!dateCursor.getDayOfWeek().toString().equals("SUNDAY")) {
+        while (dateCursor.getDayOfWeek() != DayOfWeek.SUNDAY) {
             dateCursor = dateCursor.minusDays(1);
             isCursorOnDiffMonth = true;
         }
-
         // Populate the calendar with date numbers
         for (StackPane pane : calendarPanes) {
             pane.getChildren().clear();
@@ -104,20 +104,19 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
             isCursorOnDiffMonth = decideStyleOfDay(isCursorOnDiffMonth, dateCursor, day);
 
             if (dateCursor.equals(currentDate)) {
-                day.setBackground(new Background(new BackgroundFill(Color.WHITE,
-                        new CornerRadii(50), Insets.EMPTY)));
+                day.setBackground(new Background(
+                        new BackgroundFill(Color.WHITE, new CornerRadii(50), Insets.EMPTY)));
                 day.setStyle("-fx-text-fill: black;");
             }
 
             if (dateCursor.equals(viewingDate)) {
-                day.setBorder(new Border(new BorderStroke(Color.WHITE,
-                        BorderStrokeStyle.SOLID, new CornerRadii(50), new BorderWidths(2))));
+                day.setBorder(new Border(new BorderStroke(
+                        Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(50), new BorderWidths(2))));
             }
 
             pane.getChildren().add(day);
             dateCursor = dateCursor.plusDays(1);
         }
-
         // Change the title of the calendar
         String monthText = dateToView.getMonth().toString();
         String properCaseMonthText = StringUtil.toSentenceCase(monthText);
@@ -143,8 +142,9 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
 
         if (dateCursor.plusDays(1).getDayOfMonth() == 1) {
             return !isCursorOnDiffMonth;
+        } else {
+            return isCursorOnDiffMonth;
         }
-        return isCursorOnDiffMonth;
     }
 
     /**

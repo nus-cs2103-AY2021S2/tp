@@ -127,62 +127,48 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Viewing list of tags in the tags panel
+### Enforcing conditions
 
-Each task may be associated with 0 or more tags that are stored in the `UniqueTagList`. The `UniqueTagList` ensures that
-no 2 tags are duplicate in the program at 1 time, emphasizing the abstraction of tags as an Object.
+When executing commands, the planner has to enforce certain logical constraints to prevent unintended command behaviour.
+Here is a list of constraints:
+ * A task should not have a duration attribute without a date or recurring schedule attribute.
+ * A task should not have an empty title.
+ * A task should have a title with at most 40 characters.
 
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+Note that certain constraints may be relevant to specific commands. For instance (this list is not exhaustive):
+ * Checking if the date attribute is empty for commands like `count` which counts down the days from today's date
+ * The index specified by the user for commands that require a INDEX parameter,
+  should be positive and within the range of the list of displayed tasks.
+ 
+#### Design considerations
+##### Bad designs not chosen:
+While the task is a composition of the various attributes like: title, status, etc, there is a violation of the Single
+Responsibility Principle when the Task class is checking for whether the date of a task object has passed today's date,
+or checking if the change in a date is valid.
 
-The `UniqueTagList` then exposes an unmodifiable `ObservableList<Tag>` to be observed by the `UI`, much like how the
-list of tasks is being observed by the `UI`. This tag list is presented visually using `TagListPanel` in `UI`. Below is
-an activity diagram illustrating how a command will trigger a change in the `UniqueTagList`, in continuation from the
-delete command activity diagram in the
-[`Logic`](#logic-component) section:
+In addition, checking the constraints in each of the command's execute method (which is the case in v1.2, and some
+commands in v1.3) violates the Don't Repeat Yourself principle. As shown in the list of constraints above, there are
+many repeated constraints which will be checked across different commands. This also violates the Dependency Inversion
+principle when the command's execute method depends on methods from lower level classes such as Date.
 
-![UniqueTagListSequenceDiagram](images/UniqueTagListSequenceDiagram.png)
+##### Chosen design:
+Therefore, enforcing conditions has been implemented as shown in the class diagram below.
+![ConditionClassDiagram](images/ConditionClassDiagram.png)
 
-The `UniqueTagList` class encapsulates the data and related behavior of a unique tag list, which removes the given tag
-from its internal list in the diagram above. The `ModelManager` provides access to the list for the `UI` as shown
-below:
+1. When a XYZCommand runs the execute method, it might call the ConditionLogic class. This acts as the main facade
+class.
+2. ConditionLogic will then call the relevant condition or constraint manager class.
+3. The relevant classes will then create an AttributeManager object to access the functionalities provided by 
+each of the attribute classes.
 
-![UniqueTagListSequenceDiagram2](images/UniqueTagListSequenceDiagram2.png)
+From point 2, the choice to split the ConditionLogic class into secondary facade classes: ConstraintManager,
+IndexManager, DateVerifier, RecurringScheduleVerifier, is to ensure that single responsibility principle is upheld.
 
-As seen, there is a clear separation of responsibilities between the `UI`, `Logic` and `Model`, which complies with
-the Observer pattern where the view in `UI` communicates with the `UniqueTagList` in `Model` through an
-interface, subscribing to the changes in the list. Thus, coupling is reduced.
-This interface is actually `<<Logic>>` and `<<Model>>`, implemented by `LogicManager` and `ModelManager`, which are
-abstracted out of the diagram for more concrete representation.
+From point 3, the various secondary facade classes could directly access the attribute classes. However, that would
+violate the Law of Demeter, hence the AttributeManager class provides access to the functionalities of the attributes.
 
-### Viewing tasks on a date and changing the calendar's date
-
-The `view` command can get and list all tasks with dates and their recurring schedule's dates on a particular date. The
-next argument for the command is taken as the `DATE` and used in the predicate that filters the task list stored. The
-resulting filtered task list is displayed on the `TaskListPanel` in the app. The following activity diagram illustrates
-the workflow when a user uses the `view` command:
-
-![ViewDateActivityDiagram](images/ViewDateActivityDiagram.png)
-
-The given date argument is used in `TaskOnDatePredicate` which is an aggregation of 2 other predicates:
-`TaskDateOnDatePredicate` and `TaskScheduledOnDatePredicate`. The sequence diagram below shows how the command is parsed
-and executed:
-
-![ViewDateSequenceDiagram](images/ViewDateSequenceDiagram.png)
-
-Updating the filtered task list causes a change in the `ObservableTaskList` encapsulated in a `UniqueTaskList`, in turn
-encapsulated within the model and planner. The `ObservableTaskList` then propagates the changes to the `TaskListPanel`
-to be viewed.
-
-#### Changing the calendar's viewing date
-
-The date given in the view command is also used to update the calendar. This is implemented as an `Observable` object
-called `ObservableCalendarDate`, stored within the model encapsulated by the planner. It is passed to the
-`CalendarPanel` upon instantiation in the `MainWindow` view. The `CalendarPanel` implements an `Observer` interface,
-which subscribes to the `Observable` for notifications whenever there is a change in date caused by the `view` command.
-
-![ObservableCalendarDateDiagram](images/ObservableCalendarDateClassDiagram.png)
-
-Thus, `CalendarPanel` and `ObservableCalendarDate` conforms to the observer pattern, reducing coupling.
+The separation of attributes and conditions into their own packages increases cohesion and allows for the future
+creation of commands to reuse the code when enforcing conditions.
 
 ### Mark task as done
 
@@ -302,6 +288,62 @@ This approach was chosen as it is easy to implement, and not too much of refacto
 This approach was not chosen as it would require more refactoring of code - if anything is missed out, 
 it will result in undesirable runtime exceptions.
 
+### Viewing list of tags in the tags panel
+
+Each task may be associated with 0 or more tags that are stored in the `UniqueTagList`. The `UniqueTagList` ensures that
+no 2 tags are duplicate in the program at 1 time, emphasizing the abstraction of tags as an Object.
+
+![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+
+The `UniqueTagList` then exposes an unmodifiable `ObservableList<Tag>` to be observed by the `UI`, much like how the
+list of tasks is being observed by the `UI`. This tag list is presented visually using `TagListPanel` in `UI`. Below is
+an activity diagram illustrating how a command will trigger a change in the `UniqueTagList`, in continuation from the
+delete command activity diagram in the
+[`Logic`](#logic-component) section:
+
+![UniqueTagListSequenceDiagram](images/UniqueTagListSequenceDiagram.png)
+
+The `UniqueTagList` class encapsulates the data and related behavior of a unique tag list, which removes the given tag
+from its internal list in the diagram above. The `ModelManager` provides access to the list for the `UI` as shown
+below:
+
+![UniqueTagListSequenceDiagram2](images/UniqueTagListSequenceDiagram2.png)
+
+As seen, there is a clear separation of responsibilities between the `UI`, `Logic` and `Model`, which complies with
+the Observer pattern where the view in `UI` communicates with the `UniqueTagList` in `Model` through an
+interface, subscribing to the changes in the list. Thus, coupling is reduced.
+This interface is actually `<<Logic>>` and `<<Model>>`, implemented by `LogicManager` and `ModelManager`, which are
+abstracted out of the diagram for more concrete representation.
+
+### Viewing tasks on a date and changing the calendar's date
+
+The `view` command can get and list all tasks with dates and their recurring schedule's dates on a particular date. The
+next argument for the command is taken as the `DATE` and used in the predicate that filters the task list stored. The
+resulting filtered task list is displayed on the `TaskListPanel` in the app. The following activity diagram illustrates
+the workflow when a user uses the `view` command:
+
+![ViewDateActivityDiagram](images/ViewDateActivityDiagram.png)
+
+The given date argument is used in `TaskOnDatePredicate` which is an aggregation of 2 other predicates:
+`TaskDateOnDatePredicate` and `TaskScheduledOnDatePredicate`. The sequence diagram below shows how the command is parsed
+and executed:
+
+![ViewDateSequenceDiagram](images/ViewDateSequenceDiagram.png)
+
+Updating the filtered task list causes a change in the `ObservableTaskList` encapsulated in a `UniqueTaskList`, in turn
+encapsulated within the model and planner. The `ObservableTaskList` then propagates the changes to the `TaskListPanel`
+to be viewed.
+
+#### Changing the calendar's viewing date
+
+The date given in the view command is also used to update the calendar. This is implemented as an `Observable` object
+called `ObservableCalendarDate`, stored within the model encapsulated by the planner. It is passed to the
+`CalendarPanel` upon instantiation in the `MainWindow` view. The `CalendarPanel` implements an `Observer` interface,
+which subscribes to the `Observable` for notifications whenever there is a change in date caused by the `view` command.
+
+![ObservableCalendarDateDiagram](images/ObservableCalendarDateClassDiagram.png)
+
+Thus, `CalendarPanel` and `ObservableCalendarDate` conforms to the observer pattern, reducing coupling.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -354,8 +396,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
 | `* * *`  | user | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
 | `* * *`  | user | see all the statistics for the tasks | track my progress |
-| `* * *`  | user | see a list of tags currently used | keep track of all my tags |
 | `* * *`  | user | view all the tasks on a specific date | schedule new tasks during the free time on that day |
+| `* *`  | user | see a list of tags currently used | keep track of all my tags |
 
 ### Use cases
 
@@ -470,7 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Remove a field from a task**
 
 **MSS**
-1. User _adds a task with removable field_ to the list.
+1. User <u>adds a task</u> with removable field to the list.
 2. PlanIT shows task added to the list and updates list.
 3. User enters command to remove the removable field from the task.
 4. PlanIT shows task with field removed and updates list.
@@ -566,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Counting down to a task's date**
 
 **MSS**
-1. User _adds a task with a date_ to the list. 
+1. User <u>adds a task</u> with a date to the list. 
 2. PlanIT shows task added to the list and updates list.
 3. User enters command to display number of days left to task's date.
 4. PlanIT displays number of days left to task's date.
@@ -642,8 +684,6 @@ of external database management system.
 * The features within the system is only catered to a single user.
 * The system is catered to user who can type fast and prefer typing over any other means.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -694,8 +734,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Test case: Delete the data file which is saved at the same folder as the jar file.
+   1. Test case: Delete the data file which is saved at the same folder as the jar file.<br>
       Expected: PlanIt launches with sample data loaded, and creates a new data file.
       
-   1. Test case: Remove an attribute of a task, or fill in an attribute with the wrong format.
+   1. Test case: Remove an attribute of a task, or fill in an attribute with the wrong format.<br>
       Expected: PlanIt launches with an empty list.

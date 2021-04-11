@@ -68,16 +68,19 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         handleDuplicateTask(model);
+        enforceValidityOfTask();
 
+        updateTags(model);
+        updateModel(model);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    private void enforceValidityOfTask() throws CommandException {
         ConditionLogic conditionLogic = new ConditionLogic(toAdd);
         conditionLogic.enforceAttributeConstraints();
         conditionLogic.checkInvalidDateRange();
         conditionLogic.checkForExpiredDate();
         conditionLogic.enforceTitleLength();
-        updateTags(model);
-        updateModel(model);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     private void handleDuplicateTask(Model model) throws CommandException {
@@ -96,6 +99,7 @@ public class AddCommand extends Command {
 
     private void updateModel(Model model) {
         model.addTask(toAdd);
+        model.resetCalendarDate();
     }
 
     @Override
