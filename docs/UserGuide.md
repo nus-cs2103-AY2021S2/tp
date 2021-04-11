@@ -311,9 +311,9 @@ Editing a student's matriculation number through the JSON file is allowed, howev
 If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment. 
 Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
 
-> :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+> :warning: If your direct changes to the data file result in invalid formatting, Vax@NUS will discard all data and start with an empty data file in your next launch. Be very careful!
 
---------------------------------------------------------------------------------------------------------------------
+>--------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
 
