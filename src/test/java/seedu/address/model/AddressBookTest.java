@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.SORT_ASCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.SORT_DESCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.PersonBuilder.MODE_OF_CONTACT_PHONE;
@@ -52,7 +54,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withBlacklist(true)
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withBlacklist(true)
                 .withModeOfContact(MODE_OF_CONTACT_PHONE).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -77,19 +79,14 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_personWithSameNameEmailAddressPhone_returnsTrue() {
-        addressBook.addPerson(BOB);
-        Person editedBob = new PersonBuilder(BOB).withModeOfContact(PersonBuilder.DEFAULT_MODE_OF_CONTACT)
-                .withBlacklist(true).build();
-        assertTrue(addressBook.hasPerson(editedBob));
-    }
-
-    @Test
-    public void hasPerson_personWithSameNameDifferentFieldsInAddressBook_returnsFalse() {
+    public void hasPerson_personWithSameEmailDifferentFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertFalse(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test

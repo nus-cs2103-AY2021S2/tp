@@ -9,7 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.comparator.NameComparator;
+import seedu.address.model.person.comparator.PersonComparator;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -100,14 +100,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sorts the contacts in the address book by name in alphabetical order.
+     * Sorts all persons in the address book by name in alphabetical order.
      *
      * @param isAscending The list will be sorted by ascending order if true and descending
      * order otherwise.
      */
     public void sortByName(boolean isAscending) {
-        NameComparator nameComparator = new NameComparator();
-        Collections.sort(internalList, nameComparator);
+        PersonComparator contactComparator = new PersonComparator();
+        Collections.sort(internalList, contactComparator);
         if (!isAscending) {
             Collections.reverse(internalList);
         }

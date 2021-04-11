@@ -160,15 +160,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRemark_validValueWithWhitespace_returnsRemark() throws Exception {
+    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
         String remarkWithWhitespace = WHITESPACE + VALID_REMARK + WHITESPACE;
         Remark expectedRemark = new Remark(VALID_REMARK);
-        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
     }
 
     @Test
     public void parseSortDirection_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortDirection((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortDirection(null));
     }
 
     @Test
@@ -185,8 +185,7 @@ public class ParserUtilTest {
     @Test
     public void parseSortDirection_validValueWithWhitespace_returnsBoolean() throws Exception {
         String sortDirectionWithWhitespace = WHITESPACE + VALID_SORT_DIRECTION + WHITESPACE;
-        assertEquals(VALID_SORT_DIRECTION_RESULT,
-                ParserUtil.parseSortDirection(sortDirectionWithWhitespace));
+        assertEquals(VALID_SORT_DIRECTION_RESULT, ParserUtil.parseSortDirection(sortDirectionWithWhitespace));
     }
 
 

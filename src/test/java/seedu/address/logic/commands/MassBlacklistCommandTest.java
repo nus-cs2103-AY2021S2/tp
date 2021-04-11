@@ -22,8 +22,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code MassBlacklistCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code MassBlacklistCommand}.
  */
 public class MassBlacklistCommandTest {
 
@@ -103,7 +102,7 @@ public class MassBlacklistCommandTest {
         // different index range -> return false
         assertFalse(firstMassBlacklistCommand.equals(secondMassBlacklistCommand));
 
-        // different blacklist criteria -> return false
+        // different blacklist keyword -> return false
         assertFalse(firstMassBlacklistCommand.equals(thirdMassBlacklistCommand));
     }
 }

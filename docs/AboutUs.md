@@ -17,7 +17,7 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 [[portfolio]](team/jqchong.md)
 
 * Role: Developer
-* Responsibilities: Integration
+* Responsibilities: UI, Features
 
 ### Pan Jing Bin
 
@@ -27,7 +27,7 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 [[portfolio]](team/icebear789.md)
 
 * Role: Developer
-* Responsibilities: Deliverables
+* Responsibilities: Integration, Features
 
 ### Pan Wen Zhuo, Ernest
 
@@ -37,7 +37,7 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 [[portfolio]](team/ampan98.md)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables, Features
 
 ### Ryan Jee
 
@@ -47,4 +47,4 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 [[portfolio]](team/rjeez.md)
 
 * Role: Developer
-* Responsibilities: Deliverables
+* Responsibilities: Testing, Features

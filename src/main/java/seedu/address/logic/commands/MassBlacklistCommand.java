@@ -11,31 +11,35 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Blacklists or unblacklists all contacts within the specified index range (inclusive).
+ * Blacklists or unblacklists all persons within the specified index range (inclusive) in
+ * the address book.
  */
 public class MassBlacklistCommand extends Command {
 
     public static final String COMMAND_WORD = "massblist";
 
+    public static final String BLACKLIST_KEYWORD = "blacklist";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Blacklists or unblacklists all contacts within the specified index range "
+            + ": Blacklists or unblacklists all persons within the specified index range "
             + "(inclusive).\n"
-            + "Parameters: START-END (Both must be positive integers)"
+            + "Parameters: START-END (both must be positive integers)"
             + " b/BLACKLIST_OR_UNBLACKLIST\n"
             + "Example: " + COMMAND_WORD + " 5-21 b/blacklist";
 
     public static final String MESSAGE_MASS_BLACKLIST_SUCCESS = "Successfully blacklisted "
-            + "all contacts within the index range %1$d-%2$d";
+            + "all persons within the index range %1$d-%2$d";
 
-    public static final String MESSAGE_MASS_UNBLACKLIST_SUCCESS = "Successfully unblacklisted "
-            + "all contacts within the index range %1$d-%2$d";
+    public static final String MESSAGE_MASS_UNBLACKLIST_SUCCESS = "Successfully removed "
+            + "all contacts within the index range %1$d-%2$d from the blacklist";
 
     private final Index startIndex;
     private final Index endIndex;
     private final boolean toBlacklist;
 
     /**
-     * Creates a MassBlacklistCommand to delete all contacts within the specified index range.
+     * Creates a MassBlacklistCommand to blacklist or unblacklist all persons within the
+     * specified index range (inclusive).
      */
     public MassBlacklistCommand(Index startIndex, Index endIndex, boolean toBlacklist) {
         this.startIndex = startIndex;
@@ -44,7 +48,8 @@ public class MassBlacklistCommand extends Command {
     }
 
     /**
-     * Returns true if the given string is a valid keyword (Either blacklist or unblacklist).
+     * Returns true if the given string is a valid keyword (either blacklist or unblacklist) and
+     * false otherwise.
      */
     public static boolean isValidBlacklistKeyword(String blacklistKeyword) {
         return blacklistKeyword.equals("blacklist") || blacklistKeyword.equals("unblacklist");
@@ -57,33 +62,36 @@ public class MassBlacklistCommand extends Command {
         if (!Index.isValidIndexRange(startIndex, endIndex)) {
             throw new CommandException(Messages.MESSAGE_INVALID_START_INDEX);
         }
-        if (endIndex.getZeroBased() >= lastShownList.size()) {
+        int start = startIndex.getOneBased();
+        int end = endIndex.getOneBased();
+        assert start < end : "Start index must be strictly smaller than the end index";
+        if (end > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_END_INDEX);
         }
         String outputMessage;
         if (toBlacklist) {
-            model.massBlacklist(startIndex.getOneBased(), endIndex.getOneBased());
-            outputMessage = String.format(MESSAGE_MASS_BLACKLIST_SUCCESS,
-                    startIndex.getOneBased(), endIndex.getOneBased());
+            model.massBlacklist(start, end);
+            outputMessage = String.format(MESSAGE_MASS_BLACKLIST_SUCCESS, start, end);
         } else {
-            model.massUnblacklist(startIndex.getOneBased(), endIndex.getOneBased());
-            outputMessage = String.format(MESSAGE_MASS_UNBLACKLIST_SUCCESS,
-                    startIndex.getOneBased(), endIndex.getOneBased());
+            model.massUnblacklist(start, end);
+            outputMessage = String.format(MESSAGE_MASS_UNBLACKLIST_SUCCESS, start, end);
         }
         return new CommandResult(outputMessage);
     }
 
     @Override
     public boolean equals(Object other) {
+        // short circuit if same object
         if (other == this) {
-            return true; // short circuit if same object
+            return true;
         }
-        if (other instanceof MassBlacklistCommand) {
+        if (other instanceof MassBlacklistCommand) { // instanceof handles nulls
             MassBlacklistCommand otherBlacklistCommand = (MassBlacklistCommand) other;
-            boolean sameStartIndex = startIndex.equals(otherBlacklistCommand.startIndex);
-            boolean sameEndIndex = endIndex.equals(otherBlacklistCommand.endIndex);
-            boolean sameKeyword = toBlacklist == otherBlacklistCommand.toBlacklist;
-            return sameStartIndex && sameEndIndex && sameKeyword;
+            // state check
+            boolean isSameStartIndex = startIndex.equals(otherBlacklistCommand.startIndex);
+            boolean isSameEndIndex = endIndex.equals(otherBlacklistCommand.endIndex);
+            boolean isSameKeyword = toBlacklist == otherBlacklistCommand.toBlacklist;
+            return isSameStartIndex && isSameEndIndex && isSameKeyword;
         }
         return false;
     }

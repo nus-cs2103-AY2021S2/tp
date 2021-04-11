@@ -221,13 +221,21 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isLight()) {
-                handleLightChange();
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                if (currentCss.equals("MainWindowLight.fxml")) {
+                    resultDisplay.setFeedbackToUser("Already in light mode");
+                } else {
+                    handleLightChange();
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                }
             }
 
             if (commandResult.isDark()) {
-                handleDarkChange();
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                if (currentCss.equals("MainWindow.fxml")) {
+                    resultDisplay.setFeedbackToUser("Already in dark mode");
+                } else {
+                    handleDarkChange();
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                }
 
             }
 

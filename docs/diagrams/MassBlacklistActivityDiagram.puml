@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes MassBlacklist command;
+:Parser parses the arguments;
+if () then ([arguments are valid])
+    :MassBlacklist command is executed;
+if () then ([keyword is "blacklist"])
+    :Blacklists all contacts within the index range;
+else ([keyword is "unblacklist"])
+    :Unblacklists all contacts within the index range;
+endif
+:Save changes to storage;
+else ([else])
+    :UI displays error message;
+endif
+stop
+@enduml

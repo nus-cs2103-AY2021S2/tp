@@ -12,13 +12,16 @@ title: Developer Guide
   - [Storage](#storage-component)
 - [Implementation](#implementation)
   - [Blacklist](#blacklist-feature)
-  - [Collect]
-  - [Find](#finding-persons-by-details-feature)
+  - [Collect](#collect-feature)
+  - [Find](#finding-contacts-by-details)
   - [Light/Dark] >Ryan
   - [Mass Blacklist] >JB
-  - [Mass Delete] >JB  
-  - [Mode of Contact](#mode-of-contact-feature)  
-  - [Remark] >JB
+  - [Mode of Contact](#mode-of-contact-feature)
+  - [Remark](#remark-feature)
+  - [Mass Delete](#mass-delete-feature)
+  - [Mode of Contact](#mode-of-contact-feature)
+  - [Navigate Previous Commands](#navigate-previous-commands-feature)
+  - [Remark](#remark-feature)
   - [Sort](#sort-feature)
   - [Undo](#undo-feature)
 - [Additional guides](#documentation-logging-testing-configuration-dev-ops)
@@ -31,16 +34,17 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a contact](#deleting-a-contact)
   - [Saving data](#saving-data)
-  - [Add a contact] >Ryan (Mode of contact)
-  - [Changing blacklist status of a contact] >Ern
-  - [Collecting details from all contacts] >Ern
+  - [Adding a contact] >Ryan (Mode of contact)
+  - [Changing blacklist status of a contact](#changing-blacklist-status-of-a-contact)
+  - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
   - [Editing remark for a contact] >JB
-  - [Finding persons by details] >JQ
+  - [Filtering contacts](#filtering-contacts)
   - [Performing mass blacklist] >JB
   - [Performing mass delete] >JB
   - [Sorting visible contact list] >JB
   - [Transitioning between light and dark mode] >Ryan
-  - [Undoing a command] >JQ
+  - [Undoing previous operations](#undoing-previous-operations)
+  - [Navigating through commands](#navigating-through-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,7 +191,7 @@ Step 2. The user decides to blacklist the person, and executes the `blist INDEX`
 The `blist INDEX` command will create a new `Person` with the same information as the person at `INDEX` in `AddressBook`,
 but with a new `Blacklist` with a different blacklist status, which then replaces the original person.
 
-![BlacklistState1](images/BlacklistState2.png)
+![BlacklistState2](images/BlacklistState2.png)
 
 The following sequence diagram shows how the blacklist operation works:
 
@@ -197,7 +201,7 @@ The following activity diagram summarizes what happens when a user executes a bl
 
 ![BlacklistActivityDiagram](images/BlacklistActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: The command format of blacklist
 
@@ -210,20 +214,54 @@ The following activity diagram summarizes what happens when a user executes a bl
     * Pros: Able to directly set blacklist status without checking current status.
     * Cons: More commands to remember.
 
-### Finding persons by details feature
+### Collect feature
+The collect feature is facilitated by `CommandResult`, which is responsible for displaying the results after
+collecting the details. Currently, only details from the 4 main fields (name, phone, address, email)
+can be collected.
+
+The following sequence diagram shows how the `collect` command works.
+
+![CollectSequenceDiagram](images/CollectSequenceDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: The number of fields to be collected from
+
+* **Alternative 1 (current choice):** Exactly 1 field out of 4 possible choices.
+    * Pros: Simpler and more intuitive command format.
+      Usually only 1 field is needed at a time when copying to messaging applications.
+    * Cons: Not customisable for all needs.
+
+* **Alternative 2:** Exactly 1 field out of all existing fields.
+    * Pros: Able to be used for more situations.
+    * Cons: More complex command format for likely unnecessary details.
+
+##### Aspect: The ability to start or end the separator with blank space
+
+* **Alternative 1 (current choice):** Leading or trailing blank space is ignored.
+    * Pros: Easier to implement due to reuse of `ArgumentTokenizer`.
+      Blank space is not the main separator in the recipient list for most messaging applications,
+      so functionality is not significantly impacted.
+    * Cons: Collected details are not in reader-friendly format.
+
+* **Alternative 2:** Include all leading and trailing blank spaces
+    * Pros: Able to be used for more situations.
+    * Cons: More complicated implementation resulting in possibly more bugs.
+
+### Finding contacts by details
 This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS] p/[PHONE] e/[EMAIL] b/[IS_BLACKLISTED] m/[MODE_OF_CONTACT]`.
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
 
-To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`. 
+To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`.
 
-The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns 
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns
 true.
 
-The following sequence diagram shows how the `find` command works:
+The following sequence diagram shows how the `find` command works:<br>
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-The following activity diagram shows what happens when `find` command is executed.
+The following activity diagram shows what happens when `find` command is executed.<br>
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design considerations:
@@ -238,8 +276,48 @@ The following activity diagram shows what happens when `find` command is execute
     * Pros: Easier to debug as one command is meant for one criterion.
     * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
 
+### Light Feature
+
+The light feature is implemented in the `LightCommand` class.
+The following is an example usage scenario.
+
+Step 1: The user executes `light` to switch the current theme to a light theme.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component executes the command which changes the boolean light to true. This is passed back to the `UI` component.
+
+Step 3: The `UI` component loads the fxml file containing the light theme and is displayed back to the user.
+
+The following sequence diagram shows how the light command works:
+
+![LightSequenceDiagram](images/LightSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes the light command:
+
+![LightActivityDiagram](images/LightActivityDiagram.png)
+
+### Dark Feature
+
+The dark feature is implemented in the `DarkCommand` class.
+The following is an example usage scenario.
+
+Step 1: The user executes `dark` to switch the current theme to a dark theme.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component executes the command which changes the boolean dark to true. This is passed back to the `UI` component.
+
+Step 3: The `UI` component loads the fxml file containing the dark theme and is displayed back to the user.
+
+The following sequence diagram shows how the dark command works:
+
+![DarkSequenceDiagram](images/DarkSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes the dark command:
+
+![DarkActivityDiagram](images/DarkActivityDiagram.png)
+
 ### Mode of Contact feature
-The mode of contact feature built on the current `AddCommand` class.
+The mode of contact feature is built on the current `AddCommand` class.
 The following is an example usage scenario.
 
 Step 1: The user executes `add n/Bob …/m email …` to add a new Person with the mode of contact as `email`.
@@ -256,27 +334,199 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
-### Sort feature
-The sort feature is implemented in the `SortCommand` class.
+### Mass Blacklist feature
+The mass blacklist/unblacklist mechanism is facilitated by `MassBlacklistCommand`.
+Below is an example usage scenario for mass blacklist. The usage for mass unblacklist is similar. 
+
+Step 1: The user executes `massblist 4-12 b/blacklist ` to blacklist all contacts within the index range 4-12.
+The string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `MassBlacklistCommand` object.
+
+Step 3: The `MassBlacklistCommand` object calls `Model#massBlacklist(4,12)` to blacklist all contacts
+in the `AddressBook` with index between 4 to 12.
+
+Step 4: After the contacts have been blacklisted, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the mass blacklist operation works:
+![MassBlacklistSequenceDiagram](images/MassBlacklistSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassBlacklistCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a mass delete command:
+![MassBlacklistActivityDiagram](images/MassBlacklistActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of mass blacklist command
+* **Alternative 1 (current choice):** Input format is `massdelete START-END`.
+  * Pros: More inutitive for the user.
+  * Cons: More difficult to implement as new methods will have to be written to parse the hyphen (-) symbol.
+
+* **Alternative 2:** Input format is `massdelete start/START end/END`.
+  * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
+    well-suited to parse such input formats.
+  * Cons: There are more prefixes for the user to remember.
+  
+### Mass Delete feature
+The mass delete mechanism is facilitated by `MassDeleteCommand`.
 Below is an example usage scenario.
 
-Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
-The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
+Step 1: The user executes `massdelete 2-5` to delete all contacts within the index range 2-5.
+The string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `MassDeleteCommand` object.
+
+Step 3: The `MassDeleteCommand` object calls `Model#massDelete(2,5)` to delete all contacts
+in the `AddressBook` with index between 2 to 5.
+
+Step 4: After deletion, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the mass delete operation works:
+![MassDeleteSequenceDiagram](images/MassDeleteSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a mass delete command:
+![MassDeleteActivityDiagram](images/MassDeleteActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Input format
+* **Alternative 1 (current choice):** Input format is `massdelete START-END`.
+    * Pros: More inutitive for the user.
+    * Cons: More difficult to implement as new methods will have to be written to parse the hyphen (-) symbol.
+
+* **Alternative 2:** Input format is `massdelete start/START end/END`.
+    * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
+      well-suited to parse such input formats.
+    * Cons: There are more prefixes for the user to remember.
+
+### Remark feature
+The Remark feature is facilitated by the classes `Remark` and `RemarkCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `add n/John Doe...` to add a new contact. This creates a new `Person` object. By default,
+the new contact is displayed as having "No remark".
+
+![RemarkState1](images/RemarkState1.png)
+
+Step 2: The user now decides to add a new remark to the new contact by executing `remark 3 r/Absent`.
+The `Logic` component creates a new `RemarkCommand` object for execution.
+
+Step 4: `RemarkCommand` creates a new `Person` object which is identical to the original `Person` object in
+every field except that the `Remark` of the new `Person` object have been updated.
+
+Step 6: `RemarkCommand` calls `Model#setPerson()` to replace the original `Person` in the `AddressBook` with the new
+`Person`.
+
+![RemarkState2](images/RemarkState2.png)
+
+Step 7: After the `AddressBook` has been updated, the `ModelManager` class will update `filteredPersons`
+to reflect the change.
+
+The following activity diagram summarizes what happens when a user executes a remark command:
+![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of remark
+* **Alternative 1 (current choice):** Editing the `Remark` field is done in a separate command.
+    * Pros: Reduces coupling and increases abstraction. Code for the `Remark` command can be reused elsewhere.
+    * Cons: More commands for the user to remember.
+
+* **Alternative 2:** Use the existing `Edit` command to edit the `Remark` field.
+    * Pros: Easier to implement as the edit command already has a parser and many helper methods.
+    * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
+      class even bigger and thus more difficult to maintain.
+      
+### Sort feature
+The sort mechanism is facilitated by `SortCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `sort ascending` to sort the contact list by name in ascending order. The
+string is passed to the `Logic` component.
 
 Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
 
-Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
-the `Model` component.
+Step 3: The `SortCommand` object calls `Model#sortByName()` to sort the
+internal `AddressBook`.
 
-Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
-component is called to update the file.
-
-Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
-it back to the `UI` component to display it to the user.
+Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect the change.
 
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
-    
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of sort
+* **Alternative 1 (current choice):** Sort command sorts the entire address book.
+  * Pros: Easy to implement.
+  * Cons:
+
+* **Alternative 2:**
+  * Pros:
+  * Cons:
+
+### Navigate previous commands feature
+
+#### Implementation
+
+The implementation of this feature is facilitated by `CommandList` class, which is a self-implemented linked list class.
+Whenever a command is executed, regardless of validity, a new node containing the command will be created and added into the linked list.
+The nodes in the linked list are implemented using `CommandNode` class, which keeps track of the following information:
+
+* Command executed
+* A reference to the previous `CommandNode` in the linked list.
+* A reference to the next `CommandNode` in the linked list.
+
+In addition, a `cursor` is introduced in `CommandList` class to help with navigation of the commands.
+The `cursor` keeps track of the current command while users are traversing through the commands using up and down arrow keys.
+Its position will be reset to the newly added `CommandNode`, which is the last node in the list, once a new command has been executed.
+
+When the user presses the up arrow key, there are two possible scenarios:
+* The `cursor` is at the first node in the list.
+    * Nothing happens.
+* The `cursor` is not at the first node in the list.
+    * The `cursor` is moved to the previous node and a new command is retrieved.
+
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramUp.png)
+
+Similarly, when the user presses the down arrow key, there are two possible scenarios:
+* The `cursor` is at the last node in the list.
+    * Nothing happens.
+* The `cursor` is not at the last node in the list.
+    * The `cursor` is moved to the next node and a new command is retrieved.
+
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramDown.png)
+
+#### Design considerations:
+
+#### Aspect: Data structure used to model the list of commands
+
+* **Alternative 1 (Current choice)**: Use a self-implemented linked list.
+    * Pros: More control on the implementation. Cursor lies on the element themselves.
+    * Cons: Higher chance of errors in implementation, especially when it comes to addition of nodes.
+* **Alternative 2**: Use the `LinkedList` class provided by Java.
+    * Pros: Easier implementation. Most operations have been provided by Java.
+    * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
+
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> 498978c8476a7b70a945ab950e94573f6284e8d2
 ### Undo feature
 
 #### Implementation
@@ -291,7 +541,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `State` will be initialized with the initial `AddressBookCommandPair`. Since no command is executed, the command stored in the pair will be an empty string.
 
-![UndoRedoState0|](images/UndoRedoState0.png)
+![UndoRedoState0](images/UndoRedoState0.png)
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. After execution, `State#addState()` is called, causing the modified state of the contact list after the `delete 5` command executes to be saved in the `addressBookStates`.
 
@@ -314,7 +564,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 , causing the command to return an error to the user rather than attempting to perform the undo.
 
 </div>
- 
+
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
@@ -327,11 +577,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire contact list.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -339,10 +589,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -384,17 +630,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                       | add a new contact                                    |                                                                         |
 | `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
-| `* * *`  | user                                       | find a contact by name                               | locate details of contacts without having to go through the entire list |
-| `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient                |
-| `* * *`  | user                                       | find contacts by their address                       | group the contact list by the places they live and thus ease the process of sending information to those who prefer receiving information by mail.
+| `* * *`  | user                                       | find contacts by their attributes                    | minimize the time spent to find the contacts I need
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
-| `* * *`  | user                                       | undo my operations                                   |                                                                         |
+| `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need               |
 | `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
-| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
-| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list.
+| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list
+| `* *`    | user                                       | change between light and dark mode                   | have less strain on my eyes.
 
 ### Use cases
 
@@ -466,7 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list contacts
 2. SpamEZ shows a list of contacts
-3. User requests to change the blacklist status of a specific contact 
+3. User requests to change the blacklist status of a specific contact
    in the list
 4. SpamEZ changes the blacklist status of the contact
 
@@ -519,8 +763,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. SpamEZ displays the updated contact list.
    
    Use case ends.
+   
+**Use case: Changing to light mode**
 
-*{More to be added}*
+**MSS**
+
+1. User requests to change mode of viewing to light mode.
+2. SpamEZ changes the mode of viewing to light mode.
+
+**Extensions**
+
+* 1a. SpamEZ is already in light mode.
+
+    Use case ends.   
+    
+**Use case: Changing to dark mode**
+
+**MSS**
+
+1. User request to change mode of viewing to dark mode.
+2. SpamEZ changes the mode of viewing to dark mode.
+
+**Extensions**
+
+* 1a. SpamEZ is already in dark mode.
+    
+    Use case ends.    
 
 ### Non-Functional Requirements
 
@@ -529,12 +797,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Every command that is accessible via the graphical user interface should be possible using only command line inputs.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -544,8 +809,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
-</div>
 
 ### Launch and shutdown
 
@@ -562,8 +825,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
@@ -571,15 +832,13 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
 
     1. Test case: `delete 0`<br>
-       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No contact is deleted. Error details are shown in the status message.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -587,9 +846,7 @@ testers are expected to do more *exploratory* testing.
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
-
-### Filtering the contacts
+### Filtering contacts
 
 1. Filter the list of contacts based on the keywords provided.
 
@@ -609,3 +866,75 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
        Expected: Similar to previous.
+
+### Changing blacklist status of a contact
+
+1. Blacklisting a contact while some contacts are being shown
+
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
+    
+    1. Test case: `blist 1`<br>
+       Expected: The blacklist status of the first contact is changed (from blacklisted to un-blacklisted or vice versa).
+       Details of the updated contact are shown in the status message.
+   
+    1. Test case: `blist 0`<br>
+       Expected: No contact is edited. Error details are shown in the status message.
+   
+    1. Other incorrect blacklist commands to try: `blist`, `blist x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Collecting details from all listed contacts
+
+1. Collecting details while some contacts are being shown
+
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
+
+    1. Test case: `collect e/`<br>
+       Expected: Emails of all the contacts in the list are collected, separated by `;`.
+       The result is shown in the status message.
+
+    1. Test case: `collect e/ s/,`<br>
+       Expected: Emails of all the contacts in the list are collected, separated by `,`.
+       The result is shown in the status message.
+
+    1. Test case: `collect`<br>
+       Expected: No details are collected. Error details are shown in the status message.
+
+    1. Other incorrect collect commands to try: `collect m/`, `collect n/ e/`, `...` (trying to collect multiple types of details at once)<br>
+       Expected: Similar to previous.
+
+### Undoing previous operations
+1. Undo previous operations.
+   1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
+   1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420 m/email` followed by `undo`. <br>
+      Expected: `Andy` is no longer in the contact list after `undo` is executed. Command that is undone is shown in the status message.
+   1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.<br>
+      Expected: The second contact in the list is no longer blacklisted. Command that is undone (i.e. `blacklist 2`) is shown in the status message.
+
+1. Attempt to undo when no changes are done to the contact list.<br>
+   1. Prerequisite: No commands have been executed before executing the following test cases.
+   1. Test case: `undo`<br>
+      Expected: An error stating there is nothing to undo is shown in the status message.
+   1. Test case: execute `light` and `undo` in this order.<br>
+      Expected: Similar to previous.
+
+### Navigating through commands
+1. Navigating to previous commands.
+   1. Test case: Execute `light`, `edit 1 n/Alex`, `find n/Alex` in this order and press up arrow key three times. <br>
+      Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Alex`, `edit 1 n/Alex` and finally `light`.
+1. Navigating to later commands.
+   1. Prerequisite: Retain the same setting as in Test case 1.i.
+   1. Test case: Press down arrow key.<br>
+      Expected: The command `edit 1 n/Alex` is shown.
+   1. Test case: Press down arrow key again.<br>
+      Expected: The command `find n/Alex` is shown.
+   1. Test case: Press down arrow key again.<br>
+      Expected: The command `find n/Alex` is shown again since this is the last command executed.
+1. Attempt to navigate the commands when there are no commands executed.
+   1. Test case: Press up arrow key.<br>
+      Expected: Nothing is shown in the command box.
+   1. Test case: Press down arrow key.<br>
+      Expected: Similar to previous.
+1. Attempt to navigate later commands after executing a command.
+   1. Test case: Execute any command and press down arrow key.<br>
+      Expected: Nothing is shown in the command box.

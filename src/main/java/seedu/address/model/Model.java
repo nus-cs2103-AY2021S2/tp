@@ -78,24 +78,24 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Deletes all contacts within the specified index range (inclusive).
+     * Deletes all persons within the specified index range (inclusive).
      */
     void massDelete(int startIndex, int endIndex);
 
     /**
-     * Blacklists all unblacklisted contacts within the specified index range (inclusive).
-     * If the contact is already blacklisted, then no change will occur.
+     * Blacklists all persons within the specified index range (inclusive).
+     * If the person is already blacklisted, then no change will occur.
      */
     void massBlacklist(int startIndex, int endIndex);
 
     /**
-     * Unblacklists all blacklisted contacts within the specified index range (inclusive).
-     * If the contact is already unblacklisted, then no change will occur.
+     * Unblacklists all persons within the specified index range (inclusive).
+     * If the person is not in the blacklist to begin with, then no change will occur.
      */
     void massUnblacklist(int startIndex, int endIndex);
 
     /**
-     * Sorts the contact in the address book by name in alphabetical order.
+     * Sorts all persons in the address book by name in alphabetical order.
      *
      * @param isAscending The list will be sorted by ascending order if true and descending
      * otherwise.

@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sorts the contacts in the address book by name in alphabetical order.
+     * Sorts all persons in the address book by name in alphabetical order.
      *
      * @param isAscending The list will be sorted by ascending order if true and descending
      * order otherwise.

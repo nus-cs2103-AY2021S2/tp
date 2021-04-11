@@ -1,0 +1,9 @@
+@startuml
+start
+:User executes light command;
+if () then ([not in light mode])
+    :Change to light mode;
+else ([else])
+endif
+stop
+@enduml

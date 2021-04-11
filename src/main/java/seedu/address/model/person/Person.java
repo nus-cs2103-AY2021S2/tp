@@ -49,7 +49,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
                   ModeOfContact modeOfContact, Blacklist blacklist, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, remark, tags);
+        requireAllNonNull(name, phone, email, address, remark, modeOfContact, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -121,10 +121,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress());
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**

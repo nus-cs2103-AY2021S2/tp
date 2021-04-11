@@ -1,0 +1,11 @@
+@startuml
+start
+:User presses up arrow key;
+if () then ([cursor is at the first node])
+    : Nothing happens;
+else ([else])
+    : Retrieve previous command;
+endif
+:Display the command;
+stop
+@enduml
