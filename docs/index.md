@@ -8,7 +8,7 @@ title: Dictionote
 
 ![Ui](images/Ui.png)
 
-**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials and writing notes about them. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
+**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials, writing notes about them, and sharing these notes with others. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
 
 * If you are interested in using Dictionote, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing Dictionote, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
