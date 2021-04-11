@@ -284,7 +284,7 @@ This process is summarised in the diagram below
 
 Given below is a usage scenario and how adding a resident behaves at each step.
 
-![Adding a Resident](images/resident/AddResidentCommandSeqDiagram2.png){:height="75%" width="75%"}
+![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png){:height="75%" width="75%"}
 
 
 ### Room Features
