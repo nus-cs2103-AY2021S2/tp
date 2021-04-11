@@ -29,9 +29,11 @@ If you can type fast, SmartLib would be a brilliant and efficient assistant in t
 and borrowers' information, as compared to the traditional GUI apps currently available in the market!
 
 If you are interested in using our wonderful application,
-head over to [Quick start](#quick-start) now to learn how to begin your journey with SmartLib!
+head over to [quick start](#quick-start) now to learn how to begin your journey with SmartLib!
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -61,6 +63,8 @@ list all the current books in store.<br>
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -93,6 +97,8 @@ list all the current books in store.<br>
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Managing your readers
 
 SmartLib is aware that managing the contacts of your readers is a must for your service.
@@ -115,6 +121,8 @@ given below, and familiarize yourself with them.
 | `KEYWORD`       | The keyword that you would like to use to search for your target reader(s) or book(s).<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                          | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
 | `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s) or book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                               |                                                                                  |
 | `MORE_TAGS`     | Other tags that you may want to use to search for your target reader(s).<br><br>Each additional tag must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                                  |                                                                                  |
+
+<div style="page-break-after: always;"></div>
 
 #### Adding a reader : `addreader`
 
@@ -146,6 +154,8 @@ Outcome:
 * The _Result Display_ will show a success message with the newly added reader's information.
   <br><br>
   ![result for 'addreader_JohnDoe'](images/addreaderresult.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Deleting a reader : `deletereader`
 
@@ -182,6 +192,8 @@ Outcome:
 * The _Result Display_ will show a success message with the deleted reader's information.
   <br><br>
   ![result for 'deletereader_3'](images/deletereaderresult.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Finding readers : `findreader`
 
@@ -220,6 +232,8 @@ Outcome:
   <br><br>
   ![result for 'findreader Bob'](images/findBobResult.png)
 
+<div style="page-break-after: always;"></div>
+
 ##### By tag:
 
 You can also use this command to find readers whose tags contain any of the specified tags.
@@ -256,6 +270,8 @@ Outcome:
   <br><br>
   ![result for 'findreader t/VIP'](images/findVIPResult.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all readers : `listreader`
 
 You can use this command to display a list of all readers in SmartLib's registered reader base.
@@ -284,6 +300,8 @@ Outcome:
   <br><br>
   ![result for 'listreader'](images/listreaderResult.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Managing your books
 
 SmartLib is aware that managing your books is also an essential part of your service.
@@ -305,6 +323,8 @@ given below, and familiarize yourself with them.
 | `INDEX`         | The index of the book in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                            | `1`                                                                              |
 | `KEYWORD`       | The keyword that you would like to use to search for your target book(s).<br><br>It must be a single alphanumeric word.                                                                                              | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
 | `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.   |                                                                                  |
+
+<div style="page-break-after: always;"></div>
 
 #### Adding a book : `addbook`
 
@@ -344,6 +364,8 @@ Outcome:
   <br><br>
   ![result for 'addbook Harry Porter'](images/addbookresult.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting a book : `deletebook`
 
 You can use this command to delete a specific book from SmartLib's registered book list.
@@ -380,6 +402,8 @@ Outcome:
 * The _Result Display_ will show a success message with the deleted book's information.
   <br><br>
   ![result for 'deletebook_10'](images/deletebookresult.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Finding books : `findbook`
 
@@ -436,6 +460,8 @@ Outcome:
   <br><br>
   ![result for 'findbook Cloud Fantasy'](images/findbookresult.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all books : `listbook`
 
 You can use this command to display a list of all the books in SmartLib's registered book list.
@@ -463,6 +489,8 @@ Outcome:
 * SmartLib will list out all the books in its registered book list.
   <br><br>
   ![result for 'listbook'](images/listbookResult.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Listing all overdue books : `listoverdue`
 
@@ -492,6 +520,8 @@ Outcome:
   <br><br>
   ![result for 'listoverdue'](images/listoverdueResult.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Managing borrowing records
 
 SmartLib also provides a variety of features to manage the borrowing records of your readers.
@@ -509,6 +539,8 @@ given below, and familiarize yourself with them.
 | `BARCODE`       | The barcode of the book associated with the record.<br><br>It must be a valid barcode (i.e. it must consist only of numbers, and be exactly 10 digits long).                                                         | `1234567890`                                                                     |
 | `KEYWORD`       | The keyword that you would like to use to search for your target record(s).<br><br>It must be a single alphanumeric word.                                                                                            | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
 | `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target record(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional. |                                                                                  |
+
+<div style="page-break-after: always;"></div>
 
 #### Borrowing a book : `borrow`
 
@@ -543,7 +575,9 @@ Outcome:
 * The relevant parts of the GUI will be updated.
   <br><br>
   ![result for 'borrow bc/1999999999 r/Charlotte'](images/borrowResult.png)
-  
+
+<div style="page-break-after: always;"></div>
+
 #### Returning a book : `return`
 
 You can use this command to get SmartLib to keep track of a book being returned.
@@ -574,6 +608,8 @@ Outcome:
 * The relevant parts of the GUI will be updated.
   <br><br>
   ![result for 'return bc/1999999999'](images/returnResult.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Finding records : `findrecord`
 
@@ -611,6 +647,8 @@ Outcome:
   <br><br>
   ![result for 'findrecord Lilac'](images/findLilacResult.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Listing all records : `listrecord`
 
 You can use this command to display a list of all records in SmartLib's record list.
@@ -638,6 +676,8 @@ Outcome:
 * SmartLib will list out all the records in its record list.
   <br><br>
   ![result for 'listrecord'](images/listrecordResult.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Miscellaneous commands
 
@@ -678,6 +718,8 @@ Outcome:
   <br><br>
   ![result for 'clear-everything-in-my-smartlib'](images/clearresult.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Viewing help : `help`
 
 You can use this command to access the URL of a page showing SmartLib's features,
@@ -706,6 +748,8 @@ Outcome:
   <br><br>
   ![help message](images/helpMessage.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Exiting the program : `exit`
 
 You can use this command to exit the program.
@@ -729,6 +773,8 @@ Outcome:
 
 * SmartLib will terminate.
 
+<div style="page-break-after: always;"></div>
+
 ### Miscellaneous features (for advanced users)
 
 Some features, such as data saving and storage, and handled automatically by SmartLib.
@@ -745,10 +791,12 @@ data directly by editing that data file.
 
 **:exclamation: Caution:**
 
-If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data
-file at the next run.
+* If your changes to the data file makes its format invalid, SmartLib will discard all data and start with an empty data
+  file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -764,6 +812,8 @@ To purge all sample user data from SmartLib, you may use the command
 [`clear-everything-in-my-smartlib`](#clearing-all-entries--clear-everything-in-my-smartlib).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -799,22 +849,24 @@ To purge all sample user data from SmartLib, you may use the command
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 Action                 | Format, Examples
 -----------------------|------------------
-**Add reader**         | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g. `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
-**Delete reader**      | `deletereader INDEX`<br> e.g. `deletereader 3`
-**Find reader**        | `findreader KEYWORD [MORE_KEYWORDS]…` or `findreader t/TAG [MORE_TAGS]…`<br> e.g. `findreader James Jake`
+**Add reader**         | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br><br> e.g. `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Delete reader**      | `deletereader INDEX`<br><br> e.g. `deletereader 3`
+**Find reader**        | `findreader KEYWORD [MORE_KEYWORDS]…` or `findreader t/TAG [MORE_TAGS]…` <br><br> e.g. `findreader James Jake`
 **List readers**       | `listreader`
-**Add book**           | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g. `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
-**Delete book**        | `deletebook INDEX`<br> e.g. `deletebook 3`
-**Find book**          | `findbook KEYWORD [MORE_KEYWORDS]…`<br> e.g. `findbook Thomas Tank Engine`
+**Add book**           | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br><br> e.g. `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9780747532743 g/Fantasy`
+**Delete book**        | `deletebook INDEX`<br><br> e.g. `deletebook 3`
+**Find book**          | `findbook KEYWORD [MORE_KEYWORDS]…`<br><br> e.g. `findbook Thomas Tank Engine`
 **List books**         | `listbook`
 **List overdue books** | `listoverdue`
-**Borrow book**        | `borrow bc/BARCODE r/READERNAME`<br> e.g. `borrow bc/1000000000 r/Alex`
-**Return book**        | `return bc/BARCODE`<br> e.g. `return bc/1202179131`
-**Find record**        | `findrecord KEYWORD [MORE_KEYWORDS]…`<br> e.g. `findrecord Cloud Hobbit`
+**Borrow book**        | `borrow bc/BARCODE r/READERNAME`<br><br> e.g. `borrow bc/1000000000 r/Alex`
+**Return book**        | `return bc/BARCODE`<br><br> e.g. `return bc/1202179131`
+**Find record**        | `findrecord KEYWORD [MORE_KEYWORDS]…`<br><br> e.g. `findrecord Cloud Hobbit`
 **List records**       | `listrecord`
 **Clear**              | `clear-everything-in-my-smartlib`
 **Help**               | `help`
