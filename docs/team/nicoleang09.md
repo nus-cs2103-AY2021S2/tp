@@ -42,9 +42,6 @@ Given below are my contributions to the project.
     * Identified non-functional requirements of ParentPal [\#20](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/20)
     * Updated glossary [\#23](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/23)
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#149](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/149), [\#113](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/113)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/216), [2](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/212), [3](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/213), [4](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/214), [5](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/215), [6](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/211))
