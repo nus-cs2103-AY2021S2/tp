@@ -3,29 +3,47 @@ layout: page title: User Guide
 ---
 
 Are you finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We
-understand. Link.me is a **desktop app built for insurance agents** to help you manage your clients. It is **optimized
-for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you
-can type fast, Link.me can get your client management tasks done faster than traditional GUI apps.
+understand. Link.me is a **desktop app built for insurance agents** to help you manage your clients. Features of 
+Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports peripheral 
+features such as meeting scheduling, recording client notes and notifying the user of important upcoming events.
+
+Link.me is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical 
+User Interface (GUI). If you can type fast, Link.me can get your client management tasks done faster than traditional 
+GUI apps.
+
+### Using this guide
 
 This user guide will guide you, as an insurance agent, through the process of setting up Link.me, introduce you to the
 capabilities of Link.me and facilitate your usage of Link.me so that you can better manage your ever-increasing clients.
 
----
+Note the following symbols and formatting used in this guide:
+
+Symbol/ Formatting           | Meaning
+-----------------------------|------------------------------------------------------------------------------------------
+`delete 1`                   |A grey highlight indicates that this is a command that you can type into the command line
+:information_source:         |This symbol indicates important information to take note of
+:bulb:                       |This symbol indicates helpful tips 
+:exclamation:                |This symbol indicates warnings that you should follow
+
+You may navigate this document using the Table of Contents provided below.
+
+------------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
 2. Download the latest `linkme.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for `Link.me`.
 
 4. Double-click the file to start `Link.me`. A window similar to the one shown below should appear in a few seconds.
-   Note how your Link.me already contains some sample data.<br>
+   Note how Link.me already contains some sample data. You may look through the sample data to get an idea of what
+   client information Link.me will store.<br>
    ![Ui](images/Ui.png)
 
 5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open
@@ -34,16 +52,15 @@ capabilities of Link.me and facilitate your usage of Link.me so that you can bet
 
     * **`list`** : Lists all of your clients.
 
-    * **`add`**` n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/M b/1993-05-06` : Adds a client named `John Doe` to your Link.me.
+    * **`add n/John Doe p/98765432 e/johnd@example.com a/123 John Street g/M b/1993-05-06`** : Adds a client named `John Doe` to Link.me.
+    
+    * **`delete 3`** : Deletes the 3rd client shown in the current list.
 
-
-    * **`delete`**` 3` : Deletes the 3rd client shown in the current list.
-
-    * **`clear`** : Deletes all of your clients.
+    * **`clear`** : Deletes all of your clients. You may use this to clear the sample data.
 
     * **`exit`** : Exits Link.me.
 
-1. Refer to the [Features](#features) section below for details of each command.
+6. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,32 +70,24 @@ capabilities of Link.me and facilitate your usage of Link.me so that you can bet
 
 The structure of the Link.me interface is split into five main parts:
 ![Layout](images/Layout.png)
-The Input Command Line is where the user inputs the commands for execution.
+* The **Input Command Line** is where you input commands for execution.
 
-The Result Display displays the result of the user input.
+* The **Result Display** displays the result of your input.
 
-The Client List displays a list of client stored in Link.me, and changes according to the use input.
+* The **Client List** displays the list of clients you have stored in Link.me.
 
-The Meeting List displays a list of meetings that are scheduled in Link.me.
+* The **Meeting List** displays the list of meetings that you have scheduled.
 
-The Status Bar displays status information regarding the storage unit. (Not relevant for basic users.)
+* The **Status Bar** displays information regarding where your information is stored. (Not relevant for basic users.)
 
 ![PersonLayout](images/PersonLayout.png)
-Each client has basic information stored, as well as insurance plans and premiums attached.
+You can view the personal information of each client, as well as their insurance plans and notes you have taken for them.
 
 ![MeetingLayout](images/MeetingLayout.png)
-Each meeting has the client stores, as well as the meeting time and a brief description of the meeting agenda.
+You can view information regarding upcoming meetings, including meeting time and a brief description.
 
 ### Functionalities
 
-The features of Link.me mainly revolve around adding and editing clients as Link.me is first and foremost a client
-managing app.
-
-Features of Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports
-peripheral features such as meeting scheduling, recording client notes and notifying the user of important upcoming
-events.
-
-Details on how to use each command are explained in the [Features](#features) section below.
 
 Action                            | Format
 ----------------------------------|------------------------------------------------------------------------------------
@@ -86,19 +95,16 @@ Action                            | Format
 **Add or remove insurance plans** | `plan INDEX i/PLAN_NAME $PREMIUM` (add)<br>`plan INDEX c/PLAN_INDEX` (remove)
 **Clear all clients**             | `clear`
 **Delete a client**               | `delete INDEX`
-**Edit a
-client**                 | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
+**Edit a client**                 | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
 **Exit Link.me**                  | `exit`
 **Filter by attribute**           | `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]`
 **Find by name**                  | `find KEYWORD [MORE_KEYWORDS]`
 **List all clients**              | `list`
 **Record, clear or view notes**   | `note INDEX r/NOTE` (record) <br>`note INDEX c/` (clear)<br>`note INDEX v/` (view)
-**Remove
-meetings**               | `unschedule INDEX` (remove specified meeting)<br> `unschedule all` (remove all meetings)<br> `unschedule expired` (remove expired meetings)
+**Remove meetings**               | `unschedule INDEX` (remove specified meeting)<br> `unschedule all` (remove all meetings)<br> `unschedule expired` (remove expired meetings)
 **Schedule meetings**             | `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 **Show notifications**            | `notif`
 **View Help**                     | `help`
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -107,22 +113,22 @@ meetings**               | `unschedule INDEX` (remove specified meeting)<br> `un
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the inputs to be supplied by you, the user.<br>
-  e.g. in `add n/NAME`, `NAME` represents the client's name that will be inputted by you, the user. For instance, if the
+* Words in `UPPER_CASE` are the inputs you should supply.<br>
+  e.g. in `add n/NAME`, `NAME` represents the client's name that you should provide. For instance, if the
   client's name is "John Doe", you should input: `add n/John Doe`.
-
+  
 
 * Inputs in square brackets are optional.<br>
-  e.g. in `n/NAME [t/TAG]`, while the input for `n/NAME` is mandatory, the omission of `[t/TAG]` will not lead to an
-  input error. For instance, these two inputs are valid:
-    * `n/John Doe t/friend`
+  e.g. in `n/NAME [t/TAG]`, while the input for `n/NAME` is mandatory, it is okay to omit `[t/TAG]`. 
+  For instance, these two inputs are valid:
+    * `n/John Doe t/medical`
     * `n/John Doe`
+    
 
-
-* Inputs with `…`​ after them can be used multiple times including zero times.<br>
+* Inputs with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. in `[t/TAG]…​`, the following inputs are valid:
-    * `t/friend`
-    * `t/friend t/family`
+    * `t/medical`
+    * `t/mdecial t/investment`
     * ` `  (an empty input)
 
 
@@ -130,19 +136,15 @@ meetings**               | `unschedule INDEX` (remove specified meeting)<br> `un
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
-* If an input is expected only once in the command, but you specified it multiple times, only the last occurrence of the
+* If an input is expected only once in the command, but you specify it multiple times, only the last occurrence of the
   input will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
-* For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any additional inputs will
+* For commands that do not take in additional inputs (such as `help`, `list`, `exit` and `clear`), any additional inputs will
   be ignored.<br>
-  e.g. for the `help` command, if you input `help 123`, it will be interpreted as `help` as `123` will be considered as
-  a redundant command.
-
-
-* The commands of Link.me generally follow the following format:
-  `COMMAND [client_INDEX] [PREFIX]/[DESCRIPTION]`
+  e.g. for the `help` command, if you input `help 123`, it will be interpreted as `help`.
+  
 
 </div>
 
@@ -156,20 +158,36 @@ Format: `list`
 
 You can add a client to Link.me, by specifying each of the fields below:
 
-* Name
-* Phone number
+* Name 
+  * should only contain alphanumeric characters and spaces
+  * should not be blank
+
+* Phone number 
+  * should only contain numbers
+  * should be at least 3 digits long
+
 * Email
+  * should be in the format `local-part@domain`
+  * `local-part` should not be blank and should contain alphanumeric characters and the following characters within parenthesis (!#$%&'*+/=?`{|}~^.-) 
+  * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, periods and hyphens
+
 * Address
+  * should not be blank
+    
 * Gender
+  * should be either `M`/`Male`, `F`/`Female` or `N`/`Non-binary`
+    
 * Birthdate
+  * should be in the format YYYY-MM-DD
+  * should be a valid date
+    
 * Tags (optional)
+  * should be alphanumeric
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
 
-* `BIRTHDATE` should be given in the format yyyy-mm-dd
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**A client can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -183,10 +201,11 @@ You can edit the information of an existing client.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
 
-* Edits your client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* The format of each field is specified above under [Adding a client](#adding-a-client-add).
+* Existing values will be updated to new values you provide.
 * When editing tags, the existing tags of your client will be removed i.e. adding of tags is not cumulative.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -206,10 +225,7 @@ You can delete a specific client from Link.me.
 
 Format: `delete INDEX`
 
-* Deletes your client at the specified `INDEX`. Note that `INDEX` is used to avoid ambiguity like this:
-    * `delete Tom` (if `NAME` was used instead of `INDEX`), but multiple clients named "Tom" are stored in Link.me (e.g.
-      Tom Tan, Tom Lim)
-* The index refers to the index number shown in the displayed client list.
+* Deletes the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -230,8 +246,7 @@ Format: `clear`
 You can add a new insurance plan to an existing client.
 
 Format: `plan INDEX i/PLAN_NAME $PREMIUM`
-
-* `INDEX` refers to the index number shown in the displayed client list.
+* Adds the insurance plan to the client specified at `INDEX`. `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `PLAN_NAME` refers to the name of the insurance plan.
 * `PREMIUM` refers to the yearly premium amount that the client pays for this plan.
@@ -246,11 +261,9 @@ Example:
 You can remove an existing insurance plan from a client.
 
 Format: `plan INDEX c/PLAN_INDEX`
-
-* `INDEX` refers to the index number shown in the displayed client list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `PLAN_INDEX` refers to the index number shown in the displayed plan list.
-* `PLAN_INDEX` **must be a positive integer** 1, 2, 3, …​
+* Removes the plan specified by `PLAN_INDEX` from the client specified at `INDEX`.
+*`INDEX` refers to the index number shown in the displayed client list, while `PLAN_INDEX` refers to the index number shown in the list of insurance plans for that client.
+* Both `INDEX` and `PLAN_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
@@ -264,8 +277,7 @@ You can record a note for a specific client.
 
 Format: `note INDEX r/NOTE`
 
-* Adds the provided `NOTE` to the client specified at `INDEX`.
-* `INDEX` refers to the index number shown in the displayed client list.
+* Adds the provided `NOTE` to the client specified at `INDEX`. `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `NOTE` should not be empty.
 
@@ -273,36 +285,38 @@ Example:
 
 * `note 3 r/Wants to upgrade insurance coverage` adds the note "Wants to upgrade insurance coverage" to the 3rd client.
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**New notes will not replace old notes. Instead, they will be added to the existing list of notes.
+</div>
+
+#### Viewing notes
+
+You can view all existing notes for a specific client. Notes will be displayed in a popup box, with each note listed as
+a bullet point.
+
+![note message](images/noteMessage.png)
+Format: `note INDEX v/`
+
+* View notes from the client specified at `INDEX`. `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Example:
+
+* `note 4 v/` generates a popup box displaying the notes recorded for the 4th client.
+
 #### Clearing all notes
 
 You can clear all existing notes from a specific client.
 
 Format: `note INDEX c/`
 
-* Clears all notes from the client specified at `INDEX`.
-* `INDEX` refers to the index number shown in the displayed client list.
+* Clears all notes from the client specified at `INDEX`. `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
 * `note 4 c/` clears all notes from the 4th client.
 
-#### Viewing notes
-
-You can view all existing notes from a specific client. Notes will be displayed in a popup box, with each note listed as
-a bullet point.
-
-Format: `note INDEX v/`
-
-* View notes from the client specified at `INDEX`.
-* `INDEX` refers to the index number shown in the displayed client list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
-
-Example:
-
-* `note 4 v/` generates a popup box displaying the notes taken for the 4th client.
-
-![note message](images/noteMessage.png)
 
 ### Arranging Meetings with Clients
 
@@ -310,41 +324,43 @@ Example:
 
 You can schedule a meeting with a specific client in Link.me.
 
-New schedule commands overwrite the original meeting scheduled with a client.
-
 Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
-* You can have the `@` symbol within the description as the system uses the last appearing `@` to find the meeting
-  datetime.
-* Adds your client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `DATE_TIME` refers to the date and time of the scheduled meeting
-* `DATE_TIME` should be inputted in the specific datetime format `yyyy-mm-dd HH:MM`
-* Blank spaces typed in front of and behind the `@` will be ignored by the system in order to increase typo leniency.
+* Adds the client at the specified `INDEX`, the `DATE_TIME` and the `DESCRIPTION` of the meeting to the scheduled meetings list.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `DATE_TIME` refers to the date and time of the scheduled meeting.
+* `DATE_TIME` should be provided in the specific datetime format `YYYY-MM-DD HH:MM`.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**`* Scheduling a new meeting will replace any existing meeting with that client.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**`DESCRIPTION` can contain any character, including "@".
+</div>
 
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules an Insurance Plan meeting with your client indexed 2 in the
-  displayed list on 28th October 2020 2:30 pm.
-* `schedule 2 m/Insurance Plan@2020-02-28 14:30` will do the same as the previous command.
+* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client 
+  on 28th October 2020 2:30 pm.
 
 #### Removing a meeting : `unschedule`
 
 Removing meetings comes in three flavors:
 
-* `unschedule INDEX` removes the specified meeting in the meeting list.
-* `unschedule all` removes all meetings in the meeting list.
-* `unschedule expired` removes all expired meetings in the meeting list.
-
-Format: `unschedule INDEX` or `unschedule all` or `unschedule expired`
-
-* The `INDEX` refers to the index number shown in the displayed meeting list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Format: `unschedule INDEX` 
+  * Removes the meeting in the meeting list at `INDEX`. `INDEX` refers to the index number shown in the displayed meeting list.
+  * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Format: `unschedule all` 
+  * Removes all meetings in the meeting list.
+* Format: `unschedule expired` 
+  * Removes all expired meetings in the meeting list, i.e. meetings before the present date and time.
+    
 
 Example:
 
-* `unschedule 2` removes the second meeting on the meeting list.
+* `unschedule 2` removes the 2nd meeting on the meeting list.
 
 ### Searching for clients
 
@@ -356,9 +372,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
+* Clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
   , `Bo Yang`
 
 Examples:
@@ -367,57 +382,60 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Filtering by attributes : `filter`
+#### Filtering clients by attributes : `filter`
 
 You can filter clients by their address, gender, age, tags or insurance plan name.
 
-Format of filter command: `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...`
+Format: `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...`
 
-Format of keyword:
-
+Supported `PREFIX/KEYWORD` pairs:
 * address: `a/ADDRESS`
 * gender: `g/GENDER`
 * tag: `t/TAG`
 * age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]`
 * insurance plan name: `i/PLAN_NAME`
 
-Lists all of your clients that has attributes that match your search keywords.
+
+* The search is case-insensitive. e.g. for gender, `male` will match `Male`
+* Only attributes that are identical will be matched e.g. for insurance plan, `Protect` will not match `Protect Plan`
+* Clients matching at least one attribute will be returned (i.e. `OR` search). e.g. `g/F age/40` will return any
+female clients and clients aged 40.
 
 Only attributes that are exactly the same will be matched.
 
-Examples:
+Example:
 
-`filter a/Clementi g/M t/medical i/Protecc age/23-30` returns:
+* `filter a/Clementi g/M t/medical i/Protecc age/23-30` returns:
 
-* clients that has "Clementi" in their address, or
-* clients that are Male, or
-* clients with the "medical" tag, or
-* clients with the insurance plan "Protecc", or
-* clients aged between 23 and 30 years old, inclusive
+  * clients who have "Clementi" in their address, or
+  * clients who are Male, or
+  * clients with the "medical" tag, or
+  * clients with the insurance plan "Protecc", or
+  * clients aged between 23 and 30 years old, inclusive
 
 ### Displaying notifications : `notif`
 
-You can view a notification window informing you of client birthdays within the next two weeks and upcoming meetings,
-which should notify you in time with a reasonable amount of time to prepare beforehand.
-
-This notification window is also shown when starting up Link.me.
-
-Format: `notif`
-
-Notification window contains:
-
+You can view a notification window containing: 
 * All meetings occurring today, arranged in order of time.
 * All client birthdays within the next two weeks, arranged in order of time.
 
+These timeframes were chosen to give you ample time to prepare for upcoming meetings, or prepare gifts for upcoming client birthdays.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**This notification window is also shown when starting up Link.me.
+</div>
+
 ![notif message](images/notifMessage.png)
+
+Format: `notif`
 
 ### Viewing help : `help`
 
 You can view a message explaining how to access the help page.
 
-Format: `help`
-
 ![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Exiting the program : `exit`
 
@@ -437,10 +455,9 @@ the JSON file directly. The Link.me team does not take any responsibility in dat
 invalid inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid,
-Link.me will try to discard all data and start with an empty data file at the next run,
-but if the damage is too excessive, Link.me may be unable to start up.
-In the case that this happens, please manually discard the data file to start the app.
+If your changes to the data file makes its format invalid, Link.me will try to discard all data and start with an empty 
+data file at the next run. However, if the damage is too excessive, Link.me may be unable to start up.
+In the case that this happens, please manually delete the data file to start the app.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -451,4 +468,6 @@ In the case that this happens, please manually discard the data file to start th
 **A**: Install Link.me in the other computer and overwrite the empty data file it creates with the data file in your
 current Link.me home folder.
 
+**Q**: What operating systems can I install Link.me on?<br>
+**A**: You can install Link.me on most modern desktop operating systems, including Linux, MacOS and Windows.
 --------------------------------------------------------------------------------------------------------------------
