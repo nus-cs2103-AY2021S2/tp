@@ -29,12 +29,10 @@ public class AddPersonIntermediate implements Intermediate<AddPersonCommand> {
 
     public void setPhone(Phone phone) {
         this.phone = phone;
-        System.out.println("Intermediate: " + this.phone.toString());
     }
 
     public void setEmail(Email bookerEmail) {
         this.email = bookerEmail;
-        System.out.println("Intermediate: " + this.email.toString());
     }
 
     public void setTags(Set<Tag> tags) {
@@ -44,7 +42,6 @@ public class AddPersonIntermediate implements Intermediate<AddPersonCommand> {
         if (!this.tags.isEmpty()) {
             this.tags.forEach(builder::append);
         }
-        System.out.println("Intermediate: " + builder.toString());
     }
 
     /**

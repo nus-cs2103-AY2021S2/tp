@@ -17,7 +17,7 @@ import seedu.booking.model.person.Email;
 /**
  * Parses input arguments and creates a new PromptAddBookingCommand object
  */
-public class PromptBookingPersonEmailParser implements Parser<PromptAddBookingCommand> {
+public class PromptBookingEmailParser implements Parser<PromptAddBookingCommand> {
 
     /**
      * Parses the given {@code String} of arguments for booking in the context of adding a booking

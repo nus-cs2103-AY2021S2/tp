@@ -5,9 +5,9 @@ import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAY
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.person.Email;
 
 public class PromptBookingEmailCommand extends Command {
@@ -31,9 +31,9 @@ public class PromptBookingEmailCommand extends Command {
                     + PROMPT_MESSAGE_TRY_AGAIN);
         }
 
-        ModelManager.processStateInput(email);
-        ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
+        StatefulLogicManager.processStateInput(email);
+        StatefulLogicManager.setNextState();
+        return new CommandResult(StatefulLogicManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
     }
 
 }

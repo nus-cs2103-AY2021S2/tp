@@ -38,4 +38,5 @@ public class ListVenueCommandTest {
         assertCommandSuccess(new ListVenueCommand(), model,
                 ListVenueCommand.MESSAGE_VENUE_LISTED_SUCCESS, expectedModel);
     }
+
 }

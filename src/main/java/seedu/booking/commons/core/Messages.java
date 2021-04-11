@@ -5,8 +5,8 @@ package seedu.booking.commons.core;
  */
 public class Messages {
     // Person related messages
-    public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_EMAIL = "This email address has been "
-            + "registered in system. Please provide another email address.\n";
+    public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_EMAIL = "This email address has already been "
+            + "registered in the system. Please provide another email address.\n";
     public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_PHONE = "This number has been registered in system. "
             + "Please provide another number.\n";
     public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_NAME = "This name has been registered in system. "
@@ -44,6 +44,9 @@ public class Messages {
             "The venue name provided does not exist in the system.\n";
     public static final String MESSAGE_VENUE_DISPLAYED = "%1$d Venue(s) displayed!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_NO_PERSONS_FOUND = "No persons found!";
+    public static final String MESSAGE_NO_VENUES_FOUND = "No venues found!";
+    public static final String MESSAGE_NO_BOOKINGS_FOUND = "No bookings found!";
     public static final String MESSAGE_VENUE_LISTED_EMPTY = "There are no venues in the system.\n";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! Input "
             + "should be in yyyy-mm-dd HH:MM format.\n";

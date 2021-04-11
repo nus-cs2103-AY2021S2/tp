@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.StringUtil;
 import seedu.booking.logic.parser.exceptions.ParseException;
@@ -118,7 +119,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Messages.MESSAGE_INVALID_EMAIL_FORMAT + Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
     }
@@ -142,10 +143,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String userInput} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code userInput} is invalid.
      */
-    public static Description parseBookingDescription(String userInput) throws ParseException {
+    public static Description parseBookingDescription(String userInput) {
         requireNonNull(userInput);
         String trimmedDescription = userInput.trim();
         if (trimmedDescription.isEmpty()) {
@@ -157,9 +156,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String description} into a {@code String description}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
-    public static String parseDescription(String description) throws ParseException {
+    public static String parseDescription(String description) {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (trimmedDescription.isEmpty()) {
@@ -171,11 +169,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String descKeywords} into a {@code VenueDescContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code descKeywords} is invalid.
      */
-    public static VenueDescContainsKeywordsPredicate parseVenueDescContainsKeywordsPredicate(String descKeywords)
-            throws ParseException {
+    public static VenueDescContainsKeywordsPredicate parseVenueDescContainsKeywordsPredicate(String descKeywords) {
         requireNonNull(descKeywords);
         String trimmedDescKeywords = descKeywords.trim();
         if (trimmedDescKeywords.isEmpty()) {
@@ -245,7 +240,12 @@ public class ParserUtil {
             assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacity));
             return new Capacity(formattedCapacity);
         } catch (NumberFormatException e) {
-            throw new ParseException(Capacity.MESSAGE_INVALID);
+            String numericRegex = "^(?:[+\\-\\d][0-9]*)$";
+            if (capacity.matches(numericRegex)) {
+                throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(Capacity.MESSAGE_INVALID);
+            }
         }
     }
 
@@ -267,7 +267,12 @@ public class ParserUtil {
             assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacityKeyword));
             return new CapacityMatchesKeywordPredicate(formattedCapacityKeyword);
         } catch (NumberFormatException e) {
-            throw new ParseException(Capacity.MESSAGE_INVALID);
+            String numericRegex = "^(?:[+\\d].*\\d|\\d)$";
+            if (capacityKeyword.matches(numericRegex)) {
+                throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(Capacity.MESSAGE_INVALID);
+            }
         }
     }
 

@@ -8,11 +8,11 @@ import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.commands.states.AddBookingCommandState;
 import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.person.Email;
 
 /**
@@ -42,9 +42,17 @@ public class PromptAddBookingCommand extends Command {
         }
 
         CommandState commandState = new AddBookingCommandState(email);
-        ModelManager.setCommandState(commandState);
-        ModelManager.setStateActive();
-        ModelManager.setState(STATE_VENUE);
+        StatefulLogicManager.setCommandState(commandState);
+        StatefulLogicManager.setStateActive();
+        StatefulLogicManager.setState(STATE_VENUE);
         return new CommandResult(PROMPT_BOOKING_VENUE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptAddBookingCommand // instanceof handles nulls
+                && this.email.equals(((PromptAddBookingCommand) other).email));
     }
 }
