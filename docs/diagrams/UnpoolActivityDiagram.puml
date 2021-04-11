@@ -1,0 +1,16 @@
+@startuml
+skinparam conditionStyle diamond
+start
+repeat
+  :User adds a pool;
+repeatwhile ([there are more pools to add])
+:User list all pools;
+if () then ([not able to find desired pool to remove])
+    :User filters the pool list using findPool command;
+    :Filtered pool list is updated and displayed;
+else ([able to find desired pool remove])
+endif
+:User uses unpool [INDEX] command;
+:[INDEX] of pool on currently displayed pool list is removed;
+stop
+@enduml

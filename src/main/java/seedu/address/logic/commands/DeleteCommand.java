@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -27,8 +28,6 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PASSENGER_SUCCESS = "Deleted Passenger(s): %1$s";
     public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL = "Failed to delete. One or more Pools "
             + "contain Passenger(s): %1$s.";
-    public static final String MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL_OTHERS_DELETED = "Deleted Passenger(s): %1$s.\n"
-            + "However failed to delete some passengers as one or more Pools contain Passenger(s): %2$s.";
 
     private final List<Index> targetIndexes;
 
@@ -61,33 +60,25 @@ public class DeleteCommand extends Command {
             targetedPassengers.add(passengerToDelete);
         }
 
-        List<Passenger> passengerWithPools = new ArrayList<>();
-        List<Passenger> deletedPassengers = new ArrayList<>();
+        List<Passenger> passengersWithPools = targetedPassengers.stream()
+                .filter(model::hasPoolWithPassenger)
+                .collect(Collectors.toList());
 
-        for (Passenger p : targetedPassengers) {
-            if (!model.deletePassenger(p)) {
-                passengerWithPools.add(p);
-            } else {
-                deletedPassengers.add(p);
-            }
+        if (passengersWithPools.size() > 0) {
+            throw new CommandException(
+                    String.format(MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL,
+                            printPassengersInList(passengersWithPools)
+                    )
+            );
         }
 
-        if (passengerWithPools.size() > 0) {
-            String passengerNames = printPassengersInList(passengerWithPools);
+        targetedPassengers.forEach(model::deletePassenger);
 
-            if (deletedPassengers.size() == 0) {
-                throw new CommandException(String.format(MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL, passengerNames));
-            } else {
-                String deletedPassengersNames = printPassengersInList(deletedPassengers);
-
-                throw new CommandException(String.format(MESSAGE_DELETE_PASSENGER_FAIL_HAS_POOL_OTHERS_DELETED,
-                        deletedPassengersNames, passengerNames));
-            }
-        } else {
-            String deletedPassengersNames = printPassengersInList(deletedPassengers);
-
-            return new CommandResult(String.format(MESSAGE_DELETE_PASSENGER_SUCCESS, deletedPassengersNames));
-        }
+        return new CommandResult(
+                String.format(MESSAGE_DELETE_PASSENGER_SUCCESS,
+                        printPassengersInList(targetedPassengers)
+                )
+        );
     }
 
     @Override

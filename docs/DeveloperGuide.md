@@ -85,9 +85,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1 2")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -134,7 +134,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Pool feature
 This feature allows users to create and add a pool to the list of pools, through the use of a `pool` command.
 
-Design considerations include the `pool` command being able to be used in complement with the `find` command. For instance, the user would
+Design considerations include the `pool` command being able to be used in conjunction with the `find` command. For instance, the user would
 first use `find tag/female` and then followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`.
 The `find tag/female` command first filters the list of displayed passengers, such that only passengers with the `female` tag would be displayed. Calling the `pool` command
 would then assign `Alice` with number `91234567` to be the driver of the passengers specified by the indices for the currently displayed list.
@@ -187,6 +187,16 @@ From the diagram illustrated above:
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
 
+Design considerations include the `findPool` command being able to be used in conjunction with the `unpool` command. For instance, the user might first use `findPool n/Alice` and then followed by `unpool 1`.
+The `findPool n/Alice` command first filters the list of displayed pools, such that only pools in which there is a passenger named Alice will be displayed. Calling the `unpool` command would then remove the pool specified by the provided indices from the currently displayed list, removing it from the system. The `findPool` command works similarly to the `find` command, except that it currently only supports the use of the name prefix: "/n"
+
+The activity diagram below encapsulates the user workflow of adding passengers, finding passengers and then pooling the passengers:
+
+![Activity Diagram for a user using Unpool](images/UnpoolActivityDiagram.png)
+
+The rationale behind this implementation was because once the GME terminal is populated with a large number of pools, it would be rather difficult for the user to find a specific pool with a specific passenger.
+By allowing the user to first filter the pools before subsequently removing the pool from the filtered list, the findPool feature greatly enhances the unpool feature, thereby making the product much more cohesive as features work well together.
+
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("unpool 1")`.
 ![Interactions Inside the Logic Component for the `unpool 1` Command](images/UnpoolSequenceDiagram.png)
 
@@ -200,6 +210,29 @@ From the diagram illustrated above:
 1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be instantiated and returned to `LogicManager`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
 1. This would update the model by deleting the specified pool at the first index, then a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
+
+### findPool feature
+This feature allows users to find a pool that contains a passenger with a provided keyword in their name. 
+
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("findPool n/Alice")` command.
+![Interactions Inside the Logic Component for the `findPool n/Alice` Command](images/FindPoolSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**  The `command` argument that is passed into
+`execute()`, represents the string `"findPool n/Alice"`, and has been abstracted for readability.
+<br>
+The lifeline for `FindPoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"findPool n/Alice"` command.
+1. `AddressBookParser` class is then created, which subsequently creates `FindPoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` would then have its `parse()` method invoked to parse the argument `"n/Alice"` and passes it to
+   `FindPoolCommandParser`.
+1. `FindPoolCommandParser` parses the argument `"n/Alice"` and creates a `PooledPassengerContainsKeywordPredicate` which is returned to the `FindPoolCommandParser`.
+1. `FindPoolCommandParser` then creates a `FindPoolCommand`, and provides the newly created `PooledPassengerContainsKeywordPredicate` to it. The `FindPoolCommand` object is then returned to LogicManager.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `FindPoolCommand`, which turn calls the `updateFilteredPoolList()` method in `Model`, causing the shown pool list to be updated according to the predicate in the `FindPoolCommand` object.
+1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
+1. Finally, a `CommandResult` would be returned to `LogicManager` to indicate the completion status of the command.
 
 --------------------------------------------------------------------------------------------------------------------
 
