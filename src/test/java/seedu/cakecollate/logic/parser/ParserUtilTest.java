@@ -26,6 +26,8 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -659,4 +661,24 @@ public class ParserUtilTest {
             -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_3));
     }
 
+    @Test
+    public void parseOrderItem_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderItem(null));
+    }
+
+    @Test
+    public void parseOrderItem_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderItem(INVALID_ORDER_DESC));
+    }
+
+    @Test
+    public void parseOrderItem_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderItem(OVERFLOW_ORDER_DESCRIPTION));
+    }
+
+    @Test
+    public void parseOrderItem_validValue_returnsOrderDescription() throws ParseException {
+        OrderItem expectedOrderItem = new OrderItem(new Type(VALID_ORDER_DESC_1));
+        assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(VALID_ORDER_DESC_1));
+    }
 }
