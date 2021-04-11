@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Day implements Comparable<Day> {
 
     public static final String VALIDATION_REGEX = "(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
-    public static final String MESSAGE_CONSTRAINTS = "Days should be in lowercase and take on one of the following: "
+    public static final String MESSAGE_CONSTRAINTS = "Days should take on one of the following: "
         + "monday, tuesday, wednesday, thursday, friday, saturday, sunday. ";
     public final String dayOfTuition;
 
@@ -18,14 +18,14 @@ public class Day implements Comparable<Day> {
     public Day(String dayOfTuition) {
         requireNonNull(dayOfTuition);
         checkArgument(isValidDay(dayOfTuition), MESSAGE_CONSTRAINTS);
-        this.dayOfTuition = dayOfTuition;
+        this.dayOfTuition = dayOfTuition.toLowerCase();
     }
 
     /**
      * Returns true if a given string is a valid day.
      */
     public static boolean isValidDay(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toLowerCase().matches(VALIDATION_REGEX);
     }
 
     int dayToInt(String day) {
