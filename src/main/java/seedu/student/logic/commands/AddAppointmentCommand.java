@@ -2,7 +2,6 @@ package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import seedu.student.logic.commands.exceptions.CommandException;
@@ -11,25 +10,25 @@ import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 
 /**
- * Adds a person to the student book.
+ * Adds an appointment to the student book.
  */
 public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to Vax@NUS. "
-            + "Parameters: "
-            + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER "
+            + "Parameters: MATRICULATION NUMBER "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START TIME \n"
-            + PREFIX_MATRICULATION_NUMBER + "A1234567X "
+            + "A1234567X "
             + PREFIX_DATE + "2021-03-14 "
             + PREFIX_START_TIME + "10:00 \n";
 
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment already exists in the records";
-    public static final String MESSAGE_OVERLAPPING_APPOINTMENT = "The appointment overlaps with another appointment.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "The specified student already has an appointment in the records.";
+    public static final String MESSAGE_OVERLAPPING_APPOINTMENT = "The appointment clashes with another appointment.";
     public static final String MESSAGE_STUDENT_DOES_NOT_EXIST = "The student does not exist in the records.";
 
 
