@@ -154,7 +154,7 @@ Given below is an example usage scenario and how the add mechanism behaves at ea
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Name and phone are compulsory details which must be included in add command, while school, email, address,
-guardian's name, guardian's phone, subjects and lessons are optional. Any missing optional details can be added in later
+guardian's name, guardian's phone, education level, subjects and lessons are optional. Any missing optional details can be added in later
 by using Edit feature. Here, an example of a student with only compulsory details available is used.
 </div>
 
@@ -250,17 +250,17 @@ The activity diagram shows the workflow when an edit command is executed:
 ##### Aspect: Whether to enable every optional field to clear the current values under a field with blank space after its prefix
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Optional fields here refer to school, email, address,guardian's name, guardian's phone, subjects and lessons, 
+Optional fields here refer to school, email, address,guardian's name, guardian's phone, education level, subjects and lessons, 
 whereas name and phone are compulsory details which must not be blank at any time.
 </div>
 
-* **Alternative 1 (current choice):** Only subjects and lessons can be cleared by leaving the space blank after their respective prefixes.
+* **Alternative 1 (current choice):** Only subjects and lessons can be cleared by `edit` command with blank space after their respective prefixes.
     * Pros: Fewer fields need to be taken care of and are easier to remember. 
       Subjects and lessons taken by the students could be removed.
     * Cons: Deletion of a wrong piece of information is disallowed once it is stored in TutorsPet and no new information is available. 
       It might cause confusion in the future.
 
-* **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after its prefix.
+* **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after their respective prefixes.
     * Pros: User can alter students' information more freely.
     * Cons: User might lose track of important personal details if they accidentally leave the field blank after any prefix.
   
