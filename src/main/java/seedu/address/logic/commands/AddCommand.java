@@ -13,8 +13,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.conditions.ConstraintManager;
-import seedu.address.logic.conditions.DateVerifier;
+import seedu.address.logic.conditions.ConditionLogic;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -68,15 +67,20 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         handleDuplicateTask(model);
-        ConstraintManager.enforceAttributeConstraints(toAdd);
-        DateVerifier.checkInvalidDateRange(toAdd);
-        DateVerifier.checkForExpiredDate(toAdd);
+        enforceValidityOfTask();
+
         updateTags(model);
         updateModel(model);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    private void enforceValidityOfTask() throws CommandException {
+        ConditionLogic conditionLogic = new ConditionLogic(toAdd);
+        conditionLogic.enforceAttributeConstraints();
+        conditionLogic.checkInvalidDateRange();
+        conditionLogic.checkForExpiredDate();
+        conditionLogic.enforceTitleLength();
     }
 
     private void handleDuplicateTask(Model model) throws CommandException {

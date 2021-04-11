@@ -4,8 +4,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.attributes.Attribute;
 
 /**
  * ConstraintManager checks that the necessary constraints on the attributes of Tasks are abided by.
@@ -21,25 +21,39 @@ public class ConstraintManager {
     public static final String MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT = "Task cannot have (Date) as well as "
             + "(RecurringSchedule) at the same time!\nPlease choose either when adding a task.";
     public static final String MESSAGE_EMPTY_TITLE = "Title is compulsory for all tasks and cannot be empty.";
-
+    public static final String MESSAGE_TITLE_EXCEED_MAX_LENGTH = "Title cannot have more than 40 characters.\n"
+            + "Consider using the description attribute to add extra details.";
+    public static final int MAX_TITLE_LENGTH = 40;
     private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    private Task task;
+    private AttributeManager attributeManager;
+
+    /**
+     * Constructor for the ConstraintManager class.
+     *
+     * @param task Task to check constraints.
+     */
+    public ConstraintManager (Task task) {
+        this.task = task;
+        this.attributeManager = new AttributeManager(task);
+    }
 
     /**
      * Check that the given task abides by the necessary constraints on its attributes.
      *
-     * @param task The task to be checked.
-     * @throws CommandException If a task has both Date as well as Duration or RecurringSchedule.
+     * @throws CommandException If a task has:
+     * - Duration only
+     * - Date and RecurringSchedule
+     * - No title
      */
-    public static void enforceAttributeConstraints(Task task) throws CommandException {
-        Attribute date = task.getDate();
-        Attribute duration = task.getDuration();
-        Attribute recurringSchedule = task.getRecurringSchedule();
-        Attribute title = task.getTitle();
+    public void enforceAttributeConstraints() throws CommandException {
+        AttributeManager attributeManager = new AttributeManager(task);
 
-        boolean hasDateValue = !date.isEmptyValue();
-        boolean hasDurationValue = !duration.isEmptyValue();
-        boolean hasRecurringScheduleValue = !recurringSchedule.isEmptyValue();
-        boolean hasNoTitle = title.isEmptyValue();
+        boolean hasDateValue = !attributeManager.isEmptyDate();
+        boolean hasDurationValue = !attributeManager.isEmptyDuration();
+        boolean hasRecurringScheduleValue = !attributeManager.isEmptyRecurringSchedule();
+        boolean hasNoTitle = attributeManager.isEmptyTitle();
 
         // Duration cannot exist on its own without Deadline or RecurringSchedule.
         if (hasDurationValue && !(hasRecurringScheduleValue || hasDateValue)) {
@@ -58,5 +72,21 @@ public class ConstraintManager {
         }
     }
 
+    /**
+     * Checks that the title length does not exceeds the max title length.
+     *
+     * @throws CommandException If the title length exceeds the max title length.
+     */
+    public void enforceTitleLength() throws CommandException {
+        if (attributeManager.isEmptyTitle()) {
+            logger.log(Level.INFO, MESSAGE_EMPTY_TITLE);
+            throw new CommandException(MESSAGE_EMPTY_TITLE);
+        }
 
+        String titleString = attributeManager.getTitleString();
+        if (titleString.length() > MAX_TITLE_LENGTH) {
+            logger.log(Level.INFO, MESSAGE_TITLE_EXCEED_MAX_LENGTH);
+            throw new CommandException(MESSAGE_TITLE_EXCEED_MAX_LENGTH);
+        }
+    }
 }

@@ -32,4 +32,12 @@ public class TaskOnDatePredicate implements Predicate<Task> {
         boolean isTaskScheduledOnDate = taskScheduledOnDatePredicate.test(task);
         return isTaskOnDate || isTaskScheduledOnDate;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskOnDatePredicate // instanceof handles nulls
+                && taskDateOnDatePredicate.equals(((TaskOnDatePredicate) other).taskDateOnDatePredicate) // state check
+                && taskScheduledOnDatePredicate.equals(((TaskOnDatePredicate) other).taskScheduledOnDatePredicate));
+    }
 }

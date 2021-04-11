@@ -103,14 +103,8 @@ public class RecurringScheduleTest {
         // invalid special characters between spaces
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10@06r*2021][Mon][biweekly]"));
 
-        // invalid special characters
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10 @*! 2021][M_n][biwe$$ly]"));
-
-        // invalid format for day in starting date, accept up to value 31 only
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[40/12/2021][Mon][biweekly]"));
-
-        // invalid format for month in starting date, accept up to value 12 only
-        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/13/2021][Mon][biweekly]"));
+        // whitespaces between end date, day of week, week frequency
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021]   [Mon]    [biweekly]"));
 
         // invalid format for days of week, kept to 3 alphabet characters
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][Monday][biweekly]"));
@@ -120,7 +114,11 @@ public class RecurringScheduleTest {
 
         // invalid formatting, missing '[]' brackets in between
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021-Mon-biweekly]"));
+    }
 
+
+    @Test
+    public void isInvalidRecurringSchedule_invalidInputOrder() {
         // wrong order => days of week comes before starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[Mon][10/06/2021][biWeekly]"));
 
@@ -129,6 +127,45 @@ public class RecurringScheduleTest {
 
         // wrong order => week frequency comes before days of week and days of week comes before starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[biWeekly][Mon][10/06/2021]"));
+
+        // spaces exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][wed][weekly ]"));
+
+        // spaces exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021] [wed][weekly]"));
+
+        // spaces exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[ 10/06/2021][wed][weekly]"));
+
+        // line breaks exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021\n][wed][weekly]"));
+
+        // line breaks exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][wed][weekly]\n"));
+    }
+
+    @Test
+    public void isInvalidRecurringSchedule_invalidEndDateInput() {
+        // invalid format for day in starting date, accept up to value 31 only
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[40/12/2021][Mon][biweekly]"));
+
+        // invalid format for month in starting date, accept up to value 12 only
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/13/2021][Mon][biweekly]"));
+
+        // invalid format for end date since negative value in day of end date
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[-5/13/2021][Mon][biweekly]"));
+    }
+
+    @Test
+    public void isInvalidDateRange() {
+        RecurringSchedule recurringSchedule = new RecurringSchedule("[31/06/2021][Mon][biweekly]");
+
+        // month of june only has 30 days
+        assertTrue(recurringSchedule.isInvalidDateRange());
+
+        recurringSchedule = new RecurringSchedule("[29/02/2022][Mon][biweekly]");
+        // month of feb in non-leap year only has 28 days
+        assertTrue(recurringSchedule.isInvalidDateRange());
     }
 
     @Test
@@ -194,11 +231,11 @@ public class RecurringScheduleTest {
         // week frequency is valid input
         assertEquals(weekFreq, "biweekly");
 
-        String outputRecurringScheduleDetail = " every " + dayOfWeek + " " + weekFreq + " until "
+        String outputRecurringScheduleDetail = " Every " + dayOfWeek + " " + weekFreq + " until "
                 + recurringScheduleData[1];
 
         // valid output recurring detail
-        assertEquals(outputRecurringScheduleDetail, " every mon biweekly until 30/06/2021");
+        assertEquals(outputRecurringScheduleDetail, " Every mon biweekly until 30/06/2021");
     }
 
     @Test

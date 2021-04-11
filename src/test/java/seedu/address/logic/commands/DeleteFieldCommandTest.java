@@ -44,6 +44,7 @@ public class DeleteFieldCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
         expectedModel.setTask(taskToDeleteFieldFrom, taskWithFieldDeleted);
+        taskToDeleteFieldFrom.getTags().forEach(expectedModel::deleteTag);
 
         assertCommandSuccess(deleteFieldCommand, model, expectedMessage, expectedModel);
     }
@@ -67,7 +68,7 @@ public class DeleteFieldCommandTest {
     public void execute_validIndexInvalidFieldUnfilteredList_throwsCommandException() {
         DeleteFieldCommand deleteCommand = new DeleteFieldCommand(INDEX_FIRST_TASK, "pp/");
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_UNKNOWN_COMMAND);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PREFIX);
     }
 
     @Test
@@ -118,7 +119,7 @@ public class DeleteFieldCommandTest {
 
         DeleteFieldCommand deleteCommand = new DeleteFieldCommand(INDEX_FIRST_TASK, "pp/");
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_UNKNOWN_COMMAND);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PREFIX);
     }
 
     @Test
