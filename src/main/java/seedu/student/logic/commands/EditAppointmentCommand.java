@@ -120,6 +120,11 @@ public class EditAppointmentCommand extends Command {
             setStartTime(toCopy.startTime);
         }
 
+        @Override
+        public String toString() {
+            return matriculationNumber.toString() + " " + date.toString() + " " + startTime.toString();
+        }
+
         /**
          * Returns true if at least one field is edited.
          */

@@ -61,7 +61,7 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 Adds the details of a student to Vax@NUS records. It is mandatory to include the following details of a student:
 
-* `Name` and `Matriculation Number`, for identifying the student.
+* `Matriculation Number` and `Name`, for identifying the student.
 * `Email`, `phone number` and `address`, for contacting the student.
 * `Vaccination status`, to determine if the student should be prioritised for vaccination.
 * `Medical details`, to determine if the vaccination is safe for the student.
@@ -75,11 +75,11 @@ In addition, it is optional to include the following detail of a student:
 
 > For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which how the information should be presented to the program. 
 
-Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
+Format: `add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
-* `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-* `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`
+* `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+* `add A1234567X n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`
 
 | Before        | 
 | ------------- |
@@ -180,13 +180,13 @@ Adds an appointment to Vax@NUS' records.
 
 Appointments can be added for both unvaccinated and vaccinated students, as appointments can also entail follow-ups or check-ups in addition to vaccinations.
 
-Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
+Format: `addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
 > For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
 
 Examples:
-* `addAppt i/A1234567X d/2021-12-13 ts/13:00`
-* `addAppt i/A7654321J d/2021-12-13 ts/14:00`
+* `addAppt A1234567X d/2021-12-13 ts/13:00`
+* `addAppt A7654321J d/2021-12-13 ts/14:00`
 
 | Before        | 
 | ------------- |
@@ -297,11 +297,11 @@ Format: `exit`
 
 Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
 
-:information_source: **NOTE:**  VAX@NUS will display our sample data file if no data file is found from your computer.
+:information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
 
 ### Editing the data
 
-VAX@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
+Vax@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
 
 Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity.
 
@@ -310,9 +310,9 @@ Failure to do so will result in an invalid data file format as the appointment d
 
 Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
-> :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+> :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
 
-:information_source: **NOTE:** VAX@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
+:information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -411,12 +411,12 @@ If unindicated, the `School Residence` field will default to `DOES NOT LIVE ON C
 
 Action | Format, Examples
 --------|------------------
-**Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+**Add Student** | `add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
 **Edit Student** | `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
 **Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter unvaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
-**Add  Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
+**Add Appointment** | `addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt A1234567X d/2021-12-13 ts/13:00`
 **Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM` <br> e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` <br> e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`

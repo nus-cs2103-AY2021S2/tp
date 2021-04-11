@@ -5,15 +5,17 @@ import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.student.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_FACULTY;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.student.commons.core.LogsCenter;
+import seedu.student.logic.LogicManager;
 import seedu.student.logic.commands.AddCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.student.Address;
@@ -31,7 +33,7 @@ import seedu.student.model.student.VaccinationStatus;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -41,19 +43,24 @@ public class AddCommandParser implements Parser<AddCommand> {
         requireNonNull(args);
         assert args.length() >= 8 : "there must be at least 8 arguments";
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_FACULTY,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FACULTY,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_VACCINATION_STATUS, PREFIX_MEDICAL_DETAILS,
                         PREFIX_SCHOOL_RESIDENCE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MATRICULATION_NUMBER, PREFIX_FACULTY, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_FACULTY, PREFIX_ADDRESS,
+                PREFIX_PHONE, PREFIX_VACCINATION_STATUS, PREFIX_EMAIL, PREFIX_MEDICAL_DETAILS)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        MatriculationNumber matriculationNumber;
+
+        try {
+            matriculationNumber = ParserUtil.parseMatric(argMultimap.getPreamble());
+        } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        MatriculationNumber matriculationNumber = ParserUtil.parseMatric(argMultimap
-                .getValue(PREFIX_MATRICULATION_NUMBER).get());
         Faculty faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -66,7 +73,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Student student = new Student(name, matriculationNumber, faculty, phone, email, address, vaccinationStatus,
                 medicalDetails, schoolResidence);
-
+        logger.info("----[Student to be added][" + student.toString() + "]");
         return new AddCommand(student);
     }
 
