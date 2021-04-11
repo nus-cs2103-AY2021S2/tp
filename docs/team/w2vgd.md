@@ -34,8 +34,8 @@ Given below are my contributions to the project:
 
 
 * **Additional Enhancements**:
-  * Added check to prevent addition of properties with passed deadlines and appointments with passed meeting date and time
-  * Remove all traces of original addressbook that are not needed ([\#133](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/133))
+  * Added check to prevent addition of property with passed deadline and appointment with passed meeting date and time
+  * Removed all traces of original addressbook that were not needed ([\#133](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/133))
   * Added icons to application GUI for easier differentiation between property types
   * Added application icon
   * Wrote additional tests ([\#299](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/299), [\#62](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/62), [\#66](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/66))
@@ -48,7 +48,7 @@ Given below are my contributions to the project:
 #### Documentation
 
 * **User Guide**:
-  * Added documentation for the commands `add property` and `add appointment` ([\#25](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/25), [\#290](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/290))
+  * Added documentation for commands `add property` and `add appointment` ([\#25](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/25), [\#290](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/290))
   * Added introduction and trying out sections ([\#185](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/185))
   * Added storage and appendix sections ([\#185](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/185))
   * Formatted table of contents with numbering for each section ([\#187](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/187))
