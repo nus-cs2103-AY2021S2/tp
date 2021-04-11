@@ -10,7 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX_1;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX_2;
 
 import java.time.LocalDateTime;
 
@@ -35,10 +36,11 @@ public class EditExamCommandParserTest {
                             + "1 " + PREFIX_DATE + VALID_EXAM_DATETIME_1;
         assertParseFailure(parser, userInput1, String.format(Title.MESSAGE_CONSTRAINTS, "Modules"));
 
-        // no exam specified
+        // no exam index specified
         String userInput2 = " " + PREFIX_MODULE + VALID_TITLE_CS2101 + " " + PREFIX_EXAM.getPrefix() + " "
                             + PREFIX_DATE + VALID_EXAM_DATETIME_1;
-        assertParseFailure(parser, userInput2, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, userInput2,
+                MESSAGE_INVALID_INDEX_1 + "e/" + MESSAGE_INVALID_INDEX_2);
 
         // no date specified
         String userInput3 = " " + PREFIX_MODULE + VALID_TITLE_CS2101 + " "
@@ -63,7 +65,8 @@ public class EditExamCommandParserTest {
 
         String userInput2 = " " + PREFIX_MODULE.getPrefix() + VALID_TITLE_CS2101 + " " + PREFIX_EXAM + "0 "
                 + PREFIX_DATE + VALID_EXAM_DATETIME_1;
-        assertParseFailure(parser, userInput2, MESSAGE_INVALID_INDEX); // invaid exam index
+        assertParseFailure(parser, userInput2,
+                MESSAGE_INVALID_INDEX_1 + "e/" + MESSAGE_INVALID_INDEX_2); // invaid exam index
 
         String userInput3 = " " + PREFIX_MODULE.getPrefix() + VALID_TITLE_CS2101 + " " + PREFIX_EXAM + "1 "
                             + PREFIX_DATE + INVALID_GENERAL_EVENT_DATE_1;
