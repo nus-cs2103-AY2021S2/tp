@@ -339,7 +339,9 @@ The following sequence diagram shows how the update operation works:
 
 ![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
-### Find feature
+### 3.5 Find feature
+
+#### 3.5.1 Current Implementation
 
 The find mechanism is facilitated by `PocketEstate`. It implements the search feature that allows the user to specific the fields to search for and use multiple parameters. 
 This feature is implemented separately for both property and appointment, as well as an additional `find client` feature that searches both properties and appointments. 
@@ -380,22 +382,38 @@ For appointments, it uses the following:
     * `AppointmentDatePredicate`
     * `AppointmentTimePredicate`
 
-For both `Appointment` and `Property`, `PocketEstateParser` will check for `find appointment` or `find property` in user input, 
-then invoke their respective `FindCommandParser`, which will then parse user inputs and create `Predicates` according to user input.  
-All `Predicates` are then put in a `List` and used to create a `PredicateList` for the respective types. If there are more than one of 
-the same predicates used, The `PredicateList` is then 
-used to create `FindPropertyCommand` or `FindAppointmentCommand`, which is returned to `LogicManager`. 
+`find appointment` and `find property` uses `AppointmentPredicateList` and `PropertyPredicateList` to keep track of all 
+predicates that `FindAppointmentCommandParser` and `FindPropertyCommandParser` generated respectively. 
 
-`LogicManager` will call `Command#exceute`, and for all find commands, this will update the list of `Property` or `Appointment` 
-visible to the user in the GUI by calling `Model#updateFilteredAppointmentList` with `PredicateList#combine` as the parameter. 
+Since they are implemented similarly, given below is an example usage scenario and how the find mechanism behaves at each step for `find appointment`.  
 
-Given below is an example usage scenario and how the find mechanism behaves at each step. 
-
-Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial 
+Step 1. The user launches the application for the first time. `PocketEstate` will be initialized with the initial 
 appointment book state and property book state, and the currentAppointmentBookStatePointer currentPropertyBookStatePointer pointing to the two initial book states respectively.
 
-Step 2. The user executes `find appointment n/alex d/25-12-2021` command to find an appointment in the appointment book 
-that contains `alex` in its name and has date set to `25-12-2021`. `findAppointment` executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing the previous state of the appointment book before the `delete appointment 1` command executes to be saved in the `previousAppointmentLists`, and the currentAppointmentBookStatePointer still points to the current appointment book state.
+Step 2. The user executes `find appointment n/alex d/25-12-2021 n/john` command to find an appointment in the appointment book 
+that contains `alex` in its name and has date set to `25-12-2021`. 
+
+Step 3. `PocketEstateParser` parses user input and calls `FindAppointmentParser`. 
+
+Step 4. For each unique option type in the input, in this case `n/` for name, and `d/` for date, `FindAppointmentCommandParser` 
+creates a `AppointmentPredicateList`, then creates `predicates` for each keyword, storing them in the `AppointmentPredicateList` 
+for their corresponding option type. i.e. the `AppointmentPredicateList` for `d/` will contain 1 `AppointmentDatePredicate` 
+that checks for `25-12-2021`, while that for `n/` will contain 2 `AppointmentNamePredicates`, 1 checking for `alex`, and the other 
+checking for `john`. 
+
+Step 5. `FindAppointmentCommandParser` creates a new `AppointmentPredicateList` containing a list of all 
+previously created `AppointmentPredicateList`.  
+
+Step 6: `FindAppointmentCommandParser` creates a `FindAppointmentCommand` with the `AppointmentPredicateList` as argument. 
+
+Step 7: `FindAppointmentCommand` creates a single `Predicate` by calling `AppointmentPredicateList#combine`. 
+    * This function combines all `predicates` by: 
+        1. Calling `AppointmentPredicateList#combineDisjunction`, which combines predicates with logical **`OR`**, on every `AppointmentPredicateList` 
+        stored within itself
+        1. Combining all created `predicates` into a single `Predicate` with logical **`AND`**
+        
+Step 8: `FindAppointmentCommand` calls `Model#updateFilteredAppointmentList` with the new `Predicate` to update the filtered 
+list that is viewed by the user. 
 
 
 --------------------------------------------------------------------------------------------------------------------
