@@ -7,7 +7,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 package Logic {
 
 package Parser {
-Interface Parser <<Interface>>
+Class "<<Interface>>\nParser"
 Class AddressBookParser
 Class XYZCommandParser
 Class CliSyntax
@@ -23,7 +23,8 @@ Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
 
-Interface Logic <<Interface>>
+
+Class "<<Interface>>\nLogic"
 Class LogicManager
 }
 
@@ -31,15 +32,21 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+package Storage {
+CLass HiddenStorage #FFFFFF
+}
 
-LogicManager .up.|> Logic
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> "<<Interface>>\nLogic"
+
+LogicManager .up.|> "<<Interface>>\nLogic"
 LogicManager -->"1" AddressBookParser
 AddressBookParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
+XYZCommandParser ..|> "<<Interface>>\nParser"
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -55,8 +62,12 @@ LogicManager --> Model
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
-Logic ..> CommandResult
+LogicManager --> Storage
+Storage --[hidden] Model
+Command .[hidden]up.> Storage
+
+"<<Interface>>\nLogic" ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+CommandResult -[hidden]-> "<<Interface>>\nParser"
 @enduml

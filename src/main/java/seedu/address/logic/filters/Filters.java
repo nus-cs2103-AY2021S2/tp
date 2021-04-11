@@ -25,23 +25,19 @@ public class Filters {
 
 
         if (argumentMultimap.getTotalSize() > 2) { // since there is also a dummy position :(
-            System.out.println(argumentMultimap);
             throw new NullPointerException(
                 "Number of filters between two logical operators should be exactly 1 " + argumentMultimap);
         }
 
         if (argumentMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            System.out.println(100);
             return new EmailFilter(argumentMultimap.getValue(PREFIX_EMAIL).get());
         }
 
         if (argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            System.out.println(100);
             return new PhoneNumberFilter(argumentMultimap.getValue(PREFIX_PHONE).get());
         }
 
         if (argumentMultimap.getValue(PREFIX_COE_EXPIRY).isPresent()) {
-            System.out.println(100);
             return new CoeExpiryFilter(argumentMultimap.getValue(PREFIX_COE_EXPIRY).get());
         }
 
