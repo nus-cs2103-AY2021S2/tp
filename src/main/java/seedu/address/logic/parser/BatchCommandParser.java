@@ -38,7 +38,7 @@ public class BatchCommandParser implements Parser<BatchCommand> {
      * Then, parses and checks the validity of the indices and arguments (if applicable) to be passed to the
      * {@code Command} to be executed in bulk.
      *
-     * @param args arguments of the {@BatchCommand} passed in by the user
+     * @param args arguments of the {@BatchCommand} passed in by the user.
      * @return a {@code BatchCommand} with the {@code List} of {@code Commands} to be executed in batch.
      * @throws ParseException if the user input for {@code BatchCommand} or the {@code Commands} does not conform to
      *      the expected format.
@@ -152,32 +152,21 @@ public class BatchCommandParser implements Parser<BatchCommand> {
                                       List<String> listOfTags, List<String> listOfInsurancePolicies) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < listOfPhoneNumbers.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_PHONE.getPrefix())
-                    .append(listOfPhoneNumbers.get(i))
-                    .append(" ");
-        }
-        for (int i = 0; i < listOfAddresses.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_ADDRESS.getPrefix())
-                    .append(listOfAddresses.get(i))
-                    .append(" ");
-        }
-        for (int i = 0; i < listOfTags.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_TAG.getPrefix())
-                    .append(listOfTags.get(i))
-                    .append(" ");
-        }
-        for (int i = 0; i < listOfInsurancePolicies.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_INSURANCE_POLICY.getPrefix())
-                    .append(listOfInsurancePolicies.get(i))
-                    .append(" ");
-        }
+        appendWithPrefix(stringBuilder, PREFIX_PHONE, listOfPhoneNumbers);
+        appendWithPrefix(stringBuilder, PREFIX_ADDRESS, listOfAddresses);
+        appendWithPrefix(stringBuilder, PREFIX_TAG, listOfTags);
+        appendWithPrefix(stringBuilder, PREFIX_INSURANCE_POLICY, listOfInsurancePolicies);
 
         return stringBuilder.toString().trim();
+    }
+
+    private void appendWithPrefix(StringBuilder stringBuilder, Prefix prefix, List<String> listOfInformation) {
+        for (int i = 0; i < listOfInformation.size(); i++) {
+            stringBuilder
+                    .append(prefix)
+                    .append(listOfInformation.get(i))
+                    .append(" ");
+        }
     }
 
     private boolean areOtherPrefixesEntered(ArgumentMultimap argMultimap) {
