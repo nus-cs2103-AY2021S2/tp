@@ -47,7 +47,6 @@ These are symbols used throughout the User Guide you might want to take note of.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -59,7 +58,9 @@ These are symbols used throughout the User Guide you might want to take note of.
 1. Launch the app through running `java -jar weeblingo.jar` or double-clicking the icon. The GUI similar to the image below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+<div style="page-break-after: always;"></div>
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`learn`** : Enters Learn mode.
@@ -70,13 +71,12 @@ These are symbols used throughout the User Guide you might want to take note of.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## Features
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -270,8 +270,6 @@ If user attempt does not match answer of flashcard:
 If user tries to answer already correctly answered flashcard:
 ![answered again](images/check_again.png)
 
-<div style="page-break-after: always;"></div>
-
 #### Going to next flashcard: `next`
 
 Goes to the next flashcard in the quiz session.
@@ -281,6 +279,8 @@ Format: `next`
 * If the quiz session has reached an end (i.e. no more flashcards to be tested), result statistic and 
 flashcards tested (with answers shown) will be displayed. User may choose to start a new session through `start`,
 return to quiz view through `quiz` or return to menu through `end`.
+
+<div style="page-break-after: always;"></div>
 
 ### History Mode Commands
 
@@ -297,6 +297,8 @@ Example:
 - If a quiz session has zero attempt, a default correct ratio of `0.000%` will be recorded.
 - In future versions, `history` will provide more useful information to better optimize users' learning experience.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding and removing flashcards `[coming in v2.0]`
 
 _These functions are likely to be included in future versions of Weeblingo, stay tuned._
@@ -307,8 +309,6 @@ Weeblingo data is saved in the hard disk automatically after any command.
 There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -356,6 +356,7 @@ Action | Format, Examples |
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Note for Testers
 By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary
