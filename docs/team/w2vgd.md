@@ -39,9 +39,9 @@ Given below are my contributions to the project:
 
 * **Additional Enhancements**:
     * Added check to prevent addition of properties with passed deadlines and appointments with passed meeting date and time
-    * Remove all traces of original addressbook that are not needed ([\#133](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/133)).
-    * Added application icon.
-    * Wrote additional tests ([\#299](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/299), [\#62](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/62), [\#66](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/66)).
+    * Remove all traces of original addressbook that are not needed ([\#133](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/133))
+    * Added application icon
+    * Wrote additional tests ([\#299](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/299), [\#62](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/62), [\#66](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/66))
 
 
 #### **Project management**:
@@ -65,8 +65,8 @@ Given below are my contributions to the project:
 
 #### **Community**:
 
-* PRs reviewed (with non-trivial review comments): [\#132](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/132), [\#202](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/202), [\#191](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/191), [\#195](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/195), [\#84](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/84))
-* Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/224), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/257), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/276))
-* Provided tips through forum discussions (examples: [Moving tags to different commits](https://github.com/nus-cs2103-AY2021S2/forum/issues/36), [Enabling soft wraps in IntelliJ](https://github.com/nus-cs2103-AY2021S2/forum/issues/188))
-* Provided help through forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/5), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/30), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/53))
-* Helped fix a bug in the AB3 Logic class diagram that is adopted by other class amtes (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/257))
+* PRs reviewed (with non-trivial review comments): ([\#132](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/132), [\#202](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/202), [\#191](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/191), [\#195](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/195), [\#84](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/84))
+* Initiated forum discussions tagged with `must-see` labels (discussion examples: [\#224](https://github.com/nus-cs2103-AY2021S2/forum/issues/224), [\#257](https://github.com/nus-cs2103-AY2021S2/forum/issues/257), [\#276](https://github.com/nus-cs2103-AY2021S2/forum/issues/276))
+* Provided tips through forum discussions (discussion examples: [Moving tags to different commits](https://github.com/nus-cs2103-AY2021S2/forum/issues/36), [Enabling soft wraps in IntelliJ](https://github.com/nus-cs2103-AY2021S2/forum/issues/188))
+* Provided help through forum discussions (discussion examples: [\#5](https://github.com/nus-cs2103-AY2021S2/forum/issues/5), [\#30](https://github.com/nus-cs2103-AY2021S2/forum/issues/30), [\#53](https://github.com/nus-cs2103-AY2021S2/forum/issues/53))
+* Helped fix a bug in the AB3 Logic class diagram that is adopted by other classmates (examples: [\#257](https://github.com/nus-cs2103-AY2021S2/forum/issues/257))
