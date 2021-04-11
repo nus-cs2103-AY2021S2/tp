@@ -34,4 +34,4 @@ Given below are my contributions to the project:
     - Made cosmetic changes to standardise parts of the User Guide.
 
 - **Community**:
-  - PRs Reviewed: 1
+  - PRs Reviewed: 3
