@@ -52,7 +52,7 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
 
-        if (input.contains(DEFAULT_RESIDENCE)) {
+        if (input.equals(DEFAULT_RESIDENCE)) {
             messageNoStudentsAreListed = "No students that does not live on campus exist in Vax@NUS's record";
             messageStudentsAreListed = "All students that does not live on campus exist in Vax@NUS's record";
         } else {
@@ -77,5 +77,8 @@ public class FilterCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof FilterCommand // instanceof handles nulls
                 && predicate.equals(((FilterCommand) other).predicate)); // state check
+    }
+    public String getMessageStudentsAreListed(){
+        return messageStudentsAreListed;
     }
 }
