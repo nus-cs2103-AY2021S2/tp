@@ -86,7 +86,7 @@ PocketEstate boasts a minimalist design with alternating steel blue and light bl
 
 We also use the following symbols for easier identification of different property types in the app:
 
-Property Types | Symbols
+{::nomarkdown}<p align="center">{:/} Property Types | {::nomarkdown}<p align="center">{:/} Symbols
 --------|------------------
 {::nomarkdown}<p align="center">{:/} Hdb | {::nomarkdown}<p align="center">{:/} ![Hdb](images/hdb_16.png)
 {::nomarkdown}<p align="center">{:/} Condo | {::nomarkdown}<p align="center">{:/} ![Condo](images/condo_16.png)
