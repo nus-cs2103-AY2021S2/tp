@@ -18,7 +18,7 @@ public class CategoryTest {
     public void isValidCategory() {
         // invalid category
         assertFalse(Category.isValidTagName("")); // empty string
-        assertFalse(Category.isValidTagName("AAAAAAAAAAAAAAAAAAAA")); // more than 15 characters
+        assertFalse(Category.isValidTagName("AAAAAAAAAAAAAAAAAAAAAAAAA")); // more than 20 characters
 
         // valid category
         assertTrue(Category.isValidTagName(" ")); // spaces only

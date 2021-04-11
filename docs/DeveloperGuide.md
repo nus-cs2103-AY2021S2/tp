@@ -187,6 +187,7 @@ The following activity diagram summarizes what happens when a user executes `fin
 
 #### Extensions Implemented
 - `c/FR_CATEGORY` field accepts multiple categories
+- User is able to delete `Category` through the `edit-fr` command
 - Display an appropriate message if no matching financial records found
 
 #### Design Consideration
