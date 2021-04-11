@@ -6,26 +6,18 @@ start
 :User executes ViewTimeTableCommand;
 
 if () then ([correct command format])
-      :Parses the args;
+      :Check if there is date parameter;
 
-      if () then ([all args formatted correctly])
-      :Check if there is a date parameter;
+      if () then ([date argument is present])
+      :Set the timetable's query date
+      as the date parameter;
 
-          if () then ([date parameter exists])
-          :Open timetable window of \n the week that consist of \nthe date parameter;
-
-          else ([else])
-          :Open timetable window of \nthe current week;
+      else ([else])
+      :Set the timetable's query date
+      as today's date;
 
       endif
           :Show success message;
-
-      else ([else])
-
-      :Shows an error message on
-      invalid prefix format;
-
-      endif
 
 else ([else])
     :Shows an invalid command error

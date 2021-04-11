@@ -133,7 +133,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.TutorTracker.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -234,12 +234,34 @@ Steps for the execution of the `AddScheduleCommand` (assuming that no errors are
 
 #### Design Consideration
 
-**Displaying Schedule in the GUI**
+##### Determine the hierarchy of schedule
 
 |              | **Pros**   | **Cons** |
 | -------------|-------------| -----|
-| **Option 1** <br> Display schedules with appointments in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate appointments and schedule if not looked properly.|
-| **Option 2 (current choice)** <br> Display schedules in a separate tab from appointment. | Clear segregation between appointments and schedules. | May impose inconvenience as users have to switch tabs between appointments and schedules depending on their needs |
+| **Option 1** <br> Schedule to be a subclass of Appointment. | More ideal in terms of naming convention. | It may cause huge code changes and refactor required due to the Appointment class have already completed. |
+| **Option 2 (current choice)** <br> Create an additional parent class to be inherited by Appointment and Schedule. | Less change in codes as the Appointment class was completed (v1.2) before this idea extension proposed in v1.3. | May confuse users with the naming convention if the definitions and examples are not clearly stated. |
+
+Reason for choosing option 2:
+* We estimated the number of code changes required, and we deem it to be quite substantial. Hence, we have decided to go for option 2, by creating an abstract parent class called `Event`.
+
+##### Naming of the datetime attribute
+
+After choosing option 2 from the previous consideration, another issue arose due to the separation of classes.
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> Rename `AppointmentDateTime` to `EventDateTime` . | More ideal in terms of naming convention. | It may cause huge code changes and refactor required due to the Appointment class have already completed. At the same time, we have other features such as the Appointment Filter, which is heavily build using the `AppointmentDateTime` variable. |
+| **Option 2 (current choice)** <br> Retain the `AppointmentDateTime` attribute. | Less change in codes as the Appointment class was completed (v1.2) before this idea extension proposed in v1.3. | May confuse developers with the naming convention if the definitions and examples are not clearly stated. |
+
+Reason for choosing option 2:
+* We estimated the number of code changes required, and we deem it to be quite substantial. Hence, we have decided to go for option 2 by retaining the name `AppointmentDateTime` under the `Event` class. We have put comments in the class to explain the rationale behind it.
+
+##### Displaying Schedule in the GUI
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> Display schedules with appointments in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate appointments and schedule if not looked properly. |
+| **Option 2 (current choice)** <br> Display schedules in a separate tab from appointment. | Clear segregation between appointments and schedules. | May impose inconvenience as users have to switch tabs between appointments and schedules depending on their needs. |
 
 Reason for choosing option 2:
 * As we do not wish to overwhelm the user with too much information to provide a better user experience, we decided that option 2 may be a better option.
@@ -277,7 +299,7 @@ Steps for the execution of the `AddReminderCommand` (assuming that no errors are
 2. The `TutorTrackerParser` will then create a `AddReminderCommandParser`.
 3. The `AddReminderCommandParser` will then parse the inputs, and creates a `AddReminderCommand`.
 4. The `AddReminderCommand` will then validates the parameters and creates a `Reminder` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addSchedule()`, then create a `CommandResult` object and return the result.
+5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addReminder()`, then create a `CommandResult` object and return the result.
 6. The `Ui` component will detect this change and update the GUI.
 
 ![Sequence Diagram of Add Reminder](images/reminder/ReminderSequenceDiagram.png)
@@ -301,12 +323,13 @@ Tutor Tracker's Timetable GUI allows users to view their appointments and schedu
 
 #### Rationale
 As Tutor Tracker is an application to aid users in tracking their upcoming tuition appointments and schedules, our target users are secondary students.
-Like their school's timetable, we wish to present their personal tuition timetable to them.
+Similar to their school's timetable, we wish to present their personal tuition appointments and schedules as a timetable.
 
 #### Implementation
-The current implementation of the timetable view makes use of the list of appointments and schedules from the ModelManager. 
-The schedule view will display appointments from Monday to Sunday using JavaFx's GridPane. 
-Each row would consist of all appointments & schedules of a specific day, and the duration of an appointment or schedule would correspond to the number of columns taken up by an event. 
+The current implementation of the timetable view retrieve the list of appointments and schedules from the `ModelManager`. 
+The timetable view will display appointments and schedules timeslots from Monday to Sunday using JavaFx's GridPane. 
+Each row would consist of all appointments & schedules of a specific day.
+The duration of an appointment or schedule would correspond to the number of columns. 
 The date of an appointment will be indicated using the first column of the grid.
 
 When the user enters the `timetable` command to open the timetable window, the user input command undergoes the same command parsing as described in
