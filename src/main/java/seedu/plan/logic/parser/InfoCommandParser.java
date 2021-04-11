@@ -25,7 +25,6 @@ public class InfoCommandParser implements Parser<InfoCommand> {
         } else {
             assert args.charAt(0) == ' ' : "Prefix parsing error";
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE);
-            boolean test = !arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE);
             if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_CODE)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,

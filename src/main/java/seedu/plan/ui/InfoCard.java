@@ -12,7 +12,7 @@ import seedu.plan.storage.JsonModule;
  */
 public class InfoCard extends UiPart<Region> {
 
-    private static final String FXML = "PlanListCard.fxml";
+    private static final String FXML = "InfoListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
