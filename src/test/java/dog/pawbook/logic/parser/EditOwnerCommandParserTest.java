@@ -5,11 +5,14 @@ import static dog.pawbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static dog.pawbook.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NEGATIVE_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_ZERO_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -49,67 +52,68 @@ public class EditOwnerCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditOwnerCommand.MESSAGE_USAGE);
 
-    private EditOwnerCommandParser parser = new EditOwnerCommandParser();
+    private final EditOwnerCommandParser parser = new EditOwnerCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // no ID specified
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditOwnerCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, String.valueOf(ID_ONE), EditOwnerCommand.MESSAGE_NOT_EDITED);
 
-        // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        // no ID and no field specified
+        assertParseFailure(parser, EMPTY_STRING, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        // negative ID
+        assertParseFailure(parser, INVALID_NEGATIVE_ID_STRING + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
-        // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        // zero ID
+        assertParseFailure(parser, INVALID_ZERO_ID_STRING + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, ID_ONE + " some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, ID_ONE + " i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Owner} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser,
+                ID_ONE + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 

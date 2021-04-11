@@ -178,7 +178,9 @@ Below is an example activity diagram for a valid add command from the user.
 Below is an example activity diagram for a valid delete command from the user.
 
 ![DeleteActivityDiagram](diagrams/DeleteActivityDiagram.puml)
+
 ### Edit feature
+
 Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit`  some features of an owner. By entering the edit command with the correct identification number of the owner to be edited, the specified features of the owner will be modified accordingly.
 
 In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `edit` command keyword to indicate the correct entity type to be edited. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
@@ -188,6 +190,7 @@ Below is an example activitiy diagram for a valid view command from the user.
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
 ### Find feature
+
 Pawbook allows the users to `find` an entity based on keyword searches. The `find` function entertains multiple keyword
 searches and reveals the entire list of commands that match one or more of the results.
 
@@ -201,6 +204,7 @@ CommandResult instance that is then passed on in the LogicManager.
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### View feature
+
 Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
 
 When the user enters a valid command with the target entity ID, the ViewCommandParser will firstly parse the command and store the ID as an integer that is then passed on to as a parameter into the constructor method of a new ViewCommand instance.
@@ -216,18 +220,8 @@ Below is an example activitiy diagram for a valid view command from the user.
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
-### Drop feature
-While Pawbook allows the enrolling of dogs into programs, conversely it supports dropping previously-enrolled dogs from the programs.
-
-To drop a dog from a program, the raw input is parsed and goes through several checks to ensure that the provided dog and program IDs are both valid and are indeed referring to dog and program objects respectively. Subsequently, the arguments will be forwarded to `DropCommandParser` followed by `PawbookParser` where they are converted from the String input to int.
-
-Below is an example activity diagram for a valid drop command from the user.
-
-![DropActivityDiagram](images/DropActivityDiagram.png)
-
-#### Alternate implementations
-
 ### Enrol feature
+
 Pawbook supports the enrolling of specific dogs into specific programs.
 
 In order to enrol a dog into a program, the raw input needs to be parsed first. It is required that the user provides 2 parameters, namely `dogId` and `programId`. These inputs have the prefix `/d` and `/p`, and is followed by an integer. Using this information, the arguments will be forwarded to the `EnrolCommandParser` from within `PawbookParser`, which converts the String input to int.
@@ -236,7 +230,26 @@ Below is an example activity diagram for a valid enrol command from the user.
 
 ![EnrolActivityDiagram](images/EnrolActivityDiagram.png)
 
+Below is an example sequence diagram for a valid enrol command from the user.
+
+![EnrolSequenceDiagram](images/EnrolSequenceDiagram.png)
+
+### Drop feature
+
+While Pawbook allows the enrolling of dogs into programs, conversely it supports dropping previously-enrolled dogs from the programs.
+
+To drop a dog from a program, the raw input is parsed and goes through several checks to ensure that the provided dog and program IDs are both valid and are indeed referring to dog and program objects respectively. Subsequently, the arguments will be forwarded to `DropCommandParser` followed by `PawbookParser` where they are converted from the String input to int.
+
+Below is an example activity diagram for a valid drop command from the user.
+
+![DropActivityDiagram](images/DropActivityDiagram.png)
+
+Below is an example sequence diagram for a valid drop command from the user.
+
+![DropSequenceDiagram](images/DropSequenceDiagram.png)
+
 ### Alternate implementations
+
 As dogs and programs can also be identified by their respective names instead of IDs, another implementation could be replacing the parameters of `dogId` and `programId` with their respective names.
 
 However, this requires there to be no duplicate dog or program names.
@@ -259,19 +272,20 @@ However, this requires there to be no duplicate dog or program names.
 
 **Target user profile**:
 
-* has a need to manage a significant number of dogs and owners
-* prefer desktop apps over other types
-* is a fast typist
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* prefers a portable and lightweight application
+* Has a need to manage a significant number of dogs and owners
+* Prefers desktop apps over other types
+* Is a fast typist
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
+* Prefers a portable and lightweight application
 
 **Value proposition**:
-* manage contacts faster than a typical mouse/GUI driven app
-* saves significant time for the business owner, who beforehand had to manage the details of dogs and owners
-* consolidates information on dogs, owners and programs into one place
-* clutter free user interface
-* application is optimised for keyboard navigation 
+
+* Manages contacts faster than a typical mouse/GUI driven app
+* Saves significant time for the business owner, who beforehand had to manage the details of dogs and owners
+* Consolidates information on dogs, owners and programs into one place
+* Clutter-free user interface
+* Application is optimised for keyboard navigation 
 
 
 ### User Stories
@@ -301,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User request to add a dog/owner profile or program to the list.
+1.  User requests to add a dog/owner profile or program to the list.
 2.  Pawbook adds the dog/owner.
 
     Use case ends.
@@ -321,8 +335,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete a specific dog/owner/program in the list.
-2.  Pawbook deletes the dog/owner/program.
+1.  User requests to delete a specific dog/owner profile or program in the list.
+2.  Pawbook deletes the dog/owner profile or program.
 
     Use case ends.
 
@@ -344,30 +358,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC04 - Enrol dog to a program**
+**Use case: UC04 - Enrol dog to program**
 
 **MSS**
 
-1.  User requests to enrol a dog to a program.
-2.  Pawbook enrol the dog to the correct program.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The program ID is invalid/not specified.
-
-    * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies correct program ID.
-
-      Use case resumes at step 2.
-
-**Use case: UC05 - Drop a dog from a program**
-
-**MSS**
-
-1.  User requests to drop a dog from a program.
-2.  Pawbook drop a dog from a program.
+1.  User requests to enrol dog to program.
+2.  Pawbook enrols the dog to the correct program.
 
     Use case ends.
 
@@ -379,6 +375,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User supplies correct dog/program ID.
 
       Use case resumes at step 2.
+    
+* 1b. The user requests to enrol multiple dogs to multiple programs.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User changes request to either enrolling one dog to one program, one dog to multiple programs, or multiple dogs to one program.
+    
+    Use case resumes at step 2.
+
+**Use case: UC05 - Drop dog from program**
+
+**MSS**
+
+1.  User requests to drop dog from program.
+2.  Pawbook drops dog from the correct program.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The dog/program ID is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies correct dog/program ID.
+
+      Use case resumes at step 2.
+
+* 1b. The user requests to drop multiple dogs from multiple programs.
+
+    * 1b1. Pawbook shows an error message.
+    * 1b2. User changes request to either dropping one dog from one program, one dog from multiple programs, or multiple dogs from one program.
+
+  Use case resumes at step 2.
 
 **Use case: UC06 - View schedule**
 
@@ -523,6 +551,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Missing parameters, status message indicates invalid command format.
         
 ### Delete Command
+
 1. Deleting an owner while all owners are being shown
 
     1. Prerequisites: List all owners using the `list owner` command. Multiple owners in the list.
@@ -752,14 +781,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
 
-    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active` Ensure Bruce has ID 2.
 
-    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies` Ensure Obedience Training has ID 3.
     
 1. Enrol valid dog into valid program 
 
     1. Test case: `enrol d/2 p/3` <br>
-       Expected:Bruce is successfully added to the Obedience Training program.
+       Expected: Bruce is successfully added to the Obedience Training program.
        
 1. Enrol valid dog into invalid program 
 
@@ -770,6 +799,35 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case:  `enrol d/3 p/3` <br>
        Expected: Error status message stating dog ID is invalid.
+       
+1. Enrol multiple valid dogs into valid program
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple as ID 4.
+    
+    1. Test case: `enrol d/2 d/4 p/3` <br>
+        Expected: Bruce and Apple are successfully added to the Obedience Training program.
+        
+1. Enrol one valid dog into multiple valid programs
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
+    
+    1. Test case: `enrol d/2 p/3 p/4` <br>
+        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+        
+1. Enrol multiple valid dogs into multiple valid programs
+    
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple has ID 4.
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 5.
+        
+    1. Test case: `enrol d/2 d/4 p/3 p/5 ` <br>
+        Expected: Error messaging stating that enrollment of multiple dogs into multiple programs is not supported.
        
 1. Invalid enrol command 
 
@@ -790,18 +848,59 @@ testers are expected to do more *exploratory* testing.
 
 1. Drop valid dog from valid program
 
+    1. Enrol dog into program with: `enrol d/2 p/3`
+    
     1. Test case: `drop d/2 p/3` <br>
-       Expected:Bruce is successfully dropped from Obedience Training program.
+       Expected: Bruce is successfully dropped from Obedience Training program.
 
-1. Drop valid dog into invalid program
+1. Drop valid dog from invalid program
 
+    1. Enrol dog into program with: `enrol d/2 p/3`
+    
     1. Test case: `drop d/2 p/4` <br>
        Expected: Error status message stating program ID is invalid.
 
-1. Drop invalid dog into valid program
+1. Drop invalid dog from valid program
+
+    1. Enrol dog into program with: `enrol d/2 p/3`
 
     1. Test case:  `drop d/3 p/3` <br>
        Expected: Error status message stating dog ID is invalid.
+       
+1. Drop multiple valid dogs from valid program
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple as ID 4.
+    
+    1. Enrol dogs into program with: `enrol d/2 d/4 p/3`
+    
+    1. Test case: `drop d/2 d/4 p/3` <br>
+        Expected: Bruce and Apple are successfully added to the Obedience Training program.
+        
+1. Drop one valid dog from multiple valid programs
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
+    
+    1. Enrol dog into programs with: `enrol d/2 p/3 p/4`
+    
+    1. Test case: `drop d/2 p/3 p/4` <br>
+        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+        
+1. Drop multiple valid dogs from multiple valid programs
+    
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple has ID 4.
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 5.
+        
+    1. Enrol dog into program with: `enrol d/2 p/3` and `enrol d/4 p/5`
+    
+    1. Test case: `drop d/2 d/4 p/3 p/5 ` <br>
+        Expected: Error messaging stating that droplment of multiple dogs from multiple programs is not supported.
 
 1. Invalid drop command
 
@@ -809,10 +908,12 @@ testers are expected to do more *exploratory* testing.
        Expected: Error status message indicating wrong command format.
        
 ### Help Command
+
 1. Test case: `help` 
    Opens a pop-up window that shows the command summary and
 
 ### Exit Command
+
 1. Test case: `exit` 
     1. Expected: The program should exit and close.
 

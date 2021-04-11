@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_PROGRAM;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -19,7 +20,6 @@ public class AddProgramCommand extends AddCommand<Program> {
         + PREFIX_TAG + "puppies";
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_SUCCESS_FORMAT, ENTITY_WORD);
-    public static final String MESSAGE_DUPLICATE_PROGRAM = "This " + ENTITY_WORD + " already exists in Pawbook.";
 
     /**
      * Creates an AddCommand to add the specified {@code program}
