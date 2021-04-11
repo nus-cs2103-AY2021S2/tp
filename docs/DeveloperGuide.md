@@ -2019,7 +2019,6 @@ Use case ends.
 1.  The user interface should be intuitive to a SoC freshman with little knowledge about programming.
 1.  The source code should be open source.
 
-*{More to be added}*
 
 ### A5. Glossary
 
