@@ -106,15 +106,16 @@ and their parsers.
         * Updated command summary and added visual illustrations to the relevant commands.
         
     * Developer Guide:
-        * Updated and explained the `Model` component. 
+        * Updated and explained the `Model` component.
           Created the **class diagrams** for `Model`, `Task` and `Event`.
           Explained the **design considerations** for comparing same tasks and events 
           and setting maximum length to `Name`, `Tag` and `Category`.
+          
         * Explained the **implementation details** and **design considerations** for `done_task`, `undone_task`, `edit_task` and `find_schedule`.
             Created **sequence diagrams** for sample usages of `done_task`, `undone_task`, `edit_task` and `find_schedule`
-            Created an **activity diagram** for a sample usage of `undone_task`.
+            Created an **activity diagram** for `undone_task` command.
         * Added use cases and manual testing cases for `done_task`, `undone_task`, `edit_task` and `find_schedule`.
-        * Added the effort section. 
+        * Contributed to the effort section. 
           Summarised the highlights of the product, and explain the efforts the team in developing the product.
           
 
