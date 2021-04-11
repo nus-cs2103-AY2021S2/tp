@@ -353,10 +353,14 @@ Adds a task into the task list.
 
 Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the task name, it is case-sensitive.
-* `d/` is followed by the date of deadline, with the format `YYYY-MM-DD`. Deadline cannot be a past date.
-* `p/` is followed by the priority, with 0 being highest and 9 being lowest. Other inputs are not accepted.
-* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1` `c/c2`). It is optional.
-* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
+* `d/` is followed by the date of deadline, with the format `YYYY-MM-DD`. <br>
+  Deadline cannot be a past date.
+* `p/` is followed by the priority, with 0 being highest and 9 being lowest. <br>
+  Other inputs are not accepted.
+* `c/` is followed by the category. Different categories are separated by white space (e.g. `c/c1` `c/c2`). <br>
+  It is optional.
+* `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). <br>
+  It is optional.
 
 <div markdown="block" class="alert alert-info">
 
@@ -397,21 +401,21 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * **At least one** of the optional fields must be provided.
 * `DEADLINE` provided cannot be a past date.
 * When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
-* Edited task cannot be the same as the original task or equivalent to another existing task in the task list.
+* Edited task cannot be the same as the original task or equivalent to another existing task in the task list. <br>
   Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
-* When editing tags, the order of tags given in the input and the order of tags shown in the UI can be different. 
+* When editing tags, the order of tags given in the input and the order of tags shown in the UI can be different. <br>
   For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, but `tag2` may appear in the UI before `tag1`.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** <br>
 
-* Any valid prefixes and input arguments (e.g. <code>n/Homework 1</code> or <code>p/1</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>T&sk</code>) will lead to an error.</li>
+* Any valid prefixes and input arguments (e.g. <code>n/Homework 1</code> or <code>p/1</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>T&sk</code>) will lead to an error.
 
 * You can remove all the task’s tags by typing <code>t/</code> without specifying any tags after it.<br>
-  Similarly, you can remove all the task’s categories by typing <code>c/</code> without specifying any categories after it</li>
+  Similarly, you can remove all the task’s categories by typing <code>c/</code> without specifying any categories after it
   
-* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1</code> <code>n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>). </li>
+* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1</code> <code>n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>).
 
 </div>
 
