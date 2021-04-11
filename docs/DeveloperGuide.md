@@ -141,7 +141,7 @@ All 8 compulsory fields and 1 optional field in `Student` are updated and added 
 
 Given below is an example usage scenario and how the `Add` Student mechanism behaves at each step.
 
-Step 1: The user executes `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
+Step 1: The user executes `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
 
 ![Receiving an input](images/ReceiveInput.png)
 
@@ -251,7 +251,7 @@ The add appointment feature is facilitated by `AddCommandParser` and `AddAppoint
 
 Given below is an example usage scenario that elucidates the mechanism of the add appointment feature.
 
-Step 1: The user executes `addAppt A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
+Step 1: The user executes `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
 
 Step 2: The `AddCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
 
@@ -598,11 +598,24 @@ testers are expected to do more *exploratory* testing.
       
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
+
+### Filtering student records
+
+1. Filter student records based on vaccination status/faculty/school residence while all students are being shown
+
+   1. Prerequisites: List all students using the `list` command. Sample data of students and appointments shown in the list.
+
+   1. Test case: `filter MED`<br>
+      Expected: GUI will show David Li with a matriculation number of 
+
+   1. Test case: `delete A1212121J`<br>
+      Expected: No student is deleted. Error details shown in the status message telling user no student with the specified matriculation number exists. 
+
+   1. Test case: `delete A12345J`<br>
+      Expected: No student is deleted. Error details shown in the status message telling user the input is not a valid matriculation number.
+ 
+   1. Test case: `delete aBc 123`<br>
+      Expected: No student is deleted. Error details shown in the status message telling user the input is not a valid matriculation number.
       
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
+      Expected: Similar to previous.      
