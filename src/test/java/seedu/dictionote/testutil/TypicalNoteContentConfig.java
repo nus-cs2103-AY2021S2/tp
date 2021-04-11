@@ -32,9 +32,10 @@ public class TypicalNoteContentConfig {
      * A stub for note content config for failure test
      */
     private static class NoteContentConfigStubWithoutNote implements NoteContentConfig {
+        protected Note note;
         @Override
         public void setNote(Note note) {
-
+            this.note = note;
         }
 
         @Override
@@ -54,7 +55,7 @@ public class TypicalNoteContentConfig {
 
         @Override
         public Note getNote() {
-            return null;
+            return note;
         }
 
         @Override
@@ -78,20 +79,10 @@ public class TypicalNoteContentConfig {
      * A stub for note content config for success test
      */
     private static class NoteContentConfigStubEditMode extends NoteContentConfigStubWithNote {
-        protected Note note;
-        @Override
-        public void setNote(Note note) {
-            this.note = note;
-        }
 
         @Override
         public String getEditedContent() {
             return "edited";
-        }
-
-        @Override
-        public Note getNote() {
-            return note;
         }
 
         @Override
