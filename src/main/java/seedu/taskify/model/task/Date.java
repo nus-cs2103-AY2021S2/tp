@@ -47,16 +47,6 @@ public class Date {
         this.value = localDateTime.toString();
     }
 
-    /**
-     * Check if a edited task's date is valid
-     *
-     */
-
-    public boolean isValidDateForEditing() {
-        LocalDateTime timeNow = LocalDateTime.now();
-        return this.localDateTime.isAfter(timeNow);
-    }
-
 
     /**
      * Returns if a given string is a valid date.

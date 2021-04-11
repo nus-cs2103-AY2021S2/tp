@@ -8,6 +8,7 @@ import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -67,6 +68,16 @@ public class EditCommand extends Command {
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
+    /**
+     * Check if a edited task's date is valid
+     *
+     */
+
+    public boolean isValidDateForEditing(Date date) {
+        LocalDateTime timeNow = LocalDateTime.now();
+        return date.getLocalDateTime().isAfter(timeNow);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -87,12 +98,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        if (taskToEdit.getStatus().status.equals(StatusType.EXPIRED)
-                && !editedTask.getStatus().status.equals(StatusType.EXPIRED)) {
+        if (taskToEdit.getStatusType().equals(StatusType.EXPIRED)
+                && !editedTask.getStatusType().equals(StatusType.EXPIRED)) {
             throw new CommandException(MESSAGE_CANNOT_EDIT_EXPIRED_STATUS);
         }
 
-        if (!editedTask.getDate().isValidDateForEditing()) {
+        if (!isValidDateForEditing(editedTask.getDate())) {
             throw new CommandException(MESSAGE_EDIT_DATE_TO_PAST_DATE);
         }
 
