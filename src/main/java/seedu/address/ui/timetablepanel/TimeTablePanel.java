@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -146,11 +147,17 @@ public class TimeTablePanel extends UiPart<Region> {
     // schedulepanel/SchedulePanel.java
     // with minor modification (renaming of method and additional orElse condition to set default start time).
     private LocalTime getStartTime() {
-        return events.stream()
+        Optional<LocalTime> earliestTime = events.stream()
                 .map(event -> event.getTimeFrom().value.toLocalTime())
-                .reduce((time1, time2) -> (time1.isBefore(time2) ? time1 : time2))
-                .filter((time) -> time.isAfter(LocalTime.of(6, 0)) && time.isBefore(LocalTime.of(20, 0)))
-                .orElse(LocalTime.of(8, 0));
+                .reduce((time1, time2) -> (time1.isBefore(time2) ? time1 : time2));
+        if (earliestTime.isPresent()) {
+            LocalTime localTimeVal = earliestTime.get();
+            if (localTimeVal.isAfter(LocalTime.of(19, 0))) {
+                return localTimeVal.minusHours(earliestTime.get().getHour() - 19);
+            }
+            return localTimeVal;
+        }
+        return LocalTime.of(8, 0);
     }
 
     // @@author RuiFengg-reused
@@ -162,7 +169,7 @@ public class TimeTablePanel extends UiPart<Region> {
         LocalTime endTime = events.stream()
                 .map(event -> event.getTimeTo().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isAfter(time2) ? time1 : time2))
-                .filter((time) -> time.isAfter(LocalTime.of(22, 0)))
+                .filter((time) -> time.isBefore(LocalTime.of(23, 1)))
                 .orElse(LocalTime.of(12, 0));
 
         int hourDiff = endTime.getHour() - getStartTime().getHour();
@@ -193,7 +200,6 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private void createColConstraints(int numColumns) {
-        System.out.println(gridPane.getColumnCount() != numColumns);
         if ((gridPane.getColumnCount() != numColumns)) {
             hourSlot.clear();
             timeGridPane.getChildren().clear();
