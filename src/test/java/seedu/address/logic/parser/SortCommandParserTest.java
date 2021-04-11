@@ -48,7 +48,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_NoArgs_throwsParseException() {
+    public void parse_invalidArgsNoArgs_throwsParseException() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 }
