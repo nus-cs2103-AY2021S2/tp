@@ -222,7 +222,7 @@ There can be multiple tasks with same name but other different fields, like dead
 For example, a user may need to create two tasks with the same name '2103 quiz',
 but one is due on this Monday and the other is due the next Monday. Both of these 2 tasks should be allowed in our task list.
 
-#### 3.4.2 Design considerations for Event-Related Models
+#### 3.4.2 Design considerations for Event-related Models
 Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
 checking for all fields entered by the user. We chose to check for all fields for the same reasons as mentioned above.
 
@@ -369,7 +369,7 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 
 #### Implementation of `find_schedule` command
-In SOChedule, the governing logic behind the `clear` command is laid out in [`FindScheduleCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindScheduleCommand.java)
+In SOChedule, the governing logic behind the `find_schedule` command is laid out in [`FindScheduleCommand.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/logic/commands/FindScheduleCommand.java)
 The find schedule mechanism is supported mainly by `FindScheduleCommand` and `FindScheduleCommandParser`.
 
 The relevant methods include:
@@ -420,7 +420,7 @@ should not be selected. This leads to only finding events that are ongoing at th
 (i.e. with start date before or on and end date after or on the specified date). 
 
 For tasks, it is debatable. Completed tasks should not shown. However, some
-considerations is needed to determine which incomplete tasks to display.
+consideration is needed to determine which incomplete tasks to display.
 
 <table>
     <tr>
