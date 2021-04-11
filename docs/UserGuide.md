@@ -584,7 +584,8 @@ Action | Format, Examples
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
-* **Similar Items**: Two items are considered to be similar if they have the same spelling for name and location but differ by letter case.
-* **Identical Items**: Two items are consided identical if they have the same name and location in terms of spelling and letter case, as well as the same expiry date.    
+* **Item**: An item is made up of an item name, location, quantity, expiry date(optional) and tags(optional). 
+* **Similar Items**: Two items are similar if they have the same spelling for name and location but differ by letter case.
+* **Identical Items**: Two items are identical if they have the same name and location in terms of spelling and letter case, as well as the same expiry date.    
 * **Alphanumeric**: Alphanumeric characters are those comprised of the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
 ----
