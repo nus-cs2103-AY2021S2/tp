@@ -40,7 +40,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
-        if (argMultimap.getPreamble().isBlank() || !argMultimap.getPreamble().trim().chars().allMatch(Character::isDigit)) {
+        if (argMultimap.getPreamble().isBlank()
+                || !argMultimap.getPreamble().trim().chars().allMatch(Character::isDigit)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
