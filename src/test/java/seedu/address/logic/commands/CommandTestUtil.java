@@ -24,8 +24,10 @@ import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
 import seedu.address.model.entry.ListEntryFormatPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -33,6 +35,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_NAME_ALICE = "Alice Pauline";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -57,15 +60,6 @@ public class CommandTestUtil {
     public static final String VALID_TAG_CS2100 = "CS2100";
     public static final String VALID_TAG_ALEX = "ALEX";
     public static final String VALID_TAG_BEN = "BEN";
-    /*
-    public static final Name VALID_NAME_OBJECT_ALICE = new Name("Alice Pauline");
-    public static final Name VALID_NAME_OBJECT_GEORGE = new Name("George Best");
-    public static final Name VALID_NAME_OBJECT_BENSON = new Name("Benson Meier");
-    public static final Name BLANK_NAME = new Name(" ");
-
-    public static final Name INVALID_NAME_OBJECT_JOHN = new Name("John Doe");
-    public static final Name VALID_NAME_OBJECT_AMY = new Name("Amy Bee");
-     */
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -91,6 +85,12 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    //to be deleted-------------------------
+    public static final Name FIRST_PERSON_NAME = new Name("Alice Pauline");
+    public static final Name SECOND_PERSON_NAME = new Name("Benson Meier");
+    public static final Name LAST_PERSON_NAME = new Name("George Best");
+    public static final Name INVALID_PERSON_NAME = new Name("John Doe");
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
@@ -105,6 +105,19 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+    //----------------------------------
+
+    public static final EditContactCommand.EditContactDescriptor CONTACT_DESC_AMY;
+    public static final EditContactCommand.EditContactDescriptor CONTACT_DESC_BOB;
+
+    static {
+        CONTACT_DESC_AMY = new EditContactDescriptorBuilder().withContactName(VALID_NAME_AMY)
+                .withContactPhone(VALID_PHONE_AMY).withContactEmail(VALID_EMAIL_AMY)
+                .withContactTags(VALID_TAG_FRIEND).build();
+        CONTACT_DESC_BOB = new EditContactDescriptorBuilder().withContactName(VALID_NAME_BOB)
+                .withContactPhone(VALID_PHONE_BOB).withContactEmail(VALID_EMAIL_BOB)
+                .withContactTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -190,5 +203,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredEntryList().size());
     }
-
 }
