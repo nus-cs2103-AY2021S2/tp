@@ -18,22 +18,25 @@ Given below are my contributions to the project.
 
 * **Changes from existing code**: Update to `find` Command
     * What was done: Find commands was modified to include filtering by more parameters.
-    * Justification: Ensures that CHIM will be able to handle more robust queries to the database of items.
-    * Highlights: The functionality to make general queries were added into the system, which allows for
-      future extension of the `find` command for different types of objects such as `Cheese`.
+    * Justification: Ensures that CHIM will be able to handle more robust queries to the database of objects.
+    * Highlights:
+      * The functionality to make general queries were added into the system, which allows for
+        future extension of the `find` command for different types of objects such as `Cheese`.
+      * Improved the `find` command to rank all results based on its relevance to the queries made.
 
 * **Enhancements to existing features**:
-    * Added model validation to ensure all objects in CHIM are in a valid state [\#39]()
+    * Added model validation to ensure all objects in CHIM are in a valid state. [\#39]()
+    * Ensures that all errors that occur are displayed to user.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `list`, `find` and `exit` [\#4]()
+      * Added documentation for the features `list`, `find` and `exit`. [\#4]()
     * Developer Guide:
-        * Added implementation details of the `find` command feature. [\#51]()
+      * Added implementation details of the `find` command feature. [\#51]()
+      * Updated models documentation for `Storage` classes.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#20](), [\#28](), [\#41]()
+  * PRs reviewed (with non-trivial review comments): [\#20](), [\#28](), [\#30](), [\#41](), [\#50]()
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=w16-2&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=daniellau88&tabRepo=AY2021S2-CS2103-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
-[Coming Soon]

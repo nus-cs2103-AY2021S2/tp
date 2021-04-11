@@ -384,7 +384,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | User                        | See the introduction message |  |
 | `*`      | User with some familiarity  | Search up orders of a specific customer | Efficiently find the order status |
 
-[More to be added]
 
 ### Use cases
 
@@ -1090,7 +1089,7 @@ testers are expected to do more *exploratory* testing.
 Difficulty Level: 4 / 5
 
 Challenges Faced:
-* Restructuring of models in `AddressBook` to fit the functional requirements of `CHIM` (Effort Required: 4 / 5)
+* Restructuring of models in `AB3` to fit the functional requirements of `CHIM` (Effort Required: 4 / 5)
   * Implementation of a normalized class structure
     * To properly manage the different types of dependencies between the 3 different entities in CHIM,
       we decided to implement a normalized class structure, where each entity is stored in a separate list,
@@ -1101,9 +1100,10 @@ Challenges Faced:
     Generation and Two-way Storage Fields
     * For example, each object needs to have a unique ID, to ensure that the relationship between 2 objects
       will not collide with one other.
-* Modifying `AddressBook`'s display to be able to switch between the 3 different lists (`Cheese`, `Order`
+
+* Modifying `AB3`'s display to be able to switch between the 3 different lists (`Cheese`, `Order`
   and `Customer`) (Effort Required: 4 / 5)
-  * The existing panels in AB3 was modified to allow display of `Cheese` and `Order` list, which contains different
+  * The existing panels in `AB3` was modified to allow display of `Cheese` and `Order` list, which contains different
     types of fields.
   * The UI also needs to be capable of switching between the different displays upon calling certain commands.
 
@@ -1117,7 +1117,7 @@ Challenges Faced:
     * New types of fields (such as `Date`) needs to be able to be correctly parsed.
     * Invalid creation of entities need to be forbidden by doing extensive checking on the values given.
   * Extensive testing for the new commands, to ensure that they work as intended.
-* Addition of limitations and validations for `AddressBook`'s original operations (Effort required: 3 / 5)
+* Addition of limitations and validations for `AB3`'s original operations (Effort required: 3 / 5)
   * To prevent incorrect edits to the data in CHIM, additional validations and limitations were added to it.
     These limitations came as a result of our rigorous testing of the system, to ensure that every operation performed
     in `CHIM` will lead to a valid final state.
