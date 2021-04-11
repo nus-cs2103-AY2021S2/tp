@@ -39,9 +39,9 @@ perspective of the user's schedule and common commands that are enhanced for fas
 
 * **Enhancements to existing features**:
     * Made the rendering of fields to task cards dynamic, and refactored `TaskCard` (Pull
-      requests [\#68](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/68)
+      requests: [\#68](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/68)
       , [\#89](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/89))
-    * Wrote additional tests for existing features to increase coverage from 69% to 92% (Pull requests )
+    * Wrote additional tests for all the above features to increase coverage (Pull request: [\#216](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/216))
 
 * **Documentation**:
     * User Guide:
@@ -57,10 +57,8 @@ perspective of the user's schedule and common commands that are enhanced for fas
     * Renamed `Person` to `Task`, its `Name` field to `Title`, and disabled most fields to get the team started. (Pull
       requests: [\#34](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/35)
       , [\#59](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/59))
-    * Made and delivered the v1.2 and v1.3 feature demos for tutorials.
+    * Made and delivered v1.2 and v1.3 feature demos for tutorials.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#117](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/117)
-      , [\#88](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/88)
     * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/247))
 
