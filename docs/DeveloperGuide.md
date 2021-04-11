@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-task 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `rmt 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -564,44 +564,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 #### **Use case: Remove a task**
 
+**Precondition: The task exists in the planner.**
+
 **MSS**
-1. User <u>adds a task</u> to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to remove a specified task.
-4. PlanIT shows task that was removed and updates list.
+
+1. User enters command to remove a specified task.
+2. PlanIt shows task that was removed and updates list.
+
 
    Use case ends.
 
 **Extensions**
-* 4a. The given index is invalid.
-    * 4a1. PlanIT shows error message.
 
-      Use case resumes at step 3.
+* 1a. The given index is invalid.
+    * 1a1. PlanIt shows error message.
+
+
+      Use case resumes at step 1.
     
     
 #### **Use case: Remove a field from a task**
 
-**MSS**
-1. User <u>adds a task</u> with removable field to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to remove the removable field from the task.
-4. PlanIT shows task with field removed and updates list.
+**Precondition: The task exists in the planner, and has removable fields.**
 
-   Use case ends.
+**MSS**
+1. User enters command to remove the field from the task.
+2. PlanIT shows task with field removed and updates list.
+   
+    Use case ends. 
 
 **Extensions**
-* 4a. The given index is invalid.
-    * 4a1. PlanIT shows error message for invalid index.
+* 1a. The given index is invalid.
+    * 1a1. PlanIT shows error message for invalid index.
     
-        Use case resumes at step 3.
+        Use case resumes at step 1.
     
-* 4b. The given prefix is invalid. 
-    * 4b1. PlanIT shows error message for invalid prefix.
+* 1b. The given prefix is invalid. 
+    * 1b1. PlanIT shows error message for invalid prefix.
     
-        Use case resumes at step 3.
+        Use case resumes at step 1.
     
-* 4c. The field in the task is already removed.
-    * 4c1. PlanIT shows error message detailing field is already removed.
+* 1c. The field entered by the user is non-removable.
+    * 1c1. PlanIT shows error message for non-removable field.
+    
+        Use case resumes at step 1.
+    
+* 1d. The field in the task is already removed.
+    * 1d1. PlanIT shows error message detailing field is already removed.
     
         Use case ends.
         
@@ -704,22 +713,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Counting down to a task's date**
 
 **MSS**
-1. User <u>adds a task</u> with a date to the list. 
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to display number of days left to task's date.
-4. PlanIT displays number of days left to task's date.
+1. User enters command to display number of days left to task's date.
+2. PlanIT displays number of days left to task's date.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions** 
-* 3a. The task selected does not have a date.
-    * 3a1. PlanIT shows error message detailing that task does not have a date. 
-    * 3a2. User adds a date to the task. 
+* 1a. The task selected does not have a date.
+    * 1a1. PlanIT shows error message detailing that task does not have a date. 
+    * 1a2. User adds a date to the task. 
       
-        Use case resumes from step 3.
+        Use case resumes from step 1.
 
-* 3b. The task's date is already over. 
-    * 3b1. PlanIT shows error message detailing that task's date is already over.
+* 1b. The task's date is already over. 
+    * 1b1. PlanIT shows error message detailing that task's date is already over.
     
         Use case ends.
     
