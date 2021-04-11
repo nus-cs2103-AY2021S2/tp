@@ -6,8 +6,10 @@ import static seedu.address.logic.commands.MeetCommand.CLEAR_MEETING;
 import static seedu.address.logic.commands.MeetCommand.DELETE_MEETING;
 import static seedu.address.logic.commands.MeetCommand.MEETING_EMPTY;
 import static seedu.address.logic.commands.MeetCommand.MESSAGE_USAGE;
+import static seedu.address.model.meeting.Meeting.errorInMeeting;
 import static seedu.address.model.meeting.Meeting.isValidMeeting;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -27,14 +29,16 @@ public class MeetCommandParser implements Parser<MeetCommand> {
 
         try {
             String[] splitArgs = trimmedArgs.split("\\s+", 5);
+            Index index = ParserUtil.parseIndex(splitArgs[0]);
 
             if (!splitArgs[1].equals(ADD_MEETING) && !splitArgs[1].equals(DELETE_MEETING)
                     && !splitArgs[1].equals(CLEAR_MEETING)) {
                 if (isValidMeeting(splitArgs[1], splitArgs[2], splitArgs[3], splitArgs[4])) {
-                    return new MeetCommand(ParserUtil.parseIndex(splitArgs[0]), ADD_MEETING,
+                    return new MeetCommand(index, ADD_MEETING,
                             splitArgs[1], splitArgs[2], splitArgs[3], splitArgs[4]);
                 } else {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            errorInMeeting(splitArgs[1], splitArgs[2], splitArgs[3], splitArgs[4])));
                 }
             }
 
@@ -44,12 +48,13 @@ public class MeetCommandParser implements Parser<MeetCommand> {
                         MEETING_EMPTY, MEETING_EMPTY, MEETING_EMPTY, MEETING_EMPTY);
             }
 
-            if (!isValidMeeting(splitArgs[2], splitArgs[3], splitArgs[4], splitArgs[5])) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            if (isValidMeeting(splitArgs[2], splitArgs[3], splitArgs[4], splitArgs[5])) {
+                return new MeetCommand(index, splitArgs[1],
+                        splitArgs[2], splitArgs[3], splitArgs[4], splitArgs[5]);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        errorInMeeting(splitArgs[2], splitArgs[3], splitArgs[4], splitArgs[5])));
             }
-
-            return new MeetCommand(ParserUtil.parseIndex(splitArgs[0]), splitArgs[1],
-                    splitArgs[2], splitArgs[3], splitArgs[4], splitArgs[5]);
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }

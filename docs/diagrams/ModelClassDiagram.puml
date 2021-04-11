@@ -33,6 +33,11 @@ Class Tag
 Package InsurancePolicy {
 Class InsurancePolicy
 }
+
+Package Shortcut {
+Class Shortcut
+Class ShortcutLibrary
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -45,6 +50,7 @@ ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
+ModelManager o-right-> "1" ShortcutLibrary
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -56,9 +62,13 @@ Person *--> Address
 Person *--> "*" Tag
 Person *--> "*" InsurancePolicy
 
+ShortcutLibrary *--> "*" Shortcut
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+UniquePersonList -[hidden]right-> ShortcutLibrary
+Shortcut -[hidden]down-> InsurancePolicy
 
 ModelManager ----->" ~* filtered list" Person
 @enduml

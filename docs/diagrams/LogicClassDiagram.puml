@@ -21,6 +21,7 @@ package Command {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Enum "<<enumeration>>\nCommandWord" as CommandWord
 }
 
 Interface Logic <<Interface>>
@@ -70,5 +71,6 @@ Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+CommandWord -[hidden]up-> XYZCommand
 note right of XYZCommandParser: Association between XYZCommandParser \nand XYZCommandParser is only relevant \nfor BatchCommandParser and \nEditCommandParser/DeleteCommandParser
 @enduml

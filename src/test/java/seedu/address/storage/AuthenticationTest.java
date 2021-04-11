@@ -22,7 +22,7 @@ import net.lingala.zip4j.exception.ZipException;
 public class AuthenticationTest {
     private static final String DEFAULT_PASSWORD = "1234";
     private static final Path TEST_DATA_PATH = Paths.get("src", "test", "data", "LockTest",
-            "addressbook.json");
+            "clientbook.json");
 
     @Test
     void execute_setPassword_success() throws NoSuchPaddingException, NoSuchAlgorithmException,
