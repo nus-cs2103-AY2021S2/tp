@@ -60,35 +60,44 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser,
-                VALID_NAME_ALICE + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+                VALID_NAME_ALICE + INVALID_NAME_DESC,
+                "Name given: James&\n" + Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser,
-                VALID_NAME_ALICE + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+                VALID_NAME_ALICE + INVALID_PHONE_DESC,
+                "Phone number given: 911a\n" + Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser,
-                VALID_NAME_ALICE + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+                VALID_NAME_ALICE + INVALID_EMAIL_DESC,
+                "Email given: bob!yahoo\n" + Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser,
-                VALID_NAME_ALICE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+                VALID_NAME_ALICE + INVALID_TAG_DESC,
+                "Tag given: hubby*\n" + Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
         assertParseFailure(parser,
-                VALID_NAME_ALICE + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+                VALID_NAME_ALICE + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
+                "Phone number given: 911a\n" + Phone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser,
-                VALID_NAME_ALICE + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+                VALID_NAME_ALICE + PHONE_DESC_BOB + INVALID_PHONE_DESC,
+                "Phone number given: 911a\n" + Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser,
-                VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+                VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+                "Tag given: \n" + Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser,
-                VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+                VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+                "Tag given: \n" + Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser,
-                VALID_NAME_ALICE + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+                VALID_NAME_ALICE + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                "Tag given: \n" + Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, VALID_NAME_ALICE + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+                "Name given: James&\n" + Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

@@ -23,8 +23,8 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
-import seedu.address.model.person.Name;
 import seedu.address.model.entry.ListEntryFormatPredicate;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditContactDescriptorBuilder;
@@ -202,19 +202,5 @@ public class CommandTestUtil {
         model.updateFilteredEntryList(new EntryNameContainsKeywordsPredicate(Arrays.asList(splitEntryName[0])));
 
         assertEquals(1, model.getFilteredEntryList().size());
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
-     * {@code model}'s list.
-     */
-    public static void showContactAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredContactList().size());
-
-        Contact contact = model.getFilteredContactList().get(targetIndex.getZeroBased());
-        final String[] splitContactName = contact.getName().fullName.split("\\s+");
-        model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitContactName[0])));
-
-        assertEquals(1, model.getFilteredContactList().size());
     }
 }
