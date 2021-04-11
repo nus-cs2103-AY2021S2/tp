@@ -178,6 +178,7 @@ The following sequence diagram shows how the status operation works:
 ![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a `status` command:
+
 ![StatusActivityDiagram](images/StatusActivityDiagram.png)
 
 
