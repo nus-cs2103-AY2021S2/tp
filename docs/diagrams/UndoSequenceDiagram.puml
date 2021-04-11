@@ -5,16 +5,17 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaskTrackerParser" as TaskTrackerParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":VersionedTaskTracker" as VersionedTaskTracker MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute("undo")
 activate LogicManager
 
-LogicManager -> TaskTrackerParser : parseCommand(undo)
+LogicManager -> TaskTrackerParser : parseCommand("undo")
 activate TaskTrackerParser
 
 create UndoCommand
@@ -46,6 +47,14 @@ UndoCommand --> Model : setTaskTracker(PreviousTaskTracker)
 activate Model
 Model --> UndoCommand
 deactivate Model
+
+create CommandResult
+UndoCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UndoCommand
+deactivate CommandResult
+
 UndoCommand --> LogicManager : result
 destroy UndoCommand
 UndoCommand -[hidden]-> LogicManager : result

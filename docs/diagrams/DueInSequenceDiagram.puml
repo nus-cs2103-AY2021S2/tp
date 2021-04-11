@@ -7,19 +7,26 @@ participant ":TaskTrackerParser" as TaskTrackerParser LOGIC_COLOR
 participant ":DueInCommandParser" as DueInCommandParser LOGIC_COLOR
 participant "pred:DeadlineDateInRagePredicate" as DeadlineDateInRagePredicate LOGIC_COLOR
 participant "cmd:DueInCommand" as DueInCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
-[-> LogicManager : execute(dueIn)
+[-> LogicManager : execute("dueIn day/NUMBER_OF_DAYS")
 activate LogicManager
 
-LogicManager -> TaskTrackerParser : parseCommand(dueIn day/NUMBER_OF_DAYS)
+LogicManager -> TaskTrackerParser : parseCommand("dueIn day/NUMBER_OF_DAYS")
 activate TaskTrackerParser
 
 create DueInCommandParser
 TaskTrackerParser -> DueInCommandParser
+activate DueInCommandParser
+
+DueInCommandParser --> TaskTrackerParser
+deactivate DueInCommandParser
+
+TaskTrackerParser -> DueInCommandParser : parse("day/NUMBER_OF_DAYS")
 activate DueInCommandParser
 create DeadlineDateInRagePredicate
 DueInCommandParser -> DeadlineDateInRagePredicate : NUMBER_OF_DAYS
@@ -46,6 +53,14 @@ activate ModelManager
 
 ModelManager --> DueInCommand
 deactivate ModelManager
+
+create CommandResult
+DueInCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DueInCommand
+deactivate CommandResult
+
 DueInCommand --> LogicManager : result
 destroy DueInCommand
 
