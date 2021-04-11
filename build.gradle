@@ -72,7 +72,7 @@ dependencies {
 shadowJar {
     archiveBaseName.set('pawbook')
     archiveClassifier.set('')
-    archiveVersion.set('v1.3.0')
+    archiveVersion.set('v1.4.0')
 }
 
 defaultTasks 'clean', 'test'
