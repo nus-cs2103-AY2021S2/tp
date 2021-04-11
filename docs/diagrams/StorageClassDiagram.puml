@@ -4,31 +4,37 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
-Interface CommandHistoryStorage <<Interface>>
+Class HiddenOutside #FFFFFF
+HiddenOutside ...> Storage
 
-Class StorageManager
-StorageManager .left.|> Storage
-StorageManager *-right-> UserPrefsStorage
-StorageManager *--> AddressBookStorage
-StorageManager *-up-> CommandHistoryStorage
+Package "Storage"<<Rectangle>> {
+    Interface Storage <<Interface>>
+    Interface UserPrefsStorage <<Interface>>
+    Interface CommandHistoryStorage <<Interface>>
+    Interface AddressBookStorage <<Interface>>
+    PlainTextCommandHistoryStorage ..|> CommandHistoryStorage
 
-Class JsonUserPrefsStorage
-JsonUserPrefsStorage .left.|> UserPrefsStorage
+    Class StorageManager
+    StorageManager .up.|> Storage
+    StorageManager -left-> UserPrefsStorage
+    StorageManager -down-> AddressBookStorage
+    StorageManager -right-> CommandHistoryStorage
 
-Class JsonAddressBookStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBook
+    Class JsonUserPrefsStorage
+    JsonUserPrefsStorage .down.|> UserPrefsStorage
 
-Class JsonSerializableAddressBook
-JsonSerializableAddressBook .left.> JsonAdaptedIssue
-JsonSerializableAddressBook .down.> JsonAdaptedRoom
-JsonSerializableAddressBook .down.> JsonAdaptedResident
-JsonSerializableAddressBook .down.> JsonAdaptedResidentRoom
-JsonSerializableAddressBook .right.> JsonAdaptedAlias
+    Class JsonAddressBookStorage
+    JsonAddressBookStorage .up.|> AddressBookStorage
+    JsonAddressBookStorage ..> JsonSerializableAddressBook
 
-JsonAdaptedRoom .left.> JsonAdaptedTag
-JsonAdaptedIssue .down.> JsonAdaptedTag
+    Class JsonSerializableAddressBook
+    JsonSerializableAddressBook -left-> JsonAdaptedRoom
+    JsonSerializableAddressBook -down-> JsonAdaptedIssue
+    JsonSerializableAddressBook -down-> JsonAdaptedResident
+    JsonSerializableAddressBook -down-> JsonAdaptedResidentRoom
+    JsonSerializableAddressBook -right-> JsonAdaptedAlias
+
+    JsonAdaptedRoom -left-> JsonAdaptedTag
+    JsonAdaptedIssue -down-> JsonAdaptedTag
+}
 @enduml

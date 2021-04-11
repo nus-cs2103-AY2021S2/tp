@@ -1,33 +1,43 @@
 @startuml
 !include ../style.puml
 
-Participant ":Logic" as logic LOGIC_COLOR
+skinParam DefaultFontSize 18
+skinParam ParticipantFontSize 20
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logic LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
 Participant ":Model" as model MODEL_COLOR
 Participant ":CommandHistory" as cmdHist MODEL_COLOR
+end box
 
--[UI_COLOR]> logic : execute("help")
-activate logic LOGIC_COLOR
+-> logic : execute("help")
+activate logic
 
-logic -[LOGIC_COLOR]> logic : parseAndExecute("help")
-activate logic LOGIC_COLOR
+logic -> logic : parse and execute "help"
+activate logic
 
-logic -[LOGIC_COLOR]-> logic
+logic --> logic
 deactivate logic
 
-logic -[LOGIC_COLOR]> model : appendCommandHistoryEntry("help")
-note right: A command is only recorded\n in history if it parses and\n executes successfully
-activate model MODEL_COLOR
+opt command parsed and executed successfully
+    logic -> model : appendCommandHistoryEntry("help")
+    'note right: A command is only recorded\n in history if it parses and\n executes successfully
+    activate model
 
-model -[MODEL_COLOR]> cmdHist : appendEntry("help")
-activate cmdHist MODEL_COLOR
+    model -> cmdHist : appendEntry("help")
+    activate cmdHist
 
-model <-[MODEL_COLOR]- cmdHist
-deactivate cmdHist
+    model <-- cmdHist
+    deactivate cmdHist
 
-model -[MODEL_COLOR]-> logic
-deactivate model
+    model --> logic
+    deactivate model
+end
 
-<-[LOGIC_COLOR]- logic
+<-- logic
 deactivate logic
 
 @enduml

@@ -1,66 +1,61 @@
 @startuml
 !include ../style.puml
 
-Actor User as user USER_COLOR
-Participant ":CommandBox" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":AddressBookParser" as abParser LOGIC_COLOR
-Participant ":AddRoom\nCommandParser" as arcParser LOGIC_COLOR
-Participant ":AddRoom\nCommand" as addRoomCmd LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":CommandResult" as cmdResult LOGIC_COLOR
+skinParam DefaultFontSize 12
 
+box Logic LOGIC_COLOR_T1
 
-user -[USER_COLOR]> ui: key in "oadd n/12-100 \n t/corridor_non_ac"
-activate ui UI_COLOR
+Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":AddRoomCommand" as cmd LOGIC_COLOR
+end box
 
-ui -[LOGIC_COLOR]> logic: executeCommand(cmdText)
-activate logic LOGIC_COLOR
+box Model MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR
+end box
 
-logic -[LOGIC_COLOR]> abParser: parseCommand(cmdText)
-activate abParser LOGIC_COLOR
-
-note over abParser
-The parsing process
-breaks cmdText down
-into an argumentMap
-named args. This
-process is omitted
-here for brevity.
+' === Logic calls execute ===
+-> logic ++: execute(cmdText)
+note over logic
+Command parsing
+is ommitted for
+brevity
 end note
 
-abParser -[LOGIC_COLOR]> arcParser **:
-activate arcParser LOGIC_COLOR
-return
-
-abParser -[LOGIC_COLOR]> arcParser: parse(args)
-activate arcParser LOGIC_COLOR
-arcParser -[LOGIC_COLOR]> addRoomCmd**:
-activate addRoomCmd LOGIC_COLOR
-return
-
-return addRoomCmd
-destroy arcParser
-return addRoomCmd
-
-logic -[LOGIC_COLOR]> addRoomCmd: execute(model)
-activate addRoomCmd LOGIC_COLOR
-addRoomCmd -[MODEL_COLOR]> model: addRoom(Room)
-activate model MODEL_COLOR
-note right of model
-Storage mechanism
-omitted for brevity
+note over cmd
+The construction of the command
+sets the member variable toAdd
+to the room to be added
 end note
+
+logic -> cmd : execute(model)
+activate cmd
+
+' === Check if room is in model ===
+cmd -> model ++: hasRoom(toAdd)
 return
+' === End check if room is in model ===
 
-addRoomCmd -[LOGIC_COLOR]> cmdResult**:
-activate cmdResult LOGIC_COLOR
+opt model does not have room toAdd
+' === Add room to model ===
+cmd -> model ++: addRoom(toAdd)
 return
+' === End add room to model ===
 
-return commandResult
-return commandResult
+' === Cmd commits the address book ===
+cmd -> model ++: commitAddressBook()
+return
+' === End cmd commits the address book ===
+end
+logic <-- cmd
+deactivate cmd
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+<-[hidden]- cmd
+destroy cmd
+' === End Cmd commits the address book ===
+<-- logic
+deactivate logic
 
-ui --[UI_COLOR]> user: display commandResult
-deactivate
+
+
 
 @enduml
