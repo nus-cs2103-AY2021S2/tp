@@ -25,7 +25,7 @@ inputs that the user gave, there must be many layer of protection in order to pr
 instance, the DeadlineDate parser will first protect creating a DeadlineDate with invalid format
 (the valid format in this application is `dd-MM-yyyy`). After the protection of DeadlineDate parser,
 in the DeadlineDate class itself will be another layer of protection for invalid date (`29-02-2021`
-for instance). 
+for instance).
 
 **Enhancement 2** <br>
 * What it does: Allows the user to toggle the status of `Task` to be finished or unfinished.
@@ -42,7 +42,7 @@ the application works properly.
 * Justification: Some users might want to check what assignments are due within a certain number of days.
 For instance, in a typical semester, every Monday denotes the beginning of new week and user wanna
 check the upcoming deadlines for this week.
-* Highlights: 
+* Highlights:
 The difficult part is ensuring the validity of `DeadlineDateInRangePredicate`. It doesn't
 make sense to have deadline before today. Moreover, there might be multiple arguments given by the users.
 Hence, testing must be done rigorously and covered most of the paths possible in the dueIn command.
@@ -62,7 +62,7 @@ modify the existing UML diagrams, updating PUMLs)
 
 ## Contributions to team-based tasks
 
-* I usually created a new Google docs for every team meeting. 
+* I usually created a new Google docs for every team meeting.
 * I am the one who mostly merged pull requests, and I'll inform my teammates if their PRs failed the CI or testing.
 * I tried to fulfill the tP progress dashboard before the tutorial's deadline (closing issues
 that haven't been done and creating new milestones).
