@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ResidenceTrackerParser" as ResidenceTrackerParser LOGIC_COLOR
+participant ":EditBookingCommandParser" as EditBookingCommandParser LOGIC_COLOR
+participant "e:EditBookingCommand" as EditBookingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editb r/1 b/1 e/01-01-2022")
+
+activate LogicManager
+
+LogicManager -> ResidenceTrackerParser : parseCommand("editb r/1 b/1 e/01-01-2022")
+activate ResidenceTrackerParser
+
+create EditBookingCommandParser
+ResidenceTrackerParser -> EditBookingCommandParser
+activate EditBookingCommandParser
+
+EditBookingCommandParser --> ResidenceTrackerParser
+deactivate EditBookingCommandParser
+
+ResidenceTrackerParser -> EditBookingCommandParser : parse("r/1 b/1 e/01-01-2022")
+activate EditBookingCommandParser
+
+create EditBookingCommand
+EditBookingCommandParser -> EditBookingCommand
+activate EditBookingCommand
+
+EditBookingCommand --> EditBookingCommandParser : e
+deactivate EditBookingCommand
+
+EditBookingCommandParser -->ResidenceTrackerParser : e
+deactivate EditBookingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditBookingCommandParser -[hidden]-> ResidenceTrackerParser
+destroy EditBookingCommandParser
+
+ResidenceTrackerParser --> LogicManager : d
+deactivate ResidenceTrackerParser
+
+LogicManager -> EditBookingCommand : execute()
+activate EditBookingCommand
+
+ref over EditBookingCommand, Model: how EditBookingCommand interacts with Model to edit the booking
+activate Model
+
+Model --> EditBookingCommand
+deactivate Model
+
+create CommandResult
+EditBookingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditBookingCommand
+deactivate CommandResult
+
+EditBookingCommand --> LogicManager : result
+deactivate EditBookingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

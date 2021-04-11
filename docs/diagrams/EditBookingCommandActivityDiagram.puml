@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs editb command;
+if() then ([valid command format])
+    :EditBookingCommand finds residence and booking;
+        if() then ([if both indexes are valid])
+            if() then([if fields are valid]);
+                :Booking is updated;
+                :Edit booking success message;
+            else([fields are not valid])
+                if()then([invalid name])
+                :invalid name error message;
+                elseif() then ([invalid phone])
+                :invalid phone error message;
+                else([invalid date])
+                :invalid date error message;
+                endif
+            endif
+        else([if either index are not valid])
+            if() then ([invalid residence index])
+            :invalid residence index error;
+            else([invalid booking index])
+            :invalid booking index error;
+            endif
+        endif
+else([invalid command format])
+:incorrect command format message;
+endif
+stop
+
+
+
+
+
+@enduml
