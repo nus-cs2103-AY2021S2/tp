@@ -210,7 +210,7 @@ It implements the following operations:
 
 * `ModelManager#SortFilteredCardList(Comparator<Flashcard> cmp)` - Sorts the flashcard list
 according to an option and shows the updated list.
-* `SortOptions#getOption(String option)` - Returns the enum according to the specified option
+* `SortOptions#getOption(String option)` - Returns the enum according to the specified option.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
@@ -261,7 +261,7 @@ The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
 
 #### Design consideration:
 
-##### Aspect: How user interacts in Review Mode.
+##### Aspect: How user interacts in Review Mode
 
 * **Alternative 1 (current choice):** interacts via `CommandBox` similar to the `MainWindow`
     * Pros: Easy to implement.
@@ -1128,12 +1128,12 @@ testers are expected to do more *exploratory* testing.
 * Challenge was to create a new class to handle the mapping of alias and command.
 * AB3 did not have a `alias` feature.
 * A new class `AliasMap` is created to handle the mapping.
-* As `AliasMap` is stored in `UserPrefs` which is stored as a json file as `preferences.json`, users are able to modify the mapping directly. Hence an additional check is added to ensure that the alias mapping is valid when starting the application.
+* As `AliasMap` is stored in `UserPrefs` which is stored as a json file as `preferences.json`, users are able to modify the mapping directly. Hence, an additional check is added to ensure that the alias mapping is valid when starting the application.
 
 ### Statistics feature
 * This is an entirely new feature, AB3 did not have a `stats` feature.
-* Prior to adding this feature, the `review` feature had to be extended to allow users to mark a question as correct or wrong. And this involves creating an internal command `UpdateStatisticsCommand`, which updates the statistics of the flash cards in a Model-View-Controller fashion.
-* A new class, `Statistics` was created to represent the statistics attribute of flash cards.
+* Prior to adding this feature, the `review` feature had to be extended to allow users to mark a question as correct or wrong. And this involves creating an internal command `UpdateStatisticsCommand`, which updates the statistics of the flashcards in a Model-View-Controller fashion.
+* A new class, `Statistics` was created to represent the statistics attribute of flashcards.
 * A new class, `FlashbackStats` was created to integrate the display of statistics into the existing user interface.
 
 ### UI improvement
