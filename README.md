@@ -16,7 +16,7 @@ iSCAM can store and manage your client information, such as:
 * Insurance plan
 * Custom tags (e.g. food preferences, premium status, etc)
 * Profile Picture
-* Appointments you have with them
+* Meetings you have with them
 
 Client information may be retrieved easily through an efficient search interface, which is optimised for fast-typers too.
 
