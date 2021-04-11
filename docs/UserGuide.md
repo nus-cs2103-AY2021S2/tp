@@ -78,28 +78,34 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 
 Commands have this general format:
 ```
-component command prefix/[INPUT] prefix/[INPUT] (prefix/[INPUT]) -flag
+component command prefix/[INPUT] -flag
 ```
 
-- `component` - Component to apply the command to.  
-    e.g. `customer`, `menu`  
+- `component` - Component to apply the command to. (e.g. `customer`, `menu`)  
   
-- `command` - Command to run.  
-    e.g. `list`, `add`  
+- `command` - Command to run. (e.g. `list`, `add`)  
   
-- `prefix/[INPUT]` - Item in square brackets are the parameters to be supplied by the user.  
-    e.g. `n/[NAME]`, `[NAME]` is a parameter which can be used as `n/Thomas Tan`
-
-- `prefix/[INPUT]...` - Items with `...` after them can be used multiple times including zero times.
-    e.g. `i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...` can be used as ` ` (i.e. 0 times) or `i/2 q/3 i/3 q/4`.
-
-- `(prefix/[INPUT])` - Item in round brackets are optional.  
-    e.g. `n/[NAME] (t/[TAG])` can be used as `n/Thomas t/Friend` or as `n/Thomas Tan`  
+- `prefix/[INPUT]` - Item in `[ ]` are the parameters to be supplied by the user. (e.g. `n/Thomas`)  
   
-- `-flag` - change behavior 
-    e.g. `-f` or `-a`
+- `-flag` - change behavior. (e.g. `-f`, `-a`)
   
 >   <b><u>Things to note</u></b>  
+>   - Items with `...` after them can be used multiple times including zero times.
+>   Example:
+>       ```
+>       menu add n/[NAME] p/[PRICE] i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...
+>       ```
+>       `i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...` can be used as ` ` (i.e. 0 times) or `i/2 q/3 i/3 q/4`.
+>   <p>&nbsp;</p>
+>
+>   - Item in round brackets are optional.
+>   Example:
+>       ```
+>       customer add n/[NAME] (t/[TAG])
+>       ```
+>       `n/[NAME] (t/[TAG])` can be used as `n/Thomas t/Friend` or as `n/Thomas Tan`
+>   <p>&nbsp;</p>
+>
 >   - Only one command can be executed at a time and any words after a valid command is entered will be ignored.  
 >   Example:
 >       ```
