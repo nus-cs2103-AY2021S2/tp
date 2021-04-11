@@ -316,7 +316,7 @@ Favouriting a contact is done by
 Given below is an example usage scenario and how the favourite mechanism behaves at each step.
 
 The following sequence diagram shows how the favourite operation works:
-[comment]: <> (add sequence diagram)
+![FavouriteSequenceDiagram](images/FavouriteSequenceDiagram.png)
 
 #### Design consideration:
 

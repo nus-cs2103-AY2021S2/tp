@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ParentPalParser" as ParentPalParser LOGIC_COLOR
+participant ":FavouriteCommandParser" as FavouriteCommandParser LOGIC_COLOR
+participant ":FavouriteCommand" as FavouriteCommand LOGIC_COLOR
+participant ":EditCommand.EditContactDescriptor" as EditCommand.EditContactDescriptor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager: execute("fav 3")
+activate LogicManager
+
+LogicManager -> ParentPalParser: parseCommand("fav 3")
+activate ParentPalParser
+
+ParentPalParser -> FavouriteCommandParser: parse("fav 3")
+activate FavouriteCommandParser
+
+create FavouriteCommand
+FavouriteCommandParser -> FavouriteCommand
+activate FavouriteCommand
+FavouriteCommandParser <-- FavouriteCommand
+deactivate FavouriteCommand
+
+ParentPalParser <-- FavouriteCommandParser
+deactivate FavouriteCommandParser
+
+LogicManager <-- ParentPalParser
+deactivate ParentPalParser
+
+LogicManager -> FavouriteCommand: execute()
+activate FavouriteCommand
+
+FavouriteCommand -> Model: getFilteredContactList()
+activate Model
+
+Model --> FavouriteCommand
+
+create EditCommand.EditContactDescriptor
+FavouriteCommand -> EditCommand.EditContactDescriptor
+activate EditCommand.EditContactDescriptor
+FavouriteCommand -> EditCommand.EditContactDescriptor: setFavourite
+
+FavouriteCommand <-- EditCommand.EditContactDescriptor
+deactivate EditCommand.EditContactDescriptor
+
+FavouriteCommand -> Model: setContact
+deactivate Model
+
+create CommandResult
+FavouriteCommand -> CommandResult
+activate CommandResult
+
+FavouriteCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- FavouriteCommand
+deactivate FavouriteCommand
+
+<-- LogicManager
+deactivate LogicManager
+
+@enduml
