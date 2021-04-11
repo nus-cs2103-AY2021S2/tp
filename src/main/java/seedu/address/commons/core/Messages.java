@@ -11,5 +11,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER = "The event with an identifier "
             + "of %1$d does not exist.";
     public static final String MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS = "Please add an event to Focuris.";
+    public static final String MESSAGE_EXTRA_ARGUMENTS = "Please remove extra irrelevant arguments!";
 
 }
