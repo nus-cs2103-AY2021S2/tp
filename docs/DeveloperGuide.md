@@ -187,6 +187,19 @@ The following activity diagram summarises the events that take place when a user
 command:
 ![Revise Activity Diagram](images/EditActivityDiagram.png)
 
+##### Aspect: Whether to edit a command in the command line or in a new UI window.
+* **Alternative 1 (current choice):** Edit entry in command line. 
+  * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
+  * Cons: For entries with lengthy details, typing long commands in the command line fills up the text field space
+  and makes it difficult for editing.
+* **Alternative 2:** Edit the entry in a new UI window. 
+  * Pros: Edit is purely done in the command line, which might be convenient for minor changes a user want s to make.
+  * Cons: Edit is not done purely in command line, but rather in a UI window. This might pose an inconvenience
+  for the user given the added step to edit a field of an entry.
+  
+  As such, we decided to implement a new feature named `revise` for users to achieve the cons of the current choice
+  for `edit` and the pros for the alternative.
+  
  
 ### Revise Feature
 #### Implementation
