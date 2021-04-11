@@ -516,7 +516,7 @@ Step 3: The user executes `progress` to view a progress report based on the acti
 
 #### ProgressCalculator class
 
-<img src="images/ProgressCalculatorClassDiagram.png" width="700" />
+<img src="images/ProgressCalculatorClassDiagram.png" width="1000" />
 
 The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts three paramters, namely:
 
