@@ -11,13 +11,13 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 - [Quick start](#quick-start)
 - [Features](#features)
   - [Viewing help: `help`](#viewing-help--help)
-  - [Adding a person: `add`](#adding-a-person-add)
+  - [Adding a person: `add`](#adding-a-person--add)
   - [Listing all persons: `list`](#listing-all-persons--list)
   - [Editing a person: `edit`](#editing-a-person--edit)
-  - [Adding a remark: `rem ark`](#adding-a-new-remark-or-replacing-an-existing-remark--remark)
+  - [Adding a remark: `remark`](#adding-a-remark--remark)
   - [Blacklisting a contact: `blist`](#blacklisting-a-contact--blist)
-  - [Blacklisting or unblacklisting multiple contacts: `massblist`](#blacklisting-or-unblacklisting-multiple-contacts--massblist)
-  - [Deleting a person: `delete`](#deleting-a-person--delete)
+  - [Blacklisting or unblacklisting multiple contacts: `massblist`](#blacklisting-or-un-blacklisting-multiple-contacts--massblist)
+  - [Deleting a contact: `delete`](#deleting-a-contact--delete)
   - [Deleting multiple contacts: `massdelete`](#deleting-multiple-contacts--massdelete)
   - [Clearing all entries: `clear`](#clearing-all-entries--clear)
   - [Collecting details from contacts: `collect`](#collecting-details-from-contacts--collect)
@@ -105,7 +105,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a person to the contacts list.
 
@@ -143,7 +143,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Adding a new remark or replacing an existing remark : `remark`
+### Adding a remark : `remark`
 
 Adds an optional remark to a person in the address book.
 If the person already has a remark, the existing remark will be replaced.
@@ -194,7 +194,7 @@ Examples:
   blacklisted, it remains the same. <br>
   ![massBlacklist2](images/massBlacklist2.png)
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
 Deletes the specified person from the contacts list.
 
@@ -202,7 +202,7 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, …​, 2147483647
+* The index **must be a valid positive integer** 1, 2, 3, ...
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
@@ -309,15 +309,15 @@ Format: `undo`
 * This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
 
 
-### Reviewing previous commands
-Users can view the commands they have inserted previously using up and down arrow keys.
-To re-execute the command, users simply need to press enter.
-
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Reviewing previous commands
+Users can view the commands they have inserted previously using up and down arrow keys.
+To re-execute the command, users simply need to press enter.
 
 ### Saving the data
 
@@ -362,3 +362,4 @@ Action | Format, Examples
 **Dark** | `dark`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Undo** | `undo`
+**Exit** | `exit`

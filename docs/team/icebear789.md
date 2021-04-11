@@ -11,7 +11,7 @@ it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added `MassDelete` command.
+* **New Feature**: Added `MassDelete` command (Pull request: [#50](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/50))
   * What it does: Allows users to delete all contacts
     within a certain index range.
   * Justification: This command allows the user to delete large sections of the 
@@ -20,7 +20,7 @@ Given below are my contributions to the project.
   * Highlights: The input format uses the hyphen symbol (-) to separate between the start index
     and the end index. Thus entirely new methods will need to be written to parse the hyphen symbol.
 
-* **New Feature**: Added `MassBlacklist` command.
+* **New Feature**: Added `MassBlacklist` command (Pull request: [#66](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/66))
   * What it does: Allows users to either blacklist or unblacklist all contacts within a certain index range.
   * Justification: Similar to the `MassDelete` command, this command makes it more convenient for the user to work
     with groups of contacts.
@@ -29,7 +29,7 @@ Given below are my contributions to the project.
     unblacklist. Thus significant modifications need to be made to adapt the code from
     `Blacklist` into the `MassBlacklist` command.
 
-* **New Feature**: Added `Remark` field to `Person`.
+* **New Feature**: Added `Remark` field to `Person` (Pull request: [#26](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/26))
   * What it does: Allows users to assign an optional remark to each contact.
   * Justification: Many students will have special considerations. For example, some students
     may be suspended or on leave of absence. The `Remark` field allows the user
@@ -39,8 +39,10 @@ Given below are my contributions to the project.
     significant modifications have to be made to the tutorial implementation of `Remark`.
     Frequent communication between team members are also needed to ensure that the different
     fields work properly when integrated, especially when the app is reading from a JSON file.
+    
+  * Pull request
 
-* **New Feature**: Added `Sort` command.
+* **New Feature**: Added `Sort` command (Pull requests: [#22](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/22), [#47](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/47))
   * What it does: Allows users to sort the contact list by name in alphabetical order.
   * Justification: In NUS, many administrative procedures are performed based on alphabetical order
     (such as the seating plan for examinations). This command makes it more convenient for the user
@@ -61,13 +63,23 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the commands `massdelete`, `massblist`, `remark` and `sort`:
-    * Standardised the index format in the user guide:
+    * Added documentation for the commands `massdelete`, `massblist`, `remark` and `sort` (Pull request: [#175](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/175))
+    * Standardised the index format in the user guide: (Pull request: [#175](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/175))
   * Developer Guide:
-    * Added implementation details for the commands `massdelete`, `massblist`, `remark` and `sort`:
+    * Added implementation details for the commands `massdelete`, `massblist`, `remark` and `sort`: (Pull requests: [#165](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/165),
+      [#170](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/170), [#176](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/176))
 
 * **Community**:
   * Contributed ideas to the design of the Graphical User Interface.
-  * PRs reviewed:
-  
-* _{you can add/remove categories in the list above}_
+  * Reviewed pull requests: (Pull requests: [#78](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/78),
+    [#79](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/79),
+    [#138](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/138),
+    [#139](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/139),
+    [#141](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/141),
+    [#142](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/142),
+    [#151](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/151),
+    [#152](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/152),
+    [#168](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/168),
+    [#173](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/173),
+    [#174](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/174),
+    [#177](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/177))
