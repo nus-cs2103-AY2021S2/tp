@@ -2035,13 +2035,16 @@ These instructions only provide a starting point for testers to work on; testers
 
 ### Editing a task
 1. Edits an uncompleted task in the task list
-    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
        Currently, no tasks in the task list has a task name `task1`.
 
     1. Test case: `edit_task 1 n/task1` <br>
        Expected: The name of the first task in the task list is updated to `task1`.
        Details of the edited task to appear in status bar.
+       
     1. Other incorrect command to try : `edit_task`
+
+1. _{ more test cases …​ }_
 
 ### Marking one or more tasks as done
 1. Marks one or more uncompleted tasks from the task list as completed
@@ -2055,6 +2058,8 @@ These instructions only provide a starting point for testers to work on; testers
        
     1. Other incorrect command to try : `done abc`.
 
+1. _{ more test cases …​ }_
+
 ### Marking a task as uncompleted
 
 1. Marks a completed task from the task list as uncompleted
@@ -2063,34 +2068,38 @@ These instructions only provide a starting point for testers to work on; testers
        The task to be uncompleted is currently marked as completed.
     
     1. Test case: `undone 1` <br>
-    Expected: The first task in the task list are marked as uncompleted.
+       Expected: The first task in the task list are marked as uncompleted.
        "Uncompleted 1 Task." to appear in status bar.
        
     1. Other incorrect command to try : `undone abc`.
+
+1. _{ more test cases …​ }_
 
 ### Listing all tasks
 
 1. Listing all tasks
 
     1. Test case: `list_task`<br>
-       Expected: All the tasks currently present in the task list will be shown. If the task list is currently empty,
-       a message `There is no task present!` will be shown. Otherwise, a message `Listed all task(s).` will be shown.
+       Expected: All the tasks currently present in the task list will be shown. <br>
+       If the task list is currently empty, a message `There is no task present!` will be shown. Otherwise, a message `Listed all task(s).` will be shown.
 
 ### Getting today's tasks
 
 1. Getting today's tasks
 
     1. Test case: `today_task`<br>
-        Expected: All the tasks with deadline on today will be shown. A message `Listed all tasks whose deadline
-       is today` and `x task(s) listed!` will be shown, where `x` is the number of tasks with deadline on today.
+       Expected: All the tasks with deadline on today will be shown. <br>
+       A message `Listed all tasks whose deadline is today` and `x task(s) listed!` will be shown, where `x` is the number of tasks with deadline on today.
 
 ### Finding tasks by names
 
 1. Finding tasks by names
 
     1. Test case: `find_task homework assignment`<br>
-       Expected: All the tasks whose name contains any of `homework` or `assignment` in the task list will be shown.
+       Expected: All the tasks whose name contains any of `homework` or `assignment` in the task list will be shown. <br>
        A message `x task(s) listed!` will be shown, where `x` is the number of tasks that satisfies the condition.
+       
+1. _{ more test cases …​ }_
 
 ### Sorting the task list
 
@@ -2160,18 +2169,21 @@ These instructions only provide a starting point for testers to work on; testers
 1. Clearing completed tasks
 
    1. Test case: `clear_completed_task`<br>
-      Expected: Tasks marked as done are cleared from the list. Success message `Completed tasks (if any) have been cleared!` 
-      will always be shown in the status message, regardless of whether there is any completed task or not.   
+      Expected: Tasks marked as done are cleared from the list. <br>
+      Success message `Completed tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any completed task or not.   
 
+1. _{ more test cases …​ }_
 
 ### Clearing expired tasks
 
 1. Clearing expired tasks
 
    1. Test case: `clear_expired_task`<br>
-      Expected: Tasks with past deadlines are cleared from the list. Success message `Expired tasks (if any) have been cleared!` 
-      will always be shown in the status message, regardless of whether there is any expired task or not. 
-      
+      Expected: Tasks with past deadlines are cleared from the list. <br>
+      Success message `Expired tasks (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired task or not. 
+
+1. _{ more test cases …​ }_
+
 ### Adding an event
 
 1. Adding an event
@@ -2188,6 +2200,8 @@ These instructions only provide a starting point for testers to work on; testers
                   Expected: No event is added, since end date time is past. Detailed error message shown in the status bar.              
                   
     1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
+   
+1. _{ more test cases …​ }_
     
 ### Deleting an event
 
@@ -2207,7 +2221,8 @@ These instructions only provide a starting point for testers to work on; testers
    1. Other incorrect delete commands to try: `delete_event`, `delete_event x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
       
-      
+1. _{ more test cases …​ }_
+
 ### Editing an event
 
 1. Editing an event
@@ -2221,40 +2236,46 @@ These instructions only provide a starting point for testers to work on; testers
        Expected: The name of the first event in the list is changed to `editedEventName`.
                
     1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
-
+   
+1. _{ more test cases …​ }_
 
 ### Listing all events
 
 1. Listing all events
 
     1. Test case: `list_event`<br>
-       Expected: All the events currently present in the event list will be shown. If the event list is currently empty,
-       a message `There is no event present!` will be shown. Otherwise, a message `Listed all event(s).` will be shown.
+       Expected: All the events currently present in the event list will be shown. <br> 
+       If the event list is currently empty, a message `There is no event present!` will be shown. Otherwise, a message `Listed all event(s).` will be shown.
 
 ### Getting today's events
 
 1. Getting today's events
 
     1. Test case: `today_event`<br>
-       Expected: All the events that happening on today will be shown. A message `Listed events happen on today` and 
-       `x event(s) listed!` will be shown, where `x` is the number of events that happen on today.
+       Expected: All the events that happening on today will be shown. <br>
+       A message `Listed events happen on today` and `x event(s) listed!` will be shown, where `x` is the number of events that happen on today.
+
+1. _{ more test cases …​ }_
 
 ### Finding events by names
 
 1. Finding events by names
 
     1. Test case: `find_event project meeting`<br>
-       Expected: All the events whose name contains any of `project` or `meeting` in the event list will be shown.
+       Expected: All the events whose name contains any of `project` or `meeting` in the event list will be shown. <br>
        A message `x event(s) listed!` will be shown, where `x` is the number of events that satisfies the condition.
-
+       
+1. _{ more test cases …​ }_
 
 ### Clearing expired events
 
 1. Clearing expired events
 
    1. Test case: `clear_expired_event`<br>
-      Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
-      will always be shown in the status message, regardless of whether there is any expired event or not.
+      Expected: Events with past end date time are cleared from the list. <br>
+      Success message `Expired events (if any) have been cleared!` will always be shown in the status message, regardless of whether there is any expired event or not.
+
+1. _{ more test cases …​ }_
 
 ### Finding schedule given a date
 
@@ -2263,28 +2284,34 @@ These instructions only provide a starting point for testers to work on; testers
 
    1. Prerequisites: List all tasks using `list_task` command and all events using the `list_event` command.
       
-     1. Test case: `find_schedule 2021-05-01` <br>
-        1. Assuming task list only has one task and its deadline is at `2021-05-01` and 
-        event list only has one event and its start date is at `2021-04-01` and end date is at `2021-06-01`.
-    
-        1. Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
+     1. Test case: `find_schedule 2022-05-01` <br>
+        1. Assuming task list only has one task and its deadline is at `2022-05-01` and 
+        event list only has one event and its start date is at `2022-04-01` and end date is at `2022-06-01`. <br>
+        Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
         and events with start date before or on `2021-05-01` and end date after or on `2021-05-01`.
          "Displayed the required tasks and events. <br>
             1 task(s) listed! <br>
             1 event(s) listed!" appears in the status bar.
+           
     1. Other incorrect command to try: `find_schedule 2021-005-01`.
+   
+1. _{ more test cases …​ }_
 
 ### Finding free time slots
 
 1. Finding free time slots
 
-    1. Test case: `free_time 2021-06-10`<br>
-       Expected: Displays a list of free time slots on 2021-06-10. Success message `Found free time slots on 2021-04-27:` 
+    1. Test case: `free_time 2022-06-10`<br>
+       Expected: Displays a list of free time slots on 2021-06-10. Success message `Found free time slots on 2022-04-27:` 
        will be shown if free time slots were found.
             
-       1. if there are available free time slots, a list of free time slots will be displayed after the success message.
-       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the success message.
-       3. if no free time slots were found, `There is no free time in the day!` will be displayed.
+       1. If there are available free time slots, a list of free time slots will be displayed after the success message.
+          
+       1. If there are no events happening on the day, `The entire day is free!` will be displayed after the success message.
+          
+       1. If no free time slots were found, `There is no free time in the day!` will be displayed.
+
+1. _{ more test cases …​ }_
 
 ### Getting a summary of SOChedule
 
@@ -2293,6 +2320,8 @@ These instructions only provide a starting point for testers to work on; testers
     1. Test case: `summary`<br>
        Expected: Displays a summary for SOChedule. Success message `Summary:`, followed by detailed about `Task`,
        and details about `Event`.
+       
+1. _{ more test cases …​ }_
 
 ### Clearing SOChedule
 
