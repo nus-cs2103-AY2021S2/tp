@@ -62,8 +62,8 @@ public class PassengerCard extends UiPart<Region> {
         cardFields.add(new LabelWithIcon(ICON_PATH_ADDRESS, passenger.getAddress().value).getRoot());
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
-        passenger.getPrice().filter(x -> x.value != 0).ifPresent(
-            price -> cardFields.add(new LabelWithIcon(ICON_PATH_PRICE, price.toString()).getRoot()));
+        passenger.getPrice().filter(price -> price.value != 0).ifPresent(
+            presentPrice -> cardFields.add(new LabelWithIcon(ICON_PATH_PRICE, presentPrice.toString()).getRoot()));
         cardFieldContainer.getChildren().addAll(cardFields);
     }
 
