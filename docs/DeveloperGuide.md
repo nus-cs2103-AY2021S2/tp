@@ -295,8 +295,7 @@ The find student feature helps users to locate a particular student record by th
 
 This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
 `FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
-`FindCommand` will invoke a method to search for the particular student record and his/her appointment in `Model` and return the specific student record along with the corresponding appointment if it exists.
-
+FindCommand will invoke a method to search for the particular student record and their corresponding appointment in Model and return the specific student record with their appointment if it exists.
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
 Step 1: The user executes `find A0175678U` into Vax@NUS.
@@ -372,7 +371,7 @@ Ian finds it difficult to sieve information and is prone to making human errors.
 * Reasonably comfortable using CLI apps
 * Tired of looking at multiple rows and columns in Excel for long hours daily
 
-**Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students.
+**Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students
 
 ### User stories
 
@@ -463,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to find a specific student record and his/her appointment.
 2.  System finds the particular student record and appointment. 
-3.  System shows the student records and appointment of the particular student.
+3.  System shows the student record and appointment of the particular student.
 
     Use case ends.
 
@@ -628,7 +627,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a student while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command. Sample data of students and appointments shown in the list.
+   1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
 
    1. Test case: `find A0221234N`<br>
       Expected: The student record and appointment belonging to Roy Balakrishnan whose matriculation number matches "A0221234N" will be shown.  
