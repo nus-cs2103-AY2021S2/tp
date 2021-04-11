@@ -27,7 +27,7 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 [[portfolio](team/pasha-292.md)]
 
 * Role: Developer
-* Responsibilities: UI, Logic
+* Responsibilities: UI, Logic, Storage, Testing
 
 ### Galen Cheung
 

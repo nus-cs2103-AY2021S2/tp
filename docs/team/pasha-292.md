@@ -17,9 +17,8 @@ Given below are my contributions to the project.
 * **Repository Link**:  [Repository Link](https://github.com/pasha-292/tp)
 
 
-
 * **Project management**:
-    * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
+    * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
     * Released `v1.1` and `v1.3` on GitHub.
 
 
@@ -27,10 +26,13 @@ Given below are my contributions to the project.
    * Add the date feature to TimesForWheels to take into account the delivery date.(PRs: 
      [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35), 
      [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47))
+     Justification: The date feature allows to keep track of the delivery date. 
    * Change the find feature to enable finding by all customer attributes.(PRs:
      [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35),
      [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47),
      [#63](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/63)) 
+     Justification: The find feature should be able to find any delivery task based on
+     any of its attributes.
 
 * **GUI Changes**
    * Add the date field to the GUI.(
@@ -76,7 +78,12 @@ Given below are my contributions to the project.
 3. Update Existing Developer Guide diagrams to make them more in line with the project.(
    PR: [#124](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/124))
 4. Update DG to include three UML diagrams for the Find Command and add them to DG.(
-   PR: [#124](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/124))   
+   PR: [#124](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/124),
+   PR: [#138](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/138))
+5. Update DG to include Remark command and corresponding UML diagrams.(
+   PR: [#139](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/139))
+6. Refactor existing UML diagrams to make them more in line with TimesForWheels.(
+   PR: [#138](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/138))   
 
 * **Community**:
 
