@@ -306,6 +306,10 @@ Diagram flow to be inserted here
 
 ### Update food item feature
 
+The following activity diagram summarizes what happens when a user executes a `food_update` command:
+
+<img src="images/UpdateFoodItemActivityDiagram.png" width="415" />
+
 #### Description:
 
 This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and nutrient values specified has to be different from original before an update is permitted.
