@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.appointment.AppointmentDatePredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.appointment.AppointmentPredicateList;
 import seedu.address.model.appointment.AppointmentRemarksPredicate;
 import seedu.address.model.appointment.AppointmentTimePredicate;
