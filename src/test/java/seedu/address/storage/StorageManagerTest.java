@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 
 import java.nio.file.Path;
 
@@ -15,6 +16,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.Doctor;
 
 public class StorageManagerTest {
 
@@ -72,6 +74,24 @@ public class StorageManagerTest {
     @Test
     public void getPatientRecordsFilePath() {
         assertNotNull(storageManager.getPatientRecordsFilePath());
+    }
+
+    @Test
+    public void doctorRecordsReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonAddressBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         */
+        AddressBook<Doctor> original = getTypicalDoctorRecords();
+        storageManager.saveDoctorRecords(original);
+        ReadOnlyAddressBook<Doctor> retrieved = storageManager.readDoctorRecords().get();
+        assertEquals(original, new AddressBook<>(retrieved));
+    }
+
+    @Test
+    public void getDoctorRecordsFilePath() {
+        assertNotNull(storageManager.getDoctorRecordsFilePath());
     }
 
 }
