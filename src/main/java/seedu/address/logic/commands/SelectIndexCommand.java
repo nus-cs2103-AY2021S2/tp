@@ -16,8 +16,8 @@ import seedu.address.model.person.Person;
  */
 public class SelectIndexCommand extends SelectCommand {
 
-    public static final String MESSAGE_SHOWN_SUCCESS = "Selected all shown items";
-    public static final String MESSAGE_INDEX_SUCCESS = "Selected items";
+    public static final String MESSAGE_SHOWN_SUCCESS = "Selected all shown person(s)";
+    public static final String MESSAGE_INDEX_SUCCESS = "Selected person(s)";
 
     private final List<Index> selectedIndexes;
     private final boolean isSpecialIndex;

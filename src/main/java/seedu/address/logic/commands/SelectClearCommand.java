@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class SelectClearCommand extends SelectCommand {
 
-    public static final String MESSAGE_SUCCESS = "Cleared selected persons";
+    public static final String MESSAGE_SUCCESS = "Cleared selected person(s)";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
