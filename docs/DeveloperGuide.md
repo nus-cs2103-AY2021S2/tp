@@ -135,9 +135,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### [Completed] Default Sorting Order of Garments in Wardrobe
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed default sorting order of Garments in the Wardrobe, which lists out the Garments based on when they have been last used. The new default sorting order sorts the list of garments
+The default sorting order of Garments in the Wardrobe, which lists out the Garments based on when they have been last used. The new default sorting order sorts the list of garments
 based on the date that they were last used, and outputs the entries from the earliest used date to the latest used date.
 
 This is achieved through the creation of the `LastUse` attribute that is tied to the `Garment` object, that gives a date as to when it was last used.
@@ -151,7 +151,7 @@ The following diagram shows where sorting occurs in the Model component (higher 
 #### Design Consideration:
 
 ##### Aspect: Sorting the garments
-* **Alternative 1 (Chosen implementation)**: <br>
+* **Alternative 1 (current choice)**: <br>
   Sorts the Garments based on chronological ordering of the `LastUse` attribute.
   * Pros: Garments that have not been used for a longer period of time come up earlier in the list, which would 
     encourage and remind users to wear all their clothes.
@@ -168,34 +168,69 @@ The following diagram shows where sorting occurs in the Model component (higher 
   * Cons: Requires more time to implement.
 
 
-### [Proposed] Find feature
+### Find feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed `find` mechanism extends the `find` mechanism of `Wardrobe`, which only allows users to find entries based on the "Name" attribute. This extended find mechanism allows users to find entries based on any attribute, namely:
-* Name
-* Size
-* Colour
-* DressCode
-* Type
-* Description
+The proposed `find` mechanism extends the `find` mechanism of `AddressBook`, which only allows users to find entries 
+based on the `Name` attribute. This extended find mechanism allows users to find their garments using 1 or more of 
+the garment attributes, namely:
+* `Name`
+* `Size`
+* `Colour`
+* `DressCode`
+* `Type`
+* `Description`
 
-This is achieved through the creation of new Predicates (in addition to the existing NameContainsKeywordsPredicate):
-* SizeContainsKeywordsPredicate
-* ColourContainsKeywordsPredicate
-* etc.
+The command is parsed from `WardrobeParser` to the `FindCommandParser`, where the inputs are tokenized using 
+`ArgumentTokenizer` into an object of `ArgumentMultiMap`, `argMultiMap`. An `AttributesContainsKeywordsPredicate` 
+object of the input is then created with `argMultiMap` as the argument for the constructor. 
 
-FindCommandParser is updated to detect the prefixes for multiple attributes (i.e. `n/` for Name, `c/` for Colour, etc.) and the respective predicate is hence used to create the FindCommand Object
+Finding the correct garment is achieved through the creation of new `Predicate` classes (in addition to the existing 
+`NameContainsKeywordsPredicate`) which checks if a :
+* `ContainsKeywordsPredicate`
+* `SizeContainsKeywordsPredicate`
+* `ColourContainsKeywordsPredicate`
+* `TypeContainsKeywordsPredicate`
+* `DressCodeContainsKeywordsPredicate`
+* `DescriptionContainsKeywordsPredicate`
+* `AttributesContainsKeywordsPredicate`
+
+`AttributesContainsKeywords` looks through each of the other types of `ContainsKeywordsPredicate` to return 
+true for garments that pass each predicate, and false otherwise. 
+
+The object of `AttributesContainsKeywordsPredicate` is passed to an object of `FindCommand`. The `execute` method of 
+`FindCommand` object is then called with `model`, which then calls the `updateFilteredGarmentList` method of `model`.
+This then displays all matching garments in the data to the front end of the nufash application.
+
+Given below is an example usage scenario of how the `find` mechanism works.
+
+1. The user launches the nufash application for the first time and is presented with a list of all garments 
+   retrieved from local storage `wardrobe.json` (if applicable)
+
+2. The user executes `find n/Shirt shorts s/23 22 c/blue` command to find the garments that has name containing 
+   'Shirt' or 'shorts', has size of 23 or 22, and has colour blue. The `find` command makes use of a 
+   `AttributesContainsKeywordsPredicate` to call the `updateFilteredGarmentList` display all the matching garments, 
+   without modifying the original garments list.
+   * Note: If no garments match the keywords given by the user, an empty list will be shown.
+
+
+The sequence diagram below shows how the find command works:
+![Find Sequence Diagram](images/FindSequenceDiagram.png)
+
+The activity diagram below shows the flow of what happens when a user executes the find command:
+![Find Activity Diagram](images/FindActivityDiagram.png)
+
 
 #### Design Consideration:
 
 ##### Aspect: How many attributes Find can account for at a time
-* **Alternative 1 (Current implementation)**: <br>
+* **Alternative 1 **: <br>
   Finds with only one attribute at a time. <br>
   E.g. `find n/jeans c/blue` will only find entries whose Name attribute contains the keyword "jeans".
   * Pros: Easier to implement.
   * Cons: Limited functionality.
-* **Alternative 2**: <br>
+* **Alternative 2(Implemented)**: <br>
   Finds with multiple given attributes. <br>
   E.g. `find n/jeans c/blue` will find entries whose Name attribute contains the keyword "jeans" **and** whose Colour attribute contains the keyword "blue".
   * Pros: More precise results.
@@ -283,6 +318,46 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: User only requires a unique attribute, e.g. `Name` to be entered.
     * Cons: Harder to implement as the `Name` attribute has its own drawbacks, e.g `Name` could be
       a extremely long phrase, which could be hard for the user to remember or input into the application.
+
+### [Completed] View feature
+
+#### Implementation
+The `view` mechanism extends the `list` mechanism from `AddressBook`. It is facilitated by the `ViewCommand` class.
+
+The mechanism allows for the list of Garments to be filtered to show an outfit based on user input.
+
+Users must select 3 Garments to view, with the conditions being:
+* Garments cannot be of the same type <br>
+  (i.e. must have one of upper, one of lower and one of footwear)
+* Garments must be of the same DressCode.
+
+Given below is an example usage scenario and how the View mechanism behaves at each step.
+
+1. The user launches the application for the first time. The Wardrobe will be initialized with the stored garments.
+   Each garment has the attributes: Colour, DressCode, LastUse, Name, Size, Type.
+   
+2. The user executes `view 1 2 3` to view an outfit consisting of Garments indexed at 1, 2, and 3. We assume that the 3 Garments follow the conditions as stated above.
+
+3. The `view` command indirectly calls updateFilteredGarmentList method of Model with a predicate that filters the selected Garments to be viewed as an outfit.
+
+The following sequence diagram shows how the view operation works:
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Allow viewing of outfit consisting of less than or more than 3 Garments
+* **Alternative 1: Allow variable number of Garments to be viewed as an outfit<br>**
+  * Pros: Flexible user input
+  * Cons: Viewing of certain outfits missing a certain Type may result in an incomplete looking outfit.<br>
+    e.g. viewing an outfit consisting of upper and footwear only.
+* **Alternative 2 (current choice): Allow only exactly 3 Garments to be viewed as an outfit**
+  * Pros: Ensures that outfits always look complete.
+  * Cons: Limited user choice.
 
 ## Appendix: Requirements
 
