@@ -48,7 +48,7 @@ deactivate AddressBookParser
 LogicManager -> DeleteIssueCommand : execute()
 activate DeleteIssueCommand
 
-DeleteIssueCommand -> Model : deleteIssue(1)
+DeleteIssueCommand -> Model : delete first issue
 activate Model
 
 Model --> DeleteIssueCommand
@@ -63,6 +63,8 @@ deactivate CommandResult
 
 DeleteIssueCommand --> LogicManager : r
 deactivate DeleteIssueCommand
+DeleteIssueCommand -[hidden]-> LogicManager
+destroy DeleteIssueCommand
 
 [<--LogicManager : r
 deactivate LogicManager
