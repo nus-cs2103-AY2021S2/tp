@@ -22,7 +22,7 @@ public abstract class ClearCommand extends Command {
         + "1. " + COMMAND_WORD + "\n"
         + "2. " + COMMAND_WORD + " l/bedroom\n";
 
-    public Predicate<Item> predicate;
+    private Predicate<Item> predicate;
 
     public abstract CommandResult execute(Model model) throws CommandException;
 
