@@ -346,44 +346,10 @@ The following sequence diagram shows how the update operation works:
 The find mechanism is facilitated by `PocketEstate`. It implements the search feature that allows the user to specific the fields to search for and use multiple parameters. 
 This feature is implemented separately for both property and appointment, as well as an additional `find client` feature that searches both properties and appointments. 
 
-For properties, it uses the following: 
-* `FindPropertyCommand`
-* `FindPropertyCommandParser`
-* `PropetyPredicateList` 
-    * Takes a `List` of `Predicate<Property>`
-    * Has method `combine()` which returns a single `Predicate<Property>` that is a logical `AND` of all `Predicates` in 
-    the instance of `ProprtyPredicateList`
-* Predicates
-    * `PropertyNamePredicate`
-    * `PropertyPricePredicate` 
-        * Takes 2 parameters, `price` and `isLess`
-        * If `isLess` is `true`, checks if a `Property's` `clientAskingPrice` is less than or equals to the given price
-        * Otherwise, checks if a `Property's` `clientAskingPrice` is more than or equals to the given price
-    * `PropertyTypePredicate`
-    * `PropertyRemarksPredicate`
-    * `PropertyAddressPredicate`
-    * `PropertyPostalCodePredicate`
-    * `PropertyDeadlinePredicate`
-    * `PropertyTagsPredicate`
-    * `PropertyClientNamePredicate`
-    * `PropertyClientContactPredicate`
-    * `PropertyClientEmailPredicate`
-    
-For appointments, it uses the following: 
-* `FindAppointmentCommand`
-* `FindAppointmentCommandParser`
-* `AppointmentPredicateList` 
-    * Takes a `List` of `Predicate<Appointment>`
-    * Has method `combine()` which returns a single `Predicate<Appointment>` that is a logical `AND` of all `Predicates` in 
-    the instance of `AppointmentPredicateList`
-* Predicates
-    * `AppointmentNamePredicate`
-    * `AppointmentRemarksPredicate`
-    * `AppointmentDatePredicate`
-    * `AppointmentTimePredicate`
-
 `find appointment` and `find property` uses `AppointmentPredicateList` and `PropertyPredicateList` to keep track of all 
-predicates that `FindAppointmentCommandParser` and `FindPropertyCommandParser` generated respectively. 
+predicates that `FindAppointmentCommandParser` and `FindPropertyCommandParser` generated respectively. An unique predicate 
+class exist for every attribute that `Appointment` and `Property` classes have. `find client` command is implemented by 
+combining an `AppointmentNamePredicate` and a `PropertyClientNamePredicate`, and using the same keywords for both. 
 
 Since they are implemented similarly, given below is an example usage scenario and how the find mechanism behaves at each step for `find appointment`.  
 
