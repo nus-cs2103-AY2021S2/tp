@@ -1,0 +1,21 @@
+@startuml
+start
+:user executes recur command;
+if() then ([valid index and recurrence])
+    if() then ([input recurrence empty])
+        if() then ([task is recurring])
+            :copy task and remove recurrence;
+            :replace task with copy;
+        else ([else])
+            :error message stating no\nrecurrence to be removed;
+        endif
+    else ([else])
+        :copy task and add recurrence;
+        :replace task with copy;
+    endif
+else ([else])
+    :error message stating input is invalid;
+endif
+
+stop
+@enduml

@@ -166,7 +166,6 @@ Step 2. The user executes `done 5` command to mark the 5th task in the module bo
 ![DoneNotdoneState1](images/DoneNotdoneState1.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the done command fails its execution, it will not call `Task#setDoneStatus(task, doneStatus)`, so the modified copy of the task will not be saved into the `tasks` list.
-
 </div>
 
 The following sequence diagram shows how the done operation works:
@@ -184,6 +183,37 @@ The following activity diagram summarizes what happens when a user executes done
 The notdone mechanism is similar to that of the done mechanism, except that the modified copy of the task is set as not done instead.
 
 <div style="page-break-after: always;"></div>
+
+
+### Recur feature
+
+#### Implementation
+
+The recur feature makes a task repeat at regular intervals. Internally, a Task has an attribute `Recurrence` that is an optional field.
+
+Recurrence of a task can either be daily, weekly or biweekly.
+
+Additionally, the recurrence of a task can also be removed using the `recur` feature.
+
+The `recurrence` of a task can also be added and removed using the `edit` feature. 
+
+e.g. `edit 1 r/daily`
+
+For a recurring task, once the recurrence to a task is added, the `deadline` of the task will change according to the recurrence
+and the task will be marked as `notdone` once the task recurs.
+
+The following activity diagram summarizes what happens upon execution of the `recur` feature.
+
+![RecurActivityDiagram](images/RecurActivityDiagram.png)
+
+The following sequence diagram shows how the `recur` feature works.
+
+![RecurCommandActivityDiagram](images/RecurCommandSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RecurCommand` and `RecurCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 ### Workload Distribution feature
 
@@ -208,6 +238,10 @@ The following class diagram shows the classes related to implementing workload d
 ![WorkloadDistributionDiagram](images/WorkloadDistributionClassDiagram.png)
 
 <div style="page-break-after: always;"></div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> a39930683a3c4e47505478a14d57d4e8feb0d246
 
 ### \[Proposed\] Undo/redo feature
 
@@ -747,10 +781,8 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source:**Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.</div>
 
 ### Launch and shutdown
 
