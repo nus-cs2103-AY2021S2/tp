@@ -102,8 +102,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_emptyTags_throwsParseException() {
-        assertParseFailure(parser, " -t ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " --any -t ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " -t ", Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " --any -t ", Tag.MESSAGE_CONSTRAINTS);
     }
 }
