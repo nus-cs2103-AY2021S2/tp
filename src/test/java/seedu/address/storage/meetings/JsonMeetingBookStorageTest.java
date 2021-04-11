@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.meetings;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -88,7 +88,7 @@ public class JsonMeetingBookStorageTest {
     }
 
     @Test
-    public void saveMeetingBook_nullAddressBook_throwsNullPointerException() {
+    public void saveMeetingBook_nullMeetingBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveMeetingBook(null, "SomeFile.json"));
     }
 
@@ -105,7 +105,7 @@ public class JsonMeetingBookStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveMeetingBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveMeetingBook(new MeetingBook(), null));
     }
 

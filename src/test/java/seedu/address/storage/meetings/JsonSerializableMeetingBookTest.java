@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.meetings;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -20,6 +20,7 @@ public class JsonSerializableMeetingBookTest {
     private static final Path TYPICAL_MEETINGS_FILE = TEST_DATA_FOLDER.resolve("sampleMeetingBook.json");
     private static final Path INVALID_MEETINGS_FILE = TEST_DATA_FOLDER.resolve("invalidMeetingsMeetingBook.json");
     private static final Path DUPLICATE_MEETINGS_FILE = TEST_DATA_FOLDER.resolve("duplicateMeetingsMeetingBook.json");
+    private static final Path CLASHING_MEETINGS_FILE = TEST_DATA_FOLDER.resolve("clashingMeetingsMeetingBook.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -42,6 +43,14 @@ public class JsonSerializableMeetingBookTest {
         JsonSerializableMeetingBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MEETINGS_FILE,
                 JsonSerializableMeetingBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableMeetingBook.MESSAGE_DUPLICATE_PERSON,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_clashingMeetings_throwsIllegalValueException() throws Exception {
+        JsonSerializableMeetingBook dataFromFile = JsonUtil.readJsonFile(CLASHING_MEETINGS_FILE,
+                JsonSerializableMeetingBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableMeetingBook.MESSAGE_CLASHING_MEETINGS,
                 dataFromFile::toModelType);
     }
 

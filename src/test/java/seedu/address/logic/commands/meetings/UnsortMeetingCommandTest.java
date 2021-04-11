@@ -12,11 +12,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.note.NoteBook;
+import seedu.address.model.person.AddressBook;
+import seedu.address.model.person.Person;
 
 class UnsortMeetingCommandTest {
 
-    private Model model = new ModelManager(getTypicalMeetingBook(), new UserPrefs());
+    private Model model = new ModelManager(new AddressBook(), getTypicalMeetingBook(), new NoteBook(),
+            new UserPrefs(), new PersonMeetingConnection());
 
     @Test
     void execute() throws CommandException {

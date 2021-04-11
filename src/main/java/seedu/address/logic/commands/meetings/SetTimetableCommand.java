@@ -37,5 +37,11 @@ public class SetTimetableCommand extends Command {
         return new CommandResult(successMessage);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SetTimetableCommand // instanceof handles nulls
+                && localDate.equals(((SetTimetableCommand) other).localDate)); // state check
+    }
 
 }
