@@ -215,18 +215,18 @@ public class ParserUtil {
     /**
      * Parses {@code position} into an {@code int} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified position is invalid (not between 1 to 9).
+     * return 0 if the specified position is invalid (not between 1 to 9).
      */
-    public static int parsePosition(String oneBasedIndex) throws ParseException {
+    public static int parsePosition(String oneBasedIndex) {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_POSITION);
+            return 0;
         }
 
         int position = Integer.parseInt(trimmedIndex);
 
         if (position > 9 || position < 1) {
-            throw new ParseException(MESSAGE_INVALID_POSITION);
+            return 0;
         }
         return position;
     }
