@@ -16,7 +16,7 @@ Given below are my contributions to the project:
     * Justification: Users now can delete an appointment or property in the app.
 * **Feature**: Implemented `clear` commands for `appointment`, `property`, and `all`.
     * What it does: Allows the user to clear all `appointment`, `property`, or `all` in the app.
-    * Justification: Users can easily clear all the appointments, properties, or all in the app.
+    * Justification: Users can easily clear the appointments, properties, or all in the app.
 * **Feature**: Implemented `sort` commands for `appointment` and `property`.
     * What it does: Allows the user to sort `appointment` or `property` based on specified sorting keys.
     * Justification: Users can easily sort all the appointments or properties in the app.
