@@ -180,7 +180,29 @@ The following sequence diagram shows how the status operation works:
 The following activity diagram summarizes what happens when a user executes a `status` command:
 ![StatusActivityDiagram](images/StatusActivityDiagram.png)
 
+### Edit Booking feature
 
+#### Implementation
+The proposed mechanism is facilitated by the `logic` component described above. It edits the details of existing bookings that are currently in Residence Tracker. It makes use of the following methods.
+
+* `EditBookingCommandParser#parse` parses the prefixes and the corresponding parameters to be edited.
+* `BookingList#containsExclude` determines if edited dates are valid by checking if it overlaps with any of the existing bookings.
+* `EditBookingCommand#execute` finds the target residence and target booking and edits the corresponding details accordingly.
+
+After `EditBookingCommand#execute` finds the target residence and booking, it makes use of `BookingList#setBooking` and `Model#setResidence` to update the booking of the residence in the residence list. 
+
+Given below is an example usage scenario of how the editing of bookings work.
+
+Step 1. The user launches the application. `ResidenceTracker` is initialised with prior saved data of residences.
+
+Step 2. The user plans to edit the end date of a booking since the tenants requested for an extension. The user executes the command `editb r/2 b/1 e/01-01-2022` to edit the end date of the first booking of the second residence displayed in `ResidenceTracker`.
+
+Step 3. The command is parsed by `EditBookingCommandParser` and returns a `EditBookingCommand` to be executed.
+
+Step 4. `Editbookingcommand#execute` checks if the residence and booking exists and if the edited end date is valid.
+
+Step 5. The method then calls `BookingList#setBooking` to set the edited booking before calling `model#setResidence` to set the edited residence. Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+ 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
