@@ -70,7 +70,8 @@ The sections below give more details of each component.
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+, `StatusBarFooter` etc. The `NotifWindow` and `NotesWindow` classes inherit from the `Alert` class. All other classes, 
+including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
@@ -142,11 +143,49 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Representing gender of clients
+
+The gender of each client is represented as a `String` with the full gender (Male/ Female/ Non-binary). However, the
+parse will accept any of {M, F, N, Male, Female, Non-binary} with any combination of upper and lower case, and then
+convert it to the full gender.
+
+### Representing birthdate of clients
+
+The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to
+use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from
+`1900-01-01` to `LocalDate.now()`.
+
+
+### Representing insurance premiums of insurance plans
+
+The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
+risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
+zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it
+to 2 decimal places.
+
+### Recording, viewing and clearing notes for clients
+![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
+
+The `NoteCommand` is created and parsed similar to other commands, as show in the sequence diagram above. The `Prefix` 
+that the user called the command with (`/r` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
+additional parameter in the `NoteCommand`.
+
+
+![NoteSequenceDiagramRef](images/NoteSequenceDiagramRef.png)
+
+Upon executing a `NoteCommand`, a different sequence of actions is performed by the `NoteCommand`, depending on the
+`Prefix` stored in the `NoteCommand`. 
+
+Recording and clearing notes will call the respective methods of the appropriate
+`Person` that the user has indicated. The `Person` will return an updated `Person` object, and `NoteCommand`
+will proceed to call the `ModelManager` to replace the original `Person` with the updated `Person`. A `CommandResult`
+is then created and returned.
+
+Viewing notes will simple create and return a `CommandResult`. This `CommandResult` contains the `Person` object
+representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
+`Person` in the `NotesWindow`.
+
 ### Scheduling meetings and Meeting List Display
-
-#### Design consideration:
-
-##### The current implementation
 
 ![ScheduleSequenceDiagramLogic](images/ScheduleSequenceDiagramLogic.png)
 ![ScheduleSequenceDiagramModel](images/ScheduleSequenceDiagramModel.png)
@@ -187,29 +226,6 @@ returns the result to see whether the command is a notification command and retu
 second part of the implementation, the `MainWindow` handles the notification command and requests the notifications from
 `Logic`, which in turn requests from model. The `MainWindow` then sends the notification string to the `NotifWindow` to
 be displayed.
-
-### Representing birthdates of clients
-
-#### Current Implementation
-
-The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to
-use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from
-`1900-01-01` to `LocalDate.now()`.
-
-#### Proposed Extension
-
-One of the planned features is to alert the user if the birthday of a client is occurring in the upcoming week. This
-requires us to check through each person stored within the app to see whether their birthday (derived from their
-birthdate) occurs before `LocalDate.now().plusDays(7)`. This check will be done upon launching the app. If >=1 persons
-have upcoming birthdays, a pop-up box will be served to the user to remind them of the birthdays.
-
-### Representing premiums of insurance plans
-
-The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
-risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
-zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it
-to 2 decimal places.
-
 
 
 --------------------------------------------------------------------------------------------------------------------

@@ -23,7 +23,9 @@ Class Email
 Class Gender
 Class Name
 Class Phone
+Class Note
 Class UniquePersonList
+
 }
 
 Package Meeting {
@@ -59,8 +61,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> Gender
-Person *--> Birthdate
+Person *---> Gender
+Person *---> Birthdate
+Person *---> "*" Note
 Person *--> "*" Tag
 Person *--> "0...1" Meeting
 Person *--> "*" InsurancePlan
