@@ -35,8 +35,8 @@ Given below are my contributions to the project.
     * Added documentation for the features `remind` and `addb` [\#173](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/173/files)
     * Did cosmetic tweaks to existing documentation of features `add`, `edit`, `status`
   * Developer Guide:
-    * Added implementation details of the `remind` feature.
-    * Added implementation details of the `remind` feature.
+    * Added implementation details of the `remind` feature. [\#237](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/237/files)
+    * Added user stories and made cosmetic tweaks to adapt the document to the new application.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#146](https://github.com/AY2021S2-CS2103-T16-3/tp/pull/146)
