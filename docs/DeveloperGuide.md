@@ -222,23 +222,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the System is Focuris and the Actor is the user, unless specified otherwise)
 
-**Use case: Delete a events**
+**Use case: Delete an event**
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to delete a specific event in the list
-3.  Focuris deletes the event
+1.  Focuris currently shows events.
+2.  User requests to delete a specific event.
+3.  Focuris deletes the event.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. The list is empty.
+- 1a. There are no events.
 
   Use case ends.
 
-- 2a. The given index is invalid.
+- 2a. The given identifier is invalid.
 
   - 2a1. Focuris shows an error message.
 
@@ -248,67 +248,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to add a Event
-3.  Focuris adds the Event
+1.  Focuris currently shows events.
+2.  User requests to add an event.
+3.  Focuris adds the event.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The format to add a event is invalid.
+- 2a. The format to add an event is invalid.
 
   - 2a1. Focuris shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 - 2b. The event already exists in Focuris.
 
   - 2b1. Focuris shows an error message.
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
-**Use case: Edit a event**
+**Use case: Edit an event**
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to edit a specific event in the list
-3.  Focuris edits the event
+1.  Focuris currently shows events.
+2.  User requests to edit a specific event.
+3.  Focuris edits the event.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. There are no events.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 2a. The given identifier is invalid.
 
-  - 3a1. Focuris shows an error message.
-
-    Use case resumes at step 2.
-
-- 3b. No fields are provided to edit.
-
-  - 3b1. Focuris shows an error message.
+  - 2a1. Focuris shows an error message.
 
     Use case resumes at step 2.
 
-**Use case: Find a event**
+- 2b. No fields are provided to edit.
+
+  - 2b1. Focuris shows an error message.
+
+    Use case resumes at step 2.
+
+
+**Use case: Mark an event to be done**
 
 **MSS**
 
-1.  Focuris currently shows a list of events
-2.  User requests to find a event
-3.  Focuris shows a list of events whose names contain any of the given words
+1.  Focuris currently shows events.
+2.  User requests an event to be done.
+3.  Focuris marks the event as done.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. There is no such event with the given keyword
+- 1a. There are no events.
+
+  Use case ends.
+
+- 2a. The given identifier is invalid.
+
+    - 2a1. Focuris shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Find an event**
+
+**MSS**
+
+1.  Focuris currently shows events.
+2.  User requests to find an event.
+3.  Focuris shows events whose names contain any of the given words.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. There is no such event with the given keyword.
 
   Use case ends.
 
@@ -316,23 +340,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests help
+1.  User requests help.
 2.  Focuris shows a link to the User Guide.
 
     Use case ends.
 
-**Use case: Show list of all events**
+**Use case: Show all events**
 
 **MSS**
 
-1.  User requests to list all events in Focuris
-2.  Focuris shows all events
+1.  User requests to show all events in Focuris.
+2.  Focuris shows all events.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. There are no events.
+
+  Use case ends.
+
+**Use case: Switch to list view of all events**
+
+**MSS**
+
+1.  User requests to switch to list view of events in Focuris.
+2.  Focuris shows all events in a list view.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. There are no events.
 
   Use case ends.
 
@@ -340,14 +379,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to clear all entries of events in Focuris
+1.  User requests to clear all entries of events in Focuris.
 2.  Focuris clears the entries of events.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. The list is already cleared.
+- 1a. There are no events to be cleared.
 
   Use case ends.
 
@@ -355,25 +394,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to exit Focuris
+1.  User requests to exit Focuris.
 2.  Focuris closes.
 
     Use case ends.
 
-**Use case: Sorts Events by Priority**
-
-**MSS**
-
-1. User requests to sort list of events by priority
-2. Focuris shows list of events sorted by priority
-
-Use Case Ends.
-
-**Extensions**
-
-- 1. The list is empty
-
-Use case ends.
 
 ### Non-Functional Requirements
 
