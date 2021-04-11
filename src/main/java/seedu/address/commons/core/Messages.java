@@ -19,5 +19,7 @@ public class Messages {
             "You already have an appointment with the same name, date/time and address in the address book.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_RECEIVED_MORE_THAN_INDEX = "Preamble contains more than just index.";
+    public static final String MESSAGE_INVALID_FILE =
+            "There was a problem obtaining help information from the file.";
 
 }
