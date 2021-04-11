@@ -473,6 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Add a duration to a task**
 
 **MSS**
+
 1. User <u>adds a task</u> to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to add a duration to a specified task.
