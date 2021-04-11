@@ -125,9 +125,7 @@ public class TypicalTeachingAssistant {
         for (Contact contact : getTypicalContacts()) {
             ab.addContact(contact);
         }
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
+
         for (Entry entry : getTypicalEntries()) {
             ab.addEntry(entry);
         }
@@ -136,10 +134,6 @@ public class TypicalTeachingAssistant {
 
     public static List<Entry> getTypicalEntries() {
         return new ArrayList<>(Arrays.asList(CONSULTATION, CLASS_MEETING, EXTRA_CLASS, SHORT_QUIZ, DO_STUFF));
-    }
-
-    public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
     public static List<Contact> getTypicalContacts() {
