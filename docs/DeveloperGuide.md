@@ -722,26 +722,26 @@ Step 6. If the delete important date command has been successfully executed, the
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the delete feature works:
+The sequence diagram below shows how the delete important date feature works:
 ![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a delete important date command is executed:
 ![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Whether to delete the important date based on the order it has been input in or according to the order the dates are displayed in, which is sorted by details (time and date).
+##### Aspect: 
 
-* **Alternative 1 (current choice):** Deletes important date based on the order it is displayed in. 
-    * Pros: It is easier for the user to find and delete the correct important date by just scrolling through the list. 
-    * Cons: User will have to scroll through the list multiple times to obtain the correct index if user wants to delete multiple important dates that have been added in consecutively.
-
-* **Alternative 2:** Deletes important date based on the order it was added in.
-    * Pros: User can easily delete dates that have been added in consecutively. 
-    * Cons: The index displayed next to each of the dates in the important dates list must correspond to the sequence it has been added in. 
-      A separate command will have to be implemented in order to show the user the important dates sorted according to details (time and date).
+* **Alternative 1 (current choice):** 
+    * Pros: 
+    * Cons:  
+  
+* **Alternative 2:** 
+    * Pros: 
+    * Cons: 
+      
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1050,7 +1050,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Deletes a new important date**
+**Use case: Deletes an important date**
 
 **MSS**
 
