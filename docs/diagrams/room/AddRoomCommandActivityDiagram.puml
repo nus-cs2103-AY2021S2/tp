@@ -7,13 +7,16 @@ if () then ([all parameters are valid])
 :Construct Room
 with given parameters;
 if () then ([No duplicate room in model])
-:Add room to model;
+:Add room to SunRez;
 note left
-Adding to the model
-involves updating
-storage too. This
-process has been
-omitted for brevity.
+Adding the room
+involves saving
+the address book
+state and updating
+the backing storage
+too. This process
+has been omitted
+for brevity.
 end note
 :Show success message to user;
 else ([else])

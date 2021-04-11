@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +35,7 @@ import seedu.address.testutil.room.RoomBuilder;
 public class EditRoomCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+    // EPs: [invalid format] [no fields specified] [some fields specified]
     @Test
     public void execute_allFieldsSpecifiedUnfilteredRoomList_success() {
         Room roomToEdit = model.getFilteredRoomList().get(3);
@@ -174,6 +176,94 @@ public class EditRoomCommandTest {
 
         assertCommandFailure(editRoomCommand, model, String.format(
                 Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, model.getFilteredRoomList().size()));
+    }
+
+    // No more than 1 invalid input: Only room number is an illegal input here.
+    /**
+     * Edit room number of a room that has an issue
+     */
+    @Test
+    public void execute_roomHasIssueChangeRoomNumber_failure() {
+        // Room idx 3 is tied to issue idx 0
+        Room roomToEdit = model.getFilteredRoomList().get(INDEX_SECOND.getZeroBased());
+
+        // Room we are changing to needs to maintain the occupancy status
+        // of the room we start with. So we pre-set it here.
+        Room editedRoom = new RoomBuilder()
+                .withOccupancyStatus(roomToEdit.isOccupied().toString())
+                .build();
+
+        EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder(editedRoom)
+                .withRoomNumber(VALID_ROOM_NUMBER_ONE)
+                .build();
+
+        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_THIRD, descriptor);
+
+        assertCommandFailure(editRoomCommand, model, EditRoomCommand.MESSAGE_ROOM_HAS_ISSUES);
+    }
+
+    // Each valid input at least once: we allow room type and room tag change at least once below to ensure they
+    // can be changed despite the room having issues tied to it.
+    /**
+     * Edit room type of a room that has an issue
+     */
+    @Test
+    public void execute_roomHasIssueChangeRoomType_success() {
+        // Room idx 3 is tied to issue idx 0
+        Room roomToEdit = model.getFilteredRoomList().get(INDEX_SECOND.getZeroBased());
+
+        // Room we are changing to needs to maintain the occupancy status
+        // of the room we start with. So we pre-set it here.
+        Room editedRoom = new RoomBuilder()
+                .withOccupancyStatus(roomToEdit.isOccupied().toString())
+                .build();
+
+        EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder(editedRoom)
+                .withRoomType(VALID_ROOM_TYPES.get(0))
+                .build();
+
+        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_THIRD, descriptor);
+
+
+        assertCommandFailure(editRoomCommand, model, EditRoomCommand.MESSAGE_ROOM_HAS_ISSUES);
+    }
+
+    /**
+     * Edit room type of a room that has an issue
+     */
+    @Test
+    public void execute_roomHasIssueChangeRoomTag_success() {
+        // Room idx 3 is tied to issue idx 0
+        Room roomToEdit = model.getFilteredRoomList().get(INDEX_SECOND.getZeroBased());
+
+        // Room we are changing to needs to maintain the occupancy status
+        // of the room we start with. So we pre-set it here.
+        Room editedRoom = new RoomBuilder()
+                .withOccupancyStatus(roomToEdit.isOccupied().toString())
+                .build();
+
+        EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder(editedRoom)
+                .withRoomType(VALID_ROOM_TYPES.get(0))
+                .withTags("tagone", "tagtwo")
+                .build();
+
+        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_THIRD, descriptor);
+
+
+        assertCommandFailure(editRoomCommand, model, EditRoomCommand.MESSAGE_ROOM_HAS_ISSUES);
+    }
+
+    /**
+     * Edit room while filtered list is empty
+     */
+    @Test
+    public void execute_filteredListIsEmpty_failure() {
+        Room roomToEdit = model.getFilteredRoomList().get(INDEX_FIRST.getZeroBased());
+        EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder(roomToEdit).build();
+        model.updateFilteredRoomList(p -> false);
+        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_THIRD, descriptor);
+
+        assertCommandFailure(editRoomCommand, model, Messages.MESSAGE_NO_ROOMS);
     }
 
     @Test
