@@ -215,7 +215,7 @@ public class ModelManager implements Model {
     @Override
     public List<Order> getOrdersContainingDish(Dish target) {
         List<Order> ordersContainingDish = new ArrayList<>();
-        for (Order o : getOrderBook().getOrderList()) {
+        for (Order o : getOrderBook().getItemList()) {
             if (o.contains(target)) {
                 ordersContainingDish.add(o);
             }
