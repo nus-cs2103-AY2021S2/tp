@@ -814,6 +814,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 1. Initial launch
+   
     1. Download the jar file and copy into an empty folder
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
@@ -843,11 +844,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a flashcard
 1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
+   
     1. Prerequisites: Application is in main mode and running
+       
     1. Test case: `add q/Who invented the alternating current? a/Nikola Tesla c/Physics p/Mid`
     Expected: A new card is added to the list. Result display shows the details of the added flashcards.
+       
     1. Test case: `add q/Who initiated the Arab Spring operation? a/Barack Obama c/Political Studies p/High t/war`
     Expected: A new card is added to the list. Result display shows the details of the added flashcards with tags.
+       
     1. Test case: `add`
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
 
@@ -951,6 +956,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting flashcards
 1. Sorting all flashcards in FlashBack.
+   
     1. Prerequisites: There must be at least 1 flashcard currently shown in the list.
        
     1. Test case: `sort priority -a`
@@ -1024,8 +1030,8 @@ testers are expected to do more *exploratory* testing.
 1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
-        <div style="page-break-after: always;"></div><br>
-       
+        <br><div style="page-break-after: always;"></div>
+    
     1. Test case: `stats` <br>
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
