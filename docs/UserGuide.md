@@ -404,7 +404,7 @@ Action | Format, Examples
 **Add Student** | `add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
 **Edit Student** | `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
-**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter unvaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
+**Filter Students** | `filter VACCINATION_STATUS` e.g., `filter vaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
 **Add Appointment** | `addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt A1234567X d/2021-12-13 ts/13:00`
 **Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
