@@ -176,7 +176,7 @@ Format: `list`
 
 ### Deleting a flashcard : `delete`
 
-Deletes the specified flashcard from the flashcard list. <br>
+Deletes a specific flashcard from the flashcard list. <br>
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
