@@ -31,11 +31,12 @@ The Food Diary will allow students to save time and effort when finding places t
 
 2. Download the latest jar file from [here](https://github.com/AY2021S2-CS2103-T14-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the home folder for your The Food Diary app.
+3. Copy the file to the folder you want to use as the home folder for The Food Diary app.
 
-4. Open your terminal at where the home folder is and run java -jar <name of file>.jar to start the app.
+4. Open your terminal at where the home folder is, and run java -jar [file name].jar without the
+   [ ] brackets to start the app.
 
-5. You should now see The Food Diary’s home page:
+5. You should now see The Food Diary’s home page.
 
 ## User Interface
 
