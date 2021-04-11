@@ -26,7 +26,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage is not a positive percentage value.";
+    public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage is not a positive percentage integer value.";
 
 
     public static final String MESSAGE_INVALID_ARGS_LENGTH = "Invalid number of arguments provided.";

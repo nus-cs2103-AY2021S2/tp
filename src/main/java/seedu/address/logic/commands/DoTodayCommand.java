@@ -22,8 +22,8 @@ public class DoTodayCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + "Adds the task identified by the index number used in the displayed task list into "
             + "the daily to-do list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: -a OR -r INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + OperationType.ADD.getOperationType() + " 1";
 
     public static final String MESSAGE_ADDED_TASK_SUCCESS = "Added Task: %1$s to daily to-do list.";
 

@@ -94,7 +94,7 @@ public class TaskCard extends UiPart<Region> {
         deadlineDate.setText("Submission date : " + task.getDeadlineDate().toString());
         deadlineTime.setText("Submission time : " + task.getDeadlineTime().toString());
         weightage.setText("Weightage : " + task.getWeightage().toString());
-        notes.setText(task.getNotes().value);
+        notes.setText("Notes: " + task.getNotes().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
