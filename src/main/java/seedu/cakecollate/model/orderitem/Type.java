@@ -10,11 +10,11 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 public class Type {
 
     public static final String SHARED_CONSTRAINTS_MESSAGE =
-            "%s should only contain alphanumeric characters, \" and white spaces, and it should not be blank";
+            "%s should only contain alphabets, and it should not be blank.";
 
     public static final String MESSAGE_CONSTRAINTS = String.format(SHARED_CONSTRAINTS_MESSAGE, "Order Type");
 
-    public static final String VALIDATION_REGEX = "^([\\p{Alnum}\"]|([\\p{Alnum}\"][\\p{Alnum}\" ]*))$";
+    public static final String VALIDATION_REGEX = "^([\\p{Alpha}]|([\\p{Alpha}][\\p{Alpha} ]*))$";
 
     public final String value;
 
