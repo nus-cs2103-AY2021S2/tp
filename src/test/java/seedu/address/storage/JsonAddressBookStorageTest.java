@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTeachingAssistant.ALICE;
+import static seedu.address.testutil.TypicalTeachingAssistant.AVA;
 import static seedu.address.testutil.TypicalTeachingAssistant.CONSULTATION_MATH;
-import static seedu.address.testutil.TypicalTeachingAssistant.HOON;
-import static seedu.address.testutil.TypicalTeachingAssistant.IDA;
+import static seedu.address.testutil.TypicalTeachingAssistant.HANNAH;
+import static seedu.address.testutil.TypicalTeachingAssistant.IVAN;
 import static seedu.address.testutil.TypicalTeachingAssistant.REMEDIAL;
 import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
@@ -54,7 +54,7 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidContactTeachingAssistant.json"));
     }
 
     @Test
@@ -85,15 +85,15 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addContact(HANNAH);
+        original.removeContact(AVA);
         original.addEntry(REMEDIAL);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addContact(IVAN);
         original.addEntry(CONSULTATION_MATH);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
