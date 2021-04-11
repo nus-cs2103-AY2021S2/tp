@@ -19,8 +19,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 public class FindPoolCommandParserTest {
-    private final String AMY_FIRST_NAME = VALID_NAME_AMY.split("\\s+")[0];
-    private final String BOB_FIRST_NAME = VALID_NAME_BOB.split("\\s+")[0];
+    private static final String AMY_FIRST_NAME = VALID_NAME_AMY.split("\\s+")[0];
+    private static final String BOB_FIRST_NAME = VALID_NAME_BOB.split("\\s+")[0];
 
     private FindPoolCommandParser parser = new FindPoolCommandParser();
 
