@@ -242,6 +242,7 @@ Each concrete `AddEventCommand` implements `AddEventCommand#execute` method, whi
 Below is a sequence diagram and explanation of how an `addE` command is executed.
 
 ![Add Event Sequence Diagram](images/AddEventCommandSequenceDiagram.png)
+
 *Sequence Diagram for the Add Event command*
 
 Step 1. The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
@@ -287,6 +288,7 @@ If the provided project index and todo index are valid, then `DeleteTodoCommandP
 For a better understanding, take a look at the Logic Class Diagram in the Logic Component section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
 
 ![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserCommandSequenceDiagram.png)
+
 *Sequence Diagram for the Delete Todo command*
 
 The `DeleteTodoCommand` has been successfully created and its execute method would be called by `LogicManager#execute`, which was called by `MainWindow#executeCommand`. 
@@ -294,6 +296,7 @@ The `DeleteTodoCommand` has been successfully created and its execute method wou
 Depicted below is another sequence diagram that shows the interaction between `StorageManager`, `ModelManager`, `LogicManager` and `DeleteTodoCommand`, when `DeleteTodoCommand#execute` is called.
 
 ![Delete Todo Sequence Diagram](images/DeleteTodoCommandSequenceDiagram.png)
+
 *Sequence Diagram for `DeleteTodoCommand#execute()`*
 
 As shown, the original todo in CoLAB's Model Component has been deleted. Moreover, the updated list of todos has been saved to the Storage Component of CoLAB. As the operation comes to an end, the `CommandResult` object returned is used for UI purposes, where a message is displayed to the user to inform him/her about the status of their input command and the deleted todo.
