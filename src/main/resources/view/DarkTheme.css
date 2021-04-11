@@ -101,10 +101,12 @@
 
 .list-cell:filled:even {
     -fx-background-color: #3c3e3f;
+    -fx-border-color: #000000;
 }
 
 .list-cell:filled:odd {
     -fx-background-color: #515658;
+    -fx-border-color: #000000;
 }
 
 .list-cell:filled:selected {
@@ -328,7 +330,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #taskListPanel, #taskWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

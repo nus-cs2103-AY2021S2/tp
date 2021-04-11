@@ -5,23 +5,27 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyModuleBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class ModuleBook
+Class ReadOnlyModuleBook
 Class Model
 Class ModelManager
+Class ModuleManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
+Package Task {
+Class Task
+Class Description
+Class Module
 Class Name
-Class Phone
-Class UniquePersonList
+Class Time
+Class DoneStatus
+Class Recurrence
+Class Workload
+Class UniqueTaskList
 }
 
 Package Tag {
@@ -32,25 +36,33 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ModuleBook .up.|> ReadOnlyModuleBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModuleManager .up.> ObservableList
+ModelManager o--> "1" ModuleBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModuleBook *--> "1" UniqueTaskList
+ModuleManager --> "*" Module
+ModuleManager .left.> Task
+UniqueTaskList o--right> "*" Task
+Task *--> "1" Name
+Task *--> "1..2" Time
+Task *--> "1" Module
+Task *--> "1" Description
+Task *--> "1" Workload
+Task *--> "1" DoneStatus
+Task *--> "0..1" Recurrence
+Task *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Time
+Time -[hidden]right-> Description
+Description -[hidden]right-> Module
+Module -[hidden]right-> DoneStatus
+DoneStatus -[hidden]right-> Workload
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager -----> "*" Task
 @enduml

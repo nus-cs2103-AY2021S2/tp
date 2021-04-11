@@ -1,0 +1,24 @@
+.chart-pie-label-line {
+    -fx-stroke: #8b4513;
+    -fx-fill: #8b4513;
+}
+
+.chart-pie-label {
+    -fx-fill: white;
+    -fx-font-size: 1em;
+}
+
+.chart-legend {
+    -fx-background-color: grey;
+    -fx-stroke: #daa520;
+}
+
+.chart-legend-item{
+    -fx-text-fill: white;
+    -fx-font-size: 1em;
+}
+
+.chart-title {
+    -fx-text-fill: white;
+    -fx-font-size: 1.2em;
+}

@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleBookParser" as ModuleBookParser LOGIC_COLOR
+participant ":RecurCommandParser" as RecurCommandParser LOGIC_COLOR
+participant "c:RecurCommand" as RecurCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant "newTask:Task" as Task MODEL_COLOR
+end box
+
+[-> LogicManager : execute("recur 1 r/daily")
+activate LogicManager
+
+LogicManager -> ModuleBookParser : parseCommand("recur 1 r/daily")")
+activate ModuleBookParser
+
+create RecurCommandParser
+ModuleBookParser -> RecurCommandParser
+activate RecurCommandParser
+
+RecurCommandParser --> ModuleBookParser
+deactivate RecurCommandParser
+
+ModuleBookParser -> RecurCommandParser : parse("1 r/daily")
+activate RecurCommandParser
+
+create RecurCommand
+RecurCommandParser -> RecurCommand
+activate RecurCommand
+
+RecurCommand --> RecurCommandParser : c
+deactivate RecurCommand
+
+RecurCommandParser --> ModuleBookParser : c
+deactivate RecurCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RecurCommandParser -[hidden]-> ModuleBookParser
+destroy RecurCommandParser
+
+ModuleBookParser --> LogicManager : c
+deactivate ModuleBookParser
+
+LogicManager -> RecurCommand : c.execute(model)
+activate RecurCommand
+
+RecurCommand -> ModelManager : getFilteredTaskList.get(c.index)
+activate ModelManager
+
+ModelManager --> RecurCommand : task
+deactivate ModelManager
+
+create Task
+RecurCommand --> Task : Task.makeNextRecurringTask(task, c.recurrence)
+activate Task
+
+Task --> RecurCommand
+deactivate Task
+
+RecurCommand --> ModelManager : setTask(task, newTask)
+activate ModelManager
+
+ModelManager --> RecurCommand
+deactivate ModelManager
+
+RecurCommand --> ModelManager : updateFilteredTaskList()
+activate ModelManager
+
+ModelManager --> RecurCommand
+deactivate ModelManager
+
+
+create CommandResult
+RecurCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RecurCommand
+deactivate CommandResult
+
+RecurCommand --> LogicManager : result
+deactivate RecurCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RecurCommand -[hidden]-> LogicManager
+destroy RecurCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

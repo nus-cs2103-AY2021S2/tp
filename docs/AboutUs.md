@@ -5,55 +5,82 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Tay Yi Hsuen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yhtminceraft1010x.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/yhtMinceraft1010X)]
+[[portfolio](team/yhtminceraft1010x.md)]
 
-* Role: Project Advisor
+* Role: Developer, Documentation
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Logic Component Checker
+    * Documentation Checker
+    * Project Management
 
-### Jane Doe
+### Umer Siddiqui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/umergta.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/umergta)]
+[[portfolio](team/umergta.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer, Documentation
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Storage Component Checker
+    * Documentation Checker
+    * Project Management
+    
+### Lee Ze Xin
 
-### Johnny Doe
+<img src="images/figo2127.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/figo2127)]
+[[portfolio](team/figo2127.md)]
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+* Role: Developer, QA Engineer
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Model Component Checker
+    * QA Checker
+    * Project Management
 
-* Role: Developer
-* Responsibilities: Data
+### Wang Yuanzhe
 
-### Jean Doe
+<img src="images/aiwassprime.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/AiwassPrime)]
+[[portfolio](team/aiwassprime.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Developer, QA Engineer
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Commons Component Checker
+    * Tester
+    * QA Checker
+    * Project Management
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+### He Qiyuan
 
-### James Doe
+<img src="images/qy-h00.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[homepage](https://qy-h00.github.io/)]
+[[github](https://github.com/qy-h00)]
+[[portfolio](team/qy-h00.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Developer, QA Engineer
+* Responsibilities:
+    * Developer for ModuleBook3.5
+    * Ui Component Checker
+    * Tester
+    * QA Checker
+    * Project Management
+    
 
-* Role: Developer
-* Responsibilities: UI
+
+
+

@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Ui <<Rectangle>>{
+Class ModuleListPanel
+Class StatsPanel
+Class MainWindow
+}
+
+Package Logic <<Rectangle>>{
+Interface Logic
+}
+
+Package Model <<Rectangle>>{
+Interface Model
+Class ModuleManager
+}
+MainWindow -down-> "1" StatsPanel
+MainWindow -down-> "1" ModuleListPanel
+
+MainWindow .down.> Logic
+
+Logic .down.> Model
+Model .right.> ModuleManager
+@enduml

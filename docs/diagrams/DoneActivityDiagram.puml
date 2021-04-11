@@ -1,0 +1,8 @@
+@startuml
+start
+:User executes done command;
+:Retrieve task to be marked done;
+:Create done copy of task;
+:Replace original task in list with done copy;
+stop
+@enduml

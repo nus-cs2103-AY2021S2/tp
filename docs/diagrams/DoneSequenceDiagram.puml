@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleBookParser" as ModuleBookParser LOGIC_COLOR
+participant "d:DoneCommand" as DoneCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(done)
+activate LogicManager
+
+LogicManager -> ModuleBookParser : parseCommand(done)
+activate ModuleBookParser
+
+create DoneCommand
+ModuleBookParser -> DoneCommand
+activate DoneCommand
+
+DoneCommand --> ModuleBookParser
+deactivate DoneCommand
+
+ModuleBookParser --> LogicManager : u
+deactivate ModuleBookParser
+
+LogicManager -> DoneCommand : execute()
+activate DoneCommand
+
+DoneCommand -> Model : setTask(originalTask, doneTask)
+activate Model
+
+Model --> DoneCommand
+deactivate Model
+
+DoneCommand --> LogicManager : result
+deactivate DoneCommand
+DoneCommand -[hidden]-> LogicManager : result
+destroy DoneCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
