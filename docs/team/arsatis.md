@@ -11,7 +11,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=arsatis&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=arsatis&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **New Feature**: Added a `findreader` command that allows the user to find all the readers in SmartLib with a
     specified name.
@@ -56,7 +56,23 @@ Given below are my contributions to the project.
     [\#279](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/279),
     [\#280](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/280),
     [\#281](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/281),
-    [\#282](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/282))
+    [\#282](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/282),
+    [\#292](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/292),
+    [\#294](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/294),
+    [\#295](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/295),
+    [\#296](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/296),
+    [\#297](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/297),
+    [\#300](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/300),
+    [\#301](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/301),
+    [\#302](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/302),
+    [\#303](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/303),
+    [\#305](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/305),
+    [\#306](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/306),
+    [\#307](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/307),
+    [\#308](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/308),
+    [\#309](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/309),
+    [\#315](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/315),
+    [\#316](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/316))
   * Fixed miscellaneous bugs in existing features (pull requests
     [\#171](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/171),
     [\#183](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/183),
@@ -80,6 +96,8 @@ Given below are my contributions to the project.
   * Added glossary to clarify technical terminology (pull requests
     [\#178](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/178),
     [\#273](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/273))
+  * Carried out an overall check and reformatting of UG (pull request
+    [\#325](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/325))
 
 * **Contributions to the Developer Guide**:
   * Added target user profile, value proposition, and user stories (pull request
@@ -110,9 +128,11 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed:
     [\#154](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/154),
-    [\#158](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/158)
+    [\#158](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/158),
+    [\#293](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/293)
   * Contributed to forum discussions (examples:
     [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/194),
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/139),
-    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/110#issuecomment-774674147))
+    [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/110#issuecomment-774674147),
+    [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/300))
   * Reported bugs and suggestions for other teams in the class (example: [PE-D](https://github.com/arsatis/ped/issues))
