@@ -10,14 +10,14 @@ EzManage - EzManage is a desktop address book application used for the managemen
 
 Given below are my contributions to the project.
 
-* **New Feature** : Add Student/Tutor Feature
+* **New Feature** : Add Student/Tutor Feature [\#5](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/5)
   * What it does: Allow the user to add a student or tutor depending on the person type
   * Justification: Student and Tutor are the crucial entities in EzManage, without proper segregation of student and tutor, administrative tasks become difficult and tedious. This also allow filtering of personnel easier as each person is given a person type.
   * Highlights: When a student or tutor is added, the UI is able to easily differentiate between student and tutor. The students and tutors are also saved into EzManage's addressbook with a PersonType attribute for easy future references.
   * Credits: AddressBook Level 3
 
-* **New Feature** : Assign Feature
-    * What it does: Allow the user to assign student(s) and tutor to a session
+* **New Feature** : Assign Feature [\#66](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/66)
+  )    * What it does: Allow the user to assign student(s) and tutor to a session
     * Justification: Instead of using pen and paper to indicate which student/tutor belongs to which session, this feature allow user to swifty assign student and tutor to a class. The application will also warn the user if there are any schedule clashes or if the personnel is already assigned to a class to prevent duplicate.
     * Highlights: Each student/tutor has a list of sessions that he/she is assigned to. Likewise, sessions also have a list of students and a tutor assigned to it. This makes retrieval of information much easier.
     * Credits: AddressBook Level 3
@@ -26,12 +26,15 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
-    
+
+* **Enhancements to existing features**:
+    * Add User Interface to view all sessions. Implemented Storage functionality to store sessions in JSON file for retrieval. Create the necessary classes to convert Sessions to JSON Objects [\#42](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/42)
+  
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `add_person` and `assign`
+        * Add documentation for the features `add_person` and `assign` [\#92](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/92) [\#165](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/165) [\#10](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/10)
     * Developer Guide:
-        * Added implementation details of the `add_person` and `assign` features.
+        * Add implementation details of the `add_person` and `assign` features. [\#175](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/175)
 
 * **Community**:
     * Reported bugs and suggestions for other teams in the PE Dry Run.
