@@ -51,6 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_SHORT = "short";
     public static final String VALID_TAG_TALL = "tall";
+    public static final String VALID_TAG_FEVER = "fevre";
+    public static final String VALID_TAG_SEVERE = "severe";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
