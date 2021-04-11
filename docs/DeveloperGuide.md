@@ -807,8 +807,6 @@ The activity diagram that summaries what happens when users execute the `UndoneT
 
 ![Activity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
 
-<div style="page-break-after: always;"></div>
-
 **Design Considerations**
 
 One of the challenges is if we should add additional support to allow undone task command to mark more than one tasks as uncompleted.
