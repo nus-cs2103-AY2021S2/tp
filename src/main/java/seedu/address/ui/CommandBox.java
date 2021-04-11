@@ -14,6 +14,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
+    public static final String DUPLICATE_NAME_AND_LESSON = "The student name ";
+    public static final String DUPLICATE_NAME = "This student name ";
+    public static final String DUPLICATE_LESSON = "You have a lesson at ";
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
@@ -47,18 +50,15 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
-            commandTextField.setText("");
             commandExecutor.execute(commandText);
+            commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
-            if (e.getMessage().startsWith("The student name ")) {
+            if (e.getMessage().startsWith(DUPLICATE_NAME_AND_LESSON)
+                    || e.getMessage().startsWith(DUPLICATE_NAME)
+                    || e.getMessage().startsWith(DUPLICATE_LESSON)) {
                 previousUserInput = commandText;
-            }
-            if (e.getMessage().startsWith("You have a lesson at ")) {
-                previousUserInput = commandText;
-            }
-            if (e.getMessage().startsWith("This student name ")) {
-                previousUserInput = commandText;
+                commandTextField.setText("");
             }
         }
     }
