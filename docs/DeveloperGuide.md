@@ -162,7 +162,8 @@ The proposed mechanism is facilitated by the `logic` component described above. 
 * `StausCommand#createUpdatedResidence()` —  Create updated residence with the required clean status and the same other data.
 * `StausCommandParser#paser()` —  Manage the status command input, return a status command with required clean status and target residence index list.
 
-These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method to update the order of residence list, and `Model#setResidence()` to update the residence in the residence list. 
+These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method to update the order of residence list, 
+and `Model#setResidence()` to update the residence in the residence list. 
 
 Given below is an example usage scenario and how the `status` filtering mechanism behaves at each step.
 
@@ -172,6 +173,12 @@ Step 2. The user executes two or more input`add n/NAME a/ADDRESS c/y ...` comman
 
 Step 3. The user executes `status unclean 4 5` to update the forth and fifth residences' clean status to "UNCLEAN". The `status` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
 
+The following sequence diagram shows how the status operation works:
+
+![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a `status` command:
+![StatusActivityDiagram](images/StatusActivityDiagram.png)
 
 
 ### \[Proposed\] Undo/redo feature
@@ -297,9 +304,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new residence                | keep track of all my residences                                                                         |
 | `* * *`  | user                                       | delete a residence                 | remove places that I no longer need to track                             |
 | `* * *`  | user                                       | find a residence by name           | locate details of residence without having to go through the entire list |
-| `* *`    | user                                       | edit a residence status            | keep track of all my residences status as and when they change           |
-| `*`      | user owning and renting out many residences| view list of all residence status  | minimize the time needed to get a quick overview of all my residences    |
-| `*`      | busy advanced user                         | clear user input quickly           | my time is used more efficiently                                         |
+| `* *`    | user                                       | edit a residence                   | change the information of residence when it is changed or error.            |
+| `*`      | user owning and renting out many residences | update status of multiple residence at once  | save the time that editing clean status one by one    |
+|`* *`    | new user  |clean all example residence|begin my new Residence Tracker quick
+
 
 *{More to be added}*
 
@@ -446,17 +454,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a residence
 
-1. Deleting a person while all persons are being shown
+1. Deleting a residence while all residence are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all residences using the `list` command. Multiple residences in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First residence is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No residence is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

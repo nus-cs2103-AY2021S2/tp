@@ -5,23 +5,23 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyResidenceTracker <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class ResidenceTracker
+Class ReadOnlyResidenceTracker
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Residence {
+Class Residence
+Class ResidenceAddress
+Class ResidenceName
+Class CleanStatusTag
+Class BookingList
+Class UniqueResidenceList
 }
 
 Package Tag {
@@ -32,25 +32,25 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ResidenceTracker .up.|> ReadOnlyResidenceTracker
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" ResidenceTracker
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ResidenceTracker *--> "1" UniqueResidenceList
+UniqueResidenceList o--> "*" Residence
+Residence *--> ResidenceName
+Residence *--> ResidenceAddress
+Residence *--> CleanStatusTag
+Residence *--> BookingList
+Residence *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ResidenceName -[hidden]right-> ResidenceAddress
+ResidenceAddress -[hidden]right-> CleanStatusTag
+CleanStatusTag -[hidden]right-> BookingList
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Residence
 @enduml
