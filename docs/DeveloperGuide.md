@@ -2055,7 +2055,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 1. _{ more test cases …​ }_
 
-### Deleting a task (Not in use yet)
+### Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
