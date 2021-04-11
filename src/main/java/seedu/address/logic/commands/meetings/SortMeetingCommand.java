@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.Command;
@@ -21,6 +22,10 @@ import seedu.address.model.meeting.MeetingSortOption;
 public class SortMeetingCommand extends Command {
 
     private Comparator<Meeting> meetingComparator;
+
+    private MeetingSortOption meetingSortOption;
+    private MeetingSortDirection meetingSortDirection;
+
 
     public static final String COMMAND_WORD = "sortm";
 
@@ -74,6 +79,19 @@ public class SortMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.sortFilteredMeetingList(this.meetingComparator);
-        return new CommandResult("Sorted meeting");
+        return new CommandResult("Sorted meetings");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SortMeetingCommand that = (SortMeetingCommand) o;
+        return meetingSortOption == that.meetingSortOption && meetingSortDirection == that.meetingSortDirection;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(meetingSortOption, meetingSortDirection);
     }
 }
