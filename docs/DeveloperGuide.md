@@ -217,7 +217,7 @@ From the diagram illustrated above:
    `FindPoolCommandParser`.
 1. `FindPoolCommandParser` parses the argument `"n/Alice"` and creates a `PooledPassengerContainsKeywordPredicate` which is returned to the `FindPoolCommandParser`.
 1. `FindPoolCommandParser` then creates a `FindPoolCommand`, and provides the newly created `PooledPassengerContainsKeywordPredicate` to it. The `FindPoolCommand` object is then returned to LogicManager.
-1. `LogicManager` would subsequently invoke the `execute()` method of the `FindPoolCommand`, which turn calls the `updateFilteredPoolList()` method in `Model`, causing the shown pool list to be updated according to the predicate in the FindPoolCommand object.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `FindPoolCommand`, which turn calls the `updateFilteredPoolList()` method in `Model`, causing the shown pool list to be updated according to the predicate in the `FindPoolCommand` object.
 1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
 1. Finally, a `CommandResult` would be returned to `LogicManager` to indicate the completion status of the command.
 
