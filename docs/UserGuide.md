@@ -76,7 +76,21 @@ For a quick reference of the available commands and their syntax, refer to the [
 --------------------------------------------------------------------------------------------------------------------
 ## 3. User Interface
 
+### Design
 
+PocketEstate boasts a minimalist design with alternating steel blue and light blue colours for regular properties/ appointments as its main design scheme. We also feature a grey background for property and appointment listings with an expired deadline to allow users to better focus on current properties/ appointments.
+
+![uiColorScheme](images/UiColorscheme.png)
+
+### Property Icons
+
+We also use the following symbols for easier identification of different property types in the app:
+
+Property Types | Symbols
+--------|------------------
+<p align="center"> Hdb | <p align="center"> ![Hdb](images/hdb_16.png)
+<p align="center"> Condo | <p align="center"> ![Condo](images/condo_16.png)
+<p align="center"> Landed | <p align="center"> ![Landed](images/landed_16.png)
 
 ## 4. Commands
 
@@ -262,7 +276,7 @@ Format:
 
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
-Formats:
+Format:
 * `update INDEX OPTION`
 
 Description:
