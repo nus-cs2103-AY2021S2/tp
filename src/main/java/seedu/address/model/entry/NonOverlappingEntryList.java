@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
-import seedu.address.model.entry.exceptions.OverdueEntryException;
 import seedu.address.model.entry.exceptions.OverlappingEntryException;
 
 public class NonOverlappingEntryList implements Iterable<Entry> {

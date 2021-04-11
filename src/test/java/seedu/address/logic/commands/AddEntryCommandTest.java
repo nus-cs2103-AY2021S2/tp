@@ -15,7 +15,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.exceptions.OverdueEntryException;
 import seedu.address.model.entry.exceptions.OverlappingEntryException;
 import seedu.address.testutil.EntryBuilder;
 
