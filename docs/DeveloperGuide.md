@@ -48,7 +48,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of
 each component.
@@ -190,7 +190,7 @@ This section describes some noteworthy details on how certain features are imple
 ## Book
 
 ### Adding a book
-The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader)
+The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader#addbook)
 
 ### Deleting a book
 
