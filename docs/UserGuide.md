@@ -539,7 +539,7 @@ Format: `find_task KEYWORD1 [KEYWORD2] ...`
 * The order of the keywords does not matter. <br>
   E.g. `Practice Problems` will match `Problems Practice`.
 * Only the name of the tasks is searched.
-* Only full words will be matched. e.g. `CS` will not match `CS2103`.
+* Only full words will be matched. E.g. `CS` will not match `CS2103`.
 * Tasks matching at least one keyword will be returned (i.e. `OR` search). <br>
   E.g. `CS2103 Homework` will return `ST2131 Homework`, `CS2103 Quiz`.
 
@@ -779,7 +779,7 @@ Format: `find_event KEYWORD1 [KEYWORD2] ...`
 * The order of the keywords does not matter. <br>
   E.g. `Attending Lecture` will match `Lecture Attending`.
 * Only the name of the events is searched.
-* Only full words will be matched. e.g. `CS` will not match `CS2103`.
+* Only full words will be matched. E.g. `CS` will not match `CS2103`.
 * Events matching at least one keyword will be returned (i.e. `OR` search). <br>
   E.g. `CS2103 Meeting` will return `Project Meeting`, `CS2103 Lecture`.
 
