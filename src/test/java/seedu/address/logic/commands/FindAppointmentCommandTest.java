@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.appointment.AppointmentDatePredicate;
 import seedu.address.model.appointment.AppointmentPredicateList;
 import seedu.address.model.appointment.AppointmentRemarksPredicate;
@@ -35,10 +35,10 @@ public class FindAppointmentCommandTest {
 
     @Test
     public void equals() {
-        AppointmentContainsKeywordsPredicate firstPredicate =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("first"));
-        AppointmentContainsKeywordsPredicate secondPredicate =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("second"));
+        AppointmentNamePredicate firstPredicate =
+                new AppointmentNamePredicate(Collections.singletonList("first"));
+        AppointmentNamePredicate secondPredicate =
+                new AppointmentNamePredicate(Collections.singletonList("second"));
 
         FindAppointmentCommand findFirstCommand = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(firstPredicate)));
@@ -66,8 +66,8 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_oneResult() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
-        AppointmentContainsKeywordsPredicate predicate =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("bob"));
+        AppointmentNamePredicate predicate =
+                new AppointmentNamePredicate(Collections.singletonList("bob"));
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
@@ -78,8 +78,8 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_noResult() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentContainsKeywordsPredicate predicate =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("someone"));
+        AppointmentNamePredicate predicate =
+                new AppointmentNamePredicate(Collections.singletonList("someone"));
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
@@ -90,8 +90,8 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_multipleResults() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW, getTypicalAppointments().size());
-        AppointmentContainsKeywordsPredicate predicate =
-                new AppointmentContainsKeywordsPredicate(Collections.singletonList("meet"));
+        AppointmentNamePredicate predicate =
+                new AppointmentNamePredicate(Collections.singletonList("meet"));
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
@@ -102,8 +102,8 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_multipleKeywordsSuccess() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
-        AppointmentContainsKeywordsPredicate predicate =
-                new AppointmentContainsKeywordsPredicate(Arrays.asList("bob", "bob"));
+        AppointmentNamePredicate predicate =
+                new AppointmentNamePredicate(Arrays.asList("bob", "bob"));
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);

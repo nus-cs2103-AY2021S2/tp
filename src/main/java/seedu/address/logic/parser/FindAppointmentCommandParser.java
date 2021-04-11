@@ -16,7 +16,7 @@ import java.util.function.Predicate;
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.appointment.AppointmentDatePredicate;
 import seedu.address.model.appointment.AppointmentPredicateList;
 import seedu.address.model.appointment.AppointmentRemarksPredicate;
@@ -51,7 +51,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             try {
                 argMultimap.getAllValues(PREFIX_NAME)
                     .forEach(s -> {
-                        nameList.add(new AppointmentContainsKeywordsPredicate(Arrays.asList(s.split("\\s+"))));
+                        nameList.add(new AppointmentNamePredicate(Arrays.asList(s.split("\\s+"))));
                     });
             } catch (IllegalArgumentException e) {
                 throw new ParseException("n/ used but no keywords found! \n"

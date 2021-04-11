@@ -7,7 +7,7 @@ import java.util.List;
 
 import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentNamePredicate;
 import seedu.address.model.property.PropertyClientNamePredicate;
 
 
@@ -27,6 +27,6 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         List<String> keywordList = Arrays.asList(nameKeywords);
 
         return new FindClientCommand(new PropertyClientNamePredicate(keywordList),
-            new AppointmentContainsKeywordsPredicate(keywordList));
+            new AppointmentNamePredicate(keywordList));
     }
 }
