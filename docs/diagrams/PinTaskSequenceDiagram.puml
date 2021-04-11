@@ -51,7 +51,7 @@ activate Model
 PinTaskCommand <-- Model
 deactivate Model
 
-PinTaskCommand -> Model : sortTaskDefault()
+PinTaskCommand -> Model : sortTasksDefault()
 activate Model
 PinTaskCommand <-- Model
 deactivate Model

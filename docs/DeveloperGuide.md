@@ -249,7 +249,7 @@ and the rest will be hidden and cannot be viewed. This is something undesirable.
                     <ul>
                         <li> More restrictive as a hard maximum limit has been set to disallow users from creating a task or event with a name of longer than 30 characters.</li>
                     </ul>
-                </li>q:q
+                </li>
             </ul>
         </td>
         <td> 
@@ -1019,7 +1019,7 @@ The UI will also update as the underlying task list has been modified.
 The sequence diagram for `PinTaskCommand` can be found below.
 It is largely similar to `SortTaskCommand`, with a some minor differences:
 * Instead of `SortTask`-related parsers and commands, `PinTask`-related parsers and commands are created and activated.
-* Additional call to `Model#sortTaskDefault()` after `Model#pinTask(Task)`
+* Additional call to `Model#sortTasksDefault()` after `Model#pinTask(Task)`
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
