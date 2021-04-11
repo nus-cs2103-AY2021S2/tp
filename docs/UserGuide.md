@@ -29,7 +29,7 @@ includes a [quick-start](#3-quick-start) section that helps you get started.
 
 This guide uses the following features to make it easier for you to navigate around:
 
-* Words that look like [this](#2-about) can be clicked to jump to the related section.
+* Words that look like [this](#2-about) are hyperlinks, where clicking on it will redirect the user to the related section.
 * Words that look like `this` refer to keywords used as part of commands or responses from TutorBuddy.
 * Words that look like <kbd>this</kbd> refer to keyboard keys that you can press.
 
@@ -128,7 +128,7 @@ The Home page is split into two views: **Reminder** and **Monthly Fees**.
 ##### Reminder
 The Reminder section displays upcoming tuition sessions for 3 consecutive days, starting today.
 <div markdown="block" class="alert alert-info">
-:information_source: If today is a Monday, then the Reminder section will display all sessions on this Monday, 
+:information_source: If today is a Monday, then the Reminder section will display all sessions on this Monday,
 Tuesday and Wednesday.
 </div>
 
@@ -146,7 +146,7 @@ The Tuition page is split into two views: **Student** and **Session**.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: This is the main tab for managing your students and sessions. Navigating to this tab before using commands such as
-<code>add_student</code>, <code>find_student</code>, <code>add_session</code> or <code>delete_session</code> allows the user 
+<code>add_student</code>, <code>find_student</code>, <code>add_session</code> or <code>delete_session</code> allows the user
 to see the reflected changes on the <strong>Student</strong> and <strong>Session</strong> list view.
 </div>
 
@@ -177,14 +177,14 @@ This section provides information about all commands that is available in TutorB
 This section details the format of the commands available in TutorBuddy. We will adhere to the following:
 
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters / information to be supplied by the user.<br>
   e.g. in `add_student n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `find_student KEYWORD [MORE_KEYWORDS]` can be used as `find_student John Samuel` or as `find_student John`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/STUDENT_PHONE_NUMBER`, `p/STUDENT_PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98765432 p/99999999`, only `p/99999999` will be taken.
@@ -261,7 +261,7 @@ Format: `exit`
 
 ##### Adding a student: `add_student`
 
-Adds a student to TutorBuddy.
+Adds a student to TutorBuddy with their respective guardian and study information.
 
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
@@ -453,9 +453,9 @@ before and after 2021-03-31 as shown below.
 
 #### 4.2.5 Fees
 
-##### Calculating monthly fee for a particular student: `fee`
+##### Calculating monthly session fee for a particular student: `fee`
 
-Calculates and displays the monthly fee for a particular student for a particular month and year.
+Calculates and displays the total monthly session fee for a particular student for a particular month and year.
 
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 

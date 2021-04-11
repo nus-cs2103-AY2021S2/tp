@@ -158,15 +158,8 @@ public class UniqueStudentList implements Iterable<Student> {
         for (Student student : internalList) {
             List<Session> sessionList = student.getListOfSessions();
             for (Session session : sessionList) {
-                if (session instanceof RecurringSession) {
-                    RecurringSession recurringSession = (RecurringSession) session;
-                    if (recurringSession.isOverlapping(target)) {
-                        return true;
-                    }
-                } else {
-                    if (session.isOverlapping(target)) {
-                        return true;
-                    }
+                if (session.isOverlapping(target)) {
+                    return true;
                 }
             }
         }
@@ -185,15 +178,8 @@ public class UniqueStudentList implements Iterable<Student> {
         for (Student student : internalList) {
             List<Session> sessionList = student.getListOfSessions();
             for (Session session : sessionList) {
-                if (session instanceof RecurringSession) {
-                    RecurringSession recurringSession = (RecurringSession) session;
-                    if (recurringSession.isOverlapping(target)) {
-                        return true;
-                    }
-                } else {
-                    if (session.isOverlapping(target)) {
-                        return true;
-                    }
+                if (session.isOverlapping(target)) {
+                    return true;
                 }
             }
         }
