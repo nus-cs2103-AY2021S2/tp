@@ -50,8 +50,8 @@ AppointmentSchedule .up.|> ReadOnlyAppointmentSchedule
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-Doctor .right.> DoctorMap
-Patient .right.> PatientMap
+DoctorMap ..> Doctor
+PatientMap ..> Patient
 ModelManager o-right-> "1" AddressBook
 ModelManager o-left-> "1" AppointmentSchedule
 ModelManager o-left-> "1" UserPrefs
@@ -68,8 +68,8 @@ Person *---> Address
 Person *---> "*" Tag
 Patient --|> Person
 Doctor --|> Person
-Appointment *--> Patient
-Appointment *--> Doctor
+Appointment *--> PatientMap
+Appointment *--> DoctorMap
 Appointment *--> Timeslot
 
 Name -[hidden]right-> Phone
