@@ -1,4 +1,4 @@
-package seedu.budgetbaby.abstorage;
+package seedu.budgetbaby.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
