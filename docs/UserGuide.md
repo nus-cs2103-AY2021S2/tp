@@ -342,6 +342,15 @@ Please refer to the [Input Formats](#input-formats) section when editing the dat
 <br>
 **A**: The vaccination appointment lasts 30 mins, which includes registration, administering the vaccine and observation. 
 
+**Q**: Why can I add appointments before the current date?
+<br>
+**A**: Just like other calendar applications, adding appointments before the current date
+helps to facilitate administrative tasks, such as tracking past appointments and backdating. 
+
+**Q**: How do I manage appointments that have been completed?
+<br>
+**A**: You can choose to delete them manually or not, depending on administrative needs. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
