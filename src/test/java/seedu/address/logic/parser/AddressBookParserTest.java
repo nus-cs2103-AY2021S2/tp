@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -39,6 +40,10 @@ import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateContactCommand.UpdateContactDescriptor;
+import seedu.address.logic.commands.UpdateDeadlineCommand;
+import seedu.address.logic.commands.UpdateEventCommand;
+import seedu.address.logic.commands.UpdateProjectCommand;
+import seedu.address.logic.commands.UpdateTodoCommand;
 import seedu.address.logic.commands.ViewContactsCommand;
 import seedu.address.logic.commands.ViewOverviewCommand;
 import seedu.address.logic.commands.ViewTodayCommand;
@@ -47,6 +52,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
 import seedu.address.model.groupmate.Groupmate;
+import seedu.address.model.project.ProjectName;
+import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.repeatable.Event;
 import seedu.address.model.task.todo.Todo;
@@ -186,13 +193,55 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_update() throws Exception {
         Contact contact = new ContactBuilder().build();
         UpdateContactDescriptor descriptor = new UpdateContactDescriptorBuilder(contact).build();
         UpdateContactCommand command = (UpdateContactCommand) parser.parseCommand(
                 UpdateContactCommand.COMMAND_WORD + " "
                 + INDEX_FIRST.getOneBased() + " " + ContactUtil.getUpdateContactDescriptorDetails(descriptor));
         assertEquals(new UpdateContactCommand(INDEX_FIRST, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_updateP() throws Exception {
+        ProjectName newName = new ProjectName("CS2101 team project");
+        UpdateProjectCommand command = (UpdateProjectCommand) parser.parseCommand(
+                UpdateProjectCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased() + " " + PREFIX_NAME + " CS2101 team project");
+        assertEquals(new UpdateProjectCommand(INDEX_FIRST, newName), command);
+    }
+
+    @Test
+    public void parseCommand_updateE() throws Exception {
+        UpdateEventCommand.UpdateEventDescriptor descriptor = new UpdateEventCommand.UpdateEventDescriptor();
+        descriptor.setDescription("CS2106 Tutorial");
+        UpdateEventCommand command = (UpdateEventCommand) parser.parseCommand(
+                UpdateEventCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " " + INDEX_FIRST.getOneBased()
+                        + " " + PREFIX_DESCRIPTION + " CS2106 Tutorial");
+        assertEquals(new UpdateEventCommand(INDEX_FIRST, INDEX_FIRST, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_updateT() throws Exception {
+        CompletableTodo todo = new Todo("Homework");
+        UpdateTodoCommand command = (UpdateTodoCommand) parser.parseCommand(
+                UpdateTodoCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " " + INDEX_FIRST.getOneBased()
+                        + " " + PREFIX_DESCRIPTION + " Homework");
+        assertEquals(new UpdateTodoCommand(INDEX_FIRST, INDEX_FIRST, todo), command);
+    }
+
+    @Test
+    public void parseCommand_updateD() throws Exception {
+        UpdateDeadlineCommand.UpdateDeadlineDescriptor descriptor =
+                new UpdateDeadlineCommand.UpdateDeadlineDescriptor();
+        descriptor.setDate(LocalDate.of(2020, 1, 1));
+        UpdateDeadlineCommand command = (UpdateDeadlineCommand) parser.parseCommand(
+                UpdateDeadlineCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " " + INDEX_FIRST.getOneBased()
+                        + " " + PREFIX_DEADLINE_DATE + " 01/01/2020");
+        assertEquals(new UpdateDeadlineCommand(INDEX_FIRST, INDEX_FIRST, descriptor), command);
     }
 
     @Test

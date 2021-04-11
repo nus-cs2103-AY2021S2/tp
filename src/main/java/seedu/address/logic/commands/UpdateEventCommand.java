@@ -101,7 +101,7 @@ public class UpdateEventCommand extends Command {
      * Creates and returns a {@code Event} with the details of {@code eventToUpdate}
      * edited with {@code updatedEventDescriptor}.
      */
-    private static Event createUpdatedEvent(Event eventToEdit, UpdateEventDescriptor updateEventDescriptor) {
+    public static Event createUpdatedEvent(Event eventToEdit, UpdateEventDescriptor updateEventDescriptor) {
         assert eventToEdit != null;
 
         String updatedDescription = updateEventDescriptor.getDescription().orElse(eventToEdit.getDescription());

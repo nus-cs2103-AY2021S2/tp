@@ -80,7 +80,7 @@ public class UpdateProjectCommand extends Command {
      * Creates and returns a {@code Project} with the details of {@code projectToEdit}
      * updated with {@code name}.
      */
-    private static Project createUpdatedProject(Project projectToEdit, ProjectName name) {
+    public static Project createUpdatedProject(Project projectToEdit, ProjectName name) {
         assert projectToEdit != null;
 
         EventList currEventList = projectToEdit.getEvents();
