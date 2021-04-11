@@ -2,9 +2,11 @@
 layout: page
 title: Developer Guide
 ---
-Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
+Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while
+still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
+users can learn Japanese at a comfortable pace and manage flashcards with this application.
 
-# Table of Contents
+## Table of Contents
 * [Setting Up](#setting-up-getting-started)
 * [Design](#design)
   * [Architecture Overview](#architecture)
@@ -84,6 +86,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -105,6 +109,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic Component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -124,6 +130,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LearnCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Model Component
 
 <img src="images/ModelClassDiagram.png" width="550" />
@@ -138,10 +146,12 @@ The `Model`,
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardBook`, which `Flashcard` references. This allows `FlashcardBook` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+<img src="images/BetterModelClassDiagram.png" width="550" />
+
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage Component
 
@@ -160,6 +170,8 @@ package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -172,6 +184,8 @@ both displayed. Tagging and deletion of tags is also only available in this mode
 The following activity diagram summarizes what happens when a user attempts to enter Learn Mode:
 
 ![LearnModeActivityDiagram](images/LearnModeActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### [Implemented] Tagging Flashcards
 
@@ -188,6 +202,8 @@ The following activity diagram summarizes what happens when a user adds a new ta
 The tags function ties together with the Start, Learn and Quiz function of the application,
 as users can choose to start a quiz, enter Start Mode or enter Learn Mode with a filtered set of flashcards.
 
+<div style="page-break-after: always;"></div>
+
 ### [Implemented] Deleting Tags from Flashcards
 
 This mechanism works with the above flashcard tagging feature to allow users to customise tags for their flashcards
@@ -198,24 +214,28 @@ The following sequence diagram summarises how the DeleteTagCommand works:
 
 Default tags cannot be deleted by this command and will throw an error if the user attempts to do so.
 
+<div style="page-break-after: always;"></div>
+
 ### [Implemented] Quiz Feature
 
 The quiz feature for users to test the vocabulary is facilitated by `Model#Quiz`, `Model#Mode` and `Logic`. It does so by allowing a `Command`
 to set model to quiz mode. When model is in quiz mode, it will take commands allowing users to start a quiz session,
 attempt answering the quiz question or skip the flashcard.
 
-`Model#Mode` implments the following operations:
+`Model#Mode` implements the following operations:
   * `switchModeQuiz()`: Sets model to quiz mode
   * `switchModeQuizSession()`: Sets model to quiz session mode
   * `switchModeCheckSuccess()`: Sets model to check success mode 
   * `switchModeQuizSessionEnded()`: Sets model to quiz session ended mode
 
-`Model#Quiz` implments the following operations:
+`Model#Quiz` implements the following operations:
   * `getRandomisedQueue()`: Generates randomised questions for the quiz session
   * `getNextQuestion()`: Provides a question to be bested
   * `isCorrectAttempt(Answer attempt)`: Checks if attempt is correct English definition of question shown on flashcard
 
 These operations are executed through `QuizCommand`, `StartCommand`, `CheckCommand` and `NextCommand` in the `Logic` class.
+
+<div style="page-break-after: always;"></div>
 
 #### Entering Quiz Mode
 
@@ -228,6 +248,8 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Starting a Session
 
 The `start` command is used to start a quiz session, enabling users to define the number and categories of
@@ -239,6 +261,8 @@ enters the start command.
 Thr following sequence diagram shows the interactions that occur when the start command is executed:
 
 ![StartSequenceDiagram](images/StartSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Checking User Attempt
 
@@ -253,6 +277,8 @@ The following activity diagram summarizes the general workflow of `check` comman
 The following sequence diagram shows how the `check` command works:
 ![CheckCommandSequenceDiagram](images/CheckCommandSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Quiz Scoring
 
 The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
@@ -260,10 +286,12 @@ after the quiz session is completed. A quiz session is completed if and only if 
 quiz is displayed in the GUI window. The following activity diagrams summarize how the score is generated and recorded
 along with each quiz session.
 
-![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png)
+<p float="left">
+  <img src="images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png" width="310" />
+  <img src="images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png" width="310" />
+</p>
 
-![QuizScoringSequenceDiagramRake](images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png)
-
+<div style="page-break-after: always;"></div>
 
 #### View Past Quiz Attempts
 
@@ -282,6 +310,8 @@ The following sequence diagram shows how the UI switches display from flashcards
 switching UI display the other way around is similar. 
 
 ![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 
@@ -309,6 +339,8 @@ difficult if they so wish to.
 `Model#Quiz` will implement the following operation:
 * `Quiz#updateDifficult`: Adds the current `flashcard` to the list of difficult flashcards.
 
+<div style="page-break-after: always;"></div>
+
 ### [Proposed] Tag Search
 The tag searching feature will allow users to view and search through the tags that exist, such that they can easily
 know what tags are available to be used. `Tag` will store a static map of each tag to the number of flashcards with
@@ -323,6 +355,7 @@ that tag, updating as needed when a tag is added or deleted.
 These operations will be executed through `ShowTagsCommand` and `SearchTagsCommand` in the `Logic` class.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -341,15 +374,16 @@ These operations will be executed through `ShowTagsCommand` and `SearchTagsComma
 **Target user profile**:
 
 * Young aspiring J-Culture enthusiast who wants to learn basic Japanese
-* goes to a Japanese Culture Club so is low on time after school
-* interested in learning the Japanese language
-* prefers using flashcards to learn
-* prefers desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Goes to a Japanese Culture Club so is low on time after school
+* Interested in learning the Japanese language
+* Prefers using flashcards to learn
+* Prefers desktop apps over other types
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: Ability to learn the Japanese language through flashcards in a fun and interactive manner
+**Value proposition**: Ability to learn the Japanese language through flashcards in an efficient, fun and interactive manner
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -370,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | competitive user   | see the duration of a Quiz                 | gauge how fast I am at answering questions      |
 | `* *`    | user               | see my past quiz attempts                  | track my progress      |
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -438,6 +472,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -464,6 +500,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Score**: Calculated during a quiz session. Calculated by: number of user correct attempts / number of user checks.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -493,22 +531,24 @@ of the current version of application for your reference. The link is [here](Fla
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+<div style="page-break-after: always;"></div>
 
-### Using the  `end` command
+### Using the `end` command
 
-1. Ending a quiz before it is started
+1. Returning to menu
 
-   1. Prerequisites: No quiz has been started
+   1. Prerequisites: Not already in menu
 
-   1. Test case: `end` _while in the quiz_<br>
-      Expected: The current quiz is ended and displayed flashcard disappears.
+   2. Test case: `end` _while in a quiz session_<br>
+      Expected: The current quiz session is ended and displayed flashcard disappears.
 
-   1. Test case: `end` _while in the start menu_<br>
-      Expected: Nothing happens. An error message is displayed to the user telling them that no Quiz has started yet.
+   3. Test case: `end` _while in menu_<br>
+      Expected: Nothing happens. An error message is displayed to the user telling them the app is already in menu.
 
-   1. Other incorrect end commands locations to try: _while in learn mode_, _right after ending a Quiz, …​ <br>
-      Expected: Similar to previous.
+   4. Other correct end commands locations to try: _while in learn mode_, _right after ending a Quiz_, …​ <br>
+      Expected: Returns to menu.
 
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 

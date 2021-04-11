@@ -31,6 +31,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
 * [Note for Testers](#note-for-testers)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -45,7 +46,7 @@ These are symbols used throughout the User Guide you might want to take note of.
 * :information_source: : Indicates information that is likely to be helpful
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -56,6 +57,8 @@ These are symbols used throughout the User Guide you might want to take note of.
 
 1. Launch the app through running `java -jar weeblingo.jar` or double-clicking the icon. The GUI similar to the image below should appear in a few seconds. <br>
    ![Ui](images/UiWithExplanation.png)
+
+    <div style="page-break-after: always;"></div>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -71,9 +74,9 @@ These are symbols used throughout the User Guide you might want to take note of.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -112,6 +115,8 @@ end using next instead. The end command is meant as a way to quickly discard and
 
 Format: `end`
 
+<div style="page-break-after: always;"></div>
+
 #### Asking for help: `help`
 
 Shows a message explaning how to access the help page.
@@ -126,6 +131,7 @@ Exits the application.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
 
 ### Learn Mode Commands
 
@@ -142,6 +148,8 @@ Format: `learn`
 
 Learn Mode:<br>
 ![learn mode](images/learn_mode.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Tagging a flashcard: `tag`
 
@@ -166,6 +174,8 @@ Examples:
 After successfully adding a tag:<br>
 ![tag successful](images/tag_success.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Deleting tags from a flashcard: `deleteTag`
 
 Reads in a positive index and zero or more tags, and removes these tags from the flashcard at the desired index.
@@ -187,6 +197,7 @@ Examples:
 After successfully deleting sampleTag from the flashcard at index 3:<br>
 ![delete_successful](images/delete_success.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Quiz Mode Commands
 
@@ -206,12 +217,14 @@ Examples:
 
 #### Starting a quiz session: `start`
 
-Starts a quiz session with randomly ordered flashcards. 
+Starts a quiz session with randomly ordered flashcards.
+
+Format: `start [n/NUMBER] [t/TAG]…`
 
 * NUMBER specifies the number of questions for the quiz session.
-* TAG specifies the categories of questions for the quiz session.
 * NUMBER specified should be a positive integer and less than number of available flashcards in the database.
 * When used without a number, either all existing flashcards (if no tag is specified) or flashcards with specified tags will be tested.
+* TAG specifies the categories of questions for the quiz session.
 * There are currently four default tags, gojuon, hiragana, katakana and numbers.
 * When used without tags, all categories of questions can be tested.
 
@@ -221,11 +234,16 @@ Examples:
 * `start t/katakana`
 * `start n/5 t/gojuon t/hiragana`
 
+<div style="page-break-after: always;"></div>
+
 Before executing start command:<br>
+
 ![before start](images/start_before.png)
 
 After executing start command:<br>
 ![after start](images/start_after.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Checking flashcard answers: `check`
 
@@ -245,6 +263,8 @@ Examples:
 If user attempt matches answer of flashcard:<br>
 ![correct answer](images/check_correct.png)
 
+<div style="page-break-after: always;"></div>
+
 If user attempt does not match answer of flashcard:<br>
 ![incorrect answer](images/check_incorrect.png)
 
@@ -261,6 +281,8 @@ Format: `next`
 flashcards tested (with answers shown) will be displayed. User may choose to start a new session through `start`,
 return to quiz view through `quiz` or return to menu through `end`.
 
+<div style="page-break-after: always;"></div>
+
 ### History Mode Commands
 
 #### Entering history mode: `history`
@@ -274,6 +296,8 @@ Example:<br>
 - If a quiz is left unfinished (i.e. there are still questions in the quiz), the history statistics will not be updated.
 - If a quiz session has zero attempt, a default correct ratio of `0.000%` will be recorded.
 - In future versions, `history` will provide more useful information to better optimize users' learning experience.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding and removing flashcards `[coming in v2.0]`
 
@@ -311,6 +335,8 @@ A combination of the above two options is also possible.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 Action | Format, Examples |
@@ -330,6 +356,7 @@ Action | Format, Examples |
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Note for Testers
 By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary

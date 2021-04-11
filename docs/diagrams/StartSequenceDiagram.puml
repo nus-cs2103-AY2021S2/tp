@@ -30,7 +30,7 @@ WeeblingoParser -> StartCommandParser : parse(" n/5 t/numbers")
 activate StartCommandParser
 
 create StartCommand
-StartCommandParser -> StartCommand
+StartCommandParser -> StartCommand : StartCommand(5, [numbers])
 activate StartCommand
 
 StartCommand --> StartCommandParser : command
@@ -54,7 +54,13 @@ activate ModelManager
 ModelManager --> StartCommand : currentMode
 deactivate ModelManager
 
-StartCommand -> ModelManager : startQuiz(5, Set<Tag> [numbers])
+StartCommand --> ModelManager : clearQuizInstance()
+activate ModelManager
+
+ModelManager --> StartCommand
+deactivate ModelManager
+
+StartCommand -> ModelManager : startQuiz(5, [numbers])
 activate ModelManager
 
 ModelManager --> StartCommand

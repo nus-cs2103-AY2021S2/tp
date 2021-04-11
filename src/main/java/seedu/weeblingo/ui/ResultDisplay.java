@@ -25,7 +25,7 @@ public class ResultDisplay extends UiPart<Region> {
      */
     public void greetUser() {
         resultDisplay.setText("Hi! Welcome to WeebLingo, your personal Japanese tutor.\n"
-                + "Enter 'learn', 'quiz' or 'history' to learn Japanese,"
+                + "Enter \"learn\", \"quiz\" or \"history\" to learn Japanese,"
                 + " put your Japanese proficiency to the test or view past quiz attempts.");
     }
 
