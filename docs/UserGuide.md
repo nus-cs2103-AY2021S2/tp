@@ -78,16 +78,16 @@ your contact management tasks done faster than traditional GUI apps.
 
 This table outlines all the available prefixes that can be used for the `add` and `edit` commands.
 
-| Prefix   | Name          | Applicable Commands | Example Usage        |
-| -------- | ------------- | ------------------- | -------------------- |
-| `n/`     | Task Name     | `add`, `edit`       | `n/Assignment 2`     |
-| `mc/`    | Module Code   | `add`, `edit`       | `mc/CS2103`          |
-| `d/`     | Deadline Date | `add`, `edit`       | `d/10-10-2021`       |
-| `t/`     | Deadline Time | `add`, `edit`       | `t/18:00`            |
-| `w/`     | Weightage     | `add`, `edit`       | `w/25%`              |
-| `pt/`    | Tags          | `add`, `edit`       | `pt/core mod`        |
-| `ptag/`  | Priority Tag  | `add`, `edit`       | `ptag/HIGH`          |
-| `notes/` | Notes         | `edit`              | `notes/Hello World!` |
+| Prefix   | Name          | Applicable Commands | Input types                                                  | Example Usage        |
+| -------- | ------------- | ------------------- | ------------------------------------------------------------ | -------------------- |
+| `n/`     | Task Name     | `add`, `edit`       | Any non-empty name                                           | `n/Assignment 2`     |
+| `mc/`    | Module Code   | `add`, `edit`       | Only CS coded modules (suffix letters are allowed)           | `mc/CS2103`          |
+| `d/`     | Deadline Date | `add`, `edit`       | Date in DD-MM-YYYY format                                    | `d/10-10-2021`       |
+| `t/`     | Deadline Time | `add`, `edit`       | Time in HH:MM format                                         | `t/18:00`            |
+| `w/`     | Weightage     | `add`, `edit`       | Positive integer percentage from 0 (inclusive) to 100 (inclusive) | `w/25%`              |
+| `pt/`    | Tags          | `add`, `edit`       | Any non-empty tag                                            | `pt/core mod`        |
+| `ptag/`  | Priority Tag  | `add`, `edit`       | either one of `LOW`, `MEDIUM` or `HIGH`                      | `ptag/HIGH`          |
+| `notes/` | Notes         | `edit`              | Any note                                                     | `notes/Hello World!` |
 
 ### Add a task: `add`
 
