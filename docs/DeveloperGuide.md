@@ -193,6 +193,10 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 The remark command allows the drivers to add any additional information to the delivery task
 
+Below is a sequence diagram for the remark command.
+
+![Remark Command Sequence Diagram](images/RemarkCommandSequenceDiagram.png)
+
 Description:
 When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. In the
 method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. The
@@ -202,9 +206,10 @@ arguments provided. In the parse method, the RemarkCommandParser ensures that th
 identifies the input for the index of the item for which remark needs to be added. If the index specified by the user is
 valid, a new RemarkCommand instance will be created and returned to LogicManager via DeliveryListParser. The
 LogicManager will then invoke the overridden execute method of the RemarkCommand object with Model as the argument.
-Subsequently, the RemarkCommand object will be created with the index of the item to add remark,
-and remark description as the argument. It will then return a CommandResult object to LogicManager. This CommandResult
-will be returned at the end by LogicManager.
+Subsequently, the RemarkCommand object will be created with the index of the item to add remark, and remark description
+as the argument and it will invoke the setCustomer method to replace old entry with the new one which contains the
+remark. It will then return a CommandResult object to LogicManager. This CommandResult will be returned at the end by
+LogicManager.
 
 Below is an activity diagram for the remark command.
 

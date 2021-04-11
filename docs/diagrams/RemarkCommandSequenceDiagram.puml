@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
+participant ":RemarkCommandParser" as RemarkCommandParser LOGIC_COLOR
+participant "command:RemarkCommand" as RemarkCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remark 3 r/regular customer")
+activate LogicManager
+
+LogicManager -> DeliveryListParser : parseCommand("remark 3 r/regular customer")
+activate DeliveryListParser
+
+create RemarkCommandParser
+DeliveryListParser -> RemarkCommandParser
+activate RemarkCommandParser
+
+RemarkCommandParser --> DeliveryListParser
+deactivate RemarkCommandParser
+
+DeliveryListParser -> RemarkCommandParser : parse("remark 3 r/regular customer"")
+activate RemarkCommandParser
+
+create RemarkCommand
+RemarkCommandParser -> RemarkCommand
+activate RemarkCommand
+
+RemarkCommand --> RemarkCommandParser : command
+deactivate RemarkCommand
+
+RemarkCommandParser --> DeliveryListParser : command
+deactivate RemarkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemarkCommandParser -[hidden]-> DeliveryListParser
+destroy RemarkCommandParser
+
+DeliveryListParser --> LogicManager : command
+deactivate DeliveryListParser
+
+LogicManager -> RemarkCommand : execute(model)
+activate RemarkCommand
+
+RemarkCommand -> Model : getFilteredCustomerList()
+activate Model
+
+Model --> RemarkCommand
+deactivate Model
+
+RemarkCommand -> Model : setCustomer(old customer, updated customer)
+activate Model
+
+Model --> RemarkCommand
+deactivate Model
+
+create CommandResult
+RemarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemarkCommand : result
+deactivate CommandResult
+
+RemarkCommand --> LogicManager : result
+deactivate RemarkCommand
+
+[<--LogicManager : result
+deactivate LogicManager
+@enduml
