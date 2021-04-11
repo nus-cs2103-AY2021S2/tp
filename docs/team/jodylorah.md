@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     
 * **Documentation**:
     * User Guide:
-        * Added documentation for `clientbook` and `meetingbook` retrieval [\#85](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/85)
+        * Added documentation for `ClientBook` and `MeetingBook` retrieval [\#85](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/85)
         * Added limitations implemented for inputs of `client` and `meeting` commands [\#243](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/240)
     * Developer Guide:
         * Added implementation details of the `storage` component [\#85](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/85)
@@ -48,3 +48,8 @@ Given below are my contributions to the project.
 
 * **Others**:
     * Helped to raise and create issues spotted when testing unrelated component ([\#199](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/199))
+    * Set achievable deadlines to help the team progress milestones on time
+
+* **Diagram extracts from DG**
+    * Storage's Class Diagram
+      ![Storage Class Diagram](../images/StorageClassDiagram.png)
