@@ -44,8 +44,9 @@ in my explanation
 ### Contributions to the Developer Guide
 * Updated all existing diagrams from AB3 to reflect the current codebase of CakeCollate.
 * Added implementation details, design considerations and sequence diagram for the `remind` command. Here is
-the sequence diagram of it.
+the sequence diagram of it. <br>
 ![RemindSequenceDiagram](img/RemindSequenceDiagram.png)
+<br>
 * Added Use Cases for Add, Edit, Delete command.
 
 ### Contributions to team-based tasks
