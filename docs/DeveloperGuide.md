@@ -14,7 +14,8 @@ title: Developer Guide
   - [Blacklist](#blacklist-feature)
   - [Collect](#collect-feature)
   - [Find](#finding-contacts-by-details)
-  - [Light/Dark] >Ryan
+  - [Light](#light-feature)
+  - [Dark](#dark-feature)
   - [Mass Blacklist] >JB
   - [Mode of Contact](#mode-of-contact-feature)
   - [Remark](#remark-feature)
@@ -34,7 +35,7 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a contact](#deleting-a-contact)
   - [Saving data](#saving-data)
-  - [Adding a contact] >Ryan (Mode of contact)
+  - [Adding a contact](#adding-a-contact)
   - [Changing blacklist status of a contact](#changing-blacklist-status-of-a-contact)
   - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
   - [Editing remark for a contact] >JB
@@ -42,7 +43,8 @@ title: Developer Guide
   - [Performing mass blacklist] >JB
   - [Performing mass delete] >JB
   - [Sorting visible contact list] >JB
-  - [Transitioning between light and dark mode] >Ryan
+  - [Changing to light mode](#changing-to-light-mode)
+  - [Changing to dark mode](#changing-to-dark-mode)
   - [Undoing previous operations](#undoing-previous-operations)
   - [Navigating through commands](#navigating-through-commands)
 
@@ -938,3 +940,39 @@ testers are expected to do more *exploratory* testing.
 1. Attempt to navigate later commands after executing a command.
    1. Test case: Execute any command and press down arrow key.<br>
       Expected: Nothing is shown in the command box.
+
+### Adding a contact
+1. Adding a new contact.
+    1. Prerequisite: None.
+    
+    1. Test case : `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/email t/friends t/owesMoney`<br>
+       Expected: New contact `John Doe`is added to the contact list.
+    
+    1. Test case: `add n/John Doe`<br>
+       Expected: No contact is added. Error details are shown in the status message.
+
+### Changing to light mode
+1. Change the mode of viewing to light mode.
+    1. Prerequisite: None.
+    
+    1. Test case : `light`<br>
+       Expected: Mode of viewing is now in light mode.      
+    
+    1. Test case : `light 1234 `
+       Expected: Mode of viewing is now in light mode.                                  
+    
+    1. Other incorrect input to try: `light dark`, `light delete 1`, `...`(any additional input after light)<br>
+       Expected: Similar to previous. 
+       
+### Changing to dark mode
+1. Change the mode of viewing to dark mode.
+    1. Prerequisite: None.
+    
+    1. Test case : `dark`<br>
+       Expected: Mode of viewing is now in dark mode.      
+    
+    1. Test case : `dark 1234 `
+       Expected: Mode of viewing is now in dark mode.                                  
+    
+    1. Other incorrect input to try: `dark light`, `dark delete 1`, `...`(any additional input after dark)<br>
+       Expected: Similar to previous.            
