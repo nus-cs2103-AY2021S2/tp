@@ -67,6 +67,11 @@ purposes, these steps are split into a few categories.
    As such, the Welfare ICs are given the flexibility to decide what way they want to use the feature, and hence the 
    event will not automatically be marked as done after the date of the event passes.
 
+This image below is a screenshot of the app displaying contacts of a CCA member and a vendor, and events of different 
+dates where event 6 is marked as done. 
+
+![Add](images/tutorial-add.png)
+
 #### Search and Sort through contacts and events
 
 6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month 
@@ -78,6 +83,10 @@ purposes, these steps are split into a few categories.
    remark to allow for ease of searching for specific events even with lots of events. The sorting allows Welfare
    ICs an easy way of organising the events. For example, they can sort by upcoming event dates (according to day, 
    month and year) with `elist -s u` so that they can refer and plan for the upcoming parties accordingly.
+
+This image below is a screenshot of the app displaying events sorted by upcoming event dates.
+
+![Sort](images/tutorial-sort.png)
 
 #### Deleting contacts and events
 
