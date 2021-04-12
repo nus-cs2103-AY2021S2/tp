@@ -44,6 +44,9 @@ title: Developer Guide
 - [**8. Appendix: Effort**](#8-appendix-effort)  
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
+
 # **1. Introduction**
 
 ## 1.1 Purpose
@@ -255,10 +258,10 @@ The edit command has a similar implementation to the add command, it mainly uses
 * The edit command is able to take in an extra parameter `s/Status`.
 * Edit command takes in an `index` to specify which Task in the list to edit.
 
-<div style="page-break-after: always"></div>
-
 The following activity diagram summarizes what happens when a user executes an edit command.
 ![EditActivityDiagram](images/EditCommandActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 The following sequence diagram shows the execution of the edit command.
 ![EditSequenceDiagram](images/EditCommandSeqeuenceDiagram.png)
@@ -804,6 +807,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ---
 
+<div style="page-break-after: always"></div>
+
 **Use case 11: Switch to Completed tab**
 
 **MSS**
@@ -850,6 +855,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
     
 ---
+
+<div style="page-break-after: always"></div>
 
 **Use case 13: Viewing Tasks by date**
 
