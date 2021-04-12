@@ -9,7 +9,7 @@ App-Ointment is a patient appointment management software adapted from AddressBo
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense] (https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=icytornado)
+* **Code contributed**: [RepoSense](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=icytornado)
 
 * **Features Implemented**:
   * Implementation of the `edit-appt` feature:
