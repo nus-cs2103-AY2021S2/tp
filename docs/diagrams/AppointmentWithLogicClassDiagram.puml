@@ -15,12 +15,9 @@ Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
 Class Prefix
-note right of ParentPalParser: create cases for\nall appointment-\nrelated command
-note left of XYZCommandParser: create parser\nfor each command
 }
 
 note top of LogicManager: Interacts with storage to save AddressBook\nand AppointmentBook
-note top of ParentPalParser: Previously known as AddressBook Parser
 package Command {
 Class XYZCommand
 Class CommandResult
@@ -61,7 +58,7 @@ LogicManager .left.> Command : executes >
 
 LogicManager --> Model
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc.\n\nAppointment-related commands\ninclude:\n- AddAppointmentCommand\n- DeleteApppointmentCommand\n- FindAppointmentCommand\n\n(Extra) Tag functions
+note right of XYZCommand: XYZCommand = AddCommand, \nAddAppointmentCommand, etc.
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
