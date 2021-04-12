@@ -486,10 +486,10 @@ The parsed command will be identified as the exit command.
  methods to match the implementation of a Food Diary, and in doing so do away with previous implementations
  that would otherwise suggest the implementation of an address book.
  
- * This thus involved major refactoring of the code base, followed by converting/creating several entities to match
+    * This thus involved major refactoring of the code base, followed by converting/creating several entities to match
  a Food Diary, such as the `Pricing` and `Rating` classes etc. pertaining to a journal entry in The Food Diary.
  
- * Creating these new entities entailed creating the appropriate classes in the `Model` package to manage and process
+     * Creating these new entities entailed creating the appropriate classes in the `Model` package to manage and process
  these new entities in the app's memory.
  
 2. We explored several design options when creating new features such as the `revise` and `view` features. We realised
@@ -886,34 +886,27 @@ to work on.
     1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
 
     2. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    
-        Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
-    FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.
-    
+    <br>Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
+    FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.<br />
+    <br />
     3. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-        
-        Expected: Invalid rating error will be shown in the result display. Entry will not be added.
-    
+    <br>Expected: Invalid rating error will be shown in the result display. Entry will not be added.<br />
+    <br />
     4. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    
-        Expected: Invalid price error will be shown in the result display. Entry will not be added.
-       
+    <br>Expected: Invalid price error will be shown in the result display. Entry will not be added.<br />
+    <br />
     5. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    
-        Expected: Invalid review error will be shown in the result display. Entry will not be added.<br>
-       
+    <br>Expected: Invalid review error will be shown in the result display. Entry will not be added.<br />
+    <br />
     6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
-    
-        Expected: Invalid address error will be shown in the result display. Entry will not be added.<br>
-
+    <br>Expected: Invalid address error will be shown in the result display. Entry will not be added.<br />
+    <br />
     7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
-    
-        Expected: A list of valid categories will be shown in the result display. Entry will not be added.<br>
-
+    <br>Expected: A list of valid categories will be shown in the result display. Entry will not be added.<br />
+    <br />
     8. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
-    
-        Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br>
-
+    <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br />
+    <br />
     9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
 
@@ -924,21 +917,22 @@ to work on.
        
     2. Test case: `addon 1 re/I like this food a lot! p/7`
     
-        Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
-       out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.
-       
+        <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
+           out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.<br />
+        <br />
     3. Test case: `addon 1`
     
-        Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
-       
+        <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
     4. Test case: `addon 1 re/`
     
-        Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.
-       
+        <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
     5. Test case: `addon 1 re/Good Food p/1000`
     
-        Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
-       
+        <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        <br />
+
     6. Other incorrect `addon` commands to try: `addon 10000000000 re/Good Food` (invalid index)
     
 ### Delete an Entry
@@ -948,15 +942,16 @@ to work on.
        
     2. Test case: `delete 1`
     
-        Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
-    
+        <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
+        <br />
+       
     3. Test case: `delete x` (where x is non-existent booking ID)
        
-        Expected: Error of invalid entry shown in result display. No entry is deleted.
-
+        <br>Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
+        <br />
+       
     4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
-    
-        Expected: Invalid command format error. No entry is deleted.
+       Expected: Invalid command format error. No entry is deleted.
    
     
 ### Find entries
@@ -966,44 +961,44 @@ to work on.
     1. Prerequisite: the food diary should contain all default entries
     
     2. Test case: `find 4/5`
-       
-        Expected:
+      
+       Expected:
         - All entries shown with a rating of 4/5. 
         - Success message displayed informing the user of the number of entries found.
-        - 4 default entries will be shown.
-       
+        - 4 default entries will be shown.<br />
+    <br />
     3. Test case: `find $7`
-       
+      
        Expected:
-       - All entries shown with a price of $7, or a range of price that contains $7. 
-       - Success message displayed informing the user of the number of entries found.
-       - 1 default entry will be shown.
-       
+        - All entries shown with a price of $7, or a range of price that contains $7. 
+        - Success message displayed informing the user of the number of entries found.
+        - 1 default entry will be shown.<br />
+    <br />
     4. Test case: `find western 5/5 $5-10`
        
        Expected:
        - All entries shown which contain at least one of the three keywords provided.
        - Success message displayed informing the user of the number of entries found.
-       - 9 default entries will be shown.
-       
+       - 9 default entries will be shown.<br />
+    <br />
     5. Test case: `find 3/7`
-       
+      
        Expected:
        - All entries shown which contain the provided keyword: `3/7`, if any.
        - Success message displayed informing the user of the number of entries found.
        - Suggestion message displayed informing the user of a possible typo for a rating search,
        providing directions to correct the typo.
-       - 0 default entries will be shown.
-       
+       - 0 default entries will be shown.<br />
+    <br /> 
     6. Test case: `find $5-`
        
-        Expected:
+       Expected:
         - All entries shown which contain the provided keyword: `$5-`, if any.
         - Success message displayed informing the user of the number of entries found.
         - Suggestion message displayed informing the user of a possible typo for a price search,
         providing directions to correct the typo.
-        - 0 default entries will be shown.
-       
+        - 0 default entries will be shown.<br />
+    <br />
     7. Test case: `find 3/7 $5-`
        
         Expected:
@@ -1024,29 +1019,29 @@ to work on.
        Expected:
        - All entries shown with a rating of 4/5.
        - Success message displayed informing the user of the number of entries found.
-       - 4 default entries will be shown.
-
+       - 4 default entries will be shown.<br />
+    <br />
     3. Test case: `findall $7`
 
        Expected:
        - All entries shown with a price of $7, or a range of price that contains $7.
        - Success message displayed informing the user of the number of entries found.
-       - 1 default entry will be shown.
-
+       - 1 default entry will be shown.<br />
+    <br />
     4. Test case: `findall western 5/5 $5-10`
 
        Expected:
        - All entries shown which contain all three keywords provided.
        - Success message displayed informing the user of the number of entries found.
-       - 2 default entries will be shown.
-
+       - 2 default entries will be shown.<br />
+    <br />
     5. Test case: `findall 4/5 5/5`
 
         Expected:
         - All entries shown which contain both of the keywords provided, if any.
         - Success message displayed informing the user of the number of entries found.
-        - 0 default entries will be shown.
-
+        - 0 default entries will be shown.<br />
+    <br />
     6. Test case: `findall 3/7`
 
        Expected:
@@ -1054,8 +1049,8 @@ to work on.
        - Success message displayed informing the user of the number of entries found.
        - Suggestion message displayed informing the user of a possible typo for a rating search,
        providing directions to correct the typo.
-       - 0 default entries will be shown.
-
+       - 0 default entries will be shown.<br />
+    <br />
     7. Test case: `findall $5-`
 
        Expected:
@@ -1063,8 +1058,8 @@ to work on.
        - Success message displayed informing the user of the number of entries found.
        - Suggestion message displayed informing the user of a possible typo for a price search,
        providing directions to correct the typo.
-       - 0 default entries will be shown.
-
+       - 0 default entries will be shown.<br />
+    <br />
     8. Test case: `findall 3/7 $5-`
 
        Expected:
@@ -1082,18 +1077,18 @@ to work on.
 
     2. Test Case: Correct command with valid parameters:`view 1` (provided that entry of index 1 already exists)
         
-        Expected: A window pops up which shows all details of the specified entry.
-       
+        Expected: A window pops up which shows all details of the specified entry.<br />
+        <br />
     3. Test Case: Command without parameters: `view`
        
         Expected: User will be notified that invalid command format is provided. The command box
-        will show the correct syntax for `view` command.
-       
+        will show the correct syntax for `view` command.<br />
+       <br />
     4. Test Case: Command not in lower-case: `ViEw 1` (provided that entry of index 1 already exists)
     
-        Expected: User will be notified about unknown command in the command box.
-       
-    5. Test Case: Correct command but with a non-existent index: `view 100000` (provided that entry of index 100000 
+        Expected: User will be notified about unknown command in the command box.<br />
+       <br />
+    5. Test Case: Correct command but with non-existent index: `view 100000` (provided that entry of index 100000 
        do not exists)
        
         Expected: User will be notified of invalid command, and the number of entries in The Food Diary.
@@ -1102,38 +1097,38 @@ to work on.
 1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(s)`
    
     1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line, execute `Revise <Index>`. 
-                    `Index` refers to index of Entry to revise in view.
-       
+                    `Index` refers to index of Entry to revise in view.<br />
+       <br />
     2. Test case: Under Name, change name to `McDonalds`. Click `Revise` button. 
     
-        Expected: Name of entry to be changed to `McDonalds`, Revise window to close and Main Window to show a list of
-       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
-       
+       Expected: Name of entry to be changed to `McDonalds`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.<br />
+       <br />
     3. Test case: Under Rating, change rating to `2`. Click `Revise` button.
 
-        Expected: Rating of entry changes to 2/5, Revise window to close and Main Window to show a list of
-       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
-       
+       Expected: Rating of entry changes to 2/5, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.<br />
+       <br />
     4. Test case: Under Price, change to `5`. Click `Revise` button.
 
        Expected: Price of entry to be changed to `5`, Revise window to close and Main Window to show a list of
-       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
-
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.<br />
+       <br />
     5. Test case: Under Address, change to `Computing Drive`. Click `Revise` button.
     
        Expected: Address of entry to be changed to `Computing Drive`, Revise window to close and Main Window to show a list of
-       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
-       
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.<br />
+       <br />
     6. Test case: Under Categories, add `western`. Click `Revise` button.
     
        Expected: Categories of entry to add `Western`, Revise window to close and Main Window to show a list of
-       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
-
-   7. Test case: Under Categories, add to `soc`. Click `Revise` button.
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.<br />
+       <br />
+    7. Test case: Under Categories, add to `soc`. Click `Revise` button.
 
        Expected: Categories of entry to add `SOC`, Revise window to close and Main Window to show a list of
-       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
-      
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.<br />
+       <br />
     8. Other valid test cases to try: Combine any of the above testcases before pressing `Revise`. All changes should be
     accounted for.
        
@@ -1144,47 +1139,47 @@ to work on.
 1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(-ies)`
    
     1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line,
-    execute `edit <INDEX> <KEYWORD> ...`. 
-    
+    execute `edit <INDEX> <KEYWORD> ...`. <br />
+    <br />
     * `INDEX` refers to index of Entry to revise in view.
     
-    * The following test cases will test different permutations and numbers of `KEYWORD`(s).
-       
+    * The following test cases will test different permutations and numbers of `KEYWORD`(s).<br />
+    <br /> 
     2. Test case: `edit 1 n/McDonalds`
     
        Expected:
        - First entry has named changed to "McDonalds".
        - All entries remained shown
-       - Success message displayed informing the user of change.
-
+       - Success message displayed informing the user of change.<br />
+        <br />
     3. Test case: `edit 2 ra/0`
 
        Expected:
        - Second entry has rating changed to 0. (0/5)
        - All entries remained shown (with the first entry remaining edited as done previously).
-       - Success message displayed informing the user of change.
-
+       - Success message displayed informing the user of change.<br />
+        <br />
     4. Test case: `edit 3 a/50 West Coast Road`
 
        Expected:
        - Third entry has address changed to "50 West Coast Road".
        - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.
-
+       - Success message displayed informing the user of change.<br />
+        <br />
     5. Test case: `edit 4 re/I had a great time here.`
 
         Expected:
        - Fourth entry has review changed to "I had a great time here".
        - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.
-
+       - Success message displayed informing the user of change.<br />
+        <br />
     6. Test case: `edit 5 p/20`
 
        Expected:
        - Fifth entry has price changed to "20". ($20)
        - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.
-
+       - Success message displayed informing the user of change.<br />
+        <br />
     7. Test case: `edit 1 n/Hwangs ra/4 p/7 a/NUS re/Korean food makes me happy. s/Utown c/Korean`
 
        Expected:
@@ -1192,8 +1187,8 @@ to work on.
         review changed to "Korean food makes me happy.", school location tags changed to "UTOWN", and 
         food category changed to "Korean".
        - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.
-       
+       - Success message displayed informing the user of change.<br />
+        <br />
     8. Test case: `edit 1 c/Korean c/Others`
 
        Expected:
@@ -1208,7 +1203,8 @@ to work on.
     
     2. Test Case: Correct command:`clear` 
 
-       Expected: Success message will show up in command box informing user that all entries are cleared.
+       Expected: Success message will show up in command box informing user that all entries are cleared.<br />
+       <br />
     3. Test Case: Command not in lower-case: `cLeAr`
 
        Expected: User will be notified about unknown command in the command box.
