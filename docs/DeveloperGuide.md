@@ -143,19 +143,12 @@ Given below is an example usage scenario and how the `Add` Student mechanism beh
 
 Step 1: The user executes `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
 
-![Receiving an input](images/ReceiveInput.png)
-
-
 Step 2: The `AddCommandParser` instance obtains the user input and checks for its validity. It then returns a new `AddCommand` instance to the `LogicManager` via the `StudentBookParser` class.
 
 > **NOTE:** If the input format is incorrect or not found, `AddCommandParser` will throw a `ParseException` to tell the user about the error, and execution will stop. 
 
-![Parsing an input](images/ParseInput.png)
-
 
 Step 3: With the `AddCommand` instance, the overridden `execute` method is called to add the `Student` to the `Model`. The `LogicManager` then receives the result of the execution of the command. 
-
-![Processing an input](images/ProcessResult.png)
 
 
 Step 4: The added `Student` is saved into the `StudentBook`. 
@@ -409,16 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a student by the student's matriculation number and other details, including:
-    
-    * Name
-    * Address
-    * Email
-    * Phone number
-    * Faculty
-    * Vaccination status
-    * Medical details
-    * School residence
+1.  User requests to add a student by the student's matriculation number and other relevant details.
 1.  System adds the student. 
     
 Use case ends
@@ -514,12 +498,14 @@ Use case ends
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
-      <br>Use case ends.
+      
+        Use case ends.
 
 * 1b. System detects that the given parameter is invalid.
 
     * 1b1. System shows an error message.
-      <br> Use case ends.
+
+        Use case ends.
       
 
 **Use case: Delete an appointment**
@@ -533,12 +519,14 @@ Use case ends
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
-      <br>Use case ends.
+
+        Use case ends.
 
 * 1b. Specified student does not have a appointment.
 
     * 1b1. System shows an error message.
-      <br> Use case ends.
+      
+        Use case ends.
 
 * 1c. System detects that the given parameter is invalid.
 
@@ -618,37 +606,36 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a student not currently in Vax@NUS
     1. Prerequisites: Sample data of students and appointments shown in the list.
+       
     1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
 
        Expected: Adds a student (John Doe) to the list. Details of the added student is shown in the status message.
        John Doe's student details appear in the GUI.
        
     1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-        This test case assumes that the test case above was performed first. 
-       
-       Expected: No student is added. Error details shown in the status message telling user that there already exists a student
-    in Vax@NUS.
+       This test case assumes that the test case above was performed first.
+       Expected: No student is added. Error details shown in the status message telling user that there already exists a student in Vax@NUS.
     
     1. Test case: `add A7654321J n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`   
-           Expected: Adds a student (Betsy Crowe) to the list. Details of the added student is shown in the status message. John Doe's student details appear in the GUI.
-           Betsy Crowe's `School Residence` defaults to `DOES NOT LIVE ON CAMPUS`.
+       Expected: Adds a student (Betsy Crowe) to the list. Details of the added student is shown in the status message. John Doe's student details appear in the GUI.
+       Betsy Crowe's `School Residence` defaults to `DOES NOT LIVE ON CAMPUS`.
 
-    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
-       `   
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`   
        Expected: No student is added. Error details shown in the status message telling user that the correct `matriculation number`
        format should be A + 7 digit numeric sequence + alphabet.
-    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/not vaccinated m/peanut allergy r/RVRC
-       `   
+       
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/not vaccinated m/peanut allergy r/RVRC`   
        Expected: No student is added. Error details shown in the status message telling user that the `vaccination status` should only be
        `vaccinated` or `unvaccinated`
-    1. Test case: `add A0241234N n/Jane Doe f/SoC p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
-       `   
+       
+    1. Test case: `add A0241234N n/Jane Doe f/SoC p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`   
        Expected: No student is added. Error details shown in the status message telling user that the `faculty` should only be
        one of those shown.
-    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/kent Ridge
-       `   
+       
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/kent Ridge`   
        Expected: No student is added. Error details shown in the status telling user that the `school residence` should only be
        one of those shown.
+       
     1. Other incorrect add commands to try: `add`, `add x ...` (where x is not a valid `matriculation number`), `add... f/com r/capt`(where `faculty` and `school residence`
        are spelt in lowercase) 
        Expected: Similar to previous.
@@ -680,20 +667,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing an appointment in the Vax@NUS records. 
     1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
-    1. Test case: `editAppt A0182345T d/2021-11-13 ts/14:00
-       `
+       
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/14:00` <br>
        Expected: Alex Yeoh's appointment is changed to the given date and time
        
-    1. Test case: `editAppt A1234567X d/2021-11-13 ts/14:00
-       `
+    1. Test case: `editAppt A1234567X d/2021-11-13 ts/14:00` <br>
        Expected: No appointment is edited. Error details shown in the status message telling user that the requested appointment does not exist. 
        
-    1. Test case: `editAppt A0182345T d/2021-11-130 ts/15:00
-       `
+    1. Test case: `editAppt A0182345T d/2021-11-130 ts/15:00` <br>
        Expected: No appointment is edited. Error details shown in the status message telling the user that the date should be of the format `YYYY-MM-DD`.
        
-    1. Test case: `editAppt A0182345T d/2021-11-13 ts/125:00
-       `
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/125:00` <br>
        Expected: No appointment is edited. Error details shown in the status message telling the user that the time should be of a valid form `HH:00` or `HH:30`
        
     1. Other incorrect editAppt commands to try: `editAppt`, `editAppt x d/... ts/...`, where x is not a valid matriculation number

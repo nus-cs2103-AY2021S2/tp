@@ -25,6 +25,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
 
+        assert args != null;
         String condition = args.trim();
 
         if (VaccinationStatus.isValidStatus(condition.toUpperCase())) {
