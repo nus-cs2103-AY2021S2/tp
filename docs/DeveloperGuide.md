@@ -139,12 +139,13 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the data for `Dictionote`, including `ContactsList`, `NoteBook`, `DictionaryBook` and `DefinitionBook`.
+* exposes an unmodifiable `ObservableList<Contact>`,`ObservableList<Note>`,`ObservableList<Content>`,`ObservableList<Definition>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changed.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+The `ContactsList` stores the `Contact` of the user. A `Contact` consists of `Name`, `Email`, `Phone`, `Address` and a custom `Tag` class.
+The `NoteBook` stores the `Notes` of the user. A `Note` also has a `Tag` class. The `Dictionary` stores both the `Definition` and `Content` in the `Dictionote`. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ContactList` and `NoteBook`, which `Contact` and `Note` references, respectively. This allows `ContactList` and `NoteBook` to only require one `Tag` object per unique `Tag` in each "Book", instead of each `Contact` and  `Note` needing their own `Tag` object, respectively.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -848,6 +849,24 @@ testers are expected to do more *exploratory* testing.
 ### Editing a contact
 
 Similar to *Adding a contact* above (shared phone numbers and/or emails).
+
+### Deleting a note
+
+1. Deleting a note while all notes are being shown
+
+    1. Prerequisites: List all notes using the `listnote` command. Multiple notes in the list.
+
+    1. Test case: `deletenote 1`<br>
+       Expected: First note is deleted from the list. Details of the deleted note shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `deletenote 0`<br>
+       Expected: No note is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `deletenote`, `deletenote x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
 
 ### Saving data
 
