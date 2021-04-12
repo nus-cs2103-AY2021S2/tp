@@ -310,7 +310,7 @@ while also adding into multiple sections in an entry. The Edit and AddOn feature
 quick and small chanegs to an entry.
 
 The command opens an additional window when a user enters the command in the Ui, the command will be passed into 
-`MainWindow#executeCommand()`, in which `LogicManager#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+`MainWindow#executeCommand()`, in which `Logic#execute()` calls `LogicManager#execute()`, which parses the user input in `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
 With a separate window for revision of the entry, a user can easily make changes to the sections all at once. 
 
