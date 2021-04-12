@@ -3,6 +3,11 @@ layout: page
 title: About Us
 ---
 
+<p align="center">
+  <img src="./images/budget_baby.png" width="200px" />
+  <h1 align="center">BudgetBaby :baby: :money_with_wings: Team</h1>
+</p>
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email `seer@comp.nus.edu.sg`
