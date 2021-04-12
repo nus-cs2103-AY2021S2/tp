@@ -130,6 +130,8 @@ or suggestions [here](https://github.com/AY2021S2-CS2103T-W14-4/tp/issues).
 
 * Adding a task in the `home` tab will display the full list of tasks.
 
+* A task is considered duplicated if it's name, description and date is the same.
+
 * For the `completed`, `uncompleted`, `expired` tabs, only the following commands work: `help`, `exit`, `uncompleted`, 
   `completed`, `expired` and `home`. Switch to the `home` tab to utilize the other commands.
 
@@ -196,8 +198,7 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]â€
 * You can remove all the taskâ€™s tags by typing `t/` without specifying any tags after it.
 * There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However, you can cannot directly modify a 
   task's status to `expired` or from `uncompleted`/`completed` to `expired`.
-* If the edited task exist in the tasklist, an error will be thrown to the user. A task is considered duplicated only if 
-  it's name, description and date is the same.
+* If the edited task exist in the tasklist, an error will be thrown to the user. 
 
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
@@ -317,6 +318,8 @@ Examples:
 
 Sort tasks in ascending order of their dates. By sorting tasks you can easily see upcoming deadlines and decide 
 which tasks to prioritise.
+
+* If you sort in the `home` tab, the tasks in the other tabs will also be sorted.
 
 Format: `sort`
 
