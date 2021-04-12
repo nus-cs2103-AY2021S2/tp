@@ -11,25 +11,16 @@ The application is for managing study plans at NUS. Students can create their ow
 
 Given below are my contributions to the project:
 
-#### New feature: Master Plan Command
-- What it does: Allows users mark one of their study plans as their 'master' one.
+### New feature: Master Plan and Current Semester Commands
+- What they do: Allows users mark one of their study plans as their 'master' one then mark one of their semesters in the master plan as their current one. 
 
-- Justification: The master plan identifies the plan containing modules the student has actually done in the past and intends to do in the future. In conjunction with the **current semester** command, this feature is a prerequisite for any commands that require knowledge of the student's university progress.  It can be thought of as labelling one's master branch in GitHub.
+- Justification: The master plan identifies the plan containing modules the student has actually done in the past and intends to do in the future.  The current semester identifies the semester that the student is currently undertaking. Being able to correctly identify this semester allows the app to distinguish between past (previous semesters), present (current semester), and future (prospective semesters) and is a prerequisite for any commands that require knowledge of the student's university progress.
 
 - Highlights: Implementing this feature exposed me to AB3 in an end-to-end manner as its implementation involved user inputs, storage for persistence beyond a single session, and several other internally used classes.
 
 - Credits: The `ModelManager`, `ArgMultiMap`, and JSON Storage, classes were instrumental to my proper implementation of the feature.
 
-#### New feature: Current Semester Command
-- What it does: Allow users to mark a semester in their master plan as their current one.
-
-- Justification: The current semester identifies the semester that the student is currently undertaking. Being able to correctly identify this semester allows the app to distinguish between past (previous semesters), present (current semester), and future (prospective semesters). This feature, in conjunction with the **master plan** command, is a prerequisite for any commands that require knowledge of the student's university progress. 
-
-- Highlights: Similar to **master command**.
-
-- Credits: Similar to **master command**.
-
-#### New feature: History Command
+### New feature: History Command
 - What it does: Shows the user summary information about all semesters prior to the **current semester** of their **master plan**.
 
 - Justification: The History command is important as it allows students to quickly check their progress in the past semesters, and shows the student important summary information such as the total Modular Credits (MCs) they have taken and what their current Cumulative Average Points (CAP) is. (See **Show CAP** for more information)
@@ -38,7 +29,7 @@ Given below are my contributions to the project:
 
 - Credits: The `ModelManager` and `ArgMultiMap` classes and the relevant commands that I implemented.
 
-#### New feature: Show MCs and Show CAP commands
+### New feature: Show MCs and Show CAP commands
 - What they do: Shows the user relevant information about semesters prior to the **current semester** of their **master plan**.
 
 - Justification: It is important for students to be able to quickly gather accurate information about past semesters as such information is often required when applying for internships or exchange programmes.
@@ -48,7 +39,7 @@ Given below are my contributions to the project:
 - Credits: The `ModelManager`, `ArgMultiMap`, and `Ui` classes and the relevant commands that I implemented.
 
 
-#### Code Contributed
+### Code Contributed
 Please reference [`douglaswja`'s RepoSense](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=douglaswja&tabRepo=AY2021S2-CS2103-W17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false) to view my code contributions.
 
 Notably, I contributed 1114 lines of code to the project.
