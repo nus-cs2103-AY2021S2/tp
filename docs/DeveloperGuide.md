@@ -229,7 +229,7 @@ deliberately left out for brevity.
 <div markdown="span" class="alert alert-info">
 
 ### Notes feature (author: hengyiqun)
-(Cooming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
+(Coming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
 
 The note feature has been implemented to help the user insert and delete personal notes.
 This feature is introduced with the intention to help users manage their personal notes, and to make
