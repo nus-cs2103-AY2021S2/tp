@@ -849,9 +849,53 @@ testers are expected to do more *exploratory* testing.
         Expected: Help window is not opened. Error details shown in the status message.
 
 #### Change ParentPal's theme
+1. Changing theme to light theme when dark theme
+    1. Prerequisites: Set theme to dark by `theme o/dark`.
+    1. Test case: `theme o/light` \
+       Expected: Theme will change to the light theme.
+       Success message is shown in the status message.
+    1. Test case: `theme o/dark` \
+       Expected: Theme will remain in dark theme.
+       Success message is shown in the status message.
+    1. Test case: `theme` \
+       Expected: No change to theme.
+       Invalid command format error details shown in the status message.
+    1. Other incorrect sort commands to try: `theme   `, `theme 1`, `theme aaa`, `theme o/lol` \
+       Expected: Similar to previous.
+    1. Test case: `theme o/dark o/light` \
+       Expected: Theme will change to the light theme as last parameter will be taken.
 
+2. Change theme to dark theme when light theme
+    1. Prerequisites: Set theme to light by `theme o/light`.
+    1. Test case: `theme o/dark` \
+       Expected: Theme will change to dark theme.
+       Success message is shown in the message.
+    1. Test case: `theme o/dark` \
+    Expected: Theme will remain in dark theme.
+    Success message is shown in the status message.
 
+3. Check that theme is saved successfully after changing theme.
+    1. Prerequisites: Set theme to light by `theme o/light`.
+    2. Exit the application.
+    3. Open the application again.
+    4. Expected: Theme is still light.
+    
+4. Check that help window has same theme as main window.
+    1. Prerequisites: Set theme to light by `theme o/light`.
+    1. Open help window with `help` command.
+    1. Expected: Theme of help window is also the light theme.
+  
 ### Testing Address Book Features
+
+#### Add a contact
+1. Add a contact while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    1. Test case: `add n/Alice` \
+       Expected: Contact with name 'Alice' will be added. Should only see name in the Contact card for Alice in scrolling list.
+    1. Test case: `add n/Alice p/99091109 e/apple@gmail.com` \
+       Expected: Contact with name 'Alice', phone number '99091109' and email 'apple@gmail.com' will be added.
+   1. Test case: `add n/Alice p/99091109 e/apple@gmail.com tc/Anna tc/Bob t/math` \
+      Expected: Contact with name 'Alice', phone number '99091109' and email 'apple@gmail.com', child tags 'Anna' and 'Bob' and tag 'math' will be added.     
 
 #### Tag a contact
 1. Append tags to a contact
@@ -871,8 +915,14 @@ testers are expected to do more *exploratory* testing.
        ChildTag `alice` as seen below.
        
 ![Replace tags example](images/ReplaceTagExample.png)
+
+#### Clear contacts
+1. Clear all contacts while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    1. Test case: `clear` \
+       Expected: All contacts are cleared.
     
-#### Clear tags
+#### Clear by tags
 1. Clearing contacts by tag
     1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
     
@@ -880,11 +930,17 @@ testers are expected to do more *exploratory* testing.
        Expected: The contacts with a psg tag, *'Charlotte Oliveiro'* and *'Annie Li'* are deleted from the address book.
 
 #### Delete a contact
+1. Deleting a contact while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+    1. Test case: `delete 1` \
+       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
+    1. Test case: `delete 0` \
+       Expected: No contact is deleted. Error details shown in the status message.
+    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
+       Expected: Similar to the previous.
 
 #### Delete multiple contacts
-
-#### Clear contacts
-
+    
 #### Edit a contact
 
 #### Find a contact
@@ -969,6 +1025,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `addAppt n/PTM` \
        Expected: No appointment is added. Error details shown in the status message.
+
+#### Delete an appointment
 
 #### Edit an appointment
 1. Edit all fields
