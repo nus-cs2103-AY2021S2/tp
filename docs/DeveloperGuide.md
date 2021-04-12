@@ -373,7 +373,7 @@ The sequence diagram below shows how the detail feature works:
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a detail command is executed:
 ![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
 
 #### Design consideration:
@@ -603,12 +603,12 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the levelfown feature works:
+The sequence diagram below shows how the leveldown feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a levelup command is executed:
+The activity diagram shows the workflow when a leveldown command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
 
 #### Design consideration:
@@ -926,23 +926,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Clears all entries contact**
-
-**MSS**
-
-1.  User enters clear all contacts command
-2.  TutorsPet clears all the contact in list
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given details is in an incorrect format.
-
-    * 1a1. TutorsPet shows an error message.
-
-      Use case ends.
-
 **Use case: Delete a student contact**
 
 **MSS**
@@ -995,35 +978,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Exit TutorsPet**
-
-**MSS**
-
-1.  User enters exit into command prompt
-2.  TutorsPet saves the current contact in the list and exits.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given details is in an incorrect format.
-
-    * 1a1. TutorsPet shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: Search for a student contact**
 
 **MSS**
 
-1.  User enters the student name or specified keyword to be searched.
-2.  TutorsPet shows a list of searched students.
-
-    Use case ends.
+1.  User enters the specified keyword to be searched.
+1.  TutorsPet shows a list of searched students.
 
 **Extensions**
 
-* 1a. The search result list is empty.
+* 1a. The given search command is in an incorrect format.
+  
+  * 1a1. TutorsPet shows an error message. 
+    
+    Use case ends.
+* 1b. The given search command has two of the same parameters.
+  
+  * 2b1. TutorsPet executes the command while taking in the last occurrence of the parameters only. 
+    
+    Use case resumes at step 2.
+* 3a. The search result list is empty.
 
   Use case ends.
 
@@ -1119,7 +1093,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Deletes a new important date**
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
+
+**Use case: Deletes a important date**
 
 **MSS**
 
@@ -1159,7 +1157,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-*{More to be added}*
+**Use case: Opens schedule window**
+
+**MSS**
+
+1.  User requests to open weekly schedule window.
+2.  TutorsPet opens the window schedule.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is in an invalid format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. The schedule window is already opened.
+  
+  * 1b1. TutorsPet switches focus to the schedule window. 
+    
+    Use case ends.
+
+**Use case: Clears all entries contact**
+
+**MSS**
+
+1.  User enters clears all entries contact command
+2.  TutorsPet clears all the contact in list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+**Use case: Exit TutorsPet**
+
+**MSS**
+
+1.  User enters exit into command prompt
+2.  TutorsPet saves the current contact in the list and exits.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case resumes at step 2.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1256,6 +1309,53 @@ testers are expected to do more *exploratory* testing.
      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Searching for a student
+
+1. Searching for a student while all students are being shown.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Test case: `search n/yeoh alex t/math`<br>
+      Expected: Displays a list of students with names (case insensitive) `alex yeoh` or `alex` or `yeoh alex` or 
+      students with subject `math`.
+   1. Test case: `search t/math t/phys`<br>
+      Expected: Displays a list of students with subjects `phys`, because only the last occurrence of the parameter will be taken into account.
+   1. Test case: `search n/`<br>
+      Expected: No student is displayed. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect search commands to try: `search`, `search s/`, `search s/ t/`, `search x` (where x is any keyword)<br>
+      Expected: Similar to previous.
+1. Searching for a student not displayed while a search result is displayed 
+   1. Prerequisites: Search for students using the `search t/math` command. Zero to multiple students with `math` subject displayed in the list.
+   1. Test case: `search t/phys`<br>
+      Expected: Displays a list of students with subject `phy`.
+   1. Test case: `search s/xyz`<br>
+      Expected: Displays a list of students with school names with `xyz` (case insensitive),
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing the Schedule
+
+1. Viewing the schedule while all students are being shown.
+  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+  1. Test case: `schedule`<br>
+     Expected: Opens up the schedule window.
+  1. Test case: `schedulexyz`<br>
+     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
+     Expected: Similar to previous.
+1. Viewing the schedule window while adding or editing student contact.
+  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
+     Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact) 
+     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+1. Viewing the schedule window while schedule window is already opened.
+   1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+   1. Test case: `schedule` <br>
+   1. Expected: Focuses back on the schedule window.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 

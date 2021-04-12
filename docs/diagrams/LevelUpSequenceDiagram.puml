@@ -27,11 +27,11 @@ LevelUpCommandParser --> AddressBookParser
 deactivate LevelUpCommandParser
 
 AddressBookParser -> LevelUpCommandParser : parse("ex/1")
-activate levelUpCommandParser
+activate LevelUpCommandParser
 
 create LevelUpCommand
 LevelUpCommandParser -> LevelUpCommand
-activate levelUpCommand
+activate LevelUpCommand
 
 LevelUpCommand --> LevelUpCommandParser : lv
 deactivate LevelUpCommand
