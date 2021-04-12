@@ -1,10 +1,11 @@
 package seedu.address.logic.commands.doctor;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_DOCTOR_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_DUPLICATE_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -42,7 +43,7 @@ public class AddDoctorCommand extends Command {
         requireNonNull(model);
 
         if (model.hasDoctor(toAdd)) {
-            throw new CommandException(Messages.MESSAGE_ADD_DUPLICATE_DOCTOR);
+            throw new CommandException(MESSAGE_ADD_DUPLICATE_DOCTOR);
         }
 
         if (model.hasConflictingUuid(toAdd.getUuid())) {
@@ -51,11 +52,11 @@ public class AddDoctorCommand extends Command {
                 newUuidDoctor = new Doctor(toAdd.getName(), toAdd.getTags());
             }
             model.addDoctor(newUuidDoctor);
-            return new CommandResult(String.format(Messages.MESSAGE_ADD_DOCTOR_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_ADD_DOCTOR_SUCCESS, toAdd));
         }
 
         model.addDoctor(toAdd);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_DOCTOR_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_DOCTOR_SUCCESS, toAdd));
     }
 
     @Override

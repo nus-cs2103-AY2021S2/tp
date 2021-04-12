@@ -1,6 +1,10 @@
 package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_APPOINTMENT_CONFLICT;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_APPOINTMENT_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
@@ -13,7 +17,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -75,7 +78,7 @@ public class AddAppointmentCommand extends Command {
         assert displayedPatientRecords != null : "getFilteredPatientList method should not return null";
 
         if (patientIndex.getZeroBased() >= displayedPatientRecords.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
         Patient patient = displayedPatientRecords.get(patientIndex.getZeroBased());
         UUID patientUuid = patient.getUuid();
@@ -85,7 +88,7 @@ public class AddAppointmentCommand extends Command {
         assert displayedDoctorRecords != null : "getFilteredDoctorList method should not return null";
 
         if (doctorIndex.getZeroBased() >= displayedDoctorRecords.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
         }
         Doctor doctor = displayedDoctorRecords.get(doctorIndex.getZeroBased());
         UUID doctorUuid = doctor.getUuid();
@@ -94,11 +97,11 @@ public class AddAppointmentCommand extends Command {
         Appointment toAdd = new Appointment(patientUuid, doctorUuid, timeslot, tagList);
 
         if (model.hasConflictingAppointment(toAdd)) {
-            throw new CommandException(Messages.MESSAGE_ADD_APPOINTMENT_CONFLICT);
+            throw new CommandException(MESSAGE_ADD_APPOINTMENT_CONFLICT);
         }
 
         model.addAppointment(toAdd);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_APPOINTMENT_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_ADD_APPOINTMENT_SUCCESS,
                 new AppointmentDisplay(patient, doctor, timeslot, tagList)));
     }
 

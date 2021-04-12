@@ -1,0 +1,9 @@
+{
+  "doctors": [ {
+    "name": "Valid Person",
+    "tag": "fever"
+  }, {
+    "name": "Person With Invalid Tag Field",
+    "tag": "fev&er"
+  } ]
+}
