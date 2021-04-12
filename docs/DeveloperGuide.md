@@ -28,7 +28,7 @@ It describes both the design and architecture of Pawbook.
 ## **Target User Profile**
 
 The target user profile are dog school managers that own and manage the daily operations of the dog schools. They
-handle a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care
+handle a wide range of operations such as keeping track of the dogs under their care, arranging programs and taking care
 of the dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school
 at all times.
 
@@ -36,10 +36,10 @@ at all times.
 
 In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training,
 grooming and workshops. With many moving parts daily, managing operations  can get overwhelming.
-PawBook is an all-in-one management system to help dog school managers to bookkeep and maintain organisation. 
-At present, there is no such application to help dog school owners to organise and
-manage their dog school currently. This application serves to increase the effectiveness and efficacy of dog schools
-managers. 
+PawBook is an all-in-one management system to help dog school managers to maintain organisation of their dog schools. 
+Besides keeping track of all the dogs under their care, it also allows users to plan their schedule and manage programs 
+and classes. At present, there is no such application to help dog school owners to organise and manage their dog school 
+currently. This application serves to increase the effectiveness and efficacy of dog schools managers. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 ![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png){: .center-image}
 
-The sections below give more details of each component.
+The sections below give more details of each component. 
 
 ### UI component
 
