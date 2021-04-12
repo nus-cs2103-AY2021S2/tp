@@ -637,14 +637,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample properties and appointments. The window size may not be optimum.
 
-1. Saving window preferences
+
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-      
-1. Exiting
+  
+    
+3. Exiting
 
    1. Prerequisites: The application is running.
 
@@ -666,7 +668,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add property commands to try: `add property n/Bishan`, `add property t/Condo` <br>
       Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
 
-1. Adding a duplicate property.
+
+2. Adding a duplicate property.
 
    1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app.
 
@@ -688,7 +691,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect add appointment commands to try: `add appointment n/Meet Jacob`, `add appointment d/19-05-2021 t/1930` <br>
        Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
 
-1. Adding a duplicate appointment.
+
+2. Adding a duplicate appointment.
 
     1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app.
 
@@ -717,7 +721,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find`<br>
         Expected: Both lists are not updated, error message showing the two types of `find` commands is shown. 
         
-1. Finding properties
+
+2. Finding properties
     
     1. Prerequisites: Using default example data (or make sure when `list property` is entered, you can see the property `Woodlands Crescent` that has type `hdb` and price at `$800,000`). 
     
@@ -736,7 +741,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect find property commands to try: `find property x/ `, where x is any of the permissible options. 
         Expected: Similar to previous. 
         
-1. Finding appointments
+
+3. Finding appointments
     
     1. Prerequisites: Using default example data (or make sure when `list appointment` is entered, you can see the appointment `Meet Emily` that has remarks `At Mayfair Gardens`, date at `Jun 15 2021`, and time at `11:00AM`). 
     
@@ -755,7 +761,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect find property commands to try: `find appointment x/ `, where x is any of the permissible options. 
         Expected: Similar to previous. 
 
-1. Finding clients
+
+4. Finding clients
 
     1. Prerequisite: Using default example data (or make sure when `list all` is entered, you can see the appointment `Meet Alice` and the property with `Alice` as client name). 
     
@@ -767,20 +774,25 @@ testers are expected to do more *exploratory* testing.
 
 ### Listing all properties and appointments
 
-1. List all properties and appointments in the property list and appointment list after a `find` command.
+1. List all properties and appointments in the property list and appointment list after a `find client [KEYWORD]` command.
 
     1. Prerequisites: There exists at least one property and one appointment in the property list and appointment list respectively.
     
+    1. Perform a `find client [KEYWORD]` command that returns filtered property and appointment lists with client name as per input keyword.
+   
     1. Test case: `list all`
        
        Expected: Filter from `find` command will be cleared, and all properties and appointments in the property list and appointment list are displayed,
        with a result message showing `Listed all properties and appointments`.
-       
-1. List all properties and appointments in the property and appointment list after a `clear` command.
+  
+     
+2. List all properties and appointments in the property and appointment lists after a `clear` command.
 
     1. Prerequisites: There exists at least one property and one appointment in the property list and appointment list respectively.
     
-    1. Test case: `clear all`
+    1. Perform a `clear all` command such that all properties and appointments are cleared from the lists.
+   
+    1. Test case: `list all`
        
        Expected: No properties and appointments are displayed, with a result message showing: `No existing properties and appointments available`
 
@@ -799,7 +811,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit property commands to try: `edit property n/Bishan Village`, `edit property +1` <br>
        Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
 
-1. Editing to a duplicate property.
+
+2. Editing to a duplicate property.
 
     1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app that is not the first property in the property list.
 
@@ -821,7 +834,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit appointment commands to try: `edit appointment n/Meet Nathaniel`, `edit appointment +1 n/Meet Nathaniel`<br>
        Expected: No appointment is edited. An error message `Invalid command format!` is shown in the result display.
 
-1. Editing to a duplicate appointment.
+
+2. Editing to a duplicate appointment.
 
     1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app that is not the first appointment in the appointment list.
 
