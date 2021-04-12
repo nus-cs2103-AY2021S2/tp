@@ -15,8 +15,10 @@ import dog.pawbook.logic.parser.exceptions.ParseException;
  * A parser capable of parsing for both enrol and drop commands.
  */
 public class EnrolDropCommandParser extends CommandWithCompulsoryPrefixNoPreambleParser<ProgramRegistrationCommand> {
-    public static final String MESSAGE_UNSUPPORTED_BATCH_OPERATION = "Only enrollment of multiple dogs into a single "
-            + "program or enrollment of a single dog into multiple programs are supported!";
+    public static final String MESSAGE_UNSUPPORTED_BATCH_ENROL_OPERATION = "Only enrollment of multiple dogs into a "
+            + "single program or enrollment of a single dog into multiple programs are supported!";
+    public static final String MESSAGE_UNSUPPORTED_BATCH_DROP_OPERATION = "Only dropping of multiple dogs from a "
+            + "single program or dropping of a single dog from multiple programs are supported!";
 
     private static final Prefix[] ENROL_COMPULSORY_PREFIXES = { PREFIX_DOGID, PREFIX_PROGRAMID };
     private final boolean enrol;
@@ -67,7 +69,9 @@ public class EnrolDropCommandParser extends CommandWithCompulsoryPrefixNoPreambl
          * user.
          */
         if (dogIdList.size() > 1 && programIdList.size() > 1) {
-            throw new ParseException(MESSAGE_UNSUPPORTED_BATCH_OPERATION);
+            throw new ParseException(enrol
+                    ? MESSAGE_UNSUPPORTED_BATCH_ENROL_OPERATION
+                    : MESSAGE_UNSUPPORTED_BATCH_DROP_OPERATION);
         }
 
         return enrol ? new EnrolCommand(dogIdList, programIdList) : new DropCommand(dogIdList, programIdList);
