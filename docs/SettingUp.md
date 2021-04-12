@@ -3,10 +3,6 @@ layout: page
 title: Setting up and getting started
 ---
 
-* Table of Contents
-{:toc}
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Setting up the project in your computer
