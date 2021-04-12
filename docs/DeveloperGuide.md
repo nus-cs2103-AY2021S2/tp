@@ -114,8 +114,7 @@ call.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**
-API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/conss/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/conss/model/Model.java)
 
 The `Model`,
 
@@ -134,8 +133,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**
-API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
