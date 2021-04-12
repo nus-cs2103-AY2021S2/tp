@@ -99,7 +99,7 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
 **:bulb: Tips:** <br>
 
-- You must replace `FR_DESCRIPTION` with the description of your financial record. The description should not exceed 100 characters.
+- You must replace `FR_DESCRIPTION` with the description of your financial record. The description should not exceed 100 characters and it should contain special character "/".
 - You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places** (additional decimal places will be rounded to two decimal places). The upper limit for `FR_AMOUNT`is 1,000,000.
 - You may include more than 1 `CATEGORY`, but each of it should not exceed 20 characters
 - The date you input must follow the format `DD-MM-YYYY` and it should be between 01-01-1970 and 31-12-2100. (e.g. 31-12-2020)
