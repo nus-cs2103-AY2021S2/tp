@@ -1,9 +1,9 @@
 ---
 layout: page
-title: NuFash
+title: user-guide
 ---
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="200">
+  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="400">
   <h1 align="center"> User Guide </h1>
 </p>
 
