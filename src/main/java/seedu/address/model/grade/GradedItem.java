@@ -14,7 +14,7 @@ public class GradedItem {
      * otherwise " " (a blank string) becomes a valid input.
      * Maximum number of characters is 29, otherwise the string cannot be shown in full in GUI.
      */
-    public static final String VALIDATION_REGEX = "(?=^.{0,25}$)[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "(?=^.{1,25}$)[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String gradedItem;
 
