@@ -31,15 +31,16 @@ Given below are my contributions to the project.
     * Added documentation for the feature `findPool`
     * Fixed errors and inconsistencies found during PE-D ([\#217](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/217))
   * Developer Guide:
-    * Added User Stories with Contents
+    * Drafted initial version of User Stories
     * Added Use Cases and Non-Functional Requirements
-    * Updated Class Diagrams for `Ui`, `Model` and `Storage`
-    * Added Sequence Diagram for the feature `listPool` 
+    * Updated UML Class Diagrams for `Ui`, `Model` and `Storage`
+    * Added UML Sequence Diagram for the feature `listPool` 
     * Created issues and corrected inconsistencies such as different font case and wording ([\#267](https://github.com/AY2021S2-CS2103T-W10-1/tp/issues/267), [\#246](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/246))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): ([\#248](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/248),
   [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234))
+  * Reported [\12 Bugs](https://github.com/markmcwong/ped/issues) for team AY2021S2-CS2103T-W13-3.
 
 * **Tools**:
   * Integrated a third party library (testfx) to the project for GUI-testing
