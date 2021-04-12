@@ -195,7 +195,7 @@ Shows a list of persons who match the specified field(s).
 Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 * The fields that can be specified include the person's `NAME`, `PHONE`, `EMAIL`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `NAME` field, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
+* Only for the `NAME` and `TAG` fields, multiple keywords can be provided. The keywords must be separated by whitespace for the `NAME` field, and a comma for the `TAG` field. Matching is successful as long as a person's name/tag(s) contains words that fully matches any of the specified keywords.
 
 Example:
 * `find_person n/John Doe t/Student` shows a list of persons whose name contains words that fully matches any of the two specified name keywords `John` and `Doe`, and is tagged with `Student`.
@@ -264,7 +264,7 @@ Shows a list of venues that match the specified field(s).
 Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the venue's `VENUE_NAME`, `CAPACITY`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as the venue's name/description contains words that fully matches any of the specified keywords.
+* Only for the `VENUE_NAME`, `DESCRIPTION` and `TAG` fields, multiple keywords can be provided. The keywords must be separated by whitespace for the `VENUE_NAME` and `DESCRIPTION` fields, and a comma for the `TAG` field. Matching is successful as long as the venue's name/description/tag(s) contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
@@ -327,7 +327,7 @@ Shows a list of bookings that match the specified field(s).
 Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the booking's `BOOKER_EMAIL`, `DATE`, `VENUE_NAME`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a booking's venue name/description contains words that fully matches any of the specified keywords.
+* Only for the `VENUE_NAME`, `DESCRIPTION` and `TAG` fields, multiple keywords can be provided. The keywords must be separated by whitespace for the `VENUE_NAME` and `DESCRIPTION` fields, and a comma for the `TAG` field. Matching is successful as long as a booking's venue name/description/tag(s) contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
