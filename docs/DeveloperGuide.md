@@ -17,7 +17,7 @@ title: Developer Guide
         + [Component Parser](#component-parser)
         + [Parser validation](#parser-validation)
         + [Data consistency](#data-consistency)
-            - [Deletion of Person objects](#deletion-of-person-objects)
+            - [Deletion of Customer objects](#deletion-of-customer-objects)
             - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
             - [Logging of Order object](#logging-of-order-object)
         + [Concurrent list display](#concurrent-list-display)
@@ -28,6 +28,10 @@ title: Developer Guide
         + [List command](#list-command)
         + [Find command](#find-command)
         + [Edit command](#edit-command)
+    * [New Commands](#new-commands)
+        + [order complete command](#order-complete-command)
+        + [order history command](#order-history-command)
+        
 - [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
 - [**Appendix: Requirements**](#--appendix--requirements--)
     * [Product scope](#product-scope)
@@ -111,7 +115,7 @@ Note: ComponentXYZCommand = CustomerAddCommand, MenuAddCommand, OrderDeleteComma
 1. `Logic` uses the `JJIMYParser` class to differentiate the user command's component and parse the arguments to respective `ComponentParser` (e.g. `MenuParser`, `OrderPaser` etc).
 1. `ComponentParser` will then creates respective `ComponentXYZCommand`.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -161,7 +165,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Model update
 
-The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` classes respectively), in addition to the original `Person` class for the `contact` component.
+The model has been updated to contain new classes for the `menu`, `inventory`, and `order` components (`Dish`, `Ingredient`, and `Order` classes respectively), in addition to the original `Customer` class for the `customer` component.
 
 `Person` class has had field classes `Phone`, `Address` and `Email` removed. `Tag` has also been replaced with `String` instead. The validation functionality will be moved to other classes.
 
@@ -234,7 +238,7 @@ This automated data link ensures that the restaurant owner will be notified when
 
 To increase the efficiency of adding food orders, the GUI has been improved to display two lists at the same time. The customer list will always be shown on the left column whereas the right column will display one of the other components.
  
-Which component list is shown on the right will depend on the component of the last command input. For example, using a `menu add` command will cause the right side to display the menu list, whereas `order add` will show the right side to display the order list. However, using a command on the `customer` component will only update the left list and not affect the right list.
+Which component list is shown on the right will depend on the component of the last command input; the component of the `CommandResult` will cause `MainWindow` to display the corresponding component's item list. For example, using a `menu add` command will cause the right side to display the menu list, whereas `order add` will show the right side to display the order list. However, using a command on the `customer` component will only update the left list and not affect the right list.
 
 #### Data archiving
 
@@ -285,6 +289,8 @@ Unlike the other commands, the `list` command has no specific parsers beyond the
 The following sequence diagram shows how the GUI is updated from `MainWindow` after a `menu list` command is called by the user.
 ![Sequence diagram showing GUI update caused by a MenuListCommand](images/MenuListGUI.png)
 
+In the case of the `order` component, the `list` command will update the `FilteredOrderedList` object to only contain orders that are marked as `UNCOMPLETED` and return a `CommandResult` object to update the GUI.
+
 #### Find command
 
 The `find` command will be implemented for all four components and can be called from the CLI input with the general form
@@ -311,6 +317,30 @@ The `edit` command will be parsed in a similar way to other commands (see the [C
 
 This new object will replace an object in the current book and return a `CommandResult` object to update the GUI from `MainWindow`, in a similar fashion to the GUI update caused by the [add command](#add-command).
 
+### New Comamnds
+
+#### Order complete command
+
+The `order comlete` command can be called from the CLI input with the general form
+	
+	order complete [argument]
+
+The argument of the `order complete` command will always be the index (1-indexed) of the order to be marked as completed. 
+
+For details on how the command is parsed, refer to the explanation in the [Component Parser description](#component-parser). After the command is successfully parsed into an complete `Command` object (e.g. `OrderCompleteCommand`), the `Command` object is executed by the `LogicManager`; the `order complete` commands' `execute` methods include validation routines to ensure the index selected is a valid index.
+
+Finally, the `ModelManager` is called to replace the order with an altered order - which is identical except it is marked as `COMPLETED` - in `orderBook`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result. The order will no longer appear in `order list` but instead show up in `order history` as a completed order.
+
+#### Order history command
+
+The `order history`  command can be called from the CLI input with the general form
+
+	order history
+
+There are no arguments for the `order history` command. The command is implemented similarly to the list command [List Command description](#list-command).
+
+The command will update the `FilteredOrderedList` object to only contain orders that are marked as `COMPLETED` and `CANCELLED` and return a `CommandResult` object to update the GUI such that all orders that are completed and cancelled are displayed. Notably, `FilteredOrderedList` contains only `UNCOMPLETED` orders for all other component `order` commands. Further elaboration on how the GUI is updated can be found in the [concurrent list display description](#concurrent-list-display).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -331,13 +361,13 @@ This new object will replace an object in the current book and return a `Command
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts, orders, menu items and inventory
+* has a need to manage a significant number of customers, orders, menu items and inventory
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts, orders, menu items and inventory faster than a typical mouse/GUI driven app
+**Value proposition**: manage customers, orders, menu items and inventory faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -348,8 +378,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------- |
 | `* * *`  | new user                       | see usage instructions                                     | refer to instructions when I forget how to use the App      |
 | `* * *`  | fast typer                     | be able to input by CLI                                    | key in commands faster                                      |
-| `* * *`  | restaurant owner               | add a customer's contact                                   | keep track of each customer's details                       |
-| `* * *`  | restaurant owner               | remove a customer's contact                                | remove customers who no longer patronize the restaurant     |
+| `* * *`  | restaurant owner               | add a customer's customer                                  | keep track of each customer's details                       |
+| `* * *`  | restaurant owner               | remove a customer's customer                               | remove customers who no longer patronize the restaurant     |
 | `* * *`  | restaurant owner               | add dishes to the menu                                     | keep track of dishes being offered                          |
 | `* * *`  | restaurant owner               | remove dishes from the menu                                | remove dishes that are not being offered anymore            |
 | `* * *`  | restaurant owner               | add food orders to the order list                          | keep track of the food I need to prepare                    |
@@ -364,8 +394,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | restaurant owner               | remove dishes to the menu list                             | so I can remove dishes that are not being offered anymore   |
 | `* * *`  | restaurant owner               | view all dishes to the menu list                           | so I can view all the dishes being offered                  |
 | `* * *`  | restaurant owner               | view the list of food orders                               | so I know which dishes to prepare                           |
-| `* *`    | restaurant owner               | edit a customer's contact                                  | rectify typos for customer errors                           |
-| `* *`    | user with many contacts        | find a customer's contact                                  | quickly locate the contact details of a particular customer |
+| `* *`    | restaurant owner               | edit a customer's customer                                 | rectify typos for customer errors                           |
+| `* *`    | user with many customers       | find a customer's customer                                 | quickly locate the customer details of a particular customer |
 | `* *`    | owner with a large menu        | find a dish on the menu                                    | quickly locate details of a dish on the menu                |
 | `* *`    | owner of a busy restaurant     | find a food order from the order list                      | quickly locate the details of an order I'm working on       |
 | `* *`    | owner with a complex inventory | find the quantity of an ingredient in the food inventory   | quickly check how much of a certain ingredient I have left  |
@@ -393,12 +423,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add a contact**
+**Use case: Add a customer**
 
 **MSS**
 
-1.  User requests to add a contact
-2.  JJIMY adds the contact
+1.  User requests to add a customer
+2.  JJIMY adds the customer
 
     Use case ends.
 
@@ -410,23 +440,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: List all contacts**
+**Use case: List all customers**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  JJIMY shows a list of contacts
+1.  User requests to list customers
+2.  JJIMY shows a list of customers
 
     Use case ends.
 
-**Use case: Delete a contact**
+**Use case: Delete a customer**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  JJIMY shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  JJIMY deletes the contact
+1.  User requests to list customers
+2.  JJIMY shows a list of customers
+3.  User requests to delete a specific customer in the list
+4.  JJIMY deletes the customer
 
     Use case ends.
 
@@ -442,14 +472,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find a contact**
+**Use case: Find a customer**
 
 **MSS**
 
-1. User requests to list contacts
-2. JJIMY shows a list of contacts
-3. User requests to find contacts based on keywords.
-4. JJIMY returns a list of matching contacts for the keywords.
+1. User requests to list customers
+2. JJIMY shows a list of customers
+3. User requests to find customers based on keywords.
+4. JJIMY returns a list of matching customers for the keywords.
 
     Use case ends.
 
@@ -459,7 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given keywords do not match any contacts.
+* 3a. The given keywords do not match any customers.
 
     * 3a1. JJIMY shows an error message.
 
@@ -701,7 +731,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 2000 total items (contacts, menu items, inventory stock) without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 2000 total items (customers, menu items, inventory stock) without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to complete any single request within 200ms.
 4.  Should work entirely client-side, without involving a remote server.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -710,4 +740,4 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Inventory**: A list of necessary food ingredients and their associated stock quantities
 * **Mainstream OS**: Windows, Linux, Unix, OS X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private customer detail**: A customer detail that is not meant to be shared with others
