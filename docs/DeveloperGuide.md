@@ -1256,7 +1256,10 @@ Given below are instructions to test the app manually.
 
 1. Deleting a tutor while all tutor(s) are being shown
 
-    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be deleted must exist.
+       3. Index must be a positive integer.
 
     1. Test case: `delete_tutor 1`<br>
        Expected: First tutor is deleted from the list. Details of the deleted tutor shown in the status message.
@@ -1302,7 +1305,10 @@ Given below are instructions to test the app manually.
 
 1. Deleting a note while all note(s) are being shown
 
-    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The note to be deleted must exist.
+       3. Index must be a positive integer.
 
     1. Test case: `delete_note 1`<br>
        Expected: Note of the first tutor is deleted. Details of the deleted note shown in the status message.
@@ -1316,8 +1322,11 @@ Given below are instructions to test the app manually.
 ### Export Tutor Details
 
 1. Export Tutor Details
-    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
-    1. Test Case: `export 1` <br>
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be exported must exist.
+       3. Index must be a positive integer.
+     1. Test Case: `export 1` <br>
        Expected: The details of the first tutor is exported. A `txt` file named after the tutor is saved at the `export` folder of the `jar` file location. <br><br>
     1. Test Case: `export 0` <br>
        Expected: No details is exported. Error details shown in the status message. <br><br>
@@ -1325,8 +1334,11 @@ Given below are instructions to test the app manually.
 ### Favourite Tutor
 
 1. Favourite Tutor
-    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
-    1. Test Case: `favourite 1` <br>
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be favourite must exist.
+       3. Index must be a positive integer.
+     1. Test Case: `favourite 1` <br>
        Expected: The first tutor from the list is favourite. A favourite indicator (star) shown beside the tutor's name. <br><br>
     1. Test Case: `export 0` <br>
        Expected: No tutor is favourite. Error details shown in the status message. <br><br>
@@ -1334,8 +1346,11 @@ Given below are instructions to test the app manually.
 ### Unfavourite Tutor
 
 1. Unfavourite Tutor
-    1. Prerequisites: List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
-    1. Test Case: `favourite 1` <br>
+    1. Prerequisites: 
+       1. List all tutor(s) using the `list_tutors` command. Multiple tutors in the list.
+       2. The tutor to be unfavourite must exist.
+       3. Index must be a positive integer.
+     1. Test Case: `favourite 1` <br>
        Expected: The first tutor from the list is unfavourite. A favourite indicator (star) is removed from beside the tutor's name. <br><br>
     1. Test Case: `export 0` <br>
        Expected: No tutor is unfavourite. Error details shown in the status message. <br><br>
@@ -1363,10 +1378,9 @@ Given below are instructions to test the app manually.
 
 1. List all appointments
     1. Test Case: `list_appointments` <br>
-       Expected: The Appointment List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
+       Expected: The Appointment List Panel displays the all the appointments in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
     2. Test Case: `list_appointments abcdefg` <br>
-       Expected: The Appointment List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
-
+       Expected: The Appointment List Panel displays the all the appointments in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
 
 ### Adding a Schedule
 
