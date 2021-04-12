@@ -42,5 +42,5 @@ Given below are my contributions to the project.
     
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#138](https://github.com/nus-cs2103-AY2021S2/ip/pull/138), [\#27](https://github.com/nus-cs2103-AY2021S2/ip/pull/27), [\#192](https://github.com/nus-cs2103-AY2021S2/ip/pull/192), [\#149](https://github.com/nus-cs2103-AY2021S2/ip/pull/149)
-  * Contributed to forum discussions (examples: [96](https://github.com/nus-cs2103-AY2021S2/forum/issues/96))
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/clarlzx/ped/issues/1), [2](https://github.com/clarlzx/ped/issues/2), [3](https://github.com/clarlzx/ped/issues/3), [4](https://github.com/clarlzx/ped/issues/4), [5](https://github.com/clarlzx/ped/issues/5), [7](https://github.com/clarlzx/ped/issues/7), [8](https://github.com/clarlzx/ped/issues/8))
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/96))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/clarlzx/ped/issues/1), [2](https://github.com/clarlzx/ped/issues/2), [3](https://github.com/clarlzx/ped/issues/3), [4](https://github.com/clarlzx/ped/issues/4), [5](https://github.com/clarlzx/ped/issues/5), [6](https://github.com/clarlzx/ped/issues/7), [7](https://github.com/clarlzx/ped/issues/8))
