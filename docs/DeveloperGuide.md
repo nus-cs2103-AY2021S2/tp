@@ -66,7 +66,6 @@ For example, the `BudgetBabyLogic` component (see the class diagram given below)
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `add-fr d/Lunch a/10`.
 
-[To be updated]
 ![Class Diagram of the Logic Component](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
@@ -121,7 +120,7 @@ The `BudgetBabyModel`,
 - exposes an unmodifiable `ObservableList<FinancialRecord>` that can be 'observed' (same as above)
 - does not depend on any of the other three components.
 
-### Storage component [To be updated]
+### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
