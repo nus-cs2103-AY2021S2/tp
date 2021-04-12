@@ -1,6 +1,7 @@
 package seedu.booking.ui;
 
 import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PREVIOUS;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 
 import java.util.logging.Logger;
 
@@ -64,6 +65,9 @@ public class MainWindow extends UiPart<Stage> {
     private Label currentListName;
 
     @FXML
+    private Label currentListSize;
+
+    @FXML
     private StackPane resultListPanelPlaceholder;
 
     @FXML
@@ -74,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private VBox cardDisplayPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -137,9 +142,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        /*upcomingBookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
-        upcomingBookingListPanelPlaceholder.getChildren().add(upcomingBookingListPanel.getRoot());*/
-
         venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
         bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -172,8 +174,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel.addListener(personListener);
         bookingListPanel.addListener(bookingListener);
 
-        resultListPanelPlaceholder.getChildren().clear();
-        resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+        displayList(new CommandResult("", false, COMMAND_SHOW_VENUES, false));
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -239,22 +240,28 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
         resultListPanelPlaceholder.getChildren().clear();
+        int listSize = 0;
         switch(commandType) {
         case COMMAND_SHOW_BOOKINGS:
             resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
-
+            listSize = logic.getFilteredBookingList().size();
             break;
         case COMMAND_SHOW_VENUES:
             resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+            listSize = logic.getFilteredVenueList().size();
             break;
         case COMMAND_SHOW_PERSONS:
             resultListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            listSize = logic.getFilteredPersonList().size();
             break;
         case COMMAND_SHOW_NONE:
             break;
         default:
             assert false;
         }
+        currentListName.setText(commandType.toString());
+        currentListSize.setText(String.valueOf(listSize) +
+                ((listSize == 1) ? " Listing" : " Listings"));
     }
 
     /**

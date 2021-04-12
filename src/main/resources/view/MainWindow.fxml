@@ -35,7 +35,7 @@
           </Menu>
         </MenuBar>
 
-        <HBox>
+        <HBox VBox.vgrow="ALWAYS">
           <VBox>
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
@@ -61,7 +61,7 @@
               <Label fx:id="currentListSize" id="currentListSize" styleClass="cell_title_label" StackPane.alignment="TOP_RIGHT" text="0 Listings" />
             </StackPane>
 
-            <VBox fx:id="resultList" styleClass="pane-with-border" minWidth="240" prefWidth="240">
+            <VBox fx:id="resultList" styleClass="pane-with-border" minWidth="240" prefWidth="240" VBox.vgrow="ALWAYS">
               <StackPane fx:id="resultListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
 
