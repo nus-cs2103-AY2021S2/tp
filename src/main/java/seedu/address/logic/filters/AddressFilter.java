@@ -12,6 +12,7 @@ public class AddressFilter extends Filter {
 
     /**
      * Creates a address filter based on a filter string
+     *
      * @param filterString the given filter string against which to match customers
      */
     public AddressFilter(String filterString) {
