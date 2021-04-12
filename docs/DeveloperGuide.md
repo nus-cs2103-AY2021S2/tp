@@ -550,8 +550,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Adding a patient
 
 1. Adding a new patient
@@ -585,7 +583,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The new doctor is appended to the doctor records, and the details of the doctor are displayed in the status message.
 
     1. Test case: `add-doctor n/`<br>
-       Expected: No doctor is added. Error details are shown in the status message. Status bar remains the same.
+       Expected: No doctor is added. Error details are shown in the status message.
 
     1. Other incorrect `add-doctor` commands to try: `add-doctor n/Ca$h Money`, `...` (where the `Name` value is invalid)<br>
        Expected: Similar to previous.
@@ -595,7 +593,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: The doctor to add has the same `Name` as an existing doctor in the doctor records.
 
     1. Test case: `add-doctor n/Dr Meredith Grey`<br>
-       Expected: No doctor is added. Error details are shown in the status message. Status bar remains the same.
+       Expected: No doctor is added. Error details are shown in the status message.
 
 ### Adding an appointment
 
@@ -623,8 +621,28 @@ testers are expected to do more *exploratory* testing.
        
     1. Missing fields and invalid value errors take precedence before conflicting appointment errors.
 
+### Clearing patient records (or doctor records)
 
-### Deleting a patient
+1. Clearing patient records while appointment schedule is not empty.
+    
+    1. Test case: `clear-patient`<br>
+    Expected: The patient records are not cleared. An error message will be returned.
+
+1. Clearing patient records while appointment schedule is empty.
+
+    1. Test case: `clear-patient`<br>
+    Expected: The patient records are cleared. It does not matter if there are entries in the patient records.
+
+Note: This set of test cases can be similarly performed for doctor records by replacing mentions of `clear-patient` with `clear-doctor`.
+
+### Clearing appointment schedule
+
+1. Clearing appointment schedule.
+
+    1. Test case: `clear-appt`<br>
+    Expected: The appointment schedule is cleared. It does not matter if there are entries in the appointment schedule.
+
+### Deleting a patient (or doctor)
 
 1. Deleting a patient while all patients with no existing appointments in the appointment schedule.
 
@@ -644,11 +662,72 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete-patient --force 1`<br>
       Expected: The first patient, Alex Karev, is deleted from the patient records, along with his existing appointments in the appointment schedule. Details of the deleted patient will be shown in the feedback message.
 
-Note: This test case can be similarly performed for doctors in the doctor records by replacing `delete-patient` with `delete-doctor`.
+Note: This set of test cases can be similarly performed for doctors in the doctor records by replacing mentions of `delete-patient` with `delete-doctor`.
 
-### Saving data
+### Listing patient records (or doctor records, or appointment schedule)
 
-1. Dealing with missing/corrupted data files
+1. Listing of all patients in the patient records when a predicate has been applied.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: A `find-patient` command which filters the patient records must have been applied, and the original patient records must not have been empty.
+    1. Test case: `list-patient`<br>
+    Expected: All patients are listed, and applied predicates are removed. The resulting number of patients displayed will be more than what was previously displayed.
 
+1. Listing of all patients in the patient records when no predicate has been applied.
+
+    1. Test case: `list-patient`<br>
+    Expected: All patients are listed, and applied predicates are removed. The command will succeed, but since there were no predicates applied, there will be no visible changes to the patient records.
+
+Note: This set of test cases can be similarly performed for doctors in the doctor records by replacing mentions of `list-patient` with `list-doctor`, and for appointments in the appointment schedule by replacing mentions of `list-patient` with `list-appt`.
+
+### Reading data from storage
+
+1. Dealing with missing appointment schedule where patient and doctor records have been modified substantially.
+
+    1. Prerequisites: the patient and doctor records must have been modified from the sample patient and doctor records such that:
+    there exists appointments in the sample appointment schedule which refer to a patient or doctor, whose UUID is not present in the patient or doctor records.
+
+    1. Test case: Delete the appointment schedule json file (default name `AppointmentSchedule.json`, in default location `data/`)<br>
+    Expected: App-Ointment will start with an empty appointment schedule.
+
+1. Dealing with missing appointment schedule while patient and doctor records are the same as the sample patient and doctor records respectively.
+
+    1. Test case: Delete the appointment schedule json file<br>
+    Expected: App-Ointment will start with a sample Appointment Schedule.
+
+1. Dealing with missing patient/doctor records
+
+    1. Test case: Delete the patient records json file (default name `PatientRecords.json`, in default location `data/`)<br>
+    Expected: App-Ointment will start with an sample patient record. If the resultant sample patient record results in an appointment schedule with appointments which refer to a patient whose UUID is not present in the patient record, the appointment schedule will be treated as a corrupt data file.
+
+Note: this set of test cases can be similarly performed for the doctor record json file by replacing mentions of `PatientRecords.json` with `DoctorRecords.json`.
+
+1. Dealing with corrupted patient/doctor records
+
+    1. Test case: edit `PatientRecords.json` such that there is now an invalid patient (e.g. editing the name of a patient such that it has a special character in it)<br>
+    Expected: App-Ointment will start with an empty patient record and an empty appointment schedule.
+
+Note: this set of test cases can be similarly performed for the doctor record json file by replacing mentions of `PatientRecords.json` with `DoctorRecords.json`.
+
+1. Dealing with corrupted appointment schedule
+
+    1. Test case: edit `AppointmentSchedule.json` such that there is now an invalid appointment (e.g. editing the uuid of a patient in the appointment schedule json such that the uuid does not belong to any patient in the patient records)<br>
+    Expected: App-Ointment will start with an empty appointment schedule.
+
+## **Appendix: Effort**
+* Built on AB-3's Address Book, by creating an Appointment Management Software
+* Extended and modified `Person` such that `Patient` and `Doctor` classes inherit from `Person`.
+* Created `Appointment` which takes in 2 `Person`s: a `Patient` and a `Doctor`, a `Timeslot`, and `Tag`s.
+* Add, Clear, Edit, Find, List commands were added for all 3 categories of objects (`Patient`, `Doctor`, `Appointment`) (modified AB-3 Implementation for `Patient`)
+* Added Up/Down Key Toggle Features for user to toggle between the next and previous commands they have input.
+* Added prompting for the closest known command word to alert users in the event of a typographical error in the command word.
+* Handled dependency issues regarding editing of patient/doctors.
+    * Met issues with replacement of person during an edit command, 
+    * Implemented UUID field to act as a de-facto primary key for a `Person`, and use the UUIDs in an `Appointment` instead of a direct reference to the `Patient` and `Doctor` objects. This is so that an `Appointment` can uniquely identify a `Patient` as well as a `Doctor`, and still be able to listen to changes in a Patient.
+    * Handled UI display of Patient, Doctor, Appointment to not display the UUID and to show the appropriate names instead, and performed the translation with high efficiency with Java Maps.
+
+* Handled dependency issues regarding deleting of patient/doctors and clearing of patient/doctor records.
+
+* Modified `Model`, `Storage`, and `Logic` to be generic, to accept extensions of the `Person` class.
+* Added Timeslot Parser, and related enums, so that user is able to be more flexible in entering date and time for their appointments.
+
+* Added Tests regarding the new classes and commands
