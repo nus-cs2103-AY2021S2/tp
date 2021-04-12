@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Parser {
+Interface Parser <<Interface>>
+Class "{abstract}\nCommandWithPrefixParser" as CommandWithPrefixParser
+Class "{abstract}\nCommandWithCompulsoryPrefixNoPreambleParser" as CWCPNPP
+
+Class AddOwnerCommandParser
+Class AddDogCommandParser
+Class AddProgramCommandParser
+
+Class DeleteCommandParser
+Class DeleteOwnerCommandParser
+Class DeleteDogCommandParser
+Class DeleteProgramCommandParser
+}
+
+CommandWithPrefixParser .up.|> Parser
+CWCPNPP -up-|> CommandWithPrefixParser
+
+AddOwnerCommandParser -up-|> CWCPNPP
+AddDogCommandParser -up--|> CWCPNPP
+AddProgramCommandParser -up---|> CWCPNPP
+
+DeleteCommandParser .up..|> Parser
+DeleteOwnerCommandParser -up-|> DeleteCommandParser
+DeleteDogCommandParser -up--|> DeleteCommandParser
+DeleteProgramCommandParser -up---|> DeleteCommandParser
+
+DeleteCommandParser .[hidden]left.> CommandWithPrefixParser
+
+@enduml

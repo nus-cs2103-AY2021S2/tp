@@ -1,33 +1,61 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 !include style.puml
 
-Actor User as user USER_COLOR
-Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+autoactivate on
 
-user -[USER_COLOR]> ui : "enrol d/2 p/3"
-activate ui UI_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PawbookParser" as PawbookParser LOGIC_COLOR
+participant ":EnrolDropCommandParser" as EnrolDropCommandParser LOGIC_COLOR
+participant "e:EnrolCommand" as EnrolCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-ui -[UI_COLOR]> logic : execute("enrol d/2 p/3")
-activate logic LOGIC_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
-logic -[LOGIC_COLOR]> model : setEntity(3, editedProgram)
-activate model MODEL_COLOR
+[-> LogicManager : execute("enrol d/2 p/3")
+activate LogicManager
+LogicManager -> PawbookParser : parseCommand("enrol d/2 p/3")
+activate PawbookParser
 
-model -[MODEL_COLOR]-> logic
-deactivate model
+create EnrolDropCommandParser
+PawbookParser -> EnrolDropCommandParser
+activate EnrolDropCommandParser
 
-logic -[LOGIC_COLOR]> storage : saveDatabase(database)
-activate storage STORAGE_COLOR
+EnrolDropCommandParser --> PawbookParser
+deactivate EnrolDropCommandParser
 
-storage -[STORAGE_COLOR]> storage : Save to file
-activate storage STORAGE_COLOR_T1
-storage --[STORAGE_COLOR]> storage
-deactivate storage
+PawbookParser -> EnrolDropCommandParser : parse("d/2 p/3")
+activate EnrolDropCommandParser
 
-storage --[STORAGE_COLOR]> logic
-deactivate storage
+create EnrolCommand
+EnrolDropCommandParser -> EnrolCommand
+activate EnrolCommand
+
+EnrolCommand --> EnrolDropCommandParser : e
+deactivate EnrolCommand
+
+EnrolDropCommandParser --> PawbookParser : e
+deactivate EnrolDropCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EnrolDropCommandParser -[hidden]-> PawbookParser
+destroy EnrolDropCommandParser
+
+PawbookParser --> LogicManager : e
+deactivate PawbookParser
+
+LogicManager -> EnrolCommand : execute()
+ref over EnrolCommand, Model : enrol dog with ID 2 into program with ID 3
+
+activate EnrolCommand
+
+deactivate Model
+
+EnrolCommand --> LogicManager : result
+deactivate EnrolCommand
+
+[<--LogicManager
+deactivate LogicManager
 @enduml

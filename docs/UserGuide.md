@@ -5,7 +5,7 @@ title: User Guide
 * Table of Contents 
 {:toc}
 
-# Overview
+# **Overview**
 
 Welcome to the Pawbook User Guide!
 In this section, you will be given a brief overview of what Pawbook is all about and what you can takeaway from this user guide. We will show you how to use Pawbook from a user's perspective.
@@ -13,12 +13,17 @@ In this section, you will be given a brief overview of what Pawbook is all about
 This user guide contains (but not limited to) a [quick start guide](#quick-start), a [features walkthrough](#commands) and a [command summary table](#command-summary) for easy reference. In each feature or functionality, we further provide command formats and command examples to ensure that you can become proficient in using Pawbook.
 
 ## Introduction
+Dog school managers face multiple administrative issues, such as a large amount of data to handle and having multiple users 
+accessing the data. On top of this, such operations are also time-sensitive as dog schools aim to provide excellent customer 
+service after all. As more people own dogs or aspire to be dog owners, dog schools are experiencing a rise in popularity, 
+which brings to light the heavy administrative issues they face. These problems can all be resolved by Pawbook, a targeted 
+solution for all your dog school needs!
 
-Managing a business is definitely not easy. Imagine if your business involves taking care of countless energetic furpals. That's right! We are talking about the job of dog school managers.
-
-As dog schools and dog day cares rise in popularity due to the hectic work life of dog owners, the operations of dog schools can quickly get out of hand. But no worries, we have Pawbook to save the day!
-
-With Pawbook, you can add and delete owner and dog profiles alike, to easily keep track of dogs and their respective owners. Pawbook also allows the managing of the various canine-training programs to cater to your furry customers. We understand that as a successful business you have many programs running in the school everyday, Pawbook helps to condense your hectic schedule for you. With the ability viewing your schedule, you are able to better plan for the day ahead.
+With Pawbook, you can add and delete owner and dog profiles alike, to easily keep track of dogs and their respective owners. 
+Pawbook also allows the managing of the various canine-training programs to cater to your furry customers. As an extension, 
+Pawbook also facilitates the enrolling and dropping of dogs from programs. We understand that as a successful business, there 
+can be multiple programs running in the school every day. To deal with this, Pawbook condenses your hectic timetable and 
+provides a user-friendly view of your schedule of the day for increased convenience.
 
 Pawbook is a desktop application for dog school managers to facilitate their bookkeeping of puppies and dogs in the school, optimized for input via a **Command Line Interface (CLI)** which caters to fast-typers who prefer to use a keyboard. You can navigate the application with ease and execute instructions by typing text-based commands in the command box provided without ever having to reach for your mouse!
 
@@ -28,7 +33,7 @@ Pawbook also has the benefits of a **Graphical User Interface (GUI)** to provide
 
 The aim of this user guide is to help novice familiarise themselves with Pawbook. It also aids more experienced users by providing a detailed explanation on the different features and components of Pawbook. This allows old and new users alike to easily learn and use the various features and functionalities provided by Pawbook.
 
-# About the User Guide
+# **About the User Guide**
 
 In this section, we will teach you everything you need to know to effectively use this user guide.
 
@@ -105,7 +110,7 @@ The help page view provides a short summary list of commands that you can use, a
 
 ----
 
-# Quick Start
+# **Quick Start**
 
 If this is your first time using Pawbook, follow these simple steps to jump straight into the action:
 
@@ -123,7 +128,7 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
 
 ----
 
-# Commands
+# **Commands**
 
 In this section, you will learn about the commands available in Pawbook and how to use them.
 
@@ -503,7 +508,7 @@ To exit Pawbook, type `exit` into the command box.
 
 -----
 
-# FAQ
+# **FAQ**
 
 Q: How do I transfer my data to another computer?<br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
@@ -527,7 +532,7 @@ A: Pawbook does not access any web services and can be run completely offline.
 
 -----
 
-# Command Summary
+# **Command Summary**
 
 Action | Format
 --------|------------------
@@ -545,7 +550,7 @@ Action | Format
 
 -----
 
-# Glossary
+# **Glossary**
 
 Term  | Explanation
 ------|------------------

@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PawbookParser" as PawbookParser LOGIC_COLOR
+participant ":ScheduleCommandParser" as ScheduleCommandParser LOGIC_COLOR
+participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("schedule 01-04-2021")
+LogicManager -> PawbookParser : parseCommand("schedule 01-04-2021")
+
+create ScheduleCommandParser
+PawbookParser -> ScheduleCommandParser
+return
+
+PawbookParser -> ScheduleCommandParser : parse("01-04-2021")
+
+create ScheduleCommand
+ScheduleCommandParser -> ScheduleCommand
+return s
+
+return s
+
+PawbookParser -[hidden]-> ScheduleCommandParser  !! : delete
+destroy ScheduleCommandParser
+
+return s
+
+LogicManager -> ScheduleCommand : execute()
+
+ref over ScheduleCommand, Model : displays schedule for 1st April 2021
+
+return result
+
+return
+@enduml

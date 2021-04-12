@@ -1,68 +1,44 @@
 @startuml
 !include style.puml
 
+autoactivate on
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PawbookParser" as PawbookParser LOGIC_COLOR
-participant ":DeleteOwnerCommandParser" as DeleteOwnerCommandParser LOGIC_COLOR
-participant "d:DeleteOwnerCommand" as DeleteOwnerCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":DeleteDogCommandParser" as DeleteDogCommandParser LOGIC_COLOR
+participant "d:DeleteDogCommand" as DeleteDogCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete owner 1")
-activate LogicManager
-LogicManager -> PawbookParser : parseCommand("delete owner 1")
-activate PawbookParser
+[-> LogicManager : execute("delete dog 1")
+LogicManager -> PawbookParser : parseCommand("delete dog 1")
 
-create DeleteOwnerCommandParser
-PawbookParser -> DeleteOwnerCommandParser
-activate DeleteOwnerCommandParser
+create DeleteDogCommandParser
+PawbookParser -> DeleteDogCommandParser
+return
 
-DeleteOwnerCommandParser --> PawbookParser
-deactivate DeleteOwnerCommandParser
+PawbookParser -> DeleteDogCommandParser : parse("1")
 
-PawbookParser -> DeleteOwnerCommandParser : parse("1")
-activate DeleteOwnerCommandParser
+create DeleteDogCommand
+DeleteDogCommandParser -> DeleteDogCommand
+return d
 
-create DeleteOwnerCommand
-DeleteOwnerCommandParser -> DeleteOwnerCommand
-activate DeleteOwnerCommand
+return d
 
-DeleteOwnerCommand --> DeleteOwnerCommandParser : d
-deactivate DeleteOwnerCommand
+PawbookParser -[hidden]-> DeleteDogCommandParser  !! : delete
+destroy DeleteDogCommandParser
 
-DeleteOwnerCommandParser --> PawbookParser : d
-deactivate DeleteOwnerCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteOwnerCommandParser -[hidden]-> PawbookParser
-destroy DeleteOwnerCommandParser
+return d
 
-PawbookParser --> LogicManager : d
-deactivate PawbookParser
+LogicManager -> DeleteDogCommand : execute()
 
-LogicManager -> DeleteOwnerCommand : execute()
-activate DeleteOwnerCommand
+ref over DeleteDogCommand, Model : delete Dog with ID 1
 
-DeleteOwnerCommand -> Model : deleteEntity(1)
-activate Model
+return result
 
-Model --> DeleteOwnerCommand
-deactivate Model
-
-create CommandResult
-DeleteOwnerCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> DeleteOwnerCommand
-deactivate CommandResult
-
-DeleteOwnerCommand --> LogicManager : result
-deactivate DeleteOwnerCommand
-
-[<--LogicManager
-deactivate LogicManager
+return
 @enduml

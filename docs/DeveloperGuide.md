@@ -22,13 +22,13 @@ command box provided without ever having to reach for your mouse!
 
 ## **Purpose**
 
-This document  aims to serve as a guide for developers, testers and designers who are interested in working on Pawbook.
-It describes both the design and architecture of Pawbook.
+This document aims to serve as a guide for developers, testers and designers who are interested in working on Pawbook. 
+It describes both the design and architecture of Pawbook. 
 
 ## **Target User Profile**
 
 The target user profile are dog school managers that own and manage the daily operations of the dog schools. They
-handle a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care
+handle a wide range of operations such as keeping track of the dogs under their care, arranging programs and taking care
 of the dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school
 at all times.
 
@@ -36,12 +36,10 @@ at all times.
 
 In Singapore, dog schools are popular among dog owners. Besides day care, they also provide training,
 grooming and workshops. With many moving parts daily, managing operations  can get overwhelming.
-PawBook is an all-in-one management system to help dog school managers keep track of attendance, scheduling and services
-and maintain organisation. At present, there is no such application to help dog school owners to organise and
-manage their dog school currently. This application serves to increase the effectiveness and efficacy of dog schools
-which in turn allows dog schools and its owners to take in more dogs. This application is necessary to help organise the
-school's system. By increasing the intake of dogs in dog schools, this increases the number of trained dogs in Singapore
-in general which solves the general problem of untrained dogs in Singapore being a nuisance to the public.
+PawBook is an all-in-one management system to help dog school managers to maintain organisation of their dog schools. 
+Besides keeping track of all the dogs under their care, it also allows users to plan their schedule and manage programs 
+and classes. At present, there is no such application to help dog school owners to organise and manage their dog school 
+currently. This application serves to increase the effectiveness and efficacy of dog schools managers. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +47,7 @@ in general which solves the general problem of untrained dogs in Singapore being
 
 ### Architecture
 
-![Architecture Diagram](images/ArchitectureDiagram.png)
+![Architecture Diagram](images/ArchitectureDiagram.png){: .center-image}
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -73,19 +71,19 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png){: .center-image}
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete owner 1`.
 
-![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png){: .center-image}
 
-The sections below give more details of each component.
+The sections below give more details of each component. 
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.png){: .center-image}
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/ui/Ui.java)
@@ -101,7 +99,7 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/LogicClassDiagram.png){: .center-image}
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/logic/Logic.java)
@@ -114,14 +112,14 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete owner 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete owner 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete owner 1` Command](images/DeleteSequenceDiagram.png){: .center-image}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOwnerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagram.png){: .center-image}
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/model/Model.java)
 
@@ -134,7 +132,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/StorageClassDiagram.png){: .center-image}
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/storage/Storage.java)
 
@@ -152,38 +150,76 @@ Classes used by multiple components are in the `pawbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Entities: Owner/Dog/Program
+
+![EntityClassDiagram](images/EntityClassDiagram.png){: .center-image}
+
+Despite having three closely related entities in Pawbook, the actual implementation does not couple the 3 entities together in any ways. Instead of storing a reference between an Owner and their Dog, a symbolic ID number is used to represent these links. This ensures that data objects continue to only store information and leave the control/manipulation of data to the logic side of the application. It is therefore possible for all the various entities to remain immutable as well.
+
+This necessitates that an unique ID number is assigned to every entity during its creation and remain constant throughout its lifetime in the application. A simple numbering system is used here whereby the ID is generated by incrementing from 1 until an unused number is found, gaps between numbers will only be filled after a restart of the application to simplify the code.
+
+The ID system replaces the original implementation that uses the index of every Person in the visible list. This gives the advantage of being able to reference to any entity on any screen, which can be useful since different entities are not displayed together.
+
+The `UniqueEntityList` contains pairs of ID and entity. This attempts to mimic a map/dictionary while keeping possible to continue using the original UI components with minimal changes to the code. Every entity does not store its ID as an internal attribute due to the fact that ID is dynamically generated, usually after the instantiation of the entity itself. The ability to set or change the ID during the lifetime of the entity will violate the immutability of the entities. Furthermore, there is no need for the any entity to be aware of its ID.
+
+#### Alternative Implementation: Using a Hashmap as container for unique entities
+
+A hashmap was briefly considered as a candidate for storing the unique entities as it was a natural fit.
+
+Benefits:
+* Much faster lookup when retrieving an entity by its ID or to check for ID clashes.
+
+Drawbacks:
+* Hashmaps have no inherent order, it will be quickly become expensive to maintain order whenever there are data changes.
+* There is no `FilteredList` equivalent for maps in JavaFX, filtering cannot be simply achieve within `Model` and will need to be done on the GUI side.
+
+This current implementation though not ideal, avoid many potential rewrites since there is no `ListView` equivalent for maps in JavaFX. Switching to using a hashmap as underlying data structure will mean that a table will need to be used to display all the entries, adding unnecessary complication to the code as filtering and sorting will no longer as be simple. Most of these changes are under-the-hood and does not improve user experience significantly.
+
 ### Adding/Deleting feature
 
-#### What it is
+![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png){: .center-image}
 
-Pawbook manages more than one type of entity, each with their own unique attributes. An OOP approach is used here whereby both the `AddCommand` and `DeleteCommand` are generic classes that extends the `Command` class. This way any number of other classes extending `Entity` can be added/deleted as well.
-Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..`
+Pawbook manages more than one type of entity, each with their own unique attributes. An OOP approach is used here whereby both the `AddCommand` and `DeleteCommand` are generic classes that extends the `Command` class. This way any number of other classes extending `entity` can be added/deleted as well.
+
+Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`
 
 #### Implementation
 
-The actual execution of these commands are largely the same and can be easily reimplemented to include more verification to the data if necessary, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number.
+The actual execution of the different add commands are highly similar and often differ only by the extra entity-specific checks, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number. The same applies to delete commands as well.
 
-In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
+![AddDeleteCommandParserClassDiagram](images/AddDeleteCommandParserClassDiagram.png){: .center-image}
+
+In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to generate the actual add/delete commands.
 
 Given below is an example usage scenario and how the add command behaves at each step.
 
 Step 1. The user launches the application and executes `add owner n/BRUCE p/92019201 e/bruce@example.com a/BLK 123 Adam Road t/friendly` to save an owner.
 
-Step 2. The owner  is added to the model.
+Step 2. The owner is added to the model.
 
 Below is an example activity diagram for a valid add command from the user.
 
-![AddActivityDiagram](images/AddActivityDiagram.png)
+![AddActivityDiagram](images/DeleteActivityDiagram.png){: .center-image}
 
-Below is an example sequence diagram for a valid add command from the user.
-![AddSequenceDiagram](images/AddSequenceDiagram.png)
+The activity diagram for both add and delete commands are mirrored. Based on the name of the entity type supplied, the correct parser will be instantiated to parse the arguments and generate the executable command. 
 
-Below is an example activity diagram for a valid delete command from the user.
+To further illustrate how an actual deletion of an entity is performed, below is an example sequence diagram for a valid delete command from the user.
 
-![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png){: .center-image}
 
-Below is an example sequence diagram for a valid delete command from the user.
-![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+The deletion of any entity will typically affect other related entities as well, as shown in a more details sequence diagram below.
+
+![DeleteSequenceDetailedDiagram](images/DeleteSequenceDetailedDiagram.png){: .center-image}
+
+This is how the `DeleteDogCommand` works upon execution:
+1. The `Dog` to be deleted will first be retrieved from the `Model`.
+2. Using the ID stored in the `Dog`, the `Owner` can be retrieved from `Model` as well.
+3. A new `Owner` with the same details except without the current `Dog`'s ID will be created to replace the current `Owner` instance in the `Model`.
+4. A list of `Program` that the `Dog` is enrolled in will be generated.
+5. For each of these `Program`, it will be edited to remove the current `Dog`'s ID.
+6. With no more entities referring to the current `Dog`, it is safe to call `Model#deleteEntity(...)` to delete the `Dog`.
+
+The various add commands will similarly perform the reverse of the delete command.
 
 ### Edit feature
 
@@ -191,7 +227,9 @@ Pawbook allows the user to `edit` an entity. For instance, the user may want to 
 
 In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `edit` command keyword to indicate the correct entity type to be edited. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
 
-![EditActivityDiagram](images/EditActivityDiagram.png)
+Below is an example activity diagram for a valid view command from the user.
+
+![EditActivityDiagram](images/EditActivityDiagram.png){: .center-image}
 
 Figure 3.1: Activity diagram for edit command in main page view.
 
@@ -220,13 +258,34 @@ Pawbook allows the users to `find` an entity based on keyword searches. The `fin
 searches and reveals the entire list of commands that match one or more of the results.
 
 When the user enters a valid command with the keyword searches, the arguments are parsed by the `FindCommmandParser` that
-converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` instance
-that uses the list of keywords to find the search results based on the supplied keywords.
+converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` object
+that uses the list of keywords to find the search results based on the supplied keywords. Take note that Find Command supports 
+substring searching, so for example if there is an Alice in the program, searching "Ali" will also return Alice as result. 
 
-This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the
-CommandResult instance that is then passed on in the LogicManager.
+Below is an example activity diagram for a valid find command from the user.
 
-![FindActivityDiagram](images/FindActivityDiagram.png)
+![FindActivityDiagram](images/FindActivityDiagram.png){: .center-image}
+
+Below is an example sequence diagram for a valid find command from the user.
+
+![FindActivityDiagram](images/FindSequenceDiagram.png){: .center-image}
+
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+2. The `PawbookParser` identifies the user command and creates a `FindCommandParser` object. It then calls the `FindCommandParser`'s `parse()`method with user input as the parameter.
+3. In the `parse()` method, the `FindCommandParser` will then generate the `FindCommand` object. This is then returned all the way back to the `LogicManager`.
+4. The `LogicManager` will then proceed to call the `execute()` method.
+5. The `execute()` method is further explored below. The high level understanding is that a CommandResult is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![ViewSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) 
+
+1. Upon calling the `execute()` method, the `FindCommand` updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
+2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
+3. From here, Find Command creates a command result and returns it to the `LogicManager`.
+
+
+### List Feature
 
 ### View feature
 
@@ -240,10 +299,33 @@ Based on the class type of the target entity, we will reveal the search results 
 
 This list is subsequently passed on to the `RelatedEntityPredicate` that will later be used in the ModelManager's `updatefilteredEntityList())` method to finally reveal the search results.
 
+Take note that this is the order in which results will be displayed, based on target entity searched:
+* **View Dog**: Dog > Owner > Programs enrolled in
+* **View Owner**: Owner > Dogs owned 
+* **View Program**: Program > Dogs enrolled
 
-Below is an example activitiy diagram for a valid view command from the user.
+Below is an example activity diagram for a valid view command from the user.
 
-![ViewActivityDiagram](images/ViewActivityDiagram.png)
+![ViewActivityDiagram](images/ViewActivityDiagram.png){: .center-image}
+
+Below is an example sequence diagram for a valid view command from the user.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png){: .center-image}
+
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input. 
+2. The `PawbookParser` identifies the user command and creates a `ViewCommandParser` object. It then calls the `ViewCommandParser`'s `parse()`method with user input as the parameter. 
+3. In the `parse()` method, the `ViewCommandParser` will then generate the `ViewCommand` object. This is then returned all the way back to the `LogicManager`. 
+4. The `LogicManager` will then proceed to call the `execute()` method. 
+5. The `execute()` method is further explored below. The high level understanding is that a CommandResult is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![ViewSequenceDiagramSpecific](images/ViewSequenceDiagramSpecific.png) 
+
+1. In the execute method of `ViewCommand`, it first generates a list of related entity IDs by calling the `generateRelatedIdList()`which accesses the data in the model. 
+2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
+3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list. 
+4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
 
 ### Enrol feature
 
@@ -253,11 +335,30 @@ In order to enrol a dog into a program, the raw input needs to be parsed first. 
 
 Below is an example activity diagram for a valid enrol command from the user.
 
-![EnrolActivityDiagram](images/EnrolActivityDiagram.png)
+![EnrolActivityDiagram](images/EnrolActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid enrol command from the user.
 
-![EnrolSequenceDiagram](images/EnrolSequenceDiagram.png)
+![EnrolSequenceDiagram](images/EnrolSequenceDiagram.png){: .center-image}
+
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+1. The `PawbookParser` will identify the command given by the user based on the first command word and pass the user input down to `EnrolDropCommandParser`.
+1. The `EnrolDropCommandParser` will then create an `enrolCommand` object with the user input `dogIdSet` and `programIdSet` as input parameters, in this case,
+`dogIdSet` will be `[2]` and `programIdSet` will be `[3]`.
+1. The `EnrolDropCommandParser` will then return an `enrolCommand` object.
+1. The `LogicManager` will now call the `execute` method in the `enrolCommand` object.
+1. The `EnrolCommand` will now call the `updateFilteredEntityList` method of the existing `Model` object.
+1. The high level understanding is that a `CommandResult` is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![EnrolSequenceSpecificDiagram](images/EnrolSequenceSpecificDiagram.png){: .center-image}
+
+1. The `LogicManager` will call the execute method in the `EnrolCommand` object. 
+1. The `EnrolCommand` will then call the `checkIdValidity` method of the existing `Model` object.
+1. If the ID is valid, the `EnrolCommand` will create an `IdMatchPredicate` object.
+1. The `EnrolCommand` will call the `updateFilteredEntityList` method of the existing `Model` object update the `IdMatchPredicate` object into Pawbook.
+1. The `EnrolCommand` then creates a `CommandResult` object and returns it, indicating the successful updating of the `IdMatchPredicate` object.
 
 ### Drop feature
 
@@ -267,11 +368,30 @@ To drop a dog from a program, the raw input is parsed and goes through several c
 
 Below is an example activity diagram for a valid drop command from the user.
 
-![DropActivityDiagram](images/DropActivityDiagram.png)
+![DropActivityDiagram](images/DropActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid drop command from the user.
 
-![DropSequenceDiagram](images/DropSequenceDiagram.png)
+![DropSequenceDiagram](images/DropSequenceDiagram.png){: .center-image}
+
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+1. The `PawbookParser` will identify the command given by the user based on the first command word and pass the user input down to `EnrolDropCommandParser`.
+1. The `EnrolDropCommandParser` will then create a `dropCommand` object with the user input `dogIdSet` and `programIdSet` as input parameters, in this case,
+`dogIdSet` will be [2] and `programIdSet` will be [3].
+1. The `EnrolDropCommandParser` will then return a `enrolCommand` object.
+1. The `LogicManager` will now call the execute method in the `dropCommand` object.
+1. The `DropCommand` will now call the `updateFilteredEntityList` method of the existing `Model` object.
+1. The high level understanding is that a `CommandResult` is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's `execute` method.
+
+![DropSequenceDiagramSpecific](images/DropSequenceDiagramSpecific.png){: .center-image}
+
+1. The `LogicManager` will call the execute method in the `DropCommand` object. 
+1. The `DropCommand` will then call the `checkIdValidity` method of the existing `Model` object.
+1. If the ID is valid, the `DropCommand` will create an `IdMatchPredicate` object.
+1. The `DropCommand` will call the `updateFilteredEntityList` method of the existing `Model` object update the `IdMatchPredicate` object into Pawbook.
+1. The `DropCommand` then creates a `CommandResult` object and returns it, indicating the successful updating of the `IdMatchPredicate` object. 
 
 ### Alternate implementations
 
@@ -315,29 +435,29 @@ However, this requires there to be no duplicate dog or program names.
 
 ### User Stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*` 
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | Dog school manager   | Create a list of dogs and their respective owners in the dog school        | Keep track of the dogs we are responsible for     |
-| `* * *`  | Busy owner          | Delete dog profiles and owner profiles            | Remove dogs or owners that are no longer in the school                                                           |
-| `* * *`  | Dog school manager   | Add dog profiles and owner profiles             |  Add new dogs or owners that join the school         |
-| `* * *`  | Dog school manager   | Get instructions         | Get help when I do not know how to use the application |
-| `* * *`  | Dog school manager   | Exit the application   |           |
-| `* *`    | Dog school manager   | Edit a dog profile when the information is wrong/outdated |                                             |
-| `* *`    | Dog school manager   | Create a dog program for the dog students            |                                                  |
-| `* *`    | Dog school manager   | Enrol dogs into a specific dog program | Dogs who recently joined a program are added to the class list |
-| `* *`    | Dog school manager   | Drop dogs out of a specific dog program | Dogs that have left the class are no longer in the class list  |
-| `* *`    | Advanced user        | Edit in bulk quickly without having to be familiar with the app | Minimize chance of someone else seeing them by accident |
+| Priority | As a …​           | I want to …​                                                            | So that I can…​                    |
+| -------- | -------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | Dog school manager   | Have a list of dogs, owners, and programs in the school                    | Keep track of the operations and dogs we are responsible for     |
+| `* * *`  | Dog school manager   | Easily switch between the different lists for dogs, owners and programs    | Quickly view all the profiles of one entity type     |
+| `* * *`  | Dog school manager   | Add dog/owner/program profiles                                             | Keep track of the operations and parties involved in the school|
+| `* * *`  | Dog school manager   | Delete dog/owner/program profiles                                          | Keep track of the operations and parties involved in the school|
+| `* * *`  | Dog school manager   | Edit a dog/owner/program profile                                           | Correct/update a profile when needed.|
+| `* * *`  | Dog school manager   | View a dog/owner/program profile                                           | Easily find out information on the target entity|
+| `* * *`  | Dog school manager   | Find profiles using keywords instead of ID                                 | Easily find a target dog/owner/program very quickly |
+| `* * *`  | Dog school manager   | Enrol dogs into a specific dog program                                     | Add dogs who recently joined a program to the class list |
+| `* * *`  | Dog school manager   | Drop dogs out of a specific dog program                                    | Remove dogs that have left a program from the class list  |
+| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day. |
+| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes.  |
+| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Minimize chance of someone else seeing them by accident |
+| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command. |
 
 *{More to be added}*
 
-### Use cases
-
-(For all use cases below, the **System** is the `Pawbook` and the **Actor** is the `user`, unless specified otherwise)
-
+**System**: Pawbook
 **Use case: UC01 - Add a dog/owner profile or program**
-
+**Actor**: User
 **MSS**
 
 1.  User requests to add a dog/owner profile or program to the list.
@@ -348,16 +468,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Missing mandatory dog/owner/program details.
-
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies missing details.
-
+    * 1a2. User supplies missing details. <br>
+    Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+    Use case resumes at step 2.
+      
+* 1b. Entity already exists in the program. 
+  
+    * 1b1. Pawbook shows an error message. 
+    * 1b2. User supplies an entity with different details. <br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
-
+      
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
+**System**: Pawbook
 **Use case: UC02 - Delete a dog/owner profile or program**
-
+**Actor**: User
 **MSS**
 
 1.  User requests to delete a specific dog/owner profile or program in the list.
@@ -370,21 +497,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given dog/owner/program ID is invalid or not specified.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies the corrected dog/owner/program ID.
-
+    * 1a2. User supplies the corrected dog/owner/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct. <br>
       Use case resumes at step 2.
 
-**Use case: UC03 - List**
+* 1a. The given dog/owner/program ID does not match the entity specified.
 
+    * 1a1. Pawbook shows an error message, indicating the entity expected. 
+    * 1a2. User supplies the corrected dog/owner/program ID.<br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
+
+**System**: Pawbook
+**Use case: UC03 - Edit a dog/owner profile or program**
+**Actor**: User
 **MSS**
 
-1.  User requests to list dog/owner/program.
+1.  User requests to edit a specific dog/owner/program in the list.
+2.  Pawbook edits the dog/owner/program.
+    
+    Use case ends. 
+
+**Extensions**
+
+* 1a. The given dog/owner/program ID is invalid or does not correspond to the entity specified. 
+
+    * 1a1. Pawbook shows an error message. 
+    * 1a2. User supplies the corrected dog/owner/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
+    
+* 1a. The user failed to provide any mandatory details to be edited.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. The user provides one or more mandatory details to be edited.
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+    
+      Use case resumes at step 2.
+
+
+**System**: Pawbook
+**Use case: UC04 - Show the specified entity list.**
+**Actor**: User
+**MSS**
+
+1.  User requests to list dogs/owners/programs.
 2.  Pawbook lists the related dogs/owners/programs.
 
+    Use case ends. 
+
+**Extensions**
+
+* 1a. User requests to list something that is none of the three entities.
+
+    * 1a1. Pawbook shows an error message, suggesting the accepted entities. 
+    * 1a2. User supplies the corrected dog/owner/program parameter. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
+      
+**System**: Pawbook
+**Use case UC05 - View an entity and all its related entities.**
+**Actor**: User
+**MSS**
+
+1. User types in view command with the target ID. 
+2. Pawbook supplies the results of all the related entities of that ID.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The ID is not provided.
+  
+    * 1a1. Pawbook shows an error message. 
+    * 1a2. User supplies a valid ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
+
+* 1b. The ID is invalid (negative, out of bounds, not in database etc.).
+  
+  * 1b1. Pawbook shows an error message. 
+  * 1b2. User supplies a valid ID.<br>
+    Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+    Use case resumes at step 2.
+    
+**System**: Pawbook
+**Use case UC06 - Find entity**
+**Actor**: User
+**MSS**
+
+1. User types in find command with one or more keywords.
+2. Pawbook supplies the results matching the keyword(s).
+   
     Use case ends.
 
-**Use case: UC04 - Enrol dog to program**
+**Extensions**
 
+* 1a. The keyword is not provided.
+
+    * 1a1. Pawbook shows an error message and requests keyword.
+    * 1a2. User supplies keywords.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
+
+**System**: Pawbook
+**Use case: UC07 - Enrol dog to a program**
+**Actor**: User
 **MSS**
 
 1.  User requests to enrol dog to program.
@@ -397,19 +615,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The dog/program ID is invalid/not specified.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies correct dog/program ID.
-
+    * 1a2. User supplies correct dog/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
 
 * 1b. The user requests to enrol multiple dogs to multiple programs.
 
     * 1b1. Pawbook shows an error message.
-    * 1b2. User changes request to either enrolling one dog to one program, one dog to multiple programs, or multiple dogs to one program.
+    * 1b2. User changes request to either enrolling one dog to one program, one dog to multiple programs, or multiple dogs to one program.<br>
+      Use case resumes at step 2.
 
-  Use case resumes at step 2.
-
-**Use case: UC05 - Drop dog from program**
-
+**System**: Pawbook
+**Use case: UC08 - Drop dog from program**
+**Actor**: User
 **MSS**
 
 1.  User requests to drop dog from program.
@@ -422,50 +640,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The dog/program ID is invalid/not specified.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies correct dog/program ID.
-
+    * 1a2. User supplies correct dog/program ID.<br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
-
+    
 * 1b. The user requests to drop multiple dogs from multiple programs.
 
     * 1b1. Pawbook shows an error message.
-    * 1b2. User changes request to either dropping one dog from one program, one dog from multiple programs, or multiple dogs from one program.
+    * 1b2. User changes request to either dropping one dog from one program, one dog from multiple programs, or multiple dogs from one program.<br>
+      Use case resumes at step 2.
 
-  Use case resumes at step 2.
-
-**Use case: UC06 - View schedule**
-
+**System**: Pawbook
+**Use case: UC09 - View schedule**
+**Actor**: User
 **MSS**
 
-1.  User requests to view schedule.
+1.  User requests to view schedule with a specified date. 
 2.  Pawbook shows the schedule.
-
-    Use case ends.
-
-**Use case: UC07 - View Help**
-
-**MSS**
-
-1.  User requests to for help with using the application.
-2.  User enters `help` command into the command box and presses <kbd>enter</kbd>.
-3.  Pawbook opens a help window containing the link to the user guide
-    and also a command summary for the user.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The given command/format is invalid.
-    - 2a1. Pawbook shows an error message to the user.
+* 1a. The date is invalid/not specified.
+
+    * 1a1. Pawbook shows an error message.
+    * 1a2. User supplies correct date. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
 
-
-**Use case: UC08 - Exit Pawbook**
-
+**System**: Pawbook
+**Use case: UC10 - View Help Window**
+**Actor**: User
 **MSS**
 
-1.  User requests to exit Pawbook.
-2.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.
+1.  User enters `help` command into the command box and presses <kbd>enter</kbd>.   
+2.  Pawbook opens a help window containing the link to the user guide
+and also a command summary for the user.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The given command/format is invalid. 
+    - 1a1. Pawbook shows an error message to the user.
+    - 1a2. User supplies the correct command. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
+      
+**System**: Pawbook
+**Use case: UC11 - Exit Pawbook**
+**Actor**: User
+**MSS**
+
+1.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.    
 2.  Pawbook shows goodbye message.
 3.  Pawbook terminates.
 
@@ -473,30 +701,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 2a. The given command/format is invalid.
-    - 2a1. Pawbook shows an error message to the user.
+- 1a. The given command/format is invalid.
+    - 1a1. Pawbook shows an error message to the user.
+    - 1a2. User supplies the correct command. <br>
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
-
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any [mainstream OS](#glossary-OS) as long as it has `Java 11` or above installed.
-2.  Should be able to hold up to 1000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100000 dogs, owners and dog programs without a noticeable sluggishness in performance for typical usage.
 3.  Should be usable by a tech novice who is not familiar with CLI.
 4.  Should respond within 2 seconds.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
     should be able to accomplish most of the tasks faster using commands than using the mouse.
 6.  A simple interface that is easy to navigate.
 7.  Not required to handle finance-related bookkeeping.
-8.  Should not crash or throw unexpected errors when internet connection is
-    unavailable.
+8.  Pawbook does not require internet connection to run. 
+9.  Able to work in all different time zones, regardless of where the system is operated in the world. 
+10. Features should be implemented such that they can undergo automated testing. 
+11. Pawbook data should be saved locally. Not possible to be hacked from external machines. Only way to access is through the local machine.
+12. Only one Pawbook program can run on a local machine at any time. 
+13. Pawbook program file size should not exceed beyond 1GB. 
+14. Pawbook should be able to recover from exceptions and error handling and not freeze on the user. 
 
 ### Glossary
 
-* **Mainstream OS**: <a name="glossary-OS"></a> Windows, Linux, Unix, OS-X
-* **JSON**: JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage
+* {: #glossary-OS} **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **JSON**: JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -603,13 +835,13 @@ testers are expected to do more *exploratory* testing.
        enrolled in.
 
     1. Test case: `delete dog 0`<br>
-       Expected: No dog is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No dog is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Test case: `delete dog 1`<br>
-       Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+      Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete dog`, `delete dog x`, `delete dog -x` (where x is larger than list size or negative)<br>
-       Expected: Similar to previous.
+      Expected: Similar to previous.
 
 1. Deleting a program while all programs are being shown
 
@@ -902,7 +1134,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `drop d/2 d/4 p/3` <br>
        Expected: Bruce and Apple are successfully added to the Obedience Training program.
-
+       
 1. Drop one valid dog from multiple valid programs
 
     1. Repeat Pre-requisites
@@ -929,23 +1161,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Invalid drop command
 
-    1. Test case: `drop invalidCommand`
+    1. Test case: `drop invalidCommand` <br>
        Expected: Error status message indicating wrong command format.
 
 ### Help Command
 
-1. Test case: `help`
-   Opens a pop-up window that shows the command summary and
+1. Test case: `help` <br>
+   Expected: Opens a pop-up window that shows the command summary and
 
 ### Exit Command
 
-1. Test case: `exit`
-    1. Expected: The program should exit and close.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Test case: `exit` <br>
+   Expected: The program should exit and close.

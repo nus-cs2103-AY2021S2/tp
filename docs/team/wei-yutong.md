@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * After my teammate Shaelyn implemented `DropCommand`, we realized that there were a lot of overlaps between `EnrolCommand`
     and `DropCommand`, hence I abstracted out the common parts into `ProgramRegistrationCommand` to improve code quality by
     reducing duplicate code.
-    * Adds Dog IDs into the respective Programs, identifies whether dogs are already previously enrolled.
+    * Adds Dog IDs into the respective Programs, identifies whether dogs were already previously enrolled.
     * Supports batch enrolment, i.e. enrolling one dog into multiple programs and multiple dogs into one program.
 
 * **Code Refactoring**: Renamed `Person` to `Owner` on a project wide scale
@@ -29,6 +29,17 @@ Given below are my contributions to the project.
     the base classes of `AddCommand` and `DeleteCommand` for each of the 3 entities, and parse the second keyword to
     identify the specific entity.
 
+* **Code Testing** *: Contributed significantly to testing
+    * Wrote a significant amount of test cases throughout the project.
+    * Wrote multiple test cases in the logic section, such as `AddDogCommandTest`, `DeleteDogCommandTest`, `EnrolCommandTest`
+    and their respective parser tests, as well as `ParserUtilTest` and `DropParserTest`.
+    * Added testutil for `DogBuilder`, `DogUtil` and `TypicalEntities`, which allowed the testing of dog related commands
+    to begin.
+    * Added `ProgramTest` and `SessionTest` under model.
+    
+* **Enhancements to existing features**: Help Command
+    * Made minor changes to suit `HelpCommand` for Pawbook.
+    
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=wei-yutong&tabRepo=AY2021S2-CS2103T-T10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=)
 
 * **Project management**:
@@ -41,13 +52,15 @@ Given below are my contributions to the project.
     command instructions.
 
 * **Documentation**:
-  * User Guide:
+    * User Guide:
     * Contributed significantly to Enrol Command and Help Command, and edited other commands to ensure
-  cohesivenss.
-    * Added in screenshots for every command in the user guide.
+  cohesivenss. 
+    * Improved the introduction of the user guide.
 
   * Developer Guide:
-    * Completed Enrol Command and Help Command, and their respective activity diagrams.
+    * Completed Enrol Command and Help Command, and their respective activity diagrams and seqeunce diagram.
+    * Added test cases for Enrol and Drop command for manual testing.
+    * Contributed to user stories.
 
 * **Community**:
     * Reviewed and merged pull requests of other teammates.

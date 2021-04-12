@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Logic LOGIC_COLOR_T1
+
+participant "e:EnrolCommand" as EnrolCommand LOGIC_COLOR
+participant "imp:IdMatchPredicate" as IdMatchPredicate LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+mainframe **sd** enrol dog with ID 2 into program with ID 3
+
+[-> EnrolCommand : execute()
+
+activate EnrolCommand
+
+EnrolCommand -> Model : check ID validitiy
+activate Model
+Model --> EnrolCommand
+deactivate Model
+
+create IdMatchPredicate
+EnrolCommand -> IdMatchPredicate
+activate IdMatchPredicate
+IdMatchPredicate --> EnrolCommand
+deactivate IdMatchPredicate
+
+EnrolCommand -> Model : updateFilteredEntityList(imp)
+activate Model
+Model --> EnrolCommand
+deactivate Model
+
+create CommandResult
+EnrolCommand -> CommandResult
+activate CommandResult
+CommandResult --> EnrolCommand
+deactivate CommandResult
+
+[<-- EnrolCommand : cr
+deactivate EnrolCommand
+
+@enduml

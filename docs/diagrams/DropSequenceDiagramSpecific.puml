@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Logic LOGIC_COLOR_T1
+
+participant "d:DropCommand" as DropCommand LOGIC_COLOR
+participant "imp:IdMatchPredicate" as IdMatchPredicate LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+mainframe **sd** drop dog with ID 2 from program with ID 3
+
+[-> DropCommand : execute()
+
+activate DropCommand
+
+DropCommand -> Model : check ID validitiy
+activate Model
+Model --> DropCommand
+deactivate Model
+
+create IdMatchPredicate
+DropCommand -> IdMatchPredicate
+activate IdMatchPredicate
+IdMatchPredicate --> DropCommand
+deactivate IdMatchPredicate
+
+DropCommand -> Model : updateFilteredEntityList(imp)
+activate Model
+Model --> DropCommand
+deactivate Model
+
+create CommandResult
+DropCommand -> CommandResult
+activate CommandResult
+CommandResult --> DropCommand
+deactivate CommandResult
+
+[<-- DropCommand : cr
+deactivate DropCommand
+
+@enduml
