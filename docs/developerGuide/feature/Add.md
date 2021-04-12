@@ -23,9 +23,9 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 2. `LogicManager` uses the `AddressBookParser` class to parse the user command, represented by `parseCommand("add -n
    James -r Loves sweets")`
 
-Below is the partial sequence diagram for steps 1 and 2.
+    Below is the partial sequence diagram for steps 1 and 2.
 
-![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p1](images/AddSequenceDiagram1.png)
+    ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p1](images/AddSequenceDiagram1.png)
 
 3. `AddressBookParser` creates an `AddCommandParser` which is used to parse the arguments provided by the user. This
    is represented by `parse("-n James -r Loves sweets")`.
