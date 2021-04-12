@@ -17,7 +17,7 @@ This guide covers several aspects of BookCoin, starting from its high-level desi
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **2. Setting up, getting started**
+## **2. Setting Up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -69,7 +69,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### 3.2 UI component
+### 3.2 UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -85,7 +85,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### 3.3 Logic component
+### 3.3 Logic Component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -105,7 +105,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteBookingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### 3.4 Model component
+### 3.4 Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -127,7 +127,7 @@ The `Model`,
 </div>
 
 
-### 3.5 Storage component
+### 3.5 Storage Component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -137,7 +137,7 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the booking system data in json format and read it back.
 
-### 3.6 Common classes
+### 3.6 Common Classes
 
 Classes used by multiple components are in the `seedu.booking.commons` package.
 
@@ -147,10 +147,10 @@ Classes used by multiple components are in the `seedu.booking.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 4.1 Find feature
+### 4.1 Find Feature
 BookCoin allows users to narrow down the search of persons, venues and bookings through filters. 
 
-#### 4.1.1 Implementation details
+#### 4.1.1 Implementation Details
 The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking. Corner cases such as searching for non-existent entries are also handled properly with suitable notifications displayed to the user. For example, if a search returns with no results, the corresponding notice that there are no persons/ venues/ bookings is displayed. The find feature is implemented with `FindPersonCommand`/ `FindVenueCommand`/ `FindBookingCommand` and their respective parsers `FindPersonCommandParser`/ `FindVenueCommandParser`/ `FindBookingCommandParser`. Below is a class diagram of the find command:
 <br>
 ![Class Diagram of Find Command](images/FindCommandClassDiagram.png)
@@ -161,7 +161,7 @@ Since the functionality for all three classes are similar, we can focus our disc
 Given below is a sequence diagram how the `find_person` command behaves in BookCoin after user input is parsed if a user wishes to find all persons by the name of "Anna" by inputting `find_person n/Anna`.
 ![Sequence Diagram of Find Command](images/FindCommandSequenceDiagram.png)
 
-#### 4.1.2 Design considerations:
+#### 4.1.2 Design Considerations
 ##### Aspect: Deciding between full and partial matching
 
 * **Alternative 1 (current choice):** Full matching which requires users to input at least one full word for a field.
@@ -172,16 +172,31 @@ Given below is a sequence diagram how the `find_person` command behaves in BookC
     * Pros: More convenient for situations when a user cannot remember a full field.
     * Cons: Results returned may contain many unrelated and undesirable entries (e.g. if searching for a person "Ann", the system would return partial matches "Annabelle", "Annabella", "Anna" etc.)
 
-### 4.2 Delete feature
+### 4.2 Delete Feature
 BookCoin supports the deletion of person, venue and booking objects. However, since there are dependencies between the different classes (e.g. there is a possibility that a venue is deleted while it still has bookings associated with it), we also had to ensure that a deletion of persons/ venues would also result in a deletion of the corresponding affected bookings.
 
-#### 4.2.1 Implementation details
+#### 4.2.1 Implementation Details
+The user input is first retrieved by the MainWindow class. Following which, the input is passed to LogicManager via the execute function, which will then call the parseCommand function belonging to bookingSystemParser. A `deletePersonCommandParser`/`deleteVenueCommandParser`/`deleteBookingCommandParser` object is created for temporary use to parse the input and return the appropriate respective `DeleteCommand` depending on the class. The command is finally executed in LogicManager to return a CommandResult object to be returned to the user as feedback.
+
+Below is the activity diagram derived from running the command `delete_booking 1` to delete the booking stored in the system at index 1. 
+![Activity Diagram of Delete Booking](images/DeleteBookingActivityDiagram.png)
+<br>
+
+#### 4.2.2 Design Considerations
+##### Aspect: Deciding between allowing deletion of persons and venues with existing bookings
+
+* **Alternative 1 (current choice):** Allowing deletion of persons and venues with existing bookings.
+    * Pros: More flexibility for users as there are indeed situations that arise in real life where persons or venues are no longer valid in the system (e.g. person's membership has expired and will no longer be able to book facilities/ venue is no longer to be used due to unforseen circumstances).
+    * Cons: Admin may accidentally delete persons/ venues without knowing that they have existing bookings. A good workaround for future iterations would be to have an alert message if they wish to delete said persons/ venues.
+
+* **Alternative 2:** Disallowing deletion of persons and venues with existing bookings.
+    * Pros: Easier to implement, and less likely for users to make mistakes in deletions of persons and venues if this is enforced.
+    * Cons: Rigid implementation that does not account for possible real life scenarios that might arise, as aforementioned.
 
 
+### 4.4 \[Proposed\] Undo/redo Feature
 
-### 4.4 \[Proposed\] Undo/redo feature
-
-#### 4.4.1 Proposed implementation
+#### 4.4.1 Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedBookingSystem`. It extends `BookingSystem` with an undo/redo history, stored internally as an `bookingSystemStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -244,7 +259,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### 4.4.2 Design considerations:
+#### 4.4.2 Design Considerations
 
 ##### Aspect: How undo & redo executes
 
@@ -260,7 +275,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, Logging, Testing, Configuration, Dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
