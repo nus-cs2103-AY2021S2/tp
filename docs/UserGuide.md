@@ -238,9 +238,6 @@ Each client attribute such as name and address have been assigned identifiers so
 the entire attribute when using ClientBook. For example, name has been abbreviated to `n`. Listed below are all the identifiers
 which correspond to client attributes as well as restrictions that have to be followed when they are used as part of a command.
 
-Please note that to protect users from creating duplicate contacts, any two client contacts in ClientBook must have at least 1 different attribute
-(no two clients should have the same name, phone number, address, email, tags, policies and meetings).
-
 <table>
   <tr>
     <td> <b>Attribute</b> </td>
@@ -250,7 +247,8 @@ Please note that to protect users from creating duplicate contacts, any two clie
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td><ul><li>Should contain only alphanumeric characters and spaces.</li></ul></td>
+    <td> Must only contain <a href=#glossary>alphanumeric</a> characters and spaces </td>
+
   </tr>
   <tr>
     <td> Phone number </td>

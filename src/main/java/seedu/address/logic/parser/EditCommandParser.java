@@ -71,29 +71,34 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         List<String> inputPolicies = argMultimap.getAllValues(PREFIX_INSURANCE_POLICY);
+
         EditPolicyMode editPolicyMode = getEditPolicyMode(inputPolicies);
         List<String> policiesTrimmed = getPolicyListFromInput(inputPolicies);
-
-        boolean isModeReplaceOrAppendPolicies = editPolicyMode == EditPolicyMode.REPLACE
-                || editPolicyMode == EditPolicyMode.APPEND;
-        boolean isModeRemovePolicies = editPolicyMode == EditPolicyMode.REMOVE;
-        boolean isModeModifyPolicies = editPolicyMode == EditPolicyMode.MODIFY;
-
-        if (isModeReplaceOrAppendPolicies) {
-            parsePoliciesForEdit(policiesTrimmed).ifPresent(editPersonDescriptor::setPoliciesToAdd);
-        } else if (isModeRemovePolicies) {
-            parsePoliciesForEdit(policiesTrimmed).ifPresent(editPersonDescriptor::setPoliciesToRemove);
-        } else if (isModeModifyPolicies) {
-            List<List<String>> addAndRemovePairs = getPoliciesFromModifyPairs(policiesTrimmed);
-            parsePoliciesForEdit(addAndRemovePairs.get(1)).ifPresent(editPersonDescriptor::setPoliciesToAdd);
-            parsePoliciesForEdit(addAndRemovePairs.get(0)).ifPresent(editPersonDescriptor::setPoliciesToRemove);
-        }
+        parsePoliciesByEditMode(policiesTrimmed, editPolicyMode, editPersonDescriptor);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor, editPolicyMode);
+    }
+
+    private void parsePoliciesByEditMode(List<String> policies, EditPolicyMode editPolicyMode,
+                                         EditPersonDescriptor editPersonDescriptor) throws ParseException {
+        boolean isModeReplaceOrAppendPolicies = editPolicyMode == EditPolicyMode.REPLACE
+                || editPolicyMode == EditPolicyMode.APPEND;
+        boolean isModeRemovePolicies = editPolicyMode == EditPolicyMode.REMOVE;
+        boolean isModeModifyPolicies = editPolicyMode == EditPolicyMode.MODIFY;
+
+        if (isModeReplaceOrAppendPolicies) {
+            parsePoliciesForEdit(policies).ifPresent(editPersonDescriptor::setPoliciesToAdd);
+        } else if (isModeRemovePolicies) {
+            parsePoliciesForEdit(policies).ifPresent(editPersonDescriptor::setPoliciesToRemove);
+        } else if (isModeModifyPolicies) {
+            List<List<String>> addAndRemovePairs = getPoliciesFromModifyPairs(policies);
+            parsePoliciesForEdit(addAndRemovePairs.get(1)).ifPresent(editPersonDescriptor::setPoliciesToAdd);
+            parsePoliciesForEdit(addAndRemovePairs.get(0)).ifPresent(editPersonDescriptor::setPoliciesToRemove);
+        }
     }
 
     private List<List<String>> getPoliciesFromModifyPairs(List<String> modifyPairs) throws ParseException {

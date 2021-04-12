@@ -19,9 +19,9 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1d clients listed!";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1d client%s listed!";
 
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE = "%1d clients listed with %s attribute%s!";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE = "%1d client%s listed with %s attribute%s!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose chosen field contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -97,19 +97,37 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+
+        int sizeOfFilteredList = model.getFilteredPersonList().size();
+
         if (!this.isAttributeSpecified()) {
-            return new CommandResult(
-                    String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+            if (sizeOfFilteredList == 1) {
+                return new CommandResult(
+                        String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size(), ""));
+            } else {
+                return new CommandResult(
+                        String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size(), "s"));
+            }
+
         } else {
             model.updatePersonListByAttribute(this.attributes);
             String attributeName = getAttributesString();
             String attributeSuccessMessage;
-            if (this.attributes.size() == 1) {
+
+            int numOfAttributes = this.attributes.size();
+
+            if (numOfAttributes == 1 && sizeOfFilteredList == 1) {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
-                        model.getFilteredPersonList().size(), attributeName, "");
+                        model.getFilteredPersonList().size(), attributeName, "", "");
+            } else if (numOfAttributes == 1 && sizeOfFilteredList > 1) {
+                attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
+                        model.getFilteredPersonList().size(), attributeName, "s", "");
+            } else if (numOfAttributes > 1 && sizeOfFilteredList == 1) {
+                attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
+                        model.getFilteredPersonList().size(), attributeName, "", "s");
             } else {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
-                        model.getFilteredPersonList().size(), attributeName, "s");
+                        model.getFilteredPersonList().size(), attributeName, "s", "s");
             }
             return new CommandResult(attributeSuccessMessage);
         }
