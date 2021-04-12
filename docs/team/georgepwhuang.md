@@ -1,16 +1,17 @@
 ---
-layout: page title: Huang Po-Wei's Project Portfolio Page
+layout: page 
+title: Huang Po-Wei's Project Portfolio Page
 ---
 
-# Project: Link.me
+## Project: Link.me
 
-## Project Overview
+### Project Overview
 
 Link.me is a desktop client managing book application aimed for insurance agents to manage their contacts. The basic
 Link.me codebase is adapted from AddressBook Level 3, an address book app created under the Seedu Initiative. The user
 interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 14 kLoC.
 
-## Contribution Summary
+### Contribution Summary
 
 * **New Feature 1**: Added the ability to schedule meeting.
   [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/dd8f4186422b19d0a37b66e36c7deeeb8ac54068),
@@ -19,7 +20,7 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
     * Justification: This feature improves the product significantly because it now includes an entirely new aspect --
       meeting scheduling into the application.
     * Highlights: This command required a separate list to store meetings. Allowing list displays for the person and the
-      meeting in order of time was mildly tricky.
+      meeting in order of time was mildly tricky. A separate UI component also had to be made and maintained.
 
 * **New Feature 2**: Added the ability to unschedule meeting.
   [Commit](https://github.com/AY2021S2-CS2103T-W12-3/tp/commit/d01310146e6c840a8ef09c154a99b4218eabf071),
@@ -35,16 +36,18 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
     * What it does: reminds the user of upcoming birthdays and meetings.
     * Justification: This feature allows users to be reminds of important events without having to go through the entire
       list of information.
-    * Highlights: This feature required a separate window to be displayed.
+    * Highlights: This feature required a separate window to be displayed, which had to be able to contain all 
+      the information and notices, which can amount to a lot when there are a large number of clients
 
 * **Enhancements to existing features**:
     * Did most of the GUI changes from AB-3 to the current version, including integrating of the meeting list, arranged
       the current layout, and other beautifications, including insurance plan tags.
 
 * **Other code contributions**:
-    * Fully wrote tests for new features implemented on my part.
+    * Fully wrote and maintained JUnit tests for new features implemented on my part.
     * Came up with the input syntax for combining multiple features into one command.
     * Drafted the OOP implementation framework for notification and notes windows.
+    * Created the GUI interface of the notification and notes windows.
 
 * **Code contributed**:
   [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=georgepwhuang&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=georgepwhuang&tabRepo=AY2021S2-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
@@ -58,11 +61,12 @@ interacts with it using a CLI, and it has a GUI created with JavaFX. It is writt
         * Drafted the functionality overview.
         * Added documentation for the features `schedule`, `unschedule`, and `notif`.
     * Developer Guide:
-        * Added implementation details of the `schedule` and `notif` feature.
-        * Drafted three sequence diagrams, one activity and updated three class diagrams.
+        * Added implementation details of the `schedule`, `unschedule` and `notif` feature.
+        * Drafted multiple new UML diagrams and maintained the original UML diagrams.
         * Drafted three use cases: adding a person, editing a person, and filtering by tag.
+        * Maintained documentation quality on the DG.
     * Other Documents:
-        * Drafted first iteration of [index.md](index.md).
+        * Drafted [index.md](index.md).
         * Drafted [README.md](https://github.com/AY2021S2-CS2103T-W12-3/tp#readme).
 
 * **Team Tasks**:

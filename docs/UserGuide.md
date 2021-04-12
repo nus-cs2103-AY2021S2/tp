@@ -31,7 +31,8 @@ You may navigate this document using the Table of Contents provided below.
 
 ------------------------------------------------------------------------------------------------------------------------
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -109,6 +110,7 @@ Action                            | Format
 **Schedule meetings**             | `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 **Show notifications**            | `notif`
 **View Help**                     | `help`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -395,8 +397,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 * `find John` returns `john` and `John Doe`
-* `find Alex David` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Alex Jeff` returns `Alex Yeoh`, `Jeff Liu`<br>
+  ![result for 'find alex jeff'](images/findAlexJeffResult.png)
 
 #### Filtering clients by attributes : `filter`
 
