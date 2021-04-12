@@ -17,7 +17,7 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 [[portfolio]](team/jqchong.md)
 
 * Role: Developer
-* Responsibilities: UI, Features
+* Responsibilities: UI, Integration, Features
 
 ### Pan JingBin
 
