@@ -7,7 +7,7 @@ import seedu.address.model.customer.Car;
 /**
  * Filters Cars based on user specified filters carBrand, carType.
  */
-public abstract class CarFilter extends AbstractFilter {
+public abstract class CarFilter extends Filter {
     /**
      * Creates a filter for Cars
      *
@@ -25,13 +25,8 @@ public abstract class CarFilter extends AbstractFilter {
      * @return
      */
     public static Car parseCar(String car) {
-        String trimmedCar = car;
-        String[] carDetails = trimmedCar.split("\\+");
+        String[] carDetails = car.split("\\+");
 
-
-        if (carDetails.length != 2) {
-            //throw new ParseException(Car.MESSAGE_CONSTRAINTS);
-        }
         String filterCarBrand = carDetails[0].trim();
         String filterCarType = carDetails[1].trim();
         if (filterCarBrand.isEmpty()) {

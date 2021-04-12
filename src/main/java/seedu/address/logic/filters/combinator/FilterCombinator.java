@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 import java.util.function.Predicate;
 
-import seedu.address.logic.filters.AbstractFilter;
+import seedu.address.logic.filters.Filter;
 import seedu.address.logic.filters.Filters;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
@@ -86,7 +86,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 // now we try to form a Node from the previously given filter at this level.
                 // only try to form a node if we have actually got some information
                 if (inPresentScope.toString().trim().length() > 0) {
-                    AbstractFilter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
+                    Filter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
                     nodeStack.push(new Node(filter));
                 }
 
@@ -127,7 +127,7 @@ public class FilterCombinator implements Predicate<Customer> {
         }
 
         if (inPresentScope.toString().trim().length() > 0) {
-            AbstractFilter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
+            Filter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
             nodeStack.push(new Node(filter));
         }
 

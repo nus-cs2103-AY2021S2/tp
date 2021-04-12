@@ -5,23 +5,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.customer.Customer;
 
-
-public class NameFilter extends AbstractFilter {
+/**
+ * This class encapsulates the filter used for filtering {@code Customer} by name. It checks against multiple names
+ * given via a {@code filterString} and the {@code Customer} is matched if the {@code Customer} name matches with any
+ * of the given names. Here, matching is spelling-tolerant to some extent in that it matches using subsequence -- in
+ * particular, {@code abbbc} is matched to {@code abc} but not to {@code acb}.
+ */
+public class NameFilter extends Filter {
     public static final String MESSAGE_CONSTRAINTS = "Name Filter must contain at least one valid name to test by";
     /*
      * The first character of the search string must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
-    private static final int MISTAKE_THRESHOLD = 3;
-
     private final String[] nameList;
 
     /**
-     * Creates a filter that filters by name, with tolerances for mis-spelling.
+     * Creates a filter that filters by {@code Name}, with tolerances for mis-spelling.
      *
-     * @param nameListSingleString String with names to search, separated by spaces.
+     * @param nameListSingleString - String with names to search, separated by spaces.
      */
     public NameFilter(String nameListSingleString) {
         super(nameListSingleString);
@@ -31,11 +33,22 @@ public class NameFilter extends AbstractFilter {
     }
 
     /**
-     * Returns true if a given string is a valid filter.
+     * Checks whether the filter string given is of the acceptable form for a name filter.
+     *
+     * @param filterString - the filter string whose validity is to be checked
+     * @return - whether the filter string is valid
      */
     public static boolean isValidFilter(String filterString) {
         return filterString.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Checks whether the second string is a subsequence of the first string. Here the first string represents the
+     * given customer name whereas the second string corresponds to the given filter name.
+     * @param customerName - the actual customer name
+     * @param potentialName - the filter string against which to check whether the customer name matches
+     * @return - whether there is a match
+     */
     private boolean isSubsequence(String customerName, String potentialName) {
         int customerPointer = 0;
         int potentialPointer = 0;
@@ -43,13 +56,18 @@ public class NameFilter extends AbstractFilter {
             if (customerName.charAt(customerPointer) == potentialName.charAt(potentialPointer)) {
                 potentialPointer++;
             }
-
             customerPointer++;
         }
-
         return potentialPointer == potentialName.length();
     }
 
+    /**
+     * {@inheritDoc}
+     * Checks whether any of the given names in the filterString matches the {@code Customer} name for the particular
+     * {@code Customer} being tested.
+     * @param customer - the customer should to be tested
+     * @return - whether there is a match
+     */
     @Override
     public boolean test(Customer customer) {
         requireNonNull(customer);
@@ -63,39 +81,4 @@ public class NameFilter extends AbstractFilter {
         }
         return false;
     }
-    //Code below is mothballed for now
-    //@@author nighoggDatatype-reused
-    //Reused from https://stackoverflow.com/a/13564498/11358676
-    private int levenshteinDistance(String s1, String s2) {
-        return dist(s1.toCharArray(), s2.toCharArray());
-    }
-
-    private int dist(char[] s1, char[] s2) {
-        // memoize only previous line of distance matrix
-        int[] prev = new int[s2.length + 1];
-
-        for (int j = 0; j < s2.length + 1; j++) {
-            prev[j] = j;
-        }
-
-        for (int i = 1; i < s1.length + 1; i++) {
-            // calculate current line of distance matrix
-            int[] curr = new int[s2.length + 1];
-            curr[0] = i;
-
-            for (int j = 1; j < s2.length + 1; j++) {
-                int d1 = prev[j] + 1;
-                int d2 = curr[j - 1] + 1;
-                int d3 = prev[j - 1];
-                if (s1[i - 1] != s2[j - 1]) {
-                    d3 += 1;
-                }
-                curr[j] = Math.min(Math.min(d1, d2), d3);
-            }
-            // define current line of distance matrix as previous
-            prev = curr;
-        }
-        return prev[s2.length];
-    }
-    //@@author
 }

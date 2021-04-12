@@ -17,7 +17,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.model.customer.Customer;
 
 public class Filters {
-    public static AbstractFilter getCorrespondingFilter(String info) {
+    public static Filter getCorrespondingFilter(String info) {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(" " + info + " ", PREFIX_NAME,
             PREFIX_EMAIL,
             PREFIX_PHONE,
@@ -71,7 +71,7 @@ public class Filters {
          * throw new IllegalArgumentException("No appropriate filter for : " + info);
          */
 
-        return new AbstractFilter(info) {
+        return new Filter(info) {
 
             @Override
             public boolean test(Customer customer) {
