@@ -32,11 +32,12 @@ title: User Guide
   - [5.9 Undoing commands : `undo`](#59-undoing-commands--undo)
   - [5.10 Redoing commands : `redo`](#510-redoing-commands--redo)
   - [5.11 Exiting the program : `exit`](#511-exiting-the-program--exit)
-  - [5.12 Viewing top 5 categories spent for the current month](#512-viewing-top-5-categories-spent-for-the-current-month)
-  - [5.13 Viewing budget for the current month](#513-viewing-budget-for-the-current-month)
-  - [5.14 Checking remaining budget for the current month](#514-checking-remaining-budget-for-the-current-month)
-  - [5.15 Saving the data](#515-saving-the-data)
-  - [5.16 Editing the data file](#516-editing-the-data-file)
+  - [5.12 Viewing all categories spent for the current month](#512-viewing-all-categories-spent-for-the-current-month)
+  - [5.13 Viewing top 5 categories spent for the current month](#513-viewing-top-5-categories-spent-for-the-current-month)
+  - [5.14 Viewing total expenditure of past 6 months](#514-viewing-total-expenditure-of-past-6-months)
+  - [5.15 Checking remaining budget for the current month](#515-checking-remaining-budget-for-the-current-month)
+  - [5.16 Saving the data](#516-saving-the-data)
+  - [5.17 Editing the data file](#517-editing-the-data-file)
 - [6 FAQ](#6-faq)
 - [7 Command Summary](#7-command-summary)
 - [8 Credits](#8-credits)
@@ -387,25 +388,30 @@ After you are done with editing details in BudgetBaby, you may use the `exit` co
 
 Format: `exit`
 
-### 5.12 Viewing top 5 categories spent for the current month
+### 5.12 Viewing all categories spent for the current month
+
+The UI displays all the categories spent for the current month at the side panel of the application. The categories are 
+sorted in lexicographical order, so that users are able to find the amounts spent on any particular category easily.
+
+### 5.13 Viewing top 5 categories spent for the current month
 
 <img src="images/features/category-stats.png" width="1200px">
 
-The UI displays the top 5 categories that were spent on a particular month.
+The UI displays the top 5 categories which contributed the most to the expenditure of the currently viewed month.
 
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
 
-You may use the `F6` hotkey to open up the Month statistics window.
+You may use the `F6` hotkey to open up the Category statistics window.
 
 </div>
 
-### 5.13 Viewing budget for the current month
+### 5.14 Viewing total expenditure of past 6 months
 
 <img src="images/features/monthly-stats.png" width="1200px">
 
-The UI displays the current monthly budget that has been set automatically.
+The UI displays the user's expenditure over the past 6 months with respect to the currently viewed month (inclusive). 
 
 <div markdown="block" class="alert alert-primary">
 
@@ -415,16 +421,16 @@ You may use the `F7` hotkey to open up the Month statistics window.
 
 </div>
 
-### 5.14 Checking remaining budget for the current month
+### 5.15 Checking remaining budget for the current month
 
 The UI displays and updates the remaining budget for the current month automatically.
 
-### 5.15 Saving the data
+### 5.16 Saving the data
 
 You do not have to worry about saving your data manually. It will be saved to your hard disk automatically after any you
 enter any command that updates data.
 
-### 5.16 Editing the data file
+### 5.17 Editing the data file
 
 Data is saved as an encoded JSON file to the following location `[JAR file location]/data/budgetbaby.json`. You are
 <strong>NOT RECOMMENDED</strong> to edit the file in any way.
