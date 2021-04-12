@@ -341,6 +341,10 @@ exists and editing a client to have the same information as an existing client i
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
+* **Order of flags matter**.
+  * e.g. `sort -n -asc` will work, but `sort -asc -n` does not work.
+
+
 * **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `listshortcut`) **will be ignored**. 
   * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
