@@ -243,12 +243,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePolicies_emptyCollection_returnsEmptySet() {
+    public void parsePolicies_emptyCollection_returnsEmptySet() throws ParseException {
         assertTrue(ParserUtil.parsePolicies(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parsePolicies_returnsPoliciesList() {
+    public void parsePolicies_returnsPoliciesList() throws ParseException {
         Set<InsurancePolicy> actualPolicySet = ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL,
             VALID_POLICYID_VALID_URL));
         Set<InsurancePolicy> expectedPolicyList = new HashSet<>(Arrays.asList(new InsurancePolicy(VALID_POLICYID_1),

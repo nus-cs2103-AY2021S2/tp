@@ -73,6 +73,9 @@ public class EditCommand extends Command implements BatchOperation {
     public static final String MESSAGE_MODIFY_POLICY_CONSTRAINT = "When -modify flag is indicated for editing policy,"
             + " the format should be i/[TO_MODIFY];[TO_REPLACE]. ";
     public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found.";
+    public static final String MESSAGE_INSERT_DUPLICATE_POLICY = "The policy %s already exists in this "
+            + "client's record.";
+
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -190,9 +193,15 @@ public class EditCommand extends Command implements BatchOperation {
     }
 
     private static List<InsurancePolicy> addInsurancePolicies(List<InsurancePolicy> policiesToAddTo,
-                                             List<InsurancePolicy> policiesToAdd) {
+                                             List<InsurancePolicy> policiesToAdd) throws CommandException {
         ArrayList<InsurancePolicy> policiesToAddToTemp = new ArrayList<>(policiesToAddTo);
-        policiesToAddToTemp.addAll(policiesToAdd);
+        for (InsurancePolicy insurancePolicy : policiesToAdd) {
+            if (policiesToAddTo.contains(insurancePolicy)) {
+                throw new CommandException(String.format(MESSAGE_INSERT_DUPLICATE_POLICY, insurancePolicy.policyId));
+            } else {
+                policiesToAddToTemp.add(insurancePolicy);
+            }
+        }
         return policiesToAddToTemp;
     }
 

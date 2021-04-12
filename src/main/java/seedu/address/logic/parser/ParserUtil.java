@@ -274,10 +274,14 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed from the initial input.
      * Leading and trailing whitespaces will also be trimmed from the input meant as URL.
      */
-    private static InsurancePolicy parsePolicy(String policy) {
+    private static InsurancePolicy parsePolicy(String policy) throws ParseException {
         requireNonNull(policy);
         String trimmedPolicy = policy.trim();
         String[] idAndUrl = trimmedPolicy.split(">", 2);
+
+        if (!InsurancePolicy.isValidPolicyInput(trimmedPolicy)) {
+            throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
+        }
 
         if (!InsurancePolicy.hasPolicyUrl(idAndUrl)) {
             return new InsurancePolicy(idAndUrl[0]);
@@ -293,7 +297,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> policies} into a {@code Set<InsurancePolicy>}.
      */
-    public static Set<InsurancePolicy> parsePolicies(Collection<String> policies) {
+    public static Set<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
         requireNonNull(policies);
         final Set<InsurancePolicy> policySet = new HashSet<>();
         for (String policy : policies) {

@@ -23,6 +23,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.shortcut.ShortcutLibrary;
 import seedu.address.storage.Authentication;
 
+//@@author swayongshen
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code LockCommand}.

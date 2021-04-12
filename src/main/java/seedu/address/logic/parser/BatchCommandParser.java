@@ -66,7 +66,7 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
             // Tokenizes and parses the user input
             String inputIndicesAndArgs = " " + splitCommandAndIndicesAndArgs[1].trim();
             ArgumentMultimap argMultimap = ArgumentTokenizer
-                            .tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                    .tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                             PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING,
                             PREFIX_SHORTCUT_COMMAND, PREFIX_SHORTCUT_NAME);
             boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(argMultimap.getPreamble());
@@ -76,7 +76,7 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
                         EditCommand.MESSAGE_USAGE_BATCH));
             } else if (doIndicesContainWords && inputCommand.equals(DeleteCommand.COMMAND_WORD)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteCommand.MESSAGE_USAGE_BATCH));
+                        DeleteCommand.MESSAGE_USAGE_BATCH));
             }
 
             List<Index> listOfIndices = parseAndPrepareIndices(argMultimap);
