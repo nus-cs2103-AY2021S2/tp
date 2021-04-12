@@ -3,42 +3,42 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":BudgetTrackerParser" as BudgetTrackerParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedBudgetTracker" as VersionedBudgetTracker MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> BudgetTrackerParser : parseCommand(undo)
+activate BudgetTrackerParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+BudgetTrackerParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> BudgetTrackerParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+BudgetTrackerParser --> LogicManager : u
+deactivate BudgetTrackerParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoBudgetTracker()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedBudgetTracker : undo()
+activate VersionedBudgetTracker
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedBudgetTracker -> VersionedBudgetTracker :resetData(ReadOnlyBudgetTracker)
+VersionedBudgetTracker --> Model :
+deactivate VersionedBudgetTracker
 
 Model --> UndoCommand
 deactivate Model
@@ -51,3 +51,4 @@ destroy UndoCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
+
