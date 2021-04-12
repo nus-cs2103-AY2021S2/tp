@@ -388,6 +388,8 @@ From the diagram above:
 9. Finally, a `CommandResult` object is created and returned to `LogicManager`.
 10. This `CommandResult` object will be returned in the end by `LogicManager`.
 
+<div style="page-break-after: always;"></div>
+
 The following Activity Diagram summarizes what happens when a user executes the `find` command:
 
 <br>
@@ -617,6 +619,8 @@ keys in the command `clear`:
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear l/Kitchen`:
