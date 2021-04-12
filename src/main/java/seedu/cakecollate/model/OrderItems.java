@@ -47,7 +47,7 @@ public class OrderItems implements ReadOnlyOrderItems {
     }
 
     /**
-     * Returns true if a order item with the same type as {@code orderItem} exists in the order item list.
+     * Returns true if an order item with the same type as {@code orderItem} exists in the order item list.
      */
     public boolean hasOrderItem(OrderItem orderItem) {
         requireNonNull(orderItem);
@@ -55,7 +55,7 @@ public class OrderItems implements ReadOnlyOrderItems {
     }
 
     /**
-     * Adds a order item to the Order Item List.
+     * Adds an order item to the Order Item List.
      * The order item must not already exist in the order item list.
      */
     public void addOrderItem(OrderItem p) {
@@ -64,7 +64,7 @@ public class OrderItems implements ReadOnlyOrderItems {
     }
 
     /**
-     * Replaces the given order {@code target} in the list with {@code editedOrderItem}.
+     * Replaces the given order item {@code target} in the list with {@code editedOrderItem}.
      * {@code target} must exist in the OrderItemList.
      */
     public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {

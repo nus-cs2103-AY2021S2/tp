@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
- * Unmodifiable view Order Items
+ * Unmodifiable view of Order Items
  */
 
 public interface ReadOnlyOrderItems {

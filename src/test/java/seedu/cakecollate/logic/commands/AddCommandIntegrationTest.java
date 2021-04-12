@@ -58,7 +58,6 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.addOrder(validOrder);
-        expectedModel.addOrderItem(OrderBuilder.getDefaultOrderItem()); // corresponds to order desc in the valid order
 
         assertCommandSuccess(new AddCommand(null, descriptor), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validOrder), expectedModel);
