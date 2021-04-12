@@ -507,5 +507,4 @@ Working on AB3, a brown-field project entails a huge amount of effort and time s
        <br> With reference to AB3, which did not have external library added to give the GUI more features
        <br> We had to figure out how to integrate the third party JavaFx library with existing JavaFx and UI classes code
     1. Effort required: A good spirit of google searches to figure how to integrate the third party code to our GUI and JavaFx code.
- 
-
+    
