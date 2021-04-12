@@ -60,7 +60,7 @@ Command: `edit 1 -a NUS Temasek Hall Block E`<br>
 Expected: `Edited Person: Alex Yeoh; Phone: 87438807; Email: ...`
 
 1. What: If index is out of bounds.<br>
-Command: `edit -a NUS Temasek Hall Block E`<br>
+Command: `edit 9999 -a NUS Temasek Hall Block E`<br>
 Expected Message: `The person index provided is invalid`
 
 1. What: Remove a tag from all contacts in the application.<br>
@@ -135,7 +135,7 @@ Expected Message: `Event date must contain a year`
 
 1. What: mark first and second event as done<br>
 Command: `edone 1 2`<br>
-Expected Message: `Deleted the following event(s): ...`
+Expected Message: `Event(s) marked as completed: ...`
 
 1. What: mark first and second event as done (second event already completed)<br>
 Command: `edone 1 2`<br>
@@ -147,7 +147,7 @@ Expected Message: `Invalid command format! ...`
 
 1. What: Wrong format (index does not exist in the list)<br>
 Command: `edone 10000`<br>
-Expected Message: `None of the indexes provided are valid`
+Expected Message: `All indexes provided are either invalid or references events that are already completed`
 
 ### EList command
 
@@ -171,7 +171,7 @@ Expected message: `Listed all events! Sorted by upcoming event dates.`
 
 1. What: Sort list by descending event name. (Case insensitive)<br>
 Command: `elist -s n -o d`<br>
-Expected message: `Listed all events! Sorted event names in descending order. `
+Expected message: `Listed all events! Sorted event names in descending order.`<br>
 Note: Default sort is `name` and default order is `ascending`
 
 ### Undo command
