@@ -68,7 +68,7 @@ public class FileUtil {
     /**
      * Assumes file exists
      */
-    public static String readFromFile(Path file) throws IOException {
+    public static String readFromFile(Path file) throws IOException, IllegalArgumentException {
         String data = new String(Files.readAllBytes(file), CHARSET);
         String trimmedData = data.trim();
         return EncodeUtil.getDecodedString(trimmedData);

@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box BudgetBabyCommandParser LOGIC_COLOR_T1
+participant ":BudgetBabyCommand" as BudgetBabyCommand LOGIC_COLOR
+participant ":BudgetBabyParser" as BudgetBabyParser LOGIC_COLOR
+participant ":ViewMonthCommandParser" as ViewMonthCommandParser LOGIC_COLOR
+participant "c:ViewMonthCommand" as ViewMonthCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box BudgetBabyModel MODEL_COLOR_T1
+participant ":BudgetBabyModel" as Model MODEL_COLOR
+end box
+
+[-> BudgetBabyCommand : execute(model)
+activate BudgetBabyCommand
+
+BudgetBabyCommand -> BudgetBabyParser : parseCommand("view-month 01-2021")
+activate BudgetBabyParser
+
+create ViewMonthCommandParser
+BudgetBabyParser -> ViewMonthCommandParser
+activate ViewMonthCommandParser
+
+ViewMonthCommandParser --> BudgetBabyParser
+deactivate ViewMonthCommandParser
+
+BudgetBabyParser -> ViewMonthCommandParser : parse("view-month 01-2021")
+activate ViewMonthCommandParser
+
+create ViewMonthCommand
+ViewMonthCommandParser -> ViewMonthCommand
+activate ViewMonthCommand
+
+ViewMonthCommand --> ViewMonthCommandParser : c
+deactivate ViewMonthCommand
+
+ViewMonthCommandParser --> BudgetBabyParser : c
+deactivate ViewMonthCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewMonthCommandParser -[hidden]-> BudgetBabyParser
+destroy ViewMonthCommandParser
+
+BudgetBabyParser --> BudgetBabyCommand : c
+deactivate BudgetBabyParser
+
+BudgetBabyCommand -> ViewMonthCommand : execute()
+activate ViewMonthCommand
+
+ViewMonthCommand -> Model : setCurrentDisplayMonth(month)
+activate Model
+
+Model --> ViewMonthCommand
+deactivate Model
+
+create CommandResult
+ViewMonthCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewMonthCommand
+deactivate CommandResult
+
+ViewMonthCommand --> BudgetBabyCommand : result
+deactivate ViewMonthCommand
+
+[<--BudgetBabyCommand
+deactivate BudgetBabyCommand
+@enduml
