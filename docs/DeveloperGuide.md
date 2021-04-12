@@ -266,7 +266,7 @@ an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui.
 
-Aspect 2: Model for `Session` class
+Aspect 1: Model for `Session` class
 * **Alternative 1(current choice)**: Maintaining a list of session in the `Student` class.
     * Pros:
         * Easy and straightforward implementation
@@ -282,7 +282,7 @@ Aspect 2: Model for `Session` class
 Alternative 1 was chosen because TutorBuddy is meant to be an application for independent tutors with few students.
 However, for future iterations, alternative 2 would be strongly considered.
 
-Aspect 1: Type of input for `AddSessionCommand`
+Aspect 2: Type of input for `AddSessionCommand`
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
         * Easier for user to add sessions without constantly having to refer to the application for student id
