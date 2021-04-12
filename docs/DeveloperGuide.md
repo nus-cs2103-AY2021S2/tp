@@ -427,6 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
+You can follow the guide line by line for to get use to the command and features of the application.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -448,32 +449,56 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Saving data
 
-### Deleting a person
+1. Commands to try out before starting manual testing
+    1. Making sure the data is saved correctly by using the `add` command `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%`.<br>
+        Expected: A new task will be added to the task list.
+    1. Close to application using the command `exit`.<br>
+        Expected: The window will be closed.
+    1. Re-launch the app by double clicking on the jar file.<br>
+        Expected: The application will be launch and the previously added task will be displayed
+
+### Adding a task
+
+1. Adding a task to daily task list using command `add`
+    1. Prerequisites: list do not have the same identical task(s) that are used in example. 
+    1. Use `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` to attempt to add a new task to the list.<br>
+        Expected: A new task will be added to the task list, and will be displayed on the Ui. Status bar shows success message 
+        
+1. Adding a task with tag(s) using command `add`
+    1. Prerequisites: list do not have the same identical task(s) that are used in example. 
+    1. Use `add mc/CS2102 n/Assignment 1 d/10-06-2021 t/10:00 w/8% pt/URGENT` to attempt to add a new task to the list.<br>
+        Expected: A new task will be added to the task list, and will be displayed on the Ui with the tag `URGENT`. Status bar shows success message
+    1. Use `add mc/CS2105 n/Assignment 2 d/15-06-2021 t/10:00 w/30% pt/URGENT pt/CORE` to attemp to add a new task with multiple tags to the list.<br>
+        Expected: A new task will be added to the task list, and will be displayed on the Ui with the tag `URGENT`, `CORE`. Status bar shows success message
+        
+ 1. Adding a task with priority tag using command `add`
+    1. Prerequisites: list do not have the same identical task(s) that are used in example. 
+    1. By default, if there are no user input to specify a task priority tag on `add`, priority tag will be set to default `LOW`.
+    1. Use `add mc/CS2103 n/Finals d/10-03-2021 t/12:00 w/35% ptag/MEDIUM` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
+        Expected: Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `MEDIUM`. Status bar shows success message
+    1. Use `add mc/CS3240 n/Finals d/12-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH` to attempt to add a new task with priority tag `MEDIUM` to the list.<br>
+        Expected: Expected: A new task will be added to the task list, and will be displayed on the Ui with the priority tag `HIGH`, tag `URGENT`. Status bar shows success message
+        
+### Editing a task 
+
+
+### Deleting a task
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all task(s) using the `list` command. Have at least 1 task(s) in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
 
