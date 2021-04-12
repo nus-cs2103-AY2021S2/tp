@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes completed command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if (Delivery task that are marked done present in delivery list) then ([delivery task that are marked done exists])
+    :Returns delivery list with all delivery tasks that are marked done;
+else ([else])
+    : Return Empty Delivery list;
+endif
+stop
+@enduml

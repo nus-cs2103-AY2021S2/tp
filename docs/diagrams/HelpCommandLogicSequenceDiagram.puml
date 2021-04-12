@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
+participant "command:HelpCommand" as HelpCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":Ui" as Ui UI_COLOR
+end box
+
+[-> LogicManager : execute("help")
+activate LogicManager
+
+LogicManager -> DeliveryListParser : parseCommand("help")
+activate DeliveryListParser
+
+create HelpCommand
+DeliveryListParser -> HelpCommand
+activate HelpCommand
+
+HelpCommand --> DeliveryListParser : command
+deactivate HelpCommand
+
+DeliveryListParser --> LogicManager : command
+deactivate DeliveryListParser
+
+LogicManager -> HelpCommand : execute()
+activate HelpCommand
+
+HelpCommand -> Ui : showHelp()
+activate Ui
+
+Ui --> HelpCommand
+deactivate Ui
+
+create CommandResult
+HelpCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> HelpCommand
+deactivate CommandResult
+
+HelpCommand --> LogicManager : result
+deactivate HelpCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
