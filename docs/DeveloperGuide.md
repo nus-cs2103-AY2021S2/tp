@@ -11,6 +11,8 @@ Welcome to the PocketEstate Developer Guide! This guide will take you through th
 * Table of Contents 
 {:toc}
 
+---
+
 ## **1. Setting up, getting started**
 
 Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
@@ -30,6 +32,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -53,6 +57,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete property 1`.
@@ -60,6 +66,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2 UI component
 
@@ -79,6 +87,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.3 Logic component
 
@@ -103,6 +113,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddPropertyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 2.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -121,6 +133,8 @@ The `Model`,
 * stores the property book and appointment book data
 * exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
 * does not depend on any of the other three components
+
+<div style="page-break-after: always;"></div>
 
 ### 2.5 Storage component
 
@@ -143,7 +157,7 @@ Some examples of common classes:
 * [`FileUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/FileUtil.java): Writes and reads files
 * [`JsonUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/JsonUtil.java): Converts a Java object instance to JSON and vice versa
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **3. Implementation**
 
@@ -155,6 +169,8 @@ This section describes some noteworthy details on how certain features are imple
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some solid diamonds that are used to denote composition may overlap with each other.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.1.1 Current Implementation
 
@@ -179,6 +195,8 @@ A `Client` consists of at least one of the following attributes,
   * an `Email`: the email of the client
   * an `AskingPrice`: the asking price of the client
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.2 Design Consideration
 
 ##### Aspect: How each attribute of `Property` is stored
@@ -199,6 +217,7 @@ A `Client` consists of at least one of the following attributes,
 
 ![BetterModelPropertyClassDiagram](images/BetterModelPropertyClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Appointment component
 
@@ -219,6 +238,8 @@ An `Appointment` consists of the following mandatory attributes,
 ##### Aspect: How each attribute of `Appointment` is stored
 
 Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.3 Undo feature
 
