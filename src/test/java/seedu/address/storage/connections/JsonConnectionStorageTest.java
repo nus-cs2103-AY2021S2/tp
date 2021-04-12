@@ -1,7 +1,16 @@
 package seedu.address.storage.connections;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
@@ -11,15 +20,6 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.connection.JsonConnectionStorage;
 import seedu.address.testutil.TypicalMeetings;
 import seedu.address.testutil.TypicalPersons;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-
 
 public class JsonConnectionStorageTest {
     private static final Path TEST_DATA_FOLDER =

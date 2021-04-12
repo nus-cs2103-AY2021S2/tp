@@ -1,23 +1,20 @@
 package seedu.address.storage.connection;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.connection.PersonMeetingConnection;
-import seedu.address.model.meeting.MeetingBook;
-import seedu.address.model.meeting.ReadOnlyMeetingBook;
-import seedu.address.model.person.AddressBook;
-import seedu.address.model.person.ReadOnlyAddressBook;
-import seedu.address.storage.addressbook.JsonAddressBookStorage;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.person.ReadOnlyAddressBook;
 
 public class JsonConnectionStorage implements ConnectionStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonConnectionStorage.class);
@@ -44,8 +41,9 @@ public class JsonConnectionStorage implements ConnectionStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<PersonMeetingConnection> readConnection(Path filePath, ReadOnlyMeetingBook meetingBook,
-                                                            ReadOnlyAddressBook addressBook) throws DataConversionException {
+    public Optional<PersonMeetingConnection> readConnection(
+            Path filePath, ReadOnlyMeetingBook meetingBook,
+            ReadOnlyAddressBook addressBook) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableConnection> jsonConnection = JsonUtil.readJsonFile(
