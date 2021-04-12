@@ -12,7 +12,7 @@ import seedu.address.model.task.Task;
  */
 public class DateVerifier {
 
-    private static final String MESSAGE_EMPTY_DATE = "The task selected has no Date attribute.";
+    public static final String MESSAGE_EMPTY_DATE = "The task selected has no Date attribute.";
     private static final String MESSAGE_DATE_OVER = "The task selected is already over.";
     private static final Logger logger = LogsCenter.getLogger(DateVerifier.class);
 

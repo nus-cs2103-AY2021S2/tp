@@ -124,4 +124,13 @@ public class AttributeManager {
     public String getTitleString() {
         return title.fullTitle;
     }
+
+    /**
+     * Get the LocalDate value of the Date attribute.
+     *
+     * @return LocalDate of the date object.
+     */
+    public LocalDate getDate() {
+        return date.getDate();
+    }
 }

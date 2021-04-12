@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.DateVerifier;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -21,9 +22,18 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
 public class SnoozeCommandTest {
+    /*
+    This comment is to describe the EPs for grading purposes. Parameters: INDEX, DAYS(optional)
+    For INDEX: [-1][0][1][valid int not in range of list][Integer.MAX_Value][Integer.MAX_VALUE + 1][non integer][null]
+    For DAYS: [-1][0][1][365][366][Integer.MAX_Value][Integer.MAX_VALUE + 1][non integer][null]
+
+    To ensure efficiency, test cases which overlap with SnoozeCommandParserTest will be omitted.
+    I.e DAYS with values [356][366] will be tested.
+     */
 
     private Model model = new ModelManager(getTypicalPlanner(), new UserPrefs());
 
+    //
     @Test
     public void execute_allParametersGivenUnfilteredList_success() throws CommandException {
         Task snoozedTask = new TaskBuilder().withTitle("Build a gaming PC")
@@ -65,8 +75,31 @@ public class SnoozeCommandTest {
     public void execute_noDateOnTask_failure() {
         SnoozeCommand snoozeCommand = new SnoozeCommand(INDEX_FIRST_TASK, 3);
 
-        assertCommandFailure(snoozeCommand, model, "The task selected has no date attribute.\n"
-                + SnoozeCommand.MESSAGE_USAGE);
+        assertCommandFailure(snoozeCommand, model, DateVerifier.MESSAGE_EMPTY_DATE);
+    }
+
+    @Test
+    public void execute_snoozeValueIs365_success() throws CommandException {
+        Task snoozedTask = new TaskBuilder().withTitle("Build a gaming PC")
+                .withDescription("buy: coffee, 3080, 40-inch monitor")
+                .withDate("12/12/2022").withStatus("not done").withTags("findMoney", "priorities").build();
+        SnoozeCommand snoozeCommand = new SnoozeCommand(INDEX_SECOND_TASK, 365);
+        String snoozedTaskTitle = snoozedTask.getTitle().fullTitle;
+
+        String expectedMessage = String.format(SnoozeCommand.MESSAGE_SNOOZE_TASK_SUCCESS,
+                snoozedTaskTitle, 365);
+
+        Model expectedModel = new ModelManager(getTypicalPlanner(), new UserPrefs());
+        expectedModel.setTask(model.getFilteredTaskList().get(1), snoozedTask);
+
+        assertCommandSuccess(snoozeCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_snoozeValueExceeds365_failure() {
+        SnoozeCommand snoozeCommand = new SnoozeCommand(INDEX_SECOND_TASK, 366);
+
+        assertCommandFailure(snoozeCommand, model, SnoozeCommand.MESSAGE_MAX_SNOOZE_AMOUNT_EXCEEDED);
     }
 
     @Test
