@@ -105,7 +105,7 @@ public class EditPersonCommandTest {
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(unknownEmail, descriptor);
 
-        assertCommandFailure(editPersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL);
+        assertCommandFailure(editPersonCommand, model, Messages.MESSAGE_EMAIL_NOT_FOUND);
     }
 
 

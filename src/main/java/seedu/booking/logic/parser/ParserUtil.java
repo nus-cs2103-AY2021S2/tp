@@ -184,7 +184,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String bookingStart} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
     public static StartTime parseBookingStart(String bookingStart) {
         requireNonNull(bookingStart);

@@ -75,7 +75,7 @@ public class EditPersonCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (!lastShownList.stream().anyMatch(email::isSameEmail)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL);
+            throw new CommandException(Messages.MESSAGE_EMAIL_NOT_FOUND);
         }
 
         Person personToEdit = getPersonByEmail(email, lastShownList);

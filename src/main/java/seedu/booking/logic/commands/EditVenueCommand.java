@@ -74,13 +74,14 @@ public class EditVenueCommand extends Command {
         List<Venue> lastShownList = model.getFilteredVenueList();
 
         if (!lastShownList.stream().anyMatch(venueName::isSameVenueName)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_VENUE_NAME);
+            throw new CommandException(Messages.MESSAGE_VENUE_NOT_FOUND);
         }
 
         Venue venueToEdit = getVenueByVenueName(venueName, lastShownList);
         Venue editedVenue = createEditedVenue(venueToEdit, editVenueDescriptor);
 
-        if (!venueToEdit.isSameVenue(editedVenue) && model.hasVenue(editedVenue)) {
+        if (!venueToEdit.getVenueName().isSameVenueName(editedVenue) &&
+                model.hasVenueWithVenueName(editedVenue.getVenueName())) {
             throw new CommandException(MESSAGE_DUPLICATE_VENUE);
         }
 
