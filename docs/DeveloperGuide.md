@@ -835,17 +835,17 @@ testers are expected to do more *exploratory* testing.
 
 #### Help 
 1. Retrieving a full list of available commands
-    1. Test case: `help`
+    1. Test case: `help`\
         Expected: Help window is opened and full list of available general, address book and appointment book commands are displayed in it.
        
 1. Retrieving information about a specific command
-    1. Test case: `help find`
+    1. Test case: `help find`\
         Expected: Help window is opened and information about the `find` command is displayed in it.
    
-    1. Test case: `help find add`
+    1. Test case: `help find add`\
         Expected: Help window is opened and information about the `add` command is displayed in it.
        
-    1. Test case: `help invalid`
+    1. Test case: `help invalid`\
         Expected: Help window is not opened. Error details shown in the status message.
 
 #### Change ParentPal's theme
