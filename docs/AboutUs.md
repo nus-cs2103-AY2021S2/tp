@@ -20,14 +20,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/OhJunMing)]
 [[portfolio](team/OhJunMing.md)]
 
-* Role: Deciding, we will allocate 
+* Role: Deciding, we will allocate
 
 ### Shi Zheng
 
 <img src="images/shizheng001.png" width="200px">
 
 [[github](http://github.com/ShiZheng001)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/shizheng001.md)]
 
 * Role: Not yet decided
 
@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/rajobasu.png" width="200px">
 
-[[github](http://github.com/rajobasu)] 
+[[github](http://github.com/rajobasu)]
 [[portfolio](team/rajobasu.md)]
 
 * Role: NOT Specific
@@ -50,4 +50,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Languages: C, Java, C#, Typescript, Ruby
-

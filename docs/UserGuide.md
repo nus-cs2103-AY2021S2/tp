@@ -26,7 +26,7 @@ Interface (GUI).
    open the help window.<br>
    Some example commands you can try:
 
-    * `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  
+    * `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10
       c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
       : Adds a contact named `Bob Ang`
 
@@ -85,7 +85,7 @@ Interface (GUI).
 
 ## Command summary
 
-**Note** : (pipe_char) means `|` below. 
+**Note** : (pipe_char) means `|` below.
 **Note** : All commands `add` `find` etc, and command prefixes `n/` `p/` etc are case-sensitive.
 
 Action | Format, Examples
@@ -141,13 +141,13 @@ Format: `find  [n/NAME] [op] [p/PHONE_NUMBER] [op] [e/EMAIL a/ADDRESS] [op]  [c/
 [op] [coe/COE_EXPIRY_DATE] [op]  [t/TAGs] [op]
 [op] [cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [op] [b/DATE_OF_BIRTH]`
 
-**Note** 
+**Note**
 
-Here `[op]` means `/and`, `/or`, `/not` as explained below. Note that two filter parameters MUST be separated by an 
-operator denoted by `[op]`. 
-Example : 
+Here `[op]` means `/and`, `/or`, `/not` as explained below. Note that two filter parameters MUST be separated by an
+operator denoted by `[op]`.
+Example :
 - `find n/John /and e/weird@example.com` is valid, but
-- `find n/John e/weird@example.com` is **not** valid, as `n/John` and `e/weird@example.com` does not have an operator 
+- `find n/John e/weird@example.com` is **not** valid, as `n/John` and `e/weird@example.com` does not have an operator
    in between.
 ![Ui](images/examples/findInvalideg.png)
 
@@ -158,10 +158,10 @@ Example :
   The car brand and types are case-insensitive.
 ![Ui](images/examples/findInvalideg.png)
   Note: You will notice that if you set a more specific filter with car type, a list of customers that has more
-  general details that has the same brand but with different car type will be displayed. `find c/Ferrari 458+Weak`. 
+  general details that has the same brand but with different car type will be displayed. `find c/Ferrari 458+Weak`.
   This is intended as car sales person would see these customers as potential customers.
 ![Ui](images/examples/findCloose.png)
-  
+
 - for `p/PHONE` any phone number starting with the given parameter string will be returned.
     - a person with phone number `123456789` will be matched with `123`.
 ![Ui](images/examples/findPvalid.png)
@@ -170,7 +170,7 @@ Example :
 ![Ui](images/examples/findPInvalid.png)
 
 - for `cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE` user can either give brand or type information, or both using the
-  `+` sign to separate. 
+  `+` sign to separate.
   Note: Similar to `c/` command, if car type is given, customers with other car type preferences are included as intended.
   The car brand and types are case-insensitive.
   ![Ui](images/examples/findCPloose.png)
@@ -179,8 +179,8 @@ Example :
   that `Alx` is a subsequence of `Alex`) will be matched. Note that this is the only field for which we match a
   subsequence instead of a simple substring. Note that `find n/Alex Yeoh` is treated the same as `find n/Alex /AND n/Yeoh`.
   Name is case-insensitive. `find n/Alex` is same as `find n/alex`.
-  
-- for `e/EMAIL`, all email containing the given parameter consecutively will be valid. 
+
+- for `e/EMAIL`, all email containing the given parameter consecutively will be valid.
   Emails are case-insensitive.
     - eg `find e/gmail` will return profiles with the following emails:
         - `abcd@gmail.com`
@@ -190,8 +190,7 @@ Example :
       - `abcd@gmail.com`
         But does not return profile with following email:
       - `bbabc@gmail.com`
-![Ui](images/examples/findErestrict.png)  
-        
+![Ui](images/examples/findErestrict.png)
 
 - for `ex/COE_EXPIRY_DATE`, using `ex/exp` will search for all customers with an expired COE on any of the cars they
   own. it is a special case alias for the search `ex/0`, where `ex/NON_NEGATIVE_NUMBER` will search for any customers
@@ -212,11 +211,10 @@ Example :
   and hence will return more items.
 Note: As for now, there is no restriction to the parameters for `find b/`, the intended feature for this is to allow for
   quick filtering of birth year or birth month.
-  
 
 - for `t/TAGS` all customers satisfying _any_ tag will be returned. In particular, `find t/TAG_A TAG_B TAG_C` is a more
   generic query than `find t/TAG_A`
-  - Here, satisfying means checking if the tag starts with the parameter string. 
+  - Here, satisfying means checking if the tag starts with the parameter string.
 
 **COMBINING FIND PARAMETERS**
 

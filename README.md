@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-  
+
 * This is **project for Software Engineering (SE) students**.<br>
 * The project simulates an ongoing software project for a desktop application (called _Car@leads_) <br>
   used for managing car customers contacts .

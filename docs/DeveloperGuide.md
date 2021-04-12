@@ -302,11 +302,11 @@ unlikely to have) - `*`
 
 **Use case: Get Last Command**
 
-**MSS** 
-1. User asks for the last command he entered, 
+**MSS**
+1. User asks for the last command he entered,
 2. System shows the last command
 Repeat Steps 1-2, each time displaying the next previous command in command history, till
-   user stops 
+   user stops
 3. User enters a different command (either valid or not)
 4. System executes the given command, if valid.
 
@@ -324,14 +324,14 @@ Repeat Steps 1-2, each time displaying the next previous command in command hist
 
 1. User requests to list customers
 2. System shows a list of customers
-3. User requests to find customer using a car preference filter 
+3. User requests to find customer using a car preference filter
 4. System shows a list of filtered customers
    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
-  
+
 * 3a. The given filter  is invalid.
 
     * 3a1. System shows an error message.
@@ -397,7 +397,7 @@ testers are expected to do more *exploratory* testing.
        Expected: contact with name 'Bob Ang' is added to the list. Details of the added contact shown in the
        status message. Timestamp in the status bar is updated.
 
-    1. Test case: `add Alex Yeoh`<br> 
+    1. Test case: `add Alex Yeoh`<br>
        Expected: No customer is added as Alex Yeoh customer already exist in the loaded date file.<br>
        Error details shown in the status message. Status bar remains the same.
 
@@ -439,7 +439,7 @@ testers are expected to do more *exploratory* testing.
        status message. Timestamp in the status bar is updated.
 
     1. Test case: `find n/Alex Yeoh /and cp/Tesla`<br>
-       Expected: contact whose name is 'Alex Yeoh' and carbrand preference is a 'tesla' will be listed. 
+       Expected: contact whose name is 'Alex Yeoh' and carbrand preference is a 'tesla' will be listed.
        <br> Details of the filtered contacts is shown in the status message. Timestamp in the status bar is updated.
 
     1. Test case: `find n/`<br>
@@ -459,9 +459,9 @@ testers are expected to do more *exploratory* testing.
        Expected: Previous command is found and reflected in command line input.
 
    1. Test case: `/up/up/up`<br>
-      Expected: Previous command is found and reflected in command line input. 
+      Expected: Previous command is found and reflected in command line input.
       <br> /up do not stack, can only can previous command
-   
+
     1. Test case: `/down`<br>
        Expected: Incorrect format. Error details shown in the status message. Status bar remains the same.
 
@@ -477,7 +477,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
-Working on AB3, a brown-field project entails a huge amount of effort and time spend on understanding the architecture of AB3 code, 
+Working on AB3, a brown-field project entails a huge amount of effort and time spend on understanding the architecture of AB3 code,
 <br>this involved reading through the developer guide documentation and making incremental changes initially to ensure every milestone release is a working version.
 
 * A disciplined adherence to the Github forking workflow, where constant communication is required when reviewing pull requests by fellow team members.
@@ -492,7 +492,7 @@ Working on AB3, a brown-field project entails a huge amount of effort and time s
 
 1.  1. Achievement: Implementing a sophisticated Find feature
     1. Difficulty level: High
-    1. Challenges Faced: Implement a typo-matching find filter functionality for user inputs that strive to achieve 
+    1. Challenges Faced: Implement a typo-matching find filter functionality for user inputs that strive to achieve
        <br>a good balance between returning results that were an exact match and returning similar results.
     1. Effort required: Introduction of a new filter package to incorporate find functionality and to contain the specific attribute filters,
        <br>adding new testcases for the newly introduced filter classes
@@ -504,5 +504,3 @@ Working on AB3, a brown-field project entails a huge amount of effort and time s
        <br> With reference to AB3, which did not have external library added to give the GUI more features
        <br> We had to figure out how to integrate the third party JavaFx library with existing JavaFx and UI classes code
     1. Effort required: A good spirit of google searches to figure how to integrate the third party code to our GUI and JavaFx code.
- 
-
