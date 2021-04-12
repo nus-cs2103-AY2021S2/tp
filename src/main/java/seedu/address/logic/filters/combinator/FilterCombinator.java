@@ -14,6 +14,7 @@ import seedu.address.logic.filters.Filter;
 import seedu.address.logic.filters.Filters;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -21,21 +22,31 @@ import seedu.address.model.customer.Customer;
  * Customer}.
  */
 public class FilterCombinator implements Predicate<Customer> {
+    public static final String MESSAGE_EFFECTIVELY_EMPTY = "Your string contains only space of brackets, which is "
+        + "invalid.";
+    public static final String MESSAGE_INVALID_BRACKETING = "The bracketing of the sequence is wrong - Make sure the "
+        + "sequence is well bracketed!";
+    public static final String MESSAGE_OPERATOR_RULES_NOT_FOLLOW = "Make sure all binary operators have two operands,"
+        + " while unary operator have a single operand!";
+
+
     private final Node rootNode;
 
     /**
      * Constructor for filter combinator to create a expression tree from the given argument. Note that an issue with
-     * the expression is not handled at this point, and is handled only when testing a {@code Customer}
-     * // TODO
+     * the expression is not handled at this point, and is handled only when testing a {@code Customer} // TODO
      *
      * @param argument the filter expression
      */
-    public FilterCombinator(String argument) {
+    public FilterCombinator(String argument) throws ParseException {
         Objects.requireNonNull(argument);
 
         Node temp = null;
         try {
             temp = createTree(argument);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            throw e;
         } catch (IllegalArgumentException | NullPointerException e) {
             e.printStackTrace();
         } finally {
@@ -45,6 +56,7 @@ public class FilterCombinator implements Predicate<Customer> {
 
     /**
      * Checks whether it is a valid combinator tree.
+     *
      * @return true if the expression actually results in a tree, false otherwise.
      */
     public boolean isValidCombinator() {
@@ -53,10 +65,11 @@ public class FilterCombinator implements Predicate<Customer> {
 
     /**
      * Gets the logical operator corresponding to the prefix in {@code CLISyntax}.
+     *
      * @param prefix the logical operator prefix
      * @return the corresponding logical operator
-     * @throws IllegalArgumentException if the prefix string doesn't match any logical operator prefix as defined
-     * in the {@code CLISyntax} class.
+     * @throws IllegalArgumentException if the prefix string doesn't match any logical operator prefix as defined in the
+     *                                  {@code CLISyntax} class.
      */
     private LogicalOperator getCorrespondingLogicalOperator(Prefix prefix) {
         if (prefix.equals(PREFIX_AND)) {
@@ -70,45 +83,78 @@ public class FilterCombinator implements Predicate<Customer> {
         }
     }
 
-    // TODO
-    private Node createTree(String description) {
-        description = " " + description + " ";
-
+    private void checkEffectivelyEmpty(String description) throws ParseException {
         if (description.replace('[', ' ').replace(']', ' ').trim().isEmpty()) {
-            throw new IllegalArgumentException("Incorrect formatting 1 " + description.length());
+            throw new ParseException(MESSAGE_EFFECTIVELY_EMPTY);
         }
+    }
 
-        StringBuilder inPresentScope = new StringBuilder("");
-        StringBuilder inSubtreeScope = new StringBuilder("");
-
-        Stack<Node> nodeStack = new Stack<>();
+    private LinkedList<ArgumentTokenizer.PrefixPosition> findAllOperatorPositions(String description) {
         LinkedList<ArgumentTokenizer.PrefixPosition> allPositions =
             new LinkedList<>(ArgumentTokenizer.findAllPrefixPositions(description, PREFIX_AND,
                 PREFIX_NOT, PREFIX_OR));
 
         allPositions.sort(Comparator.comparingInt(ArgumentTokenizer.PrefixPosition::getStartPosition));
+        return allPositions;
+    }
 
-        System.out.println(allPositions);
+    private boolean isPartOfLogicalOperatorPrefix(LinkedList<ArgumentTokenizer.PrefixPosition> allPositions,
+                                                  int index) {
+        return !allPositions.isEmpty() && index == allPositions.getFirst().getStartPosition();
+    }
+
+    private void checkIfStringIsWellBracketed(String text) throws ParseException {
+        int counter = 0;
+        for(char c : text.toCharArray()) {
+            if (c == '[') {
+                counter++;
+            } else if(c == ']') {
+                counter--;
+            }
+
+            if(counter < 0) {
+                throw new ParseException(MESSAGE_INVALID_BRACKETING);
+            }
+        }
+
+        if (counter != 0) {
+            throw new ParseException(MESSAGE_INVALID_BRACKETING);
+        }
+    }
+
+    /**
+     * This function is at the heart of this class. It parses the user string and creates a tree from it. It also
+     * calls itself recursively on seeing a pair of matching brackets.
+     * @param description the filtering expression
+     * @return the root node of the filter tree
+     * @throws ParseException if the expression is not well formed
+     */
+    private Node createTree(String description) throws ParseException {
+        checkEffectivelyEmpty(description);
+        checkIfStringIsWellBracketed(description);
+
+        description = " " + description + " ";
+
+        StringBuilder inPresentScope = new StringBuilder("");
+        StringBuilder inSubtreeScope = new StringBuilder("");
+
+        Stack<Node> nodeStack = new Stack<>();
+        LinkedList<ArgumentTokenizer.PrefixPosition> allPositions = findAllOperatorPositions(description);
 
         int nestingLevel = 0;
-
         for (int i = 0; i < description.length(); i++) {
             char c = description.charAt(i);
-
             while (!allPositions.isEmpty() && i > allPositions.getFirst().getStartPosition()) {
                 allPositions.removeFirst();
             }
-
-
             // first check if the character is part of a logical operator prefix
-            if (nestingLevel == 0 && !allPositions.isEmpty() && i == allPositions.getFirst().getStartPosition()) {
+            if (nestingLevel == 0 && isPartOfLogicalOperatorPrefix(allPositions, i)) {
                 // now we try to form a Node from the previously given filter at this level.
                 // only try to form a node if we have actually got some information
                 if (inPresentScope.toString().trim().length() > 0) {
                     Filter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
                     nodeStack.push(new Node(filter));
                 }
-
                 Prefix prefix = allPositions.getFirst().getPrefix();
                 nodeStack.push(new Node(getCorrespondingLogicalOperator(prefix)));
                 i += prefix.getPrefix().trim().length() - 1; // since we will anyway do a +1 when the for loop updates.
@@ -150,13 +196,18 @@ public class FilterCombinator implements Predicate<Customer> {
             nodeStack.push(new Node(filter));
         }
 
-        System.out.println(nodeStack);
-
         return formTreeFromNodeStack(nodeStack);
     }
 
-    // TODO
-    private Node formTreeFromNodeStack(Stack<Node> nodeStack) {
+    /**
+     * Given a stack of nodes, this function forms an expression tree from it, by popping the stack and pushing back
+     * into it appropriately when it detects a unary or binary operator.
+     *
+     * @param nodeStack the stack of nodes
+     * @return the root node of the expression tree
+     * @throws ParseException when the sequence has wrong usage of operators
+     */
+    private Node formTreeFromNodeStack(Stack<Node> nodeStack) throws ParseException {
         while (!nodeStack.isEmpty()) {
             if (nodeStack.size() == 1) {
                 return nodeStack.pop();
@@ -166,7 +217,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 Node upper = nodeStack.pop();
                 Node operator = nodeStack.pop();
                 if (!operator.hasUnaryOperator()) {
-                    throw new IllegalArgumentException("Incorrect formatting 3");
+                    throw new ParseException(MESSAGE_OPERATOR_RULES_NOT_FOLLOW);
                 }
                 operator.setChild(upper);
 
@@ -178,23 +229,20 @@ public class FilterCombinator implements Predicate<Customer> {
             Node third = nodeStack.pop();
 
             if (second.hasChildren() || second.getNodeType() == NodeType.EVALUATOR) {
-                throw new IllegalArgumentException("Incorrect formatting 4 " + second.getNodeType());
+                throw new ParseException(MESSAGE_OPERATOR_RULES_NOT_FOLLOW);
             }
 
             if (second.hasUnaryOperator()) {
                 second.setChild(first);
                 nodeStack.push(third);
-                nodeStack.push(second);
             } else {
                 second.setLeftNode(third);
                 second.setRightNode(first);
-                nodeStack.push(second);
             }
-
-
+            nodeStack.push(second);
         }
 
-        throw new IllegalArgumentException("Incorrect formatting 5");
+        throw new ParseException(MESSAGE_OPERATOR_RULES_NOT_FOLLOW);
     }
 
     @Override
