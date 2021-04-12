@@ -4,9 +4,9 @@ start
 :User executes find command;
 
 if () then ([missing keyword])
-stop
+:
 else ([valid keyword])
-:Find CommandParser processes to reveal search results;
+:FindCommandParser processes to reveal search results;
 endif
 
 if () then ([found results])

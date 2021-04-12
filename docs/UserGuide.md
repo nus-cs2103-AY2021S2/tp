@@ -5,7 +5,7 @@ title: User Guide
 * Table of Contents 
 {:toc}
 
-# Overview
+# **Overview**
 
 Welcome to the Pawbook User Guide!
 In this section, you will be given a brief overview of what Pawbook is all about and what you can takeaway from this user guide. We will show you how to use Pawbook from a user's perspective.
@@ -33,7 +33,7 @@ Pawbook also has the benefits of a **Graphical User Interface (GUI)** to provide
 
 The aim of this user guide is to help novice familiarise themselves with Pawbook. It also aids more experienced users by providing a detailed explanation on the different features and components of Pawbook. This allows old and new users alike to easily learn and use the various features and functionalities provided by Pawbook.
 
-# About the User Guide
+# **About the User Guide**
 
 In this section, we will teach you everything you need to know to effectively use this user guide.
 
@@ -110,7 +110,7 @@ The help page view provides a short summary list of commands that you can use, a
 
 ----
 
-# Quick Start
+# **Quick Start**
 
 If this is your first time using Pawbook, follow these simple steps to jump straight into the action:
 
@@ -128,7 +128,7 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
 
 ----
 
-# Commands
+# **Commands**
 
 In this section, you will learn about the commands available in Pawbook and how to use them.
 
@@ -508,7 +508,7 @@ To exit Pawbook, type `exit` into the command box.
 
 -----
 
-# FAQ
+# **FAQ**
 
 Q: How do I transfer my data to another computer?<br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the
@@ -532,7 +532,7 @@ A: Pawbook does not access any web services and can be run completely offline.
 
 -----
 
-# Command Summary
+# **Command Summary**
 
 Action | Format
 --------|------------------
@@ -550,7 +550,7 @@ Action | Format
 
 -----
 
-# Glossary
+# **Glossary**
 
 Term  | Explanation
 ------|------------------

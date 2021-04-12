@@ -263,7 +263,6 @@ Here is a more specific breakdown of the command's execute method.
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
 3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
-
 ### List Feature
 Pawbook allows the users to `list` an entity based on keyword searches. The `list` function responds to the current available
 entities, which are `owner`, `dog` and `program`, and returns a list of all the entries of the respective entity.
@@ -297,7 +296,8 @@ Here is a more specific breakdown of the command's execute method.
 
 ### View feature
 
-Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
+Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or 
+all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
 
 When the user enters a valid command with the target entity ID, the ViewCommandParser will firstly parse the command and store the ID as an integer that is then passed on to as a parameter into the constructor method of a new ViewCommand instance.
 
@@ -334,6 +334,35 @@ Here is a more specific breakdown of the command's execute method.
 2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
 3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list. 
 4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
+
+#### Schedule feature
+
+Pawbook allows the user to display the `schedule` of all programs.
+For instance, the user may want to view the `schedule` of all programs on a specific date.
+By entering the correct schedule command with the correct date, the entire list of programs on the specific date will be generated.
+
+When the user enters a valid command with the date, the arguments are parsed by the `ScheduleCommandParser` that converts 
+the argument string into a Date that is subsequently passed on to a `ProgramOccursOnDatePredicate` object. 
+
+Using the `IsEntityPredicate` for program and the `ProgramOccursOnDatePredicate`, the list of programs is retrieved via 
+the `ModelManager` using the `updateFilteredEntityList()` method.
+
+Below is an example activity diagram for a valid schedule command from the user.
+
+![ScheduleActivityDiagram](images/ScheduleActivityDiagram.png){: .center-image}
+
+Below is an example sequence diagram for a valid schedule command from the user.
+
+![ScheduleSequenceDiagram](images/ScheduleSequenceDiagram.png){: .center-image}
+
+Here is a more specific breakdown of the command's execute method.
+
+![ScheduleSequenceDiagramSpecific](images/ScheduleSequenceDiagramSpecific.png)
+
+1. In the execute method of `ScheduleCommand`, it first creates a `ProgramOccursOnDatePredicate` object.
+2. The `IsEntityPredicate` of Program and the `ProgramOccursOnDatePredicate` is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model.
+3. From there, `ScheduleCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
+
 
 ### Enrol feature
 
@@ -443,7 +472,7 @@ However, this requires there to be no duplicate dog or program names.
 
 ### User Stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*` 
 
 | Priority | As a …​           | I want to …​                                                            | So that I can…​                    |
 | -------- | -------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -451,25 +480,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Dog school manager   | Easily switch between the different lists for dogs, owners and programs    | Quickly view all the profiles of one entity type     |
 | `* * *`  | Dog school manager   | Add dog/owner/program profiles                                             | Keep track of the operations and parties involved in the school|
 | `* * *`  | Dog school manager   | Delete dog/owner/program profiles                                          | Keep track of the operations and parties involved in the school|
-| `* * *`  | Dog school manager   | Edit a dog/owner/program profile                                           | Correct/update a profile when it is incorrect.|
-| `* * *`  | Dog school manager   | View a dog/owner/program profile                                           | Easily find out information on the target party|
+| `* * *`  | Dog school manager   | Edit a dog/owner/program profile                                           | Correct/update a profile when needed.|
+| `* * *`  | Dog school manager   | View a dog/owner/program profile                                           | Easily find out information on the target entity|
 | `* * *`  | Dog school manager   | Find profiles using keywords instead of ID                                 | Easily find a target dog/owner/program very quickly |
-| `* * *`  | Dog school manager   | Enrol dogs into a specific dog program                                     | Dogs who recently joined a program are added to the class list |
-| `* *`    | Dog school manager   | Drop dogs out of a specific dog program                                    | Dogs that have left the class are no longer in the class list  |
-| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day |
-| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes |
-| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Save time and effort when making changes to multiple profiles |
-| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command |
-| `* `     | User                 | Exit the application                                                       |           |
+| `* * *`  | Dog school manager   | Enrol dogs into a specific dog program                                     | Add dogs who recently joined a program to the class list |
+| `* * *`  | Dog school manager   | Drop dogs out of a specific dog program                                    | Remove dogs that have left a program from the class list  |
+| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day. |
+| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes.  |
+| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Minimize chance of someone else seeing them by accident |
+| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command. |
 
 *{More to be added}*
 
-### Use cases
-
-(For all use cases below, the **System** is `Pawbook` and the **Actor** is the `user`, unless specified otherwise)
-
+**System**: Pawbook
 **Use case: UC01 - Add a dog/owner profile or program**
-
+**Actor**: User
 **MSS**
 
 1.  User requests to add a dog/owner profile or program to the list.
@@ -480,23 +505,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Missing mandatory dog/owner/program details.
-
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies missing details. <br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-      
+    Steps 1a1-1a2 are repeated until the command entered is correct.<br>
     Use case resumes at step 2.
-  
+      
 * 1b. Entity already exists in the program. 
   
     * 1b1. Pawbook shows an error message. 
     * 1b2. User supplies an entity with different details. <br>
-      Steps 1b1-1b2 are repeated until the command entered is correct.
+      Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
       
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
+**System**: Pawbook
 **Use case: UC02 - Delete a dog/owner profile or program**
-
+**Actor**: User
 **MSS**
 
 1.  User requests to delete a specific dog/owner profile or program in the list.
@@ -510,27 +535,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies the corrected dog/owner/program ID.<br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-
+      Steps 1a1-1a2 are repeated until the command entered is correct. <br>
       Use case resumes at step 2.
 
-**Use case: UC03 - Edit a dog/owner profile or program**
+* 1a. The given dog/owner/program ID does not match the entity specified.
 
+    * 1a1. Pawbook shows an error message, indicating the entity expected. 
+    * 1a2. User supplies the corrected dog/owner/program ID.<br>
+      Steps 1b1-1b2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
+
+**System**: Pawbook
+**Use case: UC03 - Edit a dog/owner profile or program**
+**Actor**: User
 **MSS**
 
 1.  User requests to edit a specific dog/owner/program in the list.
 2.  Pawbook edits the dog/owner/program.
-
-    Use case ends.
+    
+    Use case ends. 
 
 **Extensions**
 
 * 1a. The given dog/owner/program ID is invalid or does not correspond to the entity specified. 
 
-    * 1a1. Pawbook shows an error message.
+    * 1a1. Pawbook shows an error message. 
     * 1a2. User supplies the corrected dog/owner/program ID.<br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
     
 * 1a. The user failed to provide any mandatory details to be edited.
@@ -541,34 +572,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes at step 2.
 
-*Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
-**Use case: UC04 - Show the specified entity list**
-
+**System**: Pawbook
+**Use case: UC04 - Show the specified entity list.**
+**Actor**: User
 **MSS**
 
-1.  User requests to list dog/owner/program.
+1.  User requests to list dogs/owners/programs.
 2.  Pawbook lists the related dogs/owners/programs.
 
-    Use case ends.
+    Use case ends. 
 
 **Extensions**
 
 * 1a. User requests to list something that is none of the three entities.
 
-    * 1a1. Pawbook shows an error message.
+    * 1a1. Pawbook shows an error message, suggesting the accepted entities. 
     * 1a2. User supplies the corrected dog/owner/program parameter. <br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
-
-**Use case UC05 - View an entity and all its related entities**
-
+      
+**System**: Pawbook
+**Use case UC05 - View an entity and all its related entities.**
+**Actor**: User
 **MSS**
 
 1. User types in view command with the target ID. 
-2. Pawbook supplies the results matching the keyword(s).
-3. Use case ends.
+2. Pawbook supplies the results of all the related entities of that ID.
+
+   Use case ends.
 
 **Extensions**
 
@@ -576,26 +608,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     * 1a1. Pawbook shows an error message. 
     * 1a2. User supplies a valid ID.<br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
 
 * 1b. The ID is invalid (negative, out of bounds, not in database etc.).
   
   * 1b1. Pawbook shows an error message. 
   * 1b2. User supplies a valid ID.<br>
-    Steps 1b1-1b2 are repeated until the command entered is correct.
-    
+    Steps 1b1-1b2 are repeated until the command entered is correct.<br>
     Use case resumes at step 2.
     
-
-**Use case UC06 - Find entity using keyword(s)**
-
+**System**: Pawbook
+**Use case UC06 - Find entity**
+**Actor**: User
 **MSS**
 
 1. User types in find command with one or more keywords.
 2. Pawbook supplies the results matching the keyword(s).
-3. Use case ends.
+   
+    Use case ends.
 
 **Extensions**
 
@@ -603,12 +634,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Pawbook shows an error message and requests keyword.
     * 1a2. User supplies keywords.<br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
 
-    Use case resumes at step 2.
-
+**System**: Pawbook
 **Use case: UC07 - Enrol dog to a program**
-
+**Actor**: User
 **MSS**
 
 1.  User requests to enrol dog to program.
@@ -622,20 +653,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies correct dog/program ID.<br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
     
 * 1b. The user requests to enrol multiple dogs to multiple programs.
 
     * 1b1. Pawbook shows an error message.
-    * 1b2. User changes request to either enrolling one dog to one program, one dog to multiple programs, or multiple dogs to one program.
-      Steps 1b1-1b2 are repeated until the command entered is correct.
-      
-    Use case resumes at step 2.
+    * 1b2. User changes request to either enrolling one dog to one program, one dog to multiple programs, or multiple dogs to one program.<br>
+      Use case resumes at step 2.
 
+**System**: Pawbook
 **Use case: UC08 - Drop dog from program**
-
+**Actor**: User
 **MSS**
 
 1.  User requests to drop dog from program.
@@ -649,20 +678,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies correct dog/program ID.<br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
     
 * 1b. The user requests to drop multiple dogs from multiple programs.
 
     * 1b1. Pawbook shows an error message.
-    * 1b2. User changes request to either dropping one dog from one program, one dog from multiple programs, or multiple dogs from one program.
-      Steps 1b1-1b2 are repeated until the command entered is correct.
-      
-  Use case resumes at step 2.
+    * 1b2. User changes request to either dropping one dog from one program, one dog from multiple programs, or multiple dogs from one program.<br>
+      Use case resumes at step 2.
 
+**System**: Pawbook
 **Use case: UC09 - View schedule**
-
+**Actor**: User
 **MSS**
 
 1.  User requests to view schedule with a specified date. 
@@ -676,12 +703,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies correct date. <br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-      
-    Use case resumes at step 2.
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
 
+**System**: Pawbook
 **Use case: UC10 - View Help Window**
-
+**Actor**: User
 **MSS**
 
 1.  User enters `help` command into the command box and presses <kbd>enter</kbd>.   
@@ -695,11 +722,12 @@ and also a command summary for the user.
 - 1a. The given command/format is invalid. 
     - 1a1. Pawbook shows an error message to the user.
     - 1a2. User supplies the correct command. <br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
-    Use case resumes at step 2.
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
+      Use case resumes at step 2.
       
+**System**: Pawbook
 **Use case: UC11 - Exit Pawbook**
-
+**Actor**: User
 **MSS**
 
 1.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.    
@@ -713,11 +741,8 @@ and also a command summary for the user.
 - 1a. The given command/format is invalid.
     - 1a1. Pawbook shows an error message to the user.
     - 1a2. User supplies the correct command. <br>
-      Steps 1a1-1a2 are repeated until the command entered is correct.
+      Steps 1a1-1a2 are repeated until the command entered is correct.<br>
       Use case resumes at step 2.
-
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -751,8 +776,9 @@ guide for comprehensive testing. The state of the application is assumed to cont
 application is first launched.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+testers are expected to do more *exploratory* testing. Take note that all test cases are separate and individual and assume 
+the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 2 programs) respectively, if not otherwise specified.  
+:bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program. 
 </div>
 
 ### Launch and shutdown
@@ -813,17 +839,27 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add program n/Obedience Training s/01-02-2021 18:00 t/puppies` <br>
        Expected: If database does not already contain a Bruce, a successful command result should show.
        
-    1. Test case: `add program s/01-02-2021 n/Obedience Training 18:00 t/puppies` <br>
+    1. Test case: `add program s/01-02-2021 18:00 n/Obedience Training t/puppies` <br>
        Expected: Similar to previous.
 
-    1. Test case : `add program n/Obedience Training t/puppies` <br>
+    1. Test case : `add program t/puppies` <br>
        Expected: Missing parameters, status message indicates invalid command format.
         
 ### Delete Command
 
 1. Deleting an owner while all owners are being shown
 
-    1. Prerequisites: List all owners using the `list owner` command. Multiple owners in the list.
+    1. Pre-requisites
+
+        1. Start with an empty database by deleting all entities.
+    
+        1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+    
+        1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`. Ensure Bruce has ID 2. 
+    
+        1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`. Ensure program has ID 3. 
+    
+        1. List owners using `list owner`. 
 
     1. Test case: `delete owner 1`<br>
        Expected: Owner with ID 1 is deleted from the list. All the dogs belonging to the first owner is also deleted. 
@@ -840,7 +876,7 @@ testers are expected to do more *exploratory* testing.
        
 1. Deleting a dog while all dogs are being shown 
 
-    1. Prerequisites: List all dogs using the `list dog` command. Multiple dogs in the list. 
+    1. Prerequisites: Refer to above. List dogs using `list dog`. 
     
     1. Test case: `delete dog 2`<br> 
        Expected: Dog with ID 2 is deleted from the list. The dogs will also be removed from all programs they were previously
@@ -850,23 +886,23 @@ testers are expected to do more *exploratory* testing.
       Expected: No dog is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Test case: `delete dog 1`<br>
-      Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+      Expected: No dog is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete dog`, `delete dog x`, `delete dog -x` (where x is larger than list size or negative)<br>
       Expected: Similar to previous.
 
 1. Deleting a program while all programs are being shown
 
-    1. Prerequisites: List all programs using the `list program` command. Multiple programs in the list.
+    1. Prerequisites: Refer to above. List programs using `list program`. 
 
-    1. Test case: `delete program 3`<br>
+    1. Test case: `delete program 5`<br>
        Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program. 
        
     1. Test case: `delete program 0`<br>
        Expected: No program is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Test case: `delete program 1`<br>
-       Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+       Expected: No program is deleted as ID 1 is not a program. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete program`, `delete program x`, `delete program -x` (where x is larger than list size or negative)<br>
        Expected: Similar to previous.
@@ -922,22 +958,26 @@ testers are expected to do more *exploratory* testing.
 
 1. Find valid entities
 
-    1. Prerequisites: Application is running. List being shown does not matter. 
+    1. Pre-requisites
+    
+        1. Start with an empty database by deleting all entities.
+    
+        1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+    
+        1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+    
+        1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    
+        1. Add another sample owner with `add owner n/James Bond p/90139122 e/jamesbond@example.com a/322, Clementi Ave 2, #02-25 t/friends t/owesMoney` Ensure James Bond has ID 4.
 
-    1. Test case: `Find Carl`<br>
-       Expected: Carl with ID 5 is shown on the display list. Status message says "1 entity listed!"
+     1. Test case: `find John`<br>
+       Expected: Alice with ID 1 is shown on the display list. Status message says "1 entity listed!"
 
-    1. Test case: `Find Car`<br>
-       Expected: Similar to previous. 
-
-    1. Test case: `Find Car`<br>
-       Expected: Similar to previous. 
-
-    1. Test case: `find carl`<br>
-       Expected: Similar to previous  
+    1. Test case: `find Jo`<br>
+       Expected: Similar to previous.
        
-    1. Test case: `find Elsa Flora Genie` <br>
-       Expected: Else, Flora and Genie are displayed on the list. Status messages says: "3 entities listed!"
+    1. Test case: `find John James` <br>
+       Expected: John and James are displayed on the list. Status messages says: "2 entities listed!"
        
 1. Finding invalid entities
 
@@ -1010,7 +1050,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Error status message is provided, indicating invalid ID. 
        
     1. Test case: 'view -1'
-       Expected: Similar to previous. 
+       Expected: Error status message is provided, indicating ID must be positive. 
 
 ### Schedule Command 
 
@@ -1019,7 +1059,7 @@ testers are expected to do more *exploratory* testing.
     1. Start with an empty database by deleting all entities. 
 
     1. Add a sample program with `add program n/Obedience Training 1 s/[TODAY'S DATE] 18:00 t/puppies`. Fill in today's
-      date in the `[TODAY'S DATE]` field.
+      date in the `[TODAY'S DATE]` field in dd-mm-yyyy format. 
 
     1. Add a sample program with `add program n/Obedience Training 2 s/01-02-2021 18:00 t/puppies`
     
@@ -1031,8 +1071,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Successful status message, shows the sample Obedience Training 1 happening today.
 
     1. Test case: `schedule 01-02-2021` <br>
-       Expected: Successful status message, shows the sample Obedience Training 1 happening on 01-02-2021. 
-       
+       Expected: Successful status message, shows the sample Obedience Training 1 happening on 01-02-2021.
     
 1. Viewing schedules on an invalid day 
 
@@ -1076,7 +1115,7 @@ testers are expected to do more *exploratory* testing.
     1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple as ID 4.
     
     1. Test case: `enrol d/2 d/4 p/3` <br>
-        Expected: Bruce and Apple are successfully added to the Obedience Training program.
+        Expected: Bruce and Apple are successfully added to the Obedience Training program. Remember to drop Bruce from the program if he was enrolled previously! 
         
 1. Enrol one valid dog into multiple valid programs
 
@@ -1085,7 +1124,7 @@ testers are expected to do more *exploratory* testing.
     1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
     
     1. Test case: `enrol d/2 p/3 p/4` <br>
-        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program. 
         
 1. Enrol multiple valid dogs into multiple valid programs
     
@@ -1169,27 +1208,18 @@ testers are expected to do more *exploratory* testing.
     1. Enrol dog into program with: `enrol d/2 p/3` and `enrol d/4 p/5`
     
     1. Test case: `drop d/2 d/4 p/3 p/5 ` <br>
-        Expected: Error messaging stating that droplment of multiple dogs from multiple programs is not supported.
+        Expected: Error messaging stating that dropping of multiple dogs from multiple programs is not supported.
 
 1. Invalid drop command
 
-    1. Test case: `drop invalidCommand`
+    1. Test case: `drop invalidCommand` <br>
        Expected: Error status message indicating wrong command format.
        
 ### Help Command
 
-1. Test case: `help` 
-   Opens a pop-up window that shows the command summary and
+1. Test case: `help` <br>
+   Expected: Opens a pop-up window that shows the command summary and
 
 ### Exit Command
-
-1. Test case: `exit` 
+1. Test case: `exit` <br>
    Expected: The program should exit and close.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
