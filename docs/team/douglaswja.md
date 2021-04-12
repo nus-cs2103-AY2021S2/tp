@@ -5,7 +5,7 @@ title: Douglas Allwood Project Portfolio Page
 
 ## Project: NUS Module Planner
 
-NUS Module planner is a brownfield project based on AddressBook - Level 3, a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+NUS Module planner is a brownfield project based on AddressBook - Level 3. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 The application is for managing study plans at NUS. Students can create their own study plans to map out what modules to take for each semester to meet their graduation requirements. The application also highlights pre-requisites for each module to ensure that the Student does not miss them out in their planning.
 
@@ -27,7 +27,7 @@ Given below are my contributions to the project:
 
 - Highlights: This feature utilised commands that I implemented (**current semester**, **master plan**, **show MCs**, **show CAP**) highlighting the benefits of these features.
 
-- Credits: The `ModelManager` and `ArgMultiMap` classes and the relevant commands that I implemented.
+- Credits: The `ModelManager` and `ArgMultiMap` classes and commands that I implemented.
 
 ### New feature: Show MCs and Show CAP commands
 - What they do: Shows the user relevant information about semesters prior to the **current semester** of their **master plan**.
@@ -36,7 +36,7 @@ Given below are my contributions to the project:
 
 - Highlights: This feature utilised commands that I implemented highlighting their benefits.
 
-- Credits: The `ModelManager`, `ArgMultiMap`, and `Ui` classes and the relevant commands that I implemented.
+- Credits: The `ModelManager`, `ArgMultiMap`, and `Ui` classes and commands that I implemented.
 
 
 ### Code Contributed
@@ -44,11 +44,15 @@ Please reference [`douglaswja`'s RepoSense](https://nus-cs2103-ay2021s2.github.i
 
 Notably, I contributed 1114 lines of code to the project.
 
+These are some other code contributions I made:
 
-### Enhancements implemented
 - Wrote tests for some of the features I implemented using both Equivalence Partitioning and Boundary Value Analysis.
 - Helped with bug fixing after the NUS Module Planner was tested by several peers.
 - Included logging for most of the features I implemented.
+
+
+### Enhancements implemented
+
 
 
 ### Contributions to the UG
