@@ -44,9 +44,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to CakeCollate. \n"
-            + "Parameters for simple format: "
+            + "Parameters for basic format: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE NUMBER "
+            + PREFIX_PHONE + "PHONE_NUMBER "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DELIVERY_DATE "
@@ -64,14 +64,14 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney "
             + PREFIX_DATE + "01/01/2022"
             + "\n\n"
-            + "Parameters for advanced format: "
+            + "Parameters for alternative format: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE NUMBER "
+            + PREFIX_PHONE + "PHONE_NUMBER "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_DATE + "DELIVERY_DATE "
             + PREFIX_ORDER_ITEM_IDX + "ORDER_ITEM_INDEXES "
-            + "[" + PREFIX_ORDER_DESCRIPTION + "ORDER_DESCRIPTION]..."
+            + "[" + PREFIX_ORDER_DESCRIPTION + "ORDER_DESCRIPTION]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -83,7 +83,8 @@ public class AddCommand extends Command {
             + PREFIX_DATE + "01/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.\n"
+            + "Note that Tags are not taken into consideration when checking for duplicated orders.";
 
     private final IndexList orderItemIndexList;
     private final AddOrderDescriptor addOrderDescriptor;

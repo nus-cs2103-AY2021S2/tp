@@ -224,7 +224,7 @@ As CakeCollate is adapted from the AddressBook-Level3 project, the original find
       * Creating many classes causes increased coupling.
       * Hard to implement `OR` searches.
 
-### Find feature
+### Remind feature
 
 The intended usage of the Remind feature is for users to locate impending undelivered orders within a certain time frame which the user can specify. 
 The user specifies the number of days from the current date for all undelivered orders they want to locate. <br>
@@ -233,7 +233,7 @@ The remind mechanism is facilitated by `ReminderDatePredicate` which implements 
 The conditions (date period) on which undelivered orders to locate is then captured in this `Predicate`.
 The orders in CakeCollate are extracted and stored in a JavaFX `FilteredList`.
 It is then updated through the usage of `FilteredList#setPredicate(Predicate)` while passing `ReminderDatePredicate` into the method.
-This updated `FilteredList` is then displayed, showing the results of the find command.
+This updated `FilteredList` is then displayed, showing the results of the remind command.
 
 This operation is exposed in the `Model` interface as `Model#updateFilteredOrderList`.
 
