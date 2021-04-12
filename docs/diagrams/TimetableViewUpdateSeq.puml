@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":TimetableView" as TimetableView UI_COLOR
+participant ":TimetablePolicy" as TimetablePolicy UI_COLOR
+participant ":TimetableSlot" as TimetableSlot UI_COLOR
+
+end box
+
+[-> TimetableView : changed(obs, newDate, oldDate)
+activate TimetableView
+
+create TimetablePolicy
+TimetableView -> TimetablePolicy : TimetablePolicy(newDate)
+activate TimetablePolicy
+TimetablePolicy --> TimetableView : newPolicy
+deactivate TimetablePolicy
+
+TimetableView -> TimetableView : populateWithData(schedulables)
+activate TimetableView
+TimetableView -> TimetableView : resetColumns()
+TimetableView -> TimetableView : splitByDaysAndFilter(schedulables)
+activate TimetableView
+
+loop schedulable in schedulables
+
+alt isWithinRange
+
+    TimetableView -> TimetablePolicy : breakIntoDayUnits(schedulable)
+    activate TimetablePolicy
+    TimetablePolicy --> TimetableView
+    deactivate TimetablePolicy
+    else
+    end
+
+end
+TimetableView --> TimetableView :processedSchedulables
+deactivate TimetableView
+
+loop schedulable in processedSchedulables
+    TimetableView -> TimetablePolicy : getColumnPlacement(schedulable)
+    activate TimetablePolicy
+    TimetablePolicy --> TimetableView : col
+    deactivate TimetablePolicy
+
+    TimetableView -> TimetablePolicy : getVerticalPosition(schedulable)
+    activate TimetablePolicy
+    TimetablePolicy --> TimetableView : position
+    deactivate TimetablePolicy
+
+
+    TimetableView -> TimetableView : createTimetableSlot(Schedulable)
+        activate TimetableView
+        TimetableView -> TimetablePolicy : getLengthOfSlot(schedulable)
+        activate TimetablePolicy
+        TimetablePolicy --> TimetableView : slotLength
+        deactivate TimetablePolicy
+
+        TimetableView -> TimetableView : getHeader(Schedulable)
+
+        create TimetableSlot
+        TimetableView -> TimetableSlot : TimetableSlot(slotLength, header)
+        activate TimetableSlot
+        TimetableSlot --> TimetableView : slotToAdd
+        deactivate TimetableSlot
+
+    TimetableView --> TimetableView : slotToAdd
+    deactivate TimetableView
+   TimetableView -> TimetableView : putIntoSlot(slotToAdd, col, position)
+   TimetableView -[HIDDEN]> TimetableView
+   deactivate TimetableView
+   end
+   TimetableView -> TimetableView : refreshDayLabels(newDate)
+   TimetableView -[HIDDEN]> TimetableView
+   deactivate TimetableView
+
+
+
+@enduml

@@ -81,4 +81,15 @@ public interface Logic {
      * @return
      */
     public ObservableValue<LocalDate> getTimeTableStartDate();
+
+    /**
+     * Gets the meetingBook save location.
+     * @return
+     */
+    Path getMeetingBookFilePath();
+
+    /**
+     * Gets the connections save location.
+     */
+    Path getConnectionsFilePath();
 }

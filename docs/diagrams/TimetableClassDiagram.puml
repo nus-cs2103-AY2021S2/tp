@@ -1,0 +1,29 @@
+@startuml
+
+!include style.puml
+
+
+
+Package "Model"<<Rectangle>>{
+
+}
+
+
+Package "Ui"<<Rectangle>>{
+    class TimetableView UI_COLOR{
+    -ObservableValue<LocalDate> firstDayOfTimetable
+    -ObservableList<? extends Schedulable> schedulables
+    }
+    Class TimetablePlacementPolicy UI_COLOR
+    Class TimetableCell UI_COLOR
+}
+
+TimetableView ..> TimetableCell : creates
+TimetableView -> "1" TimetablePlacementPolicy
+TimetableView ..> "Model" : listens to
+
+
+
+show TimetableView fields
+
+@enduml

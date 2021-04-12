@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -11,17 +13,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.schedule.Schedulable;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Renders a timetable onto the UI. note that a timetable consists of columns which represent a day in the
@@ -29,8 +28,6 @@ import static java.util.Objects.requireNonNull;
  */
 
 public class TimetableView extends UiPart<Region> {
-
-    public static final int NUMBER_OF_COLUMNS = 7;
 
     private static final String FXML = "TimetableWindow.fxml";
 
@@ -90,7 +87,7 @@ public class TimetableView extends UiPart<Region> {
      */
     private TimetablePlacementPolicy timetablePlacementPolicy;
 
-    private ObservableList<? extends Schedulable> timetableSlots;
+    private ObservableList<? extends Schedulable> schedulables;
 
     private ObservableValue<LocalDate> firstDayOfTimetable;
 
@@ -104,7 +101,7 @@ public class TimetableView extends UiPart<Region> {
 
     private final ChangeListener<LocalDate> dateListener = (observable, oldValue, newValue) -> {
         timetablePlacementPolicy = new TimetablePlacementPolicy(newValue);
-        populateWithData(timetableSlots);
+        populateWithData(schedulables);
         refreshDayLabels(newValue);
     };
 
@@ -121,21 +118,21 @@ public class TimetableView extends UiPart<Region> {
      * -Filters out relevant meetings to be displayed
      * -Finds the meeting position and column to slot in given the timeTablePlacementPolicy.
      * -Puts it into the timetable.
-     * @param timetableSlots
+     * @param schedulables
      */
 
-    public TimetableView(ObservableList<? extends Schedulable> timetableSlots,
+    public TimetableView(ObservableList<? extends Schedulable> schedulables,
                          ObservableValue<LocalDate> firstDayOfTimetable) {
         super(FXML);
-        requireNonNull(timetableSlots);
+        requireNonNull(schedulables);
         requireNonNull(firstDayOfTimetable);
-        this.timetableSlots = timetableSlots;
+        this.schedulables = schedulables;
         this.firstDayOfTimetable = firstDayOfTimetable;
         this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable.getValue());
-        populateWithData(timetableSlots);
+        populateWithData(schedulables);
         refreshDayLabels(firstDayOfTimetable.getValue());
         //add Listener
-        timetableSlots.addListener(this.meetingsListener);
+        schedulables.addListener(this.meetingsListener);
         firstDayOfTimetable.addListener(this.dateListener);
     }
 
@@ -161,9 +158,11 @@ public class TimetableView extends UiPart<Region> {
     }
 
     /**
-     * Splits each Schedulable in a list of Schedulables into parts, where each part can be scheduled on the same day
+     * Splits a Schedulable in a list of Schedulables into parts, where each
+     * part can be scheduled on the same day. This does not modify the original List of Scheudulabes
+     * but creates a new list.
      * in the timetable.(Placed in the same column).
-     * See {@link#timetablePlacementPolicy ::breakIntoDayUnits (Schedulable)}
+     * See {@link #timetablePlacementPolicy ::breakIntoDayUnits (Schedulable)}
      * @return
      */
     private List<? extends Schedulable> splitByDaysAndFilter(List<? extends Schedulable> schedulables) {
@@ -249,6 +248,8 @@ public class TimetableView extends UiPart<Region> {
         case SEVEN:
             scheduleToPut = dayScheduleSeven;
             break;
+        default:
+            assert false; // cannot reach here
         }
         scheduleToPut.setTopAnchor(timetableSlot.getRoot(), position);
         scheduleToPut.setLeftAnchor(timetableSlot.getRoot(), 0.0);

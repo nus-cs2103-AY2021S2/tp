@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters setTimetable Command;
+:Parser parses command word;
+if () then ([command word is \n valid])
+    if () then ([argument is not empty])
+        :Parser tries to parses argument string into date;
+        if() then ([Able to parse to valid date])
+        :Update Timetable with the parsed Date;
+        else([else])
+        :Display invalid date format error message;
+        endif
+
+    else([else])
+        :Update the timetable with the current date;
+    endif
+else([else])
+:Display invalid command word error message;
+endif
+stop
+
+@enduml
