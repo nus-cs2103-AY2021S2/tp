@@ -1,0 +1,11 @@
+@startuml
+start
+:User presses down arrow key;
+if () then ([cursor is at the last node])
+    : Nothing happens;
+else ([else])
+    : Retrieve next command;
+endif
+:Display the command;
+stop
+@enduml

@@ -17,12 +17,20 @@ public class StatusBarFooter extends UiPart<Region> {
     @FXML
     private Label saveLocationStatus;
 
+    @FXML
+    private Label imageCredit;
+
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        imageCredit.setStyle("-fx-font-family: 'Segoe UI';"
+                + "-fx-font-size: 12px; "
+                + "-fx-font-style: italic; "
+                + "-fx-alignment: center-right");
+        imageCredit.setText("Images provided by Pixel Perfect, Vectors Market and Freepik.");
     }
 
 }

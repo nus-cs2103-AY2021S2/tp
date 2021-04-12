@@ -5,55 +5,46 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-CS2103-T16-1/tp) team.
 
 ## Project team
 
-### John Doe
+### Chong Jing Quan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jqchong.png" alt="Jing Quan" width="200px"/>
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github]](https://github.com/JQChong)
+[[portfolio]](team/jqchong.md)
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI, Integration, Features
 
-### Jean Doe
+### Pan JingBin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/icebear789.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github]](https://github.com/IceBear789)
+[[portfolio]](team/icebear789.md)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing, Features
+
+### Pan Wen Zhuo, Ernest
+
+![Ernest](./images/ampan98.png)
+
+[[github]](https://github.com/ampan98)
+[[portfolio]](team/ampan98.md)
+
+* Role: Developer
+* Responsibilities: Deliverables, Integration, Features
+
+### Ryan Jee
+
+![Ryan](./images/rjeez.png)
+
+[[github]](https://github.com/rjeez)
+[[portfolio]](team/rjeez.md)
+
+* Role: Developer
+* Responsibilities: Testing, Features

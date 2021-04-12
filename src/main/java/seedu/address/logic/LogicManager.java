@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -12,9 +13,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.state.State;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,14 +29,16 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+    private final State state;
     private final AddressBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, State state) {
         this.model = model;
         this.storage = storage;
+        this.state = state;
         addressBookParser = new AddressBookParser();
     }
 
@@ -42,11 +47,16 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+        addressBookParser.setState(state);
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            AddressBook abCopy = new AddressBook(model.getAddressBook());
+            if (!abCopy.equals(state.getCurrentAddressBook()) || commandText.startsWith("sort")) {
+                state.addState(abCopy, commandText);
+            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -77,5 +87,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public CssSettings getCssSettings() {
+        return model.getCssSettings();
+    }
+
+    @Override
+    public void setCssSettings(CssSettings cssSettings) {
+        model.setCssSettings(cssSettings);
     }
 }
