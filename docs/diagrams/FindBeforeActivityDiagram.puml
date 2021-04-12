@@ -3,8 +3,8 @@ start
 :User executes find task before command;
 
 if () then ([deadline input is valid and in correct format])
-    :Fetch tasks from task list;
-    : Update User Interface;
+    :Fetch tasks with deadline that matches predicate from task list;
+    : Update User Interface with updated task list;
 else ([else])
     : Output error message;
 endif
