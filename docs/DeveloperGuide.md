@@ -489,7 +489,7 @@ a new `CommandResult` is returned.
 Step 7. If the sort command has been successfully executed, the success message will be displayed.
 
 #### Sequence Diagram
-The sequence diagram below shows how the `search` feature works:
+The sequence diagram below shows how the `sort` feature works:
 
 ![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
 
@@ -511,10 +511,10 @@ The activity diagram shows the workflow when a `sort` command is executed:
   * Pros: List shows all the students every time.
   * Cons: Might clutter the GUI with people the user does not want to see.
 
-### Advance levels feature
+### Level Up feature
 
 #### Implementation
-The advancing levels mechanism is facilitated by `LevelUpCommand` and `LevelUpCommandParser`.
+The advancing education levels mechanism is facilitated by `LevelUpCommand` and `LevelUpCommandParser`.
 
 `LevelUpCommand` extends `Command` and implements the following operation:
 
@@ -569,10 +569,10 @@ The activity diagram shows the workflow when a levelup command is executed:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Demote levels feature
+### Level Down feature
 
 #### Implementation
-The demoting levels mechanism is facilitated by `LevelDownCommand` and `LevelDownCommandParser`.
+The demoting education levels mechanism is facilitated by `LevelDownCommand` and `LevelDownCommandParser`.
 
 `LevelDownCommand` extends `Command` and implements the following operation:
 
@@ -603,7 +603,7 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the levelup feature works:
+The sequence diagram below shows how the levelfown feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 
 #### Activity Diagram
@@ -613,16 +613,15 @@ The activity diagram shows the workflow when a levelup command is executed:
 
 #### Design consideration:
 
-##### Aspect: Whether to combine the leveldown command with the levelup command
+##### Aspect: Whether to have a leveldown command at all
 
-* **Alternative 1 (current choice):** Separate the leveldown command from the levelup command
-  * Pros: Clearly separates the two commands, because they have different purposes; levelup is meant to be used
-    at the start of the school year, while leveldown is mostly to undo levelup if a mistake is made
-  * Cons: Redundant code.
+* **Alternative 1 (current choice):** Have a leveldown command to mass demote students
+  * Pros: Undoes the levelup command if the user applies the levelup command wrongly
+  * Cons: No other situation to mass demote all the students
 
-* **Alternative 2:** Combine the two commands to have one levelchange command.
-  * Pros: Neater code, since the two commands manipulate the same data.
-  * Cons: Messy, because the two commands have different purposes.
+* **Alternative 2:** Do not have a leveldown command
+  * Pros: Less code to maintain
+  * Cons: If levelup is applied wrongly, reverting all the education levels using the edit command only is time-consuming
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -889,19 +888,20 @@ window continues to display the correct list of lessons for each day.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   |                                   |
-| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering             |                     |
-| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    |
-| `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list|
-| `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        |
-| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     |
-| `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes  |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        
+| -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- 
+| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 
+| `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   
+| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering                                  
+| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    
+| `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list
+| `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        
+| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     
+| `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes
+| `*`      | user                                       | mass update all student levels  | I can keep my contacts up to date at the start of a new year
 | `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily
-| `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program|
-| `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
+| `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program
+| `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                
 
 *{More to be added}*
 
@@ -930,7 +930,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enters clears all entries contact command
+1.  User enters clear all contacts command
 2.  TutorsPet clears all the contact in list
 
     Use case ends.
@@ -1026,6 +1026,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The search result list is empty.
 
   Use case ends.
+
+**Use case: Sort the list view**
+
+**MSS**
+
+1. User requests to sort the list with a particular criteria
+2. TutorsPet sorts the list by the criteria and indicates success.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user uses an invalid sorting criteria
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. The given sort command has more than one valid sorting criteria specified.
+
+  * 1b1. TutorsPet executes the command while taking in the last occurrence of the parameters only.
+    
+    Use case resumes at step 2.
+
+**Use case: Increase level of all students**
+
+**MSS**
+
+1. User enters levelup command into command prompt
+2. TutorsPet increases all students' levels by one and indicates success.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters levelup command and excludes some students
+
+  * 1a1. TutorsPet increases all students' levels by one except the specified students and indicates success.
+
+    Use case resumes at step 2.
+
+* 1b. The user enters levelup command and excludes a student using an invalid index
+
+  * 1b1. TutorsPet shows an error message.
+
+    Use case ends.
+
+**Use case: Decrease level of all students**
+
+**MSS**
+
+1. User enters leveldown command into command prompt
+2. TutorsPet decreases all students' levels by one and indicates success.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters leveldown command and excludes some students
+
+  * 1a1. TutorsPet decreases all students' levels by one except the specified students and indicates success.
+
+    Use case resumes at step 2.
+
+* 1b. The user enters leveldown command and excludes a student using an invalid index
+
+  * 1b1. TutorsPet shows an error message.
+
+    Use case ends.
 
 **Use case: Add a new important date**
 
