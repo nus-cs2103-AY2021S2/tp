@@ -21,18 +21,18 @@ public class FindFrCommand extends BudgetBabyCommand {
     public static final String COMMAND_WORD = "find-fr";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds financial records "
-            + "by description, amount and/or category.\n"
-            + "Parameters: "
-            + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
-            + PREFIX_AMOUNT + "FR_AMOUNT "
-            + PREFIX_CATEGORY + "FR_CATEGORY\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESCRIPTION + "Shoes "
-            + PREFIX_AMOUNT + "40 "
-            + PREFIX_CATEGORY + "Apparel";
+        + "by description, amount and/or category.\n"
+        + "Parameters: "
+        + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
+        + PREFIX_AMOUNT + "FR_AMOUNT "
+        + PREFIX_CATEGORY + "FR_CATEGORY\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_DESCRIPTION + "Shoes "
+        + PREFIX_AMOUNT + "40 "
+        + PREFIX_CATEGORY + "Apparel";
 
-    public static final String MESSAGE_SUCCESS = "Financial Records list is now filtered. "
-            + "Use reset-filter to revert to original list.";
+    public static final String MESSAGE_SUCCESS = "Financial record list is now filtered. "
+        + "Use reset-filter to revert to original list.";
 
     public static final String MESSAGE_FAIL = "Unable to find financial Records matching given inputs.";
     private final Description description;

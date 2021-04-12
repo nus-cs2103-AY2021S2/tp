@@ -17,10 +17,10 @@ public class ResetFilterCommand extends BudgetBabyCommand {
     public static final String COMMAND_WORD = "reset-filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Resets filters set to Financial Records. "
-            + "No Parameters\n"
-            + "Example: " + COMMAND_WORD;
+        + "No Parameters\n"
+        + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Filters on Financial Records list have been reset";
+    public static final String MESSAGE_SUCCESS = "Filters on financial record list have been reset";
 
     private final Logger logger = LogsCenter.getLogger(BudgetBabyLogicManager.class);
 
