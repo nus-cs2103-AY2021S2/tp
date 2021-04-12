@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes "elist" and specifies arguments;
+
+if () then ([argument is empty])
+    :GUI lists all user's schedules;
+else ([else])
+    if () then ([argument is "day"])
+        :GUI lists user's schedules by day;
+    else ([else])
+        :GUI lists user's schedules by week;
+    endif
+endif
+stop
+@enduml

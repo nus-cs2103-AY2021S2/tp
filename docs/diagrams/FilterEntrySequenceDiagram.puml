@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "f:FilterEntryCommand" as FilterEntryCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("efilter tag")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("efilter tag")
+activate AddressBookParser
+
+create FilterEntryCommand
+AddressBookParser -> FilterEntryCommand
+activate FilterEntryCommand
+
+FilterEntryCommand -> AddressBookParser
+deactivate FilterEntryCommand
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FilterEntryCommand : execute()
+activate FilterEntryCommand
+
+FilterEntryCommand -> Model : updateFilteredEntryList(predicate)
+activate Model
+
+Model --> FilterEntryCommand
+deactivate Model
+
+FilterEntryCommand --> LogicManager
+deactivate FilterEntryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

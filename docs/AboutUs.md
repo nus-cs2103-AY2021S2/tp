@@ -7,53 +7,49 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## Team Members
 
-### John Doe
+### Lee Rong Jieh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lrj689.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/lrj689)]
+[[portfolio](team/lrj689.md)]
 
-* Role: Project Advisor
+### Loh Jun Yong Kevin
 
-### Jane Doe
+<img src="images/kevinlohjunyong.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/kevinlohjunyong)]
+[[portfolio](team/kevinlohjunyong.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Nicholas Tanvis
 
-* Role: Team Lead
-* Responsibilities: UI
+<img src="images/nicholastanvis.png" width="200px">
 
-### Johnny Doe
+[[github](http://github.com/nicholastanvis)]
+[[portfolio](team/nicholastanvis.md)]
 
-<img src="images/johndoe.png" width="200px">
+### Shen Yang
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/goatygoatygoat.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[github](http://github.com/goatygoatygoat)]
+[[portfolio](team/goatygoatygoat.md)]
 
-### Jean Doe
+### Toh Sihui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tsh22.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tsh22)]
+[[portfolio](team/tsh22.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+## Responsibilities
 
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+Member | Responsibility 1 | Responsibility 2
+-- | -- | --
+Rong Jieh | Deliverables | Task IC
+Kevin Loh | Documentation | Schedule IC
+Nicholas | Testing | Contact IC
+Shen Yang | Code Quality | Scheduling
+Toh Sihui | Tool Expert | Integration

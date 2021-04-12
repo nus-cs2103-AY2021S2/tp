@@ -11,34 +11,37 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.entry.Entry;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Teaching Assistant data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TeachingAssistant teachingAssistant;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Contact> filteredContacts;
+    private final FilteredList<Entry> filteredEntries;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given teachingAssistant and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTeachingAssistant teachingAssistant, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(teachingAssistant, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with teaching assistant: " + teachingAssistant + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.teachingAssistant = new TeachingAssistant(teachingAssistant);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredContacts = new FilteredList<>(this.teachingAssistant.getContactList());
+        filteredEntries = new FilteredList<>(this.teachingAssistant.getEntryList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TeachingAssistant(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,68 +69,136 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTeachingAssistantFilePath() {
+        return userPrefs.getTeachingAssistantFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTeachingAssistantFilePath(Path teachingAssistantFilePath) {
+        requireNonNull(teachingAssistantFilePath);
+        userPrefs.setTeachingAssistantFilePath(teachingAssistantFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // ====== Teaching Assistant ======
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setTeachingAssistant(ReadOnlyTeachingAssistant teachingAssistant) {
+        this.teachingAssistant.resetData(teachingAssistant);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyTeachingAssistant getTeachingAssistant() {
+        return teachingAssistant;
+    }
+
+    // ====== Contact ======
+
+    @Override
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return teachingAssistant.hasContact(contact);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteContact(Contact target) {
+        teachingAssistant.removeContact(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addContact(Contact contact) {
+        teachingAssistant.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setContact(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
 
-        addressBook.setPerson(target, editedPerson);
+        teachingAssistant.setContact(target, editedContact);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // ====== Entry ======
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * checks if {@code entry} is in the list
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public boolean hasEntry(Entry entry) {
+        return teachingAssistant.hasEntry(entry);
+    }
+
+    /**
+     * adds an {@code Entry} into the list
+     */
+    @Override
+    public void addEntry(Entry entry) {
+        teachingAssistant.addEntry(entry);
+        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
+    }
+
+    /**
+     * deletes an {@code Entry} from the list
+     */
+    @Override
+    public void deleteEntry(Entry entry) {
+        teachingAssistant.removeEntry(entry);
+    }
+
+    /**
+     * replaces {@code target} with {@code editedEntry}
+     */
+    @Override
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireAllNonNull(target, editedEntry);
+        teachingAssistant.setEntry(target, editedEntry);
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public boolean isOverlappingEntry(Entry toAdd) {
+        requireNonNull(toAdd);
+        return teachingAssistant.isOverlappingEntry(toAdd);
     }
+
+    @Override
+    public void clearOverdueEntries() {
+        teachingAssistant.clearOverdueEntries();
+    }
+
+    //=========== Filtered Contact List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedTeachingAssistant}
+     */
+    @Override
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
+    }
+
+    @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
+    }
+
+    //=========== Filtered Entry List Accessors ==============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Entry} backed by the internal list of
+     * {@code versionedTeachingAssistant}
+     */
+    @Override
+    public ObservableList<Entry> getFilteredEntryList() {
+        return filteredEntries;
+    }
+
+    @Override
+    public void updateFilteredEntryList(Predicate<Entry> predicate) {
+        requireNonNull(predicate);
+        filteredEntries.setPredicate(predicate);
+    }
+
+    //=========== misc ===============
 
     @Override
     public boolean equals(Object obj) {
@@ -143,9 +214,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return teachingAssistant.equals(other.teachingAssistant)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredContacts.equals(other.filteredContacts)
+                && filteredEntries.equals(other.filteredEntries);
     }
 
 }
