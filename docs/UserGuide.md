@@ -753,7 +753,7 @@ This feature allows tutees to track and manage their grades obtained of differen
 * `SUBJECT_NAME` and `GRADED_ITEM` are case-insensitive. (e.g "s/English" is considered the same as "s/english")
 * `GRADE_LETTER` must be in uppercase.
 * Maximum number of characters for `SUBJECT_NAME` is limited to 20.
-* Maximum number of characters for `GRADED_ITEM` is limited to 29.
+* Maximum number of characters for `GRADED_ITEM` is limited to 25.
 
 #### Add a grade: `add_grade`
 
