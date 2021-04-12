@@ -187,7 +187,7 @@ The Sequence Diagram below shows how the components interact when a user enters 
 
 **Description:**
 
-When the user keys in the input 'edit 1 n/Jacob', execute method of LogicManager is called with the input as the parameter.
+When the user keys in the input `edit 1 n/Jacob`, execute method of LogicManager is called with the input as the parameter.
 In the method, LogicManager calls the parseCommand method of DeliveryListParser to parse the user input.
 The DeliveryListParser parses the input and identifies it as a EditCommand and instantiates a EditCommandParser object.
 DeliveryListParser then invokes the parse method of the EditCommandParser object to further parse the arguments provided.
