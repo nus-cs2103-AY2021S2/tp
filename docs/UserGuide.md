@@ -265,6 +265,17 @@ Format: `deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… �
 Examples:
 * `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
 
+### Showing of persons in a meeting : `showm`
+
+Shows all persons present in a specified meeting.
+
+Format: `showm INDEX`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The meeting must also exist in the list of meetings shown on the GUI.
+* The command will display the list of contacts associated with a meeting.
+* This command, however, will not show the list of contacts associated with groups that are in a meeting.
+* For instance, a meeting can have the group `table tennis club`, but contacts in the `table tennis club` will not be shown with `showm`. Only those who are directly added into the meeting will be shown.
+* This is because a user may have the meeting with the `table tennis club` but not everyone in the club. The user may only wish to have the meeting with a user-defined circle of friends within the club depending on the purpose.
 
 ### Sorting of meetings : `sortm`
 
