@@ -1,5 +1,11 @@
 {
   "definitions" : [ {
+    "term": "Abstract Class",
+    "defs": "A class declared as an abstract class cannot be instantiated, but it can be subclassed."
+  },{
+    "term": "Abstract Method",
+    "defs": "An abstract method is a method signature without a method implementation."
+  },{
     "term": "Abstraction",
     "defs": "Abstraction is a technique for dealing with complexity. It works by establishing a level of complexity we are interested in, and suppressing the more complex details below that level."
   },{
@@ -9,11 +15,20 @@
     "term": "Actor",
     "defs": "An actor (in a use case) is a role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system."
   },{
+    "term": "Aggregation",
+    "defs": "Aggregation represents a container-contained relationship"
+  },{
     "term": "Alpha testing",
     "defs": "Alpha testing is performed by the users, under controlled conditions set by the software development team."
   },{
     "term": "Architecture",
     "defs": "Architecture: The high level structures of a software system, the discipline of creating such structures, and the documentation of these structures. These structures are needed to reason about the software system. Each structure comprises software elements, relations among them, and properties of both elements and relations. The architecture of a software system is a metaphor, analogous to the architecture of a building."
+  },{
+    "term": "Association Class",
+    "defs": "An association class represents additional information about an association."
+  },{
+    "term": "Associations",
+    "defs": "Connections between objects."
   },{
     "term": "Atomic",
     "defs": "Atomic: Not divisible any further."
@@ -48,6 +63,18 @@
     "term": "Centralized RCS",
     "defs": "Centralized RCS (CRCS for short) uses a central remote repo that is shared by the team. Team members download (‘pull’) and upload (‘push’) changes between their own local repositories and the central repository. Older RCS tools such as CVS and SVN support only this model. Note that these older RCS do not support the notion of a local repo either. Instead, they force users to do all the versioning with the remote repo."
   },{
+    "term": "Class",
+    "defs": "A class contains instructions for creating a specific kind of objects."
+  },{
+    "term": "Class-level attributes",
+    "defs": "Variables whose value is shared by all instances of a class."
+  },{
+    "term": "Class-level members",
+    "defs": "Class-level attributes and methods are collectively called class-level members."
+  },{
+    "term": "Class-level methods",
+    "defs": "Methods that are called using the class instead of a specific instance."
+  },{
     "term": "Client component/method/object",
     "defs": "Client component/method/object: The component/method/object that is interacting with a given code."
   },{
@@ -57,6 +84,9 @@
     "term": "Commit",
     "defs": "Commit (noun): a change (aka a revision) saved in the Git revision history.\n\n(verb): the act of creating a commit i.e., saving a change in the working directory into the Git revision history."
   },{
+    "term": "Composition",
+    "defs": "An association that represents a strong whole-part relationship."
+  },{
     "term": "Coupling",
     "defs": "Coupling: The degree of interdependence between software modules; a measure of how closely connected two routines or modules are; the strength of the relationships between modules."
   },{
@@ -65,6 +95,9 @@
   },{
     "term": "DRY",
     "defs": "DRY (Don't Repeat Yourself) principle: Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. -- The Pragmatic Programmer, by Andy Hunt and Dave Thomas"
+  },{
+    "term": "Dependency",
+    "defs": "A need for one class to depend on another without having a direct association in the same direction."
   },{
     "term": "Dependency Inversion Principle",
     "defs": "Dependency inversion principle (DIP):\n\nHigh-level modules should not depend on low-level modules. Both should depend on abstractions.\nAbstractions should not depend on details. Details should depend on abstractions."
@@ -92,6 +125,9 @@
   },{
     "term": "Enterprise application",
     "defs": "Enterprise application: ‘enterprise applications’ refer to software applications used by organizations and therefore have to meet much higher demands (such as in scalability, security, performance, and robustness) than software meant for individual use."
+  },{
+    "term": "Enumeration",
+    "defs": "A fixed set of values that can be considered as a data type."
   },{
     "term": "Epics",
     "defs": "High-level user stories."
@@ -141,11 +177,23 @@
     "term": "Guarantees",
     "defs": "Guarantees: What the use case promises to give us at the end of its operation"
   },{
+    "term": "Inheritance",
+    "defs": "Inheritance allows you to define a new class based on an existing class."
+  },{
+    "term": "Inheritance Hierarchies",
+    "defs": "Inheritance relationships through a chain of classes can result in inheritance hierarchies (aka inheritance trees)."
+  },{
     "term": "Integration testing",
     "defs": "Integration testing : testing whether different parts of the software work together (i.e. integrates) as expected. Integration tests aim to discover bugs in the 'glue code' related to how components interact with each other. These bugs are often the result of misunderstanding what the parts are supposed to do vs what the parts are actually doing."
   },{
+    "term": "Interface",
+    "defs": "An interface is a behavior specification i.e. a collection of method specifications."
+  },{
     "term": "Interface Segregation Principle",
     "defs": "Interface segregation principle (ISP): No client should be forced to depend on methods it does not use."
+  },{
+    "term": "Is a Relationship",
+    "defs": "Inheritance implies the derived class can be considered as a sub-type of the base class (and the base class is a super-type of the derived class), resulting in an is a relationship."
   },{
     "term": "Issue Trackers",
     "defs": "Issue trackers (sometimes called bug trackers) are commonly used to track task assignment and progress. Most online project management software such as GitHub, SourceForge, and BitBucket come with an integrated issue tracker."
@@ -162,11 +210,32 @@
     "term": "Main Success Scenario (MSS)",
     "defs": "The most straightforward interaction for a given use case, which assumes that nothing goes wrong."
   },{
+    "term": "Method Overloading",
+    "defs": "Method overloading is when there are multiple methods with the same name but different type signatures. Overloading is used to indicate that multiple operations do similar things but take different parameters."
+  },{
+    "term": "Method Overriding",
+    "defs": "Method overriding is when a sub-class changes the behavior inherited from the parent class by re-implementing the method. Overridden methods have the same name, same type signature, and same return type."
+  },{
     "term": "Milestone",
     "defs": "A milestone is the end of a stage which indicates significant progress."
   },{
+    "term": "Multiple Inheritance",
+    "defs": "Multiple Inheritance is when a class inherits directly from multiple classes."
+  },{
+    "term": "Multiplicity",
+    "defs": "The aspect of an OOP solution that dictates how many objects take part in each association."
+  },{
+    "term": "Navigability",
+    "defs": "The concept of which object in the association knows about the other object."
+  },{
     "term": "Non-functional requirements",
     "defs": "Non-functional requirements specify the constraints under which the system is developed and operated."
+  },{
+    "term": "Object-Oriented Programming",
+    "defs": "Object-Oriented Programming (OOP) is a programming paradigm. A programming paradigm guides programmers to analyze programming problems, and structure programming solutions, in a specific way."
+  },{
+    "term": "Objects",
+    "defs": "The concept of Objects in OOP is an abstraction mechanism because it allows us to abstract away the lower level details and work with bigger granularity entities i.e. ignore details of data formats and the method implementation details and work at the level of objects."
   },{
     "term": "Open-closed principle",
     "defs": "Open-closed principle (OCP): A module should be open for extension but closed for modification. That is, modules should be written so that they can be extended, without requiring them to be modified. -- proposed by Bertrand Meyer"
@@ -181,7 +250,7 @@
     "defs": "Persistency: Saving data permanently."
   },{
     "term": "Polymorphism",
-    "defs": "The ability of different objects to respond, each in its own way, to identical messages is called polymorphism. -- Object-Oriented Programming with Objective-C, Apple"
+    "defs": "The ability of different objects to respond, each in its own way, to identical messages is called polymorphism. -- Object-Oriented Programming with Objective-C, Apple\n\nPolymorphism allows you to write code targeting superclass objects, use that code on subclass objects, and achieve possibly different results based on the actual class of the object.\n\n"
   },{
     "term": "Precondition",
     "defs": "Preconditions: The specific state you expect the system to be in before the use case starts."
@@ -239,6 +308,15 @@
   },{
     "term": "Software Requirement",
     "defs": "Software Requirement specifies a need to be fulfilled by the software product."
+  },{
+    "term": "Subclass",
+    "defs": "A subclass is said to be more specialized than the superclass."
+  },{
+    "term": "Substitutability",
+    "defs": "The ability to substitute a child class object where a parent class object is expected."
+  },{
+    "term": "Superclass",
+    "defs": "A superclass is said to be more general than the subclass."
   },{
     "term": "Stage",
     "defs": "Stage (verb): Instructing Git to prepare a file for committing."
