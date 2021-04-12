@@ -60,6 +60,8 @@ The UI of Taskify is split into 4 main components:
 3. Response Box
 4. Due Today List
 
+<br/>
+
 ### 1. Task list
 <img src="images/tasklist.png" width="600">
 
@@ -211,7 +213,7 @@ Examples:
 |  <img src="images/feature-screenshots/edit-task-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `edit 2 s/completed`  |
 |<img src="images/feature-screenshots/edit-task-after.png">  | <ins>**After**</ins><br/>The status of the task at index 2 has been changed to completed        |
 
-
+<br/>
 
 ### Deleting a task : `delete`
 
@@ -257,6 +259,7 @@ Delete multiple tasks by either:
     * Notes:
         * All tasks have one of the 3 `Status`: `uncompleted`, `completed`, `expired`
         * Newly created tasks have `uncompleted` as their `Status`
+<br/>
 
 | Screenshot         | Remark |
 | :-----------: | :-----------: |
