@@ -44,27 +44,27 @@ public class SampleDataUtil {
 
     public static Venue[] getSampleVenues() {
         return new Venue[] {
-                new Venue(new VenueName("Sports Hall"), new Capacity(50),
-                       "Open to only students and staff.", new HashSet<Tag>()),
-                new Venue(new VenueName("Dining Hall"), new Capacity(30),
-                        "Open 24 hours.", new HashSet<Tag>()),
-                new Venue(new VenueName("Lecture Hall"), new Capacity(70),
-                        "Open to only students and staff.", new HashSet<Tag>())
+            new Venue(new VenueName("Sports Hall"), new Capacity(50),
+                   "Open to only students and staff.", new HashSet<Tag>()),
+            new Venue(new VenueName("Dining Hall"), new Capacity(30),
+                    "Open 24 hours.", new HashSet<Tag>()),
+            new Venue(new VenueName("Lecture Hall"), new Capacity(70),
+                    "Open to only students and staff.", new HashSet<Tag>())
         };
     }
 
     public static Booking[] getSampleBookings() {
         return new Booking[] {
-                new Booking(new Email("alexyeoh@example.com"), new VenueName("Sports Hall"),
-                        new Description("For badminton competition."),
-                        new StartTime(LocalDateTime.of(2021, 04, 16, 15, 30)),
-                        new EndTime(LocalDateTime.of(2021, 04, 16, 18, 30)),
-                        new HashSet<Tag>()),
-                new Booking(new Email("berniceyu@example.com"), new VenueName("Lecture Hall"),
-                        new Description("For CS2103 Project Meeting."),
-                        new StartTime(LocalDateTime.of(2021, 04, 12, 07, 30)),
-                        new EndTime(LocalDateTime.of(2021, 04, 16, 10, 30)),
-                        new HashSet<Tag>())
+            new Booking(new Email("alexyeoh@example.com"), new VenueName("Sports Hall"),
+                    new Description("For badminton competition."),
+                    new StartTime(LocalDateTime.of(2021, 04, 16, 15, 30)),
+                    new EndTime(LocalDateTime.of(2021, 04, 16, 18, 30)),
+                    new HashSet<Tag>()),
+            new Booking(new Email("berniceyu@example.com"), new VenueName("Lecture Hall"),
+                    new Description("For CS2103 Project Meeting."),
+                    new StartTime(LocalDateTime.of(2021, 04, 12, 07, 30)),
+                    new EndTime(LocalDateTime.of(2021, 04, 16, 10, 30)),
+                    new HashSet<Tag>())
         };
     }
 
