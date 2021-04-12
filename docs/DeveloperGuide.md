@@ -57,6 +57,8 @@ Each of the four components,
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
   API `interface` mentioned in the previous point).
 
+<div style="page-break-after: always;"></div>
+
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
@@ -350,6 +352,8 @@ contain any of the given keywords, either in full or partial.
 
 `find */KEYWORD [MORE_KEYWORDS]` display all items whose names contain any of the given partial keywords .
 
+<div style="page-break-after: always;"></div>
+
 #### Actual Implementation
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
@@ -438,6 +442,8 @@ From the diagram above:
 
 <div style="page-break-after: always;"></div>
 
+<div style="page-break-after: always;"></div>
+
 The following Activity Diagram summarizes what happens when a user executes the `list` command:
 
 <br>
@@ -473,6 +479,8 @@ issues the command `reminder 1 week`:
 ![ReminderWeeksSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 3 days`:
@@ -569,6 +577,7 @@ From the diagram above:
     
 12. This `CommandResult` will be returned at the end by `LogicManager`.
 
+<div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes a `sort quantity asc` command:
 
@@ -981,6 +990,8 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC12 - Sort items by expiry date**
 
