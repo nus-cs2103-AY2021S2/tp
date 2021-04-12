@@ -10,7 +10,7 @@ command box once the correct `Person` id and remark prefix has been keyed.
 * Syntax for EditAutocomplete: `edit INDEX -r` + `TAB`
 * The user is expected to keypress the TAB key after typing the command in order to activate the autocomplete feature.
 * The feature is implemented with the help of a new `EditAutocompleteUtil` class that handles parsing and retrieving the
-  relavant remark from the `Model`.
+  relevant remark from the `Model`.
 
 Given below is an example usage scenario and how `EditAutocomplete` will work.
 

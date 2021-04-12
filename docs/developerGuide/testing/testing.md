@@ -180,7 +180,7 @@ Note: Default sort is `name` and default order is `ascending`
 Command: `undo`<br>
 Expected Message: `Completed undo for the change:...`
 
-1. What: If there is no more actions to undo<br>
+1. What: If there are no more actions to undo<br>
 Command: `undo`<br>
 Expected Message: `There's nothing left to undo!`
 
