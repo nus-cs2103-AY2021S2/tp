@@ -188,11 +188,28 @@ and `Model#setResidence()` to update the residence in the residence list.
 
 Given below is an example usage scenario and how the `status` filtering mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state.
+Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state, which has three sample residences.
 
 Step 2. The user executes two or more input`add n/NAME a/ADDRESS c/y ...` command to add multiple residence with the same clean status "CLEAN". The `add` command calls `addResidence()` which checks and adds new residence to the end of unique residence list where "UNCLEAN" residences is in front of "CLEAN" residences. 
 
-Step 3. The user executes `status unclean 4 5` to update the forth and fifth residences' clean status to "UNCLEAN". The `status` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+Step 3. The user plans to set the forth and fifth  residences clean status from "CLEAN" to "UNCLEAN" since bookings finished. So the user executes the command `status unclean 4 5`.
+
+Step 4. The command is parsed by `StatusCommandParser` and returns a `StatusCommand` to be executed.
+
+Step 5. `StatusCommand#execute` checks if the residence exists and if status expression is correct.
+
+Step 6. The method then calls `StatusCommand#createUpdatedResidence()` to create status-updated residence one by one, and calls `Model#setResidence` to set the these residences.
+Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+
+#### Design consideration:How to update clean status of residences
+
+* **Alternative 1 (current choice):** Create status-updated residences one by one and set them to residence list through function `Model#setResidence` 
+    * Pros: Easy to implement,and not change the existing structure.
+    * Cons: Adopt a loop, spending extra storage to create new residences.
+
+* **Alternative 2:** use index to find residences in residence list and set their clean status directly 
+    * Pros: Can change status directly, don't need to spend extra storage to create residence.
+    * Cons: it needs new function to find residences by the index and change their clean status, which may damage security of residence list. 
 
 The following sequence diagram shows how the status operation works:
 
@@ -202,6 +219,52 @@ The following activity diagram summarizes what happens when a user executes a `s
 
 ![StatusActivityDiagram](images/StatusActivityDiagram.png)
 
+### Edit Booking feature
+
+#### Implementation
+The proposed mechanism is facilitated by the `logic` component described above. It edits the details of existing bookings that are currently in Residence Tracker. It makes use of the following methods.
+
+* `EditBookingCommandParser#parse` parses the prefixes and the corresponding parameters to be edited.
+* `BookingList#containsExclude` determines if edited dates are valid by checking if it overlaps with any of the existing bookings.
+* `EditBookingCommand#execute` finds the target residence and target booking and edits the corresponding details accordingly.
+
+After `EditBookingCommand#execute` finds the target residence and booking, it makes use of `BookingList#setBooking` and `Model#setResidence` to update the booking of the residence in the residence list. 
+
+Given below is an example usage scenario of how the editing of bookings work.
+
+Step 1. The user launches the application. `ResidenceTracker` is initialised with prior saved data of residences.
+
+Step 2. The user plans to edit the end date of a booking since the tenants requested for an extension. The user executes the command `editb r/2 b/1 e/01-01-2022` to edit the end date of the first booking of the second residence displayed in `ResidenceTracker`.
+
+Step 3. The command is parsed by `EditBookingCommandParser` and returns a `EditBookingCommand` to be executed.
+
+Step 4. `Editbookingcommand#execute` checks if the residence and booking exists and if the edited end date is valid.
+
+Step 5. The method then calls `BookingList#setBooking` to set the edited booking before calling `Model#setResidence` to set the edited residence. Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+
+Below shows the sequence diagram of `EditBookingCommand`
+
+![EditBookingCommandSequenceDiagram](images/EditBookingSequenceDiagram.png)
+
+![EditBookingCommandSequenceDiagram2](images/EditBookingSequenceRefDiagram.png)
+
+And the activity diagram:
+
+![EditBookingCommandActivityDiagram](images/EditBookingActivityDiagram.png)
+
+### Design Consideration
+
+#### How to check if the edited booking has dates that overlap with other bookings of the residence
+
+Implementation of edit booking creates a `editedBooking` before calling `BookingList#setBooking` to replace `bookingToEdit` with `editedBooking`. There is a need to ensure that `editedBooking` has no overlap dates with other bookings. However, if `BookingList#contains` (method that checks if a booking overlaps with other bookings in the `bookingList`) is called, it is likely that it returns `true` because `editedBooking` has overlapping dates with `bookingToEdit` since at this point, `bookingToEdit`still exists in the `bookingList`.
+
+* **Alternative 1: After creating `editedBooking`, use `DeleteBookingCommand` on `bookingToEdit` and `AddBookingCommand` to add `editedBooking` back to the `bookingList`**
+    * Pros: `AddBookingCommand` handles the check for overlapping dates for `editedBooking`. Previous issue of `bookingToEdit`existing in the `bookingList` is solved by deletion.
+    * Cons: ties the implementation of `EditBookingCommand` to `AddBookingCommand` and `DeleteBookingCommand`.
+
+* **Alternative 2: Verify the validity of `BookingList#setBooking` by simulating the deletion of `bookingToEdit` and addition of `editedBooking` through a method in `BookingList`**
+    * Pros: allows the use of `BookingList#setBooking`, separating `EditBookingCommand` from `AddingBookingCommand` and `DeleteBookingCommand`.
+    * Cons: creating a method that is similar to `BookingList#contains`.
 
 --------------------------------------------------------------------------------------------------------------------
 

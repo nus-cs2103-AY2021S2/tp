@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "e:EditBookingCommand" as EditBookingCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "bookingToEdit: Booking" as bookingToEdit MODEL_COLOR
+participant "bookingListToEdit: BookingList" as bookingListToEdit MODEL_COLOR
+participant "residenceToEdit: Residence" as residenceToEdit MODEL_COLOR
+participant "lastShownList: ObservableList<Residence>" as lastShownList MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+group sd How EditBookingCommand interacts with Model to edit the booking
+    activate EditBookingCommand
+    activate Model
+    EditBookingCommand -> Model: getFilteredResidenceList()
+
+    create lastShownList
+    Model --> lastShownList
+    activate lastShownList
+    lastShownList --> EditBookingCommand
+    deactivate lastShownList
+
+    EditBookingCommand -> lastShownList:get(residenceIndex.getZeroBased())
+    activate lastShownList
+    lastShownList --> EditBookingCommand: targetResidence
+    EditBookingCommand -> lastShownList:get(residenceIndex.getZeroBased())
+    create residenceToEdit
+    lastShownList --> residenceToEdit
+    deactivate lastShownList
+    activate residenceToEdit
+    residenceToEdit --> EditBookingCommand
+    deactivate residenceToEdit
+
+    EditBookingCommand --> residenceToEdit: getBookingList()
+    activate residenceToEdit
+    create bookingListToEdit
+    residenceToEdit --> bookingListToEdit
+    activate bookingListToEdit
+    bookingListToEdit --> EditBookingCommand: bookingListToEdit
+    deactivate bookingListToEdit
+    EditBookingCommand --> bookingListToEdit: getBooking(bookingIndex.getZeroBased())
+    activate bookingListToEdit
+
+    create bookingToEdit
+    bookingListToEdit --> bookingToEdit
+    activate bookingToEdit
+    bookingToEdit --> EditBookingCommand: bookingToEdit
+    deactivate bookingToEdit
+
+    EditBookingCommand -> EditBookingCommand: createEditedBooking(bookingToEdit, editedBookingDescriptor)
+
+    EditBookingCommand -> bookingListToEdit: setBooking(bookingToEdit, editedBooking)
+    deactivate bookingListToEdit
+    deactivate residenceToEdit
+
+
+end
+@enduml
