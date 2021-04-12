@@ -436,13 +436,13 @@ initial SmartLib state, and the `currentStatePointer` pointing to that single Sm
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th reader in the SmartLib. The `delete` command calls
-`Model#commitSmartLib()`, causing the modified state of the SmartLib after the `delete 5` command executes to be saved
+Step 2. The user executes `deletereader 5` command to delete the 5th reader in the SmartLib. The `deletereader` command calls
+`Model#commitSmartLib()`, causing the modified state of the SmartLib after the `deletereader 5` command executes to be saved
 in the `smartLibStateList`, and the `currentStatePointer` is shifted to the newly inserted SmartLib state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new reader. The `add` command also calls `Model#commitSmartLib()`,
+Step 3. The user executes `addreader n/David …​` to add a new reader. The `addreader` command also calls `Model#commitSmartLib()`,
 causing another modified SmartLib state to be saved into the `smartLibStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -484,15 +484,15 @@ to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the SmartLib, such as `list`,
+Step 5. The user then decides to execute the command `listreader`. Commands that do not modify the SmartLib, such as `listreader`,
 will usually not call `Model#commitSmartLib()`, `Model#undoSmartLib()` or `Model#redoSmartLib()`. Thus, the
 `smartLibStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitSmartLib()`. Since the `currentStatePointer` is not pointing
+Step 6. The user executes `clear-everything-in-my-smartlib`, which calls `Model#commitSmartLib()`. Since the `currentStatePointer` is not pointing
 at the end of the `smartLibStateList`, all SmartLib states after the `currentStatePointer` will be purged. Reason: It no
-longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications
+longer makes sense to redo the `addreader r/Tom p/81688168 e/tom@email.com a/Queestown` command. This is the behavior that most modern desktop applications
 follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -509,7 +509,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the reader being deleted).
+  * Pros: Will use less memory (e.g. for `deletereader`, just save the reader being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -820,7 +820,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a reader while all readers are being shown
 
-   1. Prerequisites: List all readers using the `list` command. Multiple readers in the list.
+   1. Prerequisites: List all readers using the `listreader` command.
 
    1. Test case: `deletereader 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
