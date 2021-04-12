@@ -25,9 +25,14 @@ each component.
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
 the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the 
-[_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
+[PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
 and edit diagrams.
 
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for classes in sequence diagrams shown in this Developer's Guide should end at the destroy marker
+(X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 **`Main`** has two classes
@@ -55,12 +60,12 @@ Each of the four components,
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+An example of how the components interact with each other upon user input is given in the sequence diagram below.
+The user input in this example is `delete 1`:
 
 ![Sequence Diagram of the Architecture](images/ArchitectureSequenceDiagram.png)
 
-The sections below give more details of each component.
+The sections below give more details about each individual component.
 
 ### UI component
 
@@ -70,8 +75,10 @@ The sections below give more details of each component.
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, `StatusBarFooter` etc. The `NotifWindow` and `NotesWindow` classes inherit from the `Alert` class. All other classes, 
-including the `MainWindow`, inherit from the abstract `UiPart` class.
+, `StatusBarFooter` etc.
+
+The `NotifWindow` and `NotesWindow` classes inherit from the `Alert` class.
+All other classes, including `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
@@ -103,9 +110,6 @@ call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -115,8 +119,8 @@ call.
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores a `UserPref` object that represents the user’s preferences, including GUI sizings and more.
+* stores client data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -131,37 +135,40 @@ API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/maste
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save client data in json format and read it back.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+These include configuration settings and common utilities.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how features added in this iteration are implemented.
 
 ### Representing gender of clients
 
 The gender of each client is represented as a `String` with the full gender (Male/ Female/ Non-binary). However, the
-parse will accept any of {M, F, N, Male, Female, Non-binary} with any combination of upper and lower case, and then
-convert it to the full gender.
+parse will accept any of {M, F, N, Male, Female, Non-binary} in any combination of upper and lower cases, and then
+convert it to the full gender. For example, `NoN-binARy` will be successfully recognized as non-binary.
 
 ### Representing birthdate of clients
 
 The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to
 use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from
-`1900-01-01` to `LocalDate.now()`.
+`1900-01-01` to `LocalDate.now()`. Link.me supports only strict parsing, which means all invalid dates will not be
+recognized and common mistakes like inputting non-existent dates like the 31st of September will not be automatically 
+round down to the 30th of September.
 
 
 ### Representing insurance premiums of insurance plans
 
 The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
-risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
-zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it
-to 2 decimal places.
+risk of overflow. This is to support all currency values, including those that have a much lower value than SGD.
+The validity of the user's input amount is checked using regular expressions. Unnecessary leading zeroes in the input 
+string are trimmed, and the input string is padded with zeroes as necessary to format it to 2 decimal places.
 
 ### Recording, viewing and clearing notes for clients
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
@@ -181,7 +188,7 @@ Recording and clearing notes will call the respective methods of the appropriate
 will proceed to call the `ModelManager` to replace the original `Person` with the updated `Person`. A `CommandResult`
 is then created and returned.
 
-Viewing notes will simple create and return a `CommandResult`. This `CommandResult` contains the `Person` object
+Viewing notes will simply create and return a `CommandResult`. This `CommandResult` contains the `Person` object
 representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
 `Person` in the `NotesWindow`.
 
@@ -190,20 +197,21 @@ representing the appropriate `Person`. This `Person` is passed back to the `Ui`,
 ![ScheduleSequenceDiagramLogic](images/ScheduleSequenceDiagramLogic.png)
 ![ScheduleSequenceDiagramModel](images/ScheduleSequenceDiagramModel.png)
 
-Currently, the implementation of the `Meeting` class is placing the `Meeting` as an attribute of  `Person`. While it
-certainly makes more sense for extensions and many-to-many relations to adopt such a implementation, it would cause an
+Currently, the implementation of the `Meeting` class is placing the `Meeting` as an attribute of `Person`. While it
+certainly makes more sense to adopt an implementation where `Person` is an attribute of `Meeting` in order to better
+support extensions and many-to-many relations, it would cause an
 issue where we would have to examine and update every meeting object to edit the person if we were to update and change
-a Person as the current implementation does not give the `Person` object an immutable unique identifier upon
+a `Person` as the current implementation does not give the `Person` object an immutable unique identifier upon
 construction. As a result, the current implementation of the Meeting list takes in the `Person` class as the element of
 the list, and accesses the meeting attribute within the `Person` object when needed.
 
 In regard to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
-every time the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
+every time the `UniquePersonList` is edited. Hence, the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
-as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as
-is.
+as the wrapper for the `Person` class, or an implementation where `Person` and `Meeting` are completely separate entities,
+but for the sake of functionality and simplicity, we shall keep the current implementation as is.
 
 ### Unscheduling meetings
 
@@ -258,7 +266,7 @@ be displayed.
 
 * manage contacts faster than a typical mouse/GUI driven app
 * maintain notes on their client, their needs, their likes/dislikes, insurance plans etc.
-* get automated reminders about upcoming meetups/ notifications on the client's birthday.
+* get automated reminders about upcoming meetups and notifications on the client's birthday.
 
 ### User stories
 
@@ -428,7 +436,7 @@ otherwise)
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The software should not use any OS-dependent libraries and OS-specific features.
 3.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user with average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  The software should work without requiring an installer.
 6.  The software should not depend on a remote server.
 7.  The data should be stored locally and should be in a human editable text file.
