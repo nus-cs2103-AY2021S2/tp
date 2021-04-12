@@ -14,7 +14,7 @@ public class BookingTime {
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
     /**
-     * initialize a booking Time
+     * Initializes a booking Time
      */
     public BookingTime(LocalDate start, LocalDate end) {
         this.start = start;
