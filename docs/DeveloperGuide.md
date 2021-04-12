@@ -266,12 +266,12 @@ Implementation of edit booking creates a `editedBooking` before calling `Booking
 
 #### Design Consideration:
 * **Alternative 1 (current choice):** Morph `Person` class into `Booking` class
-    * Pros: With the `doesOverlap` method of `Booking`, it is convenient to ensure that there are no overlapping bookings for `Residences`.
-    * Cons: All references to `Person` in existing classes, tests, and test utilities would have to be replaced, and new ones would have to be designed to accommodate `Bookings`.
+    * Pros: With the `doesOverlap` method of `Booking`, it is convenient to ensure that there are no overlapping bookings for `Residence`s.
+    * Cons: All references to `Person` in existing classes, tests, and test utilities would have to be replaced, and new ones would have to be designed to accommodate `Booking`s.
 
 * **Alternative 2:** Preserve `Person` class
-    * Pros: If the same person is making multiple bookings, storing `Persons` would save time spent on re-entering the same details (e.g. `TenantName` and `Phone`). 
-    * Cons: Considering ResidenceTracker's target users would have a high turnover rate for their rental properties, keeping records of `Persons` could result in excessive storage usage. Furthermore, most `Persons` would probably only be used once, which makes storing them wasteful.
+    * Pros: If the same person is making multiple bookings, storing `Person`s would save time spent on re-entering the same details (e.g. `TenantName` and `Phone`). 
+    * Cons: Considering ResidenceTracker's target users would have a high turnover rate for their rental properties, keeping records of `Person`s could result in excessive storage usage. Furthermore, most `Person`s would probably only be used once, which makes storing them wasteful.
 
 --------------------------------------------------------------------------------------------------------------------
 
