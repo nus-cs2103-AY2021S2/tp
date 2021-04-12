@@ -56,7 +56,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#addState()`. Since the `currentStatePointer` is not pointing at the end of the `StateHistory`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add -n David` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `delete`, which calls `Model#addState()`. Since the `currentStatePointer` is not pointing at the end of the `StateHistory`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add -n David` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
