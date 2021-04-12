@@ -137,7 +137,7 @@ Here is a list of constraints:
 
 Note that certain constraints may be relevant to specific commands. For instance (this list is not exhaustive):
  * Checking if the date attribute is empty for commands like `count` which counts down the days from today's date
- * The index specified by the user for commands that require a INDEX parameter,
+ * The index specified by the user for commands that require a `INDEX` parameter,
   should be positive and within the range of the list of displayed tasks.
  
 #### Design considerations
@@ -282,7 +282,7 @@ to the last task in chronological order. For tasks with no dates, they would app
 For the `SortCommand`, we had several considerations that we made on whether to sort the list manually through
 the `sort` command or to automatically sort the list for every task that is added or edited.
 
-1. Alternative 1 (current choice): User has the option to sort the list manually in both ascending and descending format.
+1. **Current design**: User has the option to sort the list manually in both ascending and descending format.
    The list will not be automatically sorted when a task has been added or changed.
 
     - Pros:
@@ -294,7 +294,7 @@ the `sort` command or to automatically sort the list for every task that is adde
         - User has to manually sort the list, using the `sort` command, after keying in the new tasks to obtain an
           ordered list.
 
-2. Alternative 2: The list will be automatically sorted every time the user makes a new list or edits one.
+2. **Alternative design**: The list will be automatically sorted every time the user makes a new list or edits one.
 
     - Pros:
         - Tasks will always be in chronological order and user does not have to key in any command to sort the list.
@@ -326,15 +326,16 @@ Something noteworthy would be the fact that `Duration` cannot exist alone and mu
 As this approach creates a new task with the same attributes and replaces it with the existing task in the planner, when a user tries
 to remove the `Date`/`RecurringSchedule` field without removing the `Duration` first, an error will be thrown. 
 
-####Aspect: How removing a task executes
+##### Design Considerations
 
-####Alternatives 1 (current choice): Remove field by setting it to an empty string.  
+1. **Current design**: Remove field by setting it to an empty string.
 
-This approach was chosen as it is easy to implement, and not too much of refactoring of code is needed.
+    This approach was chosen as it is easy to implement, and not too much of refactoring of code is needed.
 
-####Alternatives 2: Remove field by setting it to null. 
 
-This approach was not chosen as it would require more refactoring of code - if anything is missed out, 
+2. **Alternative design**: Remove field by setting it to null.
+
+    This approach was not chosen as it would require more refactoring of code - if anything is missed out, 
 it will result in undesirable runtime exceptions.
 
 ### Viewing list of tags in the tags panel
@@ -499,52 +500,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. PlanIT displays only uncompleted tasks.
 
-    Use case ends.
+        Use case ends.
 
 #### **Use case: Add a date to a task**
 
-**Precondition: The task does not have a recurring schedule.**
+Precondition: The task does not have a recurring schedule.
 
 **MSS**
-1. User enters command to add task with a date to a specified task.
+1. User enters command to add a date to a specified task.
 2. PlanIT shows task with updated date and updates list.
 3. This task can be viewed in the Calendar User Interface on the day of the date.
 
    Use case ends.
 
 **Extensions**
-* 2a. The given index is invalid.
-    * 2a1. PlanIt shows error message.
+* 1a. The given index is invalid.
+    * 1a1. PlanIt shows error message.
 
       Use case resumes at step 1.
     
 #### **Use case: Add a duration to a task**
 
-**Precondition: The task has a title and has a deadline date or recurring schedule.**
+Precondition: The task has a title and has a deadline date or recurring schedule.
 
 **MSS**
 
-1. User <u>adds a task</u> to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to add a duration to a specified task.
-4. PlanIT shows task with updated duration and updates list.
-5. The duration details can be viewed in the Calendar User Interface on the day of the task.
+1. User enters command to add a duration to a specified task.
+2. PlanIT shows task with updated duration and updates list.
+3. The duration details can be viewed in the Calendar User Interface on the day of the task.
 
    Use case ends.
 
 **Extensions**
-* 4a. The given timeslot on that date is already taken.
-    * 4a1. PlanIT shows error message.
+* 1a. The given timeslot on that date is already taken.
+    * 1a1. PlanIT shows error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 1.
     
 #### **Use case: Add a recurring schedule to the task**
 
-**Precondition: The task has a title, does not have a deadline date and only repeats in weekly or biweekly basis.**
+Precondition: The task has a title, does not have a deadline date and only repeats in weekly or biweekly basis.
 
 **MSS**
-1. User <u>adds a task</u> with recurring schedule consisting of end date, 
-   day of week and week frequency to the list.
+1. User adds a recurring schedule consisting of end date, day of week and week frequency to the task.
 2. PlanIT shows task with the recurring dates based on the conditions specified by the user.
 
    Use case ends.
@@ -553,16 +551,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given input format is invalid.
     * 1a1. PlanIT display an error message.
     * 1a2. User enters the new details.
-    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. Use case resumes from Step 2.
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. 
+      
+        Use case resumes from step 2.
 
 * 1b. The given input has an end date that has passed the current system date or less than a week from current system date.
     * 1b1. PlanIT display an error message.
     * 1b2. User enters the new details.
-    Steps 1b1 to 1b2 are repeated until the user input end date is valid. Use case resumes from Step 2.
+    Steps 1b1 to 1b2 are repeated until the user input end date is valid. 
+      
+        Use case resumes from step 2.
     
 #### **Use case: Remove a task**
-
-**Precondition: The task exists in the planner.**
 
 **MSS**
 
@@ -576,14 +576,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given index is invalid.
     * 1a1. PlanIt shows error message.
-
-
+    
       Use case resumes at step 1.
     
     
 #### **Use case: Remove a field from a task**
 
-**Precondition: The task exists in the planner, and has removable fields.**
+Precondition: The task has removable fields.
 
 **MSS**
 1. User enters command to remove the field from the task.
@@ -616,112 +615,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Sort tasks according to date**
 
 **MSS**
-1. User <u>adds a task</u> with a dates to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to sort tasks either in ascending or descending dates.
+1. User enters command to sort tasks either in ascending or descending dates.
 
    Use case ends.
 
 **Extensions**
-* 4a. There are no dates to all tasks.
-    * 4a1. PlanIT shows tasks to have no change in terms of order.
+* 1a. There are no dates to all tasks.
+    * 1a1. PlanIT shows tasks to have no change in terms of order.
 
       Use case ends.
 
 #### **Use case: Find matching tasks by title**
 
 **MSS**
-1. User <u>adds a task</u> with title to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to find tasks with given keywords from the task title.
-4. PlanIT shows all tasks that matches any full word from the title.
+1. User enters command to find tasks with given keywords from the task title.
+2. PlanIT shows all tasks that matches any full word from the title.
 
    Use case ends.
 
 **Extensions**
-* 3a. The given input format is invalid.
-    * 3a1. PlanIT display an error message.
-    * 3a2. User enters the new details.
-    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+* 1a. The given input format is invalid.
+    * 1a1. PlanIT display an error message.
+    * 1a2. User enters the new details.
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. 
       
-* 4a. There are no matching tasks.
-    * 4a1. PlanIT shows no matching tasks.
+        Use case resumes from step 2.
+      
+* 1b. There are no matching tasks.
+    * 1b1. PlanIT shows no matching tasks.
 
       Use case ends.
 
 #### **Use case: Find matching tasks by tag(s)**
 
 **MSS**
-1. User <u>adds a task</u> with tag(s) to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to find tasks with given keyword(s) from the task tag(s).
-4. PlanIT shows all tasks that matches the full keyword of the tag.
+1. User enters command to find tasks with given keyword(s) from the task tag(s).
+2. PlanIT shows all tasks that matches the full keyword of the tag.
 
    Use case ends.
 
 **Extensions**
-* 3a. The given input format is invalid.
-    * 3a1. PlanIT display an error message.
-    * 3a2. User enters the new details.
-    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+* 1a. The given input format is invalid.
+    * 1a1. PlanIT display an error message.
+    * 1a2. User enters the new details.
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. 
       
-* 4a. There are no matching tasks.
-    * 4a1. PlanIT shows no matching tasks.
+        Use case resumes from step 2.
+      
+* 1b. There are no matching tasks.
+    * 1b1. PlanIT shows no matching tasks.
 
       Use case ends.
 
 #### **Use case: Find matching tasks by multi-line description**
 
 **MSS**
-1. User <u>adds a task</u> with multi-line description to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to find tasks with given keyword(s) from the task description.
-4. PlanIT shows all tasks that matches any full keyword from the description.
+1. User enters command to find tasks with given keyword(s) from the task description.
+2. PlanIT shows all tasks that matches any full keyword from the description.
 
    Use case ends.
 
 **Extensions**
-* 3a. The given input format is invalid.
-    * 3a1. PlanIT display an error message.
-    * 3a2. User enters the new details. 
-    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+* 1a. The given input format is invalid.
+    * 1a1. PlanIT display an error message.
+    * 1a2. User enters the new details. 
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. 
+        
+        Use case resumes from step 2.
       
-* 4a. There are no matching tasks.
-    * 4a1. PlanIT shows no matching tasks.
+* 1b. There are no matching tasks.
+    * 1b1. PlanIT shows no matching tasks.
 
       Use case ends.
 
 #### **Use case: Mark task as done**
 
 **MSS**
-1. User <u>adds a task</u> to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to mark a task as done.
-4. PlanIT updates Task in the model with Status updated to 'done'.
-5. PlanIT displays doneCommand success message.
+1. User enters command to mark a task as done.
+2. PlanIT updates Task in the model with Status updated to 'done'.
+3. PlanIT displays doneCommand success message.
 
    Use case ends.
 
 **Extensions**
-* 3a. The task selected already has a Status: 'done'
-    * 4a1. PlanIT displays task already done message.
+* 1a. The task selected already has a Status: 'done'
+    * 1a1. PlanIT displays task already done message.
 
       Use case ends.
       
 #### **Use case: Postpone task's date**
 
 **MSS**
-1. User <u>adds a task</u> to the list.
-2. User <u>adds a duration</u> to the task.
-3. User enters command to snooze the task.
-4. PlanIT updates Task in the model with Date postponed by the specified amount.
-5. PlanIT displays snoozeCommand success message.
+1. User enters command to snooze the task.
+2. PlanIT updates Task in the model with Date postponed by the specified amount.
+3. PlanIT displays snoozeCommand success message.
 
    Use case ends.
 
 **Extensions**
-* 3a. The number of days to postpone the task is more than 365
-    * 4a1. PlanIT displays snoozeCommand error message.
+* 2a. The number of days to postpone the task is more than 365
+    * 2a1. PlanIT displays snoozeCommand error message.
 
       Use case ends.
       
@@ -999,14 +992,29 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all existing tasks using the `ls` command. Multiple tasks in the list.
 
    1. Test case: `rmt 1`<br>
-      Expected: First task is deleted from the list. Details of the removed task shown in the status message.
+      Expected: First task is deleted from the list. Details of the removed task shown in the status display.
 
    1. Test case: `rmt 0`<br>
-      Expected: No task is removed. Error details shown in the status message. Status bar remains the same.
+      Expected: No task is removed. Error details shown in the status display. Task display remains the same.
 
    1. Other incorrect remove commands to try: `rmt`, `rmt x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-      
+
+### Removing a field from a task
+
+1. Removing a field from a task while all tasks are being shown
+
+    1. Prerequisites: List all existing tasks using the `ls` command. Multiple tasks in the list. First task contains tags.
+        
+    1. Test case: `rmf 1 t/` <br>
+       Expected: Tags are removed from the first task in the list. Details of task with removed field is shown in the status display.
+       
+    1. Test case: `rmf 0 t/` <br>
+       Expected: No field from any task is removed. Error details shown in status display. Task display remains the same.
+
+    1. Test case: `rmf 1 pp/` <br>
+       Expected: No field from any task is removed. Error details detailing invalid prefix shown in status display. Task display remains the same.
+  
 ### Setting a task status as done
 
 1. Index is invalid
@@ -1041,6 +1049,29 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `snooze 1 400`<br>
     Expected: Error message to reflect that snooze amount cannot be more that 365 days will be reflected.
+
+### Counting down to a task's date
+
+1. Displaying the number of days left to a task's date 
+
+    1. Prerequisites: List all existing tasks using the `ls` command. Multiple tasks in the list. First task contains a date.
+    1. Test case: `count 1`<br>
+    Expected: Number of days to the date of the first task is displayed in the status display. 
+       
+    1. Test case: `count`<br>
+    Expected: Error message shown in status display detailing invalid command format. 
+       
+    1. Test case: `count 200`<br>
+    Expected: Error message shown in status display detailing index is invalid.
+       
+       
+### Displaying statistics 
+
+1. Displaying the statistics
+
+    1. Prerequisites: List all existing tasks using the `ls` command. At least one task exists.
+    1. Test case: `stat`<br>
+    Expected: Statistics (total number of tasks, percentage of tasks completed, number of tasks due in the next 7 days) is shown in the status display.
 
 ### Viewing a date
 

@@ -6,7 +6,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -72,28 +71,21 @@ public class SnoozeCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
+        enforceCommandValidity(lastShownList);
+        updateModel(model);
+        return commandResultGenerator(lastShownList);
+    }
+
+    private void enforceCommandValidity(List<Task> lastShownList) throws CommandException {
         ConditionLogic.verifyIndex(index, lastShownList);
         Task taskToSnooze = retrieveSelectedTask(lastShownList);
-        enforceNonEmptyDate(taskToSnooze);
+        ConditionLogic conditionLogic = new ConditionLogic(taskToSnooze);
+        conditionLogic.enforceNonEmptyDate();
         enforceMaxSnoozeAmount();
-
-        Task snoozedTask = updateTaskWithNewDate(taskToSnooze);
-        String snoozedTaskTitle = retrieveTaskTitle(snoozedTask);
-
-        updateModel(model, taskToSnooze, snoozedTask);
-        return new CommandResult(String.format(MESSAGE_SNOOZE_TASK_SUCCESS, snoozedTaskTitle, snoozeAmount));
     }
 
     private Task retrieveSelectedTask(List<Task> list) {
         return list.get(index.getZeroBased());
-    }
-
-    private void enforceNonEmptyDate(Task taskToSnooze) throws CommandException {
-        AttributeManager attributeManager = new AttributeManager(taskToSnooze);
-        if (attributeManager.isEmptyDate()) {
-            logger.log(Level.INFO, "The task selected has no date attribute.\n" + MESSAGE_USAGE);
-            throw new CommandException("The task selected has no date attribute.\n" + MESSAGE_USAGE);
-        }
     }
 
     private void enforceMaxSnoozeAmount() throws CommandException {
@@ -102,9 +94,19 @@ public class SnoozeCommand extends Command {
         }
     }
 
+    private void updateModel(Model model) throws CommandException {
+        List<Task> lastShownList = model.getFilteredTaskList();
+        Task taskToSnooze = retrieveSelectedTask(lastShownList);
+        Task snoozedTask = updateTaskWithNewDate(taskToSnooze);
+
+        model.setTask(taskToSnooze, snoozedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.resetCalendarDate();
+    }
+
     private Task updateTaskWithNewDate(Task taskToSnooze) {
-        Date date = taskToSnooze.getDate();
-        LocalDate localDate = date.getDate();
+        AttributeManager attributeManager = new AttributeManager(taskToSnooze);
+        LocalDate localDate = attributeManager.getDate();
         LocalDate newLocalDate = localDate.plusDays(snoozeAmount);
 
         Title previousTitle = taskToSnooze.getTitle();
@@ -119,10 +121,10 @@ public class SnoozeCommand extends Command {
                 previousDescription, previousStatus, previousTags);
     }
 
-    private void updateModel(Model model, Task taskToSetAsDone, Task taskStatusSetToDone) throws CommandException {
-        model.setTask(taskToSetAsDone, taskStatusSetToDone);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.resetCalendarDate();
+    private CommandResult commandResultGenerator(List<Task> lastShownList) {
+        Task taskToSnooze = retrieveSelectedTask(lastShownList);
+        String taskTitle = retrieveTaskTitle(taskToSnooze);
+        return new CommandResult(String.format(MESSAGE_SNOOZE_TASK_SUCCESS, taskTitle, snoozeAmount));
     }
 
     private String retrieveTaskTitle(Task task) {

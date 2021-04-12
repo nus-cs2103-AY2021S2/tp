@@ -40,4 +40,9 @@ public class TitleTest {
         assertTrue(Title.isValidTitle("Capital Tan")); // with capital letters
         assertTrue(Title.isValidTitle("David Roger Jackson Ray Jr 2nd")); // long titles
     }
+
+    @Test
+    public void titleLengthExceeds40_failure() {
+        assertFalse(Title.isValidTitle("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfa")); // empty string
+    }
 }
