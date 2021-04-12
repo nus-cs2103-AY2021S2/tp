@@ -182,6 +182,10 @@ public class TimeTablePanel extends UiPart<Region> {
     private void constructGrid() {
         int earliestTimeIndex = getColIndex(getStartTime());
         int latestTimeIndex = getColIndex(getEndTime());
+        if (latestTimeIndex - earliestTimeIndex < 4) {
+            earliestTimeIndex = getColIndex(LocalTime.of(6, 0));
+            latestTimeIndex = getColIndex(LocalTime.of(23, 0));
+        }
         int numColumns = NUM_OF_HALF_HOURS - earliestTimeIndex - (NUM_OF_HALF_HOURS - latestTimeIndex);
         createRowConstraints();
         createColConstraints(numColumns);
@@ -301,6 +305,15 @@ public class TimeTablePanel extends UiPart<Region> {
     private void populateTime() {
         LocalTime start = getStartTime();
         LocalTime end = getEndTime();
+
+        // Guard Clause : In case there is some bug with getting correct start and end time,
+        // it will show all columns from 6 AM to 11 PM
+        int earliestTimeIndex = getColIndex(start);
+        int latestTimeIndex = getColIndex(end);
+        if (latestTimeIndex - earliestTimeIndex < 4) {
+            start = LocalTime.of(6, 0);
+            end = LocalTime.of(23, 0);
+        }
         int count = 0;
         for (int hour = start.getHour(); hour <= end.getHour(); hour++) {
             hourSlot.add((double) hour);

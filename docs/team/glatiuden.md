@@ -64,20 +64,26 @@ Given below are my contributions to the project.
   * Highlights: This feature allows tutees to open a window to view their appointments and schedules just like a typical school timetable.
     The implementation was challenging as it requires a lot of checks before the dynamic population of UI objects. 
   * Link: [#168](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/168)
-  * Credits: adapted the solution and reused some codes from senior team [AY2021S1-CS2103T-W13-3](https://github.com/AY2021S1-CS2103T-W13-3/tp/tree/master/src/main/java/seedu/homerce/ui/schedulepanel). 
+  * Credits: Solution adapted and reused some codes from senior team [AY2021S1-CS2103T-W13-3](https://github.com/AY2021S1-CS2103T-W13-3/tp/tree/master/src/main/java/seedu/homerce/ui/schedulepanel). 
 
 * **GUI Enhancement**: Added Calendar
   * What it does: allows the user to view `appointment` and `schedule` on a certain date through a calendar interface.
   * Justification: this feature improves the product significantly because it extends the usability of the product by offering an alternative way to view appointment and schedule on a certain date.
-  * Highlights: This feature enhances the overall GUI's look and feel as well as provide easability to user.
-  * Credits: reused codes from senior team [AY1920S2-CS2103T-T10-3](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java). 
+  * Highlights: This feature enhances the overall GUI's look and feel as well as provide usability to user.
+  * Credits: Solution adapted and reused codes from senior team [AY1920S2-CS2103T-T10-3](https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java). 
   * Link: [#58](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/58)  
-    
+  
+* **Testing**: Performed JUnit Testing for `Schedule`, `Reminder` and `Event` related classes.
+  * What it does: to ensure all the methods are working as expected and minimize the amount of bugs.
+  * Credits: Codes are adapted from `test` folder in AddressBook 3.
+  * Link: [#311](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/311), [#319](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/319)
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=glatiuden&tabRepo=AY2021S2-CS2103-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
   * Contributed to the management of the issue tracker and pull requests on GitHub
   * Handles integration 
+  * Assisted team members with bugs fixing and documentation
     
 * **Enhancements to existing features**:
     * Update the overall GUI to fit the mockup design [#58](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/58)
@@ -87,7 +93,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-      * Added documentation for the feature `list_appointments`, `view_appointment` [\#2](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/2)
+      * Added documentation for the feature `list_appointments`, `view_appointment` and `find_appointment` [\#2](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/2)
       * Added documentation for the feature `add_schedule`, `list_schedules`, `edit_schedule`, `view_schedule` and `delete_schedule` [\#212](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/212)
       * Added documentation for the feature `timetable` [\#212](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/212)
       * Added documentation for the feature `add_reminder`, `list_reminders`, `edit_reminder` and `delete_reminder` [\#212](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/212)
@@ -95,11 +101,14 @@ Given below are my contributions to the project.
 
     * Developer Guide:
       * Added introduction: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5)
-      * Did cosmetic tweaks to existing documentation of Design Section - `Architecture`, `Design`: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5)
-      * Added user cases of the `list_appointments` feature: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5)
+      * Update and cosmetic tweaks to multiple sections: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5), [\#352](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/352), [\#341](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/341), [\#337](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/337), [\#332](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/332)
+      * Added use cases of the `list_appointments` feature: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5)
+      * Added implementation for `Schedule`: [\#317](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/317)
+      * Added implementation for `Reminder`: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5)
+      * Added implementation for `Event`: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5)
+      * Added manual testing for `Schedule` and `Reminder` commands as well as `list_appointments`, `view_appointment` and `find_appointment`: [\#5](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/5)
 
 * **Community**:
+    * Dedicated PR reviewer for 2 team members as well as adhoc review of other PRs
     * Constantly approved PRs of group members despite not being their dedicated reviewer.
-    * Reported bugs and suggestions for other teams in the class
-
-* **Tools**:
+    * Reported bugs and suggestions for other teams in the class.
