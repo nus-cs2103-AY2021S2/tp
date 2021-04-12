@@ -1,6 +1,7 @@
 ---
 layout: page
-title: User Guide
+title: A-Bash Book User Guide
+navigation_title: User Guide
 ---
 
 # Table of Contents
@@ -13,24 +14,24 @@ title: User Guide
 # What is A-Bash Book?
 
 A-Bash Book (ABB) is a Command Line Interface (CLI) based Employee and Business Relations Management System.
-
-ABB utilises command patterns similar to Bash, hence the name, A-Bash Book (ABB).
+CLI is a text-based interface where you can enter commands to perform various functions such as adding contact details into ABB.
 
 ABB is built to address the growing demands of businesses especially in a climate where large amounts of business information are being stored in various places. As the need to centralise data and optimise workflow increases, businesses are challenging current standards of retrieving operational data to achieve minimum lead times.
 
-With similarities to Bash, we hope to minimise the learning curve for people with existing Bash experience, yet intuitive for new users to pick up.
+ABB acts as a centralised platform where you can store the contact details of people you work with, such as your colleagues and business partners. For starters, in ABB you can add, edit, and delete contacts. As you continue reading this guide, you will find that ABB offers features such as auto-complete to ease your contact management process.
 
-This User Guide is designed for employees who require additional information on ABB functionalities.
+Fun fact: Bash is a highly popular CLI-based program. ABB utilises command patterns similar to Bash, hence the name, A-Bash Book (ABB).
+With similarities to Bash, we hope to minimise the learning curve for people with existing Bash experience.
 
 --------------------------------------------------------------------------------------------------------------------
 
 # How to Use the User Guide
 
-Use the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
+You can use the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
 
-The following typographic conventions and usage conventions occur in the User Guide:
+Before you continue reading the rest of the User Guide, take note of the following text formats and conventions which are used to place emphasis on certain texts:
 
-| Text Type                                                                | Meaning                         |
+| Text Format                                                              | Meaning                         |
 | ------------------------------------------------------------------------ | ------------------------------- |
 | `Code`                                                                   | Command text                    |
 | <kbd>Keyboard Input</kbd>                                                | Keyboard actions                |
@@ -42,24 +43,26 @@ The following typographic conventions and usage conventions occur in the User Gu
 
 # Quickstart Guide
 
-1. Ensure that **Java 11** or above is installed in the computer.
+1. Ensure that **Java 11** or above is installed in your computer.
 
-1. Download the latest **abb.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
+1. Download the latest **abashbook.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
-1. Copy the file to the target folder to use as the _home folder_ to contain the A-Bash Book data.
+1. Copy the **abashbook.jar** to your preferred target folder to use as the _home folder_ to contain the A-Bash Book data.
    See [FAQ: What is the Home Folder?](#what-is-the-home-folder) to understand more.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.<br>
+1. Double-click the **abashbook.jar** to start the app. The program window should appear in a few seconds.
+   Note that the app contains some sample data, as seen in the picture below. <br>
    ![Ui](images/UG_UI%20Guide.png)
+   ![Person List Reference ><](images/UG_UI%20Reference.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands to try:
 
-    * **`help`** : Opens this User Guide.
+    * **`help`** : Opens the [Command Summary](#command-summary) in the app.
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the address book.
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -101,32 +104,31 @@ Words in `UPPER_CASE` are the parameters to be supplied by the user.
 
 e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
 
-## Optional Arguments
+## Optional Parameters
 
-Square brackets `[ ]` are used around an optional argument.
+Square brackets `[ ]` are used around an optional parameter.
 
-If there are multiple optional arguments, each argument is enclosed in its own set of square
+If there are multiple optional parameter, each argument is enclosed in its own set of square
 brackets.
 
 e.g `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe` but
 not `-t friend`.
 
-## Arguments That Can Repeat
+## Parameters That Can Repeat
 
-Ellipsis (`...`) indicates the option to use an argument multiple times including zero times.
+Ellipsis (`...`) indicates the option to use a parameter multiple times, including zero times.
 
-e.g. `[-t TAG]...` can be used as `""` (i.e. 0 times), `-t friend`, `-t friend -t family` etc.
+e.g. `[-t TAG]...` can be used as `""` (i.e. 0 times), `-t friend` (i.e. 1 time), `-t friend -t family` (i.e. 2 times) etc.
 
-e.g. `-t TAG [-t TAG]...` specifies that there must be at least one tag and can be used
+e.g. `-t TAG [-t TAG]...` specifies that there must be **at least one** tag and can be used
 as `-t family` and `-t family -t cousin -t child`.
 
-## Mutually Exclusive Arguments
+## Mutually Exclusive Parameters
 
-Braces (also known as _curly braces_) `{ }` are used around arguments where the user must choose **
-only one** of the items inside the braces.
+Braces (`{ }`) are used around arguments where the user must choose **only one** of the items inside the braces.
 
-Vertical bars (also known as _pipes_) are used to separate the items. There can be more than two
-mutually exclusive choices.
+Vertical bars (`|`) are used to separate the items. There can be more than two
+mutually exclusive parameters.
 
 e.g. `select { clear | shown | show | INDEX...}` can be used as:
 
@@ -196,9 +198,9 @@ Adds a person to the address book.
 
 | Example                                                                                                                                | Description                                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street`                                              | Adds a person named `John Doe`, with phone number `91234567`, email address `johndoe@example.com`, company `Google`, job title `HR Manager` and address `John street`.                                                                                                       |
-| `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager` and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.              |
-| `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer` and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`. |
+| `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street`                                              | Adds a person named `John Doe`, with phone number `91234567`, email address `johndoe@example.com`, company `Google`, job title `HR Manager`, and address `John street`.                                                                                                       |
+| `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.                     |
+| `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`.         |
 
 ## Listing all persons : `list`
 
@@ -294,7 +296,7 @@ Finds persons whose field(s) contain any of the given keywords.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Refer to [Field Summary table](#field-summary) for a full list prefixes.<br>
+:information_source: Refer to [Field Summary](#field-summary) for a full list prefixes.<br>
 **Currently Searchable fields:** Name, Email, Tag, Remark
 
 </div>
@@ -369,6 +371,7 @@ Sub Command Format:
 The selected person(s) will have a highlighted index number to indicate selection status.
 
 ![Select UI Example](images/UG_Select%20Indicator.png)
+![select demo](images/ug_select%20command.png)
 
 Examples:
 
@@ -412,7 +415,7 @@ client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
 
-information_source: It is a known issue that Outlook for Windows do not have "Commas to Separate
+:information_source: It is a known issue that Outlook for Windows do not have "Commas to Separate
 Multiple Email Recipients" feature turned on. Follow the guide here to enable
 it: <https://www.lifewire.com/commas-to-separate-email-recipients-1173680>
 
@@ -423,6 +426,10 @@ client is installed and configured properly.
 </div>
 
 **Format**: `email { shown | selected | INDEX... }`
+
+![Email example](images/UG_Email%20Command.png)
+
+**Examples**:
 
 | Example          | Description                               |
 | ---------------- | ----------------------------------------- |
@@ -453,6 +460,8 @@ Exits the program.
 ## Command Auto Completion
 
 Command Auto Completion automatically fills a command in the command box by pressing the <kbd>Tab</kbd> key.
+
+![Command Autocomplete](images/UG_Autocomplete.png)
 
 **Examples**:
 
@@ -492,8 +501,12 @@ Press the <kbd>Tab</kbd> key for any of the commands below to automatically add 
 
 **Example Usages**
 
-:information_source: **Note on `add` command:** a space character should follow the add command for flags to begin 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note on `add` command:** a space character should follow the add command for flags to begin
 autocompletion.
+
+</div>
 
 | Current text in command box                        | Press <kbd>Tab</kbd> once |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -502,42 +515,51 @@ autocompletion.
 | `edit 3`                       | `edit 3 -n` |
 | `edit 3 -n John Doe -p 94326543`                       | `edit 3 -n John Doe -p 94326543 -e ` |
 
-## Alias : `alias`
+## Aliasing commands : `alias`
 
-Alias creates shortcut command of the actual command.
+The alias command allows you to create shortcut command (also known as command alias) to the actual command.
 
-### Add Alias: `alias add`
+### Add an alias: `alias add`
 
 Adds an alias to address book.
 
 **Format**: `alias add ALIAS COMMAND`
 
+![Alias Add](images/UG_Alias%20Add%20Command.png)
+
 **Examples**:
 
 | Example                             | Description                                                                                                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `alias add ls list`                 | Associates a new `ls` command to list, such that the ls command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
-| `alias add ls list -n  -p  -e  -t ` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
+| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
+| `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
 | `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e f Alex Yeoh will now return contacts equals or similar to Alex Yeoh). |
 
-### Delete Alias: `alias delete`
+### Delete an alias: `alias delete`
 
 Deletes an existing alias from address book.
 
 **Format**: `alias delete ALIAS`
+
+![Alias Delete](images/UG_Alias%20Delete%20Command.png)
 
 **Examples**:
 
 | Example           | Description            |
 | ----------------- | ---------------------- |
 | `alias delete ls` | Removes the alias `ls` |
-| `alias delete d`  | Removes the alias `d`  |
+| `alias delete f`  | Removes the alias `f`  |
 
-### List Alias: `alias list`
+### List all aliases: `alias list`
 
 Lists all alias(es) in the address book.
 
 **Format**: `alias list`
+
+:information_source: The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
+keyboard action, the list of your aliases will disappear and show the list of existing commands again.
+
+![Alias List](images/UG_Alias%20List%20Command.png)
 
 ## Filter Field Visibility: `filter`
 
@@ -545,65 +567,86 @@ Filter command toggles visibility of fields based on user input options.
 
 **Format**: `filter [-OPTION]...`
 
+![Filter Command UI](images/UG_Filter%20Command.png)
+
 Each option should start with a hyphen `-` e.g. `-OPTION` and be separated by a white-space. Options
-which are excluded will be hidden. Refer to [field summary](#field-summary) for all the available
+which are excluded will be hidden. Refer to [Field Summary](#field-summary) for all the available
 options.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Refer to [Field Summary table](#field-summary) for the available options
+:information_source: Refer to [Field Summary](#field-summary) for the available options
 
 </div>
-
-![Filter Command UI](images/UG_Filter%20Command.png)
 
 **Examples**:
 
 | example        | description                                              |
 | -------------- | -------------------------------------------------------- |
-| `filter`       | Shows all fields                                         |
+| `filter`       | Shows all fields.                                         |
 | `filter -a`    | shows the contact's name and address only.               |
 | `filter -a -p` | shows the contact's name, address and phone number only. |
 
-## Live command suggestion [coming soon]
+## Tagging persons: `tag`
 
-<!-- In addition to tab auto complete feature, A-Bash Book will also attempt to suggest commands available to the user.
+The tag command allows you to add and delete specific tags of persons.
 
-![](https://via.placeholder.com/350x150/000000/FFFFFF?text=Hi)
+* Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
+* Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
-Users will be able to press tab to cycle through the available options. -->
+### Add tags to persons: `tag add`
 
-## Tag : `tag`
+Add tags to persons in address book.
 
-Tag allows addition and deletion of specific tags of person.
+* A `tag add` command adding the same `photoshop` tag to a person with `Photoshop` tag will be executed successfully.
+* When adding a same tag to a person, the command will be executed successfully, but the same tag will not be added to the person.
+* The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are added to.
 
-### Add Tag: `tag add`
+**Format**: `tag add { shown | selected | INDEX ... } -t TAG...`
 
-Adds tags to person in address book.
-
-**Format**: `tag add { shown | selected | INDEX ... } -t TAG ...`
+![Tag Add](images/UG_Tag%20Add%20Command.png)
 
 **Examples**:
 
 | Example                                     | Description                                                                  |
 | ------------------------------------------- | ---------------------------------------------------------------------------- |
-| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the people shown in the UI.                          |
-| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the people selected.                               |
-| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to people at index `1`, `2` and `3`. |
+| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the persons shown in the UI.                          |
+| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the persons selected.                               |
+| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to persons at index `1`, `2` and `3`. |
 
-### Delete Tag: `tag delete`
+**:bulb: Bulk Add Tag**
 
-Deletes tags from person in address book.
+To bulk add tag, either do:
+* `tag add 1 2 3` to add tags to persons at indexes 1, 2 and 3 or,
+* `tag add shown` to add tags to all the shown persons or,
+* `tag add selected` to add tags to all the selected persons
 
-**Format**: `tag delete { shown | selected | INDEX... } -t TAG [-t TAG]...`
+### Delete tags from persons: `tag delete`
+
+Delete tags from persons in address book.
+
+* A `tag delete` command deleting the `Photoshop` tag from a person without `Photoshop` tag will be executed successfully.
+* When deleting a tag from a person without the tag, the command will be executed successfully, but no tags will be deleted from the person.
+* The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are deleted from.
+
+**Format**: `tag delete { shown | selected | INDEX... } -t TAG...`
+
+![Tag Delete](images/UG_Tag%20Delete%20Command.png)
 
 **Examples**:
 
 | Example                                        | Description                                                                       |
 | ---------------------------------------------- | --------------------------------------------------------------------------------- |
-| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the people shown in the UI.                          |
-| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the people selected.                               |
-| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from people at index `1`, `2` and `3`. |
+| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the persons shown in the UI.                          |
+| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
+| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
+
+**:bulb: Bulk Delete Tag**
+
+To bulk delete tag, either do:
+* `tag delete 1 2 3` to delete tags to persons at indexes 1, 2 and 3 or,
+* `tag delete shown` to delete tags to all the shown persons or,
+* `tag delete selected` to delete tags to all the selected persons
 
 ## Saving the data
 
@@ -626,16 +669,16 @@ If changes to the data file renders its format invalid, A-Bash Book will discard
 
 ## What is the Home Folder?
 
-A home folder is a file system folder where A-Bash Book stores data.
+The home folder is the file system folder on your computer where A-Bash Book stores your data.
 
 ```
 foldername (Home Folder)
-├── a-bash-book.jar
-├── addressbook.log.0
+├── abashbook.jar
+├── abashbook.log.0
 ├── config.json
 ├── data
-│   ├── addressbook.json
-│   └── aliases.json
+│   ├── abashbook.json
+│   └── alias.json
 ├── preferences.json
 ```
 
@@ -662,8 +705,8 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                                   |
 | **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                            |
 | **List Alias**   | `alias list`                                                                                                                                                                                                                                 |
-| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag add 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                   |
-| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG ...` <br> e.g., `tag delete shown -t Illustrator`                                                                                                                                         |
+| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag add shown -t Illustrator`                                                                                                                                   |
+| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                         |
 
 # Field Summary
 
@@ -687,3 +730,4 @@ Install the app in the other computer and overwrite the empty data file it creat
 | GUI      | Graphical User Interface                                                         |
 | JSON     | JavaScript Object Notation, data storage format                                  |
 | Terminal | The Command Line Interface where text-based commands are entered.                |
+| Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 

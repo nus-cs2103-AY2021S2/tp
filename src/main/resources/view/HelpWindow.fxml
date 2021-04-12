@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="150.0" minWidth="200.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="150.0" minWidth="500.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -27,7 +27,7 @@
                         </font></Label>
                   </content>
                </ScrollPane>
-               <HBox alignment="BOTTOM_CENTER" fillHeight="false" VBox.vgrow="NEVER">
+               <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="NEVER">
                   <children>
                      <Label fx:id="urlMessage" alignment="CENTER" text="Label" wrapText="true" HBox.hgrow="ALWAYS" />
                      <Button fx:id="copyButton" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" HBox.hgrow="ALWAYS">

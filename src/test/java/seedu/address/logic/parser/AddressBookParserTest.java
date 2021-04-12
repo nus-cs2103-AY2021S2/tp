@@ -177,16 +177,19 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filter() throws Exception {
-        List<String> keywords = Arrays.asList(PREFIX_ADDRESS.toString(), PREFIX_PHONE.toString(),
+        final List<String> keywords = Arrays.asList(PREFIX_ADDRESS.toString(), PREFIX_PHONE.toString(),
                 PREFIX_EMAIL.toString());
         ArgumentMultimap argumentMultimap = new ArgumentMultimap();
         argumentMultimap.put(PREFIX_ADDRESS, "");
         argumentMultimap.put(PREFIX_PHONE, "");
         argumentMultimap.put(PREFIX_EMAIL, "");
+        final List<String> prefixes = Arrays
+                .asList(PREFIX_ADDRESS.getPrefix(), PREFIX_PHONE.getPrefix(),
+                        PREFIX_EMAIL.getPrefix());
         DisplayFilterPredicate displayFilterPredicate = new DisplayFilterPredicate(argumentMultimap);
         FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD + " "
                 + keywords.stream().collect(Collectors.joining(" ")), emptyAliases);
-        assertEquals(new FilterCommand(displayFilterPredicate), command);
+        assertEquals(new FilterCommand(displayFilterPredicate, prefixes), command);
     }
 
     @Test

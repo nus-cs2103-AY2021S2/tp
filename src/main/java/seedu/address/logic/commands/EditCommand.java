@@ -58,13 +58,14 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_EMAIL + " johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_EDIT_PERSONS_SUCCESS = "Edited %1$d person";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_NO_SELECTED = "No selected person to edit.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited person: %1$s";
+    public static final String MESSAGE_EDIT_PERSONS_SUCCESS = "Edited %1$d person(s)";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
+    public static final String MESSAGE_NO_SELECTED = "No selected person(s) to edit";
+    public static final String MESSAGE_NO_PERSON = "No person(s) to edit";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     public static final String MESSAGE_DUPLICATE_PERSON_BULK =
-            "Bulk editing will result in duplicate person in the address book.";
+            "Bulk editing will result in duplicate person in the address book";
 
     private final boolean isSpecialIndex;
     private final boolean isEditSelected;
@@ -122,6 +123,10 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getFilteredPersonList().size() == 0) {
+            throw new CommandException(MESSAGE_NO_PERSON);
+        }
 
         if (isSpecialIndex) {
             return editAll(model);
