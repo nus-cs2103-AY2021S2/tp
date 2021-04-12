@@ -13,6 +13,9 @@ end box
 [-> Statistics : getPastMonthStatistics()
 activate Statistics
 Statistics -> Statistics : getPastMonths()
+activate Statistics
+Statistics --> Statistics
+deactivate Statistics
 
 Statistics -> BudgetBabyModelManager : getFullMonthList()
 activate BudgetBabyModelManager
@@ -20,6 +23,8 @@ BudgetBabyModelManager --> Statistics
 deactivate BudgetBabyModelManager
 
 Statistics -> Statistics : fillMonths()
+activate Statistics
+
     loop 6 times
         Statistics -> BudgetBabyModelManager: findMonth(month)
         activate BudgetBabyModelManager
@@ -30,6 +35,8 @@ Statistics -> Statistics : fillMonths()
         BudgetBabyModelManager --> Statistics
         deactivate BudgetBabyModelManager
     end
+Statistics --> Statistics
+deactivate Statistics
 
 [<--Statistics
 deactivate Statistics

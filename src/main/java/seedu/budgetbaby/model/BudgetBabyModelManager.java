@@ -156,24 +156,28 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     public boolean findFinancialRecord(Description description, Amount amount, Set<Category> categories) {
         boolean result;
 
-        Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.contains(description.description);
+        Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.toLowerCase()
+                .contains(description.description.toLowerCase());
 
         Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
 
         Predicate<FinancialRecord> findC = fr -> fr.getCategories().containsAll(categories);
 
-        Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.contains(description.description)
-            && fr.getAmount().getValue().equals(amount.getValue());
+        Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.toLowerCase()
+                .contains(description.description.toLowerCase())
+                && fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.contains(description.description)
-            && fr.getCategories().containsAll(categories);
+        Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.toLowerCase()
+                .contains(description.description.toLowerCase())
+                && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
             && fr.getCategories().containsAll(categories);
 
-        Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.contains(description.description)
-            && fr.getAmount().getValue().equals(amount.getValue())
-            && fr.getCategories().containsAll(categories);
+        Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.toLowerCase()
+                .contains(description.description.toLowerCase())
+                && fr.getAmount().getValue().equals(amount.getValue())
+                && fr.getCategories().containsAll(categories);
 
         if (description == null) {
             if (amount == null && categories != null) {

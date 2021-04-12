@@ -15,7 +15,7 @@ better manage their finances**. It is **optimized for use via a Command Line Int
 editing financial records and budgets can be done faster by typing in commands while still having the benefits of a
 Graphical User Interface (GUI).
 
-This document aims to guide developers ...
+This document serves as a guide for developers to understand the internal workings of BudgetBaby.
 
 ## Table of Content
 
@@ -305,17 +305,17 @@ The following sequence diagram shows how the find operation works:
 The following activity diagram summarizes what happens when a user executes `reset-filter`: </br>
 ![](images/ResetActivityDiagram.png)
 
-### Categories Statistics Feature
+### All Categories Statistics Feature
 ##### Implementation
-The `getAllUnsortedCategories()` function in `Statistics` relies on another method, `allCategories()` within the same `Statistics` class. 
-The `allCategories()` method obtains the `currentDisplayedMonth` `Month` object via the local variable `monthList` and uses the 
+The `getAllUnsortedCategories()` function in `Statistics` relies on another method, `allCategories()` within the same `Statistics` class.
+The `allCategories()` method obtains the `currentDisplayedMonth` `Month` object via the local variable `monthList` and uses the
 `getFinancialRecordList()` method from the `currentDisplayedMonth` object.
 <br><br>
-After obtaining the `financialRecordList` from the `Month` object, 
-the `FinancialRecords` in the list are looped through, and `Category` objects are added to a `HashMap`, 
+After obtaining the `financialRecordList` from the `Month` object,
+the `FinancialRecords` in the list are looped through, and `Category` objects are added to a `HashMap`,
 along with their respective `Amount`s.
 <br><br>
-The `HashMap` is converted into an `ArrayList` and is returned. 
+The `HashMap` is converted into an `ArrayList` and is returned.
 
 The following sequence diagram shows how the categories statistics feature works:<br>
 ![](images/CategoriesStatisticsSequenceDiagram.png)
@@ -323,23 +323,22 @@ The following sequence diagram shows how the categories statistics feature works
 ### Top 5 Categories Statistics Feature
 ##### Implementation
 The `getTopCategories()` feature is based off the previous `getAllUnsortedCategories()` feature, except that the final returned
-`ArrayList` objects is sorted by the `Category` amounts and limited to 5 using the `stream` `limit` method.
-
+`ArrayList` objects is sorted by the `Category` amounts and limited to 5 categories using the `stream` `limit` method.
 
 
 ### Past 6 Months Statistics Feature
 
 ##### Implementation
-This feature was developed with the help of `BudgetBabyModel` and `BudgetBabyModelManager`, 
-which allowed for the method calls required for this feature to function as required. 
+This feature was developed with the help of `BudgetBabyModel` and `BudgetBabyModelManager`,
+which allowed for the method calls required for this feature to function as required.
 The method `getPastMonthStatistics()` from the `Statistics` class is called to trigger this feature.
-It calls `getPastMonths()` within `Statistics`. Within `getPastMonths()`, the method of `getFullMonthsList` from `BudgetBabyModel` which was implemented by 
+It calls `getPastMonths()` within `Statistics`. Within `getPastMonths()`, the method of `getFullMonthsList` from `BudgetBabyModel` which was implemented by
 `BudgetBabyModelManager` was used to obtain the `UniqueMonthList` object from `VersionedBudgetTracker` as an `ObservableList`.
 <br><br>
-The `getPastMonths()` method in `Statistics` calls upon a private method `fillMonths()` which obtains the `monthList` 
+The `getPastMonths()` method in `Statistics` calls upon a private method `fillMonths()` which obtains the `monthList`
 object within the `Statistics` class which refers to the `currentDisplayMonth` in `VersionedBudgetTracker`.
 `fillMonths()` runs through a loop which calls upon the `findMonth` function from `BabyBudgetModelManager`, searching for
-the most recent 6 months with regard to the `currentDisplayMonth`, inclusive. If the month does not yet exist due to no 
+the most recent 6 months with regard to the `currentDisplayMonth`, inclusive. If the month does not yet exist due to no
 `add-fr` commands adding Financial Records or no `view-month` called onto that month, then the month will be created and
 added to the `UniqueMonthList` object in `VersionedBudgetTracker`.
 
