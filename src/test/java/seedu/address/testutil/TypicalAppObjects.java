@@ -6,12 +6,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_YOHN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ZOHN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INTERNAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDICINE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UUID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UUID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UUID_YOHN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UUID_ZOHN;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -149,6 +155,31 @@ public class TypicalAppObjects {
             .withUuid("40c9902a-110a-44c1-a064-a5ef5e8c0117")
             .withName("Dr Drake Ramoray")
             .build();
+
+    // Manually added
+    public static final Doctor DR_PURPLE = new DoctorBuilder()
+            .withUuid("72ae25af-d558-4563-a106-d23594874bfb")
+            .withName("Purple Ming")
+            .withTags("medicine")
+            .build();
+    public static final Doctor DR_ORANGE = new DoctorBuilder()
+            .withUuid("65cf1272-a843-490a-a92d-14a37fb49790")
+            .withName("Orang Phon")
+            .withTags("physician")
+            .build();
+
+    // Manually added - Person's details found in {@code CommandTestUtil}
+    public static final Doctor YOHN = new DoctorBuilder()
+            .withUuid(VALID_UUID_YOHN)
+            .withName(VALID_NAME_YOHN)
+            .withTags(VALID_TAG_MEDICINE)
+            .build();
+    public static final Doctor ZOHN = new DoctorBuilder()
+            .withUuid(VALID_UUID_ZOHN)
+            .withName(VALID_NAME_ZOHN)
+            .withTags(VALID_TAG_INTERNAL, VALID_TAG_MEDICINE)
+            .build();
+
 
     // Manually added - Timeslot details
     public static final Duration APPOINTMENT_DURATION = Duration.ofHours(1);
