@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 public class EditCommandParser implements Parser<EditCommand> {
 
     public static final String SPECIAL_INDEX = "shown";
-    public static final String SELECTED = "selected";
+    public static final String SELECTED_INDEX = "selected";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -54,7 +54,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             return EditCommand.buildEditShownCommand(editPersonDescriptor);
         }
 
-        if (argMultimap.getPreamble().trim().equals(SELECTED)) {
+        if (argMultimap.getPreamble().trim().equals(SELECTED_INDEX)) {
             editPersonDescriptor = parseEditPersonDescriptor(argMultimap);
             if (!editPersonDescriptor.isAnyFieldEdited()) {
                 throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -137,7 +137,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             return true;
         }
 
-        if (userInput.trim().equals(SELECTED)) {
+        if (userInput.trim().equals(SELECTED_INDEX)) {
             return true;
         }
 
@@ -145,10 +145,12 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMARK);
 
         // Returns false if index found in preamble of arguments is invalid
-        try {
-            ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            return false;
+        if (!argMultimap.getPreamble().equals(SPECIAL_INDEX) && !argMultimap.getPreamble().equals(SELECTED_INDEX)) {
+            try {
+                ParserUtil.parseIndexes(argMultimap.getPreamble());
+            } catch (ParseException pe) {
+                return false;
+            }
         }
 
         // Checks if only the last prefix argument is empty, and all other prefixes have valid input values

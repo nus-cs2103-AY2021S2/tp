@@ -19,11 +19,14 @@ StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
 StorageManager o--> AliasMapStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonAddressBookStorage .down.> JsonSerializableAddressBook
+JsonSerializableAddressBook .right.> JsonAdaptedPerson
+JsonAdaptedPerson .right.> JsonAdaptedTag
 
 JsonAliasMapStorage .up.|> AliasMapStorage
 JsonAliasMapStorage .left.> JsonSerializableAliasMap
