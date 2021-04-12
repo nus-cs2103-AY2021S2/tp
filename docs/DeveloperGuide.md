@@ -279,7 +279,7 @@ Here is a more specific breakdown of the command's execute method.
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order.
 3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
-### List Feature
+### List feature
 Pawbook allows the users to `list` an entity based on keyword searches. The `list` function responds to the current available
 entities, which are `owner`, `dog` and `program`, and returns a list of all the entries of the respective entity.
 
@@ -289,13 +289,13 @@ a list of all the entries of that entity type.
 
 List command supports the plural forms of the entity keywords.
 
-Below is an example activity diagram for a valid find command from the user.
+Below is an example activity diagram for a valid list command from the user.
 
-![ListActivityDiagram](images/ListActivityDiagram.png) {: .center-image}
+![ListActivityDiagram](images/ListActivityDiagram.png){: .center-image width="50%"}
 
-Below is an example sequence diagram for a valid find command from the user.
+Below is an example sequence diagram for a valid list command from the user.
 
-![ListSequenceDiagram](images/ListSequenceDiagram.png) {: .center-image}
+![ListSequenceDiagram](images/ListSequenceDiagram.png){: .center-image}
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
 1. In `PawbookParser`, a `Predicate` is created based on which entity keyword was given by the user. There are only 3 cases here,
 `owner`, `dog`, or `program`.
@@ -305,7 +305,7 @@ Below is an example sequence diagram for a valid find command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![ListSequenceDiagramSpecific](images/ListSequenceDiagramSpecific.png) {: .center-image}
+![ListSequenceDiagramSpecific](images/ListSequenceDiagramSpecific.png){: .center-image width="65%"}
 1. Upon calling the `execute()` method, the `ListCommand` updates the filtered entity list in `Model` using a `predicate` and an `entityType` as parameters.
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order.
 3. From here, List Command creates a command result and returns it to the `LogicManager`.
@@ -351,7 +351,7 @@ Here is a more specific breakdown of the command's execute method.
 3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list.
 4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
 
-#### Schedule feature
+### Schedule feature
 
 Pawbook allows the user to display the `schedule` of all programs.
 For instance, the user may want to view the `schedule` of all programs on a specific date.
@@ -373,7 +373,7 @@ Below is an example sequence diagram for a valid schedule command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![ScheduleSequenceDiagramSpecific](images/ScheduleSequenceDiagramSpecific.png)
+![ScheduleSequenceDiagramSpecific](images/ScheduleSequenceDiagramSpecific.png){: .center-image}
 
 1. In the execute method of `ScheduleCommand`, it first creates a `ProgramOccursOnDatePredicate` object.
 2. The `IsEntityPredicate` of Program and the `ProgramOccursOnDatePredicate` is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model.
@@ -633,6 +633,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
 **Use case UC06 - Find entity by keyword(s)**
+
 **MSS**
 
 1. User types in find command with one or more keywords.
@@ -791,7 +792,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 :bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program.
 </div>
 
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
