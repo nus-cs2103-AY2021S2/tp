@@ -370,7 +370,7 @@ Please note that the following session commands can only be used after you have 
 Click [here](#423-managing-students) if you want to find out more on how to add your first student.
 
 <div markdown="block" class="alert alert-info">
-:information_source: Note that the examples in this section are done in a single instance with a student already existing in TutorBuddy.
+:information_source: Note that the examples in this section are done consecutively with an existing student, <b>John Doe</b>, in TutorBuddy.
 </div>
 
 ##### Adding a single tuition session: `add_session`
@@ -390,13 +390,15 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
 </div>
 
+
 <div markdown="block" class="alert alert-info">
 :information_source: Note that the [Time given in <code>DATE</code> + <code>DURATION</code>] should not exceed 23:59H of the same day. 
 This is done as we do not except tutors to teach lessons beyond the day itself.
 </div>
 
+
 Example:
-1. You would like to add a new session for **John Doe** on the date **2021-01-01** at **18:00** where you will teach **Biology** for **120** minutes and charge a fee of **$80**.
+1. You would like to add a new session for **John Doe** on the date **01 Jan 2021** at **18:00** where you will teach **Biology** for **120** minutes and charge a fee of **$80**.
 2. Type in `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80` and press <kbd>Enter</kbd> to add the session information into TutorBuddy.
 
 ![add_session_example](images/choonwei/add_session.png)
@@ -419,8 +421,8 @@ Arguments similar to `add_session` command except the following:
   e.g. `INTERVAL` = 7 for weekly sessions
 
 Example:
-1. You would like to add a new recurring session for **John Doe** on the date **2021-01-01** at **18:00** where you will teach
-   **Math** for **120** minutes and charge a fee of **$80** for each lesson. The session will occur every **7** days until **2021-01-29**.
+1. You would like to add a new recurring session for **John Doe** on the date **02 Jan 2021** at **18:00** where you will teach
+   **Math** for **120** minutes and charge a fee of **$80** for each lesson. The session will occur every **7** days until **29 Jan 2021**.
 2. Type in `add_rec_session n/John Doe d/2021-01-02 e/2021-01-30 b/7 t/18:00 k/120 s/Math f/80` and press <kbd>Enter</kbd> to add the session information into TutorBuddy.
 
 ![add_recurring_session_example](images/choonwei/add_recurring_session.png)
@@ -444,16 +446,27 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 :information_source: Note that deleting a student automatically deletes all sessions associated with the student as well.
 </div>
 
-Example:
-1. You would like to delete an existing session for **John Doe** on the date **2021-01-01** at **18:00**.
+Example 1:
+1. You would like to delete an existing session for **John Doe** on the date **01 Jan 2021** at **18:00**.
 2. Locate the session index to delete on the right of the session card.
 
 ![delete_session_example](images/choonwei/delete_session.png)
    
-3. Using the index from step 2, type in `delete_session n/John Doe i/1` and press <kbd>Enter</kbd> to deletes John Doe's **first** session.
+3. Using the index from step 2, type in `delete_session n/John Doe i/1` and press <kbd>Enter</kbd> to deletes **John Doe**'s first session.
 4. You will now see that the session has been deleted.
 
 ![delete_session_result_example](images/choonwei/delete_session_result.png)
+
+Example 2:
+1. You would like to delete an existing recurring session for **Alex Yeoh** starting on the date **10 Mar 2021** to **07 Apr 2021**.
+2. Locate the session index to delete on the right of the session card.
+
+![delete_session_recurring_example](images/choonwei/delete_session_recurring.png)
+
+3. Using the index from step 2, type in `delete_session n/Alex Yeoh i/1` and press <kbd>Enter</kbd> to deletes **Alex Yeoh**'s first and only session.
+4. You will now see that the session has been deleted.
+
+![delete_session_recurring_ result_example](images/choonwei/delete_session_recurring_result.png)
 
 ##### Deleting a recurring tuition session: `delete_rec_session`
 
@@ -469,7 +482,7 @@ Arguments similar to `delete_session` command except the following:
 </div>
 
 Example:
-1. You would like to delete an existing session from a recurring session for **John Doe** on the date **2021-01-16** at **18:00**.
+1. You would like to delete an existing session from a recurring session for **John Doe** on the date **16 Jan 2021** at **18:00**.
 2. Locate the recurring session index to delete on the right of the session card.
 
 ![delete_recurring_session_example](images/choonwei/delete_recurring_session.png)
