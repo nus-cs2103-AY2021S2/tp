@@ -510,7 +510,6 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Test case: `eadd n/Meeting sd/2021-12-12 19:00 ed/2021-12-12 13:00`<br>
        Expected: The entry is not added. Error message is shown in the result display indicating that start datetime has
        to be before end datetime.
-1. { _more test cases..._ }
 
 ### Finding an entry
 
@@ -522,7 +521,6 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Test case: `efind Random`<br>
        Expected: Assuming that there are no entries named Random, a message shown in the result display will indicate 0
        entries being listed. Entry list will be empty.
-1. { _more test cases..._ }
 
 ### Filtering tags
 
@@ -534,7 +532,6 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Test case: `efilter CCA Tennis`<br>
        Expected: Assuming there is only one entry that has both tags `CCA` and `Tennis`, a message is shown in the
        result display indicating 1 entry is being listed. Entry list will only list the entry with the matching tags.
-1. { _more test cases..._ }
 
 ### Editing an entry
 
@@ -546,7 +543,6 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Test case: `eedit 1`<br>
        Expected: No entry is edited. Error details shown in the result display indicating at least one field should be
        given.
-1. { _more test cases..._ }
 
 ### Listing entries
 
@@ -561,7 +557,6 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Test case: `elist week`<br>
        Expected: A message indicating how many entries are listed is shown in the result display. All entries that have
        date 6 days from the current date or same date as current date are shown in the entry list.
-1. { _more test cases..._ }
 
 ### Checking if interval is free
 
@@ -574,7 +569,6 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Test case: `free sd/2021-11-13 13:00 ed/2021-11-13 14:00`<br>
        Expected: Assuming there are no entries that falls within this interval, message indicating the interval is free
        is shown in the result display. Entry list will be empty.
-1. { _more test cases..._ }
 
 ### Deleting entries
 
@@ -585,7 +579,6 @@ Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in
     1. Test case: `edelete 1` <br>
        Expected: The entry that is numbered "1." is deleted from the entry list. Details of the deleted entry is shown
        in the result display.
-1. { _more test cases..._ }
 
 ### Clearing overdue entries
 
