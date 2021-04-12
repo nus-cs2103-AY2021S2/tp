@@ -45,6 +45,7 @@ public class CommandResult {
 
     /**
      * Returns the feedback that should be shown to the user.
+     *
      * @return The feedback that should be shown to the user.
      */
     public String getFeedbackToUser() {
@@ -53,6 +54,7 @@ public class CommandResult {
 
     /**
      * Returns true if help information should be shown to the user. False otherwise.
+     *
      * @return True if help information should be shown to the user. False otherwise.
      */
     public boolean isShowHelp() {
@@ -61,6 +63,7 @@ public class CommandResult {
 
     /**
      * Returns true if the application should exit. False otherwise.
+     *
      * @return True if the application should exit. False otherwise.
      */
     public boolean isExit() {
