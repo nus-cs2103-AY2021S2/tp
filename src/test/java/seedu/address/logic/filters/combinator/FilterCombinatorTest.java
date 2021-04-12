@@ -23,7 +23,7 @@ public class FilterCombinatorTest {
             "[p/123] []"
         };
 
-        for(String s : expressions) {
+        for (String s : expressions) {
             Assertions.assertThrows(ParseException.class, () -> new FilterCombinator(s));
         }
     }
@@ -47,7 +47,7 @@ public class FilterCombinatorTest {
             "/not [/not [/not n/sfsaf]]"
         };
 
-        for (String s:expressions) {
+        for (String s : expressions) {
             Assertions.assertDoesNotThrow(() -> new FilterCombinator(s));
         }
     }
