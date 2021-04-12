@@ -11,13 +11,14 @@ import seedu.storemando.model.Model;
 public abstract class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all items in storemando or a specified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all items in the inventory or a specified "
         + "location.\n"
         + "Parameters: "
         + "[" + PREFIX_LOCATION + "LOCATION]\n"
         + "Example:\n"
         + "1. " + COMMAND_WORD + "\n"
         + "2. " + COMMAND_WORD + " l/bedroom\n";
+    public static final String MESSAGE_NO_ITEMS_IN_STOREMANDO = "There are no items in the inventory.";
 
     public abstract CommandResult execute(Model model) throws CommandException;
 
