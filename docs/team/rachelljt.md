@@ -20,6 +20,7 @@ Given below are my contributions to the project.
       int function so that 1 will be returned if the index is a Valid Integer(Positive Integer),
       2 for Invalid Integers(Non-positive integers) and 3 for Invalid Input(spaces, alphanumeric) such that different error messages would be thrown 
       should the index differ from the format.
+      
 
 * **New Feature**: Added the ability to view a list of uncompleted tasks. (Pull Requests: [\#117](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/117), [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#252](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/252)) 
   * What it does: Allows the user to view a list of tasks that they have not completed.
@@ -31,6 +32,7 @@ Given below are my contributions to the project.
     Also, I had to take into account of the different error messages thrown in different situations.
     Lastly, I had to do heavy testing to account for the different scenarios of usage which was quite challenging as the some of the commands
     have to be changed. 
+    
 
 * **New Feature**: Added the ability to view a list of unassigned tasks. (Pull Requests [\#162](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/162), [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#252](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/252))
   * What it does: Allows the user to view a list of tasks that they have not assigned to any member.
@@ -42,27 +44,33 @@ Given below are my contributions to the project.
     Also, I had to take into account of the different error messages thrown in different situations.
     Finally, I had to do heavy testing to account for the different scenarios of usage which was quite challenging as the some of the commands
     have to be changed.
+    
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=rachelljt&tabRepo=AY2021S2-CS2103T-W14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+
 
 * **Project management**:
   * Create issues
   * Set up unit testing for tasks
   * Managed milestones and issues
+  
 
 * **Enhancements to existing features**:
   * Change the UI of the app  (Pull requests: [\#110](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/110), [\#128](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/128), [\#238](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/238))
+  
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the commands `deleteTask`, `viewTasks`, `viewUncompletedTasks`, `viewUnassignedTasks` (Pull requests: [\#117](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/117), [\#160](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/160))
     * Embedded a link to download Java 11 at the Quick Start section (Pull Requests: [\#189](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/189))
+  
 
   * Developer Guide:
     * Updated the user stories in the Developer Guide (Pull requests: [\#138](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/138), [\#169](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/169))
     * Updated the UI UML Diagram, Sequence Diagram in the Developer Guide (Pull requests: [\#185](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/185))
     * Updated Architecture Sequence Diagram in the Developer Guide (Pull requests: [\#189](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/189))
     * Added the implementation explanation for deleteTask (Pull requests: [\#185](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/185))
+  
 
 * **Community**:
   * PRs reviewed (Pull requests: [\#247](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/247), [\#268](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/268))
