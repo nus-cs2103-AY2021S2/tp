@@ -880,7 +880,7 @@ window continues to display the correct list of lessons for each day.
 
 ### Product scope
 
-**Target user profile**: Private tuition teachers
+**Target user profile**: Private tuition teacher
 
 * has a need to manage a significant number of student contacts
 * has to plan lessons based on each student's profile
@@ -899,19 +899,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   
 | `* * *`  | user                                       | delete a student's contact      | I can remove entries that I no longer need and reduce cluttering                                  
 | `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed
-| `* *`    | user                                       | keep track of dates relevant to my students | I can plan my lessons according to their examination dates
+| `* *`    | user                                       | keep track of my students' exam dates | I can plan my lessons according to their examination dates
 | `* *`    | user                                       | find a student by name          | I can locate details of students without having to go through the entire list
 | `* *`    | user                                       | find a student by school        | I can plan my lesson/schedules according to their school’s curriculum   
 | `* *`    | user                                       | find a student by subject       | I can distinguish my students if I am teaching more than 1 subject
 | `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week     
 | `* *`    | user                                       | easily check the current education level of my students | I can prepare the correct lesson material for them
 | `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes
+| `* *`    | expert user | access my most commonly searched contacts quicker | I can save time
+| `* *`    | expert user with many new students | increase the speed of inputting my students’ detail | I can save time
 | `*`      | user                                       | mass update all student levels  | I can keep my contacts up to date at the start of a new year
 | `*`      | expert user                                | add customized subjects to contacts | I can be able to access each group of students more easily
 | `*`      | expert user                                | attach remarks to contacts      | I can remember details that might not be covered in the original program
+| `*`      | expert user                                | be able to check a student's progress | I know what materials to bring to the student's house
+| `*`      | lazy user                                  | access certain functions with shortcuts instead of typing long keywords | I can save time when trying to retrieve students information
 | `*`      | user                                       | hide private contact details    | I can minimize chance of someone else seeing them by accident                
+| `*`      | forgetful user                              | reset my password | I can retrieve my account even when I forget my password
 
-*{More to be added}*
+
+
 
 ### Use cases
 
