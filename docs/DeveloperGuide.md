@@ -255,7 +255,7 @@ As an example, consider running Dictionote as follows:
 
 ### UI features
 
-#### Opening and Closing UI through Command
+#### Opening and closing UI through command result
 #####  Implementation
 Dictionote has an interactive user interface that allows the user to open and close any panel through command.
 Furthermore, when any command is executed, 
@@ -286,7 +286,7 @@ The following is the sequence diagram for executing a command to open a panel.
     * Pros: Only the class that requires to change the UI will be needed to call the method.
     * Cons: Increasing coupling.
     
-#### Manipulation UI Settings through Command
+#### Command that manipulation UI settings
 #####  Implementation
 While all `Command` has the ability to open and close the UI. There are some UI settings that are more specific.
 In this case, we don't want all commands to implement its behavior, so using `CommandResult` isn't ideal.
@@ -814,10 +814,96 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+
+### Modifying the UI through command
+For more information regarding the panel layout and divider position, 
+please refer to the user guide - UI section for more details.
+
+
+#### Opening and closing display panel
+
+Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-n`, `-nc`, `nl`, `-l`
+
+1. Opening a panel through open command 
+    
+    1. Prerequisites: Close all panel using `close -a` for better visibility
+
+    1. Test Case : `open -c`
+       <br> Expected : Contact panel will be open
+
+    1. Test Case : `open -c`
+      <br> Expected : Contact will remain open
+
+    1. Repeat the previous steps for all `OPTION` 
+       <br> (check user guide for more detail about the option.)
+       
+    1. Test Case : `open -x`
+      <br> Expected : Invalid command messages will be shown
+      
+    1. Other incorrect open commands to try: `open`, `open x`, `...` (where x is not an `Option`)<br>
+       Expected: Similar to previous.
+
+1. Close a panel through open command
+
+    1. Prerequisites: Close all panel using `open -a` for better visibility
+
+    1. Test Case : `close -c`
+       <br> Expected : Contact panel will be close
+
+    1. Test Case : `close -c`
+       <br> Expected : Contact will remain close
+
+    1. Repeat the previous steps for all `OPTION`
+       <br> (check user guide for more detail about the option.)
+
+    1. Test Case : `close -x`
+       <br> Expected : Invalid command messages will be shown
+
+    1. Other incorrect open commands to try: `close`, `close x`, `...` (where x is not an `Option`)<br>
+       Expected: Similar to previous.
+
+#### Setting divider position via command
+List of availble set divider position command : `setdividerc`, `setdividerd`, `setdividern`, `setdividerm`
+<br> Range of valid `POSITION` for set divider command :  1 to 9 (Inclusively)
+
+1. Setting position of a panel through open command
+
+    1. Prerequisites: Close all panel using `close -c` for better visibility
+
+    1. Test Case : `setdividerc 5`
+       <br> Expected : contact divider will be set at the halfway mark. contact panel should be open.
+       <br> (check user guide for more detail for where each position represent.)
+
+    1. Test Case : `setdividerc 5`
+       <br> Expected : Contact will remain open
+
+    1. Test Case : `setdividerc 0`
+       <br> Expected : Invalid command messages will be shown
+
+    1. Other incorrect open commands to try: `setdividerc`, `setdividerc x`, `...` (where x is not within the valid range)
+       <br> Expected: Similar to previous.
+       
+2. Repeat the previous test case with `setdivider`, `setdividerd`, and `setdividerm`.
+
+#### Toggling divider orientation via command
+List of availble toggle divider orientation command : `toggledividerd`, `toggledividern`
+
+1. Setting position of a panel through open command
+
+    1. Test Case : `toggledividerd`
+       <br> Expected : Dictionary divider orientation will change to horizontal if it vertical, vice-verse. 
+       if note list panel or note content panel is closed, it will be open.
+
+    1. Test Case : `toggledividerd`
+      <br> Expected : Dictionary divider  orientation will change to horizontal if it vertical, vice-verse.
+
+    1. Test Case : `toggledividerd`
+      <br> Expected : Dictionary divider  orientation will change to horizontal if it vertical, vice-verse.
+
+2. Repeat the previous test case with `toggledividern`.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+    1. If the data files are corrupted. The data will be wiped clean and an empty data file will be generated.
