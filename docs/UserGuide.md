@@ -69,6 +69,8 @@ DocBob's interface comprises of 4 main parts.
 * Certain commands (such as `help`, `list`, `exit` and `clear`) do not take in parameters.  In cases like this, the extra input parameters will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+</div>
+
 Our features are divided into four categories:
 
 **Basic Features** contain the basic functionality of DocBob. These include commands that interact with the list of patients, viewing individual patients as well as the management of patient data.
@@ -81,16 +83,16 @@ large number of patients in their database, as the archive allows clinics to bet
 
 **Miscellaneous** contains ancillary features that are not critical to the functionality of DocBob or unlikely to affect DocBob's performance. Such features include commands to exit DocBob or delete all patients.
 
-</div>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Basic Features
 Basic features contain the commands for interacting with the list of patients. Add a new patient with `add`, or edit an existing one with `edit`. View the full list of existing patients 
 with `list`, or find a specific patient with `find`. To view the comprehensive information on a patient, use `view`.
 
-> **Quick tip**: To keep the patient list concise, only the most relevant information about a patient such as their name and tags are displayed. To view the full information on a patient, use the
-> **`view`** function
+<div markdown="block" class="alert alert-info">
+**Quick tip**: To keep the patient list concise, only the most relevant information about a patient such as their name and tags are displayed. To view the full information on a patient, use the **`view`** function
+</div>
+
 
 ### Adding a patient's contact: `add`
 
