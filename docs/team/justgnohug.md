@@ -33,7 +33,7 @@ in Java, and has about 13 kLoC.
 
 ## Contributions
 
-*  **Code Contributions:** [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=justgnohug)
+*  **Code Contributions:** [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=justgnohUG)
 
 * **Contributions to UG:** 
   	
