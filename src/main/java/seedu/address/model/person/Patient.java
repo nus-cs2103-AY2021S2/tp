@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -150,6 +151,7 @@ public class Patient implements Comparable<Patient> {
     }
 
     public List<Appointment> getAppointments() {
+        this.appointments.removeIf(appt -> LocalDateTime.now().isAfter(appt.getDate().plusDays(1)));
         this.appointments.sort(Comparator.comparing(Appointment::getDate));
         return Collections.unmodifiableList(appointments);
     }

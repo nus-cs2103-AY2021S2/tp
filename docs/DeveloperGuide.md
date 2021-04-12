@@ -153,6 +153,7 @@ It was implemented in this way in order to make it easier to use the `Model#upda
 display all archived patients using a suitable predicate when the `ArchiveListCommand` is called just like how the
 original `ListCommand` works. Moreover, the existing `DeleteCommand` and `FindCommand` could be used with the
 archived list just like how they worked with the main list.
+
 Another possible implementation was to create 2 `UniquePersonList` objects in AddressBook, one for the main list and
 one for the archived list. However, this idea was scrapped as that would involve more changes throughout the component
 and involve changes in unrelated classes. This way, the changes were contained and it made more sense for the `Patient`
@@ -178,8 +179,39 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![image](https://user-images.githubusercontent.com/48408342/114144410-e47c2100-9947-11eb-895f-afd00657b5af.png)
 
-Since `MainWindow#processResult` dictates what to show on the UI depending on the `CommandResult` as seen above, we can easily allow `MainWindow#processResult` to call `MainWindow#handlePatientViewBox` when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
+Since `MainWindow#processResult` dictates what to show on the UI depending on the `CommandResult` as seen above, we can easily allow `MainWindow#processResult` to call `MainWindow#handlePatientViewBox` 
+when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
 
+### Creating an appointment for a patient
+
+The implementation of creating an appointment borrows from the implementation of the `EditCommand`, since adding an appointment can be viewed as editing a patient with a new list of appointments
+which includes the new appointment to be added. This avoids unnecessary repetition of implementation code.
+
+Note: Whenever the appointments of a patient is requested, we look through the list to delete appointments that are more than a day old. 
+
+### Creating/viewing a medical record of a patient 
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `executeCommand("mrec 1")` API call. The interactions for creating a 
+medical record are similar to those for viewing one, which will not be elaborated on here. 
+
+**How**
+
+The creation of a medical record is facilitated by the `OpenMedicalRecordCommand` while viewing is facilitated by `ViewMedicalRecordCommand`, 
+both of which extend `Command`. Both commands inform `MainWindow` to open a separate secondary window for the editing/viewing of the medical record. When `MainWindow#executeCommand` is ran:
+1. The command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`.
+2. The `CommandResult` will then trigger `MainWindow#handleEdit` which tells `MainWindow` to create a separate `EditorWindow` for creating/viewing the medical record.
+3. `EditorWindow` handles the construction of the new window for editing/viewing the medical record. If appropriate, such as when creating a new medical record, it allows editing of the relevant text fields
+4. If the medical record has been saved, `EditorWindow` itself will create a relevant `SaveMedicalRecordCommand`
+5. `EditorWindow` itself has a copy of the `commandExecutor` passed by `MainWindow`, and will execute the `SaveMedicalRecordCommand` created to save the medical record under the relevant
+patient.
+
+**Why**
+
+One of the core functionalities of this feature is to allow usage of other commands in the `MainWindow` even while the `EditorWindow` containing the medical record is open. To facilitate this,
+we give the `EditorWindow` a copy of the `MainWindow#executeCommand` method during its creation, so that after opening the record, saving can be initiated anytime by the `EditorWindow`
+(but still handled by `MainWindow`) while the `MainWindow` resumes its role in the parsing and execution of commands.
+
+In this way, the opening and saving of medical records is decoupled, allowing multiple records to be opened before one is closed, and there is no strict time dependency between the commands.
 
 _{more aspects and alternatives to be added}_
 
@@ -427,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to view patients medical record.
-2. DocBob provides patient's medical record
+2. DocBob provides patient's medical record in edit mode
     
      `Use case ends.`
 
@@ -437,6 +469,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *    1a.1 DocBob shows an error message
   
        `Use case resumes at step 1.`
+
+*1b. current date is more than a day after medical record's creation
+*    1b.1 DocBob provides patient's medical record in view mode
+
+     `Use case ends.`
   
 **Use case: Adding a patient to archive**
 

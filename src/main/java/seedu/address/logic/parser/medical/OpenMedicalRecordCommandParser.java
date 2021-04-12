@@ -9,13 +9,12 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new OpenMedicalRecordCommand object
  */
 public class OpenMedicalRecordCommandParser implements Parser<OpenMedicalRecordCommand> {
-    // TODO DOCUMENTATION
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the OpenMedicalRecordCommand
+     * and returns a OpenMedicalRecordCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public OpenMedicalRecordCommand parse(String args) throws ParseException {
