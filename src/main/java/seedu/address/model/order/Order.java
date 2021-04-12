@@ -23,21 +23,7 @@ public class Order implements Item {
     private LocalDateTime dateTime;
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
-    private State state = State.UNCOMPLETED;
-
-    /**
-     * Order constructor
-     * @param dateTime
-     * @param customer
-     * @param dishQuantityList
-     */
-    @JsonCreator
-    public Order(@JsonProperty("datetime") LocalDateTime dateTime, @JsonProperty("customer") Person customer,
-                 @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList) {
-        this.dateTime = dateTime;
-        this.customer = customer;
-        this.dishQuantityList = dishQuantityList;
-    }
+    private State state;
 
     /**
      * Order constructor with state
@@ -48,7 +34,8 @@ public class Order implements Item {
      */
     @JsonCreator
     public Order(@JsonProperty("datetime") LocalDateTime dateTime, @JsonProperty("customer") Person customer,
-                 @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList, State state) {
+                 @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList,
+                 @JsonProperty("state") State state) {
         this.dateTime = dateTime;
         this.customer = customer;
         this.dishQuantityList = dishQuantityList;

@@ -87,13 +87,13 @@ public class SampleDataUtil {
                     new ArrayList<>(Arrays.asList(
                             new Pair<>(burger, 2),
                             new Pair<>(wings, 2)
-                    ))),
+                    )), Order.State.UNCOMPLETED),
             new Order(LocalDateTime.parse("14-02-2021 19:15", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
                     david,
                     new ArrayList<>(Arrays.asList(
                             new Pair<>(burger, 1),
                             new Pair<>(fries, 1)
-                    )))
+                    )), Order.State.UNCOMPLETED)
         };
     }
 

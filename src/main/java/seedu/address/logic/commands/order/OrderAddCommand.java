@@ -68,7 +68,7 @@ public class OrderAddCommand extends Command {
 
         Person customer = OrderCommandUtil.getValidCustomerByOneIndex(customerId, model);
 
-        Order toAdd = new Order(dateTime, customer, dishQuantityList);
+        Order toAdd = new Order(dateTime, customer, dishQuantityList, Order.State.UNCOMPLETED);
 
         // isValidOrderAddition throws a CommandException and hence acts as a guard clause
         OrderCommandUtil.isValidOrderAddition(toAdd, model);
