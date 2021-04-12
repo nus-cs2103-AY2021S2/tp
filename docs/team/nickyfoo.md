@@ -11,7 +11,8 @@ It is written in Java with around 10k LOC.
 
 A full list of code contribution can be found here:
 [RepoSense](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=nickyfoo&breakdown=true)
-<br>Given below are my contributions to the project.
+
+Given below are my contributions to the project.
 
 ### New features
 
