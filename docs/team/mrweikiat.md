@@ -19,18 +19,18 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 *Enhancement 2*
 * Sorting the priority tag based on priority levels can help the user view the most prioritised tasks at the top of the task list. 
 * Justification : User can better organise and plan which tasks to do first using the priority levels.
-* Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks. Worked on the PriorityTag files and Sorting files, but are not restricted to: `PriorityTagComparator`, `SortCommand`, `SortCommandParser`.
+* Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks. Worked on the PriorityTag files and Sorting files: `PriorityTagComparator`, `SortCommand`, `SortCommandParser`.
 
 *Enhancement 3*
 * Ensure testing can be properly function after every deliverables to identify any possible bugs.
 * Justification : Help to identify possible bugs in newly written features.
-* Highlights: Worked on the Storage component files, they are mainly but no restricted to: `JsonAdaptedTag`, `JsonAdaptedTask`, `JsonSerializableTaskTracker`, `JsonUserPrefsStorage`, `Storage`, `StoreManager`, `TaskTrackerStorage`, `UserPrefsStorage`.
+* Highlights: Worked on the Storage component files: `JsonAdaptedTag`, `JsonAdaptedTask`, `JsonSerializableTaskTracker`, `JsonUserPrefsStorage`, `Storage`, `StoreManager`, `TaskTrackerStorage`, `UserPrefsStorage`.
 
 #### Testing
 * I was the IC for testing component. I have to vet the test cases of my team mates before every submission.
 * I was in charge of testing for the Storage component. I wrote test cases for storage classes they are: `JsonAdaptedTagTest`, `JsonAdaptedTaskTest`, `JsonSerializableTaskTrackerTest`, `JsonTackTrackerStorageTest`, `JsonUserPrefsStorageTest`, `StorageManagerTest`.
-* I also edit and vetted the data component to ensure that the data under data folder used for testing are up-to-date they are mainly but not restricted to: `data\ConfigUtilTest`, `data\JsonSerializableTaskTrackerTest`, `data\JsonTaskTrackerStorageTest`, `data\sandbox`.
-* I wrote test cases for Model component correctly they are mainly but not restricted to: `PriorityTagTest`, `TagTest`, `SortingFlagTest`
+* I also edit and vetted the data component to ensure that the data under data folder used for testing are up-to-date: `data\ConfigUtilTest`, `data\JsonSerializableTaskTrackerTest`, `data\JsonTaskTrackerStorageTest`, `data\sandbox`.
+* I wrote test cases for Model component: `PriorityTagTest`, `TagTest`, `SortingFlagTest`
 * Maintained the `testUtil` folder so that the data stored and used for testing are correct. 
 
 #### Contributions to the UG
