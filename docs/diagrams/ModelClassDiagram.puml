@@ -48,8 +48,14 @@ Class UniqueDefinitionList
 Class UniqueContentList
 }
 }
+
+Package UI{
+
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
+UI .up.> ModelManager
 
 ContactsList .up.|> ReadOnlyContactsList
 NoteBook .up.|> ReadOnlyNoteBook
