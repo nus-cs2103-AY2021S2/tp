@@ -5,7 +5,7 @@ title: Ian's Project Portfolio Page
 
 ## Project: SunRez
 
-**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI). It is written in Java, and has about 19 kLoC.
 
 Given below are my contributions to the project.
 
@@ -21,13 +21,15 @@ Given below are my contributions to the project.
   * Limit tag lengths to prevent tags from being too long does being unreadable [#329](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/329).
 
 * **Contributions to User Guide**:
-  * Added documentation for the issue features `iadd`, `ilist`, `ifind`, `iedit`, `iclo` and `idel`.
+  * Added documentation for the issue features `iadd`, `ilist`, `ifind`, `iedit`, `iclo` and `idel`. [#62](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/62)
+  * [PRs made for documentation](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+author%3Astein414+doc)
 
 * **Contributions to Developer Guide**:
-  * Wrote uses cases UC-012 to UC-016.
-  * Updated `UI` component's class diagram and implementation details to reflect the latest version of SunRez.
-  * Added Activity, Sequence, and Class Diagrams for issue feature.
-  * Added manual testing instructions for issue feature.
+  * Wrote uses cases UC-012 to UC-016. [#48](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/48)
+  * Updated `UI` component's class diagram and implementation details to reflect the latest version of SunRez. [#414](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/414), [#426](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/426)
+  * Added Activity, Sequence, and Class Diagrams for issue feature. [#117](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/117)
+  * Added manual testing instructions for issue feature. [#394](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/394)
+  * [PRs made for documentation](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+author%3Astein414+doc)
 
 * **Team tasks**:
   * Introduced Conventional Commits and discussed its usage pertaining to the project.
