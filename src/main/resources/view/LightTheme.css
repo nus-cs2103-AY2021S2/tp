@@ -111,18 +111,15 @@
 }
 
 .list-cell:filled:even {
-    /*-fx-background-color: #3c3e3f;*/
-    -fx-background-color: white;
+    -fx-background-color: #cfded9;
 }
 
 .list-cell:filled:odd {
-    /*-fx-background-color: #515658;*/
-    -fx-background-color: white;
+    -fx-background-color: #86afc5;
 }
 
 .list-cell:filled:selected {
-    /*-fx-background-color: #424d5f;*/
-    -fx-background-color: grey;
+    -fx-background-color: #9dc4ee;
 }
 
 .list-cell:filled:selected #cardPane {

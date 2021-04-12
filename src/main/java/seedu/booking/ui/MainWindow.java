@@ -10,8 +10,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -54,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private Menu coin;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -144,6 +150,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        ImageView coinImage = new ImageView(new Image("images/bookcoin.png"));
+        coinImage.setFitHeight(20);
+        coinImage.setFitWidth(20);
+        coin.setGraphic(coinImage);
 
         venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
         bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
