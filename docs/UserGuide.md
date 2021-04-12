@@ -693,7 +693,7 @@ The following is the meaning of the suffix found in `toggledivider` command
 
 ##### Toggling dictionary divider orientation: `toggledividerd`
 
-Toggle the orientation of the dictionary divider. 
+Toggles the orientation of the dictionary divider. 
 If the current orientation of the dictionary divider on horizontal,
 it will be changed to vertical and vice versa.
 When the orientation changes, 
@@ -703,7 +703,7 @@ Format: `toggledividerd`
 
 ##### Toggling note divider orientation: `toggledividern`
 
-Toggle the orientation of the note divider.
+Toggles the orientation of the note divider.
 If the current orientation of the note divider horizontal,
 it will be changed to vertical and vice versa.
 When the orientation changes,
