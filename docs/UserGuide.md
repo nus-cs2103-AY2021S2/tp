@@ -101,8 +101,8 @@ These functions include:
 
 - [Exit](#511-exiting-the-program--exit) - Exits the program
 - `Toggling CLI's visibility` - Shows/Hides the [Command Box](#44-command-box) and [Result Display](#45-result-display)
-- [Category Statistics](#512-viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
-- [Month Statistics](#513-viewing-budget-for-the-current-month) - Opens the Month statistics window
+- [Category Statistics](#513-viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
+- [Month Statistics](#514-viewing-total-expenditure-of-past-6-months) - Opens the Month statistics window
 - [Help](#51-viewing-help--help) - Opens the Help window
 
 ### 4.2 Budget Display
