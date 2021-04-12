@@ -30,9 +30,9 @@ their profile pictures.
 
    * **`listp`** : Lists all contacts.
 
-   * **`add`**`n/John Doe ph/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to MeetBuddy.
+   * **`addp`**`n/John Doe ph/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to MeetBuddy.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deletep`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -117,7 +117,7 @@ If your changes to the data file makes its format invalid, MeetBuddy will discar
 
 Adds a person to MeetBuddy.
 
-Format: `add n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​`
+Format: `addp n/NAME [ph/PHONE] [e/EMAIL] [a/ADDRESS] [g/GROUP]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of groups (including 0)
@@ -127,8 +127,8 @@ In MeetBuddy we assume that all the persons in the contact list have different n
 </div>
 
 Examples:
-* `add n/John Doe ph/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe g/CS2103 e/betsycrowe@example.com a/Newgate Prison ph/1234567 g/badminton`
+* `addp n/John Doe ph/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addp n/Betsy Crowe g/CS2103 e/betsycrowe@example.com a/Newgate Prison ph/1234567 g/badminton`
 
 ### Listing all persons : `listp`
 
@@ -210,9 +210,11 @@ Format: `sortp by/FIELD d/DIRECTION`
     * Sort by email : `EMAIL`
     * Sort by phone number : `PHONE`
     * Sort by address : `ADDRESS`
+    * These are all case-insensitive
 * `DIRECTION` is only restricted to the following cases:
     * Sort by ascending alphabetical order : `ASC`
     * Sort by descending alphabetical order : `DESC`
+    * These are all case-insensitive
 
 Examples:
 * `sortp by/NAME d/ASC` sorts the persons by name and present the result in ascending alphabetical order.
@@ -277,13 +279,17 @@ Examples:
 
 ### Locating meetings: `findm`
 
-Finds meetings whose information contain any of the given keywords.
+Finds meetings that satisfy all the given criteria.
 
-Format: `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`
+Format: `findm [n/NAME] [time/TIME]... [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]... [p/INDEX OF PERSON RELATED]...`
 
+* Though all fields are optional, we require the user to enter at least one.
 * The search is case-sensitive in name searching. e.g `CS2103` will not match `cs2103`
 * The order of the searching filed does not matter. e.g. `findm n/CS pr/3` will be the same as `findm pr/3 n/CS`.
-* Time field refers to a point of time, as long as this point of time is in between of a meeting's start time and ending time, the search will return this specific meeting.
+* Time field refers to a point of time, as long as this point of time is 
+  in between of a meeting's start time and ending time (inclusive), 
+  the search will return this specific meeting.
+* The user can enter many times. The meetings will have to satisfy all of them.
 * Time field must follow YYYY-MM-DD HH:MM format.
 * For other fields, the requirement is the same as addm (Adding a meeting). You can refer to the previous UG instruction.
 
@@ -304,7 +310,6 @@ Format: `showm INDEX`
 
 ### Sorting of meetings : `sortm`
 
-
 Sorts the meetings displayed according to a specified field.
 
 Format: `sortm by/FIELD d/DIRECTION`
@@ -316,9 +321,11 @@ Format: `sortm by/FIELD d/DIRECTION`
     * Sort by end time : `END`
     * Sort by priority : `PRIORITY`
     * Sort by description : `DESCRIPTION`
+    * These are all case-insensitive
 * `DIRECTION` is only restricted to the following cases:
     * Sort by ascending order : `ASC`
     * Sort by descending order : `DESC`
+    * These are all case-insensitive
 Examples:    
 * `sortm by/PRIORITY d/ASC` sorts the meetings by priority and present the result in ascending order.
 
@@ -402,13 +409,13 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `addp n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `addp n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
+**Add** | `addp n/NAME [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​` <br> e.g., `addp n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/TIME ed/TIME [desc/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
 **Delete** | `deletep INDEX`<br> e.g., `deletep 3` <br> <br> `deletem INDEX`<br> e.g., `deletem 3`
 **Edit** | `editp INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com` <br> <br> `editm INDEX [n/NAME] [st/START TIME] [ed/END TIME] [desc/DESCRIPTION] [pr/PRIORITY] [p/PERSON RELATED INDEX] [g/GROUP]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
-**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>  <br> `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`<br> e.g., `findm n/CS pr/3` <br>
+**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>  <br> `findm [n/NAME] [time/TIME]... [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]... [p/INDEX OF PERSON RELATED]...`<br> e.g., `findm n/CS pr/3` <br>
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
 **SetTimetable**| `setTimetable DATE`
-**AddPersonRelatedToAMeeting**|`addptm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`
-**DeletePersonRelatedFromAMeeting**|`deletepfm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`
+**AddPersonRelatedToAMeeting**|`addptm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
+**DeletePersonRelatedFromAMeeting**|`deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
