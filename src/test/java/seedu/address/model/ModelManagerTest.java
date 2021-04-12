@@ -179,7 +179,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, aliasMap)));
 
-        // different aliases -> returns false
+        // different alias map -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, differentAliasMap)));
 
         // resets modelManager to initial state for upcoming tests
