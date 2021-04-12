@@ -226,7 +226,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | edit an existing event                                    | update events on the go as I work through my events                  |
 | `* * *`  | user     | delete an existing event                                  | remove events that have already finished or are no longer needed     |
 | `* * *`  | user     | remove all existing tasks to make way for the next sprint | focus on tasks to work on in the new sprint                          |
-| `* *`    | user     | find an event by name                                     | locate specific events without scrolling through list                |
+| `* *`    | user     | find an event by name or description                      | locate specific events without scrolling through list                |
 | `* *`    | user     | mark events as completed quickly                          | work on the next task and see that I am making progress              |
 | `* *`    | user     | attach priorities to different events                     | manage time better by working on events with higher priorities first |
 
@@ -455,7 +455,7 @@ represent each stage of the work process. An example of a Kanban Board is our ap
 
 ---
 
-## **Appendix A: Instructions for manual testing**
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
