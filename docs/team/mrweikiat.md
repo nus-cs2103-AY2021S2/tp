@@ -19,13 +19,13 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature that was handled by another of my team mate.
 * Worked on the following files: `PriorityTag`, `State`, `Tag`, `AddCommandParser`, `EditCommandParser`, `CliSyntax`, `TaskTrackerParser`, `AddCommand`, `EditCommand`, `ArguementMutliMap`, `ParserUtil`, `Prefix`.
   
-### Enhancement 2
+*Enhancement 2*
 * Sorting the priority tag based on priority levels can help the user view the most prioritised tasks at the top of the task list. 
 * Justification : User can better organise and plan which tasks to do first using the priority levels.
 * Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks.
 * Worked on the PriorityTag files and Sorting files, but are not restricted to: `PriorityTagComparator`, `SortCommand`, `SortCommandParser`.
 
-### Enhancement 3
+*Enhancement 3*
 * Ensure testing can be properly function after every deliverables to identify any possible bugs.
 * Justification : Help to identify possible bugs in newly written features.
 * Highlights: Worked on the Storage component files, they are mainly but no restricted to: `JsonAdaptedTag`, `JsonAdaptedTask`, `JsonSerializableTaskTracker`, `JsonUserPrefsStorage`, `Storage`, `StoreManager`, `TaskTrackerStorage`, `UserPrefsStorage`.
