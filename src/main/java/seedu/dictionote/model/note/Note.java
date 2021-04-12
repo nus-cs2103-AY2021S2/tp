@@ -47,7 +47,9 @@ public class Note implements Comparable<Note> {
         this.isDone = false;
     }
 
-    //Todo
+    /**
+     * Internal constructor for Note class.
+     */
     private Note(String note, Set<Tag> tags, LocalDateTime createdTime, Boolean isDone) {
         requireAllNonNull(note, tags);
         this.note = note;
@@ -168,7 +170,9 @@ public class Note implements Comparable<Note> {
         return this.getNote().compareTo(otherNote.getNote());
     }
 
-    //Todo
+    /**
+     * Make a file name.
+     */
     public String createFileName() {
         return this.getNote() + ".txt";
     }

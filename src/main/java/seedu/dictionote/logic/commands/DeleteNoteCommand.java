@@ -29,7 +29,9 @@ public class DeleteNoteCommand extends Command {
 
     private final Index targetIndex;
 
-    //Todo
+    /**
+     * Constructor for DeleteNoteCommand.
+     */
     public DeleteNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

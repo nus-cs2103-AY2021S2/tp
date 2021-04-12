@@ -33,7 +33,9 @@ public class ContactsList implements ReadOnlyContactsList {
         contacts = new UniqueContactList();
     }
 
-    //Todo
+    /**
+     * Constructor for ContactsList
+     */
     public ContactsList() {}
 
     /**
@@ -160,7 +162,6 @@ public class ContactsList implements ReadOnlyContactsList {
     @Override
     public String toString() {
         return contacts.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
     }
 
     @Override

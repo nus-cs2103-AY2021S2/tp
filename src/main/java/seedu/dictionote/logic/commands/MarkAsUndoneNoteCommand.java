@@ -13,7 +13,9 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
-//Todo
+/**
+ * Marks a note as undone.
+ */
 public class MarkAsUndoneNoteCommand extends Command {
     public static final String COMMAND_WORD = "markasundonenote";
 
@@ -28,7 +30,9 @@ public class MarkAsUndoneNoteCommand extends Command {
 
     private final Index targetIndex;
 
-    //Todo
+    /**
+     * Constructor for MarkAsUndoneNoteCommand.
+     */
     public MarkAsUndoneNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

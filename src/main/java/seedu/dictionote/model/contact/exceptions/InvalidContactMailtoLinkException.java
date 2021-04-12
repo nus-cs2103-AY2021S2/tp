@@ -1,5 +1,4 @@
 package seedu.dictionote.model.contact.exceptions;
-
 /**
  * Signals that the provided {@code mailto} link for invoking the OS's mail client is invalid.
  */

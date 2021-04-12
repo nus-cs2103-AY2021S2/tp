@@ -82,7 +82,6 @@ public class NoteBook implements ReadOnlyNoteBook {
     @Override
     public String toString() {
         return notes.asUnmodifiableObservableList().size() + " notes";
-        // TODO: refine later
     }
 
     @Override

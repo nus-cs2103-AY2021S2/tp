@@ -13,6 +13,9 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
+/**
+ * Marks a note as done.
+ */
 public class MarkAsDoneNoteCommand extends Command {
     public static final String COMMAND_WORD = "markasdonenote";
 
