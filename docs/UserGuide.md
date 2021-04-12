@@ -57,6 +57,8 @@ In [Section 7: Command Summary](#7-command-and-prefix-summary), you can find a s
 ### **2.2 Reading the User Guide**
 In this section, you will learn about CakeCollate's User Interface (UI), the format of commands, and the types of user inputs that you can specify in commands.
 
+<div style="page-break-after: always;"></div>
+
 #### **2.2.1 Sections of the UI**
 ![User Interface](images/Annotated_Ui.PNG)
 
@@ -74,6 +76,8 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
 4. The **Order Items Box** is where all the different type of order items you have already entered into CakeCollate are displayed. You can think of it as a product catalogue. 
 
 4. The **Order Items Box** is where all the different types of order items you have already entered into CakeCollate are displayed in an order items table.
+
+<div style="page-break-after: always;"></div>
 
 #### **2.2.2 Formatting of the commands**
 
@@ -99,6 +103,8 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
   E.g. if you specify `help 123`, `123` will be ignored and the command will be interpreted as `help`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### **2.2.3 Types of user input**
 In this section, you will learn about the commonly used user inputs as well as their accompanying prefixes. 
