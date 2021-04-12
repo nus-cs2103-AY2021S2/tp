@@ -40,7 +40,7 @@ Given below are my contributions to the project.
     * Contributed significant portions in initial layout of the user guide. Navigating the User Guide, Edit Command and Command Summary.
     * Maintain the consistency of the user guide. For instance, ensure the command formats are accurate.
     * Ensure that sufficient examples and explanations are given so that the exact features of each command are clear to users. 
-    * Use icons such as :bulb: to notify readers about possible warnings and :heavy_exclamation_mark: to show the hints when using Pawbook.
+    * Use icons such as :bulb: to show the hints when using Pawbook and :heavy_exclamation_mark: to notify readers about possible warnings.
     
   * Developer Guide:
     * Contributed to writing the User Stories, Use Case and Non-Functional Requirements
