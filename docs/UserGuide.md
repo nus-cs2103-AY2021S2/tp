@@ -26,13 +26,14 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+    * `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  
+      c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
       : Adds a contact named `Bob Ang`
 
-    * **`find`**`n/Bob Ang cp/BMW+Coupe`
+    * `find n/Bob Ang cp/BMW+Coupe`
       : Finds a contact named `Bob Ang` whose preferred car is a BMW Coupe.
 
-    * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
+    * `delete John Doe` : Deletes 'John Doe' contact from contact list .
 
     * **`list`** : Lists all contacts.
 
@@ -83,9 +84,11 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 
 ## Command summary
 
+**Note** : (pipe_char) means `|` below.  
+
 Action | Format, Examples
 --------|------------------
-**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG]…​ [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED\|COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]`<br> e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG] [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]` <br> e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe(pipe_char)2030 01 01 c/Porsche+SUV(pipe_char)2030 01 01 cp/MercedesBenz+SUV`
 **find** | `find [e/bob /AND p/98761234] /OR b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
@@ -99,19 +102,19 @@ Action | Format, Examples
 Prefix | Format
 --------|------------------
 **n/** | `n/NAME`
-**p/** | `p/PHONE_NUMBER find [e/bob /AND p/98761234] /OR b/1999 10 11`
+**p/** | `p/PHONE_NUMBER`
 **e/** | `e/EMAIL`
 **a/** | `a/ADDRESS`
 **b/** | `b/DATE_OF_BIRTH` 
 **t/** | `t/TAG`
-**c/** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED\|COE_EXPIRY_DATE`
+**c/** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE`
 **cp/** | `cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED`
-**coe/** | `coe/COE_EXPIRY_DATE`
-**AND/** | `n/NAME AND/ a/ADDRESS`
-**OR/** | `n/NAME OR/ a/ADDRESS`
-**NOT/** | `NOT/ n/NAME`
+**ex/** | `ex/COE_EXPIRY_DATE`
+**/and** | `n/NAME AND/ a/ADDRESS`
+**/or** | `n/NAME OR/ a/ADDRESS`
+**/not** | `NOT/ n/NAME`
 **+** | `CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED` `CAR_BRAND_OWNED+CAR_TYPE_OWNED` <br> Joins car brand and car type
-**\|** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED\|COE_EXPIRY_DATE` <br> joins car with COE expiry date
+**(pipe_char)** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED(pipe_char)COE_EXPIRY_DATE` <br> joins car with COE expiry date
 
 ### Adding a customer: `add`
 
@@ -154,8 +157,9 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
 
 Further details about the search options are as follows:
 
-- For `coe/COE_EXPIRY_DATE`, using `coe/exp` will search for all customers with an expired COE on any of the cars they own.
-  it is a special case alias for the search `coe/0`, where `coe/NON_NEGATIVE_NUMBER` will search for any customers with
+- For `ex/COE_EXPIRY_DATE`, using `ex/exp` will search for all customers with an expired COE on any of the cars they 
+  own.
+  it is a special case alias for the search `ex/0`, where `ex/NON_NEGATIVE_NUMBER` will search for any customers with
   at least one car that will expire in `NON_NEGATIVE_NUMBER` years *or less*.
   
 - for `a/ADDRESS` partial addresses are also acceptable
@@ -198,7 +202,13 @@ Format: `list`
 
 ## Repeat last Command : `/up`
 * **`/up{X}`** : Loads in the previous command. `{X}` can be any string of characters, usually the previous command.
-* Examples: `/updelete John Doe`
+* Examples: 
+    - `/updelete John Doe`
+    - `/up/up`
+    - `/upfind n/K`
+    - `/upfghsdgdsfg`
+        - All of the above examples have the same effect.
+        - Importantly note that `/up` and `/up/up` are the same, we do not go back twice.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 There does not need to be a space after /up, so long as it is the first part of the 'command'
@@ -212,6 +222,7 @@ eg: The command Box is as follows
     - /up
 Result:  
     - `find e/Apple`
+
 
 
 
