@@ -11,7 +11,7 @@ import seedu.storemando.model.Model;
 public abstract class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all items in StoreMando or a specified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all items in the inventory or a specified "
         + "location.\n"
         + "Parameters: "
         + "[" + PREFIX_LOCATION + "LOCATION]\n"
