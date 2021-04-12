@@ -50,7 +50,7 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -247,7 +247,7 @@ Below is a sequence diagram and explanation of how the `AddEventCommand` is exec
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
     * Pros:
-        * If the implementation of `EventList` becomes immutable, this implementaion still works.
+        * If the implementation of `EventList` becomes immutable, this implementation still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
@@ -383,7 +383,7 @@ Our target users are students currently enrolled in a university who,
     * CoLAB is designed to be simple and clutter free. We only add features students are likely to use and use terms that are appropriate for students. This improves the user experience for students.
 
 * Faster compared to other applications
-    * Users who are comfortable with using a CLI can potentially do their project management tasks much faster than traditional applications as they can do everything from the keyboard.
+    * Users who are comfortable using a CLI can potentially do their project management tasks much faster than traditional applications as they can do everything from the keyboard.
 
 ### User Stories
 
@@ -854,7 +854,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Remove the starting `{` character of the json file and save the file.
 
-    1. Launch the app by runing `java -jar CoLAB.jar` in the console.<br>
+    1. Launch the app by running `java -jar CoLAB.jar` in the console.<br>
        Expected: The GUI should pop up with no entry. The console output should give warnings about incorrect data file format.
 
 --------------------------------------------------------------------------------------------------------------------
