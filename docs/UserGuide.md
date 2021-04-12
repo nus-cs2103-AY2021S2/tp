@@ -13,6 +13,8 @@ https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html#1-introduction
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **1. Introduction**
 Welcome to our User Guide and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
 CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
@@ -27,6 +29,8 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 Let us take you through how to use CakeCollate in the rest of our User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **2. Using the User Guide**
 In this section, you can learn more about the different terminologies and what to expect from each section of the User Guide.
@@ -213,6 +217,8 @@ Prefix: `t/`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **3. Getting started**
 
 1. Ensure you have Java `11` or above installed on your computer.
@@ -245,6 +251,8 @@ You can use the sample data pre-loaded in the application to play around and get
 6. Refer to the [Features](#4-commands-and-features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Commands and features**
 This section contains information about all existing commands and features that we have implemented.
@@ -547,6 +555,8 @@ If your changes to the data files make their format invalid, CakeCollate will di
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **5. Glossary**
 
 * **Command**: Commands are user inputs that are recognised by CakeCollate to modify the data that is stored or displayed.
@@ -569,6 +579,8 @@ If your changes to the data files make their format invalid, CakeCollate will di
 on the operating system of the computer that you are running CakeCollate on.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **7. Command and prefix summary**
 
