@@ -76,19 +76,34 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 ### 2.2. StoreMando's layout
 
-#### Main Panel
-
-The main panel is the display window of items stored in StoreMando. Depending on which command you key in, the main
-panel will display the corresponding items.
-
 #### Command Box
 
 The command box is the long box at the top where you will be entering commands to be executed by StoreMando.
 
 #### Result Display Box
 
-The result display box, located directly below the command box, is where StoreMando’s server replies to every command 
+The result display box, located directly below the command box, is where StoreMando’s server replies to every command
 that you key in. Any success, error or warning messages will be displayed in this box.
+
+#### Item List Panel
+
+The item list panel is the display window of items stored in StoreMando. Depending on which command you key in, the main
+panel will display the corresponding items.
+
+#### Expiring Items Table
+
+The expiring items table refers to the topmost table which consists of 2 columns, number of days and number of items. It 
+displays the number of items in StoreMando that are expiring within the stated number of days from the current date.
+
+#### Expired Items Table
+
+The expired items table refers to the lower table which consists of 2 columns, number of days and number of items. 
+It displays the number of items in StoreMando that have expired for the stated number of days from the current date.
+
+#### Location List Panel
+
+The location list panel is the display window of all the locations of items stored in StoreMando. 
+
 
 ### 2.3. Information on Items
 
