@@ -32,7 +32,7 @@ Given below are my contributions to the project.
   * Credits: Code used for `eadd` is referenced from the `add` command, and `EventBook` and `Event` are based off of `AddressBook` and `Person`. 
  
 - Added feature to request help for specific commands (`help COMMAND`):
-  [\#72](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/72)
+  [\#74](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/74)
   * What it does: Allows the user to request help for a specific command with an optional parameter `COMMAND`, to be displayed directly in the UI, instead of redirecting to the UG.
   * Justification: Our command syntax is dense, with many optional parameters. `help` gives a brief overview of all available commands with syntax, and the user can specify a command to get detailed help on, directly available in the UI. This speeds up workflow and minimizes cross referencing to resources outside the application.
   * Highlights: This enhancement relies heavily on `MESSAGE_USAGE_CONCISE` and `MESSAGE_USAGE` in each individual command.
@@ -54,7 +54,7 @@ Given below are my contributions to the project.
 - DeveloperGuide:
   * Added User Stories [\#36](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/36) and Use Case UC7 [\#60](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/60), Updated Product Scope [\#69](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/69)
   * Updated UML diagram for `Model` component after refactor [\#311](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/311)
-  * Added Appendix: Effort [\#332](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/332) and sections for [`help`](https://ay2021s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html#feature-help), [`undo` and `redo`](https://ay2021s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html#feature-undoredo), including all UML Diagrams.
+  * Added [Appendix: Effort](https://ay2021s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html#appendix-effort) [\#332](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/332) and sections for [`help`](https://ay2021s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html#feature-help), [`undo` and `redo`](https://ay2021s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html#feature-undoredo), including all UML Diagrams.
 
 ### Community
 
