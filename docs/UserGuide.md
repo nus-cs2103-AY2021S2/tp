@@ -65,11 +65,11 @@ Start improving your productivity by following these simple steps:
 
 1. Ensure you have Java `11` or above installed on your Computer.
 
-1. You can download the latest `focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.3).
+1. You can download the latest `CS2103T-W15-4.Focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.4).
 
 1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your installation of Focuris.
 
-1. Double-click the `focuris.jar` file to start Focuris.
+1. Double-click the `CS2103T-W15-4.Focuris.jar` file to start Focuris.
    You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application. <br/>
    The image below is the interface you will see when you first start up Focuris.
    <br> ![Ui](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
@@ -118,7 +118,6 @@ Continue reading for more ways to improve your productivity with Focuris!
 
 - Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will result in an error message.<br>
   e.g. if you type `help 123`, Focuris will show an error that says `Please remove extra irrelevant arguments!`.
-  
 - Note that commands are case sensitive, so you must follow the format given closely unless it is explicitly stated otherwise! <br>
   e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work.
 
@@ -156,7 +155,7 @@ and [2.3](#23-event-commands).
 | [**List**](#238-list-command)      | Clears your previous filters and **lists** all events                | `list`                                                                                                     |
 | [**Log**](#232-log-command)        | Creates your new event with status **Backlog**                       | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
 | [**Prog**](#233-prog-command)      | Creates your new event with status **In-Progress**                   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris                   | `switch`                             |
+| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris                   | `switch`                                                                                                   |
 | [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**                          | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 <div markdown="block" class="alert alert-info">
@@ -325,8 +324,8 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                                                        | Expected Command Result                                                                                                                                 |
-| --- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No  | Example Command                                                                        | Expected Command Result                                                                                                                                   |
+| --- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Event added with the Status of TODO: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 May 2021; Status: TODO                               |
 | 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Event added with the Status of TODO: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
 | 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Event added with the Status of TODO: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
@@ -355,8 +354,8 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                          | Expected Command Result                                                                                                           |
-| --- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| No  | Example Command                                          | Expected Command Result                                                                                                             |
+| --- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New Event added with the Status of BACKLOG: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
 | 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New Event added with the Status of BACKLOG: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
 | 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New Event added with the Status of BACKLOG: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
@@ -385,8 +384,8 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **More Sample Commands:**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                                                            |
-| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| No  | Example Command                                                               | Expected Command Result                                                                                                                                              |
+| --- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Event added with the Status of IN-PROGRESS: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
 | 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New Event added with the Status of IN-PROGRESS: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
 | 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Event added with the Status of IN-PROGRESS: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
@@ -460,10 +459,10 @@ delete IDENTIFIER
 
 **More Sample Commands:**
 
-| No  | Example Command | Expected Command Result                                                                                   |
-| --- | --------------- | --------------------------------------------------------------------------------------------------------- |
-| 1   | `delete 1`      | Deleted Event: CS2107 Finals; Priority: LOW; Description: Finals on 3rd May 2021; Status: BACKLOG;                 |
-| 2   | `delete 5`      | Deleted Event: CS2101 OP1; Priority: HIGH; Description: Due on 28 Mar 2021; Status: DONE; |
+| No  | Example Command | Expected Command Result                                                                            |
+| --- | --------------- | -------------------------------------------------------------------------------------------------- |
+| 1   | `delete 1`      | Deleted Event: CS2107 Finals; Priority: LOW; Description: Finals on 3rd May 2021; Status: BACKLOG; |
+| 2   | `delete 5`      | Deleted Event: CS2101 OP1; Priority: HIGH; Description: Due on 28 Mar 2021; Status: DONE;          |
 
 <div markdown="block" class="alert alert-info">
 
