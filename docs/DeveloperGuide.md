@@ -388,7 +388,7 @@ In order to enrol a dog into a program, the raw input needs to be parsed first. 
 
 Below is an example activity diagram for a valid enrol command from the user.
 
-![<img src="images/EnrolActivityDiagram.png" width="50%"/>](images/EnrolActivityDiagram.png){: .center-image}
+![EnrolActivityDiagram>](images/EnrolActivityDiagram.png){: .center-image width="50%"}
 
 Below is an example sequence diagram for a valid enrol command from the user.
 
@@ -421,7 +421,7 @@ To drop a dog from a program, the raw input is parsed and goes through several c
 
 Below is an example activity diagram for a valid drop command from the user.
 
-![<img src="images/DropActivityDiagram.png" width="50%"/>](images/DropActivityDiagram.png){: .center-image}
+![DropActivityDiagram](images/DropActivityDiagram.png){: .center-image width="50%"}
 
 Below is an example sequence diagram for a valid drop command from the user.
 
@@ -508,9 +508,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-**System**: Pawbook
+### Use Cases
+
+(For all use cases below, the **System** is the `Pawbook` and the **Actor** is the `user`, unless specified otherwise)
+
 **Use case: UC01 - Add a dog/owner profile or program**
-**Actor**: User
+
 **MSS**
 
 1.  User requests to add a dog/owner profile or program to the list.
@@ -527,7 +530,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-
 * 1b. Entity already exists in the program.
     * 1b1. Pawbook shows an error message.
     * 1b2. User supplies an entity with different details. <br>
@@ -537,9 +539,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
 
-**System**: Pawbook
 **Use case: UC02 - Delete a dog/owner profile or program**
-**Actor**: User
+
 **MSS**
 
 1.  User requests to delete a specific dog/owner profile or program in the list.
@@ -562,10 +563,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-
-**System**: Pawbook
+    
 **Use case: UC03 - Edit a dog/owner profile or program**
-**Actor**: User
+
 **MSS**
 
 1.  User requests to edit a specific dog/owner/program in the list.
@@ -589,9 +589,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**System**: Pawbook
 **Use case: UC04 - Show the specified entity list**
-**Actor**: User
+
 **MSS**
 
 1.  User requests to list dogs/owners/programs.
@@ -608,9 +607,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**System**: Pawbook
 **Use case UC05 - View an entity and all its related entities**
-**Actor**: User
+
 **MSS**
 
 1. User types in view command with the target ID.
@@ -633,10 +631,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-
-**System**: Pawbook
-**Use case UC06 - Find entity**
-**Actor**: User
+    
+**Use case UC06 - Find entity by keyword(s)**
 **MSS**
 
 1. User types in find command with one or more keywords.
@@ -652,10 +648,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-
-**System**: Pawbook
+    
 **Use case: UC07 - Enrol dog to a program**
-**Actor**: User
+
 **MSS**
 
 1.  User requests to enrol dog to program.
@@ -678,10 +673,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-
-**System**: Pawbook
+    
 **Use case: UC08 - Drop dog from program**
-**Actor**: User
+
 **MSS**
 
 1.  User requests to drop dog from program.
@@ -704,10 +698,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-
-**System**: Pawbook
+    
 **Use case: UC09 - View schedule**
-**Actor**: User
+
 **MSS**
 
 1.  User requests to view schedule with a specified date.
@@ -723,15 +716,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-
-**System**: Pawbook
+    
 **Use case: UC10 - View Help Window**
-**Actor**: User
+
 **MSS**
 
-1.  User enters `help` command into the command box and presses <kbd>enter</kbd>.
-2.  Pawbook opens a help window containing the link to the user guide
-and also a command summary for the user.
+1.  User enters `help` command into the command box and presses <kbd>enter</kbd>.   
+2.  Pawbook opens a help window containing the link to the user guide and also a command summary for the user.
 
     Use case ends.
 
@@ -744,9 +735,8 @@ and also a command summary for the user.
 
       Use case resumes at step 2.
 
-**System**: Pawbook
 **Use case: UC11 - Exit Pawbook**
-**Actor**: User
+
 **MSS**
 
 1.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.
