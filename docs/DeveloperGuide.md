@@ -103,7 +103,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the heymatez data.
+* stores the HEY MATEz data.
 * exposes an unmodifiable `ObservableList<Person>` and `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -116,7 +116,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the Hey Matez data in json format and read it back.
+* can save the HEY MATEz data in json format and read it back.
 
 ### Common classes
 
@@ -282,7 +282,7 @@ The above mentioned Parser class inherits the `#parse` method from the Parser in
   If the arguments are valid, it creates a ClearAssigneeCommand instance.
 
 Subsequently, the created `ClearAssigneeCommand` object contains an `#execute` method which is responsible for
-clearing all assignees of the task, with respect to its index. This is achieved by creating a new 
+clearing all assignees of the given task, with respect to its index. This is achieved by creating a new 
 `Task` object with the same fields and values as before but with the assignees field set to be a new empty HashSet. 
 
 Below is the usage scenario of how the clear all assignees of a task mechanism behaves.
@@ -375,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HEY MATEz` and the **Actor** is the `user`, unless specified otherwise)
 
-:pencil2: **Use case: Add a Member**
+:pencil2: **Use case: UC01 - Add a Member**
 
 **MSS**
 
@@ -393,7 +393,7 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: View Members**
+:pencil2: **Use case: UC02 - View Members**
 
 **MSS**
 
@@ -402,7 +402,7 @@ Use case ends.
     
 Use case ends.
 
-:pencil2: **Use case: Delete a Member**
+:pencil2: **Use case: UC03 - Delete a Member**
 
 **MSS**
 
@@ -419,7 +419,7 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: Edit Member's details**
+:pencil2: **Use case: UC04 -Edit Member's details**
 
 **MSS**
 
@@ -432,23 +432,23 @@ Use case ends.
 **Extensions**
 
 * 1a. The new name, phone number, email or role provided for the member is invalid
-    * 1a1. HEY MATEz shows an error message   
+    * 1a1. HEY MATEz shows an error message
 * 2a. Member name provided by user does not exist in the currently displayed list of members
     * 2a1. HEY MATEz shows an error message
 
 Use case ends.
 
-:pencil2: **Use case: Find Members with keywords**
+:pencil2: **Use case: UC05 - Find Members with keywords**
 
 **MSS**
 
 1.  User requests to find members using the keywords specified
-2.  HEY MATEz searches through each member's details 
+2.  HEY MATEz searches through each member's details (i.e. name, phone number, email, role)
 3.  HEY MATEz lists members whose details matches any of the keywords 
     
 Use case ends.
 
-:pencil2: **Use case: Add a Task**
+:pencil2: **Use case: UC06 - Add a Task**
 
 **MSS**
 
@@ -466,7 +466,7 @@ Use case ends.
       
 Use case ends.
 
-:pencil2: **Use case: View Tasks**
+:pencil2: **Use case: UC07 - View Tasks**
 
 **MSS**
 
@@ -475,11 +475,11 @@ Use case ends.
     
 Use case ends.
 
-:pencil2: **Use case: Delete a Task**
+:pencil2: **Use case: UC08 - Delete a Task**
 
 **MSS**
 
-Similar to deleting a member but user specifies task index instead of name
+Similar to deleting a member (UC03) but user specifies task index instead of name
 
 **Extensions**
 
@@ -488,11 +488,11 @@ Similar to deleting a member but user specifies task index instead of name
   
 Use case ends.
 
-:pencil2: **Use case: Edit a Task**
+:pencil2: **Use case: UC09 - Edit a Task**
 
 **MSS**
 
-Similar to editing a member except that the user specifies task index instead of name
+Similar to editing a member (UC04) except that the user specifies task index instead of name
 
 **Extensions**
 
@@ -503,12 +503,12 @@ Similar to editing a member except that the user specifies task index instead of
   
 Use case ends.
 
-:pencil2: **Use case: Find Tasks with keywords**
+:pencil2: **Use case: UC10 - Find Tasks with keywords**
 
 **MSS**
 
-Similar to finding members with keywords except that HEY MATEz 
-lists tasks with its title or description matching any of the keywords
+Similar to finding members with keywords (UC05) except that HEY MATEz 
+lists tasks with its title or description matching any of the keywords specified
 
 :pencil2: **Use case: Find tasks with deadline before a specified date**
 
@@ -526,7 +526,7 @@ Extensions
     
 Use case ends.
 
-:pencil2: **Use case: Find Tasks using Priority**
+:pencil2: **Use case: UC11 - Find Tasks using Priority**
 
 **MSS**
 
@@ -542,7 +542,7 @@ Use case ends.
       
 Use case ends.
 
-:pencil2: **Use case: Mark a Task as Completed**
+:pencil2: **Use case: UC12 - Mark a Task as Completed**
 
 **MSS**
 
@@ -560,7 +560,7 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: Mark a Task as Uncompleted**
+:pencil2: **Use case: UC13 - Mark a Task as Uncompleted**
 
 **MSS**
 
@@ -578,21 +578,23 @@ Use case ends.
   
 Use case ends.
 
-:pencil2: **Use case: Remove all Members Assigned to a Task**
+:pencil2: **Use case: UC14 - Clear all Members Assigned to a Task**
 
 **MSS**
 
-1.  User requests to remove all assignees from a task using the task's index
+1.  User requests to clear all assignees from a task using the task's index
 2.  HEY MATEz searches for the task index 
 3.  HEY MATEz removes all members assigned to the task
 
 **Extensions**
 * 2a. Task index does not exist in the currently displayed list of tasks
     * 2a1. HEY MATEz shows an error message
-
+* 2b. No members assigned to the task 
+    * 2b1. HEY MATEz shows a 'nothing to clear' message
+    
 Use case ends.
 
-:pencil2: **Use case: View Uncompleted Tasks**
+:pencil2: **Use case: UC15 - View Uncompleted Tasks**
 
 **MSS**
 
@@ -601,13 +603,13 @@ Use case ends.
     
 Use case ends.
 
-:pencil2: **Use case: View Unassigned Tasks**
+:pencil2: **Use case: UC16 - View Unassigned Tasks**
 
 **MSS**
 
-Similar to viewing a list of uncompleted tasks but a list of unassigned task is displayed instead.
+Similar to viewing a list of uncompleted tasks (UC15) but a list of unassigned task is displayed instead.
 
-:pencil2: **Use case: Find all Tasks assigned to a particular Member**
+:pencil2: **Use case: UC17 - Find all Tasks assigned to a particular Member**
 
 **MSS**
 
