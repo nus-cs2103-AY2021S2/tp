@@ -291,7 +291,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * clear and structured way to avoid ambiguity
 
 
-### **Appendix B: User Stories**
+## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`  | admin in charge of facilities              | find a person by searching the person's attribute(s)| quickly get details of that person.                                                                        ||
 | `*`      | admin in charge of facilities              | be able to access past data           | easily check the history of certain venues                      |
 
-### **Appendix D: Use Cases**
+## **Appendix D: Use Cases**
 
 (For all use cases below, the **System** is `BookCoin` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -479,21 +479,21 @@ This use case is similar to UC13 - Edit a venue, except that venues are replaced
     Use case ends.
 
 
-### **Appendix E: Non-Functional Requirements**
+## **Appendix E: Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 venues and bookings without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be able to perform queries quickly even with significant amounts of data present.
 
-### **Appendix F: Glossary**
+## **Appendix F: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Booking**: A person's request to occupy a venue for a specified duration
 
 --------------------------------------------------------------------------------------------------------------------
 
-### **Appendix G: Instructions for Manual Testing**
+## **Appendix G: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -508,7 +508,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Open the jar file by running `java -jar bookingapp.jar`. Expected: Shows the GUI with a set of sample contacts. Adjust the window size accordingly to your preference.
 
 1. Saving window preferences
 
@@ -521,17 +521,20 @@ testers are expected to do more *exploratory* testing.
 1. A multi-step command to add a person to the booking system
     1. Prerequisites: list all persons using the `list_person` command. A person with the same email address and/or phone number cannot already exist. If it is present as a record in the system, delete it.
 
-    2. Test case: `add_person n/John Doe` followed by `johnd@example.com `<br>
-       Expected: There should be an error stating that the booking command is invalid. This is due to a missing phone number.
+    1. Test case: `add_person n/John Doe` <br>
+       Expected: The command should be successfully parsed and a prompt should appear asking for email address input.
+       
+    1. Test case: `add_person n/112`<br>
+       Expected: There should be an error stating that the command is invalid as names must only contain alphabetic characters and spaces.
 
-    3. Test case: `add_person n/John Doe` followed by `johnd@`<br>
-       Expected: There should be an error stating that the booking command is invalid. This is due to the wrong format of the email, and a missing phone number.
-
-    4. Test case: `add_person n/John Doe` followed by `johnd@example.com` followed by `98765432` <br>
-       Expected: A new person by the name John Doe, with email address johnd@example.com and phone number 98765432 is added into the booking system.
-
-    5. Test case: `add_person n/John Doe` followed by `johnd@example.com` followed by `98765432` followed by `student`<br>
-      Expected: A new person by the name John Doe, with email address johnd@example.com, phone number 98765432 and tag student is added into the booking system.
+    1. Test case: `add_person John Doe` <br>
+       Expected: There should be an error stating that the command format is invalid. This is because the name prefix `n/` must precede the name.
+       
+    1. If prompt is for email address, test case: `johndoe@gmail.com`<br>
+       Expected: The command should be succesfully parsed and a prompt should appear asking for email address input.
+    
+    1. If initial prompt has been successfully parsed, test case: `exit_prompt`
+       Expected: The multi-step command should terminate and exit, and users can now input other commands.
 
 
 ### G.3 Adding a venue
@@ -602,46 +605,42 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete venue commands to try: `delete_venue`, `delete_venue x` <br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### G.7 Deleting a booking
 
 1. Deleting a booking while all bookings are being shown
 
-    1. Prerequisites: List all bookings using the `list_booking` command.
-       Multiple bookings in the list. Booking with booking id 8653792312 is in the list.
-       Booking with booking id 9348125689 is not in the list.
+    1. Prerequisites: At least one booking record in the system (use list_booking to verify). Booking with booking index 1 is in the list.
+       Booking with booking index 22 is not in the list.
 
-    1. Test case: `delete_booking bid/8653792312`<br>
-       Expected: Booking with booking id 8653792312 is deleted from the list.
-       Details of the deleted booking shown in the status message.
+    1. Test case: `delete_booking 1`<br>
+       Expected: Booking with booking id 1 is deleted from the list.
+       Details of successful booking deletion shown in the status message.
 
-    1. Test case: `delete_booking bid/9348125689`<br>
+    1. Test case: `delete_booking 22`<br>
        Expected: No booking is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete booking commands to try: `delete_booking`, `delete_booking x` <br>
+    1. Other incorrect delete booking commands to try: `delete_booking`, `delete_booking x`, `delete_booking 1032309` (where the input digit exceeds the current index of the booking system) <br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
 ### G.8 Editing a person
 
-1. Editing a person while all persons are being shown
+1. Editing a person's information
 
-    1. Prerequisites: List all persons using the `list_person` command.
-       At least one person in the list. Person with email `johndoe@gmail.com` is in the list.
-       Person with email `nonexistent@gmail.com` is not in the list.
+    1. Prerequisites: At least one person's record is in the booking system (use list_person to verify). Add a person with email `johndoe@gmail.com` to the system using `add_person` if the entry does not already exist. Person with email `nonexistent@gmail.com` is not in the list, or delete the entry if it exists using the command `delete_person e/nonexistent@gmail.com`.
 
     1. Test case: `edit_person eo/johndoe@gmail.com p/90398472`<br>
        Expected: Person with email `johndoe@gmail.com` has his/her phone number edited to 90398472.
        Details of the edited person in the status message.
 
-    1. Test case: `edit_person eo/nonexistent@gmail.com`<br>
+    1. Test case: `edit_person eo/nonexistent@gmail.com p/90398471`<br>
        Expected: No person is edited.
-       Error details shown in the status message.
+       Error details shown in the status message that the email address does not exist in the system.
 
-    1. Other incorrect delete commands to try: `delete_person`, `delete_person x` <br>
-       Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `edit_person johndoe@gmail.com` (missing prefix), `edit person eo/johndoe@gmail.com` (no fields to be edited) <br>
+       Expected: Error details to be shown in the status box corresponding to the respective errors.
        
 
 
