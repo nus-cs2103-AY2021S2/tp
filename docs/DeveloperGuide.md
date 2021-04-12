@@ -68,7 +68,7 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API** :
+**API**:
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ContactListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
@@ -84,7 +84,7 @@ The `UI` component,
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
-**API** :
+**API**:
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `ColabParser` class to parse the user command.
@@ -104,7 +104,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API**: [`Model.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -128,7 +128,7 @@ A `Project` stores an `EventList`, `DeadlineList`, `TodoList` and a `GroupmateLi
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API**: [`Storage.java`](https://github.com/AY2021S2-CS2103T-T11-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.

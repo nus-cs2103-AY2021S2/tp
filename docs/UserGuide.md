@@ -280,17 +280,17 @@ To achieve the best possible experience, avoid adding excessively long text to C
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`contacts`** and pressing Enter will list all contacts.<br>
    Some example commands you can try:
 
-    * **`project 1`** : Displays the first project.
+    * **`project 1`**: Displays the first project.
 
-    * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
+    * **`addP`**`n/My Project`: Adds a new project named `My Project` to CoLAB.
 
-    * **`todos`** : Displays the todos of the currently displayed project.
+    * **`todos`**: Displays the todos of the currently displayed project.
 
-    * **`addT`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
+    * **`addT`**`1 d/My Task`: Adds a todo with the description `My Task` to the first project.
 
-    * **`deleteP`**`3` : Deletes the third project in the list.
+    * **`deleteP`**`3`: Deletes the third project in the list.
 
-    * **`exit`** : Exits the app.
+    * **`exit`**: Exits the app.
 
 6. Refer to the [Features](#4-features) below for details of each command.
 
@@ -720,7 +720,7 @@ Examples:
 * `addG 1 n/John Doe` adds a groupmate with name `John Doe` to the first project.
 * `addG 2 n/Betsy Crowe r/developer` adds a groupmate with name `Betsy Crowe` and role `developer` to the second project.
 
-##### Updating a Groupmate : `updateG`
+##### Updating a Groupmate: `updateG`
 
 Updates an existing groupmate of a project in CoLAB.
 
@@ -775,7 +775,7 @@ Contact are used in CoLAB to store contact information about a person, to help y
 
 Each contact contains a name, phone_number, email, address and zero or more tags.
 
-##### Viewing All Contacts : `contacts`
+##### Viewing All Contacts: `contacts`
 
 Displays a panel with a list of all contacts in CoLAB.
 
@@ -809,7 +809,7 @@ Example:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` adds a contact with the name `John Doe`, phone number `98765432`, email `johnd@example.com` and address `John street, block 123, #01-01`.
 
-##### Updating a Contact : `updateC`
+##### Updating a Contact: `updateC`
 
 Updates an existing contact in CoLAB.
 
@@ -868,7 +868,7 @@ Example:
 
 ![result for 'findC alex david'](images/findAlexDavidResult.png)
 
-##### Deleting a Contact : `deleteC`
+##### Deleting a Contact: `deleteC`
 
 Deletes a contact from CoLAB.
 
@@ -895,7 +895,7 @@ The today view contains a summary of the events and deadlines due today.
 The today page displays the events and deadlines on the day that you open the today page. To prevent events and deadlines from changing abruptly without notice, the user interface does not update the today page automatically when the date changes.
 </div>
 
-##### Viewing Today Panel : `today`
+##### Viewing Today Panel: `today`
 
 Displays a panel containing information on Events & Deadlines that are relevant today.
 
@@ -903,13 +903,13 @@ Format: `today`
 
 ### **4.4 Others**
 
-##### Viewing Help : `help`
+##### Viewing Help: `help`
 
 Displays a panel containing a summary of commands as well as a link to this user guide. The link can be copied to the system clipboard by clicking on the `Copy` button.
 
 Format: `help`
 
-##### Undoing Previous Command : `undo`
+##### Undoing Previous Command: `undo`
 
 Restores CoLAB to the state before the previous undoable command was executed.
 
@@ -925,7 +925,7 @@ Example:
 * `deleteP 1` Deletes the first project in the list.
 * `undo` Reverses the `deleteP 1` command.
 
-##### Redoing Previous Command : `redo`
+##### Redoing Previous Command: `redo`
 
 Reverses the most recent undo command.
 
@@ -933,13 +933,13 @@ Format: `redo`
 
 * Requires an undo command to have been performed prior to a redo command.
 
-##### Exiting the Program : `exit`
+##### Exiting the Program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-##### Clearing All Entries : `clear`
+##### Clearing All Entries: `clear`
 
 Clears all entries from CoLAB. Both contacts and projects will be cleared.
 
