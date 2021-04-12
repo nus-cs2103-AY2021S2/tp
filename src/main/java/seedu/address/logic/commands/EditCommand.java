@@ -45,9 +45,10 @@ public class EditCommand extends Command implements BatchOperation {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] where FLAG can be modify, insert or remove "
-            + "for editing policy ids. If no flag is specified, the default behaviour is replace."
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] "
+            + "[" + PREFIX_TAG + "TAG]... \n"
+            + "FLAG can be modify, insert or remove or editing policy ids. If no flag is specified, the default "
+            + "behaviour is replace.\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -58,7 +59,6 @@ public class EditCommand extends Command implements BatchOperation {
     public static final String MESSAGE_MODIFY_POLICY_CONSTRAINT = "When -modify flag is indicated for editing policy,"
             + " the format should be i/[TO_MODIFY];[TO_REPLACE]. ";
     public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found.";
-    public static final String MESSAGE_POLICY_EMPTY = "Policy field cannot be empty.";
     public static final String MESSAGE_EXCESS_BATCH_ARGUMENTS = "Batch edit can only edit tags or insurance policies.\n"
             + "Please check that you have not entered other fields.";
 

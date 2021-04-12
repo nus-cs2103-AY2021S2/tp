@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,7 +36,7 @@ public class FindCommand extends Command {
 
     private final Predicate<Person> predicate;
 
-    private final List<Attribute> attributes;
+    private final Set<Attribute> attributes;
 
     /**
      * Create a FindCommand that lists persons that satisfy given {@code Predicate}
@@ -44,7 +44,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
-        this.attributes = new ArrayList<>();
+        this.attributes = new HashSet<>();
     }
 
     /**
@@ -52,7 +52,7 @@ public class FindCommand extends Command {
      * @param predicate by which to filter list
      * @param attributes that find will show
      */
-    public FindCommand(Predicate<Person> predicate, List<Attribute> attributes) {
+    public FindCommand(Predicate<Person> predicate, Set<Attribute> attributes) {
         this.predicate = predicate;
         this.attributes = attributes;
     }

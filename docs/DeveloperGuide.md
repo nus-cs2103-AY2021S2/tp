@@ -317,15 +317,15 @@ of the existing data file `clientbook.json`. Hence, there is minimal dependency 
 
 #### Motivation
 
-In the previous implementation of the `EditCommand`, each time a user edits a clients policy information, the user's only option is to
+In the previous implementation of the `EditCommand`, each time a user edits a client's policy information, the user's only option is to
 replace the client's entire existing policy list with the specified policies. This enhancement of the `EditCommand` gives the user
 the option to append, replace, remove or modify specific policies within a client's policy list.
 
 #### Implementation
 
 A new enumeration `EditPolicyMode` was created within the `EditCommand` class. It provides the developer with an enumeration of
-modes to notify other methods of the different ways of editing a client's policy list, namely `MODIFY`, `APPEND`, `REPLACE` and `REMOVE`.
-This editing mode parsed from the user input, and then passed as an argument to the constructor of `EditCommand` to specify how 
+modes to notify the program of the different ways of editing a client's policy list, namely `MODIFY`, `APPEND`, `REPLACE` and `REMOVE`.
+This editing mode is parsed from the user input, and then passed as an argument to the constructor of `EditCommand` to specify how 
 the client's policy list should be edited.
 
 Within the `EditCommand#execute` method, a new `Person` object is created through the `EditCommand#createEditedPerson` method.

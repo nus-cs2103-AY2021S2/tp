@@ -250,7 +250,9 @@ exists and editing a client to have the same information as an existing client i
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> <ul><li>Must only contain <a href="#glossary">alphanumeric</a> characters and spaces</li></ul> </td>
+    <td> 
+        <ul><li>Must only contain <a href="#glossary">alphanumeric</a> characters and spaces</li></ul>
+    </td>
   </tr>
   <tr>
     <td> Phone number </td>
@@ -397,9 +399,10 @@ A client can have any number of tags and insurance policies (including 0).
 
 ### <span style="color:#b573c9"><code>edit</code>: Edit client contact</span>
 
-**Purpose**: Edits an existing client contact in the ClientBook.
+**Purpose**: Edits an existing client contact in the ClientBook. The new information passed to this command will replace 
+the existing client information.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL] [-MODE]]…​ [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
@@ -407,7 +410,15 @@ A client can have any number of tags and insurance policies (including 0).
 * At least one of the optional fields must be provided.
 * Meetings of a client cannot be modified with this command.
 * If a field (e.g. `n/NAME`) is expected only once in the command, but you specified it multiple times, only the last occurrence of the field will be taken.
-    * E.g. if you specify `edit n/Alex n/Bob...`, only `n/Bob` will be taken.
+    * If you specify `edit n/Alex n/Bob...`, only `n/Bob` will be taken.
+* For fields that are allowed to be empty, specifying the identifier and leaving it empty will clear the existing information.
+    * `edit 1 i/` will clear the existing policies.
+* While editing the insurance policies of a client, user can choose to modify, remove or insert policy ids to 
+a client, by typing `-MODE` to specify an editing mode after a policy number. 
+    * `-MODE` can be -insert, -modify or -remove.
+    * If user chooses to modify an existing policy, the user can specify the old and new policies, separated by `;`. An example is shown below.
+    * For each edit command, only 1 editing mode can be specified.
+    * If no mode is specified, the edit command will replace all existing policies with the policies specified in the command.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -421,9 +432,13 @@ A client can have any number of tags and insurance policies (including 0).
       <br><br>
 *  Edit the name of the 2nd client to be `Betsy Crower`.
     * `edit 2 n/Betsy Crower`
+    <br><br> 
+*  Modify the policy id of the 1st client from `Pol#12345` to `Pol#54321`.
+    * `edit 1 i/Pol#12345;Pol#54321 -modify`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
+
 
 ### <span style="color:#b573c9"><code>delete</code>: Delete client contact</span>
 
