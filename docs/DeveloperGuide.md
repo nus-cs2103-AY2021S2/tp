@@ -144,15 +144,15 @@ These operations make use of the `Model` interface's `Model#updateFilteredReside
 
 Given below is an example usage scenario and how the reminder filtering mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state.
+Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the sample residence tracker data.
 
-Step 2. The user executes `addb 2 n/New Tenant p/098 ...` command to add a booking that starts within the next 7 days to the 2nd residence in the residence tracker. The `addb` command calls `Residence#addBooking(Booking booking)`, which replaces the 2nd residence with the new `Residence` after the command execution.
+Step 2. The user executes `addb 2 n/New Tenant p/098 ...` command to add a booking that starts within the next 7 days to the 2nd residence in the residence tracker. The `addb` command calls `Residence#addBooking(Booking booking)`, which adds a new booking to the 2nd residence.
 
 Step 3. The user executes `remind` to list all residences with upcoming bookings. The `remind` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing a filtered list of `Residence`s to be displayed which includes the updated residence from the previous step.
 
 Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `delete`, `deleteb` or `list` will return to the previous display of the full residence list.
 
-The following sequence diagram shows how the operation works, notice how this differs from the delete operation sequence diagram above as there is no `CommandParser` class involved:
+The following sequence diagram shows how the operation works. The `predicate` parameter here is the `Model`'s public static variable `PREDICATE_UPCOMING_BOOKED_RESIDENCES`. Notice how this sequence diagram differs from the delete operation sequence diagram above as there is no `CommandParser` class involved:
 
 ![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
 
@@ -163,7 +163,7 @@ The `Model` in the diagram above refers to the Model API interface that the `Log
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: What should the `remind` feature do
 
 * **Alternative 1 (current choice):** Checks if residences have bookings starting in the next 7 days.
     * Pros: Easy to implement.
