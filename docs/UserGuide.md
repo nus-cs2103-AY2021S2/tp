@@ -1,4 +1,4 @@
-	---
+---
 layout: page
 title: User Guide
 ---
@@ -165,6 +165,11 @@ and [2.3](#23-event-commands).
 - You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
 - Events of the same name are treated as case-insensitive. <br>
   e.g. `CS2030` is the same name as `cs2030`.
+- Note that commands are case sensitive, so you must follow the format given closely! <br>
+  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work. 
+- Also note that for the commands where square brackets `[ ]` appear, it indicates that those a optional fields, which means that you do not 
+necessarily have to type them in if you do not want to, as shown in the table above under <b>Format, Examples</b>.
+
 
 </div>
 
@@ -290,7 +295,8 @@ For the majority of event commands, you can simply execute them via these simple
 
 1. Type the command you desire in the command box with the specified format detailed below.
 2. Hit `enter` on your keyboard!
-3. The results and outcome of your command should be visible on the application just above the Command Box.
+3. The result of your command should be visible on the Result Box, while the outcome of your command should be 
+visible on the `KanBan` or `List` view (depending on your view) above the Result Box.
 
 Start discovering and using the Commands now by going to the Command Summary!
 
@@ -500,7 +506,7 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 ### 2.3.7 `find` Command
 
-Finds events whose names contain any of the given keywords.
+Finds events whose names and description contain any of the given keywords.
 
 **What you should type into the Command Box:**
 
