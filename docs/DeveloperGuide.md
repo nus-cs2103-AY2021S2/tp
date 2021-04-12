@@ -418,13 +418,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-<<<<<<< HEAD
-1. User requests to add a clothing item with specified attributes
-2. NuFash adds the specified clothing item to list of existing clothing items
-=======
 1. User requests to add a garment with specified attributes
 2. NuFash adds the specified garment to list of existing garments
->>>>>>> d9bd4ef88ff46263b4002adc635dfb484eab3449
 
    Use case ends.
 
@@ -443,17 +438,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-<<<<<<< HEAD
-1. User requests to list all clothing items
-2. NuFash shows a list of clothing items
-3. User requests to delete a specific clothing item in the list
-4. NuFash deletes the specified clothing item 
-=======
 1. User requests to list all garments
 2. NuFash shows a list of garments
 3. User requests to delete a specific garment in the list
 4. NuFash deletes the specified garment 
->>>>>>> d9bd4ef88ff46263b4002adc635dfb484eab3449
    
     Use case ends.
 
