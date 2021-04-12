@@ -12,7 +12,7 @@ import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
 import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 

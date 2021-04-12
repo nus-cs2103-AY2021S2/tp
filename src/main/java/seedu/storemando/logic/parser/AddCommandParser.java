@@ -21,7 +21,7 @@ import seedu.storemando.model.item.Quantity;
 import seedu.storemando.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
 

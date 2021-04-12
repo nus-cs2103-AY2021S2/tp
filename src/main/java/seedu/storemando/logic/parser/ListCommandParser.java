@@ -12,7 +12,7 @@ import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
 import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new ListCommand object
+ * Parses input arguments and creates a new ListCommand object.
  */
 public class ListCommandParser implements Parser<ListCommand> {
 

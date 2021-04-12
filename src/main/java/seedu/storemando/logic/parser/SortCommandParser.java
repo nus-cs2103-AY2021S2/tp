@@ -8,6 +8,9 @@ import seedu.storemando.logic.commands.SortDescendingQuantityCommand;
 import seedu.storemando.logic.commands.SortExpiryDateCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new SortCommand object.
+ */
 public class SortCommandParser implements Parser<SortCommand> {
 
     public static final String QUANTITY_KEYWORD = "quantity";

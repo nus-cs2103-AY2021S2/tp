@@ -7,7 +7,7 @@ import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 
 /**
- * Parses input arguments and creates a new ReminderCommand object
+ * Parses input arguments and creates a new ReminderCommand object.
  */
 public class ReminderCommandParser implements Parser<ReminderCommand> {
 
@@ -55,10 +55,10 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     /**
      * Converts the given number and the time unit to the number of days.
      *
-     * @param parsedNum The number that is use to covert to days
-     * @param timeUnit  The time unit in terms of days and weeks
-     * @return The number of days
-     * @throws ParseException if the user input does not conform the expected keyword
+     * @param parsedNum The number that is use to covert to days.
+     * @param timeUnit  The time unit in terms of days and weeks.
+     * @return the number of days.
+     * @throws ParseException if the user input does not conform the expected keyword.
      */
     private long timeConversion(Long parsedNum, String timeUnit) throws ParseException {
         if (isSingular(parsedNum)) {
@@ -71,8 +71,8 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     /**
      * Checks if the given number is singular.
      *
-     * @param number The number that is given
-     * @return A boolean that says if the number is singular
+     * @param number The number that is given.
+     * @return A boolean that says if the number is singular.
      */
     private boolean isSingular(Long number) {
         return number >= -1 && number <= 1;
@@ -81,10 +81,10 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     /**
      * Converts number into proper number of days based on the keyword given.
      *
-     * @param parsedNum The number that is use to covert to days
-     * @param timeUnit  The time unit in terms of days and weeks
-     * @return The number of days
-     * @throws ParseException if the user input does not conform the expected keyword
+     * @param parsedNum The number that is use to covert to days.
+     * @param timeUnit  The time unit in terms of days and weeks.
+     * @return the number of days.
+     * @throws ParseException if the user input does not conform the expected keyword.
      */
     private long singularTimeUnitConversion(Long parsedNum, String timeUnit) throws ParseException {
         if (timeUnit.equalsIgnoreCase(DAY_KEYWORD) || timeUnit.equalsIgnoreCase(DAYS_KEYWORD)) {
@@ -99,10 +99,10 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     /**
      * Converts number into proper number of days based on the keyword given.
      *
-     * @param parsedNum The number that is use to covert to days
-     * @param timeUnit  The time unit in terms of days and weeks
-     * @return The number of days
-     * @throws ParseException if the user input does not conform the expected keyword
+     * @param parsedNum The number that is use to covert to days.
+     * @param timeUnit  The time unit in terms of days and weeks.
+     * @return the number of days.
+     * @throws ParseException if the user input does not conform the expected keyword.
      */
     private long pluralTimeUnitConversion(Long parsedNum, String timeUnit) throws ParseException {
         if (timeUnit.equalsIgnoreCase(DAYS_KEYWORD)) {
@@ -115,9 +115,10 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     }
 
     /**
-     * Checks if the input provided is an integer
-     * @param input The potential number provided by the user
-     * @return true if the input is an integer
+     * Checks if the input provided is an integer.
+     *
+     * @param input The string provided by the user.
+     * @return true if the input is an integer, false otherwise.
      */
     private boolean isNumber(String input) {
         return input.matches(NUMBER_VALIDATION_REGEX);

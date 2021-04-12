@@ -10,7 +10,7 @@ import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.LocationContainsPredicate;
 
 /**
- * Parses input arguments and creates a new ClearCommand object
+ * Parses input arguments and creates a new ClearCommand object.
  */
 public class ClearCommandParser implements Parser<ClearCommand> {
 
