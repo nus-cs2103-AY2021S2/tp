@@ -21,6 +21,8 @@ package Command {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+enum UIAction <<Enumeration>>
+enum UIActionOption <<Enumeration>>
 }
 
 Interface Logic <<Interface>>
@@ -67,4 +69,7 @@ Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+
+CommandResult .up.> UIAction
+CommandResult .up.> UIActionOption
 @enduml
