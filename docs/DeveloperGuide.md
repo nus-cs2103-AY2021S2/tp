@@ -72,6 +72,8 @@ Legend | Description
 <span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
 <span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
 
+<div style="page-break-after: always;"></div>
+
 ## Design
 
 ### Architecture
