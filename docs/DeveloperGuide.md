@@ -190,6 +190,7 @@ The following sequence diagram shows how the status operation works:
 ![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a `status` command:
+
 ![StatusActivityDiagram](images/StatusActivityDiagram.png)
 
 ### Edit Booking feature
@@ -216,11 +217,13 @@ Step 4. `Editbookingcommand#execute` checks if the residence and booking exists 
 Step 5. The method then calls `BookingList#setBooking` to set the edited booking before calling `Model#setResidence` to set the edited residence. Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
 
 Below shows the sequence diagram of `EditBookingCommand`
+
 ![EditBookingCommandSequenceDiagram](images/EditBookingSequenceDiagram.png)
 
 ![EditBookingCommandSequenceDiagram2](images/EditBookingSequenceRefDiagram.png)
 
 And the activity diagram:
+
 ![EditBookingCommandActivityDiagram](images/EditBookingActivityDiagram.png)
 
 ### Design Consideration
