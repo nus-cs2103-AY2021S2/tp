@@ -21,14 +21,14 @@ Given below are my contributions to the project.
   * Managed deadlines and deliverables for the group, including updating the issue tracker and milestones.
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for models to increase coverage from 67.19% to 72.17% (Pull requests [\#133](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/133).
+  * Wrote additional tests for models to increase coverage from 67.19% to 72.17% ([\#133](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/133)).
   * Wrote tests for various commands, command parsers, etc.
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the groupmate features ([\#247](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/247)).
     * Added documentation for the mark commands ([\#257](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/257)).
-    * Did cosmetic tweaks to existing documentation of contact features `clear`, `exit`: [\#247](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/247).
+    * Did cosmetic tweaks to existing documentation of contact features `clear`, `exit` ([\#247](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/247)).
   * Developer Guide:
     * Added implementation details of various update commands.
     * Added Non-Functional Requirements ([\#26](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/26)).
