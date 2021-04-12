@@ -5,7 +5,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## **Setting up, getting started**
 
@@ -132,6 +132,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **Implementation**
 
@@ -305,6 +307,8 @@ With this, the Delete Todo command finishes executing and CoLAB's UI displays th
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## **Documentation, Logging, Testing, Configuration, DevOps**
 
 * [Documentation guide](Documentation.md)
@@ -314,6 +318,8 @@ With this, the Delete Todo command finishes executing and CoLAB's UI displays th
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **Appendix A: Requirements**
 
@@ -744,6 +750,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## **Appendix B: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
@@ -807,6 +815,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Launch the app by runing `java -jar CoLAB.jar` in the console.<br>
        Expected: The GUI should pop up with no entry. The console output should give warnings about incorrect data file format.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **Appendix C: Effort**
 
