@@ -154,8 +154,6 @@ Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `de
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
-
 * **Alternative 1 (current choice):** Checks if residences have bookings starting in the next 7 days.
     * Pros: Easy to implement.
     * Cons: User is forced to actively use the command to be reminded.
@@ -179,11 +177,28 @@ and `Model#setResidence()` to update the residence in the residence list.
 
 Given below is an example usage scenario and how the `status` filtering mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state.
+Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state, which has three sample residences.
 
 Step 2. The user executes two or more input`add n/NAME a/ADDRESS c/y ...` command to add multiple residence with the same clean status "CLEAN". The `add` command calls `addResidence()` which checks and adds new residence to the end of unique residence list where "UNCLEAN" residences is in front of "CLEAN" residences. 
 
-Step 3. The user executes `status unclean 4 5` to update the forth and fifth residences' clean status to "UNCLEAN". The `status` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+Step 3. The user plans to set the forth and fifth  residences clean status from "CLEAN" to "UNCLEAN" since bookings finished. So the user executes the command `status unclean 4 5`.
+
+Step 4. The command is parsed by `StatusCommandParser` and returns a `StatusCommand` to be executed.
+
+Step 5. `StatusCommand#execute` checks if the residence exists and if status expression is correct.
+
+Step 6. The method then calls `StatusCommand#createUpdatedResidence()` to create status-updated residence one by one, and calls `Model#setResidence` to set the these residences.
+Finally, it calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+
+#### Design consideration:How to update clean status of residences
+
+* **Alternative 1 (current choice):** Create status-updated residences one by one and set them to residence list through function `Model#setResidence` 
+    * Pros: Easy to implement,and not change the existing structure.
+    * Cons: Adopt a loop, spending extra storage to create new residences.
+
+* **Alternative 2:** use index to find residences in residence list and set their clean status directly 
+    * Pros: Can change status directly, don't need to spend extra storage to create residence.
+    * Cons: it needs new function to find residences by the index and change their clean status, which may damage security of residence list. 
 
 The following sequence diagram shows how the status operation works:
 
