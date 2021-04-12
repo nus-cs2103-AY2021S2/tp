@@ -30,7 +30,6 @@ public class JsonAdaptedUser {
 
     // Data fields
     private final List<Food> foodList;
-    //private final FoodIntakeList foodIntakeList;
     private DietPlan activeDietPlan;
 
     /**
@@ -43,7 +42,6 @@ public class JsonAdaptedUser {
                                  @JsonProperty("gender") String gender,
                                  @JsonProperty("idealWeight") IdealWeight idealWeight,
                                  @JsonProperty("lastUpdated") String lastUpdated,
-                                 //@JsonProperty("foodIntakeList") List<FoodIntake> foodIntakeList,
                                  @JsonProperty("activeDietPlan") DietPlan activeDietPlan) {
         this.bmi = bmi;
         this.foodList = foodList;
@@ -51,8 +49,6 @@ public class JsonAdaptedUser {
         this.gender = gender;
         this.idealWeight = idealWeight;
         this.lastUpdated = lastUpdated;
-        //this.foodIntakeList = null;
-        //this.foodIntakeList = new FoodIntakeList(FXCollections.observableArrayList(foodIntakeList));
         this.activeDietPlan = activeDietPlan;
     }
 
@@ -66,7 +62,6 @@ public class JsonAdaptedUser {
         gender = source.getGender().gender;
         idealWeight = source.getIdealWeight();
         lastUpdated = source.getLastUpdated();
-        //foodIntakeList = source.getFoodIntakeList();
         activeDietPlan = source.getActiveDietPlan();
     }
 

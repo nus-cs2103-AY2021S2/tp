@@ -20,7 +20,7 @@ public class DietLah implements ReadOnlyDietLah {
     private UniqueFoodList foodList;
 
     private FoodIntakeList foodIntakeList;
-    //Used to have an old comment here, removed due to checkstyle error. Refer to old template for more.
+
     {
         foodList = new UniqueFoodList();
         foodIntakeList = new FoodIntakeList();
@@ -50,8 +50,6 @@ public class DietLah implements ReadOnlyDietLah {
         this.foodIntakeList = foodIntakeList;
         this.user = user;
     }
-
-    //// list overwrite operations
 
     /**
      * Resets the existing data of this {@code DietLah} with {@code newData}.

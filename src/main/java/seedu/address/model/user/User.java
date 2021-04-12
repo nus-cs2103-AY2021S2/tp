@@ -125,6 +125,7 @@ public class User {
         return otherUser.getBmi().equals(getBmi())
                 && otherUser.getGender().equals(getGender())
                 && otherUser.getIdealWeight().equals(getIdealWeight())
+                && otherUser.getAge().equals(getAge())
                 && otherUser.getFoodList().equals(getFoodList());
     }
 }

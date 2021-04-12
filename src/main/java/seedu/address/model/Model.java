@@ -57,7 +57,7 @@ public interface Model {
     /** Returns the DietLah */
     ReadOnlyDietLah getDietLah();
 
-    //=========== UnqiueFoodList Accessors =============================================================
+    //=========== UniqueFoodList Accessors =============================================================
 
     /**
      * Returns true if a food with the same name as {@code food} exists in the food list.

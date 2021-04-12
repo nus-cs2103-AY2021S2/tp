@@ -32,11 +32,10 @@ public class StorageManager implements Storage {
      * Creates a {@code StorageManager} with the given {@code DietLahStorage}, {@code UniqueFoodListStorage}
      * and {@code UserPrefStorage}.
      */
-    public StorageManager(/*DietLahStorage dietLahStorage, */UniqueFoodListStorage uniqueFoodListStorage,
+    public StorageManager(UniqueFoodListStorage uniqueFoodListStorage,
                           FoodIntakeListStorage foodIntakeListStorage, DietPlanListStorage dietPlanListStorage,
                           UserPrefsStorage userPrefsStorage, UserStorage userStorage) {
         super();
-        //this.dietLahStorage = dietLahStorage;
         this.uniqueFoodListStorage = uniqueFoodListStorage;
         this.foodIntakeListStorage = foodIntakeListStorage;
         this.dietPlanListStorage = dietPlanListStorage;
@@ -60,35 +59,6 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
-    // ================ DietLah methods ==============================
-
-    /*@Override
-    public Path getDietLahFilePath() {
-        return dietLahStorage.getDietLahFilePath();
-    }
-
-    @Override
-    public Optional<ReadOnlyDietLah> readDietLah() throws DataConversionException, IOException {
-        return readDietLah(dietLahStorage.getDietLahFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyDietLah> readDietLah(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return dietLahStorage.readDietLah(filePath);
-    }
-
-    @Override
-    public void saveDietLah(ReadOnlyDietLah dietLah) throws IOException {
-        saveDietLah(dietLah, dietLahStorage.getDietLahFilePath());
-    }
-
-    @Override
-    public void saveDietLah(ReadOnlyDietLah dietLah, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        dietLahStorage.saveDietLah(dietLah, filePath);
-    }*/
 
     // ================ UniqueFoodList methods ==============================
 

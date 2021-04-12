@@ -64,7 +64,6 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        //DietLahStorage dietLahStorage = new JsonDietLahStorage(userPrefs.getDietLahFilePath());
         UniqueFoodListStorage uniqueFoodListStorage =
                 new JsonUniqueFoodListStorage(userPrefs.getUniqueFoodListFilePath());
         FoodIntakeListStorage foodIntakeListStorage =
@@ -90,7 +89,6 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        // TODO: Update handling of method
         Optional<UniqueFoodList> uniqueFoodListOptional;
         UniqueFoodList uniqueFoodList;
         Optional<FoodIntakeList> foodIntakeListOptional;

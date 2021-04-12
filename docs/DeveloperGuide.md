@@ -76,7 +76,10 @@ Legend | Description
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
+<div markdown="span" class="alert alert-primary"></div>
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -111,11 +114,13 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The UI consists of a `MainWindow` that is made up of the two parts: `CommandBox` and `ResultDisplay`. Both of these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -127,7 +132,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `DietLahParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -137,7 +142,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("food_delete n/grape")` API call.
 
-![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteFoodItemSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteFoodItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -146,12 +151,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* provides models to access the User object and it's related functions.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -166,11 +171,15 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+The `Storage` component includes implementations that does the following:
+* can save `UserPref` objects in JSON format and read it back.
+* can save the `User` object in JSON format and read it back.
+* can save the `FoodIntakeList` object in JSON format and read it back.
+* can save the `FoodList` object in JSON format and read it back.
+
+The FoodIntakeList and FoodList objects are separated from the User object, even though a copy of the food list is also stored with the User object. Rationale: This would make it easier for the development of future features, such as adding pre-provided food list items, without having to affect the User object.
 
 ### Common classes
 
@@ -187,7 +196,7 @@ DietLAH! uses the following date format for command inputs: `d Mmm yyyy` which i
 
 Legend | Description
 -------|-------------
-d | Day in the calendar month, ranging from 0 - 31, without leading zeroes
+dd | Day in the calendar month, ranging from 0 - 31, without leading zeroes
 Mmm | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
 yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 
@@ -225,8 +234,6 @@ The 'Food' contains the following components:
 There are some actions that can be performed with the Food component.
 1. Update respective nutrients' values.
 2. Calculate total kilocalories' values.
-
-Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList through the Add-Command: to-do
 
 #### Design consideration:
 
@@ -293,16 +300,19 @@ Example: `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 #### Implementation:
 
+The following sequence diagram shows how the add food item operation works:
+
+<img src="images/AddFoodItemSequenceDiagram.png" width="3060" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This sequence diagram showcases the usual case when the food item that is being added is new and does not exist in the food list before.</div>
+
 Once the user types in the command to add food, the parser will check for all the required prefixes. If all required prefixes are present and the input values are valid, `AddFoodItemCommand` object is created. `AddFoodItemCommand` is a class that extends `Command` abstract class. `AddFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will prompt an error that the food item exist and suggest updating the food item value instead. Otherwise, a new food item object will be created and added into the food list.
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_add n/chocolate c/100 f/100 p/100` to create the food item.
+Step 1: The user launches the application and executes `food_add n/grape c/10 f/10 p/10` to create the food item.
 
 Step 2: The food item is added to the food list.
-
-The following sequence diagram shows how the add operation works:
-Diagram flow to be inserted here
 
 ### Update food item feature
 
@@ -322,11 +332,9 @@ Once the user types in the command to update food, the parser will check for the
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_update n/chocolate c/200 f/200 p/200` to update the specified food item.
+Step 1: The user launches the application and executes `food_update n/grape c/200 f/200 p/200` to update the specified food item.
 
 Step 2: The food item specified will have its value(s) updated to the new value(s) in the food list.
-
-The following sequence diagram shows how the update operation works:
 
 ### List food item feature
 
@@ -350,8 +358,6 @@ Step 1: The user launches the application and executes `food_list`.
 
 Step 2: The food item(s) in the food list will be displayed.
 
-The following sequence diagram shows how the delete operation works:
-
 ### Delete food item feature
 
 The following activity diagram summarizes what happens when a user executes a `food_delete` command:
@@ -370,11 +376,9 @@ Once the user types in the command to delete food, the parser will check for the
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_delete n/chocolate`.
+Step 1: The user launches the application and executes `food_delete n/grape`.
 
 Step 2: The food item specified will be deleted from the food list.
-
-The following sequence diagram shows how the delete operation works:
 
 ### FoodIntake Object
 

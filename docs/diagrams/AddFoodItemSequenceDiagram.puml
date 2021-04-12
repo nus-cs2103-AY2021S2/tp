@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DietLahParser" as DietLahParser LOGIC_COLOR
+participant ":AddFoodItemCommandParser" as AddFoodItemCommandParser LOGIC_COLOR
+participant "d:AddFoodItemCommand" as AddFoodItemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("food_add n/grape c/10 f/10 p/10")
+activate LogicManager
+
+LogicManager -> DietLahParser : parseCommand("food_add n/grape c/10 f/10 p/10")")
+activate DietLahParser
+
+create AddFoodItemCommandParser
+DietLahParser -> AddFoodItemCommandParser
+activate AddFoodItemCommandParser
+
+AddFoodItemCommandParser --> DietLahParser
+deactivate AddFoodItemCommandParser
+
+DietLahParser -> AddFoodItemCommandParser : parse(foodItem)
+activate AddFoodItemCommandParser
+
+create AddFoodItemCommand
+AddFoodItemCommandParser -> AddFoodItemCommand
+activate AddFoodItemCommand
+
+AddFoodItemCommand --> AddFoodItemCommandParser : d
+deactivate AddFoodItemCommand
+
+AddFoodItemCommandParser --> DietLahParser : d
+deactivate AddFoodItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddFoodItemCommandParser -[hidden]-> DietLahParser
+destroy AddFoodItemCommandParser
+
+DietLahParser --> LogicManager : d
+deactivate DietLahParser
+
+LogicManager -> AddFoodItemCommand : execute()
+activate AddFoodItemCommand
+
+AddFoodItemCommand -> Model : AddFoodItem(foodItem)
+activate Model
+
+Model --> AddFoodItemCommand
+deactivate Model
+
+create CommandResult
+AddFoodItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddFoodItemCommand
+deactivate CommandResult
+
+AddFoodItemCommand --> LogicManager : result
+deactivate AddFoodItemCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
