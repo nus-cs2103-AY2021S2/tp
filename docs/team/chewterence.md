@@ -44,8 +44,7 @@ Given below are my contributions to the project.
       The Price field was thus implemented in a way that avoided the use of nulls as much as possible, thereby wrapping it in a java Optional.
 
 * **Contributions to User Guide**:
-  * Drafted initial version of the User Guide.
-  * Added user guide introduction and quick start.
+  * Drafted initial version of the User Guide, added user guide introduction and quick start.
   * Added documentation for the command summary and FAQ.
   * Updated documentation for `add` and `edit` commands to match newly added fields of TripDay and TripTime.
   * Added documentation for `pool` and `unpool` commands.
@@ -53,10 +52,12 @@ Given below are my contributions to the project.
 * **Contributions to Developer Guide**:
   * Added documentation for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
   * Added UML sequence and activity diagrams for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
+  * Added instructions for manual testing documentation for `pool` and `unpool` commands (Pull requests [\#277](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/277)).
+  * Added Effort Appendix page (Pull requests [\#280](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/280)).
   * Updated glossary to contain descriptions of words that require an elaboration on.
 
 * **Contributions to Team based tasks**:
-  * Managed and assigned tasks through the use of the issue tracker.
+  * Managed and assigned tasks for team members through the use of the issue tracker.
   * PRs reviewed (with non-trivial review comments):
     [\#57](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/57)
     [\#100](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/100)
