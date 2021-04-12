@@ -92,3 +92,90 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 --------------------------------------------------------------------------------------------------------------------
 
 ## Developer Guide
+
+### Diagrams:
+
+--------------------------------------------------------------------------------------------------------------------
+![Structure of the Model Component](../images/ModelClassDiagram.png)
+
+![BetterModelClassDiagram](../images/BetterModelClassDiagram.png)
+
+![Interactions Inside the Logic Component for the `delete 1 2` Command](../images/DeleteSequenceDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Model
+
+The class diagram for the `Model` can be seen [above](DeveloperGuide.html#model-component) in the Design section. Such a design was chosen after a few iterations on other designs. One such design is briefly documented as below:
+
+**v1.2**
+
+![v1.2 Model](images/Modelv1_2.png)
+
+In v1.2, `Passenger` has-an optional `Driver`, which was initially chosen for its ease of implementation and storage. However, it was spotted that this would lead to issues in future when implementing trips on multiple days, since each `Driver` would have their own times, leading to a lot of duplication of `Drivers`. Further, this was not an easy format to display to the user intuitively, and would require a traverse of the whole `Passenger` list just to group `Passengers` by `Drivers`.
+
+#### Implementation
+Therefore, the decision was made to encapsulate the details of each trip (which is a trip by 1 driver with multiple passengers), into a `Pool` class. This `Pool` class would have it's own CRUD, and would contain a `Driver`, `Passengers`, `TripDay` and `TripTime`.
+
+This is done to facilitate `Storage` and `UI`, and also from a Users perspective, to allow for `Pools` with timings that may be slightly different from the `Passengers` preferred time.
+
+A package `Pool` containing class `Pool` and `UniquePoolList` was created. This package performs a function that is similar to the `Passenger` package, exposing CRUD operations through `ModelManager`.
+
+The decision was also made to make `Passenger` and `Driver` extend `Person`, so that for future iterations, we can support a `Driver` who is also a `Passenger` with minimal changes to the code.
+
+### Storage
+
+As above, with regards to [Model](DeveloperGuide.html#model-component), the initial implementation of `Storage` was simply to store a `Driver` as a `String` field inside Passenger.
+
+However, this involved extra parsing to ensure that the `Driver` String was still a valid `Driver` on load. Therefore, `Driver` was also made into a Jackson `JsonProperty`.
+
+The class diagram for `Storage` can be found [above](DeveloperGuide.html#storage-component).
+
+#### Implementation
+
+As of v1.3, the relation between `Driver` and `Passenger` is encapsulated in a `Pool`. All of `Driver`, `Passenger`, `Pool` and `Tag` are stored as JSON Objects. The choice was also made to store all data in 1 file, for ease of portability, such that the user only needs to manage 1 file.
+
+At a high level, the JSON file is structured as such:
+
+![High level Storage Class Diagram](../images/HighLevelStorageClassDiagram.png)
+
+The `Passengers` are duplicated between the `Passenger` list and each of the `Pools` that reference the `Passenger` simply so we can reuse the `JsonSerializablePassenger` structure. This association would be much better represented in a RDBMS, which would be an easy change for a potential future iteration.
+
+`JsonSerializableAddressBook` implements checks to ensure the following from the read JSON file:
+* There are no duplicate Passengers
+* There are no duplicate Pools
+* No more than one Pool can reference a single Passenger
+* There are no Pools that reference a Passenger that does not exist
+
+This is to ensure the sanitization of data that is read from JSON, if the user decides to edit the JSON file directly.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Delete feature
+
+This feature was adapted from AB-3. It allows users to delete `Passengers`.
+
+Design considerations include being able to delete multiple`Passengers` with one command, and prevent the deletion of any `Passengers` that are currently in a `Pool`. This is done to prevent any accidental deletions of `Passengers` without either party being informed.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `delete 1 2` command
+
+![Interactions inslide the Logic Component for the Delete command](../images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"delete 1 2"` command.
+1. Object of `AddressBookParser` class is then accessed, which then subsequently creates `DeleteCommandParser` class object to help parse the user's command.
+1. `AddressBookParser` would then invoke the `parse()` method of `DeleteCommandParser`, with parameters `1 2`.
+1. `DeleteCommandParser` invokes the `parseDeleteIndex()` method of `ParserUtil`, with the arguments `"1 2"`, which splits the arguments into tokens via whitespace.
+1. `ParserUtil` self invokes `parseIndex()` on each token, which is used for parsing single indexes, and returns all the `Index` objects created to `DeleteCommandParser` as `indexes`.
+1. `DeleteCommandParser` then instantiates a `DeleteCommand` object with `indexes` as a parameter. The `DeleteCommand` object is then returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of `DeleteCommand`, which in turn calls the `getFilteredPassengerList()` method in `Model`, to get the current passenger list being shown to the user as `lastShownList`.
+1. `lastShownList` is then iterated through to and each passenger is passed to `Model` via `hasPoolWithPassenger()`, to check if that passenger is indeed currently being `Pool`ed.
+  1. If any `Passenger` is found to be contained in a `Pool`, a new `CommandException` is thrown, informing the user as such.
+1. After checking that it is indeed safe to delete all the `Passengers` in `lastShownList`, each `Passenger` is then deleted in `Model` via passing it to the `deletePassenger()` method.
+1. A `CommandResult` object is then created with a message which includes the names of the `Passengers` deleted, in `lastShownList`
+1. Finally, the `CommandResult` object is returned to `LogicManager`.
+
+--------------------------------------------------------------------------------------------------------------------
