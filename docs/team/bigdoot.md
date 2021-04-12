@@ -36,8 +36,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated the GUI theme to DocBob and changed icon (Pull request [\#23](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/23))
-  * Modified existing features to work synonymously with `view` function and other new functions. For example, `find` now displays the overview of the first matching patient found(if any). (Pull requests [\#92](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/92), [\#44](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/44))
-  * Updated `help` function window to display command information. (Pull requests [\#23](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/23), [\#92](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/92)
+  * Modified existing features to work synonymously with `view` function and other new functions. For example, `find` now additionally displays in a panel the overview of the first matching patient found(if any). (Pull requests [\#92](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/92), [\#44](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/44))
+  * Updated `help` function window to display command information. (Pull requests [\#23](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/23), [\#92](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/92))
 
 * **Documentation**:
   * User Guide:
