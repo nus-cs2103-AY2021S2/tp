@@ -103,8 +103,8 @@ public class DeletePatientCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_IN_LIST;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() <
-                emptyApptScheduleModel.getPatientRecords().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() 
+                < emptyApptScheduleModel.getPatientRecords().getPersonList().size());
 
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(outOfBoundIndex, false);
 
