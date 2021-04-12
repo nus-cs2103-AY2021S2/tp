@@ -40,7 +40,7 @@ public class FilterCommand extends Command {
                     + COMMAND_WORD + " " + PREFIX_TAG + " " + PREFIX_PHONE + "\n"
                     + COMMAND_WORD + " " + PREFIX_REMARK + " " + PREFIX_ADDRESS;
 
-    public static final String MESSAGE_SUCCESS = "Applied filter %1$s";
+    public static final String MESSAGE_SUCCESS = "Applied filter '%1$s'";
     public static final String MESSAGE_REMOVE_FILTER = "Removed filter";
     public static final String MESSAGE_FAILURE = "Invalid prefix near '%1$s'";
 
