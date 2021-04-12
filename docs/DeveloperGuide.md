@@ -490,9 +490,9 @@ will usually not call `Model#commitSmartLib()`, `Model#undoSmartLib()` or `Model
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitSmartLib()`. Since the `currentStatePointer` is not pointing
+Step 6. The user executes `clear-everything-in-my-smartlib`, which calls `Model#commitSmartLib()`. Since the `currentStatePointer` is not pointing
 at the end of the `smartLibStateList`, all SmartLib states after the `currentStatePointer` will be purged. Reason: It no
-longer makes sense to redo the `addreader n/David …​` command. This is the behavior that most modern desktop applications
+longer makes sense to redo the `addreader r/Tom p/81688168 e/tom@email.com a/Queestown` command. This is the behavior that most modern desktop applications
 follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -820,7 +820,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a reader while all readers are being shown
 
-   1. Prerequisites: List all readers using the `list` command. Multiple readers in the list.
+   1. Prerequisites: List all readers using the `listreader` command.
 
    1. Test case: `deletereader 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
