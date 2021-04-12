@@ -154,7 +154,7 @@ The app will guide you through the command through prompts for each field. As wi
 After keying a valid initial input, the multi-step prompting will prompt you to enter details for the following fields in the specified order:
 * Email: must be unique and of the format <em>local-part@domain</em>.
 * Phone number: must be unique and input as digits without spaces in between. The permitted length is 7-15 digits inclusive, which is the standard length of all international phone numbers.
-* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. Tags cannot be empty, so consecutive commas without any tag in between would be invalid.
+* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. Tags cannot be empty, so consecutive commas without any tag in between would be invalid. Tags are added in a case-insensitive manner, duplicate tags with different casing but same letters will be merged into one.
 <br>
 Format: `add_person n/NAME`
 <br>
@@ -219,7 +219,7 @@ Adds a new venue for the booking app. `add_venue` is a multi-step command that w
 After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the following optional fields in the order stated, which can be skipped by pressing the <kbd>Enter</kbd> key:
 * Venue capacity: the capacity should be entered as a digit, with the maximum limit being 50000. Default capacity is set to 10.
 * Venue description
-* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. No tag can be empty, so consecutive commas without any tag in between would be invalid.
+* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. No tag can be empty, so consecutive commas without any tag in between would be invalid. Tags are added in a case-insensitive manner, duplicate tags with different casing but same letters will be merged into one.
 
 Format: `add_venue v/VENUE_NAME`
 
