@@ -233,7 +233,7 @@ If successfully deleted, Pawbook will display a success message as shown here.
 ### Edit Command: Modify the details of a dog/owner/program
 
 **Function**: Edits a dog/owner/program from Pawbook.<br>
-**Use case**: This command allows you to edit the attributes of the entity (dog/owner/program) in your Pawbook. Let's say you just added an entry for a dog but you realized that you filled in one of its particulars wrongly. The edit command allows you to quickly correct that mistake. More details about each of the editable attributes can be found _[here](#add-command-create-a-dogownerprogram)_.
+**Use case**: This command allows you to edit the attributes of the entity (dog/owner/program) in your Pawbook. Let's say you just added an entry for a dog but you realized that you filled in one of its particulars wrongly. The edit command allows you to quickly correct that mistake. More details about each of the editable attributes can be found _[here](#add-tips)_.
 
 Format:
 
