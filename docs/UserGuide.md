@@ -159,7 +159,7 @@ Output:
 
 ### Locating a patient by name : `find`
 
-Finds patients in the displayed patient list whose names contain any of the given keywords, and displays an overview of information of the first patient found.
+Finds patients in the displayed patient list whose names contain any of the given keywords, and displays an overview of the information belonging to the first patient found.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
