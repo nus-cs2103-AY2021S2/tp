@@ -18,14 +18,4 @@ public interface Storage extends UniqueFoodListStorage,
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
-
-    /*@Override
-    Path getDietLahFilePath();
-
-    @Override
-    Optional<ReadOnlyDietLah> readDietLah() throws DataConversionException, IOException;
-
-    @Override
-    void saveDietLah(ReadOnlyDietLah dietLah) throws IOException;
-*/
 }
