@@ -16,11 +16,11 @@ Given below are my contributions to the project.
 
 * **New Feature**: Find command for all new components
     * What it does: Allows filtering of all lists with a combination of predicates specified by prefixes.
-    * Justification: Find command needed to filter lists so user can access certain items easily.
+    * Justification: Find command needed to filter lists so user can access certain items easily. 
     * Highlights: Allows for a list of predicates to be used in conjunction. Use of predicate and generics instead of a specific predicate implementation in the find commmand allows for easy extensibility.
 
 * **Enhancements to existing features**:: Implement model for all new components
-    * What it does: Represents the model for menu dishes, inventory ingredients and orders.
+    * What it does: Represents the model for menu dishes, inventory ingredients and orders. Required refactor / redesign of many classes.
     * Justification: Model needed for other components to work well.
     * Highlights: New interfaces and generic modifications to existing interfaces / classes to make adding more components easier and more extensible.
 
