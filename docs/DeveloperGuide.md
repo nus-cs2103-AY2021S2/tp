@@ -7,7 +7,7 @@ title: Developer Guide
 
 <div style="page-break-after: always"></div>
 
-## **Setting up, getting started**
+## **Setting up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
