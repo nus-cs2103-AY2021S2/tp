@@ -738,15 +738,16 @@ The activity diagram shows the workflow when a delete important date command is 
 
 #### Design consideration:
 
-##### Aspect: 
+##### Aspect: Whether to implement deleting of an important date by entering the index or details of the date
 
-* **Alternative 1 (current choice):** 
-    * Pros: 
-    * Cons:  
+* **Alternative 1 (current choice):** Implement deleting of an important date by having the user enter the index of the important date
+    * Pros: This keeps the command short, user does not have to spend too much time typing out the details.
+    * Cons: User will have to delete the important dates one by one even if they have the same details and are no longer needed since the dates have passed.
   
-* **Alternative 2:** 
-    * Pros: 
-    * Cons: 
+* **Alternative 2:** Implement deleting of an important date by having the user enter the details of the important date
+    * Pros: User can delete all important dates with the same details at once, this can be useful in deleting important dates that have passed. 
+    * Cons: User might have several important dates with the same details, yet only want to delete one of it. By deleting all those with the same details,
+  the user will then have to manually add back all the other important dates that he/she wants. 
       
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -920,20 +921,23 @@ window continues to display the correct list of lessons for each day.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        
+| Priority | As a …​                                    | I want to …​                     | So that …​                                                        
 | -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- 
-| `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 
+| `* * *`  | new user                                   | see usage instructions          | I can refer to instructions when I forget how to use the App                 
 | `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   
-| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering                                  
-| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    
-| `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list
-| `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        
-| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     
+| `* * *`  | user                                       | delete a student's contact      | I can remove entries that I no longer need and reduce cluttering                                  
+| `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed
+| `* *`    | user                                       | keep track of dates relevant to my students | I can plan my lessons according to their examination dates
+| `* *`    | user                                       | find a student by name          | I can locate details of students without having to go through the entire list
+| `* *`    | user                                       | find a student by school        | I can plan my lesson/schedules according to their school’s curriculum   
+| `* *`    | user                                       | find a student by subject       | I can distinguish my students if I am teaching more than 1 subject
+| `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week     
+| `* *`    | user                                       | easily check the current education level of my students | I can prepare the correct lesson material for them
 | `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes
 | `*`      | user                                       | mass update all student levels  | I can keep my contacts up to date at the start of a new year
-| `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily
-| `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program
-| `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                
+| `*`      | expert user                                | add customized subjects to contacts | I can be able to access each group of students more easily
+| `*`      | expert user                                | attach remarks to contacts      | I can remember details that might not be covered in the original program
+| `*`      | user                                       | hide private contact details    | I can minimize chance of someone else seeing them by accident                
 
 *{More to be added}*
 
