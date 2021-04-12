@@ -82,7 +82,6 @@ public class MenuEditCommand extends Command {
         // Remove all these orders from the database
         model.deleteOrders(ordersToEdit);
         for (Order o : ordersToEdit) {
-            model.deleteOrder(o);
             model.increaseIngredientByOrder(o);
         }
 
