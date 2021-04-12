@@ -254,7 +254,7 @@ Design considerations include the `findPool` command being able to be used in co
 
 The activity diagram below encapsulates the user workflow of attempting to pool a passenger, finding out that the passenger already exists in a pool, and using the `findPool` command to rectify the issue:
 
-![Activity Diagram for a user using Unpool](images/findPoolActivityDiagram.png)
+![Activity Diagram for a user using findPool](images/findPoolActivityDiagram.png)
 
 The rationale behind this implementation was because once the GME terminal is populated with a large number of pools, it would be rather difficult for the user to find a specific pool that includes a specific passenger. This could make it difficult to pool a passenger if they already exist in another pool. By allowing the user to filter the pools by the passengers they include, the user will be able to quickly find the pools that include the passenger they are attempting to pool, allowing them to confirm if they have been assigned to the right pool or to rectify the issue if they have not.
 
