@@ -67,7 +67,8 @@ public class DeleteContactCommandTest {
         showContactAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of the contact list
+
+        // ensures that outOfBoundIndex is still within the bounds of the contact list of Teaching Assistant
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTeachingAssistant().getContactList().size());
 
         DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);

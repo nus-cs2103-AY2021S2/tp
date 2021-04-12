@@ -49,7 +49,7 @@ public class FindContactCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
@@ -64,7 +64,7 @@ public class FindContactCommandTest {
     }
 
     @Test
-    public void execute_oneKeyword_multiplePersonsFound() {
+    public void execute_oneKeyword_multipleContactsFound() {
         String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 2);
         ContactNameContainsKeywordsPredicate predicate = preparePredicate("Meier");
         FindContactCommand command = new FindContactCommand(predicate);
