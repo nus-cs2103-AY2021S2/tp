@@ -475,6 +475,8 @@ Exits the app.
 
 Format: `exit`
 
+### Other features
+
 #### InputHistory / Keyboard shortcuts :
 
 Retrieves previously entered input.
