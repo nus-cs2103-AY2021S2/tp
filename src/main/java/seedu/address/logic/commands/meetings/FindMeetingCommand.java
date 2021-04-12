@@ -28,13 +28,13 @@ public class FindMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "findm";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds meetings with that has all the "
-            + "specified values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds meetings that meet all the "
+            + "specified criteria.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_TIME + "TIME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_PRIORITY + "PRIORITY "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_TIME + "TIME] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_GROUP + "GROUP]..."
             + "[" + PREFIX_PERSON_CONNECTION + "INDEX OF PERSON RELATED]...\n"
             + "Example: " + COMMAND_WORD + " "

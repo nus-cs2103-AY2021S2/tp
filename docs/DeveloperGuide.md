@@ -20,13 +20,13 @@ targeted towards users with a daily 7am - 4pm schedule, have frequent meetings d
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 ### Architecture
 
@@ -159,7 +159,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -394,7 +394,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -404,7 +404,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -412,7 +412,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 * Any user who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy schedules
  from 7 am - 4pm. 
-* Has a lot of contacts and meeting alot of people out for events.
+* Has a lot of contacts and meeting many people out for events.
 * Is more visual and would like to see the meetings on a timetable, and see when he is free. 
 Is probably relatively young, and has friends with online gravatar profiles. 
 * Would like to keep track of contacts and organise them as well for 
@@ -441,14 +441,14 @@ Users would be better able to manage their social and academic commitments by to
 | medium   | person trying to back up data  | store information in a file       | I can clear and move my data to a different machine         |
 | medium   | student with a lot of groups | assign contacts to groups         | I can organise my contacts into the groups                  |
 | high     | user                           | close the app                     | I can clear up my memory and store the data into text files |
-| high     | student                        | add meetings                      | I can keep track of my meetings                             |
-| medium   | student                        | look up meeting by time           | I can tell if I'm busy during a time                        |
-| medium   | student                        | sort contacts                     | I can organize the contact list in a convenient way         |
-| medium   | student                        | sort meetings                     | I can organize the meeting list in a convenient way         |
-| high     | student                        | view all contacts                 | I can see all the contacts I added                          |
-| high     | student                        | view all meetings                 | I can see all the meetings I added                          |
-| high     | student                        | delete meetings                   | I can remove the meetings that already happened             |
-| high     | student                        | delete contacts                   | I can remove the unimportant contacts                       |
+| high     | user                        | add meetings                      | I can keep track of my meetings                             |
+| medium   | user                        | look up meeting by time           | I can tell if I'm busy during a time                        |
+| medium   | user                        | sort contacts                     | I can organize the contact list in a convenient way         |
+| medium   | user                        | sort meetings                     | I can organize the meeting list in a convenient way         |
+| high     | user                        | view all contacts                 | I can see all the contacts I added                          |
+| high     | user                        | view all meetings                 | I can see all the meetings I added                          |
+| high     | user                        | delete meetings                   | I can remove the meetings that already happened             |
+| high     | user                        | delete contacts                   | I can remove the unimportant contacts                       |
 
 ## Appendix: Use cases
 
@@ -462,9 +462,7 @@ Users would be better able to manage their social and academic commitments by to
 2.  MeetBuddy shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  MeetBuddy deletes the person
-
-
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
@@ -486,8 +484,7 @@ Users would be better able to manage their social and academic commitments by to
 1.  User requests to add a meeting with priority
 2.  MeetBuddy shows the list of meetings after adding.
 
-
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
@@ -503,6 +500,83 @@ New features on V1.2
 6.  Notes about the contact.
 7.  Sort contacts by (priorities/personName/groups)
 8.  Last meetup date for each contact
+
+**Use case: Sort contact list**
+
+**MSS**
+
+1.  User requests to sort the contact list
+2.  MeetBuddy updates the contact list following the sorting criterion.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The sort parameters are invalid
+
+    * 1a1. MeetBuddy shows an error message.
+
+  Use case ends.
+
+**Use case: Unsort contact list**
+
+**MSS**
+
+1.  User requests to unsort the contact list
+2.  MeetBuddy updates the contact list to the original state without sorting.
+    
+    Use case ends.
+
+
+
+**Use case: Sort meeting list**
+
+**MSS**
+
+1.  User requests to sort the meeting list
+2.  MeetBuddy updates the meeting list following the sorting criterion.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The sort parameters are invalid
+
+    * 1a1. MeetBuddy shows an error message.
+
+  Use case ends.
+
+**Use case: Unsort contact list**
+
+**MSS**
+
+1.  User requests to unsort the meeting list
+2.  MeetBuddy updates the meeting list to the original state without sorting.
+
+    Use case ends.
+
+**Use case: Find meeting**
+
+**MSS**
+
+1.  User searches for a meeting with some criteria.
+2.  MeetBuddy updates the meeting list following the criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The search parameters are invalid
+
+    * 1a1. MeetBuddy shows an error message.
+    
+  Use case ends.
+
+* 2a. No meeting is found.
+    * 2a1. MeetBuddy shows an empty meeting list.
+  
+    Use case ends.
+
 
 ## Appendix: Non-Functional Requirements
 
@@ -527,7 +601,7 @@ especially by adding the event into the app.
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
