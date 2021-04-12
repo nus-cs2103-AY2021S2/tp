@@ -3,7 +3,7 @@ layout: page
 title: Residence Tracker
 ---
 
-[![CI Status](https://github.com/AY2021S2-CS2103-T16-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-T16-3/tp/actions)
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103-T16-3/tp/branch/master/graph/badge.svg?token=U5L6JM6HMZ)](https://codecov.io/gh/AY2021S2-CS2103-T16-3/tp)
 
 ![Ui](images/Ui.png)
