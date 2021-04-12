@@ -12,8 +12,6 @@ title: User Guide
 
 - [1 Introduction](#1-introduction)
 - [2 About](#2-about)
-  - [2.1 Strucutre of the User Guide](#21-structure-of-the-user-guide)
-  - [2.2 Understanding the User Guide](#22-understanding-the-user-guide)
 - [3 Quick Start](#3-quick-start)
 - [4 UI Overview](#4-ui-overview)
   - [4.1 Menu Bar](#41-menu-bar)
@@ -23,20 +21,22 @@ title: User Guide
   - [4.5 Result Display](#45-result-display)
   - [4.6 Status Bar](#46-status-bar)
 - [5 Features](#5-features) TODO
-  - [5.1 Viewing help : `help`](#viewing-help--help)
-  - [5.2 Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
-  - [5.3 Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
-  - [5.4 Editing a financial record : `edit-fr`](#editing-a-financial-record--edit-fr)
-  - [5.5 Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
-  - [5.6 Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
-  - [5.7 Finding financial records : `find-fr`](#finding-financial-records--find-fr)
-  - [5.8 Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
-  - [5.9 Exiting the program : `exit`](#exiting-the-program--exit)
-  - [5.10 Viewing top 5 categories spent for the current month](#viewing-top-5-categories-spent-for-the-current-month)
-  - [5.11 Viewing budget for the current month](#viewing-budget-for-the-current-month)
-  - [5.12 Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
-  - [5.13 Saving the data](#saving-the-data)
-  - [5.14 Editing the data file](#editing-the-data-file)
+  - [5.1 Viewing help : `help`](#51-viewing-help--help)
+  - [5.2 Adding a financial record : `add-fr`](#52-adding-a-financial-record--add-fr)
+  - [5.3 Deleting a financial record : `delete-fr`](#53-deleting-a-financial-record--delete-fr)
+  - [5.4 Editing a financial record : `edit-fr`](#54-editing-a-financial-record--edit-fr)
+  - [5.5 Setting monthly budget : `set-bg`](#55-setting-monthly-budget--set-bg)
+  - [5.6 Viewing a specific month : `view-month`](#56-viewing-a-specific-month--view-month)
+  - [5.7 Finding financial records : `find-fr`](#57-finding-financial-records--find-fr)
+  - [5.8 Resetting filters on financial records : `reset-filter`](#58-resetting-filters-on-financial-records--reset-filter)
+  - [5.9 Undoing commands : `undo`](#59-undoing-commands--undo)
+  - [5.10 Redoing commands : `redo`](#510-redoing-commands--redo)
+  - [5.11 Exiting the program : `exit`](#511-exiting-the-program--exit)
+  - [5.12 Viewing top 5 categories spent for the current month](#512-viewing-top-5-categories-spent-for-the-current-month)
+  - [5.13 Viewing budget for the current month](#513-viewing-budget-for-the-current-month)
+  - [5.14 Checking remaining budget for the current month](#514-checking-remaining-budget-for-the-current-month)
+  - [5.15 Saving the data](#515-saving-the-data)
+  - [5.16 Editing the data file](#516-editing-the-data-file)
 - [6 FAQ](#6-faq)
 - [7 Command Summary](#7-command-summary)
 - [8 Credits](#8-credits)
@@ -98,11 +98,11 @@ These components include:
 The `Menu Bar` contains drop-down menus which provides you access to common useful functions.
 These functions include:
 
-- [Exit](#exiting-the-program-:-`exit`) - Exits the program
+- [Exit](#511-exiting-the-program--exit) - Exits the program
 - `Toggling CLI's visibility` - Shows/Hides the [Command Box](#44-command-box) and [Result Display](#45-result-display)
-- [Category Statistics](#viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
-- [Month Statistics](#viewing-budget-for-the-current-month) - Opens the Month statistics window
-- [Help](#viewing-help-:-`help`) - Opens the Help window
+- [Category Statistics](#512-viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
+- [Month Statistics](#513-viewing-budget-for-the-current-month) - Opens the Month statistics window
+- [Help](#51-viewing-help--help) - Opens the Help window
 
 ### 4.2 Budget Display
 
@@ -116,7 +116,7 @@ Each record in the list contain details like description, amount, timestamp as w
 
 ### 4.4 Command Box
 
-The `Command Box` is where you can supply your command inputs. The application will processs these inputs and make changes to your data when necessary. The available command inputs (format and examples) can be found in the [Features](#features) section.
+The `Command Box` is where you can supply your command inputs. The application will processs these inputs and make changes to your data when necessary. The available command inputs (format and examples) can be found in the [Features](#5-features) section.
 
 <div markdown="block" class="alert alert-primary">
 
@@ -133,7 +133,7 @@ The `Result Display` interactively display results of a given command so you can
 ### 4.6 Status Bar
 
 The `Status Bar` displays the location of the data file being used by the application.
-To find out more about how the data file is being managed, please refer to [Saving the data](#saving-the-data) and [Editing the data file](#editing-the-data-file)
+To find out more about how the data file is being managed, please refer to [Saving the data](#515-saving-the-data) and [Editing the data file](#516-editing-the-data-file)
 
 ## 5 Features
 
@@ -332,6 +332,8 @@ Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 - `d/FR_DESCRIPTION`, `a/FR_AMOUNT` and `c/FR_CATEGORY` are optional fields, but the command expects at least 1 field present.
 - `c/FR_CATEGORY` accepts multiple categories (i.e. `c/Food c/Picnic c/Family`)
 - The function only filters records that satisfies all the fields provided.
+- The command can be used again on an already filtered list.
+- Find result is not case-sensitive (i.e. `find-fr d/lunch` will display results for records with description `Lunch`)
 - For the specifications on `FR_DESCRIPTION`, `FR_AMOUNT` and `CATEGORY`, please refer to `add-fr` command.
 
 Examples:
