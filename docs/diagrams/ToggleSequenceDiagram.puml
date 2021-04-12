@@ -58,7 +58,6 @@ activate CommandResult
 CommandResult --> ToggleCommand
 deactivate CommandResult
 CommandResult -[hidden]-> ToggleCommand
-destroy CommandResult
 
 ToggleCommand --> LogicManager : result
 deactivate ToggleCommand

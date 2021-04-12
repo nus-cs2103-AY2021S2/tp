@@ -17,12 +17,12 @@ StorageManager o-right-> UserPrefsStorage
 StorageManager o--> EndpointListStorage
 
 Storage -|> UserPrefsStorage
-Storage -|> AddressBookStorage
+Storage -|> EndpointListStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonEndpointListStorage .left.|> EndpointListStorage
 JsonEndpointListStorage .down.> JsonSerializableEndpointList
 JsonSerializableEndpointList .right.> JsonAdaptedEndpoint
 JsonAdaptedEndpoint .right.> JsonAdaptedTag
+JsonAdaptedEndpoint .right.> JsonAdaptedHeader
 @enduml
-

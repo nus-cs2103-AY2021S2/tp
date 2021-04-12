@@ -6,15 +6,14 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([else])
-    :creates general endpoint
+    :Creates general endpoint
     predicate;
-    :Find command;
-    :Update endpoint list;
 else ([has prefix])
-    :creates predicate related
+    :Creates predicate related
     to that prefix/s;
+
+endif
     :Find command;
     :Update endpoint list;
-endif
 stop
 @enduml
