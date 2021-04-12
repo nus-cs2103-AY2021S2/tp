@@ -45,13 +45,13 @@ Given below are my contributions to the project.
 
     - Labelled and added screenshots for all features`: [\#260](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/260) [\#262](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/262)
     - Updated Quick Start section [\#117](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/117)
-    - Added documentation for financial record and month related features [\#199](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/199/files)
+    - Added documentations for financial record and month related features [\#199](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/199/files)
 
   - Developer Guide:
 
     - Added design details for Model component of the project [\#89](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/89)
-    - Added implementation details for financal record related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256) and add [AddFrActivityDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/AddFrActivityDiagram.png)
-    - Added implementation details for month related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256) and add [ViewMonthSequenceDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/ViewMonthSequenceDiagram.png) and [ViewMonthActivityDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/ViewMonthActivityDiagram.png)
+    - Added implementation details for financal record related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256) and added [AddFrActivityDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/AddFrActivityDiagram.png)
+    - Added implementation details for month related feature [\#256](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/256) and added [ViewMonthSequenceDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/ViewMonthSequenceDiagram.png) and [ViewMonthActivityDiagram.png](https://github.com/AY2021S2-CS2103T-W14-2/tp/blob/master/docs/images/ViewMonthActivityDiagram.png)
 
   - Volunteered to make cosmetic changes to all documentations [\#243](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/246/files), [\#246](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/246/files)
 
