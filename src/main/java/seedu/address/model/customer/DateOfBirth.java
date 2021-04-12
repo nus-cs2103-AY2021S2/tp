@@ -35,9 +35,13 @@ public class DateOfBirth {
     }
 
     /**
-     * Returns if a given string is a valid date of birth.
-     * Date of birth should not more or equal to current date.
-     * Date of birth should more than 100 years before current date.
+     * Checks whether a string is a valid date of birth.
+     * Beyond formatting, the following rules apply:
+     *  Date of birth should not more or equal to current date.
+     *  Date of birth should not be more than 100 years before current date.
+     *
+     * @parem test The string that is being checked.
+     * @return Whether a given string is a valid date of birth.
      */
     public static boolean isValidDateOfBirth(String test) {
         try {
