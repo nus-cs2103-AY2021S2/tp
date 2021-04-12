@@ -575,7 +575,7 @@ The progress calculator will first calculate the required calories and macronutr
 
 The diagram below summarises the process above:
 
-<img src="images/ProgressCalculatorSequenceDiagram.png" width="547" />
+<img src="images/ProgressCalculatorSequenceDiagram.png" width="1000" />
 
 The progress calculator then uses the *macronutrients' percentages* to decide whether the user has fulfiled the diet plan's requirements. This information is displayed via 3 main sections of the report:
 * Active diet plan details
