@@ -30,8 +30,8 @@ public class Prefix {
      * Should never be initialized by user / user routine, due to checks on prefix duplicates
      * for developer safety. Where a generic Prefix is required, use the empty constructor {@code Prefix()} instead.
      *
-     * @param prefix The prefix string representing the Prefix
-     * @param altPrefixes Array of alternate prefix aliases
+     * @param prefix The prefix string representing the Prefix.
+     * @param altPrefixes Array of alternate prefix aliases.
      */
     public Prefix(String prefix, String... altPrefixes) {
         requireNonNull(prefix);

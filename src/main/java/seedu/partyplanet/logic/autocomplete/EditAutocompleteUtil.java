@@ -56,7 +56,7 @@ public class EditAutocompleteUtil implements AutocompleteUtil {
     }
 
     /**
-     * Parses an edit command to autocomplete remark.
+     * Parses an edit command to autocomplete all specified fields.
      * @param model Model instance containing address book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.

@@ -36,8 +36,8 @@ public class EEditAutocompleteUtil implements AutocompleteUtil {
     }
 
     /**
-     * Parses an edit command to autocomplete remark.
-     * @param model Model instance containing address book.
+     * Parses an eedit command to autocomplete all specified fields.
+     * @param model Model instance containing event book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.

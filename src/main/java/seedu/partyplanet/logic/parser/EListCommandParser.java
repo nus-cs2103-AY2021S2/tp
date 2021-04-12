@@ -27,7 +27,7 @@ import seedu.partyplanet.model.event.predicates.EventRemarkContainsExactKeywords
 import seedu.partyplanet.model.event.predicates.EventRemarkContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new ListCommand object
+ * Parses input arguments and creates a new EListCommand object.
  */
 public class EListCommandParser implements Parser<EListCommand> {
 
@@ -39,7 +39,7 @@ public class EListCommandParser implements Parser<EListCommand> {
      * Parses the given {@code String} of arguments in the context of the EListCommand
      * and returns an EListCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMap = ArgumentTokenizer.tokenize(

@@ -75,8 +75,9 @@ public class EListCommand extends Command {
     /**
      * Most general EListCommand.
      *
-     * @param predicate Predicate to filter people by
-     * @param comparator Sorting comparator
+     * @param predicate Predicate to filter people by.
+     * @param comparator Sorting comparator.
+     * @param parseArguments String containing information of listing requirements to be displayed.
      */
     public EListCommand(Predicate<Event> predicate, Comparator<Event> comparator, String parseArguments) {
         this.predicate = predicate;
