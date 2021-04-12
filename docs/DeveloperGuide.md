@@ -163,6 +163,7 @@ The `Storage` component,
     * `NoteBook`.
     * `Dictionary`.
     * `DefinitionBook`.
+* depends on a few classes in the `Model` component; however, such dependencies are not shown in the diagram for simplicity's sake.
 
 ### Common classes
 
