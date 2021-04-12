@@ -4,6 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ResidenceTrackerParser" as ResidenceTrackerParser LOGIC_COLOR
+participant ":StatusCommandParser" as StatusCommandParser LOGIC_COLOR
+
 participant "s:StatusCommand" as StatusCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -18,12 +20,28 @@ activate LogicManager
 LogicManager -> ResidenceTrackerParser : parseCommand("status clean 1 3 4")
 activate ResidenceTrackerParser
 
+create StatusCommandParser
+ResidenceTrackerParser -> StatusCommandParser
+activate StatusCommandParser
+
+StatusCommandParser --> ResidenceTrackerParser
+deactivate StatusCommandParser
+
+ResidenceTrackerParser -> StatusCommandParser : parse("clean 1 3 4")
+activate StatusCommandParser
+
 create StatusCommand
-ResidenceTrackerParser -> StatusCommand
+StatusCommandParser -> StatusCommand
 activate StatusCommand
 
-StatusCommand --> ResidenceTrackerParser : s
+StatusCommand --> StatusCommandParser : s
 deactivate StatusCommand
+
+StatusCommandParser -->ResidenceTrackerParser : s
+deactivate StatusCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StatusCommandParser -[hidden]-> ResidenceTrackerParser
+destroy StatusCommandParser
 
 ResidenceTrackerParser --> LogicManager : s
 deactivate ResidenceTrackerParser
