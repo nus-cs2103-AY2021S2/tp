@@ -2,42 +2,68 @@
 layout: page
 title: User Guide
 ---
-# NuFash User Guide
+<p align="center">
+  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="200">
+  <h1 align="center"> User Guide </h1>
+</p>
 
+<div style="page-break-after: always;"></div>
 
 ---
-## Introduction
-**NuFash** is a **digital wardrobe desktop app for university students and/or those looking to
-better organise their clothes**. The app is **optimised for users who prefer typing**, but also has the added 
-benefit of a **smooth and easy to use Graphical User Interface(GUI)**.  The NuFash application allows users to input 
-their clothings into their own digital wardrobe, and be able
-to search through, and match their various clothes quickly.
-Use NuFash to reduce clutter and start making wiser clothing decisions today!
+## Table of Contents
 
-<br>
-This User Guide is for new users of the NuFash app to learn and understand what are the various features that NuFash 
-has to offer. Read on to learn how to use them to digitise your wardrobe and use NuFash full effect!
-<br><br>
-
+* [Introduction](#introduction)
 * [Quickstart](#quickstart)
-* [Features](#features)
-    + [Viewing Help: `help`](#help)
-    + [Adding a Garment to the Wardrobe: `add`](#add)
-    + [Listing all Garments in the Wardrobe: `list`](#list)
-    + [Deleting a singular Garment in the Wardrobe: `delete`](#delete)
-    + [Clearing all Garments in Wardrobe : `clear`](#clear)
-    + [Editing a singular Garment in Wardrobe: `edit`](#edit)
-    + [Finding Garments in Wardrobe by keywords: `find`](#find)
-    + [Matching Garments to create an outfit: `match`<br>](#match)
-    + [Checking out a Garment from the Wardrobe: `select`](#select)
-    + [Viewing a valid outfit: `view`](#view)
-    + [Exiting the program: `exit`](#exit)
-    + [Saving the data](#saving-the-data)
-    + [Editing the data file](#editing-the-data-file)
+* [NuFash Features](#nufash-features)
+  + [Viewing Help: `help`](#help)
+  + [Adding a Garment to the Wardrobe: `add`](#add)
+  + [Listing all Garments in the Wardrobe: `list`](#list)
+  + [Deleting a singular Garment in the Wardrobe: `delete`](#delete)
+  + [Clearing all Garments in Wardrobe : `clear`](#clear)
+  + [Editing a singular Garment in Wardrobe: `edit`](#edit)
+  + [Finding Garments in Wardrobe by keywords: `find`](#find)
+  + [Matching Garments to create an outfit: `match`<br>](#match)
+  + [Checking out a Garment from the Wardrobe: `select`](#select)
+  + [Viewing a valid outfit: `view`](#view)
+  + [Exiting the program: `exit`](#exit)
+  + [Saving the data](#saving-the-data)
+  + [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 * [Credits](#credits)
 
+<div style="page-break-after: always;"></div>
+
+## Introduction
+
+Are you tired of deciding what to wear every morning? Do you often
+wonder whether your new clothing purchases would match your current wardobe? Have you ever misplaced your clothes?
+Well, your journey to a better dressing experience starts today with **NuFash**.
+
+**NuFash** is a **digital wardrobe desktop app for university students and/or those looking to
+better organise their clothes**. The NuFash application allows users to input
+their clothing items (garments) into their own digital wardrobe, and be able
+to search through and match their various garments quickly. Some key features include:
+
+- An easy-to-use digital wardrobe to manage your garments.
+- A generated image to visually represent your garments in the wardrobe.
+- Viewing functionality, to see certain pairing of garments.
+- Selecting functionality, to keep track of when garments were used.
+- Matching functionality, to suggest which garments could possibly be worn with each other.
+
+The application is **optimised for use through the Command Line Interface (CLI)**, allowing users to quickly add or modify items
+in their digital wardrobe. Our compact but powerful application also has a **integrated and easy to use Graphical User Interface(GUI)** 
+providing a visual representation of a user's entire wardrobe catalogue in mere seconds!
+
+This User Guide is for new users of the NuFash app to learn and understand what are the various features that NuFash 
+has to offer. If you are interested in providing feedback on issues or would like to follow our development process, please visit our
+[GitHub page](https://github.com/AY2021S2-CS2103T-T12-1/tp/)
+
+**Use our application to reduce clutter and be empowered to make wiser clothing decisions today!**
+
+Head over to our [Quickstart](#quickstart) to start learning about NuFash.
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## Quickstart
@@ -51,26 +77,94 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 
  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="790">
 
-5. You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing
-   the **`help`** command and pressing the enter key will open the help window.<br>
-   Some example commands you can try:
-   
-  - **`add`** `n/shirt s/45 c/blue r/casual t/upper d/stained d/torn` : Add a casual blue shirt which is stained, torn 
-    and of size 45 to your wardrobe.
-
-  - **`delete`** `6` : Deletes the 6th garment shown in the current list.
-
-  - **`match`** `2` : Displays the available compatible matches for the 2nd garment in list.
-
-  - **`list`** : Displays all garments in the wardrobe.
-
-  - **`exit`** : Exits the app.
-
-6. You may refer to the [features](#features) below for details of each command.
+5. You may refer to the [User Interface Overview](#user-interface-overview) for further details on the application's interface or
+   [NuFash Features](#nufash-features) to try out our commands.
 
 ---
-## Features
+## User Interface Overview
 
+The NuFash interface consists of elements which work in unison to provide a smooth user experience.
+Use this section as a guide to navigate our GUI, and understand what should be displayed in your application.
+
+## Main GUI Window
+The interface of the application is split into distinct components:
+1. Menu Bar
+2. Command Box
+3. Feedback Box
+4. Wardrobe Box
+
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui-labelled.png" alt="ui-labelled" width="790">
+
+### Menu Bar
+
+The Menu Bar contains drop-down menus allows you to access useful functions. 
+These functions are:
+- Exit - Exits the application
+- Help - Opens the Help window
+
+### Command Box
+
+The command box allows you to key in your commands to control your digital wardrobe. 
+You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing
+the **`help`** command and pressing the enter key will open the help window.<br>
+Some example commands you can try:
+
+- **`add`** `n/shirt s/45 c/blue r/casual t/upper d/stained d/torn` : Add a casual blue shirt which is stained, torn
+  and of size 45 to your wardrobe.
+
+- **`delete`** `6` : Deletes the 6th garment shown in the current list.
+
+- **`match`** `2` : Displays the available compatible matches for the 2nd garment in list.
+
+- **`list`** : Displays all garments in the wardrobe.
+
+- **`exit`** : Exits the app.
+
+You may refer to the [NuFash Features](#nufash-features) below for details of each command.
+
+
+### Feedback Box
+
+The feedback box displays the success messages when commands entered into NuFash are valid. Alternatively, it will show an
+error message if the command is invalid or can't be recognised.
+
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/feedback-box.png" alt="feedback-box" width="790">
+
+
+### Wardrobe Box
+
+The Wardrobe box shows the listing of all current garments in their digital wardrobe. 
+
+Each listing is
+comprised of the following components:
+
+1. Listing Index
+2. Listing Details
+3. Listing Tags
+4. Listing Generated Image
+
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/wardrobe-box.png" alt="wardrobe-box" width="790">
+
+#### Listing Index
+
+The listing index assigns each unique garment listed into the digital wardrobe a number: `INDEX`.
+this `INDEX` is used in various commands, e.g. `select`, `edit` and `view`.
+
+#### Listing Details
+
+The listing details display the the garment's attributes such as name, size and the date it was last used.
+
+#### Listing Tags
+The listing tags allow users to key in various descriptions about the garments, e.g garment's location and/or garment's
+condition.
+
+#### Listing Generated Image
+The listing generated Image allows for the garment to be represented in a visual form. It displays the dress-code of the
+garment (either formal, casual or active-wear), its type (either upper, lower or foot-wear) and it's colour.
+
+---
+## NuFash Features
+### Feature Syntax and Terminology
 <div markdown="block" class="alert alert-info">
 
 * Words in `UPPER_CASE` are the inputs to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can 
@@ -93,7 +187,10 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 <br><br>
 </div>
 
-### <a name="help"></a> Viewing Help: `help`
+### Wardrobe Management Features
+//desc
+
+#### <a name="help"></a> Viewing Help: `help`
 Shows an in-app user guide to various commands.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/helpMessage.png" alt="alt text" width="790">
@@ -215,7 +312,10 @@ Example:
 * `find c/white s/36 23`<br>
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
- 
+
+### Garment Coupling Features
+//desc
+
 ### <a name="match"></a> Matching Garments to create an outfit: `match`<br>
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
