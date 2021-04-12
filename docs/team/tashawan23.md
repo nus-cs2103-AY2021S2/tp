@@ -26,7 +26,7 @@ Given below are my contributions to the project.
     correct format. I had to handle the errors of incorrect deadline format by comparing it to the required format as well as invalid dates which are not
     found in the calendar. This is so that the user can be notified correctly by the corresponding error messages when the deadline cannot be parsed. 
 
-* **New Feature**: Added the ability to add a role to members and edit a role.
+* **New Feature**: Added the ability to add a role to members and edit a member's role.
   * What it does: Allows the user to add a role to any member and edit this role. (Pull Requests: [\#109](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/109), [\#111](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/111))
   * Justification: This feature allows users to add the member's role so that they can better manage members, and assign tasks to them correspondingly.
   * Highlights: The implementation was challenging as the member role is an optional field. I had to take into account the situation where the user does not 
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     unless specified by the user.
 
 * **New Feature**: Added the ability to find tasks due before a certain deadline.
-  * What it does: Allows the user to view list of tasks with deadlines before a specified date. (Pull Requests: [\#153](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/153))
+  * What it does: Allows the user to view list of tasks with deadlines before the provided date. (Pull Requests: [\#153](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/153))
   * Justification: This feature improves the product significantly because a user can conveniently search for tasks that are due soon or due before a specified 
     date to ensure that these tasks are completed on time.
   * Highlights: The implementation was challenging as task deadlines have to be compared using a predicate that compares deadlines as a LocalDate.
@@ -52,7 +52,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the commands `addTask`, `editTask`, `findTasksBefore` (Pull requests: [\#108](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/108), [\#119](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/119))
-    * Wrote the intro and purpose of the user guide as well as use case scenarios for each command (Pull Requests: [\#196](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/196), [\#190](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/190))
+    * Wrote the introduction and purpose of the user guide as well as use case scenarios for each command (Pull Requests: [\#196](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/196), [\#190](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/190))
 
   * Developer Guide:
     * Update the use cases in the Developer Guide (Pull requests: [\#139](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/139), [\#155](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/155))
