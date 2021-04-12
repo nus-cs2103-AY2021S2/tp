@@ -2,7 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -18,8 +22,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
     public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
-    public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
     public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
+    public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
     public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
     public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
 
@@ -39,6 +43,15 @@ public class ParserUtil {
     // Phone validation: must contain numerical characters only.
     public static final String VALID_PHONE_REGEX = "[0-9]*";
 
+    // Address validation: address cannot start with whitespace, or " " can be a valid address.
+    public static final String VALID_ADDRESS_REGEX = "[^ ].*";
+
+    // Ingredient name validation: ingredient name cannot start with whitespace, or " " can be a valid ingredient name.
+    public static final String VALID_INGREDIENT_REGEX = "[^ ].*";
+
+    // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
+    public static final String VALID_DISH_REGEX = "[^ ].*";
+
     // Email address validation: must conform to the form local-part@domain
     // Assumes IP addresses are not used as domain portion
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
@@ -52,15 +65,6 @@ public class ParserUtil {
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
     public static final String VALID_EMAIL_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-
-    // Address validation: address cannot start with whitespace, or " " can be a valid address.
-    public static final String VALID_ADDRESS_REGEX = "[^ ].*";
-
-    // Ingredient name validation: ingredient name cannot start with whitespace, or " " can be a valid ingredient name.
-    public static final String VALID_INGREDIENT_REGEX = "[^ ].*";
-
-    // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
-    public static final String VALID_DISH_REGEX = "[^ ].*";
 
     // ========== GENERAL ==========
 
