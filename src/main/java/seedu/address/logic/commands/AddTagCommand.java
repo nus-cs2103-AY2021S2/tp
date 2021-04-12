@@ -36,9 +36,8 @@ public class AddTagCommand extends TagCommand {
             + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " selected -t Illustrator\n"
             + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 3 -t Photoshop -t Illustrator";
 
-    public static final String MESSAGE_SUCCESS = "Tag(s) added to %1$d person(s): %2$s\n"
-            + "Note: The total number of persons shown is the number of persons the command have executed on.\n"
-            + "However, same tags will not be added to the persons.";
+    public static final String MESSAGE_SUCCESS = "Tag command executed on %1$d person(s). Tag(s) added: %2$s\n"
+            + "Note: Same tags will not be added to the persons.";
 
     private final Set<Tag> tags;
     private final List<Index> targetIndexes;
