@@ -73,5 +73,5 @@ imPoster is a desktop application for beginners of API development to easily gra
     - Added the entire appendix section with additional information for users ([\#353](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/353), [\#446](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/446)).
   - Developer Guide:
     - Added implementation details of the `request` feature ([\#351](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/351)).
-    - Added cover page ([\#351](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/351)).
-    - Added several use cases and glossary terms ([\#71](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/71), [\#102](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/102)).
+    - Added cover page and minor styling ([\#355](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/355)).
+    - Added effort, some use cases, test cases and glossary terms ([\#71](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/71), [\#102](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/102), [\#616](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/616), [\#631](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/631)).
