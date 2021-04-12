@@ -117,7 +117,7 @@ Format for adding: `addp d/DESCRIPTION [OPTIONAL: t/TAG...]`
 Format for deleting: `deletep p/PLAN_NUMBER`
 
 Shows 2 rows:
-- Whether plan is added/deleted successfully/unsuccessfully
+- Whether the plan is added/deleted successfully/unsuccessfully
 - Plan number
 
 Constraints:
