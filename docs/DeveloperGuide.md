@@ -7,6 +7,13 @@ title: Developer Guide
    <img src="images/FriendDex.png" width="200" style="margin: 0 auto" />
 </div>
 
+Our world is more connected than ever. There are numerous interactions between multiple people daily in our lives.
+As we move forward towards more of an asynchronous and remote way of living, daily interactions become more transient and harder to remember.
+FriendDex aims to act as a tool to bridge that gap so that interactions become more permanent. FriendDex will empower you to have better relationships with people around you.
+
+Welcome to the FriendDex Developer Guide. This guide helps current and future developers of FriendDex on navigating the source code of FriendDex. Let us bring the world closer together,
+and remember our core mission, **FriendDex aims to foster meaningful relationships for everyone, without any compromise**.
+
 * Table of Contents
 {:toc}
 
@@ -339,16 +346,16 @@ The sequence diagram below depicts the execution path when an `AddPictureCommand
 
 **Target user profile**:
 
-* is a young programmer studying in NUS Computer Science
-* prefers typing to mouse interactions
-* has difficulty maintaining personal relationships
-* cannot recall previous conversations with others
+* is a university student.
+* prefers typing to mouse interactions.
+* has difficulty maintaining personal relationships.
+* cannot recall previous conversations with others.
 * is a goal-driven individual and seeks new challenges.
 
 **Value proposition**:
 
-* makes relationship management easier for the user
-* keeps track of personal relationship with users' friends
+* makes relationship management easier for the user.
+* keeps track of personal relationship with users' friends.
 * manages relationship faster than a mouse-driven app.
 
 ### User stories
