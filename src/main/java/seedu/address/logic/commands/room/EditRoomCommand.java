@@ -62,8 +62,8 @@ public class EditRoomCommand extends Command {
     /**
      * Creates an EditRoomCommand to edit the room at the specified {@code Index}.
      *
-     * @param index              of the room in the filtered room list to edit.
-     * @param editRoomDescriptor details to edit the room with.
+     * @param index              Of the room in the filtered room list to edit.
+     * @param editRoomDescriptor Details to edit the room with.
      */
     public EditRoomCommand(Index index, EditRoomDescriptor editRoomDescriptor) {
         requireNonNull(index);
@@ -81,6 +81,7 @@ public class EditRoomCommand extends Command {
      *                          {@code RoomNumber} edited but the {@code Room} has been allocated to a {@code Resident}.
      * @throws CommandException If the {@code Room} being edited is being at the specified {@code Index} will have its
      *                          {@code RoomNumber} edited but the {@code Room} has an associated {@code Issue}.
+     * @throws NullPointerException If {@code model} is null.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -137,7 +138,7 @@ public class EditRoomCommand extends Command {
      *
      * @param roomToEdit         The {@code Room} that is being edited
      * @param editRoomDescriptor The {@code EditRoomDescriptor} that contains the details to edit the {@code Room} with.
-     * @return
+     * @return The {@code Room} object after {@code roomToEdit} is updated by {@code editRoomDescriptor}.
      */
     public static Room createEditedRoom(Room roomToEdit, EditRoomDescriptor editRoomDescriptor) {
         assert roomToEdit != null;

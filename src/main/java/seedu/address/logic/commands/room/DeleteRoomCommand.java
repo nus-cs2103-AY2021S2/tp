@@ -53,7 +53,7 @@ public class DeleteRoomCommand extends Command {
      * @throws CommandException If the room being deleted at the specified {@code Index} has been allocated to a
      *                          {@code Resident}.
      * @throws CommandException If the room being deleted at the specified {@code Index} has any {@code Issue}
-     *                          associated with it
+     *                          associated with it.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {

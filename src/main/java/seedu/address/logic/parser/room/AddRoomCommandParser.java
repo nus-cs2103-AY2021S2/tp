@@ -29,9 +29,9 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
      * Parses the given {@code String} of arguments in the context of the AddRoomCommand and returns an AddRoomCommand
      * object for execution.
      *
-     * @param userInput The command {@code String} entered by the user
-     * @return The parsed {@code AddRoomCommand}
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput The command {@code String} entered by the user.
+     * @return The parsed {@code AddRoomCommand}.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     @Override
     public AddRoomCommand parse(String userInput) throws ParseException {

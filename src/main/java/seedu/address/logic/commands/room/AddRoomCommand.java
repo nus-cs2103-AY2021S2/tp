@@ -36,7 +36,7 @@ public class AddRoomCommand extends Command {
     /**
      * Creates an AddRoomCommand to add the specified {@code Room}
      *
-     * @throws NullPointerException if {@code Room} is null
+     * @throws NullPointerException if {@code Room} is null.
      */
     public AddRoomCommand(Room room) {
         requireNonNull(room);
@@ -44,7 +44,7 @@ public class AddRoomCommand extends Command {
     }
 
     /**
-     * Executes the AddRoomCommand with the specified {@code Model}
+     * Executes the AddRoomCommand with the specified {@code Model}.
      *
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the {@code Room} that was added.
