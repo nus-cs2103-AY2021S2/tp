@@ -181,6 +181,8 @@ command to access the help page for a detailed guide on using the application.
 
 Format: `help`
 
+<div markdown="block" class="alert alert-primary">
+
 **:bulb: Tips:**<br>
 
 You may use the `F5` hotkey to open up the Help window.
@@ -346,11 +348,27 @@ Format: `reset-filter`
 
 ### 5.9 Undoing commands : `undo`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Info:**<br>
+
+You can only undo `add-fr` and `delete-fr` operations.
+
+</div>
+
 If you made a mistake from executing any commands, `undo` allows you to revert multiple latest changes made.
 
 Format: `undo`
 
 ### 5.10 Redoing commands : `redo`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Info:**<br>
+
+You can only redo undone `add-fr` and `delete-fr` operations.
+
+</div>
 
 If you made a mistake from executing any commands, `redo` allows you to advance multiple latest changes made.
 It works in the opposite way from `undo`,
@@ -402,11 +420,11 @@ enter any command that updates data.
 
 ### 5.16 Editing the data file
 
-Data is saved as a JSON file to the following location `[JAR file location]/data/budgetbaby.json`. If you are an
-advanced user, feel free to update data directly by editing that file.
+Data is saved as an encoded JSON file to the following location `[JAR file location]/data/budgetbaby.json`. You are
+<strong>NOT RECOMMENDED</strong> to edit the file in any way.
 
 **:exclamation: Caution:**
-If your changes to the data file makes invalidates its format, BudgetBaby will discard all your data and start with an
+If your changes to the data file invalidates its format, BudgetBaby will discard all your data and start with an
 empty data file at the next run.
 
 ---
@@ -434,6 +452,8 @@ empty data file at the next run.
 | **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/food`                                                                 |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
+| **Undo**                      | `undo`                                                                                                      |
+| **Redo**                      | `redo`                                                                                                      |
 | **Help**                      | `help`                                                                                                              |
 | **Exit**                      | `exit`                                                                                                              |
 
