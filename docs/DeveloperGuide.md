@@ -45,7 +45,7 @@ its functionality using `LogicManager.java` which implements the `Logic` interfa
 Similarly, we have `Model` interface and `ModelManager` class that implements
 `Model`.
 
-**How the architecture components interact withe each other**
+**How the architecture components interact with each other**
 
 The Sequence Diagram below shows how the components interact with each other
 for the scenario where the user issues the command `delete 1`.
@@ -399,12 +399,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-1a. The given cheese quantity is invalid.
+* 1a. The given cheese quantity is invalid.
   * 1a1. CHIM shows an error message.
 
     Use case resumes at step 1.
 
-1b. The customer with the given phone number cannot be found.
+* 1b. The customer with the given phone number cannot be found.
   * 1b1. CHIM shows an error message.
 
     Use case resumes at step 1.
@@ -419,10 +419,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-1a. The given cheese quantity is invalid.
+* 1a. The given cheese quantity is invalid.
   * 1a1. CHIM shows an error message.
 
-    Use case reumes at step 1.
+    Use case resumes at step 1.
 
 #### Use case: Input a Customer
 
@@ -1122,7 +1122,7 @@ Challenges Faced:
     These limitations came as a result of our rigorous testing of the system, to ensure that every operation performed
     in `CHIM` will lead to a valid final state.
   * Some limitations are:
-    * Disallowing edits on assigned `Order`s and `Cheese`s, to prevent .
+    * Disallowing edits on assigned `Order`s and `Cheese`s, to prevent unexpected changes.
     * Ensuring that the `ExpiryDate` of a `Cheese` is always after its `ManufactureDate`.
     * Restrict creation of dates to the time now to restrict completion of future orders.
 * Addition of new commands to `CHIM` (e.g. `done`) (Effort Required: 5 / 5)
