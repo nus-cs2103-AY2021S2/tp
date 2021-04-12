@@ -1,13 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDietLah.getTypicalUser;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
@@ -26,35 +23,32 @@ import seedu.address.model.food.FoodIntake;
 import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.food.UniqueFoodList;
 import seedu.address.model.user.User;
-import seedu.address.testutil.FoodBuilder;
 
-public class AddFoodItemCommandTest {
-
+public class AddUserCommandTest {
     @Test
-    public void constructor_nullFoodItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddFoodItemCommand(null));
+    public void constructor_addTypicalUser_addSuccessful() throws CommandException {
+        User typicalUser = getTypicalUser();
+        AddUserCommand addUserCommand = new AddUserCommand(typicalUser);
+
+        ModelStubWithUser model = new ModelStubWithUser();
+        CommandResult commandResult = addUserCommand.execute(model);
+
+        assertEquals(AddUserCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
     }
 
     @Test
-    public void execute_foodAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
-        Food validFood = new FoodBuilder().build();
+    public void execute_existingUser_addUnsuccessful() throws CommandException {
+        User typicalUser = getTypicalUser();
+        AddUserCommand addUserCommand = new AddUserCommand(typicalUser);
 
-        CommandResult commandResult = new AddFoodItemCommand(validFood).execute(modelStub);
+        ModelStubWithUser model = new ModelStubWithUser();
+        addUserCommand.execute(model);
 
-        assertEquals(AddFoodItemCommand.MESSAGE_SUCCESS + validFood + ") into food list.\n"
-                + "Here are all the food items: \n" + modelStub.listFoodItem(), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validFood), modelStub.foodsAdded);
-    }
+        User newUser = new User();
+        AddUserCommand newAddUserCommand = new AddUserCommand(newUser);
+        CommandResult commandResult = newAddUserCommand.execute(model);
 
-    @Test
-    public void execute_duplicateFood_throwsCommandException() {
-        Food validFood = new FoodBuilder().build();
-        AddFoodItemCommand addFoodItemCommand = new AddFoodItemCommand(validFood);
-        ModelStub modelStub = new ModelStubWithFood(validFood);
-
-        assertThrows(CommandException.class, AddFoodItemCommand.MESSAGE_DUPLICATE_FOOD, () ->
-                addFoodItemCommand.execute(modelStub));
+        assertEquals(AddUserCommand.MESSAGE_UPDATE, commandResult.getFeedbackToUser());
     }
 
     private class ModelStub implements Model {
@@ -214,57 +208,27 @@ public class AddFoodItemCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains a single food.
-     */
-    private class ModelStubWithFood extends ModelStub {
-        private final Food food;
+    private class ModelStubWithUser extends AddUserCommandTest.ModelStub {
+        private DietLah dietLah;
 
-        ModelStubWithFood(Food food) {
-            requireNonNull(food);
-            this.food = food;
+        ModelStubWithUser() {
+            dietLah = new DietLah();
+            dietLah.resetToBlank(dietLah.getFoodList(), dietLah.getFoodIntakeList());
         }
 
         @Override
-        public boolean hasFoodItem(Food food) {
-            requireNonNull(food);
-            return this.food.getName().equals(food.getName());
-        }
-    }
-
-    private class ModelStubAcceptingFoodAdded extends ModelStub {
-        final ArrayList<Food> foodsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasFoodItem(Food food) {
-            requireNonNull(food);
-            for (Food foodItem : foodsAdded) {
-                if (foodItem.getName().equals(food)) {
-                    return true;
-                }
-            }
-            return false;
+        public void addUser(User user) {
+            dietLah.addUser(user);
         }
 
         @Override
-        public void addFoodItem(Food food) {
-            requireNonNull(food);
-            foodsAdded.add(food);
+        public boolean hasUser() {
+            return dietLah.hasUser();
         }
 
         @Override
-        public String listFoodItem() {
-            StringBuilder stringBuilder = new StringBuilder();
-            int counter = 1; //Used for for-loop counter indicator.
-            for (Food food : this.foodsAdded) {
-                stringBuilder.append(counter + ". " + food.toString() + "\n");
-                counter++;
-            }
-            return stringBuilder.toString();
-        }
-
-        public ReadOnlyDietLah getDietLah() {
-            return new DietLah();
+        public User getUser() {
+            return dietLah.getUser();
         }
     }
 }
