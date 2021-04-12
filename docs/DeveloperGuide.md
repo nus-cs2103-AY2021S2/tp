@@ -152,13 +152,16 @@ This section describes some noteworthy details on how certain features are imple
 BookCoin allows users to narrow down the search of persons, venues and bookings through filters. 
 
 #### 4.1.1 Implementation details
-The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking.
+The find functionality is implemented through an FindCommand and FindCommandParser for Person, Venue and Booking. Corner cases such as searching for non-existent entries are also handled properly with suitable notifications displayed to the user. For example, if a search returns with no results, the corresponding notice that there are no persons/ venues/ bookings is displayed.
+The find feature is implemented with FindPersonCommand/ FindVenueCommand/ FindBookingCommand and their respective parsers FindPersonCommandParser/ FindVenueCommandParser/ FindBookingCommandParser.
 <br>
 ![Class Diagram of Find Command](images/FindCommandClassDiagram.png)
 
-
 Since the functionality for all three classes are similar, we can focus our discussion here on the Person class here without loss of generality. The `find_person` command has the following format:
 `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`, where at least one field must be provided. 
+
+Given below is a sequence diagram how the `find_person` command behaves in BookCoin after user input is parsed if a user wishes to find all persons by the name of "Anna" and inputs `find_person n/Anna`.
+![Sequence Diagram of Find Command](images/FindCommandSequenceDiagram.png)
 
 #### 4.1.2 Design considerations:
 ##### Aspect: Deciding between full and partial matching
@@ -170,6 +173,11 @@ Since the functionality for all three classes are similar, we can focus our disc
 * **Alternative 2:** Partial matching which would return all valid partial results when users input a field.
     * Pros: More convenient for situations when a user cannot remember a full field.
     * Cons: Results returned may contain many unrelated and undesirable entries (e.g. if searching for a person "Ann", the system would return partial matches "Annabelle", "Annabella", "Anna" etc.)
+
+### 4.2 Delete feature
+BookCoin supports the deletion of person, venue and booking objects. However, since there are dependencies between the different classes (e.g. there is a possibility that a venue is deleted while it still has bookings associated with it), we also had to ensure that a deletion of persons/ venues would also result in a deletion of the corresponding affected bookings.
+
+#### 4.2.1 Implementation details
 
 
 
