@@ -14,7 +14,7 @@ Given below are my contributions to the project:
 ### New feature: Master Plan Command
 - What it does: Allows users mark one of their study plans as their 'master' one.
 
-- Justification: The master plan identifies the modules the student has actually done (in the past) and primarily intends to do (in the future). This feature, in conjunction with the **current semester** command, is a prerequisite for any commands that require knowledge of the student's university progress.  It can be thought of as labelling one's master branch in GitHub.
+- Justification: The master plan identifies the plan containing modules the student has actually done in the past and intends to do in the future. In conjunction with the **current semester** command, this feature is a prerequisite for any commands that require knowledge of the student's university progress.  It can be thought of as labelling one's master branch in GitHub.
 
 - Highlights: Implementing this feature exposed me to AB3 in an end-to-end manner as its implementation involved user inputs, storage for persistence beyond a single session, and several other internally used classes.
 
