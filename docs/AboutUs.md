@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/charleslee01.md)]
 
 * Role: Developer
-* Responsibilities: Add command
+* Responsibilities: Edit Command
 
 ### John Alec Mendoza Branzuela
 
@@ -25,16 +25,17 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/branzuelajohn.md)]
 
 * Role: Developer
-* Responsibilities: Command Summary
+* Responsibilities: Dog and Program Classes, Add and Delete Commands
 
 ### Kou Yong Kang
 
 <img src="images/kouyk.png" width="200px">
 
-[[github](http://github.com/kouyk)] [[portfolio](team/kouyk.md)]
+[[github](http://github.com/kouyk)]
+[[portfolio](team/kouyk.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Data, Code Refactoring, Schedule and List Commands
 
 ### Lam Xuan Yi, Shaelyn
 
@@ -44,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/shaelynl.md)]
 
 * Role: Developer
-* Responsibilities: Help command
+* Responsibilities: Drop Command, GUI
 
 ### Wei Yutong
 
@@ -54,7 +55,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/wei-yutong.md)]
 
 * Role: Developer
-* Responsibilities: Exit Command
+* Responsibilities: Help and Enrol Commands
 
 ### Zhang Anli
 
@@ -64,4 +65,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/zhanganli.md)]
 
 * Role: Developer
-* Responsibilities: Delete command
+* Responsibilities: View and Find Commands, GUI
