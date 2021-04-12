@@ -324,8 +324,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
 
-    1. Test case: `delete John doe`<br>
-       Expected: contact with name 'John doe' is deleted from the list. Details of the deleted contact shown in the
+    1. Test case: `delete Alex Yeoh`<br>
+       Expected: contact with name 'Alex Yeoh' is deleted from the list. Details of the deleted contact shown in the
        status message. Timestamp in the status bar is updated.
 
     1. Test case: `delete Invalid@Name`<br>
@@ -340,6 +340,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. If data file could be corrupted or unable to load when an empty contact list is displayed during initial start-up 
+       of the app, try deleting addressbook.json file located at data folder and relaunch the app.
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+Keep it brief (~1 page)
+Explain the difficulty level, challenges faced, effort required, and achievements of the project.
+<br>Use AB3 as a reference point e.g., you can explain that while AB3 deals with only one entity type, your project was harder because it deals with multiple entity types.
+
+1. Find feature
+   Comprehensive find functionality 
+   <br>Challenges faced include understanding the architecture of AB3 code and refactoring existing testcase to resolve any regression bugs.
+
+1. Email feature
+ 

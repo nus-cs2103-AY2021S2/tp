@@ -26,13 +26,14 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+    * `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  
+      c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
       : Adds a contact named `Bob Ang`
 
-    * **`find`**`n/Bob Ang cp/BMW+Coupe`
+    * `find n/Bob Ang cp/BMW+Coupe`
       : Finds a contact named `Bob Ang` whose preferred car is a BMW Coupe.
 
-    * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
+    * `delete John Doe` : Deletes 'John Doe' contact from contact list .
 
     * **`list`** : Lists all contacts.
 
@@ -40,7 +41,9 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 
     * **`exit`** : Exits the app.
 
-    * **`help`** : Get a legend of commands.
+    * **`help`** : Opens the help window.
+    
+    * **`email`**: Opens the email interface.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -81,18 +84,37 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 
 ## Command summary
 
+**Note** : (pipe_char) means `|` below.  
+
 Action | Format, Examples
 --------|------------------
-**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG]…​ [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED\|COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]`<br> e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
-**find** | `find [e/bob /AND p/98761234] /OR b/1999 10 11`
+**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG] [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]` <br> e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe(pipe_char)2030 01 01 c/Porsche+SUV(pipe_char)2030 01 01 cp/MercedesBenz+SUV`
+**find** | `find [e/bob /and p/98761234] /or b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
 **clear** | `clear` Clears the contact list, erasing all saved data.
-**exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
-**help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
-**email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
+**exit** | `exit` Exits the app. Ignores all texts type after 'exit' e.g. exit 12345.
+**help** | `help` Opens the help window. Ignores all texts type after 'help' e.g. help 12345.
+**email** | `email` Opens the email interface. Ignores all texts type after 'email' e.g. email 12345.
 **up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
 
+
+Prefix | Format
+--------|------------------
+**n/** | `n/NAME`
+**p/** | `p/PHONE_NUMBER`
+**e/** | `e/EMAIL`
+**a/** | `a/ADDRESS`
+**b/** | `b/DATE_OF_BIRTH` 
+**t/** | `t/TAG`
+**c/** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE`
+**cp/** | `cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED`
+**ex/** | `ex/COE_EXPIRY_DATE`
+**/and** | `n/NAME /and a/ADDRESS`
+**/or** | `n/NAME /or a/ADDRESS`
+**/not** | `/not n/NAME`
+**+** | `CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED` `CAR_BRAND_OWNED+CAR_TYPE_OWNED` <br> Joins car brand and car type
+**(pipe_char)** | `c/CAR_BRAND_OWNED+CAR_TYPE_OWNED(pipe_char)COE_EXPIRY_DATE` <br> joins car with COE expiry date
 
 ### Adding a customer: `add`
 
@@ -106,18 +128,21 @@ A customer can have any number of tags, carsOwned, carPreferred (including 0)
 
 Examples:
 * `add n/John Wayne p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10`
-* `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  t/friend c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
+* `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  t/friend c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV` 
+![Ui](images/examples/addcus1.png)
+
 ### Finding a customer: `find` 
 
 Find customers from the contact list that matches specified filters.
 
 Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+OWNED_CARTYPE] [coe/COE_EXPIRY_DATE] [t/TAGs] 
-[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]`
+[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]` 
 
 **IMP** : All arguments are optional. In particular:
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to 
   separate.
-  
+- for `p/PHONE` any phone number containing the given parameter string will be returned. 
+  - `98776` will be matched with both `77` and `786` for example.
 - for `cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE` user can either give brand or type information, or both using the 
   `+` sign to separate.
   
@@ -125,19 +150,14 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
   that `abc` is a subsequence of `addbddc`) will be matched. Note that this is the only field for which we match 
   a subsequence instead of a simple substring.
   
-- for `e/EMAIL`, all email containing the given parameter will be valid, but note that domain name is not checked.
+- for `e/EMAIL`, all email containing the given parameter will be valid.
     - eg `find e/abc` will return profiles with the following emails:
         -  `abcd@gmail.com`
         -  `bbabc@gmail.com`
-    - It will _not_ return:
-        - `xxx@abc.com`
-        - `axbyc@hhh.com`
 
-
-Further details about the search options are as follows:
-
-- For `coe/COE_EXPIRY_DATE`, using `coe/exp` will search for all customers with an expired COE on any of the cars they own.
-  it is a special case alias for the search `coe/0`, where `coe/NON_NEGATIVE_NUMBER` will search for any customers with
+- for `ex/COE_EXPIRY_DATE`, using `ex/exp` will search for all customers with an expired COE on any of the cars they 
+  own.
+  it is a special case alias for the search `ex/0`, where `ex/NON_NEGATIVE_NUMBER` will search for any customers with
   at least one car that will expire in `NON_NEGATIVE_NUMBER` years *or less*.
   
 - for `a/ADDRESS` partial addresses are also acceptable
@@ -153,11 +173,12 @@ Further details about the search options are as follows:
 **COMBINING FIND PARAMETERS**
 
 We can combine in the following way : 
--   `find a/Orchard /AND n/John /AND /NOT t/CRIMINAL`
--   `find a/Orchard /AND n/John /AND [ t/RICH /OR /NOT t/CRIMINAL ]`
+-   `find a/orchard /and n/John /and /not t/CRIMINAL`
+-   `find a/orchard /and n/John /and [ t/RICH /or /not t/CRIMINAL ]`
 
-Note that for `find A /AND B /OR C /OR D /AND E` , the implicit bracketing considered is `find A /AND [B /OR [C /OR [D 
-/AND E]]]`
+Note that for `find A /and B /or C /or D /and E` , the implicit bracketing considered is `find A /and [B /or [C /or [D 
+/and E]]]`
+Further, the bracketing order is not dependent on `/and` or `/or` -- we treat them as the same.
 
 ## Deleting a customer : `delete`
 
@@ -180,7 +201,13 @@ Format: `list`
 
 ## Repeat last Command : `/up`
 * **`/up{X}`** : Loads in the previous command. `{X}` can be any string of characters, usually the previous command.
-* Examples: `/updelete John Doe`
+* Examples: 
+    - `/updelete John Doe`
+    - `/up/up`
+    - `/upfind n/K`
+    - `/upfghsdgdsfg`
+        - All of the above examples have the same effect.
+        - Importantly note that `/up` and `/up/up` are the same, we do not go back twice.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 There does not need to be a space after /up, so long as it is the first part of the 'command'
@@ -197,6 +224,7 @@ Result:
 
 
 
+
 ## Exiting app: `exit`
 * **`exit`** : Exits the app safely.
 
@@ -204,9 +232,14 @@ Result:
 * **`help`** : Overview of commands and input syntax.
 
 ## Email Contact person: `email`
-* **`email`** : Opens a simplified mailbox interface enabling user to send email through Simple Mail Transfer Protocol(SMTP).
+* **`email`** : Opens a simplified mailbox interface as shown below, enabling user to send email through Simple Mail Transfer Protocol(SMTP).
   Please ensure that you enable google to allow for less secure access - this is the term by google, which means an action
   to disable 2-step verification for logging in.
+  You may use the following dummy email provided for testing:
+  **username**: cs2103emailtest@gmail.com <br>
+  **password**: emailtest1 <br>
+  ![Ui](images/helps/emailInterface.png)
+  
   Note: This feature only allows for out going SMTP server access, the application do not have access to your incoming mails
   as it is on a different server.
   ![Ui](images/helps/googleHelp4.png)
@@ -226,16 +259,16 @@ Result:
   You will be required to fill in the respective fields, please note that current version does not support multiple 
   authentication attempts, hence you will be required to restart the application if your email or password details are
   filled incorrectly.
-  ![Ui](images/helps/emailLogin.png)
+  ![Ui](images/helps/unmatchedPw.png)
   
   
-  **Successful Login**
+  **Successful Login** <br>
   You will receive a confirmation message 'Message Sent' when email is successfully sent out. 
   Please note that in this we have blocked multiple log in and authentication, the email and password box will be disabled 
   after successful authentication. If you have been successfully authenticated, a green text will be shown in the bottom 
   left corner of the interface 'You are logged in'.
   You may continue to send email to other receiver addresses without having to re-enter the password.
-  ![Ui](images/helps/Sentmail.png)
+  ![Ui](images/helps/Sentemail.png)
   
  
   Please note that if you input a non-existing receiver email, message will still mark as sent. You will however receive a 
@@ -247,7 +280,7 @@ Result:
   your email will still be mark as sent. However you will be receiving a failed message in your email inbox.
   ![Ui](images/helps/invalidDomain.png)
 
-  **Failed Login**
+  **Failed Login** <br>
 
   If you have failed the authentication, either due to mismatching email and password, you will be required to restart
   the application, as support for multiple logins are blocked. The password you entered will be cleared, together with the 
