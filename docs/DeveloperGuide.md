@@ -381,9 +381,13 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 **Target user profile**:
 
-* Computing minor students in NUS who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy workdays.
-* Wants to manage school life and social life together in one app, with meetups for projects, lectures, social activities, and family all organised.
-* Would like to keep track of contacts and organise them as well for easy searching and easy remembering.
+* Any user who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy schedules
+ from 7 am - 4pm. 
+* Has a lot of contacts and meeting alot of people out for events.
+* Is more visual and would like to see the meetings on a timetable, and see when he is free. 
+Is probably relatively young, and has friends with online gravatar profiles. 
+* Would like to keep track of contacts and organise them as well for 
+easy searching and easy remembering.
 * Can type fast
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
@@ -403,13 +407,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                  |     delete a meeting                       clear our old meetings that I dont need   |                 |
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by personName          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `* *`    | user                                       | assign priorities for contacts | arrange my contacts and future tasks better                            |
+| `* *`    | user                                       | add a meeting with start date and end date                       |      keep track of meeting details of when it is happening          |
+| `* *`    | user                                       | assign priorities for meetings | arrange my contacts and future tasks better                            |
 | `*`      | user with many persons in the MeetBuddy address book | sort persons by personName           | locate a person easily                                                 |
+| `* * `   | user with 8-5 schedule | See the current week's timetable of my scheduled meetings |  I can quickly estimate how packed my schedule is   |
+| `* *`    | user with packed meetings | Easily find free slots to schedule my meetings | I can quickly find a slot to schedule my meeting|
+| `*` | user with friends who have online gravatar profiles| I want to have my friends photos of my contacts without having the hassle of updating the photos manually | So that I can easily remmember them|
+| `* * *` | meeting coordinator | I want to know who is coming to my meetings | I can keep note of who is coming to prepare for my meetings|
+|`* *`| user with lots of meetings| I want to note a description to the meeting| Store info  like location, any things to take note or tasks to do before the meeting|
+|`* * *`| user | I want to note down a contact even if I dont have some fields | I may not know a person's address, or email, or phone number |
 
 *{More to be added}*
 
