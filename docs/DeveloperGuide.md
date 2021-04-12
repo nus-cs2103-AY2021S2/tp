@@ -61,7 +61,7 @@ exposes its functionality using the `LogicManager.java` class which implements t
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete Alex Yeoh`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -102,10 +102,10 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete ")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete Alex Yeoh` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -194,6 +194,7 @@ filter the results and list them out on the GUI
 
 * Email integration Contact customers directly from the app instead of using a separate app.
 
+
 ### User stories
 
 Here 'User' refers to a Car Salesperson Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (
@@ -210,7 +211,7 @@ unlikely to have) - `*`
 | `* * *`  | user                                       | filter by car brand preference | find customers who prefer a specific car brand easily         |
 | `* * *`  | user                                       | filter by address   | find customers who live near a specific region
 | `* * *`  | user                                       | filter by name   | find customers whose name match most closely the phone number I remember
-| `* * *`  | user                                       | filter by Date Of Birth   | find customers whose DoB match most closely the phone number I remember
+| `* * *`  | user                                       | filter by Date Of Birth   | find customers whose Date of Birth match most closely the phone number I remember
 | `* * *`  | user                                       | filter by email   | find customers whose email match most closely the phone number I remember
 | `* * *`  | user                                       | filter by phone number   | find customers whose phone number match most closely the phone number I remember
 | `* * *`  | user                                       | filter by tags   | find customers who have the specified tags
@@ -218,10 +219,8 @@ unlikely to have) - `*`
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* *`    | user                                       | use logical operators and brackets to filter | filter using more complex parameters than just 1 field
 | `* *`    | user                                       | list customers with expiring COE   |  have a list of potential customers who might purchase a new car   |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user                                       | email customers | to contact them
 | `*`      | user                                       | send customer holiday greetings| maintain cordial relationship with my customer                         |
-| `*`      | user                                       | track family status of customers| make appropriate recommendations for car type for family              |
 
 *{More to be added}*
 
@@ -246,7 +245,7 @@ unlikely to have) - `*`
 
   Use case resumes from step 3
 
-* 3a. The given index is invalid.
+* 3a. The given name is invalid.
 
     * 3a1. System shows an error message.
 
@@ -269,7 +268,7 @@ unlikely to have) - `*`
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given name is invalid.
 
     * 3a1. System shows an error message.
 
@@ -322,6 +321,30 @@ Repeat Steps 1-2, each time displaying the next previous command in command hist
 
 *{More to be added}*
 
+**Use case: Find customers**
+
+**MSS**
+
+1. User requests to list customers
+2. System shows a list of customers
+3. User requests to find customer using a car preference filter 
+4. System shows a list of filtered customers
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  
+* 3a. The given filter  is invalid.
+
+    * 3a1. System shows an error message.
+
+      Use case resumes at step 2.
+
+  Use case ends.
+
+*{More to be added}*
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -335,7 +358,6 @@ Repeat Steps 1-2, each time displaying the next previous command in command hist
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **COE**: Certificate of Entitlement for Singapore Cars
 * **GUI**: Graphical user interface for the Car@leads app
 
@@ -368,6 +390,25 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a customer
+
+1. Adding a customer while all customers are being shown
+
+    1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+
+    1. Test case: `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  t/friend c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV` <br>
+       Expected: contact with name 'Bob Ang' is added to the list. Details of the added contact shown in the
+       status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add Alex Yeoh`<br> 
+       Expected: No customer is added as Alex Yeoh customer already exist in the loaded date file.<br>
+       Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `add`
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a customer
 
 1. Deleting a customer while all customers are being shown
@@ -386,6 +427,49 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Finding a customer by attributes
+
+1. Finding a customer while all customers are being shown
+
+    1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+
+    1. Test case: `find n/Alex Yeoh`<br>
+       Expected: contact with name 'Alex Yeoh' is listed. Details of the filtered contact is shown in the
+       status message. Timestamp in the status bar is updated.
+
+    1. Test case: `find cp/Tesla`<br>
+       Expected: contacts whose car brand preference is a 'tesla' will be listed. Details of the filtered contacts is shown in the
+       status message. Timestamp in the status bar is updated.
+
+    1. Test case: `find n/Alex Yeoh /and cp/Tesla`<br>
+       Expected: contact whose name is 'Alex Yeoh' and carbrand preference is a 'tesla' will be listed. 
+       <br> Details of the filtered contacts is shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `find n/`<br>
+       Expected: No customer is found. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `find`
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Get previous command
+
+1. After entering a few commands, traverse back command history and get previous command.
+    1. Prerequisites: Entered multiple commands previously.
+
+    1. Test case: `/up`<br>
+       Expected: Previous command is found and reflected in command line input.
+
+   1. Test case: `/up/up/up`<br>
+      Expected: Previous command is found and reflected in command line input. 
+      <br> /up do not stack, can only can previous command
+   
+    1. Test case: `/down`<br>
+       Expected: Incorrect format. Error details shown in the status message. Status bar remains the same.
+
+1. _{ more test cases …​ }_
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -396,15 +480,32 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
+Working on AB3, a brown-field project entails a huge amount of effort and time spend on understanding the architecture of AB3 code, 
+<br>this involved reading through the developer guide documentation and making incremental changes initially to ensure every milestone release is a working version.
 
-Keep it brief (~1 page)
-Explain the difficulty level, challenges faced, effort required, and achievements of the project.
-<br>Use AB3 as a reference point e.g., you can explain that while AB3 deals with only one entity type, your project was
-harder because it deals with multiple entity types.
+* A disciplined adherence to the Github forking workflow, where constant communication is required when reviewing pull requests by fellow team members.
+* rigorous effort to maintain user guide and developer guide that these static information were up to date with to changes made to existing features.
+<br>
 
-1. Find feature Comprehensive find functionality
-   <br>Challenges faced include understanding the architecture of AB3 code and refactoring existing testcase to resolve
-   any regression bugs.
 
-1. Email feature
+1.  1. Achievement: Adding several new fields to the Customer entity, the main focus object of the project
+    1. Difficulty level: Medium
+    1. Challenges Faced: Considerations of having to edit other classes such as command Parser to ensure that the existing add command, edit commands were working
+    1. Effort required: Changes to the customer entity yield regression bugs, thus a pro-active update of test cases to new fields were required.
+
+1.  1. Achievement: Implementing a sophisticated Find feature
+    1. Difficulty level: High
+    1. Challenges Faced: Implement a typo-matching find filter functionality for user inputs that strive to achieve 
+       <br>a good balance between returning results that were an exact match and returning similar results.
+    1. Effort required: Introduction of a new filter package to incorporate find functionality and to contain the specific attribute filters,
+       <br>adding new testcases for the newly introduced filter classes
+
+
+1. 1. Achievement: Integrated Email feature
+    1. Difficulty level: High
+    1. Challenges Faced: Understanding a third party JavaFx librabry (sendEmailJFX) to the project was by no means an easy task
+       <br> With reference to AB3, which did not have external library added to give the GUI more features
+       <br> We had to figure out how to integrate the third party JavaFx library with existing JavaFx and UI classes code
+    1. Effort required: A good spirit of google searches to figure how to integrate the third party code to our GUI and JavaFx code.
  
+
