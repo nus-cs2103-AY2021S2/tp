@@ -23,9 +23,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/awzhenyi.png" width="200px">
 
 [[github](http://github.com/awzhenyi)]
+[[portfolio](team/awzhenyi.md)]
 
 * Role: Developer
-* Responsibilities: _TBC_
+* Responsibilities: Features, Testing
 
 ### Teng Shu Wei Jared
 
