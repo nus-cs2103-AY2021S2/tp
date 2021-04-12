@@ -17,9 +17,6 @@ import seedu.ta.model.entry.EntryDate;
 import seedu.ta.model.entry.EntryName;
 import seedu.ta.model.tag.Tag;
 
-/**
- * Jackson-friendly version of {@link Entry}.
- */
 public class JsonAdaptedEntry {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Entry's %s field is missing!";
