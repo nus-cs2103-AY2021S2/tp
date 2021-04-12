@@ -53,6 +53,27 @@ public class DoneCommandTest {
     }
 
     @Test
+    public void execute_eventIsAlreadyDone_fail() {
+        Event eventToMarkAsDone = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
+        Identifier eventIdentifier = Identifier.fromIdentifier(eventToMarkAsDone.getIdentifier());
+        DoneCommand doneCommand = new DoneCommand(eventIdentifier);
+
+        String expectedMessage = DoneCommand.MESSAGE_DONE_ALR_EVENT;
+
+        assertCommandFailure(doneCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_emptyEventBook_fail() {
+        model = new ModelManager(new UserPrefs(), new EventBook());
+        DoneCommand doneCommand = new DoneCommand(IDENTIFIER_FIRST_EVENT);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS;
+
+        assertCommandFailure(doneCommand, model, expectedMessage);
+    }
+
+    @Test
     public void equals() {
         DoneCommand doneFirstCommand = new DoneCommand(IDENTIFIER_FIRST_EVENT);
         DoneCommand doneSecondCommand = new DoneCommand(IDENTIFIER_SECOND_EVENT);
