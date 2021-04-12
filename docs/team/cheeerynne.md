@@ -50,7 +50,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to clear all members assigned to a task with a single command.
     
     * Justification: This feature improves the product significantly because should the user accidentally assigned a task to 
-      the wrong group of members, the user can easily clear all members assigned to a task instead of removing one member at a time.
+      the wrong group of members, the user can easily clear all members assigned to the task instead of removing one member at a time.
     
     * Highlights: The implementation was challenging as I had to create a copy of the task at the given index and update 
       the assignees field accordingly, before updating the task list with the updated task copy. Furthermore, integration and unit testing 
