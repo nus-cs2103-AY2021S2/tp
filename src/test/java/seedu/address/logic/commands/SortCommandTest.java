@@ -53,7 +53,7 @@ public class SortCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new ShortcutLibrary());
 
-        Comparator<Person> comparator = new SortCommand.PolicyComparator();
+        Comparator<Person> comparator = new SortCommand.PersonPoliciesComparator();
         expectedModel.updateSortedPersonList(comparator);
 
         assertCommandSuccess(sortCommand, model,
@@ -67,7 +67,7 @@ public class SortCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new ShortcutLibrary());
 
-        Comparator<Person> comparator = new SortCommand.PolicyComparator();
+        Comparator<Person> comparator = new SortCommand.PersonPoliciesComparator();
         comparator = comparator.reversed();
         expectedModel.updateSortedPersonList(comparator);
 
