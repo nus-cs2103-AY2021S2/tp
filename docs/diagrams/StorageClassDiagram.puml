@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
+skinparam defaultFontSize 28
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
@@ -23,14 +24,14 @@ JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonColabFolderStorage .left.|> ColabFolderStorage
 JsonColabFolderStorage .down.> JsonSerializableColabFolder
 
-JsonSerializableColabFolder ..> JsonAdaptedContact
-JsonSerializableColabFolder ..> JsonAdaptedProject
+JsonSerializableColabFolder --> JsonAdaptedContact
+JsonSerializableColabFolder --> JsonAdaptedProject
 
-JsonAdaptedProject ..> JsonAdaptedGroupmate
-JsonAdaptedProject ..> JsonAdaptedTodo
-JsonAdaptedProject ..> JsonAdaptedEvent
-JsonAdaptedProject ..> JsonAdaptedDeadline
+JsonAdaptedProject --> JsonAdaptedGroupmate
+JsonAdaptedProject --> JsonAdaptedTodo
+JsonAdaptedProject --> JsonAdaptedEvent
+JsonAdaptedProject --> JsonAdaptedDeadline
 
-JsonAdaptedContact ..> JsonAdaptedTag
-JsonAdaptedGroupmate ..> JsonAdaptedRole
+JsonAdaptedContact --> JsonAdaptedTag
+JsonAdaptedGroupmate --> JsonAdaptedRole
 @enduml

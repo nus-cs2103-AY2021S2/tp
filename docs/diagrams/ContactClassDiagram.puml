@@ -3,6 +3,7 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam defaultFontSize 20
 
 Class ColabFolder
 Class ModelManager
@@ -20,15 +21,17 @@ Package Tag {
 Class Tag
 }
 
-ModelManager o--> "          1" ColabFolder
+ModelManager o--> "1  " ColabFolder
 
 ColabFolder *--> "1" UniqueContactList
 UniqueContactList o-> "*" Contact
-Contact *--> Name
-Contact *--> Phone
-Contact *--> Email
-Contact *--> Address
-Contact *-down--> " *" Tag
+Contact *---> Name
+Contact *---> Phone
+Contact *---> Email
+Contact *---> Address
+Contact *-left-> "*" Tag
+
+Phone -[hidden]right- Tag
 
 ModelManager -->"~* filtered list" Contact
 @enduml

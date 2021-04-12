@@ -6,6 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ColabParser" as ColabParser LOGIC_COLOR
 participant ":DeleteProjectCommandParser" as DeleteProjectCommandParser LOGIC_COLOR
 participant "d:DeleteProjectCommand" as DeleteProjectCommand LOGIC_COLOR
+participant ":UiCommand" as UiCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -53,6 +54,13 @@ activate Model
 
 Model --> DeleteProjectCommand
 deactivate Model
+
+create UiCommand
+DeleteProjectCommand -> UiCommand
+activate UiCommand
+
+UiCommand --> DeleteProjectCommand
+deactivate UiCommand
 
 create CommandResult
 DeleteProjectCommand -> CommandResult
