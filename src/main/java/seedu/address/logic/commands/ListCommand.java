@@ -51,4 +51,11 @@ public class ListCommand extends Command {
             return new CommandResult(MESSAGE_UNDONE_TASKS_SUCCESS);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        //ListCommand that = (ListCommand) other;
+        return this == other || (other instanceof ListCommand // instanceof handles nulls
+                && isListEverything == (((ListCommand) other).isListEverything)); // state check;
+    }
 }
