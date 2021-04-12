@@ -1,0 +1,115 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "customer:Customer" as Customer LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/John p/87654321 e/john@gmail.com a/Bishan St 12 d/2021-05-01")
+activate LogicManager
+
+LogicManager -> DeliveryListParser : parseCommand("add n/John p/87654321 e/john@gmail.com a/Bishan St 12 d/2021-05-01")
+activate DeliveryListParser
+
+create AddCommandParser
+DeliveryListParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> DeliveryListParser
+deactivate AddCommandParser
+
+DeliveryListParser -> AddCommandParser : parse("n/John p/87654321 e/john@gmail.com a/Bishan St 12 d/2021-05-01")
+activate AddCommandParser
+
+create ParserUtil
+AddCommandParser -> ParserUtil
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseName("n/John")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : name
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parsePhone("p/87654321")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : phone
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseEmail("p/john@gmail.com")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : email
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseAddress("p/Bishan St 12")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : address
+deactivate ParserUtil
+
+AddCommandParser -> ParserUtil : parseDate("p/2021-05-01")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : date
+deactivate ParserUtil
+
+create Customer
+AddCommandParser -> Customer : new Customer(name, phone, email, address, date)
+activate Customer
+
+Customer --> AddCommandParser : customer
+deactivate Customer
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> DeliveryListParser
+deactivate AddCommandParser
+
+AddCommandParser -[hidden]-> DeliveryListParser
+destroy AddCommandParser
+
+DeliveryListParser --> LogicManager
+deactivate DeliveryListParser
+
+LogicManager -> AddCommand : execute(model)
+activate AddCommand
+
+AddCommand -> Model : addCustomer(customer)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
