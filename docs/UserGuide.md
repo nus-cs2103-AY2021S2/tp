@@ -68,7 +68,7 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
 
 3. The **Orders Box** is where all the orders that you have added to CakeCollate are displayed.
 
-    :information_source: **In what order are orders displayed in CakeCollate? **<br>
+    :information_source: **In what order are orders displayed in CakeCollate?** <br>
       * CakeCollates always displays orders by their statuses - undelivered, then cancelled, then delivered orders. 
       * For orders that have the same statuses, they are then arranged according to delivery date, with the earliest date on the top of the GUI. 
 
@@ -235,7 +235,7 @@ Prefix: `t/`
 
 4. Double-click the file to start CakeCollate. A GUI similar to the below should appear in a few seconds. Note how the application contains some sample data. 
 You can use the sample data pre-loaded in the application to play around and get used to the available commands. <br><br>
-![Ui](images/Ui.png)
+ ![Ui](images/Ui.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -480,13 +480,13 @@ Examples:
 * `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
   ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
-<div style="page-break-after: always;"></div>
-
 ##### List all existing orders: `list`
 
 Shows a list of all orders in CakeCollate.
 
 Format: `list`
+
+<div style="page-break-after: always;"></div>
 
 ##### Display upcoming orders: `remind`
 
@@ -563,6 +563,8 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 #### Saving the data
 
@@ -653,6 +655,8 @@ Action | Format
 **Help** | `help`
 **Clear** | `clear`
 **Exit** | `exit`
+
+<div style="page-break-after: always;"></div>
 
 ### Prefix
 
