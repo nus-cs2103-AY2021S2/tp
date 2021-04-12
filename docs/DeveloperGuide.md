@@ -601,8 +601,7 @@ command
   1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
     Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter 
 command <br>
-
-
+     
 ### Adding or removing an insurance plan of a client
 
 1. Adding a new insurance plan to a client while all clients are being shown
