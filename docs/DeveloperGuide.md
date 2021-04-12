@@ -287,7 +287,10 @@ This feature not only allows the command and index to be autocompleted, but allo
 The current implementation is such that `Remark` is added as an attribute of the `Person` class. `Remark` is intended 
 as a way to allow users to add any kind of comment about a specified contact, and therefore does not require any 
 validity check (an empty remark is also valid). Accordingly, `Remark` is an optional field that can be specified when 
-adding/editing a contact. 
+adding/editing a contact. When editing a person's `Remark` and no value is provided, said person's `Remark` will be set 
+as empty.
+
+![EditRemarkActivityDiagram](images/EditRemarkActivityDiagram.png)
 
 Initially, an alternative implementation was considered: to introduce a new `Remark` command which would be used to add
 remarks to a contact. However the current implementation is used instead, in favour of consistency. `Remark` is 
@@ -300,8 +303,13 @@ attributes.
 The current implementation of the `find` command only searches the name, email, remark and tag fields. Potential
 improvements of the feature is to search all fields including phone number, address, company, and job title.
 
-To search each field, a predicate for the relevant fields need to be created and the master 
-`FieldsContainsKeywordPredicate` should also be updated to include the new field for general search.
+The implementation of general search is via a `FieldsContainsKeywordsPredicate` predicate class. This predicate simply
+propagate the keywords down to each individual predicate. Its Test function is basically the boolean or of all the
+individual specific field predicate's test function.
+
+Below is the class diagram for the entire Find command
+![FindCommandPredicateDiagram](images/FindPredicateClassDiagram.png)
+
 
 ### Fuzzy Find
 
@@ -382,14 +390,17 @@ only the selected list of `Person` objects. The application of predicate follows
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* prefers a Bash-like experience
+* Users who need to manage a significant number of professional contacts.
+* Users who prefer desktop apps over other types.
+* Users who can type fast.
+* Users who prefers typing to mouse interactions.
+* Users who is reasonably comfortable using CLI apps.
+* Users who prefer a Bash-like experience.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Manage contacts faster than a typical mouse/GUI driven app, via keyboard commands.
+* Enter commands at ease with convenience features such as auto-complete.
+* Simultaneously manage several contacts with bulk actions such as select.
 
 
 ### User stories
@@ -493,7 +504,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  A-Bash Book data must be encrypted and unbreakable by quantum computers in the next 100 years.
+4.  Fresh installation of ABB should contain sample data for the user to try the commands on.
+5.  ABB should be of a reasonably small size.
 
 *{More to be added}*
 
@@ -546,6 +558,19 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Editing Remark
+
+1. Edit a person's remark to a non-empty remark.
+   1. Prerequisites: List must contain at least 1 person.
+   1. Test case: `edit 1 -r On leave`<br>
+      Expected: First person's remark is changed to "On leave".
+
+
+2. Edit a person's remark without providing remark value.
+    1. Prerequisites: List must contain at least 1 person.
+    1. Test case: `edit 1 -r`<br>
+       Expected: First person's remark is now empty.
 
 ### Saving data
 
