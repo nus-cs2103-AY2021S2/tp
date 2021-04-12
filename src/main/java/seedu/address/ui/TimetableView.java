@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -11,17 +13,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.schedule.Schedulable;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Renders a timetable onto the UI. note that a timetable consists of columns which represent a day in the
@@ -163,7 +162,7 @@ public class TimetableView extends UiPart<Region> {
      * part can be scheduled on the same day. This does not modify the original List of Scheudulabes
      * but creates a new list.
      * in the timetable.(Placed in the same column).
-     * See {@link#timetablePlacementPolicy ::breakIntoDayUnits (Schedulable)}
+     * See {@link #timetablePlacementPolicy ::breakIntoDayUnits (Schedulable)}
      * @return
      */
     private List<? extends Schedulable> splitByDaysAndFilter(List<? extends Schedulable> schedulables) {
@@ -249,6 +248,8 @@ public class TimetableView extends UiPart<Region> {
         case SEVEN:
             scheduleToPut = dayScheduleSeven;
             break;
+        default:
+            assert false; // cannot reach here
         }
         scheduleToPut.setTopAnchor(timetableSlot.getRoot(), position);
         scheduleToPut.setLeftAnchor(timetableSlot.getRoot(), 0.0);
