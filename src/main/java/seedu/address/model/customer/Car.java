@@ -58,32 +58,6 @@ public class Car {
     public static boolean isValidCarType(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-    /**
-     * Compares carBrand and carType strings.
-     * @param otherCar
-     * @return Boolean result
-     */
-    public boolean isSameCarBrandAndCarType(Car otherCar) {
-        return isSameCarBrand(otherCar) && isSameCarType(otherCar);
-    }
-
-    /**
-     * Compares carBrand string.
-     * @param otherCar
-     * @return Boolean result
-     */
-    public boolean isSameCarBrand(Car otherCar) {
-        return this.carBrand.equals(otherCar.carBrand);
-    }
-
-    /**
-     * Compares carType string.
-     * @param otherCar
-     * @return Boolean result
-     */
-    public boolean isSameCarType(Car otherCar) {
-        return this.carType.equals(otherCar.carType);
-    }
     @Override
     public String toString() {
         return carBrand + "," + carType;
