@@ -32,7 +32,7 @@ public class Statistics {
     private void fillPastMonths() {
         List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
         List<YearMonth> months = monthList.stream().map(m -> m.getMonth()).collect(Collectors.toList());
-        for (int i = 1 ; i < 6; i++) {
+        for (int i = 1; i < 6; i++) {
             YearMonth curr = this.monthList.get(0).getMonth().minusMonths(i);
             model.findMonth(curr);
         }
