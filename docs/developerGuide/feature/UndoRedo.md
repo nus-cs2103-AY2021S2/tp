@@ -1,5 +1,7 @@
 ### [Feature] Undo/redo
 
+This feature allows users to correct mistakes when using PartyPlanet. Only commands which alter the state of the address or event book, such as `add` or `edelete` can be undone or redone. `list` cannot be undone or redone as it does not change the state of the address or event book.
+
 #### Implementation
 
 The undo/redo mechanism is facilitated by `StateHistory` and `State`. It extends `PartyPlanet` with an undo/redo history, stored internally as an `ArrayList<State>` with a `currentStatePointer`, where a `State` stores the `AddressBook` and `EventBook` at any given point in time. Additionally, it implements the following operations:
