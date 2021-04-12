@@ -212,7 +212,8 @@ Format: `sortp by/FIELD d/DIRECTION`
     * Sort by ascending alphabetical order : `ASC`
     * Sort by descending alphabetical order : `DESC`
 
-Examples
+Examples:
+* `sortp by/NAME d/ASC` sorts the persons by name and present the result in ascending alphabetical order.
 
 ### Profile picture:
 
@@ -302,6 +303,8 @@ Format: `sortm by/FIELD d/DIRECTION`
 * `DIRECTION` is only restricted to the following cases:
     * Sort by ascending order : `ASC`
     * Sort by descending order : `DESC`
+Examples:    
+* `sortm by/PRIORITY d/ASC` sorts the meetings by priority and present the result in ascending order.
 
 ## Person Meeting Features
 ### Listing all persons and meetings : `list`
@@ -365,7 +368,10 @@ Examples:
  
  * DATE must be a string strictly following the format `YYYY-mm-dd`
  * If no date is specified, for example `setTimetable` without DATE parameter is keyed in, it will default set to
- today's current date.
+ today's current date. 
+   
+Examples:
+* `setTimetable 2021-04-12` Set the time table to Apr 12th, 2021. You can check it by clicking Timetable in the GUI.
 
 --------------------------------------------------------------------------------------------------------------------
 
