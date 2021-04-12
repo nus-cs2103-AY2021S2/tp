@@ -109,6 +109,6 @@ Filters .->HiddenModel
 XYZFilter -|> AbstractFilter
 
 Node .-> LogicalOperator
-Node .-> "<<Enum>>\nNodeType"
+Node .-> "<<enumerations>>\nNodeType"
 Node .right.--> AbstractFilter
 @enduml
