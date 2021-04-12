@@ -25,16 +25,6 @@ Given below are my contributions to the project.
   * Justification: This feature allows user to organise their task based on when it is due, giving users the ability to see due dates in ascending or descending order.
   * Highlights:
    The `sort` feature sorts the tasks based on the different dates of the tasks from the earliest task to the last task in chronological order. For tasks with no dates, they would appear last.
-    1. When the command is executed by the user, the input it passed into
-      the `LogicManager` and gets parsed and identified in `PlannerParser`.
-    2. Upon identifying the relevant `COMMAND_WORD`,
-      the corresponding `SortCommandParser` object is formed. The user input then goes
-      through another level of parsing in `SortCommandParser`
-    3. The `SortCommandParser` identifies the order in which the tasks are to be sort     and creates a
-   `SortComparator` comparator object accordingly.
-    4. The ```SortCommandParser``` creates a ```SortCommand``` with the above comparator. The command is returned to the ```LogicManager```.
-    5. The ```LogicManager``` calls ```SortCommand#execute()```, which adds a new duplicate list of tasks that is sorted in chronological order in ```List``` via the ```Model``` interface.
-    6. Finally, a ```CommandResult``` with the relevant feedback is returned to the ```LogicManager```.
   * Testing: Added Unit tests to ensure code coverage and ensures that future changes will still be correct with CI.
 
 * **New Feature**:
