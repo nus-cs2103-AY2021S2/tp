@@ -695,15 +695,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. JIMMY detects that the given arguments are invalid
+* 3a. JJIMY detects that the given arguments are invalid
 
-	* 3a1. JIMMY shows an error message
+	* 3a1. JJIMY shows an error message
 
     Use case resumes at step 2.
 
 * 3b. The list is empty.
 
 	Use case ends.
+
+* 3c. JJIMY detects that with this change, the pending orders that contain the edited item can no longer be fulfilled with current inventory
+    
+    * 3c1. JJIMY shows an error message
+    
+    Use case resumes at step 2.
+
 
 **Use case: Find a menu item**
 
@@ -790,15 +797,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. JIMMY detects that the given arguments are invalid
+* 3a. JJIMY detects that the given arguments are invalid
 
-	* 3a1. JIMMY shows an error message
+	* 3a1. JJIMY shows an error message
 
     Use case resumes at step 2.
 
 * 3b. The list is empty.
 
 	Use case ends.
+
+* 3c. JJIMY detects that there are insufficient ingredients to fulfil the order given this edit
+    
+    Use case resumes at step 2.
 
 **Use case: Find an order**
 
