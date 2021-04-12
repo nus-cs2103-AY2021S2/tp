@@ -29,7 +29,6 @@ public class NameFilter extends Filter {
      */
     public NameFilter(String nameListSingleString) {
         super(nameListSingleString);
-        requireNonNull(nameListSingleString);
         checkArgument(isValidFilter(nameListSingleString), MESSAGE_CONSTRAINTS);
         this.nameList = nameListSingleString.split("\\s+");
     }
@@ -68,7 +67,7 @@ public class NameFilter extends Filter {
 
     private boolean testSearchToken(String searchToken, String[] customerTokenList) {
         return Arrays.stream(customerTokenList)
-            .anyMatch(customerToken -> (isSubsequence(customerToken, searchToken)));
+            .anyMatch(customerToken -> (isSubsequence(customerToken.toLowerCase(), searchToken.toLowerCase())));
     }
 
     /**
