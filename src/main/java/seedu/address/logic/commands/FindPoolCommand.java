@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_STRING;
 
 import java.util.function.Predicate;
 
@@ -19,7 +20,7 @@ public class FindPoolCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of trips where passenger's name contains "
             + "the keyword\n"
-            + "Parameters: n/ + KEYWORD\n"
+            + "Parameters: " + PREFIX_NAME_STRING + " KEYWORD\n"
             + "Example: \n1. " + COMMAND_WORD + " " + PREFIX_NAME + "alice";
 
     private final Predicate<Pool> predicate;
