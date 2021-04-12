@@ -116,7 +116,7 @@ Given below is another Sequence Diagram for interactions within the `Logic` comp
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagramNew.png)
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -129,6 +129,8 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the connection between the person in the address book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
 * does not depend on any of the other three components.
+* (Some details are omitted)
+
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -353,15 +355,12 @@ the result as a CommandResult object for passing back to the Model. The Ui compo
 the results (e.g. the notes) to the user.
 
 
-### \[Proposed\] Undo/redo feature
-=======
 ### Person Meeting Connection feature (Written by: Chen Yuheng (Github: skinnychenpi))
 MeetBuddy allows users to track and record the contacts related with their meetings.
 #### Implementation
 A PersonMeetingConnection class stores all of the relevant information of persons in the contact related to certain meetings. The class diagram below shows how all the different components interact to allow the person meeting connection feature to function. Note that the XYZConnectionCommand and XYZConnectionCommandParser refers to all Connection related commands like add, delete etc.
 ![UndoRedoState0](images/PersonMeetingConnectionCommandClassDiagram.png)
 A PersonMeetingConnection(PMC) slot is represented by the PMC class which contains 2 key attributes, personsInMeeting and meetingsInPerson. Both of them are HashMaps. The attribute personsInMeeting is a hashmap whose key is a Meeting object and its value is a UniquePersonList. Another attribute meetingsInPerson is reversed, whose key is a Person object and its value is a UniqueMeetingList.
->>>>>>> master
 
 The XYZPMCCommand class represent classes that extend the abstract class Command and allows the users to add and delete the PMC to MeetBuddy. These XYZPMCCommands are created by the respective XYZPMCCommandParsers.
 
@@ -372,6 +371,8 @@ Given the class diagram and the understanding of how the PMC class interacts wit
 ![UndoRedoState0](images/AddPersonMeetingConnectionActivityDiagram.png)
 
 The workflow above shows how a connection is added and the various checks that occurs at the different points throughout the workflow.
+
+The workflow for deleting connection is similar as above, except that it has one more step to check whether the person the user wants to delete exist in the meeting.
 
 To summarize the above activity diagram, there are several key checks which MeetBuddy checks for when the user is adding a connection. Firstly, MeetBuddy checks if the index for the meeting and the prefix for person (p/) are presented in the command. Also, MeetBuddy checks if all prefixes present are formatted correctly. Then, it checks if the Meeting index provided is within the range of the Meeting list. Following which, MeetBuddy will check if the persons' indices passed for the prefixes are within the range.
 
