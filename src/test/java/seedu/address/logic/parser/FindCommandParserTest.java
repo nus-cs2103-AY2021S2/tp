@@ -21,7 +21,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT_LOWER_CASE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_STR_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;

@@ -245,6 +245,7 @@ public class ParserUtil {
 
             } catch (ParseException ignored) {
                 // keyword is dropped as it isn't a valid term determined by parser
+                // exception dropped as an invalid argument for 1 of the prefixes does not necessarily apply to another
             }
         }
 
