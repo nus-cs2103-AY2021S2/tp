@@ -126,8 +126,6 @@ to manage tasks which can be identified by their unique list indexes.
 
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
-
 <a name="general"></a>
 ## General Features
 
