@@ -380,7 +380,7 @@ Prefix | Searching Criteria
   
 * The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
    
-* Only full words will be matched e.g. `Ta` will not match `Tan`.
+* Only full words will be matched. E.g. `Ta` will not match `Tan`.
   
 * Contacts matching at least one keyword will be returned. 
 
