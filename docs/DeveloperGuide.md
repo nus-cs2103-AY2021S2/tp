@@ -647,7 +647,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
   
