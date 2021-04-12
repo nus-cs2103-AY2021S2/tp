@@ -6,6 +6,7 @@ The autocomplete feature allows the user to quickkly autocomplete details from t
 
 #### Implementation
 * Syntax for Autocomplete: `{edit | eedit} INDEX [PREFIXES...]` + <kbd>TAB</kbd>
+* See User Guide for list of available prefixes for each command.
 * The user is expected to keypress the <kbd>TAB</kbd> key after typing the command in order to activate the autocomplete feature.
 
 Given below is an example usage scenario and how `Autocomplete` will work.
