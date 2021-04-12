@@ -33,6 +33,7 @@ import static seedu.address.testutil.TypicalTasks.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Date;
@@ -91,7 +92,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PREAMBLE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ConstraintManager.MESSAGE_EMPTY_TITLE);
 
         // missing title prefix
         assertParseFailure(parser, VALID_TITLE_BOB + DATE_DESC_BOB + DURATION_DESC_BOB
@@ -127,6 +129,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_BOB + DATE_DESC_BOB + DURATION_DESC_BOB
                         + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PREAMBLE));
+                AddCommandParser.MESSAGE_PREAMBLE_PARSED);
     }
 }
