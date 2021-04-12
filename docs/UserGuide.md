@@ -349,7 +349,7 @@ Example: <br>
 
 ![AfterDelete](images/DemoAfterDeleteCommand.png)
 
-Other examples: <br>
+More examples: <br>
 
 Command     | Result
 ----------- |---------------------------------------------------
@@ -397,10 +397,9 @@ Example:
 `search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex`, order does not matter, or with
 the school `xyz` or with subjects `cn`.
 
-![AfterSearch1](images/DemoAfterSearchCommand1.png)
-![AfterSearch2](images/DemoAfterSearchCommand2.png)
+![AfterSearch1](images/DemoAfterSearchCommand.png)
 
-Other examples:
+More examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
@@ -443,7 +442,7 @@ Example:
 
 ![Sort Command](images/DemoSortCommand.png)
 
-Other examples:
+More examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
@@ -508,7 +507,7 @@ after entering `levelup ex/1`, it advances all students by one level, excluding 
 
 1st student in the list still remains primary 5 whereas the rest of the student advances by one level/
 
-Other examples:
+More examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
@@ -563,7 +562,7 @@ after entering `leveldown ex/1`, it demotes all students by one level, excluding
 ![AfterLevelUp2](images/DemoAfterLevelDownCommand2.png)
 
 
-Other examples:
+More examples:
 
 Command     | Result
 ----------- |---------------------------------------------------
