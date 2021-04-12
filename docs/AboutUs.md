@@ -36,6 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/garyljj.png" width="200px">
 
 [[github](https://github.com/garyljj)]
+[[portfolio](team/garyljj.md)]
 
 ### Zheng Ruoxin
 
