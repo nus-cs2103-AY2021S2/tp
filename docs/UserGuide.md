@@ -1105,9 +1105,9 @@ Action | Format | Examples
 **Edit a budget** | `edit_budget b/BUDGET` | `edit_budget b/600`
 **Delete a budget** | `delete_budget` | `delete_budget`
 **View a budget** | `view_budget` | `view_budget`
-**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`, | `add_grade s/English gi/Final gr/A` 
-**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]`, | `edit_grade 1 gr/B`
-**Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER` | `add_grade s/English gi/Final gr/A1` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]` | `edit_grade 1 gr/B3`
+**Delete a grade** | `delete_grade INDEX` | `delete_grade 1`
 **List grades** | `list_grades` | `list_grades`
 **Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
 **List reminders** | `list_reminders` | `list_reminders`
