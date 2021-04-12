@@ -339,6 +339,8 @@ Status Types:
 * `SalesAgreement` represents the state when the Sales and Purchase Agreement has been issued
 * `Completion` represents the state when the sales of the property has completed
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
@@ -380,6 +382,8 @@ Description:
 
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.8 Undoing
 
@@ -430,10 +434,7 @@ Options:
 
     Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
 
-    The following property types are supported:
-    * hdb
-    * condo
-    * landed
+    The following property types are supported: Hdb, Condo, Landed
     
 * `[a/ADDRESS]`
     
@@ -474,6 +475,8 @@ Examples:
 * `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
 ![find property example](images/findproperty.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 4.9.2 Searching appointments: `find appointment`
 
