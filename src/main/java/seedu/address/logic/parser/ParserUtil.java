@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -78,6 +79,31 @@ public class ParserUtil {
             throw new ParseException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
         }
     }
+
+    /**
+     * Checks if input indices from user contains words. Splits by possible delimiters (space, comma).
+     *
+     * @param splitBySpace array of user input.
+     * @return boolean indicating if input contains words.
+     */
+    public static boolean checkIndicesInputContainsWords(String[] splitBySpace) {
+        List<String> input = new ArrayList<>();
+        for (int i = 0; i < splitBySpace.length; i++) {
+            String[] splitByComma = splitBySpace[i].split(",");
+            input.addAll(Arrays.asList(splitByComma));
+        }
+
+        boolean containsWords = false;
+        for (int i = 0; i < input.size(); i++) {
+            if (input.get(i).equals("")) {
+                continue;
+            }
+            containsWords |= !StringUtil.isNumbersOnly(input.get(i).trim());
+        }
+
+        return containsWords;
+    }
+
     /**
      * Parses {@code oneBasedIndices} and adds to a {@code List<Index>}. Leading and trailing whitespaces
      * will be trimmed. If there are duplicate inputs, a {@code ParseException} will be thrown.

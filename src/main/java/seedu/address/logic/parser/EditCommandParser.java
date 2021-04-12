@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -48,24 +47,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING);
 
-        List<String> input = new ArrayList<>();
-        // Checks indices
-        String[] splitBySpace = argMultimap.getPreamble().split(" ");
-        for (int i = 0; i < splitBySpace.length; i++) {
-            String[] splitByComma = splitBySpace[i].split(",");
-            input.addAll(Arrays.asList(splitByComma));
-        }
+        String[] indicesSplitBySpace = argMultimap.getPreamble().split(" ");
+        boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(indicesSplitBySpace);
 
-        boolean isSomeWord = false;
-        for (int i = 0; i < input.size(); i++) {
-            if (input.get(i).equals("")) {
-                continue;
-            }
-            boolean isWord = !StringUtil.isNumbersOnly(input.get(i).trim());
-            isSomeWord |= isWord;
-        }
-
-        if (isSomeWord) {
+        if (doIndicesContainWords) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 

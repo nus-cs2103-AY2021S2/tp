@@ -12,10 +12,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SHORTCUT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.BatchCommand;
 import seedu.address.logic.commands.BatchOperation;
 import seedu.address.logic.commands.DeleteCommand;
@@ -69,6 +71,17 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
                             .tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                             PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING,
                             PREFIX_SHORTCUT_COMMAND, PREFIX_SHORTCUT_NAME);
+
+            String[] indicesSplitBySpace = argMultimap.getPreamble().split(" ");
+            boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(indicesSplitBySpace);
+
+            if (doIndicesContainWords && inputCommand.equals(EditCommand.COMMAND_WORD)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditCommand.MESSAGE_USAGE_BATCH));
+            } else if (doIndicesContainWords && inputCommand.equals(DeleteCommand.COMMAND_WORD)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteCommand.MESSAGE_USAGE_BATCH));
+            }
 
             List<Index> listOfIndices = parseAndPrepareIndices(argMultimap);
 

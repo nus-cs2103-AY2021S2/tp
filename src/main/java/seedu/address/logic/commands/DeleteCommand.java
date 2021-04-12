@@ -22,6 +22,11 @@ public class DeleteCommand extends Command implements BatchOperation {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_USAGE_BATCH = COMMAND_WORD
+            + ": Deletes the client identified by the index number used in the displayed client list.\n"
+            + "Parameters: INDICES (all must be distinct positive integers)\n"
+            + "Example: batch " + COMMAND_WORD + " 1, 2, 3";
+
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Client: %1$s";
 
     private final Index targetIndex;
