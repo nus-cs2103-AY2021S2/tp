@@ -156,6 +156,7 @@ The following sequence diagram shows the interactions when user executes the `li
 </div>
 
 The following activity diagram summarizes what happens when a user executes the `list` command.
+
 ![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
 
 ### Students
