@@ -25,6 +25,7 @@ class JsonAdaptedPlan {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedSemester> semesters = new ArrayList<>();
     private final boolean isMasterPlan;
+    private final boolean isValid;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given plan details.
@@ -32,9 +33,11 @@ class JsonAdaptedPlan {
     @JsonCreator
     public JsonAdaptedPlan(@JsonProperty("description") String address,
                            @JsonProperty("isMasterPlan") boolean isMasterPlan,
+                           @JsonProperty("isValid") boolean isValid,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                            @JsonProperty("semesters") List<JsonAdaptedSemester> semesters) {
         this.description = address;
+        this.isValid = isValid;
         this.isMasterPlan = isMasterPlan;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -50,6 +53,7 @@ class JsonAdaptedPlan {
     public JsonAdaptedPlan(Plan source) {
         description = source.getDescription().value;
         isMasterPlan = source.getIsMasterPlan();
+        isValid = source.getIsValid();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -86,6 +90,8 @@ class JsonAdaptedPlan {
         final Set<Tag> modelTags = new HashSet<>(planTags);
         Plan plan = new Plan(modelDescription, modelTags, planSemesters);
         plan.setMasterPlan(isMasterPlan);
+        // plan.setMasterPlan(isValid);
+        plan.setIsValid(isValid);
         return plan;
     }
 }
