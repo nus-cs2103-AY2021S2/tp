@@ -64,8 +64,9 @@ An image of our UI is shown below!
 1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
    * **`clist`**: Lists all contacts in Teaching Assistant.
-   * **`cadd n/Danny p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
-   * **`efind consultation 1`**: Finds an entry named `consultation 1' in Teaching Assistant.
+   * **`cadd n/Danny Tan p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
+   * **`efind consultation`**: Finds an entry named `consultation` or entries that have `consultation` in their names 
+     in Teaching Assistant.
    * **`exit`**: Exits the app.
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -76,11 +77,11 @@ An image of our UI is shown below!
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `cadd n/NAME`, `NAME` is a parameter which
-  can be used as `cadd n/John Doe`.
+  can be used as `cadd n/Danny Tan`.
 * Items in the square brackets are optional. Users can choose to leave the field empty.
 * Items with `...` after them can be used multiple times including zero times. e.g. `[t/TAG]...` can be used as `  ` 
   (i.e. 0 times), t/friend, t/friend t/family etc.
-* Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also
+* Parameters can be in any order. e.g. if the command specifies `n/NAME p/NUMBER`, `p/NUMBER n/NAME` is also
   acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
   the parameter will be taken. e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
