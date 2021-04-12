@@ -81,7 +81,8 @@ public class MainApp extends Application {
             if (!budgetTrackerOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample BudgetTracker");
             }
-            initialData = budgetTrackerOptional.orElseGet(SampleDataUtil::getSampleBudgetTracker);
+            ReadOnlyBudgetTracker sampleBudgetTracker = SampleDataUtil.getSampleBudgetTracker();
+            initialData = budgetTrackerOptional.orElse(sampleBudgetTracker);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty BudgetTracker");
             initialData = new BudgetTracker();

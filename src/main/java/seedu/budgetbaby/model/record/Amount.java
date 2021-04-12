@@ -33,7 +33,6 @@ public class Amount {
         try {
             Double amount = parseValue(Double.parseDouble(test));
 
-            System.out.println(amount);
             if (amount > 0 && amount <= 1000000) {
                 isValid = true;
             }

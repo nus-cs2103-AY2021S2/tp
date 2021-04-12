@@ -4,12 +4,16 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.budgetbaby.commons.exceptions.DataConversionException;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
+
+import javax.xml.crypto.Data;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -33,11 +37,16 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyBudgetTracker getSampleBudgetTracker() {
+    public static ReadOnlyBudgetTracker getSampleBudgetTracker() throws DataConversionException {
         BudgetTracker sample = new BudgetTracker();
-        for (FinancialRecord sampleRecord : getSampleFinancialRecords()) {
-            sample.addFinancialRecord(sampleRecord);
+        try {
+            for (FinancialRecord sampleRecord : getSampleFinancialRecords()) {
+                sample.addFinancialRecord(sampleRecord);
+            }
+        } catch (Exception e) {
+            throw new DataConversionException(e);
         }
+
         return sample;
     }
 }
