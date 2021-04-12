@@ -16,7 +16,7 @@ public class EAddCommand extends Command {
 
     public static final String COMMAND_WORD = "eadd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to PartyPlanet. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to PartyPlanet.\n"
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + "[" + PREFIX_DATE + " DATE] "
