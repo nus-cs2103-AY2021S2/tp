@@ -29,7 +29,7 @@
     "phone" : "87652533",
     "address" : "10th street",
     "tagged" : [ "marketing" ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "1800",
     "priceStr" : ""
   }, {
@@ -37,7 +37,7 @@
     "phone" : "9482224",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "2100",
     "priceStr" : ""
   }, {
@@ -128,7 +128,7 @@
     "phone" : "87652533",
     "address" : "10th street",
     "tagged" : [ "marketing" ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "1800",
     "priceStr" : ""
     }, {
@@ -136,7 +136,7 @@
     "phone" : "9482224",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "2100",
     "priceStr" : ""
     }, {
