@@ -9,14 +9,14 @@ DocBob is a patient management application for Doctors to manage patient informa
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to archive/unarchive a patient's information.
+* **New Feature**: Added the ability to archive/unarchive a patient's information. (Pull request [\#41](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/41))
 * **New Feature**: Added the ability to view all archived patients.
   * What it does: Allows the user to archive a patient's information. Archived patients can be unarchived using the unarchive command. All archived patients could be seen using the archivelist command.
   * Justification for archive/unarchive commands: This feature improves the product significantly because a user (the doctor) can have many patients cluttering the main list, most of whom do not visit the clinic after being cured of illness. Therefore, this provides a way for the user to reduce clutter on the main list and only keep the active patients on the main list. Inactive patients' information will exist in the archives till a time when it is needed again (as in when the patients return when they get ill again).
   * Justification for archivelist command: This feature complements the first feature as now, there is a command to view all the archived patients. This could be seen as a change of mode from the main mode to the archive mode. List command switches DocBob to the main mode and archivelist command changes it to the archive mode.
   * Highlights: These enhancements affect existing commands as only the find and delete commands were customized to work in archive mode and the other commands were blocked from working in archive mode. Analysis of design alternatives was needed as there was another possible implementation considered as mentioned in the Developer's Guide. The current implementation was challenging too as it required changes to existing commands to support or not support archived patients and also required changes to the UniquePersonList containing patients and the information contained by a patient to show whether or not they are archived.
 
-* **New Feature**: Added the fields of DateOfBirth, Gender, Height and Weight.
+* **New Feature**: Added the fields of DateOfBirth, Gender, Height and Weight. (Pull request [\#96](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/96))
   * What it does: Allows the user to keep track of very important additional fields of a patient on top of the existing fields.
   * Justification: The user (a doctor) usually keeps track of all these medical fields of a patient as well on top of their contact information.
   * Highlights: Implementing these fields was challenging as it required me to learn basic RegEx which I was not familiar with at all. This also required big changes in all parts of the program where the attributes of a patient were involved.
@@ -30,11 +30,11 @@ Given below are my contributions to the project.
 
 * **Testing**:
   * Wrote JUnit tests related to archive, unarchive and archivelist features to increase code coverage. (Pull request [\#41](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/41))
-  * Wrote new JUnit tests for Date of Birth, Gender, Height, Weight, and updated all existing JUnit tests related to patient attributes and their usage in other parts of the codebase to increase code coverage.(Pull request [\#96](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/96)).
+  * Wrote new JUnit tests for Date of Birth, Gender, Height, Weight, and updated all existing JUnit tests related to patient attributes and their usage in other parts of the codebase to increase code coverage.(Pull request [\#96](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/96))
 
 * **Enhancements to existing features**:
-  * Modified existing commands to make some of them work in archive mode and block some of them from working in archive mode. (Pull request [\#41](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/41/files)).
-  * Updated the information contained by sample patients to be shown on first startup of product. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/97)).
+  * Modified existing commands to make some of them work in archive mode and block some of them from working in archive mode. (Pull request [\#41](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/41/files))
+  * Updated the information contained by sample patients to be shown on first startup of product. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/97))
 
 * **Documentation**:
   * Created Mockup UI for product.
@@ -48,6 +48,7 @@ Given below are my contributions to the project.
     * Added implementation details of the `archive`, `unarchive` and `archivelist` features. (Pull request [\#100](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/100)).
     * Added UML diagrams for `archive` feature.
     * Updated UML diagram for Model component to include the new fields added to Patient.
+    * Added on instructions for manual testing.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#91](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/91).
