@@ -548,8 +548,15 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `schedule 1 m/Insurance Plan Talk 2032-01-02 16:30`<br>
        Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
 
+<<<<<<< HEAD
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+
+=======
     1. Test case: `schedule 1 m/Insurance Plan Talk `<br>
        Expected: No meeting is scheduled. Error details shown in the status message. Status bar remains the same.
+>>>>>>> master
 
     1. Other incorrect schedule commands to try: `schedule`, `schedule x m/ DESCRIPTION @ DATETIME ` (where x is larger than the list size), `...`<br>
        Expected: Similar to previous.
@@ -596,6 +603,51 @@ testers are expected to do more *exploratory* testing.
     1. Other correct notif commands to try: `notif x`(where x is any string appended)<br>
        Expected: Similar to previous.
 
+### Recording a note for a client
+
+1. Recording a note for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+    
+    1. Test case: `note 1 r/TEST DATA`<br>
+     Expected: New note is added to the first client. Updated number of notes is shown in the client information. Message of the note and client name shown in the status message. 
+    
+    1. Test case: `note 0 r/TEST DATA`<br>
+     Expected: No note is added. Error details shown in the status message.
+    
+    1. Other incorrect recording note commands to try: `note r/`, `note n r/` (where n is larger than the list size)<br>
+     Expected: Similar to previous.
+
+### Viewing notes for a client
+
+1. Viewing notes for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+
+    1. Test case: `note 1 v/`<br>
+       Expected: Popup window appears, displaying all notes recorded for that client. Client name shown in the status message.
+
+    1. Test case: `note 0 v/`<br>
+       Expected: No popup window appears. Error details shown in the status message.
+
+    1. Other incorrect viewing note commands to try: `note v/`, `note n v/` (where n is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Clearing notes for a client
+
+1. Clearing notes for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+
+    1. Test case: `note 1 c/`<br>
+       Expected: Notes are cleared for the first client. Client information shows `You have no notes`. Client name shown in the status message.
+
+    1. Test case: `note 0 c/`<br>
+       Expected: Notes are not cleared. Error details shown in the status message.
+
+    1. Other incorrect clearing note commands to try: `note c/`, `note n c/` (where n is larger than the list size)<br>
+       Expected: Similar to previous.
+       
 ### Listing all clients
 
 1. Get a list of all clients
@@ -630,11 +682,11 @@ age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
 1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
    Expected: Error message "Invalid command format!" followed by instructions on how to properly use the filter
    command
-
+   
 1. Test case: `filter age/abc`, `filter age/-1`, `filter age/30-20`, `filter age/ab-20`, `filter age/-1-20` <br>
    Expected: Error message "Invalid age (range) input!" followed by instructions on how to properly use the filter
    command <br>
-
+   
 ### Adding or removing an insurance plan of a client
 
 1. Adding a new insurance plan to a client while all clients are being shown
@@ -669,6 +721,10 @@ age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
 
 1. Prerequisites: Link.me is not started while data files are edited
 
+<<<<<<< HEAD
+   1. Other incorrect plan commands to try: `plan 0 c/1`, `plan 1 c/`<br>
+      Expected: Similar to previous.
+=======
 1. Test case: delete the `linkme.json` file
    Expected: Link.me will load sample data upon initialization the next time it starts
 
@@ -714,3 +770,4 @@ The UI tinkering for the MainWindow proved to be a major hurdle as we wanted the
 extreme inputs, which we allowed in order to give our users the greatest flexibility. The GUI also had to stay intact
 when the window is restarted. Furthermore, GUI behaviors could be different on different OSes, so we had to test the GUI
 under different environments.
+>>>>>>> master
