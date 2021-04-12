@@ -21,13 +21,17 @@ graphical features such as buttons.
 If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using _Teaching Assistant_
 .
 
-An image of our UI is shown below!
+An image of our GUI is shown below!
 
 ![Ui](images/Ui.png)
 
 ---
 
 - [Quick Start](#quick-start)
+- [Structure of User Guide](#structure-of-the-user-guide)
+    - [Reading this User Guide](#reading-this-user-guide)
+        - [Terminology](#terminology)
+        - [General Syntax and Symbols](#general-symbols-and-syntax)
 - [Features](#features)
     - [Viewing help](#viewing-help)
     - [Contact](#adding-a-contact)
@@ -65,6 +69,48 @@ An image of our UI is shown below!
    * **`efind consultation 1`**: Finds an entry named `consultation 1' in Teaching Assistant.
    * **`exit`**: Exits the app.
 1. Refer to the [Features](#features) below for details of each command.
+
+---
+
+## Structure of the User Guide
+
+Worries about how tedious it will be to read this document? Not to worry! We have structured this User Guide in a way
+that makes it easy and quick for you to find what you need. In this next subsection,
+[Reading this User Guide](#reading-this-user-guide), you can find some tips we have on how to read this guide. The
+next section, [Features](#features), documents the main functionalities of _Teaching Assistant_ and how to use them.
+
+The main functions of _Teaching Assistant_ can be summmarised as the following:
+* Contact management
+* Entry (schedules) management
+
+If you prefer a brief overview of all the commands, head over to [command summary](#command-summary) which provides you
+with a table of all available commands.
+
+### Reading this User Guide
+This section introduces you to some technical terms and syntax that will be used throughout the User Guide.
+You may want to read through this section thoroughly first before moving on to the next sections.
+
+##### Terminology
+The image of our GUI is shown below, annotated with descriptions of each GUI component we refer to in this User Guide.
+
+![Annotated GUI](images/annotatedUi.png)
+
+The table below defines some technical terminology used throughout the User Guide.
+
+Terms | Meaning
+----------------- | -------------------
+GUI | Graphical User Interface. It refers to the part of the application you interact with.
+JSON | JavaScript Object Notation. Your Teaching Assistant data is stored as a JSON file format. You can find out more on their official website [here](https://www.json.org/json-en.html)!
+
+##### General Syntax
+The table below explains the general syntax used throughout the User Guide.
+
+Syntax | Meaning
+----------------- | -------------------
+`command` | This markup is used to specify text that can be entered into the command box.
+italics | Italics is used to represent terminology that is only specific to Teaching Assistant.
+<div markdown="span" class="alert alert-primary">:bulb:</div> | A bulb indicates that the following text is a tip.
+<div markdown="span" class="alert alert-warning">:exclamation:</div> | An exclamation mark indicates that the following text is a warning.
 
 ---
 
