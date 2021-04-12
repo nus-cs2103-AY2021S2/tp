@@ -244,9 +244,6 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 The following sequence diagram shows how this works:
 
-<div style="page-break-after: always;"></div>
-
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates FindCommandParser and calls parse("n/Alex") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
 
 </div>
@@ -322,6 +319,8 @@ The following sequence diagram shows how this works:
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations:
 
 ##### Aspect: How to allow users to receive reminders
@@ -342,6 +341,8 @@ time frame of 1 week that pops out whenever the user opens the application.
       * User has no flexibility to specify the time range he/she wants to receive reminders for.
       * If user want to check for reminders again he has to reopen the application.
     
+<div style="page-break-after: always;"></div>
+
 ### Add Order Item Feature
 The `addItem` command enables users to predefine order items (also known as cake items or order descriptions). The user can choose to add order items directly from this table when adding orders to CakeCollate.
 
@@ -363,6 +364,8 @@ Given below is an example usage scenario and how the `addItem` mechanism works.
 
 *Step 4.* `AddOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how this works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates AddOrderItemCommandParser and calls parse("Chocolate Cake") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
@@ -374,6 +377,8 @@ The following sequence diagram shows how this works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 
 #### Design considerations: 
@@ -392,6 +397,8 @@ The following sequence diagram shows how this works:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
 
+
+<div style="page-break-after: always;"></div>
 
 ### Delete Order Item Feature
 The `deleteItem` command enables users to delete predefined order items (also known as cake items or order descriptions). The user can choose to delete a single order item or multiple order items at the same time.
@@ -412,10 +419,9 @@ Given below is an example usage scenario and how the `deleteItem` mechanism work
 
 *Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
 
-The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
-
 <div style="page-break-after: always;"></div>
 
+The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates DeleteOrderItemCommandParser and calls parse("1 2"). 
 
@@ -427,6 +433,8 @@ The following sequence diagram shows how the `DeleteOrderItemCommandParser` work
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the `DeleteOrderItemCommand` works:
 
 ![DeleteOrderItemSequenceDiagram](images/DeleteOrderItemSequenceDiagram.png)
@@ -435,6 +443,8 @@ The following sequence diagram shows how the `DeleteOrderItemCommand` works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 
@@ -451,6 +461,8 @@ The following sequence diagram shows how the `DeleteOrderItemCommand` works:
         * Not extensible to other commands as they will have to implement their own `List` if they want to accept multiple indexes.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
 
@@ -479,6 +491,8 @@ The following sequence diagram shows how the `DeleteOrderItemCommand` works:
 **Value proposition**: keep track of and manage all orders placed on various online selling platforms in one place
 
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
@@ -506,6 +520,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `*`     | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
 | `*`     | User                                         | save a particular customer's information                           | I can quickly add another order from this customer next time                                 |
 | `*`     | Regular user                                 | keep track of the money paid or owed by the customer               | I can ensure that all my dues have been received                                             |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -702,6 +718,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     Use case ends.
 
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 * Constraints:
@@ -733,6 +751,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **7. Appendix: Instructions for manual testing**
 
@@ -913,6 +933,8 @@ Prerequisites: Use the sample data provided on first start up. You can delete th
     I.e. all the previously stored data is lost.
     
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **8. Effort**
 
