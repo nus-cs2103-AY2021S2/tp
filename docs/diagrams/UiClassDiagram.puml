@@ -10,6 +10,7 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class EmailWindow
 Class ResultDisplay
 Class CustomerListPanel
 Class CustomerCard
@@ -30,6 +31,7 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
+MainWindow --> EmailWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
@@ -45,6 +47,7 @@ CommandBox --|> UiPart
 CustomerListPanel --|> UiPart
 CustomerCard --|> UiPart
 StatusBarFooter --|> UiPart
+EmailWindow -down-|> UiPart
 HelpWindow -down-|> UiPart
 
 CustomerCard ..> Model
@@ -53,6 +56,7 @@ MainWindow -left-> Logic
 
 CustomerListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
+EmailWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 
