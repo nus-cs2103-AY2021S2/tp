@@ -417,7 +417,8 @@ This feature allows users to provide an index range to delete all tasks within t
 
 ### Implementation
 This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
-[deleting multiple tasks with **multiple indices** feature](#44-delete-multiple-tasks-with-indices), with the only difference in
+[deleting multiple tasks with **multiple indices** feature](#47-delete-multiple-tasks-with-indices), with the only 
+difference in
 the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in
 `DeleteUtil#getTasksToDelete(List<Task>, List<Index>, boolean)`. This field is determined by `DeleteMultipleCommand#parse`, which checks
 if the user is deleting tasks using indices or an index range by consulting `DeleteUtil#isDeletingTasksByRange`.
@@ -449,7 +450,8 @@ and `DeleteByStatusCommandParser#parse` calls `ParserUtil#parseInputToStatus` to
 is stored as a field in `DeleteByStatusCommand` for use in the execution of the command (i.e `DeleteByStatusCommand#execute`).
 
 
-The following class diagram shows the relationship between classes for a successful execution. The only difference between this diagram and the class
+The following class diagram shows the relationship between classes for a successful execution. The only difference 
+between this diagram, and the class
 diagram for the previous two delete multiple tasks features is the name of the `Command` and the command's `Parser`.
 ![](images/DeleteByStatusClassDiag.png)
 
@@ -460,7 +462,8 @@ The following sequence diagram traces the step-by-step execution of deleting all
 
 #### Aspect 1: Problem & Solution
 * **Problem**: Instead of deleting by indices, users might want to delete all tasks of a specific `Status`, which might be cumbersome with the existing two features for deleting multiple tasks.<br>
-  i.e The user might want to clear all `completed` or `expired` tasks quickly, but that would require the user to check all indices of the tasks with the desired `Status`.
+  i.e. The user might want to clear all `completed` or `expired` tasks quickly, but that would require the user to 
+  check all indices of the tasks with the desired `Status`.
 * **Solution**: Allow deletion of tasks by their `Status`.
 
 #### Aspect 2: Design of solution
@@ -468,7 +471,8 @@ The following sequence diagram traces the step-by-step execution of deleting all
     * Pros : Less code
     * Cons : Decreases cohesion in `DeleteMultipleCommand`, makes code less readable, violate SRP.
 * **Solution 2 (selected)** : Refactor the new logic (in Solution 1) into a new command
-    * Pros : Obeys SRP, cohesive code in `DeleteMultipleCommand` and the new command. Increases readibility and testability.
+    * Pros : Obeys SRP, cohesive code in `DeleteMultipleCommand` and the new command. Increases readability and 
+      testability.
     * Cons : More test and main code
 
 Solution 2 was selected since the amount of code to write shouldn't be a huge factor in deciding which solution is better. The other factors explained
@@ -612,6 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. There are no tasks stored
     * 1a1. Taskify informs the User there are no tasks tracked
     * Use case ends.
+  
 ---
 **Use case 5: Search for Tasks by Tags**
 
@@ -656,6 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. Taskify informs the User on the format of command to search for tasks by name.
     * Use case ends.
+  
 ---
 **Use case 8: Modifying an existing Task**
 
@@ -890,7 +896,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No task is deleted since the user has to be on the home tab to delete tasks. Error message instructing
        the user to switch to the home tab shown in status message.
 
-1. Deleting one task by index on a home tab.
+1. Deleting one task by an index on the home tab.
 
     1. Prerequisites: User should be on the home tab. There should be at least 1 task in the task list. 
         
@@ -970,5 +976,5 @@ more well-designed and user-centric. It aims to provide a simplistic experience 
 Furthermore, Taskify supports a multitude of additional features such as tab switching, filtering, sorting by dates, 
 searching by tags and deleting multiple tasks at once.
 
-A lot of testing was done on the app to ensure the app was robust and has minimal amount of bugs. Moreover, effort 
+A lot of testing was done on the app to ensure the app is robust and has a minimal amount of bugs. Moreover, effort 
 was spent on maintaining OOP and SOLID principles throughout the codebase of Taskify.
