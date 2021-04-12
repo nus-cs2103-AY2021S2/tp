@@ -16,7 +16,7 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 Given below are my contributions to the project.
 
 
-* **New Attribute classes**: Added a new attributes to existing customer entity (Pull requests [\#67](https://github.com/AY2021S2-CS2103T-W12-2/tp/pull/67)) 
+* **New Attribute classes**: Added a new attributes to existing customer entity (Pull requests [\#67](https://github.com/AY2021S2-CS2103T-W12-2/tp/pull/67))
   * What it does: allows crucial data fields like cars preference and cars owned to be added in.
   * Highlights: These classes attributes were set as lists and map respectively which allowed multiple car preferences and cars owned to be added
 
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.3 Trial` - `v1.3 Final` (2 releases) on GitHub
-  * Update project notes on shared google docs document. 
+  * Update project notes on shared google docs document.
 
 * **Enhancements to existing features**:
   * Updated the GUI Coe expiry (Pull requests [\#153](https://github.com/AY2021S2-CS2103T-W12-2/tp/pull/153), [\#76](https://github.com/AY2021S2-CS2103T-W12-2/tp/pull/76/files))
