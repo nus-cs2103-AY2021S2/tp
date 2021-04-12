@@ -349,24 +349,48 @@ The following activity diagram summarizes what happens when the `add_grade` comm
 
 ![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram_updated.png)
 
-### [Proposed] Filter Feature
-This Filter feature would allow users to manage filters and apply them to the list of tutors
-and appointments. This would facilitate filtering of tutors by attributes such as personal
-information as well as the subjects they teach, as well as filter appointments by appointment attributes.
+### Filter Feature
 
-The following commands would be added:
-* Add filter - Add a new filter to the filter list, updating the visible tutors and appointments
-* Delete filter - Delete a filter from the filter list
-* Edit filter - Edit a filter from the filter list (including whether it is active)
-* List filters - List all filters currently used
+The Filter feature allows users to manage filters and apply them to the list of tutors and appointments. This allows filtering of tutors by attributes such as personal information as well as the subjects they teach, as well as filter appointments by appointment attributes.
 
-#### Proposed Implementation
-A new `Filter` class would be implemented, along with a list to store them. Each `Filter` object
-would contain predicates that filter the attribute classes, which would be combined and used to
-filter the lists of tutors and appointments.
+#### Rationale
 
-These filters would be shown in the UI along the top of the list of tutors and appointments, showing
-the active and inactive filters.
+In order to facilitate efficient management of tutors and appointments, there needs to be a way to search through the lists quickly and easiler. While a search function is possible, filtering is a better option as it allows users to add and remove different filters according to their needs.
+
+#### Implementation
+
+The Filter Feature comprises of 4 commands:
+* Add a Tutor Filter
+* Delete a Tutor Filter
+* Add an Appointment Filter
+* Delete an Appointment Filter
+
+The activity diagram for the Add Tutor Filter command is shown:
+
+![Activity Diagram of Add Tutor Filter command](images/filter/FilterActivityDiagram.png)
+
+The activity flow for the Add Appointment Filter command is similar. For the Delete commands, the activity flow also follow a similar format, except that instead of checking for duplicate filters, they instead check if the filters input exist in the system.
+
+The Tutor Filters and Appointment Filters are represented by the `TutorFilter` and `AppointmentFilter` classes respectively. Both contain multiple `FilterSet` each of which is a set of filters for each attribute in `Tutor` and `Appointment`, labeled as `XYZFilter` for convenience, where `XYZ` is a placeholder for the attribute name. (eg. a `TutorFilter` would contain a `FilterSet` of `NameFilter`). The class diagram is as shown:
+
+![Class Diagram of Filter Feature](images/filter/FilterClassDiagram.png)
+
+Each `XYZFilter` tests the respective attribute in Tutor or Appointment according to rules specified in the user guide. The filters are combined together in each `FilterSet`, determined by whether it is a `InclusiveFilterSet` or `ExclusiveFilterSet`, with the combined filter returning a boolean value when testing attributes. `TutorFilter` and `AppointmentFilter` use each respective `FilterSet` on all attributes when testing a `Tutor` or `Appointment`, returning a boolean value.
+
+Testing thus follows the following steps:
+
+1. `Tutor` is passed to `TutorFilter` to test
+2. Each attribute in `Tutor` is passed to the respective `FilterSet` to test
+3. Each `FilterSet` returns true or false according to its combined filters
+4. `TutorFilter` combines the results from all `FilterSet`s according to the rules specified in the user guide and returns true or false
+
+Steps are similar for `AppointmentFilter`.
+
+When adding or deleting from each `FilterSet`, the combined filter must be recreated. This process is shown in the following sequence diagram:
+
+![Sequence Diagram of Add Filter](images/filter/FilterSequenceDiagram.png)
+
+The difference for exclusive filters is that an `and` is used instead of `or` to compose the filters. The sequence for deletion is similar, except that filters are removed from the set before composing the filters.
 
 ### Schedule Tracker
 Tutor Tracker's Schedule Tracker allows users to create schedules to track their ongoing or upcoming timed-sensitive tasks.
@@ -589,16 +613,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
 | `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
 | `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
-| `* * *` | User | Filter my tuition appointments by tutor's name     | Keep track of all the tuition appointments under a particular tutor|
-| `* * *` | User | Filter my tuition appointments by date             | Keep track of all the tuition appointments that falls on the same day|
 | `* * *` | User | Delete a tuition appointment                       | Remove canceled appointments                                    |
 | `* * *` | User | Check my own tuition appointments list             | Know the timing of ALL my appointments in order                 |
-| `* * *` | User | Filter tutors by their subject discipline          | Find a tutor that caters to my needs (academic)                 |
-| `* * *` | User | Filter tutor by cost                               | Find a tutor that fits into budget as well                      |
-| `* * *` | User | Filter a tutor by his/her name                     | View tutor's profile                                            |
-| `* * *` | User | Filter tutors by their years of experience         | Find a tutor with experience within the range of my expectation |
-| `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
-| `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
+| `* *` | User | Filter tutors by their name | Find a tutor by name |
+| `* *` | User | Filter tutors by their gender | Find a tutor of my preferred gender |
+| `* *` | User | Filter tutors by their contact details | Find a tutor by known contact details |
+| `* *` | User | Filter tutors by their location | Find tutors nearby |
+| `* *` | User | Filter tutors by the subjects they teach | Find a tutor that caters to my academic needs |
+| `* *` | User | Filter tutor by cost | Find a tutor that fits my budget |
+| `* *` | User | Filter tutors by their years of experience | Find a tutor with experience within the range of my expectation |
+| `* *` | User | Filter tutors by their qualifications | Find a tutor with qualifications within the range of my expectation |
+| `* *` | User | Filter my tuition appointments by tutor's name | Keep track of all the tuition appointments under a particular tutor |
+| `* *` | User | Filter my tuition appointments by subjects | Keep track of all the tuition appointments of a particular subject |
+| `* *` | User | Filter my tuition appointments by date and time | Keep track of all the tuition appointments in a time period |
+| `* *` | User | Filter my tuition appointments by location | Keep track of all the tuition appointments in a given location |
 | `* *`   | Careless user  | Edit tutor details                       | Fix typos or add in details that I forgot to enter of the tutor |
 | `* * `  | Tech-savvy user| Export tutor's details into a text file  | Share the tutor's details with others                           |
 | `* *`   | User | Keep track of the details of my favourite tutors   | Contact them and set up an appointment with them                |
@@ -656,22 +684,23 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **Use Case UC0002: Edit tutor**
 
 **MSS**
-1. User requests to edit tutor.
-2. TutorTracker confirms that tutor details have been edited.
+1. User __requests to list tutors (UC0003)__.
+2. User inputs new tutor details of specific tutor they want to edit.
+3. TutorTracker confirms that tutor details have been edited.
 
    Use case ends.
 
 **Extensions**
-* 1a. Details are not keyed in the correct format as specified in user guide.
-    * 1a1. TutorTracker shows an error message
+* 2a. Details are not keyed in the correct format as specified in user guide.
+    * 2a1. TutorTracker shows an error message
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
-* 1b. The index of tutor is invalid.
+* 2b. The tutor specified is invalid.
     * 1b1. TutorTracker shows an error message.
-    
-      Use case resumes at step 1.
-    
+
+      Use case resumes at step 2.
+
 <hr/>
 
 **Use Case UC0003: List tutor(s)**
@@ -1164,6 +1193,94 @@ Use case ends.
 
 <hr/>
 
+**Use Case UC0030: Add Tutor Filter**
+
+**MSS**
+1. User inputs details of new tutor filter(s).
+2. TutorTracker confirms that tutor filters have been added to list of tutor filters.
+3. TutorTracker displays tutors according to the updated list of tutor filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Duplicate tutor filter exists in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0031: Delete Tutor Filter**
+
+**MSS**
+1. User inputs details of tutor filter(s) to delete.
+2. TutorTracker confirms that tutor filters have been deleted from list of tutor filters.
+3. TutorTracker displays tutors according to the updated list of tutor filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Tutor filter(s) do not exist in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0032: Add Appointment Filter**
+
+**MSS**
+1. User inputs details of new appointment filter(s).
+2. TutorTracker confirms that appointment filters have been added to list of appointment filters.
+3. TutorTracker displays appointments according to the updated list of appointment filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Duplicate appointment filter exists in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0033: Delete Appointment Filter**
+
+**MSS**
+1. User inputs details of appointment filter(s) to delete.
+2. TutorTracker confirms that appointment filters have been deleted from list of appointment filters.
+3. TutorTracker displays appointments according to the updated list of appointment filters.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. Appointment filter(s) do not exist in TutorTracker.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case resumes at step 1.
+
+<hr/>
+
 ### Non-Functional Requirements
 **Technical Requirements**:
 * Application should be able to launch in any operating
@@ -1444,7 +1561,60 @@ Given below are instructions to test the app manually.
        Expected: An error message about the invalid command format is shown. <br><br>
     4. Test Case: `delete_grade -1` <br>
        Expected: An error message about the invalid command format is shown. <br><br>
-       
+
+### Adding a Tutor Filter
+
+1. Adding a Tutor Filter
+    1. Prerequisites for each test case:
+        1. List of Tutor Filters must be empty
+        2. There must be at least 2 Tutors in the tutor list.
+        3. The first tutor must have the name Alex Yeoh and have at least 1 subject with experience of 5 years
+        4. The second tutor must have the name Bernice Yu and have at least 1 subject with experience of 4 years
+    2. Test Case: `add_tutor_filter n/Alex` <br>
+       Expected: A Tutor Filter `Name: alex` is added and the tutor Bernice Yu is no longer displayed.   <br><br>
+    3. Test Case: `add_tutor_filter y/<5` <br>
+       Expected: A Tutor Filter `Subject Experience: < 5` is added and the Alex Yeoh is no longer displayed. <br><br>
+    4. Test Case: `add_tutor_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
+### Deleting a Tutor Filter
+1. Adding a Tutor Filter
+    1. Prerequisites for each test case:
+        1. Test case is run directly after the previous test case specified
+    2. Test Case (Follows `Adding a Tutor Filter` test case 1.2): `delete_tutor_filter n/Alex` <br>
+       Expected: Tutor Filter `Name: alex` is deleted and both Alex Yeoh and Bernice Yu are shown.   <br><br>
+    3. Test Case (Follows `Adding a Tutor Filter` test case 1.3): `delete_tutor_filter y/<5` <br>
+       Expected: Tutor Filter `Subject Experience: < 5` is deleted and both Alex Yeoh and Bernice Yu are shown. <br><br>
+    4. Test Case: `delete_tutor_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
+### Adding an Appointment Filter
+
+1. Adding an Appointment Filter
+    1. Prerequisites for each test case:
+        1. List of Appointment Filters must be empty
+        2. There must be at least 2 Appointment in the appointment list.
+        3. The first appointment must have the tutor name Alex Yeoh and subject name Mathematics
+        4. The second appointment must have the tutor name Bernice Yu and subject name English
+    2. Test Case: `add_appointment_filter n/Alex` <br>
+       Expected: An Appointment Filter `Name: alex` is added and the appointment with Bernice Yu is no longer displayed.   <br><br>
+    3. Test Case: `add_appointment_filter s/English` <br>
+       Expected: An Appointment Filter `Subject Name: English` is added and the appointment with Alex Yeoh is no longer displayed. <br><br>
+    4. Test Case: `add_appointment_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
+### Deleting an Appointment Filter
+
+1. Deleting an Appointment Filter
+    1. Prerequisites for each test case:
+        1. Test case is run directly after the previous test case specified
+    2. Test Case (Follows `Adding an Appointment Filter` test case 1.2): `delete_appointment_filter n/Alex` <br>
+       Expected: Appointment Filter `Name: alex` is deleted and both appointments with Alex Yeoh and Bernice Yu are displayed.   <br><br>
+    3. Test Case (Follows `Adding an Appointment Filter` test case 1.3): `delete_appointment_filter s/English` <br>
+       Expected: Appointment Filter `Subject Name: English` is deleted and both appointments with Alex Yeoh and Bernice Yu are displayed. <br><br>
+    4. Test Case: `delete_appointment_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
