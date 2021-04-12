@@ -28,16 +28,14 @@ Given below are my contributions to the project.
   * Assisted in keeping track of deadlines and deliverables.
 
 * **Enhancements to existing features**:
-  * Updated the GUI dimensions. 
+  * Updated the GUI dimensions.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `light` and `dark`.
-    * Did cosmetic tweaks to existing documentation of features `list`, `add`, `edit`.
+    * Added documentation for the features `light` and `dark`: [#157](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/157)
+    * Did cosmetic tweaks to existing documentation of features `list`, `add`, `edit`: [#173](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/173)
   * Developer Guide:
-    * Added implementation details of the `Mode of Contact`, `light` and `dark`  feature.
+    * Added implementation details of the `Mode of Contact`, `light` and `dark`  feature: [#57](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/57), [#160](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/160)
 
 * **Community**:
   * Reported bugs other teams in the class (examples: [1](https://github.com/rjeez/ped/issues))
-
-* _{you can add/remove categories in the list above}_
