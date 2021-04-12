@@ -213,7 +213,7 @@ unlikely to have) - `*`
 | `* * *`  | user                                       | filter by name   | find customers whose name match most closely the phone number I remember
 | `* * *`  | user                                       | filter by Date Of Birth   | find customers whose Date of Birth match most closely the phone number I remember
 | `* * *`  | user                                       | filter by email   | find customers whose email match most closely the phone number I remember
-| `* * *`  | user                                       | filter by phone number   | find customers whose phone number match most closely the name I remember
+| `* * *`  | user                                       | filter by phone number   | find customers whose phone number match most closely the phone number I remember
 | `* * *`  | user                                       | filter by tags   | find customers who have the specified tags
 | `* * *`  | user                                       | repeat the last command | use similar commands without having to type out everything everytime
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
