@@ -30,6 +30,9 @@ import seedu.address.model.task.attributes.Title;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    public static final String MESSAGE_PREAMBLE_PARSED = String.format(MESSAGE_INVALID_COMMAND_FORMAT
+                    + "\n\n" + AddCommand.MESSAGE_USAGE, MESSAGE_INVALID_PREAMBLE);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -49,12 +52,12 @@ public class AddCommandParser implements Parser<AddCommand> {
     private void handleMissingCompulsoryFields(ArgumentMultimap argumentMultimap) throws ParseException {
         boolean hasPrefixesMissing = !arePrefixesPresent(argumentMultimap, PREFIX_TITLE);
         boolean hasInvalidPreamble = !argumentMultimap.getPreamble().isEmpty();
-        if (hasInvalidPreamble) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PREAMBLE));
-        }
         if (hasPrefixesMissing) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ConstraintManager.MESSAGE_EMPTY_TITLE));
+        }
+        if (hasInvalidPreamble) {
+            throw new ParseException(MESSAGE_PREAMBLE_PARSED);
         }
     }
 
