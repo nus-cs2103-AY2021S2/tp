@@ -786,9 +786,9 @@ guide for comprehensive testing. The state of the application is assumed to cont
 application is first launched.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing. Take note that all test cases are separate and individual and assume
-the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 2 programs) respectively, if not otherwise specified.
-:bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program.
+testers are expected to do more *exploratory* testing. Take note that all test cases are separate and individual and assume 
+the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 2 programs) respectively, if not otherwise specified. <br>
+:bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program. Remember to switch different list views using the list command to look at different lists and ensure all entities have been removed.
 </div>
 
 ### Launch and shutdown
@@ -837,9 +837,9 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
        Expected: If database does not already contain a John Doe, a successful command result should show.
 
     1. Test case: `add owner n/John Doe a/311, Clementi Ave 2, #02-25 e/johnd@example.com p/98765432  t/friends t/owesMoney` <br>
-       Expected: Similar to previous.
-
-    1.  Test case : `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` <br>
+        Expected: Similar to previous.
+       
+    1.  Test case : `add owner n/John Doe e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` <br>
         Expected: Missing parameter, status message indicates invalid command format.
 
 1. Adding a program
@@ -902,10 +902,10 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 1. Deleting a program while all programs are being shown
 
     1. Prerequisites: Refer to above. List programs using `list program`.
-
-    1. Test case: `delete program 5`<br>
-       Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program.
-
+    
+    1. Test case: `delete program 3`<br>
+       Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program. 
+       
     1. Test case: `delete program 0`<br>
        Expected: No program is deleted. Error details shown in the status message. Status bar remains the same.
 
@@ -931,35 +931,35 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
 1. Editing a dog
 
-    1. Test case: `edit dog 2 n/Milo`
-       Expected: Successfully renamed Bruce to Milo.
-
-    1. Test case: `edit dog 2 n/Bruce o/4`
-       Expected: Successfully renamed Milo to Bruce and changed owner from John Doe to James Bond.
-
-    1. Test case: `edit dog 3 n/Milo o/4`
+    1. Test case: `edit dog 2 n/Milo` <br>
+       Expected: Successfully renamed Bruce to Milo. 
+       
+    1. Test case: `edit dog 2 n/Bruce o/4` <br>
+       Expected: Successfully renamed Milo to Bruce and changed owner from John Doe to James Bond. 
+       
+    1. Test case: `edit dog 3 n/Milo o/4` <br>
        Expected: Error status message shown, indicating dog ID provided is invalid.
 
 1. Editing an owner
 
-    1. Test case: `edit owner 1 p/91234567`
+    1. Test case: `edit owner 1 p/91234567` <br>
        Expected: Successfully changes John Doe's number.
 
-    1. Test case: `edit owner 1 p/97538642 e/ilovedogs@sample.com`
+    1. Test case: `edit owner 1 p/97538642 e/ilovedogs@sample.com` <br>
        Expected: Successfully changed John Doe's number and updated his email.
 
-    1. Test case: `edit owner 3 n/Keith`
+    1. Test case: `edit owner 3 n/Keith` <br>
        Expected: Error status message shown, indicating owner ID provided is invalid.
 
 1. Editing a program
 
-    1. Test case: `edit program 3 n/Kennel Training`
-       Expected: Successfully renamed Obedience Training to Kennel Training.
+    1. Test case: `edit program 3 n/Kennel Training` <br>
+       Expected: Successfully renamed Obedience Training to Kennel Training. 
 
-    1. Test case: `edit program 3 n/Kennel Training s/01-02-2021 17:00`
+    1. Test case: `edit program 3 n/Kennel Training s/01-02-2021 17:00` <br>
        Expected: Successfully renamed Obedience Training to Kennel Training and changes the session date to 1700 from 1800.
 
-    1. Test case: `edit program 4 n/Kennel Training s/01-02-2021 17:00`
+    1. Test case: `edit program 4 n/Kennel Training s/01-02-2021 17:00` <br>
        Expected: Error status message shown, indicating program ID provided is invalid.
 
 ### Find Command
@@ -1038,8 +1038,9 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
 1. Viewing owner
 
-    1. Test case: `view 1`
+    1. Test case: `view 1` <br>
        Expected: John's and Bruce's contacts are listed. John Doe's contact is at the top, followed by Bruce.
+<<<<<<< HEAD
 
 1. Viewing dog
 
@@ -1059,6 +1060,27 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
     1. Test case: 'view -1'
        Expected: Error status message is provided, indicating ID must be positive.
+=======
+       
+1. Viewing dog 
+    
+    1. Test case: `view 2` <br>
+       Expected: John, Bruce and Obedience Training program is listed. Bruce's contact is at the top, followed by John, 
+        followed by Obedience Training. 
+
+1. Viewing program
+
+    1. Test case: `view 3` <br>
+       Expected: Bruce and Obedience Training program is listed. Obedience training details are at the top, followed by Bruce's details. 
+       
+1. Invalid view ID 
+
+    1. Test case: `view 4`<br>
+       Expected: Error status message is provided, indicating invalid ID. 
+       
+    1. Test case: `view -1`<br>
+       Expected: Error status message is provided, indicating ID must be positive. 
+>>>>>>> 37fedfe5 (Finalise DG manual testing)
 
 ### Schedule Command
 
@@ -1079,17 +1101,31 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
        Expected: Successful status message, shows the sample Obedience Training 1 happening today.
 
     1. Test case: `schedule 01-02-2021` <br>
+<<<<<<< HEAD
        Expected: Successful status message, shows the sample Obedience Training 1 happening on 01-02-2021.
 
 1. Viewing schedules on an invalid day
+=======
+       Expected: Successful status message, shows the sample Obedience Training 2 happening on 01-02-2021.
+    
+1. Viewing schedules on an invalid day 
+>>>>>>> 37fedfe5 (Finalise DG manual testing)
 
-    1. Test case: `schedule 31-02-2021`
+    1. Test case: `schedule 31-02-2021`<br>
        Expected: Error status message thrown, indicating day of the month does not exist.
+<<<<<<< HEAD
 
     1. Test case: `schedule 031-02-2021`
        Expected: Error status message thrown, indicating that date format should be in dd-MM-yyyy format.
 
 ### Enrol Command
+=======
+       
+    1. Test case: `schedule 031-02-2021`<br>
+       Expected: Error status message thrown, indicating that date format should be in dd-MM-yyyy format. 
+       
+### Enrol Command 
+>>>>>>> 37fedfe5 (Finalise DG manual testing)
 
 1. Pre-requisites
 
@@ -1131,7 +1167,12 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
     1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
 
     1. Test case: `enrol d/2 p/3 p/4` <br>
+<<<<<<< HEAD
        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+=======
+        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program. Remember to drop Bruce from the program if he was enrolled previously!
+
+>>>>>>> 37fedfe5 (Finalise DG manual testing)
 
 1. Enrol multiple valid dogs into multiple valid programs
 
