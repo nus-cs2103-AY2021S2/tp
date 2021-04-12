@@ -266,7 +266,7 @@ Implementation of edit booking creates a `editedBooking` before calling `Booking
 
 #### Design Consideration:
 * **Alternative 1 (current choice):** Morph `Person` class into `Booking` class
-    * Pros: With the `doesOverlap` method of `Booking`, it is convenient to ensure that there are no overlapping bookings for `Residence`s.
+    * Pros: With the `doesOverlap` method of `BookingTime`, it is convenient to ensure that there are no overlapping bookings for `Residence`s.
     * Cons: All references to `Person` in existing classes, tests, and test utilities would have to be replaced, and new ones would have to be designed to accommodate `Booking`s.
 
 * **Alternative 2:** Preserve `Person` class
