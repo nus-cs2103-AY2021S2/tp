@@ -107,7 +107,7 @@ public class ListCommand extends Command {
     private String displayTags(List<Person> personsToDisplay) {
         Map<Tag, Integer> count = new HashMap<>();
         personsToDisplay.forEach(p -> p.getTags()
-              .forEach(t -> count.compute(t, (k, v) -> v == null ? 1 : v + 1)));
+                .forEach(t -> count.compute(t, (k, v) -> v == null ? 1 : v + 1)));
 
         String output = count.entrySet().stream()
                 .sorted((x, y) -> x.getKey().tagName.compareTo(y.getKey().tagName))
