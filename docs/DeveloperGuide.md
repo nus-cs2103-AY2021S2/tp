@@ -868,6 +868,17 @@ testers are expected to do more *exploratory* testing.
 
 #### Add an appointment
 
+1. Adding an appointment
+    
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" does not already exist  
+        1. Expected: A new appointment named "PTM" is created. The date of the appointment is 21/05/2021 10:00, the address is "ABC Pri Sch" and the appointment is tagged with the child tag "alice". 
+
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" that occurs on 21/05/2021 10:00 at ABC Pri Sch already exists
+       1. Expected: No appointment is added. Error details shown in the status message.
+
+    1. Test case: `addAppt n/PTM`
+       1. Expected: No appointment is added. Error details shown in the status message.
+
 #### Edit an appointment
 
 #### Find an appointment
