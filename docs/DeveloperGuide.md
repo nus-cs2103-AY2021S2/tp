@@ -512,7 +512,7 @@ The following sequence diagram shows how the add operation works:
     
 Alternative 1 was eventually chosen due to ease of refactoring and low chance of future extensions being affected 
 by the placeholder since it is a String and only one single use case of placeholders being use throughout the entire
-project hence it would be unnessary abstraction.
+project hence it would be unnecessary abstraction.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -831,6 +831,13 @@ testers are expected to do more *exploratory* testing.
        Expected: Shows the GUI with data loaded from the json files.
 
 
+### Testing General Features
+
+#### Help 
+
+#### Change ParentPal's theme
+
+
 ### Testing Address Book Features
 
 #### Tag a contact
@@ -860,6 +867,14 @@ testers are expected to do more *exploratory* testing.
        Expected: The contacts with a psg tag, *'Charlotte Oliveiro'* and *'Annie Li'* are deleted from the address book.
 
 #### Delete a contact
+
+#### Delete multiple contacts
+
+#### Clear contacts
+
+#### Edit a contact
+
+#### Find a contact
 
 #### Sort contacts
 1. Sorting contacts while all contacts are being shown
@@ -923,6 +938,9 @@ testers are expected to do more *exploratory* testing.
        Expected: First contact in the list is unfavourited.
        Details of unfavourited contact is shown in status message.
        The star next to the first contact's name becomes empty.
+
+#### List all contacts
+
 
 ### Testing Appointment Book Features
 
