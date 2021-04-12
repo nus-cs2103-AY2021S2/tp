@@ -382,6 +382,8 @@ so that you know how much time you have left to work on the task.
 Format: `count INDEX`
 
 * Counts the number of days until the date of the task at `INDEX`.
+* Number of days is solely dependent on the system date only irrespective of system timing e.g if the current
+  date is 12/05/2021 and the task has date 13/05/2021, the result displayed will be 1.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The task at the index must have a date, otherwise countdown cannot be done.
