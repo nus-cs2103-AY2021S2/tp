@@ -50,9 +50,9 @@ public class OwnerTest {
         editedAlice = new OwnerBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameAs(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns True
         Owner editedBob = new OwnerBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameAs(editedBob));
+        assertTrue(BOB.isSameAs(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";

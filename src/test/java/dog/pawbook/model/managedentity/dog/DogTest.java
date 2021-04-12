@@ -63,9 +63,9 @@ public class DogTest {
         editedApple = new DogBuilder(APPLE).withName(VALID_NAME_BELL).build();
         assertFalse(APPLE.isSameAs(editedApple));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Dog editedBell = new DogBuilder(BELL).withName(VALID_NAME_BELL.toLowerCase()).build();
-        assertFalse(BELL.isSameAs(editedBell));
+        assertTrue(BELL.isSameAs(editedBell));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BELL + " ";
