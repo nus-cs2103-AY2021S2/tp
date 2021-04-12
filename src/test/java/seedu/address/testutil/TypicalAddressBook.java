@@ -14,7 +14,7 @@ public class TypicalAddressBook {
 
     /**
      * Returns an {@code AddressBook} with all the typical pools and passengers.
-     * 
+     *
      * @return An {@code AddressBook} with all the typical pools and passengers.
      */
     public static AddressBook getTypicalAddressBook() {
