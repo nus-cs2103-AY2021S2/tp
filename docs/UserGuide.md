@@ -776,8 +776,8 @@ Action | Format, Examples
 **Viewing UI Command Details** | `commanddetailu`
 **Exit** | `exit`
 ***Dictionary Features*** | 
-**Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
-**Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
+**Find content** | `findcontent KEYWORD [MORE_KEYWORDS]` <br> e.g., `findcontent program`
+**Find definition** | `finddef KEYWORD [MORE_KEYWORDS]` <br> e.g., `finddef programming`
 **Show specific content** | `showdc INDEX` <br> e.g., `showdc 1`
 **List content** | `listcontent`
 **List definitions** | `listdef`
