@@ -12,7 +12,7 @@ that are typed into the input box as commands and it has a GUI created with Java
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to assign members to a task. (Pull Requests: [\#161](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/161), [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163))
-    * What it does: Allows the user to assign multiple members to a task and edit assignees to a task.
+    * What it does: Allows the user to assign members and edit assignees to a task. 
     * Justification: This feature improves the product significantly as a user can conveniently track which members are assigned to a task.
       Also, users can easily modify the assignees to a task should there be any changes in the assignment of a task.
     * Highlights: The implementation was challenging as I had to check whether the specified member's name exists in the 
@@ -39,12 +39,11 @@ Given below are my contributions to the project.
       The members list is then updated with the predicate, displaying members whose details contain any of the specified keywords. 
       
 * **New Feature**: Added the ability to clear all members assigned to a task. (Pull Requests: [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163), [\#174](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/174))
-    * What it does: Allows the user to clear all members assigned to a task with a single command.
+    * What it does: Allows the user to clear all members assigned to a task. 
     * Justification: This feature improves the product significantly because should the user accidentally assigned a task to 
       the wrong group of members, the user can easily clear all members assigned to the task instead of removing one member at a time.
     * Highlights: The implementation was challenging as I had to create a copy of the task at the given index and update 
-      the assignees field accordingly, before updating the task list with the updated task copy. Furthermore, integration and unit testing 
-      had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
+      the assignees field accordingly, before updating the task list with the updated task copy. 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=cheeerynne&tabRepo=AY2021S2-CS2103T-W14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
@@ -55,7 +54,6 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Updated the deleteMember and editMember commands to delete/edit by name instead of index. (Pull Requests: [\#70](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/70), [\#85](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/85))
     * Added JavaDoc comments to existing classes for better documentation. (Pull Requests: [\#187](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/187))
-      <br>
 
 * **Documentation**:
     * User Guide:
@@ -64,11 +62,10 @@ Given below are my contributions to the project.
         * Added introduction and mockup of application. (Pull Requests: [\#23](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/23))
       
     * Developer Guide:
-        * Updated the Storage UML Diagram in the Developer Guide. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191), [\#273](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/273))
+        * Updated the Storage UML Diagram in the DG. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191), [\#273](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/273))
         * Added implementation explanation for `clearAssignees` command. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191), [\#291](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/291))
         * Added and updated use cases in the Developer Guide. (Pull Requests: [\#143](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/143), [\#171](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/171))
         * Added manual testing instructions for `deleteMember`, `editMember`, `findMembers` and `findTasks`. (Pull Requests: [\#284](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/284))
-          <br>
 
 * **Community**:
     * PRs reviewed (Pull requests: [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#276](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/276), [\#283](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/283))
