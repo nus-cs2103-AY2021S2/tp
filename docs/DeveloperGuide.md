@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="200">
-  <h1 align="center"> Developer Guide </h1>
+  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="600">
 </p>
 
 ---
