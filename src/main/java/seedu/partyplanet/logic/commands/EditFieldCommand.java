@@ -30,8 +30,8 @@ public class EditFieldCommand extends EditCommand {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the person in the filtered person list to edit.
+     * @param editPersonDescriptor details to edit the person with.
      */
     public EditFieldCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);

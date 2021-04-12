@@ -6,7 +6,7 @@ import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 
 /**
- * Undoes the previous command that changes the address or event books
+ * Undoes the previous command that changes the address or event books.
  */
 public class UndoCommand extends Command {
 
@@ -23,7 +23,7 @@ public class UndoCommand extends Command {
 
 
     /**
-     * Creates an UndoCommand to undo the last command that changes the address or event books
+     * Creates an UndoCommand to undo the last command that changes the address or event books.
      */
     public UndoCommand() {
     }

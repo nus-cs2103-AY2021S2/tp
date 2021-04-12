@@ -56,7 +56,7 @@ public class EditAutocompleteUtil implements AutocompleteUtil {
     }
 
     /**
-     * Parses an edit command to autocomplete remark.
+     * Parses an edit command to autocomplete all specified fields.
      * @param model Model instance containing address book.
      * @return String of new autocompleted command.
      * @throws ParseException If the input command does not follow requirements.
@@ -83,13 +83,13 @@ public class EditAutocompleteUtil implements AutocompleteUtil {
 
         // Create a Map of Prefix to the relevant getter method
         Map<Prefix, String> prefixMethodMap = Map.of(
-            PREFIX_ADDRESS, person.getAddress().value,
-            PREFIX_BIRTHDAY, person.getBirthday().value,
-            PREFIX_EMAIL, person.getEmail().value,
-            PREFIX_NAME, person.getName().fullName,
-            PREFIX_PHONE, person.getPhone().value,
-            PREFIX_REMARK, person.getRemark().value,
-            PREFIX_TAG, ""
+                PREFIX_ADDRESS, person.getAddress().value,
+                PREFIX_BIRTHDAY, person.getBirthday().value,
+                PREFIX_EMAIL, person.getEmail().value,
+                PREFIX_NAME, person.getName().fullName,
+                PREFIX_PHONE, person.getPhone().value,
+                PREFIX_REMARK, person.getRemark().value,
+                PREFIX_TAG, ""
         );
 
         String output = "edit " + argMultimap.getPreamble();

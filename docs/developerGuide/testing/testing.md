@@ -40,6 +40,10 @@ Expected Message: `Invalid command format! ...`
 1. What: Wrong format (index does not exist in the list)<br>
 Command: `delete 10000`<br>
 Expected Message: `None of the indexes provided are valid`
+   
+1. What: Index larger than maximum integer value<br>
+Command: `delete 123456789123456789`<br>
+Expected Message: `Invalid command format!...`
 
 1. What: Delete all contacts that has `choir` AND `year2` tag<br>
 Command: `delete -t choir -t year2`<br>

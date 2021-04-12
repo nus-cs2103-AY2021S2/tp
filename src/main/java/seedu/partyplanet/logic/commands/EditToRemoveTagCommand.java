@@ -22,7 +22,7 @@ public class EditToRemoveTagCommand extends EditCommand {
     private final List<Person> editedPersons = new ArrayList<Person>();
 
     /**
-     * Creates an EditToRemoveTagCommand to edit the {@code Person} with specified {@code Tag}
+     * Creates an EditToRemoveTagCommand to edit the {@code Person} with specified {@code Tag}.
      */
     public EditToRemoveTagCommand(Set<Tag> targetTags) {
         this.targetTags = targetTags;

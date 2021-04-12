@@ -23,9 +23,9 @@ Given below is an example usage scenario and how the `add` mechanism behaves at 
 2. `LogicManager` uses the `AddressBookParser` class to parse the user command, represented by `parseCommand("add -n
    James -r Loves sweets")`
 
-Below is the partial sequence diagram for steps 1 and 2.
+    Below is the partial sequence diagram for steps 1 and 2.
 
-![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p1](images/AddSequenceDiagram1.png)
+    ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p1](images/AddSequenceDiagram1.png)
 
 3. `AddressBookParser` creates an `AddCommandParser` which is used to parse the arguments provided by the user. This
    is represented by `parse("-n James -r Loves sweets")`.
@@ -35,18 +35,17 @@ Below is the partial sequence diagram for steps 1 and 2.
 5. The `AddCommandParser` then passes this newly created `Person` as input to create an `AddCommand` which will be
    returned to the `LogicManager`. This is represented by `AddCommand(p)`
 
-Below is the partial sequence diagram for steps 3, 4 and 5.
+   Below is the partial sequence diagram for steps 3, 4 and 5.
 
-![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p2](images/AddSequenceDiagram2.png)
+   ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p2](images/AddSequenceDiagram2.png)
 
 
 
 6. The `LogicManager` executes the `AddCommand` by calling `AddCommand#execute()` and passes the `CommandResult`
    back to the `UI`.
 
-![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p3](images/AddSequenceDiagram3.png)
+   ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command p3](images/AddSequenceDiagram3.png)
 
-Given below is the full Sequence Diagram for interactions within the `Logic` component for the `execute("add -n
-James -r Loves sweets")` API call.
+Given below is the full Sequence Diagram for interactions within the `Logic` component for the `execute("add -n James -r Loves sweets")` API call.
 
 ![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/AddSequenceDiagram.png)

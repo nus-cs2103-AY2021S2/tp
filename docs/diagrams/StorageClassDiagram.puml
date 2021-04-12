@@ -26,10 +26,10 @@ Storage -|> EventBookStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBook
-JsonSerializableAddressBook .down.> JsonAdaptedPerson
-JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonSerializableAddressBook -down-> JsonAdaptedPerson
+JsonAdaptedPerson -right-> JsonAdaptedTag
 
 JsonEventBookStorage .up.|> EventBookStorage
 JsonEventBookStorage .down.> JsonSerializableEventBook
-JsonSerializableEventBook .down.> JsonAdaptedEvent
+JsonSerializableEventBook -down-> JsonAdaptedEvent
 @enduml

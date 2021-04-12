@@ -36,6 +36,14 @@ create ToggleThemeCommand
 AddressBookParser -> ToggleThemeCommand
 activate ToggleThemeCommand
 
+
+ToggleThemeCommand --> AddressBookParser
+deactivate ToggleThemeCommand
+AddressBookParser --> Logic
+deactivate AddressBookParser
+Logic -> ToggleThemeCommand : execute(t)
+activate ToggleThemeCommand
+
 'Interface with Model
 ToggleThemeCommand -> Model : getGuiSettings()
 activate Model
@@ -47,12 +55,6 @@ GuiSettings --> ToggleThemeCommand
 deactivate GuiSettings
 
 'Command result
-ToggleThemeCommand --> AddressBookParser
-deactivate ToggleThemeCommand
-AddressBookParser --> Logic
-deactivate AddressBookParser
-Logic -> ToggleThemeCommand : execute(t)
-activate ToggleThemeCommand
 ToggleThemeCommand --> Logic
 deactivate ToggleThemeCommand
 Logic --> MainWindow

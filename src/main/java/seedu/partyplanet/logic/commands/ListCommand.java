@@ -31,8 +31,8 @@ public class ListCommand extends Command {
             + "Sort orders: 'asc' (ascending, default), 'desc' (descending)\n"
             + "Example: list --exact -n alice -t friend -b 1 -s n -o desc\n";
 
-    public static final String MESSAGE_USAGE_CONCISE =
-            COMMAND_WORD + " [--exact] [--any] [-n NAME]... [-t TAG]... [-b MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]";
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD
+            + " [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY_MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]";
 
     public static final Comparator<Person> SORT_NAME = Comparator.comparing(x -> x.getName().fullName.toLowerCase());
     public static final Comparator<Person> SORT_BIRTHDAY =
@@ -63,8 +63,9 @@ public class ListCommand extends Command {
     /**
      * Most general ListCommand.
      *
-     * @param predicate Predicate to filter people by
-     * @param comparator Sorting comparator
+     * @param predicate Predicate to filter people by.
+     * @param comparator Sorting comparator.
+     * @param parseArguments String containing information of listing requirements to be displayed.
      */
     public ListCommand(Predicate<Person> predicate, Comparator<Person> comparator, String parseArguments) {
         this.predicate = predicate;

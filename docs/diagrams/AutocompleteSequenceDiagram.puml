@@ -7,7 +7,8 @@ end box
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":EditAutocompleteUtil" as EditAutocompleteUtil LOGIC_COLOR
+participant ":AutocompleteParser" as AutocompleteParser LOGIC_COLOR
+participant ":AutocompleteUtil" as AutocompleteUtil LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -20,24 +21,30 @@ activate UI
 UI-> LogicManager : autoComplete("edit 1 -r")
 activate LogicManager
 
-create EditAutocompleteUtil
-LogicManager -> EditAutocompleteUtil : parseCommand("edit 1 -r")
-activate EditAutocompleteUtil
+LogicManager -> AutocompleteParser : parseCommand("edit 1 -r")
+activate AutocompleteParser
 
-EditAutocompleteUtil -> LogicManager
-deactivate EditAutocompleteUtil
+create AutocompleteUtil
+AutocompleteParser -> AutocompleteUtil
+activate AutocompleteUtil
 
-LogicManager -> EditAutocompleteUtil : parse()
-activate EditAutocompleteUtil
+AutocompleteUtil -> AutocompleteParser
+deactivate AutocompleteUtil
 
-EditAutocompleteUtil -> Model : get()
+AutocompleteParser -> LogicManager
+deactivate AutocompleteParser
+
+LogicManager -> AutocompleteUtil : parse()
+activate AutocompleteUtil
+
+AutocompleteUtil -> Model : get()
 activate Model
 
-Model -> EditAutocompleteUtil : PersonList/EventList
+Model -> AutocompleteUtil : PersonList/EventList
 deactivate Model
 
-EditAutocompleteUtil -> LogicManager : commandResult
-deactivate EditAutocompleteUtil
+AutocompleteUtil -> LogicManager : commandResult
+deactivate AutocompleteUtil
 
 LogicManager -> UI : commandResult
 deactivate LogicManager

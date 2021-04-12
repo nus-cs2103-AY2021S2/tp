@@ -20,7 +20,7 @@ public class DeleteContactCommand extends DeleteCommand {
     private final List<String> invalidIndexes;
 
     /**
-     * Creates an DeleteContactCommand to delete the {@code Person} at specified indexes.
+     * Creates a DeleteContactCommand to delete the {@code Person} at specified indexes.
      */
     public DeleteContactCommand(List<Index> targetIndexes, List<String> invalidIndexes) {
         this.targetIndexes = targetIndexes;

@@ -32,7 +32,7 @@ The sections below give more details of each component.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.partyplanet.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +79,6 @@ This section describes some noteworthy details on how certain features are imple
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
