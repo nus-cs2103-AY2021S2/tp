@@ -42,7 +42,9 @@ public class Date implements Attribute {
     public Date(String date) {
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = parseDate(date);
-        isValidDate = ValidDateFormatter.isValid(date);
+        if (!date.equals("")) {
+            isValidDate = ValidDateFormatter.isValid(date);
+        }
 
         if (date.length() != 0) {
             LocalDate today = LocalDate.now();

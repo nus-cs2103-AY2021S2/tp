@@ -207,9 +207,10 @@ Examples:
 ### Postpone a task's date : `snooze` ----- Max
 
 Postpones your task's date by a specified number of days so that you have the flexibility
-to push back the deadline of task when necessary. Calendar will be reset.
+to push back the deadline of task when necessary.
 
 Format: `snooze INDEX [DAYS]`
+
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
  The index **must be a positive integer** e.g 1, 2, 3, …​
 * DAYS must be a positive integer and at most 365 (1 year).
@@ -224,10 +225,9 @@ Examples:
 
 
 Sets a task's status to 'done' so that you can track the tasks that have completed easily.
- Calendar will be reset.
-
 
 Format: `done INDEX`
+
 * Sets the task at the specified `INDEX` to be done. The index refers to the index number shown in the displayed list.
 * If the task's status is already 'done', the planner will give a warning.
 

@@ -100,8 +100,6 @@ public class SnoozeCommand extends Command {
         Task snoozedTask = updateTaskWithNewDate(taskToSnooze);
 
         model.setTask(taskToSnooze, snoozedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.resetCalendarDate();
     }
 
     private Task updateTaskWithNewDate(Task taskToSnooze) {
