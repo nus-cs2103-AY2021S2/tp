@@ -159,6 +159,9 @@ Classes used by multiple components are in the `seedu.cakecollate.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
+
 ## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -193,6 +196,8 @@ Hence, based on this implementation, here is the sequence diagram containing the
 **Sequence diagram depicting the `AddCommandParser::parse` method:**
 
 ![AddParserSequenceDiagram](images/AddParserSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 **Sequence diagram depicting the `AddCommand::execute` method:**
 
@@ -229,6 +234,9 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 *Step 4.* The `FindCommand#execute` is called which updates the `FilteredList` that is currently being displayed.
 
 The following sequence diagram shows how this works:
+
+<div style="page-break-after: always;"></div>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates FindCommandParser and calls parse("n/Alex") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
 
@@ -370,6 +378,8 @@ The following sequence diagram shows how this works:
     * Cons:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
+
+
 ### Delete Order Item Feature
 The `deleteItem` command enables users to delete predefined order items (also known as cake items or order descriptions). The user can choose to delete a single order item or multiple order items at the same time.
 
@@ -390,6 +400,9 @@ Given below is an example usage scenario and how the `deleteItem` mechanism work
 *Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
 
 The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
+
+<div style="page-break-after: always;"></div>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates DeleteOrderItemCommandParser and calls parse("1 2"). 
 
