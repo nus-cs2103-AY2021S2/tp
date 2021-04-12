@@ -22,7 +22,7 @@ public class Dictionary implements ReadOnlyDictionary {
     public Dictionary() {}
 
     /**
-     * Makes a dictionarybook.
+     * Makes a dictionarybook.  //Todo change
      *
      * @param toBeCopied ReadOnlyDictionary
      */
