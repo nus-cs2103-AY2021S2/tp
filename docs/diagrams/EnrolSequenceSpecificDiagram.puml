@@ -1,6 +1,7 @@
-
 @startuml
 !include style.puml
+
+autoactivate on
 
 box Logic LOGIC_COLOR_T1
 
@@ -12,6 +13,8 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
+
+mainframe **sd** enrol dog with ID 2 into program with ID 3
 
 [-> EnrolCommand : execute()
 

@@ -1,6 +1,8 @@
 @startuml
 !include style.puml
 
+autoactivate on
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PawbookParser" as PawbookParser LOGIC_COLOR
@@ -45,20 +47,11 @@ PawbookParser --> LogicManager : e
 deactivate PawbookParser
 
 LogicManager -> EnrolCommand : execute()
+ref over EnrolCommand, Model : enrol dog with ID 2 into program with ID 3
+
 activate EnrolCommand
 
-EnrolCommand -> Model : update filtered entity list
-activate Model
-
-Model --> EnrolCommand
 deactivate Model
-
-create CommandResult
-EnrolCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> EnrolCommand
-deactivate CommandResult
 
 EnrolCommand --> LogicManager : result
 deactivate EnrolCommand
