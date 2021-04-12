@@ -19,12 +19,12 @@ public class DeleteGroupmateCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Index expectedProjectIndex = Index.fromOneBased(1);
-        Index expectedContactIndex = Index.fromOneBased(1);
+        Index expectedGroupmateIndex = Index.fromOneBased(1);
 
         // all field appear once
         assertParseSuccess(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " "
                         + INDEX_FIRST.getOneBased(),
-                new DeleteGroupmateCommand(expectedProjectIndex, expectedContactIndex)
+                new DeleteGroupmateCommand(expectedProjectIndex, expectedGroupmateIndex)
         );
     }
 

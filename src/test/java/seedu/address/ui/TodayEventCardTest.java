@@ -69,7 +69,7 @@ public class TodayEventCardTest extends GuiUnitTest {
 
         TodayEventCardHandle eventCardHandle = new TodayEventCardHandle(eventCard.getRoot());
 
-        // verify contact details are displayed correctly
+        // verify event details are displayed correctly
         assertCardDisplaysTodayEvent(expectedEvent, eventCardHandle);
     }
 }

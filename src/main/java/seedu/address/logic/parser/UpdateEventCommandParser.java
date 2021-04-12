@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_UPDATED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
@@ -13,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -71,7 +71,7 @@ public class UpdateEventCommandParser implements Parser<UpdateEventCommand> {
         }
 
         if (!updateEventDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(UpdateContactCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_UPDATED);
         }
 
         return new UpdateEventCommand(projectIndex, targetEventIndex, updateEventDescriptor);

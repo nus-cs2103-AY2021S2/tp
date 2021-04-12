@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_UPDATED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
@@ -11,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -62,7 +62,7 @@ public class UpdateDeadlineCommandParser implements Parser<UpdateDeadlineCommand
             updateDeadlineDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE_DATE).get()));
         }
         if (!updateDeadlineDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(UpdateContactCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_UPDATED);
         }
 
         return new UpdateDeadlineCommand(projectIndex, targetDeadlineIndex, updateDeadlineDescriptor);

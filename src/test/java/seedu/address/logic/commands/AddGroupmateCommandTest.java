@@ -55,7 +55,7 @@ public class AddGroupmateCommandTest {
     }
 
     @Test
-    public void execute_duplicateContact_throwsCommandException() {
+    public void execute_duplicateGroupmate_throwsCommandException() {
         Groupmate groupmateToAdd = new GroupmateBuilder().build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         AddGroupmateCommand addGroupmateCommand = new AddGroupmateCommand(INDEX_FIRST, groupmateToAdd);
@@ -90,7 +90,7 @@ public class AddGroupmateCommandTest {
         // null -> returns false
         assertNotEquals(addOneToOneCommand, null);
 
-        // different contact -> returns false
+        // different groupmates -> returns false
         assertNotEquals(addOneToTwoCommand, addOneToOneCommand);
     }
 }

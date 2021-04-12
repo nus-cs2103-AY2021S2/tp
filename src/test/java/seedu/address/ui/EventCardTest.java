@@ -75,7 +75,7 @@ public class EventCardTest extends GuiUnitTest {
         // verify id is displayed correctly
         assertEquals(Integer.toString(expectedId) + ". ", eventCardHandle.getId());
 
-        // verify contact details are displayed correctly
+        // verify event details are displayed correctly
         assertCardDisplaysEvent(expectedEvent, eventCardHandle);
     }
 }
