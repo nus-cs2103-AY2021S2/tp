@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor CONNECTION_COLOUR
+skinparam classBackgroundColor CONNECTION_COLOUR
+skinparam classFontColor #white
+skinparam classAttributeFontColor #white
+
+
+package Model <<Rectangle>> {
+interface Model
+class ModelManager
+class FilteredListPerson
+}
+class ObservableListPerson
+
+package UI <<Rectangle>> {
+}
+
+Model <|.. ModelManager
+ModelManager --> FilteredListPerson
+FilteredListPerson ..> ObservableListPerson
+
+UI --> FilteredListPerson
+
+@enduml
