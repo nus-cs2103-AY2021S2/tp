@@ -21,12 +21,18 @@ import seedu.address.model.customer.Customer;
  * Customer}.
  */
 public class FilterCombinator implements Predicate<Customer> {
+    public static final String MESSAGE_EFFECTIVELY_EMPTY = "Your string contains only space of brackets "
+        + "(either the entire string, or parts inside the backets) which is invalid.";
+    public static final String MESSAGE_INVALID_BRACKETING = "The bracketing of the sequence is wrong - Make sure the "
+        + "sequence is well bracketed!";
+    public static final String MESSAGE_OPERATOR_RULES_NOT_FOLLOW = "Make sure all binary operators have two operands,"
+        + " while unary operator have a single operand!";
+
     private final Node rootNode;
 
     /**
      * Constructor for filter combinator to create a expression tree from the given argument. Note that an issue with
-     * the expression is not handled at this point, and is handled only when testing a {@code Customer}
-     * // TODO
+     * the expression is not handled at this point, and is handled only when testing a {@code Customer} // TODO
      *
      * @param argument the filter expression
      */
@@ -45,6 +51,7 @@ public class FilterCombinator implements Predicate<Customer> {
 
     /**
      * Checks whether it is a valid combinator tree.
+     *
      * @return true if the expression actually results in a tree, false otherwise.
      */
     public boolean isValidCombinator() {
@@ -53,10 +60,11 @@ public class FilterCombinator implements Predicate<Customer> {
 
     /**
      * Gets the logical operator corresponding to the prefix in {@code CLISyntax}.
+     *
      * @param prefix the logical operator prefix
      * @return the corresponding logical operator
-     * @throws IllegalArgumentException if the prefix string doesn't match any logical operator prefix as defined
-     * in the {@code CLISyntax} class.
+     * @throws IllegalArgumentException if the prefix string doesn't match any logical operator prefix as defined in the
+     *                                  {@code CLISyntax} class.
      */
     private LogicalOperator getCorrespondingLogicalOperator(Prefix prefix) {
         if (prefix.equals(PREFIX_AND)) {
