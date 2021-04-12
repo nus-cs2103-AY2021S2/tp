@@ -12,7 +12,7 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.dictionary.Content;
 
 /**
- * Parses input arguments and creates a new AddNoteCommand object
+ * Parses input arguments and creates a new AddNoteCommand object.
  */
 public class AddContentCommandParser implements Parser<AddContentCommand> {
 

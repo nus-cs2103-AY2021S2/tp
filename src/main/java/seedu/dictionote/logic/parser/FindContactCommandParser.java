@@ -15,14 +15,14 @@ import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.contact.TagsContainKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindContactCommandParser implements Parser<FindContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindContactCommand
      * and returns a FindContactCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public FindContactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
