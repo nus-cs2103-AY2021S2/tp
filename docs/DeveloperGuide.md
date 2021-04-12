@@ -561,6 +561,13 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Listing all clients
+
+1. Get a list of all clients
+
+  1. Test case: `list`, `list alex`, `list 123` <br>
+    Expected: All clients will be displayed in the list, additional parameters are ignored
+
 ### Finding clients by name
 
 1. Finding clients using (a) name(s) as keyword
