@@ -431,7 +431,7 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 - `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
 - `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`.
-- `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
+- `edit 3 n/CS1101S d/Streams assignment s/todo p/low` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `TODO`, `LOW` respectively.
 - `edit 4 s/d p/l` Edits the status and the priority of the event with identifier `#4` to be `DONE` and `LOW` respectively.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
@@ -462,8 +462,8 @@ delete IDENTIFIER
 
 | No  | Example Command | Expected Command Result                                                                                   |
 | --- | --------------- | --------------------------------------------------------------------------------------------------------- |
-| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Priority: LOW; Description: Lab 1 to complete; Status: TODO;                 |
-| 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Priority: HIGH; Description: Due on 28 Mar 2021; Status: IN_PROGRESS; |
+| 1   | `delete 1`      | Deleted Event: CS2107 Finals; Priority: LOW; Description: Finals on 3rd May 2021; Status: BACKLOG;                 |
+| 2   | `delete 5`      | Deleted Event: CS2101 OP1; Priority: HIGH; Description: Due on 28 Mar 2021; Status: DONE; |
 
 <div markdown="block" class="alert alert-info">
 
@@ -585,10 +585,10 @@ done IDENTIFIER
 
 **What you should expect to happen:**
 
-- Before the execution of the `done 4` command:
+- Before the execution of the `done 6` command:
   ![Before done](./images/user-guide/Annotated/beforeDoneExecutionAnnotated.png)
 
-- After the execution of `done 4` command:
+- After the execution of `done 6` command:
   ![After done](./images/user-guide/Annotated/afterDoneExecutionAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
