@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: Azeem's Project Portfolio Page
@@ -88,7 +87,7 @@ Given below are my contributions to the project.
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/242), 
     [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/254) and
     [4 - bug in AB3 diagrams](https://github.com/nus-cs2103-AY2021S2/forum/issues/305))
-  * Bug reports made for other teams were fully accepted during PE-D: [PE-D](https://github.com/DrWala/ped)
+  * Bug reports made for other teams were fully accepted during PE-D: [PE-D](https://github.com/DrWala/ped/issues)
   * Filed bug reports for my own team:
     [\#293](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/293),
     [\#367](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/367),
