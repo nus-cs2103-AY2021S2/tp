@@ -23,8 +23,6 @@ public class Dictionary implements ReadOnlyDictionary {
 
     /**
      * Creates a Dictionary using the contents in the {@code toBeCopied}.
-     *
-     * @param toBeCopied ReadOnlyDictionary
      */
 
     public Dictionary(ReadOnlyDictionary toBeCopied) {
