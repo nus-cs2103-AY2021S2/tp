@@ -29,17 +29,20 @@ import seedu.address.testutil.TodoBuilder;
 public class DeleteTodoCommandTest {
 
     private Model model;
+    private Project projectToEdit;
+    private Project editedProject;
+
 
     @BeforeEach
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
+        projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
+        editedProject = new ProjectBuilder(projectToEdit).build();
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Todo todoToDelete = new TodoBuilder().withDescription("a").build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addTodo(todoToDelete);
 
         model.setProject(
@@ -63,8 +66,6 @@ public class DeleteTodoCommandTest {
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
         Todo todoToDelete = new TodoBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addTodo(todoToDelete);
 
         model.setProject(
@@ -86,8 +87,6 @@ public class DeleteTodoCommandTest {
     @Test
     public void execute_invalidTodoIndex_throwsCommandException() {
         Todo todoToDelete = new TodoBuilder().build();
-        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addTodo(todoToDelete);
 
         model.setProject(
@@ -109,13 +108,11 @@ public class DeleteTodoCommandTest {
     @Test
     public void equals() {
         Todo todoToDelete = new TodoBuilder().build();
-        Project project1ToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        Project editedProject1 = new ProjectBuilder(project1ToEdit).build();
-        editedProject1.addTodo(todoToDelete);
+        editedProject.addTodo(todoToDelete);
 
         model.setProject(
-                project1ToEdit,
-                editedProject1
+                projectToEdit,
+                editedProject
         );
 
         Project project2ToEdit = model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased());
