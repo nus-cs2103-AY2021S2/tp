@@ -18,6 +18,7 @@ public class SelectIndexCommand extends SelectCommand {
 
     public static final String MESSAGE_SHOWN_SUCCESS = "Selected all shown person(s)";
     public static final String MESSAGE_INDEX_SUCCESS = "Selected person(s)";
+    public static final String MESSAGE_NO_PERSON = "No person(s) to select";
 
     private final List<Index> selectedIndexes;
     private final boolean isSpecialIndex;
@@ -44,13 +45,18 @@ public class SelectIndexCommand extends SelectCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getFilteredPersonList().size() == 0) {
+            throw new CommandException(MESSAGE_NO_PERSON);
+        }
+
         if (isSpecialIndex) {
             List<Person> personList = model.getFilteredPersonList();
             model.updateSelectedPersonList(personList);
             return new CommandResult(MESSAGE_SHOWN_SUCCESS);
         }
 
-        List<Person> personList = model.getSortedFilteredPersonList();
+        List<Person> personList = model.getFilteredPersonList();
         List<Person> selectedPersonList = new ArrayList<>();
         for (Index index : selectedIndexes) {
             if (index.getZeroBased() >= personList.size()) {

@@ -3,9 +3,9 @@ package seedu.address.model.alias;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS_STRING;
-import static seedu.address.testutil.TypicalAliases.INVALID_ALIAS_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.INVALID_ALIAS_STRING;
 
 import org.junit.jupiter.api.Test;
 

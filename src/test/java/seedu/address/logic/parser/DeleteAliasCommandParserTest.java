@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS_STRING;
-import static seedu.address.testutil.TypicalAliases.INVALID_ALIAS_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.INVALID_ALIAS_STRING;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,14 @@
 package seedu.address.logic;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -7,6 +16,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -30,6 +41,8 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
@@ -45,6 +58,8 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
 
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -66,14 +81,14 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText, model.getAliases());
+        Command command = addressBookParser.parseCommand(commandText, model.getAliasMap());
         commandResult = command.execute(model);
 
         shouldReturnAlias = commandResult.isShowAlias();
 
         try {
             storage.saveAddressBook(model.getAddressBook());
-            storage.saveAliases(model.getAliases());
+            storage.saveAliasMap(model.getAliasMap());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -87,23 +102,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyUniqueAliasMap getAliases() {
-        return model.getAliases();
-    }
-
-    @Override
-    public ObservableList<String> getObservableStringAliases() {
-        return model.getObservableStringAliases();
+    public ReadOnlyUniqueAliasMap getAliasMap() {
+        return model.getAliasMap();
     }
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
-    }
-
-    @Override
-    public ObservableList<Person> getSortedFilteredPersonList() {
-        return model.getSortedFilteredPersonList();
     }
 
     @Override
@@ -146,7 +151,7 @@ public class LogicManager implements Logic {
 
         if (shouldReturnAlias) {
             shouldReturnAlias = false;
-            return getObservableStringAliases();
+            return FXCollections.observableList(getCommandAliasesStringList());
         } else {
             if (value == null || value.isEmpty()) {
                 return FXCollections.observableList(commandList);
@@ -207,30 +212,38 @@ public class LogicManager implements Logic {
 
     @Override
     public List<String> getAvailableFlags(String commandStrings) {
-
         boolean isAutocompleteFlag = this.isAutocompleteFlag(commandStrings);
 
         if (!isAutocompleteFlag) {
             return null;
         }
 
-        if (commandStrings.startsWith(AddCommand.COMMAND_WORD + " ")) {
+        // Initialize matcher
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandStrings.trim());
+        matcher.matches();
+        String commandWord = matcher.group("commandWord");
+        String arguments = matcher.group("arguments");
+
+        // Prefixes for ADD and EDIT commands are the same
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
+
+        if (commandWord.equals(AddCommand.COMMAND_WORD) && argMultiMap.getPreamble().length() == 0) {
             // Get possible flags for "ADD" command
             List<String> availFlags = this.filterExistingFlags(commandStrings, AddCommand.COMMAND_WORD);
-            if (availFlags.size() != 0) {
+            if (!availFlags.isEmpty()) {
                 return availFlags;
             }
         }
 
-        if (commandStrings.startsWith(EditCommand.COMMAND_WORD + " ")) {
+        if (commandWord.equals(EditCommand.COMMAND_WORD)) {
             try {
 
-                // TODO:
-                // Check if Edit command already has index
-                Integer.parseInt(commandStrings.split("-")[0].replaceAll("\\D+", ""));
+                Integer.parseInt(argMultiMap.getPreamble());
+
                 List<String> availFlags = this.filterExistingFlags(commandStrings,
                         EditCommand.COMMAND_WORD);
-                if (availFlags.size() != 0) {
+                if (!availFlags.isEmpty()) {
                     return availFlags;
                 }
             } catch (NumberFormatException e) {
@@ -243,5 +256,10 @@ public class LogicManager implements Logic {
     @Override
     public Predicate<Person> getSelectedPersonPredicate() {
         return model.getSelectedPersonPredicate();
+    }
+
+    @Override
+    public List<String> getCommandAliasesStringList() {
+        return model.getCommandAliasesStringList();
     }
 }

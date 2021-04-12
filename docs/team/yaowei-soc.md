@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: alt-page
 title: Yao Wei's Project Portfolio Page
 ---
 
@@ -11,8 +11,8 @@ in Java, and has about 13 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added an email command that allows the user to email contacts using the operating
-  system's email client
+* **New Feature**: Added an `email` command that allows the user to email contacts using the
+  operating system's email client
     * What it does: allows the user to email one or many contacts via the operating system's email
       client.
     * Justification: This feature improves the product significantly because a user can be able to
@@ -24,7 +24,7 @@ Given below are my contributions to the project.
     * Credits: <https://stackoverflow.com/a/16615384/3903483> for the idea of using JavaFX host
       services to open the 'mailto' link.
 
-* **New Feature**: Added a select command that allows the user to select multiple contacts to
+* **New Feature**: Added a `select` command that allows the user to select multiple contacts to
   modify.
     * What it does: Allows the user to select multiple contacts to modify. Similar to how checkboxes
       are used in the web browser.
@@ -48,21 +48,27 @@ Given below are my contributions to the project.
     * Managed milestones and tagging issues or pull requests to milestones.
 
 * **Enhancements to existing features**:
-    * Enhanced `edit`, `delete` command to be used with `select` command.
+    * Enhanced `edit`, `delete` command to be used with `select`
+      command. [\#129](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/129)
 
 * **Documentation**:
     * User Guide:
         * Updated UG diagrams [\#131](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/131)
           , [\#140](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/140)
           , [\#211](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/211)
+          , [\#263](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/263)
         * Updated documentation/cosmetic tweaks for existing features `edit`, `delete` and overall
           UG structure: [\#212](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/212)
+          , [\#239](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/239),
+          , [\#243](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/243),
         * Add documentation for implemented features `select`
           , `email` [\#119](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/119)
           , [\#129](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/129)
     * Developer Guide:
         * Add implementation details of the `select`
           feature [\#119](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/119)
+        * Update manual testing
+          section [\#256](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/256)
 
 * **Community**:
     * PRs reviewed (with non-trivial review
@@ -80,6 +86,10 @@ Given below are my contributions to the project.
       , [\#130](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/130)
       , [\#132](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/132)
       , [\#138](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/138)
+      , [\#207](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/207)
+      , [\#223](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/223)
+      , [\#229](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/229)
+      , [\#233](https://github.com/AY2021S2-CS2103T-T12-3/tp/pull/233)
     * Contributed to forum
       discussions [\#287](https://github.com/nus-cs2103-AY2021S2/forum/issues/287)
 

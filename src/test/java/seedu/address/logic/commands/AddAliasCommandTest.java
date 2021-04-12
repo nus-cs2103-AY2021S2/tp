@@ -9,7 +9,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -157,17 +156,7 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getSortedFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateSortedFilteredPersonList(Comparator<Person> comparator) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUniqueAliasMap getAliases() {
+        public ReadOnlyUniqueAliasMap getAliasMap() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -212,7 +201,7 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public int getNumOfAlias() {
+        public int getNumOfCommandAlias() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -230,7 +219,9 @@ public class AddAliasCommandTest {
         public Predicate<Person> getSelectedPersonPredicate() {
             throw new AssertionError("This method should not be called.");
         }
-        public ObservableList<String> getObservableStringAliases() {
+
+        @Override
+        public ObservableList<String> getCommandAliasesStringList() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -272,7 +263,7 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public ReadOnlyUniqueAliasMap getAliases() {
+        public ReadOnlyUniqueAliasMap getAliasMap() {
             return new UniqueAliasMap();
         }
     }

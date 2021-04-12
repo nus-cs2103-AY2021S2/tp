@@ -1,5 +1,5 @@
 {
-  "aliases": [ {
+  "commandAliases": [ {
     "alias": "a",
     "command": "add"
   }, {

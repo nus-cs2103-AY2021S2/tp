@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: alt-page
 title: darkdestry-t's Project Portfolio Page
 ---
 

@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.EmailCommand.MESSAGE_NO_PERSON;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,7 +29,7 @@ import seedu.address.model.UserPrefs;
 public class EmailCommandTest {
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAliases());
+            getTypicalAliasMap());
 
     @Test
     public void initialize_nullIndexes_throwsException() {
@@ -52,6 +54,23 @@ public class EmailCommandTest {
         EmailCommand emailCommand = EmailCommand
                 .buildEmailIndexCommand(Collections.singletonList(outOfBoundIndex));
         assertCommandFailure(emailCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_email_failureNoPersons() {
+        final Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalAliasMap());
+
+        // email shown
+        assertCommandFailure(EmailCommand.buildEmailShownCommand(), emptyModel, MESSAGE_NO_PERSON);
+
+        // email VALID_INDEXES
+        assertCommandFailure(EmailCommand.buildEmailIndexCommand(VALID_INDEXES), emptyModel,
+                MESSAGE_NO_PERSON);
+
+        // email selected
+        assertCommandFailure(EmailCommand.buildEmailSelectedCommand(), emptyModel,
+                MESSAGE_NO_PERSON);
     }
 
     @Test

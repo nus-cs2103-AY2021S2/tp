@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.TagCommandParser.tagsToString;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -34,7 +34,7 @@ import seedu.address.testutil.TypicalIndexes;
 
 public class AddTagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliases());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliasMap());
 
     @Test
     public void createWithShownIndex_nullTags_throwsNullPointerException() {
@@ -59,7 +59,7 @@ public class AddTagCommandTest {
     @Test
     public void execute_selectedIndexTags_addSuccessful() throws Exception {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         Set<Tag> tags = getTypicalTags();
 
         List<Person> selectedPersonList = new ArrayList<>();
@@ -75,18 +75,15 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithSelectedIndex(tags);
 
-        String singularOrPlural = selectedPersonList.size() > 1 ? "s" : "";
         int updateCount = selectedPersonList.size();
-
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_shownIndexTags_addSuccessful() throws Exception {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         Set<Tag> tags = getTypicalTags();
 
         List<Person> personList = model.getFilteredPersonList();
@@ -97,18 +94,15 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithShownIndex(tags);
 
-        String singularOrPlural = personList.size() > 1 ? "s" : "";
         int updateCount = personList.size();
-
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_targetIndexesTags_addSuccessful() throws Exception {
         Model expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliases());
+                new AddressBook(model.getAddressBook()), new UserPrefs(), model.getAliasMap());
         Set<Tag> tags = getTypicalTags();
 
         List<Index> indexes = TypicalIndexes.VALID_INDEXES;
@@ -122,11 +116,8 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithTargetIndexes(indexes, tags);
 
-        String singularOrPlural = indexes.size() > 1 ? "s" : "";
         int updateCount = indexes.size();
-
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 

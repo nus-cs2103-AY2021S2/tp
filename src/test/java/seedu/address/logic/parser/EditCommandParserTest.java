@@ -50,7 +50,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
-import static seedu.address.logic.parser.EditCommandParser.SELECTED;
+import static seedu.address.logic.parser.EditCommandParser.SELECTED_INDEX;
 import static seedu.address.logic.parser.EditCommandParser.SPECIAL_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -307,7 +307,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTagsSelected_success() {
-        String userInput = EditCommandParser.SELECTED + TAG_EMPTY;
+        String userInput = EditCommandParser.SELECTED_INDEX + TAG_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = EditCommand.buildEditSelectedCommand(descriptor);
@@ -327,7 +327,7 @@ public class EditCommandParserTest {
         assertValidCommandToAliasSuccess(parser, SPECIAL_INDEX);
 
         // selected
-        assertValidCommandToAliasSuccess(parser, SELECTED);
+        assertValidCommandToAliasSuccess(parser, SELECTED_INDEX);
 
         // empty name argument
         assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING + EMPTY_NAME_DESC);

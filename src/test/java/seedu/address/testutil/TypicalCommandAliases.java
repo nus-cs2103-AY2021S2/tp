@@ -23,7 +23,7 @@ import seedu.address.model.alias.CommandAlias;
 /**
  * A utility class containing a list of {@code CommandAlias} and {@code Alias} objects to be used in tests.
  */
-public class TypicalAliases {
+public class TypicalCommandAliases {
 
     public static final CommandAlias ADD_COMMAND_ALIAS = new CommandAliasBuilder().withAlias("a")
             .withCommand(AddCommand.COMMAND_WORD).build();
@@ -60,17 +60,17 @@ public class TypicalAliases {
     public static final CommandAlias ALIAS_LIST_COMMAND_ALIAS = new CommandAliasBuilder().withAlias("al")
             .withCommand(ListAliasCommand.COMMAND_WORD + " " + ListAliasCommand.LIST_SUB_COMMAND_WORD).build();
 
-    private TypicalAliases() {} // prevents instantiation
+    private TypicalCommandAliases() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static UniqueAliasMap getTypicalAliases() {
-        UniqueAliasMap aliases = new UniqueAliasMap();
+    public static UniqueAliasMap getTypicalAliasMap() {
+        UniqueAliasMap aliasMap = new UniqueAliasMap();
         for (CommandAlias commandAlias : getTypicalCommandAliases()) {
-            aliases.addAlias(commandAlias);
+            aliasMap.addAlias(commandAlias);
         }
-        return aliases;
+        return aliasMap;
     }
 
     public static List<CommandAlias> getTypicalCommandAliases() {

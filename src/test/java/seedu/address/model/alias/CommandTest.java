@@ -3,8 +3,8 @@ package seedu.address.model.alias;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.ADD_COMMAND;
-import static seedu.address.testutil.TypicalAliases.INVALID_COMMAND_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_COMMAND;
+import static seedu.address.testutil.TypicalCommandAliases.INVALID_COMMAND_STRING;
 
 import org.junit.jupiter.api.Test;
 

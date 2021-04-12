@@ -19,7 +19,7 @@ public class ListAliasCommandTest {
     @Test
     public void execute_listAlias_success() {
         CommandResult expectedCommandResult = new CommandResult(
-                String.format(SHOWING_ALIASES_MESSAGE, model.getNumOfAlias()), false, true, false);
+                String.format(SHOWING_ALIASES_MESSAGE, model.getNumOfCommandAlias()), false, true, false);
         assertCommandSuccess(new ListAliasCommand(), model, expectedCommandResult, expectedModel);
     }
 }

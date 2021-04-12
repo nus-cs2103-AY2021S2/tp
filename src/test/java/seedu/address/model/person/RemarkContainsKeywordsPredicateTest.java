@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -84,20 +83,5 @@ public class RemarkContainsKeywordsPredicateTest {
                 Arrays.asList("12345", "alice@email.com", "Main", "Street", "Alice", "Gordon"));
         assertFalse(predicate.test(new PersonBuilder().withRemark("External Contractor").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withName("Alice Gordon").build()));
-    }
-
-    @Test
-    public void test_remarkComparatorSort_compare() {
-        Comparator<Person> comparator = new RemarkContainsKeywordsPredicate(Collections.singletonList("Contractor"));
-
-        // Sort by similarity
-        Person p1 = new PersonBuilder().withRemark("External Contract").build();
-        Person p2 = new PersonBuilder().withRemark("External Contractor").build();
-        assertTrue(comparator.compare(p1, p2) > 0);
-
-        // Sort lexicographically
-        Person p3 = new PersonBuilder().withRemark("Contractor B").build();
-        Person p4 = new PersonBuilder().withRemark("Contractor A").build();
-        assertTrue(comparator.compare(p3, p4) > 0);
     }
 }
