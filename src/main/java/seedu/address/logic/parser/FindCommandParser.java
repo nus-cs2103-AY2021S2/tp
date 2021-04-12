@@ -124,10 +124,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             String argument = "";
             switch (prefix.toString()) {
             case PREFIX_NAME_STRING:
-                argument = ParserUtil.parseName(s).toString();
+                String parsedName = ParserUtil.parseName(s).toString();
+                argument = parsedName.replaceAll("\\s+", " ");
                 break;
             case PREFIX_ADDRESS_STRING:
-                argument = ParserUtil.parseAddress(s).toString();
+                String parsedAddress = ParserUtil.parseAddress(s).toString();
+                argument = parsedAddress.replaceAll("\\s+", " ");
                 break;
             case PREFIX_PHONE_STRING:
                 argument = ParserUtil.parsePhone(s).toString();
@@ -139,7 +141,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 argument = ParserUtil.parsePrice(s).toString();
                 break;
             case PREFIX_ALL_STRING:
-                argument = s;
+                argument = s.replaceAll("\\s+", " ");
                 break;
             case PREFIX_TRIPDAY_STRING:
                 argument = ParserUtil.parseTripDay(s).toString();
@@ -152,7 +154,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
 
             if (argument.length() > 0) {
-                outputList.add(argument.trim());
+                String formattedArgument = argument.trim().toLowerCase();
+                outputList.add(formattedArgument);
             }
         }
 

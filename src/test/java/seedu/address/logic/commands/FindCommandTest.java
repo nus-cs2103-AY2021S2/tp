@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PASSENGER_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FIRST_NAME_ELLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_NAME_CARL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_NAME_FIONA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STREET_QUERY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_STR_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_STR_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_STR_BOB;
@@ -26,6 +30,7 @@ import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPass
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.StringJoiner;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +45,7 @@ import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Keywords changed to lowercase as parser will change all keywords to lowercase for the Predicate.
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
@@ -85,7 +91,13 @@ public class FindCommandTest {
     @Test
     public void execute_multipleNameKeywords_multiplePassengersFound() {
         String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
+        StringJoiner sj = new StringJoiner(" ");
+        sj.add(VALID_FIRST_NAME_ELLE);
+        sj.add(VALID_LAST_NAME_CARL);
+        sj.add(VALID_LAST_NAME_FIONA);
+        String lowercaseNames = sj.toString().toLowerCase();
+
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(lowercaseNames);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -105,7 +117,7 @@ public class FindCommandTest {
     @Test
     public void execute_oneAddressKeyword_onePassengersFound() {
         String expectedMessage = String.format(MESSAGE_PASSENGER_LISTED_OVERVIEW, 3);
-        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate("street");
+        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate(VALID_STREET_QUERY);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
