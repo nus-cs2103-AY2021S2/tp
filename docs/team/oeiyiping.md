@@ -1,5 +1,5 @@
-﻿---  
-layout: page  
+﻿﻿---  
+layout: alt-page
 title: Oei Yi Ping's Project Portfolio Page
 ---  
 
