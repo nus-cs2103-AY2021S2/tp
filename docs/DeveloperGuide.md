@@ -161,9 +161,7 @@ The `Model` in the diagram above refers to the Model API interface that the `Log
 ![ResidenceSortSequenceDiagram](images/ResidenceSortSequenceDiagram.png)
 
 
-#### Design consideration:
-
-##### Aspect: What should the `remind` feature do
+#### Design consideration: How the `remind` feature is implemented
 
 * **Alternative 1 (current choice):** Checks if residences have bookings starting in the next 7 days.
     * Pros: Easy to implement.
@@ -310,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`* *`     | user                                       | edit a new booking of a residence   | change the information of booking when necessary
 |`* *`     | user                                       | delete a new booking of a residence | remove booking details that I no longer need to track
 |`* *`     | busy user                                  | be reminded me of upcoming bookings | quickly view the residences that need to be urgently cleaned
-| `*`      | busy user renting out many residences      | update status of multiple residence at once  | save time and get to my other works    |
+|`* *`     | busy user renting out many residences      | update status of multiple residence at once  | save time and get to my other works    |
 
 
 *{More to be added}*
@@ -495,6 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 100 residences without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  user inputs should be processed and executed within one second. 
 
 *{More to be added}*
 
