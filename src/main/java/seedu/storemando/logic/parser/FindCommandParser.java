@@ -8,11 +8,11 @@ import java.util.Arrays;
 import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.ItemName;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
-import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsPartialKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
@@ -20,7 +20,9 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args Parses the given {@code String} of arguments in the context of the FindCommand.
+     * @return a FindCommand object for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PARTIAL_NAME);

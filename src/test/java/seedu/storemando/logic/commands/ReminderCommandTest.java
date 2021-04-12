@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
@@ -19,8 +20,8 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.expirydate.ItemExpiringPredicate;
-import seedu.storemando.model.item.ItemComparatorByExpiryDate;
+import seedu.storemando.model.expirydate.predicate.ItemExpiringPredicate;
+import seedu.storemando.model.item.comparator.ItemComparatorByExpiryDate;
 
 public class ReminderCommandTest {
     private Model model;
@@ -60,10 +61,13 @@ public class ReminderCommandTest {
     @Test
     public void execute_multipleItemsFound() {
         ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 100);
+        String expectedMessage = String.format(ReminderCommand.MESSAGE_SUCCESS_EXPIRING_ITEM, 100, "days");
+        ReminderCommand reminderCommand = new ReminderCommand(predicate, 100L, "days");
         expectedModel.updateFilteredItemList(predicate);
         ItemComparatorByExpiryDate comparator = new ItemComparatorByExpiryDate();
         expectedModel.updateSortedItemList(comparator);
         expectedModel.setItems(expectedModel.getSortedItemList());
+        assertCommandSuccess(reminderCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BREAD, APPLE), expectedModel.getFilteredItemList());
     }
 
@@ -93,6 +97,7 @@ public class ReminderCommandTest {
         showEmptyListAfterFind(model, HEATER);
         ItemExpiringPredicate predicate = new ItemExpiringPredicate(3L);
 
+        assertEquals(model.getFilteredItemList().size(), 0);
         assertCommandFailure(new ReminderCommand(predicate, 3L, "days"),
             model, MESSAGE_NO_ITEM_IN_LIST);
     }

@@ -9,11 +9,10 @@ import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.item.LocationContainsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 
 public class ClearLocationCommandTest {
 
@@ -21,8 +20,8 @@ public class ClearLocationCommandTest {
     public void execute_emptyStoreMando_failure() {
         Model model = new ModelManager();
 
-        assertCommandFailure(new ClearLocationCommand(new LocationContainsPredicate("Kitchen Basket")),
-            model, Messages.MESSAGE_NO_ITEM_IN_LIST);
+        assertCommandFailure(new ClearLocationCommand(new LocationContainsPredicate("Kitchen Basket"),
+                "Kitchen Basket"), model, ClearCommand.MESSAGE_NO_ITEMS_IN_STOREMANDO);
     }
 
     @Test
@@ -33,13 +32,14 @@ public class ClearLocationCommandTest {
         expectedModel.clearLocation(predicate);
         expectedModel.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
 
-        assertCommandSuccess(new ClearLocationCommand(predicate), model,
-            ClearLocationCommand.CLEAR_LOCATION_MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearLocationCommand(predicate, "Kitchen Basket"), model,
+            String.format(ClearLocationCommand.CLEAR_LOCATION_MESSAGE_SUCCESS, "Kitchen Basket"), expectedModel);
     }
 
     @Test
     public void equals() {
-        final ClearCommand standardCommand = new ClearLocationCommand(new LocationContainsPredicate("Kitchen"));
+        final ClearCommand standardCommand = new ClearLocationCommand(
+            new LocationContainsPredicate("Kitchen"), "Kitchen");
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
@@ -52,6 +52,7 @@ public class ClearLocationCommandTest {
 
         // same type but diff predicate -> returns false
         assertFalse(standardCommand.equals(new ClearAllCommand()));
-        assertFalse(standardCommand.equals(new ClearLocationCommand(new LocationContainsPredicate("Toilet"))));
+        assertFalse(standardCommand.equals(new ClearLocationCommand(
+            new LocationContainsPredicate("Toilet"), "Toilet")));
     }
 }

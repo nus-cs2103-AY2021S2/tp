@@ -113,6 +113,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
         expectedModel.setItem(lastItem, editedItem);
 
+        assertTrue(model.hasSimilarItem(editedItem) && !lastItem.isSimilarItem(editedItem));
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

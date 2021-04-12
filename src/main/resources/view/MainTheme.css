@@ -393,3 +393,7 @@
 .black-column.table-row-cell {
     -fx-text-fill: white
 }
+
+.table_panel_box {
+    -fx-background-color: #e1beb2;
+}

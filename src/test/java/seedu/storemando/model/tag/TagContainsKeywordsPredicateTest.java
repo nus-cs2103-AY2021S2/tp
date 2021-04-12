@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.model.tag.predicate.TagContainsKeywordsPredicate;
 import seedu.storemando.testutil.ItemBuilder;
 
 public class TagContainsKeywordsPredicateTest {

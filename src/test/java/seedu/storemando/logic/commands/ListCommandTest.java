@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.item.LocationContainsKeywordsPredicate;
-import seedu.storemando.model.tag.TagContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsKeywordsPredicate;
+import seedu.storemando.model.tag.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

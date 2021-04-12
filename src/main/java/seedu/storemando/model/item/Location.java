@@ -5,11 +5,11 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Item's Location in StoreMando.
- * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}.
  */
 public class Location {
 
-    public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank.";
 
     /*
      * The first character of the location must not be a whitespace,

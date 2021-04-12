@@ -18,7 +18,7 @@ import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.StoreMando;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
 import seedu.storemando.testutil.EditItemDescriptorBuilder;
 
 /**

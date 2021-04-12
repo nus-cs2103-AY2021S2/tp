@@ -20,7 +20,7 @@ import seedu.storemando.commons.core.LogsCenter;
 import seedu.storemando.model.item.Item;
 
 /**
- * Table displaying all items expiring in a week
+ * Table displaying all items expiring in a week.
  */
 public class ExpiringTablePanel extends UiPart<Region> implements Initializable {
     private static final String FXML = "TablePanel.fxml";
@@ -28,7 +28,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
     private ObservableList<Item> itemList;
 
     @FXML
-    private Label labelid;
+    private Label labelId;
 
     @FXML
     private TableView<ExpiringItem> tableView;
@@ -50,6 +50,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
 
     /**
      * Passing the data into the table.
+     *
      * @param itemList The list of data required by the table.
      * @return A list of items expiring in a week.
      */
@@ -63,7 +64,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        labelid.setText("Expiring Items");
+        labelId.setText("Expiring Items");
         numberOfDays.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
         numberOfItems.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("numberOfItems"));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -84,6 +85,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
 
         /**
          * Expiring Item constructor.
+         *
          * @param daysBeforeExpiry   The number of days before the item expire.
          * @param itemList   The list of items in StoreMando.
          */
@@ -96,6 +98,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
 
         /**
          * Convert days that is a integer type to a string.
+         *
          * @param daysBeforeExpiry The days in integer that will be converted to String.
          * @return The string representation of days.
          */
@@ -108,8 +111,9 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
         }
 
         /**
-         * Convert number of items that is a integer to a string
-         * @param numberOfItems The number of items in integer that will be converted to string
+         * Convert number of items that is a integer to a string.
+         *
+         * @param numberOfItems The number of items in integer that will be converted to string.
          * @return The string representation of number of items.
          */
         private String convertNumOfItemInIntToString(long numberOfItems) {
@@ -122,6 +126,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
 
         /**
          * Get the number of items that is expiring in the specified number of days.
+         *
          * @param day The specified number of days.
          * @param itemList The list of items in StoreMando.
          * @return The number of items expiring in the specified number of days.
@@ -135,8 +140,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
                 LocalDate itemExpiryDate = item.getExpiryDate().expiryDate;
                 Long daysDifference = DAYS.between(today, itemExpiryDate);
                 return daysDifference == day;
-            }).map(item -> Integer.parseInt(item.getQuantity().toString()))
-                .reduce(0, (initialCount, quantity) -> initialCount + quantity);
+            }).count();
         }
 
         public String getDaysBeforeExpiry() {

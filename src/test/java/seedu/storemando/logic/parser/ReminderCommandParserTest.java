@@ -7,7 +7,7 @@ import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuc
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.logic.commands.ReminderCommand;
-import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.predicate.ItemExpiringPredicate;
 
 public class ReminderCommandParserTest {
 

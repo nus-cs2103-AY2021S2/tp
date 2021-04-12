@@ -6,8 +6,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
-  <VBox alignment="CENTER" styleClass="location_box">
-    <Label fx:id="labelid" styleClass="cell_location_header" />
+  <VBox alignment="CENTER" styleClass="table_panel_box">
+    <Label fx:id="labelId" styleClass="cell_location_header" />
   </VBox>
   <TableView fx:id="tableView" minWidth="100" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
     <columns>

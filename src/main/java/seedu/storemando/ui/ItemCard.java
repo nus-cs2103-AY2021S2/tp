@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.predicate.ItemExpiringPredicate;
 import seedu.storemando.model.item.Item;
 
 /**
@@ -69,9 +69,10 @@ public class ItemCard extends UiPart<Region> {
     }
 
     /**
-     * Return the color code for each item expiry date
-     * @param item   The item that contains expiry date
-     * @return       The resulting color of the item expiry date text
+     * Return the color code for each item expiry date.
+     *
+     * @param item   The item that contains expiry date.
+     * @return       The resulting color of the item expiry date text.
      */
     private Color expiryDateColorCode(Item item) {
         if (expiredItemPredicate.test(item)) {

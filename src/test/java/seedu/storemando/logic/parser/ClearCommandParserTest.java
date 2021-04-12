@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.logic.commands.ClearAllCommand;
 import seedu.storemando.logic.commands.ClearCommand;
 import seedu.storemando.logic.commands.ClearLocationCommand;
-import seedu.storemando.model.item.LocationContainsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 
 public class ClearCommandParserTest {
 
@@ -37,7 +37,7 @@ public class ClearCommandParserTest {
     public void parse_validLocationArgs_returnsClearLocationCommand() {
         String location = "kitchen";
         ClearCommand expectedClearCommand =
-            new ClearLocationCommand(new LocationContainsPredicate(location));
+            new ClearLocationCommand(new LocationContainsPredicate(location), location);
         assertParseSuccess(parser, " l/kitchen", expectedClearCommand);
         assertParseSuccess(parser, " l/    kitchen", expectedClearCommand);
         assertParseSuccess(parser, " l/kitchen    ", expectedClearCommand);

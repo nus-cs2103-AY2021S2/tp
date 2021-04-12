@@ -15,7 +15,7 @@ import seedu.storemando.model.item.Location;
  */
 public interface Model {
     /**
-     * {@code Predicate} that always evaluate to true
+     * {@code Predicate} that always evaluate to true.
      */
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
@@ -55,7 +55,7 @@ public interface Model {
     void setStoreMando(ReadOnlyStoreMando storeMando);
 
     /**
-     * Returns the StoreMando
+     * Returns the StoreMando.
      */
     ReadOnlyStoreMando getStoreMando();
 
@@ -123,14 +123,14 @@ public interface Model {
     void updateFilteredItemList(Predicate<Item> predicate);
 
     /**
-     * Returns an unmodifiable view of the sorted item list
+     * Returns an unmodifiable view of the sorted item list.
      */
     ObservableList<Item> getSortedItemList();
 
     /**
-     * Sorts the list
+     * Sorts the list.
      *
-     * @param comparator
+     * @param comparator to update the filtered list.
      */
     void updateSortedItemList(Comparator<Item> comparator);
 

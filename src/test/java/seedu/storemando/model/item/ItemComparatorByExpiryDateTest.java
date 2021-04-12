@@ -13,6 +13,7 @@ import static seedu.storemando.testutil.TypicalItems.IRON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.model.item.comparator.ItemComparatorByExpiryDate;
 import seedu.storemando.testutil.ItemBuilder;
 
 class ItemComparatorByExpiryDateTest {

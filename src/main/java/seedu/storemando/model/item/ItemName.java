@@ -5,12 +5,12 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Item's name in the storemando.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}.
  */
 public class ItemName {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Names should only contain alphanumeric characters and spaces, and it should not be blank.";
 
     /*
      * The first character of the location must not be a whitespace,

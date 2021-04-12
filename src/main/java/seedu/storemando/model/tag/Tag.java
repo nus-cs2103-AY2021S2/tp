@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the storemando.
+ * Represents a Tag in StoreMando.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and contain only a single word";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and"
+        + " contain only a single word.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
