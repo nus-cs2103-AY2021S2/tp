@@ -213,8 +213,8 @@ Format: `snooze INDEX [DAYS]`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
  The index **must be a positive integer** e.g 1, 2, 3, …​
-* DAYS must be a positive integer and at most 365 (1 year).
-* The DAYS is optional and it's default value will be 1 if no number is specified in your command.
+* `DAYS` must be a positive integer and at most 365 (1 year).
+* The `DAYS` is optional and it's default value will be 1 if no number is specified in your command.
 * The snooze command will only successfully update the date of the task if the task contains a date.
 
 Examples:
