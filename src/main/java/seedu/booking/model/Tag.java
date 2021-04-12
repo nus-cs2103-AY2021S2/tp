@@ -1,7 +1,5 @@
 package seedu.booking.model;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
