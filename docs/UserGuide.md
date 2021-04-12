@@ -148,7 +148,7 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
   
 - for `n/NAME` giving a partial name is also okay - all names which have the given parameter as a subsequence (Note 
   that `abc` is a subsequence of `addbddc`) will be matched. Note that this is the only field for which we match 
-  a subsequence instead of a simple substring.
+  a subsequence instead of a simple substring. Note that `n/John Smith` is treated the same as `n/John /AND n/Smith`.
   
 - for `e/EMAIL`, all email containing the given parameter will be valid.
     - eg `find e/abc` will return profiles with the following emails:
