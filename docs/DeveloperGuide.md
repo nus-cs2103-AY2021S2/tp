@@ -225,7 +225,8 @@ against itself for clashes and duplicates.
 Below shows a general *Sequence Diagram* for `editm 1`. Details for timetable conflicts and duplicates have been
 deliberately left out for brevity.
 
-<img src="images/ArchitectureSequenceDiagramMeeting.png" width="574" />
+![Sequence Diagram for the `editm 1` Command](images/ArchitectureSequenceDiagramMeeting.png)
+<div markdown="span" class="alert alert-info">
 
 ### Notes feature (author: hengyiqun)
 (Cooming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)

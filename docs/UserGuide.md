@@ -334,8 +334,6 @@ Shows a list of all persons and meetings in MeetBuddy.
 
 Format: `list`
 
-## Timetable feature
-=======
 ### Adding persons related for a meeting: `addptm`
 
 Adds persons related to a meeting in MeetBuddy.
