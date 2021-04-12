@@ -506,7 +506,7 @@ otherwise)
 * **Note** : Longer and complex remarks that gives details about the client
 * **JAR** : Java Archive File, the deployment format of the Link.me application
 
-<!--
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
@@ -559,4 +559,32 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
--->
+
+### Adding or removing an insurance plan of a client
+
+1. Adding a new insurance plan to a client while all clients are being shown
+
+   1. Prerequisites: List all clients using the `list` command. At least 1 client in the list.
+
+   1. Test case: `plan 1 i/Investment $1000`<br>
+      Expected: A new insurance plan is added to the 1st client in the list. Details are shown in the result display.
+
+   1. Test case: `plan 1 i/Investment $0`<br>
+      Expected: No insurance plan is added. Error details are shown in the result display.
+
+   1. Other incorrect plan commands to try: `plan 0 i/Investment $1000`, `plan 1 i/`<br>
+      Expected: Similar to previous.
+      
+2. Removing an existing insurance plan from a client while all clients are being shown
+
+   1. Prerequisites: List all clients using the `list` command. At least 1 client in the list and the 1st client has at least 1 insurance plan.
+
+   1. Test case: `plan 1 c/1`<br>
+      Expected: The 1st insurance plan of the 1st client in the list is removed. Details are shown in the result display.
+
+   1. Test case: `plan 1 c/0`<br>
+      Expected: No insurance plan is removed. Error details are shown in the result display.
+
+   1. Other incorrect plan commands to try: `plan 0 c/1`, `plan 1 c/`<br>
+      Expected: Similar to previous.
+
