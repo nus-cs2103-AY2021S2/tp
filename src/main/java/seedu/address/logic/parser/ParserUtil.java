@@ -8,10 +8,17 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.InvalidIntegerException;
+import seedu.address.logic.parser.exceptions.NotANumberException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.insurance.InsurancePlan;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -20,6 +27,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_INVALID_NUMBER = "Index is not a number.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -29,8 +37,12 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        boolean isNumber = trimmedIndex.matches("-{0,1}\\d+");
+        if (!isNumber) {
+            throw new NotANumberException(MESSAGE_INVALID_NUMBER);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new InvalidIntegerException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -96,6 +108,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String gender} into an {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!seedu.address.model.person.Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String birthday} into an {@code Birthdate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code birthday} is invalid.
+     */
+    public static Birthdate parseBirthdate(String birthdate) throws ParseException {
+        requireNonNull(birthdate);
+        String trimmedBirthdate = birthdate.trim();
+        if (!seedu.address.model.person.Birthdate.isValidBirthdate(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
+        }
+        return new Birthdate(trimmedBirthdate);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +162,65 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String plan} into an {@code InsurancePlan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code plan} is invalid.
+     */
+    public static InsurancePlan parsePlan(String plan) throws ParseException {
+        requireNonNull(plan);
+        String trimmedPlan = plan.trim();
+        if (!InsurancePlan.isValidPlan(trimmedPlan)) {
+            throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        if (!InsurancePlan.isValidAmount(trimmedPlan.split(" \\$", 2)[1])) {
+            throw new ParseException(InsurancePlan.PREMIUM_CONSTRAINTS);
+        }
+        return new InsurancePlan(trimmedPlan);
+    }
+
+    /**
+     * Retrieves the plan index from a remove plan command.
+     *
+     * @throws ParseException if the given {@code command} is invalid.
+     */
+    public static Index parseRemovePlanIndex(String index) throws ParseException {
+        requireNonNull(index);
+        String trimmedIndex = index.trim();
+        Index planIndex = parseIndex(trimmedIndex);
+        return planIndex;
+    }
+
+    /**
+     * Parses a {@code String meeting} into an {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meeting} is invalid.
+     */
+    public static Meeting parseMeeting(String meeting) throws ParseException {
+        requireNonNull(meeting);
+        String trimmedMeeting = meeting.trim();
+        if (!Meeting.isValidMeeting(trimmedMeeting)) {
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        }
+        return new Meeting(trimmedMeeting);
+    }
+
+    /**
+     * Parses a {@code String note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
     }
 }

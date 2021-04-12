@@ -18,16 +18,35 @@ Class ReadOnlyUserPrefs
 Package Person {
 Class Person
 Class Address
+Class Birthdate
 Class Email
+Class Gender
 Class Name
 Class Phone
+Class Note
 Class UniquePersonList
 }
+
+Package Meeting {
+Class UniqueMeetingList
+Class Entry
+Class Meeting
+}
+
 
 Package Tag {
 Class Tag
 }
+
+Package Insurance {
+Class InsurancePlan
 }
+
+Package Note {
+Class Note
+}
+}
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -40,17 +59,38 @@ ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *-down-> "1" UniquePersonList
+UniquePersonList o-down-> "*" Person
+ModelManager --down--->"~* filtered list" Person
+Person *-down--> Name
+Person *-down--> Phone
+Person *-down--> Email
+Person *-down--> Address
+Person *-down-> Gender
+Person *-down-> Birthdate
+Person *-down-> "*" Note
+Person *-down-> "*" Tag
+Person *-left-> "0...1" Meeting
+Person *-down-> "*" InsurancePlan
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+AddressBook *-down--> "1" UniqueMeetingList
+UniqueMeetingList o-down-> "*" Entry
+Entry -left-> "key" Meeting
+Entry -right> "value" Person
 
-ModelManager ----->" ~* filtered list" Person
+Name -[hidden]right- Phone
+Phone -[hidden]right- Address
+Address -[hidden]right- Email
+
+InsurancePlan -[hidden]up- Meeting
+
+Note -[hidden]down- InsurancePlan
+Tag -[hidden]down- InsurancePlan
+Note -[hidden]left- Tag
+Tag -[hidden]up- Meeting
+Note -[hidden]up- Meeting
+
+UniqueMeetingList -[hidden]right- UniquePersonList
+Entry -[hidden]up- UniquePersonList
+
 @enduml

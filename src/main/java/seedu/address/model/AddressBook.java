@@ -3,8 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        meetings = new UniqueMeetingList();
     }
 
     public AddressBook() {}
@@ -40,10 +44,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
+     * Replaces the contents of Link.me with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
+        this.meetings.setPersons(persons);
         this.persons.setPersons(persons);
     }
 
@@ -59,7 +64,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in Link.me.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -67,29 +72,40 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Returns the clashed meeting if a person's meeting time clashes with another meeting in Link.me.
+     */
+    public Optional<Person> clash(Person person) {
+        requireNonNull(person);
+        return meetings.clash(person);
+    }
+
+    /**
+     * Adds a person to Link.me.
+     * The person must not already exist in Link.me.
      */
     public void addPerson(Person p) {
+        meetings.add(p);
         persons.add(p);
     }
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in Link.me.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in Link.me.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
+        meetings.setPerson(target, editedPerson);
         persons.setPerson(target, editedPerson);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in Link.me.
      */
     public void removePerson(Person key) {
+        meetings.remove(key);
         persons.remove(key);
     }
 
@@ -101,9 +117,34 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
+    public String getNotifications() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the things you might want to take note of:\n\n");
+        int length = sb.length() + 1;
+        String meetingNotif = meetings.getNotifications();
+        String personNotif = persons.getNotifications();
+        if (meetingNotif.length() > 0) {
+            sb.append(meetingNotif);
+            sb.append("\n");
+        }
+        if (personNotif.length() > 0) {
+            sb.append(personNotif);
+            sb.append("\n");
+        }
+        if (sb.length() > length) {
+            return sb.toString();
+        }
+        return "Your schedule is clear today!\n";
+    }
+
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Person> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override

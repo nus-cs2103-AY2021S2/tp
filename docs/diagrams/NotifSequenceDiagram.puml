@@ -1,0 +1,109 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":NotifWindow" as NotifWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "n:NotifCommand" as NotifCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "Model" as Model MODEL_COLOR
+end box
+
+    [-> MainWindow
+    activate MainWindow
+    create NotifWindow
+    MainWindow -> NotifWindow
+    activate NotifWindow
+    NotifWindow --> MainWindow
+    deactivate NotifWindow
+    MainWindow -->[
+    deactivate MainWindow
+
+ [-> MainWindow : "notif"
+    activate MainWindow
+
+    MainWindow -> LogicManager : execute("notif")
+    activate LogicManager
+
+    LogicManager -> AddressBookParser : parseCommand("notif")
+    activate AddressBookParser
+
+    create NotifCommand
+    AddressBookParser -> NotifCommand
+    activate NotifCommand
+
+    NotifCommand  --> AddressBookParser : n
+    deactivate NotifCommand
+
+    AddressBookParser --> LogicManager : n
+    deactivate AddressBookParser
+
+    LogicManager -> NotifCommand : execute()
+    activate NotifCommand
+
+    create CommandResult
+    NotifCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> NotifCommand : isNotif
+    deactivate CommandResult
+
+    CommandResult -[hidden]-> MainWindow
+    destroy CommandResult
+
+    NotifCommand --> LogicManager : isNotif
+    deactivate NotifCommand
+
+    NotifCommand -[hidden]-> MainWindow
+    destroy NotifCommand
+
+    LogicManager --> MainWindow : isNotif
+    deactivate LogicManager
+
+    MainWindow -> MainWindow : handleNotif
+    activate MainWindow
+
+    MainWindow -> LogicManager : getNotifications
+    activate LogicManager
+
+    LogicManager -> Model : getNotifications
+    activate Model
+
+    Model --> LogicManager : notifications
+    deactivate Model
+
+    LogicManager --> MainWindow : notifications
+    deactivate LogicManager
+
+    MainWindow -> NotifWindow : notifications
+    activate NotifWindow
+
+    NotifWindow -> NotifWindow : setmessage
+    activate NotifWindow
+
+    NotifWindow --> NotifWindow
+    deactivate NotifWindow
+
+    NotifWindow --> MainWindow
+    deactivate NotifWindow
+
+    MainWindow -> NotifWindow : show
+    activate NotifWindow
+
+    NotifWindow --> MainWindow
+    deactivate NotifWindow
+
+    MainWindow --> MainWindow
+    deactivate MainWindow
+
+    MainWindow -->[
+    deactivate MainWindow
+@enduml

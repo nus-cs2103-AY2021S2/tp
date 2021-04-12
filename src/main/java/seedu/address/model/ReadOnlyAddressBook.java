@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of Link.me
  */
 public interface ReadOnlyAddressBook {
 
@@ -13,5 +13,6 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+    ObservableList<Person> getMeetingList();
 
 }

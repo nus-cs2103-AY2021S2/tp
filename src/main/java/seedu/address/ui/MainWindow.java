@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,8 +33,11 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private NotifWindow notifWindow;
+    private NotesWindow notesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,6 +73,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        notifWindow = new NotifWindow(getPrimaryStage());
+        notesWindow = new NotesWindow(getPrimaryStage());
     }
 
     public Stage getPrimaryStage() {
@@ -113,6 +122,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        meetingListPanel = new MeetingListPanel(logic.getMeetingList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -142,9 +154,30 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            logger.info("Displaying help window...");
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Opens the notification window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleNotif() {
+        notifWindow.setMessage(logic.getNotifications());
+        notifWindow.show();
+        logger.info("Displaying notif window...");
+    }
+
+    /**
+     * Displays notes to the user.
+     */
+    @FXML
+    public void handleNotes(Person personWithNotes) {
+        notesWindow.setMessage(personWithNotes);
+        notesWindow.show();
+        logger.info("Displaying notes window...");
     }
 
     void show() {
@@ -184,6 +217,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowNotif()) {
+                handleNotif();
+            }
+
+            if (commandResult.isShowNote()) {
+                handleNotes(commandResult.getPersonWithNotes());
             }
 
             return commandResult;

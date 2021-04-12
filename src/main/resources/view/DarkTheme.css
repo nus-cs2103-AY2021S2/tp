@@ -122,7 +122,13 @@
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
+    -fx-font-size: 17px;
+    -fx-text-fill: #010504;
+}
+
+.cell_medium_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
@@ -349,4 +355,18 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#plans {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#plans .label {
+    -fx-text-fill: white;
+    -fx-background-color: crimson;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 13;
 }

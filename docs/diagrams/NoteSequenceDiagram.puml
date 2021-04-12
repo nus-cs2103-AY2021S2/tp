@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":NoteCommandParser" as NoteCommandParser LOGIC_COLOR
+participant "n:NoteCommand" as NoteCommand LOGIC_COLOR
+end box
+
+
+[-> LogicManager : execute("note 1 ...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("note 1 ...")
+activate AddressBookParser
+
+create NoteCommandParser
+AddressBookParser -> NoteCommandParser
+activate NoteCommandParser
+
+NoteCommandParser --> AddressBookParser
+deactivate NoteCommandParser
+
+AddressBookParser -> NoteCommandParser : parse("1 ...")
+activate NoteCommandParser
+
+create NoteCommand
+NoteCommandParser -> NoteCommand
+activate NoteCommand
+
+NoteCommand --> NoteCommandParser : n
+deactivate NoteCommand
+
+NoteCommandParser --> AddressBookParser : n
+deactivate NoteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+NoteCommandParser -[hidden]-> AddressBookParser
+destroy NoteCommandParser
+
+AddressBookParser --> LogicManager : n
+deactivate AddressBookParser
+
+LogicManager -> NoteCommand : execute()
+activate NoteCommand
+
+ref over NoteCommand
+execute NoteCommand
+end
+
+NoteCommand --> LogicManager : result
+deactivate NoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

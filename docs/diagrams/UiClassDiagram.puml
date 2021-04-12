@@ -10,11 +10,16 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class NotesWindow
+Class NotifWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class MeetingListPanel
+Class MeetingCard
 Class StatusBarFooter
 Class CommandBox
+Class Alert
 }
 
 package Model <<Rectangle>> {
@@ -28,33 +33,52 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .left..|> Ui
 UiManager -down-> MainWindow
+UiManager -[hidden]down-> MainWindow
+
 MainWindow --> HelpWindow
+
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
+MainWindow *-down-> MeetingListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow -left-> NotesWindow
+MainWindow -right-> NotifWindow
+
 
 PersonListPanel -down-> PersonCard
+MeetingListPanel -down-> MeetingCard
 
-MainWindow -left-|> UiPart
 
-ResultDisplay --|> UiPart
 CommandBox --|> UiPart
+ResultDisplay --|> UiPart
 PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+PersonCard ---|> UiPart
+MeetingListPanel --|> UiPart
+MeetingCard ---|> UiPart
 StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+HelpWindow --|> UiPart
+NotesWindow  --|> Alert
+NotifWindow --|> Alert
+MainWindow -|> UiPart
 
-PersonCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
+PersonCard ..down..> Model
+MeetingCard ..down..> Model
+UiManager .up.> Logic
+MainWindow .up.> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+MeetingCard -[hidden]left- PersonCard
+
+MeetingListPanel -[hidden]left- PersonListPanel
+PersonListPanel -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+StatusBarFooter -[hidden]left- HelpWindow
+NotesWindow -[hidden]up- NotifWindow
+MeetingListPanel -[hidden]up- NotesWindow
+NotesWindow -[hidden]right- Alert
+PersonCard -[hidden]down- Model
 
-MainWindow -[hidden]-|> UiPart
 @enduml
