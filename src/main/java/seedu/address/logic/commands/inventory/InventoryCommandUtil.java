@@ -8,7 +8,7 @@ public class InventoryCommandUtil {
     public static final String MESSAGE_INVALID_QUANTITY = "The quantity entered is invalid, "
             + "please enter a positive number only!";
     public static final String MESSAGE_DECREASE_QUANTITY = "Invalid quantity entered! "
-            + "The quantity to decrease is more than available quantity.";
+            + "The quantity to decrease is more than the available quantity.";
 
     /**
      * Checks whether the Ingredient is a valid entry.
