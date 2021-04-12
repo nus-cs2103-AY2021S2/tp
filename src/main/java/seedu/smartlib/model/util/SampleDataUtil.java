@@ -38,8 +38,8 @@ public class SampleDataUtil {
             new Isbn("1234567890123"),
             new Barcode(Barcode.MIN_VALUE),
             new Genre(new Name("Novel")),
-            new Name("Bernice"),
-            new DateBorrowed("2021-03-02T13:45:00")
+            new Name("Bernice Tan"),
+            new DateBorrowed("2021-04-02T13:45:00")
     );
 
     public static final Book HOBBIT = new Book(
@@ -48,8 +48,8 @@ public class SampleDataUtil {
             new Publisher(new Name("Pearson")),
             new Isbn("1234567890124"), new Barcode(Barcode.MIN_VALUE + 1),
             new Genre(new Name("Fantasy")),
-            new Name("Bernice"),
-            new DateBorrowed("2021-01-22T23:30:00")
+            new Name("Bernice Tan"),
+            new DateBorrowed("2021-04-12T23:30:00")
     );
 
     public static final Book CLOUDATLAS = new Book(
@@ -59,8 +59,8 @@ public class SampleDataUtil {
             new Isbn("1234567890125"),
             new Barcode(Barcode.MAX_VALUE),
             new Genre(new Name("SciFi")),
-            new Name("Alex"),
-            new DateBorrowed("2020-11-23T08:30:00")
+            new Name("Alex Yu"),
+            new DateBorrowed("2021-04-03T08:30:00")
     );
 
     public static final Book CLOUDNINE = new Book(
@@ -88,7 +88,7 @@ public class SampleDataUtil {
             new Isbn("1234567890130"),
             new Barcode(Barcode.MAX_VALUE - 3),
             new Genre(new Name("Lyrics")),
-            new Name("Alice"),
+            new Name("Alice Lee"),
             new DateBorrowed("2021-03-30T08:30:00")
     );
 
@@ -99,7 +99,7 @@ public class SampleDataUtil {
             new Isbn("1234567890987"),
             new Barcode(Barcode.MAX_VALUE - 4),
             new Genre(new Name("Greetings")),
-            new Name("Bob"),
+            new Name("Bob Tan"),
             new DateBorrowed("2021-03-29T08:30:00")
     );
 
@@ -156,13 +156,13 @@ public class SampleDataUtil {
         requireAllNonNull((Object) maps);
 
         return new Reader[] {
-            new Reader(new Name("Alex"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Reader(new Name("Alex Yu"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
                     getTagSet("VIP"), maps[0]),
-            new Reader(new Name("Bernice"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Reader(new Name("Bernice Tan"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getTagSet("VIP", "TopBorrower"), maps[2]),
-            new Reader(new Name("Charlotte"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Reader(new Name("Charlotte Chan"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getTagSet("VIP"), new HashMap<>()),
             new Reader(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
@@ -174,10 +174,10 @@ public class SampleDataUtil {
             new Reader(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
                     getTagSet("VIP"), new HashMap<>()),
-            new Reader(new Name("Bob"), new Phone("98765432"), new Email("bob@hi.com"),
+            new Reader(new Name("Bob Tan"), new Phone("98765432"), new Email("bob@hi.com"),
                     new Address("1 Bukit Timah Road"),
                     getTagSet("VIP"), maps[3]),
-            new Reader(new Name("Alice"), new Phone("91234567"), new Email("alice@hello.com"),
+            new Reader(new Name("Alice Lee"), new Phone("91234567"), new Email("alice@hello.com"),
                     new Address("2 Bukit Timah Road"),
                     getTagSet(), maps[1])
         };
