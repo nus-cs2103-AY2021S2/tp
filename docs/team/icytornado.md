@@ -14,7 +14,9 @@ Given below are my contributions to the project.
 * **Features Implemented**:
   * Implementation of the `edit-appt` feature:
     - *Description*:
-        - `edit-appt` command allow the user to edit an existing appointment by changing the fields for the appointment. 
+        - `edit-appt` command allow the user to edit an existing appointment by changing the fields for the appointment.
+        - `edit-appt` + `index` + `field` to edit => edit the specified field of the appointment specified by the appointment index.
+        - the `field` to edit is preceded by its related prefix, i.e. `pt/` for patient, `dr/` for doctor, `at/` for appointment start date and time, `to/` for appointment end date and time, `dur/` for appointment duration, `/t` for appointment tags.
     
   * Implementation of the `Doctor` feature
     - *Description*:
