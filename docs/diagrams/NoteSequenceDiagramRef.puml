@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+mainframe sd execute NoteCommand
+
+box Logic LOGIC_COLOR_T1
+participant ":NoteCommand" as NoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "p:Person" as Person MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+end box
+
+alt prefix is r/
+    NoteCommand -> Person : addNote(note)
+    activate Person
+
+    Person --> NoteCommand : q
+    deactivate Person
+
+    NoteCommand -> ModelManager : setPerson(p, q)
+    activate ModelManager
+
+    ModelManager -> AddressBook : setPerson(p, q)
+    activate AddressBook
+
+        AddressBook -> UniquePersonList : setPerson(p, q)
+        activate UniquePersonList
+
+        UniquePersonList --> AddressBook
+        deactivate UniquePersonList
+
+        AddressBook --> ModelManager
+        deactivate AddressBook
+
+    ModelManager --> NoteCommand
+    deactivate ModelManager
+
+    create CommandResult
+    NoteCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> NoteCommand
+    deactivate CommandResult
+
+else prefix is v/
+    create CommandResult
+    NoteCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> NoteCommand
+    deactivate CommandResult
+
+else prefix is c/
+
+    NoteCommand -> Person : clearNotes()
+    activate Person
+
+    Person --> NoteCommand : q
+    deactivate Person
+
+    NoteCommand -> ModelManager : setPerson(p, q)
+    activate ModelManager
+
+    ModelManager -> AddressBook : setPerson(p, q)
+    activate AddressBook
+
+        AddressBook -> UniquePersonList : setPerson(p, q)
+        activate UniquePersonList
+
+        UniquePersonList --> AddressBook
+        deactivate UniquePersonList
+
+        AddressBook --> ModelManager
+        deactivate AddressBook
+
+    ModelManager --> NoteCommand
+    deactivate ModelManager
+
+    create CommandResult
+    NoteCommand -> CommandResult
+    activate CommandResult
+
+    CommandResult --> NoteCommand
+    deactivate CommandResult
+end
+
+
+
+
+
+
+@enduml

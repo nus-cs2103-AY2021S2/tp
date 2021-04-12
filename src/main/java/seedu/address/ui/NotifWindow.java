@@ -9,6 +9,9 @@ import javafx.stage.Stage;
  * Window that shows notifications.
  */
 public class NotifWindow extends Alert {
+    private final ScrollPane scroll;
+    private final Label label;
+
     /**
      * Creates a new NotifWindow.
      * @param owner Stage to use as the root of the NotifWindow.
@@ -19,21 +22,22 @@ public class NotifWindow extends Alert {
         setTitle("Notification");
         setHeaderText("Welcome to Link.me!");
         initOwner(owner);
+        scroll = new ScrollPane();
+        label = new Label();
+        getDialogPane().setMaxWidth(400);
+        label.setWrapText(true);
+        label.setMaxWidth(400);
+        scroll.setPrefViewportWidth(400);
+        scroll.setFitToWidth(true);
+        scroll.setPrefViewportHeight(300);
     }
 
     /**
      * Sets the displayed message to the notifications.
      */
     public void setMessage(String message) {
-        getDialogPane().setMaxWidth(400);
-        ScrollPane scroll = new ScrollPane();
-        Label label = new Label(message);
-        label.setWrapText(true);
-        label.setMaxWidth(400);
+        label.setText(message);
         scroll.setContent(label);
-        scroll.setPrefViewportWidth(400);
-        scroll.setFitToWidth(true);
-        scroll.setPrefViewportHeight(300);
         getDialogPane().setContent(scroll);
     }
 }

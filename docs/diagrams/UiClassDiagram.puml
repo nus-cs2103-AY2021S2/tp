@@ -10,6 +10,8 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class NotesWindow
+Class NotifWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
@@ -17,6 +19,7 @@ Class MeetingListPanel
 Class MeetingCard
 Class StatusBarFooter
 Class CommandBox
+Class Alert
 }
 
 package Model <<Rectangle>> {
@@ -33,11 +36,14 @@ HiddenOutside ..> Ui
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow
+
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
 MainWindow *-down-> MeetingListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow -right-> NotesWindow
+MainWindow -right-> NotifWindow
 
 
 PersonListPanel -down-> PersonCard
@@ -45,18 +51,20 @@ MeetingListPanel -down-> MeetingCard
 
 MainWindow -left-|> UiPart
 
-ResultDisplay --|> UiPart
 CommandBox --|> UiPart
+ResultDisplay --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 MeetingListPanel --|> UiPart
 MeetingCard ---|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+NotesWindow  --|> Alert
+NotifWindow --|> Alert
 
 PersonCard ....> Model
 MeetingCard ....> Model
-UiManager -right-> Logic
+UiManager -up-> Logic
 MainWindow -left-> Logic
 
 MeetingCard -[hidden]left- PersonCard
@@ -66,6 +74,7 @@ PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+Alert -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

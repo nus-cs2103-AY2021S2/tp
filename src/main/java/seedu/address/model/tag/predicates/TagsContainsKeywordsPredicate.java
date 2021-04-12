@@ -1,8 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.tag.predicates;
 
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.Person;
 
 public class TagsContainsKeywordsPredicate implements Predicate<Person> {
 

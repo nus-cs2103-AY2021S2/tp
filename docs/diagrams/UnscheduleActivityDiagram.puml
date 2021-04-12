@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User Executes Unschedule Command;
+
+if () then([unschedule index])
+    :Find Meeting on MeetingList;
+    :Remove Meeting;
+elseif () then ([unschedule all])
+while () is ([has next person])
+    :Find Meeting on MeetingList;
+    :Remove Meeting;
+endwhile
+elseif () then([unschedule expired])
+while () is ([has next person])
+    :Find Meeting on MeetingList;
+    if () then ([has expired])
+        :Remove Meeting;
+    endif
+endwhile
+else ([else])
+    :Throw Exception;
+endif
+stop
+
+@enduml

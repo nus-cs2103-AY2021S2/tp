@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.logic.parser.AgeParser;
+import seedu.address.model.person.Person;
 
 public class AgeIsInRangePredicate implements Predicate<Person> {
 

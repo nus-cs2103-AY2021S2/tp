@@ -10,6 +10,9 @@ import seedu.address.model.person.Person;
  * Window that shows notes.
  */
 public class NotesWindow extends Alert {
+    private final ScrollPane scroll;
+    private final Label label;
+
     /**
      * Creates a new NotesWindow.
      * @param owner Stage to use as the root of the NotesWindow.
@@ -19,6 +22,14 @@ public class NotesWindow extends Alert {
         getDialogPane().getStylesheets().add("view/DarkTheme.css");
         setTitle("Notes");
         initOwner(owner);
+        scroll = new ScrollPane();
+        label = new Label();
+        getDialogPane().setMaxWidth(500);
+        label.setWrapText(true);
+        label.setMaxWidth(500);
+        scroll.setPrefViewportWidth(500);
+        scroll.setFitToWidth(true);
+        scroll.setPrefViewportHeight(400);
     }
 
     /**
@@ -26,15 +37,8 @@ public class NotesWindow extends Alert {
      */
     public void setMessage(Person personWithNotes) {
         setHeaderText(String.format("Notes for %s:", personWithNotes.getName()));
-        getDialogPane().setMaxWidth(1000);
-        ScrollPane scroll = new ScrollPane();
-        Label label = new Label(personWithNotes.getNotesString());
-        label.setMaxWidth(1000);
-        label.setWrapText(true);
+        label.setText(personWithNotes.getNotesString());
         scroll.setContent(label);
-        scroll.setPrefViewportWidth(1000);
-        scroll.setFitToWidth(true);
-        scroll.setPrefViewportHeight(400);
         getDialogPane().setContent(scroll);
     }
 }

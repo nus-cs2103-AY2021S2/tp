@@ -141,7 +141,7 @@ public class UniqueMeetingList implements Iterable<Person> {
                     .filter(datetime -> datetime.toLocalTime().compareTo(LocalTime.now()) > 0)
                     .map(datetime ->
                             sb.append(String.format(template, person.getName().fullName,
-                                    datetime.toLocalTime().format(DateTimeFormatter.ofPattern("h:mm a")))));
+                                    datetime.toLocalTime().format(DateTimeFormatter.ofPattern("hh:mm a")))));
         }
         return sb.toString();
     }
