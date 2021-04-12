@@ -37,6 +37,9 @@ import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 
+/**
+ * Contains tests to make sure the parser instantiates the correct {@code EditContactCommand}.
+ */
 public class EditContactCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
@@ -44,7 +47,7 @@ public class EditContactCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE);
 
-    private EditContactCommandParser parser = new EditContactCommandParser();
+    private final EditContactCommandParser parser = new EditContactCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

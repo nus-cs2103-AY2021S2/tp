@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEntries.CLASS_MEETING;
-import static seedu.address.testutil.TypicalEntries.CONSULTATION;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
+import static seedu.address.testutil.TypicalTeachingAssistant.CLASS_MEETING;
+import static seedu.address.testutil.TypicalTeachingAssistant.CONSULTATION;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,8 +23,9 @@ import seedu.address.model.entry.ListOccupyingEntryPredicate;
  * Contains integration tests (interaction with the Model) for {@code FreeCommand}.
  */
 public class FreeCommandTest {
-    private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalEntriesList(), new UserPrefs());
+
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void equals() {

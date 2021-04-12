@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.EntryBuilder;
 
+/**
+ * Contains unit tests for {@code Entry}.
+ */
 public class EntryTest {
 
     private final Entry defaultEntry = new EntryBuilder().build();
@@ -115,5 +118,4 @@ public class EntryTest {
                 .withStartDate(EntryBuilder.DEFAULT_START_DATE).withEndDate("2025-01-01 00:00")
                 .withTags("DifferentTag").build()));
     }
-
 }

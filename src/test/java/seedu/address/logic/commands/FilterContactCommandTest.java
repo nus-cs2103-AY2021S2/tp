@@ -21,6 +21,7 @@ import seedu.address.model.contact.ContactTagsContainKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FilterContactCommand}.
  */
 public class FilterContactCommandTest {
+
     private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
     private Model expectedModel = new ModelManager(model.getTeachingAssistant(), new UserPrefs());
 

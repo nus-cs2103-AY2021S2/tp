@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,8 @@ import seedu.address.model.entry.TemporaryEntry;
  * Contains integration tests (interaction with the Model) for {@code EditEntryCommand}.
  */
 public class EditEntryCommandTest {
-    private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
+
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void constructor_nullArguments_throwsNullPointerException() {

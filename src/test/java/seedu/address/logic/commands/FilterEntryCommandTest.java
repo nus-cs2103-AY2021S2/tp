@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEntries.CONSULTATION;
-import static seedu.address.testutil.TypicalEntries.DO_STUFF;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
+import static seedu.address.testutil.TypicalTeachingAssistant.CONSULTATION;
+import static seedu.address.testutil.TypicalTeachingAssistant.DO_STUFF;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,8 +22,9 @@ import seedu.address.model.entry.EntryTagsContainKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FilterEntryCommand}.
  */
 public class FilterEntryCommandTest {
-    private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalEntriesList(), new UserPrefs());
+
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void equals() {

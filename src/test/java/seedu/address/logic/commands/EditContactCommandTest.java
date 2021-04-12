@@ -12,9 +12,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactsTeachingAssistant;
 import static seedu.address.testutil.TypicalIndices.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndices.INDEX_SECOND;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ import seedu.address.testutil.EditContactDescriptorBuilder;
 
 public class EditContactCommandTest {
 
-    private Model model = new ModelManager(getTypicalContactsTeachingAssistant(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

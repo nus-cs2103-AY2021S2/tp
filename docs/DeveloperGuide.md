@@ -124,6 +124,27 @@ Classes used by multiple components are in the `seedu.ta.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Deleting a contact in the address book. 
+
+The command immediately responsible for this is the 'DeleteContactCommand'
+
+An outline of the implementation is as follows:
+
+The `TeachingAssistantParser` should accept the command 
+word `cdelete`. It will then get the `DeleteContactCommandParser`
+to parse and return the `DeleteContactCommand`. Subsequently, it
+returns `CommandResult` which is shown on the command result
+field of the GUI as the information of the user that is deleted.
+
+The following activity diagram summarizes what happens when a 
+user executes the cdelete command:
+
+![Delete Contact Command Activity Diagram](images/DeleteContactCommandActivityDiagram.png)
+
+The following sequence diagram summarizes what happens when a
+user executes the cdelete command:
+
+![Delete Contact Command Sequence Diagram](images/DeleteContactCommandSequenceDiagram.png)
 ### Enquire if time interval is free
 
 The free command mechanism provides users a quick way to find out if certain time intervals are available.

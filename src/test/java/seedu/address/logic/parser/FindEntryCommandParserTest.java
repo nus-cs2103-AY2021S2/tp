@@ -11,8 +11,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindEntryCommand;
 import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
 
+/**
+ * Contains tests to make sure the parser instantiates the correct {@code FindEntryCommand}.
+ */
 public class FindEntryCommandParserTest {
-    private FindEntryCommandParser parser = new FindEntryCommandParser();
+
+    private final FindEntryCommandParser parser = new FindEntryCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
