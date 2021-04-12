@@ -16,7 +16,8 @@ import seedu.storemando.model.item.LocationContainsPredicate;
  */
 public class ClearLocationCommand extends ClearCommand {
 
-    public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location (if any) are cleared!";
+    public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location "
+        + "(if the location exists) are cleared!";
 
 
     private final Predicate<Item> predicate;
