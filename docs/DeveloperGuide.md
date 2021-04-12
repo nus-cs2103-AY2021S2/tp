@@ -294,10 +294,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new CS-coded module task                               | refer to the task in the App |
 | `* * *`  | user                                       | delete a task                                                | remove entries that I no longer need                         |
 | `* * *`  | user                                       | find a task by its moduleName                                      | locate a particular task in order to view its deadline and relevant details |
-| `* * *`  | user                                       | add priority tags (low, medium, high)                        | categorise my tasks and know which ones I should work on first |
+| `* * *`  | user                                       | add priority tags (LOW, MEDIUM, HIGH)                        | categorise my tasks and know which ones I should work on first |
 | `* * *` | user | be able to sort the tasks based on different categories | see which tasks requires more attention and know which are the tasks that I should work on first |
 | `* * *`  | user who has just finished a task | mark a task as done                                          | know which tasks I have completed                            |
-| ` * * * ` | user | have a separate list of daily tasks that I have to do | set achievable goal to clear a selection of tasks for that day so remain productive
+| ` * * * ` | user | have a separate list of daily tasks that I have to do | set achievable goal to clear a selection of tasks for that day to remain productive
 | `* *` | user | add notes to a particular task | jot down quick ideas or notes that I have for a particular task |
 | `* *` | user with many tasks in the App | sort tasks either by deadlines, module codes, or their priority tags | have different views of the App when I require them |
 | `* *` | user | edit task attributes | change the details of a task if the task requirements or details have changed |
@@ -421,7 +421,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **CS:** Computer Science
 * **CS-coded module tasks:** Assignments, Quizzes, Projects, and other tasks related to CS-coded modules provided by NUS School of Computing that have deadlines for submission
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -475,3 +474,32 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## **Appendix: Effort**
+
+Given below are the difficulty level, challenges faced, effort required, and achievements of the project.
+
+### Difficulties 
+1. Implementing `Daily task list` feature
+    * This feature proved challenging to implement, as it required an additional UniqueTaskList to be added to the TaskTracker, along with the relevant methods required to update it. Furthermore, we needed to take into account the modification of tasks on the All tasks list, and propagate any updates to the dailyTaskList.
+2. Implementing the color coded feature for `Priority Tag` feature
+    * Despite being a seemingly simple feature, colour coding the priority tags proved to be more complicated than we initially assumed it to be. It required the styleProperty of the priority tag component in the UI to be bound to its State, and to be dynamically updated when the priority tag values were updated by the user. Nonetheless, it was an interesting feature that allowed me to learn how to dynamically bind and generate elements using JavaFX.
+3. Implementing `undo` feature
+    * It was difficult to implment the functionality where only commands which altered the application could be undone as there was no way to differentiate between state modifying commands and non-state modifying commands. This was overcome by creating a NonModifyingCommand Enum to differentiate between the commands as well as overriding the toString() methods of each Command such that they could be checked against the NonModifyingCommand Enum.
+4. Implementing `Priority Tag` feature 
+    * It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. We introduced states as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature this way. 
+5. 4-man team instead of 5-man 
+    * While other groups have an additional group member, our team has only 1 group members due to unforseeable reasons. This caused us to be behind from most groups initially. However, we did not let the set back affect us and we actively helped each other in our components, we achieved all the deliverables since the first week of submission for the tP and did not receive any complains from the Professor or the TA. 
+
+### Effort required
+1. While the Professor and tutor recommended one meeting per week for all the deliverables for the tP, our team went beyond the recommendation and usually meet up 2-3 times a week with an average of 1.5hrs to 2hrs session each. 
+2. During the meeting, we vetted each other's work line by line and recommend the best practice to each other in a professional manner. 
+3. We also go beyond our own components and reach out to each other if the other team mate require assistance. 
+4. Despite being 1 man down, the team managed to submit all the deliverables since the first version and met all the requirements. 
+
+### Achievements of the Project 
+1. Successfully allowed semester.config to be used by CS students (our target group) for planning of their CS coded modules.
+2. Allowed up to at least 1000 tasks to be stored in semester.config, with all the features working.
+3. Successfully implemented two tasks list - a general tasks list and a daily task list for students to better organise their schedule and workload.
+4. Successfully implemented a working Ui that allows CS students to easily organise their tasks.
+5. Successfully implemented a sorting feature that can sort tasks according to most of their attributes.
