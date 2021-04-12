@@ -15,7 +15,7 @@ better manage their finances**. It is **optimized for use via a Command Line Int
 editing financial records and budgets can be done faster by typing in commands while still having the benefits of a
 Graphical User Interface (GUI).
 
-This document aims to guide developers ...
+This document serves as a guide for developers to understand the internal workings of BudgetBaby.
 
 ## Table of Content
 
