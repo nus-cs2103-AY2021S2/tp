@@ -461,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: View a patient's medical record**
 
-**Pre-requisite:** Use 'list' to list out the index of the patients
+**Pre-requisite:** Use 'list' to list out the index of the patients and `view 1` to view the first patient's medical information.
 
 **MSS**
 
