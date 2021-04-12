@@ -251,10 +251,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a large number of venue bookings
+* needs to manage a large number of bookings
 * has to ensure bookings abide by restrictions
 * needs to check that the bookings are valid
-* is administrative personnel of schools or organisations
+* is the administrative personnel of schools or similar organisations
 * prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -277,21 +277,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | admin in charge of facilities              | add venues                     | make bookings in that venue.                                                                       |
 | `* * `  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue.                       |
 | `* * *`  | admin in charge of facilities              | delete venues                  | remove venues not available for booking.                                                                       |
-| `* * *`  | admin in charge of facilities              | view venues                    |                                                                        |
-| `* * *`  | admin in charge of facilities              | find a venue by searching the venue's name| quickly get details of that venue.                                                                      |
-| `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
+| `* * *`  | admin in charge of facilities              | view venues                    | check the venues that have been added.                                                                       |
+| `* *`  | admin in charge of facilities              | find a venue by searching the venue's attribute(s)| quickly get details of that venue.                                                                      |
+| `* * *`  | admin in charge of facilities              | add bookings                   | keep track of bookings.                                                                       |
 | `* * `  | admin in charge of facilities              | edit bookings                  | change booking details when the person decides to amend the booking.    |
 | `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the booker.                                                                       |
 | `* * *`  | admin in charge of facilities              | view bookings                  | check the bookings that have been made.
-| `* * *`  | admin in charge of facilities              | find a booking by searching the booking's id| quickly get details of that booking.                                                                        ||
+| `* *`  | admin in charge of facilities              | find a booking by searching the booking's attribute(s)| quickly get details of that booking.                                                                        ||
 | `* * *`  | admin in charge of facilities              | add persons                    | make bookings for that person.                                                                       |
 | `* * `  | admin in charge of facilities              | edit persons                   | reflect the most up to date details of the person.                       |
 | `* * *`  | admin in charge of facilities              | delete persons                 | remove persons who are not able to make a booking.                                                                       |
-| `* * *`  | admin in charge of facilities              | view persons                   |
-| `* * *`  | admin in charge of facilities              | find a person by searching the person's email| quickly get details of that person.                                                                        ||
-| `* *`    | admin in charge of facilities              | query booking information of a particular venue | quickly find out the relevant information instead of search one by one |
-| `* *`    | admin in charge of facilities              | query booking information of a particular person | quickly find out the relevant information instead of search one by one |
-| `* *`    | admin in charge of facilities              | query booking information of a particular date | quickly find out the relevant information instead of search one by one |
+| `* * *`  | admin in charge of facilities              | view persons                   | check the persons that have been added.
+| `* *`  | admin in charge of facilities              | find a person by searching the person's attribute(s)| quickly get details of that person.                                                                        ||
 | `*`      | admin in charge of facilities              | be able to access past data           | easily check the history of certain venues                      |
 
 ### Use cases
@@ -302,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a new venue into the system.
+1.  User requests to add a new venue into the system, and provides venue details.
 2.  BookCoin To The Moon adds the venue into the system.
 
     Use case ends.
@@ -312,43 +309,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The venue to be added is already in the system.
     * 1a1. BookCoin To The Moon shows an error message.
 
-  Use case ends.
+  Use case resumes at step 1.
 
-* 1b. Venue details are invalid or missing compulsory fields.
-    * 1b1. BookCoin To The Moon shows an error message and prompts the user to reenter their command.
+* 1b. Venue details are missing, or are provided but invalid.
+    * 1b1. BookCoin To The Moon shows an error message.
+
+  Use case resumes at step 1.
 
 
 **Use case: UC02 - Add a booking**
 
-**MSS**
-
-1.  User requests to add a new booking into the system.
-2.  BookCoin To The Moon adds the booking into the system.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The booking to be added is already in the system.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
+This use case is similar to UC01 - Add a venue, except that venues are replaced with bookings.
 
 **Use case: UC03 - Add a person**
 
-**MSS**
-
-1.  User requests to add a new person into the system.
-2.  BookCoin To The Moon adds the person into the system.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The person to be added is already in the system.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
+This use case is similar to UC01 - Add a venue, except that venues are replaced with persons.
  
 
 **Use case: UC04 - Delete a venue**
@@ -371,38 +346,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC05 - Delete a booking**
 
-**MSS**
-
-1.  User requests to delete a specific booking.
-2.  BookCoin To The Moon deletes the booking.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The specified booking does not exist in the system.
-
-    * 1a1. BookingSystem shows an error message.
-
-      Use case resumes at step 1.
+This use case is similar to UC04 - Delete a venue, except that venues are replaced with bookings.
 
 
 **Use case: UC06 - Delete a person**
 
-**MSS**
+This use case is similar to UC04- Delete a venue, except that venues are replaced with persons.
 
-1.  User requests to delete a specific person.
-2.  BookCoin To The Moon deletes the person.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The specified person does not exist in the system.
-
-    * 1a1. BookingSystem shows an error message.
-
-      Use case resumes at step 1.
 
 **Use case: UC07 - List all bookings**
 
@@ -419,7 +369,8 @@ This use case is similar to UC07 - List all bookings, except that bookings are r
 
 **Use case: UC09 - List all person**
 
-This use case is similar to UC07 - List all bookings, except that bookings are replaced with person.
+This use case is similar to UC07 - List all bookings, except that bookings are replaced with persons.
+
 
 **Use case: UC10 - Find a venue**
 
@@ -458,20 +409,20 @@ This use case is similar to UC10 - Find a venue, except that venues are replaced
 
 **MSS**
 
-1.  User requests to edit certain fields belonging to a specified venue.
+1.  User requests to edit certain fields belonging to a specific venue.
 2.  BookCoin To The Moon updates the venue information and saves it to the booking system.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The specified venue does not exist in the system.
+* 1a. The specified venue to be edited does not exist in the system.
 
     * 1a1. BookingSystem shows an error message.
 
       Use case resumes at step 1.
 
-* 1b. The specified field(s) is/are invalid.
+* 1b. The specified field(s) and/or the specified venue to be edited is/are invalid.
 
     * 1b1. BookingSystem shows an error message.
 
@@ -510,7 +461,7 @@ This use case is similar to UC13 - Edit a venue, except that venues are replaced
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Booking**: A person's request to occupy the room for a specific amount of time at a specific date
+* **Booking**: A person's request to occupy a venue for a specified duration
 
 --------------------------------------------------------------------------------------------------------------------
 

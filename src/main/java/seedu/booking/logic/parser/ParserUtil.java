@@ -53,14 +53,26 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified {@code Index} is invalid (not non-zero unsigned integer).
+     * @throws NumberFormatException if the specified {@code Index} exceeds the system limit.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, NumberFormatException {
+        requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        try {
+            Integer formattedIndex = Integer.parseInt(trimmedIndex);
+            if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+                throw new ParseException(Messages.INVALID_INDEX);
+            }
+            return Index.fromOneBased(formattedIndex);
+        } catch (NumberFormatException e) {
+            String numericRegex = "^(?:[+\\-\\d][0-9]*)$";
+            if (trimmedIndex.matches(numericRegex)) {
+                throw new ParseException(Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
+            } else {
+                throw new ParseException(Messages.INVALID_INDEX);
+            }
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
     /**
@@ -184,7 +196,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String bookingStart} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
     public static StartTime parseBookingStart(String bookingStart) {
         requireNonNull(bookingStart);
@@ -228,6 +239,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code capacity} is invalid.
+     * @throws NumberFormatException if the specified {@code capacity} exceeds the system limit.
      */
     public static Capacity parseCapacity(String capacity) throws ParseException, NumberFormatException {
         requireNonNull(capacity);
@@ -253,7 +265,8 @@ public class ParserUtil {
      * Parses a {@code String capacityKeyword} into a {@code CapacityContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code capacity} is invalid.
+     * @throws ParseException if the given {@code capacityKeyword} is invalid.
+     * @throws NumberFormatException if the specified {@code capacityKeyword} exceeds the system limit.
      */
     public static CapacityMatchesKeywordPredicate parseCapacityContainsKeywordsPredicate(String capacityKeyword)
             throws ParseException, NumberFormatException {

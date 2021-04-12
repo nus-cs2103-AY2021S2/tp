@@ -29,6 +29,7 @@ import static seedu.booking.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.EditBookingCommand;
 import seedu.booking.testutil.EditBookingCommandDescriptorBuilder;
@@ -43,28 +44,30 @@ class EditBookingCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_BOOKING_BOOKER_EMAIL_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, BOOKING_BOOKER_EMAIL_AMY_DESC_HALL, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditBookingCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditBookingCommand.MESSAGE_USAGE));
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                EditBookingCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + BOOKING_BOOKER_EMAIL_AMY_DESC_HALL, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + BOOKING_BOOKER_EMAIL_AMY_DESC_HALL, Messages.INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + BOOKING_BOOKER_EMAIL_AMY_DESC_HALL, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + BOOKING_BOOKER_EMAIL_AMY_DESC_HALL, Messages.INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", Messages.INVALID_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", Messages.INVALID_INDEX);
     }
 
 

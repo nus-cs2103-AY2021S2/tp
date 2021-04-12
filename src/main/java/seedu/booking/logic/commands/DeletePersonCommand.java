@@ -39,7 +39,7 @@ public class DeletePersonCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (!lastShownList.stream().anyMatch(email::isSameEmail)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_EMAIL);
+            throw new CommandException(Messages.MESSAGE_NON_EXISTENT_PERSON_EMAIL);
         }
 
         Person personToDelete = lastShownList.stream().filter(email::isSameEmail).findFirst().orElse(null);

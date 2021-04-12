@@ -34,15 +34,16 @@ public class EditBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified "
             + "by the index number used in the displayed booking list.\n"
-            + "At least one parameter to be changed must be specified. "
+            + "At least one parameter to be changed must be specified.\n"
             + "Existing values will be overwritten by the input values.\n"
+            + "At least one of the optional fields must be provided.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_EMAIL + "BOOKER EMAIL] "
             + "[" + PREFIX_VENUE + "VENUE NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_BOOKING_START + "DATETIME] "
             + "[" + PREFIX_BOOKING_END + "DATETIME] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
@@ -52,10 +53,7 @@ public class EditBookingCommand extends Command {
             + PREFIX_TAG + "meeting";
 
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited booking: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
-    public static final String MESSAGE_UNCHANGED_BOOKING = "The information provided has no difference "
-            + "from the records in the system.";
     public static final String MESSAGE_OVERLAPPING_BOOKING = "This slot has been booked already";
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_INVALID_TIME =
@@ -83,9 +81,8 @@ public class EditBookingCommand extends Command {
         List<Booking> lastShownList = model.getFilteredBookingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
         }
-
 
         Booking bookingToEdit = lastShownList.get(index.getZeroBased());
         Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
@@ -109,7 +106,6 @@ public class EditBookingCommand extends Command {
         if (!editedBooking.isValidTime()) {
             throw new CommandException(MESSAGE_INVALID_TIME);
         }
-
 
         model.setBooking(bookingToEdit, editedBooking);
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);

@@ -40,11 +40,11 @@ public class DeleteBookingCommandTest {
     }
 
     @Test
-    public void execute_invalidVenueUnfilteredList_throwsCommandException() {
+    public void execute_invalidBookingUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookingList().size() + 1);
         DeleteBookingCommand deleteCommand = new DeleteBookingCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
     }
 
     @Test
