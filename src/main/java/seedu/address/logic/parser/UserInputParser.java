@@ -28,6 +28,7 @@ import seedu.address.logic.commands.patient.AddPatientCommand;
 import seedu.address.logic.commands.patient.ClearPatientCommand;
 import seedu.address.logic.commands.patient.DeletePatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand;
+import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.appointment.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointment.DeleteAppointmentCommandParser;
@@ -41,7 +42,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
 import seedu.address.logic.parser.patient.DeletePatientCommandParser;
 import seedu.address.logic.parser.patient.EditPatientCommandParser;
-import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.logic.parser.patient.FindPatientCommandParser;
 import seedu.address.storage.InputCommandStorage;
 
