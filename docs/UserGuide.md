@@ -32,6 +32,7 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<br> 
 
 ## Features
 
@@ -123,6 +124,7 @@ Format: `delete MATRICULATION NUMBER`
 Examples:
 * `delete A1234567X` deletes John Doe from the records. If John Doe has an appointment, his appointment will be deleted as well.
 
+<br> 
 | Before        | 
 | ------------- |
 |![deleteBefore](images/deleteBefore.png)
