@@ -192,7 +192,7 @@ Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
 * The index range must be specified before the keyword. <br>
   e.g. `massblist b/blacklist 4-5` is treated as an invalid input.
 
-Examples:
+Example:
 * Suppose you start with the following contact list:
   ![massBlacklist1](images/massBlacklist1.png)
   Executing `massblist 1-3 b/blacklist` will blacklist the first three contacts. Since the second contact is already
