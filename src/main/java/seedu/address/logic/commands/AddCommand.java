@@ -81,8 +81,11 @@ public class AddCommand extends Command {
     private void enforceValidityOfTask() throws CommandException {
         ConditionLogic conditionLogic = new ConditionLogic(toAdd);
         conditionLogic.enforceAttributeConstraints();
-        conditionLogic.checkInvalidDateRange();
-        conditionLogic.checkForExpiredDate();
+        conditionLogic.checkInvalidDate();
+        conditionLogic.checkInvalidEndDateRecurringSchedule();
+        conditionLogic.checkExpiredEndDate();
+        conditionLogic.checkEndDateMoreThan6Months();
+        conditionLogic.checkMatchingRecurringDates();
         conditionLogic.enforceTitleLength();
     }
 
