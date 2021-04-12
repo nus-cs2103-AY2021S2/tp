@@ -34,9 +34,9 @@ activate RemindCommand
 RemindCommand -> Model : updateFilteredResidenceList(predicate)
 activate Model
 
-ref over Model 
-    automatic sorting 
-    of residence by 
+ref over Model
+    automatic sorting
+    of residence by
     clean status
 end ref
 
