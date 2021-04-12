@@ -318,7 +318,44 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a customer
+
+1. Adding a customer while all customers are being shown
+
+    1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+
+    1. Test case: `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  t/friend c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV` <br>
+       Expected: contact with name 'Alex Yeoh' is added to the list. Details of the added contact shown in the
+       status message. Timestamp in the status bar is updated.
+
+    1. Test case: `add Alex Yeoh`<br> 
+       Expected: No customer is added as Alex Yeoh customer already exist in the loaded date file.<br>
+       Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `add`
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a customer
+
+1. Deleting a customer while all customers are being shown
+
+    1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
+
+    1. Test case: `delete Alex Yeoh`<br>
+       Expected: contact with name 'Alex Yeoh' is deleted from the list. Details of the deleted contact shown in the
+       status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete Invalid@Name`<br>
+       Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Finding a customer by attributes
 
 1. Deleting a customer while all customers are being shown
 
@@ -346,13 +383,30 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
-Keep it brief (~1 page)
-Explain the difficulty level, challenges faced, effort required, and achievements of the project.
-<br>Use AB3 as a reference point e.g., you can explain that while AB3 deals with only one entity type, your project was harder because it deals with multiple entity types.
+Working on AB3, a brown-field project entails a huge amount of effort and time spend on understanding the architecture of AB3 code, 
+this involved reading through the developer guide documentation and making incremental changes initially to ensure every milestone release is a working version.
 
-1. Find feature
-   Comprehensive find functionality 
-   <br>Challenges faced include understanding the architecture of AB3 code and refactoring existing testcase to resolve any regression bugs.
+* A disciplined adherence to the Github forking workflow, where constant communication is required when reviewing pull requests by fellow team members,
+  <br> 
 
-1. Email feature
+1. 1. Achievement: Adding several new fields to the Customer entity, the main focus object of the project
+   1. Difficulty level: Medium
+   1. Challenges Faced: Considerations of having to edit other classes such as command Parser to ensure that the existing add command, edit commands were working
+   1. Effort required: Changes to the customer entity yield regression bugs, thus a pro-active update of test cases to new fields were required.    
+
+1.  1. Achievement: Implementing a sophisticated Find feature
+    1. Difficulty level: High
+    1. Challenges Faced: Implement a typo-matching find filter functionality for user inputs that strive to achieve 
+       <br>a good balance between returning results that were an exact match and returning similar results.
+    1. Effort required: Introduction of a new filter package to incorporate find functionality and to contain the specific attribute filters,
+       <br>adding new testcases for the newly introduced filter classes
+
+
+1. 1. Achievement: Integrated Email feature
+    1. Difficulty level: High
+    1. Challenges Faced: Understanding a third party JavaFx librabry (sendEmailJFX) to the project was by no means an easy task
+       <br> With reference to AB3, which did not have external library added to give the GUI more features
+       <br> We had to figure out how to integrate the third party JavaFx library with existing JavaFx and UI classes code
+    1. Effort required: A good spirit of google searches to figure how to integrate the third party code to our GUI and JavaFx code.
  
+
