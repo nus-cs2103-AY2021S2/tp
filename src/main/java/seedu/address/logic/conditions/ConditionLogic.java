@@ -40,21 +40,53 @@ public class ConditionLogic {
     }
 
     /**
-     * Checks if the given date is within a valid range.
+     * Checks if the given end date in recurring schedule has expired.
      *
      * @throws CommandException
      */
-    public void checkInvalidDateRange() throws CommandException {
-        recurringScheduleVerifier.checkInvalidDateRange();
+    public void checkExpiredEndDate() throws CommandException {
+        recurringScheduleVerifier.checkExpiredEndDate();
     }
 
     /**
-     * Checks if the task is already over the current date.
+     * Checks whether there are any matching recurring dates being generated.
      *
      * @throws CommandException
      */
-    public void checkForExpiredDate() throws CommandException {
-        recurringScheduleVerifier.checkForExpiredDate();
+    public void checkMatchingRecurringDates() throws CommandException {
+        recurringScheduleVerifier.checkMatchingRecurringDates();
+    }
+
+
+    /**
+     * Checks if the given end date in recurring schedule has been more than 6 months of current system date.
+     *
+     * @throws CommandException
+     */
+    public void checkEndDateMoreThan6Months() throws CommandException {
+        recurringScheduleVerifier.checkEndDateMoreThan6Months();
+    }
+
+    /**
+     * Checks if the end date in recurring schedule is valid.
+     * End date in recurring schedule is valid if months of Feb does not have more than 28 days except leap years and
+     * Days did not exceed for months of 30 days (Apr, Jun, Nov, Sep) and 31 days (Jan, Mar, May, Jul, Aug, Oct, Dec)
+     *
+     * @throws CommandException
+     */
+    public void checkInvalidEndDateRecurringSchedule() throws CommandException {
+        recurringScheduleVerifier.checkInvalidDate();
+    }
+
+    /**
+     * Checks if the Date is valid.
+     * A Date is considered valid if months of Feb does not have more than 28 days except leap years and
+     * Days did not exceed for months of 30 days (Apr, Jun, Nov, Sep) and 31 days (Jan, Mar, May, Jul, Aug, Oct, Dec)
+     *
+     * @throws CommandException
+     */
+    public void checkInvalidDate() throws CommandException {
+        dateVerifier.checkInvalidDate();
     }
 
     /**

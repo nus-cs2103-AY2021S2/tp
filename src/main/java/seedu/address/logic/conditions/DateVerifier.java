@@ -12,6 +12,9 @@ import seedu.address.model.task.Task;
  */
 public class DateVerifier {
 
+    private static final String MESSAGE_INVALID_DATE = "Task has invalid date input."
+            + "\n\nNote: Months of Apr, Jun, "
+            + "Sep, Nov has only 30 days while Feb has only 28 days with leap years (mulitples of 4) having 29 days";
     private static final String MESSAGE_EMPTY_DATE = "The task selected has no Date attribute.";
     private static final String MESSAGE_DATE_OVER = "The task selected is already over.";
     private static final Logger logger = LogsCenter.getLogger(DateVerifier.class);
@@ -36,6 +39,20 @@ public class DateVerifier {
         if (attributeManager.isEmptyDate()) {
             logger.info(MESSAGE_EMPTY_DATE);
             throw new CommandException(MESSAGE_EMPTY_DATE);
+        }
+    }
+
+    /**
+     * Checks if the Date is valid.
+     * A Date is considered valid if months of Feb does not have more than 28 days except leap years and
+     * Days did not exceed for months of 30 days (Apr, Jun, Nov, Sep) and 31 days (Jan, Mar, May, Jul, Aug, Oct, Dec)
+     *
+     * @throws CommandException
+     */
+    public void checkInvalidDate() throws CommandException {
+        if (attributeManager.hasInvalidDate()) {
+            logger.info("Invalid Date detected: " + MESSAGE_INVALID_DATE);
+            throw new CommandException(MESSAGE_INVALID_DATE);
         }
     }
 
