@@ -96,7 +96,7 @@ and exposes its functionality using the `LogicManager.java` class which implemen
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `deletereader 1`.
 ![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
@@ -136,7 +136,7 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
 help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deletereader 1")` API
 call.
 
 ![Interactions Inside the Logic Component for the `deletereader 1` Command](images/DeleteSequenceDiagram.png)
