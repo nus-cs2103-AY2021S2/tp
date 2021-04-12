@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
-import seedu.address.storage.meetingbook.JsonAdaptedMeeting;
 
 /**
  * An Immutable MeetingBook that is serializable to JSON format.
