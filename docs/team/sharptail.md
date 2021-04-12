@@ -52,9 +52,9 @@ Given below are my contributions to the project.
         * Fixed the documentation for the multiple features (Pull requests [\#224](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/224))
             *  Standardised the parameter of command format. 
             *  Updated `order add`, `order find`, `order edit`, `menu add`, `menu edit` formatting.
-            *  Added 't' tag to customer add format
             *  Added '-f' and '-a' explanation
     * Developer Guide:
+        * Updated Architecture, UI and Logic Component Diagrams and descriptions.
         * Added implementation details and UML Diagram of the different `component` parser (Pull requests [\#87](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/87))
     
 * **Team-Based Task**:
