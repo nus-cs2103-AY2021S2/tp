@@ -24,8 +24,8 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all items.";
-    public static final String MESSAGE_SUCCESS_TAG_PREDICATE = "Listed all items with the following "
-        + "tag %s (if the tag exists).";
+    public static final String MESSAGE_SUCCESS_TAG_PREDICATE = "Listed all items with the \"%s\" "
+        + "tag (if the tag exists).";
     public static final String MESSAGE_SUCCESS_LOCATION_PREDICATE = "Listed all items located in %s "
         + "(if the location exists).";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the inventory.\n"
