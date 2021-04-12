@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=zechariah&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ZechariahTan&tabRepo=AY2021S2-CS2103T-W10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs)
 
 * **Project management**:
-  * Managed releases `v1.4` (1 release) on GitHub
+  * Managed releases `v1.1`-`v1.4` (1 release) on GitHub
 
 * **Enhancements to existing features**:
   * Model:
@@ -44,3 +44,6 @@ Given below are my contributions to the project.
     * Added Manual Testing instructions for FindPool command.
   * About Us:
     * Added relevant profile pictures and modified AboutUs.md to include relevant teammembers information
+
+* **Community**:
+  * PRs reviewed (with non-trivial review comments): [#268](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/268), 
