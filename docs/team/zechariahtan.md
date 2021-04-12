@@ -46,5 +46,4 @@ Given below are my contributions to the project.
     * Added relevant profile pictures and modified AboutUs.md to include relevant teammembers information
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#268](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/268),
-  
+  * PRs reviewed (with non-trivial review comments): [#268](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/268)
