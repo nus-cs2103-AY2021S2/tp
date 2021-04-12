@@ -86,7 +86,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 3")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 3` Command](images/DeleteDeliveryTaskSequenceDiagram.png)
 
@@ -153,7 +153,7 @@ The LogicManager will then invoke the overridden execute method of the DeleteCom
 Subsequently, the DeleteCommand object will invoke deleteCustomer method of Model with the index of the customer to delete as the argument. It will then return a CommandResult object to LogicManager.
 This CommandResult will be returned at the end by LogicManager.
 
-The following Activity Diagram summarizes what happens when a user executes the delete command:
+The following Activity Diagram summarizes what happens when a user executes the `delete` command:
 
 ![Delete Command Sequence Diagram](images/DeleteDeliveryTaskSequenceDiagram.png)
 
@@ -199,11 +199,11 @@ Using the index attribute of the EditCommand object, the customer to be edited f
 Then, EditCommand will create a CommandResult object and return it to LogicManager.
 This CommandResult will be returned at the end by LogicManager.
 
-The following Activity Diagram summarizes what happens when a user executes the delete command:
+The following Activity Diagram summarizes what happens when a user executes the `edit` command:
 
 ![Delete Command Sequence Diagram](images/EditSequenceDiagram.png)
 
-![Delete Command Activity Diagram](images/EditSequenceDiagram.png)
+![Delete Command Activity Diagram](images/EditActivityDiagram.png)
 
 **Design consideration**:
 
