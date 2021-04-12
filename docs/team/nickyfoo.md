@@ -52,8 +52,7 @@ Given below are my contributions to the project.
   * Added sections for [`help`](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#showing-help--help), [`undo`](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#undoing-actions--undo) and [`redo`](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#redoing-actions--redo)
  
 - DeveloperGuide:
-  * Added User Stories [\#36](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/36) and Use Case UC7 [\#60](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/60)
-  * Updated Product Scope [\#69](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/69)
+  * Added User Stories [\#36](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/36) and Use Case UC7 [\#60](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/60), Updated Product Scope [\#69](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/69)
   * Updated UML diagram for `Model` component after refactor [\#311](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/311)
   * Added Appendix: Effort [\#332](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/332) and sections for [`help`](https://ay2021s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html#feature-help), [`undo` and `redo`](https://ay2021s2-cs2103-w16-3.github.io/tp/DeveloperGuide.html#feature-undoredo), including all UML Diagrams.
 
