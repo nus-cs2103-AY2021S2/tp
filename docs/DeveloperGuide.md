@@ -102,7 +102,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `food_delete n\grape`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="3060" />
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
 
@@ -293,7 +293,7 @@ Example: `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 The following sequence diagram shows how the add operation works:
 
-<img src="images/AddFoodItemSequenceDiagram.png" width="415" />
+<img src="images/AddFoodItemSequenceDiagram.png" width="3060" />
 
 Once the user types in the command to add food, the parser will check for all the required prefixes. If all required prefixes are present and the input values are valid, `AddFoodItemCommand` object is created. `AddFoodItemCommand` is a class that extends `Command` abstract class. `AddFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will prompt an error that the food item exist and suggest updating the food item value instead. Otherwise, a new food item object will be created and added into the food list.
 
