@@ -8,7 +8,7 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 ## Code Contributed
 My code contributions can be found [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=geraldfan&tabRepo=AY2021S2-CS2103-T14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false.io/tp-dashboard/#breakdown=true&search=geraldfan).
 
-##Enhancements implemented
+## Enhancements implemented
 I implemented 3 main features:
 1. ModuleCode attribute for Task which will be useful for users;
 2. Undo Command,
@@ -38,16 +38,16 @@ Enhancement 3: Implemented the Redo Command as well as the VersionedTaskTracker
                 be purged.
 
 
-##Contributions to the UG
+## Contributions to the UG
 * Added documentation for the features `edit`, `clear`, `undo` and `redo`
 * Proofread and fixed issues with the UG before submission
 
-##Contributions to the DG
+## Contributions to the DG
 * I was in charge of the Model component and did the initial version of the Model component UML diagram.
 * Added use cases for "Editing a deadline", "Setting a priority tag to a deadline" and "Adding a note to a deadline"
 * Proofread and fixed issues with the DG before submission
 
-##Contributions to team-based tasks
+## Contributions to team-based tasks
 
 * Refactored ReadOnlyAddressBook to ReadOnlyTaskTracker in all usages
 * Refactored AddressBook to TaskTracker in all usages
@@ -56,5 +56,5 @@ Enhancement 3: Implemented the Redo Command as well as the VersionedTaskTracker
 * Approved and merged PRs where possible
 
 
-##Contributions beyond the project team
+## Contributions beyond the project team
 
