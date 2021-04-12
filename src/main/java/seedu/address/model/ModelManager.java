@@ -325,6 +325,13 @@ public class ModelManager implements Model {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
     }
 
+    /**
+     * Change all names of existing appointments with tutor to the new tutor name.
+     */
+    @Override
+    public void changeAllAppointmentsToName(Name oldName, Name name) {
+        appointmentBook.changeAllAppointmentsToName(oldName, name);
+    }
 
     //============== Budget ============================================================
 

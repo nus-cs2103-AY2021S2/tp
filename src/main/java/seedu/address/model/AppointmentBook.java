@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,6 +82,26 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
             }
         }
         return false;
+    }
+
+    /**
+     * Changes all names of appointment related to tutor to the new name.
+     * @param oldName Old name of tutor.
+     * @param name New name of tutor
+     */
+    public void changeAllAppointmentsToName(Name oldName, Name name) {
+        List<Appointment> tempAppointmentList = new ArrayList<>();
+        for (Appointment appointment : this.appointments) {
+            if (appointment.getName().equals(oldName)) {
+                Appointment tempAppointment = new Appointment(name,
+                        appointment.getSubject(), appointment.getTimeFrom(),
+                        appointment.getTimeTo(), appointment.getLocation());
+                tempAppointmentList.add(tempAppointment);
+            } else {
+                tempAppointmentList.add(appointment);
+            }
+        }
+        setAppointments(tempAppointmentList);
     }
 
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
@@ -41,7 +42,7 @@ public class EditCommandTest {
             getTypicalScheduleTracker(), getTypicalReminderTracker());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_editTutorName_objectNotEquals() {
         Tutor editedTutor = new TutorBuilder().build();
         EditCommand.EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder(editedTutor).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -53,7 +54,7 @@ public class EditCommandTest {
                 model.getReminderTracker());
         expectedModel.setTutor(model.getFilteredTutorList().get(0), editedTutor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertNotEquals(model, expectedModel);
     }
 
     @Test
@@ -62,10 +63,10 @@ public class EditCommandTest {
         Tutor lastTutor = model.getFilteredTutorList().get(indexLastPerson.getZeroBased());
 
         TutorBuilder personInList = new TutorBuilder(lastTutor);
-        Tutor editedTutor = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Tutor editedTutor = personInList.withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditCommand.EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder()
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
@@ -98,9 +99,10 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Tutor tutorInFilteredList = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Tutor editedTutor = new TutorBuilder(tutorInFilteredList).withName(VALID_NAME_BOB).build();
+        Tutor editedTutor =
+                new TutorBuilder(tutorInFilteredList).withPhone(VALID_PHONE_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditTutorDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditTutorDescriptorBuilder().withPhone(VALID_PHONE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
