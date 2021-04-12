@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.ta.commons.exceptions.IllegalValueException;
-import seedu.ta.model.contact.Contact;
 import seedu.ta.model.entry.Entry;
 import seedu.ta.model.entry.EntryDate;
 import seedu.ta.model.entry.EntryName;
