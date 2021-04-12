@@ -36,5 +36,3 @@ Given below are my contributions to the project.
   
 * **Summary of Contributions**:
     * Created about 25 PRs on the team repo. [\#Link](https://github.com/AY2021S2-CS2103-T16-2/tp/pulls?q=is%3Apr+author%3Askinnychenpi)
-
-* _{you can add/remove categories in the list above}_
