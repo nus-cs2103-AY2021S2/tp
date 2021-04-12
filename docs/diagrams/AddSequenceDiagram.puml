@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ImposterParser" as ImposterParser LOGIC_COLOR
-participant "s:AddCommand" as AddCommand LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
 
 end box
 
