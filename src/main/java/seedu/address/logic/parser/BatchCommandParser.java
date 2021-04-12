@@ -51,23 +51,34 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
         }
 
-        try {
-            // Checks the validity of the Command that the user passed as input to the BatchCommand
-            switch (inputCommand) {
-            case EditCommand.COMMAND_WORD:
-                /* fall through */
-            case DeleteCommand.COMMAND_WORD:
-                break;
-            default:
-                throw new ParseException(INVALID_BATCH_COMMAND);
-            }
+        // Checks the validity of the Command that the user passed as input to the BatchCommand
+        switch (inputCommand) {
+        case EditCommand.COMMAND_WORD:
+            /* fall through */
+        case DeleteCommand.COMMAND_WORD:
+            break;
+        default:
+            throw new ParseException(INVALID_BATCH_COMMAND);
+        }
 
-            // Tokenises and parses the user input
+        try {
+
+            // Tokenizes and parses the user input
             String inputIndicesAndArgs = " " + splitCommandAndIndicesAndArgs[1].trim();
             ArgumentMultimap argMultimap = ArgumentTokenizer
                             .tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                             PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING,
                             PREFIX_SHORTCUT_COMMAND, PREFIX_SHORTCUT_NAME);
+
+            boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(argMultimap.getPreamble());
+
+            if (doIndicesContainWords && inputCommand.equals(EditCommand.COMMAND_WORD)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        EditCommand.MESSAGE_USAGE_BATCH));
+            } else if (doIndicesContainWords && inputCommand.equals(DeleteCommand.COMMAND_WORD)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteCommand.MESSAGE_USAGE_BATCH));
+            }
 
             List<Index> listOfIndices = parseAndPrepareIndices(argMultimap);
 

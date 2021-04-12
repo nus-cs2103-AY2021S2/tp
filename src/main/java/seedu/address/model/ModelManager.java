@@ -224,6 +224,7 @@ public class ModelManager implements Model {
     public void updateSortedPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
         modifiedList.sort(comparator);
+        this.backUpList = new ArrayList<>(this.addressBook.getPersonList());
     }
 
     //=========== Whole Person List Accessors =============================================================
