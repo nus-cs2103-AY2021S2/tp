@@ -869,7 +869,7 @@ testers are expected to do more *exploratory* testing.
 2. Replace tags of a contact
     1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
     
-    2. Input `tag 2 o/replace tc/alice` into the command box and press enter.
+    2. Input `tag 2 o/replace tc/alice` into the command box and press enter.<br>
        Expected: The tags of the second contact (*Charlotte Oliveiro*) should be entirely replaced with only a red
        ChildTag `alice` as seen below.
        
@@ -879,7 +879,8 @@ testers are expected to do more *exploratory* testing.
 1. Clearing contacts by tag
     1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
     
-    2. Input `clear t/psg` into the command box and press enter.
+    2. Input `clear t/psg` into the command box and press enter.<br>
+       Expected: The contacts with a psg tag, *'Charlotte Oliveiro'* and *'Annie Li'* are deleted from the address book.
 
 #### Delete a contact
 
@@ -892,10 +893,18 @@ testers are expected to do more *exploratory* testing.
 #### Add an appointment
 
 #### Edit an appointment
+1. Edit all fields
+    1. Prerequisites: There is an existing appointment and existing contact in ParentPal.
+    
+    2. Input `editAppt 1 n/Math Tuition a/Sunshine Tuition Center d/20/10/2021 13:00 c/1 tc/alice` and press enter.<br>
+       Expected: The first appointment is edited to the fields specified.
+       
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+A reordering of the appointment list may occur.
+</div>
 
 #### Find an appointment
 
-#### List all appointments
 
 
 ### Saving data
