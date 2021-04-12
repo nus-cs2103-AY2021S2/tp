@@ -1,0 +1,43 @@
+@startuml
+start
+:User executes add-fr
+        command;
+
+if () then ([valid command])
+    :System attempts to find the month
+   that the financial record belongs to;
+
+if () then ([found matching month])
+
+else ([else])
+    :Adds the month to the application
+    with an empty financial record list;
+endif
+    :System attempts to add the
+    financial record to the month;
+
+if () then ([does not exceed monthly
+total expense upper limit])
+    :Adds the financial record to month;
+    if () then ([added financial record belongs
+    the current display month])
+    else ([else])
+        :Systems set currently display
+        month to the month that the added
+        financial record belongs to;
+    endif
+            :Newly added financial record
+              added and displayed on the
+               application successfully;
+else ([else])
+    :Denies the action and outputs
+    invalid command error;
+endif
+
+else ([else])
+    :Outputs invalid command
+             format error;
+endif
+
+stop
+@enduml
