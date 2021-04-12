@@ -24,7 +24,7 @@ activate AddCommand
 AddCommand --> ImposterParser
 deactivate AddCommand
 
-ImposterParser --> LogicManager : u
+ImposterParser --> LogicManager : a 
 deactivate ImposterParser
 
 LogicManager -> AddCommand : execute()

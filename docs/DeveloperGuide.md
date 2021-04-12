@@ -84,7 +84,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
   <img width="500px" src="images/ArchitectureSequenceDiagramRemove.png" >
 </p>
 
-The sections below give more details of each component.
+The sections on the next few pages will give more details of each component.
 
 <div style="page-break-after: always;"></div>
 
@@ -210,7 +210,7 @@ An `Endpoint` contains the following attributes:
 * `Data` represents the data that is to be sent to the server when an API request is made
 * `Data` can be empty, as some API calls do not send any data to the server
 * Before an API call is made, the `Response` object will be empty
-* Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
+* Only when a `Request#executeTimed(request)` is called will a `Response` contain information about the API call response
 
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
@@ -239,7 +239,7 @@ Upon the users entry of the endpoint, the `AddCommand` object is created. `AddCo
 
 Given below is an example usage scenario and how the add command behaves at each step.
 
-Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint.
+Step 1. The user launches the application and executes `add -x get -u google.com` to save an endpoint.
 
 Step 2. The endpoint is added to the model.
 
@@ -266,9 +266,9 @@ Upon the users entry of the find keyword, the parser will check if prefixes have
 
 Given below is an example usage scenario and how the find command behaves at each step.
 
-Step 1. The user launches the application and executes `find -x get -u https://localhost:3000` to find an endpoint.
+Step 1. The user launches the application and executes `find -x get -u google.com` to find an endpoint.
 
-Step 2. The find command will check and see if there are any endpoints that contain the method `get` and the address `https://localhost:3000` using the `Model#updateFilteredEndpointList` method.
+Step 2. The find command will check and see if there are any endpoints that contain the method `get` and the address `google.com` using the `Model#updateFilteredEndpointList` method.
 
 Step 3. `Model#updateFilteredEndpointList` will be called and model will be updated.
 
@@ -277,11 +277,24 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a find command:
+The following activity diagram summarizes what happens when a user executes a valid find command:
 
 <p align="center">
   <img width="430px" src="images/FindActivityDiagram.png" >
 </p>
+
+#### Design consideration:
+
+##### Aspect: How find executes
+
+* **Alternative 1 (current choice):** The `find` checks for keywords in the prefix fields, if there are no prefixes present, it will perform a general search using a `EndPointContainsKeywordsPredicate` which looks through all fields in endpoint. Else the method, `ArgumentMultimap#arePrefixesPresent` will check and return a new predicate for each value after each prefix if it is present and then generate a keyword predicate that will match values in that field. Each predicate uses a partial keyword search hence, the user does not need to type in the full word for any find searches.
+  * Pros: By abstracting out the `Predicate` method and encapsulating the validation, these predicates can be used elsewhere if needed to match endpoints.
+  * Cons: An extra layer of abstraction may make it harder to make quick changes if new prefixes are added.
+
+* **Alternative 2:** Directly check for the validity of the endpoints in the find command parser without going through a predicate.
+  * Pros: Developers will have an easier time understanding the code and how find command works, since all of the code will be kept in find command, making changes will be easier.
+  * Cons: Duplication of code may occur and bad coding practices may arise due to lack of abstraction.
+
 
 <div style="page-break-after: always;"></div>
 
@@ -439,8 +452,7 @@ The following sequence diagram shows how the toggle command works for the above 
   <img src="images/ToggleSequenceDiagram.png" >
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ToggleCommand`, `ToggleCommandParser` and `CommandResult` should end 
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ToggleCommand`, `ToggleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ---
@@ -526,7 +538,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests for help with using the application
-2.  User enters `help` command into command box
+2.  User enters `help` command
 3.  imPoster returns a help page with links and command summary for the user
 
     Use case ends.
@@ -590,7 +602,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to add an API endpoint
-2.  User enters `add` command into command box
+2.  User enters `add` command
 3.  imPoster saves the API endpoint to the API endpoint list
 
     Use case ends.
@@ -609,14 +621,14 @@ the `user`, unless specified otherwise)
 
   - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 **Use case E02 - Edit an API endpoint**
 
 **MSS**
 
 1.  User requests to edit an API endpoint
-2.  User enters `edit` command into command box
+2.  User enters `edit` command
 3.  imPoster edits the API endpoint and updates the API endpoint list
 
     Use case ends.
@@ -633,7 +645,7 @@ the `user`, unless specified otherwise)
 
   - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
 
-    Use case resumes at step 1.
+    Use case resumes at step 2.
 
 - 2c. The given index is invalid
 
@@ -641,17 +653,18 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case E03 - Remove an API endpoint**
 
 **MSS**
 
 1.  User requests to remove an API endpoint
-2.  User enters `remove` command into command box
+2.  User enters `remove` command
 3.  imPoster removes the API endpoint and updates the API endpoint list
 
     Use case ends.
 
-<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -672,7 +685,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to find a saved API endpoint
-2.  User enters `find` command into command box
+2.  User enters `find` command
 3.  imPoster searches the existing records
 4.  imPoster returns a list of matching API endpoints
 
@@ -692,17 +705,17 @@ the `user`, unless specified otherwise)
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case E05 - List all saved API endpoints**
 
 **MSS**
 
 1.  User requests to view all saved API endpoints
-2.  User enters `list` command into command box
+2.  User enters `list` command
 3.  imPoster displays all existing records
 
     Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -723,7 +736,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to clear all saved API endpoints
-2.  User enters `clear` command into command box
+2.  User enters `clear` command
 3.  imPoster clears all existing records
 
     Use case ends.
@@ -736,19 +749,19 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case E07 - Call a saved API endpoint**
 
 **MSS**
 
 1.  User requests to call a saved API endpoint
-2.  User enters `send` command into command box
+2.  User enters `send` command
 3.  imPoster makes a call to the desired API endpoint
 4.  API call is successful and response is shown to the user
 5.  imPoster saves the response to a file that the user can view
 
     Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -764,22 +777,14 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-- 3a. imPoster receives a status code indicating an error
-
-  - 3a1. imPoster forwards and shows the error message (from the server, if any)
-    to the user
-
-    Use case resumes at step 1.
-
 **Use case E08 - Call an API endpoint directly without saving**
 
 **MSS**
 
 1.  User requests to call a saved API endpoint
-2.  User enters `run` command into command box
+2.  User enters `run` command
 3.  imPoster makes a call to the desired API endpoint
 4.  API call is successful and response is shown to the user
-5.  imPoster saves the response to a file that the user can view
 
     Use case ends.
 
@@ -790,13 +795,6 @@ the `user`, unless specified otherwise)
   - 2a1. imPoster shows an error message to the user
 
     Use case resumes at step 2.
-
-- 3a. imPoster receives a status code indicating an error
-
-  - 3a1. imPoster forwards and shows the error message (from the server, if any)
-    to the user
-
-    Use case resumes at step 1.
 
 <div style="page-break-after: always;"></div>
 
@@ -825,7 +823,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to view the details of a saved API endpoint
-2.  User enters `show` command into command box
+2.  User enters `show` command
 3.  imPoster shows the details of the API endpoint
 
     Use case ends.
@@ -872,13 +870,13 @@ the `user`, unless specified otherwise)
 | -------------------------------------------- | --------------------------------------------------------- |
 | **Mainstream OS** | <a name="glossary-OS"></a> Windows, Linux, Unix, OS-X  |
 | **API** | <a name="glossary-api"></a> API is short for **Application Programming Interface** and allows two systems to interact with each other  |
-| **Call** | <a name="glossary-call"></a> A call to an API endpoint refers to the process of sending a [request to the server and then receiving a response](#83-what-are-requests-and-responses)          |
+| **Call** | <a name="glossary-call"></a> A call to an API endpoint refers to the process of sending a request to the server and then receiving a response          |
 | **Endpoint** | <a name="glossary-endpoint"></a> The communication point of a system that allows it to interact with another system, commonly accessed through a URL |
-| **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#84-request-methods) (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
-| **Response** | The information obtained from an endpoint after a request is sent to it (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
+| **Request** | A process in which information is sent out to an endpoint through one of the request methods |
+| **Response** | The information obtained from an endpoint after a request is sent to it |
 | **Parameter**   | Information passed in as part of a command with its type identified by a prefix (e.g. `METHOD`) |
 | **Prefix**   | Characters used to identify the following parameter (e.g. `-x` is the prefix for the parameter `METHOD`) |
-| **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
+| **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage  |
 | **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
 | **Postman** | <a name="glossary-postman"></a> An existing API client for developers. See more [here](https://www.postman.com/) |
 
@@ -934,26 +932,6 @@ Given below are instructions to test the app manually.
    
    1. With the app still open, enter `exit` in the command box or click on the close window button.<br>
       Expected: App closes.
-
-### Show an endpoint
-
-1. Show the details of a selected endpoint from the endpoint list in the result display
-
-   1. Prerequisites: There exists at least one (but less than 100) endpoints in the endpoint list.
-
-   1. Test case: `show 1`<br>
-      Expected: Details of the first endpoint in the endpoint list is shown in the result display.
-
-   1. Test case: `show`<br>
-      Expected: Error details shown in the result display, with a result message saying `Invalid command format!...`.
-
-   1. Test case: `show 0`<br>
-      Expected: Error details shown in the result display, with a result message saying `An index must be specified...`. <br>
-      Other incorrect show commands to try: `show -1`, `show one`
-
-   1. Test case: `show 100`<br>
-      Expected: Error details shown in the result display, with a result message saying `Index provided is not within...`. <br>
-      Other incorrect remove commands to try: `show 101`,`show 999`
 
 ### Add an endpoint
 
@@ -1028,6 +1006,26 @@ Given below are instructions to test the app manually.
 
    1. Test case: `edit 1 -h abc` <br>
       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...`
+
+### Show an endpoint
+
+1. Show the details of a selected endpoint from the endpoint list in the result display
+
+   1. Prerequisites: There exists at least one (but less than 100) endpoints in the endpoint list.
+
+   1. Test case: `show 1`<br>
+      Expected: Details of the first endpoint in the endpoint list is shown in the result display.
+
+   1. Test case: `show`<br>
+      Expected: Error details shown in the result display, with a result message saying `Invalid command format!...`.
+
+   1. Test case: `show 0`<br>
+      Expected: Error details shown in the result display, with a result message saying `An index must be specified...`. <br>
+      Other incorrect show commands to try: `show -1`, `show one`
+
+   1. Test case: `show 100`<br>
+      Expected: Error details shown in the result display, with a result message saying `Index provided is not within...`. <br>
+      Other incorrect remove commands to try: `show 101`,`show 999`
 
 ### Find an endpoint
 
@@ -1259,12 +1257,12 @@ Given below are instructions to test the app manually.
 
 | Features | AB3    | imPoster |
 | -------- | ------ | -------- |
-| Effort   | 10     | 20       |
-| Lines of Code | 6k | 15k     |
+| Effort   | 10     | 23       |
+| Lines of Code | 6k | 14k     |
 
 **Logic**
 
-The Logic of imPoster was evolved to become more complex than that of the original address book. While for the address book, its core functionality focused on adding and maintaining of contacts, imPoster took it a step further by requiring support for the sending and receiving of requests and responses.
+The Logic of imPoster was evolved to become more complex than that of the original address book. While for the AB3, its core functionality focused on adding and maintaining of contacts, imPoster took it a step further by requiring support for the sending and receiving of requests and responses.
 
 As such, to provide for this new functionality, on top of refactoring the `Person` model into an `Endpoint`, the logic for calling an endpoint also had to be written from scratch. As there were numerous approaches that can be taken to include this logic, experimenting to find the best approach turned out to be a long process that took significant time and effort as we also had to look out for possible issues that may arise from regressions.
 
@@ -1272,9 +1270,9 @@ Eventually, we settled with an implementation that involved having to make an AP
 
 The implementation of this request feature is also done in an OOP fashion, where the request logic is abstracted out in a `Request` class and then inherited by subclasses which represent the different HTTP request methods.
 
-**Ui**
+**UI**
 
-The Ui of imPoster was evolved to be slightly more complex than that of the original address book. This is because due to the nature of our application (which involved the receiving of API responses), we needed a much larger result display that was able to show more information.
+The UI of imPoster was evolved to be slightly more complex than that of the original address book. This is because due to the nature of our application (which involved the receiving of API responses), we needed a much larger result display that was able to show more information.
 
 As none of our team members had any experience with JavaFX prior to this module, tampering around with the Ui required significant effort. The Ui also had to be frequently revisited as we continued with other aspects of implementation for our project. For example, when the request feature was being worked on, a GIF had to be shown to the user to indicate an API call in-progress, along with a GIF that accompanied error messages. On top of that, additional prettifying of JSON responses also had to be done for information to be shown neatly to the users. To prevent cluttering of the result display, several information were also chosen to be displayed as smaller neat tags at the top of the result display panel.
 
