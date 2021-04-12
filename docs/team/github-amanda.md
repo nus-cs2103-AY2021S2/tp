@@ -17,8 +17,8 @@ Given below are my contributions to the project:
 * **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=github-amanda&tabRepo=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
   
 * **Refactoring**:
-    * Refactored `Phone` to `Quantity`. (Pull request [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
-    * Made changes to common variable names. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
+    * Refactored `Phone` to `Quantity` (Pull request [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
+    * Made changes to common variable names (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
 
 * **Enhancements to Existing Features**:
     * Modified `sort` to sort items in order of ascending and descending quantities and added tests (Pull request [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113))
