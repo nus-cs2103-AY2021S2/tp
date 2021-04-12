@@ -80,9 +80,9 @@ This document entails my contributions to the NuFash project.
     * Added target user profile and value proposition under product scope section.
       [\#17](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/17)
     * Added documentation for the `match` command.
-      [\#74](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/74)
-      [\#173](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/173)
-      [\#176](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/176)
+      [\#74](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/74),
+      [\#173](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/173),
+      [\#176](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/176),
       [\#178](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/178)
 <br><br>
 * **Community:**
