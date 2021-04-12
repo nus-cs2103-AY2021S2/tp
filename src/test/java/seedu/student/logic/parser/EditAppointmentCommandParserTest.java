@@ -64,7 +64,7 @@ class EditAppointmentCommandParserTest {
         assertParseFailure(parser, INVALID_MATRIC_DESC + DATE_DESC_BOB_APPOINTMENT
                         + START_TIME_DESC_BOB_APPOINTMENT,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        EditAppointmentCommand.MESSAGE_USAGE));
+                        MatriculationNumber.MESSAGE_CONSTRAINTS));
     }
 
 }
