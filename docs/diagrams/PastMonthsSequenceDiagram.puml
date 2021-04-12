@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+box BudgetBabyLogic LOGIC_COLOR_T1
+participant ":Statistics" as Statistics LOGIC_COLOR
+end box
+
+box BudgetBabyModel MODEL_COLOR_T1
+participant ":BudgetBabyModelManager" as BudgetBabyModelManager MODEL_COLOR
+participant ":VersionedBudgetTracker" as VersionedBudgetTracker MODEL_COLOR
+end box
+
+[-> Statistics : getPastMonthStatistics()
+activate Statistics
+Statistics -> Statistics : getPastMonths()
+
+Statistics -> BudgetBabyModelManager : getFullMonthList()
+activate BudgetBabyModelManager
+BudgetBabyModelManager --> Statistics
+deactivate BudgetBabyModelManager
+
+Statistics -> Statistics : fillMonths()
+    loop 6 times
+        Statistics -> BudgetBabyModelManager: findMonth(month)
+        activate BudgetBabyModelManager
+        BudgetBabyModelManager -> VersionedBudgetTracker : findMonth(month)
+        activate VersionedBudgetTracker
+        VersionedBudgetTracker --> BudgetBabyModelManager
+        deactivate VersionedBudgetTracker
+        BudgetBabyModelManager --> Statistics
+        deactivate BudgetBabyModelManager
+    end
+
+[<--Statistics
+deactivate Statistics
+@enduml
