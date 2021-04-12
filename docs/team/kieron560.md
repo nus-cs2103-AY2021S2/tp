@@ -32,6 +32,7 @@ Given below are my contributions to the project:
   **Project Management:**
   
   - Managed release of `Focuris v1.3` on GitHub
+  - In charge of quality assurance by breaking the application with edge cases
 
 - **Documentation**:
 
@@ -45,6 +46,7 @@ Given below are my contributions to the project:
     - Added more content to the `Glossary` section.
     - Added diagram for the Architecture Sequence Diagram.
     - Revised and updated the content for the `UI Component ` section.
+    - Added content for the `Instructions for Manual Testing` section
 
 - **Community**:
   - PRs Reviewed: 8 (#12， #13， #14， #39，#62， #65， #79， #82)
