@@ -1,16 +1,20 @@
 @startuml
 !include style.puml
 
+skinparam ArrowFontSize 20
+skinparam ParticipantFontSize 20
+skinparam ActorFontSize 20
+
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Project" as project PROJECT_COLOR
 Participant ":GroupmateList" as groupmatelist GROUPMATELIST_COLOR
 
-user -[USER_COLOR]> ui : "updateG 1 n/Alice"
+user -[USER_COLOR]> ui : "updateG 1 i/1 n/Sylphiette Greyrat"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("updateG 1 n/Alice")
+ui -[UI_COLOR]> logic : execute("updateG 1 i/1 n/Sylphiette Greyrat")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> project : setGroupmate(targetIndex, editedGroupmate)

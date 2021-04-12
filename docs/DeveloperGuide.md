@@ -181,11 +181,11 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
 
-### Update Commands [Coming soon in v1.3]
+### Update Commands [Implemented in v1.3]
 
-CoLAB has several update commands for projects, events, deadlines, tasks and groupmates. They are used to edit details of entities that have already been created.
+CoLAB has several update commands for `Project`s, `Contact`s, `Event`s, `Deadline`s, `Todo`` and `Groupmate`s respectively. They are used to edit details of entities that have already been created.
 
-Below is a sequence diagram of how an `updateP` command is executed.
+Below is a sequence diagram of how an `updateP` (update project) command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
 
@@ -199,11 +199,11 @@ Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it
 
 Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
 
-The other update commands require some more work because events, deadlines, tasks and groupmates are sub-components of a project. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
+The other commands for `Event`s, `Deadline`s, `Todo`` and `Groupmate`s require some more work because these are sub-components of a `Project`. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
 
-Step 1. The user types an update project command `updateG 1 n/Alice`.
+Step 1. The user types an update groupmate command `updateG 1 i/1 n/Sylphiette Greyrat`.
 
 Step 2. User input is passed to the `colabParser`, which creates a new `UpdateGroupmateCommand`.
 
