@@ -68,7 +68,7 @@ public class VenueCard extends UiPart<Region> {
         description.setText(String.valueOf(venue.getDescription()));
         venue.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new TagLabel(tag)));
     }
 
     @Override

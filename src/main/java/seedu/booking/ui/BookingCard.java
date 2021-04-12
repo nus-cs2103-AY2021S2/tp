@@ -76,7 +76,7 @@ public class BookingCard extends UiPart<Region> {
         description.setText(booking.getDescription().value);
         booking.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new TagLabel(tag)));
     }
 
     @Override

@@ -22,6 +22,9 @@ import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.logic.Logic;
 import seedu.booking.logic.commands.CommandResult;
 import seedu.booking.logic.commands.CommandShowType;
+import seedu.booking.logic.commands.ListBookingCommand;
+import seedu.booking.logic.commands.ListPersonCommand;
+import seedu.booking.logic.commands.ListVenueCommand;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.Booking;
@@ -264,13 +267,44 @@ public class MainWindow extends UiPart<Stage> {
                 ((listSize == 1) ? " Listing" : " Listings"));
     }
 
+    private void handleList(String command) {
+        try {
+            displayList(executeCommand(command));
+        } catch (CommandException | ParseException e) {
+            logger.info("Something went wrong while executing menu command: " + command);
+        }
+    }
+
+    /**
+     * Lists all persons when menu item is clicked
+     */
+    @FXML
+    private void handleListPersons() {
+        handleList(ListPersonCommand.COMMAND_WORD);
+    }
+
+    /**
+     * Lists all venues when menu item is clicked
+     */
+    @FXML
+    private void handleListVenues() {
+        handleList(ListVenueCommand.COMMAND_WORD);
+    }
+
+    /**
+     * Lists all bookings when menu item is clicked
+     */
+    @FXML
+    private void handleListBookings() {
+        handleList(ListBookingCommand.COMMAND_WORD);
+    }
+
     /**
      * Executes the command and returns the result.
      *
      * @see seedu.booking.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

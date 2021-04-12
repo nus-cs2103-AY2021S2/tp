@@ -33,6 +33,15 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Persons">
+            <MenuItem fx:id="personsMenuItem" mnemonicParsing="false" onAction="#handleListPersons" text="List" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Venues">
+            <MenuItem fx:id="venuesMenuItem" mnemonicParsing="false" onAction="#handleListVenues" text="List" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Bookings">
+            <MenuItem fx:id="bookingsMenuItem" mnemonicParsing="false" onAction="#handleListBookings" text="List" />
+          </Menu>
         </MenuBar>
 
         <HBox VBox.vgrow="ALWAYS">
