@@ -14,22 +14,22 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=hengyongming&tabRepo=AY2021S2-CS2103T-W14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **New Feature**: Added Sort Functionality:
-  * What it does: Allows users to sort the tasks in the tasklist.
-  * Justification: This feature makes it much easier for the user to view all the task sorted in ascending order from the earliest deadline.
-    Users can now prioritize their time accordingly.
+  * What it does: Allow user to sort the tasks in the tasklist.
+  * Justification: This feature makes it easier for the user to view all the tasks sorted in ascending date order.
+    User can now prioritize their time accordingly.
   * Highlights: The implementation involved some changes to existing logic and addition of commands and test cases.
   * Relevant PRs: [\#37](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/37)
 
 * **New Feature**: Added Tab Switching Functionality:
-  * What it does: Allows users to switch between different tabs. There are 4 commands: `home`, `expired`, `uncompleted`, `completed`
-  * Justification : A single panel to show all the task of a user  might be too cluttered. If tasks are separated into their 
-    individual status apart from the `home` tab, users can switch between different tabs to better visualize their tasks.
-    With this easy tab switching, there is no need for users to scroll through the entire list in the `home` just to 
+  * What it does: Allow user to switch between 4 different tabs. There are 4 commands: `home`, `expired`, `uncompleted`, `completed`
+  * Justification : A single panel to show all the tasks of a user might be too cluttered. If tasks are separated into their 
+    individual status apart from the `home` tab, user can switch between different tabs to better visualize their tasks.
+    With this easy tab switching functionality, there is no need for user to scroll through the entire list in the `home` tab just to 
     find a specific task.
   * Highlights:
     This enhancement required an in-depth analysis of design alternatives. A change to the `taskify` structure was also required
     The implementation was challenging as I had to loop through the tasklist and separate the tasks into their respective
-    tasklist. Depending on the different tasklist, different actions is required. I also have to integrate the tab 
+    tasklist. Depending on the different tasklist, different action is required. I also had to integrate the tab 
     switching logic into the UI component. This is important as it needs to update the GUI when a tab switching command is executed. 
   * Relevant PRs: [\#68](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/68), [\#84](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/84)
   * Bug fix： [\#82](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/82), [\#147](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/147),
@@ -37,13 +37,13 @@ Given below are my contributions to the project.
 
 * **Enhancement:** 
   * Enhancement 1:
-    * What it does: Users cannot edit the date and time of a task to the past.
-    * Justification: It doesn't make sense for user to input a date and time that have already past.
+    * What it does: User cannot edit the current date and time of a task to a past date and time.
+    * Justification: It doesn't make sense for user to input a date and time that have already passed.
       
   * Enhancement 2:
     * What it does: Initially, users cannot add a task with the same name into taskify. A task is considered duplicate if
       it's name, description and date and time is the same.
-    * Justification: User's task might have the same name but it's description and date and time might be different.
+    * Justification: User's task might have the same name, but it's description and date and time might be different.
       Therefore, it doesn't make sense if user cannot add that particular task. This provides more flexibility to the user.
   
 * **Morphing of AddressBook3:**
