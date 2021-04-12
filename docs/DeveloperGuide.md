@@ -61,7 +61,7 @@ exposes its functionality using the `LogicManager.java` class which implements t
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete Alex Yeoh`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -102,10 +102,10 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete ")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete Alex Yeoh` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -450,6 +450,23 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `find`
        Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Get previous command
+
+1. After entering a few commands, traverse back command history and get previous command.
+    1. Prerequisites: Entered multiple commands previously.
+
+    1. Test case: `/up`<br>
+       Expected: Previous command is found and reflected in command line input.
+
+   1. Test case: `/up/up/up`<br>
+      Expected: Previous command is found and reflected in command line input. 
+      <br> /up do not stack, can only can previous command
+   
+    1. Test case: `/down`<br>
+       Expected: Incorrect format. Error details shown in the status message. Status bar remains the same.
 
 1. _{ more test cases …​ }_
 
