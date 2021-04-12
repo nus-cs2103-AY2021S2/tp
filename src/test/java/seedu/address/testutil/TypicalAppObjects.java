@@ -235,7 +235,7 @@ public class TypicalAppObjects {
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(ALICE_DR_DRAKE, BENSON_DR_GREY, CARL_DR_WHO, DANIEL_DR_STRANGE, 
+        return new ArrayList<>(Arrays.asList(ALICE_DR_DRAKE, BENSON_DR_GREY, CARL_DR_WHO, DANIEL_DR_STRANGE,
                 ELLE_DR_JEKYLL, FIONA_DR_MURPHY, GEORGE_DR_DRAKE));
     }
 
