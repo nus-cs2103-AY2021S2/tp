@@ -28,7 +28,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
     private ObservableList<Item> itemList;
 
     @FXML
-    private Label labelid;
+    private Label labelId;
 
     @FXML
     private TableView<ExpiringItem> tableView;
@@ -63,7 +63,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        labelid.setText("Expiring Items");
+        labelId.setText("Expiring Items");
         numberOfDays.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
         numberOfItems.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("numberOfItems"));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -135,8 +135,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
                 LocalDate itemExpiryDate = item.getExpiryDate().expiryDate;
                 Long daysDifference = DAYS.between(today, itemExpiryDate);
                 return daysDifference == day;
-            }).map(item -> Integer.parseInt(item.getQuantity().toString()))
-                .reduce(0, (initialCount, quantity) -> initialCount + quantity);
+            }).count();
         }
 
         public String getDaysBeforeExpiry() {
