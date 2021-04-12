@@ -1,5 +1,6 @@
 ---
-layout: page title: Lim Junxue's Project Portfolio Page
+layout: page 
+title: Lim Junxue's Project Portfolio Page
 ---
 
 ## Project: PlanIT
