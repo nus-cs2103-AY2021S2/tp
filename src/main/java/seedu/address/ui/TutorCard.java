@@ -74,7 +74,7 @@ public class TutorCard extends UiPart<Region> {
         tutor.getSubjectList().asUnmodifiableObservableList().stream()
                 .filter(subject -> Objects.nonNull(subject))
                 .forEach(subject -> subjects.getChildren()
-                        .add(new Label(displaySubjectDetails(subject))));
+                        .add(getSubjectLabel(subject)));
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -83,6 +83,12 @@ public class TutorCard extends UiPart<Region> {
             tutorNotesField = new TutorNotesField(tutor.getNotes());
             notesPane.getChildren().add(tutorNotesField.getRoot());
         }
+    }
+
+    private Label getSubjectLabel(TutorSubject subject) {
+        Label subjectDetail = new Label(displaySubjectDetails(subject));
+        subjectDetail.setWrapText(true);
+        return subjectDetail;
     }
 
     private String displaySubjectDetails(TutorSubject subject) {
