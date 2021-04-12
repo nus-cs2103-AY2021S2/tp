@@ -19,7 +19,7 @@ public class DeadlineTest {
 
     private final String INVALID_DESCRIPTION_1 = "";
     private final String INVALID_DESCRIPTION_2 = " ";
-    
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         LocalDate validDate = LocalDate.of(2020, 1, 1);
