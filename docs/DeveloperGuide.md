@@ -6,10 +6,10 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
+
 
 <div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
 
@@ -39,6 +39,7 @@ for students to connect and learn together with their cohort mates.
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -91,6 +92,8 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -114,6 +117,9 @@ The `UI` component,
 * `DictionaryContentPanel` use` DictionaryListPanelConfig` to detect `DictionaryListPanel`display status
 * Model Component can request for content change using `DictionaryContentConfig` and `NoteContentConfig`
 
+
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -133,6 +139,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -175,6 +183,9 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.dictionote.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -224,6 +235,8 @@ In case the user does not have a mail client software set as default in their OS
     * Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
 
 
+<div style="page-break-after: always;"></div>
+
 #### Sorting the contacts list by most-frequently contacted
 
 ##### Implementation
@@ -258,6 +271,9 @@ As an example, consider running Dictionote as follows:
 * **Alternative 2:** create a `HashTable` to store a mapping between the contacts and the number of attempts to send an email of which they were the recipients.
     * Pros: Zero modifications on the `Contact` class; `Contact` objects will not contain any attributes required by this feature.
     * Cons: Difficult to integrate with the other classes and methods related to `Contact` objects (e.g., deletion of a contact from the list must propagate to the `HashTable`).
+
+
+<div style="page-break-after: always;"></div>
 
 ### UI features
 
@@ -295,6 +311,9 @@ The following is the sequence diagram for executing a command to open a panel.
     * Pros: Only the class that requires to change the UI will be needed to call the method.
     * Cons: Increasing coupling.
     
+    
+<div style="page-break-after: always;"></div>
+
 #### Command that manipulation UI settings
 
 #####  Implementation
@@ -334,6 +353,8 @@ and the note divider positions will be adjusted to the desired position
     * Cons: Increasing coupling.
 
 
+<div style="page-break-after: always;"></div>
+
 ### Note Features
 
 #### Converting a note into a .txt file
@@ -370,6 +391,8 @@ Here is the example of the command usage. Assume initially, the state of the app
     * Pros: Enable us to convert more than text files and have specific usage for our code.
     * Cons: Very hard to implement, not enough time and knowledge.
 
+<div style="page-break-after: always;"></div>
+
 #### Merge two notes into one
 
 Dictionote provides a method for its users to merge two notes into one combined note.
@@ -386,6 +409,9 @@ After typing in `mergenote 1 2` and executing it, the result would be:
 
 ![ConvertNoteToTxtEnd](images/MergeNoteAfter.png)
 
+
+<div style="page-break-after: always;"></div>
+
 #### Design Consideration
 
 * **Alternative 1 (current choice):** Implement MergeNoteCommand which extends Command.
@@ -395,6 +421,9 @@ After typing in `mergenote 1 2` and executing it, the result would be:
 * **Alternative 2:** Make MergeNoteCommand as a function from the model immediately.
     * Pros: Less Lines of Code and simpler due to not extending the Command class.
     * Cons: Might be confusing as some of the commands are already implented and might not be consistent with other commands.
+
+
+<div style="page-break-after: always;"></div>
 
 ### Dictionary features
 
@@ -415,6 +444,9 @@ The `execute()` method will facilitate the display of the new note in the note l
 The following is the sequence diagram for executing the `execute()` command in copying a content to a note.
 
 ![CopyToNote](images/CopyToNoteDiagram.png)
+
+
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration
 
@@ -512,6 +544,8 @@ The following is the sequence diagram for executing the `execute()` command in c
 | `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Essential  |
 | `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Essential  |
 
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -794,6 +828,10 @@ The following is the sequence diagram for executing the `execute()` command in c
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+
+
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
