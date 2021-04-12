@@ -388,6 +388,15 @@ The `help` feature primarily helps the user by showing a help guide whenever a u
 * The help guide also contains the link to our User Guide where users can copy the link from
  and visit for more information.
 
+Given below is an example usage scenario:
+
+Step 1. The user is unsure of what command to execute, or the syntax of the command to execute.
+
+Step 2. The user executes `help`, which opens up a help guide in a separate window. The user can copy the User Guide URL
+ and visit the URL for more information.
+
+Step 3. If the user input is invalid, an error message will be displayed in the command box. 
+
 An additional `HelpWindow` is opened when a user enters the `help` command in the Ui. 
 The command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute` calls `LogicManager#execute()` to parse the
 user input via `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
@@ -557,16 +566,17 @@ to use Commands typed by keyboard in an intuitive GUI to perform tasks quickly.
 ## **Appendix C: User stories**
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority| As a …​                                                           | I want to …​                                                        | So that I can…​                                                                    |
+| Priority| As a/an …​                                                           | I want to …​                                                        | So that I can…​                                                                    |
 | ------- | ---------------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
 | `* * *` | User wanting to add a review of food experience to a particular restaurant | Add a review of food experience                          | Refer back to the particular element that defined my food experience              |
 | `* * *` | User with little patience and time                               | Add names of places I have visited                                 | Efficiently add a review to a place I have visited                                |
 | `* *`   | User who wants to look at the places I have visited              | View the list of experiences I have had                            | Easily show them to my friends                                                    |
-| `* * *` | Student trying to decide where to eat                            | Look at the places i have visited before                           | Decide where I shall re-visit                                                     |
-| `* * *` | User who would like to create custom category of food place      | Add the category of the place                                      | I can have a specific view of certain places                                      |
+| `* * *` | User trying to decide where to eat                               | Look at the places i have visited before                           | Decide where I shall re-visit                                                        |
+| `* * *` | User who would like to create custom categories of food place    | Add the category of the place                                      | Have a specific view of certain places                                            |
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                                   | Reduce redundant food places in my list                                           |
-| `* * *` | User who wants to remember food ratings                          | Give a rating on the overall food experience                       | I can gauge/ballpark the satisfaction level I get against other food experiences  |
+| `* * *` | User who wants to remember food ratings                          | Give a rating on the overall food experience                       | Gauge/ballpark the satisfaction level I get against other food experiences        |
 | `* * *` | User who wants to read lengthy reviews of an entry               | Glance through reviews of an entry                                 | Quickly arrive at a conclusion for a food place                                   |
+| `*`     | User who wants to see what my friends think of a food place      | Glance through my friends' reviews of the entry of that place      | Decide if the food place is pleasant to eat at with my friends                    |
 | `* *`   | User frequently revisiting a place                               | Add multiple reviews to a single place                             | Store all my food experiences with the place                                      |
 | `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | Visit the best food places without overspending                                   |
 | `* *`   | User who wants identify a place he/she ate at previously by name | Find entries that match the name of the place I last visited       | Judge if I would like to go back to that place and eat there.                     |
