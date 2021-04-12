@@ -99,6 +99,7 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
+  * Click the **'OPEN URL'** button to open the full user guide.
 * If command is specified, detailed information about the command will be displayed.
 * If multiple commands are specified, only the last command will be taken.
 
@@ -135,14 +136,15 @@ Examples:
 
 Adds a contact to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add a contact with only some of the information, you can fill in the rest later on.
+You can add a contact with only some of the information, you can fill in the rest later on using
+the <a href="#editing-a-contact--edit">edit</a> command.
 </div>
 
 Examples:
@@ -155,8 +157,9 @@ Adds or replaces tags to the specified contact by index.
 
 Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
 
-* Tags the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list. 
-  The index must be a positive integer 1, 2, 3, …​
+* Tags the contact at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed contact list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Currently available options for the `[OPTION]` field include:
 * `replace` Replaces the currently existing tags with the given new set of tags 
@@ -176,11 +179,15 @@ Format: `list [o/OPTION]`
 Currently available options for the `[OPTION]` field include:
 * `fav` Shows list of favourited contacts in the address book
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To favourite a contact, use the <a href = "#favourite-a-contact--fav">fav</a> command.
+</div>
+
 Examples:
 * `list` List all contacts in the address book
 * `list o/fav` Lists all favourited contacts in the address book
 
-#### Editing a contact : `edit`
+#### Editing a contact : `edit` 
 
 Edits an existing contact in the address book.
 
@@ -192,10 +199,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * You can remove the optional fields (phone, email and address) by typing `p/`, `e/` or `a/` without specifying any phone, email or address after it.
-* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` or `tc/` without
-    specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
-  
+* You can remove all the contact’s tags by typing `t/` or `tc/` without specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative. For cumulative addition of tags,
+see the <a href = "#addingreplacing-tags-to-a-contact-tag">tag</a> command.
+</div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
@@ -204,8 +213,10 @@ Examples:
 
 #### Finding contacts: `find`
 
-Find contacts based on the given option. If no option specified, all of a contact's
-fields will be searched and any keyword matches in any one of the fields will return that contact.
+Find contacts based on the given option. 
+
+**If no options are specified**, all of a contact's
+fields will be searched and any keyword matches in any one of the fields will display that contact.
 
 Format: `find [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
@@ -216,19 +227,19 @@ Currently available options for the `[OPTION]` field include:
 * `email` Find by email of the contact
 * `tag` Find by tags of the contact (only exact tags will be matched)
 
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 When using the <code>tag</code> option <code>t/</code> needs to be placed in front of the tag 
 you are searching for. Also, please note that only exact matches will be returned for find by tag.<br>
-Example: find o/tag t/first t/second
+Example: <code>find o/tag t/first t/second</code>
 </div>
 
-* The search is case-insensitive. e.g `alex` will match `ALEX`
-* The order of the keywords does not matter. e.g. `john doe` will match `doe john`
-* Incomplete words will also be matched e.g. `Ale` will match `Alex`
+* The search is case-insensitive. e.g `alex` will match `ALEX`.
+* The order of the keywords does not matter. e.g. `john doe` will match `doe john`.
+* Incomplete words will also be matched e.g. `Ale` will match `Alex`.
 * Contacts with any field matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Alex David` will return `Alex Yeoh`, `David Li`
-* If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
-  e.g. when 0 results are found, "0 Contact(s) listed!" is displayed
+  e.g. `Alex David` will return `Alex Yeoh`, `David Li`.
+* If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed.
+  e.g. when 0 results are found, "0 Contact(s) listed!" is displayed.
   
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -252,7 +263,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Contacts that are involved with appointments cannot be deleted.
 </div>
 
@@ -306,7 +317,7 @@ When a contact is unfavourited, the star will turn empty.
 
 Clears all entries from the address book or clears all contacts with the specified tags.
 
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The tags here do not differentiate between ChildTags and regular Tags. 
 This command will delete all entries that match **ANY** of the given tags.
 </div>
@@ -331,18 +342,18 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]�
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 An appointment with the exact same name and date as an appointment that already exists in the appointment book cannot be added.
 </div>
 
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
 </div>
 
 Examples:
 * `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
 
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 You cannot add an appointment which has the same name, date, time and address as an existing appointment.
 </div>
 
@@ -454,11 +465,11 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: What's the difference between a Child Tag and a Tag? <br>
+**Q**: What's the difference between a ChildTag and a regular Tag? <br>
 **A**: Child Tags are meant to represent your children, useful especially 
-if you have multiple children. Child Tags will always appear at the front of the list of Tags
-in the Address Book and are displayed in a different color to differentiate them. Any command
-that works with regular tags such as 'Find' will also work with Child Tags.
+if you have multiple children. ChildTags will always appear at the front of the list of Tags
+for each Contact and are displayed in a different color to differentiate them. Any command
+that works with regular tags such as 'Find' will also work with ChildTags.
 
 --------------------------------------------------------------------------------------------------------------------
 
