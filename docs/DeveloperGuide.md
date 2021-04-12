@@ -860,7 +860,9 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1` <br>
        Expected: similar to previous test case.
-       
+
+<div style="page-break-after: always;"></div>
+
 ### Marking a Task as completed
 
 1. Marking a task as completed
@@ -912,6 +914,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `viewUncompletedTasks`<br>
       Expected: Lists all tasks that are uncompleted within the HEY MATEz.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding Tasks by priority
 
@@ -966,6 +970,8 @@ testers are expected to do more *exploratory* testing.
       
    1. Test case: `findTasksFor`
       Expected: Error message displayed in the status bar.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding Tasks by keywords
 
