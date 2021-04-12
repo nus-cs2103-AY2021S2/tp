@@ -167,7 +167,7 @@ Edits an existing person in the booking system.
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 * Edits the person with the specified `EMAIL` indicated in `eo/EMAIL` (case-insensitive).  
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person.
-* It is allowed that the provided field(s) match the data in the existing field(s) of a specified person.
+* It is allowed that the provided field(s) match the data in the corresponding existing field(s) of the specified person.
 
 Example:
 * `edit_person eo/amy@example.com p/83984029 n/Jane` edits the person who currently has the email `amy@example.com`. The person's phone number is edited to `83984029` and name is edited to `Jane`.
@@ -233,11 +233,11 @@ Edits an existing venue in the booking system.
 Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESCRIPTION] [t/TAG]`
 * Edits the venue with the specified `VENUE_NAME` indicated in `vo/VENUE_NAME`(case-insensitive).
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified venue.
-* It is allowed that the provided field(s) match the data in the existing field(s) of a specified venue.
+* It is allowed that the provided field(s) match the data in the corresponding existing field(s) of the specified venue.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
-* `edit_venue vo/Lab max/30 d/Used for experiments` edits the venue that currently has the venue name `Lab`. The venue's maximum capacity is edited to `30`.
+* `edit_venue vo/Lab max/30` edits the venue that currently has the venue name `Lab`. The venue's maximum capacity is edited to `30`.
 * `edit_venue vo/Victoria Hall d/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description, if any, is made empty.  
 
 
@@ -275,7 +275,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: About venues:**<br>
+**:information_source: About bookings:**<br>
 
 * BookCoin stores information about bookings for scheduling/ contacting purposes. 
 * Bookings are identified by their indexes, hence all indexes between bookings must be unique.
@@ -296,14 +296,10 @@ Format: `add_booking`
 Edits an existing booking in the booking system.
 
 Format: `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
-* Edits the venue with the specified `INDEX`.
+* Edits the booking at the specified `INDEX`.
 * At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified booking.
-* It is allowed that the provided field(s) match the data in the existing field(s) of a specified booking.
+* It is allowed that the provided field(s) match the data in the corresponding existing field(s) of the specified booking.
 * The provision of an empty `DESCRIPTION` field is accepted.
-
-Examples:
-* `edit_venue vo/Lab max/30 d/Used for experiments` edits the venue that currently has the venue name `Lab`. The venue's maximum capacity is edit to `30`.
-* `edit_venue vo/Victoria Hall d/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description, if any, is made empty.
 
 Examples:
 * `edit_booking 1 b/janetan@gmail.com` edits the booking that currently has an index of `1`. The email of the booker belonging to this booking is edited to `janetan@gmail.com`.
@@ -316,7 +312,7 @@ Format: `delete_booking INDEX`
 * Deletes the booking at the specified `INDEX`.
 
 Example:
-* `delete_booking 1` deletes the booking at index `1`
+* `delete_booking 1` deletes the booking at index `1`.
 
 #### 3.5.4. Listing all bookings : `list_booking`
 
@@ -367,12 +363,12 @@ Action | Format, Example
 **add person** | `add_person n/NAME` <br> (Note: add_person is a multi-step command)
 **delete person** | `delete_person e/EMAIL` <br> e.g. `delete_person e/jane@gmail.com`
 **edit person** | `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]` <br> e.g., `edit_person eo/jane@example.com p/94857267`
-**find person** | `find_person e/EMAIL` <br> e.g., `find_person e/jane@example.com` 
+**find person** | `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]` <br> e.g., `find_person e/jane@example.com` 
 **list person** | `list_person`
 **add venue** | `add_venue v/VENUE_NAME` <br> (Note: add_venue is a multi-step command)
 **delete venue** | `delete_venue v/VENUE_NAME` <br> e.g. `delete_venue v/Field`
 **edit venue** | `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]` <br> e.g., `edit_venue vo/Field v/Sports Field`
-**find venue** | `find_venue v/VENUE_NAME` <br> e.g., `find_venue v/Field`
+**find venue** | `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]` <br> e.g., `find_venue v/Field`
 **list venue** | `list_venue`
 **add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
 **delete booking** | `delete_booking INDEX` <br> e.g. `delete_booking 1`
