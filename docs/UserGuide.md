@@ -202,8 +202,7 @@ Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 Examples:
 *  `edit 1 set/10/10/2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
    `10/10/2021` and `Remember to update User Guide` respectively.
-*  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
-   and the date.
+*  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook`.
    
 ### Postpone a task's date : `snooze` ----- Max
 
