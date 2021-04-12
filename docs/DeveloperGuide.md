@@ -5,10 +5,10 @@ title: Developer Guide
 
 <p align="center">
   <img src="images/dietlah-slim.png" alt="DietLAH!">
+
 </p>
-
-# Developer Guide
-
+<center><h1>Developer Guide</h1></center>
+<div style="page-break-after: always;"></div>
 ## Table of Contents
 
 <!--ts-->
@@ -48,6 +48,7 @@ title: Developer Guide
 <!--te-->
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -67,6 +68,8 @@ Legend | Description
 <span class="alert alert-inline alert-tip">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
 <span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
 <span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
+
+<div style="page-break-after: always;"></div>
 
 ## Design
 
@@ -173,10 +176,10 @@ The FoodIntakeList and FoodList objects are separated from the User object, even
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -646,7 +649,7 @@ The formula takes into account the individual's weight, height, age and sex.
 For men, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) + 5**
 <br/>
 For women, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) - 161**
-
+<div style="page-break-after: always;"></div>
 ### Product Scope
 
 **Target user profile**
@@ -656,7 +659,7 @@ For women, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) 
   * is comfortable with command-line interface
 
 **Value proposition**: quickly input daily food intake and calculate their macronutrients to check if diet plan is progressing as planned
-
+<div style="page-break-after: always;"></div>
 ### User Stories
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
@@ -810,6 +813,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 Frankenfield, D., Roth-Yousey L. & Compher C. (2005). Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review. *Journal of the American Dietetic Association*, 105(5), 775-89. doi: 10.1016/j.jada.2005.02.005.
 
+<div style="page-break-after: always;"></div>
 ## **Appendix: Instructions for Manual Testing**
 
 Included in this section are some basic instructions developers may make use of to test features implemented in the app.
@@ -949,7 +953,7 @@ Included in this section are some basic instructions developers may make use of 
 
     1. Test case: `help`<br>
        Result: The initial launch message is printed.
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Effort**
 
 If AB3 required an implementation effort of 10, DietLAH!'s implementation effort is 18.

@@ -7,8 +7,8 @@ title: User Guide
   <img src="images/dietlah-slim.png" alt="DietLAH!">
 </p>
 
-# User Guide
-
+<center><h1>User Guide</h1></center>
+<div style="page-break-after: always;"></div>
 ## Table of Contents
 
 <!--ts-->
@@ -58,7 +58,7 @@ title: User Guide
     * [A1.5 High Carbohydrates Bulk](#a15-high-carbohydrates-bulk)
     * [A1.6 Balanced Plan](#a16-balanced-plan)
 <!--te-->
-
+<div style="page-break-after: always;"></div>
 ---
 
 ## Introduction
@@ -81,6 +81,8 @@ Legend | Description
 <span class="alert alert-inline alert-tip">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
 <span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
 <span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -133,7 +135,7 @@ yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## Features
 
 ---
@@ -171,7 +173,7 @@ You can view your information and associated health risks (if any), at any time 
 
 ### 1.3 Update user information
 
-From time to time, we may have lost or gained weight following our diet plan. This allows you to update your information to reflect those changes.
+From time to time, you may have lost or gained weight following your diet plan. This allows you to update your information to reflect those changes.
 
 **Command Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`  
 **Example:** `bmi_update g/M a/43 h/170 w/70 i/80`  
@@ -180,6 +182,8 @@ From time to time, we may have lost or gained weight following our diet plan. Th
 <p align="center">
   <img src="images/user-guide/update-bmi-result.png">
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ## 2. Diet Plan Selector
 
@@ -240,6 +244,8 @@ Interested in trying out a diet plan? Find out more about its daily nutritional 
   <img src="images/user-guide/plan-info-result.png">
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Macronutrients Tracker
 
 ### 3.1 Add food item
@@ -279,6 +285,8 @@ Update food items in your food list with new nutrition values.
 <p align="center">
   <img src="images/user-guide/update-food-item-result.png">
 </p>
+
+
 
 ### 3.3 List food item
 
@@ -437,6 +445,8 @@ View the list of food intakes over a period of days (both inclusive).
   <img src="images/user-guide/query-food-intake-period.png">
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ## 4. Progress report
 
 ### 4.1 Generate progress report
@@ -454,6 +464,8 @@ Generates a progress report based on your current active diet plan. Your food in
 <p align="center">
   <img src="images/user-guide/progress-report.png">
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Miscellaneous
 
@@ -486,7 +498,7 @@ Closes the application.
 **Command Format:** `exit`
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## Command summary
 
 Action | Format, Examples
@@ -515,6 +527,8 @@ Action | Format, Examples
 **Populate application with sample template data** | `reset t/template`
 **Exit the application** | `exit`
 
+<div style="page-break-after: always;"></div>
+
 ---
 
 ## Glossary
@@ -532,6 +546,8 @@ Health Terms | Meaning
 -------------|---------
 **Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height.
 **Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
+
+<div style="page-break-after: always;"></div>
 
 ---
 
