@@ -29,8 +29,8 @@ public class GradedItemTest {
         assertFalse(GradedItem.isValidGradedItem(" ")); // spaces only
         assertFalse(GradedItem.isValidGradedItem("^")); // only non-alphanumeric characters
         assertFalse(GradedItem.isValidGradedItem("final*")); // contains non-alphanumeric characters
-        // max number of characters is 29 but 30 here
-        assertFalse(GradedItem.isValidGradedItem("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+        // max number of characters is 25 but 26 here
+        assertFalse(GradedItem.isValidGradedItem("aaaaaaaaaaaaaaaaaaaaaaaaaa"));
 
         // valid graded item
         assertTrue(GradedItem.isValidGradedItem("final exam")); // alphabets only
@@ -38,6 +38,6 @@ public class GradedItemTest {
         assertTrue(GradedItem.isValidGradedItem("2nd lab")); // alphanumeric characters
         assertTrue(GradedItem.isValidGradedItem("Capital Final")); // with capital letters
         assertTrue(GradedItem.isValidGradedItem("GCE O Level Maths Paper 1")); // long names
-        assertTrue(GradedItem.isValidGradedItem("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")); // contains 29 characters
+        assertTrue(GradedItem.isValidGradedItem("aaaaaaaaaaaaaaaaaaaaaaaaa")); // contains 25 characters
     }
 }

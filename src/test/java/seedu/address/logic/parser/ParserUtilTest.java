@@ -58,7 +58,7 @@ public class ParserUtilTest {
     private static final String INVALID_SUBJECT_IN_GRADE = "Maths&*^";
     private static final String INVALID_LONG_SUBJECT_NAME = "charactersmorethantwenty";
     private static final String INVALID_GRADED_ITEM = "Midterm&"; // '&' not allowed in graded items
-    private static final String INVALID_LONG_GRADED_ITEM = "charactersmorethantwentynine29";
+    private static final String INVALID_LONG_GRADED_ITEM = "charactersmorethannnnnnn25";
     private static final String INVALID_GRADE = "A-"; // '-' not allowed in grade
 
     private static final String VALID_SUBJECT_NAME = "Mathematics";
