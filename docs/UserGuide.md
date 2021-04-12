@@ -46,6 +46,14 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 ## Understanding ParentPal
 
+### Interface of ParentPal 
+ParentPal makes it easy for you to manage your contacts and appointments with a command. 
+
+Enter the command in the command box, a success message will be displayed when the action has been executed successfully.
+Otherwise, an error will be displayed.
+
+![ParentPalExplanation](images/ParentPalExplanation.png)
+
 ### Expired appointments
 ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
 
@@ -119,9 +127,11 @@ Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
-Currently available options for the [OPTION] field include: 
+Currently available options for the `[OPTION]` field include: 
 * `light` Light theme
+  ![LightTheme](images/lightTheme.png)
 * `dark` Dark theme
+  ![DarkTheme](images/Ui.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ParentPal's theme is set to dark by default.
