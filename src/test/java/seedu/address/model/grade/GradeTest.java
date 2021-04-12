@@ -17,10 +17,10 @@ public class GradeTest {
 
     @Test
     public void isValidSubject() {
-        // null graded item
-        assertThrows(NullPointerException.class, () -> GradedItem.isValidGradedItem(null));
+        // null subject
+        assertThrows(NullPointerException.class, () -> Grade.isValidSubject(null));
 
-        // invalid graded item
+        // invalid subject
         assertFalse(Grade.isValidSubject("")); // empty string
         assertFalse(Grade.isValidSubject(" ")); // spaces only
         assertFalse(Grade.isValidSubject("^")); // only non-alphanumeric characters
@@ -28,7 +28,7 @@ public class GradeTest {
         // max number of characters is 20 but 21 here
         assertFalse(Grade.isValidSubject("aaaaaaaaaaaaaaaaaaaaa"));
 
-        // valid graded item
+        // valid subject
         assertTrue(Grade.isValidSubject("mathematics")); // alphabets only
         assertTrue(Grade.isValidSubject("12345")); // numbers only
         assertTrue(Grade.isValidSubject("sec3 maths")); // alphanumeric characters

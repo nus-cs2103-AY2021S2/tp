@@ -26,9 +26,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
-import seedu.address.model.subject.SubjectName;
 import seedu.address.testutil.EditGradeDescriptorBuilder;
 
 public class EditGradeCommandParserTest {
@@ -68,7 +68,7 @@ public class EditGradeCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_SUBJECT_DESC,
-                SubjectName.MESSAGE_CONSTRAINTS); // invalid subject name
+                Grade.SUBJECT_CONSTRAINTS); // invalid subject name
         assertParseFailure(parser, "1" + INVALID_GRADED_ITEM_DESC,
                 GradedItem.MESSAGE_CONSTRAINTS); // invalid graded item
         assertParseFailure(parser, "1" + INVALID_GRADE_DESC,
@@ -86,7 +86,7 @@ public class EditGradeCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_SUBJECT_DESC + INVALID_GRADED_ITEM_DESC
                         + VALID_GRADE_MATHS,
-                SubjectName.MESSAGE_CONSTRAINTS);
+                Grade.SUBJECT_CONSTRAINTS);
     }
 
     @Test
