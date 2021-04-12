@@ -51,10 +51,6 @@ These are some other code contributions I made:
 - Included logging for most of the features I implemented.
 
 
-### Enhancements implemented
-
-
-
 ### Contributions to the UG
 - I wrote the portions of the UserGuide pertaining to the `current semester`, `master plan`, `history`, `show mcs`, and `show cap` commands.
 
