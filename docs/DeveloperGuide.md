@@ -381,14 +381,17 @@ only the selected list of `Person` objects. The application of predicate follows
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* prefers a Bash-like experience
+* Users who need to manage a significant number of professional contacts.
+* Users who prefer desktop apps over other types.
+* Users who can type fast.
+* Users who prefers typing to mouse interactions.
+* Users who is reasonably comfortable using CLI apps.
+* Users who prefer a Bash-like experience.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* Manage contacts faster than a typical mouse/GUI driven app, via keyboard commands.
+* Enter commands at ease with convenience features such as auto-complete.
+* Simultaneously manage several contacts with bulk actions such as select.
 
 
 ### User stories
@@ -545,6 +548,19 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Editing Remark
+
+1. Edit a person's remark to a non-empty remark.
+   1. Prerequisites: List must contain at least 1 person.
+   1. Test case: `edit 1 -r On leave`<br>
+      Expected: First person's remark is changed to "On leave".
+
+
+2. Edit a person's remark without providing remark value.
+    1. Prerequisites: List must contain at least 1 person.
+    1. Test case: `edit 1 -r`<br>
+       Expected: First person's remark is now empty.
 
 ### Saving data
 
