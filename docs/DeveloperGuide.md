@@ -472,6 +472,7 @@ For all use cases, our Software System and Actor are as stated below:
     * 2b1. TimeForWheels App informs the User of the duplicate delivery task.
 
     Use case ends.
+    
 --------------------------------------------------------------------------------------------------------------------
 **Use case: UC02 - Delete a delivery task from the list.**
 
@@ -493,6 +494,7 @@ For all use cases, our Software System and Actor are as stated below:
   Step 1a1 is repeated until the valid task number is entered.
 
   Use case resumes from step 2.
+  
 --------------------------------------------------------------------------------------------------------------------
 **Use case: UC03 - Edit a delivery task in the list.**
 
@@ -528,6 +530,7 @@ For all use cases, our Software System and Actor are as stated below:
   * 3a1. TimeForWheels App informs the User of the duplicate delivery task.
 
   Use case ends.
+  
 --------------------------------------------------------------------------------------------------------------------
 **Use case: UC04 - Exit the app.**
 
@@ -541,6 +544,7 @@ For all use cases, our Software System and Actor are as stated below:
 2.  Delivery App exits.
 
     Use case ends.
+    
 --------------------------------------------------------------------------------------------------------------------
 **Use case: UC05 - Find all delivery entries by the keyword(s) that match an attribute.**
 
@@ -566,6 +570,7 @@ For all use cases, our Software System and Actor are as stated below:
   * 1b1. TimeForWheels App informs the User that there are no delivery tasks with details containing the specified keyword(s).
 
   Use case ends.
+  
 --------------------------------------------------------------------------------------------------------------------
 **Use case: UC06 - Get the list of all my delivery tasks.**
 
@@ -586,6 +591,7 @@ For all use cases, our Software System and Actor are as stated below:
   * 1a1. TimeForWheels  App informs the User that the list is empty.
 
   Use case ends.
+  
 --------------------------------------------------------------------------------------------------------------------
 **Use case: UC07 - Get the list of all my completed delivery tasks.**
 
@@ -609,6 +615,7 @@ For all use cases, our Software System and Actor are as stated below:
   * 1b1. TimeForWheels  App informs the User that there are no completed delivery tasks in the list.
 
   Use case ends.
+  
 --------------------------------------------------------------------------------------------------------------------
 ### Non-Functional Requirements
 
