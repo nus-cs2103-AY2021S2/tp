@@ -23,7 +23,7 @@ BookCoin (to the Moon) is a **desktop app for managing bookings that presents us
 1. Run `java -jar bookingapp.jar via your terminal` (preferred). As a second alternative, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
 
    ![Ui](images/Ui_Booking_1.5.png) <br><br>
-   Note how the app contains some sample data. This is for you to test out the commands first, and you may delete them using the `clear` command when you are ready to use the app for your own purposes. <br>
+   When you open the app, note how it already contains some sample data. This is for you to test out the commands first, and you may delete them using the `clear` command when you are ready to use the app for your own purposes. <br>
 
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
@@ -151,6 +151,15 @@ Adds a new person for the booking app. `add_person` is a multi-step command that
 `add_person n/NAME` will start the command.
 The app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
+Below, you can see the multi-step command when in action as it is prompting the user to input an email address.
+<br>
+![Ui2](images/Add_name.png)
+
+If your command went through successfully without any invalid fields, you should see a success message like this: <br>
+![Ui3](images/Add_person.png)
+
+
+
 After keying a valid initial input, the multi-step prompting will prompt you to enter details for the following fields in the specified order:
 * Email: must be unique and of the format <em>local-part@domain</em>.
 * Phone number: must be unique and input as digits without spaces in between. The permitted length is 7-15 digits inclusive, which is the standard length of all international phone numbers.
@@ -257,6 +266,10 @@ Shows a list of all venues and their corresponding fields in the booking app.
 
 Format: `list_venue`
 
+You should see something like this: <br>
+![Ui3](images/list_venue.png)
+
+
 #### 3.4.5. Finding a venue : `find_venue`
 
 Shows a list of venues that match the specified field(s).
@@ -270,6 +283,9 @@ Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 Examples:
 * `find_venue v/Victoria Hall max/50` shows a list of venues whose names contain words that fully matches any of the two specified venue name keywords `Victoria` and `Hall`. The venue must also have a maximum capacity of at least `50`.
 * `find_venue d/` shows a list of venues that do not have descriptions.
+
+Here, we have tried filtering our venues and looking for venues with the tag "outdoors"! There is only one venue: <br>
+![Ui4](images/find_venue.png)
 
 ### 3.5. Booking
 
@@ -290,6 +306,10 @@ Adds a new booking into the booking app. `add_booking` is a multi-step command t
 The system will ask for and store the email of the booker, the venue booked, the start and end time of your booking (in the format YYYY-MM-DD HH:MM). You may also choose to add an optional description or tags for your booking.
 
 Format: `add_booking`
+
+A valid and existing email address must be provided, or BookCoin will throw an error as follows (the same applies for venue input): <br>
+![Ui5](images/add_booking_fail.png)
+
 
 #### 3.5.2. Editing a booking : `edit_booking`
 
