@@ -1,0 +1,159 @@
+{
+  "_comment": "AddressBook save file which contains the same Passenger and Pool values as in TypicalAddressBook#getTypicalAddressBook()",
+  "passengers" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [ "sales", "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "address" : "wall street",
+    "tagged" : [ ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "address" : "10th street",
+    "tagged" : [ "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "address" : "michegan ave",
+    "tagged" : [ ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "2100",
+    "priceStr" : ""
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "address" : "little tokyo",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "0830",
+    "priceStr" : ""
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "address" : "4th street",
+    "tagged" : [ ],
+    "tripDayStr" : "THURSDAY",
+    "tripTimeStr" : "0715",
+    "priceStr" : ""
+  }, {
+    "name" : "Hilary Clinton",
+    "phone" : "9486666",
+    "address" : "6th ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
+  }, {
+    "name" : "Irene Newton",
+    "phone" : "91238888",
+    "address" : "5th ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
+  }, {
+    "name" : "Jackson Mehoff",
+    "phone" : "91236969",
+    "address" : "4th ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
+  }, {
+    "name" : "Kingsley Kuan",
+    "phone" : "91867510",
+    "address" : "3rd ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
+  } ],
+  "pools" : [ {
+    "passengers" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+    }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [ "sales", "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+    }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "address" : "wall street",
+    "tagged" : [ ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+    } ],
+    "tagged" : [ "marketing" ],
+    "driver" : {
+      "name" : "Alice Pauline",
+      "phone" : "94351253"
+    },
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800"
+  }, {
+    "passengers" : [ {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "address" : "10th street",
+    "tagged" : [ "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
+    }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "address" : "michegan ave",
+    "tagged" : [ ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "2100",
+    "priceStr" : ""
+    }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "address" : "little tokyo",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "0830",
+    "priceStr" : ""
+    } ],
+    "tagged" : [ "marketing", "sales" ],
+    "driver" : {
+      "name" : "Alice Pauline",
+      "phone" : "94351253"
+    },
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "0630"
+  } ]
+}
