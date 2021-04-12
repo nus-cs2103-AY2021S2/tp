@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 
   - User Guide:
 
-    - Labelled and added screenshots for all features`: [\#260](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/260)
+    - Labelled and added screenshots for all features`: [\#260](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/260) [\#262](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/262)
     - Updated Quick Start section [\#117](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/117)
     - Added documentation for financial record and month related features [\#199](https://github.com/AY2021S2-CS2103T-W14-2/tp/pull/199/files)
 
