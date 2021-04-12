@@ -76,10 +76,6 @@ public class ResidenceTest {
         editedR1 = new ResidenceBuilder(RESIDENCE1).withCleanStatusTag(VALID_UNCLEAN_TAG).build();
         assertFalse(RESIDENCE1.equals(editedR1));
 
-        // different booking details -> returns false
-        //editedR1 = new ResidenceBuilder(RESIDENCE1).withBookingDetails(VALID_BOOKING_DETAILS).build();
-        //assertFalse(RESIDENCE1.equals(editedR1));
-
         // different address -> returns false
         editedR1 = new ResidenceBuilder(RESIDENCE1).withAddress(VALID_ADDRESS_RESIDENCE2).build();
         assertFalse(RESIDENCE1.equals(editedR1));

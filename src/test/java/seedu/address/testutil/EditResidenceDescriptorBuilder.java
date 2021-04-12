@@ -55,14 +55,6 @@ public class EditResidenceDescriptorBuilder {
         return this;
     }
 
-    ///**
-    //* Sets the {@code Booking} of the {@code EditResidenceDescriptor} that we are building.
-    //*/
-    //public EditResidenceDescriptorBuilder withBookingDetails() {
-    //    descriptor.setBookingDetails(new BookingList(bookingDetails));
-    //    return this;
-    //}
-
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
