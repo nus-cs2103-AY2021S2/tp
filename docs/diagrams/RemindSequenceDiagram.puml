@@ -10,7 +10,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":ResidenceTracker" as ResidenceTracker MODEL_COLOR
 end box
 
 [-> LogicManager : execute("remind")
@@ -35,11 +34,11 @@ activate RemindCommand
 RemindCommand -> Model : updateFilteredResidenceList(predicate)
 activate Model
 
-Model -> ResidenceTracker : sortResidenceList()
-activate ResidenceTracker
-
-ResidenceTracker --> Model
-deactivate ResidenceTracker
+ref over Model 
+    automatic sorting 
+    of residence by 
+    clean status
+end ref
 
 Model --> RemindCommand
 deactivate Model
@@ -54,9 +53,6 @@ deactivate CommandResult
 RemindCommand --> LogicManager : result
 deactivate RemindCommand
 
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-RemindCommand -[hidden]-> ResidenceTrackerParser
-destroy RemindCommand
 
 [<--LogicManager
 deactivate LogicManager

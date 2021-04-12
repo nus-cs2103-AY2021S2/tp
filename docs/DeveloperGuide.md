@@ -154,7 +154,7 @@ Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `de
 
 The following sequence diagram shows how the operation works:
 
-![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
+![RemindSequenceDiagram](images/RemindSequenceDiagram.png)
 
 #### Design consideration:
 
