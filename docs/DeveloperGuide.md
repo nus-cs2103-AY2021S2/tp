@@ -682,7 +682,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing Members
 
-1. View all members
+1. Viewing all members
 
    1. Test case: `viewMembers`<br>
       Expected: Lists all members within HEY MATEz.
@@ -752,9 +752,62 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `findMembers`<br>
        Expected: Invalid command format, error details is shown in the status message.
        
+
+### Add a Task
+
+1. Adding a task
+
+    1. Prerequisites: No duplicate tasks with same title exists.
+
+    1. Test case: `addTask Book Rooms d/Book seminar rooms for exco meeting b/2021-05-04`<br>
+       Expected: Task is successfully added, with the details of the task displayed in the status bar.
+
+    1. Test case: `addTask Book Rooms d/Book seminar rooms for exco meeting b/2021-05-04 p/high`<br>
+       Expected: Task is successfully added, with the details of the task displayed in the status bar.
+
+    1. Test case: `addTask Book Rooms d/Book seminar rooms for exco meeting b/2021-05-04 s/completed p/high`<br>
+       Expected: Task is successfully added, with the details of the task displayed in the status bar.
+
+    1. Test case: `addTask CCA roster d/Plan roster for May b/2021/04/21`<br>
+       Expected: No task is added since the deadline format is incorrect. Error details shown in the status bar.
+
+    1. Test case: `addTask CCA roster d/Plan roster for May b/2021-13-21`<br>
+       Expected: No task is added since the deadline provided is invalid. Error details shown in the status bar.
+
+   1. Test case: `addTask CCA roster d/Plan roster for May b/2021-05-21 p/HIGH`<br>
+      Expected: No task is added since the priority provided is invalid. Error details shown in the status bar.
+
+    1. Other incorrect commands to try: `addTask`, `addTask Roster`, `addTask Roster d/Plan roster` <br>
+       Expected: No task is added since compulsory fields are not provided. Error details shown in the status bar.
+
+### Editing a Task
+
+1. Editing a task
+
+    1. Prerequisites: List all tasks using the `viewTasks` command. Tasks with the title of 'Meeting' and 'Draft roster' exist
+       in the task list with the index of 1 and 2 while no task with the title of 'Plan meeting' exists.
+
+    2. Test case: `editTask 1 n/Plan meeting`<br>
+       Expected: Task with index 1 in the task list is edited to have a new title of 'Plan meeting'. Details of the edited task is shown
+       in the status message.
+
+    3. Test case: `editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04`<br>
+       Expected: Task with index 1 in the task list is edited to have the new details as specified. Details of the edited task is shown
+       in the status message.
+
+    4. Test case: `editTask 1 n/Draft roster`
+       Expected: No task is edited since a task with the same title already exists. Error details is shown in the status message.
+
+    5. Test case: `editTask 1`<br>
+       Expected: No Task is edited since none of the optional fields are provided. Error details is shown in the status message.
+
+    6. Other incorrect delete commands to try: `edit`, `editTask 0`, `editTask -1` <br>
+       Expected: Similar to previous test case.
+
+      
 ### Viewing Tasks
 
-1. View all tasks 
+1. Viewing all tasks 
    
     1. Test case: `viewTasks`<br>
        Expected: Lists all tasks within the HEY MATEz.
@@ -792,7 +845,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Since the task already has a status of completed, an error message is shown in the status bar. 
       
    1. Other incorrect commands to try: `done`, `done -1` 
-      Expected: similar to previous test case.
+      Expected: Similar to previous test case. 
       
 ### Marking a task as uncompleted
 
@@ -805,24 +858,24 @@ testers are expected to do more *exploratory* testing.
       Expected: Status of task at index 1 is updated to uncompleted. Successful task status update message is shown in the status bar.
       
    1. Test case: `undo 0`<br>
-      Expected: No task marked as uncompleted. Error details is shown in the status bar.      
-   
+      Expected: No task marked as uncompleted. Error details is shown in the status bar. 
+      
    1. Test case: `undo 2`<br>
       Expected: Since the task already has a status of uncompleted, an error message is shown in the status bar.
              
    1. Other incorrect commands to try: `undo`, `undo -1` 
       Expected: similar to previous test case.
       
-### Viewing a list of unassigned tasks
+### Viewing a list of unassigned Tasks
 
-1. View all unassigned tasks 
+1. Viewing all unassigned tasks 
 
     1. Test case: `viewUnassignedTasks`<br>
        Expected: Lists all tasks that are unassigned within the HEY MATEz.
 
-### Viewing a list of uncompleted tasks
+### Viewing a list of uncompleted Tasks
 
-1. View all uncompleted tasks 
+1. Viewing all uncompleted tasks 
 
    1. Test case: `viewUncompletedTasks`<br>
       Expected: Lists all tasks that are uncompleted within the HEY MATEz.
@@ -850,11 +903,28 @@ testers are expected to do more *exploratory* testing.
       Expected: Error message displayed in the status bar.
 
    1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc.
-      Expected: similar to previous test case.   
+      Expected: Similar to previous test case.
+
+### Finding Tasks due before a certain date
+
+1. Finding all tasks with deadlines before the provided date
+
+    1. Test case: `findBefore 2021-05-04`<br>
+       Expected: Lists all tasks within HEY MATEz whose deadline is before 2021-05-04.
+       
+    1. Test case: `findBefore 2021/05/04`<br>
+       Expected: Error occurred since the deadline provided is not in the correct format. Error details is shown in the status bar.
+
+    1. Test case: `findBefore 2021-13-12`<br>
+       Expected: Error occurred since the deadline provided is invalid. Error details is shown in the status bar.
+
+    1. Other incorrect commands to try: `findBefore`, `findBefore 2021-03/21`, etc.
+       Expected: Similar to previous test case.
+
 
 ### Finding tasks assigned to a member
 
-1. Finding all tasks in HEY MATEz assigned to a member
+1. Finding all tasks assigned to a member
 
    1. Prerequisites: There exists a member with the name of Alice and a task assigned to Alice within HEY MATEz.
    
