@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add_Grade s/Mathematics \ngi/Final Exam \ngr/A1")
+[-> LogicManager : execute("add_grade s/Mathematics \ngi/Final Exam \ngr/A1")
 activate LogicManager
 
-LogicManager -> TutorTrackerParser : parseCommand("add_Grade s/Mathematics \ngi/Final Exam gr/A1")
+LogicManager -> TutorTrackerParser : parseCommand("add_grade s/Mathematics \ngi/Final Exam gr/A1")
 activate TutorTrackerParser
 
 create AddGradeCommandParser

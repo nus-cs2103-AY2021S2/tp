@@ -332,7 +332,7 @@ Steps for the execution of the `AddGradeCommand` (assuming that no errors are en
 5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addGrade()`, 
 then create a `CommandResult` object and return the result.
 6. The `Ui` component will detect this change and update the GUI.
-![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram.png)
+![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram_updated.png)
 
 #### Design Consideration
 
