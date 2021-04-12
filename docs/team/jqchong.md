@@ -5,7 +5,8 @@ title: Chong Jing Quan's Project Portfolio Page
 
 ## Project: SpamEZ
 
-SpamEZ is a desktop application aim to help user classify contacts' information based on the relevant parties and the required means of communication (direct messages, emails, etc.). This will provide users an automated alternative to manually deciding the target group and method for sending specific information.
+SpamEZ is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+It helps users to classify contacts based on their details in order to facilitate effective and efficient information dissemination to a large audience.
 
 Given below are my contributions to the project.
 

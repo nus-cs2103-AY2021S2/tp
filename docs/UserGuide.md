@@ -11,13 +11,13 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 - [Quick start](#quick-start)
 - [Features](#features)
   - [Viewing help: `help`](#viewing-help--help)
-  - [Adding a person: `add`](#adding-a-person-add)
+  - [Adding a person: `add`](#adding-a-person--add)
   - [Listing all persons: `list`](#listing-all-persons--list)
   - [Editing a person: `edit`](#editing-a-person--edit)
-  - [Adding a new remark or replacing an existing remark: `remark`](#adding-a-new-remark-or-replacing-an-existing-remark--remark)
-  - [Blacklisting a contact: `blist`](#blacklisting-a-contact--blist)
-  - [Blacklisting or unblacklisting multiple contacts: `massblist`](#blacklisting-or-unblacklisting-multiple-contacts--massblist)
-  - [Deleting a person: `delete`](#deleting-a-person--delete)
+  - [Adding a remark: `remark`](#adding-a-remark--remark)
+  - [Blacklisting or un-blacklisting a contact: `blist`](#blacklisting-or-un-blacklisting-a-contact--blist)
+  - [Blacklisting or un-blacklisting multiple contacts: `massblist`](#blacklisting-or-un-blacklisting-multiple-contacts--massblist)
+  - [Deleting a contact: `delete`](#deleting-a-contact--delete)
   - [Deleting multiple contacts: `massdelete`](#deleting-multiple-contacts--massdelete)
   - [Clearing all entries: `clear`](#clearing-all-entries--clear)
   - [Collecting details from contacts: `collect`](#collecting-details-from-contacts--collect)
@@ -51,7 +51,7 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/email` : Adds a contact named `John Doe` to the contacts list.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -60,6 +60,7 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
    * **`blist`** `2` : Blacklists the 2nd contact shown in the current list.
 
    * **`exit`** : Exits the app.
+  
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -88,8 +89,13 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `dark`, `light` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
+* Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive). This number represents the largest possible number of contacts
+  that can be stored using the current implementation of SpamEZ.
   Values out of this valid integer range will be treated as invalid inputs.
+  
+* The following images represent email, phone and address respectively.
+
+![email](images/email.png) ![phone](images/smartphone.png) ![address](images/house.png)  
 </div>
 
 ### Viewing help : `help`
@@ -101,7 +107,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a person to the contacts list.
 
@@ -127,7 +133,8 @@ Edits an existing person in the contacts list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MODE_OF_CONTACT] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+  The index **must be a valid positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -138,50 +145,61 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Adding a new remark or replacing an existing remark : `remark`
+### Adding a remark : `remark`
 
-Adds a remark to the specified person in the address book.
-If the person already has a remark, the existing remark will be replaced. To remove a remark from a contact, simply leave the remark field empty.
+Adds an optional remark to a person in the address book.
+If the person already has a remark, the existing remark will be replaced.
 
 Format: `remark INDEX r/REMARK`
 
-* Adds or replaces the remark of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index must be a valid positive integer 1, 2, 3,...
-* If a remark is removed from a contact, the contact will be displayed as having 'No remark' by default.
+* Adds or replaces the remark of the person at the specified `INDEX`. The index
+  refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, …​
+* By default, all newly added contacts will be displayed as having 'No remark'.
+* You can remove a person's remark by typing `r/` without specifying any remark after it. This will cause the person
+  to be displayed as having 'No remark' again.
 
 Example:
 
 `remark 3 r/Currently on Stay Home Notice`
 
-### Blacklisting a contact : `blist`
+### Blacklisting or un-blacklisting a contact : `blist`
 
 Blocks specific contacts, to specify that they do not want to be contacted.
-If the contact is already blacklisted, they will be un-blacklisted. 
+If the contact is already blacklisted, they will be un-blacklisted. Blacklisted contacts are
+displayed with a black background, as shown below.
+
+![blacklisted contact](images/BlacklistedContact.png)
 
 Format: `blist INDEX`
 
-* Changes the blacklist status of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, …​, 2147483647
+* Changes the blacklist status of the person at the specified `INDEX`. The index 
+  refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, …​
+* By default, all newly added contacts will be displayed as un-blacklisted.
 
-### Blacklisting or unblacklisting multiple contacts : `massblist`
+### Blacklisting or un-blacklisting multiple contacts : `massblist`
 
-Blacklists or unblacklists all contacts within the specified index range (inclusive).
+Blacklist or un-blacklist all contacts within the specified index range (inclusive).
 
 Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
 
-* The index refers to the index number shown in the displayed person list.
+* Changes the blacklist status of all contacts whose `INDEX` lies between the specified index range
+  to either 'blacklist' or 'unblacklist' depending on the input parameter.
 * The keyword (`blacklist` and `unblacklist`) must be in lower case. 
-* Both the start index and end index must be valid positive integers 1, 2, 3, ...
-* Start index must be strictly smaller than the end index. 
-* End index cannot be larger than the number of contacts in the list.
+* The index refers to the index number shown in the displayed person list. Both the 
+  start index and end index **must be valid positive integers** 1, 2, 3, …​
+* Start index must be strictly smaller than the end index and the end index cannot be larger than the number of contacts
+  currently displayed in the list.
+* The index range must be specified before the keyword. <br>
+  e.g. `massblist b/blacklist 4-5` is treated as an invalid input.
 
-Example:
-* `massblist 15-42 b/blacklist`
-* `massblist 25-39 b/unblacklist`
+Examples:
+* Suppose you start with the following contact list:
+  ![massBlacklist1](images/massBlacklist1.png)
+  Executing `massblist 1-3 b/blacklist` will blacklist the first three contacts. Since the second contact is already
+  blacklisted, it remains the same. <br>
+  ![massBlacklist2](images/massBlacklist2.png)
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
 Deletes the specified person from the contacts list.
 
@@ -189,7 +207,7 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, …​, 2147483647
+* The index **must be a valid positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
@@ -200,13 +218,14 @@ Examples:
 Deletes all contacts within the specified index range (inclusive).
 
 Format: `massdelete START-END`
-* The index refers to the index number shown in the displayed person list.
-* Both the start index and end index must be a valid positive integer 1, 2, 3, ...
-* Start index must be strictly smaller than the end index.
-* End index cannot be larger than the number of contacts in the list.
+* Deletes all contacts whose `INDEX` lies between the specified index range.
+* The index refers to the number shown in the displayed person list. Both the start index and end index **must be valid
+  positive integers** 1, 2, 3, …​
+* Start index must be strictly smaller than the end index and the end index cannot be larger than the
+  number of contacts currently displayed in the list.
 
 Example:
-`massdelete 7-34`
+`massdelete 5-12`
 
 ### Clearing all entries : `clear`
 
@@ -220,6 +239,7 @@ Collects the specified details of all contacts in the displayed person list. Thi
 is for ease of copying contact details into recipient lists.
 The type of detail is specified by the prefix provided. Details will be separated
 by the given separator, or by a semicolon if unspecified.
+Collected details end with the separator to allow further manual addition of details.
 
 Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 
@@ -236,14 +256,13 @@ Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 
 ### Sorting entries by name : `sort`
 
-Sorts the contacts in the entire address book by name in alphabetical order. The list can be
-sorted in either ascending or descending order.
+Sorts the contacts in the entire address book by name in alphabetical order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
-
+* `ascending` sorts the list in ascending alphabetical order and `descending` sorts the list in
+  descending alphabetical order.
 * The keyword (`ascending` or `descending`) must be in lower case.
 * Both the currently displayed list and the entire contact list will be sorted.
-* Contacts with the same name will be sorted by email in lexicographical order.
 
 Examples:
 
@@ -295,15 +314,15 @@ Format: `undo`
 * This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
 
 
-### Reviewing previous commands
-Users can view the commands they have inserted previously using up and down arrow keys.
-To re-execute the command, users simply need to press enter.
-
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Reviewing previous commands
+Users can view the commands they have inserted previously using up and down arrow keys.
+To re-execute the command, users simply need to press enter.
 
 ### Saving the data
 
@@ -333,7 +352,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/email t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
-**Mass blacklist** | `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`<br> e.g., `massblist 13-67 b/blacklist`
+**Mass Blacklist** | `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`<br> e.g., `massblist 3-10 b/blacklist`
 **Clear** | `clear`
 **Collect** | `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`<br> e.g., `collect e/ s/,`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
@@ -342,9 +361,9 @@ Action | Format, Examples
 **Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates a/Singapore`
 **Help** | `help`
 **List** | `list`
-**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
+**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on leave of absence`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Light** | `light`
 **Dark** | `dark`
-**Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Undo** | `undo`
+**Exit** | `exit`

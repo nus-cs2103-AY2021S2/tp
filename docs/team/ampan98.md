@@ -17,12 +17,13 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can specify which contacts to not include when sending out information.
   * Highlights: This enhancement together with the find command provides the user with a list of blacklisted/un-blacklisted contacts.
     The implementation was slightly challenging as it required checking the blacklist status of a person before changing it.
+    After much confusion discussing the requirements for the mass blacklist feature (designed by icebear789) to reuse the blacklist feature, a good solution was found.
   * Credits: No external code / libraries were used.
   
 * **New Feature**: Added a collect command that allows the user to collect specified details.
   * What it does: Collects specified details from every listed contact, such as their email addresses, and displays it in one line in the GUI.
-  * Justification: This allows the user to directly copy and paste the line into the recipient list of any message sending application.
-  * Highlights: This enhancement together with the find command allows the user to filter out undesired contacts.
+  * Justification: This allows the user to directly copy and paste the line into the recipient list of any message sending application, without having to go through each contact individually.
+  * Highlights: This enhancement together with the find command allows the user to filter out undesired contacts and obtain a list of their details.
     The implementation was simple, but it was challenging to coordinate it with the requirements of the find command to provide the most flexibility to the user,
     while not being too complicated. Several extensions were considered but eventually dropped in favor of simplicity.
   * Credits: No external code / libraries were used.
@@ -33,16 +34,19 @@ Given below are my contributions to the project.
   * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub.
   * Managed requirements and implementations of several features (`blacklist`, `find`, `collect`) for more cohesive usage.
   * Organised documents (developer guide and user guide) to improve logical flow and ease of access.
+  * Reviewed documents for consistency issues such as sentence structure, usage of tense, tone of language and format of presentation.
+  * Checked documents for errors in grammar, spelling and formatting.
 
 * **Enhancements to existing features**:
-  * Added blacklist field for each contact (Pull request [\#29](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/29))
+  * Added blacklist field for contacts (Pull request [\#29](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/29))
 
 * **Documentation**:
   * User Guide and Developer Guide:
     * Added table of contents (Pull request [\#158](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/158))
-    * Improved consistency and accuracy of terms (Pull requests [\#32](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/32), [\#147](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/147))
+    * Improved consistency and accuracy of terms (Pull requests [\#32](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/32), [\#147](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/147), 
+      [\#179](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/179))
     * Added documentation for the features `blacklist` and `collect` (Pull requests [\#29](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/29), [\#45](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/45),
-    [\#67](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/67))
+      [\#67](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/67), [\#163](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/163))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#44](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/44#pullrequestreview-622634722), [\#159](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/159#pullrequestreview-632615017)

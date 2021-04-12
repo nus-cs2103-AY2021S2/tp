@@ -134,7 +134,7 @@ public class ParserUtil {
      * keyword is blacklist and false if the keyword is unblacklist. Leading and trailing
      * whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code isBlacklist} is invalid.
+     * @throws ParseException if the given {@code blacklistKeyword} is invalid.
      */
     public static boolean parseBlacklistKeyword(String blacklistKeyword) throws ParseException {
         requireNonNull(blacklistKeyword);
