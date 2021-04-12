@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -163,10 +164,25 @@ risk of overflow. The validity of the user's input amount is checked using regul
 zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it
 to 2 decimal places.
 
+### Adding or removing insurance plans of clients
+![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
+The `PlanCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. Depending
+on the `Prefix` the , a `AddPlanCommand` or a `RemovePlanCommand` will 
+
+
+Recording and clearing notes will call the respective methods of the appropriate
+`Person` that the user has indicated. The `Person` will return an updated `Person` object, and `NoteCommand`
+will proceed to call the `ModelManager` to replace the original `Person` with the updated `Person`. A `CommandResult`
+is then created and returned.
+
+Viewing notes will simple create and return a `CommandResult`. This `CommandResult` contains the `Person` object
+representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
+`Person` in the `NotesWindow`.
+
 ### Recording, viewing and clearing notes for clients
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
 
-The `NoteCommand` is created and parsed similar to other commands, as show in the sequence diagram above. The `Prefix` 
+The `NoteCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. The `Prefix` 
 that the user called the command with (`/r` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
 additional parameter in the `NoteCommand`.
 
