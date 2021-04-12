@@ -16,25 +16,31 @@ Given below are my contributions to the project.
   * What it does: allows the user to find the pools in the GME system by the names of passengers in the pool.
   * Justification: This feature improves the product significantly because a user can easily find the pools they desired to join, leave or see the details in combination with other commands.
   
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=markmcwong)
 
 * **Enhancements to existing features**:
-  * Updated the GUI design, including split panel with card design and new color scheme (Pull requests [\#73](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/73), [\#107](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/107))
-  * Wrote additional tests for existing features to increase coverage
-
+  * GUI [\#73](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/73), [\#107](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/107), [\#284](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/284):
+     * Updated the GUI to be responsive with split panel
+     * Updated the GUI with new color scheme and card design 
+  * Wrote additional tests for existing features, classes and predicates to increase coverage:
+  [\#218: +2.78% for coverage](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/218), [\#107: +1.04%](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/107), etc)
+  * Refactored magic literals used in tests: [\#266](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/266)
+  
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `findPool`
+    * Added documentation for the feature `findPool`
+    * Fixed errors and inconsistencies found during PE-D ([\#217](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/217))
+  * Developer Guide:
+    * Added User Stories with Contents
+    * Added Use Cases and Non-Functional Requirements
+    * Updated Class Diagrams for `Ui`, `Model` and `Storage`
+    * Added Sequence Diagram for the feature `listPool` 
+    * Created issues and corrected inconsistencies such as different font case and wording ([\#267](https://github.com/AY2021S2-CS2103T-W10-1/tp/issues/267), [\#246](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/246))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments)
-  * Contributed to forum discussions
-  * Reported bugs and suggestions for other teams in the class
+  * PRs reviewed (with non-trivial review comments): ([\#248](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/248),
+  [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234))
 
 * **Tools**:
   * Integrated a third party library (testfx) to the project for GUI-testing
   * Configured the project to be able to run in headless-mode for GUI-testing on Github with Travis-CIs
-
-* _{you can add/remove categories in the list above}_
