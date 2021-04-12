@@ -33,15 +33,18 @@ public class DeliveryStatusCommand extends Command {
 
     /**
      * Initialises a delivery status command.
+     *
      * @param targetIndexList IndexList of the indices that need to be updated.
-     * @param status The status the deliveryStatus has to be changed to.
+     * @param status          The status the deliveryStatus has to be changed to.
      */
     public DeliveryStatusCommand(IndexList targetIndexList, DeliveryStatus status) {
         this.targetIndexList = targetIndexList;
         this.status = status;
     }
 
-    /** Returns the description of how each of the commands in DeliveryStatusCommand works. */
+    /**
+     * Returns the description of how each of the commands in DeliveryStatusCommand works.
+     */
     public static String messageUsage(String commandWord) {
         return commandWord
                 + ": Updates the deliveryStatus of the order identified by the index number "
@@ -85,15 +88,17 @@ public class DeliveryStatusCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Order> lastShownList = model.getFilteredOrderList();
+        List<Order> copy = new ArrayList<>(lastShownList);
+
         List<Order> updatedOrders = new ArrayList<>();
         List<Order> sameOrders = new ArrayList<>();
 
-        for (Index targetIndex:this.targetIndexList.getIndexList()) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        for (Index targetIndex : this.targetIndexList.getIndexList()) {
+            if (targetIndex.getZeroBased() >= copy.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
             }
 
-            Order orderToUpdate = lastShownList.get(targetIndex.getZeroBased());
+            Order orderToUpdate = copy.get(targetIndex.getZeroBased());
 
             if (orderToUpdate.getDeliveryStatus().equals(status)) {
                 sameOrders.add(orderToUpdate);

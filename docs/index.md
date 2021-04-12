@@ -7,7 +7,15 @@ title: CakeCollate
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=HVE6WF4JMI)](https://codecov.io/gh/AY2021S2-CS2103T-T11-4/tp)
 ![Ui](images/Ui.png)
 
-**CakeCollate is a desktop application for managing your order details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+CakeCollate promises to be an efficient desktop application that allows user to easily consolidate and manage orders. Our main features include:<br>
+1. Order management
+2. Order Item management
+3. Quick search function for your orders
+4. Reminder for undelivered orders that have delivery dates approaching the current date
+5. Checking the delivery status of your orders
+
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI applications.
 
 * If you are interested in using CakeCollate, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing CakeCollate, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

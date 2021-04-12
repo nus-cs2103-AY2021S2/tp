@@ -13,6 +13,8 @@ https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html#1-introduction
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **1. Introduction**
 Welcome to our User Guide and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
 CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
@@ -27,6 +29,8 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 Let us take you through how to use CakeCollate in the rest of our User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **2. Using the User Guide**
 In this section, you can learn more about the different terminologies and what to expect from each section of the User Guide.
@@ -53,6 +57,8 @@ In [Section 7: Command Summary](#7-command-and-prefix-summary), you can find a s
 ### **2.2 Reading the User Guide**
 In this section, you will learn about CakeCollate's User Interface (UI), the format of commands, and the types of user inputs that you can specify in commands.
 
+<div style="page-break-after: always;"></div>
+
 #### **2.2.1 Sections of the UI**
 ![User Interface](images/Annotated_Ui.PNG)
 
@@ -62,7 +68,7 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
 
 3. The **Orders Box** is where all the orders that you have added to CakeCollate are displayed.
 
-    :information_source: **In what order are orders displayed in CakeCollate? **<br>
+    :information_source: **In what order are orders displayed in CakeCollate?** <br>
       * CakeCollates always displays orders by their statuses - undelivered, then cancelled, then delivered orders. 
       * For orders that have the same statuses, they are then arranged according to delivery date, with the earliest date on the top of the GUI. 
 
@@ -70,6 +76,8 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
 4. The **Order Items Box** is where all the different type of order items you have already entered into CakeCollate are displayed. You can think of it as a product catalogue. 
 
 4. The **Order Items Box** is where all the different types of order items you have already entered into CakeCollate are displayed in an order items table.
+
+<div style="page-break-after: always;"></div>
 
 #### **2.2.2 Formatting of the commands**
 
@@ -95,6 +103,8 @@ In this section, you will learn about CakeCollate's User Interface (UI), the for
   E.g. if you specify `help 123`, `123` will be ignored and the command will be interpreted as `help`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### **2.2.3 Types of user input**
 In this section, you will learn about the commonly used user inputs as well as their accompanying prefixes. 
@@ -213,6 +223,8 @@ Prefix: `t/`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **3. Getting started**
 
 1. Ensure you have Java `11` or above installed on your computer.
@@ -223,8 +235,8 @@ Prefix: `t/`
 
 4. Double-click the file to start CakeCollate. A GUI similar to the below should appear in a few seconds. Note how the application contains some sample data. 
 You can use the sample data pre-loaded in the application to play around and get used to the available commands. <br><br>
-![Ui](images/Ui.png)
-   
+  ![Ui](images/Ui.png)
+
 5. Type the command in the command box and press Enter to execute it.<br>
    E.g. typing **`help`** and pressing Enter will display the help window.<br>
    Some example commands you can try:
@@ -242,9 +254,11 @@ You can use the sample data pre-loaded in the application to play around and get
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#4-features) section below for details of each command.
+6. Refer to the [Features](#4-commands-and-features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Commands and features**
 This section contains information about all existing commands and features that we have implemented.
@@ -292,6 +306,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_IT
 
 * As such, you can interpret the order items table of the GUI as being a shortcut table.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 ![order_item_table_eg](images/order_item_table_eg.PNG)<br>
@@ -307,6 +323,8 @@ Examples:
 * When you specify an order description using the prefix `o/`, E.g. `o/Chocolate Cake`, CakeCollate automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
 
 * If you do want to add items into the order items table, you can refer to the [`addItem`](#adding-order-items-additem) command below.
+
+<div style="page-break-after: always;"></div>
 
 :information_source: **How do you specify that a cake has been ordered multiple times using the `oi/` prefix?**<br>
 
@@ -345,6 +363,8 @@ Examples:
 * `delete 2` delete the order with `INDEX` 2 from CakeCollate.
 * `delete 2 3` delete the orders with `INDEXES` 2 and 3 from CakeCollate.
 
+<div style="page-break-after: always;"></div>
+
 ##### Editing an order: `edit`
 
 Edit an existing order in CakeCollate.
@@ -377,6 +397,8 @@ Examples:
 * `undelivered 2` sets the delivery status of the order with `INDEX` 2 in CakeCollate as `undelivered`.
 * `undelivered 2 3` sets the delivery status of the orders with `INDEXES` 2 and 3 in CakeCollate as `undelivered`.
 
+<div style="page-break-after: always;"></div>
+
 ###### Setting the delivery status of an order as delivered: `delivered`
 
 Sets the delivery status of the specified order(s) in CakeCollate as `delivered`.
@@ -402,6 +424,8 @@ Examples:
 
 * `cancelled 2` sets the delivery status of the order with `INDEX` 2 in CakeCollate as `cancelled`.
 * `cancelled 2 3` sets the delivery status of the orders with `INDEXES` 2 and 3 in CakeCollate as `cancelled`.
+
+<div style="page-break-after: always;"></div>
 
 #### **4.1.2** ***Modifying what is displayed*** 
 
@@ -431,6 +455,8 @@ Format: `find [n/KEYWORD_NAME]…​ [p/KEYWORD_PHONE]…​ [e/KEYWORD_EMAIL]�
   E.g. `n/Hans o/Cake` will only match orders with names that match `Hans` and order descriptions that match `Cake`.
 * `AND` searches will take priority.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 * `find n/John` will return all orders with name `john`, `John Doe` or `Johnathan`.
@@ -440,9 +466,15 @@ Examples:
 * `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`.<br>
   ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG)
 <br><br>
+
+<div style="page-break-after: always;"></div>
+
 * `find alex bernice` will return all orders that matches `alex` or `bernice`.<br>
   ![result for 'find alex bernice'](images/findAlexBernice.PNG)
 <br><br>
+
+<div style="page-break-after: always;"></div>
+
 * `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
   ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
@@ -451,6 +483,8 @@ Examples:
 Shows a list of all orders in CakeCollate.
 
 Format: `list`
+
+<div style="page-break-after: always;"></div>
 
 ##### Display upcoming orders: `remind`
 
@@ -465,6 +499,7 @@ Examples:
 * `remind 365` displays all undelivered orders that have a delivery date within 365 days from today. <br>
     ![result for 'remind 365'](images/Remind365.PNG) 
 
+<div style="page-break-after: always;"></div>
 
 ### **4.2 Order Items**
 This section contains information about the commands that can modify the [order items box](#221-sections-of-the-ui).
@@ -492,6 +527,8 @@ Format: `deleteItem ORDER_ITEM_INDEXES`
 Examples:
 * `deleteItem 2` deletes the order item with `ORDER_ITEM_INDEX` 2 from the order items table.
 * `deleteItem 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
+
+<div style="page-break-after: always;"></div>
 
 ### **4.3 Others**
 This section contains information about other useful commands that you can use as well as features that are implemented in CakeCollate.
@@ -525,6 +562,8 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 #### Saving the data
 
 CakeCollate data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -547,12 +586,15 @@ If your changes to the data files make their format invalid, CakeCollate will di
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **5. Glossary**
 
 * **Command**: Commands are user inputs that are recognised by CakeCollate to modify the data that is stored or displayed.
 * **JSON**: JSON stands for Javascript Object Notation. It is a format for saving data which provides user-friendliness as it is easy to read and write data in this format.
 * **CLI**: CLI is an abbreviation for Command Line Interface. A Command Line Interface enables the user to interact with the application via commands in text format.
 * **GUI**: GUI is an abbreviation for Graphical User Interface. A Graphical User Interface enables the user to interact with the application by clicking on visual components.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **6. FAQ**
@@ -569,6 +611,8 @@ on the operating system of the computer that you are running CakeCollate on.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **7. Command and prefix summary**
 
 ### Orders
@@ -584,6 +628,8 @@ Action  | Format
 **Undelivered** | `undelivered INDEXES`
 **Delivered** | `delivered INDEXES`
 **Cancelled** | `cancelled INDEXES`
+
+<div style="page-break-after: always;"></div>
 
 #### Modifying what is displayed
 
@@ -607,6 +653,8 @@ Action | Format
 **Help** | `help`
 **Clear** | `clear`
 **Exit** | `exit`
+
+<div style="page-break-after: always;"></div>
 
 ### Prefix
 
