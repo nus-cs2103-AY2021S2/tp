@@ -3,6 +3,7 @@ package seedu.address.logic.filters;
 import java.util.Objects;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -20,6 +21,7 @@ public abstract class Filter implements Predicate<Customer> {
      */
     public Filter(String filterString) {
         Objects.requireNonNull(filterString);
+        LogsCenter.getLogger(Filter.class).info("Created a new filter : " + this.getClass().getName() + " : " + filterString);
         this.filterString = filterString.trim();
         if (this.filterString.isEmpty()) {
             throw new IllegalArgumentException("Search string cannot be empty!");
