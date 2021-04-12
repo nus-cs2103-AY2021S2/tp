@@ -22,7 +22,7 @@ public class InputHistory {
     }
 
     /**
-     * Add new input to history, given it is different from the previous input.
+     * Adds new input to history, given it is different from the previous input.
      * If lst have reached maxsize, remove earliest entry.
      *
      * @param s User input.
@@ -44,7 +44,7 @@ public class InputHistory {
     }
 
     /**
-     * Retrieve the previous input in history.
+     * Retrieves the previous input in history.
      *
      * @return Input from history.
      */
@@ -59,7 +59,7 @@ public class InputHistory {
     }
 
     /**
-     * Retrieve the next input in history.
+     * Retrieves the next input in history.
      * The latest entry will always be an empty string.
      *
      * @return Input from history.
@@ -78,7 +78,7 @@ public class InputHistory {
     }
 
     /**
-     * Return currrent number of input in InputHistory
+     * Returns currrent number of input in InputHistory
      */
     public int size() {
         return lst.size();
