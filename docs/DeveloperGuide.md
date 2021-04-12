@@ -310,7 +310,8 @@ while also adding into multiple sections in an entry. The Edit and AddOn feature
 quick and small chanegs to an entry.
 
 The command opens an additional window when a user enters the command in the Ui, the command will be passed into 
-`MainWindow#executeCommand()`, in which `Logic#execute()` calls `LogicManager#execute()`, which parses the user input in `FoodDiaryParser#parseCommand()`.
+`MainWindow#executeCommand()`, in which `Logic#execute()` calls `LogicManager#execute()`,
+ which parses the user input via `FoodDiaryParser#parseCommand()`.
 The user input will be parsed as a 'Revise' command and executed to retrieve all the details related to the specified entry.
 With a separate window for revision of the entry, a user can easily make changes to the sections all at once. 
 
@@ -343,8 +344,8 @@ At its core, the `edit` feature allows a user to edit multiple fields pertaining
  As such, the edit feature runs solely via the command typed in the command box. The above feature,
  the `revise` feature, builds upon the implementation of the `edit` feature. See more above.
  
-When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which
- `LogicManager#execute()` will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
+When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute`
+ calls `LogicManager#execute()` to parse the user input via `FoodDiaryParser#parseCommand()`.
  The user input will be parsed as an `edit` command and executed to edit the entry specified by
  the index of the command.
  
@@ -388,8 +389,8 @@ The `help` feature primarily helps the user by showing a help guide whenever a u
  and visit for more information.
 
 An additional `HelpWindow` is opened when a user enters the `help` command in the Ui. 
-The command will be passed into `MainWindow#executeCommand()`, in which `LogicManager#execute()` will be called to parse the
-user input in `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
+The command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute` calls `LogicManager#execute()` to parse the
+user input via `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
 At the end, a `HelpWindow` is returned.
 
 The following sequence diagram shows how the Help feature works:
@@ -415,7 +416,7 @@ Step 3. If the user input is invalid, an error message will be displayed in the 
 not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
 
 The mechanism works in such a way where after the user enters a command in the Ui, the command will be passed into
-`MainWindow#executeCommand()`, in which `LogicManager#execute()` will be called to parse the user input in
+`MainWindow#executeCommand()`, to which `Logic#execute()` calls `LogicManager#execute()` to parse the user input via
 `FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a `view` command and executed to 
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the Ui and 
 shown in a new window.
@@ -453,8 +454,8 @@ The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`,
 Step 2. The user executes `clear` to clear all entries in The Food Diary.
 
 This feature was brought over to The Food Diary from AB3. There were not many changes apart from modifying it to clear
-entries instead. Similar to other commands,`MainWindow#executeCommand()` runs and `LogicManager#execute()` 
-will be called to parse the user input in `FoodDiaryParser#parseCommand()`. The parsed command will be identified
+entries instead. Similar to other commands, `MainWindow#executeCommand()` runs, which calls `Logic#execute()`,
+ which calls `LogicManager#execute()` to parse the user input via `FoodDiaryParser#parseCommand()`. The parsed command will be identified
 as a `clear` command.
 
 ### Exit Feature
@@ -467,9 +468,9 @@ Step 1. The user is the midst of using The Food Diary application. The user has 
 Step 2. The user executes `exit` and closes the application.
 
 This feature was brought over to The Food Diary from AB3. 
-There were no changes. Similar to other commands, `MainWindow#executeCommand()` runs and `LogicManager#execute()`
-will be called to parse the user input in `FoodDiaryParser#parseCommand()`.
-The parsed command will be identified as the exit command.
+There were no changes. Similar to other commands, `MainWindow#executeCommand()` runs, calling `Logic#execute()`,
+ which calls `LogicManager#execute()` to parse the user input via `FoodDiaryParser#parseCommand()`.
+ The parsed command will be identified as the exit command.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
