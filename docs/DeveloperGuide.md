@@ -309,7 +309,7 @@ time frame of 1 week that pops out whenever the user opens the application.
       * User has no flexibility to specify the time range he/she wants to receive reminders for.
       * If user want to check for reminders again he has to reopen the application.
     
-###Add Order Item Feature
+### Add Order Item Feature
 The `addItem` command enables users to predefine order items (also known as cake items or order descriptions). The user can choose to add order items directly from this table when adding orders to CakeCollate.
 
 An `OrderItem` consists of a `Type` field which refers to the description of the order item. In the user guide the `Type` field is referred to as `ORDER_DESCRIPTION` in order to make it more user friendly since `Type` is not very descriptive.
@@ -546,8 +546,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     
       Use case resumes at step 1.
     
-* *a. User requests for help <link help use case here>.
-
 **Use case: Delete an order item**
 
 **MSS**
@@ -575,7 +573,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 1.
 
-* *a. User requests for help <link help use case here>.
+
 
 **Use case: Help needed for command summary**
 
