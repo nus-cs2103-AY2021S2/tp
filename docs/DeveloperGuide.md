@@ -137,7 +137,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("food_delete n/grape")` API call.
 
-![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteFoodItemSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteFoodItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
