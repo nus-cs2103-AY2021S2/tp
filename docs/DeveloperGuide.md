@@ -1255,7 +1255,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 1. Test case: `exit` <br>
    Expected: The program should exit and close.
 
-## Effort
+## **Appendix: Effort**
 
 Throughout the development, our team wanted to make Pawbook easy to use, intuitive and presentable. After countless group discussions, physical meetings and additional effort leading up to submission, we managed to pull through and present a usable and functioning product that we are proud of. Amassing over 14,000 lines of code combined, we had to stick to strict internal deadlines, manage conflicts and maintain a culture of open communication and transparency. We also took the liberty to call for group meetings whenever needed, going beyond just the usual meetings to make sure everyone is in sync.
 
