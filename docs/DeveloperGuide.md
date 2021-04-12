@@ -209,19 +209,19 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 **Aspect: How `edit` delivery task executes**
 
-**Alternative 1 (current choice)**: Delete delivery task based on the index number shown on the delivery list.
+**Alternative 1 (current choice)**: Edit delivery task based on the index number shown on the delivery list.
 
-**Pros:** User can ensure that the correct delivery tasks is deleted as index number is unique to each delivery task
+**Pros:** User can ensure that the correct delivery tasks is edit as index number is unique to each delivery task
 
-**Cons:** User is required to look through the list first to find the index of the delivery tasks they wish to delete
+**Cons:** User is required to look through the list first to find the index of the delivery tasks they wish to edit
 
-**Alternative 2:** Delete delivery task using name
+**Alternative 2:** edit delivery task using name
 
-**Pros**: User may no longer need to look through the delivery list to find the index number of the task they wish to delete
+**Pros**: User may no longer need to look through the delivery list to find the index number of the task they wish to edit
 
-**Cons:** If there are duplicates in the name, the wrong delivery task might get deleted. Furthemore, the User has to type a longer command text if the name is long.
+**Cons:** If the name is required to be edited, may need to create another new command to edit the name of the delivey task which increase the number of code and testing
 
-Hence, Alternative 1 was chosen because it is less likely to be buggy when in production ev
+Hence, Alternative 1 was chosen because it has less resources for implementation
 
 ### Find Feature `find KEYWORDS`
 
