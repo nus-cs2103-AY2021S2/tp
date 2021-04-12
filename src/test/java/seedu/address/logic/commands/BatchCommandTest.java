@@ -2,9 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_ID;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_ID_WITH_URL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -18,13 +15,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.DeleteCommandParser;
 import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.shortcut.ShortcutLibrary;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for BatchCommand.
@@ -36,31 +31,6 @@ public class BatchCommandTest {
     private static final DeleteCommandParser DELETE_COMMAND_PARSER = new DeleteCommandParser();
     private static final List<Index> LIST_OF_INDICES = Arrays.asList(Index.fromOneBased(7), Index.fromOneBased(6),
             Index.fromOneBased(1));
-
-    @Test
-    public void execute_validIndexUnfilteredListForBatchEdit_success() {
-        Model expectedModel = new ModelManager(new AddressBook(MODEL.getAddressBook()), new UserPrefs(),
-                new ShortcutLibrary());
-
-        for (Index index : LIST_OF_INDICES) {
-            Person personToEdit = MODEL.getFilteredPersonList().get(index.getZeroBased());
-            PersonBuilder personBuilder = new PersonBuilder(personToEdit);
-            Person editedPerson = personBuilder
-                    .withTags(VALID_TAG_HUSBAND)
-                    .withPolicies(VALID_POLICY_ID, VALID_POLICY_ID_WITH_URL)
-                    .build();
-            expectedModel.setPerson(personToEdit, editedPerson);
-        }
-
-        String expectedMessage = BatchCommand.SUCCESS_MESSAGE;
-
-        List<EditCommand> listOfEditCommands = new ArrayList<>();
-        createEditCommands(listOfEditCommands);
-
-        BatchCommand<EditCommand> batchEditCommand = new BatchCommand<>(listOfEditCommands);
-
-        assertCommandSuccess(batchEditCommand, MODEL, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_validIndexUnfilteredListForBatchDelete_success() {
