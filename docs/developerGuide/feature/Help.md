@@ -1,5 +1,7 @@
 ### [Feature] Help
 
+This feature allows users to quickly get help displayed in the GUI regarding the available commands and their syntax. An additional optional parameter can be used to specify a particular command for more detailed help regarding that command. This minimizes the need for the user to cross reference material outside of the application, for example the User Guide.
+
 #### Implementation
 
 When called as `help`, the user will be given the concise command-line syntax of all implemented commands and their arguments following the conventions listed in https://developers.google.com/style/code-syntax
