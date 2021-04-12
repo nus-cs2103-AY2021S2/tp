@@ -11,8 +11,7 @@ It is written in Java with around 10k LOC.
 
 A full list of code contribution can be found here:
 [RepoSense](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=pyuxiang&breakdown=true)
-
-Given below are my contributions to the project.
+<br>Given below are my contributions to the project.
 
 ### New features
 
@@ -63,12 +62,13 @@ Given below are my contributions to the project.
   * Builds upon initial `theme` implementation by `garyljj` in [\#176](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/176)
 - Add initial GUI skeleton to display event list:
   commit [`02452dd`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/02452dd58c89a77c79a7f3b2597eb2580a845a65)
-
-### Other proposed features
-
-- Propose a GUI sketch to support tag list:
-  [\#99](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/99)
-  * Idea abandoned in favor of GUI event list due to limited horizontal real estate.
+  * Implemented in favor of initial GUI tag list proposed in [\#99] due to limited horizontal real estate.
+- Add unit tests:
+  `ParserUtil`, `Date` [`7b886b5`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7b886b5b6b9e27971cde42b06a325cb14e64a063),
+  `Birthday` [`1f059df`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/1f059df0e26bac1f2d0629810367bb86b6c38795)
+  `ListCommand` [`bf68113`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/bf68113f18067d72a8da7b5d7a72966f80e3180b)
+  `ListCommandUtil` [`7ef9fb2`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/7ef9fb209f4f19cb7cc65e2eb9ad44ee9163114d)
+  `Prefix` [`d2b9a8c`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/d2b9a8c9372f1f6f43892ff55322e95e7781d1cb)
 
 ### Documentation
 
@@ -76,6 +76,8 @@ Given below are my contributions to the project.
   * Add section on `list` as well as command summary: [\#218](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/218)
   * Format glossary of parameters into table form [\#217](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/217)
 - DeveloperGuide:
+  * Add user stories: [\#51](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/51)
+  * Add use case: [\#57](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/57)
   * Add developer section on `theme` command implementation:
     commit [`977ed91`](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/977ed91ee207e33b4e56353822b76d17e2ba436e)
 
