@@ -236,6 +236,11 @@ public interface Model {
     boolean hasAppointmentContainingTutor(Name name);
 
     /**
+     * Change all names of appointment related to previous tutor to new name.
+     */
+    void changeAllAppointmentsToName(Name oldName, Name name);
+
+    /**
      * @param name Name of tutor to match.
      * @return True is new appointment to be added clashes.
      */
