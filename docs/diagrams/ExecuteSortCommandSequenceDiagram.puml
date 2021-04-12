@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+mainframe "sd execute method of sort command"
+
+box Logic LOGIC_COLOR_T1
+participant "lv:SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+SortCommand -> Model : filterThenSortPersonList(new HasNamePredicate(), new PersonNameComparator())
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand
+deactivate CommandResult
+
+@enduml
