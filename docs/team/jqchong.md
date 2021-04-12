@@ -52,5 +52,5 @@ Given below are my contributions to the project.
   * Contributed to forum discussions (example: [\#121](https://github.com/nus-cs2103-AY2021S2/forum/issues/121))
   * Reported bugs and suggestions for other teams in the class (example: [1](https://github.com/JQChong/ped/issues))
   
-* Tools:
+* **Tools**:
   * Updated Gradle from `5.2.1` to `6.8.2` (example: [1](https://github.com/AY2021S2-CS2103-T16-1/tp/commit/588f2c1abb4a00e283e39971c9c4da2a120f18c8)).
