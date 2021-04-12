@@ -35,10 +35,10 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Sorting the priority tag based on priority levels can help the user view the most prioritised tasks at the top of the task list. 
 * Justification : User can better organise and plan which tasks to do first using the priority levels.
 * Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks.
-* Worked on the PriorityTag files and Sorting files, but are not restricted to
-        1) `PriorityTagComparator`
-        2) `SortCommand`
-        3) `SortCommandParser`
+* Worked on the PriorityTag files and Sorting files, but are not restricted to:
+        1. `PriorityTagComparator`
+        2. `SortCommand`
+        3. `SortCommandParser`
 
 ### Enhancement 3
 * Ensure testing can be properly function after every deliverables to identify any possible bugs.
