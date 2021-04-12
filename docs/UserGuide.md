@@ -491,13 +491,10 @@ Retrieves previously entered input.
 #### Data path display :
 
 * Displays the absolute path to the folder where the data is stored at the bottom of PartyPlanet.
-* Note: Absolute path to the data folder has to be of length less than 60 characters to ensure that this
-  feature works well.
 
 <div markdown="block" class="alert-warning">
 
-**:warning: When the length of the path is more than 60 characters, there is a chance that the path will be
-concatenated with a trailing `...`.**
+**:warning: If length of the path is more than 60 characters, path may be truncated with a trailing `...`.**
 
 </div>
 
