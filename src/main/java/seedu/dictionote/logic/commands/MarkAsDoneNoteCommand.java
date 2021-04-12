@@ -22,6 +22,8 @@ public class MarkAsDoneNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_AS_DONE_NOTE_SUCCESS = "Mark as done note: %1$s";
+    public static final String MESSAGE_COMMAND_ALREADY_DONE = "This note is already done. "
+            + "You can't mark it as done.";
 
     private final Index targetIndex;
 
@@ -44,6 +46,11 @@ public class MarkAsDoneNoteCommand extends Command {
         }
 
         Note noteToMarkAsDone = lastShownList.get(targetIndex.getZeroBased());
+
+        if (noteToMarkAsDone.isDone()) {
+            throw new CommandException(MESSAGE_COMMAND_ALREADY_DONE);
+        }
+
         Note markAsDoneNote = noteToMarkAsDone.markAsDoneNote(noteToMarkAsDone.getNote(),
                 noteToMarkAsDone.getTags(), noteToMarkAsDone.getCreateTime());
 
