@@ -17,9 +17,9 @@ Given below are my contributions to the project.
   * Highlights: These enhancements affect existing commands as only the find and delete commands were customized to work in archive mode and the other commands were blocked from working in archive mode. Analysis of design alternatives was needed as there was another possible implementation considered as mentioned in the Developer's Guide. The current implementation was challenging too as it required changes to existing commands to support or not support archived patients and also required changes to the UniquePersonList containing patients and the information contained by a patient to show whether or not they are archived.
 
 * **New Feature**: Added the fields of DateOfBirth, Gender, Height and Weight.
-* * What it does: Allows the user to keep track of very important additional fields of a patient on top of the existing fields.
-* * Justification: The user (a doctor) usually keeps track of all these medical fields of a patient as well on top of their contact information.
-* * Highlights: Implementing these fields was challenging as it required me to learn basic RegEx which I was not familiar with at all. This also required big changes in all parts of the program where the attributes of a patient were involved.
+  * What it does: Allows the user to keep track of very important additional fields of a patient on top of the existing fields.
+  * Justification: The user (a doctor) usually keeps track of all these medical fields of a patient as well on top of their contact information.
+  * Highlights: Implementing these fields was challenging as it required me to learn basic RegEx which I was not familiar with at all. This also required big changes in all parts of the program where the attributes of a patient were involved.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=vivegank&tabRepo=AY2021S2-CS2103T-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
