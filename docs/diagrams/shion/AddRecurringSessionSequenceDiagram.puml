@@ -1,0 +1,60 @@
+@startuml
+!include ../style.puml
+box Logic LOGIC_COLOR_T1
+participant ":AddRecurringSessionCommandParser" as AddRecurringSessionCommandParser LOGIC_COLOR
+participant ":AddRecurringSessionCommand" as AddRecurringSessionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> AddRecurringSessionCommandParser: parse(...)
+create AddRecurringSessionCommandParser
+activate AddRecurringSessionCommandParser
+
+create AddRecurringSessionCommand
+AddRecurringSessionCommandParser -> AddRecurringSessionCommand
+activate AddRecurringSessionCommand
+
+AddRecurringSessionCommand --> AddRecurringSessionCommandParser
+deactivate AddRecurringSessionCommand
+[<-- AddRecurringSessionCommandParser: addRecurringSessionCommand
+destroy AddRecurringSessionCommandParser
+
+[-> AddRecurringSessionCommand: execute(...)
+activate AddRecurringSessionCommand
+
+AddRecurringSessionCommand -> Model : hasName(name)
+activate Model
+Model --> AddRecurringSessionCommand
+deactivate Model
+
+AddRecurringSessionCommand -> Model : hasSession(name, recurringSessionToAdd)
+activate Model
+Model --> AddRecurringSessionCommand
+deactivate Model
+
+AddRecurringSessionCommand -> Model : hasOverlappingSession(recurringSessionToAdd)
+activate Model
+Model --> AddRecurringSessionCommand
+deactivate Model
+
+AddRecurringSessionCommand -> Model: addSession(name, recurringSessionToAdd)
+activate Model
+Model --> AddRecurringSessionCommand
+deactivate Model
+
+
+
+create CommandResult
+AddRecurringSessionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddRecurringSessionCommand : result
+deactivate CommandResult
+
+[<-- AddRecurringSessionCommand : result
+
+@enduml

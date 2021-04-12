@@ -294,6 +294,87 @@ The following sequence diagram shows how deleting a session works:
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
 
+### Recurring Session
+Recurring Session is facilitated by the `RecurringSession` class which stores specific details of
+a tuition session with one student, that recurs. Similar to `Session` each recurring session is composed within a `Student`'s list of sessions,
+and a `Student` can have multiple `RecurringSession`s. <br>
+The class `RecurringSession` inherits from `Session`, albeit with additional properties `Interval` and `LastSessionDate`.
+This is because a recurring session can be defined a session that recurs, by given intervals, and up till a last date of session. <br>
+
+Note that:
+- `SessionDate` property inherited from `Session`, now serves as the `FirstSessionDate` in `RecurringSession`
+- Creation of a `RecurringSession` with zero recurrence is not allowed by the user. <br>
+  i.e. The first and last dates cannot be the same.<br>
+  This is so that from the perspective of the user, the notion of a `Session` and `RecurringSession` will not overlap; 
+  a recurring session must strictly recur once or more.
+
+#### Add Recurring Session Feature
+The add recurring session feature allows users to add tuition sessions that recur by a given interval, at least once.
+
+##### Implementation
+![AddRecurringSessionSequenceDiagram](images/shion/AddRecurringSessionSequenceDiagram.png)
+(Note: This is a partial sequence diagram; `AddressBookParser` at the left edge is omitted for brevity)<br>
+The process of creating a recurring session and the addition of it to the model component follows the sequence diagram above,
+and is described in the following:
+1. User input previously parsed is directed to `AddRecurringSessionParser` for further parsing with `#parse(input)`. <br>
+After multiple validity checks in the `#parse(input)` method, `AddSessionCommandParser` creates 
+   an instance of an `AddRecurringSessionCommand`.
+2. `#execute` called on this `AddRecurringSessionCommand` instance calls `hasName(name)`, 
+   `hasSession(name, reccuringSessionToAdd)` and `hasOverlappingSession(recurringSessionToAdd)` methods of `Model`
+   to ensure that the addition of the recurring session will be valid. 
+3. `addSession(name, recurringSessionToAdd)` then adds the recurring session to the specific student in the model component.
+4. The result of the command execution is encapsulated as a `CommandResult` object.
+
+The multiple validity checks in `AddRecurringSessionParser#parse(input)` as mentioned in 1. ensures users are guided to
+add the compatible recurring session. Determining that a desired recurring session is compatible, and, suggesting a 
+compatible recurring session otherwise, is handled through `AddRecurringSessionParser#parse(input)`, with key checks
+depicted below.
+![AddRecurringSessionCommandParserActivityDiagram](images/shion/AddRecurringSessionCommandParserActivityDiagram.png)
+
+##### Design Considerations
+Aspect 1: Use of Inheritance for RecurringSession and related classes
+* **Alternative 1 (current choice)**: Both `RecurringSession` and `RecurringSessionCommand` classes extends 
+  `Session` and `SessionCommand` classes
+    * Pros:
+        * Promotes "don't repeat yourself" principle, given the that recurring session is a proper subtype of superclass session.
+          Enhancements to recurring session is only additive to superclass Session.
+        * Reduced complexity. Abstract classes/interfaces are not required with the simple inheritance.
+    * Cons:
+        * Uses subclass coupling; coupling is increased. Reduces expansion and maintainability, in the possible event
+    of redefining recurring session and session relationship.
+
+* **Alternative 2**: Creating a Session interface to be implemented by Single-Session class and Recurring Session.
+    * Pros:
+        * Eliminates subclass coupling.
+    * Cons:
+        * Additional lines of code will be required. At current implementation where Recurring Session shares the same logical domain as
+    Session and is a proper subtype of Session, there will comparatively be more repeated code upon abstracting out an interface.
+          
+Alternative 1 was chosen for the practical consideration that less code was necessary for the forseeable requirements
+given the current set of use cases. Though increasing coupling, the inheritance relationship is simple and sufficient,
+as methods to `RecurringSession` is strictly only additive to those is `Session`. The increased coupling does not
+complicated testing as well, due to the fact that every test on `Session` applies to `RecurringSession`.
+
+
+Aspect 2: Brute or mathematical implementation for overlap checks involving recurring sessions in hasOverlappingSession()
+* **Alternative 1 (current choice)**: Brute-force approach to checking for overlap with recurring sessions.
+    * Pros:
+        * Logically simple, hence easy to implement, test, review.
+    * Cons:
+        * Worst case scenario has no bounds.
+
+* **Alternative 2**: Mathematical approach to checking for overlap with recurring session, using ideas of GCD
+  and extended euclid algorithm
+    * Pros:
+        * Fixed upper bound to amount of computation; better (bounded) worst case.
+    * Cons:
+        * Not straightforward, may require domain-specific knowledge, i.e. Math
+    
+Alternative 1 was chosen as a worst case scenario that harms is effectively non-existent.
+Realistic, practical user inputs will involve recurrence intervals that can be perceived by the human brain of the
+user; this will not cause computations that give significant run-time, even when approach is burte.
+Alternative 2 would require formal verification, which can be time-consuming.
+
 #### Delete Recurring Session Feature
 The delete recurring session feature allows users to remove a single session from an existing recurring session.
 

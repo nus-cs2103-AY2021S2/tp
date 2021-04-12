@@ -1,5 +1,5 @@
 @startuml
-!include style.puml
+!include ../style.puml
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -74,7 +74,7 @@ create CommandResult
 DeleteSessionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteSessionCommand
+CommandResult --> DeleteSessionCommand : result
 deactivate CommandResult
 
 DeleteSessionCommand --> LogicManager : result
