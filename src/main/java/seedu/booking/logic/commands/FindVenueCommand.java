@@ -23,6 +23,8 @@ public class FindVenueCommand extends Command {
     public static final String COMMAND_WORD = "find_venue";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all venues that match the specified fields.\n"
+            + "At least one word must be fully matched for VENUE_NAME and DESCRIPTION.\n"
+            + "Input only one tag at a time.\n"
             + "At least one field must be provided.\n"
             + "Parameters: " + COMMAND_WORD + " "
             + "[" + PREFIX_VENUE + "VENUE_NAME] "
@@ -46,6 +48,9 @@ public class FindVenueCommand extends Command {
         requireNonNull(model);
         Predicate<Venue> predicate = combineVenuePredicates(predicateList);
         model.updateFilteredVenueList(predicate);
+        if (model.getFilteredVenueList().size() == 0) {
+            return new CommandResult(String.format(Messages.MESSAGE_NO_VENUES_FOUND), COMMAND_SHOW_VENUES);
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_VENUE_DISPLAYED, model.getFilteredVenueList().size()),
                 COMMAND_SHOW_VENUES);

@@ -31,26 +31,28 @@ public class EditVenueCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_venue";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the venue identified "
-            + "by the venue name used in the displayed venue list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: vo/VENUE "
+    public static final String MESSAGE_FIELDS = "Parameters: vo/VENUE "
             + "[" + PREFIX_VENUE + "VENUE_NAME] "
             + "[" + PREFIX_CAPACITY + "CAPACITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " vo/Victoria Hall "
             + PREFIX_VENUE + "Victorias Hall "
-            + PREFIX_CAPACITY + "10"
-            + PREFIX_DESCRIPTION + "Cool concert place"
+            + PREFIX_CAPACITY + "10 "
+            + PREFIX_DESCRIPTION + "Cool concert place "
             + PREFIX_TAG + "Central";
 
-    public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited Venue: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n";
-    public static final String MESSAGE_FIELDS = "[" + PREFIX_VENUE + "VENUE_NAME] "
-            + "[" + PREFIX_CAPACITY + "CAPACITY] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TAG + "TAG] \n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the venue identified "
+            + "by the venue name used in the displayed venue list.\n"
+            + "At least one parameter to be changed must be specified."
+            + "Existing values will be overwritten by the input values.\n"
+            + "At least one of the optional fields must be provided.\n"
+            + MESSAGE_FIELDS;
+
+    public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited venue: %1$s";
+    public static final String MESSAGE_NOT_EDITED =
+            "Incomplete command: At least one field to edit must be provided.\n";
+
     public static final String MESSAGE_DUPLICATE_VENUE = "This venue already exists in the booking system.";
 
     private final VenueName venueName;

@@ -7,10 +7,10 @@ import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.states.AddPersonCommandState.STATE_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.states.AddPersonCommandState;
 import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.Model;
-import seedu.booking.model.ModelManager;
 import seedu.booking.model.person.Name;
 
 public class PromptAddPersonCommand extends Command {
@@ -32,10 +32,12 @@ public class PromptAddPersonCommand extends Command {
         requireNonNull(model);
 
         CommandState commandState = new AddPersonCommandState(name);
-        ModelManager.setCommandState(commandState);
-        ModelManager.setStateActive();
-        ModelManager.setState(STATE_EMAIL);
-        return new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT, COMMAND_SHOW_PERSONS);
+
+        StatefulLogicManager.setCommandState(commandState);
+        StatefulLogicManager.setStateActive();
+        StatefulLogicManager.setState(STATE_EMAIL);
+        return new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_PERSONS);
     }
 
     @Override

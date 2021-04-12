@@ -3,6 +3,7 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.commons.core.Messages.MESSAGE_NO_PERSONS_FOUND;
 import static seedu.booking.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.CommandTestUtil.NON_EXISTENT_EMAIL;
@@ -66,7 +67,7 @@ public class FindPersonCommandTest {
 
     @Test
     public void execute_noEmailKeywordMatches_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_NO_PERSONS_FOUND);
 
         List<Predicate<Person>> predicate = prepareEmailPredicate(NON_EXISTENT_EMAIL);
 

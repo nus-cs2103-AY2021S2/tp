@@ -12,6 +12,7 @@ import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
@@ -36,10 +37,10 @@ public class PromptAddBookingCommandTest {
 
         assertEquals(expectedResult, result);
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertTrue(state.equals(STATE_VENUE));
-        assertTrue(ModelManager.isStateActive());
+        assertTrue(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 }

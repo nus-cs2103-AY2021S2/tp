@@ -22,6 +22,7 @@ import static seedu.booking.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
@@ -103,7 +104,8 @@ public class AddPersonCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC,
+                Messages.MESSAGE_INVALID_EMAIL_FORMAT + Email.MESSAGE_CONSTRAINTS);
 
 
         // invalid tag

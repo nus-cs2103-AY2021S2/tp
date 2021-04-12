@@ -47,6 +47,9 @@ public class FindBookingCommand extends Command {
         requireNonNull(model);
         Predicate<Booking> predicate = combineBookingPredicates(predicateList);
         model.updateFilteredBookingList(predicate);
+        if (model.getFilteredBookingList().size() == 0) {
+            return new CommandResult(String.format(Messages.MESSAGE_NO_BOOKINGS_FOUND), COMMAND_SHOW_BOOKINGS);
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_BOOKING_DISPLAYED, model.getFilteredBookingList().size()),
                 COMMAND_SHOW_BOOKINGS);

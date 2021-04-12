@@ -16,6 +16,7 @@ import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.commands.states.AddBookingCommandState;
 import seedu.booking.logic.commands.states.CommandState;
@@ -29,9 +30,9 @@ public class PromptBookingVenueCommandTest {
     @BeforeEach
     void setup() {
         CommandState commandState = new AddBookingCommandState();
-        ModelManager.setCommandState(commandState);
-        ModelManager.setStateActive();
-        ModelManager.setState(STATE_VENUE);
+        StatefulLogicManager.setCommandState(commandState);
+        StatefulLogicManager.setStateActive();
+        StatefulLogicManager.setState(STATE_VENUE);
         model.addVenue(VENUE1);
     }
 
@@ -48,11 +49,11 @@ public class PromptBookingVenueCommandTest {
             throw new AssertionError("Execution of command should not fail.");
         }
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertTrue(state.equals(STATE_DESC));
-        assertTrue(ModelManager.isStateActive());
+        assertTrue(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 
     @Test
@@ -61,10 +62,10 @@ public class PromptBookingVenueCommandTest {
         String expectedMessage = MESSAGE_NON_EXISTENT_VENUE_NAME + PROMPT_MESSAGE_TRY_AGAIN;
         assertCommandFailure(command, model, expectedMessage);
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertTrue(state.equals(STATE_VENUE));
-        assertTrue(ModelManager.isStateActive());
+        assertTrue(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 }

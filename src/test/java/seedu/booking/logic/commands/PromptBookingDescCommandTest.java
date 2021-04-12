@@ -12,6 +12,7 @@ import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.commands.states.AddBookingCommandState;
 import seedu.booking.logic.commands.states.CommandState;
@@ -25,9 +26,9 @@ public class PromptBookingDescCommandTest {
     @BeforeEach
     void setup() {
         CommandState commandState = new AddBookingCommandState();
-        ModelManager.setCommandState(commandState);
-        ModelManager.setStateActive();
-        ModelManager.setState(STATE_DESC);
+        StatefulLogicManager.setCommandState(commandState);
+        StatefulLogicManager.setStateActive();
+        StatefulLogicManager.setState(STATE_DESC);
     }
 
     @Test
@@ -43,10 +44,10 @@ public class PromptBookingDescCommandTest {
             throw new AssertionError("Execution of command should not fail.");
         }
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertTrue(state.equals(STATE_TAG));
-        assertTrue(ModelManager.isStateActive());
+        assertTrue(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 }

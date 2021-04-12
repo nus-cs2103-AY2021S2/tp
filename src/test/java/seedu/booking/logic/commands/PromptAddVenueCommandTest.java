@@ -25,6 +25,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.logic.StatefulLogicManager;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.commands.states.CommandState;
@@ -44,11 +45,11 @@ public class PromptAddVenueCommandTest {
         CommandResult result = new PromptAddVenueCommand(new VenueName((VALID_VENUE_NAME_HALL))).execute(model);
         assertEquals(expectedResult, result);
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertEquals(STATE_CAPACITY, state);
-        assertTrue(ModelManager.isStateActive());
+        assertTrue(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 
     @Nested
@@ -56,13 +57,13 @@ public class PromptAddVenueCommandTest {
         @BeforeEach
         public void setUp() {
             CommandState commandState = new AddVenueCommandState(new VenueName(VALID_VENUE_NAME_HALL));
-            ModelManager.setCommandState(commandState);
-            ModelManager.setStateActive();
+            StatefulLogicManager.setCommandState(commandState);
+            StatefulLogicManager.setStateActive();
         }
 
         @Test
         void execute_enterCapacity_stateChangeToDescriptionSuccessful() {
-            ModelManager.setState(STATE_CAPACITY);
+            StatefulLogicManager.setState(STATE_CAPACITY);
 
             PromptVenueCapacityCommand command = new PromptVenueCapacityCommand(
                     new Capacity(VALID_VENUE_CAPACITY_HALL));
@@ -77,16 +78,16 @@ public class PromptAddVenueCommandTest {
                 throw new AssertionError("Execution of command should not fail.");
             }
 
-            String state = ModelManager.getState();
+            String state = StatefulLogicManager.getState();
             assertEquals(STATE_DESC, state);
-            assertTrue(ModelManager.isStateActive());
+            assertTrue(StatefulLogicManager.isStateActive());
 
-            ModelManager.resetCommandState();
+            StatefulLogicManager.resetCommandState();
         }
 
         @Test
         void execute_enterDescription_stateChangeTagsSuccessful() {
-            ModelManager.setState(STATE_DESC);
+            StatefulLogicManager.setState(STATE_DESC);
 
             PromptVenueDescCommand command = new PromptVenueDescCommand(VALID_VENUE_DESCRIPTION_HALL);
             CommandResult expectedResult = new CommandResult(PROMPT_TAG_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
@@ -100,24 +101,24 @@ public class PromptAddVenueCommandTest {
                 throw new AssertionError("Execution of command should not fail.");
             }
 
-            String state = ModelManager.getState();
+            String state = StatefulLogicManager.getState();
             assertEquals(STATE_TAG, state);
-            assertTrue(ModelManager.isStateActive());
+            assertTrue(StatefulLogicManager.isStateActive());
 
-            ModelManager.resetCommandState();
+            StatefulLogicManager.resetCommandState();
         }
     }
 
     @Test
     void execute_enterTags_endActiveStateSuccessful() {
         CommandState commandState = new AddVenueCommandState(new VenueName(VALID_VENUE_NAME_HALL));
-        ModelManager.setCommandState(commandState);
-        ModelManager.setStateActive();
-        ModelManager.setState(STATE_CAPACITY);
+        StatefulLogicManager.setCommandState(commandState);
+        StatefulLogicManager.setStateActive();
+        StatefulLogicManager.setState(STATE_CAPACITY);
         commandState.processInput(new Capacity(VALID_VENUE_CAPACITY_HALL));
-        ModelManager.setState(STATE_DESC);
+        StatefulLogicManager.setState(STATE_DESC);
         commandState.processInput(VALID_VENUE_DESCRIPTION_HALL);
-        ModelManager.setState(STATE_TAG);
+        StatefulLogicManager.setState(STATE_TAG);
 
         Set<Tag> set = new HashSet<>();
         set.add(new Tag(VALID_VENUE_TAGS_HALL));
@@ -129,23 +130,23 @@ public class PromptAddVenueCommandTest {
             throw new AssertionError("Execution of command should not fail.");
         }
 
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
         assertNull(state);
-        assertFalse(ModelManager.isStateActive());
+        assertFalse(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 
     @Test
     void execute_changeStateAfterTagState_invalidState() {
         CommandState commandState = new AddVenueCommandState(new VenueName(VALID_VENUE_NAME_HALL));
-        ModelManager.setState(STATE_TAG);
+        StatefulLogicManager.setState(STATE_TAG);
         commandState.setNextState();
-        String state = ModelManager.getState();
+        String state = StatefulLogicManager.getState();
 
         assertEquals(STATE_TAG, state);
-        assertFalse(ModelManager.isStateActive());
+        assertFalse(StatefulLogicManager.isStateActive());
 
-        ModelManager.resetCommandState();
+        StatefulLogicManager.resetCommandState();
     }
 }
