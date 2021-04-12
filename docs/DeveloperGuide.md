@@ -880,7 +880,7 @@ testers are expected to do more *exploratory* testing.
 #### Clear contacts
 
 #### Edit a contact
-1. Editing a contact while all contacts are being shown
+1. Editing optional fields of a contact while all contacts are being shown
     1. Prerequisites: List all contacts using the `list` command.
        Multiple contacts in the list.
        Some contacts have optional fields not yet filled in (e.g. `phone`, `email`, `address`),
@@ -893,6 +893,14 @@ testers are expected to do more *exploratory* testing.
        (where contact at index y already has optional phone filled in) \
        Expected: Contact at index x is edited to have its optional phone field removed.
        Details of edited contact is shown in status message.
+
+2. Editing name of a contact involved in an appointment.
+    1. Prerequisites: List all contacts using the `list` command.
+       Second contact is tagged in at least one appointment.
+    1. Test case: `edit 2 n/Annie` \
+       Expected: Second contact in the list is edited to have name `Annie`.
+       Details of edited contact is shown in status message.
+       Appointments that have been tagged with the second contact will have their respective contact tags updated to `Annie`.
 
 #### Find a contact
 
