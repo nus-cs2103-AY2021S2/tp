@@ -424,17 +424,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Dog school manager   | Find profiles using keywords instead of ID                                 | Easily find a target dog/owner/program very quickly |
 | `* * *`  | Dog school manager   | Enrol dogs into a specific dog program                                     | Dogs who recently joined a program are added to the class list |
 | `* *`    | Dog school manager   | Drop dogs out of a specific dog program                                    | Dogs that have left the class are no longer in the class list  |
-| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day. |
-| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes.  |
-| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Minimize chance of someone else seeing them by accident |
-| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command. |
+| `* * *`  | Dog school manager   | See the schedule for any day                                               | Easily view my schedule to know what programs are happening on that day |
+| `* *`    | Dog school manager   | Autosave the data after every command                                      | Regularly save the data and protect sensitive data in the event that the system crashes |
+| `* *`    | Advanced user        | Edit in bulk quickly                                                       | Save time and effort when making changes to multiple profiles |
+| `* *`    | Beginner user        | Have a help command with a command summary available                       | Refer to it when I am unsure of the command |
 | `* `     | User                 | Exit the application                                                       |           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Pawbook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Pawbook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Add a dog/owner profile or program**
 
@@ -451,10 +451,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Pawbook shows an error message.
     * 1a2. User supplies missing details. <br>
-        Steps 1a1-1a2 are repeated until the command entered is correct.
+      Steps 1a1-1a2 are repeated until the command entered is correct.
       
     Use case resumes at step 2.
+  
 * 1b. Entity already exists in the program. 
+  
     * 1b1. Pawbook shows an error message. 
     * 1b2. User supplies an entity with different details. <br>
       Steps 1b1-1b2 are repeated until the command entered is correct.
@@ -498,8 +500,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the command entered is correct.
 
       Use case resumes at step 2.
+    
+* 1a. The user failed to provide any mandatory details to be edited.
 
-**Use case: UC04 - Show the specified entity list.**
+    * 1a1. Pawbook shows an error message.
+    * 1a2. The user provides one or more mandatory details to be edited.
+      Steps 1a1-1a2 are repeated until the command entered is correct.
+    
+      Use case resumes at step 2.
+
+*Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
+
+**Use case: UC04 - Show the specified entity list**
 
 **MSS**
 
@@ -518,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case UC05 - View an entity and all its related entities.**
+**Use case UC05 - View an entity and all its related entities**
 
 **MSS**
 
@@ -534,7 +546,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User supplies a valid ID.<br>
       Steps 1a1-1a2 are repeated until the command entered is correct.
 
-  Use case resumes at step 2.
+      Use case resumes at step 2.
 
 * 1b. The ID is invalid (negative, out of bounds, not in database etc.).
   
@@ -542,8 +554,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b2. User supplies a valid ID.<br>
     Steps 1b1-1b2 are repeated until the command entered is correct.
     
+    Use case resumes at step 2.
+    
 
-**Use case UC06 - Find entity**
+**Use case UC06 - Find entity using keyword(s)**
 
 **MSS**
 
@@ -584,7 +598,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. Pawbook shows an error message.
     * 1b2. User changes request to either enrolling one dog to one program, one dog to multiple programs, or multiple dogs to one program.
-    
+      Steps 1b1-1b2 are repeated until the command entered is correct.
+      
     Use case resumes at step 2.
 
 **Use case: UC08 - Drop dog from program**
@@ -610,7 +625,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. Pawbook shows an error message.
     * 1b2. User changes request to either dropping one dog from one program, one dog from multiple programs, or multiple dogs from one program.
-
+      Steps 1b1-1b2 are repeated until the command entered is correct.
+      
   Use case resumes at step 2.
 
 **Use case: UC09 - View schedule**
@@ -632,7 +648,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
     Use case resumes at step 2.
 
-
 **Use case: UC10 - View Help Window**
 
 **MSS**
@@ -651,11 +666,9 @@ and also a command summary for the user.
       Steps 1a1-1a2 are repeated until the command entered is correct.
     Use case resumes at step 2.
       
-
 **Use case: UC11 - Exit Pawbook**
 
 **MSS**
-
 
 1.  User enters the `exit` command into the command box and presses <kbd>enter</kbd>.    
 2.  Pawbook shows goodbye message.
@@ -1100,7 +1113,7 @@ testers are expected to do more *exploratory* testing.
     1. Enrol dogs into program with: `enrol d/2 d/4 p/3`
     
     1. Test case: `drop d/2 d/4 p/3` <br>
-        Expected: Bruce and Apple are successfully added to the Obedience Training program.
+       Expected: Bruce and Apple are successfully added to the Obedience Training program.
         
 1. Drop one valid dog from multiple valid programs
 
@@ -1111,7 +1124,7 @@ testers are expected to do more *exploratory* testing.
     1. Enrol dog into programs with: `enrol d/2 p/3 p/4`
     
     1. Test case: `drop d/2 p/3 p/4` <br>
-        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+       Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
         
 1. Drop multiple valid dogs from multiple valid programs
     
@@ -1139,7 +1152,7 @@ testers are expected to do more *exploratory* testing.
 ### Exit Command
 
 1. Test case: `exit` 
-    1. Expected: The program should exit and close.
+   Expected: The program should exit and close.
 
 ### Saving data
 
