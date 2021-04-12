@@ -89,6 +89,7 @@ for your convenience.
 **:information_source: Notes about the UI:**<br>
 
 * The maximum screen size of the UI has been restricted for the best viewing experience.
+* Maximising the app window and moving it will resize the window to the most recent unmaximised size.
 * Navigating between tabs can only be done via CLI.
 
 </div>
