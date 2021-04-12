@@ -626,15 +626,16 @@ Similar to viewing a list of uncompleted tasks (UC15) but a list of unassigned t
     
 Use case ends.
 
---------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Data should be persistent after exiting and reopening the app.
-3. App should run locally on the user's computer.
+2. Should be able to hold up to 100 members and tasks without a noticeable sluggishness in performance for typical usage.
+3. Application data should be saved locally.
+4. Application should be able to run normally without any internet
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CCA**: Co-curricular Activities 
 * **CCA / Club head**: A person who has a position in a Club / CCA and is required to manage the tasks and members within the club
 
 --------------------------------------------------------------------------------------------------------------------
@@ -984,5 +985,5 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous test case.
 
       
---------------------------------------------------------------------------------------------------------------------
-
+      
+      

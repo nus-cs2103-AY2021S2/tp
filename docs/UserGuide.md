@@ -209,7 +209,7 @@ Examples:
 
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
-Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
+Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of an
 existing Member in the application with the name you specify.
 
 Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
