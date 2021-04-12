@@ -2,7 +2,7 @@
 
 Editing the details of `Person`s and `Event`s is a tedious job due to the user requiring to retype the majority of the detail for a small change.
 
-The autocomplete feature allows the user to quickkly autocomplete details from the `Person` or `Event` according to the prefixes specified.
+The autocomplete feature allows the user to quickly autocomplete details from the `Person` or `Event` according to the prefixes specified.
 
 #### Implementation
 * Syntax for Autocomplete: `{edit | eedit} INDEX [PREFIXES...]` + <kbd>TAB</kbd>
