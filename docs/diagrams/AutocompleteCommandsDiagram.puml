@@ -1,0 +1,5 @@
+@startuml
+-> MainWindow : TAB KeyPress
+MainWindow -> AutocompleteListPanel : getAvailableFlags
+AutocompleteListPanel --> MainWindow
+@enduml
