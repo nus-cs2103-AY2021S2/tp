@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
@@ -79,6 +80,8 @@ public class JsonAdaptedSchedule {
 
         final AppointmentDateTime fromDateTime = new AppointmentDateTime(timeFrom);
         final AppointmentDateTime toDateTime = new AppointmentDateTime(timeTo);
+
+        DateTimeValidationUtil.validateJsonAdaptedEvent(fromDateTime, toDateTime);
 
         return new Schedule(modelTitle, fromDateTime, toDateTime, modelDescription);
     }
