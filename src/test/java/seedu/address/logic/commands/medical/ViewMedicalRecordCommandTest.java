@@ -67,7 +67,10 @@ class ViewMedicalRecordCommandTest {
     public void execute_invalidMedicalRecordIndexUnfilteredList_failure() {
         Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         LocalDateTime dateTime = LocalDateTime.of(2021, 12, 12, 18, 00);
-        patientToView.addMedicalRecord(new MedicalRecord(dateTime, null));
+        Section section = new Section("test");
+        List<Section> sections = new ArrayList<>();
+        sections.add(section);
+        patientToView.addMedicalRecord(new MedicalRecord(dateTime, sections));
 
         model.selectPatient(patientToView);
         Index outOfBoundIndex = Index.fromOneBased(patientToView.getRecords().size() + 1);
