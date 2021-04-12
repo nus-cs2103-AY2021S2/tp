@@ -26,7 +26,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Given date is not a valid date in the year that follows format: DD-MM-YYYY";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Given date is not a valid date "
+            + "in the year that follows format: DD-MM-YYYY";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
