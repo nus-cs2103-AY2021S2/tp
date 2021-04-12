@@ -59,7 +59,7 @@ Model --> EditToRemoveTagCommand : lastShownList
 deactivate Model
 
 loop for each person with tags
-EditToRemoveTagCommand -> Model : setPerson(person, editedPerson))
+EditToRemoveTagCommand -> Model : setPerson(person, editedPerson)
 activate Model
 Model --> EditToRemoveTagCommand
 deactivate Model
