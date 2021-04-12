@@ -1083,10 +1083,10 @@ testers are expected to do more *exploratory* testing.
 1. Sorting items in the inventory in terms of quantity.
 
     * Test case: `sort quantity asc`<br>
-       Expected: All the items are sorted in ascending quantity.
+       Expected: All the items are sorted in order of ascending quantity.
 
     * Test case: `sort quantity desc`<br>
-       Expected: All the items are sorted in descending quantity.
+       Expected: All the items are sorted in order of descending quantity.
 
     * Incorrect sort commands to try: `sort`, `sort quantity`<br>
        Expected: Error details shown in the status message.
