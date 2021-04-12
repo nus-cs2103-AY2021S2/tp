@@ -62,6 +62,11 @@ In this section, you will learn how to read CakeCollate's User Interface (UI), t
 
 3. The **Orders Box** is where all the orders that you have added to CakeCollate are displayed.
 
+    :information_source: **In what order are orders displayed in CakeCollate? **<br>
+      * CakeCollates always displays orders by their statuses - undelivered, then cancelled, then delivered orders. 
+      * For orders that that have the same statuses, they are then arranged according to delivery date, with the earliest date on the top of the GUI. 
+
+
 4. The **Order Items Box** is where all the different type of order items you have already entered into CakeCollate are displayed. You can think of it as a product catalogue. 
 
 #### **2.2.2 Formatting of the commands**
@@ -168,6 +173,7 @@ Prefix: `o/`
 * It cannot be empty.<br>
   E.g. `Durian Cake`, `Blackforest Cake`
 
+
 ##### `ORDER_ITEM_INDEXES`
 The order item index of the order item table.<br>
 Prefix: `oi/`
@@ -260,9 +266,17 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DES
 Examples:
 
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2022 o/Chocolate Cake o/chocolate cake o/Mochi Cake t/friend t/daughter` adds an order with all compulsory fields, three order descriptions, and a friend and daughter tag.<br>
-![add_basic_1](images/add_basic_1.PNG)
+  ![add_basic_1](images/add_basic_1.PNG)
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2022 o/Chocolate Cake` adds an order with all compulsory fields, one order description and no tags.<br>
 ![add_basic_2](images/add_basic_2.PNG)
+
+:information_source: **How do you specify that a cake has been ordered multiple times?**<br>
+* If your customer orders 2 chocolate cakes and 1 mochi, you can specify the `o/` prefix twice, e.g. `o/Chocolate Cake o/Chocolate Cake o/Mochi Cake` (same as the first example above)
+* The GUI will then display `2 x Chocolate Cake` and `1 x Mochi Cake` in the order that was newly added.
+  * Note how there is no need for you to type `2 x` or `1 x` - CakeCollate helps you count each order description for you.
+
+:information_source: **Order descriptions are not case-sensitive**<br>
+  * CakeCollate recognizes that `Chocolate cake` and `chocolatE caKe` are the same order description and will treat them like the same `Chocolate Cake`, so if you add `o/Chocolate cake o/chocoLATE CAKE` to your order, it will be still displayed as `2 x Chocolate Cake`, making your GUI look neat.  
 
 ###### Alternative format 
 
@@ -292,11 +306,9 @@ Examples:
 
 * If you do want to add items into the order items table, you can refer to the [`addItem`](#adding-order-items-additem) command below.
 
-:information_source: **How do you specify that a cake has been ordered multiple times?**<br>
+:information_source: **How do you specify that a cake has been ordered multiple times using the `oi/` prefix?**<br>
 
-* If a user orders 2 chocolate cakes, you can specify the `o/` prefix twice, E.g. `o/Chocolate Cake o/Chocolate Cake`.
-
-* Alternatively, if Chocolate Cake is in index 4 of the order item table, you can specify `oi/1 1`.
+* If Chocolate Cake is in index 4 of the order item table, you can specify `oi/1 1`.
 
 ##### Adding a special request to an order: `request`
 

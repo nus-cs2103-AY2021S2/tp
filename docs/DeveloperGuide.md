@@ -152,11 +152,16 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Command Feature
 
-A key functionality of CakeCollate is the ability to add cake items into an order (better known as order items or order descriptions for this app). The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
+A key functionality of CakeCollate is the ability to add cake order items into an order. The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
 
-However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and map one input to the other. 
+However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and the other input had to be mapped. We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model so that the `Order` object is complete and does not rely on indexes or the model. 
 
-We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model. Prior to this feature, the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`, the `AddCommand::execute` method took in a model, and the `AddCommandParser::parse` method did not take in a model. Given this, there were two main options to implement the mapping:
+Prior to this feature, there were three relevant implementation details
+* the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`
+* the `AddCommand::execute` method took in a model, 
+* and the `AddCommandParser::parse` method did not take in a model.
+
+Given this, there were two main options to implement the mapping:
 
 1. Refactor `AddCommandParser::parse` to have access to the Model. 
 
@@ -179,17 +184,6 @@ Hence, based on this implementation, here is the sequence diagram containing the
 **Sequence diagram depicting the `AddCommand::execute` method:**
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
-
-
-[comment]: <> (### Sorting displayed list by delivery date)
-
-[comment]: <> (The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date)
-
-[comment]: <> (&#40;insert sequence diagram&#41;)
-
-[comment]: <> (To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList&#40;&#41; command.)
-
-[comment]: <> (&#40;explain with more code later&#41;)
 
 
 ### Find feature
@@ -761,6 +755,12 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Adding orders 
+1. Add an order to the database 
+    1. Prerequisites: none
+    1. Test case: `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2022 o/Chocolate Cake o/chocolate cake o/Mochi Cake t/friend t/daughter` <br>
+    Expected: A new entry corresponding to the details of this order is added to the Order Box. Details of the successful input is shown in the status box. If `Mochi Cake` and `Chocolate Cake` are not in the Order Items table previously, they should be added to it now.
 
 ### Deleting multiple orders
 
