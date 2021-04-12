@@ -967,11 +967,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. TutorsPet displays a message to notify the duplicate name and ask user whether to proceed with `y` or `n`.
   
     * 1b2. User enters `y`.<br>
-      Use case resumes from step 4.
+      Use case resumes from step 2.
 
-* 1b. Details are in correct format, but the phone already exists in TutorsPet.
+* 1c. Details are in correct format, but the phone already exists in TutorsPet.
 
-     * 1b1. TutorsPet shows an error message. <br>
+     * 1c1. TutorsPet shows an error message. <br>
        Use case ends.
 
 **Use case: Editing an existing student contact**
