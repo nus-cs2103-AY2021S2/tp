@@ -140,12 +140,12 @@ class AddBookingCommandTest {
 
         @Override
         public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updatePersonInBookings(Email oldEmail, Email newEmail) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -220,7 +220,7 @@ class AddBookingCommandTest {
 
         @Override
         public void setVenue(Venue target, Venue editedVenue) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

@@ -211,7 +211,7 @@ public class AddVenueCommandTest {
 
         @Override
         public void setVenue(Venue target, Venue editedVenue) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -279,7 +279,7 @@ public class AddVenueCommandTest {
      * A Model stub that always accept the venue being added.
      */
     private class ModelStubAcceptingVenueAdded extends ModelStub {
-        final ArrayList<Venue> venuesAdded = new ArrayList<>();
+        public final ArrayList<Venue> venuesAdded = new ArrayList<>();
 
         @Override
         public boolean hasVenue(Venue venue) {
