@@ -15,14 +15,14 @@ import seedu.address.model.entry.EntryDate;
 import seedu.address.model.entry.ListOccupyingEntryPredicate;
 
 /**
- * Parses input arguments and creates a new FreeCommand object
+ * Parses input arguments and creates a new FreeCommand object.
  */
 public class FreeCommandParser implements Parser<FreeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FreeCommand
      * and returns a FreeCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public FreeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -41,6 +41,7 @@ public class FreeCommandParser implements Parser<FreeCommand> {
         }
 
         LocalDateTime now = LocalDateTime.now();
+
         if (startDateTime.getDate().isBefore(now)) {
             throw new ParseException(MESSAGE_ENTRY_START_DATE_IN_PAST);
         }

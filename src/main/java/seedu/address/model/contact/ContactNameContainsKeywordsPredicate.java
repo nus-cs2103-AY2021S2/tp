@@ -9,6 +9,7 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Contact}'s {@code ContactName} matches all of the keywords given.
  */
 public class ContactNameContainsKeywordsPredicate implements Predicate<Contact> {
+
     private final List<String> keywords;
 
     public ContactNameContainsKeywordsPredicate(List<String> keywords) {
@@ -27,6 +28,5 @@ public class ContactNameContainsKeywordsPredicate implements Predicate<Contact> 
                 || (other instanceof ContactNameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ContactNameContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }
 

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_EDIT_ENTRY_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ENTRY_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_OVERLAPPING_ENTRY;
@@ -24,7 +23,7 @@ import seedu.address.model.entry.TemporaryEntry;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing entry in the address book.
+ * Edits the details of an existing entry in Teaching Assistant.
  */
 public class EditEntryCommand extends Command {
 
@@ -39,14 +38,18 @@ public class EditEntryCommand extends Command {
             + "[" + PREFIX_END_DATE + "END_DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Meeting with group ";
+            + PREFIX_START_DATE + "2021-06-07 13:00 "
+            + PREFIX_END_DATE + "2021-06-07 14:00";
+
+    public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited entry: %1$s";
 
     private final Index targetIndex;
+
     private final TemporaryEntry tempEntry;
 
     /**
-     * @param targetIndex to identify which entry by its index
-     * @param tempEntry containing the details to edit the entry with
+     * Creates an EditEntryCommand to edit the contact corresponding to the specified {@code Index}
+     * with the details as specified by the {@code tempEntry}.
      */
     public EditEntryCommand(Index targetIndex, TemporaryEntry tempEntry) {
         requireNonNull(targetIndex);
@@ -102,8 +105,8 @@ public class EditEntryCommand extends Command {
         }
 
         // state check
-        EditEntryCommand e = (EditEntryCommand) other;
-        return targetIndex.equals(e.targetIndex)
-                && tempEntry.equals(e.tempEntry);
+        EditEntryCommand otherEditEntryCommand = (EditEntryCommand) other;
+        return targetIndex.equals(otherEditEntryCommand.targetIndex)
+                && tempEntry.equals(otherEditEntryCommand.tempEntry);
     }
 }

@@ -83,5 +83,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data file location : " + teachingAssistantFilePath);
         return sb.toString();
     }
-
 }

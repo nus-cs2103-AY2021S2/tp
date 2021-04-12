@@ -5,7 +5,11 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a TemporaryEntry.
+ */
 public class TemporaryEntry {
+
     private boolean isAnyFieldEdited;
     private Optional<EntryName> entryName;
     private Optional<EntryDate> startDate;
@@ -13,8 +17,8 @@ public class TemporaryEntry {
     private Optional<Set<Tag>> tags;
 
     /**
-     * Constructs a TemporaryEntry object which is a partial
-     * Entry object with optional fields.
+     * Creates a TemporaryEntry object which is a partial Entry object
+     * with optional fields.
      */
     public TemporaryEntry() {
         isAnyFieldEdited = false;

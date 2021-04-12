@@ -7,17 +7,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.ListEntryFormatPredicate;
 
 /**
- * Parses input arguments and creates a new ListEntryCommand object
+ * Parses input arguments and creates a new ListEntryCommand object.
  */
 public class ListEntryCommandParser implements Parser<ListEntryCommand> {
 
     /**
      * Parses the give {@code String} of arguments in the context of the ListEntryCommand
      * and returns a ListEntryCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public ListEntryCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
         if (trimmedArgs.equals("day") || trimmedArgs.equals("week") || trimmedArgs.isEmpty()) {
             return new ListEntryCommand(new ListEntryFormatPredicate(trimmedArgs));
         } else {

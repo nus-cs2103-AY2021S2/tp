@@ -11,15 +11,19 @@ import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class FindContactCommand extends Command {
+
     public static final String COMMAND_WORD = "cfind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " Danny";
 
     private final ContactNameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindContactCommand to find the relevant contacts according to the specified {@code predicate}.
+     */
     public FindContactCommand(ContactNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
