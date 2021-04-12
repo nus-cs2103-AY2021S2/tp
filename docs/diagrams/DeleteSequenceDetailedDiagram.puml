@@ -37,7 +37,7 @@ return
 
 create CommandResult
 DeleteDogCommand -> CommandResult
-return
+return result
 
 return result
 
