@@ -231,6 +231,7 @@ Examples:
 
 ![Example property edited](images/ExampleEditProperty.PNG)
 
+<div style="page-break-after: always;"></div>
 
 #### 4.3.2 Editing an appointment : `edit appointment`
 
@@ -243,8 +244,6 @@ Description:
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * The edited appointment **cannot have a meeting date and time that is already passed**.
-
-<div style="page-break-after: always;"></div>
 
 Examples:
 *  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
