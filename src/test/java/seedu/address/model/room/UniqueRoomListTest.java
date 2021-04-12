@@ -18,6 +18,9 @@ import seedu.address.model.room.exceptions.DuplicateRoomException;
 import seedu.address.model.room.exceptions.RoomNotFoundException;
 import seedu.address.testutil.room.RoomBuilder;
 
+/**
+ * Contains unit and integration (with the {@code Room}) tests for {@code UniqueRoomList}.
+ */
 public class UniqueRoomListTest {
 
     private final UniqueRoomList uniqueRoomList = new UniqueRoomList();
@@ -175,28 +178,28 @@ public class UniqueRoomListTest {
     public void equals() {
         UniqueRoomList expectedUniqueRoomList = new UniqueRoomList();
 
-        // same object -> return true (when empty)
+        // EP: same object -> return true (when empty)
         assertEquals(uniqueRoomList, uniqueRoomList);
 
-        // diff types -> return false
+        // EP: diff types -> return false
         assertNotEquals(uniqueRoomList, 5);
 
-        // null -> return false
+        // EP: null -> return false
         assertNotEquals(uniqueRoomList, null);
 
-        // diff object -> return true (when empty)
+        // EP: diff object -> return true (when empty)
         assertEquals(uniqueRoomList, expectedUniqueRoomList);
 
 
-        // same object -> return true (with items)
+        // EP: same object -> return true (with items)
         uniqueRoomList.add(ROOM_CORRIDOR_NON_AC_OCCUPIED);
         assertEquals(uniqueRoomList, uniqueRoomList);
 
-        // diff object -> return true (with same items)
+        // EP: diff object -> return true (with same items)
         expectedUniqueRoomList.add(ROOM_CORRIDOR_NON_AC_OCCUPIED);
         assertEquals(uniqueRoomList, expectedUniqueRoomList);
 
-        // diff object, diff items -> return false (with same items)
+        // EP: diff object, diff items -> return false (with same items)
         expectedUniqueRoomList.add(ROOM_SUITE_AC_OCCUPIED);
         assertNotEquals(uniqueRoomList, expectedUniqueRoomList);
 

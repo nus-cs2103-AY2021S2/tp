@@ -109,7 +109,7 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     /**
-     * Replaces the entire {@code UniqueRoomList} with the provided {@code replacement}
+     * Replaces the entire {@code UniqueRoomList} with the provided {@code replacement}.
      *
      * @param replacement {@code UniqueRoomList} to replace the existing one with.
      * @throws NullPointerException If {@code replacement} is null.

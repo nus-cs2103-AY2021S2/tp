@@ -248,7 +248,7 @@ public class ModelManager implements Model {
      *
      * @param target     {@code Room} to replace.
      * @param editedRoom {@code Room} to replace {@code target} with.
-     * @throws NullPointerException If {@code RoomNumber} is null.
+     * @throws NullPointerException If {@code target} or {@code editedRoom} is null.
      */
     @Override
     public void setRoom(Room target, Room editedRoom) {
@@ -292,6 +292,8 @@ public class ModelManager implements Model {
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code versionedAddressBook}.
+     *
+     * @return
      */
     @Override
     public ObservableList<Room> getFilteredRoomList() {

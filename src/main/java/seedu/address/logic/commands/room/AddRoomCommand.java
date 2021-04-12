@@ -34,7 +34,7 @@ public class AddRoomCommand extends Command {
     private final Room toAdd;
 
     /**
-     * Creates an AddRoomCommand to add the specified {@code Room}
+     * Creates an AddRoomCommand to add the specified {@code Room}.
      *
      * @throws NullPointerException if {@code Room} is null.
      */
@@ -49,6 +49,7 @@ public class AddRoomCommand extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the {@code Room} that was added.
      * @throws CommandException If the room being added is a duplicate of one already in the model.
+     * @throws NullPointerException if {@code model} is null.
      */
 
     @Override

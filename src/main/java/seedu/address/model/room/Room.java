@@ -50,7 +50,7 @@ public class Room implements Comparable<Room> {
     /**
      * Constructs a Room with the default {@code IsOccupied} value of "No".
      * This constructor should be used in most cases, i.e creating a room using the {@code AddRoomCommand} or
-     * {@code EditRoomCommand}
+     * {@code EditRoomCommand}.
      *
      * @param roomNumber The {@code RoomNumber} of the {@code Room} to create.
      * @param roomType   The {@code RoomType} of the {@code Room} to create.

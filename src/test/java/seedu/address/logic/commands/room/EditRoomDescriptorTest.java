@@ -11,6 +11,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.room.EditRoomCommand.EditRoomDescriptor;
 import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
+/**
+ * Contains unit tests for
+ * {@EditRoomDescriptor}.
+ */
 public class EditRoomDescriptorTest {
     @Test
     public void equals() {
@@ -18,34 +22,34 @@ public class EditRoomDescriptorTest {
         EditRoomDescriptor descriptorWithSameValues = new EditRoomDescriptor(VALID_ROOM_DESCRIPTOR_ONE);
         assertTrue(VALID_ROOM_DESCRIPTOR_ONE.equals(descriptorWithSameValues));
 
-        // Same object -> return true
+        // EP: Same object -> return true
         assertTrue(VALID_ROOM_DESCRIPTOR_ONE.equals(VALID_ROOM_DESCRIPTOR_ONE));
 
-        // null -> return false
+        // EP: null -> return false
         assertFalse(VALID_ROOM_DESCRIPTOR_ONE.equals(null));
 
-        // different types -> return false
+        // EP: different types -> return false
         assertFalse(VALID_ROOM_DESCRIPTOR_ONE.equals(5));
 
-        // different values -> return false
+        // EP: different values -> return false
         assertFalse(VALID_ROOM_DESCRIPTOR_ONE.equals(VALID_ROOM_DESCRIPTOR_TWO));
 
         // tests for each of the different fields
         EditRoomDescriptor editedOne;
 
-        // different room number -> return false
+        // EP: different room number -> return false
         editedOne = new EditRoomDescriptorBuilder(VALID_ROOM_DESCRIPTOR_ONE)
                 .withRoomNumber("08-121")
                 .build();
         assertFalse(VALID_ROOM_DESCRIPTOR_ONE.equals(editedOne));
 
-        // different room type -> return false
+        // EP: different room type -> return false
         editedOne = new EditRoomDescriptorBuilder(VALID_ROOM_DESCRIPTOR_ONE)
                 .withRoomType("suite_non_ac")
                 .build();
         assertFalse(VALID_ROOM_DESCRIPTOR_ONE.equals(editedOne));
 
-        // different tags -> return false
+        // EP: different tags -> return false
         editedOne = new EditRoomDescriptorBuilder(VALID_ROOM_DESCRIPTOR_ONE)
                 .withTags(VALID_ROOM_TAGS)
                 .build();

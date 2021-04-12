@@ -54,6 +54,7 @@ public class DeleteRoomCommand extends Command {
      *                          {@code Resident}.
      * @throws CommandException If the room being deleted at the specified {@code Index} has any {@code Issue}
      *                          associated with it.
+     * @throws NullPointerException If {@code model} is null.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {

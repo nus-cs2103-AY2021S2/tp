@@ -112,20 +112,20 @@ public class DeleteRoomCommandTest {
         DeleteRoomCommand deleteFirstCommand = new DeleteRoomCommand(INDEX_FIRST);
         DeleteRoomCommand deleteSecondCommand = new DeleteRoomCommand(INDEX_SECOND);
 
-        // same object -> returns true
+        // EP: same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
-        // same values -> returns true
+        // EP: same values -> returns true
         DeleteRoomCommand deleteFirstCommandCopy = new DeleteRoomCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
-        // different types -> returns false
+        // EP: different types -> returns false
         assertFalse(deleteFirstCommand.equals(1));
 
-        // null -> returns false
+        // EP: null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different resident -> returns false
+        // EP: different resident -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

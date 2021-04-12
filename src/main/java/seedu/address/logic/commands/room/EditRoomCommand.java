@@ -64,6 +64,7 @@ public class EditRoomCommand extends Command {
      *
      * @param index              {@code Index} of the room in the filtered room list to edit.
      * @param editRoomDescriptor Details to edit the room with.
+     * @throws NullPointerException If {@code index} or {@code editRoomDescriptor} is null.
      */
     public EditRoomCommand(Index index, EditRoomDescriptor editRoomDescriptor) {
         requireNonNull(index);
@@ -136,7 +137,7 @@ public class EditRoomCommand extends Command {
     /**
      * Creates and returns a {@code Room} with the details of {@code roomToEdit} edited with {@code editRoomDescriptor}.
      *
-     * @param roomToEdit         The {@code Room} that is being edited
+     * @param roomToEdit         The {@code Room} that is being edited.
      * @param editRoomDescriptor The {@code EditRoomDescriptor} that contains the details to edit the {@code Room} with.
      * @return The {@code Room} object after {@code roomToEdit} is updated by {@code editRoomDescriptor}.
      */
