@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
@@ -24,6 +23,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.EditCommandParser.MESSAGE_INVALID_PREFIX_DETECTED;
 import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -45,37 +45,37 @@ public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
-
     private EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
+        String errorMessage = ParserUtil.MESSAGE_INVALID_INDEX + "\n" + MESSAGE_INVALID_PREFIX_DETECTED;
+
         // no index specified
-        assertParseFailure(parser, VALID_TITLE_AMY, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, VALID_TITLE_AMY, errorMessage);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "", errorMessage);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
+        String errorMessage = ParserUtil.MESSAGE_INVALID_INDEX + "\n" + MESSAGE_INVALID_PREFIX_DETECTED;
         // negative index
-        assertParseFailure(parser, "-5" + TITLE_DESC_AMY, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "-5" + TITLE_DESC_AMY, errorMessage);
 
         // zero index
-        assertParseFailure(parser, "0" + TITLE_DESC_AMY, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "0" + TITLE_DESC_AMY, errorMessage);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "1 some random string", errorMessage);
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string",
-                ParserUtil.MESSAGE_INVALID_INDEX);
+                errorMessage);
     }
 
     @Test
