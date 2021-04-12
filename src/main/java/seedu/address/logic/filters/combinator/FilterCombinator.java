@@ -32,8 +32,7 @@ public class FilterCombinator implements Predicate<Customer> {
     private final Node rootNode;
 
     /**
-     * Constructor for filter combinator to create a expression tree from the given argument. Note that an issue with
-     * the expression is not handled at this point, and is handled only when testing a {@code Customer} // TODO
+     * Constructor for filter combinator to create a expression tree from the given argument.
      *
      * @param argument the filter expression
      */
@@ -48,6 +47,7 @@ public class FilterCombinator implements Predicate<Customer> {
             throw e;
         } catch (IllegalArgumentException | NullPointerException e) {
             e.printStackTrace();
+            throw new ParseException(e.getMessage());
         } finally {
             rootNode = temp;
         }
