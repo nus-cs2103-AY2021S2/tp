@@ -623,6 +623,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* is using a single monitor setup
 * is an NUS Computer Science undergraduate
 * works in the NUS Office of Campus Amenities communications team
 
