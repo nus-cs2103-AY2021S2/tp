@@ -1,0 +1,39 @@
+@startuml
+!include ../style.puml
+title Adding a Budget
+
+start
+:User executes AddBudgetCommand;
+
+if () then ([Budget is not present])
+      : Parses the prefixes;
+
+      if () then ([all prefixes formatted correctly])
+      : Check if budget value has valid format;
+
+            if () then ([Budget has valid format])
+            : Proceeds to add budget to user system;
+
+            else ([else])
+            : Shows invalid budget value
+            error message;
+
+            endif
+
+
+      else ([else])
+      :Shows an error message on
+      invalid prefix format;
+
+      endif
+
+else ([else])
+      : Shows budget already exists
+      error message;
+
+
+endif
+
+stop
+
+@enduml
