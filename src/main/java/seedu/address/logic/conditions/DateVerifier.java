@@ -11,11 +11,10 @@ import seedu.address.model.task.Task;
  * Enforces the conditions for a task's Date attribute.
  */
 public class DateVerifier {
-
+    public static final String MESSAGE_EMPTY_DATE = "The task selected has no Date attribute.";
     private static final String MESSAGE_INVALID_DATE = "Task has invalid date input."
             + "\n\nNote: Months of Apr, Jun, "
             + "Sep, Nov has only 30 days while Feb has only 28 days with leap years (mulitples of 4) having 29 days";
-    private static final String MESSAGE_EMPTY_DATE = "The task selected has no Date attribute.";
     private static final String MESSAGE_DATE_OVER = "The task selected is already over.";
     private static final Logger logger = LogsCenter.getLogger(DateVerifier.class);
 
