@@ -148,7 +148,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### View Projects Feature
 
-This section explains the implementation of the View Project feature. The implementations of other commands that open panels or tabs are similar.
+This section explains the implementation of the View Project feature. The implementation of other commands that open panels or tabs are similar.
 
 The `ViewProject` command results in the UI displaying the specified project together with all its related information.
 
