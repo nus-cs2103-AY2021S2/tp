@@ -121,36 +121,43 @@ Classes used by multiple components are in the `seedu.ta.commons` package.
 ---
 
 # Implementation
+
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Enquire if time interval is free
 
-The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
+The free command mechanism provides users a quick way to find out if certain time intervals are available.
 
 An outline of the proposed implementation is as follows:
 
-The `TeachingAssistantParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
+The `TeachingAssistantParser` should accept another case of command word `free` which eventually returns `FreeCommand`
 back to Logic Manager.
 
-This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as:
-* "Free"
-* Or the task that is occupying that time interval
+This command is then executed to return `CommandResult` which is either shown on the result display of the GUI as:
+
+* "You're Free!"
+* Or "Sorry, you're not free. Entries occupying that time interval listed below!". The occupying entries are shown in
+  the entry list at the main window.
 
 The following activity diagram summarizes what happens when a user executes the new command:
 
 ![Free Intervals Activity Diagram](images/FreeIntervalActivityDiagram.png)
 
-The `ModelManager` class will be required to implement `checkIfFree` method which eventually checks the interval
-provided by the user against all tasks' `LocalDateTime` attribute in
-`UniqueTaskList#checkIfFree(start, end)`.
+The implementation of this command is similar to the List Command but requires a new predicate class to be created.
+A `ListOccupyingEntryPredicate` class is implemented that provides a predicate that accepts user provided start and end
+interval. The predicate is provided to `ModelManager#updateFilteredEntryList` and updates the entry list according to
+the condition under `ListOccupyingEntryPredicate#test`.
 
-The following sequence diagram outlines how the enquiry operation works:
+The following sequence diagram outlines how the free operation works:
 
 ![Free Intervals Sequence Diagram](images/FreeIntervalSequenceDiagram.png)
 
-Note: Details in Model class and `CheckFreeCommandParser` have been omitted for simplicity.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Details about creation of `ListOccupyingEntryPredicate`
+has been ommitted for simplicity.
+</div>
 
 ### [Proposed] Merge Schedule and Task
+
 The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
 As the Task and Schedule classes are similar in features, we can merge them into an Entry class for maintainability.
 
@@ -168,22 +175,25 @@ Below, we can see the before and after activity diagrams involving this merger.
 ![Entry Activity](images/EntryActivityDiagram.png)
 
 ### Filtering entries via tags
+
 Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence,
 this proposal aims to allow filtering these entries via their tags.
 
 The Model class will be required to implement the `updateFilteredEntryList` which can incorporate
-`updateFilteredTaskList` or `updateFilteredScheduleList` implemented in the previous two classes. This method will
-then accept an argument of type `EntryTagContainsKeywordsPredicate`.
+`updateFilteredTaskList` or `updateFilteredScheduleList` implemented in the previous two classes. This method will then
+accept an argument of type `EntryTagContainsKeywordsPredicate`.
 
 The following diagram omits the parser object created, namely `FilterEntryCommandParser` for simplicity.
 
 ![Filtering Entries](images/FilterEntrySequenceDiagram.png)
 
 **Design consideration**
+
 1. Allow filtering by more than one tag.
 1. Decide whether the filtering above considers Union or Intersection of tags.
 
 ### List entry feature
+
 The proposed list entry mechanism allows users to see all of their schedules, or see them by day or by week.
 
 An outline of the proposed implementation is as follows:
@@ -435,15 +445,18 @@ low | user adopting this products | clear all my contacts from Teaching Assistan
 ## Glossary
 
 ### JC
-Junior College (JC) is the post-secondary education level where students are preparing for university.
-JC is also the high-school equivalent in other countries. Hence, JC teachers may be packed with consultation
-schedules which can leverage our software.
+
+Junior College (JC) is the post-secondary education level where students are preparing for university. JC is also the
+high-school equivalent in other countries. Hence, JC teachers may be packed with consultation schedules which can
+leverage our software.
 
 ### Mainstream OS
+
 Mainstream operating systems are the current operating systems with a significant market share, namely Windows, Linux,
 Unix, and OS-X.
 
 ### MSS
+
 Main Success Scenario (MSS) defines the optimal outcome of our commands, i.e. in the case where no errors occurred.
 
 ---

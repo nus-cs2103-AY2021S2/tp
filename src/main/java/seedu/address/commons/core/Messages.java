@@ -26,7 +26,7 @@ public class Messages {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public static final String MESSAGE_FREE = "You're free!";
-    public static final String MESSAGE_NOT_FREE = "Sorry, you're not free. Schedules occupying that time interval "
+    public static final String MESSAGE_NOT_FREE = "Sorry, you're not free. Entries occupying that time interval "
             + "listed below!";
     public static final String MESSAGE_DUPLICATED_ENTRY = "This entry already exists in the list.";
 
