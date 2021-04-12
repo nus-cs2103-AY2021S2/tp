@@ -2,6 +2,10 @@
 layout: page
 title: Developer Guide
 ---
+<img width="960" alt="docboblogo" src="https://user-images.githubusercontent.com/59093518/113546749-2db63300-961f-11eb-979d-128c9fd10ee6.png">
+
+**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. As such, this Developer Guide serves as a one-stop page for developers interested in DocBob to familarise themselves with the product. 
+
 * Table of Contents
 {:toc}
 
@@ -215,7 +219,6 @@ we give the `EditorWindow` a copy of the `MainWindow#executeCommand` method duri
 
 In this way, the opening and saving of medical records is decoupled, allowing multiple records to be opened before one is closed, and there is no strict time dependency between the commands.
 
-_{more aspects and alternatives to be added}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -250,9 +253,6 @@ _{more aspects and alternatives to be added}_
 * Helps the clinic doctor to keep track of his appointments
 * For those proficient in typing, ease management of assets
 
-
-### Introduction to DG
-The purpose of this DG is to serve as a place for future designers to familarise themself with the product. Included below are user stories that show the importance of the features added.  Also included are use cases and non functional requirements. We have also included a guide to manual testing but designers are encouraged to test further.
 
 ### User stories
 
@@ -555,17 +555,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Constraints                             | System should not have elements of social networking i.e. communication between devices |
 | Technical requirement                   | System should be able to work on any processor i.e. 32 bit or 64 bit |
 | Technical requirement                   | System should be scalable enough to be able to keep up with new processors (more than 64) |
-| Technical requirement                   | System should be able to work on an operating system (OS) i.e. MacOS, Windows, Linux etc.|
+| Technical requirement                   | System should be able to work on any mainstream operating system (OS) i.e. MacOS, Windows, Linux etc.|
 | Technical requirement                   | System should be able to work on older version of different OS i.e. Windows 7, OS x 10.3 (panther) etc.|
-| Performance requirement                 | System should have at most a tolerable lag time |
-| Performance requirement                 | Lag time of system should not be too long and result in an off putting experience|
+| Performance requirement                 | System should have a tolerable lag time |
+| Performance requirement                 | Lag time of system should not be too long and result in an off-putting experience|
 | Quality requirement                     | System should be straightforward enough that a novice should at the very least be able to add, edit and delete users|
-| Quality requirement                     | System should be have features that make sense so that as time pass, the users can do more with the software|
+| Quality requirement                     | System should be have features that make sense so that as time passes, the users can do more with the software|
 | Quality requirement                     | System should be robust enough to handle manner of edge cases i.e. throw appropriate exceptions that guide the user|
-| Process requirement                     | the project should adhere to the schedule pre decided (subject to minor adjustments within margin of error)|
-| Notes about project scope               | the program should not have to handle printing printing of the screen |
+| Process requirement                     | the project should adhere to the schedule pre-decided (subject to minor adjustments within margin of error)|
+| Notes about project scope               | the program should not have to handle printing of the screen |
 | Notes about project scope               | the program should not have to handle uploading information to private servers |
 | Notes about project scope               | the program should not have to handle encryption and decryption of information passed into it |
+| Submission constraints                  | The product JAR should not exceed 100MB |
+| Submission constraints                  | The PDFs of the User Guide and Developer Guide should not exceed 15MB |
 | Miscellaneous                           | the program should not contain any offending imaginary |
 | Miscellaneous                           | the program should not contain any vulgar words/language |
 | Miscellaneous                           | the program should not contain any political imagery |
@@ -577,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **MSS**: Main success story which describes the most straightforward interaction for a given use case, where nothing goes wrong
-* **Case insensitive**: Capitilisation of letters do not matter.  For example shrek,SHREK,ShErK are considered the same.
+* **Case insensitive**: Capitilisation of letters do not matter.  For example shrek, SHREK and ShErK are considered the same.
 
 --------------------------------------------------------------------------------------------------------------------
 
