@@ -123,7 +123,7 @@ Given below are my contributions to the project.
 <br>
 
 #### Old Delete Sequence Diagram
-![Old sequence diagram for delete](images/OldDeleteSequenceDiagram.png)
+![Old sequence diagram for delete](../images/OldDeleteSequenceDiagram.png)
 
 <br>
 
