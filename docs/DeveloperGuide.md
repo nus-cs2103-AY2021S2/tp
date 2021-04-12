@@ -316,7 +316,23 @@ This new object will replace an object in the current book and return a `Command
 
 #### Order complete command
 
+The `order comlete` command can be called from the CLI input with the general form
+	
+	order complete [argument]
+
+The argument of the `order complete` command will always be the index (1-indexed) of the order to be marked as completed. 
+For details on how the command is parsed, refer to the explanation in the [Component Parser description](#component-parser). After the command is successfully parsed into an complete `Command` object (e.g. `OrderCompleteCommand`), the `Command` object is executed by the `LogicManager`; the `order complete` commands' `execute` methods include validation routines to ensure the index selected is a valid index.
+
+Finally, the `ModelManager` is called to replace the order with an altered order - which is identical except it is marked as completed - in `orderBook`, and a `CommandResult` object is returned, which causes the `MainWindow` to update to display the result. The order will no longer appear in `order list` but instead show up in `order history` as a completed order.
+
 #### Order history command
+
+The `order history`  command can be called from the CLI input with the general form
+
+	order history
+
+There are no arguments for the `order history` command. The command is implemented similarly to the list command [List Command description](#list-command).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
