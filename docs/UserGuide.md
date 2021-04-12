@@ -275,6 +275,30 @@ Examples:
 * `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
 * `editnote 1 c/Hi` Edits the content of the 1st contact to be `Hi` and keep the tags. 
 
+#### Merge two notes into one : `mergenote`
+
+Merge two notes into one note.
+
+Format: `mergenote INDEX_1 INDEX_2`
+
+* Merge two notes in the specified index into one note.
+* The two notes that are merged are deleted.
+
+Examples:
+* `mergenote 2 5` Merges the note in the second and fifth position. 
+
+#### Convert a note into a .txt file : `converttxtnote`
+
+Converts a note into a text file.
+
+Format: `converttxtnote INDEX`
+
+* Merge two notes in the specified index into one note.
+* The two notes that are merged are deleted.
+
+Examples:
+* `mergenote 2 5` Merges the note in the second and fifth position. 
+
 #### Show a note : `shownote`
 
 Showcases a note.
@@ -298,6 +322,12 @@ Format: `listnote​`
 Sort every note on the note list alphabetically.
 
 Format: `sortnote`
+
+#### Sort all notes based on last edit time: `sortnotebytime`
+
+Sort every note on the note list based on last edit time.
+
+Format: `sortnotebytime`
 
 #### Find notes using a keyword : `findnote`
 
@@ -737,13 +767,16 @@ Action | Format, Examples
 ***Note Features*** | 
 **Add note** | `addnote c/CONTENT [t/TAG]…​`
 **Delete note** | `deletenote INDEX`
+**Convert note into .txt** | `converttxtnote INDEX`
 **Mark note as done** | `markasdonenote INDEX`
 **Mark note as undone** | `markasundonenote INDEX`
 **Mark all notes as undone** | `markallasundonenote`
 **Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
 **Show note** | `shownote INDEX` <br> e.g., `shownote 1`
 **List all notes** | `listnote`
+**Merge two notes** | `mergenote INDEX_1 INDEX_2`
 **Sort all notes** | `sortnote`
+**Sort all notes based on the last edit time** | `sortnotebytime`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Edit note in edit mode** | `editmode`
 **Quit edit mode** | `quit`
