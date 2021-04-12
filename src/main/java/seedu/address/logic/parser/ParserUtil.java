@@ -54,7 +54,7 @@ public class ParserUtil {
     // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
     public static final String VALID_DISH_REGEX = "[^ ].*";
 
-    // DateTime validation: must be of the form YY-MM-DD HH:MM
+    // DateTime validation: must be of the form DD-MM-YYYY HH:MM
     public static final String VALID_DATETIME_REGEX = "\\d\\d-\\d\\d-\\d\\d\\d\\d \\d\\d:\\d\\d";
 
     // Email address validation: must conform to the form local-part@domain
@@ -281,10 +281,11 @@ public class ParserUtil {
     // ========== ORDER ==========
 
     /**
-     * Parses a {@code String dishName}.
+     * Parses a {@code String dateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dishName} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid (does not match
+     * DD-MM-YYYY HH:MM).
      */
     public static String validateDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
