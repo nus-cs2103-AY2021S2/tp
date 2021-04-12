@@ -318,7 +318,7 @@ given below, and familiarize yourself with them.
 | `NAME`          | The name of the book.<br><br>It must be alphanumeric (may contain spaces).<br><br>SmartLib is able to hold multiple books with the same name.                                                                        | `A Book`, `noobbook69`, `X AE A12`                                               |
 | `AUTHOR`        | The author of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                         | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
 | `PUBLISHER`     | The publisher of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                      | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
-| `ISBN`          | The ISBN of the book.<br><br>It must consist only of numbers, and be exactly 13 digits long.<br><br>The ISBN must be the same for books with the same name, and different books cannot share the same ISBN.          | `1234567890123`                                                                  |
+| `ISBN`          | The ISBN of the book.<br><br>It must consist only of numbers, and be exactly 13 digits long.<br><br>Different books cannot share the same ISBN.                                                                      | `1234567890123`                                                                  |
 | `GENRE`         | The genre of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                          | `Fantasy`, `Folk Tales`                                                          |
 | `INDEX`         | The index of the book in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                            | `1`                                                                              |
 | `KEYWORD`       | The keyword that you would like to use to search for your target book(s).<br><br>It must be a single alphanumeric word.                                                                                              | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
@@ -336,7 +336,7 @@ Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/GENRE`
 
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 * The book's name is case sensitive, e.g. `Secret` and `secret` are two different books.
-* Note that SmartLib uses book ISBN to uniquely identify a book. Hence,
+* Note that SmartLib uses book ISBN to uniquely identify a unique edition and variation of a book. Hence,
   * There may be multiple copies of a book with the same name and ISBN.
   * Books with different names cannot share the same ISBN.
   * Books with the same name can have different ISBNs,
