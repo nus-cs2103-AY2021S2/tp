@@ -24,9 +24,7 @@ Given below are my contributions to the project.
   * What it does: allows the user to have see whats the next task that is due
   * Justification: This feature allows user to organise their task based on when it is due, giving users the ability to see due dates in ascending or descending order.
   * Highlights:
-    ![SortSequenceDiagram](../images/SortByDateSequenceDiagram.png)
-    
-  * The `sort` feature sorts the tasks based on the different dates of the tasks from the earliest task to the last task in chronological order. For tasks with no dates, they would appear last.
+   The `sort` feature sorts the tasks based on the different dates of the tasks from the earliest task to the last task in chronological order. For tasks with no dates, they would appear last.
     1. When the command is executed by the user, the input it passed into
       the `LogicManager` and gets parsed and identified in `PlannerParser`.
     2. Upon identifying the relevant `COMMAND_WORD`,
