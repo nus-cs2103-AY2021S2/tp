@@ -513,12 +513,68 @@
     "maincontent": "Design pattern: An elegant reusable solution to a commonly recurring problem within a given context in software design.\n\nIn software development, there are certain problems that recur in a certain context.\n\nAfter repeated attempts at solving such problems, better solutions are discovered and refined over time. These solutions are known as design patterns, a term popularized by the seminal book Design Patterns: Elements of Reusable Object-Oriented Software by the so-called \"Gang of Four\" (GoF) written by Eric Gamma, Richard Helm, Ralph Johnson, and John Vlissides.\n\n"
   },{
     "title": "Design",
-    "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
-    "maincontent": "The client-server style has at least one component playing the role of a server and at least one client component accessing the services of the server. This is an architectural style used often in distributed applications.\n\n"
+    "header" : "Software Design Patterns - Introduction - Format",
+    "maincontent": "The common format to describe a pattern consists of the following components:\n\nContext: The situation or scenario where the design problem is encountered.\nProblem: The main difficulty to be resolved.\nSolution: The core of the solution. It is important to note that the solution presented only includes the most general details, which may need further refinement for a specific context.\nAnti-patterns (optional): Commonly used solutions, which are usually incorrect and/or inferior to the Design Pattern.\nConsequences (optional): Identifying the pros and cons of applying the pattern.\nOther useful information (optional): Code examples, known uses, other related patterns, etc.\n\n"
   },{
     "title": "Design",
-    "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
-    "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
+    "header" : "Software Design Patterns - Singleton Pattern - What",
+    "maincontent": "Context\n\nCertain classes should have no more than just one instance (e.g. the main controller class of the system). These single instances are commonly known as singletons.\n\nProblem\n\nA normal class can be instantiated multiple times by invoking the constructor.\n\nSolution\n\nMake the constructor of the singleton class private, because a public constructor will allow others to instantiate the class at will. Provide a public class-level method to access the single instance.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Singleton Pattern - Evaluation",
+    "maincontent": "Pros:\n\neasy to apply\neffective in achieving its goal with minimal extra work\nprovides an easy way to access the singleton object from anywhere in the code base\n\nCons:\n\nThe singleton object acts like a global variable that increases coupling across the code base.\nIn testing, it is difficult to replace Singleton objects with stubs (static methods cannot be overridden).\nIn testing, singleton objects carry data from one test to another even when you want each test to be independent of the others.\nGiven that there are some significant cons, it is recommended that you apply the Singleton pattern when, in addition to requiring only one instance of a class, there is a risk of creating multiple objects by mistake, and creating such multiple objects has real negative consequences.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Abstraction Occurrence Pattern - What",
+    "maincontent": "Context\n\nThere is a group of similar entities that appear to be ‘occurrences’ (or ‘copies’) of the same thing, sharing lots of common information, but also differing in significant ways.\n\nProblem\n\nRepresenting the objects mentioned previously as a single class would be problematic because it results in duplication of data which can lead to inconsistencies in data (if some of the duplicates are not updated consistently).\n\nSolution\n\nThe <<Abstraction>> class should hold all common information, and the unique information should be kept by the <<Occurrence>> class. Note that ‘Abstraction’ and ‘Occurrence’ are not class names, but roles played by each class. Think of this diagram as a meta-model (i.e. a ‘model of a model’) of the BookTitle-BookCopy class diagram given above.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Facade Pattern - What",
+    "maincontent": "Context\n\nComponents need to access functionality deep inside other components.\n\nProblem\n\nAccess to the component should be allowed without exposing its internal details.\n\nSolution\n\nInclude a Façade class that sits between the component internals and users of the component such that all access to the component happens through the Facade class.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Command Pattern - What",
+    "maincontent": "Context\n\nA system is required to execute a number of commands, each doing a different task.\n\nProblem\n\nIt is preferable that some part of the code executes these commands without having to know each command type.\n\nSolution\n\nThe essential element of this pattern is to have a general <<Command>> object that can be passed around, stored, executed, etc without knowing the type of command (i.e. via polymorphism).\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Model View Controller (MVC) Pattern - What",
+    "maincontent": "Context\n\nMost applications support storage/retrieval of information, displaying of information to the user (often via multiple UIs having different formats), and changing stored information based on external inputs.\n\nProblem\n\nThe high coupling that can result from the interlinked nature of the features described above.\n\nSolution\n\nDecouple data, presentation, and control logic of an application by separating them into three different components: Model, View and Controller.\n\nView: Displays data, interacts with the user, and pulls data from the model if necessary.\nController: Detects UI events such as mouse clicks and button pushes, and takes follow up action. Updates/changes the model/view when necessary.\nModel: Stores and maintains data. Updates the view if necessary.\n\nNote that in a simple UI where there’s only one view, Controller and View can be combined as one class.\n\nThere are many variations of the MVC model used in different domains.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - Observer Pattern - What",
+    "maincontent": "Context\n\nAn object (possibly more than one) is interested in being notified when a change happens to another object. That is, some objects want to ‘observe’ another object.\n\nProblem\n\nThe ‘observed’ object does not want to be coupled to objects that are ‘observing’ it.\n\nSolution\n\nForce the communication through an interface known to both parties.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Combining Design Patterns",
+    "maincontent": "Design patterns are usually embedded in a larger design and sometimes applied in combination with other design patterns.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Other Design Patterns",
+    "maincontent": "The most famous source of design patterns is the \"Gang of Four\" (GoF) book which contains 23 design patterns divided into three categories:\n\nCreational: About object creation. They separate the operation of an application from how its objects are created.\nAbstract Factory, Builder, Factory Method, Prototype, Singleton\nStructural: About the composition of objects into larger structures while catering for future extension in structure.\nAdapter, Bridge, Composite, Decorator, Façade, Flyweight, Proxy\nBehavioral: Defining how objects interact and how responsibility is distributed among them.\nChain of Responsibility, Command, Interpreter, Template Method, Iterator, Mediator, Memento, Observer, State, Strategy, Visitor\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Using Design Patterns",
+    "maincontent": "Design patterns provide a high-level vocabulary to talk about design.\n\nKnowing more patterns is a way to become more ‘experienced’. Aim to learn at least the context and the problem of patterns so that when you encounter those problems you know where to look for a solution.\n\nSome patterns are domain-specific e.g. patterns for distributed applications, some are created in-house e.g. patterns in the company/project and some can be self-created e.g. from past experience.\n\nBe careful not to overuse patterns. Do not throw patterns at a problem at every opportunity. Patterns come with overhead such as adding more classes or increasing the levels of abstraction. Use them only when they are needed. Before applying a pattern, make sure that:\n\n1. There is substantial improvement in the design, not just superficial.\n2. The associated tradeoffs are carefully considered. There are times when a design pattern is not appropriate (or an overkill).\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Other Types of Patterns",
+    "maincontent": "The notion of capturing design ideas as \"patterns\" is usually attributed to Christopher Alexander. He is a building architect noted for his theories about design. His book The Timeless Way of Building talks about \"design patterns\" for constructing buildings.\n\nApparently, patterns and anti-patterns are found in the field of building architecture. This is because they are general concepts applicable to any domain, not just software design. In software engineering, there are many general types of patterns: Analysis patterns, Design patterns, Testing patterns, Architectural patterns, Project management patterns, and so on.\n\nIn fact, the abstraction occurrence pattern is more of an analysis pattern than a design pattern, while MVC is more of an architectural pattern.\n\nNew patterns can be created too. If a common problem that needs to be solved frequently leads to a non-obvious and better solution, it can be formulated as a pattern so that it can be reused by others. However, don’t reinvent the wheel; the pattern might already exist.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Software Design Patterns - More - Design Patterns vs. Design Principles",
+    "maincontent": "Design principles have varying degrees of formality – rules, opinions, rules of thumb, observations, and axioms. Compared to design patterns, principles are more general, have wider applicability, with correspondingly greater overlap among them.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Approaches - Multi-level Design - What",
+    "maincontent": "In a smaller system, the design of the entire system can be shown in one place.\n\nThe design of bigger systems needs to be done/shown at multiple levels.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Approaches - Top-Down and Bottom-Up Design - What",
+    "maincontent": "Multi-level design can be done in a top-down manner, bottom-up manner, or as a mix.\n\n1. Top-down: Design the high-level design first and flesh out the lower levels later. This is especially useful when designing big and novel systems where the high-level design needs to be stable before lower levels can be designed.\n\n2. Bottom-up: Design lower level components first and put them together to create the higher-level systems later. This is not usually scalable for bigger systems. One instance where this approach might work is when designing a variation of an existing system or re-purposing existing components to build a new system.\n\n3. Mix: Design the top levels using the top-down approach but switch to a bottom-up approach when designing the bottom levels.\n\n"
+  },{
+    "title": "Design",
+    "header" : "Design Approaches - Agile Design - What",
+    "maincontent": "Agile design can be contrasted with full upfront design in the following way:\n\nAgile designs are emergent, they’re not defined up front. Your overall system design will emerge over time, evolving to fulfill new requirements and take advantage of new technologies as appropriate. Although you will often do some initial architectural modeling at the very beginning of a project, this will be just enough to get your team going. This approach does not produce a fully documented set of models in place before you may begin coding. (adapted from agilemodeling.com)\n\n"
   },{
       "title": "Implementation",
       "header": "IDE: Introduction",
