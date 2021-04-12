@@ -40,7 +40,7 @@ title: User Guide
 
 <a name="introduction"></a>
 ## Welcome to HEY MATEz
-As a Club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
+As a CCA / club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
 the mountain of tasks** that have to be completed? Or perhaps it is a challenge to **keep track of the increasing 
 number of deadlines** and be able to **assign tasks to members efficiently**. 
 
