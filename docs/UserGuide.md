@@ -22,7 +22,7 @@ BookCoin (to the Moon) is a **desktop app for managing bookings that presents us
 
 1. Run `java -jar bookingapp.jar via your terminal` (preferred). As a second alternative, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
 
-   ![Ui](images/Ui_Booking_1.3.png) <br><br>
+   ![Ui](images/Ui_Booking_1.4.png) <br><br>
    Note how the app contains some sample data. This is for you to test out the commands first, and you may delete them using the `clear` command when you are ready to use the app for your own purposes. <br>
 
 
