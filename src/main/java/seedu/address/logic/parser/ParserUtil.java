@@ -29,7 +29,6 @@ import seedu.address.model.subject.Subject;
  */
 public class ParserUtil {
 
-    // public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEX = "Invalid index! \n%1$s";
 
     /**
@@ -167,28 +166,28 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String subject} into a {@code Tag}.
+     * Parses a {@code String subject} into a {@code Subject}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code subject} is invalid.
      */
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
-        String trimmedTag = subject.trim().toLowerCase(Locale.ROOT);
-        if (!Subject.isValidSubjectName(trimmedTag)) {
+        String trimmedSubject = subject.trim().toLowerCase(Locale.ROOT);
+        if (!Subject.isValidSubjectName(trimmedSubject)) {
             throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
-        return new Subject(trimmedTag);
+        return new Subject(trimmedSubject);
     }
 
     /**
-     * Parses {@code Collection<String> subjects} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> subjects} into a {@code Set<Subject>}.
      */
     public static Set<Subject> parseSubjects(Collection<String> subjects) throws ParseException {
         requireNonNull(subjects);
         final Set<Subject> subjectSet = new HashSet<>();
-        for (String tagName : subjects) {
-            subjectSet.add(parseSubject(tagName));
+        for (String subjectName : subjects) {
+            subjectSet.add(parseSubject(subjectName));
         }
         return subjectSet;
     }

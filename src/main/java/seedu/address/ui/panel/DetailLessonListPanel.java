@@ -1,4 +1,4 @@
-package seedu.address.ui.PanelList;
+package seedu.address.ui.panel;
 
 import java.util.logging.Logger;
 
@@ -9,13 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.ui.Card.LessonListCard;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.card.DetailLessonListCard;
 
 /**
  * Panel containing the list of Lessons.
  */
-public class LessonListPanel extends UiPart<Region> {
+public class DetailLessonListPanel extends UiPart<Region> {
     private static final String FXML = "LessonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(LessonListPanel.class);
 
@@ -25,7 +25,7 @@ public class LessonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code LessonListPanel} with the given {@code ObservableList}.
      */
-    public LessonListPanel(ObservableList<Lesson> lessonList) {
+    public DetailLessonListPanel(ObservableList<Lesson> lessonList) {
         super(FXML);
         lessonListView.setItems(lessonList);
         lessonListView.setCellFactory(listView -> new LessonListViewCell());
@@ -43,9 +43,8 @@ public class LessonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new LessonListCard(lesson).getRoot());
+                setGraphic(new DetailLessonListCard(lesson).getRoot());
             }
         }
     }
-
 }

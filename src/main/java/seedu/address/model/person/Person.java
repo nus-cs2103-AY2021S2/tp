@@ -100,6 +100,9 @@ public class Person {
         return Collections.unmodifiableSet(lessons);
     }
 
+    /**
+     * Returns an ArrayList consisting of all the days on which a person has lessons on.
+     */
     public ArrayList<Day> getLessonsDays() {
         ArrayList<Day> days = new ArrayList<>();
         if (!lessons.isEmpty()) {

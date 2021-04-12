@@ -38,16 +38,20 @@ public class ModelManager implements Model {
     private final DatesBook datesBook;
     private final LessonBook lessonBook;
     private final UserPrefs userPrefs;
+
     private final FilteredList<ImportantDate> filteredImportantDates;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Lesson> filteredLessons;
+
     private final SortedList<ImportantDate> sortedImportantDates;
     private final SortedList<Person> sortedPersons;
     private final SortedList<Lesson> sortedLessons;
+
     private final ObservableList<ImportantDate> transformedImportantDates;
     private final ObservableList<Person> transformedPersons;
     private final ObservableList<Lesson> transformedLessons;
     private final ObservableList<Lesson> transformedLessonsForPerson;
+
     private final FilteredList<Lesson> mondayLessons;
     private final FilteredList<Lesson> tuesdayLessons;
     private final FilteredList<Lesson> wednesdayLessons;
@@ -76,7 +80,8 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs, datesBook, lessonBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", dates book: " + datesBook
+            + ", lesson book: " + lessonBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -290,6 +295,7 @@ public class ModelManager implements Model {
     @Override
     public void updateLessonDayList(ArrayList<Day> lessonDays) {
         for (int i = 0; i < lessonDays.size(); i++) {
+
             switch (lessonDays.get(i).toString().toLowerCase(Locale.ROOT)) {
             case "monday":
                 updateFilteredDailyLessonList(mondayLessons, new LessonDayPredicate("monday"),
@@ -323,7 +329,6 @@ public class ModelManager implements Model {
                 break;
             }
         }
-
     }
 
     @Override
@@ -363,12 +368,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
         transformedPersons.setAll(filteredPersons);
-        /*
-        requireNonNull(predicate);
-        FilteredList<Person> newFilteredPersons = transformedPersons.filtered(predicate);
-        newFilteredPersons.setPredicate(predicate);
-        transformedPersons.setAll(newFilteredPersons);
-        */
     }
 
     //=========== Sorted Person List Accessors =============================================================
@@ -386,12 +385,6 @@ public class ModelManager implements Model {
         requireNonNull(comparator);
         sortedPersons.setComparator(comparator);
         transformedPersons.setAll(sortedPersons);
-        /*
-        requireNonNull(comparator);
-        SortedList<Person> newSortedPersons = transformedPersons.sorted(comparator);
-        newSortedPersons.setComparator(comparator);
-        transformedPersons.setAll(newSortedPersons);
-         */
     }
 
     //=========== Transformed Person List Accessors =============================================================
@@ -516,7 +509,6 @@ public class ModelManager implements Model {
         return datesBook;
     }
 
-
     @Override
     public boolean hasImportantDate(ImportantDate importantDate) {
         requireNonNull(importantDate);
@@ -543,8 +535,7 @@ public class ModelManager implements Model {
     //=========== Filtered Important Dates List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code ImportantDate}
      */
     @Override
     public ObservableList<ImportantDate> getFilteredImportantDatesList() {
@@ -579,28 +570,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<ImportantDate> getTransformedImportantDatesList() {
         return transformedImportantDates;
-    }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && datesBook.equals(other.datesBook)
-                && lessonBook.equals(other.lessonBook);
     }
 
     //=========== Filtered Lesson List Accessors =============================================================
@@ -649,7 +618,6 @@ public class ModelManager implements Model {
         return transformedLessonsForPerson;
     }
 
-
     @Override
     public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator)
             throws NullPointerException {
@@ -660,4 +628,28 @@ public class ModelManager implements Model {
         newSortedLessons.setComparator(comparator);
         transformedLessonsForPerson.setAll(newSortedLessons);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return addressBook.equals(other.addressBook)
+            && userPrefs.equals(other.userPrefs)
+            && datesBook.equals(other.datesBook)
+            && lessonBook.equals(other.lessonBook)
+            && filteredPersons.equals(other.filteredPersons)
+            && filteredLessons.equals(other.filteredLessons)
+            && filteredImportantDates.equals(other.filteredImportantDates);
+    }
+
 }
