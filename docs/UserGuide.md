@@ -348,7 +348,9 @@ Adds persons related to a meeting in MeetBuddy.
 Format: `addptm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
 * The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
 * The user must input at least one person related index field.
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+* Person Related Index refers to the index of the contact list shown in the GUI. 
+The index should be an integer and not out of bounds. If duplicated person index is in the input,
+the program will automatically remove the duplication.
 
 Examples:
 * `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
@@ -394,7 +396,10 @@ Examples:
  setting a meeting 
  to 6:44-7:01 might cause display issues from the 7 - 7.01 will not display the date or time. Also even though 15 minute 
  meetings are allowed to be scheduled, the words will appear squished on the timetable. It is therefore highly 
- recommended to set your meeting times to be `AT LEAST 30 MINS` and `AT MOST 24 characters` long.
+ recommended to set your meeting times to be `AT LEAST 30 MINS` and  meeting names`AT MOST 24 characters` long.
+ It is recommended to avoid scheduling your meetings overlapping across 7am (for example, meetings ending at 7:01 am)
+ to get optimum viewing functionality. A recommended way to schedule meetings is to choose a time between 7am - 5pm.
+ 
 
 ![An Example of words being squished](images/SquishedTimetable.png)
  
