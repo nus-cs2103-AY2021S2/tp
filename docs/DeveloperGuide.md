@@ -80,7 +80,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/timeforwheels/logic/Logic.java)
 
-1. `Logic` uses the `TimeforWheelsParser` class to parse the user command.
+1. `Logic` uses the `DeliveryListParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `DeliveryList`, which `Customer` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -135,7 +135,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Delete Feature `delete`
 
-The delete feature allows drivers to delete a delivery task from the delivery list by using the index in the displayed list.
+The delete feature allows users to delete a delivery task from the delivery list by using the index in the displayed list.
 
 Implementation 
 The Sequence Diagram below shows how the components interact when a user enters `delete 3` to delete a delivery tasks with task number 3 in the delivery list:
@@ -308,7 +308,7 @@ DeliveryListParser parses the command and identifies it as a HelpCommand which t
 to the LogicManager. The CommandResult will update the UI by setting showHelp() to true to show
 the pop-up help window.
 
-The following Activity Diagram summarizes what happens when a user executes the list command:
+The following Activity Diagram summarizes what happens when a user executes the help command:
 
 ![Help Command Activity Diagram](images/HelpCommandActivityDiagram.png)
 
@@ -337,11 +337,11 @@ The following Activity Diagram summarizes what happens when a user executes the 
 ### Uncompleted Command - `uncompleted`
 The uncompleted command allows users to see all the delivery tasks not marked as done.
 
-![Completed Command Sequence Diagram](images/CompletedCommandSequenceDiagram.png)
+![Uncompleted Command Sequence Diagram](images/UncompletedCommandSequenceDiagram.png)
 
-Below is a further breakdown of the logic component of the completed command using a sequence diagram
+Below is a further breakdown of the logic component of the uncompleted command using a sequence diagram
 
-![Completed Command Logic Sequence Diagram](images/CompletedCommandLogicSequenceDiagram.png)
+![Uncompleted Command Logic Sequence Diagram](images/UncompletedCommandLogicSequenceDiagram.png)
 
 Description:
 When the user keys the input command "uncompleted", execute method of LogicManager is called. In the
@@ -350,9 +350,9 @@ DeliveryListParser parses the command and identifies it as a UncompletedCommand 
 to the LogicManager. The CommandResult will update the model through the command updatedFilteredCustomerList() to show
 all the delivery tasks not marked done in the delivery list.
 
-The following Activity Diagram summarizes what happens when a user executes the completed command:
+The following Activity Diagram summarizes what happens when a user executes the uncompleted command:
 
-![Completed Command Activity Diagram](images/CompletedCommandActivityDiagram.png)
+![Uncompleted Command Activity Diagram](images/UncompletedCommandActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -411,221 +411,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
-
+For all use cases, our Software System and Actor are as stated below:
 **Software System: Delivery App**
-
-**Use case: UC01 - Add a delivery entry to the list.**
 
 **Actor: Delivery driver (app user)**
 
+--------------------------------------------------------------------------------------------------------------------
+**Use case: UC01 - Add a delivery task to the list.**
+
 **Guarantees:**
 
-* Adding a new delivery entry to the list.
+* Adding a new delivery task to the list.
 
 **MSS**
 
-1.  User indicates that they will be adding a delivery entry.
-2.  Delivery App requests for details of the delivery entry.
-3.  User enters the delivery entry to be added to the list.
-4.  Delivery App adds the delivery entry to the list and informs the User.
+1.  User enters the delivery task to be added to the list.
+2.  TimeForWheels App adds the delivery task to the list and informs the User.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The delivery entry to be added has an invalid format.
-    * 3a1. Delivery App requests for a valid delivery entry.
-    * 3a2. User enters new delivery entry details.
+* 1a. The delivery entry to be added has an invalid format.
+    * 1a1. TimeForWheels App requests for a valid delivery task.
+    * 1a2. User enters new delivery task details.
       
-    Steps 3a1-3a2 are repeated until the valid details are entered.
+    Steps 1a1-1a2 are repeated until the valid details are entered.
 
-    Use case resumes from step 4.
+    Use case resumes from step 2.
 
-* 3b. The delivery entry to be added already exists in the list.
-    * 3b1. Delivery App informs the User of the duplicate.
+* 2b. The delivery task to be added already exists in the delivery list.
+    * 2b1. TimeForWheels App informs the User of the duplicate delivery task.
 
     Use case ends.
+--------------------------------------------------------------------------------------------------------------------
+**Use case: UC02 - Delete a delivery task from the list.**
 
-**Software System: Delivery App**
-
-**Use case: UC02 - Get the customer’s details of a delivery entry in the list.**
-
-**Actor: Delivery driver (app user)**
 
 **Guarantees:**
 
-* Getting the customer's details of the selected delivery from the list.
+* Deleting the delivery task from the list.
+
+**MSS**
+1.  User indicates which delivery task to be deleted by entering the task number.
+2.  TimeForWheels App removes that delivery entry from the list and informs the User.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The task number of the delivery task is invalid.
+  * 1a1. User enters a new task number.
+
+  Step 1a1 is repeated until the valid task number is entered.
+
+  Use case resumes from step 2.
+--------------------------------------------------------------------------------------------------------------------
+**Use case: UC03 - Edit a delivery task in the list.**
+
+**Guarantees:**
+
+* Editing and updating the selected existing delivery task in the list.
 
 **MSS**
 
-1.  User requests to see all delivery entries in the list.
-2.  Delivery App lists out all existing delivery entries.
-3.  User requests to see the customer details of a delivery entry by entering the entry number.
-4.  Delivery App shows the customer details of the chosen delivery entry.
+1.  User indicates which delivery task to edit by entering the task number.
+2.  User enters the updated details.
+3.  TimeForWheels App replaces the old delivery entry with the updated one and informs the User.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
+* 1a. The task number of the delivery task is invalid.
+  * 1a1. User enters new task number.
+
+  Step 1a1 is repeated until the valid task number is entered.
+
+  Use case resumes from step 2.
+
+* 2a. The updated details have an invalid format.
+  * 2a1. User enters new details.
+
+  Step1 2a1 is repeated until the valid details are entered.
+
+  Use case resumes from step 3.
+
+* 3a. The edited delivery task already exists in the delivery list.
+  * 3a1. TimeForWheels App informs the User of the duplicate delivery task.
 
   Use case ends.
-
-* 3a. The number of the delivery entry is invalid.
-  * 3a1. Delivery App requests for a valid entry number.
-  * 3a2. User enters new entry number.
-
-  Steps 3a1-3a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 4.
-
-**Software System: Delivery App**
-
-**Use case: UC03 - Mark a delivery entry in the list as done.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Marking the selected delivery entry from the list as done.
-
-**MSS**
-
-1.  User requests to see the list of delivery entries.
-2.  Delivery App shows the list.
-3.  User indicates which delivery entry to mark as done by entering the entry number.
-4.  Delivery App marks that delivery entry as done and informs the User.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-    * 1a1. Delivery App informs the User that the list is empty.
-
-    Use case ends.
-
-* 3a. The number of the delivery entry is invalid.
-    * 3a1. Delivery App requests for a valid entry number.
-    * 3a2. User enters new entry number.
-
-    Steps 3a1-3a2 are repeated until the valid entry number is entered.
-
-    Use case resumes from step 4.
-
-**Software System: Delivery App**
-
-**Use case: UC04 - Delete a delivery entry from the list.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Deleting the delivery entry from the list.
-
-**MSS**
-
-1.  User requests to see the list of delivery entries.
-2.  Delivery App shows the list.
-3.  User indicates which delivery entry to be deleted by entering the entry number.
-4.  Delivery App removes that delivery entry from the list and informs the User.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-    * 1a1. Delivery App informs the User that the list is empty.
-
-  Use case ends.
-
-* 3a. The number of the delivery entry is invalid.
-    * 3a1. Delivery App requests for a valid entry number.
-    * 3a2. User enters new entry number.
-
-  Steps 3a1-3a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 4.
-
-**Software System: Delivery App**
-
-**Use case: UC05 - Clear all delivery entries from the list.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Deleting all delivery entries from the list, resulting in an empty list.
-
-**MSS**
-
-1.  User indicates to delete all delivery entries from the list.
-2.  Delivery App removes all delivery entries from the list and informs the User.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-    * 1a1. Delivery App informs the User that there are no delivery entries to delete.
-
-  Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC06 - Edit a delivery entry in the list.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Editing and updating the selected existing delivery entry in the list.
-
-**MSS**
-
-1.  User requests to see the list of delivery entries.
-2.  Delivery App shows the list.
-3.  User indicates which delivery entry to edit by entering the entry number.
-4.  Delivery App requests for updated details of the delivery entry.
-5.  User enters the updated details.
-6.  Delivery App replaces the old delivery entry with the updated one and informs the User.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-    * 1a1. Delivery App informs the User that the list is empty.
-
-  Use case ends.
-
-* 3a. The number of the delivery entry is invalid.
-    * 3a1. Delivery App requests for a valid entry number.
-    * 3a2. User enters new entry number.
-
-  Steps 3a1-3a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 4.
-
-* 5a. The updated details have an invalid format.
-    * 5a1. Delivery App requests for a valid format.
-    * 5a2. User enters new details.
-
-  Steps 3a1-3a2 are repeated until the valid details are entered.
-
-  Use case resumes from step 6.
-
-* 5b. The edited entry already exists in the list.
-    * 5b1. Delivery App informs the User of the duplicate.
-
-  Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC07 - Exit the app.**
-
-**Actor: Delivery driver (app user)**
+--------------------------------------------------------------------------------------------------------------------
+**Use case: UC04 - Exit the app.**
 
 **Guarantees:**
 
@@ -637,345 +513,75 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Delivery App exits.
 
     Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC08 - Filter the list by tag.**
-
-**Actor: Delivery driver (app user)**
+--------------------------------------------------------------------------------------------------------------------
+**Use case: UC05 - Find all delivery entries by the keyword(s) that match an attribute.**
 
 **Guarantees:**
 
-* Getting the list of deliveries associated with the specified tag.
+* Getting the list of existing delivery tasks with attributes matching the specified keyword(s).
 
 **MSS**
 
-1.  User filters the list by inputting a tag.
-2.  Delivery App lists out all existing delivery entries associated with the specified tag.
+1.  User enters the keyword(s).
+2.  TimeForWheels App lists out all existing delivery tasks with attributes matching the specified keyword(s).
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
-
-  Use case ends.
-
-* 1b. There are no delivery entries associated with the specified tag.
-  * 1b1. Delivery App informs the User that there are no delivery entries associated with the specified tag.
-
-  Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC09 - Filter all delivery entries by date.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Getting the list of deliveries associated with the specified date.
-
-**MSS**
-
-1.  User filters the list by inputting a date.
-2.  Delivery App lists out all existing delivery entries associated with the specified date.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
-
-  Use case ends.
-
-* 1b. There are no delivery entries associated with the specified date.
-  * 1b1. Delivery App informs the User that there are no delivery entries associated with the specified date.
-
-  Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC10 - Filter all delivery entries by location.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Getting the list of deliveries associated with the specified location.
-
-**MSS**
-
-1.  User filters the list by inputting a location.
-2.  Delivery App lists out all existing delivery entries associated with the specified location.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
-
-  Use case ends.
-
-* 1b. There are no delivery entries associated with the specified location.
-  * 1b1. Delivery App informs the User that there are no delivery entries associated with the specified location.
-
-  Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC11 - Find all delivery entries by the keyword(s) that match an attribute.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Getting the list of existing delivery entries with attributes matching the specified keyword(s).
-
-**MSS**
-
-1.  User requests to see all delivery entries with the matching keyword(s).
-2.  Delivery App lists out all existing delivery entries with attributes matching the specified keyword(s).
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
+  * 1a1. TimeForWheels App informs the User that the delivery list is empty.
 
   Use case ends.
 
 * 1b. There are no delivery entries with the matching keyword(s).
-  * 1b1. Delivery App informs the User that there are no delivery entries with details containing the specified keyword(s).
+  * 1b1. TimeForWheels App informs the User that there are no delivery tasks with details containing the specified keyword(s).
 
   Use case ends.
-
-Below is an activity diagram to show a more simplified representation of the find command
-
-![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
-
-**Software System: Delivery App**
-
-**Use case: UC12 - Get help for issues pertaining to the app.**
-
-**Actor: Delivery driver (app user)**
+--------------------------------------------------------------------------------------------------------------------
+**Use case: UC06 - Get the list of all my delivery tasks.**
 
 **Guarantees:**
 
-* Getting a link to the TimeForWheels user guide.
+* Getting the list of all existing delivery tasks.
 
 **MSS**
 
-1.  User requests for help.
-2.  Delivery App provides a link to the app's user guide.
-
-    Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC13 - Get the list of all my delivery entries.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Getting the list of all existing delivery entries in list.
-
-**MSS**
-
-1.  User requests to see all delivery entries in the list.
-2.  Delivery App lists out all existing delivery entries.
+1.  User requests to see all delivery tasks in the list.
+2.  TimeForWheels  App lists out all existing delivery tasks.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-    * 1a1. Delivery App informs the User that the list is empty.
+  * 1a1. TimeForWheels  App informs the User that the list is empty.
 
   Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC14 - Get the list of all my completed delivery entries.**
-
-**Actor: Delivery driver (app user)**
+--------------------------------------------------------------------------------------------------------------------
+**Use case: UC07 - Get the list of all my completed delivery tasks.**
 
 **Guarantees:**
 
-* Getting the list of all completed delivery entries.
+* Getting the list of all completed delivery tasks.
 
 **MSS**
 
-1.  User requests to see all completed delivery entries in the list.
-2.  Delivery App lists out all delivery entries that are marked as done.
+1.  User requests to see all completed delivery tasks in the list.
+2.  TimeForWheels App lists out all delivery tasks that are marked as done.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
+  * 1a1. TimeForWheels App informs the User that the list is empty.
 
-* 1b. There are no delivery entries in the list that are marked as done.
-    * 1b1. Delivery App informs the User that there are no completed delivery entries in the list.
-
-  Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC15 - Add a tag to a delivery entry in the list.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Having the selected delivery entry updated with the specified tag.
-
-**MSS**
-
-1.  User requests to see all delivery entries in the list.
-2.  Delivery App lists out all existing delivery entries.
-3.  User selects a delivery entry and inputs a tag to add.
-4.  Delivery App adds the specified tag to the selected delivery entry and informs the User.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-    * 1a1. Delivery App informs the User that the list is empty.
+* 1b. There are no delivery tasks in the list that are marked as done.
+  * 1b1. TimeForWheels  App informs the User that there are no completed delivery tasks in the list.
 
   Use case ends.
-
-* 3a. The number of the delivery entry is invalid.
-    * 3a1. Delivery App requests for a valid entry number.
-    * 3a2. User enters new entry number.
-
-  Steps 3a1-3a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 4.
-
-* 3b. The selected delivery entry already has the specified tag.
-  * 3b1. Delivery App informs the User that the selected delivery entry already has the specified tag.
-
-  Use case ends.
-
-**Software System: Delivery App**
-
-**Use case: UC16 - Delete a tag from a delivery entry in the list.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Having the selected delivery entry updated without the specified tag.
-
-**MSS**
-
-1.  User requests to see all delivery entries in the list.
-2.  Delivery App lists out all existing delivery entries.
-3.  User selects a delivery entry.
-4.  Delivery App shows all the tags of the selected delivery entry.
-5.  User selects a tag to delete.
-6.  Delivery App removes the selected tag from the delivery entry and informs the User.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
-
-  Use case ends.
-
-* 3a. The number of the delivery entry is invalid.
-  * 3a1. Delivery App requests for a valid entry number.
-  * 3a2. User enters new entry number.
-
-  Steps 3a1-3a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 4.
-
-* 5a. The number of the tag is invalid.
-  * 5a1. Delivery App requests for a valid entry number.
-  * 5a2. User enters new entry number.
-
-  Steps 5a1-5a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 6.
-
-**Software System: Delivery App**
-
-**Use case: UC17 - Edit a tag of a delivery entry in the list.**
-
-**Actor: Delivery driver (app user)**
-
-**Guarantees:**
-
-* Having the selected delivery entry updated with the specified tag.
-
-**MSS**
-
-1.  User requests to see all delivery entries in the list.
-2.  Delivery App lists out all existing delivery entries.
-3.  User selects a delivery entry.
-4.  Delivery App shows all the tags of the selected delivery entry.
-5.  User selects a tag to edit and inputs the updated tag.
-6.  Delivery App updates the selected tag of the delivery entry and informs the User.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  * 1a1. Delivery App informs the User that the list is empty.
-
-  Use case ends.
-
-* 3a. The number of the delivery entry is invalid.
-  * 3a1. Delivery App requests for a valid entry number.
-  * 3a2. User enters new entry number.
-
-  Steps 3a1-3a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 4.
-
-* 5a. The number of the tag is invalid.
-  * 5a1. Delivery App requests for a valid entry number.
-  * 5a2. User enters new entry number.
-
-  Steps 5a1-5a2 are repeated until the valid entry number is entered.
-
-  Use case resumes from step 6.
-
-
-**Use case: UC18 - View a summary of my current delivery workflow.**
-
-**Guarantees:**
-
-* Generating a delivery summary report showing useful statistics for the driver
-
-**MSS**
-
-1.  User requests to see a summary of his delivery workflow.
-2.  Delivery App lists out calculated figures for deliveries due/not due, deliveries done/not done and deliveries with tags
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-  * 1a1. Delivery App informs the User that there is currently no data.
-
-  Use case ends.
-
-
-*{More to be added}*
-
+--------------------------------------------------------------------------------------------------------------------
 ### Non-Functional Requirements
 
 1. **Usability**:
@@ -1046,6 +652,15 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Adding a delivery task
+
+1. Adding a delivery task
+
+    1. Test case: `add n/Jacob p/97452637 a/108 Bishan Street e/jacob@gmail.com d/2021-11-10`<br>
+       Expected: Delivery task is added
+
+    1. Test case: `add n/Jacob p/97452637 a/108 Bishan Street e/jacob@gmail.com`<br>
+       Expected: Invalid command format will be returned as date field is missing.
 
 ### Editing a delivery task
 
@@ -1067,4 +682,20 @@ testers are expected to do more *exploratory* testing.
       
    1. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Finding all completed delivery tasks in the list
+
+   1.Prerequisites: TimeforWheels sample data is loaded in the app. List all delivery task using the `list` command.
+
+   1.Test case: `completed` <br>
+      Expected : Delivery tasks with name "Alex Yeoh","Charlotte Oliveiro","Irfan Ibrahim" should be shown.
+
+### Finding all uncompleted delivery tasks in the list
+
+1.Prerequisites: TimeforWheels sample data is loaded in the app. List all delivery task using the `list` command.
+
+1.Test case: `uncompleted` <br>
+Expected : Delivery tasks with name "Bernice Yu","David Li","Roy Balakrishnan" should be shown.
+      
+      
 

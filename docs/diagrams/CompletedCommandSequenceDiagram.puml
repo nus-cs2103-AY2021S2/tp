@@ -7,13 +7,13 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 
 
-user -[USER_COLOR]> ui : "list"
+user -[USER_COLOR]> ui : "completed"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("list")
+ui -[UI_COLOR]> logic : execute("completed")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : model.updateFilteredCustomerList()
+logic -[LOGIC_COLOR]> model : model.updateFilteredCustomerList(complete)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic

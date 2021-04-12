@@ -13,7 +13,7 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("uncompleted")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : model.updateFilteredCustomerList()
+logic -[LOGIC_COLOR]> model : model.updateFilteredCustomerList(uncomplete)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
