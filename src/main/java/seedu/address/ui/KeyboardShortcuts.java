@@ -16,7 +16,7 @@ public class KeyboardShortcuts {
             new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN);
 
     /**
-     * To prevent instantiation
+     * To prevent instantiation.
      */
     private KeyboardShortcuts() {
     }
