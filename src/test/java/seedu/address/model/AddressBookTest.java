@@ -5,10 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPassengers.ALICE;
-import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPassengers;
+import static seedu.address.testutil.TypicalPools.HOMEPOOL;
+import static seedu.address.testutil.TypicalPools.OFFICEPOOL_PASSENGERS;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,7 +24,10 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.exceptions.DuplicatePassengerException;
 import seedu.address.model.pool.Pool;
+import seedu.address.model.pool.exceptions.DuplicatePoolException;
 import seedu.address.testutil.PassengerBuilder;
+import seedu.address.testutil.PoolBuilder;
+import seedu.address.testutil.TypicalAddressBook;
 
 public class AddressBookTest {
 
@@ -39,7 +45,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBookPassengers();
+        AddressBook newData = TypicalAddressBook.getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -50,7 +56,7 @@ public class AddressBookTest {
         Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
         List<Passenger> newPassengers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPassengers);
+        AddressBookStub newData = new AddressBookStub(newPassengers, new ArrayList<>());
 
         assertThrows(DuplicatePassengerException.class, () -> addressBook.resetData(newData));
     }
@@ -84,6 +90,20 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPassengerList().remove(0));
     }
 
+    @Test
+    public void resetData_withDuplicatePool_throwsDuplicatePoolException() {
+        // Two pools with the same identity fields
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(OFFICEPOOL_PASSENGERS)
+                .withTags(VALID_TAG_IT)
+                .build();
+
+        List<Pool> newPools = Arrays.asList(HOMEPOOL, editedHomePool);
+        AddressBookStub newData = new AddressBookStub(new ArrayList<>(), newPools);
+
+        assertThrows(DuplicatePoolException.class, () -> addressBook.resetData(newData));
+    }
+
 
     // TODO add pool test
     /**
@@ -93,8 +113,9 @@ public class AddressBookTest {
         private final ObservableList<Passenger> passengers = FXCollections.observableArrayList();
         private final ObservableList<Pool> pools = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Passenger> passengers) {
+        AddressBookStub(Collection<Passenger> passengers, Collection<Pool> pools) {
             this.passengers.setAll(passengers);
+            this.pools.setAll(pools);
         }
 
         @Override
