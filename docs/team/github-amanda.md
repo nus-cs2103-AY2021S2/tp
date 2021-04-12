@@ -27,13 +27,14 @@ Given below are my contributions to the project.
     * Modified `find` v3 (Pull request [\#115](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/115))
     * Modified `clear` v1 (Pull request [\#116](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/116))
     * Modified `clear` v2 (Pull request [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170))
-    * Fixed `find` bug (Pull request [\#290](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/290))
+    * Fixed `find` parser bug (Pull request [\#290](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/290))
     * Updated GUI v1 (Pull request [\#102](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/102))
     * Updated GUI v3 (Pull request [\#265](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
     * Wrote additional tests and modified tests for existing features to increase coverage (Pull request [\#182](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/182))
     * Split `clear` into two command classes and modify test cases accordingly (Pull request [\#319](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
-    * Fixed `reminder` bug and added test cases (Pull request [\#315](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
-    
+    * Fixed `reminder` parser bug and added test cases (Pull request [\#315](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
+    * Standardise command messages for all commands (Pull request [\#332](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/332))    
+
 * **Documentation**:
     * User Guide:
         * Updated user stories, target user profile and value proposition (Pull request [\#40](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/40))
@@ -42,9 +43,9 @@ Given below are my contributions to the project.
         * Updated Amanda Ang's part (Pull request [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
     * Developer Guide:
         * Added use case for `delete` (Pull request [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151))
-        * Added implementations for `list` and `find` (Pull request [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213))
-        * Updated use cases, user stories, non-functional requirements and glossary (Pull request [\#285](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/285), [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326))
-    
+        * Added implementations for `list` and `find` (Pull requests [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213), [\#294](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/294))
+        * Finalise use cases, user stories, non-functional requirements and glossary (Pull requests [\#285](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/285), [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326))
+        
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4)
       , [\#41](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/41)
@@ -54,10 +55,4 @@ Given below are my contributions to the project.
       , [\#124](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/124)
       , [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125)
       , [\#282](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/282)
-    * Contributed to forum discussions:
-    * Reported bugs and suggestions for other teams in the class:
-    * Some parts of the history feature I added was adopted by several other classmates:
-
-* **Tools**:
-
-* _{you can add/remove categories in the list above}_
+      , [\#328](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/328)
