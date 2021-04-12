@@ -15,17 +15,19 @@ title: User Guide
 * [Introduction](#introduction)
 * [Quickstart](#quickstart)
 * [NuFash Features](#nufash-features)
-  + [Viewing Help: `help`](#help)
-  + [Adding a Garment to the Wardrobe: `add`](#add)
-  + [Listing all Garments in the Wardrobe: `list`](#list)
-  + [Deleting a singular Garment in the Wardrobe: `delete`](#delete)
-  + [Clearing all Garments in Wardrobe : `clear`](#clear)
-  + [Editing a singular Garment in Wardrobe: `edit`](#edit)
-  + [Finding Garments in Wardrobe by keywords: `find`](#find)
-  + [Matching Garments to create an outfit: `match`<br>](#match)
-  + [Checking out a Garment from the Wardrobe: `select`](#select)
-  + [Viewing a valid outfit: `view`](#view)
-  + [Exiting the program: `exit`](#exit)
+  + [Wardrobe Management Features](#wardrobe-management-features)
+    + [Viewing Help: `help`](#help)
+    + [Adding a Garment to the Wardrobe: `add`](#add)
+    + [Listing all Garments in the Wardrobe: `list`](#list)
+    + [Deleting a singular Garment in the Wardrobe: `delete`](#delete)
+    + [Clearing all Garments in Wardrobe : `clear`](#clear)
+    + [Editing a singular Garment in Wardrobe: `edit`](#edit)
+    + [Finding Garments in Wardrobe by keywords: `find`](#find)
+  + [Outfit Building Features](#outfit-building-features)
+    + [Matching Garments to create an outfit: `match`<br>](#match)
+    + [Checking out a Garment from the Wardrobe: `select`](#select)
+    + [Viewing a valid outfit: `view`](#view)
+    + [Exiting the program: `exit`](#exit)
   + [Saving the data](#saving-the-data)
   + [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
@@ -183,12 +185,15 @@ garment (either formal, casual or active-wear), its type (either upper, lower or
 * Input for `c/COLOUR` is case-insensitive, and is either`beige`, `black`, `blue`, `brown`, `green`, `grey`, `orange`, 
   `pink`, `purple`, `red`, `white`, or `yellow`.
 * Input for `r/DRESSCODE` is case-sensitive, and is either `casual`, `CASUAL`, `formal`, `FORMAL`, `active` or `ACTIVE`.
-* Input for `t/TYPE` is case-sensitive, and is either `upper`, `lower` or `footwear`.
-<br><br>
+* Input for `t/TYPE` is case-sensitive, and is either `upper`, `lower` or `footwear`. <br><br>
+NuFash is divided into two sets of features, each allowing the application to
+achieve one of its goals.
 </div>
 
-### Wardrobe Management Features
-//desc
+### <a name="wardrobe-management-features"></a> Wardrobe Management Features
+The first category of features is wardrobe management. These features
+aim to achieve the goal of allowing users to better organise their wardrobes.
+These include `help`, `add`, `list`, `delete`, `clear`, `edit` and `find`. <br><br>
 
 #### <a name="help"></a> Viewing Help: `help`
 Shows an in-app user guide to various commands.<br>
@@ -198,7 +203,7 @@ Shows an in-app user guide to various commands.<br>
 Format: `help`
 <br><br>
 
-### <a name="add"></a> Adding a Garment to the Wardrobe: `add` 
+#### <a name="add"></a> Adding a Garment to the Wardrobe: `add` 
 Adds a garment with a name, size, colour, dress code and type into the wardrobe, along with optional descriptions.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/AddGarment.png" alt="alt text" width="790">
@@ -218,7 +223,7 @@ Example:<br>
 * `add n/favourite t shirt s/30 c/blue r/casual t/upper`
   <br><br>
   
-### <a name="list"></a> Listing all Garments in the Wardrobe: `list`  
+#### <a name="list"></a> Listing all Garments in the Wardrobe: `list`  
 Shows a list of all garments in the wardrobe<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ListGarment.png" alt="alt text" width="790">
@@ -234,7 +239,7 @@ Format: `list`
 </div>
 <br><br>
 
-### <a name="delete"></a> Deleting a singular Garment in the Wardrobe: `delete`  
+#### <a name="delete"></a> Deleting a singular Garment in the Wardrobe: `delete`  
 Removes a Garment, associated with the given index, from the wardrobe.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/DeleteGarment.png" alt="alt text" width="790">
@@ -254,7 +259,7 @@ Example:<br>
 Removes the 7th Garment in list of clothes currently shown.
 <br><br>
   
-### <a name="clear"></a> Clearing all Garments in Wardrobe : `clear`
+#### <a name="clear"></a> Clearing all Garments in Wardrobe : `clear`
 Clears all existing garments in the wardrobe.
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ClearGarment.png" alt="alt text" width="790">
@@ -262,7 +267,7 @@ Clears all existing garments in the wardrobe.
 Format: `clear`
 <br><br>
 
-### <a name="edit"></a> Editing a singular Garment in Wardrobe: `edit`
+#### <a name="edit"></a> Editing a singular Garment in Wardrobe: `edit`
 Edits an existing garment in the wardrobe.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/EditGarment.png" alt="alt text" width="790">
@@ -283,7 +288,7 @@ Example:
   Edits the colour and size of the 1st garment in the wardrobe to be red and 30 respectively.
   <br><br>
   
-### <a name="find"></a> Finding Garments in Wardrobe by keywords: `find`
+#### <a name="find"></a> Finding Garments in Wardrobe by keywords: `find`
 Finds all garments that matched specified keywords during search.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentA.png" alt="alt text" width="790">
@@ -313,10 +318,18 @@ Example:
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
 
-### Garment Coupling Features
-//desc
+#### <a name="exit"></a> Exiting the program: `exit`
+Exits the program.<br>
+Format: `exit`
+<br><br>
 
-### <a name="match"></a> Matching Garments to create an outfit: `match`<br>
+### <a name="outfit-building-features"></a> Outfit Building Features
+The second category of features is outfit building. These features
+aim to achieve the goal of providing users with clothing suggestions, allowing
+them to choose outfits that are more aesthetically appealing.
+These include `match`, `select`, and `view`.<br><br>
+
+#### <a name="match"></a> Matching Garments to create an outfit: `match`<br>
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
 garments of different types.<br>
@@ -340,7 +353,7 @@ Returns all the articles of clothing that match the colours and dress code of
   do not match their types.
 <br><br>
 
-### <a name="select"></a> Checking out a Garment from the Wardrobe: `select`
+#### <a name="select"></a> Checking out a Garment from the Wardrobe: `select`
 Select a garment to check out of the wardrobe, indicating that it shall be worn today.
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/SelectGarment.png" alt="alt text" width="790">
@@ -359,7 +372,7 @@ Example:
 Updates the Last Used date, and places this garment at the end of the list
 <br><br>
 
-### <a name="view"></a> Viewing a valid outfit: `view`
+#### <a name="view"></a> Viewing a valid outfit: `view`
 View a set of 3 garments associated with the given indexes that create an outfit.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ViewGarment.png" alt="alt text" width="790">
@@ -378,14 +391,7 @@ Format: `view INDEX INDEX INDEX`
 </div>
 
 Example:
-* `view 1 2 3`<br>
-<br><br>
-  
-
-### <a name="exit"></a> Exiting the program: `exit`
-Exits the program.<br>
-Format: `exit`
-<br><br>
+* `view 1 2 3`<br><br>
 
 ### Saving the data
 NuFash data is saved in the hard disk automatically as a JSON file under [JAR file location]/data/nufash.json
