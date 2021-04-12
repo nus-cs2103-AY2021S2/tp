@@ -234,7 +234,7 @@ Each client attribute such as name and address have been assigned identifiers so
 the entire attribute when using ClientBook. For example, name has been abbreviated to n. Listed below are all the identifiers
 which correspond to client attributes as well as restrictions that have to be followed when they are used as part of a command.
 
-Please note that clients may have the same name (two different persons with the same name), phone number (e.g. company phone number), address (e.g. company address),
+Please note that clients may have the same name (two different clients with the same name), phone number (e.g. company phone number), address (e.g. company address),
 email (e.g. company email address) and insurance policies (co-owner of the same policy).
 
 <table>
@@ -361,12 +361,13 @@ It contains basic features such as adding and removing of client contacts.
 <div markdown="block" class="alert alert-info">
 :bulb: 
 **Tip**:
-A person can have any number of tags and insurance policies (including 0).
+A client can have any number of tags and insurance policies (including 0).
 </div>
 
 * It is optional to include the `POLICY_URL` for the specified `POLICY_ID`.
 * To include the URL, remember to use `>` to indicate that a particular insurance policy is linked to a URL, as shown in the second example below.
 * Meetings of a client cannot be added with this command.
+* Adding duplicate clients (having the same information for all attributes) is not allowed.
 
 **Examples**:
 * Example of a client with insurance policy but no URL associated with insurance policy
@@ -399,12 +400,12 @@ A person can have any number of tags and insurance policies (including 0).
 </div>
 
 **Examples**:
-*  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  Edit the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
     * `edit 1 p/91234567 e/johndoe@example.com`
     
       ![edit 1](images/edit-annotate.png)
       <br><br>
-*  Edit the name of the 2nd person to be `Betsy Crower`.
+*  Edit the name of the 2nd client to be `Betsy Crower`.
     * `edit 2 n/Betsy Crower`
 
 [Return to Table of Contents](#table-of-contents)
@@ -421,9 +422,14 @@ A person can have any number of tags and insurance policies (including 0).
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `delete 2` deletes the 2nd person in the currently displayed list.
+* `delete 2` deletes the 2nd client in the currently displayed list.
   <br><br>
-* `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+To more easily delete policies of a specific client in mind, `delete` can be used in conjunction with `find`.
+* Deleting a client with the name "Charlotte Chan"
+    * First, use `find n/Charlotte Chan`. Assuming there is only 1 Charlotte Chan in the client book, she will be the 
+    client at index 1 after we run the command.
+    * After we get the filtered list, use `delete 1` to delete the client at index 1, which is 
+    Charlotte Chan after the above command.
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -505,21 +511,22 @@ you may reorder your contact list or look for specific clients.
 
 ### <span style="color:#c93640"><code>list</code>: List all clients</span>
 
-**Purpose**: Shows a list of all clients in ClientBook. You may use optional identifiers in conjunction with the minus (-)
-symbol to select which client details you want to see, so that you can have a clutter free view of your client contacts.
+**Purpose**: Shows a list of all clients in ClientBook. You may use optional identifiers in conjunction with the `-`
+symbol to select which client details you want to see, so that you can have a clutter-free view of your client contacts.
 
 **Format**: `list [-p] [-e] [-a] [-i] [-m]`
 
+* A client's name and tags will be shown regardless of the identifiers that you specify.
+
 **Examples**: 
 *  `list` without any specified identifiers shows a list of all clients and all their information.
-
+    * `list`
+  
     ![list](images/list.png)
 <br><br>
 *  One or more identifiers can be used to make `list` only show the specified information. The following command 
-   shows a list of all clients and their phone number and insurance policy number. A client's name and tags will
-   be shown regardless of the identifiers that you specify.
-
-    `list -p -i`
+   shows a list of all clients and their phone number and insurance policy information.
+    * `list -p -i`
     
     ![list phone](images/list-phone-policy-annotate.png)
 
@@ -530,19 +537,20 @@ symbol to select which client details you want to see, so that you can have a cl
 ### <span style="color:#c93640"><code>find</code>: Search for client contact based on keywords</span>
 
 **Purpose**: Finds client contacts based on the attribute and keywords that you specify.
-You may use optional identifiers in conjunction with the minus(-) symbol to limit the details shown, similar to the [`list`](#list-list-all-clients) command.
+You may use optional identifiers in conjunction with the `-` symbol to limit the details shown, similar to the [`list`](#list-list-all-clients) command.
 
-**Format**: `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​`
+**Format**: `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-p] [-e] [-a] [-i] [-m]`
 
 * The `IDENTIFIER` specifies which attribute of the client you want to search for. For example, if you want to search for a client contact
   by name, use the `n` identifier.
     * For more information about the identifiers for each field, refer to [What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact).
 * You may not use multiple attributes as your search criteria e.g. you cannot search for a client using address and name at the same time.
-  A command like `find n/David a/Botanic gardens` is invalid.
+  *`find n/David a/Botanic gardens` is invalid.
 * The search is **case-insensitive**. 
-  * E.g. `hans` will match `Hans`.
+  * `find hans` is equivalent to `find Hans`.
+* The symbol `&` between keywords allows you to search for Clients using multiple keywords.
 * The **order of the keywords does not matter**.
-* The delimiter `&` between keywords allows you to search for Clients using multiple keywords.
+  * `find n/alex & david` is equivalent to `find n/david & alex`
     
 **Examples**:
 * Find `Alex David` and `Alex Yeoh`.
@@ -556,10 +564,10 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
     <br><br>
-* Find all persons whose address contains `geylang`.
+* Find all clients whose address contains `geylang`.
   * `find a/geylang` - returns `Alex Yeoh` whose address is `Blk 30 Geylang Street 29, #06-40`
     <br><br>
-* Find the email and phone number of all persons whose names contain `alex` and `david` using the `&` delimiter, and only display their email and phone number.
+* Find the email and phone number of all clients whose names contain `alex` and `david` using the `&` symbol, and only display their email and phone number.
   * `find n/alex & david -e -p`
     
     ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter-annotate.png)
@@ -580,11 +588,17 @@ You may use optional identifiers in conjunction with the minus(-) symbol to limi
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `policy 2` displays the policies associated with the 2nd person in the currently displayed list.
-  
+* Displays the policies associated with the 2nd client in the currently displayed list.
+    * `policy 2`  
+    
   ![with policy URL](images/with-policy-URL-annotate.png)
   <br><br>
-* `find n/Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
+To more easily list policies of a specific client in mind, `policy` can be used in conjunction with `find`.
+* Getting policy information of a client with the name "Bernice Tan"
+    * First, use `find n/Bernice Tan`. Assuming there is only 1 Bernice Tan in the client book, she will be the 
+    client at index 1 after we run the command.
+    * After we get the filtered list, use `policy 1` to display the policies associated with the client at index 1, which is 
+    Bernice Tan after the above command.
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
