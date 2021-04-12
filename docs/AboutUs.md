@@ -33,7 +33,8 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 
 <img src="images/cheunggalen.png" width="200px">
 
-[[github](http://github.com/cheunggalen)] [[portfolio]()]
+[[github](http://github.com/cheunggalen)]
+[[portfolio](team/cheunggalen.md)]
 
 * Role: Developer
 * Responsibilities: UI, Logic
