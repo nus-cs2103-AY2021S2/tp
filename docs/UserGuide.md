@@ -42,7 +42,7 @@ Note the following symbols and formatting used in this document:
 <div markdown="block" class="alert alert-info">
 :information_source: **Notes:**<br>
 
-* This block is used for detailing information about formatting, handling exceptional cases or special keywords used in the corresponding section.
+* This block is used for detailing information about formatting, handling exceptional cases, or special keywords used in the corresponding section.
 </div>
 
 <div markdown="span" class="alert alert-primary">
@@ -58,7 +58,7 @@ This block is used to provide you extra details about the feature that will enab
 
 ## Installation
 
-1. Ensure you have Java `11` or above installed in your Computer. Your Computer's operating system (OS) needs to be Windows, macOS or Linux, and the OS version you are using should still be supported by the respective companies.
+1. Ensure you have Java `11` or above installed on your computer. Your computer's operating system (OS) needs to be Windows, macOS, or Linux, and the OS version you are using should still be supported by the respective companies.
    For more detailed Java installation instructions, please click [here](https://docs.oracle.com/en/java/javase/11/install/preface.html#).
 
 2. Download the latest `frienddex.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/releases).
@@ -102,7 +102,7 @@ This block is used to provide you extra details about the feature that will enab
     * `add-date` : Record special dates for a friend (e.g. Anniversary)
 <br/><br/>
     
-5. FriendDex comes with a built-in autocomplete feature, so there's no need to memorise any of the commands. If you need help with the commands, a thorough documentation for each command is provided in this user guide, complete with usage instructions and examples.
+5. FriendDex comes with a built-in autocomplete feature, so there's no need to memorize any of the commands. If you need help with the commands, thorough documentation for each command is provided in this user guide, complete with usage instructions and examples.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,12 +116,12 @@ The left panel of FriendDex shows the list of groups that are available in the a
 To list the friends within a specific group, use `list n/GROUP_NAME`. See [List Command](#listing-all-persons--list) for more details.
 
 ### Friend Panel
-The centre panel shows the currently listed friends in the application.
+The center panel shows the currently listed friends in the application.
 Commands such as `list`, `find`, `add`, `clear`, `delete` will change the listed friends. 
 See [Features](#features) for more details. 
 
 ### Details Panel
-The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information. 
+The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default and can be toggled to display different information. 
 The available dashboards are detailed below.
 
 #### Upcoming Events
@@ -148,7 +148,7 @@ The suggested command will be automatically filled into the command bar.
 FriendDex allows you to store certain information about your friends, so you don't have to.
 The information below provides further description about your friends' details you can store.
 
-Further description on how to add/modify these fields are provided in the [Features](#features) section.
+Further descriptions on how to add/modify these fields are provided in the [Features](#features) section.
 
 ### Name
 
@@ -159,7 +159,7 @@ Names are case-insensitive in FriendDex. This means that FriendDex interprets "J
 
 ### Phone Number
 
-Your friend's phone number, so you don't have to remember their phone number everytime you call.
+Your friend's phone number, so you don't have to remember their phone number every time you call.
 
 This field should only contain numbers and should at least be 3 digits long.
 
@@ -205,7 +205,7 @@ schedule your next meeting with your friend.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter that can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -220,7 +220,7 @@ schedule your next meeting with your friend.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`, and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
 * The `INDEX` parameter in a command will refer to the index number shown in the currently displayed person list. The index **must be a positive whole number** 1, 2, 3, ...​
@@ -236,7 +236,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
 * FriendDex only allows unique friends to be added. This means that each friend should only have a single entry in FriendDex.
 * FriendDex determines uniqueness solely based on the person's names ignoring their letter case, i.e. `John Tan` and `JoHn TaN` are the same name.
-* FriendDex only allow alphanumeric characters (A - Z, a - z, 0 - 9).
+* FriendDex only allows alphanumeric characters (A - Z, a - z, 0 - 9).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can provide any number of tags (including 0)
@@ -431,8 +431,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/DATETIME] [t/TAG
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -504,7 +503,7 @@ Format: `set-goal INDEX f/FREQUENCY`
 * See [Goals](#goals) to learn more about how deadlines are calculated. 
 
 Example:
-* `set-goal 1 f/w`, `set-goal 1 f/week` and `set-goal 1 f/weekly` will do the same thing by setting the goal to meet the person at index 1 every week.
+* `set-goal 1 f/w`, `set-goal 1 f/week`, and `set-goal 1 f/weekly` will do the same thing by setting the goal to meet the person at index 1 every week.
 * `set-goal 1 f/n` and `set-goal 1 f/none` will remove the goal set with the person at the specified index.
 
 ### Subtracting debt: `subtract-debt`
@@ -528,7 +527,7 @@ Examples:
 
 ### Styling the application : `theme`
 
-Applies a colorscheme to the application based on the supplied theme.
+Applies a color scheme to the application based on the supplied theme.
 
 Format `theme THEME`
 
@@ -606,7 +605,7 @@ For those who have not used Snapchat before, do not fear. We will try our best t
 Streaks are calculated relative to the date today. A year has approximately 52 weeks. Assume that your friend, John, has a weekly meeting goal set and the current week is week 10, 
 you started to meet your friend on week 7 and you consistently met him for weeks 8 and 9 but not yet on week 10. John's streak will be 3 on week 10. 
 If you managed to meet him on week 10, his streak will be incremented by 1, to 4. However, once the Monday of week 11 reaches, John's streak will 
-be reset back to 0. The goal deadline for weekly goals is 11:59pm on Sundays, and you did not manage to meet John for the whole of week 10. 
+be reset back to 0. The goal deadline for weekly goals is 11:59 pm on Sundays, and you did not manage to meet John for the whole of week 10. 
 Because of that, you failed to keep to your goal of meeting John weekly and so the streak resets. 
 
 Streaks for monthly and yearly goals are calculated the same way. You can switch the week numbers to months or years. Another thing to note is if you have already achieved the goal
@@ -630,7 +629,7 @@ FriendDex will discard all data and start with an empty data file at the next ru
 
 ## Defining your own theme
 
-FriendDex allows advanced users to customize and apply their own theme. This can be done by supplying the path to a `json` file specifying the theme.
+FriendDex allows advanced users to customize and apply their own themes. This can be done by supplying the path to a `json` file specifying the theme.
 
 ### Theme format
 
@@ -672,7 +671,7 @@ If the previous theme file supplied is not found or unreadable, then the default
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the files it creates with the files in your previous FriendDex home folder.
+**A**: Install the app on the other computer and overwrite the files it creates with the files in your previous FriendDex home folder.
 
 **Q**: Where can I find more themes?<br>
 **A**: Certain online tools such as [terminal.sexy](https://terminal.sexy) can be used to generate the required `json` file.
@@ -680,12 +679,12 @@ If the previous theme file supplied is not found or unreadable, then the default
 **Q**: What is a valid email format?<br>
 **A**: The email allowed in FriendDex shall adhere to the following rules:
 * Emails shall have the format `local-part@labels`.
-* `local-part` local-part can contain any characters provided that they are either
+* `local-part` can contain any characters provided that they are either
     * Alphanumeric (A - Z, a - z, 0 -9), or
     * Any character from the set <code>.!#$%&'*+\/=?^_`{|}~-</code>.
-* This is followed by a `@` and then one or more `label`.
+* This is followed by an `@` and then one or more `label`s.
 * A `label` should be shorter than 64 characters.
-* Multiple `label`s are allowed, provided that they are delimited by a single period. <br>
+* Multiple `label`s are allowed, provided that they are delimited by a single period.<br>
 Note that email does NOT conform to [RFC](https://tools.ietf.org/html/rfc5322) standards.
 
 --------------------------------------------------------------------------------------------------------------------

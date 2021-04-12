@@ -83,7 +83,7 @@ The sections below give more details of each component.
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
+The `UI` component uses JavaFx UI framework. The layouts of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
 the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
@@ -112,7 +112,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component](images/CommandSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 ### Model component
@@ -162,7 +162,7 @@ When a theme is set by the command, it and its temporary `css` file will be stor
 should be noted that `ThemeManager` is a singleton and only one instance of it will exist throughout the lifetime of
 the application. The values stored in that instance will be read by the different components of the application.
 
-FriendDex comes with several predefined theme stored in the resource folder `/themes/`. To access them, we pass the name
+FriendDex comes with several predefined themes stored in the resource folder `/themes/`. To access them, we pass the name
 of the theme prefixed with a `@` to `ThemeFactory#load`. The `ThemeFactory#load` sequence diagram can be seen here:
 
 ![Sequence diagram for `ThemeFactory#load](images/ThemeFactoryLoadSequenceDiagram.png)
@@ -229,15 +229,15 @@ as much as possible. Since streaks can be computed from the attributes of a pers
 
 #### Initialization
 
-This section will detail the steps the program takes to calculate streaks of everyone when it is started. 
+This section will detail the steps the program takes to calculate the streaks of everyone when it is started. 
 
 1. `AddressBook` receives a copy of the deserialized `AddressBook` data. It calls `setPersons` of `PersonStreaklist` with the persons found in the data.
 2. `PersonStreakList` will process this data and create a `PersonStreak` from each `Person`. A `PersonStreak` will bind a `Person` and his/her `Streak` together in a single class. 
-3. This is done by calling `PersonStreak#fromPerson()` which will use the `Streak#from()` to create a `Streak` from a Person. The streak will be calculated upon creation of the `Streak` object.
-4. Once all the `PersonStreak` are created, they will be sent back to the `PersonStreakList` and put into an internal observable list, named `internalList`. 
+3. This is done by calling `PersonStreak#fromPerson()` which will use the `Streak#from()` to create a `Streak` from a Person. The streak will be calculated upon the creation of the `Streak` object.
+4. Once all `PersonStreak` objects are created, they will be sent back to the `PersonStreakList` and put into an internal observable list, named `internalList`. 
 
-`internalList` will contain all the `PersonStreak` objects that will be used to display the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` that have an active goal set. 
-An active goal is any valid goal that is not `NONE`, refer to UG `set-goal` [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#setting-meeting-goal-set-goal) for more information.
+`internalList` will contain all the `PersonStreak` objects that will be displayed on the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` objects that have an active goal set. 
+An active goal is any valid goal that is not `NONE`, refer to the user guide's `set-goal` section [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#setting-meeting-goal-set-goal) for more information.
 The filtered list will then be made unmodifiable before being exposed to UI components to consume.
 
 The sequence diagram below depicts the execution path when the program is initialized.
@@ -263,7 +263,7 @@ FriendDex allows users to add friends to a group. This section details the imple
 
 #### Implementation
 
-1. The user will supply the name of the group, and the indexes that will be added into said group.
+1. The user will supply the name of the group, and the indexes that will be added to said group.
 2. `AddGroupCommand` will then get the current filtered list of Persons to get all the persons with the associated indexes.
 3. `AddGroupCommand` will then check if the group already exists. If it does not, a new group is added.
 4. All the specified persons' names will now be inserted into the group and display the list of persons in the group.
@@ -292,8 +292,8 @@ FriendDex allows users to add/subtract debt from a friend. This section details 
 
 #### Implementation
 
-1. The user will supply the index of the user and the amount of debt to be added/subtracted.
-2. `ChangeDebtCommand` will obtain the person with the specified index and obtain their current Debt.
+1. The user will supply the index of the user and the debt to be added/subtracted.
+2. `ChangeDebtCommand` will obtain the person with the specified index and their current debt.
 3. `ChangeDebtCommand` will then obtain the changed debt depending on whether the command is adding or subtracting
 the debt.
 4.  `ChangeDebtCommand` will finally set the Person with the new changed debt.
@@ -309,7 +309,7 @@ FriendDex allows users to add a picture to their contact. This section details t
 #### Implementation
 
 1. The user will first supply the index of the contact to edit and the path to an image file.
-2. `AddPictureCommand` will take the file path and validate it. 
+2. `AddPictureCommand` will take the file path and validate it.
 3. If the file path is invalid, FriendDex will return an error message to the user. (Not shown in sequence diagram)
 4. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`.
    The renaming is done to avoid problems with two image files having the same file name.
@@ -521,24 +521,22 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+    2. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location are retained.
 
 ### Autocomplete
 
 1. Type `add` into the command bar<br>
-   Expected: A list of commands with `add` in their command words show up.
+   Expected: A list of commands with `add` in their command words shows up.
    
 2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar. 
 
@@ -603,7 +601,7 @@ person on the list is born before 12-12-2020.
         
        Expected: Similar to previous
 
-2. Adding a date with boundary date values. FriendDex will only allow adding of dates that have already occured.
+2. Adding a date with boundary date values. FriendDex will only allow adding of dates that have already occurred.
 
     * These arguments should be replaced with their proper date representation.
         * `DATE_AFTER_TODAY`: a future date in the format of dd-MM-yyyy, e.g. `04-04-2099`
@@ -797,6 +795,7 @@ Prerequisites: List all person using the `list` command. There is at least a per
 Prerequisites: List all person using the `list` command. There is at least a person present in the list.
 
 1. Editing an existing person in FriendDex
+
     1. Editing a person with valid fields provided
        * `edit 1 n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (all fields provided)
        * `edit 1 p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends` (some fields provided, any combination of fields can be used here)
@@ -822,8 +821,9 @@ Prerequisites: List all person using the `list` command. There is at least a per
        Expected: Similar to previous
 
 2. Editing an existing person in FriendDex with invalid fields
+
     * These arguments should be replaced with their proper datetime representation.
-       * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
+       * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021` <br><br>
 
     1. Editing a person's name to the name of another person in FriendDex
        * Prerequisite: A person with the name `john doe` must already be in FriendDex and is not the first person.
@@ -967,7 +967,7 @@ Prerequisites: List contains the default data included in FriendDex.
     1. Test case: `theme` (Invalid format)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
-2. Applying a user defined theme
+2. Applying a user-defined theme
 
     1. Test case: `theme monokai.json`, where `monokai.json` is a valid theme file<br>
        Expected: Theme of the application changes. A success message will be shown.
@@ -987,13 +987,13 @@ Prerequisites: List contains the default data included in FriendDex.
 
         2. Relaunch the application. Observe that the theme of the application persists.
 
-4. Automatically applying user defined theme across instances
+4. Automatically applying user-defined theme across instances
 
     1. Test case: Applying valid theme with no external modification `theme some_theme.json`.
 
         1. Close the application.
 
-        2. Reopen the application. Observe that the theme of the application persists.
+        2. Relaunch the application. Observe that the theme of the application persists.
 
     2. Test case: Applying valid theme with external modification `theme some_theme.json`.
 
