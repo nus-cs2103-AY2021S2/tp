@@ -6,11 +6,15 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -129,6 +133,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.heymatez.commons` package.
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -338,6 +344,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![#Activity Diagram for the clearAssignees command](images/ClearAssigneesActivityDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -347,6 +355,8 @@ The following activity diagram summarizes what happens when a user executes the 
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -655,6 +665,8 @@ Use case ends.
 * **CCA**: Co-curricular activities 
 * **CCA / Club head**: A person who has a position in a Club / CCA and is required to manage the tasks and members within the club
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
@@ -705,7 +717,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No member is added since the phone number given is invalid. Error details shown in the status bar.
 
    1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com` <br>
-      Expected: similar to previous test case.
+      Expected: Similar to previous test case.
 
 <div style="page-break-after: always;"></div>
 
@@ -856,10 +868,10 @@ testers are expected to do more *exploratory* testing.
        Expected: Task with the index `1` is deleted from the list. Details of the deleted task shown in the status message.
 
     3. Test case: `deleteTask 4`<br>
-       Expected: No task is deleted. Error details shown in the status message(Index is invalid).
+       Expected: No task is deleted. Error details shown in the status message.
 
     4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1` <br>
-       Expected: similar to previous test case.
+       Expected: Similar to previous test case.
 
 <div style="page-break-after: always;"></div>
 
@@ -879,7 +891,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `done 2`<br>
       Expected: Since the task already has a status of completed, an error message is shown in the status bar. 
       
-   1. Other incorrect commands to try: `done`, `done -1` 
+   1. Other incorrect commands to try: `done`, `done -1` <br>
       Expected: Similar to previous test case. 
       
 ### Marking a Task as uncompleted
@@ -898,8 +910,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `undo 2`<br>
       Expected: Since the task already has a status of uncompleted, an error message is shown in the status bar.
              
-   1. Other incorrect commands to try: `undo`, `undo -1` 
-      Expected: similar to previous test case.
+   1. Other incorrect commands to try: `undo`, `undo -1` <br>
+      Expected: Similar to previous test case.
       
 ### Viewing a list of unassigned Tasks
 
@@ -939,7 +951,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findPriority HIGH`<br>
       Expected: Error message displayed in the status bar.
 
-   1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc.
+   1. Other incorrect commands to try: `findPriority, findPriority LOW`, `findPriority MeDIum`, etc. <br>
       Expected: Similar to previous test case.
 
 ### Finding Tasks due before a certain date
@@ -955,7 +967,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `findBefore 2021-13-12`<br>
        Expected: Error occurred since the deadline provided is invalid. Error details is shown in the status bar.
 
-    1. Other incorrect commands to try: `findBefore`, `findBefore 2021-03/21`, etc.
+    1. Other incorrect commands to try: `findBefore`, `findBefore 2021-03/21`, etc. <br>
        Expected: Similar to previous test case.
 
 
@@ -968,7 +980,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findTasksFor Alice`<br>
       Expected: Lists the task which is assigned to Alice.
       
-   1. Test case: `findTasksFor`
+   1. Test case: `findTasksFor` <br>
       Expected: Error message displayed in the status bar.
 
 <div style="page-break-after: always;"></div>
@@ -1010,7 +1022,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `clearAssignees 0`<br>
       Expected: No task is being cleared. Error details is shown in the status bar.
 
-   1. Other incorrect commands to try: `clearAssignees`, `clearAssignees -1`
+   1. Other incorrect commands to try: `clearAssignees`, `clearAssignees -1` <br>
       Expected: Similar to previous test case.
 
       
