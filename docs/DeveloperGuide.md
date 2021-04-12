@@ -11,21 +11,30 @@ layout: page title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Design**
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of
+each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
+the [diagrams](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
+diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes
+called [`Main`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It
+is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -41,15 +50,18 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
+  API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and
+exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -62,9 +74,14 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
+in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -82,9 +99,11 @@ The `UI` component,
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
+   help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -101,15 +120,14 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so
+  that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Customer` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Customer` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
-
 
 ### Storage component
 
@@ -118,6 +136,7 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
+
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
@@ -145,6 +164,7 @@ filter the results and list them out on the GUI
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -171,8 +191,8 @@ filter the results and list them out on the GUI
 
 * More complex search operations, to search for multiple fields at once using logical conjunctions like
   'and', 'or' and 'not', as well as brackets.
-  
-* Email integration Contact customers directly from the app instead of using a separate app. 
+
+* Email integration Contact customers directly from the app instead of using a separate app.
 
 ### User stories
 
@@ -196,7 +216,7 @@ unlikely to have) - `*`
 | `* * *`  | user                                       | filter by tags   | find customers who have the specified tags
 | `* * *`  | user                                       | repeat the last command | use similar commands without having to type out everything everytime
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* *`    | user                                       | use logical operators and brackets to filter | filter using more complex parameters than just 1 field 
+| `* *`    | user                                       | use logical operators and brackets to filter | filter using more complex parameters than just 1 field
 | `* *`    | user                                       | list customers with expiring COE   |  have a list of potential customers who might purchase a new car   |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user                                       | email customers | to contact them
@@ -255,6 +275,20 @@ unlikely to have) - `*`
 
       Use case resumes at step 2.
 
+**Use case: Find a customer**
+
+**MSS**
+
+1. user requests to find a customer using parameters
+2. System returns list of customers who satisfy the parameters.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. the find parameters do not form a proper expression
+    - 2a1. System returns error message
+
 **Use case: List customers**
 
 **MSS**
@@ -269,6 +303,22 @@ unlikely to have) - `*`
 * 2a. The list is empty.
 
   Use case ends.
+
+**Use case: Get Last Command**
+
+**MSS** 
+1. User asks for the last command he entered, 
+2. System shows the last command
+Repeat Steps 1-2, each time displaying the next previous command in command history, till
+   user stops 
+3. User enters a different command (either valid or not)
+4. System executes the given command, if valid.
+
+    Use case ends.
+
+**Extensions**
+- 2a.  No more commands to go back, already went back to first command in commandhistory
+    2a1. System shows error message.
 
 *{More to be added}*
 
@@ -340,19 +390,21 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. If data file could be corrupted or unable to load when an empty contact list is displayed during initial start-up 
+    1. If data file could be corrupted or unable to load when an empty contact list is displayed during initial start-up
        of the app, try deleting addressbook.json file located at data folder and relaunch the app.
 
 1. _{ more test cases …​ }_
 
 ## **Appendix: Effort**
+
 Keep it brief (~1 page)
 Explain the difficulty level, challenges faced, effort required, and achievements of the project.
-<br>Use AB3 as a reference point e.g., you can explain that while AB3 deals with only one entity type, your project was harder because it deals with multiple entity types.
+<br>Use AB3 as a reference point e.g., you can explain that while AB3 deals with only one entity type, your project was
+harder because it deals with multiple entity types.
 
-1. Find feature
-   Comprehensive find functionality 
-   <br>Challenges faced include understanding the architecture of AB3 code and refactoring existing testcase to resolve any regression bugs.
+1. Find feature Comprehensive find functionality
+   <br>Challenges faced include understanding the architecture of AB3 code and refactoring existing testcase to resolve
+   any regression bugs.
 
 1. Email feature
  

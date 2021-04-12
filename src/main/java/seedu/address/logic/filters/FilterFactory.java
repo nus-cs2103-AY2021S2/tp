@@ -10,14 +10,29 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
-
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.model.customer.Customer;
+import seedu.address.logic.parser.exceptions.ParseException;
 
-public class Filters {
-    public static AbstractFilter getCorrespondingFilter(String info) {
+/**
+ * Helper class to support the filters. This is essentially a factory class which takes in a string and returns the
+ * appropriate kind of filter it represents, after parsing.
+ */
+public class FilterFactory {
+    public static final String MESSAGE_MULTIPLE_FILTERS = "Number of filters between two logical operators should be "
+        + "exactly 1!";
+    public static final String MESSAGE_UNKNOWN_PREFIX = "The given find filter is not valid : ";
+
+
+    /**
+     * This method parses the given string, and checks which filter it corresponds to, and returns that. However, in
+     * case there are no filters matching, or more than one token, this throws an exception.
+     *
+     * @param info the given input string
+     * @return the corresponding filter created after parsing the input string
+     * @throws IllegalArgumentException If either there are more than one prefixes or its an unknown prefix
+     */
+    public static Filter getCorrespondingFilter(String info) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(" " + info + " ", PREFIX_NAME,
             PREFIX_EMAIL,
             PREFIX_PHONE,
@@ -25,8 +40,7 @@ public class Filters {
 
 
         if (argumentMultimap.getTotalSize() > 2) { // since there is also a dummy position :(
-            throw new NullPointerException(
-                "Number of filters between two logical operators should be exactly 1 " + argumentMultimap);
+            throw new ParseException(MESSAGE_MULTIPLE_FILTERS);
         }
 
         if (argumentMultimap.getValue(PREFIX_EMAIL).isPresent()) {
@@ -65,23 +79,6 @@ public class Filters {
             return new TagFilter(argumentMultimap.getValue(PREFIX_TAG).get());
         }
 
-
-
-        /*
-         * throw new IllegalArgumentException("No appropriate filter for : " + info);
-         */
-
-        return new AbstractFilter(info) {
-
-            @Override
-            public boolean test(Customer customer) {
-                return false;
-            }
-
-            @Override
-            public List<Customer> filterAllCustomers(List<Customer> customer) {
-                return null;
-            }
-        };
+        throw new ParseException(MESSAGE_UNKNOWN_PREFIX + info);
     }
 }

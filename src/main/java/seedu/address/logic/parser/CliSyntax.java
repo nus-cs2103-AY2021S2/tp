@@ -14,8 +14,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_CARS_OWNED = new Prefix("c/");
     public static final Prefix PREFIX_DOB = new Prefix("b/");
     public static final Prefix PREFIX_CARS_PREFERRED = new Prefix("cp/");
-    public static final Prefix PREFIX_AND = new Prefix("/AND");
-    public static final Prefix PREFIX_OR = new Prefix("/OR");
-    public static final Prefix PREFIX_NOT = new Prefix("/NOT");
-    public static final Prefix PREFIX_COE_EXPIRY = new Prefix("coe/");
+    public static final Prefix PREFIX_AND = new Prefix("/and");
+    public static final Prefix PREFIX_OR = new Prefix("/or");
+    public static final Prefix PREFIX_NOT = new Prefix("/not");
+    public static final Prefix PREFIX_COE_EXPIRY = new Prefix("ex/");
 }
