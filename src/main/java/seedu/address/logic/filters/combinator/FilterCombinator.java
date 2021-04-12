@@ -135,8 +135,8 @@ public class FilterCombinator implements Predicate<Customer> {
 
         description = " " + description + " ";
 
-        StringBuilder inPresentScope = new StringBuilder("");
-        StringBuilder inSubtreeScope = new StringBuilder("");
+        StringBuilder inPresentScope = new StringBuilder();
+        StringBuilder inSubtreeScope = new StringBuilder();
 
         Stack<Node> nodeStack = new Stack<>();
         LinkedList<ArgumentTokenizer.PrefixPosition> allPositions = findAllOperatorPositions(description);
@@ -160,7 +160,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 i += prefix.getPrefix().trim().length() - 1; // since we will anyway do a +1 when the for loop updates.
 
                 allPositions.removeFirst();
-                inPresentScope = new StringBuilder("");
+                inPresentScope = new StringBuilder();
 
                 continue;
             }
@@ -180,7 +180,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 } else {
                     Node nextNode = createTree(inSubtreeScope.toString());
                     nodeStack.push(nextNode);
-                    inSubtreeScope = new StringBuilder("");
+                    inSubtreeScope = new StringBuilder();
                 }
             } else {
                 if (nestingLevel > 0) {
