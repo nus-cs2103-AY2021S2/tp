@@ -22,9 +22,9 @@ The features of Tutor Tracker includes:
 
 - Adding, editing, deleting and viewing of tutors' profile
 - Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
-- Adding a note to each tutor's profile
-- Exporting tutor's details  
-- Creating a list of favourites tutors
+- Adding, editing, deleting note of tutors
+- Exporting tutor's details, subject list and notes
+- Adding, removing and listing favourite tutors
 - Adding, editing, deleting and viewing of all tuition appointments
 - Adding, editing, deleting and viewing of all tuition-related schedules
 - Adding, editing, deleting and listing grade records
@@ -1348,6 +1348,26 @@ Given below are instructions to test the app manually.
     2. Test Case: `list_favourites abcdefg` <br>
        Expected: The Tutor List Panel displays the all the favourite tutors. <br><br>
 
+### Viewing Appointments
+
+1. Viewing appointments
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided.
+        2. The date must be in the form `yyyy-mm-dd`.<br><br>
+    2. Test Case: `view_appointment 2021-4-20` <br>
+       Expected: The Appointment List Panel displays the appointments happening on Apr 20 2021. <br><br>
+    3. Test Case: `view_appointment 20/4/2021` <br>
+       Expected: The Appointment List Panel not updated. An error message saying that the date is in the wrong format is shown. <br><br>
+
+### Listing All Appointments
+
+1. List all appointments
+    1. Test Case: `list_appointments` <br>
+       Expected: The Appointment List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
+    2. Test Case: `list_appointments abcdefg` <br>
+       Expected: The Appointment List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
+
+
 ### Adding a Schedule
 
 1. Adding a schedule
@@ -1448,9 +1468,9 @@ Given below are instructions to test the app manually.
 
 1. List all schedules
     1. Test Case: `list_schedules` <br>
-       Expected: The Schedule List Panel displays the all the schedules in ascending (oldest to newest) order. <br><br>
+       Expected: The Schedule List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
     2. Test Case: `list_schedules abcdefg` <br>
-      Expected: The Schedule List Panel displays the all the schedules in ascending (oldest to newest) order. <br><br>
+      Expected: The Schedule List Panel displays the all the schedules in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
 
 ### Deleting a Schedule
 
@@ -1506,9 +1526,9 @@ Given below are instructions to test the app manually.
 
 1. List all schedules
     1. Test Case: `list_reminders` <br>
-       Expected: The Reminder List Panel displays the all the reminders in ascending (oldest to newest) order. <br><br>
+       Expected: The Reminder List Panel displays the all the reminders in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
     2. Test Case: `list_reminders abcdefg` <br>
-       Expected: The Reminder List Panel displays the all the reminders in ascending (oldest to newest) order. <br><br>
+       Expected: The Reminder List Panel displays the all the reminders in ascending (the earliest appointment date to the latest appointment date) order. <br><br>
 
 ### Deleting a Reminder
 
