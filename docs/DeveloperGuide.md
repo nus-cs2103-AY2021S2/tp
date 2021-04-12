@@ -1,7 +1,4 @@
 ---
-layout: page
-title: Developer Guide
----
 * Table of Contents
 {:toc}
 
@@ -16,7 +13,6 @@ They can store both meetings and contacts, view the meetings scheduled for the w
 they are meeting up with. It also allows users to assign notes to their meetings to keep people informed about meeting
 details. Furthermore, it supports automatic syncing of contacts profile photos if they have a Gravatar account. The app is
 targeted towards users with a daily 7am - 4pm schedule, have frequent meetings during this period, and prefer typing.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -178,7 +174,7 @@ Sorting would occur in the sorted list layer, and the filtering will be applied 
 This has the benefit of still sharing the references with the original observable list, 
 so modifications will still be reflected in the correct data structures.
 
-###Timetable feature (author : Maurice Mok)
+###Timetable feature (author : Maurice)
 
 The timetable feature will be help the user visualise the free times, as well as his/her 
 meetings schedule for the following week. 
@@ -192,22 +188,83 @@ range of days, as well as view past week schedules.
 
 #### Implementation
 
+To display the weekly schedule of the user, we first implement a timetable grid Ui component 
+that would represent the view of the timetable. A JavaFX GridPane layout is chosen, with 2 rows and
+7 columns. Each column would represent the days in the timetable. The first row would display 
+the date labels for each row, and the second row would be the main timetable view. 
+
+Each meeting in our model can be represented as a slot in our timetable. The length of the slot 
+will be scaled linearly with the meeting duration. When displayed, the slot should show the duration
+of the meeting and the timeframe the slot it is scheduled on. We implement each slot as a VBox with a 
+text label.
+
+The meeting slots should be then slotted into the timetable according to the start times and date.
+Therefore each column in our main view should have an anchorPane layout, which allows us control over 
+the positioning of the nodes in the timetable.
+
+![A view of the timetable GUI](images/TimetableView.png)
+
+Using a MVC pattern, the TimetableView Class should act as the Controller logic for positioning the nodes, 
+as well as creating the timetable slots of appropriate size, given the list of meetings to schedule.
+
+Since the meetings have a well-defined start and end time, we create an interface called Schedulable, and make
+the Meetings class implement that interface. This would allow us to program to an interface, rather than a class,
+thus leading to less coupling. In that regard, now a timetable's task would be rendering **schedulable** objects on 
+its GUI.
+
+Alternative 1: Park all the logic under the TimetableView Class. It will be responsible for processing the data on 
+the Schedulables and rendering it on the timetable UI.
+1. `Pros`: Less overhead. 
+2. `Cons`: Ties the implementation strategy of data processing, node placement and resizing heavily to the TimetableView class, thus
+    leading to more work to be done for future developers to change the strategy.
+    
+Alternative 2 (current choice): Delegate the logic of node resizing and positioning to a separate class. 
+1. `Pros`: More overhead.
+2. `Cons`: Allows for easier modification in the future if another developer wants to change how the nodes are placed 
+on the timetable, as he just needs to override timetablePolicy class. Allows for the timetable behavior 
+to change dynamically (during runtime, say if a person enters a command to display), simply by setting
+to a new timetablePolicy class.
+
+We choose 2 because it makes the code neater and separates out the responsibilities nicely. It also keeps future
+maintainability in mind.
 
 
-#### Design Considerations:
+
+![A view of the timetable GUI](images/TimetableClassDiagram.png)
+
+The next feature was to make the TimetableView class responsive to user commands and changes to the data in the model.
+There are two ways this can be done.
+
+Alternative 1: Allow a boolean in CommandResult to indicate whether timetable should be updated. The Ui will then update
+accordingly.
+1. `Pros`: Allows more precision over when to update the model. Instead of updating at every change, the Command logic 
+will do the job of determining if the timetable is necessary to be updated, thus potentially making it faster.
+2. `Cons`: Introduces high coupling between Timetable class and every Command, would introduce burden on future
+developers. Additionally, it would introduce more costs to unit test.
+    
+Alternative 2 (current choice): Using an observer pattern, update the timetable whenever the underlying model 
+changes.
+1. `Pros`: The update command is being executed more times, often unnecessarily. For example, when user adds a date outside 
+timetable range.
+2. `Cons`: Allows for greater decoupling between the logic and model due to the nature of the Observer Pattern.
+
+
+
+#### Overall Design Chosen
+These were the overall final design considerations.
 
 Two possible implementations were considered.
 
-Alternative 1 : Represent a 7 day schedule as a 2 dimensional array with each cell representing a
+Alternative 1 : Represent a seven-day schedule as a 2 dimensional array with each cell representing a
 30 minute time interval, with each row representing a day, and each column representing a specified 
 timeslot within the day. Similar to a booking system, whenever a meeting is added or deleted,
 it will mark the timeslots as taken, or free up the slots.
 
-1. Pros: A Ui can listen to the model and the display can be updated quickly with each cell change.
+1. `Pros`: A Ui can listen to the model and the display can be updated quickly with each cell change.
 Whenever a meeting is added or removed, it only takes O(1) time to check each timeslot occupied by
 the meeting.
 
-2.Cons: Takes up more space. Needs a lot of restrictions on handling meetings with not nice start and ending times,
+2. `Cons`: Takes up more space. Needs a lot of restrictions on handling meetings with not nice start and ending times,
 and thus reduces a lot of flexibility for the user.
 
 Alternative 2 (*Current Choice): 
@@ -216,17 +273,44 @@ of length proportional to the meeting duration. Depending on the meeting's start
 the program will determine which column to slot the meeting in, as well as the vertical position in the column to
 put the meeting.
 
-1. Pros: More flexible in allowing users to display meetings with much more different start end times.
+1. `Pros`: More flexible in allowing users to display meetings with much more different start end times.
 Takes up less space in the model.
 
-2. Cons: It takes up more time for each operation to update the GUI, because you have to update at the very least 
+2. `Cons`: It takes up more time for each operation to update the GUI, because you have to update at the very least 
 a whole column, or search through the slots in the column to find the slot.
 
 
+#### setTimetable
+
+We store an SimpleObjectProperty of a localDate inside a class called timetablePrefs in the model.
+When we initialize the Ui components, a ReadOnlyObservableValue of this localDate is passed to the TimetableView.
+TimetableView will then attach a listener to this ReadOnlyObservableValue. We program to
+the ReadOnlyObservableValue interface here as a form of defensive programming, as we do not want to alter the 
+observableValue outside of the setTimetableCommand.
+
+The following sequence diagram illustrates what happens when setTimetableCommand is called with 
+a valid date.
+
+![A sequence diagram of the setTimetable Command](images/setTimetableSequence.png)
+
+Users can set the timetable to update to start on any date using the command 
+`setTimetable [DATE]`. Like before, it also uses the Observer Pattern,
+and the design considerations were similar to earlier. Below is a sequence diagram of 
+how the timetable is updated.
+
+![A sequence diagram of the setTimetable Command](images/TimetableViewUpdateSeq.png)
+
+ Some small considerations were considered in the implementation, for example, if the 
+ user leaves the date field empty, it should default set to today's date. The following
+ activity diagram shows the setTimetableCommand being parsed.
+ 
+ 
+![A sequence diagram of the setTimetable Command](images/setTimetableActivityDiagra.png)
 
 
 
-### Notes feature (Cooming Soon : v 1.5 has already been implemented, but will only be introduced in subsequent iterations)
+
+### Notes feature (Cooming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
 
 The note feature has been implemented to help the user insert and delete personal notes.
 This feature is introduced with the intention to help users manage their personal notes, and to make
