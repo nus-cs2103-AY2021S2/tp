@@ -76,7 +76,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             } else if (input.getAttributeType().equals("gender")) {
                 if (!input.value().equalsIgnoreCase("m")
                         && !input.value().equalsIgnoreCase("n")
-                        && !input.value().equalsIgnoreCase("f")) {
+                        && !input.value().equalsIgnoreCase("f")
+                        && !input.value().equalsIgnoreCase("male")
+                        && !input.value().equalsIgnoreCase("female")
+                        && !input.value().equalsIgnoreCase("nonbinary")
+                        && !input.value().equalsIgnoreCase("non-binary")) {
                     throw new ParseException(
                             String.format(MESSAGE_INVALID_GENDER_INPUT, FilterCommand.MESSAGE_USAGE));
                 }
