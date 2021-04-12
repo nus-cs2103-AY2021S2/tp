@@ -4,9 +4,8 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TeachingAssistantParser" as TeachingAssistantParser LOGIC_COLOR
 participant ":FreeCommandParser" as FreeCommandParser LOGIC_COLOR
-participant ":ListOccupyingEntryPredicate" as ListOccupyingEntryPredicate LOGIC_COLOR
 participant "c:FreeCommand" as FreeCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -17,23 +16,19 @@ end box
 
 autoactivate on
 [-> LogicManager : execute("free")
-LogicManager -> AddressBookParser : parseCommand("free")
+LogicManager -> TeachingAssistantParser : parseCommand("free")
 
 create FreeCommandParser
-AddressBookParser -> FreeCommandParser
+TeachingAssistantParser -> FreeCommandParser
 return
 
-AddressBookParser -> FreeCommandParser : parse(start, end)
-
-create ListOccupyingEntryPredicate
-FreeCommandParser -> ListOccupyingEntryPredicate
-return
+TeachingAssistantParser -> FreeCommandParser : parse(start, end)
 
 create FreeCommand
 FreeCommandParser -> FreeCommand
 return
-FreeCommandParser --> AddressBookParser
-AddressBookParser --> LogicManager : c
+FreeCommandParser --> TeachingAssistantParser
+TeachingAssistantParser --> LogicManager : c
 destroy FreeCommandParser
 
 LogicManager -> FreeCommand : execute()
