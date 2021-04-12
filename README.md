@@ -10,7 +10,7 @@ ResidenceTracker is a command line based desktop application that assists landlo
 
 * It uses a **quick CLI** way to note down bookings and track status of different residence, such as
   clean or needs cleaning/booked or available, so the landlord can process bookings more efficiently and inform the cleaning agent as necessary before the next lease arrives.
-  
+
 * It is **written in OOP fashion**.
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
