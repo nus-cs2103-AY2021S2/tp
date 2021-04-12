@@ -71,12 +71,14 @@ by in-depth descriptions and implementations.
 For your convenience, use the **Table of Contents** above to navigate to a section quickly.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 # **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 # **3. Design**
 
@@ -133,6 +135,8 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always"></div>
+
 ## 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -153,6 +157,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<div style="page-break-after: always"></div>
 
 ## 3.3 Logic component
 
@@ -176,6 +182,8 @@ call.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always"></div>
+
 ## 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -195,6 +203,8 @@ The `Model`,
 
 </div>
 
+<div style="page-break-after: always"></div>
+
 ## 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -211,6 +221,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
+
 # **4. Implementation**
 
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
@@ -225,11 +237,15 @@ The add command mainly uses the Logic and Model components. The add command take
 * `date/Date`
 * `t/Tags`
 
+<div style="page-break-after: always"></div>
+
 The following activity diagram summarizes what happens when a user executes an add command.
 ![AddActivityDiagram](images/AddCommandActivityDiagram.png)
 
 The following sequence diagram shows the execution of the add command.
 ![AddSequenceDiagram](images/AddCommandSequenceDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 ## 4.2 Edit Command
 
@@ -239,12 +255,15 @@ The edit command has a similar implementation to the add command, it mainly uses
 * The edit command is able to take in an extra parameter `s/Status`.
 * Edit command takes in an `index` to specify which Task in the list to edit.
 
+<div style="page-break-after: always"></div>
+
 The following activity diagram summarizes what happens when a user executes an edit command.
 ![EditActivityDiagram](images/EditCommandActivityDiagram.png)
 
 The following sequence diagram shows the execution of the edit command.
 ![EditSequenceDiagram](images/EditCommandSeqeuenceDiagram.png)
 
+<div style="page-break-after: always"></div>
 
 ## 4.3 View Command
 The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
@@ -268,6 +287,8 @@ with the arguments specified by the user (in this case, `2021-04-12`).
 7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
 to the user.
 
+<div style="page-break-after: always"></div>
+
 The following activity diagram summarizes what happens when a user executes a view command:
 ![ViewActivityDiagram](images/ViewCommandActivityDiagram.png)
    
@@ -276,6 +297,8 @@ The following activity diagram summarizes what happens when a user executes a vi
 * **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates. As such, users can
 input commands like `view today` or `view tomorrow` as a shortcut, instead of typing out
   the entire date.
+
+<div style="page-break-after: always"></div>
 
 ## 4.4 Switch between the different tabs
 
@@ -297,11 +320,15 @@ switching. All the filtered task list originated from UniqueTaskList.
 The following sequence diagram shows how the switching tabs operation works, we will take the Expired Command as
 an example to illustrate as the other tab switching commands is similar.
 
+<div style="page-break-after: always"></div>
+
 ![ExpiredSequenceDiagram](images/ExpiredSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a switch command like `expired`:
 
 ![ExpiredActivityDiagram](images/ExpiredActivityDiagram.png)
+
+<div style="page-break-after: always"></div>
 
 ### Design Consideration
 * **Current Choice:** Switch tabs based on the tab name.
@@ -311,6 +338,9 @@ The following activity diagram summarizes what happens when a user executes a sw
 * **Alternative Choice:** Switch tabs based on tab index
     * Pros: Lesser things to remember as the format command is `switch index`
     * Cons: Less intuitive as user will have to look up what tab one corresponds to.
+    
+
+<div style="page-break-after: always"></div>
 
 ## 4.5 Tag Search Command
 
@@ -331,6 +361,8 @@ checks if any of the `keywords` match the tags in the `Task`. If one or more of 
 The filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
 
 
+<div style="page-break-after: always"></div>
+
 The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search
 tutorial cs2100` as input.
 
@@ -340,6 +372,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![TagSearchActivityDiagram](images/TagSearchActivityDiagram.png)
 
+<div style="page-break-after: always"></div>
+
 ### Design Consideration
 * **Current Choice:** Search for tasks bases on one or more tags.
     * Pros: Simple and intuitive for user to filter out similar tasks by using tags.
@@ -348,6 +382,8 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative Choice:** Search for tasks using a collection of tags grouped together with the same label.
     * Pros: Users can type less and save time if they have multiple tags to search for.
     * Cons: Less intuitive as user will have to keep track of which tags are under which group.
+
+<div style="page-break-after: always"></div>
 
 ## 4.6 Find Command
 
@@ -368,6 +404,7 @@ name, the function returns true.
 `NameContainsKeywordsPredicate` will be passed to `Model#updateFilteredTaskList(Predicate)`. The
 filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
 
+<div style="page-break-after: always"></div>
 
 The following sequence diagram shows how the tag-search command works. As an example we will take `find
 Buy Grocery` as input.
@@ -378,6 +415,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
+<div style="page-break-after: always"></div>
 
 ## 4.7 Delete multiple tasks with indices
 This feature allows users to list out the [indices](#65-glossary) of tasks to delete.
@@ -388,6 +426,8 @@ which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` 
 
 The following class diagram shows the relationship between classes for a successful execution.
 <a name="classdiag">![](images/DeleteMultipleUsingIndicesClassDiag.png)</a>
+
+<div style="page-break-after: always"></div>
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
 ![](images/DeleteMultipleUsingIndicesSeqDiag.png)
@@ -409,6 +449,9 @@ The following sequence diagram traces the step-by-step execution of deleting mul
 
 Solution 1 was selected for its better benefits as well as increased testability.
 
+
+<div style="page-break-after: always"></div>
+
 ## 4.8 Delete multiple tasks with an index range
 This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
 
@@ -424,6 +467,9 @@ The responsible class diagram for this feature is [here](#classdiag), which is a
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
 ![](images/DeleteMultUsingIndexRangeSeqDiag.png)
+
+<div style="page-break-after: always"></div>
+
 ### Design Consideration
 
 #### Aspect 1: Problem & Solution
@@ -436,6 +482,7 @@ its individual indices, and create a `DeleteMultipleCommand` with those indices.
 additional exceptions to be thrown within the execution of the command, but deleting either by an index range or individual indices seems to
 be part of the same responsibility, so it likely does not violate SRP.
 
+<div style="page-break-after: always"></div>
 
 
 ## 4.9 Delete all tasks of a specified status
@@ -451,6 +498,8 @@ The following class diagram shows the relationship between classes for a success
 between this diagram, and the class
 diagram for the previous two delete multiple tasks features is the name of the `Command` and the command's `Parser`.
 ![](images/DeleteByStatusClassDiag.png)
+
+<div style="page-break-after: always"></div>
 
 The following sequence diagram traces the step-by-step execution of deleting all tasks of a specified status.
 ![](images/DeleteByStatusSeqDiag.png)
@@ -477,6 +526,8 @@ are much more important.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 # **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -486,6 +537,8 @@ are much more important.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 # **6. Appendix: Requirements**
 
@@ -519,6 +572,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy university student                    | delete multiple tasks at once        | clean up the task in the app easily                                   |
 | `* *`    | organized university student               | view all tasks in chronological order (of date) | plan my day/week efficiently                             |
 
+
+<div style="page-break-after: always"></div>
 
 ## 6.3 Use cases
 
@@ -813,6 +868,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
 ---
 
+<div style="page-break-after: always"></div>
+
 ## 6.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -828,6 +885,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Indices**: Plural form of **Index**
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 # **7. Appendix: Instructions for manual testing**
 
@@ -985,6 +1044,9 @@ testers are expected to do more *exploratory* testing.
     
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
+
 # **8. Appendix: Effort**
 
 Creating Taskify was quite difficult and required effort, time and research. This project contains 12,000 lines of code.
