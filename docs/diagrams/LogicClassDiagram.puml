@@ -6,6 +6,8 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
+Class CommandHistory
+
 package Parser {
 Class "<<Interface>>\nParser"
 Class AddressBookParser
@@ -15,6 +17,19 @@ Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
 Class Prefix
+}
+
+package Filter {
+package combinator {
+Class FilterCombinator
+Class LogicalOperator
+Class Node
+Class "<<enumerations>>\nNodeType"
+}
+Class XYZFilter
+note bottom of XYZFilter: XYZFilter = AddressFilter, CarFilter,\nCarsOwned Filter, CarsPreferredFilter etc.
+Class Filters
+Class "{abstract}\nAbstractFilter" as AbstractFilter
 }
 
 package Command {
@@ -36,6 +51,9 @@ package Storage {
 CLass HiddenStorage #FFFFFF
 }
 
+package Ui {
+CLass HiddenUi #FFFFFF
+}
 
 
 Class HiddenOutside #FFFFFF
@@ -70,4 +88,27 @@ Command .[hidden]up.> Storage
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> "<<Interface>>\nParser"
+
+AbstractFilter .down.--> HiddenModel
+
+CommandHistory  .-> HiddenUi
+
+FilterCombinator .right.-> ArgumentTokenizer
+FilterCombinator .-> AbstractFilter
+FilterCombinator .down.-> CliSyntax
+FilterCombinator .-> Filters
+FilterCombinator .->HiddenModel
+FilterCombinator .down.->Node
+FilterCombinator .-> Prefix
+
+Filters .->CliSyntax
+Filters .->ArgumentMultimap
+Filters .->ArgumentTokenizer
+Filters .->HiddenModel
+
+XYZFilter -|> AbstractFilter
+
+Node .-> LogicalOperator
+Node .-> "<<enumerations>>\nNodeType"
+Node .right.--> AbstractFilter
 @enduml

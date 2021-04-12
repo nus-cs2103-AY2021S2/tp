@@ -22,19 +22,17 @@ import seedu.address.model.customer.Customer;
  * Customer}.
  */
 public class FilterCombinator implements Predicate<Customer> {
-    public static final String MESSAGE_EFFECTIVELY_EMPTY = "Your string contains only space of brackets, which is "
-        + "invalid.";
+    public static final String MESSAGE_EFFECTIVELY_EMPTY = "Your string contains only space or brackets "
+        + "(either the entire string, or parts inside the backets) which is invalid.";
     public static final String MESSAGE_INVALID_BRACKETING = "The bracketing of the sequence is wrong - Make sure the "
         + "sequence is well bracketed!";
     public static final String MESSAGE_OPERATOR_RULES_NOT_FOLLOW = "Make sure all binary operators have two operands,"
         + " while unary operator have a single operand!";
 
-
     private final Node rootNode;
 
     /**
-     * Constructor for filter combinator to create a expression tree from the given argument. Note that an issue with
-     * the expression is not handled at this point, and is handled only when testing a {@code Customer} // TODO
+     * Constructor for filter combinator to create a expression tree from the given argument.
      *
      * @param argument the filter expression
      */
@@ -49,6 +47,7 @@ public class FilterCombinator implements Predicate<Customer> {
             throw e;
         } catch (IllegalArgumentException | NullPointerException e) {
             e.printStackTrace();
+            throw new ParseException(e.getMessage());
         } finally {
             rootNode = temp;
         }
@@ -136,8 +135,8 @@ public class FilterCombinator implements Predicate<Customer> {
 
         description = " " + description + " ";
 
-        StringBuilder inPresentScope = new StringBuilder("");
-        StringBuilder inSubtreeScope = new StringBuilder("");
+        StringBuilder inPresentScope = new StringBuilder();
+        StringBuilder inSubtreeScope = new StringBuilder();
 
         Stack<Node> nodeStack = new Stack<>();
         LinkedList<ArgumentTokenizer.PrefixPosition> allPositions = findAllOperatorPositions(description);
@@ -161,7 +160,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 i += prefix.getPrefix().trim().length() - 1; // since we will anyway do a +1 when the for loop updates.
 
                 allPositions.removeFirst();
-                inPresentScope = new StringBuilder("");
+                inPresentScope = new StringBuilder();
 
                 continue;
             }
@@ -181,7 +180,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 } else {
                     Node nextNode = createTree(inSubtreeScope.toString());
                     nodeStack.push(nextNode);
-                    inSubtreeScope = new StringBuilder("");
+                    inSubtreeScope = new StringBuilder();
                 }
             } else {
                 if (nestingLevel > 0) {
