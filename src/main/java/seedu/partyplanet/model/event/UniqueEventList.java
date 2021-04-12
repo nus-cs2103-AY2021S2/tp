@@ -118,7 +118,7 @@ public class UniqueEventList implements Iterable<Event> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueEventList // instanceof handles nulls
-                        && internalList.equals(((UniqueEventList) other).internalList));
+                && internalList.equals(((UniqueEventList) other).internalList));
     }
 
     @Override
