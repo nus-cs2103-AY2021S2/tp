@@ -1,9 +1,9 @@
 ---
 layout: page
-title:
+title: user-guide
 ---
 <p align="center">
-  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="200">
+  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="600">
   <h1 align="center"> User Guide </h1>
 </p>
 
@@ -302,9 +302,9 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 **:bulb: Tips:** <br>
 * At least one of the optional bracketed fields must be provided.
 * A set of keywords (search phrase) can be used for finding.
-* At least one keyword in a search phrase should be complete.
+* At least one keyword in a search phrase should be present in the garments to get results.
 * Keywords are not case-sensitive.
-* The list of all garments with matching attributes will be shown.<br><br>
+* The list of all garments with attributes that contain the specified keywords will be shown.<br><br>
 </div>
 Example:
 
@@ -313,7 +313,7 @@ Example:
 * `find n/wOrN OUt Jeans`<br>
   Returns all garments as the previous example, as search phrase need not be case-sensitive
 * `find n/worn ou jea`<br>
-  Returns all garments as the previous example, as at least `worn` keyword is complete.
+  Returns all garments whose name has at least one of the words in the search phrase, "worn out jea"
 * `find c/white s/36 23`<br>
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
@@ -330,9 +330,7 @@ them to choose outfits that are more aesthetically appealing.
 These include `match`, `select`, and `view`.<br><br>
 
 #### <a name="match"></a> Matching Garments to create an outfit: `match`<br>
-Finds all articles of clothing that match the colour and dress code,
-but do not match the type(s) of a specified garment, or two specified
-garments of different types.<br>
+Finds all garments that match the colour and dress code, and are of different types.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/MatchGarment.png" alt="alt 
 text" width="790">
@@ -345,12 +343,11 @@ To be Implemented Format: `match INDEX [INDEX]`
 Examples:
 * `match 1`  
 Returns all the articles of clothing that match the colour and dress code
-  of the garment at index 1 in the list of garments on display, but do not match
-  its type.
+  of the garment at index 1 in the list of garments on display, and of different types.
 * `match 1 2`  **[using 2 indices to find their matching garments is to be implemented]**<br> 
 Returns all the articles of clothing that match the colours and dress code of
-  the garments at indices 1 and 2 in the list of garments on display, but
-  do not match their types.
+  the garments at indices 1 and 2 in the list of garments on display, and are of different types
+  compared to the garments at indices 1 and 2.
 <br><br>
 
 #### <a name="select"></a> Checking out a Garment from the Wardrobe: `select`
@@ -429,9 +426,9 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 | **Editing a Garment**               | `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>                                         |
 | **Listing all Garments**            | `list`                                                                                                                          |
 | **Finding Garments**                | `find t/TYPE`<br> Eg. find `t/upper`                                                                                           |
-| **Matching a Garment**              | `match INDEX` <br> Eg., `match 1`                                                                                               |
-| **Viewing a Garment set**           | `view INDEX INDEX INDEX` <br> Eg., `view 1 2 3`                                                                                 |
-| **Selecting a Garment**             | `select INDEX` <br> Eg., `select 1`                                                                                             |
+| **Matching a Garment**              | `match INDEX` <br> Eg. `match 1`                                                                                               |
+| **Viewing a Garment set**           | `view INDEX INDEX INDEX` <br> Eg. `view 1 2 3`                                                                                 |
+| **Selecting a Garment**             | `select INDEX` <br> Eg. `select 1`                                                                                             |
 | **Clearing all Garments**           | `clear`                                                                                                                         |
 | **Help**                            | `help`                                                                                                                          |
 | **Exiting the application**         | `exit`                                                                                                                          |
