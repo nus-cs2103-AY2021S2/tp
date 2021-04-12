@@ -696,10 +696,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | Careless user   | Edit grade record details               | Correct typos or update the details of my academic records            |
 | `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
 | `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook      
-| `* *`   | User  | add_budget                                        | Add a personal budget to keep track of
-| `*`     | User  | delete_budget                                     | Delete an existing budget that I have and no longer need
-| `* *`   | User  | edit_budget                                       | Change an existing budget that I have   
-| `* *`   | User  | view_budget                                       | View an existing budget and cost of total appointments of user
+| `* *`   | User  | Add a budget                                      | Add a personal budget to keep track of
+| `*`     | User  | Delete a budget                                   | Delete an existing budget that I have and no longer need
+| `* *`   | User  | Edit a budget                                     | Change an existing budget that I have   
+| `* *`   | User  | View a budget                                     | View an existing budget and cost of total appointments of user
 | `* *`   | User | Add a schedule                                         | Keep track of tuition-related schedules                          |
 | `* *`   | User | View my schedules on a particular date               | Know what schedules do I have on a particular day                                      |
 | `* *`   | User | Delete a schedule                                    | Remove canceled schedules                                    |
