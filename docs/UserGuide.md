@@ -396,14 +396,14 @@ Format: `exit`
 
 <img src="images/features/stats-side-panel.png" width="1200px">
 
-The UI displays all the categories spent for the current month at the side panel of the application. The categories are 
+The UI displays all the categories spent for the current month at the side panel of the application. The categories are
 sorted in lexicographical order, so that users are able to find the amounts spent on any particular category easily.
 
 <div markdown="block" class="alert alert-primary">
 
 **Note:**<br>
 
-Note that the sum of all the values does not necessarily add up to the total expenses of the month. A Financial Record may 
+Note that the sum of all the values does not necessarily add up to the total expenses of the month. A Financial Record may
 contribute to more than one category or no categories at all.
 
 </div>
@@ -426,7 +426,7 @@ You may use the `F6` hotkey to open up the Category statistics window.
 
 <img src="images/features/monthly-stats.png" width="1200px">
 
-The UI displays the user's expenditure over the past 6 months with respect to the currently viewed month (inclusive). 
+The UI displays the user's expenditure over the past 6 months with respect to the currently viewed month (inclusive).
 
 <div markdown="block" class="alert alert-primary">
 
