@@ -203,19 +203,32 @@ The lifeline for `PoolCommandParser` should end at the destroy marker (X) but du
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"` command.
-1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` class is then accessed, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to
    `PoolCommandParser` which creates and returns a `PoolCommand`.
-1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()` 
-   that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
-1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
+    that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
+1. A `Pool` object is then instantiated with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
 1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
-1. Finally, a `CommandResult` would be returned back to `LogicManager` to indicate the completion status of the command.
+1. Finally, a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
 It is worth noting that in the case of adding a passenger, a `Passenger` object is created by `AddCommandParser` and used in the constructor of `AddCommand`.
 However, in the case of adding a pool, a `PoolCommand` is constructed using the details specified and parsed from `PoolCommandParser`, instead of creating and passing a `Pool` object.
 The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions with the model.
 The current implementation thus encapsulates all the interactions with model, within the methods of `PoolCommand`.
+
+### ListPool feature
+This feature allows users to list all the pools from the pool list without any filter.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("listPool")`.
+![Interactions Inside the Logic Component for the `listPool` Command](images/ListPoolSequenceDiagram.png)
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"listPool"` command.
+1. `AddressBookParser` class is then accessed, which subsequently instantiates an `ListPoolCommand` object to be returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `ListPoolCommand`.
+1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
+1. Finally, a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
@@ -238,13 +251,13 @@ Given below is the Sequence Diagram for interactions within the Logic component 
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
-1. `AddressBookParser` class is then instantiated, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` class is then accessed, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked, passing the argument `"1"` to `UnpoolCommandParser`.
-1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be created and returned to `LogicManager`.
+1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be instantiated and returned to `LogicManager`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
-1. This would update the model by deleting the specified pool at the first index, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
+1. This would update the model by deleting the specified pool at the first index, then a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
-### findPool feature
+### FindPool feature
 This feature allows users to find a pool that contains a passenger with a provided keyword in their name.
 
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("findPool n/Alice")` command.
@@ -258,7 +271,7 @@ The lifeline for `FindPoolCommandParser` should end at the destroy marker (X) bu
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"findPool n/Alice"` command.
-1. `AddressBookParser` class is then created, which subsequently creates `FindPoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` class is then accessed, which subsequently creates `FindPoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked to parse the argument `"n/Alice"` and passes it to
    `FindPoolCommandParser`.
 1. `FindPoolCommandParser` parses the argument `"n/Alice"` and creates a `PooledPassengerContainsKeywordPredicate` which is returned to the `FindPoolCommandParser`.
@@ -353,37 +366,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 |Priority|As a …​    |I want to …​                                                  |So that                                                                                         |
 |--------|--------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 |* * *   |HR Executive  |allocate drivers to passengers to be picked up                   |I can arrange carpooling trips for my colleagues                                                |
-|* * *   |HR Executive  |search for specific type of passengers                           |I can see if any passengers fulfil a criteria and view their carpool details                    |
+|* * *   |HR Executive  |search for specific type of passengers                            |I can see if any passengers fulfil a criteria and view their carpool details                     |
 |* * *   |HR Executive  |list all passengers                                              |I can see all the passengers available                                                          |
-|* * *   |HR Executive  |create a profile                                                 |I can easily manage and track drivers and passengers                                            |
-|* * *   |HR Executive  |delete employee profile                                          |passenger's data will not be stored when they are no longer looking to carpool                  |
-|* *     |HR Executive  |filter passengers' destination and pickup point based on location|drivers are not heavily inconvenienced to pick up passengers                                    |
-|* *     |HR Executive  |match only with female drivers                                   |so that female colleagues looking to carpool only with female drivers can be easily accomodated |
+|* * *   |HR Executive  |create a profile                                                  |I can easily manage and track drivers and passengers                                            |
+|* * *   |HR Executive  |delete employee profile                                           |passenger's data will not be stored when they are no longer looking to carpool                  |
+|* *     |HR Executive  |filter passengers' based on their preference for female drivers   |their concerns for their personal safety are taken into account                                 |
+|* *     |HR Executive  |filter passengers' destination based on location                  |drivers are not heavily inconvenienced to pick up passengers                                    |
 |* *     |HR Executive  |edit drop off location                                           |passengers and drivers who have negotiated a new drop off location can be easily updated        |
 |*       |HR Executive  |indicate the price willing to pay                                |drivers are more likely to choose these passengers                                              |
 
 
-## **Use Cases**
+### Use Cases
 
-**Use case: Allocate drivers to passengers to be picked up**
+**System: HR executive's terminal**
+
+**Use case: UC01 - Allocate drivers to passengers to be picked up**
+
+**Actor: User**
 
 **MSS:**
-1. Search or list out passengers available to be picked up.
+1. User lists out passengers available to be picked up.
 2. GME shows a list of passengers.
-3. HR executive chooses and view the details of the specific passenger.
-4. HR executive allocates drivers to specific passenger to the driver's carpooling group.
+3. User chooses and view the details of the specific passenger.
+4. User allocates drivers to specific passenger to the driver's carpooling group.
    
    Use case ends.
 
 ***Extensions***
 
-* 1a. The list is empty.
+* 1a. User <ins>searches for a passenger (UC02)</ins>.
 
   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
+**System: HR executive's terminal**
 
-**Use case: Search for specific type of passengers**
+**Use case: UC02 - Search for specific type of passengers**
+
+**Actor: User**
 
 **MSS:**
 1. HR executive chooses the criteria that the passengers need to fulfil in order to be picked up.
@@ -400,8 +420,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
+**System: HR executive's terminal**
 
-**Use case: Create a passenger profile**
+**Use case: UC03 - Create a passenger profile**
+
+**Actor: User**
 
 **MSS:**
 1. HR exeuctive fills out the passenger's name, contact number and pickup address.
@@ -416,10 +439,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
   * 2a1. GME warns the user to input the data missing.
 
     Use case ends.
-
+    
 --------------------------------------------------------------------------------------------------------------------
+**System: HR executive's terminal**
 
-**Use case: Delete a passenger profile**
+**Use case: UC04 - Delete a passenger profile**
+
+**Actor: User**
 
 **MSS:**
 1. HR exeuctive indicates they would like to delete a passenger profile.
@@ -434,19 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     * 2a1. GME warns that no such passenger exists.
 
       Use case ends.
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use case:** **Match only with female drivers**
-
-**Pre-conditions:** Female passenger profile indicating that they are looking for female drivers only have been created
-
-**MSS:**
-1. HR Executive finds passengers only looking for female drivers.
-2. HR Executive then matches female drivers to female passengers looking for female drivers only.
-
-   Use case ends.
-
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
@@ -473,13 +487,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 ### Glossary
 
-- **Driver**: An employee that is in-charge of driving passengers within the pool to their location.
-- **GME**: GreenMileageEfforts, this software that is used to arrange carpooling.
-- **Mainstream OS**: Windows, Linux, Unix, MacOS.
-- **Pool**: A group of employees carpooling together. Consists of one driver and at least one passenger.
-- **Passenger**: An employee carpooling with at least one driver.
-- **Tag**: A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
-
+Term used | Meaning
+--------|------------------
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver.
+TripDay | Day of the intended carpooling trip.
+TripTime | Time of the intended carpooling trip.
+Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
+Price | The amount of money a passenger is willing to pay for the carpooling trip.
+Alphanumeric | A combination of letters and numbers only.
+Home Folder | The folder where the app's data will be stored
+GME | GreenMileageEfforts, this software that is used to arrange carpooling.
+Passenger | An employee carpooling with at least one driver.
+Driver | An employee that is in-charge of driving passengers within the pool to their location.
+Mainstream OS | Windows, Linux, Unix, MacOS.
+Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -506,6 +527,53 @@ testers are expected to do more *exploratory* testing.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+### Creating a pool
+
+1. Creating a pool from using the list of all passengers being shown.
+
+    1. Prerequisites: List all passengers using the `list` command.
+       Multiple passengers in the list, with the first four passengers having the same the trip day of `MONDAY` and trip time of `1930`.
+       This can be achieved through the editing the details of the passengers with the `edit` command and the `d/` and `t/` prefixes.
+       The remaining passengers must have a different trip day and trip time from `MONDAY` and `1930` respectively.
+
+    1. Test case: `pool n/Paul p/90101231 d/MONDAY t/1930 c/1 c/2`<br>
+       
+       Expected: A pool is created and added to the pool list, with a trip by the driver named `Paul`, phone number `90101231`, at `MONDAY 1930`.
+       Names of the passengers from the passenger list at index 1 and 2 are also displayed in the pool.
+       Status message shows the details of the pool created.
+
+   1. Test case: `pool n/Sarah p/96663777 d/MONDAY t/1400 c/3 c/4`<br>
+      
+      Expected: A pool is created and added to the pool list, with a trip by the driver named `Sarah`, phone number `96663777`, at `MONDAY 1400`.
+      Names of the passengers from the passenger list at index 3 and 4 are also displayed in the pool.
+      Status message shows a message to warn the user that there are passengers with a time difference of more than 15 minutes of the pool time.
+
+   1. Test case: `pool n/Patricia p/90102020 d/WEDNESDAY t/1930 c/1 c/5`<br>
+      
+      Expected: No pool is added. Error details shown in the status message, prompting user to check for a trip day mismatch. Text in command bar turns red.
+
+   1. Test case: `pool n/Jose p/85553777 d/MONDAY t/1930 c/0`<br>
+      
+      Expected: No pool is added. Error details shown in the status message. Text in command bar turns red.
+
+### Deleting a pool
+
+1. Deleting a pool while all pools are being shown.
+
+    1. Prerequisites: List all pools using the `listPool` command. Multiple pools in the list.
+
+    1. Test case: `unpool 1`<br>
+
+       Expected: First pool is deleted from the list. Details of the deleted pool shown in the status message.
+
+    1. Test case: `unpool 0`<br>
+
+       Expected: No pool is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `unpool`, `unpool x`, `...` (where x is larger than the list size)<br>
+
+       Expected: Similar to previous.
 
 ### Deleting a passenger
 
@@ -561,11 +629,82 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find tag/marketing sales`.<br>
        Expected: Passengers are shown are same as previous. Status message shows tag provided is invalid.
 
+### Finding a pool
 
-### Saving data
+1. Finding a pool while all pools are being shown.
 
-1. Dealing with missing/corrupted data files.
+    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command. Default addressbook.json file present in the data folder.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: `findPool n/lenny`.<br>
+       Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
 
-1. _{ more test cases …​ }_
+    1. Test case: `findPool n/michael`.<br>
+       Expected: No pools are listed. Status message shows 0 pool listed.
+
+    1. Test case: `findPool n/...`.<br>
+       Expected: Pool list on right pane shows no change. Error details shown in the status message.
+       
+    1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
+       Expected: Similar to previous.
+ 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+The creation of GreenMileageEfforts came with a great deal of effort from each and every one of the team members. Since the start of the project we have
+made the effort to consistently conduct team meetings every week, most of these meetings were held in physical settings such that we could communicate our ideas effectively.
+Upon completion of the project, we have achieved a product that is a direct reflection of our hard work and determination.
+GreenMileageEfforts is a product that has been adapted and morphed from AB3, where there have been significant enhancements made since AB3.
+
+### Challenges faced, Effort and Achievement
+
+The following section describes the challenges our team faced in this project, the efforts we took to overcome it, as well as what we have achieved as a result of the efforts we have taken.
+
+#### Extension of Model
+
+As our group had initially decided on morphing the existing AB3, changes to the model consisted mainly of refactoring existing classes. Although a rather trivial task, this process was rather time-consuming and tedious. Due to the scale of the existing AB3 code, some difficulty was encountered during this refactoring stage as some making seemingly minute changes in method signatures or names would result in a need to edit other segments of affected code. Although the use of IntelliJ’s toolbox greatly sped up the process, the nature of some of the refactoring changes we intended to make meant that some of said changes were not as easily detected by IntelliJ, resulting in some uncaught bugs following our refactoring stage. The brownfield nature of the project also led to some difficulty in understanding the model and how the different modules interact with each other.
+
+Towards the end of the first milestone, every team member had a better understanding of the existing code allowing for a better segmentation of work. As this was also the period where new additions were made to the existing AB3 model instead of simple refactoring, there was also less confusion surrounding what components of the model needed to be modified. This was also helped by the fact that in the case of adding features, we had a clearer idea of what needed to be done for the new feature instead of following the trails of an existing one. However, some difficulty was still present as the original AB3 dealt only with a list of one entity(person) while our intended final product would have to handle a list of two entities that interact with each other (Passenger and Pool). These interactions between the two entities led to some difficulty in the implementation of CRUD commands and in coding to avoid too much cyclic dependency.
+
+However, by the end of the second milestone, many of us have a firm grasp of the model and its components. This allowed us to make improvements to not just to the code of the features we had added, but also to the code that was existed in the original AB3.
+
+#### Reworking of `drive` command to `pool` command
+
+The initial concept for this product included two commands `drive` and `undrive` which was later reworked to `pool` and `unpool` after much discussion with the team to better suit the needs of our users.
+These changes were made after the addition of a pool list to the model. Prior to the change, the passengers in the model consisted of a driver with a phone number attached to it,
+where `drive` was intended to be implemented in a way which merely edits the driver field in each passenger. Likewise, `undrive` was intended to be implemented to edit the driver field within the
+specified passengers to be empty. Upon extension of the model to include a list of pools, `pool` was implemented to add a pool to the list, while `unpool` was implemented to delete a pool from the list.
+This change involved a significant amount of effort from all of our team members, as the change involved almost all components of the project.
+Each team member tested their own component as extensively as possible before integration of the parts together, eventually coming together to fix the bugs that came from integration.
+As a result, we have achieved a product that is relatively bug-free and extensible as each component has already be properly tested.
+
+#### Extension and rework of UI
+
+While the user interface of AB3 consists of one panel to illustrate a list of persons, GreenMileageEfforts was required to illustrate a list of passengers as well as a list of pools. This
+was not a trivial task, as each of the panels had their own set of commands such as adding, deleting and filtering. On top of that, enhancements were made to ensure a cleaner looking user interface
+that is the current GreenMileageEfforts product today.
+
+#### Workflow
+
+At the very start of the project for the very first milestone, work delegation and flow was not ideal, where one team member had to wait for the changes that another had to make.
+For instance, while one team member added new fields such as (TripTime and TripDay), another team member was tasked to update the logic of `Add` and `Edit` command for the new fields.
+Upon a post-mortem that reflects and self-evaluates our work process, we have refined our workflow such that it would be much more efficient by the second milestone, this included the proper
+segmentation and delegation of work into its features. Finally, by doing so we have achieved a far better workflow by the end of the project that enabled us to create the GreenMileageEfforts product as it is today.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
