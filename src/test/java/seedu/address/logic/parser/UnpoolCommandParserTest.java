@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_POOL_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -27,6 +28,15 @@ public class UnpoolCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnpoolCommand.MESSAGE_USAGE));
+        // given index is not a number
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                UnpoolCommand.MESSAGE_USAGE));
+
+        //given index is a negative number
+        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                UnpoolCommand.MESSAGE_USAGE));
+
+        //given index is a number greater than Integer.MAX_VALUE
+        assertParseFailure(parser, "9999999999999999999", MESSAGE_INVALID_POOL_DISPLAYED_INDEX);
     }
 }

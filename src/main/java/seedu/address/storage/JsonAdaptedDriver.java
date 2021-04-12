@@ -12,6 +12,7 @@ import seedu.address.model.person.driver.Driver;
  * Jackson-friendly version of {@link Driver}.
  */
 class JsonAdaptedDriver {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Driver's %s field is missing!";
     public static final String MODEL_CLASS_NAME = "Driver";
     public static final StorageUtil MODEL_UTIL = new StorageUtil(MODEL_CLASS_NAME);
 

@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.COMMUTER_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.COMMUTER_DESC_2;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMMUTER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -25,7 +27,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMUTER_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FEMALE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_STR_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
@@ -58,7 +60,7 @@ public class PoolCommandParserTest {
 
         Driver driver = new DriverBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
         Set<Index> commuters = new CommuterBuilder().build();
-        Set<Tag> tags = SampleDataUtil.getTagSet(VALID_TAG_FRIEND);
+        Set<Tag> tags = SampleDataUtil.getTagSet(VALID_TAG_IT);
         TripDay tripDay = new TripDay(VALID_TRIPDAY_MONDAY);
         TripTime tripTime = new TripTime(VALID_TRIPTIME_MORNING);
 
@@ -88,7 +90,7 @@ public class PoolCommandParserTest {
                 new PoolCommand(driver, commuters, tripDay, tripTime, tags));
 
         // multiple tags - all accepted
-        Set<Tag> multipleTags = SampleDataUtil.getTagSet(VALID_TAG_FRIEND, VALID_TAG_FEMALE);
+        Set<Tag> multipleTags = SampleDataUtil.getTagSet(VALID_TAG_IT, VALID_TAG_FEMALE);
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
                 + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2 + TAG_DESC_FRIEND + TAG_DESC_FEMALE,
                 new PoolCommand(driver, commuters, tripDay, tripTime, multipleTags));
@@ -128,15 +130,9 @@ public class PoolCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
                 + VALID_TRIPTIME_STR_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2, expectedMessage);
 
-        // TODO: fix these test cases
-
-        //        // missing one commuter prefix
-        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-        //                + TRIPTIME_DESC_MORNING + VALID_COMMUTER_1 + COMMUTER_DESC_2, expectedMessage);
-
-        //        // missing one commuter prefix
-        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-        //                + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + VALID_COMMUTER_2, expectedMessage);
+        // missing one commuter prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
+                + TRIPTIME_DESC_MORNING + VALID_COMMUTER_1, expectedMessage);
 
         // missing all commuter prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
@@ -170,10 +166,10 @@ public class PoolCommandParserTest {
                 + INVALID_TRIPTIME + COMMUTER_DESC_1 + COMMUTER_DESC_2 + TAG_DESC_FRIEND,
                 TripTime.MESSAGE_CONSTRAINTS);
 
-        // TODO add invalid commuter tests
-        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-        //                        + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2 + TAG_DESC_FRIEND,
-        //                Pool.MESSAGE_CONSTRAINTS);
+        // invalid commuter
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
+                        + TRIPTIME_DESC_MORNING + INVALID_COMMUTER + COMMUTER_DESC_2 + TAG_DESC_FRIEND,
+                MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY

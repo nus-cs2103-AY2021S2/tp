@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 
@@ -58,7 +58,7 @@ public class EditPassengerDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditPassengerDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_GOLF).build();
+        editedAmy = new EditPassengerDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HR).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

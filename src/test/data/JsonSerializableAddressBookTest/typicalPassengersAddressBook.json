@@ -4,65 +4,90 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tripDay" : "FRIDAY",
-    "tripTime" : "1800",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tripDay" : "FRIDAY",
-    "tripTime" : "1800",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "sales", "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "address" : "wall street",
-    "tripDay" : "FRIDAY",
-    "tripTime" : "1800",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "address" : "10th street",
-    "tripDay" : "FRIDAY",
-    "tripTime" : "1800",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "marketing" ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "1800",
+    "priceStr" : ""
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "address" : "michegan ave",
-    "tripDay" : "FRIDAY",
-    "tripTime" : "2100",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "tripDayStr" : "FRIDAY",
+    "tripTimeStr" : "2100",
+    "priceStr" : ""
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "address" : "little tokyo",
-    "tripDay" : "MONDAY",
-    "tripTime" : "0830",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "0830",
+    "priceStr" : ""
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "address" : "4th street",
-    "tripDay" : "THURSDAY",
-    "tripTime" : "0715",
-    "price" : "1.69",
-    "driver" : "No driver assigned to this passenger.",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "tripDayStr" : "THURSDAY",
+    "tripTimeStr" : "0715",
+    "priceStr" : ""
+  }, {
+    "name" : "Hilary Clinton",
+    "phone" : "9486666",
+    "address" : "6th ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
+  }, {
+    "name" : "Irene Newton",
+    "phone" : "91238888",
+    "address" : "5th ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
+  }, {
+    "name" : "Jackson Mehoff",
+    "phone" : "91236969",
+    "address" : "4th ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
+  }, {
+    "name" : "Kingsley Kuan",
+    "phone" : "91867510",
+    "address" : "3rd ave",
+    "tagged" : [ ],
+    "tripDayStr" : "MONDAY",
+    "tripTimeStr" : "1930",
+    "priceStr" : ""
   } ],
   "pools" : [ ]
 }

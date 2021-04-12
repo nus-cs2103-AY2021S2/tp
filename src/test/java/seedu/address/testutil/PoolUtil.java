@@ -35,7 +35,7 @@ public class PoolUtil {
             sb.append(PREFIX_COMMUTER + String.valueOf(idx.getOneBased()) + " ");
         }
 
-        tags.stream().forEach(
+        tags.forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
 

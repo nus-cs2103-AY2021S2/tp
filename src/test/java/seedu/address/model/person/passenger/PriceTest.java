@@ -16,7 +16,7 @@ public class PriceTest {
 
     @Test
     public void isValidPrice() {
-        // null phone number
+        // null price
         assertThrows(NullPointerException.class, () -> Price.isValidPrice(null));
 
         // invalid Price
@@ -27,10 +27,11 @@ public class PriceTest {
         assertFalse(Price.isValidPrice("phone")); // non-numeric
         assertFalse(Price.isValidPrice("9011p041")); // alphabets within digits
         assertFalse(Price.isValidPrice("9312 1534")); // spaces within digits
+        assertFalse(Price.isValidPrice("124293.20")); // long price numbers
 
-        // valid phone numbers
+        // valid prices
         assertTrue(Price.isValidPrice("9.11")); //
-        assertTrue(Price.isValidPrice("9312.15"));
-        assertTrue(Price.isValidPrice("124293.20")); // long price numbers
+        assertTrue(Price.isValidPrice("93.15"));
+        assertTrue(Price.isValidPrice("930.15"));
     }
 }

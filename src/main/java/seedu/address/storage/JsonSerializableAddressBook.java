@@ -22,6 +22,8 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PASSENGER = "Passengers list contains duplicate passenger(s).";
     public static final String MESSAGE_DUPLICATE_POOL = "Pool list contains duplicate pool(s).";
+    public static final String MESSAGE_DUPLICATE_PASSENGER_REF = "Two or more Pool(s) reference the same passenger.";
+    public static final String MESSAGE_POOL_PASSENGER_INVALID = "Pool(s) contain passenger(s) not in passenger list.";
 
     private final List<JsonAdaptedPassenger> passengers = new ArrayList<>();
     private final List<JsonAdaptedPool> pools = new ArrayList<>();
@@ -62,11 +64,16 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPassenger(passenger);
         }
-
         for (JsonAdaptedPool jsonAdaptedPool : pools) {
             Pool pool = jsonAdaptedPool.toModelType();
             if (addressBook.hasPool(pool)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_POOL);
+            }
+            if (pool.getPassengers().stream().anyMatch(addressBook::hasPoolWithPassenger)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PASSENGER_REF);
+            }
+            if (pool.getPassengers().stream().anyMatch(passenger -> !addressBook.hasEqualPassenger(passenger))) {
+                throw new IllegalValueException(MESSAGE_POOL_PASSENGER_INVALID);
             }
             addressBook.addPool(pool);
         }

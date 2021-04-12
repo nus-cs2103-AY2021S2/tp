@@ -2,18 +2,24 @@ package seedu.address.model.pool;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
 import static seedu.address.testutil.TypicalPools.HOMEPOOL;
 import static seedu.address.testutil.TypicalPools.OFFICEPOOL;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
+import seedu.address.model.person.passenger.Passenger;
 import seedu.address.testutil.PassengerListBuilder;
 import seedu.address.testutil.PoolBuilder;
 import seedu.address.testutil.TypicalDrivers;
@@ -21,6 +27,46 @@ import seedu.address.testutil.TypicalPassengers;
 
 
 public class PoolTest {
+
+    @Test
+    public void constructor_emptyPassengerList_throwsNullPointerException() {
+        List<Passenger> emptyPassengerList = new ArrayList<>();
+        assertThrows(NullPointerException.class, () -> new Pool(TypicalDrivers.DRIVER_BOB,
+                        new TripDay(VALID_TRIPDAY_BOB),
+                        new TripTime(VALID_TRIPTIME_BOB),
+                        emptyPassengerList, null));
+    }
+
+    @Test
+    public void setPassenger_nullTargetPassenger() {
+        assertThrows(NullPointerException.class, () -> HOMEPOOL.setPassenger(null, TypicalPassengers.ALICE));
+
+    }
+
+    @Test
+    public void setPassenger_nullEditedPassenger() {
+        assertThrows(NullPointerException.class, () -> HOMEPOOL.setPassenger(TypicalPassengers.ALICE, null));
+    }
+
+    @Test
+    public void setPassenger_passengerNotInPool_returnsPoolWithUnchangedPassengers() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL).build()
+                .setPassenger(TypicalPassengers.GEORGE, TypicalPassengers.BOB);
+        assertTrue(editedHomePool.getPassengers().equals(HOMEPOOL.getPassengers()));
+    }
+
+    @Test
+    public void setPassenger_validTargetAndEditedPassenger_returnsEditedPool() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL).build()
+                .setPassenger(TypicalPassengers.ALICE, TypicalPassengers.BOB);
+        assertFalse(editedHomePool.getPassengers().equals(HOMEPOOL.getPassengers()));
+    }
+
+    @Test
+    public void hasPassenger_validPassenger_returnsTrue() {
+        Pool defaultWorkPool = new PoolBuilder().withDefaultPassengers().build();
+        assertTrue(defaultWorkPool.hasPassenger(ALICE));
+    }
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -40,7 +86,7 @@ public class PoolTest {
 
         // same details, tags different -> returns true
         Pool editedHomePool = new PoolBuilder(HOMEPOOL)
-                .withTags(VALID_TAG_GOLF).build();
+                .withTags(VALID_TAG_HR).build();
         assertTrue(HOMEPOOL.isSamePool(editedHomePool));
 
         // different details, same tags -> returns false
@@ -88,7 +134,7 @@ public class PoolTest {
         assertFalse(HOMEPOOL.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PoolBuilder(HOMEPOOL).withTags(VALID_TAG_GOLF).build();
+        editedAlice = new PoolBuilder(HOMEPOOL).withTags(VALID_TAG_HR).build();
         assertFalse(HOMEPOOL.equals(editedAlice));
     }
 }

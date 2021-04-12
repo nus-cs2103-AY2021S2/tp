@@ -2,17 +2,27 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY_FIRST_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY_LOWER_CASE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT_LOWER_CASE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB_LOWER_CASE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_STR_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -30,10 +40,12 @@ import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
+import seedu.address.model.person.passenger.PriceIsGreaterThanAmountPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
-
+/*
+Keywords changed to lowercase as parser will change all keywords to lowercase for the Predicate.
+ */
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
@@ -53,13 +65,13 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_multiPrefix_throwsParseException() {
-        String userInput = FindCommand.COMMAND_WORD + " " + "n/Alice a/Bedok";
+        String userInput = FindCommand.COMMAND_WORD + NAME_DESC_AMY_FIRST_NAME + ADDRESS_DESC_AMY;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_multiPriceArgs_throwsParseException() {
-        String userInput = FindCommand.COMMAND_WORD + " " + "pr/100.00 pr/55";
+        String userInput = FindCommand.COMMAND_WORD + " " + VALID_PRICE_STR_AMY + VALID_PRICE_STR_BOB;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -67,30 +79,23 @@ public class FindCommandParserTest {
     public void parse_validNameArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Amy")));
-        assertParseSuccess(parser, " n/Amy", expectedFindCommand);
+                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_LOWER_CASE)));
+        assertParseSuccess(parser, NAME_DESC_AMY, expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n n/Amy \n \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n" + NAME_DESC_AMY + "\n \t", expectedFindCommand);
     }
 
     @Test
     public void parse_validNameMultiArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Amy", "Bob")));
-        assertParseSuccess(parser, " n/Amy n/Bob", expectedFindCommand);
+                new FindCommand(new NameContainsKeywordsPredicate(
+                        Arrays.asList(VALID_NAME_AMY_LOWER_CASE, VALID_NAME_BOB_LOWER_CASE)));
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB, expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n n/Amy n/Bob\n \t", expectedFindCommand);
-    }
-
-    @Test
-    public void parse_validNameArgWithWhitespace_returnsFindCommand() {
-        // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Amy Jane")));
-        assertParseSuccess(parser, " n/Amy Jane", expectedFindCommand);
+        assertParseSuccess(parser, " \n" + NAME_DESC_AMY + NAME_DESC_BOB + "\n \t", expectedFindCommand);
     }
 
     @Test
@@ -109,7 +114,7 @@ public class FindCommandParserTest {
     public void parse_validAddressArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(VALID_ADDRESS_AMY)));
+                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(VALID_ADDRESS_AMY_LOWER_CASE)));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + ADDRESS_DESC_AMY + "\n \t", expectedFindCommand);
@@ -121,7 +126,7 @@ public class FindCommandParserTest {
     public void parse_validTagArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("[" + VALID_TAG_FRIEND + "]")));
+                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("[" + VALID_TAG_IT + "]")));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + TAG_DESC_FRIEND + "\n \t", expectedFindCommand);
@@ -133,7 +138,7 @@ public class FindCommandParserTest {
     public void parse_validPriceArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new PriceContainsKeywordsPredicate(VALID_PRICE_BOB));
+                new FindCommand(new PriceIsGreaterThanAmountPredicate(VALID_PRICE_BOB));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + PRICE_DESC_BOB + "\n \t", expectedFindCommand);
@@ -145,7 +150,8 @@ public class FindCommandParserTest {
     public void parse_validAllArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedAllCommand =
-                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_NAME_BOB)));
+                new FindCommand(new AttributeContainsKeywordsPredicate(
+                        Collections.singletonList(VALID_NAME_BOB_LOWER_CASE)));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_NAME_BOB + "\n \t", expectedAllCommand);
@@ -158,15 +164,17 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " " + PREFIX_ALL + VALID_PHONE_AMY, expectedAllCommand);
 
         expectedAllCommand =
-                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_ADDRESS_AMY)));
+                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(
+                        VALID_ADDRESS_AMY_LOWER_CASE)));
 
         assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_ADDRESS_AMY + "\n \t", expectedAllCommand);
         assertParseSuccess(parser, " " + PREFIX_ALL + VALID_ADDRESS_AMY, expectedAllCommand);
 
         expectedAllCommand =
-                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_TAG_FRIEND)));
+                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(
+                        VALID_TAG_IT_LOWER_CASE)));
 
-        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_FRIEND, expectedAllCommand);
+        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_IT, expectedAllCommand);
     }
 
     @Test
@@ -174,7 +182,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new TripDayContainsKeywordsPredicate(
-                        Collections.singletonList(VALID_TRIPDAY_BOB.toString())));
+                        Collections.singletonList(VALID_TRIPDAY_BOB_LOWER_CASE)));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + TRIPDAY_DESC_BOB + "\n \t", expectedFindCommand);
@@ -185,8 +193,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_validTripArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new TripTimeContainsKeywordsPredicate(Collections.singletonList("1930")));
+        FindCommand expectedFindCommand = new FindCommand(new TripTimeContainsKeywordsPredicate(
+                        Collections.singletonList(VALID_TRIPTIME_STR_BOB)));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + TRIPTIME_DESC_BOB + "\n \t", expectedFindCommand);

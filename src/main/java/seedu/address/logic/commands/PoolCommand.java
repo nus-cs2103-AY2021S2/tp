@@ -53,9 +53,11 @@ public class PoolCommand extends Command {
     public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s, %s";
     public static final String MESSAGE_POOL_SUCCESS_WITH_WARNING = "Successfully created pool: %s, %s. \nNOTE: "
             + "There are passengers with time differences of more than 15 minutes with the pool time.";
-    public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
-    public static final String MESSAGE_TRIPDAY_MISMATCH = "One of the passengers specified "
-            + "have a trip day that does not match this pool driver's trip day";
+    public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal.";
+    public static final String MESSAGE_POOLS_CONTAIN_PERSON = "One or more passengers specified are already assigned "
+            + "to a pool.";
+    public static final String MESSAGE_TRIPDAY_MISMATCH = "One or more of the passengers specified "
+            + "have a trip day that does not match this pool driver's trip day.";
 
     private final Driver driver;
     private final TripDay tripDay;
@@ -83,10 +85,10 @@ public class PoolCommand extends Command {
         return passengers.stream()
                 .anyMatch(x -> x.getTripTime().compareMinutes(this.tripTime) > MAX_TIME_DIFFERENCE);
     }
+
     private List<Passenger> getPassengersFromIndexes(Set<Index> indexes, Model model) throws CommandException {
 
         List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerList());
-
         List<Passenger> passengers = new ArrayList<>();
 
         for (Index idx : indexes) {
@@ -100,6 +102,7 @@ public class PoolCommand extends Command {
             if (isTripDayMismatch) {
                 throw new CommandException(MESSAGE_TRIPDAY_MISMATCH);
             }
+
             passengers.add(passenger);
         }
 
@@ -114,6 +117,11 @@ public class PoolCommand extends Command {
         }
 
         List<Passenger> passengers = getPassengersFromIndexes(indexes, model);
+
+        if (passengers.stream().anyMatch(model::hasPoolWithPassenger)) {
+            throw new CommandException(MESSAGE_POOLS_CONTAIN_PERSON);
+        }
+
         boolean shouldWarn = checkTimeDifference(passengers);
 
         Pool toAdd = new Pool(driver, tripDay, tripTime, passengers, tags);
@@ -127,10 +135,8 @@ public class PoolCommand extends Command {
 
         String outputMessage = shouldWarn ? MESSAGE_POOL_SUCCESS_WITH_WARNING : MESSAGE_POOL_SUCCESS;
 
-        String driverDetails = toAdd.getDriverAsStr();
-        String passengerNames = toAdd.getPassengerNames();
 
-        return new CommandResult(String.format(outputMessage, driverDetails, passengerNames));
+        return new CommandResult(String.format(outputMessage, toAdd.getDriverAsStr(), toAdd.getPassengerNames()));
     }
 
     @Override

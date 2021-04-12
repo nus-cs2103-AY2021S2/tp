@@ -139,8 +139,8 @@ public class Pool {
     }
 
     /**
-     * Returns true if both passengers have the same identity and data fields.
-     * This defines a stronger notion of equality between two passengers.
+     * Returns true if both pools have the same identity and data fields.
+     * This defines a stronger notion of equality between two pools.
      */
     @Override
     public boolean equals(Object other) {

@@ -29,8 +29,6 @@ public class JsonAdaptedPassengerTest {
     private static final String INVALID_TRIPDAY = "funday";
     private static final String INVALID_TRIPTIME = "21032103";
     private static final String INVALID_PRICE = "1.42069";
-    private static final String INVALID_DRIVER_NAME = INVALID_NAME + "; Phone: 12345";
-    private static final String INVALID_DRIVER_PHONE = "Huyser Wang; Phone: " + INVALID_PHONE;
 
 
     private static final String VALID_NAME = BENSON.getName().toString();

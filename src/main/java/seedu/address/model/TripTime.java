@@ -28,16 +28,15 @@ public class TripTime {
     }
 
     /**
-     * Compares the time difference between 2 TripTime objects
-     * @param otherTripTime
-     * @return long of 2 TripTime objects difference
+     * Compares the time difference between 2 {@code TripTime} objects
+     * @param otherTripTime the other {@code TripTime} to compare to.
+     * @return long of 2 {@code TripTime} objects difference.
      */
     public long compareMinutes(TripTime otherTripTime) {
         requireNonNull(otherTripTime);
         long timeDifference = ChronoUnit.MINUTES.between(this.value, otherTripTime.value);
-        long absoluteTimeDifference = Math.abs(timeDifference);
 
-        return absoluteTimeDifference;
+        return Math.abs(timeDifference);
     }
 
     @Override
