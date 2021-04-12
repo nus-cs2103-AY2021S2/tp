@@ -39,10 +39,20 @@ their profile pictures.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Glossary 
+
+* **Contact**: The set of all the persons stored in MeetBuddy, which is shown in the left part of the GUI.
+* **Person(s)**: Refers to the persons in the contact.
+* **Person Meeting**: Refers to features/models and other aspects that are |
+  related to both persons(contact) and meetings in MeetBuddy.
+* **Person Meeting Connection**: Refers to the associations between people and meeting within 
+MeetBuddy.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 
-## Features
+## General Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -86,6 +96,28 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+MeetBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
+Meeting data are saved as a JSON file `[JAR file location]/data/meetingbook.json`. Users are not suggested updating data directly by editing that data file.
+Person-Meeting Connection data are saved as a JSON file `[JAR file location]/data/connctions.json`. Users are not suggested updating data directly by editing that data file.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, MeetBuddy will discard all data and start with an empty data file at the next run.
+</div>
+
+### Archiving data files `[coming in v2.0]`
+
+## Contact Features
 ### Adding a person: `addp`
 
 Adds a person to MeetBuddy.
@@ -94,6 +126,9 @@ Format: `add n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of groups (including 0)
+</div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+In MeetBuddy we assume that all the persons in the contact list have different names
 </div>
 
 Examples:
@@ -126,7 +161,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -143,16 +178,16 @@ Examples:
 
 Finds persons whose groups contain any of the given keywords.
 
-Format: `findg KEYWORD [MORE_KEYWORDS]`
+Format: `findpg KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `badminton` will match `Badminton`
-* The order of the keywords does not matter. e.g. `findg tennis table` will list every person in the table tennis group
+* The order of the keywords does not matter. e.g. `findpg tennis table` will list every person in the table tennis group
 * Only the groups are searched.
 * Only full words will be matched e.g. `badminton` will not match `badmintons`
 * Persons whose group match at least one keyword will be returned (i.e. `OR` search).
   
 Examples:
-* `findg badminton` returns the list of contacts that are in the badminton group
+* `findpg badminton` returns the list of contacts that are in the badminton group
 
 ### Deleting a person : `deletep`
 
@@ -168,7 +203,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in MeetBuddy.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting of contacts : `sortp`
+### Sorting of persons : `sortp`
 
 Sorts the contacts displayed according to a specified field.
 
@@ -184,13 +219,22 @@ Format: `sortp by/FIELD d/DIRECTION`
     * Sort by ascending alphabetical order : `ASC`
     * Sort by descending alphabetical order : `DESC`
 
-Examples
+Examples:
+* `sortp by/NAME d/ASC` sorts the persons by name and present the result in ascending alphabetical order.
 
+### Profile picture:
+
+Instantly updates your contacts with their Gravatar profile picture, if your contact has their email linked
+to their gravatar account. The profile picture will be automatically displayed upon adding the contact.
+If there is a problem obtaining the image, a default blue circle icon will be displayed
+instead.
+
+## Meeting features
 ### Adding a meeting: `addm`
 
 Adds a meeting to MeetBuddy.
 
-Format: `addm n/NAME st/TIME ed/TIME [des/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​`
+Format: `addm n/NAME st/TIME ed/TIME [desc/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​`
 * Note that meetings must be of minimum length of 15 mins and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00, but can be from 15 March 16:00 - 22 march 15:59.
 * Priority should be an integer from 1 to 5. If the priority is not specified, it will be automatically set as 1.
 * Description can be empty.
@@ -212,6 +256,7 @@ Edits an existing meeting in MeetBuddy.
 
 Format: `editm INDEX [n/NAME] [st/START TIME] [ed/END TIME] [desc/DESCRIPTION] [pr/PRIORITY] [p/PERSON RELATED INDEX] [g/GROUP]...​`
 
+* Note that meetings must be of minimum length of 15 mins and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00, but can be from 15 March 16:00 - 22 march 15:59. Be aware of this when editing start datetime and/or end datetime of the meeting.
 * Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
 * When editing person related, the existing related contacts will be removed. You must specify the index correctly.
@@ -235,31 +280,20 @@ Format: `deletem INDEX`
 Examples:
 * `listm` followed by `delete 2` deletes the 2nd meeting in MeetBuddy.
 
-### Adding persons related for a meeting: `addptm`
+### Locating meetings: `findm`
 
-Adds persons related to a meeting in MeetBuddy.
+Finds meetings whose information contain any of the given keywords.
 
-Format: `addptm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
-* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
-* The user must input at least one person related index field.
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+Format: `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`
 
-Examples:
-* `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
-
-### Deleting persons related from a meeting: `deletepfm`
-
-Deletes persons related from a meeting in MeetBuddy.
-
-Format: `deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
-* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
-* The user must input at least one person related index field.
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
-* The related persons that the user wants to delete must exist in the contacts related field.
-
+* The search is case-sensitive in name searching. e.g `CS2103` will not match `cs2103`
+* The order of the searching filed does not matter. e.g. `findm n/CS pr/3` will be the same as `findm pr/3 n/CS`.
+* Time field refers to a point of time, as long as this point of time is in between of a meeting's start time and ending time, the search will return this specific meeting.
+* Time field must follow YYYY-MM-DD HH:MM format.
+* For other fields, the requirement is the same as addm (Adding a meeting). You can refer to the previous UG instruction.
 
 Examples:
-* `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
+* `findm n/CS pr/3 time/2021-03-12 19:00` will try to find a meeting whose name contains `CS` and with priority level `3` and contains the time point `March 12th, 2021 19:00`.
 
 ### Showing of persons in a meeting : `showm`
 
@@ -290,8 +324,10 @@ Format: `sortm by/FIELD d/DIRECTION`
 * `DIRECTION` is only restricted to the following cases:
     * Sort by ascending order : `ASC`
     * Sort by descending order : `DESC`
+Examples:    
+* `sortm by/PRIORITY d/ASC` sorts the meetings by priority and present the result in ascending order.
 
-
+## Person Meeting Features
 ### Listing all persons and meetings : `list`
 
 Shows a list of all persons and meetings in MeetBuddy.
@@ -299,6 +335,35 @@ Shows a list of all persons and meetings in MeetBuddy.
 Format: `list`
 
 ## Timetable feature
+=======
+### Adding persons related for a meeting: `addptm`
+
+Adds persons related to a meeting in MeetBuddy.
+
+Format: `addptm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+
+Examples:
+* `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
+
+### Deleting persons related from a meeting: `deletepfm`
+
+Deletes persons related from a meeting in MeetBuddy.
+
+Format: `deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+* The related persons that the user wants to delete must exist in the contacts related field.
+
+
+Examples:
+* `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
+
+## Timetable feature
+
 
 ### Viewing Timetable: 
  No command is necessary. Just click on the timetable tab to switch view from meeting list to timetable. The timetable
@@ -339,43 +404,18 @@ Format: `list`
  
  * DATE must be a string strictly following the format `YYYY-mm-dd`
  * If no date is specified, for example `setTimetable` without DATE parameter is keyed in, it will default set to
- today's current date.
- 
- 
-### Profile picture:
-
-Instantly updates your contacts with their Gravatar profile picture, if your contact has their email linked
-to their gravatar account. The profile picture will be automatically displayed upon adding the contact.
-If there is a problem obtaining the image, a default blue circle icon will be displayed
-instead.
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-MeetBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
-Meeting data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Users are not suggested updating data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
+ today's current date. 
+   
+Examples:
+* `setTimetable 2021-04-12` Set the time table to Apr 12th, 2021. You can check it by clicking Timetable in the GUI.
+* `setTimetable` Sets the timetable to today's date. You can double check with the calendar.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MeetBuddy home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -386,7 +426,7 @@ Action | Format, Examples
 **Add** | `addp n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `addp n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
 **Delete** | `deletep INDEX`<br> e.g., `deletep 3` <br> <br> `deletem INDEX`<br> e.g., `deletem 3`
 **Edit** | `editp INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com` <br> <br> `editm INDEX [n/NAME] [st/START TIME] [ed/END TIME] [desc/DESCRIPTION] [pr/PRIORITY] [p/PERSON RELATED INDEX] [g/GROUP]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
-**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>
+**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>  <br> `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`<br> e.g., `findm n/CS pr/3` <br>
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`

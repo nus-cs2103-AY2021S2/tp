@@ -22,6 +22,6 @@ Model <|.. ModelManager
 ModelManager --> FilteredListPerson
 FilteredListPerson ..> ObservableListPerson
 
-UI --> FilteredListPerson
+UI ..> FilteredListPerson
 
 @enduml
