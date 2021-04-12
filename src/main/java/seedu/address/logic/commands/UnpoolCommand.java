@@ -11,13 +11,13 @@ import seedu.address.model.Model;
 import seedu.address.model.pool.Pool;
 
 /**
- * Deletes a passenger identified using it's displayed index from the pool list.
+ * Deletes a pool identified using it's displayed index from the pool list.
  */
 public class UnpoolCommand extends Command {
     public static final String COMMAND_WORD = "unpool";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the pool identified by the index number from the displayed pool list.\n"
+            + ": Deletes the pool identified by the index number from the displayed pool list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -26,7 +26,8 @@ public class UnpoolCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an UnpoolCommand to remove the specified {@code Index}.
+     * Creates an UnpoolCommand to delete the pool at the specified {@code targetIndex}.
+     * @param targetIndex Target index of the pool to be deleted.
      */
     public UnpoolCommand(Index targetIndex) {
         requireNonNull(targetIndex);
