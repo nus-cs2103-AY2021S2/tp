@@ -491,7 +491,7 @@ The sequence diagram below shows how the `sort` feature works:
 The activity diagram shows the workflow when a `sort` command is executed:
 
 ![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
-![Activity Diagram for Execute Sort Command](images/ExecuteSortActivityDiagram.png)
+![Activity Diagram for Execute Sort Command](images/ExecuteSortCommandSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -540,7 +540,7 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 The sequence diagram below shows how the `levelup` feature works:
 ![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
-![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpActivityDiagram.png)
+![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `levelup` command is executed:
 ![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
@@ -599,7 +599,7 @@ The sequence diagram below shows how the `leveldown` feature works:
 
 
 The activity diagram shows the workflow when a `leveldown` command is executed:
-![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
+![Activity Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 ![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownActivityDiagram.png)
 
 #### Design consideration:
@@ -1475,25 +1475,25 @@ Add a student with his/her details
 ### Viewing the schedule
 
 1. Viewing the schedule while all students are being shown.
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-  1. Test case: `schedule`<br>
-     Expected: Opens up the schedule window.
-  1. Test case: `schedulexyz`<br>
-     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
-  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
-     Expected: Similar to previous.
-1. Viewing the schedule window while adding or editing student contact.
-  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
-  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800.
-     Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
-  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact)
-     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Test case: `schedule`<br>
+      Expected: Opens up the schedule window. 
+   1. Test case: `schedulexyz`<br>
+      Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
+      Expected: Similar to previous.
+1. Viewing the schedule window while adding or editing student contact. 
+   1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+   1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
+      Then enter `schedule`.<br>
+      Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+   1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact)
+      to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+      Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
 1. Viewing the schedule window while schedule window is already opened.
-  1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
-  1. Test case: `schedule` <br>
-  1. Expected: Focuses back on the schedule window.
+   1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+   1. Test case: `schedule` <br>
+      Expected: Focuses back on the schedule window.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 

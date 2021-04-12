@@ -9,7 +9,7 @@ TutorsPet is a desktop app designed for private tutors in Singapore to manage st
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to view the contact details and lesson schedule on the side panel.
+* **New Feature**: Added the ability to view the contact details and lesson schedule on the details panel.
   * What it does: allows the user to view the student contact details and lesson schedule by keying in the detail command.
   * Justification: This feature improves usability and readability of the product significantly because a user can view a well formatted student details clearly without feeling overwhelmed by massive amount of information.
   * Highlights: This enhancement affects the existing UI and possibly UI in the future. It requires an in-depth analysis of design patterns. The implementation too was challenging as it required changes to existing UI.

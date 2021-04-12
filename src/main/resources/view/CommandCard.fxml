@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
 <Label fx:id="commandName" minHeight="-Infinity" prefWidth="110.0" styleClass="cell_big_label">
  <minWidth>
    <!-- Ensures that the label text is never truncated -->
