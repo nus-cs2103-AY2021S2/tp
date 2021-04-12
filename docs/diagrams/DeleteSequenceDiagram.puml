@@ -30,7 +30,7 @@ WardrobeParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandParser -> DeleteCommand : DeleteCommand(1)
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser : d
@@ -48,7 +48,7 @@ deactivate WardrobeParser
 LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteGarment(1)
+DeleteCommand -> Model : deleteGarment(garmentToDelete)
 activate Model
 
 Model --> DeleteCommand
