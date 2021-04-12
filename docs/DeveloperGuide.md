@@ -328,10 +328,9 @@ Here is a more specific breakdown of the command's execute method.
 
 ![ScheduleSequenceDiagramSpecific](images/ScheduleSequenceDiagramSpecific.png)
 
-1. In the execute method of `ScheduleCommand`, it first generates a list of related entity IDs by calling the `generateRelatedIdList()`which accesses the data in the model.
-2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model.
-3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list.
-4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
+1. In the execute method of `ScheduleCommand`, it first creates a `ProgramOccursOnDatePredicate` object.
+2. The `IsEntityPredicate` of Program and the `ProgramOccursOnDatePredicate` is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model.
+3. From there, `ScheduleCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
 
 
 ### Enrol feature
