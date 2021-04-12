@@ -85,7 +85,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1 2")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1 2")` API call. This is also explained [below](#deleting-a-passenger).
 
 ![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
 
