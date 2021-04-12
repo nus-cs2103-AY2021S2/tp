@@ -297,6 +297,7 @@ The following sequence diagram shows how the add operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** This sequence diagram showcases the usual case when the food item that is being added is new and does not exist in the food list before.</div>
 
+
 Once the user types in the command to add food, the parser will check for all the required prefixes. If all required prefixes are present and the input values are valid, `AddFoodItemCommand` object is created. `AddFoodItemCommand` is a class that extends `Command` abstract class. `AddFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will prompt an error that the food item exist and suggest updating the food item value instead. Otherwise, a new food item object will be created and added into the food list.
 
 Below is an example of a usage scenario:
