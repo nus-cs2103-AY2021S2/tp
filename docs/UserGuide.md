@@ -127,6 +127,7 @@ The Home page is split into two views: **Reminder** and **Monthly Fees**.
 
 ##### Reminder
 The Reminder section displays upcoming tuition sessions for 3 consecutive days, starting today.
+The upcoming tuition sessions are sorted in chronological order here.
 <div markdown="block" class="alert alert-info">
 :information_source: If today is a Monday, then the Reminder section will display all sessions on this Monday,
 Tuesday and Wednesday.
