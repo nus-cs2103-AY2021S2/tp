@@ -19,7 +19,7 @@ Given below are my contributions to the project.
       members' list before allowing assignment to a task. I decided to implement an Assignee class, along with a checkAssignees 
       method within the ModelManager class. The checkAssignees method checks the validity of the specified member's name by 
       calling the hasPerson method within the ModelManager class. With the checkAssignees method, I was able to check 
-      the validity of the specified names while not creating any unnecessary dependency between the Task and Person class.
+      the validity of the specified names while not creating any unnecessary dependency between the Task and Person classes.
 
 
 * **New Feature**: Added the ability to find tasks with specified keywords. (Pull Requests: [\#133](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/133))
@@ -47,8 +47,8 @@ Given below are my contributions to the project.
     * What it does: Allows the user to clear all members assigned to a task with a single command.
     * Justification: This feature improves the product significantly because should the user accidentally assigned a task to 
       the wrong group of members, the user can easily clear all members assigned to a task instead of removing one member at a time.
-    * Highlights: The implementation was challenging as I had to create a copy of the task at the given index, update 
-      the assignees field accordingly before updating the task list with the updated task copy. Furthermore, integration and unit testing 
+    * Highlights: The implementation was challenging as I had to create a copy of the task at the given index and update 
+      the assignees field accordingly, before updating the task list with the updated task copy. Furthermore, integration and unit testing 
       had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
 
 
