@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+box BudgetBabyLogic LOGIC_COLOR_T1
+participant ":Statistics" as Statistics LOGIC_COLOR
+end box
+
+box BudgetBabyModel MODEL_COLOR_T1
+participant "currentDisplayedMonth:Month" as Month MODEL_COLOR
+participant ":Category" as Category MODEL_COLOR
+end box
+
+[-> Statistics : getAllUnsortedCategories()
+activate Statistics
+Statistics -> Statistics : allCategories()
+activate Statistics
+
+Statistics -> Month : getFinancialRecordList()
+activate Month
+Month --> Statistics : financialRecordList
+deactivate Month
+loop financialRecordList.size() times
+Statistics -> Category : getCategory()
+Category --> Statistics
+
+end
+Statistics --> Statistics
+deactivate Statistics
+
+[<--Statistics
+deactivate Statistics
+@enduml
