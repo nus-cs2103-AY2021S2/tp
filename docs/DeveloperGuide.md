@@ -169,6 +169,8 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 ##### Aspect: How to Store and Pass Around UI Related Instructions
 
+<div style="text-align: left">
+
 * **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
     * Pros:
         * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommand`s.
@@ -186,12 +188,16 @@ Given below is an example usage scenario and how the mechanism behaves at each s
         * No need for extra classes.
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
+    
+</div>
 
 ### Add Event Feature
 
 This section explains the mechanism used to add an `Event` to a `Project`. The mechanism for adding `Project`s, `Deadline`s, `Todos`s and `Contacts`s are similar.
 
-When the command is executed, a concrete `AddEventCommand` is created containing the specified project index and a valid `Event` object.
+The `AddEventCommand` results in the specified event being added to the application. This command requires a compulsory field Project Index to specify which project the event is to be added to.
+
+When the command is executed, a concrete `AddEventCommand` is created containing the specified Project Index and a valid `Event` object.
 
 The `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate methods in `Project` to update its `EventList` and appropriate methods in `Model` to update the Project List.
 
@@ -221,6 +227,8 @@ Below is a sequence diagram and explanation of how the `AddEventCommand` is exec
 
 ##### Aspect: How to Add a New `Event` to a `Project`
 
+<div style="text-align: left">
+
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
     * Pros:
         * This implementation requires no additional time and space (for creation of new `Project` and `EventList` object).
@@ -232,6 +240,8 @@ Below is a sequence diagram and explanation of how the `AddEventCommand` is exec
         * If the implementation of `EventList` becomes immutable, this implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
+
+</div>
 
 ### Update Feature
 
@@ -279,6 +289,8 @@ The other commands for `Event`s, `Deadline`s, `Todo`s and `Groupmate`s require s
 
 ##### Aspect: How the Target Contact is Specified When Updating Contacts
 
+<div style="text-align: left">
+
 * **Alternative 1 (current choice):** Pass the `Index` object down to `UniqueContactList#setContact`.
     * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
     * Cons: Higher coupling since `UniqueContactList` now relies on `Index`.
@@ -291,9 +303,11 @@ The other commands for `Event`s, `Deadline`s, `Todo`s and `Groupmate`s require s
     * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
 
+</div>
+
 ### Delete Todo Feature
 
-This section explains the implementation of the Delete Todo command feature. As the implementation of deleting Deadlines, Events and Groupmates are similar, this section will focus only on the implementation of the deletion of Todos.
+This section explains the implementation of the Delete Todo feature. As the implementation of deleting Deadlines, Events and Groupmates are similar, this section will focus only on the implementation of the deletion of Todos.
 
 The `DeleteTodoCommand` results in the specified todo being removed from the application. This command requires two compulsory fields Project Index & Todo Index to specify which project the todo is to be deleted from.
 
@@ -301,7 +315,7 @@ This is done through the use of the `ParserUtil#parseIndex` method inside the `s
 
 If the provided project index and todo index are valid, then `DeleteTodoCommandParser` creates a `DeleteTodoCommand` object. The sequence diagram below shows how the `DeleteTodoCommand` object is created.
 
-For a better understanding, take a look at the Logic Class Diagram in the Logic Component section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
+For a better understanding, take a look at the Logic Class Diagram in the [Logic Component](#logic-component) section of the DG where you can see `DeleteTodoCommandParser` being represented as `XYZCommandParser`.
 
 ![Delete Todo Parser Sequence Diagram](images/DeleteTodoParserSequenceDiagram.png)
 
