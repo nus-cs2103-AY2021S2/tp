@@ -159,7 +159,7 @@ The following Activity Diagram summarizes what happens when a user executes the 
 ![Delete Command Activity Diagram](images/DeleteDeliveryTaskActivityDiagram.png)
 
 
-### Find Feature `find KEYWORDS`
+### Find Feature - `find KEYWORDS`
 
 The find feature allows drivers to find a delivery based on attributes that match the keywords that have been typed in.
 
@@ -189,6 +189,31 @@ The following Activity Diagram summarizes what happens when a user executes the 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
 
+### Remark Command - `remark INDEX r/DESCRIPTION`
+
+The remark command allows the drivers to add any additional information to the delivery task
+
+Below is a sequence diagram for the remark command.
+
+![Remark Command Sequence Diagram](images/RemarkCommandSequenceDiagram.png)
+
+Description:
+When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. The
+DeliveryListParser parses the user input and identifies it as a RemarkCommand and instantiates a RemarkCommandParser
+object. DeliveryListParser then invokes the parse method of the RemarkCommandParser object to further parse the
+arguments provided. In the parse method, the RemarkCommandParser ensures that the input is of the correct format and
+identifies the input for the index of the item for which remark needs to be added. If the index specified by the user is
+valid, a new RemarkCommand instance will be created and returned to LogicManager via DeliveryListParser. The
+LogicManager will then invoke the overridden execute method of the RemarkCommand object with Model as the argument.
+Subsequently, the RemarkCommand object will be created with the index of the item to add remark, and remark description
+as the argument and it will invoke the setCustomer method to replace old entry with the new one which contains the
+remark. It will then return a CommandResult object to LogicManager. This CommandResult will be returned at the end by
+LogicManager.
+
+Below is an activity diagram for the remark command.
+
+![Remark Command Activity Diagram](images/RemarkCommandActivityDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -588,14 +613,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. Delivery App informs the User that there are no delivery entries with details containing the specified keyword(s).
 
   Use case ends.
-
-Below is an illustration of the find command sequence diagram
-
-![Find Command Sequence Diagram](images/FindCommandSequenceDiagram.png)
-
-Below is a further breakdown of the logic component of the find command using a sequence diagram
-
-![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
 
 Below is an activity diagram to show a more simplified representation of the find command
 

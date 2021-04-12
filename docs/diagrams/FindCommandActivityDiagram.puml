@@ -5,10 +5,9 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if (attribute matching keyword found) then ([find command commits TimesForWheels])
+if (Attribute matching keyword(s) found) then ([Delivery Tasks with attributes matching keyword(s) exists])
     :Add delivery tasks with attributes matching keyword;
-    :Save TimesForWheels matching delivery tasks to
-    DeliveryList;
+    :Returns delivery list with the matching delivery tasks;
 else ([else])
     : No matches found;
     : Return Empty Delivery list;

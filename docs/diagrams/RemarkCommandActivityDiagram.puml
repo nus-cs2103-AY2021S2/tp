@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes Remark command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if (Index found) then ([Delivery task exists])
+    if (Remark already exist) then ([A remark exists in delivery task])
+        :Replace with new Remark;
+    else ([else])
+        :Add new Remark to Delivery Task;
+    endif
+else ([else])
+    : Show error message;
+endif
+stop
+@enduml

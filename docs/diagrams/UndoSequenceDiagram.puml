@@ -3,29 +3,29 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeliverListParser" as DeliveryListParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedDeliveryList" as VersionedDeliveryList MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> DeliveryListParser : parseCommand(undo)
+activate DeliveryListParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+DeliveryListParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> DeliveryListParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+DeliveryListParser --> LogicManager : u
+deactivate DeliveryListParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
@@ -33,12 +33,12 @@ activate UndoCommand
 UndoCommand -> Model : undoAddressBook()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedDeliveryList : undo()
+activate VersionedDeliveryList
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedDeliveryList -> VersionedDeliveryList :resetData(ReadOnlyAddressBook)
+VersionedDeliveryList --> Model :
+deactivate VersionedDeliveryList
 
 Model --> UndoCommand
 deactivate Model
