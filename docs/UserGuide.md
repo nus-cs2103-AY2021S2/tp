@@ -91,19 +91,15 @@ Interface (GUI).
 
 Action | Format, Examples
 --------|------------------
-
-**
-add**
-| `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG] [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED (pipe_char) COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]` <br>
-e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe(pipe_char)2030 01 01 c/Porsche+SUV(pipe_char)2030 01 01 cp/MercedesBenz+SUV`
-**find** | `find [e/bob /and p/98761234] /or b/1999 10 11`
+**add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG] [c/CAR_BRAND_OWNED+CAR_TYPE_OWNED(pipe_char) COE_EXPIRY_DATE] [cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED]` <br> e.g., `add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe(pipe_char)2030 01 01 c/Porsche+SUV(pipe_char)2030 01 01 cp/MercedesBenz+SUV`
+**find**   | `find [e/bob /and p/98761234] /or b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
-**list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
-**clear** | `clear` Clears the contact list, erasing all saved data.
-**exit** | `exit` Exits the app. Ignores all texts type after 'exit' e.g. exit 12345.
-**help** | `help` Opens the help window. Ignores all texts type after 'help' e.g. help 12345.
-**email** | `email` Opens the email interface. Ignores all texts type after 'email' e.g. email 12345.
-**up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
+**list**   | `list` Generates a default list of unfiltered contacts saved in the contact book.
+**clear**  | `clear` Clears the contact list, erasing all saved data.
+**exit**   | `exit` Exits the app. Ignores all texts type after 'exit' e.g. exit 12345.
+**help**   | `help` Opens the help window. Ignores all texts type after 'help' e.g. help 12345.
+**email**  | `email` Opens the email interface. Ignores all texts type after 'email' e.g. email 12345.
+**up**     | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
 
 Prefix | Format
 --------|------------------
@@ -149,8 +145,8 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
 
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to
   separate.
-- for `p/PHONE` any phone number containing the given parameter string will be returned.
-    - `98776` will be matched with both `77` and `786` for example.
+- for `p/PHONE` any phone number starting with the given parameter string will be returned.
+    - `98776` will be matched with both `987` but not `776` for example.
 - for `cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE` user can either give brand or type information, or both using the
   `+` sign to separate.
 
@@ -180,6 +176,7 @@ Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+O
 
 - for `t/TAGS` all customers satisfying _any_ tag will be returned. In particular, `find t/TAG_A TAG_B TAG_C` is a more
   generic query than `find t/TAG_A`
+  - Here, satisfying means checking if the tag starts with the parameter string. 
 
 **COMBINING FIND PARAMETERS**
 

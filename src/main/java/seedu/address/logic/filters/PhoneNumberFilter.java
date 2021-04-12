@@ -9,7 +9,8 @@ import seedu.address.model.customer.Customer;
  * This class filters based on phone number.
  */
 public class PhoneNumberFilter extends Filter {
-
+    public static final String MESSAGE_CONSTRAINT = "Phone number should only contain digits, possibly prefixed by a " +
+        "(+)";
     /**
      * Takes in a string which represents the filter string for this object.
      *
@@ -19,7 +20,7 @@ public class PhoneNumberFilter extends Filter {
         super(filterString.trim());
         Objects.requireNonNull(filterString);
         if (!Pattern.matches("\\+?[0-9]+", this.filterString)) {
-            throw new IllegalArgumentException("Phone number should only contain digits, possibly prefixed by a (+)");
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINT);
         }
     }
 
@@ -33,6 +34,6 @@ public class PhoneNumberFilter extends Filter {
     @Override
     public boolean test(Customer customer) {
         Objects.requireNonNull(customer);
-        return customer.getPhone().getPhoneNumber().trim().contains(filterString);
+        return customer.getPhone().getPhoneNumber().trim().startsWith(filterString);
     }
 }
