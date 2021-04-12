@@ -29,7 +29,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     private final boolean isAny;
 
     /**
-     * Creates an DeleteContactWithTagCommand to delete the {@code Person} with specified {@code Tag}
+     * Creates a DeleteContactWithTagCommand to delete the {@code Person} with specified {@code Tag}.
      */
     public DeleteContactWithTagCommand(Set<Tag> targetTags, boolean isAny) {
         assert targetTags.size() > 0;
@@ -73,7 +73,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     }
 
     /**
-     * Return true only if the person contains all of the tags
+     * Return true only if the person contains all of the tags.
      */
     private boolean containsAllTags(Person person) {
         for (Tag t : targetTags) {
@@ -86,7 +86,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     }
 
     /**
-     * Return true only if the person contains any of the tags
+     * Return true only if the person contains any of the tags.
      */
     private boolean containsAnyTags(Person person) {
         for (Tag t : targetTags) {

@@ -31,7 +31,7 @@ A full list of code contribution can be found here:
 - Add ToggleThemeCommand: [\#176](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/176)
   * What it does: Allows user to toggle between dark theme and pastel theme.
   * Justification: Allow the user to customize the PartyPlanet based on which theme they prefer visually.
-  * Was futher improve by pyuxiang in [\#184](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/184) to add theme to userpref so that chosen theme persists through sessions.
+  * Was further improved by pyuxiang in [\#184](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/184) to add theme to userpref so that chosen theme persists through sessions.
 
 ### Feature enhancements
 
@@ -39,9 +39,9 @@ A full list of code contribution can be found here:
   * Justification: Make it easier for user to delete multiple contacts with a single command.
 - Shifted functionality of `clear` to `delete` [\#113](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/113)
   * Justification: Simplify the set of commands available to the user
-- Improve PersonCard in Ui to only accomodate optional fields (vary size according to number of fields): [\#117](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/117)
+- Improve PersonCard in Ui to accomodate optional fields (vary size according to number of fields): [\#117](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/117)
 - Improve `delete`, `edelete`, `edone` to handle invalid input better: [\#154](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/154)
-  * When both valid and invalid indexes are provided, carrys out operation on valid indexes and inform user of invalid indexes.
+  * When both valid and invalid indexes are provided, carries out operation on valid indexes and inform user of invalid indexes.
 - Add testcases:
   [\#301](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/301),
   [\#302](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/302),

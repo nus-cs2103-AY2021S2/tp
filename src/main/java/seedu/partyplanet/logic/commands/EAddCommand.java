@@ -10,7 +10,7 @@ import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.event.Event;
 
 /**
- * Adds a event to PartyPlanet.
+ * Adds an event to PartyPlanet.
  */
 public class EAddCommand extends Command {
 
@@ -34,7 +34,7 @@ public class EAddCommand extends Command {
     private final Event toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an EAddCommand to add the specified {@code Event}.
      */
     public EAddCommand(Event event) {
         requireNonNull(event);

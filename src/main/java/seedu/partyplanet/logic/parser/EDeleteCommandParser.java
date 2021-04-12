@@ -13,14 +13,14 @@ import seedu.partyplanet.logic.commands.EDeleteEventCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EDeleteCommand object
+ * Parses input arguments and creates a new EDeleteCommand object.
  */
 public class EDeleteCommandParser implements Parser<EDeleteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EDeleteCommand
      * and returns a EDeleteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EDeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
