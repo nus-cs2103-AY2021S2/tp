@@ -8,7 +8,6 @@ participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant ":EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
 participant ":Person" as Person LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -18,7 +17,7 @@ end box
 [-> LogicManager : execute("edit 1 p/98765431 t/bio")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("edit 1 p/98765431 t/bio")
+LogicManager -> AddressBookParser : parseCommand("edit 1 \n p/98765431 t/bio")
 activate AddressBookParser
 
 create EditCommandParser
@@ -71,26 +70,7 @@ activate Person
 Person --> EditCommand : editedPerson
 deactivate Person
 
-EditCommand -> Model : removePersonFromLesson(personToEdit)
-activate Model
-
-EditCommand -> Model : addPersonToLesson(editedPerson)
-
-EditCommand -> Model : setPerson(personToEdit, editedPerson)
-
-EditCommand -> Model : updateFilteredPersonList(:Boolean)
-
-EditCommand -> Model : setSavedState(false)
-
-Model --> EditCommand
-deactivate Model
-
-create CommandResult
-EditCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> EditCommand
-deactivate CommandResult
+ref over EditCommand, Model : edit command
 
 EditCommand --> LogicManager : result
 deactivate EditCommand

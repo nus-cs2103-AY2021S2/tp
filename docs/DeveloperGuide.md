@@ -192,6 +192,7 @@ Step 6. If the add command has been successfully executed, the success message w
 
 The sequence diagram below shows how the add feature works:
 ![Sequence Diagram for Add Command](images/AddSequenceDiagram.png)
+![Sequence Diagram for Ref Add Command](images/AddCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -255,6 +256,7 @@ Step 6. If the edit command has been successfully executed, the success message 
 
 The sequence diagram below shows how the edit feature works:
 ![Sequence Diagram for Edit Command](images/EditSequenceDiagram.png)
+![Sequence Diagram for Ref Edit Command](images/EditCommandSequenceDiagram.png)
 
 #### Activity Diagram
 

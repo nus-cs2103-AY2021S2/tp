@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+mainframe **sd**  edit command
+
+box Logic LOGIC_COLOR_T1
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : removePersonFromLesson(personToEdit)
+activate Model
+
+EditCommand -> Model : addPersonToLesson(editedPerson)
+
+EditCommand -> Model : setPerson(personToEdit, editedPerson)
+
+EditCommand -> Model : updateFilteredPersonList(:Boolean)
+
+EditCommand -> Model : setSavedState(false)
+
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+[<--EditCommand :result
+deactivate EditCommand
+@enduml

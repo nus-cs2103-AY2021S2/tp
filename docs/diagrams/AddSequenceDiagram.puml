@@ -7,7 +7,6 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
 participant ":Person" as Person LOGIC_COLOR
 participant ":AddCommand" as AddCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -17,7 +16,7 @@ end box
 [-> LogicManager : execute("add n/John Doe p/98765432")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add n/John Doe p/98765432")
+LogicManager -> AddressBookParser : parseCommand("add n/John Doe \n p/98765432")
 activate AddressBookParser
 
 create AddCommandParser
@@ -27,7 +26,7 @@ activate AddCommandParser
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse("n/John Doe p/98765432")
+AddressBookParser -> AddCommandParser : parse("n/John Doe \n p/98765432")
 activate AddCommandParser
 
 create Person
@@ -56,22 +55,7 @@ deactivate AddressBookParser
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : addPersonToLesson(student)
-activate Model
-
-AddCommand -> Model : addPerson(student)
-
-AddCommand -> Model : setSavedState(false)
-
-Model --> AddCommand
-deactivate Model
-
-create CommandResult
-AddCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> AddCommand
-deactivate CommandResult
+ref over AddCommand, Model : add command
 
 AddCommand --> LogicManager : result
 deactivate AddCommand
