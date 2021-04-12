@@ -115,6 +115,11 @@ public class ModelManager implements Model {
         requireNonNull(driver);
         return addressBook.hasPoolWithDriver(driver);
     }
+    @Override
+    public boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person) {
+        requireAllNonNull(tripDay, tripTime, person);
+        return addressBook.hasPoolWithDayTimePerson(tripDay, tripTime, person);
+    }
 
     @Override
     public void deletePassenger(Passenger passenger) {

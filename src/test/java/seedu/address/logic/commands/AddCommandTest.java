@@ -20,6 +20,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
@@ -149,6 +151,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPoolWithDriver(Person driver) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person) {
             throw new AssertionError("This method should not be called.");
         }
 

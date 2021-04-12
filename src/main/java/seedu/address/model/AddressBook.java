@@ -143,6 +143,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return pools.containsDriver(driver);
     }
 
+    public boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person) {
+        return pools.hasPoolWithDayTimePerson(tripDay, tripTime, person);
+    }
+
     /**
      * Adds a passenger to the address book.
      * The passenger must not already exist in the address book.

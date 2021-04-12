@@ -79,6 +79,8 @@ public interface Model {
      */
     boolean hasPoolWithDriver(Person driver);
 
+    boolean hasPoolWithDayTimePerson(TripDay tripDay, TripTime tripTime, Person person);
+
     /**
      * Deletes the given passenger.
      * The passenger must exist in the address book.

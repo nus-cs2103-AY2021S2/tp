@@ -59,6 +59,8 @@ public class PoolCommand extends Command {
     public static final String MESSAGE_TRIPDAY_MISMATCH = "One or more of the passengers specified "
             + "have a trip day that does not match this pool driver's trip day.";
     public static final String MESSAGE_DRIVER_IS_PASSENGER = "Driver %s cannot pool themselves.";
+    public static final String MESSAGE_PASSENGER_ALREADY_DRIVING =
+            "One or more passengers are already driving at this time.";
 
     private final Driver driver;
     private final TripDay tripDay;
@@ -139,6 +141,10 @@ public class PoolCommand extends Command {
 
         if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);
+        }
+
+        if (passengers.stream().anyMatch(pass -> model.hasPoolWithDayTimePerson(tripDay, tripTime, pass))) {
+            throw new CommandException(MESSAGE_PASSENGER_ALREADY_DRIVING);
         }
 
         model.addPool(toAdd);
