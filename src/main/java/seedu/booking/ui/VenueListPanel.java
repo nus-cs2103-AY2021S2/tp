@@ -1,13 +1,10 @@
 package seedu.booking.ui;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.model.venue.Venue;
 
 
