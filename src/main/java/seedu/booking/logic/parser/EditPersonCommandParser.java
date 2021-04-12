@@ -8,13 +8,15 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.EditPersonCommand;
 import seedu.booking.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 
 /**
@@ -58,13 +60,30 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editPersonDescriptor.setTags(getTagSet(argMultimap.getValue(PREFIX_TAG).get()));
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
         }
 
         return new EditPersonCommand(email, editPersonDescriptor);
+    }
+
+    private Set<Tag> getTagSet(String input) throws ParseException {
+        final Set<Tag> tagSet = new HashSet<>();
+        if (input.trim().equals("")) {
+            return tagSet;
+        }
+        String[] tags = input.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
+        }
+        return tagSet;
     }
 
     /**

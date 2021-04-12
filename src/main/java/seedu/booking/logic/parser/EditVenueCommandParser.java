@@ -7,13 +7,15 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
-import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.EditVenueCommand.EditVenueDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.Tag;
 import seedu.booking.model.venue.VenueName;
 
 /**
@@ -61,13 +63,30 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editVenueDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editVenueDescriptor.setTags(getTagSet(argMultimap.getValue(PREFIX_TAG).get()));
+        }
 
         if (!editVenueDescriptor.isAnyFieldEdited()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVenueCommand.MESSAGE_USAGE));
         }
 
         return new EditVenueCommand(venueName, editVenueDescriptor);
+    }
+
+    private Set<Tag> getTagSet(String input) throws ParseException {
+        final Set<Tag> tagSet = new HashSet<>();
+        if (input.trim().equals("")) {
+            return tagSet;
+        }
+        String[] tags = input.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
+        }
+        return tagSet;
     }
 
     /**

@@ -1,24 +1,38 @@
 package seedu.booking.ui;
 
 import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PREVIOUS;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.logic.Logic;
 import seedu.booking.logic.commands.CommandResult;
 import seedu.booking.logic.commands.CommandShowType;
+import seedu.booking.logic.commands.ListBookingCommand;
+import seedu.booking.logic.commands.ListPersonCommand;
+import seedu.booking.logic.commands.ListVenueCommand;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.parser.exceptions.ParseException;
+import seedu.booking.model.booking.Booking;
+import seedu.booking.model.person.Person;
+import seedu.booking.model.venue.Venue;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,7 +49,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private BookingListPanel upcomingBookingListPanel;
     private VenueListPanel venueListPanel;
     private BookingListPanel bookingListPanel;
     private ResultDisplay resultDisplay;
@@ -43,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private Menu coin;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -54,6 +70,12 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane upcomingBookingListPanelPlaceholder;
 
     @FXML
+    private Label currentListName;
+
+    @FXML
+    private Label currentListSize;
+
+    @FXML
     private StackPane resultListPanelPlaceholder;
 
     @FXML
@@ -61,6 +83,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox cardDisplayPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,6 +104,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -122,16 +149,44 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
-        /*upcomingBookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
-        upcomingBookingListPanelPlaceholder.getChildren().add(upcomingBookingListPanel.getRoot());*/
+        ImageView coinImage = new ImageView(new Image("images/bookcoin.png"));
+        coinImage.setFitHeight(20);
+        coinImage.setFitWidth(20);
+        coin.setGraphic(coinImage);
 
         venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
         bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
-        resultListPanelPlaceholder.getChildren().removeAll();
-        resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+        ChangeListener<Person> personListener = new ChangeListener<Person>() {
+            @Override
+            public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
+                cardDisplayPlaceholder.getChildren().clear();
+                cardDisplayPlaceholder.getChildren().add(new PersonCardBig(newValue).getRoot());
+            }
+        };
+
+        ChangeListener<Venue> venueListener = new ChangeListener<Venue>() {
+            @Override
+            public void changed(ObservableValue<? extends Venue> observable, Venue oldValue, Venue newValue) {
+                cardDisplayPlaceholder.getChildren().clear();
+                cardDisplayPlaceholder.getChildren().add(new VenueCardBig(newValue).getRoot());
+            }
+        };
+
+        ChangeListener<Booking> bookingListener = new ChangeListener<Booking>() {
+            @Override
+            public void changed(ObservableValue<? extends Booking> observable, Booking oldValue, Booking newValue) {
+                cardDisplayPlaceholder.getChildren().clear();
+                cardDisplayPlaceholder.getChildren().add(new BookingCardBig(newValue).getRoot());
+            }
+        };
+
+        venueListPanel.addListener(venueListener);
+        personListPanel.addListener(personListener);
+        bookingListPanel.addListener(bookingListener);
+
+        displayList(new CommandResult("", false, COMMAND_SHOW_VENUES, false));
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -168,7 +223,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void show() {
+    public void show() {
         primaryStage.show();
     }
 
@@ -197,21 +252,60 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
         resultListPanelPlaceholder.getChildren().clear();
+        int listSize = 0;
         switch(commandType) {
         case COMMAND_SHOW_BOOKINGS:
             resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+            listSize = logic.getFilteredBookingList().size();
             break;
         case COMMAND_SHOW_VENUES:
             resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+            listSize = logic.getFilteredVenueList().size();
             break;
         case COMMAND_SHOW_PERSONS:
             resultListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            listSize = logic.getFilteredPersonList().size();
             break;
         case COMMAND_SHOW_NONE:
             break;
         default:
             assert false;
         }
+        currentListName.setText(commandType.toString());
+        currentListSize.setText(String.valueOf(listSize)
+                + ((listSize == 1) ? " Listing" : " Listings"));
+    }
+
+    private void handleList(String command) {
+        try {
+            displayList(executeCommand(command));
+        } catch (CommandException | ParseException e) {
+            logger.info("Something went wrong while executing menu command: " + command);
+        }
+    }
+
+    /**
+     * Lists all persons when menu item is clicked
+     */
+    @FXML
+    private void handleListPersons() {
+        handleList(ListPersonCommand.COMMAND_WORD);
+    }
+
+    /**
+     * Lists all venues when menu item is clicked
+     */
+    @FXML
+    private void handleListVenues() {
+        handleList(ListVenueCommand.COMMAND_WORD);
+    }
+
+    /**
+     * Lists all bookings when menu item is clicked
+     */
+    @FXML
+    private void handleListBookings() {
+        handleList(ListBookingCommand.COMMAND_WORD);
     }
 
     /**
@@ -220,7 +314,6 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.booking.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
