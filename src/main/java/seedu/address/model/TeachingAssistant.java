@@ -13,7 +13,7 @@ import seedu.address.model.entry.NonOverlappingEntryList;
 
 /**
  * Wraps all data at the teaching-assistant level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameContact comparison)
  */
 public class TeachingAssistant implements ReadOnlyTeachingAssistant {
 
@@ -35,7 +35,7 @@ public class TeachingAssistant implements ReadOnlyTeachingAssistant {
     public TeachingAssistant() {}
 
     /**
-     * Creates an TeachingAssistant using the Persons in the {@code toBeCopied}
+     * Creates an TeachingAssistant using the Contacts in the {@code toBeCopied}
      */
     public TeachingAssistant(ReadOnlyTeachingAssistant toBeCopied) {
         this();
