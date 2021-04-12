@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.Doctor;
+package seedu.address.logic.parser.doctor;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -20,7 +20,6 @@ import static seedu.address.testutil.TypicalAppObjects.ZOHN;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.doctor.AddDoctorCommand;
-import seedu.address.logic.parser.doctor.AddDoctorCommandParser;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;

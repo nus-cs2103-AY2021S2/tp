@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.Doctor;
+package seedu.address.logic.parser.doctor;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.doctor.FindDoctorCommand;
-import seedu.address.logic.parser.doctor.FindDoctorCommandParser;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindDoctorCommandParserTest {
