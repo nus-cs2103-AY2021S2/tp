@@ -217,9 +217,13 @@ of this command.
 
 The following sequence diagram (Fig 2.3.3) shows how clear overdue entry command works:
 
-![Clear overdue entries diagram](images/ClearOverdueSequenceDiagram.png)
+![Clear overdue entries sequence diagram](images/ClearOverdueSequenceDiagram.png)
 
 Fig 2.3.3
+
+The following activity diagram (Fig 2.3.4) shows how `Model` executes `clearOverdueEntries`:
+
+![Clear overdue entries activity diagram](images/ClearOverdueEntryCommandActivityDiagram.png)
 
 # Appendix: Requirements
 
@@ -393,6 +397,27 @@ low | user adopting this products | clear all my contacts from Teaching Assistan
     * 1b2. Teaching Assistant shows a list of entries that coincide with the given timeslot.
     
         Use case ends
+
+### Use case: UC05 - Find a contact
+
+**MSS**
+
+1. User requests to find a contact with specified keyword(s)
+2. Teaching Assistant replies to the user contacts that matches the keyword(s)
+
+   Use case ends.
+
+* 1a. The given keyword(s) are invalid
+
+    * 1a1. Teaching Assistant shows an error message.
+    
+      Use case ends
+
+* 2a. No contact matches the specified keyword(s).
+
+    * 2a1. Teaching Assistant shows an empty list.
+
+      Use case ends
 
 ---
 
