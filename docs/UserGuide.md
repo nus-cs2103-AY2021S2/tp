@@ -106,16 +106,18 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 |---|---|---|---|
 | `ADDRESS` | `-a` /<br>`--address` | Contact | Any value |
 | `BIRTHDAY` | `-b` /<br>`--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
+| `BIRTHDAY_MONTH` | `-b` /<br>`--birthday` | Contact | Any of the following: <li>A valid month represented by a string, e.g. `Jan`, `Jun`, `Dec` </li><li>An integer ranging from [0, 12]</li>|
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | `-d` /<br>`--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
-| `REMARK` | `-r` /<br>`--remark` | any | Any value |
 | `EMAIL` | `-e` /<br>`--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>_!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer between 0 and 2,147,483,647 inclusive, representing the ID present in the filtered list |
 | `NAME` | `-n` /<br>`--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) and not longer than 25 characters|
 | `PHONE` | `-p` /<br>`--phone` | Contact | Any number at least three digits long |
+| `REMARK` | `-r` /<br>`--remark` | any | Any value |
 | `SORT_FIELD` | `-s` /<br>`--sort` | any | Any valid option, specified below in `list` and `elist` commands |
 | `SORT_ORDER` | `-o` /<br>`--order` | any | Any of the following:{::nomarkdown}<ul><li><code>a</code>, <code>asc</code>, <code>ascending</code> (ascending order)</li><li><code>d</code>, <code>desc</code>, <code>descending</code> (descending order)</li></ul>{:/} |
 | `TAG` | `-t` /<br>`--tag` | Contact | Any value containing only alphanumeric characters and not longer than 40 characters|
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -251,18 +253,18 @@ Examples:
 
 Displays a list of contacts in the contact list, with optional search criteria.
 
-Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`
+Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY_MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]`
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
 List all contacts in contact list
-2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY_MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
 List all contacts matching the search criteria
 
 Search criteria, case-insensitive:
 * `-n`, `--name` filters the contacts by name
 * `-t`, `--tag` filters the contacts by tags
 * `-b`, `--birthday` filters contacts by birthday month
-  * If `BIRTHDAY` is "0" or unspecified, displays filtered contacts without birthday.
-  * Otherwise, `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
+  * If `BIRTHDAY_MONTH` is "0" or unspecified, displays filtered contacts without birthday.
+  * Otherwise, `BIRTHDAY_MONTH` must be one of the 12 months, represented either by the month value or string,
     i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
 
 Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
