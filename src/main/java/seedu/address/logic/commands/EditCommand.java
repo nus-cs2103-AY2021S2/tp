@@ -51,15 +51,22 @@ public class EditCommand extends Command {
             + PREFIX_TRIPDAY + "friday";
 
     public static final String MESSAGE_EDIT_PASSENGER_SUCCESS = "Edited Passenger: %1$s";
+    public static final String MESSAGE_EDIT_PASSENGER_WARNING = "Edited Passenger: %1$s\n"
+            + "NOTE: The passenger edited exists in a pool and has had their preferred trip time edited. "
+            + "This might result in a time difference of more than 15 minutes with the pool time.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED_DAY_ERROR = "The Passenger to be edited exists in a pool. "
+            + "Day cannot be edited.";
     public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
 
     /**
-     * @param index of the passenger in the filtered passenger list to edit
-     * @param editPassengerDescriptor details to edit the passenger with
+     * Creates an EditCommand to edit passengers at the specified {@code index}.
+     *
+     * @param index Index of the passenger in the filtered passenger list to edit.
+     * @param editPassengerDescriptor Details to edit the passenger with.
      */
     public EditCommand(Index index, EditPassengerDescriptor editPassengerDescriptor) {
         requireNonNull(index);
@@ -73,7 +80,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Passenger> lastShownList = model.getFilteredPassengerList();
-
+        String outputMessage = MESSAGE_EDIT_PASSENGER_SUCCESS;
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
         }
@@ -85,9 +92,17 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PASSENGER);
         }
 
+        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.getTripDay().isPresent()) {
+            throw new CommandException(MESSAGE_NOT_EDITED_DAY_ERROR);
+        }
+
+        if (model.hasPassenger(passengerToEdit) && editPassengerDescriptor.getTripTime().isPresent()) {
+            outputMessage = MESSAGE_EDIT_PASSENGER_WARNING;
+        }
+
         model.setPassenger(passengerToEdit, editedPassenger);
         model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PASSENGER_SUCCESS, editedPassenger));
+        return new CommandResult(String.format(outputMessage, editedPassenger));
     }
 
     /**

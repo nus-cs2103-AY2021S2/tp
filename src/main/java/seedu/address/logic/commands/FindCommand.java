@@ -32,6 +32,11 @@ public class FindCommand extends Command {
 
     private final Predicate<Passenger> predicate;
 
+    /**
+     * Creates a FindCommand to filter the list of passengers with the specified {@code predicate}.
+     *
+     * @param predicate Predicate provided to filter the list of passengers with.
+     */
     public FindCommand(Predicate<Passenger> predicate) {
         this.predicate = predicate;
     }

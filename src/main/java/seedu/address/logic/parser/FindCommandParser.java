@@ -45,7 +45,10 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments to be parsed.
+     * @return The FindCommand created from parsing the arguments.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

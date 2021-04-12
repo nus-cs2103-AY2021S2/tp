@@ -23,8 +23,6 @@ import seedu.address.model.person.passenger.Passenger;
  */
 public class TypicalPassengers {
 
-    // TODO use the screaming snake case for withTripDay and withTripTime
-
     public static final Passenger ALICE = new PassengerBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withPhone("94351253").withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0))
