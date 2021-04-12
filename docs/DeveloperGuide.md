@@ -16,13 +16,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 A-Bash Book (ABB) is a Command Line Interface (CLI) based Contact Management System built to address the growing demands 
 of businesses with an increasing business ecosystem. Especially in a climate where large amounts of business information 
-are being stored in various decentralised places. 
+are being stored in various decentralised places. ABB acts as a centralised platform for users to store contact details 
+of business partners or colleagues.
 
 This guide serves to aid A-Bash Book (ABB) developers by describing the **Design**, **Architecture** and **Implementation**
 behind each feature. **Design Considerations** can be found for certain features that would require extra attention when
-modifying or enhancing the feature.
+modifying or enhancing the feature. **Future Enhancements** for some features can also indicate the future state of the feature.
 
-Various **UML Diagrams** are used to help describe the feature flow as well as the associations between objects and classes.
+Various **UML Diagrams** are used to help describe the feature flow as well as the associations between objects and classes, 
+to ensure this guide serves as a utilitarian guide. 
 
 
 ## **Design**
