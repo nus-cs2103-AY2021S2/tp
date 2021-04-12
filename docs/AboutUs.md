@@ -10,7 +10,7 @@ You can reach us at the respective emails:
 * Wong Khia Xeng `e0407883@u.nus.edu`
 * Heng Yong Ming `e0425848@u.nus.edu`
 * Joven Pua Zai Xiong`e0415502@u.nus.edu`
-* Noel Mathew Issac `e0415881@u.nus.edu`
+* Noel Mathew Isaac `e0415881@u.nus.edu`
 
 ## Project Team
 
@@ -35,7 +35,7 @@ You can reach us at the respective emails:
 * Role: Developer
 * Responsibilities: Backend expert
 
-### Noel Mathew Issac
+### Noel Mathew Isaac
 <img src="images/noelmathewisaac.png" width="200px">
 
 [Github](https://github.com/noelmathewisaac)
