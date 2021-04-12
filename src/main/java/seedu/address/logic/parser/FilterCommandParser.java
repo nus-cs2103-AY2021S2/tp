@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
+import static seedu.address.logic.commands.FilterCommand.MESSAGE_FAILURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -46,16 +46,18 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                         PREFIX_REMARK);
 
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_PREFIX, argMultimap.getPreamble()) + "\n"
-                            + FilterCommand.MESSAGE_USAGE);
+            final String invalidPrefix = args.substring(args.indexOf(argMultimap.getPreamble()));
+            throw new ParseException(String.format(MESSAGE_FAILURE, invalidPrefix) + "\n"
+                    + FilterCommand.MESSAGE_USAGE);
         }
 
         try {
             List<String> validFlags = validateFlags(argMultimap);
             return new FilterCommand(new DisplayFilterPredicate(argMultimap), validFlags);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + FilterCommand.MESSAGE_USAGE);
+            final String invalidPrefix = args.substring(args.indexOf(pe.getMessage()));
+            throw new ParseException(String.format(MESSAGE_FAILURE, invalidPrefix) + "\n"
+                    + FilterCommand.MESSAGE_USAGE);
         }
     }
 
