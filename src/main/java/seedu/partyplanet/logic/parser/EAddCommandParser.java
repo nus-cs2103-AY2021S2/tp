@@ -37,7 +37,7 @@ public class EAddCommandParser implements Parser<EAddCommand> {
         EventDate eventDate =
                 ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).orElse(EventDate.EMPTY_DATE_STRING));
         Remark remark =
-            ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(Remark.EMPTY_REMARK_STRING));
+                ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(Remark.EMPTY_REMARK_STRING));
 
         Event event = new Event(name, eventDate, remark);
 
