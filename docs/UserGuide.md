@@ -105,7 +105,7 @@ Refer to the [Commands](#42-commands) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## 4 **Features**
+## 4. **Features**
 
 ### 4.1 View
 
