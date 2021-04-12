@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.lesson.Lesson;
-
 
 /**
  * An UI component that displays information of an {@code Important Date}.

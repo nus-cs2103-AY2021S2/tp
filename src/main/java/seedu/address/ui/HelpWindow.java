@@ -13,7 +13,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.lesson.Lesson;
 
 /**
  * Controller for a help page
@@ -47,10 +46,10 @@ public class HelpWindow extends UiPart<Stage> {
                 " Clear: `clear`\n",
                 " Exit: `exit`\n",
                 " Help: `help`\n",
-                " Add: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] " +
-                        "[gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]… [le/LESSON]…`",
-                " Edit: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] " +
-                        "[gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]… [le/LESSON]…`",
+                " Add: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] "
+                        + "[gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]… [le/LESSON]…`",
+                " Edit: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] "
+                        + "[gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]… [le/LESSON]…`",
                 " Detail: `detail INDEX`\n",
                 " Delete: `delete INDEX`\n",
                 " Search: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`\n",
