@@ -121,27 +121,27 @@ public class DeleteGroupmateCommandTest {
         Index lastGroupmateFromProject2 = Index.fromOneBased(
                 model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getGroupmates().size());
 
-        DeleteGroupmateCommand delettGroupmateFromProject1Command = new DeleteGroupmateCommand(
+        DeleteGroupmateCommand deleteGroupmateFromProject1Command = new DeleteGroupmateCommand(
                 INDEX_FIRST, lastGroupmateFromProject1);
-        DeleteGroupmateCommand delettGroupmateFromProject2Command = new DeleteGroupmateCommand(
+        DeleteGroupmateCommand deleteGroupmateFromProject2Command = new DeleteGroupmateCommand(
                 INDEX_SECOND, lastGroupmateFromProject2);
 
         // same object -> returns true
-        assertEquals(delettGroupmateFromProject1Command, delettGroupmateFromProject1Command);
+        assertEquals(deleteGroupmateFromProject1Command, deleteGroupmateFromProject1Command);
 
         // same values -> returns true
-        DeleteGroupmateCommand delettGroupmateFromProject1CommandCopy = new DeleteGroupmateCommand(
+        DeleteGroupmateCommand deleteGroupmateFromProject1CommandCopy = new DeleteGroupmateCommand(
                 INDEX_FIRST, lastGroupmateFromProject1);
-        assertEquals(delettGroupmateFromProject1Command, delettGroupmateFromProject1CommandCopy);
+        assertEquals(deleteGroupmateFromProject1Command, deleteGroupmateFromProject1CommandCopy);
 
         // different types -> returns false
-        assertNotEquals(delettGroupmateFromProject1Command, 1);
+        assertNotEquals(deleteGroupmateFromProject1Command, 1);
 
         // null -> returns false
-        assertNotEquals(delettGroupmateFromProject1Command, null);
+        assertNotEquals(deleteGroupmateFromProject1Command, null);
 
-        // differenttGroupmate -> returns false
-        assertNotEquals(delettGroupmateFromProject1Command, delettGroupmateFromProject2Command);
+        // different Groupmate -> returns false
+        assertNotEquals(deleteGroupmateFromProject1Command, deleteGroupmateFromProject2Command);
     }
 
 }
