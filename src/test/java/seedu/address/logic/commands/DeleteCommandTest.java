@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -123,6 +124,23 @@ public class DeleteCommandTest {
     public void execute_deleteSelected_failureNoSelected() {
         assertCommandFailure(DeleteCommand.buildDeleteSelectedCommand(), model,
                 DeleteCommand.MESSAGE_NO_SELECTED);
+    }
+
+    @Test
+    public void execute_delete_failureNoPersons() {
+        final Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalAliasMap());
+        // delete shown
+        assertCommandFailure(DeleteCommand.buildDeleteShownCommand(), emptyModel,
+                DeleteCommand.MESSAGE_NO_PERSON);
+
+        // delete VALID_INDEXES
+        assertCommandFailure(DeleteCommand.buildDeleteIndexCommand(VALID_INDEXES), emptyModel,
+                DeleteCommand.MESSAGE_NO_PERSON);
+
+        // delete selected
+        assertCommandFailure(DeleteCommand.buildDeleteSelectedCommand(), emptyModel,
+                DeleteCommand.MESSAGE_NO_PERSON);
     }
 
     @Test

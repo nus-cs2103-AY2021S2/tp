@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.EditCommand.MESSAGE_NO_PERSON;
 import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -252,6 +253,26 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_edit_failureNoPersons() {
+        final Model emptyModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalAliasMap());
+        final EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withPhone("99998888").build();
+
+        // edit shown
+        assertCommandFailure(EditCommand.buildEditShownCommand(descriptor), emptyModel,
+                MESSAGE_NO_PERSON);
+
+        // edit VALID_INDEXES
+        assertCommandFailure(EditCommand.buildEditIndexCommand(VALID_INDEXES, descriptor),
+                emptyModel, MESSAGE_NO_PERSON);
+
+        // edit selected
+        assertCommandFailure(EditCommand.buildEditSelectedCommand(descriptor), emptyModel,
+                MESSAGE_NO_PERSON);
     }
 
     @Test
