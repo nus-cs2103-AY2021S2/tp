@@ -15,7 +15,9 @@ public class KeyboardShortcuts {
     public static final KeyCodeCombination REDO_SHORTCUT =
             new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN);
 
-    // To prevent instantiation
+    /**
+     * To prevent instantiation.
+     */
     private KeyboardShortcuts() {
     }
 }
