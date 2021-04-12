@@ -233,7 +233,7 @@ Format: `shownote INDEX​`
 
 * Shows the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
-* To view the note created in the note content panel (by [`copytonote`](#Copying-content-to-a-note:-copytonote))), use the command `shownote` at the respective index, in this case index 6  
+* To view the note created in the note content panel (by the [`copytonote`](#copying-content-to-a-note-copytonote) command), use the command `shownote` at the respective index, in this case index 6  
   `shownote 6`:
   ![shownote for content](images/Diagram-shownoteforcontent.png)
 
