@@ -145,7 +145,7 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the wardrobe data.
 * exposes an unmodifiable `ObservableList<Garment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* does not depend on any of the other three components.<br><br>
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Description` list in the `Wardrobe`, which `Garment` references. This allows `Wardrobe` to only require one `Description` object per unique `Description`, instead of each `Garment` needing their own `Description` object.<br>
@@ -209,7 +209,8 @@ The following diagram shows where sorting occurs in the Model component (higher 
     Sorts the Garments based on chronological or reverse chronological ordering of the `LastUse` attribute based on user input.
   * Pros: Allows users to choose which ordering they want, and they can get the respective benefits as above.
   * Cons: Requires more time to implement.
-
+ 
+<div style="page-break-after: always;"></div>
 
 ### Find feature
 
@@ -245,6 +246,8 @@ The object of `AttributesContainsKeywordsPredicate` is passed to an object of `F
 `FindCommand` object is then called with `model`, which then calls the `updateFilteredGarmentList` method of `model`.
 This then displays all matching garments in the data to the front end of the NuFash application.
 
+<div style="page-break-after: always;"></div>
+
 Given below is an example usage scenario of how the `find` mechanism works.
 
 1. The user launches the NuFash application for the first time and is presented with a list of all garments 
@@ -265,6 +268,7 @@ PREFIX_TYPE, PREFIX_DRESSCODE, PREFIX_DESCRIPTION
 The activity diagram below shows the flow of what happens when a user executes the find command:
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration:
 
@@ -299,12 +303,16 @@ MatchCommand is updated to use a find command
 with single or multiple attributes (i.e. `c/` for Colour, `r/` for dressCode and `t/` for type) and the respective 
 predicate is subsequently used to create a FindCommand Object. This is then executed.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the match operation works:
 ![Match Sequence Diagram](images/MatchSequenceDiagram.png)  
 
 The following activity diagram summarizes what happens when a user
 executes a match command:
 ![Match Activity Diagram](images/MatchActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration:
 
@@ -346,7 +354,9 @@ The LastUse attribute of this garment is instantiated with a null value: `Never`
 by viewing the garments, following which they can use the Select Command by specifying the garment's index.
 The selected garment is duplicated, with the `LastUse` attribute being updated to the current local date.
 The original selected garment with now obsolete `LastUse` attribute is deleted. 
-This signifies to the wardrobe that the user has checked out the garment to be worn today. 
+This signifies to the wardrobe that the user has checked out the garment to be worn today.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the select operation works:
 
@@ -355,6 +365,8 @@ The following sequence diagram shows how the select operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![SelectActivityDiagram](images/SelectActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration
 
@@ -392,6 +404,8 @@ Given below is an example usage scenario and how the View mechanism behaves at e
 
 3. The `view` command indirectly calls updateFilteredGarmentList method of Model with a predicate that filters the selected Garments to be viewed as an outfit.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the view operation works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
@@ -399,6 +413,8 @@ The following sequence diagram shows how the view operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 
@@ -436,6 +452,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Maintain outfit schedules to prevent repetitive dressing
 
 * Receive garment suggestions based on factors such as weather, temperature, or the nature of events the user may be attending
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
