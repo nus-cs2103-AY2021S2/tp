@@ -3,8 +3,6 @@ package seedu.address.model.pool;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Passenger}'s {@code Name} matches any of the keywords given.
  */
@@ -18,8 +16,12 @@ public class PooledPassengerContainsKeywordsPredicate implements Predicate<Pool>
     @Override
     public boolean test(Pool pool) {
         return keywords.stream()
-                .anyMatch(keyword -> pool.getPassengers().stream().anyMatch(passenger ->
-                        StringUtil.containsWordIgnoreCase(passenger.getName().toString(), keyword)));
+                .anyMatch(keyword ->
+                        pool.getPassengers().stream().anyMatch(passenger -> {
+                            String passengerNameLowerCase = passenger.getName().toString()
+                                    .toLowerCase().replaceAll("\\s+", " ");
+                            return passengerNameLowerCase.contains(keyword);
+                        }));
     }
 
     @Override
