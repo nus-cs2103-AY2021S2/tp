@@ -231,12 +231,12 @@ we considered and the design considerations are further elaborated below.
 #### Implementation
 
 A new command `PolicyCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute` 
-method. When `PolicyCommand#execute()` is called, all the insurance policies and their associated policy URLs are fetched from the 
+method. `PolicyCommand#execute()` is called by `LogicManager`, all the insurance policies and their associated policy URLs are fetched from the 
 selected `Person` through `Person#getPersonNameAndAllPoliciesInString()`.
 
 Below is an example usage scenario and how the information and data are passed around at each step.
 
-**Step 1.** The user types `policy 1` into the input box.
+**Step 1.** The user types `policy 1` into the input box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`policy 1`), which is then executed by `LogicManager`.
 
@@ -344,7 +344,7 @@ which is then executed by `LogicManager`.
 `EditCommand`, which would contain the index of the selected client in the displayed list (in this case 1), followed by
 the values that the user intends to edit, followed by the edit policy mode (in this case insert).
 
-**Step 4.** `EditCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the feedback string message
+**Step 4.** `EditCommand#execute()` is called by `LogicManager`, returning a `CommandResult`. This `CommandResult` contains the feedback string message
 which indicates to the user which client was edited.
 
 **Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the edit to the user.
@@ -376,12 +376,12 @@ ClientBook. Having a sort function will allow the user to sort the list of clien
 #### Implementation
 
 A new command `SortCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute`
-method. When `SortCommand#execute()` is called, a comparator will be created based on the attribute and direction specified
+method. When `SortCommand#execute()` is called by `LogicManager`, a comparator will be created based on the attribute and direction specified
 by the user and `ModelManager#updateSortedPersonList(comparator)` is called to sort the list of clients.
 
 Below is an example usage scenario and how the information and data are passed around at each step.
 
-**Step 1.** The user types `sort -n -asc` into the input box.
+**Step 1.** The user types `sort -n -asc` into the input box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`sort -n -asc`), which is then executed by `LogicManager`.
 
@@ -389,8 +389,8 @@ Below is an example usage scenario and how the information and data are passed a
 a `SortCommand`, which would contain the attribute to be sorted (in this case name), followed by the direction that the 
 user intends to sort in (in this case ascending order).
 
-**Step 4.** `LogicManager` then calls `SortCommand#execute()`, sorting the list of clients with the comparator created 
-by calling `ModelManager#updateSortedPersonList(comparator)` and returning a `CommandResult`. This `CommandResult` 
+**Step 4.** `LogicManager` then calls `SortCommand#execute()`, sorting the list of clients by calling `ModelManager#updateSortedPersonList(comparator)` 
+with the comparator created and returning a `CommandResult`. This `CommandResult` 
 contains the feedback string message which indicates to the user how the list of clients is sorted.
 
 **Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the sorted list of clients.
@@ -418,13 +418,13 @@ ClientBook will give the user a way to be more efficient during meetings with cl
 #### Implementation
 
 A new command `AddShortcutCommand` was created. It extends the abstract class `Command`, overriding and implementing its
-`execute` method. When `AddShortcutCommand#execute()` is called, a `Shortcut` is added to the `ShortcutLibrary`. When a 
+`execute` method. When `AddShortcutCommand#execute()` is called by `LogicManager`, a `Shortcut` is added to the `ShortcutLibrary`. When a 
 `Shortcut` is added, there will be a check for any existing `Shortcut`s with the same name.
 
 
 Below is an example usage scenario and how the information and data are passed around at each step.
 
-**Step 1.** The user types `addshortcut sn/aia sc/find i/aia` into the input box.
+**Step 1.** The user types `addshortcut sn/aia sc/find i/aia` into the input box and presses enter.
 
 **Step 2.** `MainWindow` receives the `commandText` (`addshortcut sn/aia sc/find i/aia`), which is then executed by 
 `LogicManager`.
@@ -433,7 +433,7 @@ Below is an example usage scenario and how the information and data are passed a
 a `AddShortcutCommand`, which would contain the name of the `Shortcut` (in this case `aia`), followed by the `Command` 
 mapped to the `Shortcut` (in this case `find i/aia`).
 
-**Step 4.** `AddShortcutCommand`then executes, storing the `Shortcut` in the `ShortcutLibrary` and returning a 
+**Step 4.** `LogicManager` then calls `AddShortcutCommand#execute()`, storing the `Shortcut` in the `ShortcutLibrary` and returning a 
 `CommandResult`. This `CommandResult` contains the feedback string message which indicates to the user whether the 
 specified `Shortcut` has been added successfully.
 
@@ -608,13 +608,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ClientBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case 1: Delete a client**
+**Use case 1: List all clients**
 
 **MSS**
 
 1.  User requests to list clients.
-    
-1.  ClientBook shows a list of clients.
+
+2.  ClientBook shows a list of clients.
+
+    Use case ends.
+
+<br>
+
+**Use case 2: Delete a client**
+
+**MSS**
+
+1.  <ins>User lists clients (UC1).</ins>
     
 1.  User requests to delete a specific client in the list.
     
@@ -624,19 +634,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. One or more of the given arguments are invalid.
 
-    * 3a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
     
 <br>
 
-**Use case 2: Add a client**
+**Use case 3: Add a client**
 
 **MSS**
 
@@ -654,17 +664,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-<br>
+* 1b. One or more of the given arguments are invalid.
 
-**Use case 3: List all clients**
+    * 1b1. ClientBook shows an error message.
 
-**MSS**
-
-1.  User requests to list clients.
-    
-2.  ClientBook shows a list of clients.
-
-    Use case ends.
+      Use case resumes at step 1.
 
 <br>
 
@@ -672,27 +676,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients.
+1.  <ins>User lists clients (UC1).</ins>
     
-2.  ClientBook shows a list of clients.
+2.  User requests to edit a specific client in the list.
     
-3.  User requests to edit a specific client in the list.
-    
-4.  ClientBook edits the client.
+3.  ClientBook edits the client.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of clients is empty.
+* 1a. The list of clients is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. One or more of the given arguments are invalid.
 
-    * 3a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 3.
+      Use case resumes at step 2.
 
 <br>
 
@@ -706,17 +708,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Extensions**
+
+* 1a. One or more of the given arguments are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
 <br>
 
-**Use case 6: Filter list of clients by attributes**
+**Use case 6: Display selected attributes of clients**
 
 **MSS**
 
-1.  User requests to filter clients with attributes.
+1.  User requests to display selected attributes of clients.
     
 2.  ClientBook shows a list of clients and the specified attributes.
 
     Use case ends.
+
+**Extensions**
+
+* 1a. One or more of the given arguments are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
 
 <br>
 
@@ -744,15 +762,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients.
+1.  <ins>User lists clients (UC1).</ins>
     
-2.  ClientBook shows a list of clients.
+2.  User requests to schedule a meeting with a specific client in the list.
     
-3.  User requests to schedule a meeting with a specific client in the list.
-    
-4.  ClientBook schedules a meeting with the client.
+3.  ClientBook schedules a meeting with the client.
 
     Use case ends.
+
+**Extensions**
+
+* 2a. One or more of the given arguments are invalid.
+
+    * 2a1. ClientBook shows an error message.
+
+      Use case resumes at step 2.
 
 <br>
 
@@ -783,6 +807,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 **Use case 10: Unlock ClientBook**
+
 **Preconditions:** ClientBook is already locked.
 
 **MSS**
@@ -833,7 +858,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. At least one of the given arguments is invalid.
+* 1a. One or more of the given arguments are invalid.
 
     * 1a1. ClientBook shows an error message.
     
@@ -857,7 +882,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to edit a specific shortcut in the shortcut library.
+1.  One or more of the given arguments are invalid.
 
 2.  ClientBook edits the shortcut.
 
@@ -889,25 +914,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to display policies associated with a selected client.
+1. <ins>User lists clients (UC1).</ins>
 
-2.  ClientBook shows all policies associated with this client.
+2. User requests to display policies associated with a selected client.
+
+3.  ClientBook shows all policies associated with this client.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The selected client has no policies.
+* 2a. The selected client has no policies.
 
-    * 1a1. ClientBook shows message indicating that no policies are associated with the selected client.
+    * 2a1. ClientBook shows message indicating that no policies are associated with the selected client.
 
       Use case ends.
 
-* 1b. One or more of the given arguments are invalid.
+* 2b. One or more of the given arguments are invalid.
 
-    * 1b1. ClientBook shows an error message.
+    * 2b1. ClientBook shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 <br>
 
@@ -915,11 +942,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User <ins>views insurance policies of selected client (UC16)</ins>.
+1. <ins>User lists clients (UC1).</ins>
 
-2.  User retrieves URL from ClientBook.
+2. User <ins>views insurance policies of selected client (UC16)</ins>.
 
-    Use case ends.
+3. User retrieves URL from ClientBook.
+
+   Use case ends.
 
 <br>
 
@@ -927,19 +956,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to change the details of several clients.
+1. <ins>User lists clients (UC1).</ins>
 
-2.  ClientBook updates the details.
+2. User requests to change the details of several clients.
+
+3. ClientBook updates the details.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. One or more of the given arguments are invalid.
+* 2a. One or more of the given arguments are invalid.
 
-    * 1a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 <br>
 
@@ -947,19 +978,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete several clients at once.
+1. <ins>User lists clients (UC1).</ins>
 
-2.  ClientBook deletes the client contacts.
+2. User requests to delete several clients at once.
 
-    Use case ends.
+3. ClientBook deletes the client contacts.
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. One or more of the given arguments are invalid.
+* 2a. One or more of the given arguments are invalid.
 
-    * 1a1. ClientBook shows an error message.
+    * 2a1. ClientBook shows an error message.
 
-      Use case resumes at step 1.
+      Use case resumes at step 2.
 
 
 ### Non-Functional Requirements
