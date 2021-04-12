@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR_T1
 show members
-Session <|--- RecurringSession
+Session <|- RecurringSession
         class Session {
             - sessionDate : SessionDate
             - duration : Duration
@@ -25,5 +25,6 @@ Session <|--- RecurringSession
             + lastSessionOnOrBefore()
             + numOfSessionsBetween()
             + isOverlapping()
+            + removeSessionInRecurringSession()
         }
 @enduml

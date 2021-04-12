@@ -339,19 +339,19 @@ Aspect 1: Use of Inheritance for RecurringSession and related classes
 * **Alternative 1 (current choice)**: Both `RecurringSession` and `RecurringSessionCommand` classes extends 
   `Session` and `SessionCommand` classes
     * Pros:
-        * Promotes "don't repeat yourself" principle, given the that recurring session is a proper subtype of superclass session.
-          Enhancements to recurring session is only additive to superclass Session.
+        * Abides "don't repeat yourself" principle, given that the `RecurringSession` is a proper subtype of superclass `Session`.
+          Enhancements to recurring session is only additive to superclass `Session`.
         * Reduced complexity. Abstract classes/interfaces are not required with the simple inheritance.
     * Cons:
         * Uses subclass coupling; coupling is increased. Reduces expansion and maintainability, in the possible event
     of redefining recurring session and session relationship.
-
-* **Alternative 2**: Creating a Session interface to be implemented by Single-Session class and Recurring Session.
+          
+* **Alternative 2**: Creating a `Session (interface)` to be implemented by `Single-Session` class and `RecurringSession`.
     * Pros:
         * Eliminates subclass coupling.
     * Cons:
-        * Additional lines of code will be required. At current implementation where Recurring Session shares the same logical domain as
-    Session and is a proper subtype of Session, there will comparatively be more repeated code upon abstracting out an interface.
+        * Additional lines of code will be required. At current implementation where `RecurringSession` shares the same logical domain as
+    `Session` and is a proper subtype of `Session`, there will comparatively be more repeated code upon abstracting out an interface.
           
 Alternative 1 was chosen for the practical consideration that less code was necessary for the forseeable requirements
 given the current set of use cases. Though increasing coupling, the inheritance relationship is simple and sufficient,
@@ -359,7 +359,7 @@ as methods to `RecurringSession` is strictly only additive to those is `Session`
 complicated testing as well, due to the fact that every test on `Session` applies to `RecurringSession`.
 
 
-Aspect 2: Brute or mathematical implementation for overlap checks involving recurring sessions in hasOverlappingSession()
+Aspect 2: Brute vs. mathematical implementation for overlap checks involving recurring sessions in isOverlapping()
 * **Alternative 1 (current choice)**: Brute-force approach to checking for overlap with recurring sessions.
     * Pros:
         * Logically simple, hence easy to implement, test, review.
