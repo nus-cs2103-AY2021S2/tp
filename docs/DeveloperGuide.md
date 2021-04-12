@@ -270,8 +270,6 @@ As an example, consider running Dictionote as follows:
     * Cons: Difficult to integrate with the other classes and methods related to `Contact` objects (e.g., deletion of a contact from the list must propagate to the `HashTable`).
 
 
-<div style="page-break-after: always;"></div>
-
 ### UI features
 #### Opening and closing UI through command result
 #####  Implementation
@@ -615,6 +613,8 @@ The following is the sequence diagram for executing the `execute()` command in c
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC04 -  Clear the contacts list**
 
 **MSS**
@@ -660,6 +660,8 @@ The following is the sequence diagram for executing the `execute()` command in c
     * 4a2. Web browser opens a new, empty tab.
     
   Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC06 -  Delete a note**
 
@@ -719,6 +721,8 @@ The following is the sequence diagram for executing the `execute()` command in c
   Use case ends.
 
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC09 -  Copy Content to Note**
 
 **MSS**
@@ -769,9 +773,6 @@ The following is the sequence diagram for executing the `execute()` command in c
 * 1a. The requested index is out of bounds. Then an index invalid exception will arise.
 
   Use case ends.
-
-
-<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
