@@ -50,7 +50,7 @@ Given below are my contributions to the project.
     * Added use cases. (Pull request [\#22](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/22))
     * Added implementation details of the `sort` feature. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/97))
     * Added implementation details of the `favourite` feature. (Pull request [\#283](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/283))
-    * Added test cases for `sort` and `favourite` feature in Appendix. (Pull request [\#](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/))
+    * Added test cases for `sort` and `favourite` feature in Appendix. (Pull request [\#306](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/306))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\##139](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/139), [\#141](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/141), [\#147](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/147), [\#42]()
