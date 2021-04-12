@@ -23,7 +23,7 @@ effectively.
 ## 2. **About**
 This user guide provides documentation on the installation and usage of TutorBuddy.
 It also provides a comprehensive description of features available to you and
-includes a [quick-start](#3-quick-start) section that helps you get started.
+includes a [quick start](#3-quick-start) section that helps you get started.
 
 This guide uses the following features to make it easier for you to navigate around:
 
@@ -204,7 +204,7 @@ This section details the format of the commands available in TutorBuddy. We will
 * Names cannot be duplicates.<br>
   e.g. There cannot be 2 different students of the same name `John Tan` and `John Tan`.
   
-* Indexes **must be positive whole numbers** 1, 2, 3, …
+* Indexes must be positive whole numbers 1, 2, 3, …
 
 * The `STUDENT_INDEX` refers to the index number shown in the [displayed student list](#application-overview).
 
@@ -289,7 +289,7 @@ Adds a student to TutorBuddy with their respective guardian and study informatio
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
 <div markdown="block" class="alert alert-info">
-:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits).
+:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits).<br>
 :information_source: TutorBuddy automatically shows the full list of students and sessions after a successful <code>add_student</code> command.
 </div>
 <div markdown="block" class="alert alert-primary">
@@ -484,7 +484,7 @@ Example:
 ![add_session_example](images/choonwei/add_session.png)
 
 <ol start="3">
-    <li>You will now see that a new session is added in the session list under <b>John Doe</b> and is marked with a green letter <b>"I"</b> to indicate an individual session.</li>
+    <li>You will now see that a new session is added in the session list under <b>John Doe</b> and is marked with a light blue letter <b>"I"</b> to indicate an individual session.</li>
 </ol>
 
 ![add_session_result_example](images/choonwei/add_session_result.png)
@@ -661,8 +661,8 @@ Action | Format | Examples
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorBuddy home folder.
 
-**Q**: May I edit the data file? 
-**A**: Advanced users are welcome to update data directly by editing that data file. Tutorbuddy data are saved as a JSON file `[JAR file location]/data/tutorbuddy.json`.
+**Q**: May I edit the data file? <br>
+**A**: Advanced users are welcome to update data directly by editing that data file. Tutorbuddy data are saved as a JSON file `[JAR file location]/data/tutorbuddy.json`. <br>
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TutorBuddy may not function as intended.
 
