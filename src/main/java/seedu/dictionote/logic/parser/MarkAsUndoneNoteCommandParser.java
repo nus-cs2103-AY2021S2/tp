@@ -6,11 +6,14 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.MarkAsUndoneNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new MarkAsUndoneNoteCommand object.
+ */
 public class MarkAsUndoneNoteCommandParser implements Parser<MarkAsUndoneNoteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the MarkAsUndoneNoteCommand
      * and returns a MarkAsUndoneNoteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public MarkAsUndoneNoteCommand parse(String args) throws ParseException {
         try {

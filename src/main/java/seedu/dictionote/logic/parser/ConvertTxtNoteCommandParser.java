@@ -7,7 +7,7 @@ import seedu.dictionote.logic.commands.ConvertTxtNoteCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ConvertTxtNoteCommand object
+ * Parses input arguments and creates a new ConvertTxtNoteCommand object.
  */
 public class ConvertTxtNoteCommandParser implements Parser<ConvertTxtNoteCommand> {
     /**
