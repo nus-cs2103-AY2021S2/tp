@@ -64,5 +64,4 @@ public class StorageManagerTest {
     public void getTeachingAssistantFilePath() {
         assertNotNull(storageManager.getTeachingAssistantFilePath());
     }
-
 }

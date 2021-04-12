@@ -119,5 +119,4 @@ public class JsonUserPrefsStorageTest {
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
     }
-
 }
