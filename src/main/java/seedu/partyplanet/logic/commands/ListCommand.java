@@ -63,8 +63,9 @@ public class ListCommand extends Command {
     /**
      * Most general ListCommand.
      *
-     * @param predicate Predicate to filter people by
-     * @param comparator Sorting comparator
+     * @param predicate Predicate to filter people by.
+     * @param comparator Sorting comparator.
+     * @param parseArguments String containing information of listing requirements to be displayed.
      */
     public ListCommand(Predicate<Person> predicate, Comparator<Person> comparator, String parseArguments) {
         this.predicate = predicate;
