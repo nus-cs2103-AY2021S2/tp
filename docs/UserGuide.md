@@ -103,18 +103,18 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
-| `ADDRESS` | `-a`,`--address` | Contact | Any value |
-| `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
+| `ADDRESS` | `-a` /<br>`--address` | Contact | Any value |
+| `BIRTHDAY` | `-b` /<br>`--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
-| `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
-| `REMARK` | `-r`, `--remark` | any | Any value |
-| `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
-| `INDEX` | - | any | Positive integer representing the ID present in the filtered list |
-| `NAME` | `-n`, `--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) and not longer than 25 characters|
-| `PHONE` | `-p`, `--phone` | Contact | Any number at least three digits long |
-| `SORT_FIELD` | `-s`, `--sort` | any | Any valid option, specified below in `list` and `elist` commands |
-| `SORT_ORDER` | `-o`, `--order` | any | Any of the following:{::nomarkdown}<ul><li><code>a</code>, <code>asc</code>, <code>ascending</code> (ascending order)</li><li><code>d</code>, <code>desc</code>, <code>descending</code> (descending order)</li></ul>{:/} |
-| `TAG` | `-t`, `--tag` | Contact | Any value containing only alphanumeric characters and not longer than 40 characters|
+| `DATE` | `-d` /<br>`--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
+| `REMARK` | `-r` /<br>`--remark` | any | Any value |
+| `EMAIL` | `-e` /<br>`--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
+| `INDEX` | - | any | Positive integer between 0 and 2,147,483,647 inclusive, representing the ID present in the filtered list |
+| `NAME` | `-n` /<br>`--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) and not longer than 25 characters|
+| `PHONE` | `-p` /<br>`--phone` | Contact | Any number at least three digits long |
+| `SORT_FIELD` | `-s` /<br>`--sort` | any | Any valid option, specified below in `list` and `elist` commands |
+| `SORT_ORDER` | `-o` /<br>`--order` | any | Any of the following:{::nomarkdown}<ul><li><code>a</code>, <code>asc</code>, <code>ascending</code> (ascending order)</li><li><code>d</code>, <code>desc</code>, <code>descending</code> (descending order)</li></ul>{:/} |
+| `TAG` | `-t` /<br>`--tag` | Contact | Any value containing only alphanumeric characters and not longer than 40 characters|
 
 <div markdown="block" class="alert alert-info">
 
