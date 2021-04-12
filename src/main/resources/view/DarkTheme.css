@@ -107,6 +107,7 @@
     -fx-background-color: #515658;
 }
 
+/*
 .list-cell:filled:selected {
     -fx-background-color: #424d5f;
 }
@@ -115,6 +116,8 @@
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
 }
+*/
+
 
 .list-cell .label {
     -fx-text-fill: white;

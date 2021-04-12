@@ -478,7 +478,84 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
+      
+### Switching views
 
+Switching Focuris’s view with switch.
+
+1. Prerequisites: None.
+
+2. Test case:
+
+    1. Open the app <br>
+    Expected: the default view should be Kanban View.
+
+    2. Execute `switch` <br>
+    Expected: the view should be switched.
+
+    3. Execute `switch` again <br>
+    Expected: the view should be switched back to the original one.
+
+### Opening the `help` window
+
+Opening the Focuris's `help` window in two ways.
+
+1. Prerequisites: Launch Focuris successfully
+
+1. Test case 1:
+
+    1. Switch to Kanban View.
+    
+    1. Execute `help`<br>
+       Expected: the `help` window should be opened.
+    
+    1. Close the `help` window using the mouse<br>
+       Expected: only the `help` window will be closed.
+    
+1. Test case 2:
+
+    1. Switch to List View.
+    
+    1. Press `F1`<br>
+       Expected: the `help` window should have opened.
+    
+    1. Select the app's main window (either using your mouse or by pressing `Alt` + `Tab` on your keyboard).
+    
+    1. Press `F1` again<br>
+       Expected: the `help` window should be selected again.
+    
+    1. Close the `help` window using the mouse<br>
+       Expected: only the `help` window will be closed.
+       
+### Clearing all events
+
+Clearing all current events in the view.
+
+1. Prerequisite: The app have some events.
+
+1. Test case:
+
+    1. Execute `clear`<br>
+       Expected: All events are cleared.
+       
+    1. Add some events to the app.
+       
+    1. Execute `clear` again <br>
+       Expected: No bug is deleted. The app response with "Please remove extra 
+       irrelevant arguments!".
+       
+### Exiting Focuris
+
+Exiting the app and closing the window.
+
+1. Prerequisite: The app is successfully opened.
+
+1. Test case 1:
+
+    1. Execute `exit`<br>
+       Expected: The app's window is closed.
+   
+              
 ### Saving data
 
 1. Dealing with missing/corrupted data files

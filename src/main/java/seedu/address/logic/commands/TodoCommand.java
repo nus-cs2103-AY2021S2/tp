@@ -13,7 +13,7 @@ public class TodoCommand extends Command {
 
     public static final String COMMAND_WORD = "todo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Event with the status of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event with the status of "
             + "TODO to Focuris. "
             + "Parameters: "
             + PREFIX_NAME + "NAME " + " "
