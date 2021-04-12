@@ -13,15 +13,13 @@ We target JC/Secondary school teachers as they are the teachers who have a great
 compared to primary school schools, yet do not have a standardised platform for communication unlike teachers
 in tertiary schools.
 
-_Teaching Assistant_ mainly uses a Command Line Interface (CLI). This means that a user can use the application by
-typing into a Command Box. For users who type fast, they can use this application more efficiently than other
-applications that heavily use Graphical User Interface (GUI), where a user uses the application by interacting with
-graphical features such as buttons.
+_Teaching Assistant_ mainly uses a Command Line Interface ([CLI](#terminology)). For users who type fast, they can use
+this application more efficiently than other applications that heavily use Graphical User Interface ([GUI](#terminology)).
 
 If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using 
 _Teaching Assistant_.
 
-An image of our GUI is shown below!
+An image of our UI is shown below!
 
 ![Ui](images/Ui.png)
 
@@ -102,7 +100,8 @@ The table below defines some technical terminology used throughout the User Guid
 
 Terms | Meaning
 ----------------- | -------------------
-GUI | Graphical User Interface. It refers to the part of the application you interact with.
+CLI | Command Line Interface. In the context of _Teaching Assistant_, this refers to the command box where you can type your commands.
+GUI | Graphical User Interface. It refers to the part of the application you interact with through graphical features such as buttons.
 JSON | JavaScript Object Notation. Your Teaching Assistant data is stored as a JSON file format. You can find out more on their official website [here](https://www.json.org/json-en.html)!
 
 ##### General Syntax
@@ -111,9 +110,9 @@ The table below explains the general syntax used throughout the User Guide.
 Syntax | Meaning
 ----------------- | -------------------
 `command` | This markup is used to specify text that can be entered into the command box.
-italics | Italics is used to represent terminology that is only specific to Teaching Assistant.
-<div markdown="span" class="alert alert-primary">:bulb:</div> | A bulb indicates that the following text is a tip.
-<div markdown="span" class="alert alert-warning">:exclamation:</div> | An exclamation mark indicates that the following text is a warning.
+:bulb: | This icon indicates that the following text is a tip.
+:exclamation: | This icon indicates that the following text is a warning.
+:information_source: | This icon indicates that the following text is a note.
 
 ---
 
