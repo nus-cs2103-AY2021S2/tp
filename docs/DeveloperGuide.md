@@ -976,6 +976,8 @@ Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-
     1. Other incorrect open commands to try: `open`, `open x`, `...` (where x is not an `Option`)<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 1. Close a panel through open command
 
     1. Prerequisites: Close all panel using `open -a` for better visibility
@@ -1018,6 +1020,9 @@ List of availble set divider position command : `setdividerc`, `setdividerd`, `s
        <br> Expected: Similar to previous.
        
 2. Repeat the previous test case with `setdivider`, `setdividerd`, and `setdividerm`.
+
+
+<div style="page-break-after: always;"></div>
 
 #### Toggling divider orientation via command
 
