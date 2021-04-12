@@ -334,6 +334,8 @@ executes a match command:
     * Pros: Can generate a full outfit with one match command.
     * Cons: Difficult to implement.
 
+<div style="page-break-after: always;"></div>
+
 ### Select feature
 
 #### Implementation
