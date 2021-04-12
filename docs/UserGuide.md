@@ -251,7 +251,7 @@ Clears all student and session data.
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy provides sample data to allow you to try out the application easily. <br>
-Run the <code>clear</code> command to start working with TutorBuddy in a clean slate.
+Run the <code>clear</code> command <b>after</b> you have explored the application and wants to start working with TutorBuddy in a clean slate.
 </div>
 
 Format: `clear`
