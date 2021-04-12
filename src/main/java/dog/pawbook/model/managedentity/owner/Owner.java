@@ -19,12 +19,12 @@ import dog.pawbook.model.managedentity.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Owner extends Entity {
-    public static final String ADDRESS_PREFIX = "Address: ";
     public static final String ENTITY_WORD = "owner";
-    public static final String EMAIL_PREFIX = "Email: ";
-    public static final String PHONE_PREFIX = "Phone: ";
-    public static final String DOG_ID_PREFIX = "ID of Dog(s) owned: ";
 
+    private static final String PHONE_PREFIX = "Phone: ";
+    private static final String EMAIL_PREFIX = "Email: ";
+    private static final String ADDRESS_PREFIX = "Address: ";
+    private static final String DOG_ID_PREFIX = "ID of Dog(s) owned: ";
     // Identity fields
     private final Phone phone;
     private final Email email;
