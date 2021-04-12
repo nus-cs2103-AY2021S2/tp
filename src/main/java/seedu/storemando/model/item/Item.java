@@ -16,12 +16,12 @@ import seedu.storemando.model.tag.Tag;
  */
 public class Item {
 
-    // Identity fields
+    /** Identity fields */
     private final ItemName name;
     private final Quantity quantity;
     private final ExpiryDate expiryDate;
 
-    // Data fields
+    /** Data fields */
     private final Location location;
     private final Set<Tag> tags = new HashSet<>();
 

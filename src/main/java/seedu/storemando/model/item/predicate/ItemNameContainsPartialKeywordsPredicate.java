@@ -10,10 +10,13 @@ import seedu.storemando.model.item.Item;
  * Tests that a {@code Item}'s {@code Name} matches any of the keywords given.
  */
 public class ItemNameContainsPartialKeywordsPredicate implements Predicate<Item> {
+    /**
+     * The list of keyword that is use to be filter on.
+     */
     private final List<String> keywords;
 
     /**
-     * @param keywords a list of words to check
+     * @param keywords a list of words to check.
      */
     public ItemNameContainsPartialKeywordsPredicate(List<String> keywords) {
         assert !keywords.isEmpty();
