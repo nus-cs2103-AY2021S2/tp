@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Testing guide
+title: Testing Guide
 ---
 
 * Table of Contents
@@ -8,7 +8,7 @@ title: Testing guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Running tests
+## Running Tests
 
 There are two ways to run tests.
 
@@ -27,7 +27,7 @@ There are two ways to run tests.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Types of tests
+## Types of Tests
 
 This project has four types of tests:
 

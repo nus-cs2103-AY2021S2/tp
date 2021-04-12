@@ -57,7 +57,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +73,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### Logic Component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +93,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### Model Component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -117,7 +117,7 @@ A `Contact` stores a `Name`, `Email`, `Phone` number, `Address` and zero or more
 
 A `Project` stores an `EventList`, `DeadlineList`, `TodoList` and a `GroupmateList`. The `EventList`, `DeadlineList`, `TodoList` and `GroupmateList` stores zero or more `Repeatable`, `CompletableDeadline`, `CompletableTodo` and `Groupmate` objects respectively.
 
-### Storage component
+### Storage Component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -127,7 +127,7 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the user's data in json format and read it back.
 
-### Common classes
+### Common Classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
@@ -163,7 +163,7 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
 
 #### Design Considerations
 
-##### Aspect: How to store and pass around UI related instructions
+##### Aspect: How to Store and Pass Around UI Related Instructions
 
 * **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
     * Pros:
@@ -183,7 +183,51 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
     * Cons:
         * `MainWindow` and `CommandResult` are not closed to modification. A new instruction to change the UI might require the addition of fields to `CommandResult` (boolean fields for instructions and other fields for related data) as well as a new conditional statement in `MainWindow#execute` to handle the new instruction. This makes it relatively difficult to add new instructions.
 
-### Update Commands
+### Add Event Feature
+
+The mechanism is used to add an `Event` to the `EventList` of a `Project` specified by the `Index` in the project list shown.
+
+A concrete `AddEventCommand` containing the specified `Index` of `Project` and a valid `Event` object.
+
+Each concrete `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+
+Below is a sequence diagram and explanation of how an `addE` command is executed.
+
+![Add Event Sequence Diagram](images/AddEventCommandSequenceDiagram.png)
+
+*Sequence Diagram for the Add Event command*
+
+Step 1. The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
+
+Step 2. User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
+
+Step 3. The `AddEventCommand` will then be executed by calling its `execute` method.
+
+Step 4. Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
+
+Step 5. From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
+
+Step 6. This `Project` will add the `Event` to its `EventList` by calling `addEvent` function.
+
+Step 7. After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
+
+#### Design Considerations
+
+##### Aspect: How to Add a New `Event` to a `Project`, Which is Done in Part `Internally Adding Event`
+
+* **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
+    * Pros:
+        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
+    * Cons:
+        * This implementation will not work with an immutable implementation of `EventList`
+
+* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
+    * Pros:
+        * If the implementation of `EventList` becomes immutable. This implementaion still works.
+    * Cons:
+        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
+
+### Update Feature
 
 CoLAB has several update commands for `Project`s, `Contact`s, `Event`s, `Deadline`s, `Todo`` and `Groupmate`s respectively. They are used to edit details of entities that have already been created.
 
@@ -219,7 +263,7 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
 
 #### Design consideration:
 
-##### Aspect: How the target contact is specified when updating contacts
+##### Aspect: How the Target Contact is Specified When Updating Contacts
 
 * **Alternative 1 (current choice):** Pass the `Index` object down to `UniqueContactList#setContact`.
     * Pros: More Consistent in how to pass indexes and locate an element in a `List` throughout the codebase.
@@ -232,40 +276,6 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
 * **Alternative 3:** Pass the zero-based index as an integer down to `UniqueContactList#setContact`.
     * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
-
-### Add Event to Project Command
-
-The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
-
-The client creates a concrete `AddEventCommand` that contains the specified index of project and a valid Event object. Each concrete `AddEventCommand` implements the `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-Step 1. The user executes the command `addEto 1 d/Tutorial i/WEEKLY at/25-03-2021`, which adds an `Event` with description, interval and date specified to `Project` 1 in Project List.
-
-Step 2: The input is parsed by `AddEventCommandParser`. It checks if `Event` provided is valid or not. If input is invalid, an exception will be throw and `Ui` will help print out the exception message. Otherwise, an `AddEventCommand` will be created.
-
-Step 3: The `AddEventCommand#execute` is called. It checks whether `Index` provided is valid or not and if `Event` provided is duplicated. If check fails, an exception will be thrown, `Ui` will help print out the exception message. Otherwise, the change will be made to `Project`and `Model` in the next step.
-
-Step 4: The `Project` specified by Index will call addEvent function to add the given `Event` to its `EventList`. `Model` updates its Project List based on the change.
-
-Step 5: A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing the Event added. The `Ui` will help print out the success message.
-
-#### Design Considerations
-
-##### Aspect: How to add a new `Event` to a `Project`.
-
-* **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
-    * Pros:
-        * This implementation requires no additional time and space (for creation of new 'Project` and `EventList` object).
-    * Cons:
-        * This implementation will not work with an immutable implementation of `EventList`
-
-* **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
-    * Pros:
-        * If the implementation of `EventList` becomes immutable. This implementaion still works.
-    * Cons:
-        * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
 ### Delete Todo Feature
 
@@ -299,7 +309,7 @@ With this, the Delete Todo command finishes executing and CoLAB's UI displays th
 
 <div style="page-break-after: always"></div>
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, DevOps**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -313,7 +323,7 @@ With this, the Delete Todo command finishes executing and CoLAB's UI displays th
 
 ## **Appendix A: Requirements**
 
-### Product scope
+### Product Scope
 
 **Target user profile**:
 
@@ -335,7 +345,7 @@ Our target users are students currently enrolled in a university who,
 * Faster compared to other applications
     * Users who are comfortable with using a CLI can potentially do their project management tasks much faster than traditional applications as they can do everything from the keyboard.
 
-### User stories
+### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -375,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | University Student | redo an action made in the app | redo an action that was previously undone |
 | `* *` | University Student | clear all data in the app| start my application from fresh |
 
-### Use cases
+### Use Cases
 
 For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise.
 
@@ -423,9 +433,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-#### Add entries
+#### Add Entries
 
-##### UC1 - Add a project/contact
+##### UC1 - Add a Project/Contact
 
 **MSS**
 
@@ -450,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-##### UC2 - Add a todo/deadline/event/groupmate to a project
+##### UC2 - Add a Todo/Deadline/Event/Groupmate to a Project
 
 **MSS**
 
@@ -482,9 +492,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-#### Delete entries
+#### Delete Entries
 
-##### UC3 - Delete a project/contact
+##### UC3 - Delete a Project/Contact
 
 **MSS**
 
@@ -509,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-##### UC4 - Delete a todo/deadline/event/groupmate from a project
+##### UC4 - Delete a Todo/Deadline/Event/Groupmate From a Project
 
 **MSS**
 
@@ -546,9 +556,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-#### Modify existing entries
+#### Modify Existing Entries
 
-##### UC5 - Modify information about a project/contact
+##### UC5 - Modify Information About a Project/Contact
 
 **MSS**
 
@@ -573,7 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-##### UC6 - Modify information about a todo/deadline/event/groupmate in a project
+##### UC6 - Modify Information About a Todo/Deadline/Event/Groupmate in a Project
 
 **MSS**
 
@@ -610,9 +620,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-#### Mark an entry as done
+#### Mark an Entry as Done
 
-##### UC7 - Mark a todo/deadline in a project as done
+##### UC7 - Mark a Todo/Deadline in a Project as Done
 
 **MSS**
 
@@ -649,9 +659,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-#### Search for entries
+#### Search for Entries
 
-##### UC8 - Find a specific contact
+##### UC8 - Find a Specific Contact
 
 **MSS**
 
@@ -670,7 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 #### Others
 
-##### UC9 - Manage today's deadlines and events
+##### UC9 - Manage Today's Deadlines and Events
 
 **MSS**
 
@@ -685,7 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-##### UC10 - Purge all entries from the app
+##### UC10 - Purge All Entries From the App
 
 **MSS**
 
@@ -704,7 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc11---view-help">UC11</a>)</u>.
 
-##### UC11 - View help
+##### UC11 - View Help
 
 **MSS**
 
@@ -742,7 +752,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <div style="page-break-after: always"></div>
 
-## **Appendix B: Instructions for manual testing**
+## **Appendix B: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -751,7 +761,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
@@ -766,7 +776,7 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a contact
+### Deleting a Contact
 
 1. Deleting a contact while all contacts are being shown
 
@@ -781,7 +791,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Adding a project
+### Adding a Project
 
 1. Test case: `addP n/My Project`<br>
     Expected: A new project named "My Project" is added to the list. The Overview Tab of the newly created project is shown.
@@ -792,7 +802,7 @@ testers are expected to do more *exploratory* testing.
 1. Other incorrect delete commands to try: `addP`, `addP My Project`, `...`<br>
     Expected: Similar to previous.
 
-### Saving data
+### Saving Data
 
 1. Dealing with missing/corrupted data files
 

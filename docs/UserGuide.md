@@ -41,7 +41,7 @@ We look forward to seeing what you accomplish with CoLAB. Get your journey start
 
 This section serves to familiarise you with the information and terms that would help you make the best use of this user guide.
 
-### **2.1 Structure of this Document**
+### **2.1 Structure of This Document**
 
 We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for.
 
@@ -57,7 +57,7 @@ In [Section 6: Command Summary](#6-command-summary), you will find a summary on 
 
 You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
-### **2.2 Reading this Document**
+### **2.2 Reading This Document**
 
 This subsection serves to provide explanations on the application's user interface (UI) as well as symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
@@ -256,7 +256,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
 <div style="page-break-after: always"></div>
 
-## **3. Quick start**
+## **3. Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -328,7 +328,7 @@ To switch between the overview and todo pages, you can use the `overview` and `t
 
 Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
 
-##### Viewing a project: `project`
+##### Viewing a Project: `project`
 
 Displays a panel with details of a specified project.
 
@@ -344,7 +344,7 @@ Example:
 
 * `project 1` displays the first project.
 
-##### Viewing the overview of a project: `overview`
+##### Viewing the Overview of a Project: `overview`
 
 Displays a panel containing an overview of the project that is currently displayed.
 
@@ -354,7 +354,7 @@ Format: `overview`
 This command can only be used when a project is currently being displayed.
 </div>
 
-##### Viewing the todos of a project: `todos`
+##### Viewing the Todos of a Project: `todos`
 
 Displays a panel containing the todos of the project that is currently displayed.
 
@@ -364,7 +364,7 @@ Format: `todos`
 This command can only be used when a project is currently being displayed.
 </div>
 
-##### Adding a project: `addP`
+##### Adding a Project: `addP`
 
 Adds a project to CoLAB.
 
@@ -380,7 +380,7 @@ Example:
 
 * `addP n/CS2103T Team Project` adds a project with the name `CS2103T Team Project` to CoLAB.
 
-##### Updating a project: `updateP`
+##### Updating a Project: `updateP`
 
 Updates an existing project in CoLAB.
 
@@ -398,7 +398,7 @@ Example:
 
 * `updateP 1 n/CS2103 Group Project` updates the name of the first project in CoLAB to `CS2103 Group Project`.
 
-##### Deleting a project: `deleteP`
+##### Deleting a Project: `deleteP`
 
 Deletes a project from CoLAB.
 
@@ -428,7 +428,7 @@ Todos contain a description. They can also be marked as done using the `markT` c
 
 Todos are sorted alphabetically.
 
-##### Adding a todo to a project: `addT`
+##### Adding a Todo to a Project: `addT`
 
 Adds a todo to a project in CoLAB.
 
@@ -449,7 +449,7 @@ Example:
 You can add a todo to a project containing another todo with the same `DESCRIPTION` as long as the todo in the project has been marked as done.
 </div>
 
-##### Updating a todo of a project: `updateT`
+##### Updating a Todo of a Project: `updateT`
 
 Updates an existing todo of a project in CoLAB.
 
@@ -468,7 +468,7 @@ Example:
 
 * `updateT 1 i/2 d/Review latest PR` updates the description of the second todo of the first project with the new description `Review latest PR`.
 
-##### Marking a todo as done: `markT`
+##### Marking a Todo as Done: `markT`
 
 Marks a todo as done.
 
@@ -485,7 +485,7 @@ Example:
 
 * `markT 1 i/1` marks the first todo of the first project as done.
 
-##### Deleting a todo from a project: `deleteT`
+##### Deleting a Todo From a Project: `deleteT`
 
 Deletes a todo from a project in CoLAB.
 
@@ -512,7 +512,7 @@ Deadlines contain a description and a date. They can also be marked as done usin
 
 Deadlines are sorted in ascending order by date.
 
-##### Adding a deadline to a project: `addD`
+##### Adding a Deadline to a Project: `addD`
 
 Adds a deadline to a project in CoLAB.
 
@@ -534,7 +534,7 @@ Example:
 You can add a deadline to a project containing another deadline with the same `DESCRIPTION` and `DATE` as long as the deadline in the project has been marked as done.
 </div>
 
-##### Updating a deadline of a project: `updateD`
+##### Updating a Deadline of a Project: `updateD`
 
 Updates an existing deadline of a project in CoLAB.
 
@@ -559,7 +559,7 @@ Examples:
 * `updateD 1 i/2 d/Finish v1.3 by/02-02-2021` updates the second deadline of the first project with new description `Finish v1.3` and new due date `02-02-2021`.
 * `updateD 2 i/1 by/31-03-2021` updates the first deadline of the second project with the new due date `31-03-2021`.
 
-##### Marking a deadline as done: `markD`
+##### Marking a Deadline as Done: `markD`
 
 Marks a deadline as done.
 
@@ -576,7 +576,7 @@ Example:
 
 * `markD` 1 i/1 marks the first deadline of the first project as done.
 
-##### Deleting a deadline from a project: `deleteD`
+##### Deleting a Deadline From a Project: `deleteD`
 
 Deletes a deadline from a project in CoLAB.
 
@@ -603,7 +603,7 @@ Events contain a description, date and a time. Events can be set to either occur
 
 Events are sorted in ascending order by date.
 
-##### Adding an event to a project: `addE`
+##### Adding an Event to a Project: `addE`
 
 Adds an event to a project in CoLAB.
 
@@ -629,7 +629,7 @@ Examples:
 You cannot add an event to a project containing another event with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
 </div>
 
-##### Updating an event of a project `updateE`
+##### Updating an Event of a Project `updateE`
 
 Updates an existing event of a project in CoLAB.
 
@@ -657,7 +657,7 @@ Examples:
 * `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y` updates the first event of the first project to be weekly event with new description `Project Meting` starting on `24-04-2021`.
 * `updateE 2 i/2 on/14-04-2021 at/1015` updates the second event of the second project to a new date `14-04-2021` at `1015`.
 
-##### Deleting an event from a project: `deleteE`
+##### Deleting an Event From a Project: `deleteE`
 
 Deletes an event from a project in CoLAB.
 
@@ -688,7 +688,7 @@ Groupmates are sorted alphabetically by name.
 You can use the contacts feature in CoLAB to store more information about a groupmate. Once the contact has been added, you can then easily find the contact by using the `fincC` command to search for their name.
 </div>
 
-##### Adding a groupmate to a project: `addG`
+##### Adding a Groupmate to a Project: `addG`
 
 Adds a groupmate to a project in CoLAB.
 
@@ -711,7 +711,7 @@ Examples:
 * `addG 1 n/John Doe` adds a groupmate with name `John Doe` to the first project.
 * `addG 2 n/Betsy Crowe r/developer` adds a groupmate with name `Betsy Crowe` and role `developer` to the second project.
 
-##### Updating a groupmate : `updateG`
+##### Updating a Groupmate : `updateG`
 
 Updates an existing groupmate of a project in CoLAB.
 
@@ -741,7 +741,7 @@ Examples:
 * `updateG 2 i/2 n/Betsy Crower r/` Updates the name of the second groupmate of the second project with the new name `Betsy Crower` and clears all existing roles.
 * `updateG 2 i/3 n/Betsy Crower r/group-leader r/tester` Updates the name of the third groupmate of the first project to the new name `Betsy Crower` and changes her roles to `group-leader` and `tester`.
 
-##### Deleting a groupmate from a project: `deleteG`
+##### Deleting a Groupmate From a Project: `deleteG`
 
 Deletes a groupmate from a project in CoLAB.
 
@@ -766,13 +766,13 @@ Contact are used in CoLAB to store contact information about a person, to help y
 
 Each contact contains a name, phone_number, email, address and zero or more tags.
 
-##### Viewing all contacts : `contacts`
+##### Viewing All Contacts : `contacts`
 
 Displays a panel with a list of all contacts in CoLAB.
 
 Format: `contacts`
 
-##### Adding a contact: `addC`
+##### Adding a Contact: `addC`
 
 Adds a contact to CoLAB.
 
@@ -800,7 +800,7 @@ Example:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` adds a contact with the name `John Doe`, phone number `98765432`, email `johnd@example.com` and address `John street, block 123, #01-01`.
 
-##### Updating a contact : `updateC`
+##### Updating a Contact : `updateC`
 
 Updates an existing contact in CoLAB.
 
@@ -828,7 +828,7 @@ Examples:
 * `updateC 1 p/91234567 e/johndoe@example.com` updates the first contact with a new phone number `91234567` and email `johndoe@example.com`.
 * `updateC 2 n/Betsy Crower t/` updates the second contact with a new name `Betsy Crower` and clears all existing tags.
 
-##### Locating contacts by name: `findC`
+##### Locating Contacts by Name: `findC`
 
 Find contacts whose names contain any of the given keywords.
 
@@ -859,7 +859,7 @@ Example:
 
 ![result for 'findC alex david'](images/findAlexDavidResult.png)
 
-##### Deleting a contact : `deleteC`
+##### Deleting a Contact : `deleteC`
 
 Deletes a contact from CoLAB.
 
@@ -894,13 +894,13 @@ Format: `today`
 
 ### **4.4 Others**
 
-##### Viewing help : `help`
+##### Viewing Help : `help`
 
 Displays a panel containing a summary of commands as well as a link to this user guide. The link can be copied to the system clipboard by clicking on the `Copy` button.
 
 Format: `help`
 
-##### Undoing previous command : `undo`
+##### Undoing Previous Command : `undo`
 
 Restores CoLAB to the state before the previous undoable command was executed.
 
@@ -916,7 +916,7 @@ Example:
 * `deleteP 1` Deletes the first project in the list.
 * `undo` Reverses the `deleteP 1` command.
 
-##### Redoing previous command : `redo`
+##### Redoing Previous Command : `redo`
 
 Reverses the most recent undo command.
 
@@ -924,13 +924,13 @@ Format: `redo`
 
 * Requires an undo command to have been performed prior to a redo command.
 
-##### Exiting the program : `exit`
+##### Exiting the Program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-##### Clearing all entries : `clear`
+##### Clearing All Entries : `clear`
 
 Clears all entries from CoLAB. Both contacts and projects will be cleared.
 
