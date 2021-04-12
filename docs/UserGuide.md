@@ -147,16 +147,16 @@ Examples:
 
 Finds persons whose groups contain any of the given keywords.
 
-Format: `findg KEYWORD [MORE_KEYWORDS]`
+Format: `findpg KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `badminton` will match `Badminton`
-* The order of the keywords does not matter. e.g. `findg tennis table` will list every person in the table tennis group
+* The order of the keywords does not matter. e.g. `findpg tennis table` will list every person in the table tennis group
 * Only the groups are searched.
 * Only full words will be matched e.g. `badminton` will not match `badmintons`
 * Persons whose group match at least one keyword will be returned (i.e. `OR` search).
   
 Examples:
-* `findg badminton` returns the list of contacts that are in the badminton group
+* `findpg badminton` returns the list of contacts that are in the badminton group
 
 ### Deleting a person : `deletep`
 
