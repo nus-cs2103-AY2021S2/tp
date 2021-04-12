@@ -89,7 +89,7 @@ that have passed.
 An outline of the implementation is as follows:
 
 The `TeachingAssistantParser` should accept another case of command word `eclear` which eventually returns a
-`ClearOverdueEntriesCommand` back to `LogicManager`. This command has no arguments and will immediately call
+`ClearOverdueEntryCommand` back to `LogicManager`. This command has no arguments and will immediately call
 `clearOverdueEntries` method in `Model` interface. Finally, a new `CommandResult` is created to handle the result
 of this command.
 
