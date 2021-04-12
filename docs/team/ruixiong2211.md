@@ -52,5 +52,6 @@ the sequence diagram of it. <br>
 ### Contributions to team-based tasks
 * Maintained the issue tracker
 * Updating the User/Developer guide not related to features as mentioned above.
+* Peer review team mates code, checked for spelling errors and gave feedback for their pull requests. [eg1](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/198), [eg2](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/65)
 
 

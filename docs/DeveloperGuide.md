@@ -150,15 +150,46 @@ Classes used by multiple components are in the `seedu.cakecollate.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Sorting displayed list by delivery date
+### Add Command Feature
 
-The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date
+A key functionality of CakeCollate is the ability to add cake items into an order (better known as order items or order descriptions for this app). The add command accepts the parameter `o/ORDER_DESCRIPTION` to allow for this. To better accommodate our users, we decided to have a table of order items, and if users wanted to add an item from that table to their order, they could do so by specifying the corresponding indexes using the `oi/` prefix.
 
-(insert sequence diagram)
+However, since the user inputs specified by both the `o/` and `oi/` prefixes were referring to similar data items stored in the `Order` object of the model class, it seemed best to store only one of them to avoid duplication, and map one input to the other. 
 
-To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList() command.
+We chose to still contain an `OrderDescription` object in the `Order` class, and decided to map the indexes using the entries from the order items model. Prior to this feature, the `AddCommand` was initialised using an `Order` object created by the `AddCommandParser`, the `AddCommand::execute` method took in a model, and the `AddCommandParser::parse` method did not take in a model. Given this, there were two main options to implement the mapping:
 
-(explain with more code later)
+1. Refactor `AddCommandParser::parse` to have access to the Model. 
+
+    * Pros: This meant that the mapping would be done within the parser, which fitted the responsibility of the parser, and the order object for initialising the `AddCommand` can be created in the parser itself.
+    * Cons: This seemed like extra coupling between the Parser methods and classes, and the Model class, as the method `CakeCollateParser::parseCommand` which is the caller of `AddCommandParser::parse` will need to have access to the model too.
+
+2. Allow the mapping to take place in the `AddCommand::execute` method, since that method takes in a model as a parameter. 
+
+    * Pros: Keep the existing level of coupling between model and parser classes (i.e. none). 
+    * Cons: This meant that the order object cannot be initialised in the `AddCommandParser::parse` method as the `OrderDescriptions` in the `Order` would have been incomplete if the mapping from `indexes` to `OrderDescriptions` was not done yet.
+
+In light of the additional coupling, the second option was chosen. An `AddCommandDescriptor` nested class was created in the `AddCommand` class, similar to the `EditCommand`, so that indexes and order descriptions that were inputted can be stored, and once the mappings were done in the `AddCommand::execute` method, the entire `Order` object could be built before being added to the model.
+
+Hence, based on this implementation, here is the sequence diagram containing the steps that occur when a user inputs an `Order` containing an `o/` and `oi/` field.
+
+**Sequence diagram depicting the `AddCommandParser::parse` method:**
+
+![AddParserSequenceDiagram](images/AddParserSequenceDiagram.png)
+
+**Sequence diagram depicting the `AddCommand::execute` method:**
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+
+[comment]: <> (### Sorting displayed list by delivery date)
+
+[comment]: <> (The original approach of sorting the displayed list was to sort the observable list that the UI received from the Model Manager. This was not possible because the list obtained was immutable, and the indexes provided for some commands stopped corresponding to the actual orders displayed in the GUI. As such, it's implemented such that the model always keeps a list that is sorted by delivery date)
+
+[comment]: <> (&#40;insert sequence diagram&#41;)
+
+[comment]: <> (To ensure that after every command, the list was always sorted, each command sent to the model would additionally call the sortOrderList&#40;&#41; command.)
+
+[comment]: <> (&#40;explain with more code later&#41;)
 
 
 ### Find feature
@@ -175,7 +206,7 @@ This updated `FilteredList` is then displayed, showing the results of the find c
 This operation is exposed in the `Model` interface as `Model#updateFilteredOrderList`.
 
 The find feature generally does a generic 'OR' search. When multiple keywords are specified, orders that contains any of these keywords will be displayed.
-However, to enable a more specific search, users can specify multiple prefixes such as `/n` and `/o` and their respective keywords. This will trigger an 'AND' search.
+However, to enable a more specific search, users can specify multiple prefixes such as `n/` and `o/` and their respective keywords. This will trigger an 'AND' search.
 
 If users want to find all order with name `Alex` OR order description `Chocolate`, they can use the command: `find Alex Chocolate`.
 If users want to find an order with name `Alex` AND order description `Chocolate`, they can use the command: `find n/Alex o/Chocolate`.
@@ -224,7 +255,7 @@ As CakeCollate is adapted from the AddressBook-Level3 project, the original find
       * Creating many classes causes increased coupling.
       * Hard to implement `OR` searches.
 
-### Find feature
+### Remind feature
 
 The intended usage of the Remind feature is for users to locate impending undelivered orders within a certain time frame which the user can specify. 
 The user specifies the number of days from the current date for all undelivered orders they want to locate. <br>
@@ -233,7 +264,7 @@ The remind mechanism is facilitated by `ReminderDatePredicate` which implements 
 The conditions (date period) on which undelivered orders to locate is then captured in this `Predicate`.
 The orders in CakeCollate are extracted and stored in a JavaFX `FilteredList`.
 It is then updated through the usage of `FilteredList#setPredicate(Predicate)` while passing `ReminderDatePredicate` into the method.
-This updated `FilteredList` is then displayed, showing the results of the find command.
+This updated `FilteredList` is then displayed, showing the results of the remind command.
 
 This operation is exposed in the `Model` interface as `Model#updateFilteredOrderList`.
 
@@ -282,7 +313,56 @@ time frame of 1 week that pops out whenever the user opens the application.
     * Cons:
       * User has no flexibility to specify the time range he/she wants to receive reminders for.
       * If user want to check for reminders again he has to reopen the application.
-      
+    
+###Add Order Item Feature
+The `addItem` command enables users to predefine order items (also known as cake items or order descriptions). The user can choose to add order items directly from this table when adding orders to CakeCollate.
+
+An `OrderItem` consists of a `Type` field which refers to the description of the order item. In the user guide the `Type` field is referred to as `ORDER_DESCRIPTION` in order to make it more user friendly since `Type` is not very descriptive.
+
+All order items input by the user are added to the `UniqueOrderItemList` and displayed on the right side of the Ui.
+
+The underlying functionality for the `addItem` command utilises the `AddOrderItemCommand::execute` method which checks for duplicates of that particular `OrderItem` in the `UniqueOrderItemList` using the `Model::hasOrderItem` method. The `OrderItem` input by the user is added to the `UniqueOrderItemList` using the `Model::addOrderItem` method if no duplicates are found.  
+
+If the user wants to add an order item "Chocolate Cake" they can use the command `addItem Chocolate Cake`.
+
+Given below is an example usage scenario and how the `addItem` mechanism works.
+
+*Step 1.* The user keys in and executes the command `addItem Chocolate Cake` to add an order item with a `Type` field of "Chocolate Cake".
+
+*Step 2.* The command is parsed by `AddOrderItemCommandParser`.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, an `AddOrderItemCommand` will be created.
+
+*Step 4.* `AddOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
+
+The following sequence diagram shows how this works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates AddOrderItemCommandParser and calls parse("Chocolate Cake") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+![AddOrderItemSequenceDiagram](images/AddOrderItemSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+
+#### Design considerations: 
+
+##### Aspect: Checking for duplicates when adding `OrderItem` to `UniqueOrderItemList`
+* **Alternative 1 (current choice):** `Type::equals` method ignores case (returns `True` if the type is the same even if the case is different). 
+   * Pros:
+     * Prevents user from accidentally adding a duplicate `OrderItem` with the same value for `Type` but different case. 
+   * Cons: 
+     * Provides lesser flexibility to user who might want to add in the same order item with different case.
+
+* **Alternative 2:** `Type::equals` method considers case (returns `False` if case is different).
+    * Pros:
+      * Provides more flexibility to user who might want to add in the same order item with different case.
+    * Cons:
+      * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -404,8 +484,9 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | Priority| As a …​                                   | I can …​                                                        | So that …​                                                                                |
 |---------|----------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
 | `***`   | User                                         | view all the possible commands that I can execute                  | I know what functionalities I can make use of when using the program                         |
-| `***`   | User                                         | add orders for the day                                             | I can add new orders to my database                                                          |
-| `***`   | User                                         | delete orders for the day                                          | I can remove unnecessary orders from my database                                             |
+| `***`   | User                                         | add orders                                                         | I can add new orders to my database                                                          |
+| `***`   | User                                         | delete orders                                                      | I can remove unnecessary orders from my database                                             |
+| `***`   | User                                         | list all the orders I have entered in the app                      | I can view what orders I have to fulfil or have fulfilled                                         |
 | `***`   | User                                         | list all my orders for the day                                     | I can view what orders I have to fulfil for the day                                          |
 | `***`   | User                                         | retrieve data stored in the previous sessions                      | -                                                                                            |
 | `***`   | User logging in after a long time            | delete all orders, reset the application                           | I can start on a clean slate since the previous orders are now meaningless to me             |
@@ -416,12 +497,11 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `**`    | User                                         | sort the orders according to which one needs to be completed first | I can prioritise the orders to work on for that day                                          |
 | `**`    | User                                         | edit individual orders                                             | I can update orders if a customer changes it instead of deleting and adding another order    |
 | `**`    | User                                         | add notes and special requests for orders                          | details on customized orders can be mentioned together with the main order                   |
-| `**`    | User who loves statistics                    | view my most ordered products                                      | I know what to products to promote more                                                      |
 | `**`    | Regular user                                 | be warned of duplicate orders I might have accidentally entered    | I can avoid making more than necessary, which may waste time and resources                   |
 | `**`    | User                                         | add different statuses to my orders                                | I can keep track of whether my order is delivered, not delivered yet or cancelled.           |
 | `**`    | User                                         | find the orders made by a certain customer                         | I can retrieve information about the orders that this customer have made before, if needed   |
 | `**`    | User                                         | input multiple order descriptions at one go                        | I don't need to input multiple entries for customers who order more than one type of cake    |
-| `**`    | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
+| `*`     | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
 | `*`     | User                                         | save a particular customer's information                           | I can quickly add another order from this customer next time                                 |
 | `*`     | Regular user                                 | keep track of the money paid or owed by the customer               | I can ensure that all my dues have been received                                             |
 
@@ -541,6 +621,53 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 2.
 
+**Use case: Add an order item**
+
+**MSS**
+
+1.  User requests to add an order item to the order items table.
+2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The order item description is invalid i.e. it contains invalid characters such as numbers and special characters or is blank.
+
+    * 1a1. CakeCollate shows an error message stating that the order item description should only contain alphabets and shouldn't be blank.
+    
+      Use case resumes at step 1.
+    
+* *a. User requests for help <link help use case here>.
+
+**Use case: Delete an order item**
+
+**MSS**
+
+1.  User requests to delete a specific list of order items.
+2.  CakeCollate deletes the specified order items.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. One or more indexes input by the user exceeds the length of the current list.
+
+    * 3a1. CakeCollate shows an error message stating that the index provided is invalid.
+
+      Use case resumes at step 1.
+
+* 3b. One or more indexes input by the user is negative.
+
+    * 3a1. CakeCollate shows an error message stating that the index can't be negative.
+
+      Use case resumes at step 1.
+
+* *a. User requests for help <link help use case here>.
 
 **Use case: Help needed for command summary**
 
