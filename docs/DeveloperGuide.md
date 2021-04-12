@@ -520,8 +520,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<div style="page-break-after: always;"></div>
-
 * 1b. The property to be added has a deadline that is already over.
 
     * 1b1. PocketEstate shows an error message.
@@ -544,6 +542,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PocketEstate shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 * 1b. The appointment to be added has a date and time that is already over.
 
