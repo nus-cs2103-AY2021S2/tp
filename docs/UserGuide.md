@@ -24,7 +24,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     + [List all dishes](#menu-list)
     + [Add a dish](#menu-add)
     + [Delete a dish from the menu](#menu-delete)
-    + [Edit dish information](#menu-delete)
+    + [Edit dish information](#menu-edit)
     + [Find dish](#menu-find)
       </span>
   * <span class="order">[`Order`](#order)
@@ -594,7 +594,9 @@ component command prefix/[INPUT] -flag
         order history
         ```
  
-        The above command displays the history of completed and cancelled orders in the right column of the GUI[<sup>3</sup>](#glossary). The list is in chronological sequence based on the order's date and time.
+        The above command displays the history of completed and cancelled orders in the right column of the GUI[<sup>3</sup>](#glossary). The list is in chronological sequence based on the order's date and time. 
+        > Note: you cannot edit orders in order history. If the command `order edit [INDEX]` is called, the index in question refers to the `order list` which contains only uncompleted orders.
+
         
         <p>&nbsp;</p>
         
