@@ -23,8 +23,10 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all garments whose names, colours, sizes, "
             + "dresscodes or descriptions contain any of the specified\n"
             + "keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute\n"
-            + "Example: " + COMMAND_WORD + " n/worn out jeans";
+            + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute.\n"
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
+            + "For dress code, [KEYWORD] must be either casual, formal, or active\n"
+            + "For type, [KEYWORD] must be upper, lower, or footwear.";
 
     private final AttributesContainsKeywordsPredicate predicates;
 
@@ -36,8 +38,6 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredGarmentList(predicates);
-        //return new CommandResult(
-        //        String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
         return new CommandResult(showMessage());
     }
 
@@ -62,11 +62,6 @@ public class FindCommand extends Command {
         if (predicates.isPrefixValuePresent(PREFIX_TYPE)) {
             result = result + "\ntype: " + predicates.getPrefixValue(PREFIX_TYPE);
         }
-        /*result = result + predicates.ifPrefixPresentGetValue(PREFIX_NAME)
-                + predicates.ifPrefixPresentGetValue(PREFIX_SIZE)
-                + predicates.ifPrefixPresentGetValue(PREFIX_COLOUR)
-                + predicates.ifPrefixPresentGetValue(PREFIX_DRESSCODE)
-                + predicates.ifPrefixPresentGetValue(PREFIX_TYPE);*/
         List<String> predicateDesc = predicates.getDescriptionValue();
         boolean firstDesc = true;
         for (String desc : predicateDesc) {

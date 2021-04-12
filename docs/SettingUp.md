@@ -12,6 +12,9 @@ title: Setting up and getting started
 ## Setting up the project in your computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+NuFash is a brownfield project for NUS CS2103T AY 20/21 S2, and is built upon the following existing project:
+
+[AddressBook Level 3](https://github.com/nus-cs2103-AY1920S2/addressbook-level3)
 
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
 </div>
@@ -45,11 +48,4 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
-
-1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
-
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Removing fields](tutorials/RemovingFields.md)
-   * [Adding a new command](tutorials/AddRemark.md)
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [NuFash’s architecture](DeveloperGuide.md#architecture).

@@ -2,21 +2,21 @@
 layout: page
 title: User Guide
 ---
-# Nufash User Guide
+# NuFash User Guide
 
 
 ---
 ## Introduction
-**nufash** is a **digital wardrobe desktop app for university students and/or those looking to
+**NuFash** is a **digital wardrobe desktop app for university students and/or those looking to
 better organise their clothes**. The app is **optimised for users who prefer typing**, but also has the added 
-benefit of a **smooth and easy to use Graphical User Interface(GUI)**.  The nufash application allows users to input 
+benefit of a **smooth and easy to use Graphical User Interface(GUI)**.  The NuFash application allows users to input 
 their clothings into their own digital wardrobe, and be able
 to search through, and match their various clothes quickly.
-Use nufash to reduce clutter and start making wiser clothing decisions today!
+Use NuFash to reduce clutter and start making wiser clothing decisions today!
 
 <br>
-This User Guide is for new users of the nufash app to learn and understand what are the various features that nufash 
-has to offer. Read on to learn how to use them to digitise your wardrobe and use nufash full effect!
+This User Guide is for new users of the NuFash app to learn and understand what are the various features that NuFash 
+has to offer. Read on to learn how to use them to digitise your wardrobe and use NuFash full effect!
 <br><br>
 
 * [Quickstart](#quickstart)
@@ -45,7 +45,7 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 
 2. You can download the latest `nufash.jar` [here](https://github.com/AY2021S2-CS2103T-T12-1/tp/releases/tag/v1.3.0).
 
-3. Copy the file to the folder you want to use as the _home folder_ for the nufash application.
+3. Copy the file to the folder you want to use as the _home folder_ for the NuFash application.
 
 4. Double-click the file to start the app. A GUI similar to one depicted below should launch in a few seconds.<br>
 
@@ -288,7 +288,7 @@ Format: `exit`
 <br><br>
 
 ### Saving the data
-nufash data is saved in the hard disk automatically as a JSON file under [JAR file location]/data/nufash.json
+NuFash data is saved in the hard disk automatically as a JSON file under [JAR file location]/data/nufash.json
 after any command that changes the data. 
 There is no need to save manually.
 
@@ -300,14 +300,14 @@ There is no need to save manually.
 Advanced users are welcome to update data directly by editing the data file at [JAR file location]/data/nufash.json.
 
 **:exclamation: Caution:**<br>
-  If your changes to the data file makes its format invalid, nufash will discard all data and start with an empty data file at the next run.
+  If your changes to the data file makes its format invalid, NuFash will discard all data and start with an empty data file at the next run.
 <br><br>
 
 ---
 ## FAQ
 Q: How do I transfer my data to another Computer?<br>
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
-the data of your previous nufash folder.
+the data of your previous NuFash folder.
 
 Q: Who do I contact if I face any issues?<br>
 A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp), or better yet, submit a pull request with a way to solve it!

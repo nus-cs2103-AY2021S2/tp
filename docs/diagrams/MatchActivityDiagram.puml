@@ -1,0 +1,25 @@
+@startuml
+:User executes match command;
+
+if () then ([valid indices])
+    :  System attempts to find
+        garments that match
+     garment specified by user;
+
+if () then ([valid dress code and types])
+    :Display all garments
+        that match the
+      specified garment;
+
+else ([else])
+    :   Output invalid dress
+    codes or types message;
+endif
+
+else ([else])
+    :Output invalid garment
+             index error;
+endif
+
+stop
+@enduml
