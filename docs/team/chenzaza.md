@@ -14,8 +14,8 @@ Given below are my contributions to the project.
 
 **Enhancements implemented**
 
-* **Add Guardian's name and Guardian's phone for a Student** [\#41](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/41)
-  * Justification: The guardian's contacts are essential information for our target users.
+* **Add School, Guardian's name and Guardian's phone for a Student** [\#41](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/41)
+  * Justification: The school and guardian's contacts are essential information for our target users.
   * Highlights: This enhancement affects the formatting of Person's list, and existing Add, Edit command.
     It requires an in-depth analysis of storage design, as well as the command and command parser structures and checks.
     

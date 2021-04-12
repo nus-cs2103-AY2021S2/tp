@@ -26,6 +26,7 @@ Class Email
 Class Name
 Class Phone
 Class School
+Class Level
 Class UniquePersonList
 }
 
@@ -70,6 +71,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> School
+Person *--> Level
 Person *--> "*" Subject
 Person *--> "*" Lesson
 

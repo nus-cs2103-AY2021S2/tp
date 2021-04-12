@@ -112,8 +112,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* stores a Person object.
+* stores the TutorsPet data.
+* stores a Person object that represents a student 
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed'.
   * UI bounded to this list and Person object will be automatically updated when the data in the list change.
 * does not depend on any of the other three components.
@@ -1306,6 +1306,71 @@ testers are expected to do more *exploratory* testing.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
+### Adding a student
+Add a student with his/her details
+
+   1. Test case: `add n/John`<br>
+      Expected: The student cannot be added. 
+     
+      A student's name and phone are compulsory details that must be provided.
+      Here, the phone number is missing.
+
+   1. Test case: `add n/John p/aaaaa`<br>
+      Expected: The student cannot be added.
+     
+      Phone number has the invalid format.
+
+   1. Test case: `add n/John Doe p/87438807`<br>
+      Expected: Assume that phone number is already owned by another student in TutorsPet.
+     
+      The new student cannot be added because each student must have a unique phone number.
+
+   1. Test case: `add n/Alex Yeoh p/12345678`<br>
+      Expected: Assume that the name is the same as another student in TutorsPet.
+     
+      There will be a message notifying the user about the duplicate name. 
+     
+      If the user proceeds to type`y`, the student can be added. If the user proceeds to type`n`, the student will not be added.
+
+   1. Test case: `add n/John Doe p/98765432 s/Clementi Secondary School e/johnd@example.com a/311, Clementi Ave 2, #02-25 gn/Helen Doe gp/98765431 lv/sec3 t/math t/chem le/monday 1300`<br>
+      Expected: Assume that both the name and the phone are unique.
+     
+      The student can be successfully added with all the details stored in TutorsPet.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Editing a student
+1. Edit details of an existing student listed the first in TutorsPet
+    1. Prerequisites: List all students using the `list` command. There is at least 1 student in the list.
+
+    1. Test case: `edit s/ABC Secondary School gn/John Lee`<br>
+       Expected: No student can be edited.<br> 
+       There is an error message to notify the incorrect command format.
+
+    1. Test case: `edit 0 s/ABC Secondary School gn/John Lee`<br>
+       Expected: No student can be edited.<br>
+       There is an error message to notify the invalid index.
+   
+    1. Test case: `edit 1 n/John Doe`<br>
+       Expected: Assume there is another student named John Doe.<br>
+       There will be a message notifying the user about the duplicate name.<br>
+       If the user proceeds to type`y`, the name of the first studnet in the list is edited. If the user proceeds to type`n`, the student will not be edited.
+
+    1. Test case: `edit 1 s/`<br>
+       Expected: The edit command is invalid. <br>
+       The student's school cannot be edited with an empty name.
+
+    1. Test case: `edit 1 t/`<br>
+       Expected: The subjects of the first student is removed.
+
+    1. Test case: `edit 1 s/ABC Secondary School gn/John Lee`<br>
+       Expected: The school name and guardian's name of the first student is edited.
+
+    1. Test case: `edit 1 t/bio t/lit` <br>
+       Expected: The subjects of the student are edited to biology and literature.
+   
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -1321,26 +1386,22 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Viewing a student contact details
 
 1. Viewing a student contact details while all students are being shown
 
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-  1. Test case: `detail 1`<br>
+   1. Test case: `detail 1`<br>
      Expected: Details of the first contact from the list is displayed on the Contact Detail panel.
 
-  1. Test case: `detail 0`<br>
+   1. Test case: `detail 0`<br>
      Expected: No student detail is displayed. Error details shown in the status message. Status bar remains the same.
 
-  1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
