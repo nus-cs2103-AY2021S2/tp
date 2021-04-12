@@ -8,7 +8,7 @@ title: User Guide
 # Intoduction
 Welcome fellow drivers!<br>
 TimeForWheels is a delivery task management app for delivery drivers to manage and track their own workflow. 
-It is optimized for use via a [Command Line Interface](#Glossary) while still having the benefits of a Graphical User Interface(GUI). 
+It is optimized for use via a [Command Line Interface](#glossary) while still having the benefits of a Graphical User Interface(GUI). 
 Overall, TimeForWheels aims to be your perfect delivery companion by improving productivity and simplifying the delivery planning process.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -44,13 +44,13 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 --------------------------------------------------------------------------------------------------------------------
 
-#Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
 **Notes about the command format**<br>
 
-* [Attributes](#Glossary) of a delivery tasks includes name, phone number, address, email, date, tags, date.
+* [Attributes](#glossary) of a delivery tasks includes name, phone number, address, email, date, tags, date.
 
 * Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
@@ -123,7 +123,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 **Note:** 
   * You can edit multiple attributes.
   * Remark can be edited separately through the remark command.
-  * [TASK_NUMBER](#Glossary) refers to the number shown in front of each delivery
+  * [TASK_NUMBER](#glossary) refers to the number shown in front of each delivery
 
 **Format:** `edit TASK_NUMBER PREFIX/ATTRIBUTE`
 
@@ -414,7 +414,7 @@ Action | Format,<br> Example(s)
 **Exit** | `exit`<br> e.g., `exit`
 
 
-#Glossary
+# Glossary
 
 Term | Definition,<br>
 --------|------------------
