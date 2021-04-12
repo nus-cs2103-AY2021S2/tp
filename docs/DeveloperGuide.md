@@ -589,7 +589,7 @@ testers are expected to do more *exploratory* testing.
 
 Our team has put in significant effort in enhancing the usability of AB-3 into a more CLI centric address book.
 Much effort has been put in to replicate common controls and conventions seen in the popular terminal _Bash_. Our project
-has over 12k lines of code and over 500 automated tests. We detail some challenges faced and achievements made while 
+has over 13k lines of code and over 500 automated tests. We detail some challenges faced and achievements made while 
 implementing A-Bash Book in the subsequent sections.
 
 ### Challenges faced
