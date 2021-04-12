@@ -527,29 +527,170 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Delete persons
 
-### Deleting a person
+1. Delete one person
 
-1. Deleting a person while all persons are being shown
+    1. Prerequisites: Must have at least one person in the list
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `delete 1`<br>
+       Expected: Delete the first person in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Delete multiple persons
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Prerequisites: Must have at least 3 person in the list
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Test case: `delete 1 2 3`<br>
+       Expected: Persons at index 1, 2 and 3 are deleted.
 
-1. _{ more test cases …​ }_
+1. Delete shown person(s) in the list
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `delete shown`<br>
+       Expected: All person(s) in the visible person list are deleted.
+
+1. Delete selected person(s)
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `delete selected`<br>
+       Expected: All selected person(s) will be deleted.
+
+1. Invalid test cases
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains
+       the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than
+       the list size)<br>
+       Expected: Similar to previous.
+
+### Selecting persons
+
+1. Select one person
+
+    1. Test case: `select 1`<br>
+       Expected: First person is selected in the list.
+
+1. Selecting persons multiple persons
+
+    1. Prerequisites: List must contain at least 3 persons.
+
+    1. Test case: `select 1 2 3`<br>
+       Expected: 1st, 2nd and 3rd person is marked as selected.
+
+    1. Test case: `select shown`<br>
+       Expected: All person(s) in the current list will be selected
+
+1. Selecting person(s) after find
+
+    1. Prerequisites: `find` command executed.
+
+    1. Test case: `select shown`<br>
+       Expected: All person(s) that satisfies the `find` command will be selected
+
+1. Clearing selection
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `select clear`<br>
+       Expected: All person(s) that are selected will be un-selected.
+
+### Email persons
+
+Prerequisites: Must have an email client installed.
+
+1. Email one person
+
+    1. Prerequisites: Must have at least 1 person in the list
+
+    1. Test case: `email 1`<br>
+       Expected: Email client is opened with the "to" field filled with the email of the person at
+       index 1.
+
+1. Email multiple persons
+
+    1. Prerequisites: Must have at least 3 person in the list
+
+    1. Test case: `email 1 2 3`<br>
+       Expected: Email client is opened with the "to" field filled with the email of the persons at
+       index 1, 2 and 3.
+
+1. Email shown person(s) in the list
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `email shown`<br>
+       Expected: Email client is opened with the "to" field filled with the email(s) of the person(
+       s) in the person list.
+
+1. Email selected person(s)
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `email selected`<br>
+       Expected: Email client is opened with the "to" field filled with the email(s) of the person(
+       s)
+
+### Edit persons
+
+1. Edit one person
+
+    1. Prerequisites: Must have at least one person in the list
+
+    1. Test case: `edit 1 -p 99998888`<br>
+       Expected: Phone number of person at index one is updated to "99998888".
+
+1. Edit multiple persons
+
+    1. Prerequisites: Must have at least 3 person in the list
+
+    1. Test case: `edit 1 2 3 -a 21 Lower Kent Ridge Rd`<br>
+       Expected: Address of persons at index 1, 2 and 3 is updated to "21 Lower Kent Ridge Rd".
+
+1. Edit shown person(s) in the list
+
+    1. Prerequisites: Must have at least 1 person in the list.
+
+    1. Test case: `edit shown -a 21 Lower Kent Ridge Rd`<br>
+       Expected: All person(s) address in the visible person list is updated to "21 Lower Kent Ridge
+       Rd".
+
+1. Edit selected person(s)
+
+    1. Prerequisites: Must have at least 1 person selected
+
+    1. Test case: `edit selected -a 21 Lower Kent Ridge Rd`<br>
+       Expected: All selected person(s) address will be updated to "21 Lower Kent Ridge Rd".
+
+### Filter fields
+
+Prerequisites: Must have at least one person in the list to view the changes.
+
+1. Filter to show only names
+
+    1. Test case: `filter -n`<br>
+       Expected: Only names are shown.
+
+1. Filter to show only names and addresses
+
+    1. Test case: `filter -n -a`<br>
+       Expected: Only names and addresses are shown.
+       
+    1. Test case: `filter -a`<br>
+       Expected: Only names and addresses are shown.
+
+1. Remove filter
+
+    1. Prerequisites: Must have a filter applied (e.g. `filter -a -p`).
+
+    1. Test case: `fitler`<br>
+       Expected: All fields are shown.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
