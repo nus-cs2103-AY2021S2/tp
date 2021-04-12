@@ -9,6 +9,8 @@ BookCoin is a CLI facility management system which allows users to type in comma
 
 Given below are my contributions to the project.
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=NiniJiaying&tabRepo=AY2021S2-CS2103-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+
 * **New Feature**: Added the ability to add a booking into the system.
     * What it does: allows the user to add bookings one at a time with compulsory fields such as booker's email, venue name, start time and end time, and with optional fields such as description and tags. Checking to ensure that the booker and venue exist in the system, and the validity of the booking duration have also been implemented. 
     * Justification: This feature improves the product by allowing users to add a booking into the system.
@@ -22,9 +24,6 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to edit any attributes belonging to any bookings.
     * What it does: allows the user to edit all previously added bookings one at a time.
     * Justification: This feature improves the product significantly because a user can make mistakes in the addition of booking details, and the app should provide a convenient way to rectify them.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=NiniJiaying&tabRepo=AY2021S2-CS2103-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
-
 
 * **Enhancements to existing features**:
     * Wrote additional tests for existing features (Pull requests [\#122](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/122), [#235](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/235))
