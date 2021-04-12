@@ -16,13 +16,21 @@ import seedu.storemando.model.item.predicate.LocationContainsPredicate;
  */
 public class ClearLocationCommand extends ClearCommand {
 
-    public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location "
+    public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in %s "
         + "(if the location exists) are cleared!";
 
 
     private final Predicate<Item> predicate;
+    private final String location;
 
-    public ClearLocationCommand(LocationContainsPredicate predicate) {
+    /**
+     * Constructor to create a ClearLocationCommand object.
+     *
+     * @param predicate predicate used to find the items with the given location.
+     * @param location string containing the location input given by user.
+     */
+    public ClearLocationCommand(LocationContainsPredicate predicate, String location) {
+        this.location = location;
         this.predicate = predicate;
     }
 
@@ -35,7 +43,7 @@ public class ClearLocationCommand extends ClearCommand {
         }
         model.clearLocation(predicate);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(CLEAR_LOCATION_MESSAGE_SUCCESS);
+        return new CommandResult(String.format(CLEAR_LOCATION_MESSAGE_SUCCESS, location));
     }
 
     @Override
@@ -43,7 +51,6 @@ public class ClearLocationCommand extends ClearCommand {
         return other == this // short circuit if same object
             || (other instanceof ClearLocationCommand // instanceof handles nulls
             && predicate.equals(((ClearLocationCommand) other).predicate)); // state check
-
     }
 
 }
