@@ -7,9 +7,9 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=)
 
 #### Enhancements implemented.
-1) Implemented the PriorityTag feature for semesterconfig
-2) Assist in creating sorting comparator to sort the tasks according to Priority levels
-3) Reconfigure Storage component to ensure data are correctly stored
+1. Implemented the PriorityTag feature for semesterconfig
+2. Assist in creating sorting comparator to sort the tasks according to Priority levels
+3. Reconfigure Storage component to ensure data are correctly stored
 
 *Enhancement 1*
 * It allows the user to classify tasks into 3 different category, `LOW/MEDIUM/HIGH`, with `HIGH` having the most priority
