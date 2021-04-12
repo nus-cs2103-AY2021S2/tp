@@ -587,7 +587,8 @@ Format: `return bc/BARCODE`
 **:information_source: Notes:**
 
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
-* The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
+* The output message will contain how long it exceeded the original due date, and the amount of fine that the reader
+  needs to pay if the book is overdue.
 
 Example use:
 
@@ -603,7 +604,7 @@ Outcome:
 
 * The _Result Display_ will show a message indicating success.
 * If the book returned is an overdue book, SmartLib will show you how long it exceeded the 
-  original due date.
+  original due date, and the amount of fine that the reader needs to pay if the book is overdue.
 * SmartLib will record down this returning activity.
 * The relevant parts of the GUI will be updated.
   <br><br>
