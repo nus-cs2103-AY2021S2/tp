@@ -45,7 +45,6 @@ Given below are my contributions to the project.
       I decided to implement a predicate, DetailsContainsKeywordsPredicate, which compares all the fields of a member to the list of keywords specified.
       The members list is then updated with the predicate, displaying members whose details contain any of the specified keywords. 
       Furthermore, integration and unit testing had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
-      <br>
       
 * **New Feature**: Added the ability to clear all members assigned to a task. (Pull Requests: [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163), [\#174](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/174))
     * What it does: Allows the user to clear all members assigned to a task with a single command.
