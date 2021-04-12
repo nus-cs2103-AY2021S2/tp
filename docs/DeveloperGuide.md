@@ -257,7 +257,7 @@ Below is an example sequence diagram for a valid find command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![ViewSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) 
+![FindSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) {: .center-image}
 
 1. Upon calling the `execute()` method, the `FindCommand` updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
@@ -265,6 +265,35 @@ Here is a more specific breakdown of the command's execute method.
 
 
 ### List Feature
+Pawbook allows the users to `list` an entity based on keyword searches. The `list` function responds to the current available
+entities, which are `owner`, `dog` and `program`, and returns a list of all the entries of the respective entity.
+
+When the user enters a valid command with the entity keyword, the arguments are parsed by `PawbookParser`, which uses `Predicate`
+to identify which entity `owner`, `dog` or `program` it is. `ListCommand` is then generated with the predicate to return
+a list of all the entries of that entity type.
+
+List command supports the plural forms of the entity keywords.
+
+Below is an example activity diagram for a valid find command from the user.
+
+![ListActivityDiagram](images/ListActivityDiagram.png) {: .center-image}
+
+Below is an example sequence diagram for a valid find command from the user.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png) {: .center-image}
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+1. In `PawbookParser`, a `Predicate` is created based on which entity keyword was given by the user. There are only 3 cases here,
+`owner`, `dog`, or `program`.
+1. A `ListCommand` object will be created based on the `Predicate`.
+1. The `LogicManager` will then proceed to call the `execute()` method.
+1. The `execute()` method is further explored below. The high level understanding is that a CommandResult is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![ListSequenceDiagramSpecific](images/ListSequenceDiagramSpecific.png) {: .center-image}
+1. Upon calling the `execute()` method, the `ListCommand` updates the filtered entity list in `Model` using a `predicate` and an `entityType` as parameters. 
+2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
+3. From here, List Command creates a command result and returns it to the `LogicManager`.
 
 ### View feature
 
@@ -299,7 +328,7 @@ Below is an example sequence diagram for a valid view command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![ViewSequenceDiagramSpecific](images/ViewSequenceDiagramSpecific.png) 
+![ViewSequenceDiagramSpecific](images/ViewSequenceDiagramSpecific.png){: .center-image}
 
 1. In the execute method of `ViewCommand`, it first generates a list of related entity IDs by calling the `generateRelatedIdList()`which accesses the data in the model. 
 2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
