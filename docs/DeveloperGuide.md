@@ -565,6 +565,7 @@ testers are expected to do more *exploratory* testing.
         Expected: Error details will be shown in the status message
         
 ### Sorting a task 
+
 1. Recommended to use the tasks from the previous command `find` to be used here for `sort` command. Following instructions will be based off the tasks provided previously.
 1. Use `sort` command to Sort tasks in task list.
     1. Test case: `sort dateTime`.<br>
@@ -581,6 +582,14 @@ testers are expected to do more *exploratory* testing.
         Expected: Error will be thrown for all these test cases.
         
 ### Using command `done`
+
+1. Complete a task on the task list using command `done`.
+    1. Prerequisites: List all task(s) using the `list` command. Have at least 1 task(s) in the list. Task status to be tested must not be completed
+    1. use command `done INDEX` where index is an Integer that is not longer than the length of the task list.
+    1. Test case: `done 1`.<br>
+        Expected: The first task on the task list will be marked as done. Ui will reflect this change by checking the box to indicate a done status
+    1. Invalid use cases to try: `done`, `done X` (where X is an Integer bigger than the length of the task list), `done 0`, `done Y` (where Y is a negative Integer).<br>
+         Expected: Error will be thrown.
 
 ### Using command `dueIn`
 
