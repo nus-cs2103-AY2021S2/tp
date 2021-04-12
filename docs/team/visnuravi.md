@@ -40,9 +40,9 @@ Given below are my contributions to the project.
     
 * **Enhancements to Existing general features**:
   * Updated the Model from being Person to a Garment.
-    [/#52](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/52)
+    [\#52](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/52)
   * Updated the attributes, such as Phone Number, of the Person to fit the attributes of a Garment, such as Size.
-    [/#42](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/42)
+    [\#42](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/42)
   * Added new classes predicates, which allows the find and match features to find the right 
     garments to output.
     [\#63](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/63),
