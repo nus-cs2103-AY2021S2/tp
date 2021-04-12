@@ -134,6 +134,7 @@ public class EditCommand extends Command {
 
     private void updateModel(Model model, Task taskToEdit, Task editedTask) throws CommandException {
         model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.resetCalendarDate();
     }
 
