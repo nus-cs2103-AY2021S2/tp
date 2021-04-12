@@ -18,10 +18,12 @@ Given below are my contributions to the project.
   contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=JayChenYJ&tabRepo=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-    * Managed milestones `v1.1` - `v1.4b` (8 milestones) on GitHub
-    * Managed releases `v1.3.trail - v1.4b` (3 releases) on GitHub
+    * Managed milestones `v1.1` - `v1.4b` (8 milestones) on GitHub.
+    * Managed releases `v1.3.trail - v1.4b` (3 releases) on GitHub.
     * Standardised Intellij setting with the team. (Pull
       requests [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4))
+    *
+  Managed [Weekly Meeting](https://docs.google.com/document/d/1EHptH8x1ck_H--OhpuIljThwmmqW2otqQ-lm8X460ok/edit?usp=sharing)
 
 * **Features**:
     * Modified `Find` v1. (Pull request [\#74](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/74))
@@ -34,8 +36,7 @@ Given below are my contributions to the project.
 * **Bug Fixes**:
     * Throw error message on filtering commands when list is empty. (Pull
       request [\#303](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/303))
-    * Standardise command format message. (Pull
-      request [\#313](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/313))
+    * Standardise command format message. (Pull request [\#313](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/313))
 
 
 * **Documentation**:
@@ -46,31 +47,26 @@ Given below are my contributions to the project.
           request [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34))
         * Updated UG hyperlink for smooth and proper navigation. (Pull
           request [\#181](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/181))
-        * Updated UG v3. (Pull
-          request [\#206](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/206))
+        * Updated UG v3. (Pull request [\#206](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/206))
         * Updated UG according to PE_D bug report. (Pull
           request [\#280](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/280))
-        * Updated UI image. (Pull
-          request [\#321](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/321))
-        * Finalised DG Layout. (Pull
-          request [\#333](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/333))
+        * Updated UI image. (Pull request [\#321](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/321))
+        * Finalised DG Layout. (Pull request [\#333](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/333))
     * Developer Guide:
-        * Updated Design details. (Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121)
-          , [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
+        * Updated Design section. (Pull requests [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121)
+          , [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155)
+          , [\#279](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/279))
         * Updated Config.md, Testing.md, Logging.md, DevOps.md with proper details. (Pull
           requests [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155)
           , [\#271](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/271))
-        * Updated user stories. (Pull request [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
-        * Updated implementation for Delete Command. (Pull 
+        * Updated User stories. (Pull request [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155))
+        * Updated Implementation section for Delete Command. (Pull
           request [\#211](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/211))
-        * Updated Design section. (Pull
-          request [\#279](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/279))
         * Updated Instruction for manual testing. (Pull
           request [\#279](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/279))
         * Updated layout of Implementation section. (Pull
           request [\#302](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/302))
-        * Finalised UG Layout. (Pull
-          request [\#330](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/330))
+        * Finalised UG Layout. (Pull request [\#330](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/330))
     * About Us:
         * Updated Jay Chen's part. (Pull request [\#11](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/11))
     * Read Me:
@@ -82,20 +78,19 @@ Given below are my contributions to the project.
         * Updated config file to match StoreMando. (Pull
           request [\#30](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/30))
     * Index.md:
-        * Updated hyperlink of Index.md (Pull
-          requests [\#207](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/207)
+        * Updated hyperlink of Index.md. (Pull requests [\#207](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/207)
           , [\#212](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/212))
 
 * **Hotfixes**:
-    * Hotfix release details for v1.3.trail (Pull
+    * Hotfix release details for v1.3.trail. (Pull
       request [\#145](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/145))
     * Hotfix on clear location feature. (Pull request [\#199](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/199))
-    * Hotfix on expiry date of typical items. (Pull 
+    * Hotfix on expiry date of typical items. (Pull
       request [\#286](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/286))
 
 * **Tests**:
     * Updated all tests in logic.parser. (Pull request [\#167](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/167))
-    * Updated tests for commons.core (Pull request [\#291](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/291))
+    * Updated tests for commons.core. (Pull request [\#291](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/291))
     * Updated tests for ReminderCommand, Userprefs and Quantity classes. (Pull
       request [\#328](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/328))
 
@@ -107,7 +102,7 @@ Given below are my contributions to the project.
       , [\#79](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/79))
     * Removed tutorial folder. (Pull request [\#94](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/94))
     * Repackaged expiry date classes. (Pull request [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
-    * Repackaged comparator and predicate classes. (Pull 
+    * Repackaged comparator and predicate classes. (Pull
       request [\#324](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/324))
 
 * **Community**:
@@ -129,4 +124,4 @@ Given below are my contributions to the project.
       , [\#288](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/288)
       , [\#289](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/289)
     * Reported bugs and suggestions for other teams in the class:
-      * Reported [16 bugs](https://github.com/JayChenYJ/ped/issues)
+        * Reported [16 bugs](https://github.com/JayChenYJ/ped/issues) for W15-3 in PE_D.
