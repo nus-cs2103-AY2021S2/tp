@@ -74,7 +74,7 @@ An image of our GUI is shown below!
 
 ## Structure of the User Guide
 
-Worries about how tedious it will be to read this document? Not to worry! We have structured this User Guide in a way
+Worried about how tedious it will be to read this document? Not to worry! We have structured this User Guide in a way
 that makes it easy and quick for you to find what you need. In this next subsection,
 [Reading this User Guide](#reading-this-user-guide), you can find some tips we have on how to read this guide. The
 next section, [Features](#features), documents the main functionalities of _Teaching Assistant_ and how to use them.
