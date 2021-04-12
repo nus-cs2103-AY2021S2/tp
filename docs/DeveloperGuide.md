@@ -1117,7 +1117,7 @@ Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix A: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -1418,7 +1418,8 @@ command history.
     1. Prerequisites: None.
 
     1. Test case: `alias a/h cmd/help` <br>
-       Expected: A new alias with the name `h` that is short for the command `help` is added. A message describing successful addition is shown.
+       Expected: A new alias with the name `h` that is short for the command `help` is added. A message describing
+       successful addition is shown.
 
     1. Test case: `alias a/iedit cmd/iedit 1 d/Broken window c/Window` <br>
        Expected: No alias is added. An error message about reserved keyword being used as alias name is shown.
@@ -1435,3 +1436,60 @@ command history.
 
     1. Test case: `unalias a/name` <br>
        Expected: No alias is deleted. An error message about alias not found is shown.
+
+
+## **Appendix B: Effort**
+
+Our team has put in significant effort to transform Address Book Level 3 (AB3) into SunRez, a significantly more
+complex project. SunRez has more than double the classes/interfaces of AB3; our team repo has over
+[19k lines of code](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103-T14-1&breakdown=true)
+and 500 automated tests. Below, we include some details of the challenges faced in implementing SunRez
+and some notable achievements.
+
+### Challenges faced and achievements
+* **Addition of two entities and heavy refactoring of one:**
+    * Our project had to heavily refactor AB3's `Person` entity to morph it into the `Resident` entity used in our
+    project. This involved modifying/removing certain fields, validation logic, and updating all the tests to match.
+    * Our project required the addition of two other key entities: `Room` and `Issue`. Both of these entities had to be
+    written from scratch, and had inter-dependencies on each other (`Resident` has `Room`, `Room` has `Issue`,
+    further details provided below).
+    * All three of these models had to be integrated within the existing `Logic`, `Model` and `Storage` framework to
+    ensure extensibility for future commands and serialize the data to a backing file.
+* **Interaction between entities: room and resident, room and issues**
+    * The three models were related by the `Room`'s `RoomNumber` field acting as a common link. The complexity was to
+    prevent `Room`s from being deleted while allocated or containing issues, but still allow editing of some fields
+    of the `Room` such as `RoomType` and `Tags`. This meant ensuring the `EditRoomCommand` checks for the presence of
+    an associated Resident or Issue, and then only blocks editing of the `RoomNumber`, while still allowing other
+    fields to be edited.
+* **Interaction between entities: Room allocation**:
+    * Room allocation was a key use case of the product. To allow for that, we had to analyse and pick the cleanest
+    approach, of which there were two — using parent-child relationships or creating a lookup table. While parent -
+    child is easier to implement, we saw the potential issues with extensibility in the future and that it would
+    in tight coupling between the entities. Thus we opted for the harder but less-coupled approach of creating a
+    `ResidentRoom` lookup class that would maintain the association between the two.
+* **Optimization for fast typists**:
+    * To optimize SunRez for fast typists, we tried our best to emulate what a real CLI feels like. To do so, we added
+    features that support navigation of command history through the keyboard, as well as functionality for undoing and
+    redoing commands. These are common features for many keyboard-heavy applications, but were non-trivial to implement.
+    * The undo/redo feature extends Address Book Level 4's implementation to add keyboard shortcuts (for experienced users)
+    and GUI menu items (for new users to learn the keyboard shortcuts).
+* **Modification of the command processing format**:
+    * SunRez supports user-defined aliases to make long commands shorter or easier to remember. In order to support
+    this, we had to understand and adapt AB3's existing command processing flow.
+* **Maintaining Single Responsibility Principle**:
+    * When we designed command history, we faced the choice of where to put the selection logic that supports the
+    `UP` and `DOWN` arrow key navigation of command history. We designed a selector interface that resides in the
+    logic component and thereby avoids polluting UI classes with non-UI concerns.
+* **Extensive documentation**:
+    * We did extensive work on documentation (over
+    [3k lines](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=AY2021S2-CS2103-T14-1&breakdown=true&checkedFileTypes=docs)),
+    including the addition of sections in the UG
+    [explaining the user interface](https://ay2021s2-cs2103-t14-1.github.io/tp/UserGuide.html#sunrez-user-interface-ui),
+    [quick rundown of the command parsing](https://ay2021s2-cs2103-t14-1.github.io/tp/UserGuide.html#command-parsing) (in case users
+    are interested to understand how and why certain command formats are accepted or rejected by SunRez) and
+    a summary of [command parameters and their constraints](https://ay2021s2-cs2103-t14-1.github.io/tp/UserGuide.html#command-parameters).
+    In the DG, we extended AB3 by adding
+    an [audience section](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html#who-should-read-this-guide)
+    and a [section to aid developers unused to UML diagrams](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html#diagrams).
+    * In the implementation section of the DG, a significant challenge we faced was keeping diagrams focused and readable. We overcame
+    this challenge by breaking down complex diagrams, adding text notes and making references to general diagrams where applicable.
