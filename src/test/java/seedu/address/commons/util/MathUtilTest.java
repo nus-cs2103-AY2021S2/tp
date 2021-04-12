@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests MathUtil's functions.
+ * Contains unit tests for MathUtil's functions.
  */
 public class MathUtilTest {
     @Test

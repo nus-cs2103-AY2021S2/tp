@@ -16,6 +16,9 @@ import seedu.address.model.commandhistory.CommandHistory;
 import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.testutil.TypicalCommandHistoryEntries;
 
+/**
+ * Contains unit tests for {@code PlainTextCommandHistoryStorage}.
+ */
 public class PlainTextCommandHistoryStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get(
             "src", "test", "data", "PlainTextCommandHistoryStorageTest");

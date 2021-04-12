@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TypicalCommandHistoryEntries;
 
+/**
+ * Contains unit tests for {@code CommandHistory}.
+ */
 public class CommandHistoryTest {
 
     @Test

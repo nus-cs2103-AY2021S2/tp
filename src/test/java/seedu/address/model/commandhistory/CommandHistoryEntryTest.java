@@ -7,6 +7,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for {@code CommandHistoryEntry}.
+ */
 public class CommandHistoryEntryTest {
 
     private static final String EMPTY_STRING = "";
@@ -26,7 +29,9 @@ public class CommandHistoryEntryTest {
 
     @Test
     public void constructor_usesStringParameter() {
+        // EP: empty string
         assertEquals(EMPTY_STRING, new CommandHistoryEntry(EMPTY_STRING).value);
+        // EP: non-empty string
         assertEquals(NON_EMPTY_STRING_1, new CommandHistoryEntry(NON_EMPTY_STRING_1).value);
         assertEquals(NON_EMPTY_STRING_2, new CommandHistoryEntry(NON_EMPTY_STRING_2).value);
     }
