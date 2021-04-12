@@ -6,8 +6,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":MeetBuddyParser" as MeetBuddyParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeletePersonCommandParser" as DeletePersonCommandParser LOGIC_COLOR
+participant "d:DeletePersonCommand" as DeletePersonCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -21,50 +21,50 @@ activate LogicManager
 LogicManager -> MeetBuddyParser : parseCommand("delete 1")
 activate MeetBuddyParser
 
-create DeleteCommandParser
-MeetBuddyParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeletePersonCommandParser
+MeetBuddyParser -> DeletePersonCommandParser
+activate DeletePersonCommandParser
 
-DeleteCommandParser --> MeetBuddyParser
-deactivate DeleteCommandParser
+DeletePersonCommandParser --> MeetBuddyParser
+deactivate DeletePersonCommandParser
 
-MeetBuddyParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+MeetBuddyParser -> DeletePersonCommandParser : parse("1")
+activate DeletePersonCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeletePersonCommand
+DeletePersonCommandParser -> DeletePersonCommand
+activate DeletePersonCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeletePersonCommand --> DeletePersonCommandParser : d
+deactivate DeletePersonCommand
 
-DeleteCommandParser --> MeetBuddyParser : d
-deactivate DeleteCommandParser
+DeletePersonCommandParser --> MeetBuddyParser : d
+deactivate DeletePersonCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> MeetBuddyParser
-destroy DeleteCommandParser
+DeletePersonCommandParser -[hidden]-> MeetBuddyParser
+destroy DeletePersonCommandParser
 
 MeetBuddyParser --> LogicManager : d
 deactivate MeetBuddyParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeletePersonCommand : execute()
+activate DeletePersonCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeletePersonCommand -> Model : deletePerson(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeletePersonCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeletePersonCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeletePersonCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeletePersonCommand --> LogicManager : result
+deactivate DeletePersonCommand
 
 [<--LogicManager
 deactivate LogicManager
