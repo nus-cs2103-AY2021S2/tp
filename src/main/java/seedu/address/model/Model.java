@@ -96,8 +96,8 @@ public interface Model {
     /**
      * Replaces the given resident {@code target} with {@code editedResident}.
      * {@code target} must exist in the address book.
-     * The resident identity of {@code editedResident} must not be the same
-     * as another existing resident in the address book.
+     * The resident identity of {@code editedResident} must not be the same as another existing resident in the address
+     * book.
      */
     void setResident(Resident target, Resident editedResident);
 
@@ -127,42 +127,57 @@ public interface Model {
     // =========== Room =============================================================
 
     /**
-     * Returns true if a room with the same room number as {@code room} exists in SunRez.
+     * Checks if the {@code Model} contains a specified {@code Room}.
+     *
+     * @param room {@code Room} whose existence needs to be checked for in the {@code Model}.
+     * @return True if a room with the same room number as {@code room} exists in SunRez.
      */
     boolean hasRoom(Room room);
 
     /**
-     * Returns true if a room with the same room number as {@code roomNumber} exists in SunRez.
+     * Checks a room with the same room number as {@code roomNumber} exists in SunRez.
+     *
+     * @param roomNumber {@code RoomNumber} used to check if a {@code Room} with the same {@code RoomNumber} exists in
+     *                   the {@code Model}.
+     * @return True if a room with the same room number as {@code roomNumber} exists in SunRez.
      */
     boolean hasRoom(RoomNumber roomNumber);
 
     /**
-     * Deletes the given room.
-     * The room must exist in SunRez.
+     * Deletes a {@code Room} in the {@code Model}.
+     *
+     * @param target {@code Room} to delete.
      */
     void deleteRoom(Room target);
 
     /**
-     * Adds the given room.
-     * {@code room} must not already exist in SunRez.
+     * Adds a {@code Room} to the {@code Model}.
+     *
+     * @param room {@code Room} to add.
      */
     void addRoom(Room room);
 
     /**
      * Gets the room with the matching room number in the list.
+     *
+     * @param roomNumber {@code RoomNumber} used to check for a matching {@code Room}.
+     * @return The {@code Room} matched by {@code RoomNumber}.
      */
     Room getRoomWithSameRoomNumber(RoomNumber roomNumber);
 
     /**
-     * Gets the index of the matching room in the list
-     * with a given roomNumber.
+     * Gets the index of the matching room in the list with a given roomNumber.
+     *
+     * @param roomNumber {@code RoomNumber} used to check for a matching {@code Room}.
+     * @return The {@code Index} of the {@code Room} matched by {@code RoomNumber}.
      */
     Index getIndexOfRoomWithSameRoomNumber(RoomNumber roomNumber);
 
     /**
-     * Replaces the given room {@code target} with {@code editedRoom}.
-     * {@code target} must exist in SunRez.
-     * The Room identity of {@code editedRoom} must not be the same as another existing room in SunRez.
+     * Replaces a given {@code Room} with another.
+     *
+     * @param target     {@code Room} to replace.
+     * @param editedRoom {@code Room} to replace {@code target} with.
      */
     void setRoom(Room target, Room editedRoom);
 
@@ -253,8 +268,7 @@ public interface Model {
     ObservableList<Issue> getFilteredIssueList();
 
     /**
-     * Updates the filter of the filtered issue list to filter by the given
-     * {@code predicate}.
+     * Updates the filter of the filtered issue list to filter by the given {@code predicate}.
      *
      * @param predicate Predicate to filter the issue list.
      * @throws NullPointerException If {@code predicate} is null.
@@ -283,7 +297,7 @@ public interface Model {
     void addResidentRoom(ResidentRoom residentRoom);
 
     /**
-     * Returns an unmodifiable view of the filtered residentRoom list
+     * Returns an unmodifiable view of the filtered residentRoom list.
      */
     ObservableList<ResidentRoom> getFilteredResidentRoomList();
 

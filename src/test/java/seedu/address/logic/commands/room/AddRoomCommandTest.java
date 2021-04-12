@@ -19,6 +19,10 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.room.Room;
 import seedu.address.testutil.room.RoomBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code AddRoomCommand}.
+ */
 public class AddRoomCommandTest {
     @Test
     public void constructor_nullRoom_throwsNullPointerException() {
@@ -66,20 +70,20 @@ public class AddRoomCommandTest {
         AddRoomCommand addRoom1Command = new AddRoomCommand(room1);
         AddRoomCommand addRoom2Command = new AddRoomCommand(room2);
 
-        // same object -> returns true
+        // EP: same object -> returns true
         assertTrue(addRoom1Command.equals(addRoom1Command));
 
-        // same values -> returns true
+        // EP: same values -> returns true
         AddRoomCommand addRoom1CommandCopy = new AddRoomCommand(room1);
         assertTrue(addRoom1Command.equals(addRoom1CommandCopy));
 
-        // different types -> returns false
+        // EP: different types -> returns false
         assertFalse(addRoom1Command.equals(1));
 
-        // null -> returns false
+        // EP: null -> returns false
         assertFalse(addRoom1Command.equals(null));
 
-        // different room -> return false
+        // EP: different room -> return false
         assertFalse(addRoom1Command.equals(addRoom2Command));
     }
 

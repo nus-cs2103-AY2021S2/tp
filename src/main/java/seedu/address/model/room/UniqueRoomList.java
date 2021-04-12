@@ -29,7 +29,11 @@ public class UniqueRoomList implements Iterable<Room> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent room as the given argument.
+     * Checks the list contains an equivalent {@code Room} as the given argument.
+     *
+     * @param toCheck {@code Room} to check if it is contained within the {@link UniqueRoomList#internalList}.
+     * @return True if the list contains an equivalent {@code Room} as the given argument.
+     * @throws NullPointerException If {@code toCheck} is null.
      */
     public boolean contains(Room toCheck) {
         requireNonNull(toCheck);
@@ -37,7 +41,12 @@ public class UniqueRoomList implements Iterable<Room> {
     }
 
     /**
-     * Returns true if the list contains an equivalent room as the given argument.
+     * Checks the list contains a {@code Room} which has the {@code RoomNumber} of the given argument.
+     *
+     * @param toCheck {@code RoomNumber} to check if there is a room contained within the
+     *                {@link UniqueRoomList#internalList} that matches it.
+     * @return True if the list contains an a {@code Room} with the {@code RoomNumber} as the given argument.
+     * @throws NullPointerException If {@code toCheck} is null.
      */
     public boolean contains(RoomNumber toCheck) {
         requireNonNull(toCheck);
@@ -46,7 +55,9 @@ public class UniqueRoomList implements Iterable<Room> {
 
     /**
      * Adds a room to the list.
-     * The room must not already exist in the list.
+     *
+     * @param toAdd {@code Room} to add.
+     * @throws NullPointerException If {@code toAdd} is null.
      */
     public void add(Room toAdd) {
         requireNonNull(toAdd);
@@ -61,6 +72,10 @@ public class UniqueRoomList implements Iterable<Room> {
      * Replaces the room {@code target} in the list with {@code editedRoom}.
      * {@code target} must exist in the list.
      * The Room identity of {@code editedRoom} must not be the same as another existing room in the list.
+     *
+     * @param target     {@code Room} to replace.
+     * @param editedRoom {@code Room} to replace {@code target} with.
+     * @throws NullPointerException If {@code target} or {@code editedRoom} are null.
      */
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
@@ -81,6 +96,9 @@ public class UniqueRoomList implements Iterable<Room> {
     /**
      * Removes the equivalent room from the list.
      * The room must exist in the list.
+     *
+     * @param toRemove {@code Room} to remove.
+     * @throws NullPointerException If {@code toRemove} is null.
      */
     public void remove(Room toRemove) {
         requireNonNull(toRemove);
@@ -90,6 +108,12 @@ public class UniqueRoomList implements Iterable<Room> {
         FXCollections.sort(internalList);
     }
 
+    /**
+     * Replaces the entire {@code UniqueRoomList} with the provided {@code replacement}.
+     *
+     * @param replacement {@code UniqueRoomList} to replace the existing one with.
+     * @throws NullPointerException If {@code replacement} is null.
+     */
     public void setRooms(UniqueRoomList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -99,6 +123,9 @@ public class UniqueRoomList implements Iterable<Room> {
     /**
      * Replaces the contents of this list with {@code rooms}.
      * {@code rooms} must not contain duplicate rooms.
+     *
+     * @param rooms List of rooms to replace the existing List with.
+     * @throws NullPointerException If {@code rooms} is null.
      */
     public void setRooms(List<Room> rooms) {
         requireAllNonNull(rooms);
@@ -112,6 +139,8 @@ public class UniqueRoomList implements Iterable<Room> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return {@code ObservableList<Room>} contained within this {@code UniqueRoomList}.
      */
     public ObservableList<Room> asUnmodifiableObservableList() {
         return internalUnmodifiableList;

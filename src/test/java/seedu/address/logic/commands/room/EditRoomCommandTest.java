@@ -30,7 +30,8 @@ import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 import seedu.address.testutil.room.RoomBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditRoomCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code EditRoomCommand}.
  */
 public class EditRoomCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

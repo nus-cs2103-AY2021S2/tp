@@ -6,6 +6,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for {@code RoomNumber}.
+ */
 public class RoomNumberTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -43,15 +46,15 @@ public class RoomNumberTest {
     @Test
     public void equals() {
         RoomNumber roomNumber = new RoomNumber("01-001");
-        // same object -> return true
+        // EP: same object -> return true
         assertTrue(roomNumber.equals(roomNumber));
 
         RoomNumber anotherRoomNumber = new RoomNumber("01-001");
-        // diff object, same values -> return true
+        // EP: diff object, same values -> return true
         assertTrue(roomNumber.equals(anotherRoomNumber));
 
         anotherRoomNumber = new RoomNumber("02-001");
-        // diff object, diff values -> return false
+        // EP: diff object, diff values -> return false
         assertFalse(roomNumber.equals(anotherRoomNumber));
 
     }

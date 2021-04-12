@@ -29,7 +29,10 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
      * Parses the given {@code String} of arguments in the context of the EditRoomCommand
      * and returns an EditRoomCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput The command {@code String} entered by the user.
+     * @return The parsed {@code EditRoomCommand}.
+     * @throws ParseException       If the user input does not conform the expected format.
+     * @throws NullPointerException If {@code userInput} is null.
      */
     @Override
     public EditRoomCommand parse(String userInput) throws ParseException {

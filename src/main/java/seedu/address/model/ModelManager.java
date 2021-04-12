@@ -45,7 +45,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, userPrefs and commandHistory.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-            ReadOnlyCommandHistory commandHistory) {
+                        ReadOnlyCommandHistory commandHistory) {
         super();
         requireAllNonNull(addressBook, userPrefs, commandHistory);
 
@@ -192,18 +192,37 @@ public class ModelManager implements Model {
 
     // =========== Room =============================================================
 
+    /**
+     * Checks if the {@code Model} contains a specified {@code Room}.
+     *
+     * @param room {@code Room} whose existence needs to be checked for in the {@code Model}.
+     * @return True if {@code room} is in the {@code Model}.
+     */
     @Override
     public boolean hasRoom(Room room) {
         requireNonNull(room);
         return statefulAddressBook.hasRoom(room);
     }
 
+    /**
+     * Checks a room with the same room number as {@code roomNumber} exists in SunRez.
+     *
+     * @param roomNumber {@code RoomNumber} used to check if a {@code Room} with the same {@code RoomNumber} exists in
+     *                   the {@code Model}.
+     * @return True if a room with the same room number as {@code roomNumber} exists in SunRez.
+     * @throws NullPointerException If {@code RoomNumber} is null.
+     */
     @Override
     public boolean hasRoom(RoomNumber roomNumber) {
         requireNonNull(roomNumber);
         return statefulAddressBook.hasRoom(roomNumber);
     }
 
+    /**
+     * Adds a {@code Room} to the {@code Model}.
+     *
+     * @param room {@code Room} to add.
+     */
     @Override
     public void addRoom(Room room) {
         assert room != null;
@@ -212,6 +231,11 @@ public class ModelManager implements Model {
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
     }
 
+    /**
+     * Deletes a {@code Room} in the {@code Model}.
+     *
+     * @param target {@code Room} to delete.
+     */
     @Override
     public void deleteRoom(Room target) {
         assert target != null;
@@ -219,6 +243,13 @@ public class ModelManager implements Model {
         statefulAddressBook.removeRoom(target);
     }
 
+    /**
+     * Replaces a given {@code Room} with another.
+     *
+     * @param target     {@code Room} to replace.
+     * @param editedRoom {@code Room} to replace {@code target} with.
+     * @throws NullPointerException If {@code target} or {@code editedRoom} is null.
+     */
     @Override
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
@@ -226,6 +257,12 @@ public class ModelManager implements Model {
         statefulAddressBook.setRoom(target, editedRoom);
     }
 
+    /**
+     * Gets the index of the matching room in the list with a given roomNumber.
+     *
+     * @param roomNumber {@code RoomNumber} used to check for a matching {@code Room}.
+     * @return The {@code Index} of the {@code Room} matched by {@code RoomNumber}.
+     */
     @Override
     public Index getIndexOfRoomWithSameRoomNumber(RoomNumber roomNumber) {
         List<Room> roomList = getAddressBook().getRoomList();
@@ -237,6 +274,12 @@ public class ModelManager implements Model {
         return Index.fromZeroBased(-1);
     }
 
+    /**
+     * Gets the room with the matching room number in the list.
+     *
+     * @param roomNumber {@code RoomNumber} used to check for a matching {@code Room}.
+     * @return The {@code Room} matched by {@code RoomNumber}.
+     */
     public Room getRoomWithSameRoomNumber(RoomNumber roomNumber) {
         List<Room> roomList = getAddressBook().getRoomList();
         Index index = getIndexOfRoomWithSameRoomNumber(roomNumber);
@@ -248,13 +291,20 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedAddressBook}.
+     *
+     * @return The unmodifiable {@ObservableList} containing the {@code Room}s in the {@code Model}.
      */
     @Override
     public ObservableList<Room> getFilteredRoomList() {
         return filteredRooms;
     }
 
+    /**
+     * Updates the filter of the filtered rooms list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
         requireNonNull(predicate);
@@ -287,6 +337,7 @@ public class ModelManager implements Model {
     }
 
     // =========== Filtered ResidentRoom List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code ResidentRoom} backed by the internal list of
      * {@code versionedAddressBook}

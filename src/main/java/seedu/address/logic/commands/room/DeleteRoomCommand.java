@@ -35,10 +35,27 @@ public class DeleteRoomCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteRoomCommand to delete the room at the specified {@code Index}.
+     *
+     * @param targetIndex One-based {@code Index} of the room to be deleted.
+     */
     public DeleteRoomCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes the DeleteRoomCommand on the {@code Room} at the specified {@code Index} on the provided {@code Model}.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return A {@code CommandResult} with the {@code Room} that was deleted.
+     * @throws CommandException     If the room being deleted at the specified {@code Index} does not exist.
+     * @throws CommandException     If the room being deleted at the specified {@code Index} has been allocated to a
+     *                              {@code Resident}.
+     * @throws CommandException     If the room being deleted at the specified {@code Index} has any {@code Issue}
+     *                              associated with it.
+     * @throws NullPointerException If {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
