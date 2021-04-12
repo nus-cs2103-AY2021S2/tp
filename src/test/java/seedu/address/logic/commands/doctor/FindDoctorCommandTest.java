@@ -3,7 +3,7 @@ package seedu.address.logic.commands.doctor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_DOCTORS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_FIND_DOCTOR_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppObjects.DR_GREY;
 import static seedu.address.testutil.TypicalAppObjects.DR_STRANGE;
@@ -67,7 +67,7 @@ public class FindDoctorCommandTest {
 
     @Test
     public void execute_zeroKeywords_noDoctorFound() {
-        String expectedMessage = String.format(MESSAGE_DOCTORS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_FIND_DOCTOR_SUCCESS, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindDoctorCommand command = new FindDoctorCommand(predicate);
         expectedModel.updateFilteredDoctorList(predicate);
@@ -77,7 +77,7 @@ public class FindDoctorCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleDoctorsFound() {
-        String expectedMessage = String.format(MESSAGE_DOCTORS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_FIND_DOCTOR_SUCCESS, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Grey Who Strange");
         FindDoctorCommand command = new FindDoctorCommand(predicate);
         expectedModel.updateFilteredDoctorList(predicate);

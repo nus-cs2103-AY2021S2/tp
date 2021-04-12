@@ -1,6 +1,7 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.patient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.patient.FindPatientCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -8,8 +9,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.patient.FindPatientCommand;
-import seedu.address.logic.parser.patient.FindPatientCommandParser;
+import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindPatientCommandParserTest {
@@ -18,8 +18,7 @@ public class FindPatientCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            FindPatientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 
     @Test
@@ -32,5 +31,4 @@ public class FindPatientCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
     }
-
 }

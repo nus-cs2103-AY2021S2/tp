@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.patient;
 
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_DUPLICATE_PATIENT;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_PATIENT_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
@@ -38,14 +40,13 @@ public class AddPatientCommandIntegrationTest {
         expectedModel.addPatient(validPatient);
 
         assertCommandSuccess(new AddPatientCommand(validPatient), model,
-                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
+                String.format(MESSAGE_ADD_PATIENT_SUCCESS, validPatient), expectedModel);
     }
 
     @Test
     public void execute_duplicatePatient_throwsCommandException() {
         Patient patientInList = model.getPatientRecords().getPersonList().get(0);
-        assertCommandFailure(new AddPatientCommand(patientInList), model,
-                AddPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(new AddPatientCommand(patientInList), model, MESSAGE_ADD_DUPLICATE_PATIENT);
     }
 
 }

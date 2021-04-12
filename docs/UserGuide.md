@@ -54,11 +54,14 @@ App-Ointment is a **desktop app for managing and scheduling patient appointments
 * Parameters with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters with prefixes (e.g. `/n`, `/p`, `/t`) can be in any order.<br>
+* Parameters with prefixes (e.g. `n/`, `p/`, `t/`) can be in any order.<br>
   e.g. if the command format specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, and you specified it multiple times instead, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Where a parameter is not expected in the command, and you specified it, it will either be ignored, or included as part of the previous parameter.<br>
+  e.g. if you specify `n/Doctor Who p/12341234` in `add-doctor` where the phone parameter is not expected, the app will interpret it as adding a doctor with name `Doctor Who p/12341234`, which is not allowed.
 
 * Extraneous parameters for commands that do not take in parameters (such as `clear-appt`, `clear-doctor`, `clear-patient`, `exit`, `help`, `list-appt`, `list-doctor` and `list-patient`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -85,8 +88,15 @@ Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
 It is recommended that tags not be too long to avoid this.<br>
+</div>
 
-</div><br>
+* Emails without Top Level Domains(TLDs) eg. `a@b` without `.com` are valid emails, and will be regarded as such in the app.
+
+* Phone numbers must contain only numbers, and should be at least 3 digits long. It has no maximum length. 
+
+* Tags must be alphanumeric, i.e. no spaces. the same applies for all other commands which use Tags.
+
+<br>
 
 Examples:
 * `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -128,6 +138,7 @@ Format: `edit-patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * When editing tags, the existing tags of the patient will be removed i.e. adding of tags is not cumulative.<br>
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.<br>
 * Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
+* An `edit-patient` command that results in the patient having the same details as the original will still result in a success.
 
 Examples:
 * `edit 1 p/91234567 e/newEmail@example.com` Edits the phone umber and email address of the 1st patient to `91234567` and `newEmail@example.com` respectively.
@@ -216,6 +227,7 @@ Format: `edit-doctor INDEX [n/NAME] [t/TAG]…​`
 * When editing tags, the existing tags of the doctor will be removed i.e. adding of tags is not cumulative.<br>
 * You can remove all the doctor’s tags by typing `t/` without specifying any tags after it.<br>
 * Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
+* An `edit-doctor` command that results in the doctor having the same details as the original will still result in a success.
 
 Examples:
 * `edit-doctor 1 n/Dr Amy` Edits the 1st doctor's name to Dr Amy.
@@ -317,6 +329,8 @@ Format: `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TI
 
 * Raises an exception if there are conflicts in the new appointment with the existing appointments.<br>
 
+* An `edit-appt` command that results in the appointment having the same details as the original will still result in a success.
+
 * The starting time of an appointment can be updated by command `edit-appt INDEX at/` <br>
   
 * The duration of an appointment can be updated by command `edit-appt INDEX dur/` <br>
@@ -380,6 +394,18 @@ Shows a message with an url to this User Guide webpage.
 Format: `help` <br>
 
 ![result for 'help'](images/helpMessage.png)
+
+### Entering an Invalid Command:
+Entering an invalid command will result in the app throwing an exception, and prompting the user the closest known command, based on the smallest `minimum edit distance` (minimum amount of additions, deletions, and replacements). 
+
+This feature is meant for identifying typographical errors, and as such, no other form of Natural Language Processing (NLP) is used. If the edit distance is too much (above 10 edits), `Unknown command` will be displayed.
+
+![result for ''](images/InvalidCommandMessage.png)
+
+Examples:
+* `delete-appppt` prompts `delete-appt`
+* `list` prompts `exit`
+* `too-long-command` returns `Unknown command`
 
 ### Toggle User Inputs: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
 Format: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>

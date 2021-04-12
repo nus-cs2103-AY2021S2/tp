@@ -1,17 +1,18 @@
 package seedu.address.logic.commands.doctor;
 
-import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED;
+import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED;
+import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_DOCTOR_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppObjects.getEmptyAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getEmptyDoctorRecords;
+import static seedu.address.testutil.TypicalAppObjects.getEmptyPatientRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.patient.ClearPatientCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -19,30 +20,55 @@ import seedu.address.model.UserPrefs;
 public class ClearDoctorCommandTest {
 
     @Test
-    public void execute_emptyDoctorRecords_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+    public void execute_emptyDoctorRecordsEmptyAppointmentSchedule_success() {
+        Model emptyPatientRecordsModel = new ModelManager();
+        Model expectedEmptyPatientRecordsModel = new ModelManager();
 
-        assertCommandSuccess(new ClearDoctorCommand(), model, ClearDoctorCommand.MESSAGE_SUCCESS, expectedModel);
+        Model nonEmptyPatientRecordsModel = new ModelManager();
+        nonEmptyPatientRecordsModel.setPatientRecords(getTypicalPatientRecords());
+
+        Model expectedNonEmptyPatientRecordsModel = new ModelManager();
+        expectedNonEmptyPatientRecordsModel.setPatientRecords(getTypicalPatientRecords());
+
+        assertCommandSuccess(new ClearDoctorCommand(), emptyPatientRecordsModel,
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedEmptyPatientRecordsModel);
+        assertCommandSuccess(new ClearDoctorCommand(), nonEmptyPatientRecordsModel,
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedNonEmptyPatientRecordsModel);
     }
 
     @Test
-    public void execute_emptyAppointmentScheduleNonEmptyDoctorRecords_success() {
-        Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+    public void execute_nonEmptyDoctorRecordsEmptyAppointmentSchedule_success() {
+        Model emptyPatientRecordsModel = new ModelManager(getEmptyPatientRecords(), getTypicalDoctorRecords(),
                 getEmptyAppointmentSchedule(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
-                getEmptyAppointmentSchedule(), new UserPrefs());
+        Model expectedEmptyPatientRecordsModel = new ModelManager(getEmptyPatientRecords(),
+                getTypicalDoctorRecords(), getEmptyAppointmentSchedule(), new UserPrefs());
 
-        expectedModel.setPatientRecords(new AddressBook<>());
-        assertCommandSuccess(new ClearPatientCommand(), model, ClearPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        expectedEmptyPatientRecordsModel.setDoctorRecords(getEmptyDoctorRecords());
+
+        Model nonEmptyPatientRecordsModel = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+                getEmptyAppointmentSchedule(), new UserPrefs());
+        Model expectedNonEmptyPatientRecordsModel = new ModelManager(getTypicalPatientRecords(),
+                getTypicalDoctorRecords(), getEmptyAppointmentSchedule(), new UserPrefs());
+
+        expectedNonEmptyPatientRecordsModel.setDoctorRecords(getEmptyDoctorRecords());
+
+        assertCommandSuccess(new ClearDoctorCommand(), emptyPatientRecordsModel,
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedEmptyPatientRecordsModel);
+        assertCommandSuccess(new ClearDoctorCommand(), nonEmptyPatientRecordsModel,
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedNonEmptyPatientRecordsModel);
     }
 
     @Test
-    public void execute_nonEmptyAppointmentScheduleNonEmptyDoctorRecords_failure() {
-        Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+    public void execute_nonEmptyDoctorRecordsNonEmptyAppointmentSchedule_failure() {
+        Model emptyPatientRecordsModel = new ModelManager(getEmptyPatientRecords(), getTypicalDoctorRecords(),
                 getTypicalAppointmentSchedule(), new UserPrefs());
 
-        assertCommandFailure(new ClearPatientCommand(), model, MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED);
-    }
+        Model nonEmptyPatientRecordsModel = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+                getTypicalAppointmentSchedule(), new UserPrefs());
 
+        assertCommandFailure(new ClearDoctorCommand(), emptyPatientRecordsModel,
+                MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED);
+        assertCommandFailure(new ClearDoctorCommand(), nonEmptyPatientRecordsModel,
+                MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED);
+    }
 }

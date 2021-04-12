@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_DUPLICATE_PATIENT;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_PATIENT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class AddPatientCommandTest {
 
         CommandResult commandResult = new AddPatientCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient),
+        assertEquals(String.format(MESSAGE_ADD_PATIENT_SUCCESS, validPatient),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
     }
@@ -46,7 +48,7 @@ public class AddPatientCommandTest {
         AddPatientCommand addCommand = new AddPatientCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPatient(validPatient);
 
-        assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PATIENT, () -> addCommand
+        assertThrows(CommandException.class, MESSAGE_ADD_DUPLICATE_PATIENT, () -> addCommand
                 .execute(modelStub));
     }
 

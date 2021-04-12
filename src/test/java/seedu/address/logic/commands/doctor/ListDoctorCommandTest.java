@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.doctor;
 
+import static seedu.address.commons.core.Messages.MESSAGE_LIST_DOCTOR_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showDoctorAtIndex;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
@@ -17,7 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListDoctorCommand.
  */
 public class ListDoctorCommandTest {
 
@@ -39,12 +40,12 @@ public class ListDoctorCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListDoctorCommand(), model, ListDoctorCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListDoctorCommand(), model, MESSAGE_LIST_DOCTOR_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showDoctorAtIndex(model, INDEX_FIRST_IN_LIST);
-        assertCommandSuccess(new ListDoctorCommand(), model, ListDoctorCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListDoctorCommand(), model, MESSAGE_LIST_DOCTOR_SUCCESS, expectedModel);
     }
 }

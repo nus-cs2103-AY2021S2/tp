@@ -19,7 +19,7 @@ public class DeletePatientCommandParser implements Parser<DeletePatientCommand> 
     /**
      * Used for the separation of force delete format and patient index from the format '--force INDEX'.
      */
-    private static final Pattern FORCE_DELETE_FORMAT = Pattern.compile("(?<forceDelete>\\D+)(?<patientIndex>.*)");
+    private static final Pattern FORCE_DELETE_FORMAT = Pattern.compile("(?<forceDelete>[^\\d\\s]+)(?<patientIndex>.*)");
 
     /**
      * Parses the given {@code args} in the context of the DeletePatientCommand

@@ -17,7 +17,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Application Architecture](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -51,20 +51,35 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-patient 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-The sections below give more details of each component.
+The component specifics are elaborated in the following sections.
+
+![Class Diagram of Appointment](images/AppointmentDiagram.png)
+
+The ***Appointment Diagram*** given above explains the interactions between the fundamental classes of the App: `Appointment`, `Patient` and `Doctor`.
+* `Patient` and `Doctor` are extensions of the `Person` abstract class which defines the criterion for duplicate identities.
+* `PatientMap` and `DoctorMap` maintain unique records of patients and doctors respectively via the assignment of `UUID`.
+* `Appointment` stores the `UUID` and accesses `Patient` and `Doctor` data through `DoctorMap` and `PatientMap` respectively.
+* Conflicts between appointments are then defined by duplicate persons bounded by overlapping `Timeslot`.
+
+This interaction between the 3 classes maintain the integrity of the App's appointment schedule, patient records and doctor records.
 
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+![Structure of the DisplayPanels and DisplayCards](images/UiDisplayPanelsCardsDiagram.png)
+
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,`PatientListPanel`, `DoctorListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+
+
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -80,15 +95,15 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103-W17-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `UserInputParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` and `Storage` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-patient 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-patient 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -102,13 +117,20 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data and appointment schedule data.
+* exposes unmodifiable `ObservableList<Person>` and `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in these lists change.
 * does not depend on any of the other three components.
 
+The `Person`,
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+* stores a `Person` class, which the `Doctor` class and `Patient` class inherit from.
+
+The `Appointment`,
+
+* stores a `Appointment` class, which access `Patient` object and `Doctor` object via the `PatientMap` class and `DoctorMap` class.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) Person model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. Similar design can be applied to the Appointment model.<br>
+![BetterPersonModelClassDiagram](images/BetterPersonModelClassDiagram.png)
+![BetterAppointmentModelClassDiagram](images/BetterAppointmentModelClassDiagram.png)
 
 </div>
 
@@ -132,91 +154,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -288,25 +225,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-[Coming Soon]
-
 (For all use cases below, the **System** is the `App-Ointment` and the **Actor** is the `User`, unless specified otherwise)
 
+<div markdown="span" class="alert alert-info">
+    For all use cases other than UC01, unless specified otherwise, the use cases will <b>all have UC01 as a precondition</b> (after the user enters the command and corresponding subcommands, if applicable).
+</div>
+<br>
+
 ### UC01: Enters a command:
+**Guarantees:**
+* Command entered will have a valid command word, with all corresponding required subcommands.
+
 **MSS**
 1. User enters a command.
-2. App-Ointment performs the corresponding action.
+2. App-Ointment attempts to perform the corresponding command.
+
+Use case ends.
 
 **Extensions**
-* **1a.** App-Ointment detects an invalid command from the user.
-    * **1a1.** App-Ointment prompts user that the command is not recognised.<br>
-    * **1a2.** App-Ointment executes the `help` command.<br>
-    Steps 1a1 to 1a2 are repeated until command entered is recognised.
-    Use case ends.
+* **1a.** App-Ointment detects an invalid command word from the user.
+    * **1a1.** App-Ointment prompts user that the command is invalid, and suggests the closest known command, or "unknown command", if all known commands are too dissimilar.<br>
+    Use case resumes from Step 1.
+* **2a.** App-Ointment detects that required subcommands are not specified.
+    * **2a1.** App-Ointment prompts user that the command is invalid, i.e. The subcommands do not match the command word.
+    Use case resumes from Step 1.
 
-### UC02: Add a patient
+### UC02: Enters Help Command:
 **MSS**
-1. User <u>enters the `add-patient` command and corresponding subcommands (UC01)</u>
+1. User enters the `help` command
+2. App-Ointment shows the Help Window.
+
+Use case ends.
+
+### UC03: Add a patient 
+**MSS**
+1. User enters the `add-patient` command and corresponding subcommands.
 2. App-Ointment adds a new patient to the patient records.
 
 **Extensions**
@@ -315,72 +268,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
     Use case resumes from step 2.
 
-* **2a.** App-Ointment detects that a patient with the same name exists in the patient records.
-    * **2a1.** App-Ointment warns user about the duplicate patient.<br>
-    * **2a2.** App-Ointment suggest user to update patient information through an `edit-patient` command instead.<br>
+* **1b.** App-Ointment detects that a patient with the same name exists in the patient records.
+    * **1b1.** App-Ointment warns user about the duplicate patient.<br>
+    * **1b2.** App-Ointment suggest user to update patient information through an `edit-patient` command instead.<br>
     Use case ends.<br>
 
-### UC03: Add a doctor
+### UC04: Clear Patient Records
 **MSS**
-1. User <u>enters the `add-doctor` command and corresponding subcommands (UC01)</u>
-2. App-Ointment adds a new doctor to the doctor records.
+1. User enters the `clear-patient` command.
+2. App-Ointment clears the patient records.
+
+Use case ends.
 
 **Extensions**
-* Similar to `add-patient` command.
+* **1a** App-Ointment detects at there is at least 1 appointment in the Appointment Schedule.
+    * **1a1** App-Ointment prompts user that there are appointments in the appointment schedule, and as such, patient records cannot be cleared, and prompts user to execute the `clear-appt` command first instead.
 
-### UC04: Add an appointment
+### UC05: Delete a patient 
+**MSS** 
+1. User enters the `delete-patient` command and corresponding subcommands. 
+2. App-Ointment removes the patient from the patient records. 
+
+**Extensions** 
+* **1a.** App-Ointment detects an invalid subcommand format. 
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br> 
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors. 
+      Use case resumes from step 2. 
+
+* **1b.** The currently displayed list of patients is empty. 
+    * **1b1.** App-Ointment prompts user that there are no patients in the current display.<br> 
+      Use case ends. 
+
+* **2a.** The index out of the bounds of the displayed list of patients. 
+    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br> 
+      Steps 2a1 is repeated until the index entered is correct/free from errors. 
+      Use case resumes from step 2. 
+ 
+* **2b.** App-Ointment detects at least 1 appointment associated with the patient identified by the index number used in the displayed list of patients.<br> 
+    * **2b1.** App-Ointment warns user about the associated appointments, prompts user to use force delete and displays the expected subcommand format.<br> 
+    Use case ends. 
+
+### UC06: Edit a patient
 **MSS**
-1. User <u>enters the `add-appt` command and corresponding subcommands (UC01)</u>
-2. App-Ointment adds a new appointment to the appointment schedule.
-
-**Extensions**
-* **1a.** App-Ointment detects an invalid subcommand format.
-    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
-    Use case resumes from step 2.
-
-* **2a.** The patient index out of the bounds of the displayed list of patients.
-    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
-    Steps 2a1 is repeated until the index entered is correct/free from errors.
-    Use case resumes from step 2.
-
-* **2b.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
-    * **2b1.** App-Ointment warns user about the conflicting appointment.<br>
-    * **2b2.** App-Ointment suggest user to either change existing appointment details through an `edit-appt` command, before adding the new appointment again, or change the new appointment details.<br>
-    Use case ends.<br>
-
-### UC05: List all patients
-**MSS**
-1. User <u>enters the `list-patient` command (UC01)</u>
-2. App-Ointment displays all patients.
-
-**Extensions**
-* **2a.** There are no appointments to display.
-    * **2a1.** App-Ointment informs user that there are no patients to display.<br>
-    Use case ends.
-
-### UC06: List all doctors
-**MSS**
-1. User <u>enters the `list-doctor` command (UC01)</u>
-2. App-Ointment displays all doctors.
-
-**Extensions**
-* Similar to `list-patient` command.
-
-
-### UC07: List all appointments
-**MSS**
-1. User <u>enters the `list-appt` command (UC01)</u>
-2. App-Ointment displays all appointments.
-
-**Extensions**
-* **2a.** There are no appointments to display.
-    * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
-    Use case ends.
-
-### UC08: Edit a patient
-**MSS**
-1. User <u>enters the `edit-patient` command and corresponding subcommands (UC01)</u>
+1. User enters the `edit-patient` command and corresponding subcommands.
 2. App-Ointment changes the details of the patient.
 
 **Extensions**
@@ -398,18 +328,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 2a1 is repeated until the index entered is correct/free from errors.
       Use case resumes from step 2.
 
-### UC09: Edit a doctor
+### UC07: Find patients by search fields
 **MSS**
-1. User <u>enters the `edit-doctor` command and corresponding subcommands (UC01)</u>
+1. User enters the `find-patient` command and corresponding subcommands.
+2. App-Ointment changes the displayed list of patients to fit.
+
+**Extensions**
+* **1a.** System detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **2a.** There are no doctors to display.
+    * **2a1.** App-Ointment informs user that there are no patients to display.<br>
+      Use case ends.
+
+### UC08: List all patients
+**MSS**
+1. User enters the `list-patient` command
+2. App-Ointment displays all patients in the patient records.
+
+### UC09: Add a doctor 
+**MSS**
+1. User enters the `add-doctor` command and corresponding subcommands.
+2. App-Ointment adds a new doctor to the doctor records.
+
+**Extensions** 
+* Similar to `add-patient` command.
+
+### UC10: Clear Doctor Records
+**MSS**
+1. User enters the `clear-doctor` command.
+2. App-Ointment clears the patient records.
+
+Use case ends.
+
+**Extensions**
+* Similar to `clear-patient` command.
+
+### UC11: Delete a doctor
+**MSS**
+1. User enters the `delete-doctor` command and corresponding subcommands.
+2. App-Ointment removes the patient from the doctor records.
+
+**Extensions**
+* Similar to `delete-patient` command.
+
+### UC12: Edit a doctor
+**MSS**
+1. User enters the `edit-doctor` command and corresponding subcommands.
 2. App-Ointment changes the details of the doctor.
 
 **Extensions**
 * Similar to `edit-patient` command.
 
-
-### UC10: Edit an appointment
+### UC13: Find doctors by search fields
 **MSS**
-1. User <u>enters the `edit-appt` command and corresponding subcommands (UC01)</u>
+1. User enters the `find-doctor` command and corresponding subcommands.
+2. App-Ointment changes the displayed list of doctors to fit.
+
+**Extensions**
+* Similar to `find-patient` command.
+
+### UC14: List all doctors
+**MSS**
+1. User enters the `list-doctor` command
+2. App-Ointment displays all doctors in the doctor records.
+
+### UC15: Add an appointment 
+**MSS**
+1. User enters the `add-appt` command and corresponding subcommands.
+2. App-Ointment adds a new appointment to the appointment schedule.
+
+**Extensions**
+* **1a.** App-Ointment detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+    Use case resumes from step 2.
+
+* **1b.** The patient index out of the bounds of the displayed list of patients.
+    * **1b1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
+    Steps 1b1 is repeated until the index entered is correct/free from errors.
+    Use case resumes from step 2.
+
+* **1c.** App-Ointment detects an existing appointment with the same patient or doctor at an overlapping appointment time.
+    * **1c1.** App-Ointment warns user about the conflicting appointment.<br>
+    * **1c2.** App-Ointment suggest user to either change existing appointment details through an `edit-appt` command, before adding the new appointment again, or change the new appointment details.<br>
+    Use case ends.<br>
+
+### UC16: Clear Appointment Schedule
+**MSS**
+1. User enters the `clear-patient` command.
+2. App-Ointment clears the Appointment Schedule.
+
+Use case ends.
+
+### UC17: Delete an appointment 
+**MSS** 
+1. User enters the `delete-appt` command and corresponding subcommands. 
+2. App-Ointment removes the appointment from the appointment schedule. 
+
+**Extensions** 
+* **1a.** App-Ointment detects an invalid subcommand format. 
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br> 
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors. 
+      Use case resumes from step 2. 
+
+* **1b.** The currently displayed list of appointments is empty. 
+    * **1b1.** App-Ointment prompts user that there are no appointments in the current display.<br> 
+      Use case ends. 
+
+* **2a.** The index out of the bounds of the displayed list of appointments. 
+    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of appointments.<br> 
+      Steps 2a1 is repeated until the index entered is correct/free from errors. 
+      Use case resumes from step 2. 
+
+### UC18: Edit an appointment
+**MSS**
+1. User enters the `edit-appt` command and corresponding subcommands.
 2. App-Ointment changes the details of the appointment.
 
 **Extensions**
@@ -432,97 +468,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit-appt` command, before editing the current appointment again, or change the edit details of the current appointment.<br>
     Use case ends.
 
-### UC11: Find appointments by search fields
+### UC19: Find appointments by search fields 
+**MSS** 
+1. User enters the `find-appt` command and corresponding subcommands. 
+2. App-Ointment changes the displayed list of appointments to fit. 
+
+**Extensions** 
+* **1a.** System detects an invalid subcommand format. 
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br> 
+    Steps 1a1 is repeated until the subcommand entered is correct/free from errors. 
+    Use case resumes from step 2. 
+
+* **2a.** There are no appointments to display. 
+    * **2a1.** App-Ointment informs user that there are no appointments to display.<br> 
+    Use case ends. 
+
+### UC20: List all appointments
 **MSS**
-1. User <u>enters the `find-appt` command and corresponding subcommands (UC01)</u>
-2. App-Ointment changes the displayed list of appointments to fit.
-
-**Extensions**
-* **1a.** System detects an invalid subcommand format.
-    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-    Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
-    Use case resumes from step 2.
-
-* **2a.** There are no appointments to display.
-    * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
-    Use case ends.
-
-### UC12: Find patients by search fields
-**MSS**
-1. User <u>enters the `find-patient` command and corresponding subcommands (UC01)</u>
-2. App-Ointment changes the displayed list of patients to fit.
-
-**Extensions**
-* **1a.** System detects an invalid subcommand format.
-    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
-      Use case resumes from step 2.
-
-* **2a.** There are no doctors to display.
-    * **2a1.** App-Ointment informs user that there are no patients to display.<br>
-      Use case ends.
-
-### UC13: Find doctors by search fields
-**MSS**
-1. User <u>enters the `find-doctor` command and corresponding subcommands (UC01)</u>
-2. App-Ointment changes the displayed list of doctors to fit.
-
-**Extensions**
-* Similar to `find-patient` command.
-
-### UC14: Delete a patient
-**MSS**
-1. User <u>enters the `delete-patient` command and corresponding subcommands (UC01)</u>
-2. App-Ointment removes the patient from the patient records.
-
-**Extensions**
-* **1a.** App-Ointment detects an invalid subcommand format.
-    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
-      Use case resumes from step 2.
-
-* **1b.** The currently displayed list of patients is empty.
-    * **1b1.** App-Ointment prompts user that there are no patients in the current display.<br>
-      Use case ends.
-
-* **2a.** The index out of the bounds of the displayed list of patients.
-    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of patients.<br>
-      Steps 2a1 is repeated until the index entered is correct/free from errors.
-      Use case resumes from step 2.
- 
-* **2b.** App-Ointment detects at least 1 appointment associated with the patient identified by the index number used in the displayed list of patients.<br>
-    * **2b1.** App-Ointment warns user about the associated appointments, prompts user to use force delete and displays the expected subcommand format.<br>
-    Use case ends.
-
-### UC15: Delete a doctor
-**MSS**
-1. User <u>enters the `delete-doctor` command and corresponding subcommands (UC01)</u>
-2. App-Ointment removes the patient from the doctor records.
-
-**Extensions**
-* Similar to `delete-patient` command.
-
-### UC16: Delete an appointment
-**MSS**
-1. User <u>enters the `delete-appt` command and corresponding subcommands (UC01)</u>
-2. App-Ointment removes the appointment from the appointment schedule
-
-**Extensions**
-* **1a.** App-Ointment detects an invalid subcommand format.
-    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
-      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
-      Use case resumes from step 2.
-
-* **1b.** The currently displayed list of appointments is empty.
-    * **1b1.** App-Ointment prompts user that there are no appointments in the current display.<br>
-      Use case ends.
-
-* **2a.** The index out of the bounds of the displayed list of appointments.
-    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of appointments.<br>
-      Steps 2a1 is repeated until the index entered is correct/free from errors.
-      Use case resumes from step 2.
-
-*{More to be added}*
+1. User enters the `list-appt` command.
+2. App-Ointment displays all appointments in the appointment schedule.
 
 ### Non-Functional Requirements
 _Non-functional requirements specify the constraints under which App-Ointment is developed and operated._
@@ -547,13 +511,16 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 
 ### Glossary
 
-* **System**: The App-Ointment App
-* **User**: The Receptionist, not the patient or doctor
-* **Person**: Patient or Doctor
 * **Appointment Schedule**: The list of appointments maintained in App-Ointment, arranged by appointment datetime.
-* **Patient Records**: The list of patients maintained in App-Ointment.
+* **Command**: An input containing the Command Word and Subcommands (if applicable).
+* **Command Word**: The word that defines the behaviour of the app: eg. `add-doctor`, `list-appt`, `delete-patient`, etc.
 * **Doctor Records**: The list of doctors maintained in App-Ointment.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Patient Records**: The list of patients maintained in App-Ointment.
+* **Person**: Patient or Doctor
+* **Subcommand**: The prefixes and parameters that follow behind a Command Word entered by the user. eg. `n/Some Name`
+* **System**: The App-Ointment App
+* **User**: The Receptionist, not the patient or doctor
 
 *{More to be added}*
 
@@ -572,7 +539,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the [jar file](https://github.com/AY2021S2-CS2103-W17-2/tp/releases) and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -583,29 +550,184 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a patient
 
-### Deleting a person
+1. Adding a new patient
+   
+    1. Prerequisites: The patient to add must not already exist in the patient records.
 
-1. Deleting a person while all persons are being shown
+    1. Test case: `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: The new patient is appended to the patient records, and the details of the patient are displayed in the status message.
+       
+    1. Test case: `add-patient n/John Doe e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: No patient is added. Error details are shown in the status message.
+       
+    1. Other incorrect `add-patient` commands to try: `add-patient n/John Doe`, `add-patient n/John Doe p/a2345678`, `...` (where a field is missing, or the values are invalid)
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Adding a duplicate patient
+    
+    1. Prerequisites: The patient to add has the same `Name` as an existing patient in the patient records.
+    
+    1. Test case: `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`<br>
+       Expected: No patient is added. Error details are shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Missing fields and invalid value errors take precedence before duplicate patient errors.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+### Adding a doctor
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Adding a new doctor
 
-1. _{ more test cases …​ }_
+    1. Prerequisites: The doctor to add must not already exist in the doctor records.
 
-### Saving data
+    1. Test case: `add-doctor n/Dr Meredith Grey`<br>
+       Expected: The new doctor is appended to the doctor records, and the details of the doctor are displayed in the status message.
 
-1. Dealing with missing/corrupted data files
+    1. Test case: `add-doctor n/`<br>
+       Expected: No doctor is added. Error details are shown in the status message.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Other incorrect `add-doctor` commands to try: `add-doctor n/Ca$h Money`, `...` (where the `Name` value is invalid)<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Adding a duplicate doctor
+
+    1. Prerequisites: The doctor to add has the same `Name` as an existing doctor in the doctor records.
+
+    1. Test case: `add-doctor n/Dr Meredith Grey`<br>
+       Expected: No doctor is added. Error details are shown in the status message.
+
+### Adding an appointment
+
+1. Adding a non-conflicting appointment while all patients and doctors are shown
+
+    1. Prerequisites: List all patients and doctors using the `list-patient` and `list-doctor` command.<br>
+       There must be at least 1 patient and doctor in the patient records and doctor records respectively.
+
+    1. Test case: `add-appt pt/1 dr/1 at/2021-01-01 00:00 to/2021-01-01 01:30`<br>
+       Expected: The appointment is appended to the appointment schedule, and the details of the appointment are displayed in the status message.
+
+    1. Test case: `add-appt pt/1`<br>
+       Expected: No appointment is added. Error details are shown in the status message.
+
+    1. Other incorrect `add-appt` commands to try: `add-appt pt/0`, `add-appt pt/1 dr/1 at/2021-01-01 dur/0H 0M`, `...` (where a field is missing, values are invalid, or the indexes are out of bounds)<br>
+       Expected: Similar to previous.
+
+1. Adding a conflicting appointment
+
+    1. Prerequisites: The appointment to add is in conflict with an existing appointment in the appointment schedule.<br>
+       There is an overlap in the `Timeslot` fields with either the same `Patient` or `Doctor`.
+
+    1. Test case: `add-appt pt/1 dr/1 at/2021-01-01 00:00 to/2021-01-01 01:30`<br>
+       Expected: No appointment is added. Error details are shown in the status message.
+       
+    1. Missing fields and invalid value errors take precedence before conflicting appointment errors.
+
+### Clearing patient records (or doctor records)
+
+1. Clearing patient records while appointment schedule is not empty.
+    
+    1. Test case: `clear-patient`<br>
+    Expected: The patient records are not cleared. An error message will be returned.
+
+1. Clearing patient records while appointment schedule is empty.
+
+    1. Test case: `clear-patient`<br>
+    Expected: The patient records are cleared. It does not matter if there are entries in the patient records.
+
+Note: This set of test cases can be similarly performed for doctor records by replacing mentions of `clear-patient` with `clear-doctor`.
+
+### Clearing appointment schedule
+
+1. Clearing appointment schedule.
+
+    1. Test case: `clear-appt`<br>
+    Expected: The appointment schedule is cleared. It does not matter if there are entries in the appointment schedule.
+
+### Deleting a patient (or doctor)
+
+1. Deleting a patient while all patients with no existing appointments in the appointment schedule.
+
+   1. Prerequisites: List all persons using the `list-patient` command. Multiple persons in the list.
+
+   1. Test case: `delete-patient 3`<br>
+      Expected: The third patient, Charlotte Olivero, is deleted from the patient records. Details of the deleted patient will be shown in the feedback message.
+
+   1. Test case: `delete-patient 0`<br>
+      Expected: No patient is deleted. An error message will be returned.
+
+   1. Test case: `delete-patient 1`<br>
+      Expected: An error message informing that the patient has existing appointments in the appointment schedule and a force delete command is required.
+
+1. Force deleting a patient with existing appointments in the appointment schedule.
+
+   1. Test case: `delete-patient --force 1`<br>
+      Expected: The first patient, Alex Karev, is deleted from the patient records, along with his existing appointments in the appointment schedule. Details of the deleted patient will be shown in the feedback message.
+
+Note: This set of test cases can be similarly performed for doctors in the doctor records by replacing mentions of `delete-patient` with `delete-doctor`.
+
+### Listing patient records (or doctor records, or appointment schedule)
+
+1. Listing of all patients in the patient records when a predicate has been applied.
+
+    1. Prerequisites: A `find-patient` command which filters the patient records must have been applied, and the original patient records must not have been empty.
+    1. Test case: `list-patient`<br>
+    Expected: All patients are listed, and applied predicates are removed. The resulting number of patients displayed will be more than what was previously displayed.
+
+1. Listing of all patients in the patient records when no predicate has been applied.
+
+    1. Test case: `list-patient`<br>
+    Expected: All patients are listed, and applied predicates are removed. The command will succeed, but since there were no predicates applied, there will be no visible changes to the patient records.
+
+Note: This set of test cases can be similarly performed for doctors in the doctor records by replacing mentions of `list-patient` with `list-doctor`, and for appointments in the appointment schedule by replacing mentions of `list-patient` with `list-appt`.
+
+### Reading data from storage
+
+1. Dealing with missing appointment schedule where patient and doctor records have been modified substantially.
+
+    1. Prerequisites: the patient and doctor records must have been modified from the sample patient and doctor records such that:
+    there exists appointments in the sample appointment schedule which refer to a patient or doctor, whose UUID is not present in the patient or doctor records.
+
+    1. Test case: Delete the appointment schedule json file (default name `AppointmentSchedule.json`, in default location `data/`)<br>
+    Expected: App-Ointment will start with an empty appointment schedule.
+
+1. Dealing with missing appointment schedule while patient and doctor records are the same as the sample patient and doctor records respectively.
+
+    1. Test case: Delete the appointment schedule json file<br>
+    Expected: App-Ointment will start with a sample Appointment Schedule.
+
+1. Dealing with missing patient/doctor records
+
+    1. Test case: Delete the patient records json file (default name `PatientRecords.json`, in default location `data/`)<br>
+    Expected: App-Ointment will start with an sample patient record. If the resultant sample patient record results in an appointment schedule with appointments which refer to a patient whose UUID is not present in the patient record, the appointment schedule will be treated as a corrupt data file.
+
+Note: this set of test cases can be similarly performed for the doctor record json file by replacing mentions of `PatientRecords.json` with `DoctorRecords.json`.
+
+1. Dealing with corrupted patient/doctor records
+
+    1. Test case: edit `PatientRecords.json` such that there is now an invalid patient (e.g. editing the name of a patient such that it has a special character in it)<br>
+    Expected: App-Ointment will start with an empty patient record and an empty appointment schedule.
+
+Note: this set of test cases can be similarly performed for the doctor record json file by replacing mentions of `PatientRecords.json` with `DoctorRecords.json`.
+
+1. Dealing with corrupted appointment schedule
+
+    1. Test case: edit `AppointmentSchedule.json` such that there is now an invalid appointment (e.g. editing the uuid of a patient in the appointment schedule json such that the uuid does not belong to any patient in the patient records)<br>
+    Expected: App-Ointment will start with an empty appointment schedule.
+
+## **Appendix: Effort**
+* Built on AB-3's Address Book, by creating an Appointment Management Software
+* Extended and modified `Person` such that `Patient` and `Doctor` classes inherit from `Person`.
+* Created `Appointment` which takes in 2 `Person`s: a `Patient` and a `Doctor`, a `Timeslot`, and `Tag`s.
+* Add, Clear, Edit, Find, List commands were added for all 3 categories of objects (`Patient`, `Doctor`, `Appointment`) (modified AB-3 Implementation for `Patient`)
+* Added Up/Down Key Toggle Features for user to toggle between the next and previous commands they have input.
+* Added prompting for the closest known command word to alert users in the event of a typographical error in the command word.
+* Handled dependency issues regarding editing of patient/doctors.
+    * Met issues with replacement of person during an edit command, 
+    * Implemented UUID field to act as a de-facto primary key for a `Person`, and use the UUIDs in an `Appointment` instead of a direct reference to the `Patient` and `Doctor` objects. This is so that an `Appointment` can uniquely identify a `Patient` as well as a `Doctor`, and still be able to listen to changes in a Patient.
+    * Handled UI display of Patient, Doctor, Appointment to not display the UUID and to show the appropriate names instead, and performed the translation with high efficiency with Java Maps.
+
+* Handled dependency issues regarding deleting of patient/doctors and clearing of patient/doctor records.
+
+* Modified `Model`, `Storage`, and `Logic` to be generic, to accept extensions of the `Person` class.
+* Added Timeslot Parser, and related enums, so that user is able to be more flexible in entering date and time for their appointments.
+
+* Added Tests regarding the new classes and commands
