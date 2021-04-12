@@ -43,7 +43,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[github](http://github.com/yuheem)] [[portfolio](team/yuheem.md)]
 
 - Role: Developer
-- Responsibilities: To be updated
+- Responsibilities: Integration + Model Component
 
 ### Ong Siying Natasha
 
