@@ -106,6 +106,8 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object, which is passed back to the `Ui`. The feedback to the user is then displayed to the user.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021")` API call.
 
 ![Interactions Inside the Logic Component for the `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` Command](images/AddPropertySequenceDiagram.png)
@@ -288,7 +290,9 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+<img src="images/CommitActivityDiagram.png" height="600" width="601" />
+
+<div style="page-break-after: always;"></div>
 
 #### 3.3.2 Design consideration:
 
@@ -301,7 +305,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Saves only changes made by previous commands (Similar to commit and restore in version control).
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
   * Cons: Difficult to implement, different implementations are required to restore different changes.
-    
+
+<div style="page-break-after: always;"></div>
+
 ### 3.4 Update feature
 
 #### 3.4.1 Current Implementation
@@ -315,6 +321,8 @@ The `Status` field consists of a `Status` interface with a `next()` method that 
 * `Completion` — Represents the stage where the property has been sold.
 
 ![StatusClassDiagram](images/StatusClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively.
 
