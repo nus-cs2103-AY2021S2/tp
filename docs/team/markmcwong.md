@@ -20,11 +20,14 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * GUI [\#73](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/73), [\#107](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/107), [\#284](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/284):
-     * Updated the GUI to be responsive with split panel
+     * Updated the GUI to be responsive
+     * Updated the GUI to have split panels with headers above
      * Updated the GUI with new color scheme and card design 
   * Wrote additional tests for existing features, classes and predicates to increase coverage:
   [\#218: +2.78% for coverage](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/218), [\#107: +1.04%](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/107), etc)
   * Refactored magic literals used in tests: [\#266](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/266)
+  * Updated Help Window with Command Summary: [\#307](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/307)
+  * Fixed the issue of Driver not saved to JSON file and update the sample data to be compatible for testing with Driver: [\#76](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/76)
   
 * **Documentation**:
   * User Guide:
