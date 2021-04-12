@@ -6,11 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.budgetbaby.model.BudgetBabyModelManager;
-import seedu.budgetbaby.model.record.Category;
 
 public class StatisticsTest {
 
-    Statistics statistics = new Statistics(new BudgetBabyModelManager());
+    private Statistics statistics = new Statistics(new BudgetBabyModelManager());
 
     @Test
     public void fillPastMonths() {
