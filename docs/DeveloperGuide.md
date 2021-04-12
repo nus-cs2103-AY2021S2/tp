@@ -15,11 +15,11 @@ title: NuFash Developer Guide
     * [Find feature](#find-feature)
     * [Match feature](#match-feature)
     * [Select feature](#select-feature)
-    * [View feature](#view-feature)
+    * [View feature](#view)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
         * [Target User Profile](#target-user-profile)
-        * [Valur Proposition](#value-proposition)
+        * [Value Proposition](#value-proposition)
     * [User stories](#user-stories)
     * [Use cases](#use-cases)
     * [Non-Funtional Requirements](#non-functional-requirements)
@@ -348,7 +348,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Harder to implement as the `Name` attribute has its own drawbacks, e.g `Name` could be
       a extremely long phrase, which could be hard for the user to remember or input into the application.
 
-### [Completed] View feature
+### <a name="view"></a> [Completed] View feature
 
 #### Implementation
 The `view` mechanism extends the `list` mechanism from `AddressBook`. It is facilitated by the `ViewCommand` class.
@@ -392,7 +392,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### Product Scope
 
-**Target User Profile:**
+<a name="target-user-profile"></a>**Target User Profile:**
 
 * Students currently in tertiary educational institutions
 
@@ -404,9 +404,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * Users who have a hard time organising their wardrobe
 <br><br>
-  
 
-**Value Proposition:**
+
+<a name="value-proposition"></a>**Value Proposition:**
 
 * Ability to organise garments based on attributes such as colour, size, material, type of clothing
 
@@ -513,11 +513,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br><br>
 
-**Non-Functional Requirements:**
+<a name="non-functional-requirements"></a>**Non-Functional Requirements:**
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2.  Should be able to hold up to 1000 articles of clothing without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 <br><br>
-    
-**Glossary:**
+
+<a name="glossary"></a>**Glossary:**
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
