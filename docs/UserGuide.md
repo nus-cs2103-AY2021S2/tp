@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# ClientBook
+# ClientBook <img src="images/logo.png"></p>
 
 ClientBook is an application for insurance agents to manage client contacts, optimized for use with just a keyboard,
 but still offering a graphical interface for ease of viewing of client contacts. The purpose of ClientBook is to help 
