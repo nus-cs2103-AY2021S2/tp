@@ -744,4 +744,14 @@ testers are expected to do more *exploratory* testing.
     1. Open the jar file by running `java -jar bookingapp.jar` on your terminal.
     Expected: GUI starts up with no data populated.
 
+----------------------
+## **Appendix G: Effort**
 
+### G.1 Model
+The model was much more difficult to implement for BookCoin than for addressbook, because addressbook only revolved around Persons, while we had to manage Persons, Venues and Bookings. The booking class was especially difficult because it depended heavily on the first two classes: what happens to a booking object if we delete its associated person of venue? That was something that we struggled with initally. The modification of the storage format was also non-trivial for us as we did not know how to update and store changes to booking objects from changes in its associated person/ venue accordingly. 
+
+### G.2 Logic
+We implemented multi-step commands as we felt that it was too difficult for users to input such a long string of fields for the various `AddCommands`. It was difficult to maintain a stateful command as we had to handle how to exit the command, and other corner cases such as if the user were to input commands as usual during a multi-step command. 
+
+### G.3 UI
+It was difficult to create a new UI that could accommodate the listing of three different types of object, so we came up with a new design that would make it easier for users to navigate between the three. 
