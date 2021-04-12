@@ -53,7 +53,7 @@ public class JsonAdaptedGrade {
         }
 
         if (!Grade.isValidSubject(subject)) {
-            throw new IllegalValueException(SubjectName.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Grade.SUBJECT_CONSTRAINTS);
         }
 
         if (gradedItem == null) {

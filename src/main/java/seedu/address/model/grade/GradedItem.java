@@ -7,7 +7,7 @@ public class GradedItem {
     public static final String MESSAGE_CONSTRAINTS =
             "Graded item should only contain alphanumeric characters and spaces, "
                     + "and it should not be blank. "
-                    + "Maximum number of characters is 29.";
+                    + "Maximum number of non-whitespace characters is 29.";
 
     /*
      * The first character of the graded item must not be a whitespace,

@@ -42,7 +42,7 @@ public class EditGradeCommandParser implements Parser<EditGradeCommand> {
         EditGradeCommand.EditGradeDescriptor editGradeDescriptor = new EditGradeCommand.EditGradeDescriptor();
         if (argMultimap.getValue(PREFIX_SUBJECT_NAME).isPresent()) {
             editGradeDescriptor.setSubjectName(ParserUtil
-                    .parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
+                    .parseSubjectNameInGrade(argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_GRADED_ITEM).isPresent()) {
             editGradeDescriptor.setGradedItem(ParserUtil

@@ -12,8 +12,12 @@ import seedu.address.model.subject.SubjectName;
  */
 public class Grade {
     public static final String MESSAGE_CONSTRAINTS =
-            "Each Grade must contain subject name, exam name and grade. "
-                    + "Maximum number of characters is 20. ";
+            "Each Grade must contain subject name, exam name and grade. ";
+
+    public static final String SUBJECT_CONSTRAINTS =
+            "Subject names should only contain alphanumeric characters and spaces, "
+                    + "and it should not be blank. "
+                    + "Maximum number of non-whitespace characters is 20. ";
 
     /*
      * The first character of the gradedItem must not be a whitespace,
