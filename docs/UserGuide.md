@@ -421,10 +421,10 @@ Examples:
 * `findPriority high`
 
 <a name="clearAssignees"></a>
-### 10. Remove all Members Assigned to a Task: `clearAssignees`
+### 10. Clear all Members Assigned to a Task: `clearAssignees`
 
 If you have accidentally assigned a task to the wrong group of members,
-you can easily remove all members assigned to that task with the task index you specified.
+you can easily clear all members assigned to that task with the task index you specified.
 
 Format: `clearAssignees INDEX`
 
