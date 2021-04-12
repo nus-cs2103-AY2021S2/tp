@@ -39,11 +39,14 @@ Enhancement 3: Implemented the Redo Command as well as the VersionedTaskTracker
 
 
 ##Contributions to the UG
-Added documentation for the features `edit`, `clear`, `undo` and `redo`
+* Added documentation for the features `edit`, `clear`, `undo` and `redo`
+* Proofread and fixed issues with the UG before submission
 
 ##Contributions to the DG
 * I was in charge of the Model component and did the initial version of the Model component UML diagram.
 * Added use cases for "Editing a deadline", "Setting a priority tag to a deadline" and "Adding a note to a deadline"
+* Proofread and fixed issues with the DG before submission
+
 ##Contributions to team-based tasks
 
 * Refactored ReadOnlyAddressBook to ReadOnlyTaskTracker in all usages
