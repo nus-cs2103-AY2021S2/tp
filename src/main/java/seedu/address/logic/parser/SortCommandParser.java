@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -33,7 +34,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             if (!unboxedOption.equals(OPTION_NAME)
                     && !unboxedOption.equals(OPTION_DATE)) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_OPTION, unboxedOption));
             } else {
                 return new SortCommand(unboxedOption);
             }
