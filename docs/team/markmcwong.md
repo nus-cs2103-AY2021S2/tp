@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trivial review comments): ([\#248](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/248),
   [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234))
-  * Reported [\12 Bugs](https://github.com/markmcwong/ped/issues) for team AY2021S2-CS2103T-W13-3.
+  * Reported [12 Bugs](https://github.com/markmcwong/ped/issues) for team AY2021S2-CS2103T-W13-3.
 
 * **Tools**:
   * Integrated a third party library (testfx) to the project for GUI-testing
