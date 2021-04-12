@@ -1,5 +1,8 @@
 package seedu.student.ui;
 
+import java.util.Optional;
+
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,8 +26,8 @@ public class AppointmentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Appointment appointment;
-    public final Student student;
+    private final Appointment appointment;
+    private Student student;
 
     @FXML
     private HBox cardPane;
@@ -57,6 +60,8 @@ public class AppointmentCard extends UiPart<Region> {
         time.setText(String.format("%s - %s", appointment.getStartTime(), appointment.getEndTime()));
         phone.setText(student.getPhone().value);
         email.setText(student.getEmail().value);
+
+        studentBind(this, studentList);
     }
 
     @Override
@@ -75,5 +80,21 @@ public class AppointmentCard extends UiPart<Region> {
         AppointmentCard card = (AppointmentCard) other;
         return id.getText().equals(card.id.getText())
                 && appointment.equals(card.appointment);
+    }
+
+    private static void studentBind(AppointmentCard apptCard, ObservableList<Student> studentList) {
+        ListChangeListener<Student> listener = change -> {
+            while (change.next()) {
+                Optional<? extends Student> student = change.getList().stream().filter(s -> s.getMatriculationNumber()
+                        .equals(apptCard.student.getMatriculationNumber())).findFirst();
+                if (student.isPresent() && !apptCard.student.equals(student)) {
+                    apptCard.student = student.get();
+                    apptCard.name.setText(apptCard.student.getName().toString());
+                    apptCard.phone.setText(apptCard.student.getPhone().value);
+                    apptCard.email.setText(apptCard.student.getEmail().value);
+                }
+            }
+        };
+        studentList.addListener(listener);
     }
 }

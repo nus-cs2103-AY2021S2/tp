@@ -11,13 +11,13 @@
     "schoolResidence" : "RVRC"
   } ],
   "appointments": [{
-    "matriculationNumber" : "A0221234N",
+    "matriculationNumber" : "A0987643T",
     "date" : "2021-12-13",
-    "startTime" : "13:00:00"
+    "startTime" : "13:00"
   },
     {
-      "matriculationNumber" : "A0987643T",
+      "matriculationNumber" : "A0221234N",
       "date" : "2021-12-13",
-      "startTime" : "13:00:00"
+      "startTime" : "13:00"
     }]
 }

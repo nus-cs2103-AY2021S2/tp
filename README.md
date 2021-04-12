@@ -12,8 +12,8 @@
 
 * Create, read, update and delete (CRUD) of student profiles which details critical information such as:
     * Contact information
+    * NUS faculty and residence
     * Vaccination status
-        * If not vaccinated, their preference for vaccination (yes/no)
     * Medical history, existing medical conditions and allergies
 * Creating and managing vaccination appointments for students
 
@@ -22,31 +22,37 @@
 * Eliminates the need for the university to use the Ministry of Health's database.
 * This in turn simplifies the process of contacting, monitoring and administering vaccines for students.
 * Consolidates and streamlines only data relevant to vaccinations into one app.
-* **Goal:** To create a COVID-free NUS campus where student and academic life can flourish without restrictions.
+* **Goal:** To reduce the administrative workload on UHC staff of keeping track of vaccination and managing the
+vaccination appointments of students. 
 
 
 ### Planned Features:
 
 #### v1.2
 
-1. On top of the fields already available in AB3, the user will be able to input the following:
+1. On top of the fields already available in AB3, excluding the `tag` feature, the user will be able to input the following:
     * Student's matriculation number
-    * Vaccination status/preference
+    * Vaccination status
     * Faculty
     * Residence on campus (if applicable)
     * Medical history
-1. A filter function that will allow the user to display a specific group of students
-1. The user will be able to view all the detailed information of a student at a glance. Currently, only
-   the summarised information on the UI can be viewed.
-1. Create vaccination appointments and display them on the UI.
+1. A `filter` function that will allow the user to display a specific group of students, by 
+   vaccination status, faculty or school residence. 
+1. Modify the `find` and `delete` commands to identify students by matriculation number.
+1. Create vaccination appointments and display them on the UI sorted by date.
+1. Introduce the use of icons in the UI.
 
 #### v1.3
 
-1. Detect duplicate entries.
-1. Sort vaccination appointments and display only upcoming ones.
-1. Provide statistical insights regarding the vaccination of the student population, by faculty, residence or other
-   relevant parameters.
-1. Undo feature to quickly correct accidental mistakes.
+1. Provide statistical insights regarding the vaccination of the student population, by faculty, residence or across 
+   the entire NUS. 
+1. Edit the details of existing vaccination appointments
+1. Delete existing vaccination appointments
+1. View the number of vaccination appointments in the past week and in the next week. 
+
+#### v1.4
+
+1. Fix bugs found during the PE-D in v1.3
 
 
 >For the detailed documentation of this project, see the

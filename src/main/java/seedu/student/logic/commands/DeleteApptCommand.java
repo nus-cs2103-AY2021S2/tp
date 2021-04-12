@@ -2,8 +2,12 @@ package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.student.commons.core.LogsCenter;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
+import seedu.student.model.ModelManager;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
@@ -15,14 +19,14 @@ public class DeleteApptCommand extends Command {
     public static final String COMMAND_WORD = "deleteAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the appointment of the student identified by their unique matriculation number"
-            + " assigned by NUS.\n"
-            + "Parameters: Matriculation Number \n"
+            + ": Deletes the appointment of the student identified by their unique matriculation number. \n"
+            + "Parameters: Matriculation Number in the format of A + 7 digit numeric sequence + alphabet. \n"
             + "Example: " + COMMAND_WORD + " A1234567X";
 
     public static final String MESSAGE_DELETE_APPT_SUCCESS = "Deleted Appointment: Name; %s, %s"; // appointment
-    public static final String MESSAGE_NONEXISTENT_APPT = "No appointment for that matriculation number exists!";
+    public static final String MESSAGE_NONEXISTENT_APPT = "No appointment for matriculation number %s exists.";
 
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final MatriculationNumber matriculationNumber;
 
     /**
@@ -42,7 +46,15 @@ public class DeleteApptCommand extends Command {
         Appointment appointmentToDelete = model.getAppointment(matriculationNumber);
         Student student = model.getStudent(matriculationNumber);
         if (appointmentToDelete == null || student == null) {
-            throw new CommandException(MESSAGE_NONEXISTENT_APPT);
+            if (student == null) {
+                logger.info("Student with a matriculation number of " + matriculationNumber
+                        + " does not exist in Vax@NUS");
+            }
+            if (appointmentToDelete == null) {
+                logger.info("Appointment of a student with a matriculation number of " + matriculationNumber
+                        + " does not exist in Vax@NUS");
+            }
+            throw new CommandException(String.format(MESSAGE_NONEXISTENT_APPT, matriculationNumber));
         }
         model.deleteAppointment(appointmentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_APPT_SUCCESS, student.getName(), appointmentToDelete));

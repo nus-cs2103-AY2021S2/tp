@@ -31,7 +31,7 @@ public class Faculty {
     }
 
     public static String getStringFaculties() {
-        return String.join(",", getFacultyAbbreviation());
+        return String.join(", ", getFacultyAbbreviation());
     }
 
     /**
@@ -56,6 +56,8 @@ public class Faculty {
                 .toArray(String[]::new);
         return Arrays.asList(facultyArray);
     }
+
+
 
     @Override
     public String toString() {

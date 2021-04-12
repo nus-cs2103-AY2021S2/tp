@@ -14,6 +14,7 @@ import seedu.student.logic.Logic;
 import seedu.student.logic.commands.CommandResult;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.logic.parser.exceptions.ParseException;
+import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -89,7 +90,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList(),
-                logic.getFilteredStudentList());
+                logic.getStudentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -151,7 +152,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.student.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+            ParseException, MatriculationNumberDoesNotExistException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -166,7 +168,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | MatriculationNumberDoesNotExistException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

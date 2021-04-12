@@ -11,6 +11,7 @@ import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_SECOND_S
 import org.junit.jupiter.api.Test;
 
 import seedu.student.commons.core.Messages;
+import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.Model;
 import seedu.student.model.ModelManager;
 import seedu.student.model.UserPrefs;
@@ -39,7 +40,7 @@ public class DeleteStudentCommandTest {
     }
 
     @Test
-    public void execute_validMatricNumFilteredList_success() {
+    public void execute_validMatricNumFilteredList_success() throws ParseException {
         MatriculationNumber matricNumberToDelete = TypicalStudents.ALICE.getMatriculationNumber();
         showStudentWithMatricNum(modelWithNoAppointments, matricNumberToDelete);
 

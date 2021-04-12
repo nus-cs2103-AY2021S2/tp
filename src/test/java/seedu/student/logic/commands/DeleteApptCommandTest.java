@@ -45,8 +45,8 @@ public class DeleteApptCommandTest {
     public void execute_invalidMatricNumUnfilteredList_throwsCommandException() {
         MatriculationNumber matricNumberToDelete = TypicalStudents.HOON.getMatriculationNumber(); // Does not exist
         DeleteApptCommand deleteApptCommand = new DeleteApptCommand(matricNumberToDelete);
-
-        assertCommandFailure(deleteApptCommand, model, DeleteApptCommand.MESSAGE_NONEXISTENT_APPT);
+        String expectedOutput = String.format(DeleteApptCommand.MESSAGE_NONEXISTENT_APPT, matricNumberToDelete);
+        assertCommandFailure(deleteApptCommand, model, expectedOutput);
     }
 
     @Test

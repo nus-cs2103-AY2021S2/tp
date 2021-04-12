@@ -5,10 +5,15 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([input is valid & student does not exist in Student Book])
+if () then ([user input is valid])
     :Parse Command;
-    :Save new student to StudentBook;
+    if () then ([student does not exist in StudentBook])
+        :Save new student to StudentBook;
+    else ([else])
+        :Show student already exists message;
+    endif
 else ([else])
+    : Show invalid message;
 endif
 stop
 @enduml

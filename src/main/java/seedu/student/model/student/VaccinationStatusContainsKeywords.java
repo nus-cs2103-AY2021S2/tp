@@ -23,5 +23,4 @@ public class VaccinationStatusContainsKeywords implements Predicate<Student> {
                 || (other instanceof VaccinationStatusContainsKeywords // instanceof handles nulls
                 && keyword.equals(((VaccinationStatusContainsKeywords) other).keyword)); // state check
     }
-
 }

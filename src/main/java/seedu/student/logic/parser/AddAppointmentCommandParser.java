@@ -2,7 +2,6 @@ package seedu.student.logic.parser;
 
 import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.time.LocalDate;
@@ -27,16 +26,22 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
     public AddAppointmentCommand parse(String args) throws ParseException {
         assert args.length() >= 3;
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_START_TIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_START_TIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        MatriculationNumber matriculationNumber = ParserUtil.parseMatric(argMultimap
-                .getValue(PREFIX_MATRICULATION_NUMBER).get());
+        MatriculationNumber matriculationNumber;
+
+        try {
+            matriculationNumber = ParserUtil.parseMatric(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MatriculationNumber.MESSAGE_CONSTRAINTS));
+        }
+
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         LocalTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
 

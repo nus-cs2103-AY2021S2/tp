@@ -23,7 +23,6 @@ import seedu.student.model.student.VaccinationStatus;
 class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
-    private static final String NO_SCHOOL_RESIDENCE = "DOES_NOT_LIVE_ON_CAMPUS";
 
     private final String name;
     private final String matriculationNumber;
@@ -145,7 +144,6 @@ class JsonAdaptedStudent {
 
         final VaccinationStatus modelVacStatus = new VaccinationStatus(vaccinationStatus);
 
-
         if (medicalDetails == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MedicalDetails.class.getSimpleName()));
@@ -164,7 +162,6 @@ class JsonAdaptedStudent {
         } else {
             modelSchoolRes = new SchoolResidence(schoolResidence);
         }
-
         return new Student(modelName, modelMatric, modelFaculty, modelPhone, modelEmail, modelAddress, modelVacStatus,
                 modelMedDetails, modelSchoolRes);
     }

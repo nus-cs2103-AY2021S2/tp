@@ -1,8 +1,8 @@
 package seedu.student.logic.parser;
 
-import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.student.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.student.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.student.logic.parser.StatsCommandParser.MESSAGE_INVALID_STATS_COMMAND_FORMAT;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ public class StatsCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
     }
 
@@ -66,49 +66,49 @@ public class StatsCommandParserTest {
     //
     @Test
     public void parse_invalidArgs_returnsStatsCommandAll() {
-        assertParseFailure(parser, "AlL", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "AlL", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "All", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "All", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "ALL", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "ALL", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, " \n AlL   \n \t", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " \n AlL   \n \t", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "abcd", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "abcd", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, " \n 123   \n \t", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " \n 123   \n \t", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgs_returnsStatsCommandNus() {
-        assertParseFailure(parser, "nus", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "nus", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "NuS", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "NuS", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "NUs", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "NUs", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "\n nUs   \n \t", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "\n nUs   \n \t", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgs_returnsStatsCommandFaculty() {
-        assertParseFailure(parser, "CoM", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "CoM", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidArgs_returnsStatsCommandResidence() {
-        assertParseFailure(parser, "CapT", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "CapT", String.format(MESSAGE_INVALID_STATS_COMMAND_FORMAT,
                 StatsCommand.MESSAGE_USAGE));
     }
 }
