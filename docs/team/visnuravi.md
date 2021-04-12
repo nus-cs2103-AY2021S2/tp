@@ -17,6 +17,8 @@ Given below are my contributions to the project.
   * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
 
 * **Enhancement to Existing Feature**: Added the ability to find clothings based on various attributes
+  [\#63](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/63)
+  [\#97](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/97)
   * What it does: allows the user to input various types of attributes, and filters out the clothing based on his input
   * Justification: This feature improves the product significantly because a user would require to easily find his
     clothing based on the various attributes, to view them, know where he placed them, or even to know whether he has
@@ -26,13 +28,28 @@ Given below are my contributions to the project.
     The implementation too was challenging as it required changes to the existing find command, taking in 
     multiple different attributes of a garment, manipulating the input to a suitable format, and then making use of
     this format to give the correct output to the user. <br><br>
+
+* **Enhancement to Existing Feature**: Added the ability to match a garment based on its colour, dresscode, and type
+  [\#97](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/97)
+  * What it does: allows the user to find the list of garments that match his chosen garment 
+  * Justification: This feature improves the product significantly as previously, it only outputs garments that have 
+    matching colour, but now it outputs garments that have the matching dresscode and type as well.
+  * Highlights: This enhancement affects the list of matching garments viewed by the user, giving the user more 
+    accurate garment suggestions.  
+    <br><br>
     
 * **Enhancements to existing features**:
   * Updated the Model from being Person to a Garment.
+    [/#52](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/52)
   * Updated the attributes, such as Phone Number, of the Person to fit the attributes of a Garment, such as Size.
-  * Added new parent and subclasses of predicates, which allows the find and match features to find the right 
+    [/#42](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/42)
+  * Added new classes predicates, which allows the find and match features to find the right 
     garments to output.
+    [\#63](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/63)
+    [\#97](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/97)
   * Wrote additional tests for existing features to increase test coverage.
+    [\#63](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/63)
+    [\#97](https://github.com/AY2021S2-CS2103T-T12-1/tp/pull/97)
 
 * **Documentation**:
   * User Guide:
@@ -44,7 +61,11 @@ Given below are my contributions to the project.
       [\#154](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/350935872a3f88b9934c607a5f00752162055fff)
       [\#155](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/4cbfef176c0ffa1651e7657dd8e2b6d428cd080b)
   * Developer Guide:
-    * Added implementation details of the `find` feature.
+    * Added implementation details of the `find` feature. 
+      [\#174](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/456ac61e49df04c55cbc40609a11f8aa35e31a82)
+    * Added Find Use Case to DG 
+      [\#183](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/dbdba85f9bdffd1536f5768b92408f0fe98dde11)
+
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
