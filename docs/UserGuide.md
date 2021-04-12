@@ -688,7 +688,7 @@ Viewing events on Jun 02 2021 (0 appointment(s) and 1 schedule(s) displayed)
 ### Budget Tracker
 This feature allows tutees to track and manage his/her budget allocated to tuitions.
 
-![Budget Ui](images/ug-images/Budget_2.PNG)
+![Budget Ui](images/ug-images/Budget_updated.PNG)
 
 **Attributes / Parameters**:
 * Budget Amount
@@ -847,7 +847,7 @@ Result Display Example Output:
 ### Reminder Tracker
 This feature allows tutees to track and manage reminders daily. This is exceptionally helpful if the reminders are related to the tuition or the tutor itself, i.e. setting a reminder to pay a particular tutor's tuition fee.
 
-![Reminder Ui](images/ug-images/Reminder.png)
+![Reminder Ui](images/ug-images/Reminder_updated.png)
 
 * Red reminder card sidebar represent past reminders.
 * Yellow reminder card sidebar represent ongoing reminders.
@@ -970,7 +970,7 @@ Date: Jun 21 2021
 ### Tutor and Appointment Filters 
 This feature enhances the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on attributes.
 
-![Filters Ui](images/ug-images/Filters.png)
+![Filters Ui](images/ug-images/Filters_updated.png)
 
 #### Add a Tutor Filter: `add_tutor_filter`
 
