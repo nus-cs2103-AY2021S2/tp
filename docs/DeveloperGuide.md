@@ -325,7 +325,7 @@ This is because a recurring session can be defined a session that recurs, by giv
 
 
 Note that:
-- `SessionDate` property inherited from `Session`, now serves as to represent the date and time of the first occuring session in `RecurringSession`
+- `SessionDate` property inherited from `Session`, now serves to represent the date and time of the first occuring session in `RecurringSession`
 - Creation of a `RecurringSession` with zero recurrence is not allowed by the user. <br>
   i.e. The first and last dates cannot be the same.<br>
   This is so that from the perspective of the user, the notion of a `Session` and `RecurringSession` will not overlap; 
