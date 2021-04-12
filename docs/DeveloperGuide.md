@@ -526,22 +526,22 @@ testers are expected to do more *exploratory* testing.
     1. use `edit 3 pt/CORE ptag/MEDIUM notes/not so soon` to attempt to change the third task on the task list.<br>
         Expected: Third tasks on the task list will be changed to tag: CORE, priority tag: MEDIUM and notes: not so soon.
 1. (Addtional) Feel free to test `edit` command on one single attribute (weightage alone etc). Reason for not including it in appendix: We hope to allow the user to go through the guide quickly and therefore truncated the some of the single `edit` commands. 
+1. Other incorrect `edit` commands to try: `edit x ...` (where x is large than the list size and ... is any attribute you wish to edit), `edit`, `edit 1 XXXX/YYYY` (where XXXX is any of the mc/, n/, pt/, w/, ptag/ and notes/ that can be edited. YYYY is the input that user wishes to put but is similar to the exisiting input. Eg: `edit 1 mc/CS2103` onto the first task on the task list with module code: CS2103 will throw an error). <br>
+    Expected: Error will be thrown.
 
 
 ### Deleting a task
 
-1. Deleting a person while all persons are being shown
+1. Using the existing tasks after the `edit` command to ensure that you have a list of tasks on the tasks list.
 
+1. Deleting a task while all tasks are being shown using command `delete`
    1. Prerequisites: List all task(s) using the `list` command. Have at least 1 task(s) in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
+   1. Deleting the first task on the task list: `delete 1`<br>
+      Expected: First task is deleted from the task list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.
+   1. Attempting to delete a task on index 0: `delete 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
-
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+      Expected: Error will be thrown.
 
 
 ## **Appendix: Effort**
