@@ -382,33 +382,40 @@ Given below is an example usage scenario and how the `deleteItem` mechanism work
 
 *Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
 
-The following sequence diagram shows how this works:
+The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates AddOrderItemCommandParser and calls parse("Chocolate Cake") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates DeleteOrderItemCommandParser and calls parse("1 2"). 
 
 </div>
+
+![DeleteOrderItemParserSequenceDiagram](images/DeleteOrderItemParserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following sequence diagram shows how the `DeleteOrderItemCommand` works:
 
 ![DeleteOrderItemSequenceDiagram](images/DeleteOrderItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
 
 </div>
 
-
 #### Design considerations:
 
-##### Aspect: Checking for duplicates when adding `OrderItem` to `UniqueOrderItemList`
-* **Alternative 1 (current choice):** `Type::equals` method ignores case (returns `True` if the type is the same even if the case is different).
+##### Aspect: Parsing multiple indexes
+* **Alternative 1 (current choice):** Create an IndexList class which can be used to store and parse multiple Indexes.
     * Pros:
-        * Prevents user from accidentally adding a duplicate `OrderItem` with the same value for `Type` but different case.
+        * Other commands which accept multiple indexes can also use methods from the IndexList class.
     * Cons:
-        * Provides lesser flexibility to user who might want to add in the same order item with different case.
-
-* **Alternative 2:** `Type::equals` method considers case (returns `False` if case is different).
+        * Different commands have different requirements for index lists. For e.g. `DeleteOrderItemCommand` and `DeleteCommand` require that there should be no duplicate `Indexes` in the `IndexList` after parsing. However, the `AddOrderCommand` requires duplicate `Indexes` to also be stored. Each command has to implement additional checks when using `IndexList` due to differing requirements.
+* **Alternative 2:** Simply use an `ArrayList` of `Index` without creating a new class.
     * Pros:
-        * Provides more flexibility to user who might want to add in the same order item with different case.
+        * Each command can have its own implementation of `ArrayList` which suits its needs.
     * Cons:
-        * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
+        * Not extensible to other commands as they will have to implement their own `List` if they want to accept multiple indexes.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -685,8 +692,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     
       Use case resumes at step 1.
     
-* *a. User requests for help <link help use case here>.
-
 **Use case: Delete an order item**
 
 **MSS**
@@ -714,7 +719,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 1.
 
-* *a. User requests for help <link help use case here>.
+
 
 **Use case: Help needed for command summary**
 
