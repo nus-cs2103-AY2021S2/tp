@@ -323,8 +323,7 @@ The following sequence diagram shows how the categories statistics feature works
 ### Top 5 Categories Statistics Feature
 ##### Implementation
 The `getTopCategories()` feature is based off the previous `getAllUnsortedCategories()` feature, except that the final returned
-`ArrayList` objects is sorted by the `Category` amounts and limited to 5 using the `stream` `limit` method.
-
+`ArrayList` objects is sorted by the `Category` amounts and limited to 5 categories using the `stream` `limit` method.
 
 
 ### Past 6 Months Statistics Feature
