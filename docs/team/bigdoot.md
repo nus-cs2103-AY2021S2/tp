@@ -21,6 +21,8 @@ Given below are my contributions to the project.
   * Justification: This feature helps the user to easily find out have appointments they have scheduled.
   * Highlights: This enhancement required thought on how to retrieve the data as well as how to link it to the GUI. Making it appear on the same panel as the patient overview was not straightforward as the functions displayed in different formats and required a different amount of space.
 
+* **Testing**: Added JUnit test cases to test code and bring up code coverage
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=BigDoot&tabRepo=AY2021S2-CS2103T-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
@@ -31,26 +33,14 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated the GUI theme to DocBob and changed icon (Pull request [\#23](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/23))
-  * Modified existing features to work synonymously with `view` function and other new functions
+  * Modified existing features to work synonymously with `view` function and other new functions. For example, `find` now displays the overview of the first matching patient found(if any). (Pull request [\#92](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/92), [\#44](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/44))
   * Updated `help` function window to display command information
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `view`, `listappt`, `mrec`, `vrec` [\#72]()
-    * Modified some existing documentation to fit theme: [\#74]()
+    * Added documentation for the features `view`, `listappt`, `mrec`, `vrec`
+    * Modified some existing documentation to fit theme
     * Kept command summary up to date
   * Developer Guide:
     * Added implementation details of the `view` feature.
     * Added UML diagrams for the `view` feature
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
