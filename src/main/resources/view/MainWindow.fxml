@@ -13,8 +13,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Booking App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Booking App" minWidth="700" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -27,6 +28,8 @@
 
       <VBox styleClass="background">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" text="🪙" disable="true">
+          </Menu>
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -45,7 +48,7 @@
         </MenuBar>
 
         <HBox VBox.vgrow="ALWAYS">
-          <VBox>
+          <VBox minWidth="700" prefWidth="700">
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
@@ -77,7 +80,11 @@
             <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
           </VBox>
           <Separator orientation="VERTICAL"></Separator>
-          <VBox fx:id="cardDisplayPlaceholder">
+          <VBox>
+            <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" style="-fx-background-color: transparent; -fx-border-width: 0;">
+              <VBox fx:id="cardDisplayPlaceholder">
+              </VBox>
+            </ScrollPane>
           </VBox>
         </HBox>
       </VBox>
