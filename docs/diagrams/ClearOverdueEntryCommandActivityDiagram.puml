@@ -1,0 +1,14 @@
+@startuml
+
+start
+
+repeat
+  :Model checks entry;
+    if (Is the end date of entry passed?) then (yes)
+        :Delete the entry;
+    else (no)
+    endif
+repeat while (Has next entry?) is (yes)
+->no;
+stop
+@enduml
