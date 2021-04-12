@@ -272,13 +272,8 @@ As an example, consider running Dictionote as follows:
     * Pros: Zero modifications on the `Contact` class; `Contact` objects will not contain any attributes required by this feature.
     * Cons: Difficult to integrate with the other classes and methods related to `Contact` objects (e.g., deletion of a contact from the list must propagate to the `HashTable`).
 
-
-<div style="page-break-after: always;"></div>
-
 ### UI features
-
 #### Opening and closing UI through command result
-
 #####  Implementation
 
 Dictionote has an interactive user interface that allows the user to open and close any panel through command.
