@@ -143,6 +143,8 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 Adding
 
 #### 4.2.1 Adding a property: `add property`
@@ -160,6 +162,8 @@ Description:
 * Client's contact number should have a **minimum of 7 digits** and a **maximum of 15 digits**.
 * There can be multiple tags but different tags should be **separated with a comma**. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 * The property to be added **cannot have a deadline that is already passed**.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
@@ -400,6 +404,8 @@ Description:
 Examples:
 *  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.9 Searching
 
 #### 4.9.1 Searching properties: `find property`
@@ -424,15 +430,15 @@ Options:
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
-    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`.
+    Searches for properties with prices more than `[PRICE_UPPER_LIMIT]`.
 
 * `[pl/PRICE_LOWER_LIMIT]`
 
-    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
+    Searches for properties with prices less than `[PRICE_LOWER_LIMIT]`.
     
 * `[t/PROPERTY_TYPE]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+    Searches for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
 
     The following property types are supported: Hdb, Condo, Landed
     
@@ -506,14 +512,16 @@ Options:
         
 * `[t/TIME]`
     
-    Searches for properties with `[TIME]` as time. 
-    
+    Searches for properties with `[TIME]` as time.
+
 Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
 * `find appointment t/2030`
 
 ![find appointment example](images/findappointment.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 4.9.3 Searching clients: `find client`
 
@@ -530,6 +538,8 @@ Examples:
 * `find client george`
 
 ![find client example](images/findclient.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.10 Clearing
 
@@ -553,6 +563,8 @@ Clears all appointments from the app.
 
 Format:
 * `clear appointment`
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Storage
 
