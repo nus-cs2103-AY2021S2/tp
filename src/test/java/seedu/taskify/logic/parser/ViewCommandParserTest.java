@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 import org.junit.jupiter.api.Test;
 
 import seedu.taskify.logic.commands.ViewCommand;
+import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.predicates.TaskHasSameDatePredicate;
 
 class ViewCommandParserTest {
@@ -41,10 +42,10 @@ class ViewCommandParserTest {
     public void parse_invalidArg_throwsParseException() {
         // using 'view Buy grocery' (not a valid date)
         assertParseFailure(parser, "Buy grocery",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                String.format(Date.MESSAGE_CONSTRAINTS_WITHOUT_TIME));
 
         // using 'view 2' (not a valid date)
         assertParseFailure(parser, "2",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                String.format(Date.MESSAGE_CONSTRAINTS_WITHOUT_TIME));
     }
 }

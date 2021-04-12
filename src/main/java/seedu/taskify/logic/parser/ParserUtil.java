@@ -158,6 +158,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String date} without the time into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDateWithoutTime(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDateWithoutTime(trimmedDate)) {
+            if (Date.isInvalidLeapYearDateWithoutTime(trimmedDate)) {
+                throw new ParseException(Date.NOT_LEAP_YEAR_ERROR);
+            }
+            if (Date.isCorrectDateFormat(trimmedDate)) {
+                throw new ParseException(Date.CORRECT_FORMAT_BUT_INVALID_DATE);
+            }
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_WITHOUT_TIME);
+        }
+        String endOfDate = trimmedDate + " 23:59";
+        return new Date(endOfDate);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
