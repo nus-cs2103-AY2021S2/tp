@@ -487,11 +487,12 @@ Step 7. If the sort command has been successfully executed, the success message 
 The sequence diagram below shows how the `sort` feature works:
 
 ![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
+![Activity Diagram for Execute Sort Command](images/ExecuteSortCommandSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `sort` command is executed:
 
 ![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
-![Activity Diagram for Execute Sort Command](images/ExecuteSortCommandSequenceDiagram.png)
+
 
 #### Design consideration:
 
@@ -540,7 +541,7 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 The sequence diagram below shows how the `levelup` feature works:
 ![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
-![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpSequenceDiagram.png)
+![Activity Diagram for Execute LevelUp Command](images/ExecuteLevelUpCommandSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `levelup` command is executed:
 ![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
@@ -596,11 +597,10 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 The sequence diagram below shows how the `leveldown` feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
-
+![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownCommandSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `leveldown` command is executed:
-![Activity Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
-![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownActivityDiagram.png)
+![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
 
 #### Design consideration:
 
@@ -1499,10 +1499,12 @@ Add a student with his/her details
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+1. Dealing with missing/corrupted data files 
+   1. Make sure there are three files, namely: ./data/addressbook.json, ./data/datesbook.json and ./data/lessonbook.json. <br>
+      If not, open the app, and close the app.
+   1. Open all three files in a text editor.
+   1. Remove the ending } character of the JSON file and save the file. 
+   1. Launch the app by running java -jar tutorspet.jar in the console. <br>
+      Expected: TutorsPet opened should have no entries.
+      
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
