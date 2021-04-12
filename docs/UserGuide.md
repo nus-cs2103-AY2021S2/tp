@@ -86,7 +86,7 @@ The various sections of the User Interface are described as in the picture below
 
 ### 3.1.2 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message with a quick summary of the available commands and how to format them. Shows how to access the help page.
 
 ![help message](images/helpMessage.png)
 
