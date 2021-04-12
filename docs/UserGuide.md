@@ -41,14 +41,13 @@ their profile pictures.
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary 
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+* **Contact**: The set of all the persons stored in MeetBuddy, which is shown in the left part of the GUI.
+* **Person(s)**: Refers to the persons in the contact.
+* **Person Meeting**: Refers to features/models and other aspects that are related to both persons(contact) and meetings in MeetBuddy.
 --------------------------------------------------------------------------------------------------------------------
 
 
-## Features
+## General Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -90,6 +89,28 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+MeetBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
+Meeting data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Users are not suggested updating data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, MeetBuddy will discard all data and start with an empty data file at the next run.
+</div>
+
+### Archiving data files `[coming in v2.0]`
+
+## Contact Features
 ### Adding a person: `addp`
 
 Adds a person to MeetBuddy.
@@ -175,7 +196,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in MeetBuddy.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting of contacts : `sortp`
+### Sorting of persons : `sortp`
 
 Sorts the contacts displayed according to a specified field.
 
@@ -193,11 +214,19 @@ Format: `sortp by/FIELD d/DIRECTION`
 
 Examples
 
+### Profile picture:
+
+Instantly updates your contacts with their Gravatar profile picture, if your contact has their email linked
+to their gravatar account. The profile picture will be automatically displayed upon adding the contact.
+If there is a problem obtaining the image, a default blue circle icon will be displayed
+instead.
+
+## Meeting features
 ### Adding a meeting: `addm`
 
 Adds a meeting to MeetBuddy.
 
-Format: `addm n/NAME st/TIME ed/TIME [des/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​`
+Format: `addm n/NAME st/TIME ed/TIME [desc/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​`
 * Note that meetings must be of minimum length of 15 mins and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00, but can be from 15 March 16:00 - 22 march 15:59.
 * Priority should be an integer from 1 to 5. If the priority is not specified, it will be automatically set as 1.
 * Description can be empty.
@@ -219,6 +248,7 @@ Edits an existing meeting in MeetBuddy.
 
 Format: `editm INDEX [n/NAME] [st/START TIME] [ed/END TIME] [desc/DESCRIPTION] [pr/PRIORITY] [p/PERSON RELATED INDEX] [g/GROUP]...​`
 
+* Note that meetings must be of minimum length of 15 mins and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00, but can be from 15 March 16:00 - 22 march 15:59. Be aware of this when editing start datetime and/or end datetime of the meeting.
 * Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
 * When editing person related, the existing related contacts will be removed. You must specify the index correctly.
@@ -242,31 +272,6 @@ Format: `deletem INDEX`
 Examples:
 * `listm` followed by `delete 2` deletes the 2nd meeting in MeetBuddy.
 
-### Adding persons related for a meeting: `addptm`
-
-Adds persons related to a meeting in MeetBuddy.
-
-Format: `addptm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
-* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
-* The user must input at least one person related index field.
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
-
-Examples:
-* `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
-
-### Deleting persons related from a meeting: `deletepfm`
-
-Deletes persons related from a meeting in MeetBuddy.
-
-Format: `deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
-* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
-* The user must input at least one person related index field.
-* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
-* The related persons that the user wants to delete must exist in the contacts related field.
-
-
-Examples:
-* `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
 
 ### Showing of persons in a meeting : `showm`
 
@@ -298,12 +303,38 @@ Format: `sortm by/FIELD d/DIRECTION`
     * Sort by ascending order : `ASC`
     * Sort by descending order : `DESC`
 
-
+## Person Meeting Features
 ### Listing all persons and meetings : `list`
 
 Shows a list of all persons and meetings in MeetBuddy.
 
 Format: `list`
+
+### Adding persons related for a meeting: `addptm`
+
+Adds persons related to a meeting in MeetBuddy.
+
+Format: `addptm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+
+Examples:
+* `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
+
+### Deleting persons related from a meeting: `deletepfm`
+
+Deletes persons related from a meeting in MeetBuddy.
+
+Format: `deletepfm INDEX p/PERSON RELATED INDEX1 [p/PERSON RELATED INDEX2]… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+* The related persons that the user wants to delete must exist in the contacts related field.
+
+
+Examples:
+* `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
 
 ##Timetable feature
 
@@ -335,35 +366,6 @@ Format: `list`
  * DATE must be a string strictly following the format `YYYY-mm-dd`
  * If no date is specified, for example `setTimetable` without DATE parameter is keyed in, it will default set to
  today's current date.
- 
- 
-### Profile picture:
-
-Instantly updates your contacts with their Gravatar profile picture, if your contact has their email linked
-to their gravatar account. The profile picture will be automatically displayed upon adding the contact.
-If there is a problem obtaining the image, a default blue circle icon will be displayed
-instead.
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-MeetBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
-Meeting data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Users are not suggested updating data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, MeetBuddy will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
 
 --------------------------------------------------------------------------------------------------------------------
 
