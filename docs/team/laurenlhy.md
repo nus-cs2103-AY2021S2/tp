@@ -27,7 +27,8 @@ all orders and cheeses related to that customer is deleted as well.
 deleting a contact by phone number instead of by list index. New classes and testcases were also added for the commands
 to delete cheeses and orders.
 
-* **Enhancements to project**: Wrote additional test cases for Edit Cheese Commands.
+* **Enhancements to project**:
+  * Wrote additional test cases for Edit Cheese Commands.
 
 * **Documentation**:
   * User Guide:
@@ -37,5 +38,8 @@ to delete cheeses and orders.
   * Developer Guide:
     * Added documentation for Logic class, including Logic class diagram and sequence diagram for `deletecheese`.
     * Added documentation for implementation of Delete commands, including sequence diagram for `deletecustomer`.
+
+* **Community**:
+  * PRs reviewed (with non-trivial review comments): [\#125](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/125), [\#127](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/127)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=laurenlhy&tabRepo=AY2021S2-CS2103-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)

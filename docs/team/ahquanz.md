@@ -43,4 +43,8 @@ Given below are my contributions to the project.
     * Added documentation for Appendix section.
 
 * **Community**:
-  * PRs reviewed: [#\18](), [#\26](), [#\38](), [#\121](), [#\124]()
+  * PRs reviewed: [\#18](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/18)
+    , [\#26](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/26)
+    , [\#38](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/38)
+    , [\#121](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/121)
+    , [\#124](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/124)
