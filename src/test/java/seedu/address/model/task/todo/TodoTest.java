@@ -12,8 +12,8 @@ import seedu.address.testutil.TodoBuilder;
 
 public class TodoTest {
 
-    private final String INVALID_DESCRIPTION_1 = "";
-    private final String INVALID_DESCRIPTION_2 = " ";
+    private String invalidDescription1 = "";
+    private String invalidDescription2 = " ";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -24,11 +24,11 @@ public class TodoTest {
 
     @Test
     public void constructor_invalidDescription_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Todo(INVALID_DESCRIPTION_1));
-        assertThrows(IllegalArgumentException.class, () -> new Todo(INVALID_DESCRIPTION_1, false));
+        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription1));
+        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription1, false));
 
-        assertThrows(IllegalArgumentException.class, () -> new Todo(INVALID_DESCRIPTION_2));
-        assertThrows(IllegalArgumentException.class, () -> new Todo(INVALID_DESCRIPTION_2, false));
+        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription2));
+        assertThrows(IllegalArgumentException.class, () -> new Todo(invalidDescription2, false));
     }
 
     @Test
@@ -37,8 +37,8 @@ public class TodoTest {
         assertThrows(NullPointerException.class, () -> Todo.isValidDescription(null));
 
         // invalid description
-        assertFalse(Todo.isValidDescription(INVALID_DESCRIPTION_1)); // empty string
-        assertFalse(Todo.isValidDescription(INVALID_DESCRIPTION_2)); // spaces only
+        assertFalse(Todo.isValidDescription(invalidDescription1)); // empty string
+        assertFalse(Todo.isValidDescription(invalidDescription2)); // spaces only
 
         // valid description
         assertTrue(Todo.isValidDescription("Blk 456, Den Road, #01-355"));
