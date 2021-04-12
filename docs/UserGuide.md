@@ -193,7 +193,7 @@ Shows a list of persons who match the specified field(s).
 
 Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 * The fields that can be specified include the person's `NAME`, `PHONE`, `EMAIL`, and `TAG`. At least one field must be provided.
-* Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+* Matching is case-insensitive (applies to all fields), and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 * Only for the `NAME` field, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
 
 Example:
@@ -261,7 +261,7 @@ Shows a list of venues that match the specified field(s).
 
 Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the venue's `VENUE_NAME`, `CAPACITY`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
-* Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+* Matching is case-insensitive (applies to all fields), and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 * Only for the `NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
@@ -320,7 +320,7 @@ Shows a list of bookings that match the specified field(s).
 
 Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the booking's `BOOKER_EMAIL`, `DATE`, ,`VENUE_NAME`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
-* Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+* Matching is case-insensitive (applies to all fields), and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 * Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
