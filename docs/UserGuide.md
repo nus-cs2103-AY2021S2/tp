@@ -53,7 +53,7 @@ Thank you for downloading **BudgetBaby**! Do you wonder where all your money wen
 - Update and manage everything using command entry box
 - Sorted categorical spending data
 
-We have designed a beautiful user interface (UI) that is pleasing yet engaging. You will be able to quickly learn how to use it because we designed it with the end-user in mind.It is **optimized for use via a Command Line Interface** (CLI) so that you can enter and update your financial records or budget quickly by typing in commands while still having the benefits of a Graphical User Interface (GUI). The GUI provides unique features that help you visualize your spending habits
+We have designed a beautiful user interface (UI) that is pleasing yet engaging. You will be able to quickly learn how to use it because we designed it with the end-user in mind. It is **optimized for use via a Command Line Interface** (CLI) so that you can enter and update your financial records or budget quickly by typing in commands while still having the benefits of a Graphical User Interface (GUI). The GUI provides unique features that help you visualize your spending habits
 
 We look forward to you building financial literacy and positive habits while using our app. If you find any issues with the application or have any new features you would like implement, feel free to contact us on our [GitHub page](https://github.com/AY2021S2-CS2103T-W14-2/tp).
 
@@ -107,7 +107,7 @@ These functions include:
 ### 4.2 Budget Display
 
 The `Budget Display` interactively display the details of a given month.
-You get to see the given month's budget in the form of a text and a progress bar. On top of that, there is a 'Top Categories' section where the top six categories of the given month based on their total amount is being shown in <strong>descending order</strong>.
+You get to see the given month's budget in the form of a text and a progress bar. On top of that, there is a 'All categories' section where all the categories of the given month is being shown in <strong>alphabetical order</strong>.
 
 ### 4.3 Financial Record List
 
@@ -220,7 +220,7 @@ Examples:
 
 If you mistyped a financial record or added a financial record incorrectly, you may use the `delete-fr` command to delete a financial record from BudgetBaby.
 
-<img src="images/features/delete-fr.png" width="600px">
+<img src="images/features/delete-fr.png" width="1000px">
 
 Format: `delete-fr FR_INDEX [FR_INDEX]`
 
@@ -243,7 +243,7 @@ Examples:
 
 If you mistyped the details of a financial record, instead of deleting it completely, you may use the `edit-fr` command to edit an existing financial record in BudgetBaby.
 
-<img src="images/features/edit-fr.png" width="600px">
+<img src="images/features/edit-fr.png" width="1000px">
 
 Format: `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]...`
 
@@ -269,7 +269,7 @@ Examples:
 
 If you would like to change your budget to something different from what it currently is in BudgetBaby, you may use the `set-bg` command to set the budget for the current month and the following 12 months. Note that the budget you have set for previous months cannot be updated and you can only update the current month's budget.
 
-<img src="images/features/set-bg.png" width="600px">
+<img src="images/features/set-bg.png" width="1000px">
 
 Format: `set-bg BG_AMOUNT`
 
@@ -300,7 +300,7 @@ Data associated with a month includes:
 - The amount you have spent in relation to the total budget for that month (in term of percentage)
 - Your list of financial records for that month
 
-<img src="images/features/view-month.png" width="600px">
+<img src="images/features/view-month.png" width="1000px">
 
 Format: `view-month MM-YYYY`
 
@@ -321,7 +321,7 @@ Examples:
 
 If you would like to find financial records matching description, amount and/or categories, you may use the `find-fr` command to filter the list of financial records based on specified fields.
 
-<img src="images/features/find-fr.png" width="600px">
+<img src="images/features/find-fr.png" width="1000px">
 
 Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 
@@ -340,7 +340,7 @@ Examples:
 
 If you currently have a filter set, such as a particular month or category, and you would like to go back to the original view of the application, you may use the `reset-filter` command to reset all filters on financial records.
 
-<img src="images/features/reset-filter.png" width="600px">
+<img src="images/features/reset-filter.png" width="1000px">
 
 Format: `reset-filter`
 
@@ -365,7 +365,7 @@ Format: `exit`
 
 ### 5.12 Viewing top 5 categories spent for the current month
 
-<img src="images/features/category-stats.png" width="450px">
+<img src="images/features/category-stats.png" width="1000px">
 
 The UI displays the top 5 categories that were spent on a particular month.
 
@@ -379,7 +379,7 @@ You may use the `F6` hotkey to open up the Month statistics window.
 
 ### 5.13 Viewing budget for the current month
 
-<img src="images/features/monthly-stats.png" width="450px">
+<img src="images/features/monthly-stats.png" width="1000px">
 
 The UI displays the current monthly budget that has been set automatically.
 
@@ -430,9 +430,9 @@ empty data file at the next run.
 | **Add a Financial Record**    | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…` <br> e.g., `add-fr d/Lunch a/10`                       |
 | **Delete a Financial Record** | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                                                                      |
 | **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
-| **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                                                                 |
 | **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
 | **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                |
+| **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/food`                                                                 |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
 | **Help**                      | `help`                                                                                                              |
 | **Exit**                      | `exit`                                                                                                              |
