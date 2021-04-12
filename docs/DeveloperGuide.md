@@ -506,7 +506,7 @@ The following sequence diagram shows how the add operation works:
     
 Alternative 1 was eventually chosen due to ease of refactoring and low chance of future extensions being affected 
 by the placeholder since it is a String and only one single use case of placeholders being use throughout the entire
-project hence it would be unnessary abstraction.
+project hence it would be unnecessary abstraction.
 
 ### Appointment feature
 

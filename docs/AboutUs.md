@@ -3,7 +3,7 @@ layout: page
 title: About Us
 ---
 
-ParentPal is a application that stores, manages and allows for quick access to your child's important contacts. 
+ParentPal is an application that stores, manages and allows for quick access to your child's important contacts. 
 
 We are the team behind ParentPal. We are based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -19,7 +19,7 @@ We are the team behind ParentPal. We are based in the [School of Computing, Nati
 [[portfolio](team/mechastriker3.md)]
 
 * Role: Team Lead
-* Responsibilities: Adding Contacts
+* Responsibilities: Adding Contacts, Find Contacts, Find Appointments, Deleting Multiple Contacts
 
 ### Clarissa Lee
 
