@@ -45,10 +45,10 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [Teaching Assistant’s architecture](DeveloperGuide.md#architecture).
 
 1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
+   These tutorials will help you get acquainted with the Address Book 3 codebase, which is what our codebase was derived from.
 
    * [Tracing code](tutorials/TracingCode.md)
    * [Removing fields](tutorials/RemovingFields.md)
