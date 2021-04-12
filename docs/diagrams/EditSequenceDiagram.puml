@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+autoactivate on
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PawbookParser" as PawbookParser LOGIC_COLOR
+participant ":EditOwnerCommandParser" as EditOwnerCommandParser LOGIC_COLOR
+participant "d:EditOwnerDescriptor" as EditOwnerDescriptor LOGIC_COLOR
+participant "c:EditOwnerCommand" as EditOwnerCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit owner 1 n/John Doe t/friend")
+
+LogicManager -> PawbookParser : parseCommand("edit owner 1 n/John Doe t/friend")
+
+create EditOwnerCommandParser
+PawbookParser -> EditOwnerCommandParser
+return
+
+PawbookParser -> EditOwnerCommandParser : parse("1 n/John Doe t/friend")
+
+create EditOwnerDescriptor
+EditOwnerCommandParser -> EditOwnerDescriptor
+return d
+
+create EditOwnerCommand
+EditOwnerCommandParser -> EditOwnerCommand : EditOwnerCommand(1, d)
+return c
+
+return c
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PawbookParser -[hidden]-> EditOwnerCommandParser !! : delete
+destroy EditOwnerCommandParser
+
+return c
+
+LogicManager -> EditOwnerCommand : execute()
+
+ref over EditOwnerCommand, Model, EditOwnerDescriptor : Edit Owner with ID 1
+
+return result
+
+return
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+autoactivate on
+
+mainframe **sd** Edit Owner with ID 1
+box Logic LOGIC_COLOR_T1
+participant "d:EditOwnerDescriptor" as EditOwnerDescriptor LOGIC_COLOR
+participant "c:EditOwnerCommand" as EditOwnerCommand LOGIC_COLOR
+participant "imp:IdMatchPredicate" as IdMatchPredicate LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> EditOwnerCommand : execute()
+
+EditOwnerCommand -> Model : getEntity(1)
+return ownerToEdit
+
+EditOwnerCommand -> EditOwnerDescriptor : get edited attributes
+return
+
+EditOwnerCommand -> Model : setEntity(1, editedOwner)
+return
+
+create IdMatchPredicate
+EditOwnerCommand -> IdMatchPredicate : IdMatchPredicate(1)
+return imp
+
+EditOwnerCommand -> Model : updateFilteredEntityList(imp)
+return
+
+create CommandResult
+EditOwnerCommand -> CommandResult
+return result
+
+return result
+
+@enduml
