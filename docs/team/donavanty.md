@@ -38,6 +38,13 @@ Given below are my contributions to the project.
   * Highlights: The help guide features 3 main sections: A succint list of commands, all options for Food categories,
   and for School Location categories. The information provided is presented neatly, and a url to the full user guide
   is provided to users for users to get the complete guide.
+  
+* **User & Developer Guides (UG & DG)**: Documented down multiple sections of the UG & DG, and touched-up the whole UG & DG
+ during finalisation for submission.
+  * Highlights: UG: Documented User Interface rationale; neatened the syntax and presentation of all features.
+  DG: Furnished `Ui` Class diagram; furnished activity and sequence diagrams for `edit` and `help` commands/features;
+  summarised all challenges and design rationales on behalf of the team for the TP: The Food Diary;
+  cleaned up the entire DG for final submission.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=donavan&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
@@ -45,21 +52,30 @@ Given below are my contributions to the project.
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Refactored the code base
-  * Enhanced the Help Window
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
+  * Refactored the code base to fit a Food Diary. [\#69](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/69)
+  * Enhanced the Help Window. [\#83](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/83)
+  * Updated the GUI colour scheme (Pull requests [\#102](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/102),
+  [\#12](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/112))
 
 * **Documentation**:
   * User Guide:
-    * Added a section pertaining to the explanation of the User Interface to users
+    * Added a section pertaining to the explanation of the User Interface to users.
+    [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
     * Neatened the syntax and presentation of each feature and the corresponding command to make it consistent with the
-    usage of the command in our app.
-    * Explained the rationale of each feature and function very clearly.
+    usage of the command in our app. [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
+    * Explained the rationale of each feature and function very clearly. [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
   * Developer Guide:
-    * Added implementation details of the `edit` and `help` feature.
+    * Added Ui Inforamtion and Class Diagram. [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
+    * Added implementation details, sequence and activity diagrams, and manual testing for the `edit` and `help` feature.
+    [\#212](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/212)
+    * Added Challeneges Faced & Rationale Section aggregated from the team, throughout the entire TP process.
+    [\#209](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/209)
+    * Cleaned up the entire DG. [\#224](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/224)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with review comments): [\#83](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/83)
+  [\#187](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/187),
+  [\#32](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/183)
+  * Notable PRs with explanations: [\#185](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/185),
+  [\#102](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/102),
+  [\#69](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/69)
