@@ -615,7 +615,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enter book id and reader id to allow that reader to borrow a book
+1.  User enter book barcode and reader name to allow that reader to borrow a book
 2.  SmartLib displays successful borrowing information
 
 **Extensions**
@@ -631,15 +631,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User enter book id and reader id to allow that reader to return a book
+1.  User enter book barcode to allow the reader to return a book
 2.  SmartLib displays successful returning information
 
 **Extensions**
 
 * 1a. The book does not exist
-* 1b. The reader does not exist
-* 1c. The book is not currently borrowed under that reader
-* 1d. The book in loan has exceeded expire date, extra charge
+* 1b. The book is currently not borrowed by any reader
+* 1c. The book in loan has exceeded expire date, extra charge
 
   Use case ends.
 
@@ -754,7 +753,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC10 - Find books whose names contain the given keywords **
+**Use case: UC10 - Find books whose names contain the given keywords**
 
 **MSS**
 
@@ -782,10 +781,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **ISBN**: International Standard Book Number is a unique numeric commercial book identifier.
 * **Regex**: A string of text that allows you to create patterns that help match, locate, and manage text.
-* **GUI**:The abbreviation of Graphical User Interface, The GUI is a form of user interface that allows users to 
+* **GUI**: The abbreviation of Graphical User Interface, The GUI is a form of user interface that allows users to 
 interact with electronic devices through graphical icons, instead of text-based user interfaces or typed command labels.
 
 --------------------------------------------------------------------------------------------------------------------
