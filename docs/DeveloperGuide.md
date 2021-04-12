@@ -290,12 +290,12 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the appointment book, such as `list`, will usually not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`. Thus, the `previousAppointmentLists` remains unchanged.
 
 ![UndoRedoState4](images/UndoState4.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -373,12 +373,16 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![UpdateActivityDiagram](images/UpdateActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the update operation works:
 
 ![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UpdateCommandParser` and `UpdateNewCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Find feature
 
