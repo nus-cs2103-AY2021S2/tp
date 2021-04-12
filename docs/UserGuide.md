@@ -187,10 +187,12 @@ Finds passengers whose names contain any of the given keywords.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
 * Only **one type of prefix** can be specified.
 * More than 1 keyword can be specified for a single prefix.
-* Keywords separated by space will require both keywords to be matched.
-  e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`.
+* Keywords separated by space will require both keywords to be matched in whole and cannot be broken apart.
+  e.g. `Hans Yang` will only return `Gruber Hans Yang` instead of `Bo Yang` and `Hans Gruber Yang`.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
+* Searching with prefixes such as `n/` and `a/` which are anticipated to have multiple words separated by spaces will have multiple spaces shortened to one. Refer to 4th example for clarification.
 * `all` prefix for searching across names, addresses, tags and phone numbers quickly.
+* However, if any or all of the words are invalid arguments, searching with `all` will not tell you it is invalid. It will only show that no passengers with those arguments are found.
 </div>
 
 **Examples:**
@@ -199,6 +201,8 @@ Finds passengers whose names contain any of the given keywords.
   ![result for 'find serangoon'](images/findAddress.png)
 * `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`.
   ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
+* `find n/Alex Yeoh` with multiple spaces between Alex and Yeoh
+  ![result for 'find n/alex    yeoh'](images/findAlexMultipleSpace.png)
 
 ### 3.2.5 Deleting passengers: `delete`
 
