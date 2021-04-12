@@ -742,6 +742,12 @@ public class ModelManager implements Model {
         return timeTableDateMap.get(0);
     }
 
+    @Override
+    public void resetPredicates() {
+        filteredAppointment.setPredicate(PREDICATE_SHOW_ALL_APPOINTMENT);
+        filteredSchedules.setPredicate(PREDICATE_SHOW_ALL_SCHEDULE);
+    }
+
     //@@author Jens-Peter Haack-reused
     //Reused from
     //https://stackoverflow.com/questions/27644878/binding-an-observablelist-to-contents-of-two-other-observablelists

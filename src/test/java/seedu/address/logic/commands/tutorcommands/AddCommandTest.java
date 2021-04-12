@@ -449,6 +449,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetPredicates() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyReminderTracker getReminderTracker() {
             throw new AssertionError("This method should not be called.");
         }
