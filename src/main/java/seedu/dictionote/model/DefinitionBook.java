@@ -22,9 +22,7 @@ public class DefinitionBook implements ReadOnlyDefinitionBook {
     public DefinitionBook() {}
 
     /**
-     * Makes a Definitionbook. //Todo change
-     *
-     * @param toBeCopied ReadOnlyDefinitionBook
+     * Creates a DefinitionBook using the Definitions in the {@code toBeCopied}.
      */
 
     public DefinitionBook(ReadOnlyDefinitionBook toBeCopied) {
@@ -35,8 +33,8 @@ public class DefinitionBook implements ReadOnlyDefinitionBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the content list with {@code notes}.
-     * {@code content} must not contain duplicate content.
+     * Replaces the contents of the content list with {@code definition}.
+     * {@code definition} must not contain duplicate definition.
      */
     public void setDefinition(List<Definition> definitions) {
         this.definitions.setDefinition(definitions);
@@ -54,7 +52,7 @@ public class DefinitionBook implements ReadOnlyDefinitionBook {
     //// note-level operations
 
     /**
-     * Returns true if a content with the same content as {@code note} exists in the dictionote book.
+     * Returns true if a content with the same content as {@code definition} exists in the dictionote book.
      */
     public boolean hasDefinition(Definition definition) {
         requireNonNull(definition);
@@ -75,7 +73,6 @@ public class DefinitionBook implements ReadOnlyDefinitionBook {
     @Override
     public String toString() {
         return definitions.asUnmodifiableObservableList().size() + " definition";
-        // TODO: refine later
     }
 
     @Override
