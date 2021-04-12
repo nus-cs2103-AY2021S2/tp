@@ -11,7 +11,7 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 
 ### Chong Jing Quan
 
-![JingQuan](./images/jqchong.png)
+<img src="images/jqchong.png" alt="Jing Quan" width="200"/>
 
 [[github]](https://github.com/JQChong)
 [[portfolio]](team/jqchong.md)
@@ -19,7 +19,7 @@ SpamEZ is developed by the [AY2021S2-CS2103-T16-1](https://github.com/AY2021S2-C
 * Role: Developer
 * Responsibilities: UI, Features
 
-### Pan Jing Bin
+### Pan JingBin
 
 ![JingBin](./images/icebear789.png)
 
