@@ -256,7 +256,7 @@ Steps for the execution of the `AddGradeCommand` (assuming that no errors are en
 5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addGrade()`, 
 then create a `CommandResult` object and return the result.
 6. The `Ui` component will detect this cahnge and update the GUI.
-![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram.png)
+   ![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram.png)
 
 #### Design Consideration
 
@@ -272,7 +272,7 @@ Reason for choosing option 2:
 
 The following activity diagram summarizes what happens when the `add_grade` command is executed.
 
-![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram.png)
+![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram_updated.png)
 
 ### [Proposed] Filter Feature
 This Filter feature would allow users to manage filters and apply them to the list of tutors
@@ -563,6 +563,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1. User inputs tutor details.
 2. TutorTracker confirms that tutor details have been added to list.
+   Use case ends.
 
 **Extensions**
 * 1a. Details are not keyed in the correct format as specified in user guide.
@@ -702,6 +703,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 2.  TutorTracker shows a list of tutors.
 3.  User requests to export a tutor's details and notes in the list by index.
 4.  Text file containing tutor's details and notes created.
+    Use case ends.
 
 **Extensions**
 
@@ -806,6 +808,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 2.  TutorTracker shows a list of appointments.
 3.  User requests to delete a specific appointment in the list.
 4.  TutorTracker deletes that specific appointment.
+    Use case ends.
 
 <hr/>
 
@@ -814,25 +817,28 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 **MSS**
 
 1. User inputs grade details.
-2. TutorTracker confirms that grade details have been added to GradeBook.
-
+2. TutorTracker adds the grade and displays the new grade.    
+   Use case ends.
+   
 **Extensions**
 * 1a. Grade details are invalid or empty.
-    * 1a1. TutorTracker shows an error message
+    * 1a1. TutorTracker shows an error message.   
     
-* 2a. Grade details already exists in list.
-    * 2a1. TutorTracker shows an error message
+    Use case ends.   
+ 
 
-  Use case resumes at step 1.
+* 2a. Grade details already exists in list.
+    * 2a1. TutorTracker shows an error message.
+      
+    Use case ends.
 
 <hr/>
 
-**Use Case UC0015: List all grades**
+**Use Case UC0015: List grade(s)**
 
 **MSS**
-1. User requests to list grades.
-2. TutorTracker shows a list of grades.
-
+1. User requests to list grade(s).
+2. TutorTracker shows a list of grade(s).    
    Use case ends.
 
 <hr/>
@@ -844,13 +850,14 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 1.  User requests to list grades.
 2.  TutorTracker shows a list of grades.
 3.  User requests to delete a grade at specified index.
-4.  TutorTracker deletes that specific grade.
+4.  TutorTracker deletes that specific grade.    
+    Use case ends.
 
 **Extensions**
 * 3a. Index is invalid.
-    * 3a1. TutorTracker shows an error message
+    * 3a1. TutorTracker shows an error message.
 
-  Use case resumes at step 1.
+  Use case ends.
 
 <hr/>
 
@@ -861,16 +868,20 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 1.  User requests to list grades.
 2.  TutorTracker shows a list of grades.
 3.  User requests to edit a grade at specified index.
-4.  TutorTracker deletes that specific grade.
+4.  TutorTracker edits that specific grade.   
+Use case ends.
 
 **Extensions**
 * 3a. Index is invalid.
-    * 3a1. TutorTracker shows an error message
+    * 3a1. TutorTracker shows an error message.
+      
+  Use case ends.
+
 
 * 3b. Grade details already exists in list.
     * 3b1. TutorTracker shows an error message
 
-  Use case resumes at step 1.
+  Use case ends.
 
 <hr/>
 
@@ -1075,9 +1086,6 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     Use case ends.
 
 <hr/>
-
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 **Technical Requirements**:
