@@ -10,11 +10,11 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and filters clients whose attributes contain"
-            + " any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter clients whose matching attributes contain"
+            + " any of the specified keywords (case-insensitive) and displays them as a list.\n"
             + "Parameters: PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...\n"
-            + "Prefixes: address: a/ADDRESS; gender: g/GENDER; tag: t/TAG; insurance plan name: i/PLAN_NAME; \n"
-            + "age/[lower_bound]-[higher_bound]; age/[specific age] \n"
+            + "Valid prefixes: a/ADDRESS; g/GENDER; t/TAG; i/INSURANCE_PLAN_NAME; \n"
+            + "age/[LOWER_BOUND]-[UPPER_BOUND]; age/[SPECIFIC_AGE] \n"
             + "Example: " + COMMAND_WORD + " a/Clementi g/M t/medical plan/Protecc age/30-35";
 
     private final AttributeContainsKeywordsPredicate predicate;

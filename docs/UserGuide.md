@@ -376,8 +376,8 @@ Example:
 
 #### Finding clients by name: `find`
 
-You can find clients by simply entering their name. If you wish to search for clients with a specific attribute
-such as gender, age, insurance plan name, etc, refer to the `filter` command below.
+You can find clients by simply entering their name. If you wish to filter clients by specific attributes
+such as gender, age, insurance plan name, etc, refer to [Filtering clients by attributes](#filtering-clients-by-attributes--filter) below.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -403,7 +403,7 @@ Supported `PREFIX/KEYWORD` pairs:
 * address: `a/ADDRESS`
 * gender: `g/GENDER` (`GENDER` should be either `M`/`Male`, `F`/`Female` or `N`/`Non-binary`)
 * tag: `t/TAG`
-* age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]`
+* age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]` (Age should be a non-negative integer)
 * insurance plan name: `i/PLAN_NAME`
 
 Lists all of your clients that has one of their attributes that match your search keywords.

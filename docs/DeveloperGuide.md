@@ -305,24 +305,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
+(For all use cases below, the **System** is the `Link.me` and the **Actor** is the `user`, unless specified
 otherwise)
 
 **Use case: Add a client**
 
 **MSS**
 1.  User adds a client with corresponding information.
-2.  AddressBook shows the list of clients.
+2.  Link.me shows the list of clients.
 3.  Use case ends.
 
 **Extensions**
 
 * 1a. The user's input format is invalid.
-    * 1a1. AddressBook shows an error message.
+    * 1a1. Link.me shows an error message.
     * Use case resumes at step 1.
 
 * 1b. The given tag is invalid/nonexistent.
-    * 1b1. AddressBook shows an error message.
+    * 1b1. Link.me shows an error message.
     * Use case ends.
 
 
@@ -330,9 +330,9 @@ otherwise)
 
 **MSS**
 1.  User requests to list clients
-2.  AddressBook shows the list of clients
+2.  Link.me shows the list of clients
 3.  User requests to edit a specific client in the list
-4.  AddressBook edits the client
+4.  Link.me edits the client
 5.  Use case ends.
 
 
@@ -342,24 +342,24 @@ otherwise)
     * Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 * 3b. No optional fields are given.
-    * 3b1. AddressBook shows an error message.
+    * 3b1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 * 3c. The user input is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 **Use case: Delete a client**
 
 **MSS**
 1.  User requests to list clients
-2.  AddressBook shows a list of clients
+2.  Link.me shows a list of clients
 3.  User requests to delete a specific client in the list
-4.  AddressBook deletes the client
+4.  Link.me deletes the client
 5.  Use case ends.
 
 
@@ -369,7 +369,7 @@ otherwise)
     * Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 **Use case: Scheduling a meetup with a client**
@@ -377,9 +377,9 @@ otherwise)
 **MSS**
 
 1. User requests to list clients
-2. AddressBook shows a list of clients
+2. Link.me shows a list of clients
 3. User requests to schedule a meeting a specific client in the list at a specified date and time
-4. AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list
+4. Link.me adds the specified client, as well as the specified date and time of the meeting, to the schedule list
 5. Use case ends.
 
 **Extensions**
@@ -388,20 +388,20 @@ otherwise)
     * Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 * 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd HH:MM)
-    * 3b1. AddressBook shows an error message and reminds the user of the correct format.
+    * 3b1. Link.me shows an error message and reminds the user of the correct format.
     * Use case resumes at step 2.
 
 * 3c. The given date-and-time is invalid (eg. user input 2020-02-31 14:30)
-    * 3c1. AddressBook shows an error message
+    * 3c1. Link.me shows an error message
     * Use case resumes at step 2.
 
 * 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting 2 different clients at
   the same date and time)
-    * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client and asks
+    * 3d1. Link.me alerts the user that the meeting coincides with another meeting with a specified client and asks
       the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
     * If Y, use case continues to step 4. If N, user case resumes at step 2.
 
@@ -414,25 +414,25 @@ otherwise)
     * tag: t/TAG
     * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
     * insurance plan name: i/PLAN_NAME
-2.  AddressBook shows the list of clients which has at least one attribute matching the user's search keywords
+2.  Link.me shows the list of clients which has at least one attribute matching the user's search keywords
 3.  Use case ends.
 
 **Extensions**
 
 * 1a. The user inputs an invalid prefix.
-  * 1a1. AddressBook shows an error message.
+  * 1a1. Link.me shows an error message.
   * Use case resumes at step 1.
     
 * 1b. The user inputs an invalid age parameter or age range as an attribute to filter
-    * 1b1. AddressBook shows an error message
+    * 1b1. Link.me shows an error message
     * Use case resumes at step 1.
     
 * 1c. The user inputs an invalid gender parameter (must be 'M', 'F' or 'N')
-    * 1c1. AddressBook shows an error message
+    * 1c1. Link.me shows an error message
     * Use case resumes at step 1.
     
 * 1d. The user does not input any filter parameters (eg. `filter ` instead of `filter age/25`)
-    * 1d1. AddressBook shows an error message
+    * 1d1. Link.me shows an error message
     * Use case resumes at step 1.
 
 * 2a. The filtered list is empty.
@@ -442,13 +442,13 @@ otherwise)
 
 **MSS**
 1.  User requests to search for clients by name
-2.  AddressBook shows the list of clients whose name matches the user's search keywords
+2.  Link.me shows the list of clients whose name matches the user's search keywords
 3.  Use case ends.
 
 **Extensions**
 
 * 1a. The user does not input any parameter (eg. `find ` instead of `find Alex`)
-    * 1d1. AddressBook shows an error message
+    * 1d1. Link.me shows an error message
     * Use case resumes at step 1.
 
 * 2a. The search result list is empty.
