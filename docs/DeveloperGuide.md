@@ -166,18 +166,10 @@ to 2 decimal places.
 
 ### Adding or removing insurance plans of clients
 ![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
+
 The `PlanCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. Depending
-on the `Prefix` the , a `AddPlanCommand` or a `RemovePlanCommand` will 
-
-
-Recording and clearing notes will call the respective methods of the appropriate
-`Person` that the user has indicated. The `Person` will return an updated `Person` object, and `NoteCommand`
-will proceed to call the `ModelManager` to replace the original `Person` with the updated `Person`. A `CommandResult`
-is then created and returned.
-
-Viewing notes will simple create and return a `CommandResult`. This `CommandResult` contains the `Person` object
-representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
-`Person` in the `NotesWindow`.
+on the `Prefix` the user inputs (`i/` or `c/`), an `AddPlanCommand` or a `RemovePlanCommand` will be created and 
+returned respectively. 
 
 ### Recording, viewing and clearing notes for clients
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
@@ -197,7 +189,7 @@ Recording and clearing notes will call the respective methods of the appropriate
 will proceed to call the `ModelManager` to replace the original `Person` with the updated `Person`. A `CommandResult`
 is then created and returned.
 
-Viewing notes will simple create and return a `CommandResult`. This `CommandResult` contains the `Person` object
+Viewing notes will simply create and return a `CommandResult`. This `CommandResult` contains the `Person` object
 representing the appropriate `Person`. This `Person` is passed back to the `Ui`, which will display the notes of this
 `Person` in the `NotesWindow`.
 
