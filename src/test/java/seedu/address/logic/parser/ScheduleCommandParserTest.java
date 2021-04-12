@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEETING_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_DESC_PRANK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -25,11 +26,11 @@ class ScheduleCommandParserTest {
 
     @Test
     public void parse_invalidPreamble_failure() {
-        assertParseFailure(parser, "-5 " + MEETING_DESC_PRANK, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "0" + MEETING_DESC_PRANK, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "a" + MEETING_DESC_PRANK, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5 " + MEETING_DESC_PRANK, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertParseFailure(parser, "0" + MEETING_DESC_PRANK, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertParseFailure(parser, "a" + MEETING_DESC_PRANK, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

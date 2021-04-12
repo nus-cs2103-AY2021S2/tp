@@ -9,8 +9,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GENDER_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_WORD_PER_ATTRIBUTE;
 
-
 import java.util.Arrays;
+
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicates.AttributeContainsKeywordsPredicate;

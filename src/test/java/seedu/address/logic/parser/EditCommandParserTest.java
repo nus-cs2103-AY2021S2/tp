@@ -37,6 +37,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -71,16 +72,20 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                EditCommand.MESSAGE_USAGE));
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                EditCommand.MESSAGE_USAGE));
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                EditCommand.MESSAGE_USAGE));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                EditCommand.MESSAGE_USAGE));
     }
 
     @Test
