@@ -11,6 +11,9 @@ import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.comparator.ItemComparatorByDecreasingQuantity;
 
+/**
+ * Sort the item in descending order based on the item's quantity.
+ */
 public class SortDescendingQuantityCommand extends SortCommand {
     public static final String MESSAGE_SUCCESS_QUANTITY_DESC = "Sorted all items in descending order of quantity.";
 

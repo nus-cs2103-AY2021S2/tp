@@ -5,7 +5,7 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Item's Location in StoreMando.
- * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}.
  */
 public class Location {
 
