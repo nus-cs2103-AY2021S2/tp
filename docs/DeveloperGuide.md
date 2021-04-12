@@ -1149,19 +1149,5 @@ testers are expected to do more *exploratory* testing.
    Expected: Opens a pop-up window that shows the command summary and
 
 ### Exit Command
-
-<<<<<<< HEAD
-1. Test case: `exit` 
-   Expected: The program should exit and close.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-=======
 1. Test case: `exit` <br>
    Expected: The program should exit and close.
->>>>>>> f2a89eff (Clean up User Stories and Use Cases)
