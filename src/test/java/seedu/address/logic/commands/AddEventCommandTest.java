@@ -27,30 +27,28 @@ import seedu.address.testutil.EventBuilder;
 public class AddEventCommandTest {
 
     private Model model;
+    private Event eventToAdd;
 
     @BeforeEach
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
+
+        eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
+                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
+                .withIsWeekly(false).build();
     }
 
     @Test
     public void execute_validParameters_success() throws Exception {
-        Event validEvent = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
-                .withIsWeekly(false).build();
-
-        CommandResult commandResult = new AddEventCommand(INDEX_FIRST, validEvent).execute(model);
+        CommandResult commandResult = new AddEventCommand(INDEX_FIRST, eventToAdd).execute(model);
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
-        assertEquals(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, validEvent,
+        assertEquals(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, eventToAdd,
                 projectToEdit.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Event eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
-                .withIsWeekly(false).build();
         // Typical project list contains only 2 projects
         AddEventCommand addEventCommand = new AddEventCommand(INDEX_THIRD, eventToAdd);
 
@@ -62,9 +60,6 @@ public class AddEventCommandTest {
 
     @Test
     public void execute_duplicateEvent_throwsCommandException() {
-        Event eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
-                .withIsWeekly(false).build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         AddEventCommand addEventCommand = new AddEventCommand(INDEX_FIRST, eventToAdd);
 
@@ -75,9 +70,6 @@ public class AddEventCommandTest {
 
     @Test
     public void equals() {
-        Event eventToAdd = new EventBuilder().withDescription("CS2106 Tutorial")
-                .withDate(LocalDate.of(2020, 01, 01)).withTime(LocalTime.of(17, 30))
-                .withIsWeekly(false).build();
         AddEventCommand addEventToOneCommand = new AddEventCommand(INDEX_FIRST, eventToAdd);
         AddEventCommand addEventToTwoCommand = new AddEventCommand(INDEX_SECOND, eventToAdd);
 
