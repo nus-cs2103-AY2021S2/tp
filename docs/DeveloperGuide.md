@@ -494,38 +494,6 @@ students as they adjust themselves, easing into adulthood.
 
 ### User stories
 
-[comment]: <> (Priorities: High &#40;must have&#41; - `* * *`, Medium &#40;nice to have&#41; - `* *`, Low &#40;unlikely to have&#41; - `*`)
-
-v1.2
-
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
-| --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
-| university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
-| university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
-| university student who wants to manage my finances                    | view all FRs                                    | quickly glance at all my past spendings                                               |
-| university student who has difficulties in managing expenses          | set a monthly budget                            | keep track of my expenses and reduce chances of overspending                          |
-| university student who has difficulties in managing expenses          | view my monthly budget                          | quickly glance at budget set for the given month                                      |
-| university student who wants to know how much money I can still spend | view my remaining budget for a particular month | be aware of my spending and decide whether I need to be more prudent with my spending |
-
-v1.3
-
-| As a …​                                                                    | I want to …​                                        | So that I can…​                                                                       |
-| -------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| university student who wants to manage my finances                         | add an FR                                           | track my spending history easily                                                      |
-| university student who wants to manage my finances                         | delete an FR                                        | recover from mistakes from adding wrong entries of my spending history                |
-| university student who wants to manage my finances                         | view all FRs                                        | quickly glance at all my past spendings                                               |
-| university student who wants to manage my finances                         | view all FRs in a particular month                  | quickly glance at my spending history of a specific month                             |
-| university student who wants to manage my finances                         | filter FRs based on category                        | quickly glance at my spending history of a specific category                          |
-| university student who wants to manage my finances                         | reset filters on FRs                                | quickly glance at the original list of financial records                              |
-| university student who has difficulties in managing expenses               | set a monthly budget                                | keep track of my expenses and reduce chances of overspending                          |
-| university student who has difficulties in managing expenses               | view my monthly budget                              | quickly glance at budget set for the given month                                      |
-| university student who wants to know how much money I can still spend      | view my remaining budget for a particular month     | be aware of my spending and decide whether I need to be more prudent with my spending |
-| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets     | quickly glance and gain insight from my spending patterns                             |
-| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list | quickly glance and gain insight from my spending patterns                             |
-| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  | quickly glance and gain insight from my spending patterns                             |
-
-v1.4
-
 | As a …​                                                                    | I want to …​                                          | So that I can…​                                                                       |
 | -------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | university student who wants to manage my finances                         | add an FR                                             | track my spending history easily                                                      |

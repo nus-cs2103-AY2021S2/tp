@@ -359,7 +359,7 @@ Format: `reset-filter`
 
 **:information_source: Info:**<br>
 
-You can only undo `add-fr`, `delete-fr` and `set-bg` operations.
+You can only undo `add-fr`, `delete-fr`, `edit-fr` and `set-bg` operations.
 
 </div>
 
@@ -375,7 +375,7 @@ Format: `undo`
 
 **:information_source: Info:**<br>
 
-You can only redo undone `add-fr`, `delete-fr` and `set-bg` operations.
+You can only redo undone `add-fr`, `delete-fr`, `edit-fr` and `set-bg` operations.
 
 </div>
 
