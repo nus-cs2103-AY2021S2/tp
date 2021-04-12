@@ -830,16 +830,34 @@ testers are expected to do more *exploratory* testing.
        Expected: Shows the GUI with data loaded from the json files.
 
 
+### Testing General Features
+
+#### Help 
+
+#### Change ParentPal's theme
+
+
 ### Testing Address Book Features
 
 #### Add a contact
 
 #### Delete a contact
 
+#### Delete multiple contacts
+
+#### Clear contacts
+
+#### Edit a contact
+
+#### Find a contact
+
 #### Sort contacts
 
+#### Favourite a contact
 
+#### List all contacts
       
+
 ### Testing Appointment Book Features
 
 #### Add an appointment
