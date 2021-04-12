@@ -14,10 +14,6 @@ public class BookingTagContainsKeywordsPredicate implements Predicate<Booking> {
         this.tag = new Tag(tag);
     }
 
-    public String getTagName() {
-        return tag.getTagName();
-    }
-
     @Override
     public boolean test(Booking booking) {
         return booking.getTags().stream().anyMatch(tag -> tag.isSameTag(this.tag));

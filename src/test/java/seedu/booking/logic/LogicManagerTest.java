@@ -1,7 +1,6 @@
 package seedu.booking.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_PERSON_EMAIL;
 import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.booking.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -16,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.CommandResult;
 import seedu.booking.logic.commands.ListPersonCommand;
@@ -58,7 +58,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete_person e/kakak@gmail.com";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_EMAIL);
+        assertCommandException(deleteCommand, Messages.MESSAGE_NON_EXISTENT_PERSON_EMAIL);
     }
 
     @Test

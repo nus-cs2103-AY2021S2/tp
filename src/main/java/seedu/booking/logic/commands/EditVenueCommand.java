@@ -44,14 +44,12 @@ public class EditVenueCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the venue identified "
             + "by the venue name used in the displayed venue list.\n"
-            + "At least one parameter to be changed must be specified."
+            + "At least one parameter to be changed must be specified.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "At least one of the optional fields must be provided.\n"
             + MESSAGE_FIELDS;
 
     public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited venue: %1$s";
-    public static final String MESSAGE_NOT_EDITED =
-            "Incomplete command: At least one field to edit must be provided.\n";
 
     public static final String MESSAGE_DUPLICATE_VENUE = "This venue already exists in the booking system.";
 
@@ -76,13 +74,14 @@ public class EditVenueCommand extends Command {
         List<Venue> lastShownList = model.getFilteredVenueList();
 
         if (!lastShownList.stream().anyMatch(venueName::isSameVenueName)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_VENUE_NAME);
+            throw new CommandException(Messages.MESSAGE_VENUE_NOT_FOUND);
         }
 
         Venue venueToEdit = getVenueByVenueName(venueName, lastShownList);
         Venue editedVenue = createEditedVenue(venueToEdit, editVenueDescriptor);
 
-        if (!venueToEdit.isSameVenue(editedVenue) && model.hasVenue(editedVenue)) {
+        if (!venueToEdit.getVenueName().isSameVenueName(editedVenue)
+                && model.hasVenueWithVenueName(editedVenue.getVenueName())) {
             throw new CommandException(MESSAGE_DUPLICATE_VENUE);
         }
 

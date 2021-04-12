@@ -1,12 +1,12 @@
 package seedu.booking.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.booking.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.booking.testutil.Assert.assertThrows;
 import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
@@ -30,7 +30,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, Messages.INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 

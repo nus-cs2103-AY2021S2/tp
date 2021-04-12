@@ -30,7 +30,12 @@ public class StartTime {
         value = startTime;
     }
 
-    boolean isValidTime(LocalDateTime input) {
+    /**
+     * Checks if the input time is of the correct format.
+     *
+     * @param input A time input from user.
+     */
+    public boolean isValidTime(LocalDateTime input) {
         try {
             formatter.parse(input.toString());
             return true;

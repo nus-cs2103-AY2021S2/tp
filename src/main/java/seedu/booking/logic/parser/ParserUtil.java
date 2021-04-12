@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.booking.commons.core.Messages;
@@ -53,14 +51,26 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified {@code Index} is invalid (not non-zero unsigned integer).
+     * @throws NumberFormatException if the specified {@code Index} exceeds the system limit.
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, NumberFormatException {
+        requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        try {
+            Integer formattedIndex = Integer.parseInt(trimmedIndex);
+            if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+                throw new ParseException(Messages.INVALID_INDEX);
+            }
+            return Index.fromOneBased(formattedIndex);
+        } catch (NumberFormatException e) {
+            String numericRegex = "^(?:[+\\-\\d][0-9]*)$";
+            if (trimmedIndex.matches(numericRegex)) {
+                throw new ParseException(Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
+            } else {
+                throw new ParseException(Messages.INVALID_INDEX);
+            }
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
     /**
@@ -184,7 +194,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String bookingStart} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
     public static StartTime parseBookingStart(String bookingStart) {
         requireNonNull(bookingStart);
@@ -228,6 +237,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code capacity} is invalid.
+     * @throws NumberFormatException if the specified {@code capacity} exceeds the system limit.
      */
     public static Capacity parseCapacity(String capacity) throws ParseException, NumberFormatException {
         requireNonNull(capacity);
@@ -253,7 +263,8 @@ public class ParserUtil {
      * Parses a {@code String capacityKeyword} into a {@code CapacityContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code capacity} is invalid.
+     * @throws ParseException if the given {@code capacityKeyword} is invalid.
+     * @throws NumberFormatException if the specified {@code capacityKeyword} exceeds the system limit.
      */
     public static CapacityMatchesKeywordPredicate parseCapacityContainsKeywordsPredicate(String capacityKeyword)
             throws ParseException, NumberFormatException {
@@ -354,20 +365,6 @@ public class ParserUtil {
         return tagSet;
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    public static Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
 
     /**
      * Parses a {@code String name}.

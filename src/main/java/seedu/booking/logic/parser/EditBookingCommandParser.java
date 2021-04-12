@@ -9,11 +9,8 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.EditBookingCommand;
@@ -34,16 +31,13 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_VENUE,
                         PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
 
-
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditBookingCommand.MESSAGE_USAGE), pe);
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookingCommand.MESSAGE_USAGE));
         }
 
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
 
@@ -72,36 +66,33 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
                     argMultimap.getValue(PREFIX_BOOKING_END).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editBookingDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editBookingDescriptor.setTags(getTagSet(argMultimap.getValue(PREFIX_TAG).get()));
+        }
 
         if (!editBookingDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditBookingCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditBookingCommand.MESSAGE_USAGE));
         }
 
         return new EditBookingCommand(index, editBookingDescriptor);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
+    private Set<Tag> getTagSet(String input) throws ParseException {
+        final Set<Tag> tagSet = new HashSet<>();
+        if (input.trim().equals("")) {
+            return tagSet;
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        String[] tags = input.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
+        }
+        return tagSet;
     }
+
 
 }

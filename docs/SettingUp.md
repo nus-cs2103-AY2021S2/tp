@@ -5,9 +5,12 @@ title: Setting up and getting started
 
 * Table of Contents
 {:toc}
-
-
+  
 --------------------------------------------------------------------------------------------------------------------
+## Prerequisites
+1. JDK `11` or above
+2. Intellij IDE with JavaFX and Gradle plugins
+
 
 ## Setting up the project in your computer
 

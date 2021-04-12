@@ -42,15 +42,12 @@ public class EditPersonCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the person's email used in the displayed person list.\n "
-            + "At least one parameter to be changed must be specified. "
+            + "At least one parameter to be changed must be specified.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "At least one of the optional fields must be provided.\n"
             + MESSAGE_FIELDS;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited person: %1$s";
-    public static final String MESSAGE_NOT_EDITED =
-            "Incomplete command: At least one field to edit must be provided.\n";
-
     public static final String MESSAGE_DUPLICATE_EMAIL =
             "The new email already belongs to another person currently in the booking system.";
     public static final String MESSAGE_DUPLICATE_PHONE =
@@ -77,7 +74,7 @@ public class EditPersonCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (!lastShownList.stream().anyMatch(email::isSameEmail)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL);
+            throw new CommandException(Messages.MESSAGE_EMAIL_NOT_FOUND);
         }
 
         Person personToEdit = getPersonByEmail(email, lastShownList);

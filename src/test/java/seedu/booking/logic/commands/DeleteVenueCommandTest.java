@@ -45,7 +45,7 @@ public class DeleteVenueCommandTest {
         Venue venueNotInSystem = VENUE2;
         DeleteVenueCommand deleteVenueCommand = new DeleteVenueCommand(venueNotInSystem);
 
-        assertCommandFailure(deleteVenueCommand, model, Messages.MESSAGE_INVALID_VENUE_NAME);
+        assertCommandFailure(deleteVenueCommand, model, Messages.MESSAGE_NON_EXISTENT_VENUE_NAME);
     }
 
     @Test

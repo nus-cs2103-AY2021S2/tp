@@ -9,7 +9,7 @@ title: BookingSystem Level-3
 
 ![Ui](images/Ui.png)
 
-**BookCoin To The Moon is a CLI facility management system which allows users to type in commands to manage bookings and presents users a structured and detailed information on facility availability.
+**BookCoin is a CLI facility management system which allows users to type in commands to manage bookings and presents users a structured and detailed information on facility availability.
 ** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using BookCoin, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).

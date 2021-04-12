@@ -1,0 +1,29 @@
+@startuml
+
+start
+:User enters 'delete_booking 1';
+
+    if () then ([matches command input format])
+    :BookCoin creates DeleteBookingCommandParser object;
+    :DeleteBookingCommandParser parses input;
+        if () then ([is not empty])
+            :Returns DeleteBookingCommand object;
+            if () then ([input is valid and booking index exists])
+                :Model deletes booking;
+                :Returns CommandResult to LogicManager;
+                :Saves changes to Storage;
+            else ([else])
+                :Throws CommandException;
+            endif
+        else ([else])
+            :Throws ParseException;
+        endif
+    else ([else])
+        :Throws ParseException;
+    endif
+
+:Returns feedback to user;
+
+stop
+
+@enduml

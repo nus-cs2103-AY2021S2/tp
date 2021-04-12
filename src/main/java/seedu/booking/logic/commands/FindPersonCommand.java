@@ -47,6 +47,7 @@ public class FindPersonCommand extends Command {
         model.updateFilteredPersonList(predicate);
         if (model.getFilteredPersonList().size() == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NO_PERSONS_FOUND), COMMAND_SHOW_PERSONS);
+
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),

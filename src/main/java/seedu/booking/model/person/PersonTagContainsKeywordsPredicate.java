@@ -14,10 +14,6 @@ public class PersonTagContainsKeywordsPredicate implements Predicate<Person> {
         this.tag = new Tag(tag);
     }
 
-    public String getTagName() {
-        return tag.getTagName();
-    }
-
     @Override
     public boolean test(Person person) {
         return person.getTags().stream().anyMatch(tag -> tag.isSameTag(this.tag));

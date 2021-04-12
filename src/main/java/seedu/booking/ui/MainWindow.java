@@ -49,7 +49,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private BookingListPanel upcomingBookingListPanel;
     private VenueListPanel venueListPanel;
     private BookingListPanel bookingListPanel;
     private ResultDisplay resultDisplay;
@@ -224,7 +223,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void show() {
+    public void show() {
         primaryStage.show();
     }
 
