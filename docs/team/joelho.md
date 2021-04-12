@@ -106,11 +106,11 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 
 ### Model
 
-The class diagram for the `Model` can be seen [above](DeveloperGuide.html#model-component) in the Design section. Such a design was chosen after a few iterations on other designs. One such design is briefly documented as below:
+The class diagram for the `Model` can be seen [above](https://ay2021s2-cs2103t-w10-1.github.io/tp/DeveloperGuide.html#model-component) in the Design section. Such a design was chosen after a few iterations on other designs. One such design is briefly documented as below:
 
 **v1.2**
 
-![v1.2 Model](images/Modelv1_2.png)
+![v1.2 Model](../images/Modelv1_2.png)
 
 In v1.2, `Passenger` has-an optional `Driver`, which was initially chosen for its ease of implementation and storage. However, it was spotted that this would lead to issues in future when implementing trips on multiple days, since each `Driver` would have their own times, leading to a lot of duplication of `Drivers`. Further, this was not an easy format to display to the user intuitively, and would require a traverse of the whole `Passenger` list just to group `Passengers` by `Drivers`.
 
@@ -125,11 +125,11 @@ The decision was also made to make `Passenger` and `Driver` extend `Person`, so 
 
 ### Storage
 
-As above, with regards to [Model](DeveloperGuide.html#model-component), the initial implementation of `Storage` was simply to store a `Driver` as a `String` field inside Passenger.
+As above, with regards to [Model](https://ay2021s2-cs2103t-w10-1.github.io/tp/DeveloperGuide.html#model-component), the initial implementation of `Storage` was simply to store a `Driver` as a `String` field inside Passenger.
 
 However, this involved extra parsing to ensure that the `Driver` String was still a valid `Driver` on load. Therefore, `Driver` was also made into a Jackson `JsonProperty`.
 
-The class diagram for `Storage` can be found [above](DeveloperGuide.html#storage-component).
+The class diagram for `Storage` can be found [above](https://ay2021s2-cs2103t-w10-1.github.io/tp/DeveloperGuide.html#storage-component).
 
 #### Implementation
 
