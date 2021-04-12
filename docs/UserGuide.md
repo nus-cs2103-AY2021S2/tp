@@ -707,7 +707,7 @@ _Details coming soon ..._
 * Dictionote currently does not allow user to change the visibility of the panel using mouse, 
   please use the `open` command instead.
 
-**How do I contribute to the project? I have added some new dictionary content and definition.**
+**How do I contribute to the project? I have added some new dictionary content and definitions.**
 * You are welcome to do a pull request [here](https://github.com/AY2021S2-CS2103T-W13-1/tp/pulls). 
   Refer to [this](https://nus-cs2103-ay2021s2.github.io/website/se-book-adapted/chapters/gitAndGithub.html#creating-prs) 
   for details on how to do a pull request.
