@@ -9,7 +9,7 @@ Participant ":ViewProjectUiCommand" as uiCommand LOGIC_COLOR_T2
 Participant ":CommandResult" as commandResult LOGIC_COLOR_T2
 
 
---> mainWindow
+-> mainWindow
 activate mainWindow UI_COLOR
 
 mainWindow -[UI_COLOR]> logic : execute("viewP 1")
@@ -55,4 +55,7 @@ deactivate mainWindow
 
 uiCommand --[LOGIC_COLOR_T2]> mainWindow
 deactivate uiCommand
+
+[<--mainWindow
+deactivate mainWindow
 @enduml

@@ -141,7 +141,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### View Projects Feature
 
-This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
+This section explains the implementation of the View Project feature. The implementation of other commands that opens panels or tabs are similar.
 
 The `ViewProject` command results in the UI displaying the specified project together with all its related information.
 
@@ -151,15 +151,15 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 ![View Project Sequence Diagram](images/ViewProjectCommandSequenceDiagram.png)
 
-Step 1. The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
+**Step 1.** The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
 
-Step 2. A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
+**Step 2.** A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
 
-Step 3. The `CommandResult` is passed to the `MainWindow`, which gets the `UiCommand` by calling `CommandResult#getUiCommand()`.
+**Step 3.** The `CommandResult` is passed to the `MainWindow`, which gets the `UiCommand` by calling `CommandResult#getUiCommand`.
 
-Step 4. The `MainWindow` now calls `UiCommand#execute`, which will result in a call to the overridden method `ViewProjectUiCommand#execute`.
+**Step 4.** The `MainWindow` now calls `UiCommand#execute`, which will result in a call to the overridden method `ViewProjectUiCommand#execute`.
 
-Step5. Execution of this method will result in a call to `MainWindow#selectProject` with the `Index` of the first project as an argument. This will display the first project in the project list.
+**Step 5.** Execution of this method will result in a call to `MainWindow#selectProject` with the `Index` of the first project as an argument. This will display the first project in the project list.
 
 #### Design Considerations
 
@@ -167,13 +167,13 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
 
 * **Alternative 1 (current choice):** Encapsulate instructions using `UiCommand` Object.
     * Pros:
-        * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommands`.
+        * Design allows behaviour of `UI` to be extended without (or with minimal) changes to the `MainWindow` and `CommandResult`. This makes it relatively easy to add many `UiCommand`s.
         * `UiCommand` encapsulates all information needed to execute the instruction (e.g. `Index` of project). It is easy to add new commands that store different types of information.
-        * Easy to support complex `UiCommands` that perform multiple instructions or contain logic.
+        * Easy to support complex `UiCommand`s that perform multiple instructions or contain more complex logic.
 
     * Cons:
         * Many classes required.
-        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action.
+        * `MainWindow` and `UiCommand` are highly coupled, as `MainWindow` both invokes the command and performs the requested action.
 
 * **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
     * Pros:
