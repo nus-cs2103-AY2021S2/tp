@@ -86,7 +86,7 @@ Given below are my contributions to the project.
       , [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151)
       , [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155)
       , [\#157](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/157)
-      , [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170)  
+      , [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170)
       , [\#175](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/175)
       , [\#211](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/211)
       , [\#215](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/215)
