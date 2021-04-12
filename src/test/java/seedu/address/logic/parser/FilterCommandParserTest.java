@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.FilterCommand.MESSAGE_FAILURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -70,22 +70,29 @@ class FilterCommandParserTest {
     public void parse_invalidPrefix_failure() {
         // invalid prefix
         assertParseFailure(parser, FORCE_PREAMBLE + INVALID_PREFIX,
-                String.format(MESSAGE_INVALID_PREFIX, INVALID_PREFIX) + "\n"
+                String.format(MESSAGE_FAILURE, INVALID_PREFIX) + "\n"
                         + FilterCommand.MESSAGE_USAGE);
 
-        // invalid prefix
+        // double invalid prefix
         assertParseFailure(parser, FORCE_PREAMBLE + INVALID_PREFIX + " " + INVALID_PREFIX,
-                String.format(MESSAGE_INVALID_PREFIX, INVALID_PREFIX + " " + INVALID_PREFIX) + "\n"
+                String.format(MESSAGE_FAILURE, INVALID_PREFIX + " " + INVALID_PREFIX) + "\n"
                         + FilterCommand.MESSAGE_USAGE);
 
         // invalid prefix followed by valid
         assertParseFailure(parser, FORCE_PREAMBLE + INVALID_PREFIX + " " + PREFIX_PHONE,
-                String.format(MESSAGE_INVALID_PREFIX, INVALID_PREFIX) + "\n"
+                String.format(MESSAGE_FAILURE, INVALID_PREFIX + " " + PREFIX_PHONE) + "\n"
                         + FilterCommand.MESSAGE_USAGE);
 
         // valid followed by invalid prefix
         assertParseFailure(parser, FORCE_PREAMBLE + PREFIX_PHONE + " " + INVALID_PREFIX,
-                String.format(MESSAGE_INVALID_PREFIX, PREFIX_PHONE + INVALID_PREFIX) + "\n"
+                String.format(MESSAGE_FAILURE, PREFIX_PHONE + " " + INVALID_PREFIX) + "\n"
+                        + FilterCommand.MESSAGE_USAGE);
+
+        // valid followed by invalid prefix followed by valid
+        assertParseFailure(parser,
+                FORCE_PREAMBLE + PREFIX_PHONE + " " + INVALID_PREFIX + " " + PREFIX_ADDRESS,
+                String.format(MESSAGE_FAILURE,
+                        PREFIX_PHONE + " " + INVALID_PREFIX + " " + PREFIX_ADDRESS) + "\n"
                         + FilterCommand.MESSAGE_USAGE);
     }
 
