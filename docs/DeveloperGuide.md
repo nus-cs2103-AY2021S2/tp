@@ -142,7 +142,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("food_delete n/grape")` API call.
 
-![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `food_delete n/grape` Command](images/DeleteFoodItemSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteFoodItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -235,8 +235,6 @@ There are some actions that can be performed with the Food component.
 1. Update respective nutrients' values.
 2. Calculate total kilocalories' values.
 
-Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList through the Add-Command: to-do
-
 #### Design consideration:
 
 ##### Aspect: How the components within `Food` are added or changed
@@ -302,16 +300,19 @@ Example: `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 #### Implementation:
 
+The following sequence diagram shows how the add food item operation works:
+
+<img src="images/AddFoodItemSequenceDiagram.png" width="3060" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This sequence diagram showcases the usual case when the food item that is being added is new and does not exist in the food list before.</div>
+
 Once the user types in the command to add food, the parser will check for all the required prefixes. If all required prefixes are present and the input values are valid, `AddFoodItemCommand` object is created. `AddFoodItemCommand` is a class that extends `Command` abstract class. `AddFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will prompt an error that the food item exist and suggest updating the food item value instead. Otherwise, a new food item object will be created and added into the food list.
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_add n/chocolate c/100 f/100 p/100` to create the food item.
+Step 1: The user launches the application and executes `food_add n/grape c/10 f/10 p/10` to create the food item.
 
 Step 2: The food item is added to the food list.
-
-The following sequence diagram shows how the add operation works:
-Diagram flow to be inserted here
 
 ### Update food item feature
 
@@ -331,11 +332,9 @@ Once the user types in the command to update food, the parser will check for the
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_update n/chocolate c/200 f/200 p/200` to update the specified food item.
+Step 1: The user launches the application and executes `food_update n/grape c/200 f/200 p/200` to update the specified food item.
 
 Step 2: The food item specified will have its value(s) updated to the new value(s) in the food list.
-
-The following sequence diagram shows how the update operation works:
 
 ### List food item feature
 
@@ -359,8 +358,6 @@ Step 1: The user launches the application and executes `food_list`.
 
 Step 2: The food item(s) in the food list will be displayed.
 
-The following sequence diagram shows how the delete operation works:
-
 ### Delete food item feature
 
 The following activity diagram summarizes what happens when a user executes a `food_delete` command:
@@ -379,11 +376,9 @@ Once the user types in the command to delete food, the parser will check for the
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_delete n/chocolate`.
+Step 1: The user launches the application and executes `food_delete n/grape`.
 
 Step 2: The food item specified will be deleted from the food list.
-
-The following sequence diagram shows how the delete operation works:
 
 ### FoodIntake Object
 
