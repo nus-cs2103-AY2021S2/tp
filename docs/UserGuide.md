@@ -92,10 +92,25 @@ For fast typists, SpamEZ can complete contact management tasks faster than tradi
 * Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive). This number represents the largest possible number of contacts
   that can be stored using the current implementation of SpamEZ.
   Values out of this valid integer range will be treated as invalid inputs.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the app limitations:**<br>
+
+* Names can only include alphanumeric characters.
+
+* Phone numbers can only contain numbers.
   
-* The following images represent email, phone and address respectively.
+* Uniqueness of each contact is decided by their email. As such, no 2 contacts can share the same email.
+
+* Tags cannot contain spaces.
+
+* The following images represent email, phone and address respectively, which are the only 3 modes of contact supported.
 
 ![email](images/email.png) ![phone](images/smartphone.png) ![address](images/house.png)  
+
 </div>
 
 ### Viewing help : `help`
