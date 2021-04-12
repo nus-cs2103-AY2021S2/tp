@@ -544,11 +544,38 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Limited file system permission
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: restricting read access to data file:
+    
+        1. Start FriendDex and allow it to generate sample data.
+    
+        2. Exit FriendDex.
+    
+        3. Remove read permission for data file
+           * (macOS/*nix OS): Execute `chmod 333 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove read 
+             permission.
+    
+        5. Start FriendDex.
+           
+        4. Expected: FriendDex is loaded with no information.
+    
+    2. Test case: restricting write access to data file:
+    
+       1. Start FriendDex and allow it to generate sample data.
+          
+       2. Exit FriendDex.
 
-1. _{ more test cases …​ }_
+       3. Remove write permission for data file
+           * (macOS/*nix OS): Execute `chmod 555 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove write
+             permission.
+    
+        4. Start FriendDex.
+    
+        5. Expected: FriendDex loads with no issue but any attempt at modifying its data will show an error message.
+           FriendDex will not save any new data on exit.
 
 ### Adding a person: `add`
 
