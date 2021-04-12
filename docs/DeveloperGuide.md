@@ -882,30 +882,37 @@ to work on.
 ### Add an entry
 
 1. Add an entry with the provided details
-   
+ 
     1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
 
     2. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
+    
+        Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
     FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.<br />
     <br />
     3. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid rating error will be shown in the result display. Entry will not be added.<br />
+        
+        Expected: Invalid rating error will be shown in the result display. Entry will not be added.<br />
     <br />
     4. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid price error will be shown in the result display. Entry will not be added.<br />
+    
+        Expected: Invalid price error will be shown in the result display. Entry will not be added.<br />
     <br />
     5. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid review error will be shown in the result display. Entry will not be added.<br />
+        
+        Expected: Invalid review error will be shown in the result display. Entry will not be added.<br />
     <br />
     6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
-    <br>Expected: Invalid address error will be shown in the result display. Entry will not be added.<br />
+    
+        Expected: Invalid address error will be shown in the result display. Entry will not be added.<br />
     <br />
     7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
-    <br>Expected: A list of valid categories will be shown in the result display. Entry will not be added.<br />
+        
+        Expected: A list of valid categories will be shown in the result display. Entry will not be added.<br />
     <br />
     8. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
-    <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br />
+    
+        Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br />
     <br />
     9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
@@ -917,20 +924,20 @@ to work on.
        
     2. Test case: `addon 1 re/I like this food a lot! p/7`
     
-        <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
+        Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
            out of the initial price range displayed in the entry). Specified Entry will be updated with the addon on fields.<br />
         <br />
     3. Test case: `addon 1`
     
-        <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.<br />
         <br />
     4. Test case: `addon 1 re/`
     
-        <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.<br />
         <br />
     5. Test case: `addon 1 re/Good Food p/1000`
     
-        <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
+        Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.<br />
         <br />
 
     6. Other incorrect `addon` commands to try: `addon 10000000000 re/Good Food` (invalid index)
@@ -942,12 +949,12 @@ to work on.
        
     2. Test case: `delete 1`
     
-        <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
+        Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.<br />
         <br />
        
     3. Test case: `delete x` (where x is non-existent booking ID)
        
-        <br>Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
+        Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
         <br />
        
     4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
@@ -1144,34 +1151,35 @@ to work on.
     * `INDEX` refers to index of Entry to revise in view.
     
     * The following test cases will test different permutations and numbers of `KEYWORD`(s).<br />
-    <br /> 
+    <br />
+
     2. Test case: `edit 1 n/McDonalds`
     
        Expected:
-       - First entry has named changed to "McDonalds".
-       - All entries remained shown
-       - Success message displayed informing the user of change.<br />
+        - First entry has named changed to "McDonalds".
+        - All entries remained shown
+        - Success message displayed informing the user of change.<br />
         <br />
     3. Test case: `edit 2 ra/0`
 
        Expected:
-       - Second entry has rating changed to 0. (0/5)
-       - All entries remained shown (with the first entry remaining edited as done previously).
-       - Success message displayed informing the user of change.<br />
+        - Second entry has rating changed to 0. (0/5)
+        - All entries remained shown (with the first entry remaining edited as done previously).
+        - Success message displayed informing the user of change.<br />
         <br />
     4. Test case: `edit 3 a/50 West Coast Road`
 
        Expected:
-       - Third entry has address changed to "50 West Coast Road".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.<br />
+        - Third entry has address changed to "50 West Coast Road".
+        - All entries remained shown (with all entries updated previously).
+        - Success message displayed informing the user of change.<br />
         <br />
     5. Test case: `edit 4 re/I had a great time here.`
 
-        Expected:
-       - Fourth entry has review changed to "I had a great time here".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.<br />
+       Expected:
+        - Fourth entry has review changed to "I had a great time here".
+        - All entries remained shown (with all entries updated previously).
+        - Success message displayed informing the user of change.<br />
         <br />
     6. Test case: `edit 5 p/20`
 
@@ -1182,24 +1190,25 @@ to work on.
         <br />
     7. Test case: `edit 1 n/Hwangs ra/4 p/7 a/NUS re/Korean food makes me happy. s/Utown c/Korean`
 
-       Expected:
-       - First entry has name changed to "Hwangs", rating changed to "4" (4/5), price changed to "7" ($7),
+        Expected:
+        - First entry has name changed to "Hwangs", rating changed to "4" (4/5), price changed to "7" ($7),
         review changed to "Korean food makes me happy.", school location tags changed to "UTOWN", and 
         food category changed to "Korean".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.<br />
+        - All entries remained shown (with all entries updated previously).
+        - Success message displayed informing the user of change.<br />
         <br />
     8. Test case: `edit 1 c/Korean c/Others`
 
-       Expected:
-       - First entry has food category changed to "Korean" and "Others".
-       - All entries remained shown (with all entries updated previously).
-       - Success message displayed informing the user of change.
+        Expected:
+        - First entry has food category changed to "Korean" and "Others".
+        - All entries remained shown (with all entries updated previously).
+        - Success message displayed informing the user of change.
   
 ### Clear all entries
 1. Remove all entries from The Food Diary
    
-    1. Prerequisite: None
+    1. Prerequisite: None<br />
+       <br />
     
     2. Test Case: Correct command:`clear` 
 
@@ -1207,7 +1216,8 @@ to work on.
        <br />
     3. Test Case: Command not in lower-case: `cLeAr`
 
-       Expected: User will be notified about unknown command in the command box.
+       Expected: User will be notified about unknown command in the command box.<br />
+       <br />
        
 ## **UI Mockup**
 
