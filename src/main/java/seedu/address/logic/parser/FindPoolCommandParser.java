@@ -15,14 +15,17 @@ import seedu.address.model.pool.Pool;
 import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindPoolCommand object
  */
 public class FindPoolCommandParser implements Parser<FindPoolCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand.
-     * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format.
+     * Parses the given {@code String} of arguments in the context of the FindPoolCommand.
+     * and returns a FindPoolCommand object for execution.
+     *
+     * @param args Arguments to be parsed.
+     * @return The FindPoolCommand created from parsing the arguments.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public FindPoolCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

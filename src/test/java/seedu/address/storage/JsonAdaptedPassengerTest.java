@@ -17,9 +17,7 @@ import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
-import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.testutil.PassengerBuilder;
 
 public class JsonAdaptedPassengerTest {
     private static final String INVALID_NAME = "R@chel";
@@ -45,13 +43,6 @@ public class JsonAdaptedPassengerTest {
     public void toModelType_validPassengerDetails_returnsPassenger() throws Exception {
         JsonAdaptedPassenger passenger = new JsonAdaptedPassenger(BENSON);
         assertEquals(BENSON, passenger.toModelType());
-    }
-
-    @Test
-    public void toModelType_validPersonDetailsWithDriver_returnsPerson() throws Exception {
-        Passenger passenger = new PassengerBuilder(BENSON).build();
-        JsonAdaptedPassenger jsonAdaptedPassenger = new JsonAdaptedPassenger(passenger);
-        assertEquals(passenger, jsonAdaptedPassenger.toModelType());
     }
 
     @Test
