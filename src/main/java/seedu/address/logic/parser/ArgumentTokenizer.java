@@ -26,6 +26,7 @@ public class ArgumentTokenizer {
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+        argsString += " ";
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
     }
@@ -39,6 +40,7 @@ public class ArgumentTokenizer {
      * @return           {@code Optional<Prefix>} object that contains the last prefix in the arguments
      */
     public static Optional<Prefix> getLastPrefix(String argsString, Prefix... prefixes) {
+        argsString += " ";
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
 
         if (positions.size() == 0) {
@@ -93,7 +95,7 @@ public class ArgumentTokenizer {
      * {@code fromIndex} = 0, this method returns 5.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
-        int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
+        int prefixIndex = argsString.indexOf(" " + prefix + " ", fromIndex);
         return prefixIndex == -1 ? -1
                 : prefixIndex + 1; // +1 as offset for whitespace
     }

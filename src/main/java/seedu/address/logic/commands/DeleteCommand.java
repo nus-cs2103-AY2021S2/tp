@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
             + COMMAND_WORD + " " + SELECTED;
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person:\n%1$s";
-    public static final String MESSAGE_DELETE_PERSONS_SUCCESS = "Deleted multiple person(s):\n%1$s";
+    public static final String MESSAGE_DELETE_PERSONS_SUCCESS = "Deleted person(s):\n%1$s";
     public static final String MESSAGE_NO_SELECTED = "No selected person(s) to delete";
     public static final String MESSAGE_NO_PERSON = "No person(s) to delete";
 

@@ -49,8 +49,10 @@ Before reading on, please note the following typographic conventions used in thi
 1. Copy the abb.jar to the target folder to use as the _home folder_ to contain the A-Bash Book data.
    See [FAQ: What is the Home Folder?](#what-is-the-home-folder) to understand more.
 
-1. Double-click the abb.jar to start the app. The program window should appear in a few seconds. Note that the app contains some sample data, as seen in the picture below. <br>
+1. Double-click the abb.jar to start the app. The program window should appear in a few seconds.
+   Note that the app contains some sample data, as seen in the picture below. <br>
    ![Ui](images/UG_UI%20Guide.png)
+   ![Person List Reference ><](images/UG_UI%20Reference.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands to try:
@@ -368,6 +370,7 @@ Sub Command Format:
 The selected person(s) will have a highlighted index number to indicate selection status.
 
 ![Select UI Example](images/UG_Select%20Indicator.png)
+![select demo](images/ug_select%20command.png)
 
 Examples:
 
@@ -423,6 +426,10 @@ client is installed and configured properly.
 
 **Format**: `email { shown | selected | INDEX... }`
 
+![Email example](images/UG_Email%20Command.png)
+
+**Examples**:
+
 | Example          | Description                               |
 | ---------------- | ----------------------------------------- |
 | `email shown`    | Email all persons show in the person list |
@@ -452,6 +459,8 @@ Exits the program.
 ## Command Auto Completion
 
 Command Auto Completion automatically fills a command in the command box by pressing the <kbd>Tab</kbd> key.
+
+![Command Autocomplete](images/UG_Autocomplete.png)
 
 **Examples**:
 
@@ -491,8 +500,12 @@ Press the <kbd>Tab</kbd> key for any of the commands below to automatically add 
 
 **Example Usages**
 
-:information_source: **Note on `add` command:** a space character should follow the add command for flags to begin 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note on `add` command:** a space character should follow the add command for flags to begin
 autocompletion.
+
+</div>
 
 | Current text in command box                        | Press <kbd>Tab</kbd> once |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -511,6 +524,8 @@ Adds an alias to address book.
 
 **Format**: `alias add ALIAS COMMAND`
 
+![Alias Add](images/UG_Alias%20Add%20Command.png)
+
 **Examples**:
 
 | Example                             | Description                                                                                                                                                                                |
@@ -525,6 +540,8 @@ Deletes an existing alias from address book.
 
 **Format**: `alias delete ALIAS`
 
+![Alias Delete](images/UG_Alias%20Delete%20Command.png)
+
 **Examples**:
 
 | Example           | Description            |
@@ -538,11 +555,15 @@ Lists all alias(es) in the address book.
 
 **Format**: `alias list`
 
+![Alias List](images/UG_Alias%20List%20Command.png)
+
 ## Filter Field Visibility: `filter`
 
 Filter command toggles visibility of fields based on user input options.
 
 **Format**: `filter [-OPTION]...`
+
+![Filter Command UI](images/UG_Filter%20Command.png)
 
 Each option should start with a hyphen `-` e.g. `-OPTION` and be separated by a white-space. Options
 which are excluded will be hidden. Refer to [Field Summary](#field-summary) for all the available
@@ -554,8 +575,6 @@ options.
 
 </div>
 
-![Filter Command UI](images/UG_Filter%20Command.png)
-
 **Examples**:
 
 | example        | description                                              |
@@ -563,14 +582,6 @@ options.
 | `filter`       | Shows all fields.                                         |
 | `filter -a`    | shows the contact's name and address only.               |
 | `filter -a -p` | shows the contact's name, address and phone number only. |
-
-## Live command suggestion [coming soon]
-
-<!-- In addition to tab auto complete feature, A-Bash Book will also attempt to suggest commands available to the user.
-
-![](https://via.placeholder.com/350x150/000000/FFFFFF?text=Hi)
-
-Users will be able to press tab to cycle through the available options. -->
 
 ## Tagging persons: `tag`
 
@@ -589,6 +600,8 @@ Add tags to persons in address book.
 
 **Format**: `tag add { shown | selected | INDEX ... } -t TAG...`
 
+![Tag Add](images/UG_Tag%20Add%20Command.png)
+
 **Examples**:
 
 | Example                                     | Description                                                                  |
@@ -606,6 +619,8 @@ Delete tags from persons in address book.
 * The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are deleted from.
 
 **Format**: `tag delete { shown | selected | INDEX... } -t TAG...`
+
+![Tag Delete](images/UG_Tag%20Delete%20Command.png)
 
 **Examples**:
 
