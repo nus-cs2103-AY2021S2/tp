@@ -29,7 +29,7 @@ Class "<<enumerations>>\nNodeType"
 Class XYZFilter
 note bottom of XYZFilter: XYZFilter = AddressFilter, CarFilter,\nCarsOwned Filter, CarsPreferredFilter etc.
 Class Filters
-Class "{abstract}\nAbstractFilter" as AbstractFilter
+Class "{abstract}\nFilter" as Filter
 }
 
 package Command {
@@ -89,26 +89,24 @@ LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> "<<Interface>>\nParser"
 
-AbstractFilter .down.-->Model
+'Filter .-->Model
 
 CommandHistory  .->Ui
 
 FilterCombinator .right.-> ArgumentTokenizer
-FilterCombinator .-> AbstractFilter
+FilterCombinator .-> Filter
 FilterCombinator .down.-> CliSyntax
 FilterCombinator .-> Filters
-FilterCombinator .->Model
 FilterCombinator .down.->Node
-FilterCombinator .-> Prefix
+
 
 Filters .->CliSyntax
 Filters .->ArgumentMultimap
 Filters .->ArgumentTokenizer
-Filters .->Model
 
-XYZFilter -|> AbstractFilter
+XYZFilter -|> Filter
 
 Node .-> LogicalOperator
 Node .-> "<<enumerations>>\nNodeType"
-Node .right.--> AbstractFilter
+Node .right.--> Filter
 @enduml

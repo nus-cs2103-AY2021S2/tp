@@ -13,8 +13,6 @@ specific car brand and follow up with them for sales opportunities.
 Interface (GUI).
 <br> If you can type fast, Car@leads can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
