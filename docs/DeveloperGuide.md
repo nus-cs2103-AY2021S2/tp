@@ -7,6 +7,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **1. Setting up, getting started**
 
 First, you will need to set up the project file in your local computer.<br>
@@ -55,6 +57,8 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+<div style="page-break-after: always;"></div>
 
 Each of the four components,
 
@@ -135,12 +139,14 @@ The `Model`:
 * exposes an unmodifiable `ObservableList<Order>` and `ObservableList<OrderItem>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * does not depend on any of the other three components.
 
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CakeCollate`, which `Order` references. This allows `CakeCollate` to only require one `Tag` object per unique `Tag`, instead of each `Order` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -203,6 +209,7 @@ Hence, based on this implementation, here is the sequence diagram containing the
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Find feature
 
@@ -233,6 +240,8 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 *Step 4.* The `FindCommand#execute` is called which updates the `FilteredList` that is currently being displayed.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how this works:
 
 <div style="page-break-after: always;"></div>
@@ -247,6 +256,8 @@ The following sequence diagram shows how this works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 
@@ -269,6 +280,8 @@ As CakeCollate is adapted from the AddressBook-Level3 project, the original find
     * Cons:
       * Creating many classes causes increased coupling.
       * Hard to implement `OR` searches.
+
+<div style="page-break-after: always;"></div>
 
 ### Remind feature
 
