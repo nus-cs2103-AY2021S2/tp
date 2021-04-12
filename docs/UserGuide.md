@@ -423,7 +423,7 @@ Examples:
 
 For the following contact features, irrelevant panels of the user interface were closed (see [Closing UI Panel](./UserGuide.md#closing-ui-panel-close) below). <br>
 Thus, for the upcoming examples, assume the following as the current state of Dictionote:
-![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.png)
+![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.PNG)
 
 #### Adding a contact: `addcontact`
 
@@ -489,9 +489,9 @@ Examples:
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.PNG)
 * `findcontact t/colleagues t/friends` returns `Bernice Yu` <br>
-  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.png)
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.PNG)
 * `findcontact t/colleagues n/roy` returns `Roy Balakrishnan` <br>
-  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact3.png)
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact3.PNG)
 
 #### Deleting a contact : `deletecontact`
 
@@ -521,8 +521,8 @@ Examples:
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 * `listcontact` followed by `emailcontact 3 ni/1` opens a new message composition window targeting `Charlotte Oliveiro` with the body containing `CS2103T exam is coming.`. <br>
     * This example uses Microsoft Outlook as a mailing application on a Windows 10 machine. 
-  ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.png) <br>
-  ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.png) 
+  ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.PNG) <br>
+  ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.PNG) 
 
 #### Sorting the contacts list by most frequently-contacted: `mostfreqcontact`
 
@@ -542,7 +542,7 @@ Example:
     * Two emails were sent to `Bernice Yu`.
     * One email was sent to `Alex Yeoh`.
 * `mostfreqcontact` results in the following: <br>
-  ![result for 'mostfreqcontact'](images/ContactMostFreqContact.png)
+  ![result for 'mostfreqcontact'](images/ContactMostFreqContact.PNG)
 
 #### Clearing the contacts list : `clearcontact`
 
