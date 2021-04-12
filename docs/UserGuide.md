@@ -138,10 +138,19 @@ Examples:
 
 Find customers from the contact list that matches specified filters.
 
-Format: `find  [n/NAME] [p/PHONE_NUMBER] [e/EMAIL a/ADDRESS] [c/OWNED_CARBRAND+OWNED_CARTYPE] [coe/COE_EXPIRY_DATE] [t/TAGs]
-[cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [b/DATE_OF_BIRTH]`
+Format: `find  [n/NAME] [op] [p/PHONE_NUMBER] [op] [e/EMAIL a/ADDRESS] [op]  [c/OWNED_CARBRAND+OWNED_CARTYPE]
+[op] [coe/COE_EXPIRY_DATE] [op]  [t/TAGs] [op]
+[op] [cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE] [op] [b/DATE_OF_BIRTH]`
 
-**IMP** : All arguments are optional. In particular:
+**Note** 
+
+Here `[op]` means `/and`, `/or`, `/not` as explained below. Note that two filter parameters MUST be separated by an 
+operator denoted by `[op]`. 
+Example : 
+- `find n/John /and e/weird@example.com` is valid, but
+- `find n/John e/weird@example.com` is **not** valid.
+
+**Important** : All arguments are optional. In particular:
 
 - for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to
   separate.

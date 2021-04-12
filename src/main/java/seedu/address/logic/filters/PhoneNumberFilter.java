@@ -9,8 +9,8 @@ import seedu.address.model.customer.Customer;
  * This class filters based on phone number.
  */
 public class PhoneNumberFilter extends Filter {
-    public static final String MESSAGE_CONSTRAINT = "Phone number should only contain digits, possibly prefixed by a " +
-        "(+)";
+    public static final String MESSAGE_CONSTRAINT = "Phone number should only contain digits, possibly prefixed by a "
+        + "(+)";
     /**
      * Takes in a string which represents the filter string for this object.
      *
