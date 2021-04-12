@@ -162,8 +162,6 @@ Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
 * The task name is limited to a maximum length of **50 characters** while the task description is limited to **80 
   characters**.
 
-* If you add more than 2 add commands in the command box, only need the last add command is recognized.
-
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A Task can have any number of tags (including 0)
@@ -197,7 +195,9 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]�
 * When editing tags, the existing tags of the task will be removed i.e. adding of tags is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
 * There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However, you can cannot directly modify a 
-  task's status to `expired`
+  task's status to `expired` or from `uncompleted`/`completed` to `expired`.
+* If the edited task exist in the tasklist, an error will be thrown to the user. A task is considered duplicated only if 
+  it's name, description and dateTime is the same.
 
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
@@ -217,10 +217,10 @@ Deletes an existing task in Taskify. Deletion of multiple tasks with one command
 
 Format: `delete INDEX`
 
-Examples: `delete 2` deletes the 2nd task in Taskify, if there are at least 2 tasks.
+Examples: `delete 2` deletes the 2nd task in Taskify, if there are at least 2 or more tasks.
 
 Notes:
-* The index refers to the index number shown in the displayed task list.
+* The index refers to the index number shown in the displayed task list in `home` tab.
 * The index **must be a positive integer** 1, 2, 3, …
 
 #### Deleting multiple tasks
@@ -309,6 +309,7 @@ Format: `view DATE`
 Examples:
 * `view 2021-05-21`
 * `view today`
+* `view tomorrow`
 
 
 
