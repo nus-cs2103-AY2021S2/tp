@@ -35,7 +35,7 @@ public class AddBookingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
     public static final String MESSAGE_INVALID_TIME =
-            "Invalid timing: The booking's starting time cannot be later than its ending time";
+            "Invalid timing: The booking's starting time cannot be later than its ending time. ";
     public static final String MESSAGE_INVALID_VENUE = "This venue does not exist in the system.";
     public static final String MESSAGE_INVALID_PERSON = "This booker does not exist in the system.";
     public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
