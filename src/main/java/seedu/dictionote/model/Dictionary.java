@@ -9,8 +9,8 @@ import seedu.dictionote.model.dictionary.Content;
 import seedu.dictionote.model.dictionary.UniqueContentList;
 
 /**
- * Wraps all data at the notebook level.
- * Duplicates are not allowed (by .isSamePerson comparison).
+ * Wraps all data at the dictionary level.
+ * Duplicates are not allowed (by .isSameContent comparison).
  */
 public class Dictionary implements ReadOnlyDictionary {
     private final UniqueContentList contents;
@@ -22,9 +22,7 @@ public class Dictionary implements ReadOnlyDictionary {
     public Dictionary() {}
 
     /**
-     * Makes a DictionaryBook.
-     *
-     * @param toBeCopied ReadOnlyDictionary
+     * Creates a Dictionary using the contents in the {@code toBeCopied}.
      */
 
     public Dictionary(ReadOnlyDictionary toBeCopied) {
@@ -35,7 +33,7 @@ public class Dictionary implements ReadOnlyDictionary {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the content list with {@code notes}.
+     * Replaces the contents of the content list with {@code content}.
      * {@code content} must not contain duplicate content.
      */
     public void setContents(List<Content> contents) {
@@ -54,7 +52,7 @@ public class Dictionary implements ReadOnlyDictionary {
     //// note-level operations
 
     /**
-     * Returns true if a content with the same content as {@code note} exists in the dictionote book.
+     * Returns true if a content with the same content as {@code content} exists in the dictionote book.
      */
     public boolean hasContent(Content content) {
         requireNonNull(content);
@@ -79,7 +77,6 @@ public class Dictionary implements ReadOnlyDictionary {
     @Override
     public String toString() {
         return contents.asUnmodifiableObservableList().size() + " content";
-        // TODO: refine later
     }
 
     @Override

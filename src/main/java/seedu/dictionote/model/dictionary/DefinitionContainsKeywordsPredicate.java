@@ -5,11 +5,12 @@ import java.util.function.Predicate;
 
 import seedu.dictionote.commons.util.StringUtil;
 
-//Todo
+/**
+ * Tests that a {@code Definition}'s {@code definition} matches any of the keywords given.
+ */
 public class DefinitionContainsKeywordsPredicate implements Predicate<Definition> {
     private final List<String> keywords;
 
-    //Todo
     public DefinitionContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

@@ -4,11 +4,12 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Introduction**
+
 ### Purpose
 
 The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the
@@ -258,7 +259,9 @@ As an example, consider running Dictionote as follows:
 ### UI features
 
 #### Opening and closing UI through command result
+
 #####  Implementation
+
 Dictionote has an interactive user interface that allows the user to open and close any panel through command.
 Furthermore, when any command is executed, 
 Dictionote should be able to change the user interface based on the command type/requirement.
@@ -279,6 +282,7 @@ The following is the sequence diagram for executing a command to open a panel.
 ![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
 
 #### Design Consideration
+
 * **Alternative 1 (current choice):** Make use of the existing `CommandResult` class
     * Pros: Make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting) (desire behaviour)
@@ -289,7 +293,9 @@ The following is the sequence diagram for executing a command to open a panel.
     * Cons: Increasing coupling.
     
 #### Command that manipulation UI settings
+
 #####  Implementation
+
 While all `Command` has the ability to open and close the UI. There are some UI settings that are more specific.
 In this case, we don't want all commands to implement its behavior, so using `CommandResult` isn't ideal.
 Since the `UI` component is already uses `GuiSettings` to store its settings when Dictionote close.
@@ -314,6 +320,7 @@ The execution of the command will make both `NoteListPanel` and `NoteContentPane
 and the note divider positions will be adjusted to the desired position
 
 #### Design Consideration
+
 * Alternative 1 Make use of the existing `CommandResult` class
     * Pros: Make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting)
@@ -351,6 +358,7 @@ Here is the example of the command usage. Assume initially, the state of the app
 ![ConvertNoteToTxtContent](images/ConvertNoteToTxtContent.png)
 
 #### Design Consideration
+
 * **Alternative 1 (current choice):** make use of the Java's `FileWriter` class to help us write files.
     * Pros: Easy to implement; utilizes a pre-existing and standardized system for file writing.
     * Cons: Need to modify code later for enhancement later.
@@ -376,6 +384,7 @@ After typing in `mergenote 1 2` and executing it, the result would be:
 ![ConvertNoteToTxtEnd](images/MergeNoteAfter.png)
 
 #### Design Consideration
+
 * **Alternative 1 (current choice):** Implement MergeNoteCommand which extends Command.
     * Pros: Easy to implement; match the design pattern already inherited from AB3.
     * Cons: More lines of code.
@@ -387,7 +396,9 @@ After typing in `mergenote 1 2` and executing it, the result would be:
 ### Dictionary features
 
 #### Copying Content to a Note
+
 #####  Implementation
+
 Dictionote provides a way for users to copy over the content from the dictionary to a note.
 This feature is implemented as a command, `copytonote`, combining 2 models, namely the 'Content', and the 'Note' Models.  
 
@@ -403,101 +414,13 @@ The following is the sequence diagram for executing the `execute()` command in c
 ![CopyToNote](images/CopyToNoteDiagram.png)
 
 #### Design Consideration
+
 * **Alternative 1 (current choice):** Make use of the existing `Note` and `Content` models.
     * Pros: Make use of the existing system and easy to implement
     * Cons: Different methods and constructors have to be called since there exists 2 different models, which can induce type casting conflicts or get confusing. 
 * Alternative 2: Create a new model that will contain a mix of the `Note` and `Content` models.
     * Pros: No constructors have to called and there won't be a need to worry about type casting failures.
     * Cons: Increasing workload and no other features will use this new model.
-
-
-<!--
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
--->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -588,7 +511,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 ### Use cases
-
 
 (For all use cases below, the **System** is the `Dictionote` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -840,6 +762,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 #### Dependency Requirement
+
 1. Platform Independent
     * should work on Windows, Linux and OS-X platform.
     * avoid using OS-dependent libraries and OS-specific features
@@ -857,6 +780,7 @@ _{Explain here how the data archiving feature will be implemented}_
     * should not use any database management system to store data.
 
 #### Documentation Requirement
+
 1. PDF Friendly
     * The Developer Guide and User Guide should be PDF-friendly.
     * do not use expandable panels, embedded videos, animated GIFs etc.
@@ -942,6 +866,7 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
 1. _{ more test cases …​ }_
 
 ### Showing a note
+
 1. Showing a specific note
 
     1. Prerequisites: List all notes using the `listnote` command. Multiple notes in the list.
@@ -955,8 +880,38 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
     1. Other incorrect delete commands to try: `shownote`, `shownote x`, `...` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Finding Content
+
+1. Finding a specific Content in the Dictionary.
+
+  1. Prerequisites: List all contents using the `listcontent` command. Multiple contents in the list.
+
+  1. Test case: `findcontent hello`<br>
+     Expected: No content is shown. The panel should be empty.
+
+  1. Test case: `findcontent implement`<br>
+     Expected: 4 contents should be shown in the Dictionary list panel.
+
+  1. Other incorrect delete commands to try: `findcontent`, `findcontent `, `...` (where ` ` is a space)<br>
+     Expected: Error message should be shown, stating that there is an 'invalid command format'.
+
+### Showing content/definition
+
+1. Showing a specific content/definition
+
+  1. Prerequisites: Have some contents available in the Dictionary List Panel, commands to facilitate that will be `listcontent`, `findcontent programming`, `listdef`, etc.
+
+  1. Test case: `showdc 1`<br>
+     Expected: First content in the Dictionary List Panel is shown on the Dictionary Content Panel. Details of the showed content is shown there.
+
+  1. Test case: `showdc 0`<br>
+     Expected: No content is showed. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect delete commands to try: `showdc`, `showdc x`, `...` (where `x` is larger than the list size)<br>
+     Expected: Similar to previous.
 
 ### Modifying the UI through command
+
 For more information regarding the panel layout and divider position, 
 please refer to the user guide - UI section for more details.
 
@@ -1004,6 +959,7 @@ Available `OPTION` for open and close command : `-a`, `-c`, `-d`, `dc`, `dl`, `-
        Expected: Similar to previous.
 
 #### Setting divider position via command
+
 List of availble set divider position command : `setdividerc`, `setdividerd`, `setdividern`, `setdividerm`
 <br> Range of valid `POSITION` for set divider command :  1 to 9 (Inclusively)
 
@@ -1027,6 +983,7 @@ List of availble set divider position command : `setdividerc`, `setdividerd`, `s
 2. Repeat the previous test case with `setdivider`, `setdividerd`, and `setdividerm`.
 
 #### Toggling divider orientation via command
+
 List of availble toggle divider orientation command : `toggledividerd`, `toggledividern`
 
 1. Setting position of a panel through open command

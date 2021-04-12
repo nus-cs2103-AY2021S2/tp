@@ -186,7 +186,7 @@ Format: `showdc INDEX​`
 
 Copies the content/definition into a note
 
-Format: Format: `copytonote INDEX​`
+Format: `copytonote INDEX​`
 
 * This command allows you to copy the content, at the index that you have keyed in, over from the displayed dictionary panel into a new note.
 * The index and corresponding content will depend on the currently displayed list in the Dictionary List Panel. 
@@ -233,7 +233,7 @@ Format: `shownote INDEX​`
 
 * Shows the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
-* To view the note created in the note content panel (by [`copytonote`](#Copying-content-to-a-note:-copytonote))), use the command `shownote` at the respective index, in this case index 6  
+* To view the note created in the note content panel (by the [`copytonote`](#copying-content-to-a-note-copytonote) command), use the command `shownote` at the respective index, in this case index 6  
   `shownote 6`:
   ![shownote for content](images/Diagram-shownoteforcontent.png)
 
@@ -423,7 +423,7 @@ Examples:
 
 For the following contact features, irrelevant panels of the user interface were closed (see [Closing UI Panel](./UserGuide.md#closing-ui-panel-close) below). <br>
 Thus, for the upcoming examples, assume the following as the current state of Dictionote:
-![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.png)
+![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.PNG)
 
 #### Adding a contact: `addcontact`
 
@@ -489,9 +489,9 @@ Examples:
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.PNG)
 * `findcontact t/colleagues t/friends` returns `Bernice Yu` <br>
-  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.png)
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.PNG)
 * `findcontact t/colleagues n/roy` returns `Roy Balakrishnan` <br>
-  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact3.png)
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact3.PNG)
 
 #### Deleting a contact : `deletecontact`
 
@@ -521,8 +521,8 @@ Examples:
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 * `listcontact` followed by `emailcontact 3 ni/1` opens a new message composition window targeting `Charlotte Oliveiro` with the body containing `CS2103T exam is coming.`. <br>
     * This example uses Microsoft Outlook as a mailing application on a Windows 10 machine. 
-  ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.png) <br>
-  ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.png) 
+  ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.PNG) <br>
+  ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.PNG) 
 
 #### Sorting the contacts list by most frequently-contacted: `mostfreqcontact`
 
@@ -542,7 +542,7 @@ Example:
     * Two emails were sent to `Bernice Yu`.
     * One email was sent to `Alex Yeoh`.
 * `mostfreqcontact` results in the following: <br>
-  ![result for 'mostfreqcontact'](images/ContactMostFreqContact.png)
+  ![result for 'mostfreqcontact'](images/ContactMostFreqContact.PNG)
 
 #### Clearing the contacts list : `clearcontact`
 
@@ -693,7 +693,7 @@ The following is the meaning of the suffix found in `toggledivider` command
 
 ##### Toggling dictionary divider orientation: `toggledividerd`
 
-Toggle the orientation of the dictionary divider. 
+Toggles the orientation of the dictionary divider. 
 If the current orientation of the dictionary divider on horizontal,
 it will be changed to vertical and vice versa.
 When the orientation changes, 
@@ -703,7 +703,7 @@ Format: `toggledividerd`
 
 ##### Toggling note divider orientation: `toggledividern`
 
-Toggle the orientation of the note divider.
+Toggles the orientation of the note divider.
 If the current orientation of the note divider horizontal,
 it will be changed to vertical and vice versa.
 When the orientation changes,
@@ -776,29 +776,29 @@ Action | Format, Examples
 **Viewing UI Command Details** | `commanddetailu`
 **Exit** | `exit`
 ***Dictionary Features*** | 
-**Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
-**Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
+**Find content** | `findcontent KEYWORD [MORE_KEYWORDS]` <br> e.g., `findcontent program`
+**Find definition** | `finddef KEYWORD [MORE_KEYWORDS]` <br> e.g., `finddef programming`
 **Show specific content** | `showdc INDEX` <br> e.g., `showdc 1`
 **List content** | `listcontent`
 **List definitions** | `listdef`
-**Copy content to note** | `copytonote`
+**Copy content to note** | `copytonote INDEX` <br> e.g., `copytonote 1`
 ***Note Features*** | 
-**Add note** | `addnote c/CONTENT [t/TAG]…​`
+**Add note** | `addnote c/CONTENT [t/TAG]…​ ` <br> e.g. `addnote c/Do Homework`
 **List all notes** | `listnote`
 **Show note** | `shownote INDEX` <br> e.g., `shownote 1`
-**Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
+**Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​` <br> e.g. `editnote 1 c/Buy Book`
 **Edit note in edit mode** | `editmode`
 **Save changes to note** | `save`
 **Quit edit mode** | `quit`
-**Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
-**Delete note** | `deletenote INDEX`
+**Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​` <br> e.g. `findnote c/CS2103`
+**Delete note** | `deletenote INDEX` <br> e.g. `deletenote 2`
 **Sort all notes** | `sortnote`
 **Sort all notes based on the last edit time** | `sortnotebytime`
-**Mark note as done** | `markasdonenote INDEX`
-**Mark note as undone** | `markasundonenote INDEX`
+**Mark note as done** | `markasdonenote INDEX` <br> e.g. `markasdone 2`
+**Mark note as undone** | `markasundonenote INDEX` <br> e.g. `markasundonenote 3`
 **Mark all notes as undone** | `markallasundonenote`
-**Merge two notes** | `mergenote INDEX_1 INDEX_2`
-**Convert note into .txt** | `converttxtnote INDEX`
+**Merge two notes** | `mergenote INDEX_1 INDEX_2` <br> e.g. `mergenote 1 4`
+**Convert note into .txt** | `converttxtnote INDEX` <br> e.g. `converttxtnote 2`
 ***Contact Features*** | 
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List all contacts** | `listcontact`

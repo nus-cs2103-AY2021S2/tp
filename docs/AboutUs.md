@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jessen11.md)]
 
 * Role: Member
-* Responsibilities: Implementation and Documentation of Note Feature.
+* Responsibilities: Development, testing, and documentation of `Note` Feature.
 
 ### Otto Alexander Sutianto
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/godjuansan.md)]
 
 * Role: Member
-* Responsibilities: Implementation and Documentation of Note Feature.
+* Responsibilities: Development, testing, and documentation of `Note` Feature.
 
 ### Teo Hoe Keat
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/teohoekeat.md)]
 
 * Role: Member
-* Responsibilities: Implementation and Documentation of UI & Help Feature, Weekly Meeting Documentation.  
+* Responsibilities: Development, testing, and documentation of `UI` & `Help` Feature, Weekly Meeting Documentation.  
 
 ### Tian Xindi
 
@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Member
-* Responsibilities: Implementation and Documentation of Dictionary and Definitions' Model and Features.
+* Responsibilities: Development, testing, and documentation of `Dictionary` Features.
