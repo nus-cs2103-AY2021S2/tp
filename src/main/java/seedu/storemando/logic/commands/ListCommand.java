@@ -30,7 +30,7 @@ public class ListCommand extends Command {
         + "(if the location exists).";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List items in the inventory.\n"
         + "Parameters: "
-        + "[" + PREFIX_LOCATION + "LOCATION] " + "/ [" + PREFIX_TAG + "TAG]\n"
+        + "[" + PREFIX_LOCATION + "LOCATION] " + "OR [" + PREFIX_TAG + "TAG]\n"
         + "Example:\n"
         + "1. " + COMMAND_WORD + "\n"
         + "2. " + COMMAND_WORD + " l/bedroom\n"
