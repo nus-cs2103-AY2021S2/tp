@@ -47,7 +47,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 1. Ensure that **Java 11** or above is installed in your computer.
 
-1. Download the latest **abb.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
+1. Download the latest **abashbook.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
 1. Copy the file to your preferred target folder to use as the _home folder_ to contain the A-Bash Book data.
    See [FAQ: What is the Home Folder?](#what-is-the-home-folder) to understand more.
