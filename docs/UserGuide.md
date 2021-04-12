@@ -168,6 +168,8 @@ Examples:
 
 * `add property n/The Estuary t/Condo a/97 Yishun Ave 1 p/769138 d/01-01-2022 r/Owner is up for negotiation of selling price cn/Sam cc/87553781 ce/sam_goh@gmail.com ca/$1,200,000 tags/99 year leasehold, Reservoir view`
 
+<div style="page-break-after: always;"></div>
+
 #### 4.2.2 Adding an appointment: `add appointment`
 
 Adds an appointment to the app.
