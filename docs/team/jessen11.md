@@ -6,7 +6,7 @@ title: Dick Jessen William Project Portfolio Page
 ## Project: Dictionote
 
 
-**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials and writing notes about them. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
+**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials, writing notes about them, and sharing these notes with others. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
 
 Given below are my contributions to the project.
 
