@@ -1086,7 +1086,7 @@ Action | Format | Examples
 **Favourite a tutor** | `favourite INDEX`, | `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX` | `unfavourite 1`
 **List favourites** | `list_favourites` | `list_favourites`
-**Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `aadd_appointment n/Bernice Yu s/English d/2021-05-01 fr/10:00 AM to/12:00 PM l/Bedok`
+**Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/Bernice Yu s/English d/2021-05-01 fr/10:00 AM to/12:00 PM l/Bedok`
 **List tuition appointments** | `list_appointments` | `list_appointments`
 **View tuition appointments** | `view_appointment DATE` | `view_appointment 2021-03-24`
 **Find tuition appointments** | `find_appointment NAME...` | `find_appointment Alex Yeoh`
