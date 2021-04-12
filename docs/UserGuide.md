@@ -14,13 +14,13 @@ title: User Guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `dictionote.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-1/tp/releases).
+1. Download the latest `dictionote.zip` zip file from [here](https://github.com/AY2021S2-CS2103T-W13-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
+1. Copy and extract the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
-1. Download the additional files 'dictionarybook.json' and 'definitionbook.json' from [here](https://github.com/AY2021S2-CS2103T-W13-1/tp/releases/tag/v1.4) into the ***same*** folder as the one you have downloaded the application into in Step 3. This step will add the contents and definitions into the Dictionary of the application for your usage.
+1. The additional files `dictionarybook.json` and `definitionbook.json` are included in the zip file. These files will facilitate the loading of the contents and definitions into the Dictionary of the application for your usage, please do not delete them.
 
-1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
+1. Double-click the `dictionote.jar` jar file to start the app. The GUI should appear in a few seconds. <br>
    ![UiUserguide](images/UiUserGuide.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
