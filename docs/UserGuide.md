@@ -192,7 +192,7 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 :bulb:**Tips:** <br>
 Education levels and subjects available cover the usual students who are more likely to need private tuition. More options 
-will explored in [Coming Soon](4-coming-soon).
+will explored in [Coming Soon](#4-coming-soon).
 </div>
 
 <div markdown="span" class="alert alert-warning">
