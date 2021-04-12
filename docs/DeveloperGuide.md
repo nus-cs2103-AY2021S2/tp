@@ -1499,10 +1499,12 @@ Add a student with his/her details
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
+1. Dealing with missing/corrupted data files 
+   1. Make sure there are three files, namely: ./data/addressbook.json, ./data/datesbook.json and ./data/lessonbook.json. <br>
+      If not, open the app, and close the app.
+   1. Open all three files in a text editor.
+   1. Remove the ending } character of the JSON file and save the file. 
+   1. Launch the app by running java -jar tutorspet.jar in the console. <br>
+      Expected: TutorsPet opened should have no entries.
+      
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
