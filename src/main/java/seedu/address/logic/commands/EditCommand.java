@@ -58,6 +58,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED_DAY_ERROR = "The Passenger to be edited exists in a pool. "
             + "Day cannot be edited.";
     public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
+    public static final String MESSAGE_DRIVER_IS_PASSENGER = "Driver %s cannot pool themselves.";
+    public static final String MESSAGE_PASSENGER_ALREADY_DRIVING =
+            "%s is already driving at this time.";
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
@@ -88,7 +91,7 @@ public class EditCommand extends Command {
         Passenger passengerToEdit = lastShownList.get(index.getZeroBased());
         Passenger editedPassenger = createEditedPassenger(passengerToEdit, editPassengerDescriptor);
 
-        if (!passengerToEdit.isSamePassenger(editedPassenger) && model.hasPassenger(editedPassenger)) {
+        if (!passengerToEdit.isSamePerson(editedPassenger) && model.hasPassenger(editedPassenger)) {
             throw new CommandException(MESSAGE_DUPLICATE_PASSENGER);
         }
 
@@ -98,6 +101,18 @@ public class EditCommand extends Command {
 
         if (model.hasPoolWithPassenger(passengerToEdit) && editPassengerDescriptor.getTripTime().isPresent()) {
             outputMessage = MESSAGE_EDIT_PASSENGER_WARNING;
+        }
+
+        if (model.hasPoolWithDriver(editedPassenger)) {
+            throw new CommandException(String.format(MESSAGE_DRIVER_IS_PASSENGER, editedPassenger.getName()));
+        }
+
+        if (model.hasPoolWithDayTimePerson(
+                editedPassenger.getTripDay(),
+                editedPassenger.getTripTime(),
+                editedPassenger)
+        ) {
+            throw new CommandException(String.format(MESSAGE_PASSENGER_ALREADY_DRIVING, editedPassenger.getName()));
         }
 
         model.setPassenger(passengerToEdit, editedPassenger);
