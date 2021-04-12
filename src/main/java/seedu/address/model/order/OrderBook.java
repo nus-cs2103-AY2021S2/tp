@@ -84,9 +84,10 @@ public class OrderBook implements ReadOnlyBook<Order> {
     /**
      * Cancel an order
      * @param key order to be cancelled
+     * @return
      */
-    public void cancelOrder(Order key) {
-        key.setState(Order.State.CANCELLED);
+    public Order cancelOrder(Order key) {
+        return key.setState(Order.State.CANCELLED);
     }
 
     /**

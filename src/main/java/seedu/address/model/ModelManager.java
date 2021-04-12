@@ -449,15 +449,14 @@ public class ModelManager implements Model {
         return orderBook.hasOrder(order);
     }
 
+    @Override
     public void deleteOrder(Order target) {
         orderBook.removeOrder(target);
     }
 
-    /**
-     * Deletes orders
-     * @param orders
-     */
+    @Override
     public void deleteOrders(List<Order> orders) {
+        requireNonNull(orders);
         for (Order o : orders) {
             deleteOrder(o);
         }
@@ -475,7 +474,8 @@ public class ModelManager implements Model {
 
     @Override
     public void cancelOrder(Order target) {
-        orderBook.cancelOrder(target);
+        Order cancelledOrder = orderBook.cancelOrder(target);
+        setOrder(target, cancelledOrder);
     }
 
     @Override
@@ -488,15 +488,18 @@ public class ModelManager implements Model {
     //@@ author kangtinglee
     @Override
     public boolean canFulfilOrder(Order target) {
-        List<Pair<Dish, Integer>> dishesList = target.getDishQuantityList();
+        List<Order> temp = new ArrayList<>();
+        temp.add(target);
+        return canFulfilOrders(temp);
+    }
+
+    //@@ author kangtinglee
+    @Override
+    public boolean canFulfilOrders(List<Order> orders) {
         HashMap<Ingredient, Integer> ingredientsTable = new HashMap<>();
-        for (Pair<Dish, Integer> p : dishesList) {
-            for (Pair<Ingredient, Integer> d : p.getKey().getIngredientQuantityList()) {
-                if (!ingredientsTable.containsKey(d.getKey())) {
-                    ingredientsTable.put(d.getKey(), 0);
-                }
-                ingredientsTable.put(d.getKey(), ingredientsTable.get(d.getKey()) + d.getValue() * p.getValue());
-            }
+        for (Order target : orders) {
+            List<Pair<Dish, Integer>> dishesQtyList = target.getDishQuantityList();
+            collateIngredientsFromDishes(ingredientsTable, dishesQtyList);
         }
         for (Ingredient i : ingredientsTable.keySet()) {
             if (!ingredientBook.hasSufficientIngredients(i, ingredientsTable.get(i))) {
@@ -504,6 +507,34 @@ public class ModelManager implements Model {
             }
         }
         return true;
+    }
+
+    /**
+     * Add ingredients and respective quantities of a list of dishes into ingredientsTable
+     * @param ingredientsTable HashMap of ingredients and their quantities
+     * @param dishesQtyList List of {@code Pair<Dish, Integer>} containing the Dish and its quantity
+     */
+    private static void collateIngredientsFromDishes(HashMap<Ingredient, Integer> ingredientsTable,
+                                      List<Pair<Dish, Integer>> dishesQtyList) {
+        for (Pair<Dish, Integer> dishQtyPair : dishesQtyList) {
+            for (Pair<Ingredient, Integer> ingredientQtyPair : dishQtyPair.getKey().getIngredientQuantityList()) {
+                collateIngredients(ingredientsTable, ingredientQtyPair);
+            }
+        }
+    }
+
+    /**
+     * Add ingredients and respective quantity into ingredientsTable
+     * @param ingredientsTable HashMap of ingredients and their quantities
+     * @param ingredientQtyPair of Ingredient and its quantity
+     */
+    private static void collateIngredients(HashMap<Ingredient, Integer> ingredientsTable,
+                                                   Pair<Ingredient, Integer> ingredientQtyPair) {
+        if (!ingredientsTable.containsKey(ingredientQtyPair.getKey())) {
+            ingredientsTable.put(ingredientQtyPair.getKey(), 0);
+        }
+        ingredientsTable.put(ingredientQtyPair.getKey(), ingredientsTable.get(ingredientQtyPair.getKey())
+                + ingredientQtyPair.getValue() * ingredientQtyPair.getValue());
     }
 
     @Override
