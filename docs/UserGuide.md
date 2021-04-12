@@ -89,6 +89,15 @@ This feature allows tutees to maintain and keep track of the list of tuition tut
     * Subject Qualifications
 * Note
 
+* Minimum length for name is 1 character, maximum is 50 characters.
+* Minimum length for phone number is 8 digit, maximum 15 digits.
+* Minimum length for address is 1 character, maximum is 200 characters.
+* Minimum length for subject name is 1 character, maximum 20 characters.
+* Minimum length for subject hourly rate is 1 digit, and maximum is 5 digits.
+* Minimum length for subject education level is 4 characters, and maximum is 20 characters. 
+* Minimum length for subject years of experience is 1 digit and maximum is 2 digits.
+* Minimum length for subject qualification is 4 characters, and maximum is 20 characters.
+
 #### Add a new tutor: `add_tutor`
 
 Add a new tutor and enter their basic details as well as an optional note.
@@ -99,11 +108,6 @@ Gender can be male, female or others. Accepted genders will be automatically con
 
 Note:
 * A known limitation of `add_tutor` is that customers with different names but exactly the same attributes will not be marked as a duplicate.
-* Minimum length for name is 1 character, maximum is 50 characters.
-* Minimum length for subject years of experience is 1 digit and maximum is 2 digits.
-* Minimum length for phone number is 8 digit, maximum 15 digits.
-* Minimum length for address is 1 character, maximum is 200 characters.
-* Minimum length for subject name is 1 character, maximum 20 characters.
 
 Format:
 `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE`
@@ -483,6 +487,8 @@ This feature allows tutees to track and manage their tuition-related schedules, 
 * The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**.
 * The schedule timeslot must be in blocks of **30 minutes** or **1 hour**, i.e., 10:00 AM to 11:00 AM and 12:30 PM to 2:00 PM.
 * No schedules can clash or overlap with existing appointments or schedules, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
+* Minimum length for title is 1 character, maximum is 30 characters.
+* Minimum length for description is 1 character, maximum is 50 characters.
 
 </div>
 
@@ -494,10 +500,6 @@ Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
 
 * The new appointment `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
 * Refer to [Schedule Tracker Section](#schedule-tracker) for other date related constraints.
-
-Note:
-* Minimum length for title is 1 character, maximum is 30 characters.
-* Minimum length for description is 1 character, maximum is 50 characters.
 
 Examples:<br>
 * `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
