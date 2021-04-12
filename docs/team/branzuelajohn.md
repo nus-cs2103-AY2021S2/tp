@@ -38,7 +38,7 @@ Given below are my contributions to the project.
   * Assisted to remove project-wide references and usage of variables linked to `AddressBook` and changed it to `Database` to fit with our project.
 
 * **Code Testing**: Writing test cases
-  * Wrote test cases for AddProgramCommand, AddDogCommand, DeleteProgramCommand, DeleteDogCommand, UG, AddProgramCommandParser, AddDogCommandParser, DeleteProgramCommandParser, DeleteDogCommandParser
+  * Wrote test cases for AddProgramCommand, AddOwnerCommand, DeleteProgramCommand, DeleteOwnerCommand, UG, AddProgramCommandParser, AddOwnerCommandParser, DeleteOwnerCommandParser, DeleteOwnerCommandParser
   
 * **Documentation**:
   * User Guide:
