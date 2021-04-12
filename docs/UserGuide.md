@@ -550,11 +550,14 @@ Deletes an existing alias from address book.
 | `alias delete ls` | Removes the alias `ls` |
 | `alias delete f`  | Removes the alias `f`  |
 
-### List Alias: `alias list`
+### List all aliases: `alias list`
 
 Lists all alias(es) in the address book.
 
 **Format**: `alias list`
+
+:information_source: The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
+keyboard action, the list of your aliases will disappear and show the list of existing commands again.
 
 ![Alias List](images/UG_Alias%20List%20Command.png)
 
