@@ -107,7 +107,7 @@ public class CakeCollate implements ReadOnlyCakeCollate {
     }
 
     public void sortOrderList() {
-        orders.sortOrdersByDate();
+        orders.sortOrdersByDateAndStatus();
     }
 
     @Override

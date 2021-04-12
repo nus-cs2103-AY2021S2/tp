@@ -10,8 +10,10 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static seedu.cakecollate.testutil.TestUtil.stringify;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
+import static seedu.cakecollate.testutil.TypicalOrderItems.ATYPICAL_ORDER_ITEM;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import org.junit.jupiter.api.Test;
@@ -167,6 +169,35 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ORDER, DESC_BOB)));
+    }
+
+
+    /**
+     * This test involves using an order description that does not already correspond to an order item table entry. This
+     * checks whether that order description is added to the order item model or not.
+     */
+    @Test
+    public void execute_addToOrderItemsModel_addedSuccessfully() {
+        assert !model.getFilteredOrderItemsList().contains(ATYPICAL_ORDER_ITEM)
+                : "choose an order item that's not in the model for testing (check TypicalOrderItems.java)";
+
+        Index indexLastOrder = Index.fromOneBased(model.getFilteredOrderList().size());
+        Order lastOrder = model.getFilteredOrderList().get(indexLastOrder.getZeroBased());
+        Order editedOrder = new OrderBuilder(lastOrder).withOrderDescriptions(stringify(ATYPICAL_ORDER_ITEM)).build();
+
+        EditCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(lastOrder)
+                .withOrderDescriptions(stringify(ATYPICAL_ORDER_ITEM)).build();
+
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ORDER, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
+        expectedModel.addOrderItem(ATYPICAL_ORDER_ITEM);
+
+        expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
 }

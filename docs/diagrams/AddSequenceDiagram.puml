@@ -39,8 +39,7 @@ destroy AddOrderDescriptor
 
 
 AddCommand -> Model : addOrder(order)
-activate Model
-deactivate Model
+|||
 
 create CommandResult
 AddCommand -> CommandResult
@@ -48,8 +47,6 @@ activate CommandResult
 
 CommandResult --> AddCommand : result
 deactivate CommandResult
-[<-[hidden]- AddCommand
-destroy CommandResult
 
 [<-- AddCommand : result
 deactivate AddCommand
