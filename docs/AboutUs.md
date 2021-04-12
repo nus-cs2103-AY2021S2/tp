@@ -23,6 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/toahi.png" width="200px">
 
 [[github](http://github.com/toahi)]
+[[portfolio](./team/toahi.md)]
 
 - Role: Developer
 - Responsibilities: UI
