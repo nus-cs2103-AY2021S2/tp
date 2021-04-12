@@ -880,7 +880,19 @@ testers are expected to do more *exploratory* testing.
 #### Clear contacts
 
 #### Edit a contact
-1. Editing 
+1. Editing a contact while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list.
+       Some contacts have optional fields not yet filled in (e.g. `phone`, `email`, `address`),
+       and some have optional fields already filled in.
+    1. Test case: `edit x e/johndoe@example.com` 
+       (where contact at index x does not have optional email filled in yet) \
+       Expected: Contact at index x is edited to have email `johndoe@example.com`. 
+       Details of edited contact is shown in status message.
+    1. Test case: `edit y p/`
+       (where contact at index y already has optional phone filled in) \
+       Expected: Contact at index x is edited to have its optional phone field removed.
+       Details of edited contact is shown in status message.
 
 #### Find a contact
 
@@ -948,7 +960,7 @@ testers are expected to do more *exploratory* testing.
        The star next to the first contact's name becomes empty.
 
 #### List all contacts
-
+1. List favourited contacts
 
 ### Testing Appointment Book Features
 
