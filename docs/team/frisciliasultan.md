@@ -37,7 +37,7 @@ Given below are my contributions to the project.
   [\#24](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/24), [\#51](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/51), [\#183](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/183), [\#223](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/223),
   [\#224](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/224), [\#225](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/225), [\#229](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/229),
   [\#232](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/232), [\#233](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/233), [\#234](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/234),
-  [\#236](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/236), [\#239](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/239),
+  [\#236](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/236), [\#239](https://github.com/AY2021S2-CS2103-W17-4/tp/issues/239))
 
 * **Enhancements to existing features**:
   * Wrote tests for Meeting command classes and addMeeting integration test to significantly increase test coverage on the Meetings feature,
@@ -55,7 +55,7 @@ Given below are my contributions to the project.
     * Update the Command Summary Table for both client and meeting commands. ([\#83](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/83))
     * Fix general user instructions to match the updated iScam book ([\#83](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/83))
   * Developer Guide:
-    * Wrote and maintained the target user profile, value proposition, user stories and sort them according to the priority of `must have`, `nice to have` and `unlikely to have`. ([\#8](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/8), ([\#270](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/270)))
+    * Wrote and maintained the target user profile, value proposition, user stories and sort them according to the priority of `must have`, `nice to have` and `unlikely to have`. ([\#8](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/8), [\#270](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/270))
     * Added use-cases for Client commands. ([\#83](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/83))
   * README:
     * Update the README description and user information to fit the final product and functionality of iScam. ([\#83](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/83))
