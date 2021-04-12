@@ -11,8 +11,7 @@ It is written in Java with around 10k LOC.
 
 A full list of code contribution can be found here:
 [RepoSense](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=nickyfoo&breakdown=true)
-
-Given below are my contributions to the project.
+<br>Given below are my contributions to the project.
 
 ### New features
 
@@ -35,7 +34,7 @@ Given below are my contributions to the project.
   [\#72](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/72)
   * What it does: Allows the user to request help for a specific command with an optional parameter `COMMAND`, to be displayed directly in the UI, instead of redirecting to the UG.
   * Justification: Our command syntax is dense, with many optional parameters. `help` gives a brief overview of all available commands with syntax, and the user can specify a command to get detailed help on, directly available in the UI. This speeds up workflow and minimizes cross referencing to resources outside the application.
-  * Highlights: This enhancement depends on the existing commands and commands to be added in the future. It relies heavily on `MESSAGE_USAGE_CONCISE` and `MESSAGE_USAGE` in each individual command.
+  * Highlights: This enhancement relies heavily on `MESSAGE_USAGE_CONCISE` and `MESSAGE_USAGE` in each individual command.
   * Credits: Code used is based on the AB3 `help` command, but then significantly modified after.
 
 ### Feature enhancements
