@@ -151,6 +151,8 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 ![View Project Sequence Diagram](images/ViewProjectCommandSequenceDiagram.png)
 
+<div style="text-align: left">
+
 **Step 1.** The user issues the command `viewP 1` to display a panel containing information about the first project in the project list.
 
 **Step 2.** A `CommandResult` object is created (see section on [Logic Component](#logic-component)) containing a `ViewProjectUiCommand` object. The `ViewProjectUiCommand` object stores the `Index` of the first project in the project list.
@@ -160,6 +162,8 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 **Step 4.** The `MainWindow` now calls `UiCommand#execute`, which will result in a call to the overridden method `ViewProjectUiCommand#execute`.
 
 **Step 5.** Execution of this method will result in a call to `MainWindow#selectProject` with the `Index` of the first project as an argument. This will display the first project in the project list.
+
+</div>
 
 #### Design Considerations
 
@@ -185,33 +189,37 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 ### Add Event Feature
 
-The mechanism is used to add an `Event` to the `EventList` of a `Project` specified by the `Index` in the project list shown.
+This section explains the mechanism used to add an `Event` to a `Project`. The mechanism for adding `Project`s, `Deadline`s, `Todos`s and `Contacts`s are similar.
 
-A concrete `AddEventCommand` containing the specified `Index` of `Project` and a valid `Event` object.
+When the command is executed, a concrete `AddEventCommand` is created containing the specified project index and a valid `Event` object.
 
-Each concrete `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate method(s) in `Project` to update its `EventList` and appropriate method(s) in `Model` to update the Project List.
+The `AddEventCommand` implements `AddEventCommand#execute` method, which calls the appropriate methods in `Project` to update its `EventList` and appropriate methods in `Model` to update the Project List.
 
-Below is a sequence diagram and explanation of how an `addE` command is executed.
+Below is a sequence diagram and explanation of how the `AddEventCommand` is executed.
 
 ![Add Event Sequence Diagram](images/AddEventCommandSequenceDiagram.png)
 
-Step 1. The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
+<div style="text-align: left">
 
-Step 2. User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
+**Step 1.** The user executes the command `addE 1 d/Project meeting on/24-04-2021 at/1730 w/Y`.
 
-Step 3. The `AddEventCommand` will then be executed by calling its `execute` method.
+**Step 2.** User input is passed to the `ColabParser` and `ColabParser` will call `ÀddEventCommandParser#parse`, which creates a new `AddEventCommand`.
 
-Step 4. Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
+**Step 3.** The `AddEventCommand` will then be executed by calling its `execute` method.
 
-Step 5. From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
+**Step 4.** Since the `Model` is passed to `AddEventCommand#execute`, it is able to call a method `Model#getFilteredProjectList` to get the last project list shown.
 
-Step 6. This `Project` will add the `Event` to its `EventList` by calling `addEvent` function.
+**Step 5.** From this project list, we can find the correct `Project` to add `Event` by calling `get` function with specified `Index`.
 
-Step 7. After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
+**Step 6.** This `Project` will add the `Event` to its `EventList` by calling `addEvent` function.
+
+**Step 7.** After the `Event` is successfully added, the `Model` will call `Model#updateFilteredProjectList` to update the Project List based on the current change.
+
+</div>
 
 #### Design Considerations
 
-##### Aspect: How to Add a New `Event` to a `Project`, Which is Done in Part `Internally Adding Event`
+##### Aspect: How to Add a New `Event` to a `Project`
 
 * **Alternative 1 (current choice):** `Project` tells its `EventList` to update the list of Events stored.
     * Pros:
@@ -221,7 +229,7 @@ Step 7. After the `Event` is successfully added, the `Model` will call `Model#up
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
     * Pros:
-        * If the implementation of `EventList` becomes immutable. This implementaion still works.
+        * If the implementation of `EventList` becomes immutable, this implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
 
@@ -233,31 +241,39 @@ Below is a sequence diagram of how an `updateP` (update project) command is exec
 
 ![UpdateP command sequence diagram](images/UpdateProjectCommandSequenceDiagram.png)
 
-Step 1. The user types an update project command `updateP 1 n/Group Project`.
+<div style="text-align: left">
 
-Step 2. User input is passed to the `colabParser`, which creates a new `UpdateProjectCommand`.
+**Step 1.** The user types an update project command `updateP 1 n/Group Project`.
 
-Step 3. The `UpdateProjectCommand` will then be executed by calling its `execute` method.
+**Step 2.** User input is passed to the `colabParser`, which creates a new `UpdateProjectCommand`.
 
-Step 4. Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it is able to call a method `ModelManager#setProject` to change an existing project of a given `Index` in the `ProjectsFolder` to the modified version.
+**Step 3.** The `UpdateProjectCommand` will then be executed by calling its `execute` method.
 
-Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+**Step 4.** Since the `ModelManager` is passed to `UpdateProjectCommand#execute`, it is able to call a method `ModelManager#setProject` to change an existing project of a given `Index` in the `ProjectsFolder` to the modified version.
+
+**Step 5.** After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+</div>
 
 The other commands for `Event`s, `Deadline`s, `Todo`s and `Groupmate`s require some more work because these are sub-components of a `Project`. It is therefore necessary to specify a project in the command so that edits can be applied to that project. Below is a sequence diagram of how an `updateG` (update groupmate) command is executed.
 
 ![UpdateP command sequence diagram](images/UpdateGroupmateCommandSequenceDiagram.png)
 
-Step 1. The user types an update groupmate command `updateG 1 i/1 n/Sylphiette Greyrat`.
+<div style="text-align: left">
 
-Step 2. User input is passed to the `colabParser`, which creates a new `UpdateGroupmateCommand`.
+**Step 1.** The user types an update groupmate command `updateG 1 i/1 n/Sylphiette Greyrat`.
 
-Step 3. The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
+**Step 2.** User input is passed to the `colabParser`, which creates a new `UpdateGroupmateCommand`.
 
-Step 4. It will then get the list of projects through `Model#getFilteredProjectList`, and use the project `Index` to get the project to be updated.
+**Step 3.** The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
 
-Step 5. It will then call a method `Project#setGroupmate` to change an existing groupmate of a given `Index` in the `GroupmateList` to the modified version.
+**Step 4.** It will then get the list of projects through `Model#getFilteredProjectList`, and use the project `Index` to get the project to be updated.
 
-Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+**Step 5.** It will then call a method `Project#setGroupmate` to change an existing groupmate of a given `Index` in the `GroupmateList` to the modified version.
+
+**Step 6.** After the project gets updated, `Model#saveProjectsFolder` is called to save the list of projects to files.
+
+</div>
 
 #### Design consideration:
 
