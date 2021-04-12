@@ -782,7 +782,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No task is edited since a task with the same title already exists. Error details is shown in the status message.
 
     5. Test case: `editTask 1`<br>
-       Expected: No Task is edited since compulsory fields are not provided. Error details is shown in the status message.
+       Expected: No Task is edited since none of the optional fields are provided. Error details is shown in the status message.
 
     6. Other incorrect delete commands to try: `edit`, `editTask 0`, `editTask -1` <br>
        Expected: Similar to previous test case.
