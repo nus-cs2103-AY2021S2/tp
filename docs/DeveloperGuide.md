@@ -123,13 +123,13 @@ Classes used by multiple components are in the `seedu.ta.commons` package.
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Proposed] Enquire if time interval is free
+### Enquire if time interval is free
 
 The proposed enquiry mechanism provides users a quick way to find out if certain time intervals are available.
 
 An outline of the proposed implementation is as follows:
 
-The `AddressBookParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
+The `TeachingAssistantParser` should accept another case of command word `free` which eventually returns `CheckFreeCommand`
 back to Logic Manager.
 
 This command is then executed to return `CommandResult` which is either shown on the command result field of the GUI as:
@@ -167,7 +167,7 @@ Below, we can see the before and after activity diagrams involving this merger.
 **After:** \
 ![Entry Activity](images/EntryActivityDiagram.png)
 
-### [Proposed] Filtering entries via tags
+### Filtering entries via tags
 Following the proposal above, there were no commands that utilise the tags attached to the objects. Hence,
 this proposal aims to allow filtering these entries via their tags.
 
@@ -183,12 +183,12 @@ The following diagram omits the parser object created, namely `FilterEntryComman
 1. Allow filtering by more than one tag.
 1. Decide whether the filtering above considers Union or Intersection of tags.
 
-### [Proposed] List entry feature
+### List entry feature
 The proposed list entry mechanism allows users to see all of their schedules, or see them by day or by week.
 
 An outline of the proposed implementation is as follows:
 
-The AddressBookParser should accept another case of command word `elist` which eventually returns a `ListEntryCommand` 
+The `TeachingAssistantParser` should accept another case of command word `elist` which eventually returns a `ListEntryCommand` 
 back to `LogicManager`. This command can take in three arguments: an empty string, the string “day” or the string “week”. 
 The arguments will be parsed by the `ListEntryCommandParser` to determine the behaviour of `ListEntryFormatPredicate`.
 Then, `updateFilteredEntryList` method in the `Model` interface is called, passing in the `ListEntryFormatPredicate` as 
@@ -203,6 +203,23 @@ The following sequence diagram (Fig 2.3.2) shows how the list entry operation wo
 
 ![Listing entries](images/ListEntrySequenceDiagram.png)
 Fig 2.3.2
+
+### Clear overdue entry feature
+Clear overdue entry feature allows users to quickly discard entries that are no longer relevant. i.e. entries with end dates
+that have passed.
+
+An outline of the implementation is as follows:
+
+The `TeachingAssistantParser` should accept another case of command word `eclear` which eventually returns a
+`ClearOverdueEntryCommand` back to `LogicManager`. This command has no arguments and will immediately call
+`clearOverdueEntries` method in `Model` interface. Finally, a new `CommandResult` is created to handle the result
+of this command.
+
+The following sequence diagram (Fig 2.3.3) shows how clear overdue entry command works:
+
+![Clear overdue entries diagram](images/ClearOverdueSequenceDiagram.png)
+
+Fig 2.3.3
 
 # Appendix: Requirements
 
@@ -266,79 +283,116 @@ Priority | As a... | I want to... | So that I can...
 high | forgetful user | be prompted for the commands’ syntax | type all commands without memorising their syntax
 medium | teacher | access the guide or the commands list | eliminate the need to memorise all the commands
 low | teacher | confirm crucial commands with a confirmation message | avoid entering the wrong command
-low | user adopting this products | clear all my contacts from the address book | clear dummy data easily when I use the app for testing
+low | user adopting this products | clear all my contacts from Teaching Assistant | clear dummy data easily when I use the app for testing
 
 ---
 
 ## Use Cases
+(For all use cases below, the **System** is the `Teaching Assistant` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: Delete a contact
+### Use case: UC01 - Add a contact
 
 **MSS**
 
-1. User requests to list all contacts.
-2. Teaching Assistant shows a list of all contacts.
-3. User requests to delete a specific contact in this list.
-4. Teaching Assistant deletes the contact.
+1. User requests to add a contact
+2. Teaching Assistant adds the contact into the list
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given field(s) are invalid.
 
-  Use case ends.
+    * 2a1. Teaching Assistant shows an error message 
+      
+      Use case ends.
 
 
-* 3a. The given index is empty.
+* 2b. The contact to be added already exists in Teaching Assistant.
 
-    * 3a1. Teaching Assistant shows an error message.
-
-      Use case resumes at step 2.
-
-<br>
-
-### Use case: Add a schedule
-
-**MSS**
-
-1. User requests to add a schedule.
-2. AddressBook adds the schedule into the list.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The given date(s) are invalid.
-
-    * 2a1. Teaching Assistant shows an error message.
+    * 2b1. Teaching Assistant shows an error message.
 
       Use case ends.
 
 <br>
 
-### Use case: Delete a schedule
+### Use case: UC02 - Delete an Entry
 
 **MSS**
 
-1. User request to list schedules.
-2. Teaching Assistant shows a list of schedules.
-3. User requests to delete a specific schedule in the list.
-4. Teaching Assistant deletes the schedule.
-
+1. User requests to list entries **(UC03)**
+2. Teaching Assistant shows a list of entries
+3. User requests to delete a specific entry in the list
+4. Teaching Assistant deletes the specified entry
+   
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of entries is empty.
+  
+    Use case ends.
 
-  Use case ends.
-
-* 3a. The given schedule name is invalid.
-
+* 3a. The given index is invalid
     * 3a1. Teaching Assistant shows an error message.
+    
+        Use case ends.
 
+<br>
+
+### Use case: UC03 - List entries
+
+**MSS**
+
+1. User requests to list entries.
+2. Teaching Assistant shows a list of entries.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to list entries that occurs today.
+
+    * 1a1. Teaching Assistant shows a list of entries that happen today.
+      
       Use case ends.
+
+* 1b. User requests to list entries that occurs this week.
+
+    * 1b1. Teaching Assistant shows a list of entries that occurs this week
+
+        Use case ends.
+    
+* 1c. The given parameter is invalid.
+
+    * 1c1. Teaching Assistant shows an error message.
+    
+        Use case ends.
+
+<br>
+
+### Use case: UC04 - Check if user is free on a given timeslot
+
+**MSS**
+
+1. User requests to if he/she is free on a given timeslot.
+2. Teaching Assistant replies that the user is free.
+
+    Use case ends.
+
+* 1a. The given timeslot is invalid.
+
+    * 1a1. Teaching Assistant shows an error message.
+    
+        Use case ends
+    
+* 1b. The user is not free on the given timeslot.
+
+    * 1b1. Teaching Assistant replies that the user is not free.
+      
+    * 1b2. Teaching Assistant shows a list of entries that coincide with the given timeslot.
+    
+        Use case ends
 
 ---
 

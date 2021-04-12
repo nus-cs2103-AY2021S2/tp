@@ -7,7 +7,7 @@ Welcome to the User Guide of _Teaching Assistant_!
 
 Are you a JC/Secondary school teacher, having troubles keeping track of all your consultations, meetings and your
 students' contacts? No worries! Our application, _Teaching Assistant_ will provide an all-in-one platform for you to
-organise your entries (tasks and schedules) and contacts!
+organise your entries (schedules) and contacts!
 
 We target JC/Secondary school teachers as they are the teachers who have a greater need to contact their students
 compared to primary school schools, yet do not have a standardised platform for communication unlike teachers
@@ -18,8 +18,8 @@ typing into a Command Box. For users who type fast, they can use this applicatio
 applications that heavily use Graphical User Interface (GUI), where a user uses the application by interacting with
 graphical features such as buttons.
 
-If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using _Teaching Assistant_
-.
+If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using 
+_Teaching Assistant_.
 
 An image of our UI is shown below!
 
@@ -29,25 +29,28 @@ An image of our UI is shown below!
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help)
-    - [Contact](#adding-a-contact)
-        - [Add](#adding-a-contact)
-        - [Find](#finding-a-contact)
-        - [Filter](#filter-contact-tags)
-        - [Edit](#editing-a-contact)
-        - [List](#listing-contacts)
-        - [Delete](#deleting-a-contact)
-    - [Entry](#adding-an-entry)
-        - [Add](#adding-an-entry)
-        - [Find](#finding-an-entry)
-        - [Filter](#filter-entry-tags)
-        - [Edit](#editing-an-entry)
-        - [List](#listing-entries)
-        - [Free](#checking-if-time-interval-is-free)
-        - [Delete](#deleting-an-entry)
-        - [Clear](#clearing-overdue-entries)
-    - [Clear](#clearing-all-data)
-    - [Exiting](#exiting-the-program)
+    - [Viewing help: `help`](#viewing-help-help)
+    - [Contact](#adding-a-contact-cadd)
+        - [Add: `cadd`](#adding-a-contact-cadd)
+        - [Find: `cfind`](#finding-a-contact-cfind)
+        - [Filter: `cfilter`](#filter-contact-tags-cfilter)
+        - [Edit: `cedit`](#editing-a-contact-cedit)
+        - [List: `clist`](#listing-contacts-clist)
+        - [Delete: `cdelete`](#deleting-a-contact-cdelete)
+    - [Entry](#adding-an-entry-eadd)
+        - [Add: `eadd`](#adding-an-entry-eadd)
+        - [Find: `efind`](#finding-an-entry-efind)
+        - [Filter: `efilter`](#filter-entry-tags-efilter)
+        - [Edit: `eedit`](#editing-an-entry-eedit)
+        - [List: `elist`](#listing-entries-elist)
+        - [Free: `free`](#checking-if-time-interval-is-free-free)
+        - [Delete: `edelete`](#deleting-an-entry-edelete)
+        - [Clear: `eclear`](#clearing-overdue-entries-eclear)
+    - [Clear: `clear`](#clearing-all-data-clear)
+    - [Exit: `exit`](#exiting-the-program-exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
 - [Command Summary](#command-summary)
 
 ---
@@ -86,76 +89,119 @@ An image of our UI is shown below!
 
 ---
 
-### Viewing help
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
-Format: `help`
+**Format**: `help`
+
+**Breakdown**:
+* Command word - `help`
+
+Scenario:
+You are using Teaching Assistant but forget the formats of the commands you want to execute. This command is the only
+one you need to remember! It will bring you to this document.
 
 ---
 
-### Adding a contact
+### Adding a contact: `cadd`
 
 Adds a contact into Teaching Assistant.
 
-Format: `cadd n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+**Format**: `cadd n/NAME p/NUMBER e/EMAIL [t/TAG]...`
 
-* A contact can have any number of tags (including 0).
-* A contact can be tagged to an entry to easily filter for contacts related an entry.
+**Breakdown**:
+* Command word - `cadd`
+* Prefixes - `n/`, `p/`, `e/`, `t/`
+* Parameters - `NAME`, `NUMBER`, `EMAIL`, `TAG`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An entry's name can be tagged to a contact to easily filter for contacts related an entry.
+</div>
 
 Example(s):
 
-* `cadd n/Danny p/98765432 e/danny@email.com t/consultation 1`
-* `cadd n/Amy p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
+* `cadd n/Danny Tan p/98765432 e/danny@email.com t/student t/english t/consultation 1`
+* `cadd n/Amy Yeoh p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
 
-### Finding a contact
+Scenario:
+You want to save the contact details of your students so that you can easily obtain their details when you want to
+reach out to them.
+
+### Finding a contact: `cfind`
 
 Finds all contacts whose name contain all of the specified keywords and displays them as a list.
 
-Format: `cfind KEYWORD [MORE_KEYWORDS]...`
+**Format**: `cfind KEYWORD [MORE_KEYWORDS]...`
+
+**Breakdown**:
+* Command word - `cfind`
+* Parameters - `KEYWORD`, `MORE_KEYWORDS`
+
 
 * Only names are searched.
 * The search is case-insensitive e.g. `amy` will match `Amy`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`.
-* Only contacts matching all keywords will be returned (i.e. AND search). E.g. `Hans Bo` will only return `Hans Bo`.
+* Only full words will be matched e.g. `Dan` will not match `Danny`.
+* Only contacts matching all keywords will be returned (i.e. AND search). E.g. `Danny Tan` will only return `Danny Tan`.
+* The order of the keywords does not matter. e.g. `Danny Tan` will match `Tan Danny`.
 
 Example(s):
 
-* `cfind John` returns `john` and `John Doe`
-* `cfind alex yeoh` returns only `Alex Yeoh`
+* `cfind Danny` returns `danny` and `Danny Tan`
+* `cfind amy yeoh` returns only `Amy Yeoh`
 
-### Filter contact tags
+Scenario:
+Your student had booked a consultation with you and you want to find his/her contact details by name without scrolling 
+through the entire contact list so that you can remind him/her of the arrangement as the date of the consultation draws
+nearer.
+
+### Filter contact tags: `cfilter`
 
 Filters all contacts that have the tags of the specified keywords and displays them as a list with index numbers.
 
-Format: `cfilter KEYWORD [MORE_KEYWORDS]...`
+**Format**: `cfilter KEYWORD [MORE_KEYWORDS]...`
+
+**Breakdown**:
+* Command word - `cfilter`
+* Parameters - `KEYWORD`, `MORE_KEYWORDS`
+
 
 * Only tags are searched.
-* The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
+* The filtering is case-insensitive e.g. `Student` will match `student`.
 * Only full words will be matched e.g. `Friend` will not match `Friends`.
 * If more than one keyword is provided, only contacts with all the keywords provided will be displayed.
   E.g. `filter colleagues friends` will only return a contact with both tags `colleagues` and `friends`. Contacts with
   only one of the 2 keywords will not be displayed.
-* The order of the keywords does not matter. e.g. `colleagues friends` will match `friends colleagues`
+* The order of the keywords does not matter. e.g. `colleagues friends` will match `friends colleagues`.
 
 Example(s):
 
 * `cfilter student english`
-* `cfilter colleagues`
+* `cfilter colleague`
 
-### Editing a contact
+Scenario:
+Your students have decided on the roles and responsibilities they will be taking up in your class (e.g. chairperson, 
+english representative). You can add a tag to their contact to identify their roles. Then, you can find their contact 
+details easily by filtering contacts via tags.
+
+### Editing a contact: `cedit`
 
 Edits an existing contact with the specified index in Teaching Assistant.
 
-Format: `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+**Format**: `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+
+**Breakdown**:
+* Command word - `cedit`
+* Prefixes - `n/`, `p/`, `e/`, `t/`
+* Parameters - `INDEX`, `NAME`, `NUMBER`, `EMAIL`, `TAG`
+
 
 * `INDEX` refers to the index numer shown in the displayed entry list.
 * `INDEX` must be a positive integer 1,2,3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing t/ without specifying any tags after it.
+* You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
 
 Example(s):
 
@@ -163,85 +209,133 @@ Example(s):
   index 1 and to `p/91234567` and `alexyeoh@example.com` respectively.
 * `cedit 1 n/Bernice Yu Xiao Ling t/` Edits the name of the contact corresponding to index 1 to be `Bernice Yu Xiao Ling` 
   and clears all existing tags.
+  
+Scenario:
+Your student had recently changed his/her phone number and you want to update his/her contact details without the 
+hassle of deleting his/her old contact and then subsequently adding a new updated contact.
 
-### Listing contacts
+### Listing contacts: `clist`
 
 Lists all the contacts in Teaching Assistant.
 
-Format: `clist`
+**Format**: `clist`
 
-### Deleting a contact
+**Breakdown**:
+* Command word - `clist`
+
+Scenario: You want to look at all the contacts you have saved.
+
+### Deleting a contact: `cdelete`
 
 Deletes an existing contact with the specified index in Teaching Assistant.
 
-Format: `cdelete INDEX`
+**Format**: `cdelete INDEX`
 
-* `INDEX` refers to the index number shown in the displayed person list.
+**Breakdown**:
+* Command word - `cdelete`
+* Parameters - `INDEX`
+
+
+* `INDEX` refers to the index number shown in the displayed contact list.
 * `INDEX` must be a positive integer 1, 2, 3, ...
 
 Example(s):
 
 * `cdelete 1`
 
+Scenario: Your students have long graduated and you will not be contacting them anymore. You want to remove their
+contacts to make space for the contacts of your new students.
+
 ---
 
-### Adding an entry
+### Adding an entry: `eadd`
 
 Adds a new entry into Teaching Assistant.
 
-Format: `eadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]...`
+**Format**: `eadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]...`
+
+**Breakdown**:
+* Command word - `eadd`
+* Prefixes - `n/`, `sd/`, `ed/`, `t/`
+* Parameters - `NAME`, `START_DATE`, `END_DATE`, `TAG`
+
 
 * `START DATE` and `END DATE` are in the format `yyyy-mm-dd HH:MM`.
 * `START DATE` should be before `END DATE`.
 * Entries cannot overlap. i.e. Entries with overlapping timings will not be added.
+* Addition of entries which start and end in the past are allowed but the GUI will show a red entry card.
 
 Example(s):
 
-* `eadd n/meeting sd/2021-02-15 21:00 ed/2021-02-15 23:00`
-* `eadd n/consultation sd/2021-02-15 22:00 ed/2021-02-15 23:00 t/consultation`
+* `eadd n/meeting sd/2021-06-06 21:00 ed/2021-06-06 23:00 t/meeting t/needprep`
+* `eadd n/consultation 1 sd/2021-06-07 22:00 ed/2021-06-07 23:00 t/consultation`
 
-### Finding an entry
+Scenario: You want to add entries into Teaching Assistant to keep track of your schedule.
+
+### Finding an entry: `efind`
 
 Finds all entries whose name contain all of the specified keywords and displays them as a list.
 
-Format: `efind KEYWORD [MORE_KEYWORDS]...`
+**Format**: `efind KEYWORD [MORE_KEYWORDS]...`
+
+**Breakdown**:
+* Command word - `efind`
+* Parameters - `KEYWORD`, `MORE_KEYWORDS`
+
 
 * Only names are searched.
 * The search is case-insensitive e.g. `meeting` will match `Meeting`.
-* The order of the keywords does not matter. e.g. `teaching assistant` will match `assistant teaching`.
 * Only full words will be matched e.g. `meeting` will not match `meetings`.
-* Only entries matching all keywords will be returned (i.e. AND search). E.g. `assignment 1` will only return
-  `assignment 1`.
+* Only entries matching all keywords will be returned (i.e. AND search). E.g. `meeting 1` will only return
+    `meeting 1`.
+* The order of the keywords does not matter. e.g. `teaching assistant` will match `assistant teaching`.
 
 Example(s):
 
-* `efind assignment` returns `assignment 1` and `assignment 2`
-* `efind assignment 2` returns only `assignment 2`
+* `efind consultation` returns `consultation 1` and `consultation 2`
+* `efind consultation 2` returns only `consultation 2`
 
-### Filter entry tags
+Scenario: You remember you added a school event entry into Teaching Assistant in the past but forgot its date. 
+You can find an entry's details by its name without scrolling through the entire entry list.
+
+### Filter entry tags: `efilter`
 
 Filters all entries that have the tags of the specified keywords and displays them as a list.
 
-Format: `efilter KEYWORD [MORE_KEYWORDS]...`
+**Format**: `efilter KEYWORD [MORE_KEYWORDS]...`
+
+**Breakdown**:
+* Command word - `efilter`
+* Parameters - `KEYWORD`, `MORE_KEYWORDS`
+
 
 * Only tags are searched.
-* The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
-* Only full words will be matched e.g. `CS2103` will not match `CS2103T`.
+* The filtering is case-insensitive e.g. `meeting` will match `Meeting`.
+* Only full words will be matched e.g. `meeting` will not match `meetings`.
 * If more than one keyword is provided, only entries with all the keywords provided will be displayed.
-  E.g. `filter meeting CS2103T` will only return an entry with both tags `meeting` and `CS2103T`. Entries with only one
+  E.g. `filter meeting needprep` will only return an entry with both tags `meeting` and `needprep`. Entries with only one
   of the 2 keywords will not be displayed.
-* The order of the keywords does not matter. e.g. `meeting CS2103T` will match `CS2103T meeting`.
+* The order of the keywords does not matter. e.g. `meeting needprep` will match `needprep meeting`.
 
 Example(s):
 
-* `efilter CS2103T`
-* `efilter CS2100 Meeting`
+* `efilter meeting`
+* `efilter meeting needprep`
 
-### Editing an entry
+Scenario: You want to filter your entries via the consultation tag you have added to your entries in the past, so that
+you can plan ahead and prepare for your upcoming consultations.
+
+### Editing an entry: `eedit`
 
 Edits an existing entry with the specified index in Teaching Assistant.
 
-Format: `eedit INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
+**Format**: `eedit INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
+
+**Breakdown**:
+* Command word - `eedit`
+* Prefixes - `n/`, `sd/`, `ed/`, `t/`
+* Parameters - `INDEX`, `NAME`, `START_DATE`, `END_DATE`, `TAG`
+
 
 * `INDEX` refers to the index numer shown in the displayed entry list.
 * `INDEX` must be a positive integer 1,2,3, ...
@@ -252,20 +346,28 @@ Format: `eedit INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
 
 Example(s):
 
-* `eedit 1 sd/2021-05-03 13:00 ed/2021-05-03 14:00` Edits the start and end dates of the entry corresponding to index 1 to
-  be `2021-05-03 13:00` and `2021-05-03 14:00` respectively.
+* `eedit 1 sd/2021-06-07 13:00 ed/2021-06-07 14:00` Edits the start and end dates of the entry corresponding to index 1 to
+  be `2021-06-07 13:00` and `2021-06-07 14:00` respectively.
 * `eedit 1 t/` Edits the entry corresponding to index 1 by clearing all existing tags.
 
-### Listing entries
+Scenario: The Head of Department (HOD) just rescheduled a department meeting. You want to edit an entry's start and end 
+dates without first deleting it and then subsequently adding a new entry with the updated dates. 
+
+### Listing entries: `elist`
 
 Lists all entries in Teaching Assistant by displaying them as a list sorted by date. Entries can also be listed by day/week.
 
-Format: `elist [FORMAT]`
+**Format**: `elist [FORMAT]`
+
+**Breakdown**:
+* Command word - `elist`
+* Parameters - `FORMAT`
+
 
 * No argument: listing all entries
 * `FORMAT` is only restricted to the following cases
     * `day`: listing entries for today
-    * `week`: listing entries for the next 7 days
+    * `week`: listing entries for today as well as the next 6 days
 
 Example(s):
 
@@ -273,54 +375,110 @@ Example(s):
 * `elist day`
 * `elist week`
 
-### Checking if time interval is free
+Scenario: You want to see what is in store for you today so that you can mentally prepare yourself for the busy day ahead.
+
+### Checking if time interval is free: `free`
 
 Indicates if an interval is free. If free, a message indicating that will be shown. If not, entries occupying that
-interval will be shown in the entries list.
+interval will be shown in the entry list.
 
-Format: `free sd/START_DATE ed/END_DATE`
+**Format**: `free sd/START_DATE ed/END_DATE`
+
+**Breakdown**:
+* Command word - `free`
+* Prefixes - `sd/`, `ed/`
+* Parameters - `START_DATE`, `END_DATE`
+
 
 * `START DATE` and `END DATE` are in the format `yyyy-mm-dd HH:MM`.
 * `START DATE` should be before `END DATE`.
 
 Example(s):
 
-* `free sd/ 2021-12-20 12:00 ed/ 2021-12-20 13:00` if the time interval is free, entries list will be empty and _"You're
+* `free sd/ 2021-06-06 21:30 ed/ 2021-06-06 22:30` if the time interval is free, entry list will be empty and _"You're
   free!"_ message is shown. If not, a message _"Sorry, you're not free. Entries occupying that time interval listed
   below!"_ will be shown, accompanied by occupying entries in the entry list.
+  
+Scenario: Your student just approached you to book a consultation and asks if you are available at a specific timing.
 
-### Deleting an entry
+### Deleting an entry: `edelete`
 
 Deletes an existing entry with the specified index in Teaching Assistant.
 
-Format: `edelete INDEX`
+**Format**: `edelete INDEX`
 
-* `INDEX` refers to the index number shown in the displayed person list.
+**Breakdown**:
+* Command word - `edelete`
+* Parameters - `INDEX`
+
+
+* `INDEX` refers to the index number shown in the displayed contact list.
 * `INDEX` must be a positive integer 1, 2, 3, ...
 
 Example(s):
 
 * `edelete 1`
 
-### Clearing overdue entries
+Scenario: A school event you are involved in has been cancelled because of Covid-19 restrictions. You want to delete
+this entry from your schedule.
+
+### Clearing overdue entries: `eclear`
 
 Clears all entries that have dates before today's date.
 
-Format: `eclear`
+**Format**: `eclear`
+
+**Breakdown**:
+* Command word - `eclear`
+
+Scenario: You still have entries from the past that you no longer need, and want to remove those outdated entries
+to not clutter the entry list.
 
 ---
 
-### Clearing all data
+### Clearing all data: `clear`
 
 Clears all contacts and entries from Teaching Assistant.
 
-Format: `clear`
+**Format**: `clear`
 
-### Exiting the program
+**Breakdown**:
+* Command word - `clear`
+
+Scenario: You opened Teaching Assistant for the first time and want to start using it. You want to clear the sample
+data given before you proceed.
+
+### Exiting the program: `exit`
 
 Exits the program.
 
-Format: `exit`
+**Format**: `exit`
+
+**Breakdown**:
+* Command word - `exit`
+
+Scenario: You survived yet another hectic day! Use this command to exit the app.
+
+---
+
+### Saving the data
+Teaching Assistant data is saved in the hard disc automatically after any command that changes the data is executed.
+There is no need to save data manually.
+
+### Editing the data file
+Teaching Assistant data is saved as a JSON file `[JAR file location]/data/teachingassistant.json`. Advanced users are
+welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, Teaching Assistant will discard all data and start with an empty data file at the next run.
+</div>
+
+---
+
+### FAQ
+**Q**: How do I transfer my data to another computer?
+**A**: Install Teaching Assistant in the other computer and overwrite the empty data file it creates with the file that 
+contains the data of your previous Teaching Assistant home folder.
 
 ---
 
@@ -338,22 +496,23 @@ Action | Format
 
 Action | Format
 -------- | ------------------
-**Add** | `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
-**Filter tags** | `filter KEYWORD [MORE_KEYWORDS]`
-**Edit** | `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
-**List** | `list`
-**Delete** | `delete INDEX`
+**Add** | `cadd n/NAME p/NUMBER e/EMAIL [t/TAG]...`
+**Find** | `cfind KEYWORD [MORE_KEYWORDS]...`
+**Filter tags** | `cfilter KEYWORD [MORE_KEYWORDS]...`
+**Edit** | `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+**List** | `clist`
+**Delete** | `cdelete INDEX`
 
 ### Entries
 
 Action | Format
 -------- | ------------------
-**Add** | `eadd n/NAME [sd/START DATE] ed/END DATE [t/TAG]`
-**Find** | `efind KEYWORD [MORE_KEYWORDS]`
-**Filter tags** | `efilter KEYWORD [MORE_KEYWORDS]`
-**List (by day/week)** | `elist [day/week]`
+**Add** | `eadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]...`
+**Find** | `efind KEYWORD [MORE_KEYWORDS]...`
+**Filter tags** | `efilter KEYWORD [MORE_KEYWORDS]...`
+**Edit** | `eedit INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
+**List** | `elist [FORMAT]`
 **Check if free** | `free sd/START_DATE ed/END_DATE`
-**Delete** | `edelete NAME`
+**Delete** | `edelete INDEX`
 **Clear overdue entries** | `eclear`
 
