@@ -70,7 +70,6 @@ public class AddCommandParserTest {
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(expectedOrder).build();
         IndexList indexList = null;
 
-        // todo requests are actually different here
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
@@ -212,7 +211,7 @@ public class AddCommandParserTest {
 
         // invalid delivery date
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC1,
+                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC1,
                 DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
 
 
@@ -262,6 +261,13 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB + orderItemIndex,
                 new AddCommand(indexList, descriptor));
+    }
+
+    @Test
+    public void parse_withNeitherIndexListNorOrderDesc_failure() {
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
 

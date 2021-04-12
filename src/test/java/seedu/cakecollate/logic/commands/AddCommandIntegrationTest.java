@@ -11,7 +11,6 @@ import static seedu.cakecollate.testutil.TestUtil.stringify;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_THIRD_ORDER;
-import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
 
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
-import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.orderitem.OrderItem;
@@ -40,7 +38,6 @@ public class AddCommandIntegrationTest {
 
     private Model model;
     private IndexList nonNullIndexList;
-    // todo should i pass in empty index list instead of null? is there a good practice
 
     @BeforeEach
     public void setUp() {
@@ -66,10 +63,9 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateOrder_throwsCommandException() {
-        // TODO: problem with sample and test data
-        //        Order orderInList = model.getCakeCollate().getOrderList().get(0);
-        //        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(orderInList).build();
-        //        assertCommandFailure(new AddCommand(null, descriptor), model, AddCommand.MESSAGE_DUPLICATE_ORDER);
+        Order orderInList = model.getCakeCollate().getOrderList().get(0);
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(orderInList).build();
+        assertCommandFailure(new AddCommand(null, descriptor), model, AddCommand.MESSAGE_DUPLICATE_ORDER);
     }
 
 
@@ -79,7 +75,7 @@ public class AddCommandIntegrationTest {
     // === INDEX LIST RELATED ===
 
     @Test
-    public void execute_invalidListIndex_throwsInvalidIndex() throws CommandException {
+    public void execute_invalidListIndex_throwsInvalidIndex() {
         Model emptyModel = new ModelManager();
         AddCommand.AddOrderDescriptor descriptor =
                 new AddOrderDescriptorBuilder(new OrderBuilder().withOrderDescriptions().build()).build();
@@ -91,32 +87,23 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_singleValidIndexList_addedToOrder() {
-
         IndexList indexList = new IndexList(new ArrayList<>());
         indexList.add(INDEX_FIRST_ORDER);
 
-        OrderItems orderItems = getTypicalOrderItemsModel(); // model.getOrderItems();
-        OrderItem toAdd = orderItems.getOrderItemList().get(0);
+        OrderItem toAdd = model.getOrderItems().getOrderItemList().get(0);
 
         Order validOrder = new OrderBuilder().withOrderDescriptions().build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(validOrder).build();
 
         // add order item 0 to expected order
-        // the naming makes order items and order descriptions look really unrelated but they aren't
         Order finalOrderToAddToModel = new OrderBuilder(validOrder).withOrderDescriptions(stringify(toAdd)).build();
 
         // construct expected model
-        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems()); //
-        // todo change all/most 2nd arg
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.addOrder(finalOrderToAddToModel);
 
         assertCommandSuccess(new AddCommand(indexList, descriptor), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, finalOrderToAddToModel), expectedModel);
-    }
-
-    @Test
-    public void execute_multipleIndexList_allAddedToOrder() {
-
     }
 
 
@@ -143,15 +130,12 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
         assertTrue(model.getFilteredOrderItemsList().size() == initialSize);
-
-        // as long as model doesn't accept duplicate items, it should be okay
-        // todo don't duplicate stuff in the model that's same content, but in a different case
     }
 
     @Test
     public void execute_inputNewOrderDescription_addedToOrderItemModel() {
         String value = "cake that does not exist in model yet";
-        Order order = new OrderBuilder().withOrderDescriptions(value).build(); // cry names don't make sense
+        Order order = new OrderBuilder().withOrderDescriptions(value).build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(order).build();
 
         OrderItem newOrderItemToAdd = new OrderItemBuilder().withType(value).build();
@@ -177,12 +161,34 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_bothOrderDescAndIndexList_allAddedToOrder() {
+        /*
+         * Item 1 is added via oi/ prefix while item 2 is added to order by o/ prefix.
+         * Both should appear in expected order.
+         * Item 1 should be distinct from item 2 for this to work.
+         */
+        OrderItem item1 = model.getFilteredOrderItemsList().get(0);
+        OrderItem item2 = model.getFilteredOrderItemsList().get(1);
 
+        assert !item1.equals(item2) : "something might be wrong, order item model seems to accept duplicates.";
 
+        Order temp = new OrderBuilder().withOrderDescriptions(stringify(item2)).build();
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(temp).build();
+
+        IndexList indexList = new IndexList(new ArrayList<>());
+        indexList.add(INDEX_FIRST_ORDER);
+
+        Order expectedOrder = new OrderBuilder()
+                .withOrderDescriptions(stringify(item1), stringify(item2)).build();
+
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
+        expectedModel.addOrder(expectedOrder);
+
+        assertCommandSuccess(new AddCommand(indexList, descriptor), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, expectedOrder), expectedModel);
     }
 
 
-    // ======== TESTS ADDED FOR BUG FIX: ACCEPT DUPLICATE CAKES IN SAME ORDER ========
+    // ======== TESTS ADDED FOR ACCEPTING DUPLICATE CAKES IN SAME ORDER ========
 
     @Test
     public void execute_recogniseDuplicateCakes_addedOrderHasDuplicateCakes() throws CommandException {
