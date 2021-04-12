@@ -296,6 +296,9 @@ component command prefix/[INPUT] -flag
 
         - `n/` - Finds all customers whose names contain any of the keywords (case-insensitive). Keywords are space separated.
 
+        The result list from find persists even if other commands are called and is only reset when `customer list` is called again.
+        Any index that accesses `customer` will reference from this result list.        
+      
         Example:
         ```
         customer find n/George Michael Lim
@@ -430,12 +433,15 @@ component command prefix/[INPUT] -flag
         ```
         menu find n/[KEYWORD] (MORE KEYWORDS) i/[NAME]
         ```
-
+      
         At least one prefix must be specified. If both are specified, both conditions will be checked.
 
         - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `i/` - Finds all dishes with ingredient names that contain this ingredient name (case-insensitive). This name can be multiple words.
-    
+
+        The result list from find persists even if other commands are called and is only reset when `menu list` is called again.
+        Any index that accesses `menu` will reference from this result list.
+
         Example:
         ```
         menu find n/burger noodles i/soy sauce
@@ -552,6 +558,9 @@ component command prefix/[INPUT] -flag
 
         - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `d/` - Finds all orders with dish names that contain specified name (case-insensitive). This name can be multiple words.
+      
+        The result list from find persists even if other commands are called and is only reset when `order list` or `order history` is called again.
+        Any index that accesses `order` will reference from this result list.
 
         Example:
         ```
@@ -739,6 +748,9 @@ component command prefix/[INPUT] -flag
 
         - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `q/` - Finds all ingredients with less than or equals to specified quantity. Must be a non-negative whole number (>= 0).
+
+        The result list from find persists even if other commands are called and is only reset when `inventory list` is called again.
+        Any index that accesses `inventory` will reference from this result list.
 
         Example:
         ```
