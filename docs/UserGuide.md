@@ -165,10 +165,10 @@ To achieve the best possible experience, avoid adding excessively long text to C
     * 23/11/2021
     * 23.11.2021
     * 23112021
-* The year should be a non-negative number between 0000 and 9999.
-* The date should be a valid date.
-* When the day or month part of date only has 1 digit, a prefix 0 should be added.
-  e.g. if the day is 1, the day input should be `01` instead of just `1`.
+* Date should be a valid date (dd/MM/yyyy) where:
+    * The Year Field (yyyy) should be a non-negative number between 0000 and 9999.
+    * The Month Field (MM) should be a non-negative number between 01 and 12.
+    * The Day Field (dd) should be a non-negative number between 00 and 31 (may be less than 31 depending on the number of days in the month).
 
 ##### `DESCRIPTION`
 
@@ -695,7 +695,7 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`NAME`](#name) The name of the groupmate.
-* [`ROLE`](#role) The role of the groupmate.
+* [`ROLE`](#role) The roles of the groupmate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 A groupmate can have any number of roles (including 0).
