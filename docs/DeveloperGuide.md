@@ -332,7 +332,7 @@ Our target users are students currently enrolled in a university who,
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​ | I want to …​ | So that I can…​ |
-| -------- | ------------------------------------------ | ---------------------------------- | ---------------------------------------------------------------------------- |
+| -------- | ---------- | --------------- | ------------------ |
 | `* * *` | University Student | add a new project| keep track of my projects |
 | `* * *` | University Student | edit a project's details | update the project's details when there is change |
 | `* * *` | University Student | delete a project | remove projects that I no longer need |
