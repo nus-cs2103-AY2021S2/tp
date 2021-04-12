@@ -55,7 +55,7 @@ public class FreeCommandTest {
         // null -> returns false
         assertFalse(freeFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(freeFirstCommand.equals(freeSecondCommand));
     }
 

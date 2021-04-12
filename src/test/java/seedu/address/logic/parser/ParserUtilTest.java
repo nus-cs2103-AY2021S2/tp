@@ -52,15 +52,6 @@ public class ParserUtilTest {
     private static final String VALID_ENTRY_NAME = "Consultation with teacher";
     private static final String VALID_ENTRY_DATE = "2022-01-01 12:12";
 
-    //to be deleted --------------------------------
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
-
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    //---------------------------------------------------
-
     private static final String WHITESPACE = " \t\r\n";
 
     @Test

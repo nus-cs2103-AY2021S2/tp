@@ -4,9 +4,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":CheckFreeCommandParser" as CheckFreeCommandParser LOGIC_COLOR
-participant "c:CheckFreeCommand" as CheckFreeCommand LOGIC_COLOR
+participant ":TeachingAssistantParser" as TeachingAssistantParser LOGIC_COLOR
+participant ":FreeCommandParser" as FreeCommandParser LOGIC_COLOR
+participant "c:FreeCommand" as FreeCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -16,33 +16,30 @@ end box
 
 autoactivate on
 [-> LogicManager : execute("free")
-LogicManager -> AddressBookParser : parseCommand("free")
+LogicManager -> TeachingAssistantParser : parseCommand("free")
 
-create CheckFreeCommandParser
-AddressBookParser -> CheckFreeCommandParser
+create FreeCommandParser
+TeachingAssistantParser -> FreeCommandParser
 return
 
-AddressBookParser -> CheckFreeCommandParser : parse(start, end)
+TeachingAssistantParser -> FreeCommandParser : parse(start, end)
 
-create CheckFreeCommand
-CheckFreeCommandParser -> CheckFreeCommand
-return c
-CheckFreeCommandParser --> AddressBookParser : c
-AddressBookParser --> LogicManager : c
-destroy CheckFreeCommandParser
+create FreeCommand
+FreeCommandParser -> FreeCommand
+return
+FreeCommandParser --> TeachingAssistantParser
+TeachingAssistantParser --> LogicManager : c
+destroy FreeCommandParser
 
-LogicManager -> CheckFreeCommand : execute()
-CheckFreeCommand -> Model : checkIfFree(start, end)
+LogicManager -> FreeCommand : execute()
+FreeCommand -> Model : updateFilteredEntryList(predicate)
 return
 
 create CommandResult
-CheckFreeCommand -> CommandResult
+FreeCommand -> CommandResult
 return
-CheckFreeCommand --> LogicManager : result
+FreeCommand --> LogicManager : result
 
 [<-- LogicManager
-
-
-
 
 @enduml
