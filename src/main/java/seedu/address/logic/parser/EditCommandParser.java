@@ -50,7 +50,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         boolean doIndicesContainWords = checkIndicesInputContainsWords(argMultimap.getPreamble());
 
-        if (doIndicesContainWords) {
+        if (doIndicesContainWords || argMultimap.getPreamble().equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
