@@ -349,13 +349,17 @@ If you currently have a filter set, such as a particular month or category, and 
 
 Format: `reset-filter`
 
+**:bulb: Tips:**
+
+- This command only resets filters set by `find-fr` on the currently viewed month.
+
 ### 5.9 Undoing commands : `undo`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Info:**<br>
 
-You can only undo `add-fr`, `delete-fr` and `set-bg` operations.
+You can only undo `add-fr`, `delete-fr`, `edit-fr` and `set-bg` operations.
 
 </div>
 
@@ -371,7 +375,7 @@ Format: `undo`
 
 **:information_source: Info:**<br>
 
-You can only redo undone `add-fr`, `delete-fr` and `set-bg` operations.
+You can only redo undone `add-fr`, `delete-fr`, `edit-fr` and `set-bg` operations.
 
 </div>
 
@@ -390,8 +394,19 @@ Format: `exit`
 
 ### 5.12 Viewing all categories spent for the current month
 
+<img src="images/features/stats-side-panel.png" width="1200px">
+
 The UI displays all the categories spent for the current month at the side panel of the application. The categories are
 sorted in lexicographical order, so that users are able to find the amounts spent on any particular category easily.
+
+<div markdown="block" class="alert alert-primary">
+
+**Note:**<br>
+
+Note that the sum of all the values does not necessarily add up to the total expenses of the month. A Financial Record may
+contribute to more than one category or no categories at all.
+
+</div>
 
 ### 5.13 Viewing top 5 categories spent for the current month
 

@@ -4,7 +4,7 @@ title: BudgetBaby
 ---
 
 <p align="center">
-  <img src="./images/budget_baby.png" width="200px" />
+  <img src="./images/budget-baby.png" width="200px" />
   <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings:</h1>
 </p>
 

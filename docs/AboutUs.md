@@ -24,7 +24,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[portfolio](team/eksinyue.md)]
 
 - Role: Team Lead
-- Responsibilities: To be updated
+- Responsibilities: Overall project management + development
 
 ### Jaryl Loh
 
