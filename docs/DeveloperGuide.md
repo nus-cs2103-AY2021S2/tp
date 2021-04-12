@@ -263,6 +263,9 @@ Here is a more specific breakdown of the command's execute method.
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
 3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
+
+### List Feature
+
 ### View feature
 
 Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
