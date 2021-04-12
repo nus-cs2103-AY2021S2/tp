@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 Are you finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We

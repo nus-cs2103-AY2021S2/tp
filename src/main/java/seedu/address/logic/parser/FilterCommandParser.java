@@ -1,8 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_FILTER_KEYWORD_NOTATION;
-import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_RANGE_NOTATION;
-import static seedu.address.commons.core.Messages.MESSAGE_BAD_LOWER_UPPER_AGE_RANGE_NOTATION;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
