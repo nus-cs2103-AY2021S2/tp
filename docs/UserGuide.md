@@ -1,13 +1,11 @@
 ---
 layout: page
-title: User Guide
+title: TutorBuddy - User Guide
 ---
 
 <div align="center">
   <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
-
-# TutorBuddy - User Guide
 
 * Table of Contents
 {:toc}
