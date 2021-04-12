@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPassengers.ALICE;
 import static seedu.address.testutil.TypicalPools.HOMEPOOL;
+import static seedu.address.testutil.TypicalPools.HOMEPOOL_PASSENGERS;
 import static seedu.address.testutil.TypicalPools.OFFICEPOOL_PASSENGERS;
 
 import java.util.ArrayList;
@@ -86,6 +87,30 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasPassenger_nullPassengerEqual_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasEqualPassenger(null));
+    }
+
+    @Test
+    public void hasPassenger_passengerEqualNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasEqualPassenger(ALICE));
+    }
+
+    @Test
+    public void hasPassenger_passengerEqualInAddressBook_returnsTrue() {
+        addressBook.addPassenger(ALICE);
+        assertTrue(addressBook.hasEqualPassenger(ALICE));
+    }
+
+    @Test
+    public void hasPassenger_passengerEqualWithSameIdentityFieldsInAddressBook_returnsFalse() {
+        addressBook.addPassenger(ALICE);
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
+                .build();
+        assertFalse(addressBook.hasEqualPassenger(editedAlice));
+    }
+
+    @Test
     public void getPassengerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPassengerList().remove(0));
     }
@@ -104,8 +129,79 @@ public class AddressBookTest {
         assertThrows(DuplicatePoolException.class, () -> addressBook.resetData(newData));
     }
 
+    @Test
+    public void hasPool_nullPool_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPool(null));
+    }
 
-    // TODO add pool test
+    @Test
+    public void hasPool_poolNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPool(HOMEPOOL));
+    }
+
+    @Test
+    public void hasPool_poolInAddressBook_returnsTrue() {
+        addressBook.addPool(HOMEPOOL);
+        assertTrue(addressBook.hasPool(HOMEPOOL));
+    }
+
+    @Test
+    public void hasPool_poolWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addPool(HOMEPOOL);
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(OFFICEPOOL_PASSENGERS)
+                .withTags(VALID_TAG_IT)
+                .build();
+        assertTrue(addressBook.hasPool(editedHomePool));
+    }
+
+    @Test
+    public void getPoolList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPoolList().remove(0));
+    }
+
+    @Test
+    public void hasPool_hasPoolWithPassenger_returnsTrue() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(HOMEPOOL_PASSENGERS)
+                .build();
+        addressBook.addPool(editedHomePool);
+
+        for (Passenger passenger : HOMEPOOL_PASSENGERS) {
+            assertTrue(addressBook.hasPoolWithPassenger(passenger));
+        }
+    }
+
+
+    @Test
+    public void hasPool_hasPoolWithoutPassenger_returnsFalse() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(HOMEPOOL_PASSENGERS)
+                .build();
+        addressBook.addPool(editedHomePool);
+
+        for (Passenger passenger : OFFICEPOOL_PASSENGERS) {
+            assertFalse(addressBook.hasPoolWithPassenger(passenger));
+        }
+    }
+
+
+    @Test
+    public void hasPool_hasPoolWithPassengerSameIdentity_returnsFalse() {
+        Pool editedHomePool = new PoolBuilder(HOMEPOOL)
+                .withPassengers(HOMEPOOL_PASSENGERS)
+                .build();
+        addressBook.addPool(editedHomePool);
+
+        for (Passenger passenger : HOMEPOOL_PASSENGERS) {
+            Passenger newPassenger = new PassengerBuilder(passenger)
+                    .withAddress(VALID_ADDRESS_BOB)
+                    .withTags(VALID_TAG_HR)
+                    .build();
+            assertTrue(addressBook.hasPoolWithPassenger(newPassenger));
+        }
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose passengers list can violate interface constraints.
      */
