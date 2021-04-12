@@ -486,7 +486,7 @@ Example:
 ![add_session_example](images/choonwei/add_session.png)
 
 <ol start="3">
-    <li>You will now see that a new session is added in the session list under **John Doe** and is marked with a green letter **"I"** to indicate an individual session.</li>
+    <b>You will now see that a new session is added in the session list under <b>John Doe</b> and is marked with a green letter <b>"I"</b> to indicate an individual session.</li>
 </ol>
 
 ![add_session_result_example](images/choonwei/add_session_result.png)
@@ -512,7 +512,7 @@ Example:
 ![add_recurring_session_example](images/choonwei/add_recurring_session.png)
 
 <ol start="3">
-    <li>You will now see that a new recurring session is added in the session list under **John Doe** and is marked with an orange letter **"R"** to indicate a recurring session.</li>
+    <li>You will now see that a new recurring session is added in the session list under <b>John Doe</b> and is marked with an orange letter <b>"R"</b> to indicate a recurring session.</li>
 </ol>
 
 ![add_recurring_session_result_example](images/choonwei/add_recurring_session_result.png)
@@ -539,7 +539,7 @@ Example 1:
 ![delete_session_example](images/choonwei/delete_session.png)
 
 <ol start="3">
-    <li>Using the index from step 2, type in `delete_session n/John Doe i/1` and press <kbd>Enter</kbd> to deletes **John Doe**'s first session.</li>
+    <li>Using the index from step 2, type in <code>delete_session n/John Doe i/1</code> and press <kbd>Enter</kbd> to deletes <b>John Doe</b>'s first session.</li>
     <li>You will now see that the session has been deleted.</li>
 </ol>
 
@@ -552,7 +552,7 @@ Example 2:
 ![delete_session_recurring_example](images/choonwei/delete_session_recurring.png)
 
 <ol start="3">
-    <li>Using the index from step 2, type in `delete_session n/Alex Yeoh i/1` and press <kbd>Enter</kbd> to deletes **Alex Yeoh**'s first and only session.</li>
+    <li>Using the index from step 2, type in <code>delete_session n/Alex Yeoh i/1</code> and press <kbd>Enter</kbd> to deletes <b>Alex Yeoh</b>'s first and only session.</li>
     <li>You will now see that the session has been deleted.</li>
 </ol>
 
@@ -578,8 +578,8 @@ Example:
 ![delete_recurring_session_example](images/choonwei/delete_recurring_session.png)
 
 <ol start="3">
-    <li>Using the index from step 2, type in `delete_rec_session n/John Doe i/1 d/2021-01-16` and press <kbd>Enter</kbd> to delete a single session from **John Doe**'s recurring session.</li>
-    <li>You will now see that this splits the original recurring session into two recurring session from **02 Jan 2021** to **09 Jan 2021** and another from **23 Jan 2021** to **30 Jan 2021**.</li>
+    <li>Using the index from step 2, type in <code>delete_rec_session n/John Doe i/1 d/2021-01-16</code> and press <kbd>Enter</kbd> to delete a single session from <b>John Doe</b>'s recurring session.</li>
+    <li>You will now see that this splits the original recurring session into two recurring session from <b>02 Jan 2021</b> to <b>09 Jan 2021</b> and another from <b>23 Jan 2021</b> to <b>30 Jan 2021</b>.</li>
 </ol>
 
 ![delete_recurring_session_result_example](images/choonwei/delete_recurring_session_result.png)
@@ -604,7 +604,7 @@ Example:
 ![fee_example](images/enhao/fee%20-%20Edited.PNG)
 
 <ol start="3">
-    <li>The result display box displays John Doe's monthly fee for March 2021.</li>
+    <li>The result display box displays <b>Alex Yeoh</b>'s monthly fee for March 2021.</li>
 </ol>
 
 ![fee_result_example](images/enhao/fee_result%20-%20Edited.PNG)
@@ -656,6 +656,7 @@ Action | Format | Examples
 **Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Doe m/1 y/2021`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 6. **FAQ**
 
@@ -668,6 +669,7 @@ Action | Format | Examples
 If your changes to the data file makes its format invalid, TutorBuddy may not function as intended.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. **Glossary**
 
@@ -678,6 +680,9 @@ This glossary provides definitions for the special terms used in this user guide
 **Recurring Session:** Repeating session that occurs every number of days.
 
 **URL:** The address of a web page.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 8. **Appendix**
 
