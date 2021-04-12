@@ -83,83 +83,100 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (event.getCode() == KeyCode.ENTER) {
+            switch (event.getCode()) {
+            case ENTER:
                 currentList.clear();
-            }
-
-            if (event.getCode() == KeyCode.TAB && toggleable) {
-                String currentlyInBox = commandBox.getTextFieldText();
-
-                if (currentlyInBox != null) {
-                    List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
-
-                    if (availFlags != null) {
-                        // if flag has content -> get next flag
-                        // if flag has no content -> toggle
-                        lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
-
-                        // Check if lastFlag has content
-                        if (lastFlag.split(" ").length > 1 || lastFlag.equals(AddCommand.COMMAND_WORD + " ")
-                                || lastFlag.equals(EditCommand.COMMAND_WORD + " ")) {
-                            if (!availFlags.isEmpty()) {
-                                commandBox.setAndAppendFlag(availFlags.get(0) + " ");
-                                lastFlag = lastFlag.split(" ")[0];
-                                if (!currentList.isEmpty()) {
-                                    currentList = availFlags;
-                                    currentList.remove(availFlags.get(0));
-                                }
-                            }
-                        } else {
-                            // Toggling Flags
-                            if (!logic.getAutocompleteFlags(AddCommand.COMMAND_WORD)
-                                    .contains(("-" + lastFlag).trim())) {
-                                return;
-                            }
-                            // Populate currentList
-                            if (currentList.isEmpty()) {
-                                currentList = availFlags;
-                            }
-                            String addBack = "-" + lastFlag;
-
-                            // String without current flag
-                            String rollBackString = currentlyInBox.split(addBack)[0];
-
-                            // Updated text if flags available
-                            if (!availFlags.isEmpty()) {
-                                commandBox.setTextValue(rollBackString + currentList.get(0) + " ");
-                            }
-
-                            currentList.remove(0);
-
-                            if (!currentList.contains(addBack + " ")) {
-                                currentList.add(addBack.trim());
-                            }
-                        }
-                    } else {
-                        autocompleteListPanel.processTabKey((value) -> {
-                            if (value == null) {
-                                commandBox.setTextValue(commandBox.getTextFieldText());
-                            } else {
-                                commandBox.setTextValue(value);
-                            }
-                        });
-                        event.consume();
-                    }
+                break;
+            case TAB:
+                if (toggleable) {
+                    processKeyTabPress(logic, event);
                 }
-            }
-
-            if (event.getCode() == KeyCode.UP) {
-                personListPanel.selectPrev((value) -> {
-                    commandBox.setAndAppendIndex(value);
-                });
-            }
-
-            if (event.getCode() == KeyCode.DOWN) {
-                personListPanel.selectNext((value) -> {
-                    commandBox.setAndAppendIndex(value);
-                });
+                break;
+            case UP:
+                processKeyUpPress();
+                break;
+            case DOWN:
+                processKeyDownPress();
+                break;
             }
         });
+    }
+
+    private void processKeyDownPress() {
+        personListPanel.selectNext((value) -> {
+            commandBox.setAndAppendIndex(value);
+        });
+    }
+
+    private void processKeyUpPress() {
+        personListPanel.selectPrev((value) -> {
+            commandBox.setAndAppendIndex(value);
+        });
+    }
+
+    private void processKeyTabPress(Logic logic, KeyEvent event) {
+        String currentlyInBox = commandBox.getTextFieldText();
+
+        if (currentlyInBox == null) {
+            return;
+        }
+
+        List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
+
+        if (availFlags != null) {
+            // if flag has content -> get next flag
+            // if flag has no content -> toggle
+            lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
+
+            // Check if lastFlag has content
+            if ((lastFlag.split(" ").length > 1
+                    || lastFlag.equals(AddCommand.COMMAND_WORD + " ")
+                    || lastFlag.equals(EditCommand.COMMAND_WORD + " "))
+                    && !availFlags.isEmpty()) {
+                commandBox.setAndAppendFlag(availFlags.get(0) + " ");
+                lastFlag = lastFlag.split(" ")[0];
+
+                if (currentList.isEmpty()) {
+                    return;
+                }
+                currentList = availFlags;
+                currentList.remove(availFlags.get(0));
+            } else {
+                // Toggling Flags
+                if (!logic.getAutocompleteFlags(AddCommand.COMMAND_WORD)
+                        .contains(("-" + lastFlag).trim())) {
+                    return;
+                }
+                // Populate currentList
+                if (currentList.isEmpty()) {
+                    currentList = availFlags;
+                }
+                String addBack = "-" + lastFlag;
+
+                // String without current flag
+                String rollBackString = currentlyInBox.split(addBack)[0];
+
+                // Updated text if flags available
+                if (!availFlags.isEmpty()) {
+                    commandBox.setTextValue(rollBackString + currentList.get(0) + " ");
+                }
+
+                currentList.remove(0);
+
+                if (!currentList.contains(addBack + " ")) {
+                    currentList.add(addBack.trim());
+                }
+            }
+        } else {
+            autocompleteListPanel.processTabKey((value) -> {
+                if (value == null) {
+                    commandBox.setTextValue(commandBox.getTextFieldText());
+                } else {
+                    commandBox.setTextValue(value);
+                }
+            });
+            event.consume();
+        }
     }
 
     public Stage getPrimaryStage() {
