@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -25,6 +26,7 @@ public class SortCommand extends Command {
 
     private final Comparator<Task> comparator;
 
+    private boolean isAscending;
     /**
      * Constructor for SortMeetingCommand. Checks the order of sort required
      * and producers the appropriate comparator.
@@ -32,10 +34,23 @@ public class SortCommand extends Command {
     public SortCommand(Comparator<Task> comparator, Boolean isAscending) {
         assert (comparator != null);
         if (!isAscending) {
+            this.isAscending = false;
             this.comparator = comparator.reversed();
         } else {
+            this.isAscending = true;
             this.comparator = comparator;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        SortCommand that = (SortCommand) o;
+        return this.isAscending == that.isAscending;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(comparator);
     }
 
     @Override
