@@ -2,7 +2,7 @@
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://https://github.com/AY2021S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/partyplanet/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-W16-3/tp/blob/master/src/main/java/seedu/partyplanet/model/Model.java)
 
 The `Model`,
 
