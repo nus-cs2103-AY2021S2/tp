@@ -484,7 +484,7 @@ to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the SmartLib, such as `list`,
+Step 5. The user then decides to execute the command `listreader`. Commands that do not modify the SmartLib, such as `listreader`,
 will usually not call `Model#commitSmartLib()`, `Model#undoSmartLib()` or `Model#redoSmartLib()`. Thus, the
 `smartLibStateList` remains unchanged.
 
