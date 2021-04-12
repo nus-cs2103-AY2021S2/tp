@@ -78,6 +78,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2. StoreMando's layout
 
 ![GUILayout](images/GUILayout.png)
@@ -322,6 +324,8 @@ you to do just that.
 
 You can use this command in 3 different ways.
 
+<div style="page-break-after: always;"></div>
+
 * #### 3.5.1. Listing all items in StoreMando
 
   This command allows you to view all the items in the inventory.
@@ -461,6 +465,8 @@ You can use this command in 3 different ways.
         * `quantity desc` is case-insensitive. Keying in `sort QUANTITY DESC` is also a valid command.
 
       </div>
+
+<div style="page-break-after: always;"></div>
 
 * #### 3.7.2. Sorting items by expiry date
   
