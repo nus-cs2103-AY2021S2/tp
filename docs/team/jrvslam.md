@@ -32,6 +32,9 @@ Given below are my contributions to the project:
     - Added How to Use our User Guide section for user ease of use.
     - Enhanced documentation screenshots by adding Annotations to enhance ease of use and readability.
     - Made cosmetic changes to standardise parts of the User Guide.
+  
+  - Developer Guide:
+    - Update User Stories, Use Cases, and Value proposition as we developed in our product cycle
 
 - **Community**:
   - PRs Reviewed: 4
