@@ -62,7 +62,7 @@ public class EditRoomCommand extends Command {
     /**
      * Creates an EditRoomCommand to edit the room at the specified {@code Index}.
      *
-     * @param index              Of the room in the filtered room list to edit.
+     * @param index              {@code Index} of the room in the filtered room list to edit.
      * @param editRoomDescriptor Details to edit the room with.
      */
     public EditRoomCommand(Index index, EditRoomDescriptor editRoomDescriptor) {
