@@ -17,9 +17,6 @@ This is the [code](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=sh
   
 - I enhanced the delete function to delete customer in the contact list base on his name rather than index, this is more simplified as one may simply delete the customer with a matching name typed in. As a salesperson, user may have hundreds of contacts in his list, and it will be troublesome for him to scroll through the list or to use filter function to first filter the list then delete by index. 
 
-- I 
-  
-- I added a fair share of user stories, and wrote the description of the `find` command as well as the `/up` command
-  in the user guide.
+- In the UG, I have done GUI testing and make sure all example commands works well and added on details and screenshots to provided better explanations. I have also updated delete function and added email feature in UG.
 
-- In the DG, I updated some Use cases.
+- In the DG, I have added Filter package and email window into class diagrams.
