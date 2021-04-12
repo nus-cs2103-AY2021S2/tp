@@ -916,9 +916,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. JIMMY detects that the given arguments are invalid
+* 3a. JJIMY detects that the given arguments are invalid
 
-	* 3a1. JIMMY shows an error message
+	* 3a1. JJIMY shows an error message
 
     Use case resumes at step 2.
 
