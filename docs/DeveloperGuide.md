@@ -624,7 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  <ins>User lists clients (UC1).</ins>
+1.  <ins>User lists clients (Use case 1).</ins>
     
 1.  User requests to delete a specific client in the list.
     
@@ -676,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  <ins>User lists clients (UC1).</ins>
+1.  <ins>User lists clients (Use case 1).</ins>
     
 2.  User requests to edit a specific client in the list.
     
@@ -762,7 +762,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  <ins>User lists clients (UC1).</ins>
+1.  <ins>User lists clients (Use case 1).</ins>
     
 2.  User requests to schedule a meeting with a specific client in the list.
     
@@ -914,7 +914,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. <ins>User lists clients (UC1).</ins>
+1. <ins>User lists clients (Use case 1).</ins>
 
 2. User requests to display policies associated with a selected client.
 
@@ -942,9 +942,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. <ins>User lists clients (UC1).</ins>
+1. <ins>User lists clients (Use case 1).</ins>
 
-2. User <ins>views insurance policies of selected client (UC16)</ins>.
+2. User <ins>views insurance policies of selected client (Use case 16)</ins>.
 
 3. User retrieves URL from ClientBook.
 
@@ -978,7 +978,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. <ins>User lists clients (UC1).</ins>
+1. <ins>User lists clients (Use case 1).</ins>
 
 2. User requests to delete several clients at once.
 
