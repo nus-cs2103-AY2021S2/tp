@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.testutil.ExactMatchPredicate;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.ExactMatchPredicate;
 
 /**
  * Contains helper methods for testing commands.

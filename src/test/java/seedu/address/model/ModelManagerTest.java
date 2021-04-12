@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.testutil.ExactMatchPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ExactMatchPredicate;
 
 public class ModelManagerTest {
 
