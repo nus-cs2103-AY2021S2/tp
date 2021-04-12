@@ -441,7 +441,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all passengers using the `list` command.
        Multiple passengers in the list, with the first four passengers having the same the trip day of `MONDAY` and trip time of `1930`.
-       The rest of the passengers having any other trip day and time.
+       This can be achieved through the editing the details of the passengers with the `edit` command and the `d/` and `t/` prefixes.
+       The remaining passengers must have a different trip day and trip time from `MONDAY` and `1930` respectively.
 
     1. Test case: `pool n/Paul p/90101231 d/MONDAY t/1930 c/1 c/2`<br>
        
