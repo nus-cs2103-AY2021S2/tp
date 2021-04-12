@@ -683,9 +683,8 @@ If the previous theme file supplied is not found or unreadable, then the default
     * Alphanumeric (A - Z, a - z, 0 - 9), or
     * Any character from the set <code>.!#$%&'*+\/=?^_`{|}~-</code>
 * This is followed by an `@` and then one or more `label`s.
-
 * A `label` should be shorter than 64 characters.
-* Multiple `label`s are allowed, provided that they are delimited by a single period.<br>
+* Multiple `label`s are allowed, provided that they are delimited by a single period. <br>
 Note that email does NOT conform to [RFC](https://tools.ietf.org/html/rfc5322) standards.
 
 --------------------------------------------------------------------------------------------------------------------
