@@ -12,9 +12,12 @@ public enum AvailableSubject {
     eng("english"),
     geo("geography"),
     hist("history"),
+    lit("literature"),
+    mal("malay"),
     math("mathematics"),
     phys("physics"),
-    sci("science");
+    sci("science"),
+    tam("tamil");
 
 
     private final String full;

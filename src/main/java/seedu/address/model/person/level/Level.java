@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.person.level.LevelList.LEVEL_LIST;
 
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
@@ -109,7 +110,7 @@ public class Level implements Comparable<Level> {
         // ArrayList<String> levelList = new LevelList().LEVEL_LIST;
         boolean result = false;
         for (int i = 0; i < 14; i++) {
-            if (test.equals(LEVEL_LIST.get(i))) {
+            if (test.toLowerCase(Locale.ROOT).equals(LEVEL_LIST.get(i))) {
                 result = true;
             }
         }

@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -10,6 +11,8 @@ title: Developer Guide
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,6 +60,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -72,6 +77,8 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Logic component
 
@@ -92,6 +99,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Model component
 
@@ -114,6 +123,7 @@ The `Model`,
 
 </div>
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Storage component
 
@@ -125,9 +135,13 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,6 +210,8 @@ The activity diagram shows the workflow when an add command is executed:
     * Pros: More standardized and easier to track.
     * Cons: Certain fields of a new student may not be known by the user at once.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Edit feature
 
 #### Implementation
@@ -214,7 +230,7 @@ The edit mechanism is facilitated by `EditCommand` and `EditCommandParser`.
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently 1st student in TutorsPet. 
+Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently the 1st student in TutorsPet. 
 Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's subject being added with `edit` command is used.
 </div>
 
@@ -263,7 +279,9 @@ whereas name and phone are compulsory details which must not be blank at any tim
 * **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after their respective prefixes.
     * Pros: User can alter students' information more freely.
     * Cons: User might lose track of important personal details if they accidentally leave the field blank after any prefix.
-  
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Delete feature
 
 #### Implementation
@@ -298,6 +316,7 @@ Step 6. If the delete command has been successfully executed, the success messag
 
 The sequence diagram below shows how the delete feature works:
 ![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
+![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -315,6 +334,8 @@ The activity diagram shows the workflow when a delete command is executed:
 * **Alternative 2:** Provide options to delete specific fields that belong to a Student.
     * Pros: Unnecessary information can be removed easily.
     * Cons: Certain fields such as subjects and lessons can already be cleared easily with the `edit` command.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Detail feature
 
@@ -353,7 +374,7 @@ The sequence diagram below shows how the detail feature works:
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a detail command is executed:
 ![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
 
 #### Design consideration:
@@ -367,7 +388,9 @@ The activity diagram shows the workflow when a delete command is executed:
 * **Alternative 2:** Provide options to display multiple Students objects.
     * Pros: Able to user to multi-task.
     * Cons: GUI space restriction.
-    
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Search feature
 
 #### Implementation
@@ -430,7 +453,9 @@ The activity diagram shows the workflow when a `search` command is executed:
     * Pros: Allows for a more general search which searches through all the contact's details. Easier to implement, less prone to errors.
     * Cons: Less accurate search result due to nature of contact details. 
       For example a student's name and a guardian's name might be the same.
-      
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Sort feature
 
 #### Implementation
@@ -543,6 +568,8 @@ The activity diagram shows the workflow when a levelup command is executed:
     majority.
   * Cons: Seems redundant, cases where a majority of the students do not advance is slim.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Demote levels feature
 
 #### Implementation
@@ -577,12 +604,12 @@ Step 6. If the advancing command has been successfully executed, the success mes
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the levelup feature works:
+The sequence diagram below shows how the leveldown feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a levelup command is executed:
+The activity diagram shows the workflow when a leveldown command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
 
 #### Design consideration:
@@ -597,6 +624,8 @@ The activity diagram shows the workflow when a levelup command is executed:
 * **Alternative 2:** Combine the two commands to have one levelchange command.
   * Pros: Neater code, since the two commands manipulate the same data.
   * Cons: Messy, because the two commands have different purposes.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Add important date feature
 
@@ -641,6 +670,7 @@ Step 6. If the add important date command has been successfully executed, the su
 
 The sequence diagram below shows how the add important date feature works:
 ![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
+![Sequence Diagram for ref CreateAddDateCommand](images/CreateAddDateCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -659,6 +689,8 @@ The activity diagram shows the workflow when an add important date command is ex
 * **Alternative 2:** Important dates with the same description but different details can be added in. 
     * Pros: More convenient for the user as it allows user to input recurring important dates in advance, with the same description.
     * Cons: May cause confusion if date with the same description is added by accident by the user.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Delete important date feature
 
@@ -692,54 +724,81 @@ Step 6. If the delete important date command has been successfully executed, the
 
 #### Sequence Diagram
 
-The sequence diagram below shows how the delete feature works:
+The sequence diagram below shows how the delete important date feature works:
 ![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
 
 #### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a delete important date command is executed:
 ![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: Whether to delete the important date based on the order it has been input in or according to the order the dates are displayed in, which is sorted by details (time and date).
+##### Aspect: 
 
-* **Alternative 1 (current choice):** Deletes important date based on the order it is displayed in. 
-    * Pros: It is easier for the user to find and delete the correct important date by just scrolling through the list. 
-    * Cons: User will have to scroll through the list multiple times to obtain the correct index if user wants to delete multiple important dates that have been added in consecutively.
+* **Alternative 1 (current choice):** 
+    * Pros: 
+    * Cons:  
+  
+* **Alternative 2:** 
+    * Pros: 
+    * Cons: 
+      
 
-* **Alternative 2:** Deletes important date based on the order it was added in.
-    * Pros: User can easily delete dates that have been added in consecutively. 
-    * Cons: The index displayed next to each of the dates in the important dates list must correspond to the sequence it has been added in. 
-      A separate command will have to be implemented in order to show the user the important dates sorted according to details (time and date).
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### List important dates feature
 
 #### Implementation
-The list important dates mechanism is facilitated by `ImportantDatesCommand`.
+The list important dates mechanism is facilitated by `ImportantDatesCommand`, `MainWindow` and `ImportantDatesWindow`.
 
 `ImportantDatesCommand` extends `Command` and implements the following operation:
 
 * `ImportantDatesCommand#execute()` — lists the important dates stored in TutorsPet sorted according to the details (time and date), and returns a new
   `CommandResult` with a success message.
 
+`MainWindow` extends UiPart<Stage> and implements the following relevant operations:
+
+* `MainWindow#executeCommand()` — calls `LogicManager#execute()` to execute user command.
+
+* `MainWindow#handleImportantDates()` — calls `ImportantDatesWindow#show()` to open a new important dates window if it is not opened yet. 
+  Otherwise, call `ImportantDatesWindow#focus()` to focus on the already opened important dates window.
+  
+`ImportantDatesWindow` extends `UiPart<Stage>` and implements the following relevant operations:
+
+* `ImportantDatesWindow#show()` — adds all important dates in TutorsPet to the important dates UI, and opens up
+a new important dates window.
+  
+* `ImportantDatesWindow#focus()` — focuses on already opened important dates window.
+
 
 Given below is an example usage scenario and how the list important dates mechanism behaves at each step.
 
-Step 1. The user executes `list-date` command to view a list of important dates in TutorsPet.
+Step 1. All important dates are stored in an `ObservableList` named `internalList`. There is an additional `ObservableList` named 
+`transformedImportantDates` has the important dates sorted according to the dates' details.
 
-Step 2. The user input is parsed by `AddressBookParser`, which returns a new `ImportantDatesCommand`. 
+Step 2. The user executes `add-date d/math exam dt/2023-04-03 0800` command to add in an important date with details `2023-04-3 0800`. 
+The `add-date` command calls `Model#addImportantDate()` which adds the important date to the `internalList`, and updates `transformedImportantDates`.
 
-Step 3. `LogicManager` then calls `ImportantDatesCommand#execute()`.
+Step 3. The user now executes `list-date` command to open up the important dates window. The command is parsed by `AddressBookParser`, which returns a new `ImportantDatesCommand`.
 
-Step 4. `ImportantDatesCommand#execute()` calls `Model#updateSortedImportantDatesList()` and returns a new `CommandResult`.
+Step 4. `LogicManager` then calls `ImportantDatesCommand#execute()`.
 
-Step 5. If the list important dates command has been successfully executed, the success message will be displayed.
+Step 5. `ImportantDatesCommand#execute()` calls `Model#updateSortedImportantDatesList()` and returns a new `CommandResult` 
+whose `showImportantDates` boolean value is set to `true`.
+
+Step 6. `MainWindow#executeCommand()` then checks the value of `showImportantDates`, and since it is `true`,
+`MainWindow#handleImportantDates()` is called to open the important dates window. `ImportantDatesWindow#show()` is called, which will
+create a `dateListPanel`, containing the `ObservableList` of important dates.
+
+Step 7. If the list important dates command has been successfully executed, the success message will be displayed.
 
 #### Sequence Diagram
 
 The sequence diagram below shows how the list important dates feature works:
 ![Sequence Diagram for List Important Dates Command](images/ListImportantDatesSequenceDiagram.png)
+![Sequence Diagram for ref List Important Dates](images/ListImportantDatesCommandSequenceDiagram.png)
+![Sequence Diagram for ref Execute Important Dates Command](images/ExecuteImportantDatesCommandSequenceDiagram.png)
 
 #### Activity Diagram
 
@@ -748,15 +807,17 @@ The activity diagram shows the workflow when a list important dates command is e
 
 #### Design consideration:
 
-##### Aspect: Whether to display the list according to the sequence the important dates have been added in or sorted according to the details of the important dates.
+##### Aspect: Whether to display the list as a separate window or within the main window. 
 
-* **Alternative 1 (current choice):** Displays the important dates after sorting.
-    * Pros: Users can get an overview of the order in which these dates will be happening. 
-    * Cons: To be added.
+* **Alternative 1 (current choice):** Displays the list as a separate window.
+    * Pros: The main window would not be cluttered with too much information. 
+    * Cons: Users might not like having many windows open.
 
-* **Alternative 2:** Displays the important dates based on the order they have been added in.
-    * Pros: To be added.
-    * Cons: A separate command will have to be implemented in order to show the user the important dates displayed according to time and date.
+* **Alternative 2:** Displays the list within the main window.
+    * Pros: Users do not have to switch between windows when they want to enter commands to modify the important dates in the list.
+    * Cons: Having too much information in the main window might appear to be overwhelming, especially for the new users.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Schedule feature
 
@@ -824,91 +885,7 @@ window continues to display the correct list of lessons for each day.
     For example, when schedule window is opened and user adds or edits a contact, the change will not be reflected 
       real time on the opened schedule window. It is only reflected when the schedule window is closed and reopened.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -939,17 +916,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                              |
 | -------- | ------------------------------------------ | ------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions          | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   |                                   |
-| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering             |                     |
+| `* * *`  | user                                       | add new student's contact       | I can store information on a student                                   |
+| `* * *`  | user                                       | delete a student's contact      | remove entries that I no longer need and reduce cluttering             | 
 | `* * *`  | user                                       | edit a student's contact        | I can update the contact book when a student’s details has changed.    |
 | `* *`    | user                                       | find a student by name          | locate details of students without having to go through the entire list|
 | `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        |
 | `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     |
 | `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes  |
-| `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily
+| `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily        |
 | `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program|
 | `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
 
@@ -965,23 +942,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User keys in the contact to be added
 2.  TutorsPet shows the added contact into the list
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given details is in an incorrect format.
-
-    * 1a1. TutorsPet shows an error message.
-
-      Use case ends.
-
-**Use case: Clears all entries contact**
-
-**MSS**
-
-1.  User enters clears all entries contact command
-2.  TutorsPet clears all the contact in list
 
     Use case ends.
 
@@ -1045,35 +1005,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Exit TutorsPet**
-
-**MSS**
-
-1.  User enters exit into command prompt
-2.  TutorsPet saves the current contact in the list and exits.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given details is in an incorrect format.
-
-    * 1a1. TutorsPet shows an error message.
-
-      Use case resumes at step 2.
-
 **Use case: Search for a student contact**
 
 **MSS**
 
-1.  User enters the student name or specified keyword to be searched.
-2.  TutorsPet shows a list of searched students.
-
-    Use case ends.
+1.  User enters the specified keyword to be searched.
+1.  TutorsPet shows a list of searched students.
 
 **Extensions**
 
-* 1a. The search result list is empty.
+* 1a. The given search command is in an incorrect format.
+  
+  * 1a1. TutorsPet shows an error message. 
+    
+    Use case ends.
+* 1b. The given search command has two of the same parameters.
+  
+  * 2b1. TutorsPet executes the command while taking in the last occurrence of the parameters only. 
+    
+    Use case resumes at step 2.
+* 3a. The search result list is empty.
 
   Use case ends.
 
@@ -1100,7 +1051,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-**Use case: Deletes a new important date**
+**Use case: Deletes an important date**
 
 **MSS**
 
@@ -1140,7 +1091,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
-*{More to be added}*
+**Use case: Display a student contact details**
+
+**MSS**
+
+1.  User requests to list student contacts.
+2.  TutorsPet shows a list of student contacts.
+3.  User requests to display a specific student contact from the list.
+4.  TutorsPet display the specified student contact in the details panel.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+
+* 3a. The given index of the student contact in the list is invalid.
+
+  * 3a1. TutorsPet shows an error message.
+
+    Use case resumes from step 2.
+
+
+**Use case: Opens schedule window**
+
+**MSS**
+
+1.  User requests to open weekly schedule window.
+2.  TutorsPet opens the window schedule.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is in an invalid format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+* 1b. The schedule window is already opened.
+  
+  * 1b1. TutorsPet switches focus to the schedule window. 
+    
+    Use case ends.
+
+**Use case: Clears all entries contact**
+
+**MSS**
+
+1.  User enters clears all entries contact command
+2.  TutorsPet clears all the contact in list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case ends.
+  
+**Use case: Exit TutorsPet**
+
+**MSS**
+
+1.  User enters exit into command prompt
+2.  TutorsPet saves the current contact in the list and exits.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given details is in an incorrect format.
+
+  * 1a1. TutorsPet shows an error message.
+
+    Use case resumes at step 2.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Non-Functional Requirements
 
@@ -1159,12 +1191,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Glossary
 
 * **Private tuition teachers**: Freelance tuition teachers not belonging to any organisations
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Novice**: A user that is new to using TutorsPet
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1194,6 +1230,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -1211,6 +1249,74 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing a student contact details
+
+1. Viewing a student contact details while all students are being shown
+
+  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+  1. Test case: `detail 1`<br>
+     Expected: Details of the first contact from the list is displayed on the Contact Detail panel.
+
+  1. Test case: `detail 0`<br>
+     Expected: No student detail is displayed. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect delete commands to try: `detail`, `detail x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Searching for a student
+
+1. Searching for a student while all students are being shown.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Test case: `search n/yeoh alex t/math`<br>
+      Expected: Displays a list of students with names (case insensitive) `alex yeoh` or `alex` or `yeoh alex` or 
+      students with subject `math`.
+   1. Test case: `search t/math t/phys`<br>
+      Expected: Displays a list of students with subjects `phys`, because only the last occurrence of the parameter will be taken into account.
+   1. Test case: `search n/`<br>
+      Expected: No student is displayed. Error details shown in the status message. Status bar remains the same.
+   1. Other incorrect search commands to try: `search`, `search s/`, `search s/ t/`, `search x` (where x is any keyword)<br>
+      Expected: Similar to previous.
+1. Searching for a student not displayed while a search result is displayed 
+   1. Prerequisites: Search for students using the `search t/math` command. Zero to multiple students with `math` subject displayed in the list.
+   1. Test case: `search t/phys`<br>
+      Expected: Displays a list of students with subject `phy`.
+   1. Test case: `search s/xyz`<br>
+      Expected: Displays a list of students with school names with `xyz` (case insensitive),
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing the Schedule
+
+1. Viewing the schedule while all students are being shown.
+  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+  1. Test case: `schedule`<br>
+     Expected: Opens up the schedule window.
+  1. Test case: `schedulexyz`<br>
+     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
+     Expected: Similar to previous.
+1. Viewing the schedule window while adding or editing student contact.
+  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
+     Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact) 
+     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+1. Viewing the schedule window while schedule window is already opened.
+   1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+   1. Test case: `schedule` <br>
+   1. Expected: Focuses back on the schedule window.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -1218,6 +1324,8 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Adding an important date
 
@@ -1240,6 +1348,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect add important date commands to try: `add-date`, `add-date x`, `...` (where x is the description or details without the `d/` or `dt/` prefix)<br>
        Expected: Similar to previous.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Deleting an important date
 
@@ -1256,6 +1365,8 @@ testers are expected to do more *exploratory* testing.
       1. Other incorrect delete important date commands to try: `delete-date`, `delete x`, `...` (where x is larger than the list size, larger than 2147483647 or not a positive integer)<br>
          Expected: Similar to previous.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Listing all important dates
 
 1. List all important dates.
@@ -1264,3 +1375,5 @@ testers are expected to do more *exploratory* testing.
        Expected: Opens window with a list of important dates. Success details is shown in the status message.
     
     1. Incorrect list important date commands include cases where the command entered is not `list-date`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>

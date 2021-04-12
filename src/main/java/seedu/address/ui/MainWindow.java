@@ -1,6 +1,9 @@
 package seedu.address.ui;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DO_NOT_PROCEED_COMMAND;
+import static seedu.address.ui.CommandBox.DUPLICATE_LESSON;
+import static seedu.address.ui.CommandBox.DUPLICATE_NAME;
+import static seedu.address.ui.CommandBox.DUPLICATE_NAME_AND_LESSON;
 
 import java.util.logging.Logger;
 
@@ -18,6 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.PanelList.PersonListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -257,13 +261,9 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-            if (e.getMessage().startsWith("The student name ")) {
-                commandBox.setWaitForNextInput(true);
-            }
-            if (e.getMessage().startsWith("You have a lesson at ")) {
-                commandBox.setWaitForNextInput(true);
-            }
-            if (e.getMessage().startsWith("This student name ")) {
+            if (e.getMessage().startsWith(DUPLICATE_NAME_AND_LESSON)
+                    || e.getMessage().startsWith(DUPLICATE_NAME)
+                    || e.getMessage().startsWith(DUPLICATE_LESSON)) {
                 commandBox.setWaitForNextInput(true);
             }
             throw e;
