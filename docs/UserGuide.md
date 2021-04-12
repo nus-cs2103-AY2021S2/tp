@@ -68,7 +68,7 @@ to manage tasks which can be identified by their unique list indexes.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HEY MATEz.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample tasks and members.<br>
+1. Double-click the file to start the app. The GUI similar to the picture below should appear in a few seconds. Note how the app contains some sample tasks and members.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -113,7 +113,7 @@ to manage tasks which can be identified by their unique list indexes.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For features which uses the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
+* For features which use the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
 
 * The NAME, NEW_NAME, ASSIGNEE and NEW_ASSIGNEE fields are case-sensitive and format-sensitive across all features which uses it.
   e.g. "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp; Yeoh" are not the same.
@@ -218,7 +218,7 @@ existing member in the application with the name you specify.
 
 Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
 
-* Edits the member at the specified NAME.
+* Edits the member with the specified NAME.
 * At least one of the optional fields must be provided.
 * NEW_NAME and NEW_ROLE fields can take on any values with alphanumeric characters.
 * Existing values will be updated to the input values. 
