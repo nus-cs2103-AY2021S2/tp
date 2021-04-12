@@ -862,8 +862,24 @@ testers are expected to do more *exploratory* testing.
 #### Delete a contact
 
 #### Sort contacts
+1. Sorting contacts while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command. 
+       Multiple contacts in the list.
+    1. Test case: `sort o/name` \
+       Expected: List of contacts get sorted in alphabetical order.
+    1. Test case: `sort o/date` \
+       Expected: List of contacts get sorted in chronological order.
+    1. Test case: `sort` \
+       Expected: List does not get sorted. Error details shown in the status message.
+2. Sorting contacts on a found list
+    1. Prerequisites: Multiple contacts in the list sharing a keyword.
+       Find contacts related to keyword using the `find` command.
+    1. Test case: sort o/name` \
+       Expected: Found list of contacts get sorted in alphabetical order.
+    1. Test case: `sort o/date` \
+       Expected: Found list of contacts get sorted in chronological order.
 
-
+#### Favourite a contact
       
 ### Testing Appointment Book Features
 
