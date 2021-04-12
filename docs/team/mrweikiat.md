@@ -14,14 +14,12 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 *Enhancement 1*
 * It allows the user to classify tasks into 3 different category, `LOW/MEDIUM/HIGH`, with `HIGH` having the most priority
 * Justification : User can view the different priority on the Ui and each priority levels are color coded distinctively from one another
-* Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature.
-* Worked on the following files: `PriorityTag`, `State`, `Tag`, `AddCommandParser`, `EditCommandParser`, `CliSyntax`, `TaskTrackerParser`, `AddCommand`, `EditCommand`, `ArguementMutliMap`, `ParserUtil`, `Prefix`.
+* Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature. Worked on the following files: `PriorityTag`, `State`, `Tag`, `AddCommandParser`, `EditCommandParser`, `CliSyntax`, `TaskTrackerParser`, `AddCommand`, `EditCommand`, `ArguementMutliMap`, `ParserUtil`, `Prefix`.
   
 *Enhancement 2*
 * Sorting the priority tag based on priority levels can help the user view the most prioritised tasks at the top of the task list. 
 * Justification : User can better organise and plan which tasks to do first using the priority levels.
-* Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks.
-* Worked on the PriorityTag files and Sorting files, but are not restricted to: `PriorityTagComparator`, `SortCommand`, `SortCommandParser`.
+* Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks. Worked on the PriorityTag files and Sorting files, but are not restricted to: `PriorityTagComparator`, `SortCommand`, `SortCommandParser`.
 
 *Enhancement 3*
 * Ensure testing can be properly function after every deliverables to identify any possible bugs.
@@ -29,7 +27,7 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Highlights: Worked on the Storage component files, they are mainly but no restricted to: `JsonAdaptedTag`, `JsonAdaptedTask`, `JsonSerializableTaskTracker`, `JsonUserPrefsStorage`, `Storage`, `StoreManager`, `TaskTrackerStorage`, `UserPrefsStorage`.
 
 #### Testing
-* I was the IC for testing component. I have to vet the test cases of my team mates and occasionally edit and configure the test cases to ensure that the test cases are well written. 
+* I was the IC for testing component. I have to vet the test cases of my team mates before every submission.
 * I was in charge of testing for the Storage component. I wrote test cases for storage classes they are: `JsonAdaptedTagTest`, `JsonAdaptedTaskTest`, `JsonSerializableTaskTrackerTest`, `JsonTackTrackerStorageTest`, `JsonUserPrefsStorageTest`, `StorageManagerTest`.
 * I also edit and vetted the data component to ensure that the data under data folder used for testing are up-to-date they are mainly but not restricted to: `data\ConfigUtilTest`, `data\JsonSerializableTaskTrackerTest`, `data\JsonTaskTrackerStorageTest`, `data\sandbox`.
 * I wrote test cases for Model component correctly they are mainly but not restricted to: `PriorityTagTest`, `TagTest`, `SortingFlagTest`
@@ -43,7 +41,7 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * I was in charge of the Storage component where I drew up all the UML diagrams related to storage and edited all the contents of DG: Storage component. 
 * I also helped to standardize the teams's DG formatting and language and I vetted the DG before every submission to ensure quality.
 * Contributed to the DG, they include but are not restricted to:
-    1. Manual Testing component. I wrote every feature for the user who will be using the DG for testings, these includes but are not restricted to: All the feature, commands, test cases and invalid test cases and ensuring a step-by-step guide that user can use as they read through the DG appendix
+    1. Manual Testing component. I wrote every feature for manual testing on the DG.
     1. Appendix: Effort. I wrote all the difficulties, challenges and achievements for the DG. 
 
 #### Contributions to team-based tasks
