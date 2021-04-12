@@ -260,7 +260,7 @@ Clears all student and session data.
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy provides sample data to allow you to try out the application easily. <br>
-Run the <code>clear</code> command to start working with TutorBuddy in a clean slate.
+Run the <code>clear</code> command <b>after</b> you have explored the application and wants to start working with TutorBuddy in a clean slate.
 </div>
 
 Format: `clear`
@@ -309,7 +309,7 @@ Example:
 ![add_student_example](images/enhao/add_student%20-%20edited.png)
 
 <ol start="3">
-    <li>Scrolling down to the end of the student list, you will see that **John Doe** has been added to TutorBuddy.</li>
+    <li>Scrolling down to the end of the student list, you will see that <b>John Doe</b> has been added to TutorBuddy.</li>
 </ol>
 
 ![add_student_result_example](images/enhao/add_student_result%20-%20edited.png)
@@ -351,7 +351,9 @@ Example 2:
 
 ![find_student_example](images/enhao/find_student%20-%20edited.png)
 
-3. The student and session list will be filtered and only contains students and sessions of students whose name contains the keywords specified.
+<ol start="3">
+    <li>The student and session list will be filtered and only contains students and sessions of students whose name contains the keywords specified.</li>
+</ol>
 
 ![find_student_result_example](images/enhao/find_student_result%20-%20edited.png)
 
@@ -369,7 +371,9 @@ Example:
 
 ![edit_student_example](images/enhao/edit_student%20-%20edited.png)
 
-3. The edited student information will be reflected in the student list.
+<ol start="3">
+    <li>The edited student information will be reflected in the student list.</li>
+</ol>
 
 ![edit_student_result_example](images/enhao/edit_student_result%20-%20edited.png)
 
@@ -393,7 +397,9 @@ Example:
 
 ![delete_student_example](images/enhao/delete_student%20-%20edited.png)
 
-3. The 2nd student in the list (**Bernice Yu**) and her associated sessions will be deleted.
+<ol start="3">
+    <li>The 2nd student in the list (<b>Bernice Yu</b>) and her associated sessions will be deleted.</li>
+</ol>
 
 ![delete_student_result_example](images/enhao/delete_student_result%20-%20edited.png)
 
@@ -418,11 +424,15 @@ Example:
 
 ![emails_example](images/enhao/email%20-%20edited.png)
 
-3. The concatenated text of all the students' emails will be displayed.
+<ol start="3">
+    <li>The concatenated text of all the students' emails will be displayed.</li>
+</ol>
 
 ![emails_result_example](images/enhao/email_result%20-%20edited.png)
 
-4. The user can copy the values in the result display box to the "To" field of any email client that they have (E.g. Gmail).
+<ol start="4">
+    <li>The user can copy the values in the result display box to the "To" field of any email client that they have (E.g. Gmail).</li>
+</ol>
 
 ![emails_client_example](images/enhao/email_client-edited.png)
 
@@ -540,7 +550,9 @@ Example:
 
 ![fee_example](images/enhao/fee%20-%20Edited.PNG)
 
-3. The result display box displays John Doe's monthly fee for March 2021.
+<ol start="3">
+    <li>The result display box displays John Doe's monthly fee for March 2021.</li>
+</ol>
 
 ![fee_result_example](images/enhao/fee_result%20-%20Edited.PNG)
 
