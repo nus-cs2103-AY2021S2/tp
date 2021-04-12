@@ -566,15 +566,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `ParentPal` and the **Actor** is the `user`, unless specified otherwise)
+For our product, we have two different entities `Contact` and `Appointment`. Across the two entities,
+some implementations are rather similar.
+Therefore, for those implementations, we will use `ENTITY` to generalise the different entities and then provide use
+cases for the general entity. If any of the features have a different implementation, we will provide the alternative use case below.
 
-**UC1: Edit a contact**
+
+**UC1: Edit a `ENTITY`**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  ParentPal shows a list of contacts
-3.  User requests to edit a specific contact's detail in the list
-4.  ParentPal edits the contact's details accordingly
+1.  User requests for a list of `ENTITY`
+2.  ParentPal shows a list of `ENTITY`
+3.  User requests to edit a specific `ENTITY` details in the list
+4.  ParentPal edits the `ENTITY` details accordingly
 
     Use case ends.
 
@@ -591,14 +596,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
     
-**UC2: Delete a contact**
+**UC2: Delete a `ENTITY`**
 
 **MSS**
 
-1.  User requests to list contacts
-2.  ParentPal shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  ParentPal deletes the contact
+1.  User requests for a list of `ENTITY`
+2.  ParentPal shows a list of `ENTITY`
+3.  User requests to delete a specific `ENTITY` in the list
+4.  ParentPal deletes the `ENTITY`
 
     Use case ends.
 
@@ -640,6 +645,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3b. The given tag name already exists for that contact.
 
   Use case ends.
+
+**UC4: Find an Existing `ENTITY` from the respective list**
+
+**MSS**
+
+1. User requests to find a `ENTITY`.
+2. ParentPal shows the `ENTITY` details that match the attributes that the user has keyed in.  
+   Use case ends
+
+**Extensions**
+
+* 1a. User enters an invalid input.
+    * 1a1. ParentPal shows an error message.  
+      Use case ends.
 
 *{More to be added}*
 
