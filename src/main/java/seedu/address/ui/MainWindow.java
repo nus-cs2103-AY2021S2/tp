@@ -230,12 +230,12 @@ public class MainWindow extends UiPart<Stage> {
             || commandText.contains("e/");
         boolean isEvents = commandText.contains("g/") || commandText.contains("on/");
 
-        if (isPersons) {
-            displayPanel.showContacts();
+        if (isEvents) {
+            displayPanel.showEvents();
         } else if (isModules) {
             displayPanel.showModules();
-        } else if (isEvents) {
-            displayPanel.showEvents();
+        } else if (isPersons) {
+            displayPanel.showContacts();
         } else {
             logger.info("No switching of tabs");
         }
