@@ -10,16 +10,16 @@ public abstract class AliasCommand extends Command {
     public static final String DELETE_SUB_COMMAND_WORD = "delete";
     public static final String LIST_SUB_COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add or delete a command alias to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add, delete or list command alias(es) in the address book.\n"
             + "Parameters: "
-            + "SUB_COMMAND [PARAMETERS]\n"
+            + "{ add | delete | list } [ALIAS] [COMMAND]\n"
             + "Sub Commands: "
-            + ADD_SUB_COMMAND_WORD + " ALIAS_NAME COMMAND_WORD, "
-            + DELETE_SUB_COMMAND_WORD + " ALIAS_NAME, "
+            + ADD_SUB_COMMAND_WORD + " ALIAS COMMAND, "
+            + DELETE_SUB_COMMAND_WORD + " ALIAS, "
             + LIST_SUB_COMMAND_WORD + "\n"
-            + "Example: "
-            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD + ", "
-            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " l, "
+            + "Examples:\n"
+            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD + "\n"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " ls\n"
             + COMMAND_WORD + " " + LIST_SUB_COMMAND_WORD;
 
 }

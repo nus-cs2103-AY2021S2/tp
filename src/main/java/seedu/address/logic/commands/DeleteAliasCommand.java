@@ -12,9 +12,11 @@ import seedu.address.model.alias.CommandAlias;
  */
 public class DeleteAliasCommand extends AliasCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a command alias in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a command alias in the address book.\n"
             + "Parameters: " + DELETE_SUB_COMMAND_WORD + " ALIAS\n"
-            + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " ls ";
+            + "Examples:\n"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " ls\n"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " d";
 
     public static final String MESSAGE_SUCCESS = "Deleted command alias added: %1$s";
     public static final String MESSAGE_ALIAS_NOT_FOUND = "This alias does not exist in the address book";
