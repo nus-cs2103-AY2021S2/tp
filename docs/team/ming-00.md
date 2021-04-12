@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 * **Project management**:
 
 * **Enhancements to existing features**:
-    * Wrote additional tests for existing features to increase coverage from Venue, Parser, Tag and Storage class
+    * Wrote additional tests for existing features to increase coverage from Venue, Parser, Tag, Booking and Storage class
     * Managed storage function for Venue class
     * Managed modifications to implement tag class to better suit BookCoin's purposes
 

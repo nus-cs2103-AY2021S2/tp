@@ -5,8 +5,8 @@ package seedu.booking.commons.core;
  */
 public class Messages {
     // Person related messages
-    public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_EMAIL = "This email address has been "
-            + "registered in system. Please provide another email address.\n";
+    public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_EMAIL = "This email address has already been "
+            + "registered in the system. Please provide another email address.\n";
     public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_PHONE = "This number has been registered in system. "
             + "Please provide another number.\n";
     public static final String PROMPT_PHONE_MESSAGE = "Please enter the phone number of the booker.\n";
