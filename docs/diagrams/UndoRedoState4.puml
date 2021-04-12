@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "list"
+title After command "listreader"
 
 package States <<rectangle>> {
     class State1 as "__sl0:SmartLib__"

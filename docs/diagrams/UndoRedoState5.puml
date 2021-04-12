@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "clear"
+title After command "clear-everything-in-my-smartlib"
 
 package States <<rectangle>> {
     class State1 as "__sl0:SmartLib__"
