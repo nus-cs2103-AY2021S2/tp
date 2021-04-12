@@ -13,7 +13,7 @@ public class EmailFilter extends Filter {
     /**
      * Creates a constructor for EmailFilter using a filter string.
      *
-     * @param filterString - the string against which to parse
+     * @param filterString the string against which to parse
      */
     public EmailFilter(String filterString) {
         super(filterString.trim());
@@ -24,8 +24,8 @@ public class EmailFilter extends Filter {
      * This function checks whether the {@code Email} field contains the {@code filterString}, given in the constructor
      * while creating this object, as a substring.
      *
-     * @param customer - the customer to test for
-     * @return - whether the email contains the filterString
+     * @param customer the customer to test for
+     * @return whether the email contains the filterString
      */
     @Override
     public boolean test(Customer customer) {

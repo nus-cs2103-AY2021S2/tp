@@ -11,7 +11,7 @@ public class CarsOwnedFilter extends CarFilter {
     /**
      * Creates a filter for CarsOwned.
      *
-     * @param filterString
+     * @param filterString the filter against which to match
      */
     public CarsOwnedFilter(String filterString) {
         super(filterString.trim());
@@ -21,8 +21,8 @@ public class CarsOwnedFilter extends CarFilter {
     /**
      * Tests each car in CarsOwned, with the specified filters.
      *
-     * @param customer
-     * @return
+     * @param customer the customer to be tested with the filter
+     * @return true if the customer passes the filter, false otherwise
      */
     @Override
     public boolean test(Customer customer) {

@@ -12,8 +12,8 @@ import seedu.address.model.customer.Customer;
  */
 public class TagFilter extends Filter {
     /**
-     * Constuctor to create the filter from a given filter string.
-     * @param filterString - the filter string against which to test
+     * Constructor to create the filter from a given filter string.
+     * @param filterString the filter string against which to test
      */
     public TagFilter(String filterString) {
         super(filterString.trim());
@@ -24,8 +24,8 @@ public class TagFilter extends Filter {
      * Tests whether the given {@code Customer} has at least one tag which contains at least one of the tag keywords
      * given in the filter string provided to this object at creation time.
      *
-     * @param customer - the {@code Customer} object whose tags we have to match
-     * @return - whether the {@code Customer} object matches the tags requirements
+     * @param customer the {@code Customer} object whose tags we have to match
+     * @return whether the {@code Customer} object matches the tags requirements
      */
     @Override
     public boolean test(Customer customer) {

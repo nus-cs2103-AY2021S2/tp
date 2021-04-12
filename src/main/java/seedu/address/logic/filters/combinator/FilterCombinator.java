@@ -28,7 +28,7 @@ public class FilterCombinator implements Predicate<Customer> {
      * the expression is not handled at this point, and is handled only when testing a {@code Customer}
      * // TODO
      *
-     * @param argument - the filter expression
+     * @param argument the filter expression
      */
     public FilterCombinator(String argument) {
         Objects.requireNonNull(argument);
@@ -45,7 +45,7 @@ public class FilterCombinator implements Predicate<Customer> {
 
     /**
      * Checks whether it is a valid combinator tree.
-     * @return - true if the expression actually results in a tree, false otherwise.
+     * @return true if the expression actually results in a tree, false otherwise.
      */
     public boolean isValidCombinator() {
         return rootNode != null;
@@ -53,9 +53,9 @@ public class FilterCombinator implements Predicate<Customer> {
 
     /**
      * Gets the logical operator corresponding to the prefix in {@code CLISyntax}.
-     * @param prefix - the logical operator prefix
-     * @return - the corresponding logical operator
-     * @throws IllegalArgumentException - if the prefix string doesn't match any logical operator prefix as defined
+     * @param prefix the logical operator prefix
+     * @return the corresponding logical operator
+     * @throws IllegalArgumentException if the prefix string doesn't match any logical operator prefix as defined
      * in the {@code CLISyntax} class.
      */
     private LogicalOperator getCorrespondingLogicalOperator(Prefix prefix) {

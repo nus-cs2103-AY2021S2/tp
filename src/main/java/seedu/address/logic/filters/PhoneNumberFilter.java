@@ -13,7 +13,7 @@ public class PhoneNumberFilter extends Filter {
     /**
      * Takes in a string which represents the filter string for this object.
      *
-     * @param filterString - the filter string using which to filter
+     * @param filterString the filter string using which to filter
      */
     public PhoneNumberFilter(String filterString) {
         super(filterString.trim());
@@ -27,8 +27,8 @@ public class PhoneNumberFilter extends Filter {
      * Tests whether the given filterString used to create this object is contained inside the {@code PhoneNumber} of
      * the {@code Customer}.
      *
-     * @param customer - the {@code Customer} object to test
-     * @return - whether the customer passes the filter.
+     * @param customer the {@code Customer} object to test
+     * @return whether the customer passes the filter.
      */
     @Override
     public boolean test(Customer customer) {

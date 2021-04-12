@@ -11,7 +11,7 @@ public abstract class CarFilter extends Filter {
     /**
      * Creates a filter for Cars
      *
-     * @param filterString
+     * @param filterString the filter to match the {@code Customer}
      */
     public CarFilter(String filterString) {
         super(filterString.trim());
@@ -21,7 +21,7 @@ public abstract class CarFilter extends Filter {
     /**
      * Parses filter command for c/, cp/ prefixes.
      *
-     * @param car
+     * @param car the car object to parse
      * @return
      */
     public static Car parseCar(String car) {
@@ -43,7 +43,7 @@ public abstract class CarFilter extends Filter {
      *
      * @param car       Car member from carsOwned or carsPreferred.
      * @param filterCar Specified Car to filter by.
-     * @return
+     * @return whether the car satisfies the filter string
      */
     public boolean carFilterPredicate(Car car, String filterCar) {
         filterCar = filterCar.trim();

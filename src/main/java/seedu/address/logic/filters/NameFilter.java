@@ -25,7 +25,7 @@ public class NameFilter extends Filter {
     /**
      * Creates a filter that filters by {@code Name}, with tolerances for mis-spelling.
      *
-     * @param nameListSingleString - String with names to search, separated by spaces.
+     * @param nameListSingleString String with names to search, separated by spaces.
      */
     public NameFilter(String nameListSingleString) {
         super(nameListSingleString);
@@ -37,8 +37,8 @@ public class NameFilter extends Filter {
     /**
      * Checks whether the filter string given is of the acceptable form for a name filter.
      *
-     * @param filterString - the filter string whose validity is to be checked
-     * @return - whether the filter string is valid
+     * @param filterString the filter string whose validity is to be checked
+     * @return whether the filter string is valid
      */
     public static boolean isValidFilter(String filterString) {
         return filterString.matches(VALIDATION_REGEX);
@@ -48,9 +48,9 @@ public class NameFilter extends Filter {
      * Checks whether the second string is a subsequence of the first string. Here the first string represents the given
      * customer name whereas the second string corresponds to the given filter name.
      *
-     * @param customerName  - the actual customer name
-     * @param potentialName - the filter string against which to check whether the customer name matches
-     * @return - whether there is a match
+     * @param customerName the actual customer name
+     * @param potentialName the filter string against which to check whether the customer name matches
+     * @return whether there is a match
      */
     private boolean isSubsequence(String customerName, String potentialName) {
         int customerPointer = 0;
@@ -75,8 +75,8 @@ public class NameFilter extends Filter {
      * {@inheritDoc} Checks whether any of the given names in the filterString matches the {@code Customer} name for the
      * particular {@code Customer} being tested.
      *
-     * @param customer - the customer should to be tested
-     * @return - whether there is a match
+     * @param customer the customer should to be tested
+     * @return whether there is a match
      */
     @Override
     public boolean test(Customer customer) {

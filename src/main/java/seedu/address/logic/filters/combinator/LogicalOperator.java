@@ -21,7 +21,7 @@ public enum LogicalOperator {
     /**
      * Checks if the operator is binary.
      *
-     * @return - true if its a binary operator, false otherwise
+     * @return true if its a binary operator, false otherwise
      */
     public boolean isBinaryOperator() {
         return isBinaryOperator;
@@ -30,7 +30,7 @@ public enum LogicalOperator {
     /**
      * Checks if the operator is unary.
      *
-     * @return - true if its a unary operator, false otherwise
+     * @return true if its a unary operator, false otherwise
      */
     public boolean isUnaryOperator() {
         return !isBinaryOperator;
@@ -39,10 +39,10 @@ public enum LogicalOperator {
     /**
      * Applies the given operator to a pair of operands. Note that the operator must be of binary type.
      *
-     * @param b1 - the first operand
-     * @param b2 - the second operand
-     * @return - the result of the operator acting on the two operands
-     * @throws IllegalArgumentException - if this is called on an Unary Operator
+     * @param b1 the first operand
+     * @param b2 the second operand
+     * @return the result of the operator acting on the two operands
+     * @throws IllegalArgumentException if this is called on an Unary Operator
      */
     public boolean apply(boolean b1, boolean b2) {
         if (isUnaryOperator()) {
@@ -55,9 +55,9 @@ public enum LogicalOperator {
     /**
      * Applies the given operator to a pair of operands. Note that the operator must be of unary type.
      *
-     * @param b1 - the operand
-     * @return - the result of the operator acting on the operand
-     * @throws IllegalArgumentException - if this is called on an binary Operator
+     * @param b1 the operand
+     * @return the result of the operator acting on the operand
+     * @throws IllegalArgumentException if this is called on an binary Operator
      */
     public boolean apply(boolean b1) {
         if (isBinaryOperator) {

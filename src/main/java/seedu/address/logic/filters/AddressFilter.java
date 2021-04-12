@@ -9,16 +9,22 @@ import seedu.address.model.customer.Customer;
  * given filter string is contained inside the address.
  */
 public class AddressFilter extends Filter {
+
+    /**
+     * Creates a address filter based on a filter string
+     * @param filterString the given filter string against which to match customers
+     */
     public AddressFilter(String filterString) {
         super(filterString.trim());
+        Objects.requireNonNull(filterString);
     }
 
     /**
      * This function checks whether the {@code Address} field contains the {@code filterString}, given in the
      * constructor while creating this object, as a substring.
      *
-     * @param customer - the customer to test for
-     * @return - whether the address contains the filterString
+     * @param customer the customer to test for
+     * @return whether the address contains the filterString
      */
     @Override
     public boolean test(Customer customer) {

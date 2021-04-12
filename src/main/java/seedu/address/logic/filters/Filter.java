@@ -16,7 +16,7 @@ public abstract class Filter implements Predicate<Customer> {
      * Creates a new {@code Filter} using the given filter string, which will be used to test a given {@code Customer }
      * based on specific criteria in the subclasses.
      *
-     * @param filterString
+     * @param filterString the filter string on which the customer will be matched
      */
     public Filter(String filterString) {
         Objects.requireNonNull(filterString);

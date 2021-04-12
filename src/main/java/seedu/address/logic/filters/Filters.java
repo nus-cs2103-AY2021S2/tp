@@ -24,9 +24,9 @@ public class Filters {
      * This method parses the given string, and checks which filter it corresponds to, and returns that. However, in
      * case there are no filters matching, or more than one token, this throws an exception.
      *
-     * @param info - the given input string
-     * @return - the corresponding filter created after parsing the input string
-     * @throws IllegalArgumentException - If either there are more than one prefixes or its an unknown prefix
+     * @param info the given input string
+     * @return the corresponding filter created after parsing the input string
+     * @throws IllegalArgumentException If either there are more than one prefixes or its an unknown prefix
      */
     public static Filter getCorrespondingFilter(String info) {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(" " + info + " ", PREFIX_NAME,
