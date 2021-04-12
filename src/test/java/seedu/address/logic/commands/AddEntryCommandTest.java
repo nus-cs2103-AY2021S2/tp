@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.CLASS_MEETING;
-import static seedu.address.testutil.TypicalEntries.CONSULTATION;
-import static seedu.address.testutil.TypicalEntries.EXTRA_CLASS;
+import static seedu.address.testutil.TypicalTeachingAssistant.CLASS_MEETING;
+import static seedu.address.testutil.TypicalTeachingAssistant.CONSULTATION;
+import static seedu.address.testutil.TypicalTeachingAssistant.EXTRA_CLASS;
 import static seedu.address.testutil.TypicalTeachingAssistant.getEmptyTypicalTeachingAssistant;
 import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
