@@ -509,8 +509,8 @@
     "maincontent": "Most applications use a mix of these architectural styles.\n\n"
   },{
     "title": "Design",
-    "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
-    "maincontent": "The client-server style has at least one component playing the role of a server and at least one client component accessing the services of the server. This is an architectural style used often in distributed applications.\n\n"
+    "header" : "Software Design Patterns - Introduction - What",
+    "maincontent": "Design pattern: An elegant reusable solution to a commonly recurring problem within a given context in software design.\n\nIn software development, there are certain problems that recur in a certain context.\n\nAfter repeated attempts at solving such problems, better solutions are discovered and refined over time. These solutions are known as design patterns, a term popularized by the seminal book Design Patterns: Elements of Reusable Object-Oriented Software by the so-called \"Gang of Four\" (GoF) written by Eric Gamma, Richard Helm, Ralph Johnson, and John Vlissides.\n\n"
   },{
     "title": "Design",
     "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
