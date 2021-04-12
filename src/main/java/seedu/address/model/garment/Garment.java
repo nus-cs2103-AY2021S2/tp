@@ -109,7 +109,7 @@ public class Garment {
         SAMPLES.put("red", new HashMap<>());
         SAMPLES.get("red").put("upper", "images/redSamples/upper.png");
         SAMPLES.get("red").put("lower", "images/redSamples/lower.png");
-        SAMPLES.get("red").put("upper", "images/redSamples/footwear.png");
+        SAMPLES.get("red").put("footwear", "images/redSamples/footwear.png");
         SAMPLES.put("orange", new HashMap<>());
         SAMPLES.get("orange").put("upper", "images/orangeSamples/upper.png");
         SAMPLES.get("orange").put("lower", "images/orangeSamples/lower.png");
@@ -154,6 +154,11 @@ public class Garment {
         SAMPLES.get("beige").put("upper", "images/beigeSamples/upper.png");
         SAMPLES.get("beige").put("lower", "images/beigeSamples/lower.png");
         SAMPLES.get("beige").put("footwear", "images/beigeSamples/footwear.png");
+        //Dresscode
+        SAMPLES.put("DressCode", new HashMap<>());
+        SAMPLES.get("DressCode").put("formal", "images/DressCode/formal3.png");
+        SAMPLES.get("DressCode").put("casual", "images/DressCode/casual3.png");
+        SAMPLES.get("DressCode").put("active", "images/DressCode/active3.png");
     }
 
     /**

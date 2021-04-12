@@ -1,0 +1,85 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WardrobeParser" as WardrobeParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant ":AttributesContainsKeywordsPredicate" as AttributesContainsKeywordsPredicate LOGIC_COLOR
+participant "fc:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find n/Shirt shorts s/23 22 c/blue")
+activate LogicManager
+
+LogicManager -> WardrobeParser : parseCommand("find n/Shirt shorts s/23 22 c/blue")
+activate WardrobeParser
+
+create FindCommandParser
+WardrobeParser -> FindCommandParser : FindCommandParser("find n/Shirt shorts s/23 22 c/blue")
+activate FindCommandParser
+
+FindCommandParser --> WardrobeParser
+deactivate FindCommandParser
+
+WardrobeParser -> FindCommandParser : parse("n/Shirt shorts s/23 22 c/blue")
+activate FindCommandParser
+
+FindCommandParser -> ArgumentTokenizer : tokenize(args, ALL_PREFIXES)
+activate ArgumentTokenizer
+
+ArgumentTokenizer -> FindCommandParser : argMultiMap
+deactivate ArgumentTokenizer
+
+create AttributesContainsKeywordsPredicate
+FindCommandParser -> AttributesContainsKeywordsPredicate : AttributesContainsKeywordsPredicate(predicates)
+activate AttributesContainsKeywordsPredicate
+
+AttributesContainsKeywordsPredicate -> FindCommandParser : predicates
+deactivate AttributesContainsKeywordsPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(predicates)
+activate FindCommand
+
+FindCommand --> FindCommandParser : fc
+deactivate FindCommand
+
+FindCommandParser --> WardrobeParser : fc
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> WardrobeParser
+destroy FindCommandParser
+
+WardrobeParser --> LogicManager : fc
+deactivate WardrobeParser
+
+LogicManager -> FindCommand : execute(model)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredGarmentList(predicates)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

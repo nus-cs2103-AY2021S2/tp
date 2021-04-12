@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":WardrobeParser" as WardrobeParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,39 +16,39 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> WardrobeParser : parseCommand("delete 1")
+activate WardrobeParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+WardrobeParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> WardrobeParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+WardrobeParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandParser -> DeleteCommand : DeleteCommand(1)
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> WardrobeParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> WardrobeParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+WardrobeParser --> LogicManager : d
+deactivate WardrobeParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteGarment(garmentToDelete)
 activate Model
 
 Model --> DeleteCommand

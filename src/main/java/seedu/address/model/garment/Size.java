@@ -11,8 +11,7 @@ public class Size {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Size numbers should only contain numbers";
-    public static final String VALIDATION_REGEX = "\\d+";
+            "Size numbers should only contain numbers that are greater than 0 and less than 200";
     public final String value;
 
     /**
@@ -23,14 +22,19 @@ public class Size {
     public Size(String size) {
         requireNonNull(size);
         checkArgument(isValidSize(size), MESSAGE_CONSTRAINTS);
-        value = size;
+        value = String.valueOf(Integer.parseInt(size));
     }
 
     /**
      * Returns true if a given string is a valid size.
      */
     public static boolean isValidSize(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            int size = Integer.parseInt(test);
+            return size > 0 && size <= 200;
+        } catch (NumberFormatException numberFormatException) {
+            return false;
+        }
     }
 
     @Override

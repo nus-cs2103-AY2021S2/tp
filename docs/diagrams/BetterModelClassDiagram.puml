@@ -4,18 +4,20 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+Wardrobe *-right-> "1" UniqueGarmentList
+Wardrobe *-right-> "1" UniqueDescriptionList
+UniqueDescriptionList -[hidden]down- UniqueGarmentList
+UniqueDescriptionList -[hidden]down- UniqueGarmentList
 
-UniqueTagList *-right-> "*" Tag
-UniquePersonList o-right-> Person
+UniqueDescriptionList *-right-> "*" Description
+UniqueGarmentList o-right-> Garment
 
-Person -up-> "*" Tag
+Garment -up-> "*" Description
 
-Person *--> Name
-Person *--> Size
-Person *--> Colour
-Person *--> DressCode
+Garment *--> Name
+Garment *--> Size
+Garment *--> Colour
+Garment *--> DressCode
+Garment *--> Type
+Garment *--> LastUse
 @enduml

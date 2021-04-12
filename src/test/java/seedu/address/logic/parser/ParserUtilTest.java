@@ -22,7 +22,7 @@ import seedu.address.model.garment.Size;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_SIZE = "+65";
+    private static final String INVALID_SIZE = "-65";
     private static final String INVALID_DRESSCODE = " ";
     private static final String INVALID_COLOUR = " ";
     private static final String INVALID_DESCRIPTION = "#friend";

@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyWardrobe <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Wardrobe
+Class ReadOnlyWardrobe
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -21,31 +21,35 @@ Class DressCode
 Class Colour
 Class Name
 Class Size
+Class Type
+Class LastUse
 Class UniqueGarmentList
 }
 
-Package Tag {
-Class Tag
+Package Description {
+Class Description
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Wardrobe .up.|> ReadOnlyWardrobe
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Wardrobe
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueGarmentList
+Wardrobe *--> "1" UniqueGarmentList
 UniqueGarmentList o--> "*" Garment
 Garment *--> Name
 Garment *--> Size
 Garment *--> Colour
 Garment *--> DressCode
+Garment *--> Type
+Garment *--> LastUse
 Garment *--> "*" Description
 
 Name -[hidden]right-> Size

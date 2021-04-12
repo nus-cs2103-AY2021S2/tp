@@ -37,15 +37,14 @@ public class GarmentCard extends UiPart<Region> {
     @FXML
     private Label size;
     @FXML
-    private Label dresscode;
-    @FXML
     private Label lastused;
     @FXML
     private FlowPane descriptions;
     @FXML
-    private Label sampleColour;
+    private Label sampleImage;
     @FXML
-    private Label type;
+    private Label dressCodeImage;
+
 
     /**
      * Creates a {@code GarmentCode} with the given {@code Garment} and index to display.
@@ -53,23 +52,30 @@ public class GarmentCard extends UiPart<Region> {
     public GarmentCard(Garment garment, int displayedIndex) {
         super(FXML);
         this.garment = garment;
-        String sample = Garment.SAMPLES.get(garment.getColour().colour).get(garment.getType().value);
+        String colourSample = Garment.SAMPLES.get(garment.getColour().colour).get(garment.getType().value);
+        String DressCodeSample = Garment.SAMPLES.get("DressCode").get(garment.getDressCode().value);
 
         id.setText(displayedIndex + ". ");
         name.setText(garment.getName().fullName);
         size.setText("Size: " + garment.getSize().value);
-        dresscode.setText("DressCode: " + garment.getDressCode().value);
+        //dresscode.setText("DressCode: " + garment.getDressCode().value);
         lastused.setText("Last used: " + garment.getLastUse().value);
         garment.getDescriptions().stream()
                 .sorted(Comparator.comparing(description -> description.descriptionName))
                 .forEach(description -> descriptions.getChildren()
-                        .add(new Label("<" + description.descriptionName + ">")));
+                        .add(new Label(description.descriptionName)));
 
-        Image image = new Image(sample);
-        ImageView colourView = new ImageView(image);
-        colourView.setFitHeight(80);
-        colourView.setPreserveRatio(true);
-        sampleColour.setGraphic(colourView);
+        Image image = new Image(colourSample);
+        ImageView sampleView = new ImageView(image);
+        sampleView.setFitHeight(80);
+        sampleView.setPreserveRatio(true);
+        sampleImage.setGraphic(sampleView);
+        Image dcImage = new Image(DressCodeSample);
+        ImageView dressCodeSampleView = new ImageView(dcImage);
+        dressCodeSampleView.setFitHeight(80);
+        dressCodeSampleView.setPreserveRatio(true);
+        dressCodeImage.setGraphic(dressCodeSampleView);
+        descriptions.setMaxWidth(1);
     }
 
     @Override
