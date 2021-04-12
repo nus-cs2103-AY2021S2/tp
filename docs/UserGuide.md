@@ -111,7 +111,7 @@ to manage tasks which can be identified by their unique list indexes.
 * Parameters with prefixes can be in any order.<br>
   e.g. if the command specifies `e/EMAIL p/PHONE_NUMBER`, `p/PHONE_NUMBER e/EMAIL` is also acceptable.
   
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter with a prefix is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98562545 p/88885555`, only `p/88885555` will be taken.
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
