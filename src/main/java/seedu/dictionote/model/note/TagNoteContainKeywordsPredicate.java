@@ -9,7 +9,9 @@ import java.util.function.Predicate;
 public class TagNoteContainKeywordsPredicate implements Predicate<Note> {
     private final List<String> keywords;
 
-    //Todo
+    /**
+     * Constructor for TagNoteContainsKeywordPredicate
+     */
     public TagNoteContainKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
