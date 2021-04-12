@@ -87,16 +87,22 @@ This feature allows tutees to maintain and keep track of the list of tuition tut
     * Subject Education Level
     * Subject Years of Experience
     * Subject Qualifications
-* Note
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
 
 * Minimum length for name is 1 character, maximum is 50 characters.
 * Minimum length for phone number is 8 digit, maximum 15 digits.
 * Minimum length for address is 1 character, maximum is 200 characters.
 * Minimum length for subject name is 1 character, maximum 20 characters.
 * Minimum length for subject hourly rate is 1 digit, and maximum is 5 digits.
-* Minimum length for subject education level is 4 characters, and maximum is 20 characters. 
+* Minimum length for subject education level is 4 characters, and maximum is 20 characters.
 * Minimum length for subject years of experience is 1 digit and maximum is 2 digits.
 * Minimum length for subject qualification is 4 characters, and maximum is 20 characters.
+
+</div>
+
 
 #### Add a new tutor: `add_tutor`
 
@@ -348,8 +354,8 @@ Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCAT
 * Refer to [Appointment Tracker Section](#appointment-tracker) for other date related constraints.
 
 Examples:<br>
-* `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
-* `add_appointment n/Alex Yeoh s/English d/2021-04-20 fr/2:00 PM to/4:00 PM l/Bedok`
+* `add_appointment n/Bernice Yu s/English d/2021-05-01 fr/10:00 AM to/12:00 PM l/Bedok`
+* `add_appointment n/Alex Yeoh s/Mathematics d/2021-05-20 fr/2:00 PM to/4:00 PM l/Bedok`
 
 #### List tuition appointments: `list_appointments`
 
@@ -1080,13 +1086,13 @@ Action | Format | Examples
 **Favourite a tutor** | `favourite INDEX`, | `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX` | `unfavourite 1`
 **List favourites** | `list_favourites` | `list_favourites`
-**Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
+**Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `aadd_appointment n/Bernice Yu s/English d/2021-05-01 fr/10:00 AM to/12:00 PM l/Bedok`
 **List tuition appointments** | `list_appointments` | `list_appointments`
 **View tuition appointments** | `view_appointment DATE` | `view_appointment 2021-03-24`
 **Find tuition appointments** | `find_appointment NAME...` | `find_appointment Alex Yeoh`
 **Delete a tuition appointment** | `delete_appointment INDEX` | `delete_appointment 1`
 **Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` | `edit_appointment 1 s/English l/Clementi`
-**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` | `add_schedule n/Science Tuition Homework d/2021-03-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` | `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
 **List schedules** | `list_schedules` | `list_schedules`
 **View schedules** | `view_schedule DATE` | `view_schedule 2021-03-24`
 **Delete a schedule** | `delete_schedule INDEX` | `delete_schedule 1`
@@ -1101,7 +1107,7 @@ Action | Format | Examples
 **Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_LETTER]`, | `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
 **List grades** | `list_grades` | `list_grades`
-**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
+**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-5-2`
 **List reminders** | `list_reminders` | `list_reminders`
 **Delete a reminder** | `delete_reminder INDEX` | `delete_reminder 1`
 **Edit a reminder** | `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]` | `edit_reminder 1 ds/Science Tuition Payment Due`
