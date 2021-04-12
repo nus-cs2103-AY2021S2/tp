@@ -501,11 +501,11 @@ autocompletion.
 | `edit 3`                       | `edit 3 -n` |
 | `edit 3 -n John Doe -p 94326543`                       | `edit 3 -n John Doe -p 94326543 -e ` |
 
-## Alias : `alias`
+## Aliasing commands : `alias`
 
-Alias creates shortcut command of the actual command.
+The alias command allows you to create shortcut command (also known as command alias) to the actual command.
 
-### Add Alias: `alias add`
+### Add an alias: `alias add`
 
 Adds an alias to address book.
 
@@ -515,11 +515,11 @@ Adds an alias to address book.
 
 | Example                             | Description                                                                                                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `alias add ls list`                 | Associates a new `ls` command to list, such that the ls command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
-| `alias add ls list -n  -p  -e  -t ` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
+| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
+| `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
 | `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e f Alex Yeoh will now return contacts equals or similar to Alex Yeoh). |
 
-### Delete Alias: `alias delete`
+### Delete an alias: `alias delete`
 
 Deletes an existing alias from address book.
 
@@ -530,7 +530,7 @@ Deletes an existing alias from address book.
 | Example           | Description            |
 | ----------------- | ---------------------- |
 | `alias delete ls` | Removes the alias `ls` |
-| `alias delete d`  | Removes the alias `d`  |
+| `alias delete f`  | Removes the alias `f`  |
 
 ### List Alias: `alias list`
 
@@ -572,37 +572,48 @@ options.
 
 Users will be able to press tab to cycle through the available options. -->
 
-## Tag : `tag`
+## Tagging persons: `tag`
 
-Tag allows addition and deletion of specific tags of person.
+The tag command allows you to add and delete specific tags of persons.
 
-### Add Tag: `tag add`
+* Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
+* Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
-Adds tags to person in address book.
+### Add tags to persons: `tag add`
 
-**Format**: `tag add { shown | selected | INDEX ... } -t TAG ...`
+Add tags to persons in address book.
+
+* A `tag add` command adding the same `photoshop` tag to a person with `Photoshop` tag will be executed successfully.
+* When adding a same tag to a person, the command will be executed successfully, but the same tag will not be added to the person.
+* The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are added to.
+
+**Format**: `tag add { shown | selected | INDEX ... } -t TAG...`
 
 **Examples**:
 
 | Example                                     | Description                                                                  |
 | ------------------------------------------- | ---------------------------------------------------------------------------- |
-| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the people shown in the UI.                          |
-| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the people selected.                               |
-| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to people at index `1`, `2` and `3`. |
+| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the persons shown in the UI.                          |
+| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the persons selected.                               |
+| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to persons at index `1`, `2` and `3`. |
 
-### Delete Tag: `tag delete`
+### Delete tags from persons: `tag delete`
 
-Deletes tags from person in address book.
+Delete tags from persons in address book.
 
-**Format**: `tag delete { shown | selected | INDEX... } -t TAG [-t TAG]...`
+* A `tag delete` command deleting the `Photoshop` tag from a person without `Photoshop` tag will be executed successfully.
+* When deleting a tag from a person without the tag, the command will be executed successfully, but no tags will be deleted from the person.
+* The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are deleted from.
+
+**Format**: `tag delete { shown | selected | INDEX... } -t TAG...`
 
 **Examples**:
 
 | Example                                        | Description                                                                       |
 | ---------------------------------------------- | --------------------------------------------------------------------------------- |
-| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the people shown in the UI.                          |
-| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the people selected.                               |
-| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from people at index `1`, `2` and `3`. |
+| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the persons shown in the UI.                          |
+| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
+| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
 
 ## Saving the data
 
@@ -661,8 +672,8 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                                   |
 | **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                            |
 | **List Alias**   | `alias list`                                                                                                                                                                                                                                 |
-| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag add 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                   |
-| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG ...` <br> e.g., `tag delete shown -t Illustrator`                                                                                                                                         |
+| **Add Tag**      | `tag add { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag add shown -t Illustrator`                                                                                                                                   |
+| **Delete Tag**   | `tag delete { shown | selected | INDEX... } -t TAG...` <br> e.g., `tag delete 1 2 3 -t Photoshop -t Illustrator`                                                                                                                                         |
 
 # Field Summary
 
@@ -686,3 +697,4 @@ Install the app in the other computer and overwrite the empty data file it creat
 | GUI      | Graphical User Interface                                                         |
 | JSON     | JavaScript Object Notation, data storage format                                  |
 | Terminal | The Command Line Interface where text-based commands are entered.                |
+| Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 

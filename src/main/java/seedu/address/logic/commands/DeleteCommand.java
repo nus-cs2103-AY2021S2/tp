@@ -30,9 +30,10 @@ public class DeleteCommand extends Command {
             + COMMAND_WORD + " " + SPECIAL_INDEX + "\n"
             + COMMAND_WORD + " " + SELECTED;
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
-    public static final String MESSAGE_DELETE_PERSONS_SUCCESS = "Deleted multiple persons:\n%1$s";
-    public static final String MESSAGE_NO_SELECTED = "No selected person to delete.";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person:\n%1$s";
+    public static final String MESSAGE_DELETE_PERSONS_SUCCESS = "Deleted multiple person(s):\n%1$s";
+    public static final String MESSAGE_NO_SELECTED = "No selected person(s) to delete";
+    public static final String MESSAGE_NO_PERSON = "No person(s) to delete";
 
     private final List<Index> targetIndexes;
     private final boolean isSpecialIndex;
@@ -67,6 +68,11 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getFilteredPersonList().size() == 0) {
+            throw new CommandException(MESSAGE_NO_PERSON);
+        }
+
         if (isSpecialIndex) {
             return deleteAll(model);
         }
