@@ -169,8 +169,9 @@ with the attached message.
 Below is the sequence diagram to show how the mark task as completed mechanism works:
 
 ![#Interactions Inside the Logic Component for the `done 1` Command](images/DoneTaskSequenceDiagram.png)
-
-<br/>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DoneTaskCommandParser` and `DoneTaskCommand` should end at the destroy marker (X) 
+but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
+</div>
 
 The following activity diagram summarizes what happens when a user executes the mark task as completed command:
 
@@ -218,7 +219,9 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `findBefore 2021-04-04` Command](images/FindBeforeSequenceDiagram.png)
 
-<br/>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTasksBeforeCommandParser` and `FindTasksBeforeCommand` should end at the destroy marker (X) 
+but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
+</div>
 
 The following activity diagram summarizes what happens when a user executes the find tasks with deadline before a selected date command:
 
@@ -263,6 +266,10 @@ new Command Result with the attached message.
 Below is the sequence diagram: 
 
 ![#Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` and `DeleteTaskCommand` should end at the destroy marker (X) 
+but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
+</div>
 
 The following activity diagram below summarizes what happens when a user executes the `deleteTask` command:
 
