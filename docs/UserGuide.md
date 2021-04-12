@@ -492,7 +492,7 @@ Action | Format, Examples
 **Edit Member** | `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`<br> e.g.,`editMember Alice e/newAlice@gmail.com r/Events head`
 **Find Members by Keywords** | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `findMembers Rachel 98562154 john@gmail.com`
 ||
-**Add Task** | `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]...` <br> e.g., Example: `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
+**Add Task** | `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]...` <br> e.g.,`addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
 **Delete Task** | `deleteTask INDEX` <br> e.g., `deleteTask 1`
 **View Tasks** | `viewTasks`<br> e.g., `viewTasks`
 **Edit Task** | `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NEW_STATUS] [p/NEW_PRIORITY] [a/NEW_ASSIGNEE]...`<br> e.g.,`editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04`
