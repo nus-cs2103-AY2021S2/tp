@@ -756,6 +756,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` <br>
        Expected: No appointment is added. An error message `This appointment already exists in the app` is shown in the result display.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a property
 
 1. Deleting a property while all properties are being shown
@@ -770,6 +772,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Find commands
 
@@ -829,6 +833,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find client`
         Expected: Both lists are not updated. Error details shown in the status message. 
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all properties and appointments
 
 1. List all properties and appointments in the property list and appointment list after a `find client [KEYWORD]` command.
@@ -853,6 +859,8 @@ testers are expected to do more *exploratory* testing.
        
        Expected: No properties and appointments are displayed, with a result message showing: `No existing properties and appointments available`
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a property
 
 1. Editing a property.
@@ -875,6 +883,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit property 1 a/Blk 150 Bishan Street 11 #02-101 p/570150` <br>
        Expected: No property is edited. An error message `Another property with the same address and postal code already exists in the app` is shown in the result display.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing an appointment
 
