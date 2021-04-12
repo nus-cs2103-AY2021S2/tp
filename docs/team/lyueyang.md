@@ -36,6 +36,7 @@ Given below are my contributions to the project.
   * Created sequence diagram for older iteration of Delete command.
   * Added manual tests for Find and Delete.
   * Correct other minor mistakes made such as the inconsistent lack of full stops.
+  * Added explanation for the effort section.
   
 * **Contributions to the team**:
   * Reviewed issues to close duplicates such as [#159](https://github.com/AY2021S2-CS2103T-W10-1/tp/issues/159) [#166](https://github.com/AY2021S2-CS2103T-W10-1/tp/issues/166) [#205](https://github.com/AY2021S2-CS2103T-W10-1/tp/issues/205)
@@ -122,7 +123,7 @@ Given below are my contributions to the project.
 <br>
 
 #### Old Delete Sequence Diagram
-![Old sequence diagram for delete](images/OldDeleteSequenceDiagram.png)
+![Old sequence diagram for delete](../images/OldDeleteSequenceDiagram.png)
 
 <br>
 
@@ -133,50 +134,71 @@ Deleting a passenger
 1. Deleting a passenger while all passengers are being shown.
 
     1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list. Passengers to be deleted are not in a pool.
-  
+
     1. Test case: `delete 1`.<br>
        Expected: First contact is deleted from the list. Name of the deleted contact shown in the status message.
-  
+
     1. Test case: `delete 0`.<br>
        Expected: No passenger is deleted. Error details shown in the status message. Text in command bar turns red.
-  
+
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).<br>
        Expected: Similar to previous.
 
 1. Deleting multiple passengers while all passengers are being shown.
 
     1. Prerequisites: List all passengers using the `list` command. Multiple passengers in the list. Passengers to be deleted are not in a pool.
-  
+
     1. Test case: `delete 1 2`.<br>
        Expected: First and second contact is deleted from the list. Names of deleted contacts are shown in the status message.
-
+       
 Finding a passenger
 
 1. Finding passengers by name while all passengers shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
-  
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`.
+       All passengers listed using `list`.
+
     1. Test case: `find n/bernice`.<br>
        Expected: Details of passenger named `Bernice Yu` is shown. Status message shows 1 passenger listed.
-  
-    1. Test case: `find n/alex`.<br>
+
+    1. Test case: `find n/bob`.<br>
        Expected: No passengers are shown. Status message shows 0 passenger listed.
-  
+
     1. Test case: `find n/ROY n/lEnny`.<br>
        Expected: Details of passengers named `Roy Balakrishnan` and `Lenny Hoon` shown. Status message shows 2 passengers listed.
-  
+
     1. Test case: `find n/   David lI`.<br>
        Expected: Details of passenger named `David Li` is shown. Status message shows 1 passenger listed.
 
+
 1. Finding passengers by tag while all passengers are shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
-  
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`.
+       All passengers listed using `list`.
+
     1. Test case: `find tag/finance`.<br>
        Expected: Details of `Bernice Yu` and `Roy Balakrishnan` are shown. Status message shows 2 passengers listed.
-  
+
     1. Test case: `find tag/marketing tag/sales`.<br>
-       Expected: Details of `Bernice Yu`, `Irfan Ibrahim` and `Turner Peck` are shown. Status message shows 3 passengers listed.
-  
+       Expected: Details of `Alex Yeoh`, `Bernice Yu`, `Irfan Ibrahim` and `Turner Peck` are shown. Status message shows 4 passengers listed.
+
     1. Test case: `find tag/marketing sales`.<br>
        Expected: Passengers are shown are same as previous. Status message shows tag provided is invalid.
+
+#### Effort appendix
+
+Extension of `find` command
+
+The initial implementation of `find` inherited from AB3 only allowed users to search by names.
+To improve usability for users, we introduced searching of other fields of a passenger.
+While implementing the first iteration in v1.2, it took some additional time as it took some time to understand which classes interacted with each other when `find` was executed.
+This was harder to understand as there was no sequence diagram included for the `find` command as well.
+To implement the command, a predicate was needed for each of the attributes as well as the parsing of the arguments in `FindCommandParser` to allow for different type of searches to be possible.
+
+Extension of `delete` command
+
+The initial implementation of `delete` inherited from AB3 only allowed users to delete 1 passenger at a time.
+To improve usability for users, we introduced multi-passenger deletion using indexes.
+The first iteration of this allowed for passengers to be deleted despite some other passengers being already in a pool.
+This was later revised to prevent users from executing `delete` all together when there are passengers still in a pool.
+This was chosen as better code quality could be achieved through such a decision.
