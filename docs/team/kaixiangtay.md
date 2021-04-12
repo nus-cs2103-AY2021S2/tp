@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   * What it does: Recurring dates up till the end date provided by the user will be generated. 
     The dates are also dependent on the user selection for the week frequency (biweekly or weekly) 
     and day of week (Mon to Sun).
-  * Justification: This feature improves the product significantly because a user previously can only have tasks with deadlines catered to tutorials, lab assignments or quizzes. Now, the user will be able to have recurring tasks such as lecture, project meetings happening in a weekly or biweekly basis which is a common situation during school semester.
+  * Justification: This feature improves the product significantly because a user will be able to have recurring tasks such as lecture, project meetings happening in a weekly or biweekly basis which is a common situation during school semester apart from tasks with deadlines.
   * Highlights: This feature will auto-delete the dates in the recurring task whenever the dates has expired. Once all the dates has expired, the task will not have any recurring dates and the user has the option to reuse the same task by adding deadline, schedule recurring dates for the same task or delete the task from the PlanIT forever.
 
 * **New Feature**: Added the ability to display a list of uncompleted tasks.
@@ -53,8 +53,6 @@ Given below are my contributions to the project.
     * Helped to organise the Project Direction documentation at the end of milestones.
     * Necessary general code enhancements: Remove all instances of email attribute from code base since it is not used in PlanIT.
 
-<div style="page-break-after: always;"></div>
-
 * **Review/mentoring Contributions**:
   * Shared knowledge of regex and how can the regex be used to tighten the constraint check for the user input.
   * Performed testing for the features of the team and identify bugs such as tasks with deadlines cannot be loaded properly
@@ -65,7 +63,6 @@ Given below are my contributions to the project.
   * Recommended detecting leap year, months of 30 and 31 days check for date usages within team project.
   * Advised team members to remove logging at unnecessary places to prevent slow startup of app.
   * Below are some pull requests I have given feedback to the team members:
-    
     [#61](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/61),
     [#77](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/77),
     [#103](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/103),
