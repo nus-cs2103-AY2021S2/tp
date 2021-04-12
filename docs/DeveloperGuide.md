@@ -513,16 +513,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
 | `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
 | `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
-| `* * *` | User | Filter my tuition appointments by tutor's name     | Keep track of all the tuition appointments under a particular tutor|
-| `* * *` | User | Filter my tuition appointments by date             | Keep track of all the tuition appointments that falls on the same day|
 | `* * *` | User | Delete a tuition appointment                       | Remove canceled appointments                                    |
 | `* * *` | User | Check my own tuition appointments list             | Know the timing of ALL my appointments in order                 |
-| `* * *` | User | Filter tutors by their subject discipline          | Find a tutor that caters to my needs (academic)                 |
-| `* * *` | User | Filter tutor by cost                               | Find a tutor that fits into budget as well                      |
-| `* * *` | User | Filter a tutor by his/her name                     | View tutor's profile                                            |
-| `* * *` | User | Filter tutors by their years of experience         | Find a tutor with experience within the range of my expectation |
-| `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
-| `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
+| `* *` | User | Filter tutors by their name | Find a tutor by name |
+| `* *` | User | Filter tutors by their gender | Find a tutor of my preferred gender |
+| `* *` | User | Filter tutors by their contact details | Find a tutor by known contact details |
+| `* *` | User | Filter tutors by their location | Find tutors nearby |
+| `* *` | User | Filter tutors by the subjects they teach | Find a tutor that caters to my academic needs |
+| `* *` | User | Filter tutor by cost | Find a tutor that fits my budget |
+| `* *` | User | Filter tutors by their years of experience | Find a tutor with experience within the range of my expectation |
+| `* *` | User | Filter tutors by their qualifications | Find a tutor with qualifications within the range of my expectation |
+| `* *` | User | Filter my tuition appointments by tutor's name | Keep track of all the tuition appointments under a particular tutor |
+| `* *` | User | Filter my tuition appointments by subjects | Keep track of all the tuition appointments of a particular subject |
+| `* *` | User | Filter my tuition appointments by date and time | Keep track of all the tuition appointments in a time period |
+| `* *` | User | Filter my tuition appointments by location | Keep track of all the tuition appointments in a given location |
 | `* *`   | Careless user  | Edit tutor details                       | Fix typos or add in details that I forgot to enter of the tutor |
 | `* * `  | Tech-savvy user| Export tutor's details into a text file  | Share the tutor's details with others                           |
 | `* *`   | User | Keep track of the details of my favourite tutors   | Contact them and set up an appointment with them                |
