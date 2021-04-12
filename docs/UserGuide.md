@@ -1,26 +1,21 @@
 ---
 layout: page
-title: User Guide
+title: user-guide
 ---
-# NuFash User Guide
+<p align="center">
+  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="600">
+  <h1 align="center"> User Guide </h1>
+</p>
 
+<div style="page-break-after: always;"></div>
 
 ---
-## Introduction
-**NuFash** is a **digital wardrobe desktop app for university students and/or those looking to
-better organise their clothes**. The app is **optimised for users who prefer typing**, but also has the added 
-benefit of a **smooth and easy to use Graphical User Interface(GUI)**.  The NuFash application allows users to input 
-their clothings into their own digital wardrobe, and be able
-to search through, and match their various clothes quickly.
-Use NuFash to reduce clutter and start making wiser clothing decisions today!
+## Table of Contents
 
-<br>
-This User Guide is for new users of the NuFash app to learn and understand what are the various features that NuFash 
-has to offer. Read on to learn how to use them to digitise your wardrobe and use NuFash full effect!
-<br><br>
-
+* [Introduction](#introduction)
 * [Quickstart](#quickstart)
-* [Features](#features)
+* [NuFash Features](#nufash-features)
+  + [Wardrobe Management Features](#wardrobe-management-features)
     + [Viewing Help: `help`](#help)
     + [Adding a Garment to the Wardrobe: `add`](#add)
     + [Listing all Garments in the Wardrobe: `list`](#list)
@@ -28,16 +23,49 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
     + [Clearing all Garments in Wardrobe : `clear`](#clear)
     + [Editing a singular Garment in Wardrobe: `edit`](#edit)
     + [Finding Garments in Wardrobe by keywords: `find`](#find)
+  + [Outfit Building Features](#outfit-building-features)
     + [Matching Garments to create an outfit: `match`<br>](#match)
     + [Checking out a Garment from the Wardrobe: `select`](#select)
     + [Viewing a valid outfit: `view`](#view)
     + [Exiting the program: `exit`](#exit)
-    + [Saving the data](#saving-the-data)
-    + [Editing the data file](#editing-the-data-file)
+  + [Saving the data](#saving-the-data)
+  + [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 * [Credits](#credits)
 
+<div style="page-break-after: always;"></div>
+
+## Introduction
+
+Are you tired of deciding what to wear every morning? Do you often
+wonder whether your new clothing purchases would match your current wardobe? Have you ever misplaced your clothes?
+Well, your journey to a better dressing experience starts today with **NuFash**.
+
+**NuFash** is a **digital wardrobe desktop app for university students and/or those looking to
+better organise their clothes**. The NuFash application allows users to input
+their clothing items (garments) into their own digital wardrobe, and be able
+to search through and match their various garments quickly. Some key features include:
+
+- An easy-to-use digital wardrobe to manage your garments.
+- A generated image to visually represent your garments in the wardrobe.
+- Viewing functionality, to see certain pairing of garments.
+- Selecting functionality, to keep track of when garments were used.
+- Matching functionality, to suggest which garments could possibly be worn with each other.
+
+The application is **optimised for use through the Command Line Interface (CLI)**, allowing users to quickly add or modify items
+in their digital wardrobe. Our compact but powerful application also has a **integrated and easy to use Graphical User Interface(GUI)** 
+providing a visual representation of a user's entire wardrobe catalogue in mere seconds!
+
+This User Guide is for new users of the NuFash app to learn and understand what are the various features that NuFash 
+has to offer. If you are interested in providing feedback on issues or would like to follow our development process, please visit our
+[GitHub page](https://github.com/AY2021S2-CS2103T-T12-1/tp/)
+
+**Use our application to reduce clutter and be empowered to make wiser clothing decisions today!**
+
+Head over to our [Quickstart](#quickstart) to start learning about NuFash.
+
+<div style="page-break-after: always;"></div>
 
 ---
 ## Quickstart
@@ -51,26 +79,94 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 
  <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui.png" alt="alt text" width="790">
 
-5. You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing
-   the **`help`** command and pressing the enter key will open the help window.<br>
-   Some example commands you can try:
-   
-  - **`add`** `n/shirt s/45 c/blue r/casual t/upper d/stained d/torn` : Add a casual blue shirt which is stained, torn 
-    and of size 45 to your wardrobe.
-
-  - **`delete`** `6` : Deletes the 6th garment shown in the current list.
-
-  - **`match`** `2` : Displays the available compatible matches for the 2nd garment in list.
-
-  - **`list`** : Displays all garments in the wardrobe.
-
-  - **`exit`** : Exits the app.
-
-6. You may refer to the [features](#features) below for details of each command.
+5. You may refer to the [User Interface Overview](#user-interface-overview) for further details on the application's interface or
+   [NuFash Features](#nufash-features) to try out our commands.
 
 ---
-## Features
+## User Interface Overview
 
+The NuFash interface consists of elements which work in unison to provide a smooth user experience.
+Use this section as a guide to navigate our GUI, and understand what should be displayed in your application.
+
+## Main GUI Window
+The interface of the application is split into distinct components:
+1. Menu Bar
+2. Command Box
+3. Feedback Box
+4. Wardrobe Box
+
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/Ui-labelled.png" alt="ui-labelled" width="790">
+
+### Menu Bar
+
+The Menu Bar contains drop-down menus allows you to access useful functions. 
+These functions are:
+- Exit - Exits the application
+- Help - Opens the Help window
+
+### Command Box
+
+The command box allows you to key in your commands to control your digital wardrobe. 
+You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing
+the **`help`** command and pressing the enter key will open the help window.<br>
+Some example commands you can try:
+
+- **`add`** `n/shirt s/45 c/blue r/casual t/upper d/stained d/torn` : Add a casual blue shirt which is stained, torn
+  and of size 45 to your wardrobe.
+
+- **`delete`** `6` : Deletes the 6th garment shown in the current list.
+
+- **`match`** `2` : Displays the available compatible matches for the 2nd garment in list.
+
+- **`list`** : Displays all garments in the wardrobe.
+
+- **`exit`** : Exits the app.
+
+You may refer to the [NuFash Features](#nufash-features) below for details of each command.
+
+
+### Feedback Box
+
+The feedback box displays the success messages when commands entered into NuFash are valid. Alternatively, it will show an
+error message if the command is invalid or can't be recognised.
+
+ <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/feedback-box.png" alt="feedback-box" width="790">
+
+
+### Wardrobe Box
+
+The Wardrobe box shows the listing of all current garments in their digital wardrobe. 
+
+Each listing is
+comprised of the following components:
+
+1. Listing Index
+2. Listing Details
+3. Listing Tags
+4. Listing Generated Image
+
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/wardrobe-box.png" alt="wardrobe-box" width="790">
+
+#### Listing Index
+
+The listing index assigns each unique garment listed into the digital wardrobe a number: `INDEX`.
+this `INDEX` is used in various commands, e.g. `select`, `edit` and `view`.
+
+#### Listing Details
+
+The listing details display the the garment's attributes such as name, size and the date it was last used.
+
+#### Listing Tags
+The listing tags allow users to key in various descriptions about the garments, e.g garment's location and/or garment's
+condition.
+
+#### Listing Generated Image
+The listing generated Image allows for the garment to be represented in a visual form. It displays the dress-code of the
+garment (either formal, casual or active-wear), its type (either upper, lower or foot-wear) and it's colour.
+
+---
+## NuFash Features
+### Feature Syntax and Terminology
 <div markdown="block" class="alert alert-info">
 
 * Words in `UPPER_CASE` are the inputs to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can 
@@ -89,11 +185,17 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 * Input for `c/COLOUR` is case-insensitive, and is either`beige`, `black`, `blue`, `brown`, `green`, `grey`, `orange`, 
   `pink`, `purple`, `red`, `white`, or `yellow`.
 * Input for `r/DRESSCODE` is case-sensitive, and is either `casual`, `CASUAL`, `formal`, `FORMAL`, `active` or `ACTIVE`.
-* Input for `t/TYPE` is case-sensitive, and is either `upper`, `lower` or `footwear`.
-<br><br>
+* Input for `t/TYPE` is case-sensitive, and is either `upper`, `lower` or `footwear`. <br><br>
+NuFash is divided into two sets of features, each allowing the application to
+achieve one of its goals.
 </div>
 
-### <a name="help"></a> Viewing Help: `help`
+### <a name="wardrobe-management-features"></a> Wardrobe Management Features
+The first category of features is wardrobe management. These features
+aim to achieve the goal of allowing users to better organise their wardrobes.
+These include `help`, `add`, `list`, `delete`, `clear`, `edit` and `find`. <br><br>
+
+#### <a name="help"></a> Viewing Help: `help`
 Shows an in-app user guide to various commands.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/helpMessage.png" alt="alt text" width="790">
@@ -101,7 +203,7 @@ Shows an in-app user guide to various commands.<br>
 Format: `help`
 <br><br>
 
-### <a name="add"></a> Adding a Garment to the Wardrobe: `add` 
+#### <a name="add"></a> Adding a Garment to the Wardrobe: `add` 
 Adds a garment with a name, size, colour, dress code and type into the wardrobe, along with optional descriptions.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/AddGarment.png" alt="alt text" width="790">
@@ -121,7 +223,7 @@ Example:<br>
 * `add n/favourite t shirt s/30 c/blue r/casual t/upper`
   <br><br>
   
-### <a name="list"></a> Listing all Garments in the Wardrobe: `list`  
+#### <a name="list"></a> Listing all Garments in the Wardrobe: `list`  
 Shows a list of all garments in the wardrobe<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ListGarment.png" alt="alt text" width="790">
@@ -137,7 +239,7 @@ Format: `list`
 </div>
 <br><br>
 
-### <a name="delete"></a> Deleting a singular Garment in the Wardrobe: `delete`  
+#### <a name="delete"></a> Deleting a singular Garment in the Wardrobe: `delete`  
 Removes a Garment, associated with the given index, from the wardrobe.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/DeleteGarment.png" alt="alt text" width="790">
@@ -157,7 +259,7 @@ Example:<br>
 Removes the 7th Garment in list of clothes currently shown.
 <br><br>
   
-### <a name="clear"></a> Clearing all Garments in Wardrobe : `clear`
+#### <a name="clear"></a> Clearing all Garments in Wardrobe : `clear`
 Clears all existing garments in the wardrobe.
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ClearGarment.png" alt="alt text" width="790">
@@ -165,7 +267,7 @@ Clears all existing garments in the wardrobe.
 Format: `clear`
 <br><br>
 
-### <a name="edit"></a> Editing a singular Garment in Wardrobe: `edit`
+#### <a name="edit"></a> Editing a singular Garment in Wardrobe: `edit`
 Edits an existing garment in the wardrobe.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/EditGarment.png" alt="alt text" width="790">
@@ -186,7 +288,7 @@ Example:
   Edits the colour and size of the 1st garment in the wardrobe to be red and 30 respectively.
   <br><br>
   
-### <a name="find"></a> Finding Garments in Wardrobe by keywords: `find`
+#### <a name="find"></a> Finding Garments in Wardrobe by keywords: `find`
 Finds all garments that matched specified keywords during search.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentA.png" alt="alt text" width="790">
@@ -200,9 +302,9 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 **:bulb: Tips:** <br>
 * At least one of the optional bracketed fields must be provided.
 * A set of keywords (search phrase) can be used for finding.
-* At least one keyword in a search phrase should be complete.
+* At least one keyword in a search phrase should be present in the garments to get results.
 * Keywords are not case-sensitive.
-* The list of all garments with matching attributes will be shown.<br><br>
+* The list of all garments with attributes that contain the specified keywords will be shown.<br><br>
 </div>
 Example:
 
@@ -211,15 +313,24 @@ Example:
 * `find n/wOrN OUt Jeans`<br>
   Returns all garments as the previous example, as search phrase need not be case-sensitive
 * `find n/worn ou jea`<br>
-  Returns all garments as the previous example, as at least `worn` keyword is complete.
+  Returns all garments whose name has at least one of the words in the search phrase, "worn out jea"
 * `find c/white s/36 23`<br>
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
- 
-### <a name="match"></a> Matching Garments to create an outfit: `match`<br>
-Finds all articles of clothing that match the colour and dress code,
-but do not match the type(s) of a specified garment, or two specified
-garments of different types.<br>
+
+#### <a name="exit"></a> Exiting the program: `exit`
+Exits the program.<br>
+Format: `exit`
+<br><br>
+
+### <a name="outfit-building-features"></a> Outfit Building Features
+The second category of features is outfit building. These features
+aim to achieve the goal of providing users with clothing suggestions, allowing
+them to choose outfits that are more aesthetically appealing.
+These include `match`, `select`, and `view`.<br><br>
+
+#### <a name="match"></a> Matching Garments to create an outfit: `match`<br>
+Finds all garments that match the colour and dress code, and are of different types.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/MatchGarment.png" alt="alt 
 text" width="790">
@@ -232,15 +343,14 @@ To be Implemented Format: `match INDEX [INDEX]`
 Examples:
 * `match 1`  
 Returns all the articles of clothing that match the colour and dress code
-  of the garment at index 1 in the list of garments on display, but do not match
-  its type.
+  of the garment at index 1 in the list of garments on display, and of different types.
 * `match 1 2`  **[using 2 indices to find their matching garments is to be implemented]**<br> 
 Returns all the articles of clothing that match the colours and dress code of
-  the garments at indices 1 and 2 in the list of garments on display, but
-  do not match their types.
+  the garments at indices 1 and 2 in the list of garments on display, and are of different types
+  compared to the garments at indices 1 and 2.
 <br><br>
 
-### <a name="select"></a> Checking out a Garment from the Wardrobe: `select`
+#### <a name="select"></a> Checking out a Garment from the Wardrobe: `select`
 Select a garment to check out of the wardrobe, indicating that it shall be worn today.
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/SelectGarment.png" alt="alt text" width="790">
@@ -259,7 +369,7 @@ Example:
 Updates the Last Used date, and places this garment at the end of the list
 <br><br>
 
-### <a name="view"></a> Viewing a valid outfit: `view`
+#### <a name="view"></a> Viewing a valid outfit: `view`
 View a set of 3 garments associated with the given indexes that create an outfit.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ViewGarment.png" alt="alt text" width="790">
@@ -278,14 +388,7 @@ Format: `view INDEX INDEX INDEX`
 </div>
 
 Example:
-* `view 1 2 3`<br>
-<br><br>
-  
-
-### <a name="exit"></a> Exiting the program: `exit`
-Exits the program.<br>
-Format: `exit`
-<br><br>
+* `view 1 2 3`<br><br>
 
 ### Saving the data
 NuFash data is saved in the hard disk automatically as a JSON file under [JAR file location]/data/nufash.json
@@ -323,9 +426,9 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 | **Editing a Garment**               | `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>                                         |
 | **Listing all Garments**            | `list`                                                                                                                          |
 | **Finding Garments**                | `find t/TYPE`<br> Eg. find `t/upper`                                                                                           |
-| **Matching a Garment**              | `match INDEX` <br> Eg., `match 1`                                                                                               |
-| **Viewing a Garment set**           | `view INDEX INDEX INDEX` <br> Eg., `view 1 2 3`                                                                                 |
-| **Selecting a Garment**             | `select INDEX` <br> Eg., `select 1`                                                                                             |
+| **Matching a Garment**              | `match INDEX` <br> Eg. `match 1`                                                                                               |
+| **Viewing a Garment set**           | `view INDEX INDEX INDEX` <br> Eg. `view 1 2 3`                                                                                 |
+| **Selecting a Garment**             | `select INDEX` <br> Eg. `select 1`                                                                                             |
 | **Clearing all Garments**           | `clear`                                                                                                                         |
 | **Help**                            | `help`                                                                                                                          |
 | **Exiting the application**         | `exit`                                                                                                                          |
