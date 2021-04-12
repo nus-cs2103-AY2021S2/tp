@@ -119,13 +119,13 @@ Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-ParentPal's theme is set to dark by default.
-</div>
-
 Currently available options for the [OPTION] field include: 
 * `light` Light theme
 * `dark` Dark theme
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+ParentPal's theme is set to dark by default.
+</div>
 
 Examples: 
 * `theme o/light` changes theme to a light theme.
@@ -153,24 +153,23 @@ Examples:
 
 #### Deleting a contact : `delete`
 
-Deletes the specified contact from the address book.
+Deletes the specified contact(s) from the address book.
 
-Format: `delete INDEX [MORE_INDEXES]`…​
+Format: `delete INDEX [MORE_INDEXES]…​`
 
 * Deletes the contact at the specified `INDEX` or multiple `INDEXES`.
 * The index refers to the index number shown in the displayed contact list.
 * The index/indexes **must be a positive integer/integers** 1, 2, 3, …​
-* If deleting multiple contacts by multiple indexes, the indexes *must* be separated by whitespace and must all be valid.
+* If deleting multiple contacts by multiple indexes, the indexes *must* be separated by a whitespace and must all be valid.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Contacts that are involved with appointments cannot be deleted.
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
 * `list` followed by `delete 1 2 3` deletes the 1st, 2nd and 3rd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Contacts that are involved with appointments cannot be deleted.
-</div>
 
 #### Editing a contact : `edit`
 
@@ -214,7 +213,7 @@ Currently available options for the `[OPTION]` field include:
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 When using the <code>tag</code> option <code>t/</code> needs to be placed in front of the tag 
-you are searching for. Also, please note that only exact matches will be returned for find by tag.<br>
+you are searching for. Also, note that only exact matches will be returned for find by tag.<br>
 Example: <code>find o/tag t/first t/second</code>
 </div>
 
@@ -277,15 +276,15 @@ Format: `fav INDEX [o/OPTION]`
 Currently available options for the `[OPTION]` field include:
 * `remove` Unfavourites the specified contact
 
-Examples:
-* `list` followed by `fav 2` favourites the 2nd contact in the address book.
-* `find Betsy` followed by `fav 1` favourites the 1st contact in the results of the `find` command.
-* `fav 3 o/remove` unfavourites the 3rd contact in the address book.
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 When a contact is favourited, the star next to their name will become filled.
 When a contact is unfavourited, the star will turn empty.
 </div>
+
+Examples:
+* `list` followed by `fav 2` favourites the 2nd contact in the address book.
+* `find Betsy` followed by `fav 1` favourites the 1st contact in the results of the `find` command.
+* `fav 3 o/remove` unfavourites the 3rd contact in the address book.
 
 #### Sorting all contacts : `sort`
 
@@ -297,11 +296,6 @@ Currently available options for the `[OPTION]` field include:
 * `name` Sorts by name (alphabetical order)
 * `date` Sorts by date added (chronological order)
 
-Examples:
-* `sort o/name` returns the contact list sorted in alphabetical order.
-* `sort o/date` returns the contact list sorted in chronological order.
-* `find Alice` followed by `sort o/name` returns the list of contacts found sorted in alphabetical order.
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The sorting order is saved across different use sessions.
 The default order is by the date the contact was added.
@@ -311,6 +305,13 @@ The default order is by the date the contact was added.
 If sort is entered after executing find, a sorted found list will be displayed as explained in the 3rd example above.<br>
 The sort order will also be saved and the full address book will be sorted.
 </div>
+
+Examples:
+* `sort o/name` returns the contact list sorted in alphabetical order.
+* `sort o/date` returns the contact list sorted in chronological order.
+* `find Alice` followed by `sort o/name` returns the list of contacts found sorted in alphabetical order.
+
+
 
 #### Clearing all entries : `clear`
 
@@ -397,13 +398,6 @@ fields will be searched and any keyword matches in any one of the fields will re
 
 Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
-Currently available options for the `[OPTION]` field include:
-* `name` Find by the name of the appointment
-* `child` Find by the child that the appointment is tagged to   
-* `address` Find by address of the appointment  
-* `date` Find by date of appointment
-* `contact` Find by name of the contacts involved in the appointment
-
 * The search is case-insensitive. e.g `ptm` will match `PTM`.
 * The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`.
 * Incomplete words will also be matched e.g. `PT` will match `PTM`.
@@ -411,6 +405,14 @@ Currently available options for the `[OPTION]` field include:
   e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`.
 * If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed.
+  
+Currently available options for the `[OPTION]` field include:
+* `name` Find by the name of the appointment
+* `child` Find by the child that the appointment is tagged to   
+* `address` Find by address of the appointment  
+* `date` Find by date of appointment
+* `contact` Find by name of the contacts involved in the appointment
+
 
 Examples:
 * `findAppt ptm` returns appointments with any field containing `PTM`.
