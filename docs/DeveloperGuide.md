@@ -573,23 +573,7 @@ testers are expected to do more *exploratory* testing.
        
     1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
        Expected: Similar to previous.
-
-1. Finding a pool while a filtered list of pools is being shown.
-
-    1. Prerequisites: Multiple pools in the list. Filter list of pools following a valid input as shown above.
-
-    1. Test case: `findPool n/Turner`.<br>
-       Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
-
-    1. Test case: `findPool n/Michelle`.<br>
-       Expected: No pools are listed. Status message shows 0 pool listed.
-
-    1. Test case: `findPool n/###`.<br>
-       Expected: Pool list on right pane shows no change. Error details shown in the status message.
-
-    1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
-       Expected: Similar to previous.
-       
+ 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -605,12 +589,11 @@ The following section describes the challenges our team faced in this project, t
 
 #### Extension of Model
 
-{Zech to elaborate on the challenges faced when extending the model
-some highlights:
-added new fields
-a great deal of refactoring was done
-model was reworked to contain a passenger and pool list
-the initial person class was refactored to become driver and passenger}
+As our group had initially decided on morphing the existing AB3, changes to the model consisted mainly of refactoring existing classes. Although a rather trivial task, this process was rather time-consuming and tedious. Due to the scale of the existing AB3 code, some difficulty was encountered during this refactoring stage as some making seemingly minute changes in method signatures or names would result in a need to edit other segments of affected code. Although the use of IntelliJ’s toolbox greatly sped up the process, the nature of some of the refactoring changes we intended to make meant that some of said changes were not as easily detected by IntelliJ, resulting in some uncaught bugs following our refactoring stage. The brownfield nature of the project also lead to some difficulty in understanding the model and how the different modules interact with each other.
+
+Nearing the end of the first milestone, every team member had a better understanding of the existing code allowing for a better segmentation of work. As this was also the period where new additions were made to the existing AB3 model instead of simple refactoring, there was also less confusion surrounding what components of the model needed to be modified. This was also helped by the fact that in the case of adding features, we had a clearer idea of what needed to be done for the new feature instead of following the trails of an existing one.
+
+Finally, by the end of the second milestone, many of us have a firm grasp of the model and its components. This allowed us to make improvements to not just to the code of the features we had added, but also to the code that was existed in the original AB3.
 
 #### Reworking of `drive` command to `pool` command
 
