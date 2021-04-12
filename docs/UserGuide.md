@@ -72,7 +72,7 @@ This section gives an overview of BookCoin’s layout so that you can get starte
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
-  
+
 * Limitations: certain keywords are reserved for commands and hence should not be used in your regular input field. For example, you would not be able to set a venue description to "n/a" because `n/` is a reserved keyword.
 
 </div>
@@ -98,9 +98,9 @@ Format: `clear`
 * The clear command is especially useful for first time users because the app would first launch with sample data for new users
   to have greater convenience when testing app functionalities. Users can then use the clear command to
   clear the database of sample data after familiarising themselves with the app.
-  
+
 * Be careful when using this command! All data will be deleted permanently.
-  
+
 </div>
 
 #### 3.1.3. Saving data
@@ -147,7 +147,7 @@ Format: `exit_prompt`
 
 #### 3.3.1. Adding a person : `add_person` (Multi step command)
 
-Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting 
+Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting
 `add_person n/NAME` will start the command.
 The app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
@@ -162,11 +162,11 @@ Example: `add_person n/Christopher Nolan'
 <br>
 #### 3.3.2. Editing a person : `edit_person`
 
-Edits an existing person in the booking system. 
+Edits an existing person in the booking system.
 
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
-* Edits the person with the specified `EMAIL` indicated in `eo/EMAIL` (case-insensitive).  
-* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person. 
+* Edits the person with the specified `EMAIL` indicated in `eo/EMAIL` (case-insensitive).
+* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person.
 
 Example:
 * `edit_person eo/amy@example.com p/83984029 n/Jane` edits the person who currently has the email `amy@example.com`. The person's phone number is edited to `83984029` and name is edited to `Jane`.
@@ -212,7 +212,7 @@ Example:
 
 #### 3.4.1. Adding a venue : `add_venue` (Multi step command)
 
-Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. Inputting 
+Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. Inputting
 `add_venue v/VENUE_NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
 After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the following optional fields in the order stated, which can be skipped by pressing the <kbd>Enter</kbd> key:
@@ -236,7 +236,7 @@ Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESC
 
 Examples:
 * `edit_venue vo/Lab max/30 d/Used for experiments` edits the venue that currently has the venue name `Lab`. The venue's maximum capacity is edited to `30`.
-* `edit_venue vo/Victoria Hall d/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description, if any, is made empty.  
+* `edit_venue vo/Victoria Hall d/` edits the venue that currently has the venue name `Victoria Hall`. The venue's description, if any, is made empty.
 
 
 #### 3.4.3. Deleting a venue : `delete_venue`
@@ -275,14 +275,14 @@ Examples:
 
 **:information_source: About venues:**<br>
 
-* BookCoin stores information about bookings for scheduling/ contacting purposes. 
+* BookCoin stores information about bookings for scheduling/ contacting purposes.
 * Bookings are identified by their , hence all  between bookings must be unique.
 
 </div>
 
 #### 3.5.1. Adding a booking : `add_booking` (Multi step command)
 
-Adds a new booking into the booking app. `add_booking` is a multi-step command that will prompt you for additional input. Inputting 
+Adds a new booking into the booking app. `add_booking` is a multi-step command that will prompt you for additional input. Inputting
 `add_booking` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
 The system will ask for and store the email of the booker, the venue booked, the start and end time of your booking (in the format YYYY-MM-DD HH:MM). You may also choose to add an optional description or tags for your booking.
@@ -296,7 +296,7 @@ Edits an existing booking in the booking system with the specified booking ID.
 Format: `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
 
 Examples:
-* `edit_booking bid/8937936578 b/janetan@gmail.com` 
+* `edit_booking bid/8937936578 b/janetan@gmail.com`
 * `edit_booking bid/9384720480 v/Field`
 
 #### 3.5.3. Deleting a booking : `delete_booking`
@@ -314,7 +314,7 @@ Shows a list of all bookings and their corresponding IDs in the booking app.
 
 Format: `list_booking`
 
-#### 3.5.5. Finding a booking : `find_booking` 
+#### 3.5.5. Finding a booking : `find_booking`
 
 Shows a list of bookings that match the specified field(s).
 
@@ -345,7 +345,7 @@ Format `generate v/Victoria Hall`
 ## **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that
 contains the data of your previous BookCoin home folder.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -357,7 +357,7 @@ Action | Format, Example
 **add person** | `add_person n/NAME` <br> (Note: add_person is a multi-step command)
 **delete person** | `delete_person e/EMAIL` <br> e.g. `delete_person e/jane@gmail.com`
 **edit person** | `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]` <br> e.g., `edit_person eo/jane@example.com p/94857267`
-**find person** | `find_person e/EMAIL` <br> e.g., `find_person e/jane@example.com` 
+**find person** | `find_person e/EMAIL` <br> e.g., `find_person e/jane@example.com`
 **list person** | `list_person`
 **add venue** | `add_venue v/VENUE_NAME` <br> (Note: add_venue is a multi-step command)
 **delete venue** | `delete_venue v/VENUE_NAME` <br> e.g. `delete_venue v/Field`

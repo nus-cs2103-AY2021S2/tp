@@ -13,8 +13,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: Implemented `add_venue` command and refactored it during iterations to include new fields and features.
     * What it does: allows the user to add venues one at a time into the system through a multi step command with optional fields such as capacity, description, tags.
-    * Justification: implementation of `add_venue` as a multi-step command enhances usability and makes it more convenient for users to input a new venue because of the number of fields needed, which can be tedious to type in one go and also difficult to remember. 
-  
+    * Justification: implementation of `add_venue` as a multi-step command enhances usability and makes it more convenient for users to input a new venue because of the number of fields needed, which can be tedious to type in one go and also difficult to remember.
+
 * **Project management**:
     * Tested release `v1.3` to ensure that it works as intended
 
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide: formatted and polished user guide for better readability, added app constraints and design justifications, wrote and revised commands listed in user guide alongside testing of the app.
     * Code documentation: refactored existing AB3 documentation, added, checked and edited existing documentation by other members
-    * Developer Guide: 
+    * Developer Guide:
 
 * **Others**:
     * Designed UI mockup
@@ -36,4 +36,4 @@ Given below are my contributions to the project.
 
 * **Community**:
     * [Reported bugs](https://github.com/ming-00/ped/issues) during PE dry run
-  
+

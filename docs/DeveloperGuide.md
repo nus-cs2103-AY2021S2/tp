@@ -11,11 +11,11 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **1. Introduction to BookCoin**
 
-Welcome! This is BookCoin, a compact application for booking management for administrative personnel. This developer guide is created to give a quick introduction of BookCoin to interested developers on its structure and implementation. 
+Welcome! This is BookCoin, a compact application for booking management for administrative personnel. This developer guide is created to give a quick introduction of BookCoin to interested developers on its structure and implementation.
 All are welcome to contribute!
 
-This guide covers several aspects of BookCoin, starting from its high-level design implementation and following with an overview of the implementation behind key features and  
-rationale behind certain design decisions. Links are also provided to various guides on the tools used in Documentation, Testing, and DevOps. 
+This guide covers several aspects of BookCoin, starting from its high-level design implementation and following with an overview of the implementation behind key features and
+rationale behind certain design decisions. Links are also provided to various guides on the tools used in Documentation, Testing, and DevOps.
 Finally, the appendices specify the product scope, requirements, a glossary, and instructions for manual testing.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
- 
+
 
 **Use case: UC04 - Delete a venue**
 
@@ -570,7 +570,7 @@ testers are expected to do more *exploratory* testing.
 
     5. Test case: `add_venue v/Victoria Hall` followed by `50` followed by `Popular concert hall` followed by `indoors`<br>
     Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50, a description "Popular concert hall", and a tag "indoors".
-       
+
 
 ### Adding a booking
 1. A multi-step command to add a booking for Victoria Hall
@@ -589,7 +589,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list_person` command. 
+   1. Prerequisites: List all persons using the `list_person` command.
       Multiple persons in the list. Person with email `johndoe@gmail.com` is in the list.
       Person with email `nonexistent@gmail.com` is not in the list.
 
@@ -598,8 +598,8 @@ testers are expected to do more *exploratory* testing.
       Details of the deleted contact shown in the status message.
 
    1. Test case: `delete_person e/nonexistent@gmail.com`<br>
-      Expected: No person is deleted. 
-      Error details shown in the status message. 
+      Expected: No person is deleted.
+      Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete_person`, `delete_person x` <br>
       Expected: Similar to previous.
@@ -663,7 +663,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `delete_person`, `delete_person x` <br>
        Expected: Similar to previous.
-       
+
 
 
 ### Accessing help
