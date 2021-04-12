@@ -783,22 +783,22 @@ Action | Format, Examples
 **List definitions** | `listdef`
 **Copy content to note** | `copytonote`
 ***Note Features*** | 
-**Add note** | `addnote c/CONTENT [t/TAG]…​`
+**Add note** | `addnote c/CONTENT [t/TAG]…​ ` <br> e.g. `addnote c/Do Homework`
 **List all notes** | `listnote`
 **Show note** | `shownote INDEX` <br> e.g., `shownote 1`
-**Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
+**Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​` <br> e.g. `editnote 1 c/Buy Book`
 **Edit note in edit mode** | `editmode`
 **Save changes to note** | `save`
 **Quit edit mode** | `quit`
-**Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
-**Delete note** | `deletenote INDEX`
+**Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​` <br> e.g. `findnote c/CS2103`
+**Delete note** | `deletenote INDEX` <br> e.g. `deletenote 2`
 **Sort all notes** | `sortnote`
 **Sort all notes based on the last edit time** | `sortnotebytime`
-**Mark note as done** | `markasdonenote INDEX`
-**Mark note as undone** | `markasundonenote INDEX`
+**Mark note as done** | `markasdonenote INDEX` <br> e.g. `markasdone 2`
+**Mark note as undone** | `markasundonenote INDEX` <br> e.g. `markasundonenote 3`
 **Mark all notes as undone** | `markallasundonenote`
-**Merge two notes** | `mergenote INDEX_1 INDEX_2`
-**Convert note into .txt** | `converttxtnote INDEX`
+**Merge two notes** | `mergenote INDEX_1 INDEX_2` <br> e.g. `mergenote 1 4`
+**Convert note into .txt** | `converttxtnote INDEX` <br> e.g. `converttxtnote 2`
 ***Contact Features*** | 
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List all contacts** | `listcontact`
