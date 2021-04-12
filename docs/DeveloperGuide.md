@@ -167,8 +167,6 @@ An item's name, quantity and location are compulsory fields that must be supplie
 The sequence diagram below shows how the components interact with each other for the scenario where the user
 issues the command `add n/apple q/2 l/kitchen`:
 
-<br>
-
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
 From the diagram above:
@@ -187,8 +185,6 @@ From the diagram above:
 8. This `CommandResult` will be returned at the end by `LogicManager`.
 
 The following Activity Diagram summarizes what happens when a user executes the `add` command:
-
-<br>
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
@@ -237,8 +233,6 @@ Even though the edit command expects the user input to only have multiple tag pr
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `edit 1 n/apple`: 
 
-<br>
-
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 From the diagram above:
@@ -273,8 +267,6 @@ edited item.
 
 The following Activity Diagram summarizes what happens when a user executes the `edit` command:
 
-<br>
-
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
 #### Design consideration:
@@ -299,8 +291,6 @@ The delete feature allows users to delete an item from the inventory by using th
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `delete 5` to delete the item with index 5 in the currently displayed list:
 
-<br>
-
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 From the diagram above:
@@ -318,8 +308,6 @@ a `CommandResult` object to `LogicManager`.
 8. This `CommandResult` will be returned at the end by `LogicManager`.
 
 The following Activity Diagram summarizes what happens when a user executes the `delete` command:
-
-<br>
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
@@ -353,18 +341,12 @@ contain any of the given keywords, either in full or partial.
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find */cheese egg`:
 
-<br>
-
 ![FindPartialSequenceDiagram](images/FindPartialSequenceDiagram.png)
-
-<br>
 
 <div style="page-break-after: always;"></div>
 
 The sequence diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find Chocolate`:
-
-<br>
 
 ![FindFullSequenceDiagram](images/FindFullSequenceDiagram.png)
 
@@ -387,8 +369,6 @@ From the diagram above:
 <div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes the `find` command:
-
-<br>
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
@@ -417,8 +397,6 @@ or with a specific tag respectively.
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `list`:
 
-<br>
-
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 From the diagram above:
@@ -438,8 +416,6 @@ From the diagram above:
 <div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes the `list` command:
-
-<br>
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
@@ -465,18 +441,12 @@ The reminder feature allows users to view items that are expiring within a certa
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 1 week`:
 
-<br>
-
 ![ReminderWeeksSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
-
-<br>
 
 <div style="page-break-after: always;"></div>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 3 days`:
-
-<br>
 
 ![ReminderDaysSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
 
@@ -504,8 +474,6 @@ From the diagrams above:
 
 The following Activity Diagram summarizes what happens when a user executes a `reminder` command:
 
-<br>
-
 ![ReminderActivityDiagram](images/ReminderActivityDiagram.png)
 
 #### Design consideration:
@@ -515,7 +483,6 @@ The following Activity Diagram summarizes what happens when a user executes a `r
 * **Alternative 1 (current choice)** : Provide an integer as an input argument
     * **Pros**: Faster to type as compared to date in a particular format.
     * **Cons**: More cases to consider when parsing the command.
-
 
 * **Alternative 2** : Provide a date in the format of YYYY-MM-DD as input
     * **Pros**: Easier to compare between items as the input date can be used to create an `expiryDate` object
@@ -537,8 +504,6 @@ view items in the displayed list in chronological order of their expiry date.
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `sort quantity asc`:
-
-<br>
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
@@ -570,8 +535,6 @@ From the diagram above:
 
 The following Activity Diagram summarizes what happens when a user executes a `sort quantity asc` command:
 
-<br>
-
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
 
@@ -598,18 +561,12 @@ The clear feature allows users to either clear all items in the inventory or cle
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear`:
 
-<br>
-
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
-
-<br>
 
 <div style="page-break-after: always;"></div>
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear l/Kitchen`:
-
-<br>
 
 ![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
 
@@ -630,8 +587,6 @@ From the diagram above:
 10. The `CommandResult` object will be returned in the end by `LogicManager`.
 
 The following Activity Diagram summarizes what happens when a user executes the clear by location command:
-
-<br>
 
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
@@ -656,8 +611,6 @@ Even though the help command expects the user input to contain the `help` comman
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `help`:
 
-<br>
-
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
 From the diagram above:
@@ -676,8 +629,6 @@ From the diagram above:
 <div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes a help command:
-
-<br>
 
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
