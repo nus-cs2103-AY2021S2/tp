@@ -8,7 +8,7 @@ public class CommandHistory {
     public static final String MESSAGE_TOO_FAR_BACK = "Do not have more history commands - execute a new command!"
         + "\n Note that executing an erroneous command will also allow you to start using /up from the latest "
         + "commmand.";
-    private static CommandHistory INSTANCE;
+    private static CommandHistory chInstance;
     private ArrayList<String> previousCommands;
     private int counter;
 
@@ -18,21 +18,39 @@ public class CommandHistory {
     }
 
     public static CommandHistory getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new CommandHistory();
+        if (chInstance == null) {
+            chInstance = new CommandHistory();
         }
-        return INSTANCE;
+        return chInstance;
     }
 
+    /**
+     * some function
+     *
+     * @param command
+     */
     public void addCommandToHistory(String command) {
         previousCommands.add(command);
         resetCounter();
     }
 
-    public String retrievePreviousCommand() throws CommandException{
+    /**
+     * some function.
+     *
+     * @return some function
+     * @throws CommandException
+     */
+    public String retrievePreviousCommand() throws CommandException {
         return retrievePreviousCommand(counter++);
     }
 
+    /**
+     * some function
+     *
+     * @param previousIndex
+     * @return some function
+     * @throws CommandException
+     */
     public String retrievePreviousCommand(int previousIndex) throws CommandException {
         if (previousIndex >= previousCommands.size()) {
             throw new CommandException(MESSAGE_TOO_FAR_BACK);
