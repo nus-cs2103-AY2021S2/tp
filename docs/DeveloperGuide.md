@@ -68,6 +68,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+A similar *Sequence Diagram* exists for meeting related commands like `editm 1`.
+
+<img src="images/ArchitectureSequenceMeetingDiagram.png" width="574" />
+
 The sections below give more details of each component.
 
 ### UI component

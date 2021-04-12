@@ -10,7 +10,7 @@ The target users are NUS computing minor students who are busy moving about for 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to find persons by group (findg command).
+* **New Feature**: Added the ability to find persons by group (findpg command).
   * What it does: Allows the user to find all contacts associated with a group.
   * Justification: This feature improves the product considerably because a user may want to find all his contacts in a particular group. For instance, he may want to quickly access his contacts that are in his class for sending an invitation.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. The API of this command is necessary for creating the meeting people connection, which is required for finding all persons in a meeting. A meeting may have groups involved and this API allows us to extract all people in the groups of a meeting.
@@ -47,6 +47,6 @@ Given below are my contributions to the project.
   
 * **Documentation**:
   * User Guide:
-    * Added documentation for the aforementioned features such as `findg` and `showm`
+    * Added documentation for the aforementioned features such as `findpg` and `showm`
   * Developer Guide:
-    * Added implementation details of the aforementioned features such as `findg` and `showm`
+    * Added implementation details of the aforementioned features such as `findpg` and `showm`
