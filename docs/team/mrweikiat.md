@@ -60,6 +60,4 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Refactored person classes in the Person package, refactored storage classes, refactor tag classes.
 * Worked on Comparator class, sorting class, Tag class, Command class, Parser class
 * Worked on resolving Ui bugs after practical dry runs
-* Helped to standardize UG and DG
-* Wrote test cases when possible
-* Approve and merge PRs when possible
+* Helped to standardize UG and DG, wrote test cases when possible, approve and merge PRs when possible
