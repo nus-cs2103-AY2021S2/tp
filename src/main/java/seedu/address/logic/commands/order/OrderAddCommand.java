@@ -76,8 +76,7 @@ public class OrderAddCommand extends Command {
         model.decreaseIngredientByOrder(toAdd);
 
         model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
-        Comparator<Order> comparator = (first, second) ->
-                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
+        Comparator<Order> comparator = new OrderChronologicalComparator();
         model.updateFilteredOrderList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.ORDER);
     }
