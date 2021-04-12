@@ -1,7 +1,5 @@
 package seedu.address.logic.filters;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.model.customer.Car;
 
 /**
@@ -14,28 +12,7 @@ public abstract class CarFilter extends Filter {
      * @param filterString the filter to match the {@code Customer}
      */
     public CarFilter(String filterString) {
-        super(filterString.trim());
-        requireNonNull(filterString);
-    }
-
-    /**
-     * Parses filter command for c/, cp/ prefixes.
-     *
-     * @param car the car object to parse
-     * @return
-     */
-    public static Car parseCar(String car) {
-        String[] carDetails = car.split("\\+");
-
-        String filterCarBrand = carDetails[0].trim();
-        String filterCarType = carDetails[1].trim();
-        if (filterCarBrand.isEmpty()) {
-            filterCarBrand = null;
-        }
-        if (filterCarType.isEmpty()) {
-            filterCarType = null;
-        }
-        return new Car(filterCarBrand, filterCarType);
+        super(filterString);
     }
 
     /**

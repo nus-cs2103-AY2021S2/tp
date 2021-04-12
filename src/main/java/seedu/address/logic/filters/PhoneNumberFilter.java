@@ -17,8 +17,7 @@ public class PhoneNumberFilter extends Filter {
      * @param filterString the filter string using which to filter
      */
     public PhoneNumberFilter(String filterString) {
-        super(filterString.trim());
-        Objects.requireNonNull(filterString);
+        super(filterString);
         if (!Pattern.matches("\\+?[0-9]+", this.filterString)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINT);
         }

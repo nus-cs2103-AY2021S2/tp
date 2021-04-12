@@ -16,8 +16,7 @@ public class TagFilter extends Filter {
      * @param filterString the filter string against which to test
      */
     public TagFilter(String filterString) {
-        super(filterString.trim());
-        Objects.requireNonNull(filterString);
+        super(filterString);
     }
 
     /**

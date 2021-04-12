@@ -18,7 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Helper class to support the filters. This is essentially a factory class which takes in a string and returns the
  * appropriate kind of filter it represents, after parsing.
  */
-public class Filters {
+public class FilterFactory {
     public static final String MESSAGE_MULTIPLE_FILTERS = "Number of filters between two logical operators should be "
         + "exactly 1!";
     public static final String MESSAGE_UNKNOWN_PREFIX = "The given find filter is not valid : ";

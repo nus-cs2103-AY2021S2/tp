@@ -29,7 +29,6 @@ public class NameFilter extends Filter {
      */
     public NameFilter(String nameListSingleString) {
         super(nameListSingleString);
-        requireNonNull(nameListSingleString);
         checkArgument(isValidFilter(nameListSingleString), MESSAGE_CONSTRAINTS);
         this.nameList = nameListSingleString.split("\\s+");
     }

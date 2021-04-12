@@ -42,8 +42,9 @@ class DateOfBirthTest {
         assertFalse(DateOfBirth.isValidDateOfBirth(currentDate.minusYears(200).format(formatter))); // 200 years old
         assertFalse(DateOfBirth.isValidDateOfBirth(currentDate.minusYears(101).format(formatter))); // 101 years old
 
-        assertFalse(DateOfBirth.isValidDateOfBirth("1998 13 01")); // invalid month
-        assertFalse(DateOfBirth.isValidDateOfBirth("1998 10 32")); // invalid date
+        String yearTenYearsAgo = String.valueOf(currentDate.getYear() - 10);
+        assertFalse(DateOfBirth.isValidDateOfBirth(yearTenYearsAgo + " 13 01")); // invalid month
+        assertFalse(DateOfBirth.isValidDateOfBirth(yearTenYearsAgo + " 10 32")); // invalid date
 
         // valid DateOfBirth
         assertTrue(DateOfBirth.isValidDateOfBirth(currentDate.minusYears(100).format(formatter))); // 100 years
