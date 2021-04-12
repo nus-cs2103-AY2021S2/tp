@@ -32,7 +32,7 @@ The sections below give more details of each component.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.partyplanet.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
