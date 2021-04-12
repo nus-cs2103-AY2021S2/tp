@@ -6,7 +6,8 @@ title: User Guide
 Are you finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We
 understand. Link.me is a **desktop app built for insurance agents** to help you manage your clients. Features of 
 Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports peripheral 
-features such as meeting scheduling, recording client notes and notifying the user of important upcoming events.
+features such as adding and removing insurance plans of clients, meeting scheduling, recording client notes and
+notifying the user of important upcoming events.
 
 Link.me is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical 
 User Interface (GUI). If you can type fast, Link.me can get your client management tasks done faster than traditional 
@@ -15,16 +16,16 @@ GUI apps.
 ### Using this guide
 
 This user guide will guide you, as an insurance agent, through the process of setting up Link.me, introduce you to the
-capabilities of Link.me and facilitate your usage of Link.me so that you can better manage your ever-increasing clients.
+capabilities of Link.me and facilitate your usage of Link.me so that you can better manage your ever-increasing
+number of clients.
 
 Note the following symbols and formatting used in this guide:
 
 Symbol/ Formatting           | Meaning
 -----------------------------|------------------------------------------------------------------------------------------
-`delete 1`                   |A grey highlight indicates that this is a command that you can type into the command line
-:information_source:         |This symbol indicates important information to take note of
-:bulb:                       |This symbol indicates helpful tips 
-:exclamation:                |This symbol indicates warnings that you should follow
+:information_source:         |This symbol indicates important information to take note of.
+:bulb:                       |This symbol indicates a helpful tip.
+:exclamation:                |This symbol indicates a warning that you should follow.
 
 You may navigate this document using the Table of Contents provided below.
 
@@ -37,7 +38,7 @@ You may navigate this document using the Table of Contents provided below.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed on your Computer.
+1. Ensure you have Java `11` or above installed on your computer.
 
 2. Download the latest `linkme.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-3/tp/releases).
 
@@ -56,7 +57,7 @@ You may navigate this document using the Table of Contents provided below.
 
     * **`add n/John Doe p/98765432 e/johnd@example.com a/123 John Street g/M b/1993-05-06`** : Adds a client named `John Doe` to Link.me.
     
-    * **`delete 3`** : Deletes the 3rd client shown in the current list.
+    * **`delete 3`** : Deletes the 3rd client shown in the currently displayed client list.
 
     * **`clear`** : Deletes all of your clients. You may use this to clear the sample data.
 
@@ -74,19 +75,21 @@ The structure of the Link.me interface is split into five main parts:
 ![Layout](images/Layout.png)
 * The **Input Command Line** is where you input commands for execution.
 
-* The **Result Display** displays the result of your input.
+* The **Result Display** displays the result of your command.
 
 * The **Client List** displays the list of clients you have stored in Link.me.
 
 * The **Meeting List** displays the list of meetings that you have scheduled.
 
-* The **Status Bar** displays information regarding where your information is stored. (Not relevant for basic users.)
+* The **Status Bar** displays information regarding where your information is stored (not relevant for basic users).
 
 ![PersonLayout](images/PersonLayout.png)
-You can view the personal information of each client, as well as their insurance plans and notes you have taken for them.
+You can view the personal information of each client, as well as their insurance plans and if there are any notes
+recorded about them.
 
 ![MeetingLayout](images/MeetingLayout.png)
-You can view information regarding upcoming meetings, including meeting time and a brief description.
+You can also view information regarding upcoming meetings, such as the meeting time and a brief description of the
+meeting.
 
 ### Functionalities
 
@@ -117,8 +120,8 @@ Action                            | Format
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the inputs you should supply.<br>
-  e.g. in `add n/NAME`, `NAME` represents the client's name that you should provide. For instance, if the
-  client's name is "John Doe", you should input: `add n/John Doe`.
+  e.g. in `n/NAME`, `NAME` represents the client's name that you should provide. For instance, if the
+  client's name is "John Doe", you should input: `n/John Doe`.
   
 
 * Inputs in square brackets are optional.<br>
@@ -131,9 +134,7 @@ Action                            | Format
 * Inputs with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. in `[t/TAG]…​`, the following inputs are valid:
     * `t/medical`
-    * `t/mdecial t/investment`
-    * ` `  (an empty input)
-
+    * `t/medical t/investment`
 
 * You can enter your inputs in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -162,22 +163,21 @@ Format: `list`
 You can add a client to Link.me, by specifying each of the fields below:
 
 * Name 
-  * should only contain alphanumeric characters and spaces
+  * should only contain alphanumeric characters, spaces and these special characters: (),-
   * should not be blank
-  * should not have the same name
-    * To assist you with finding the correct client among clients with the exact same name, you can input a bracket
-      after the individual client to distinguish him from the rest, for instance:
-      * John Doe (Primary school classmate)
-      * John Doe (Soccer teammate)
+  * should not be the same as an existing client
+    * :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your
+    clients have the same name, you are encouraged to add additional information in parentheses after their name
+    to help you differentiate them.
 
 * Phone number 
   * should only contain numbers
-  * should be at least 3 digits long
+  * should be between 3 and 50 digits (inclusive) long
 
 * Email
   * should be in the format `local-part@domain`
-  * `local-part` should not be blank and should contain alphanumeric characters and the following characters within parenthesis (!#$%&'*+/=?`{\|}~^.-) 
-  * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, periods and hyphens
+  * `local-part` should not be blank and should only contain alphanumeric characters and these special characters: !#$%&'*+/=?`{\|}~^.-
+  * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and only contain alphanumeric characters, periods and hyphens
 
 * Address
   * should not be blank
@@ -186,11 +186,11 @@ You can add a client to Link.me, by specifying each of the fields below:
   * should be either `M`/`Male`, `F`/`Female` or `N`/`Non-binary`
     
 * Birthdate
-  * should be in the format YYYY-MM-DD
+  * should be in the format `YYYY-MM-DD`
   * should be a valid date
     
 * Tags (optional)
-  * should be alphanumeric
+  * should only contain alphanumeric characters
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
 
@@ -215,22 +215,18 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [
 * The format of each field is specified above under [Adding a client](#adding-a-client-add).
 * Existing values will be updated to new values you provide.
 * When editing tags, the existing tags of your client will be removed i.e. adding of tags is not cumulative.
-* When editing names, you cannot use a name that is identical to that of an existing client
-  * To assist you with finding the correct client among clients with the exact same name, you can input a bracket
-    after the individual client to distinguish him from the rest, for instance:
-    * John Doe (Primary school classmate)
-    * John Doe (Soccer teammate)
+* When editing names, you cannot use a name that is identical to that of an existing client.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can remove all your client’s tags by typing `t/` without specifying any tags after it.
+You can remove all of your client’s tags by typing `t/` without specifying any tags after it.
 </div>
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
+* `edit 1 p/91234567 e/johndoe@example.com`<br>Edits the phone number and email address of the 1st client to be `91234567`
   and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
-* `edit 2 t/medical` Edits the insurance tag of the 2nd client to be `medical`.
+* `edit 2 n/Betsy Crower t/`<br>Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+* `edit 2 t/medical`<br>Edits the insurance tag of the 2nd client to be `medical`.
 
 ### Deleting a client : `delete`
 
@@ -263,7 +259,7 @@ Format: `plan INDEX i/PLAN_NAME $PREMIUM`
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `PLAN_NAME` refers to the name of the insurance plan.
 * `PREMIUM` refers to the yearly premium amount that the client pays for this plan.
-* `PREMIUM` **must be a positive integer** 1, 2, 3, …​
+* `PREMIUM` **must be a positive amount with up to 2 decimal places**
 
 Example:
 
@@ -275,7 +271,7 @@ You can remove an existing insurance plan from a client.
 
 Format: `plan INDEX c/PLAN_INDEX`
 * Removes the plan specified by `PLAN_INDEX` from the client specified at `INDEX`.
-*`INDEX` refers to the index number shown in the displayed client list, while `PLAN_INDEX` refers to the index number shown in the list of insurance plans for that client.
+* `INDEX` refers to the index number shown in the displayed client list, while `PLAN_INDEX` refers to the index number shown in the list of insurance plans for that client.
 * Both `INDEX` and `PLAN_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -350,18 +346,18 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 </div>
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**`DESCRIPTION` can contain any character, including "@".
+:bulb: **Tip:** `DESCRIPTION` can contain any characters, including "@".
 </div>
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** Meetings with clashes will not be scheduled, but Link.me only detects clashes when the scheduled time 
-is exactly the same. Even with a minute difference, Link.me will schedule a new meeting. This is to ensure that our 
-users have the largest flexibility when using Link.me.
+is exactly the same. Even with a difference of 1 minute, Link.me will schedule a new meeting. This is to give you
+ the largest flexibility when using Link.me.
 </div>
 
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client 
+* `schedule 2 m/Insurance Plan @ 2020-10-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client 
   on 28th October 2020 2:30 pm.
 
 #### Removing a meeting : `unschedule`
@@ -399,12 +395,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `Jeff Liu`<br>
+* `find Alex Jeff` returns `Alex Yeoh`, `Jeff Liu`<br>
   ![result for 'find alex jeff'](images/findAlexJeffResult.png)
 
 #### Filtering clients by attributes : `filter`
 
-You can filter clients by their address, gender, age, tags or insurance plan name.
+You can filter clients by their address, gender, tags, age or insurance plan name.
 
 Format: `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...`
 
@@ -415,14 +411,12 @@ Supported `PREFIX/KEYWORD` pairs:
 * age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]` (Age should be a non-negative integer)
 * insurance plan name: `i/PLAN_NAME`
 
-Lists all of your clients that has one of their attributes that match your search keywords.
+All of your clients that have at least one of their attributes matching your search keywords will be listed.
 
 * The search is case-insensitive. e.g. for gender, `male` will match `Male`
-* Only attributes that are identical will be matched e.g. for insurance plan, `Protect` will not match `Protect Plan`
+* Only attributes that are identical will be matched. e.g. for insurance plan, `Protect` will not match `Protect Plan`
 * Clients matching at least one attribute will be returned (i.e. `OR` search). e.g. `g/F age/40` will return any
 female clients and clients aged 40.
-
-Only attributes that are exactly the same will be matched.
 
 Example:
 
@@ -476,7 +470,7 @@ the JSON file directly. The Link.me team does not take any responsibility in dat
 invalid inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Link.me will try to discard all data and start with an empty 
+If your changes to the data file make its format invalid, Link.me will try to discard all data and start with an empty 
 data file at the next run. However, if the damage is too excessive, Link.me may be unable to start up.
 In the case that this happens, please manually delete the data file to start the app.
 </div>
