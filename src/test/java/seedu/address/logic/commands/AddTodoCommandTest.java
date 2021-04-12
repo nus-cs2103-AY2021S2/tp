@@ -24,26 +24,25 @@ import seedu.address.testutil.TodoBuilder;
 public class AddTodoCommandTest {
 
     private Model model;
+    private Todo todoToAdd;
 
     @BeforeEach
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
+        todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment").build();
     }
 
     @Test
     public void execute_validParameters_success() throws Exception {
-        Todo validTodo = new TodoBuilder().withDescription("CS2106 Assignment").build();
-
-        CommandResult commandResult = new AddTodoCommand(INDEX_FIRST, validTodo).execute(model);
+        CommandResult commandResult = new AddTodoCommand(INDEX_FIRST, todoToAdd).execute(model);
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
-        assertEquals(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, validTodo,
+        assertEquals(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, todoToAdd,
                 projectToEdit.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Todo todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment").build();
         // Typical project list contains only 2 projects
         AddTodoCommand addTodoCommand = new AddTodoCommand(INDEX_THIRD, todoToAdd);
 
@@ -55,8 +54,6 @@ public class AddTodoCommandTest {
 
     @Test
     public void execute_duplicateTodo_throwsCommandException() {
-        Todo todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment").build();
-
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         projectToAddTo.addTodo(todoToAdd);
 
@@ -67,7 +64,6 @@ public class AddTodoCommandTest {
 
     @Test
     public void equals() {
-        Todo todoToAdd = new TodoBuilder().withDescription("CS2106 Assignment").build();
         AddTodoCommand addTodoToOneCommand = new AddTodoCommand(INDEX_FIRST, todoToAdd);
         AddTodoCommand addTodoToTwoCommand = new AddTodoCommand(INDEX_SECOND, todoToAdd);
 

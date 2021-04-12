@@ -26,28 +26,26 @@ import seedu.address.testutil.DeadlineBuilder;
 public class AddDeadlineCommandTest {
 
     private Model model;
+    private Deadline deadlineToAdd;
 
     @BeforeEach
     public void setUp() throws DateConversionException {
         model = new ModelManager(getTypicalColabFolder(), new UserPrefs());
+        deadlineToAdd = new DeadlineBuilder().withDescription("CS2106 Tutorial")
+                .withByDate(LocalDate.of(2020, 01, 01)).build();
     }
 
     @Test
     public void execute_validParameters_success() throws Exception {
-        Deadline validDeadline = new DeadlineBuilder().withDescription("CS2106 Tutorial")
-                .withByDate(LocalDate.of(2020, 01, 01)).build();
-
-        CommandResult commandResult = new AddDeadlineCommand(INDEX_FIRST, validDeadline).execute(model);
+        CommandResult commandResult = new AddDeadlineCommand(INDEX_FIRST, deadlineToAdd).execute(model);
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
-        assertEquals(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, validDeadline,
+        assertEquals(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, deadlineToAdd,
                 projectToEdit.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_invalidProjectIndex_throwsCommandException() {
-        Deadline deadlineToAdd = new DeadlineBuilder().withDescription("CS2106 Tutorial")
-                .withByDate(LocalDate.of(2020, 01, 01)).build();
         // Typical project list contains only 2 projects
         AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(INDEX_THIRD, deadlineToAdd);
 
@@ -59,8 +57,6 @@ public class AddDeadlineCommandTest {
 
     @Test
     public void execute_duplicateDeadline_throwsCommandException() {
-        Deadline deadlineToAdd = new DeadlineBuilder().withDescription("CS2106 Tutorial")
-                .withByDate(LocalDate.of(2020, 1, 1)).build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(INDEX_FIRST, deadlineToAdd);
 
@@ -72,8 +68,6 @@ public class AddDeadlineCommandTest {
 
     @Test
     public void equals() {
-        Deadline deadlineToAdd = new DeadlineBuilder().withDescription("CS2106 Tutorial")
-                .withByDate(LocalDate.of(2020, 01, 01)).build();
         AddDeadlineCommand addDeadlineToOneCommand = new AddDeadlineCommand(INDEX_FIRST, deadlineToAdd);
         AddDeadlineCommand addDeadlineToTwoCommand = new AddDeadlineCommand(INDEX_SECOND, deadlineToAdd);
 
