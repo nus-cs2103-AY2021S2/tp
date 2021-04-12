@@ -9,6 +9,8 @@ import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -30,12 +32,14 @@ public class ListNoteCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListNoteCommand(), model, ListNoteCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListNoteCommand(), model, ListNoteCommand.MESSAGE_SUCCESS,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         //showNoteAtIndex(model, INDEX_FIRST_NOTE); uncomment on v1.3 for search notes using keyword
-        assertCommandSuccess(new ListNoteCommand(), model, ListNoteCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListNoteCommand(), model, ListNoteCommand.MESSAGE_SUCCESS,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
     }
 }

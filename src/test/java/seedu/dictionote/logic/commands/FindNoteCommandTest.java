@@ -17,6 +17,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -85,7 +87,8 @@ public class FindNoteCommandTest {
         FindNoteCommand command = new FindNoteCommand(namePredicate, tagsPredicate);
         expectedModel.updateFilteredNoteList(namePredicate.and(tagsPredicate));
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
         assertEquals(Arrays.asList(MI_AMOR, MI_VIDA), model.getFilteredNoteList());
     }
 

@@ -7,7 +7,7 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 
 /**
- * Edit the note in edit mode.
+ * Edits the note in edit mode.
  */
 public class EditModeCommand extends Command {
     public static final String COMMAND_WORD = "editmode";
@@ -20,7 +20,6 @@ public class EditModeCommand extends Command {
     public static final String MESSAGE_ALREADY_IN_EDIT_MODE = "Currently in edit mode.\n"
         + "type in `save` to save the edited content and quit edit mode\n"
         + "type in `quit` to quit edit mode without saving";
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

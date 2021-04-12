@@ -23,7 +23,9 @@ public class SetContactDividerPositionCommand extends SetDividerPositionCommand 
     public static final String MESSAGE_SET_DIVIDER_SUCCESS = "Contact Divider Position Set to ";
 
     /**
-     * Creates an SetContactDividerPositionCommand that set the contact divider to a the specified position
+     * Creates an SetContactDividerPositionCommand that set the contact divider to a the specified position.
+     *
+     * @param position position of divider.
      */
     public SetContactDividerPositionCommand(int position) {
         super(position);
