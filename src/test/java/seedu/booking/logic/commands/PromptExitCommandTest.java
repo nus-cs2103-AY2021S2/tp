@@ -1,5 +1,6 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PREVIOUS;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
@@ -31,7 +32,7 @@ public class PromptExitCommandTest {
     @Test
     void execute() {
         PromptExitCommand command = new PromptExitCommand();
-        assertCommandSuccess(command, model, "Prompting exited.", expectedModel);
+        assertCommandSuccess(command, model, "Prompting exited.", COMMAND_SHOW_PREVIOUS, expectedModel);
         StatefulLogicManager.resetCommandState();
     }
 }

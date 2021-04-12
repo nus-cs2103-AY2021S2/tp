@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_BOOKING_VENUE_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_EMAIL;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_VENUE;
 import static seedu.booking.testutil.TypicalPersons.HOON;
@@ -38,7 +39,8 @@ public class PromptBookingEmailCommandTest {
     @Test
     void execute() {
         PromptBookingEmailCommand command = new PromptBookingEmailCommand(HOON.getEmail());
-        CommandResult expectedResult = new CommandResult(PROMPT_BOOKING_VENUE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+        CommandResult expectedResult = new CommandResult(PROMPT_BOOKING_VENUE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_VENUES);
         CommandResult result;
         try {
             result = command.execute(model);

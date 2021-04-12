@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_NONE;
 
 import java.util.Objects;
 
@@ -14,15 +15,19 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Which list the application should show. */
+    private final CommandShowType showType;
+
     /** The application should exit. */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, CommandShowType showType, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showType = showType;
         this.exit = exit;
     }
 
@@ -31,11 +36,24 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, COMMAND_SHOW_NONE, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and specified {@code showType}
+     * with other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, CommandShowType showType) {
+        this(feedbackToUser, false, showType, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public CommandShowType getShowType() {
+        return showType;
     }
 
     public boolean isShowHelp() {
@@ -60,12 +78,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
+                && showType == otherCommandResult.showType
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, showType, exit);
     }
 
 }

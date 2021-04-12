@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
@@ -89,7 +90,7 @@ public class EditVenueCommand extends Command {
         model.updateVenueInBookings(venueToEdit.getVenueName(), editedVenue.getVenueName());
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         model.updateFilteredVenueList(PREDICATE_SHOW_ALL_VENUES);
-        return new CommandResult(String.format(MESSAGE_EDIT_VENUE_SUCCESS, editedVenue));
+        return new CommandResult(String.format(MESSAGE_EDIT_VENUE_SUCCESS, editedVenue), COMMAND_SHOW_VENUES);
     }
 
     private static Venue getVenueByVenueName(VenueName venueName, List<Venue> venueList) {
