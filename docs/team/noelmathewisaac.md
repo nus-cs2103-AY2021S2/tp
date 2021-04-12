@@ -12,7 +12,7 @@ and it has a GUI created with JavaFX. It is written in Java, and has about 12 kL
 Given below are my contributions to the project.
 
 * ### Major Contributions:
-    * #### Implemented the tag-search feature
+    * #### Implemented the Tag Search feature
         * What it does: Allows the users to search for a task based on one or more tags.
         * Justification: This feature makes it much easier for the user to categorise and filter out tasks belonging to a
           certain category. By tagging tasks with relevant keywords, the user can later retrieve all the tasks from 
@@ -25,7 +25,7 @@ Given below are my contributions to the project.
    * #### Implemented Due Today Task Panel
        * What it does: Allows the users to view the tasks due on the current day via a panel on the UI.
        * Justification: This feature allows users to easily see the tasks due on the current day without typing in 
-         any commands and makes it easy for them to plan their day
+         any commands and makes it easy for them to plan their day.
        * Relevant PRs: [\#89](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/89)
       
     * #### UI Design and Enhancement
@@ -54,12 +54,12 @@ Given below are my contributions to the project.
     * Refactored Person class from AB3 to Task class for Taskify:
       [\#31](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/31)
     * Designed the app logo for Taskify.
-    * Wrote tests for the tag-search command to increase coverage: 
+    * Wrote tests for the `tag-search` command to increase coverage: 
       [\#36](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/36)
 
 * **Documentation**:
     * User Guide:
-        * Added glossary and user stories, updated FAQ and added details about `tag-search` and `edit`:
+        * Added glossary and user stories, updated FAQ and added details about `tag-search` and `edit` features:
           [\#61](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/61),
           [\#171](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/171)
         * Added screenshots of features and did cosmetic tweaks to existing documentation:
@@ -68,17 +68,18 @@ Given below are my contributions to the project.
           [\#204](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/204) 
     * Developer Guide:
         * Added implementation details of the `tag-search` and `find` features:
-          [\#198](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/198)
+          [\#198](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/198),
+          [\#212](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/212)          
         * Updated use cases and added more instructions for manual testing:
           [\#198](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/198)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#37](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/37), 
       [\#40](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/40), [\#54](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/54)
-    * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/135#issuecomment-778904556), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/58#issuecomment-768852735))
-    * Reported bugs and suggestions for other teams in the class (examples: [11 bugs/suggestions in ped](https://github.com/noelmathewisaac/ped/issues))
+    * Contributed to forum discussions. (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/135#issuecomment-778904556), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/58#issuecomment-768852735))
+    * Reported bugs and suggestions for other teams in the class. (examples: [11 bugs/suggestions in ped](https://github.com/noelmathewisaac/ped/issues))
  
 
 * **Tools**:
-    * Integrated Netlify to the project workflow to generate previews for the website changes for each PR update:
+    * Integrated `Netlify` to the project workflow to generate previews for the website changes for each PR update:
       [\#14](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/14)

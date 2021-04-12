@@ -29,6 +29,10 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+/*
+Tab styling ideas adapted from:
+https://github.com/AY2021S1-CS2103T-F12-4/tp/blob/master/src/main/resources/view/DarkTheme.css
+*/
 .tab-pane
 {
     -fx-tab-min-width: 3em;
