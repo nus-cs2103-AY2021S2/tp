@@ -43,7 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n" + MESSAGE_INVALID_PREFIX_DETECTED);
+            throw new ParseException(pe.getMessage() + "\n\n" + MESSAGE_INVALID_PREFIX_DETECTED);
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();

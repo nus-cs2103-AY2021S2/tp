@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.DoneCommand;
 
 public class DoneCommandParserTest {
@@ -21,25 +20,25 @@ public class DoneCommandParserTest {
 
     @Test
     public void parse_invalidIndex_failure() {
-        assertParseFailure(parser, INVALID_STATUS_INDEX, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertParseFailure(parser, INVALID_STATUS_INDEX, DoneCommandParser.MESSAGE_DONE_FORMAT);
 
-        assertParseFailure(parser, "-1", Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertParseFailure(parser, "-1", DoneCommandParser.MESSAGE_DONE_FORMAT);
 
-        assertParseFailure(parser, "0", Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertParseFailure(parser, "0", DoneCommandParser.MESSAGE_DONE_FORMAT);
 
-        assertParseFailure(parser, "j", Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertParseFailure(parser, "j", DoneCommandParser.MESSAGE_DONE_FORMAT);
     }
 
     @Test
     public void parse_missingIndex_failure() {
         assertParseFailure(parser, "",
-                Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+                DoneCommandParser.MESSAGE_DONE_FORMAT);
     }
 
     @Test
     public void parse_extraValidParameter_failure() {
         assertParseFailure(parser, VALID_STATUS_INDEX + " " + VALID_STATUS_INDEX,
-                Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+                DoneCommandParser.MESSAGE_DONE_FORMAT);
     }
 
     @Test
