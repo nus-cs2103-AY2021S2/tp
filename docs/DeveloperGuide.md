@@ -677,7 +677,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 * 3b. The given menu item has pending orders
 
-    * 3b1. JJIMY prompts the user to append `-f` to the end of his command to confirm the cascading deletion of pending 
+    * 3b1. JJIMY prompts the user to append `-f` to the end of his command to confirm the cascading cancelation of pending 
       orders that contain the menu item
 
       User case resumes at step 2.
