@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +11,6 @@ import java.util.stream.Stream;
 import seedu.address.model.schedule.Schedulable;
 import seedu.address.model.schedule.SchedulableUtil;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * In charge of putting meetings into the @code{TimetableView} given a certain meeting,
@@ -35,6 +36,7 @@ public class TimetablePlacementPolicy {
     public static final long SECONDS_IN_DAY = 86400;
 
     public static final double TIMETABLE_DISPLAY_SIZE = 5760;
+    public static final int NUMBER_OF_COLUMNS = 7;
 
     private final int startHour;
     private final int startMinute;
@@ -57,7 +59,7 @@ public class TimetablePlacementPolicy {
         this.startHour = startHour;
         this.startMinute = startMinute;
         this.startDateTime = startDate.atTime(startHour, startMinute);
-        this.endDateTime = startDateTime.plusDays(TimetableView.NUMBER_OF_COLUMNS);
+        this.endDateTime = startDateTime.plusDays(NUMBER_OF_COLUMNS);
     }
 
     /**
@@ -66,9 +68,8 @@ public class TimetablePlacementPolicy {
      *
      * @param startDate
      */
-
     public TimetablePlacementPolicy(LocalDate startDate) {
-        this(startDate,7, 0);
+        this(startDate, 7, 0);
     }
 
 
@@ -82,7 +83,8 @@ public class TimetablePlacementPolicy {
     public boolean isWithinRange(Schedulable schedulable) {
         LocalDateTime startTimeOfSchedulable = schedulable.getStartLocalDateTime();
         LocalDateTime endTimeOfSchedulable = schedulable.getTerminateLocalDateTime();
-        return !(endTimeOfSchedulable.compareTo(startDateTime) <= 0 || startTimeOfSchedulable.compareTo(endDateTime) >= 0);
+        return !(endTimeOfSchedulable.compareTo(startDateTime) <= 0
+                || startTimeOfSchedulable.compareTo(endDateTime) >= 0);
     }
 
     /**
@@ -131,7 +133,8 @@ public class TimetablePlacementPolicy {
      */
 
     public static int getSecondsInDay(LocalDateTime localDateTime) {
-        return localDateTime.getHour() * SECONDS_IN_AN_HOUR + localDateTime.getMinute() * SECONDS_IN_A_MINUTE + localDateTime.getSecond();
+        return localDateTime.getHour() * SECONDS_IN_AN_HOUR
+                + localDateTime.getMinute() * SECONDS_IN_A_MINUTE + localDateTime.getSecond();
     }
 
     /**
@@ -187,7 +190,8 @@ public class TimetablePlacementPolicy {
     public Stream<Schedulable> breakIntoDayUnits(Schedulable schedulable) {
         Schedulable offSetSchedule = SchedulableUtil.applyNegativeOffset(schedulable, startHour, startMinute);
         List<Schedulable> splittedSchedulables = SchedulableUtil.splitSchedulableByDay(offSetSchedule);
-        return splittedSchedulables.stream().map(s -> SchedulableUtil.applyPositiveOffset(s, startHour, startMinute)).filter(this::isWithinRange);
+        return splittedSchedulables.stream()
+                .map(s -> SchedulableUtil.applyPositiveOffset(s, startHour, startMinute)).filter(this::isWithinRange);
     }
 
     /**

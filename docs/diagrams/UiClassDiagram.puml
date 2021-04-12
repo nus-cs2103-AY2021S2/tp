@@ -15,6 +15,10 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+package TimetableView {
+}
+package MeetingDashboard{
+}
 }
 
 package Model <<Rectangle>> {
@@ -22,8 +26,10 @@ Class HiddenModel #FFFFFF
 }
 
 package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+Class HiddenOutside #FFFFF
 }
+
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
@@ -35,6 +41,11 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-up-> TimetableView
+MainWindow *-up-> MeetingDashboard
+
+
+
 
 PersonListPanel -down-> PersonCard
 
@@ -42,10 +53,12 @@ MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
+PersonListPanel -left-|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+
+
 
 PersonCard ..> Model
 UiManager -right-> Logic

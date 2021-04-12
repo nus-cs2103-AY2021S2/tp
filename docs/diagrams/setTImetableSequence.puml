@@ -1,0 +1,102 @@
+
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MeetBuddyParser" as MeetBuddyParser LOGIC_COLOR
+participant ":setTimetableCommandParser" as setTimetableCommandParser LOGIC_COLOR
+participant "setTimetableCommand" as setTimetableCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":TimetablePrefs" as TimetablePrefs MODEL_COLOR
+participant "timetableStartDate: SimpleObjectProperty" as timetableStartDate MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":TimetableView" as TimetableView UI_COLOR
+end box
+
+[-> LogicManager : execute("setTimetable 2021-04-01")
+activate LogicManager
+
+LogicManager -> MeetBuddyParser : parseCommand\n("setTimetable 2021-04-01")")
+activate MeetBuddyParser
+
+create setTimetableCommandParser
+MeetBuddyParser -> setTimetableCommandParser
+activate setTimetableCommandParser
+
+setTimetableCommandParser --> MeetBuddyParser
+deactivate setTimetableCommandParser
+
+MeetBuddyParser -> setTimetableCommandParser : parse\n("2021-04-01")
+activate setTimetableCommandParser
+
+create setTimetableCommand
+setTimetableCommandParser -> setTimetableCommand
+activate setTimetableCommand
+
+setTimetableCommand --> setTimetableCommandParser : d
+deactivate setTimetableCommand
+
+setTimetableCommandParser --> MeetBuddyParser : d
+deactivate setTimetableCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+setTimetableCommandParser -[hidden]-> MeetBuddyParser
+destroy setTimetableCommandParser
+
+MeetBuddyParser --> LogicManager : d
+deactivate MeetBuddyParser
+
+LogicManager -> setTimetableCommand : execute()
+activate setTimetableCommand
+
+setTimetableCommand -> Model : setTimetableStartDate\n(date)
+activate Model
+
+Model -> TimetablePrefs: setTimetableStartDate\n(date)
+activate TimetablePrefs
+
+TimetablePrefs -> timetableStartDate : setValue(date)
+activate timetableStartDate
+
+timetableStartDate -> TimetableView : changed(obs, oldValue, newValue)
+activate TimetableView
+note right : Updates the Ui \n with new timetable
+
+TimetableView --> timetableStartDate
+deactivate TimetableView
+
+timetableStartDate --> TimetablePrefs
+deactivate timetableStartDate
+
+TimetablePrefs --> Model
+deactivate TimetablePrefs
+
+Model --> setTimetableCommand
+deactivate Model
+
+
+
+
+
+deactivate Model
+
+create CommandResult
+setTimetableCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> setTimetableCommand : result
+deactivate CommandResult
+
+setTimetableCommand --> LogicManager : result
+deactivate setTimetableCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+

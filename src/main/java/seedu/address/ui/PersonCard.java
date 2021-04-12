@@ -11,7 +11,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import seedu.address.commons.util.ImageRequestUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ProfilePicture;
 

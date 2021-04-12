@@ -21,6 +21,7 @@ public class JsonAdaptedPersonMeetingConnection {
     public static final String MEETING_NOT_FOUND_ERROR_MESSAGE = "Meeting not found in the MeetingBook, but found in "
             + "a connection";
     public static final String MESSAGE_DUPLICATE_CONNECTION = "Connections List contains duplicate connection(s).";
+    public static final String MESSAGE_MSSING_FIELDS = "The connection has at least one field value missing";
 
     private final String personName;
     private final String startDateTime;
@@ -58,6 +59,10 @@ public class JsonAdaptedPersonMeetingConnection {
     public PersonMeetingConnection toModelType(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
                                                PersonMeetingConnection connection) throws IllegalValueException {
         assert addressBook != null && meetingBook != null && connection != null;
+
+        if (personName == null|| meetingName == null || startDateTime == null) {
+            throw new IllegalValueException(MESSAGE_MSSING_FIELDS);
+        }
 
         Person person = addressBook.getPersonByName(new PersonName(personName));
         Meeting meeting = meetingBook.getMeetingByNameAndStartTime(new MeetingName(meetingName),

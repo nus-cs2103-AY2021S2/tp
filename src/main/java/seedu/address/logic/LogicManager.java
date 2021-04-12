@@ -125,5 +125,17 @@ public class LogicManager implements Logic {
     public ObservableValue<LocalDate> getTimeTableStartDate() {
         return model.getReadOnlyTimetableStartDate();
     }
+
+    //============================ Get Storage FIle Path methods =============================================
+
+    @Override
+    public Path getMeetingBookFilePath() {
+        return storage.getMeetingBookFilePath();
+    }
+
+    @Override
+    public Path getConnectionsFilePath() {
+        return storage.getConnectionFilePath();
+    }
 }
 
