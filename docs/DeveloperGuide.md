@@ -1040,27 +1040,6 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
     1. Test case: `view 1` <br>
        Expected: John's and Bruce's contacts are listed. John Doe's contact is at the top, followed by Bruce.
-<<<<<<< HEAD
-
-1. Viewing dog
-
-    1. Test case: `view 2`
-       Expected: John, Bruce and Obedience Training program is listed. Bruce's contact is at the top, followed by John,
-       followed by Obedience Training.
-
-1. Viewing program
-
-    1. Test case: `view 3`
-       Expected: Bruce and Obedience Training program is listed. Obedience training details are at the top, followed by Bruce's details.
-
-1. Invalid view ID
-
-    1. Test case: `view 4`
-       Expected: Error status message is provided, indicating invalid ID.
-
-    1. Test case: 'view -1'
-       Expected: Error status message is provided, indicating ID must be positive.
-=======
        
 1. Viewing dog 
     
@@ -1079,8 +1058,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
        Expected: Error status message is provided, indicating invalid ID. 
        
     1. Test case: `view -1`<br>
-       Expected: Error status message is provided, indicating ID must be positive. 
->>>>>>> 37fedfe5 (Finalise DG manual testing)
+       Expected: Error status message is provided, indicating ID must be positive.
 
 ### Schedule Command
 
@@ -1101,31 +1079,17 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
        Expected: Successful status message, shows the sample Obedience Training 1 happening today.
 
     1. Test case: `schedule 01-02-2021` <br>
-<<<<<<< HEAD
-       Expected: Successful status message, shows the sample Obedience Training 1 happening on 01-02-2021.
-
-1. Viewing schedules on an invalid day
-=======
        Expected: Successful status message, shows the sample Obedience Training 2 happening on 01-02-2021.
     
-1. Viewing schedules on an invalid day 
->>>>>>> 37fedfe5 (Finalise DG manual testing)
+1. Viewing schedules on an invalid day
 
     1. Test case: `schedule 31-02-2021`<br>
        Expected: Error status message thrown, indicating day of the month does not exist.
-<<<<<<< HEAD
-
-    1. Test case: `schedule 031-02-2021`
-       Expected: Error status message thrown, indicating that date format should be in dd-MM-yyyy format.
-
-### Enrol Command
-=======
        
     1. Test case: `schedule 031-02-2021`<br>
        Expected: Error status message thrown, indicating that date format should be in dd-MM-yyyy format. 
        
-### Enrol Command 
->>>>>>> 37fedfe5 (Finalise DG manual testing)
+### Enrol Command
 
 1. Pre-requisites
 
@@ -1167,12 +1131,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
     1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
 
     1. Test case: `enrol d/2 p/3 p/4` <br>
-<<<<<<< HEAD
-       Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
-=======
         Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program. Remember to drop Bruce from the program if he was enrolled previously!
-
->>>>>>> 37fedfe5 (Finalise DG manual testing)
 
 1. Enrol multiple valid dogs into multiple valid programs
 
