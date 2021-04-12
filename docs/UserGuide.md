@@ -348,6 +348,8 @@ Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
+<br>
+
 ![Example property updated](images/ExampleUpdateNew.PNG)
 
 <div style="page-break-after: always;"></div>
@@ -515,6 +517,8 @@ Options:
     
     Searches for properties with `[TIME]` as time.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
@@ -538,7 +542,7 @@ Examples:
 * `find client jacob`
 * `find client george`
 
-![find client example](images/findclient.png)
+<img src="images/findclient.png" height="600" width="612" />
 
 <div style="page-break-after: always;"></div>
 
