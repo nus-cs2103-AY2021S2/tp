@@ -45,7 +45,7 @@ Given below is a summary of my contributions to the development of TutorBuddy.
 * Testing
     * Written test cases for `Tuition` class ([PR #97](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/97))
     * Added relevant test cases for overlapping sessions check ([PR #155](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/155))
-    * Added relevant test cases for `DeleteRecurringSessionCommand` ([PR #300])(https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/300)
+    * Added relevant test cases for `DeleteRecurringSessionCommand` ([PR #300](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/300))
 * Documentation
     * User Guide
         * Added non-functional requirements from group discussion ([PR #44](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/44))
