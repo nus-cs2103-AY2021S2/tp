@@ -181,6 +181,8 @@ command to access the help page for a detailed guide on using the application.
 
 Format: `help`
 
+<div markdown="block" class="alert alert-primary">
+
 **:bulb: Tips:**<br>
 
 You may use the `F5` hotkey to open up the Help window.
