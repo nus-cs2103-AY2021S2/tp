@@ -45,8 +45,15 @@ public class JsonBudgetTrackerStorage implements BudgetTrackerStorage {
     public Optional<ReadOnlyBudgetTracker> readBudgetTracker(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableBudgetTracker> jsonBudgetTracker = JsonUtil.readJsonFile(
-            filePath, JsonSerializableBudgetTracker.class);
+        Optional<JsonSerializableBudgetTracker> jsonBudgetTracker;
+
+        try {
+            jsonBudgetTracker = JsonUtil.readJsonFile(filePath, JsonSerializableBudgetTracker.class);
+        } catch (IllegalArgumentException iae) {
+            logger.info("Illegal values found in " + filePath + ": " + iae.getMessage());
+            throw new DataConversionException(iae);
+        }
+
         if (!jsonBudgetTracker.isPresent()) {
             return Optional.empty();
         }
