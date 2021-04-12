@@ -11,13 +11,13 @@ Welcome to the PocketEstate Developer Guide! This guide will take you through th
 * Table of Contents 
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **1. Setting up, getting started**
 
 Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **2. Design**
 
@@ -32,6 +32,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -55,6 +57,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete property 1`.
@@ -62,6 +66,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2 UI component
 
@@ -82,6 +88,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -98,12 +106,16 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object, which is passed back to the `Ui`. The feedback to the user is then displayed to the user.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021")` API call.
 
 ![Interactions Inside the Logic Component for the `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` Command](images/AddPropertySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddPropertyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.4 Model component
 
@@ -123,6 +135,8 @@ The `Model`,
 * stores the property book and appointment book data
 * exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
 * does not depend on any of the other three components
+
+<div style="page-break-after: always;"></div>
 
 ### 2.5 Storage component
 
@@ -145,7 +159,7 @@ Some examples of common classes:
 * [`FileUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/FileUtil.java): Writes and reads files
 * [`JsonUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/JsonUtil.java): Converts a Java object instance to JSON and vice versa
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **3. Implementation**
 
@@ -157,6 +171,8 @@ This section describes some noteworthy details on how certain features are imple
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some solid diamonds that are used to denote composition may overlap with each other.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### 3.1.1 Current Implementation
 
@@ -181,6 +197,8 @@ A `Client` consists of at least one of the following attributes,
   * an `Email`: the email of the client
   * an `AskingPrice`: the asking price of the client
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.2 Design Consideration
 
 ##### Aspect: How each attribute of `Property` is stored
@@ -201,6 +219,7 @@ A `Client` consists of at least one of the following attributes,
 
 ![BetterModelPropertyClassDiagram](images/BetterModelPropertyClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Appointment component
 
@@ -222,6 +241,8 @@ An `Appointment` consists of the following mandatory attributes,
 
 Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3 Undo feature
 
 #### 3.3.1 Current Implementation
@@ -239,6 +260,8 @@ Step 1. The user launches the application for the first time. The `PocketEstate`
 
 ![UndoState0](images/UndoState0.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes `delete appointment 1` command to delete the 1st appointment in the appointment book. The `delete appointment` executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing the previous state of the appointment book before the `delete appointment 1` command executes to be saved in the `previousAppointmentLists`, and the currentAppointmentBookStatePointer still points to the current appointment book state.
 
 ![UndoState1](images/UndoState1.png)
@@ -251,6 +274,8 @@ Step 3. The user executes `add appointment …​` to add a new appointment. The
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Step 4. The user now decides that adding the appointment was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAppointmentBook()`, which will shift the `currentAppointmentBookStatePointer` to the most recently saved state, pointing it to the previous appointment book state, and restores the appointment book to that state.
 
 ![UndoState3](images/UndoState3.png)
@@ -259,17 +284,26 @@ Step 4. The user now decides that adding the appointment was a mistake, and deci
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the appointment book, such as `list`, will usually not executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`. Thus, the `previousAppointmentLists` remains unchanged.
 
 ![UndoRedoState4](images/UndoState4.png)
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.3.2 Design consideration:
 
@@ -282,7 +316,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Saves only changes made by previous commands (Similar to commit and restore in version control).
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
   * Cons: Difficult to implement, different implementations are required to restore different changes.
-    
+
+<div style="page-break-after: always;"></div>
+
 ### 3.4 Update feature
 
 #### 3.4.1 Current Implementation
@@ -296,6 +332,8 @@ The `Status` field consists of a `Status` interface with a `next()` method that 
 * `Completion` — Represents the stage where the property has been sold.
 
 ![StatusClassDiagram](images/StatusClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively.
 
@@ -335,12 +373,16 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![UpdateActivityDiagram](images/UpdateActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the update operation works:
 
 ![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UpdateCommandParser` and `UpdateNewCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Find feature
 
@@ -389,6 +431,8 @@ The following activity diagram summarizes what happens when a user executes a `F
 
 ![FindAppointmentActivityDiagram](images/FindActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ##### Aspect: How predicates of the same type interact with each other
 
 * **Initial implementation**: Conjunction of all predicates where all predicates are combined with logical **`AND`**. 
@@ -400,7 +444,7 @@ with other predicates with logical **`AND`**.
     * Pros: Allows for more flexible searches. 
     * Cons: More difficult to implement and test.    
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
 
@@ -410,7 +454,7 @@ with other predicates with logical **`AND`**.
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix A: Product scope**
 
@@ -424,6 +468,7 @@ with other predicates with logical **`AND`**.
 
 **Value proposition**: PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix B: User Stories**
 
@@ -452,6 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                                |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix C: Use Cases**
 
@@ -496,6 +542,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PocketEstate shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 * 1b. The appointment to be added has a date and time that is already over.
 
@@ -542,6 +590,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. PocketEstate shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC05 - Edit an appointment**
 
@@ -591,6 +641,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC08 - Searching for appointment**
 
 **MSS**
@@ -599,10 +651,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix D: Non-Functional Requirements**
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any [_mainstream OS_](#appendix-e-glossary) as long as it has Java `11` or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster by using commands over the mouse.
 3. Should be able to hold up to 500 properties and 500 appointments concurrently without a noticeable sluggishness in performance for typical usage.
 4. The app should respond within two seconds after each user command.
@@ -618,7 +671,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, and with optional attributes: Remarks, Status, Client name, Client contact, Client email, Client asking price, a set of Tags (containing 0 or more tags)
 * **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date, Time
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix F: Instructions for manual testing**
 
@@ -653,6 +706,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `exit` <br>
       Expected: App shuts down.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a property
 
 1. Adding a new unique property.
@@ -675,6 +730,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br>
       Expected: No property is added. An error message `This property already exists in the app` is shown in the result display.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding an appointment
 
@@ -699,6 +756,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` <br>
        Expected: No appointment is added. An error message `This appointment already exists in the app` is shown in the result display.
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a property
 
 1. Deleting a property while all properties are being shown
@@ -713,6 +772,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Find commands
 
@@ -772,6 +833,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find client`
         Expected: Both lists are not updated. Error details shown in the status message. 
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all properties and appointments
 
 1. List all properties and appointments in the property list and appointment list after a `find client [KEYWORD]` command.
@@ -796,6 +859,8 @@ testers are expected to do more *exploratory* testing.
        
        Expected: No properties and appointments are displayed, with a result message showing: `No existing properties and appointments available`
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a property
 
 1. Editing a property.
@@ -819,6 +884,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `edit property 1 a/Blk 150 Bishan Street 11 #02-101 p/570150` <br>
        Expected: No property is edited. An error message `Another property with the same address and postal code already exists in the app` is shown in the result display.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing an appointment
 
 1. Editing an appointment.
@@ -841,6 +908,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit appointment 1 d/19-05-2021 t/1930` <br>
        Expected: No appointment is edited. An error message `Another appointment with the same date and time already exists in the app` is shown in the result display.
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix G: Effort**
 
@@ -886,6 +955,8 @@ The new UI structure of a side by side property and appointment list required a 
 Several attributes such as date, time and price are new attributes relative to AB3, so we have to implement parsing support for these attributes from scratch. The challenge was to provide maximum convenience to the user by allowing flexible inputs (such as having optional commas in prices), but at the same time ensuring correct input validation. To achieve this, a strict validation regex is implemented for all of the input attributes, and all input arguments for each attribute is validated upon the execution of a user command.
 
 There was also a challenge in determining what was considered a valid or invalid input. Eg. How do we validate postal code / email. Such problems were further reviewed during the mock practical exam, where questions to what were considered valid inputs were further raised. By considering the suggestions of our peers, we improved our input validation by implementing stricter regex.
+
+<div style="page-break-after: always;"></div>
 
 ### Achievements:
 
