@@ -75,14 +75,28 @@ Given below are my contributions to the project.
     
 * **Community**:
     * PRs reviewed (with non-trivial review comments): 
-      [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34), [\#73](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/73), [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75), [\#93](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/93)
-      , [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98), [\#101](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/101), [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121)
-      , [\#141](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/141), [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151), [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155), [\#157](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/157)
+      [\#34](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/34)
+      , [\#73](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/73)
+      , [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75)
+      , [\#93](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/93)
+      , [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98)
+      , [\#101](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/101)
+      , [\#121](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/121)
+      , [\#141](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/141)
+      , [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151)
+      , [\#155](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/155)
+      , [\#157](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/157)
       , [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170)  
-      , [\#175](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/175), [\#211](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/211)
-      , [\#215](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/215), [\#221](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/221)
-      , [\#279](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/279), [\#280](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/280), [\#303](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/303), [\#304](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/304)
-      , [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326), [\#327](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/327)
+      , [\#175](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/175)
+      , [\#211](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/211)
+      , [\#215](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/215)
+      , [\#221](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/221)
+      , [\#279](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/279)
+      , [\#280](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/280)
+      , [\#303](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/303)
+      , [\#304](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/304)
+      , [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326)
+      , [\#327](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/327)
       
     * Reported bugs and suggestions for other teams in the class:
         * Reported [11 bugs](https://github.com/Md-Fazil/ped/issues) in group W15-4's application during mock PE.
