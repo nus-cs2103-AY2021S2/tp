@@ -67,7 +67,7 @@ Start improving your productivity by following these simple steps:
 
 1. You can download the latest `CS2103T-W15-4.Focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.4).
 
-1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your installation of Focuris.
+1. Copy the `CS2103T-W15-4.Focuris.jar` file to the folder you want to use as the _home folder_ for your installation of Focuris.
 
 1. Double-click the `CS2103T-W15-4.Focuris.jar` file to start Focuris.
    You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application. <br/>
@@ -272,7 +272,7 @@ You can be assured that **your data is safe** and there is no need for you to sa
 
 Your data in Focuris is saved as a JSON file in this location: `[JAR_FILE_LOCATION]/data/eventbook.json`
 
-- Where `JAR_FILE_LOCATION` refers to the folder in which you store your `focuris.jar` application.
+- Where `JAR_FILE_LOCATION` refers to the folder in which you store your `CS2103T-W15-4.Focuris.jar` application.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Advanced Users:**
