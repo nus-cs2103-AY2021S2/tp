@@ -161,6 +161,11 @@ You can add a client to Link.me, by specifying each of the fields below:
 * Name 
   * should only contain alphanumeric characters and spaces
   * should not be blank
+  * should not have the same name
+    * To assist you with finding the correct client among clients with the exact same name, you can input a bracket
+      after the individual client to distinguish him from the rest, for instance:
+      * John Doe (Primary school classmate)
+      * John Doe (Soccer teammate)
 
 * Phone number 
   * should only contain numbers
@@ -207,6 +212,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [
 * The format of each field is specified above under [Adding a client](#adding-a-client-add).
 * Existing values will be updated to new values you provide.
 * When editing tags, the existing tags of your client will be removed i.e. adding of tags is not cumulative.
+* When editing names, you cannot use a name that is identical to that of an existing client
+  * To assist you with finding the correct client among clients with the exact same name, you can input a bracket
+    after the individual client to distinguish him from the rest, for instance:
+    * John Doe (Primary school classmate)
+    * John Doe (Soccer teammate)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can remove all your client’s tags by typing `t/` without specifying any tags after it.
@@ -366,7 +376,8 @@ Example:
 
 #### Finding clients by name: `find`
 
-You can find clients by their name.
+You can find clients by simply entering their name. If you wish to search for clients with a specific attribute
+such as gender, age, insurance plan name, etc, refer to the `filter` command below.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -390,11 +401,12 @@ Format: `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...`
 
 Supported `PREFIX/KEYWORD` pairs:
 * address: `a/ADDRESS`
-* gender: `g/GENDER`
+* gender: `g/GENDER` (`GENDER` should be either `M`/`Male`, `F`/`Female` or `N`/`Non-binary`)
 * tag: `t/TAG`
 * age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]`
 * insurance plan name: `i/PLAN_NAME`
 
+Lists all of your clients that has one of their attributes that match your search keywords.
 
 * The search is case-insensitive. e.g. for gender, `male` will match `Male`
 * Only attributes that are identical will be matched e.g. for insurance plan, `Protect` will not match `Protect Plan`

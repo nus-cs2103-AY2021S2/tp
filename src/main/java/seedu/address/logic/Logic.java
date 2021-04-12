@@ -40,7 +40,7 @@ public interface Logic {
     String getNotifications();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Link.me file path.
      */
     Path getAddressBookFilePath();
 
