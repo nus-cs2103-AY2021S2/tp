@@ -235,9 +235,9 @@ Prefix: `t/`
 
 4. Double-click the file to start CakeCollate. A GUI similar to the below should appear in a few seconds. Note how the application contains some sample data. 
 You can use the sample data pre-loaded in the application to play around and get used to the available commands. <br><br>
- ![Ui](images/Ui.png)
+  ![Ui](images/Ui.png)
 
-<div style="page-break-after: always;"></div>
+  <div style="page-break-after: always;"></div>
 
 5. Type the command in the command box and press Enter to execute it.<br>
    E.g. typing **`help`** and pressing Enter will display the help window.<br>
