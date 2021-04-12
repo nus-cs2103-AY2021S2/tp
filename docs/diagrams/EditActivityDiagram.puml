@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes edit command;
+:Parse user input;
+if () then ([ Index <= 0 or Index > number of delivery task in the list ])
+    : Display command error message;
+else ([else])
+    if () then ([else])
+        : The delivery task attributes are updated accordingly;
+        : A success message in editing the task is displayed to the user;
+    else ([Edited item has the same attributes as a delivery task in the delivery list])
+        : Delivery task to be edited remains unchanged and an error message is shown;
+    endif
+endif
+stop
+
+@enduml

@@ -14,7 +14,7 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 <img src="images/csjiade.png" width="200px">
 
 [[github](https://github.com/CSjiade)]
-[[portfolio](team/lianjiade.md)]
+[[portfolio](team/csjiade.md)]
 
 * Role: Developer
 * Responsibilities: In charge of UI, Logic, Storage

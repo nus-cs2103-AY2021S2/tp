@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes Add command;
+if () then ([user input is valid])
+    if () then ([add command format is valid])
+        if () then ([customer already exists in delivery list]))
+            :Show duplicate customer message;
+        else ([else])
+            :Add customer to delivery list;
+        endif
+    else ([else])
+        :Show invalid add command format message;
+    endif
+else ([else])
+    :Show unknown command message;
+endif
+stop
+@enduml
