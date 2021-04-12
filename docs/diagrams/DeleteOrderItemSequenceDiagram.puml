@@ -2,31 +2,38 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":DeleteOrderItemCommandParser" as DeleteOrderItemCommandParser LOGIC_COLOR
-participant ":IndexList" as IndexList LOGIC_COLOR
 participant ":DeleteOrderItemCommand" as DeleteOrderItemCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-[-> DeleteOrderItemCommandParser : parse("1 2")
-activate DeleteOrderItemCommandParser
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
-create IndexList
-DeleteOrderItemCommandParser -> IndexList
-activate IndexList
-
-IndexList --> DeleteOrderItemCommandParser : indexList
-deactivate IndexList
-
-create DeleteOrderItemCommand
-DeleteOrderItemCommandParser -> DeleteOrderItemCommand : DeleteOrderItemCommand(indexList)
+[-> DeleteOrderItemCommand : execute()
 activate DeleteOrderItemCommand
 
-DeleteOrderItemCommand --> DeleteOrderItemCommandParser : d
-deactivate DeleteOrderItemCommand
+loop for each index in the index list
+    DeleteOrderItemCommand -> Model: lastShownList(index)
+    Model --> DeleteOrderItemCommand: orderItem
+    |||
+    DeleteOrderItemCommand -> Model : deleteOrderItem(orderItem)
+    |||
+end
 
-[<-- DeleteOrderItemCommandParser : d
-deactivate DeleteOrderItemCommandParser
-[<-[hidden]- DeleteOrderItemCommandParser
-destroy DeleteOrderItemCommandParser
+|||
+|||
+
+create CommandResult
+DeleteOrderItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteOrderItemCommand : result
+deactivate CommandResult
+
+[<-- DeleteOrderItemCommand : result
+deactivate DeleteOrderItemCommand
+[<-[hidden]- DeleteOrderItemCommand
+destroy DeleteOrderItemCommand
 
 @enduml
