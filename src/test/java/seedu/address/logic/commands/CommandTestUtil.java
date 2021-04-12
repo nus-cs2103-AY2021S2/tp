@@ -51,6 +51,7 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
+    public static final String VALID_ADDRESS_AMY_LOWER_CASE = VALID_ADDRESS_AMY.toLowerCase();
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STREET_QUERY = "street";
 
@@ -59,6 +60,7 @@ public class CommandTestUtil {
     public static final LocalTime VALID_TRIPTIME_EVENING = LocalTime.of(18, 0);
     public static final LocalTime VALID_TRIPTIME_MORNING = LocalTime.of(8, 30);
     public static final DayOfWeek VALID_TRIPDAY_BOB = DayOfWeek.THURSDAY;
+    public static final String VALID_TRIPDAY_BOB_LOWER_CASE = VALID_TRIPDAY_BOB.toString().toLowerCase();
     public static final LocalTime VALID_TRIPTIME_BOB = LocalTime.of(19, 30);
     public static final double VALID_PRICE_AMY = 1.69;
     public static final double VALID_PRICE_BOB = 6.9;
@@ -74,6 +76,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_HR = "hr";
     public static final String VALID_TAG_IT = "it";
+    public static final String VALID_TAG_IT_LOWER_CASE = VALID_TAG_IT.toLowerCase();
     public static final String VALID_TAG_FEMALE = "female";
 
     public static final String VALID_COMMUTER_1 = "1";

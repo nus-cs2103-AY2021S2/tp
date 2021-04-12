@@ -45,6 +45,7 @@ import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Keywords changed to lowercase as parser will change all keywords to lowercase for the Predicate.
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());

@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB_LOWER_CASE;
@@ -19,7 +20,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_STR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB_LOWER_CASE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_STR_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -41,7 +44,9 @@ import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.PriceIsGreaterThanAmountPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
-
+/*
+Keywords changed to lowercase as parser will change all keywords to lowercase for the Predicate.
+ */
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
@@ -110,7 +115,7 @@ public class FindCommandParserTest {
     public void parse_validAddressArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(VALID_ADDRESS_AMY.toLowerCase())));
+                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(VALID_ADDRESS_AMY_LOWER_CASE)));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + ADDRESS_DESC_AMY + "\n \t", expectedFindCommand);
@@ -161,14 +166,14 @@ public class FindCommandParserTest {
 
         expectedAllCommand =
                 new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(
-                        VALID_ADDRESS_AMY.toLowerCase())));
+                        VALID_ADDRESS_AMY_LOWER_CASE)));
 
         assertParseSuccess(parser, " \n " + PREFIX_ALL + VALID_ADDRESS_AMY + "\n \t", expectedAllCommand);
         assertParseSuccess(parser, " " + PREFIX_ALL + VALID_ADDRESS_AMY, expectedAllCommand);
 
         expectedAllCommand =
                 new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(
-                        VALID_TAG_IT.toLowerCase())));
+                        VALID_TAG_IT_LOWER_CASE)));
 
         assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_IT, expectedAllCommand);
     }
@@ -178,7 +183,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new TripDayContainsKeywordsPredicate(
-                        Collections.singletonList(VALID_TRIPDAY_BOB.toString().toLowerCase())));
+                        Collections.singletonList(VALID_TRIPDAY_BOB_LOWER_CASE)));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + TRIPDAY_DESC_BOB + "\n \t", expectedFindCommand);

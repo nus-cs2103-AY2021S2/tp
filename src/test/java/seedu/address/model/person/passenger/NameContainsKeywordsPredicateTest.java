@@ -19,6 +19,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PassengerBuilder;
 
+/*
+Keywords changed to lowercase as parser will change all keywords to lowercase for the Predicate.
+ */
 public class NameContainsKeywordsPredicateTest {
 
     @Test
@@ -64,7 +67,6 @@ public class NameContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
 
         // Mixed-case keywords
-        // Keywords changed to lowercase as parser will change all keywords to lowercase
         predicate = new NameContainsKeywordsPredicate(Arrays.asList(VALID_NAME_AMY_FIRST_NAME_MIXED_CASE.toLowerCase(),
                 VALID_NAME_AMY_LAST_NAME_MIXED_CASE.toLowerCase()));
         assertTrue(predicate.test(new PassengerBuilder().withName(VALID_NAME_AMY).build()));
