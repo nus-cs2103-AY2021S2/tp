@@ -593,6 +593,24 @@ testers are expected to do more *exploratory* testing.
 
 ### Using command `dueIn`
 
+1. Recommended to use the `clear` command to start with a fresh set of tasks in the tasks list. Instructions below will be based on new set of tasks.
+1. Adding new tasks onto the task list.
+    1.  Use `add mc/CS2103 n/Practical d/17-04-2021 t/08:00 w/10%`
+    1.  Use `add mc/CS2105 n/Assignment 1 d/24-04-2021 t/10:00 w/30% pt/URGENT pt/CORE ptag/MEDIUM`
+    1.  Use `add mc/CS3240 n/Finals d/23-04-2021 t/16:00 w/20% pt/URGENT ptag/HIGH notes/Must do soon`
+
+1. Using the `dueIn` command.
+    1. Test case: `dueIn day/7`.<br>
+        Expected: tasks with module code: CS2103 and CS3240 will be shown on the task list.
+    1. Test case:`dueIn week/1`.<br>
+        Expected: tasks with module code: CS2103 and CS3240 will be shown on the task list.
+    1. Test case: `dueIn day/14`.<br>
+        Expected: tasks with module code: CS2103, CS2105 and CS3240 will be shown on the task list.
+    1. Test case: `dueIn week/2`.<br>
+        Expected: tasks with module code: CS2103, CS2105 and CS3240 will be shown on the task list.
+    1. Invalid test cases to try: `dueIn day/`, `dueIn week/`, `dueIn day/XXX` (Where XXX is the number of days that exceeded 31-12-2099, the limit for this feature), `dueIn week/YYY` (where YYY is the number of weeks that will exceed 31-12-2099, the limit for this feature).
+         
+
 ### Using command `doToday`
 
 ### Undo a command
