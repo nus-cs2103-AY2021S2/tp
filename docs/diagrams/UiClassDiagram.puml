@@ -44,8 +44,8 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
 MainWindow *-down-> MeetingListPanel
 MainWindow *-down-> StatusBarFooter
-MainWindow --> NotesWindow
-MainWindow --> NotifWindow
+MainWindow -left-> NotesWindow
+MainWindow -right-> NotifWindow
 
 
 PersonListPanel -down-> PersonCard
@@ -64,10 +64,10 @@ NotesWindow  --|> Alert
 NotifWindow --|> Alert
 MainWindow -|> UiPart
 
-PersonCard ...> Model
-MeetingCard ...> Model
-UiManager .> Logic
-MainWindow .> Logic
+PersonCard ..down..> Model
+MeetingCard ..down..> Model
+UiManager .up.> Logic
+MainWindow .up.> Logic
 
 MeetingCard -[hidden]left- PersonCard
 
@@ -76,5 +76,9 @@ PersonListPanel -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 StatusBarFooter -[hidden]left- HelpWindow
+NotesWindow -[hidden]up- NotifWindow
+MeetingListPanel -[hidden]up- NotesWindow
+NotesWindow -[hidden]right- Alert
+PersonCard -[hidden]down- Model
 
 @enduml
