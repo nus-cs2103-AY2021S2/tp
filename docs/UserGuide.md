@@ -68,33 +68,33 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-#### Viewing Command List : `listcommand`
+#### Viewing command list : `listcommand`
 
 Shows a list of available command
 
 Format: `listcommand`
 
-#### Viewing Command Details
+#### Viewing command details
 
-##### Viewing Dictionary Command Details : `commanddetaild`
+##### Viewing Dictionary command Details : `commanddetaild`
 
 Shows a list of available dictionary command with description
 
 Format: `commanddetaild`
 
-##### Viewing note Command Details : `commanddetailn`
+##### Viewing Note command details : `commanddetailn`
 
 Shows a list of available note command with description
 
 Format: `commanddetailn`
 
-##### Viewing Contact Command Details : `commanddetailc`
+##### Viewing Contact command details : `commanddetailc`
 
 Shows a list of available contact command with description
 
 Format: `commanddetailc`
 
-##### Viewing Ui Command Details : `commanddetailu`
+##### Viewing Ui command details : `commanddetailu`
 
 Shows a list of available Ui command with description
 
@@ -166,7 +166,7 @@ Examples:
 * `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
   ![finddef](images/Diagram-finddef.png)
 
-#### Show a dictionary content : `showdc`
+#### Showing a dictionary content : `showdc`
 
 Showcases a dictionary content.
 
@@ -257,6 +257,7 @@ Examples:
 * `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
 * `editnote 1 c/Hi` Edits the content of the 1st contact to be `Hi` and keep the tags. 
 
+
 #### Editing a note in edit mode : `editmode`
 
 Edits a note in edit mode.
@@ -277,27 +278,13 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Use <kbd>Esc</kbd> to return to command box and <kbd>Tab</kbd> to focus on next element.
+:bulb: **Tip:** Use <kbd>Esc</kbd> key to return to command box and <kbd>Tab</kbd> key to focus on next element.
 
 </div>
 
-#### Quiting edit mode : `quit`
-
-Quit edit mode and discard all changes.
-
-Format: `quit`
-
-* The program have to be in edit mode.
-* All changes will be discarded.
-* The program will exit edit mode.
-
-Examples:
-* `quit`
-  * quit edit mode and discard all changes.
-
 #### Saving and exiting edit mode: `save`
 
-Save edited content and exit edit mode.
+Saves edited content and exit edit mode.
 
 Format: `save`
 
@@ -309,9 +296,24 @@ Examples:
 * `save`
   * exit edit mode and save all changes.
 
+#### Quiting edit mode : `quit`
+
+Quits edit mode and discard all changes.
+
+Format: `quit`
+
+* The program have to be in edit mode.
+* All changes will be discarded.
+* The program will exit edit mode.
+
+Examples:
+* `quit`
+  * quit edit mode and discard all changes.
+
+
 #### Finding notes using a keyword : `findnote`
 
-Find notes whose names contain any of—or tags contain all of—the given keywords.
+Finds notes whose names contain any of—or tags contain all of—the given keywords.
 
 Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
 
@@ -325,6 +327,7 @@ Examples:
 
 * `findnote c/CS2103` returns note containing `CS2103`
 * `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
+
 
 #### Deleting a new note: `deletenote`
 
@@ -341,7 +344,7 @@ Examples:
 
 #### Sorting all notes : `sortnote`
 
-Sort every note on the note list alphabetically.
+Sorts every note on the note list alphabetically.
 
 Format: `sortnote`
 
@@ -392,7 +395,7 @@ Format: `markallasundonenote`
 
 #### Merging two notes into one : `mergenote`
 
-Merge two notes into one note.
+Merges two notes into one note.
 
 Format: `mergenote INDEX_1 INDEX_2`
 
@@ -618,7 +621,7 @@ The following is the meaning of the suffix found in `setdivider` command
 * c - Contact
 
 
-##### Set contact divider position: `setdividerc`
+##### Setting contact divider position: `setdividerc`
 
 Sets the position of the contact divider.
 The contact divider is the divider separating the contact and others user interface.
@@ -632,7 +635,7 @@ Format: `setdividerc POSITION`
 Examples:
 * `setdividerc 8`
 
-##### Set dictionary divider position: `setdividerd`
+##### Setting dictionary divider position: `setdividerd`
 
 Sets the position of the dictionary divider.
 The dictionary divider is the divider separating the dictionary list and dictionary content.
@@ -647,7 +650,7 @@ Format: `setdividerd POSITION`
 Examples:
 * `setdividerd 5`
 
-##### Set note divider position: `setdividern`
+##### Setting note divider position: `setdividern`
 
 Sets the position of the note divider.
 The note divider is the divider separating the note list and note content.
@@ -662,7 +665,7 @@ Format: `setdividern POSITION`
 Examples:
 * `setdividern 6`
 
-##### Set main divider position: `setdividerm`
+##### Setting main divider position: `setdividerm`
 
 Sets the position of the main divider.
 The main divider is the divider separating the note and dictionary.
@@ -677,7 +680,7 @@ Format: `setdividerm POSITION`
 Examples:
 * `setdividerm 3`
 
-#### Toggle Divider Orientation
+#### Toggling Divider Orientation
 Dictionote allows the user to change the orientation of the divider between the region via command.
 The following are the 2 divider where the user can manipulate
 
@@ -688,7 +691,7 @@ The following is the meaning of the suffix found in `toggledivider` command
 * n - Note
 
 
-##### Toggle dictionary divider orientation: `toggledividerd`
+##### Toggling dictionary divider orientation: `toggledividerd`
 
 Toggles the orientation of the dictionary divider. 
 If the current orientation of the dictionary divider on horizontal,
@@ -698,7 +701,7 @@ both the Dictionary List Panel and the Dictionary Content Panel become visible.
 
 Format: `toggledividerd`
 
-##### Toggle note divider orientation: `toggledividern`
+##### Toggling note divider orientation: `toggledividern`
 
 Toggles the orientation of the note divider.
 If the current orientation of the note divider horizontal,
@@ -707,7 +710,6 @@ When the orientation changes,
 both the Note List Panel and the Note Content Panel become visible.
 
 Format: `toggledividern`
-
 
 
 ### Others Feature
@@ -786,8 +788,8 @@ Action | Format, Examples
 **Show note** | `shownote INDEX` <br> e.g., `shownote 1`
 **Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
 **Edit note in edit mode** | `editmode`
-**Quit edit mode** | `quit`
 **Save changes to note** | `save`
+**Quit edit mode** | `quit`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Delete note** | `deletenote INDEX`
 **Sort all notes** | `sortnote`
