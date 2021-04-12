@@ -40,7 +40,7 @@ Given below are my contributions to the project.
       thoroughly to ensure that the various scenarios of usage were accounted for.
       
 * **New Feature**: Added the ability to remove all members assigned to a task (Pull Requests: [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163), [\#174](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/174))
-    * What it does: allows the user to remove all members assigned to a task with a single command.
+    * What it does: Allows the user to remove all members assigned to a task with a single command.
     * Justification: This feature improves the product significantly because a user can easily remove all members assigned to a task
       with a single command instead of removing one member at a time.
     * Highlights: The implementation was challenging as after removing all the assignees to a task, I had to update the other 
