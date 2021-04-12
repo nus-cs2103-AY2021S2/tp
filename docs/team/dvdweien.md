@@ -26,6 +26,9 @@ Given below are my contributions to the project.
 * **Testing**:
     * Wrote unit tests for:
         * `edit property` command and parser
+
+<div style="page-break-after: always;"></div>
+
 * **Team-based tasks**:
     * Reported bugs as issues for better tracking.
     * Created the team repository.
