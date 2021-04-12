@@ -531,11 +531,26 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a residence
+
+1. Adding a residence to the list of residence shown
+
+    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    
+    2. Test case: `add n/Amber Park a/22 Bedok Street` <br>
+    Expected: A residence named Amber Park and its address detail 22 Bedok Street to display in the list of residences. It is initialised with 'Clean' as its default status since this optional field is left empty.
+    
+    3. Test case: `add n/Midtown Modern a/18 Tan Quee Lan Street c/n t/popular` <br>
+    Expected: A residence named Midtown Modern with its address details 18 Tan Quee Lan Street to display in the list of residences. It should have 'Unclean' as its clean status and 'popular' as a tag.
+    
+    4. Test case: `add n/Capetown` <br>
+    Expected: Invalid command format message displayed to indicate the required and optional parameters of the command.
+
 ### Deleting a residence
 
 1. Deleting a residence while all residence are being shown
 
-   1. Prerequisites: List all residences using the `list` command. Multiple residences in the list.
+   1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
 
    1. Test case: `delete 1`<br>
       Expected: First residence is deleted from the list. Details of the deleted residence shown in the status message.
@@ -546,6 +561,80 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Editing a residence
+
+1. Editing a residence while all the residence are being shown
+
+    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    
+    2. Test case: `edit 2 c/y` <br> 
+       Expected: Changes the clean status of the second residence in the list to 'clean'. A rearrangment of the residence list will occur such that this residence will now be displayed below all the other residences that have 'unclean' as their clean status.
+    
+    3. Test case: `edit 2` <br>
+       Expected: Error message indicating that at least one field must be provided.
+    
+    4. Test case: `edit 6 n/NameToChange` when there are less than 6 residences shown in the residence list. <br>
+       Expected: Error message indicating invalid residence index.  
+       
+### Adding a booking
+
+1. Adding of a booking to a specific residence
+
+    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    
+    2. Test case: `addb 2 n/Bob p/91234567 s/01-01-2022 e/01-02-2022` <br>
+       Expected: Booking with the details as inputted shown in the 'BOOKINGS' column of the 2nd residence. Since this is an upcoming booking, it should be highlighted in green.
+    
+    3. Test case: `addb 1 n/Sandy p/87654321 s/09-08-2021 e/122-08-2021` <br>
+       Expected: Error message indicating date not entered in the expected format.
+    
+    4. Test case: `addb 6 n/Sandy p/87654321 s/09-08-2021 e/12-08-2021` when there are less than 6 residences in the residence list.<br>
+       Expected: Error message indicating the provided residence index is invalid.
+
+### Deleting a booking
+
+1. Deleting a booking from a specific residence
+
+    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    
+    2. Test case: `deleteb r/2 b/2` <br>
+       Expected: The second booking of the second residence will be deleted. Details of the deleted booking will be shown in the status message.
+    
+    3. Test case: `deleteb r/2 b/10` when the second residence has less than 10 bookings. <br>
+       Expected: Error message indicating the provided booking index is invalid.
+
+### Editing a booking
+
+1. Editing a booking from a specific residence
+
+    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    
+    2. Test case: `editb r/2 b/2 n/Bob` <br>
+       Expected: The tenant name of the second booking of the second residence will be changed to Bob and the details of the edited booking will be shown in the status message.
+    
+    3. Test case: `editb r/2 b/2 e/31-05-2021` when there exists another booking that lasts from 30-05-2021 to 01-06-2021. <br>
+       Expected: Error message indicating overlapping dates of bookings.
+       
+### Multiple clean status updates
+1. Changing the clean status of multiple residences at once
+
+    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    
+    2. Test case: `status clean 1 2 3 4 5` <br>
+    Expected: clean status of residences 1, 2, 3, 4, 5 is changed to 'Clean'.
+    
+    3. Test case: `status unclean 1 2 3 4 5 6` when there are only 5 residences in the residence list. <br>
+    Expected: Error message indicating that invalid residence index is provided.
+    
+### Reminder of upcoming bookings
+1. Showing the residences with upcoming bookings in the next seven days (excluding today).
+
+    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    
+    2. Test case: `remind` <br>
+    Expected: residences with upcoming bookings happening in the next seven days (excluding today) will be displayed to the user.
+    
+    
 ### Saving data
 
 1. Dealing with corrupted data files
