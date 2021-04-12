@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant TeachingAssistantParser as TeachingAssistantParser LOGIC_COLOR
 participant ":ListEntryCommandParser" as ListEntryCommandParser LOGIC_COLOR
 participant ":ListEntryFormatPredicate" as ListEntryFormatPredicate LOGIC_COLOR
 participant "listEntryCommand:ListEntryCommand" as ListEntryCommand LOGIC_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("elist day")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("elist day")
-activate AddressBookParser
+LogicManager -> TeachingAssistantParser : parseCommand("elist day")
+activate TeachingAssistantParser
 
 create ListEntryCommandParser
-AddressBookParser -> ListEntryCommandParser
+TeachingAssistantParser -> ListEntryCommandParser
 activate ListEntryCommandParser
 
-ListEntryCommandParser --> AddressBookParser
+ListEntryCommandParser --> TeachingAssistantParser
 deactivate ListEntryCommandParser
 
-AddressBookParser -> ListEntryCommandParser : parse("day")
+TeachingAssistantParser -> ListEntryCommandParser : parse("day")
 activate ListEntryCommandParser
 
 create ListEntryFormatPredicate
@@ -44,14 +44,14 @@ activate ListEntryCommand
 ListEntryCommand --> ListEntryCommandParser
 deactivate ListEntryCommand
 
-ListEntryCommandParser --> AddressBookParser
+ListEntryCommandParser --> TeachingAssistantParser
 deactivate ListEntryCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-ListEntryCommandParser -[hidden]-> AddressBookParser
+ListEntryCommandParser -[hidden]-> TeachingAssistantParser
 destroy ListEntryCommandParser
 
-AddressBookParser --> LogicManager : command
-deactivate AddressBookParser
+TeachingAssistantParser --> LogicManager : command
+deactivate TeachingAssistantParser
 
 LogicManager -> ListEntryCommand : execute()
 activate ListEntryCommand
