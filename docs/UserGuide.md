@@ -38,8 +38,6 @@ title: User Guide
 * [FAQ](#faq)
 * [Command Summary](#summary)
 
-<div style="page-break-after: always;"></div>
-
 <a name="introduction"></a>
 ## Welcome to HEY MATEz
 As a Club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
@@ -141,8 +139,6 @@ Format: `help`
 
 Example: `help`
 
-<div style="page-break-after: always;"></div>
-
 <a name="clear"></a>
 ### 2. Clear all data in application: `clear`
 Clears all entries from the application.
@@ -150,8 +146,6 @@ Clears all entries from the application.
 Format: `clear`
 
 Example: `clear`
-
-<div style="page-break-after: always;"></div>
 
 <a name="exit"></a>
 ### 3. Exiting the programme: `exit`
@@ -216,8 +210,6 @@ The NAME specified must appear in the currently displayed list of members in ord
 
 Examples:
 * `deleteMember Rachel`
-
-<div style="page-break-after: always;"></div>
 
 <a name="viewMembers"></a>
 ### 3. View Members: `viewMembers`
@@ -325,8 +317,6 @@ Format: `deleteTask INDEX`
 Examples: 
 * `deleteTask 1`
 
-<div style="page-break-after: always;"></div>
-
 <a name="viewTasks"></a>
 ### 3. View Tasks: `viewTasks`
 Displays the list of tasks that you have added into HEY MATEz.
@@ -358,7 +348,7 @@ Examples:
 * `editTask 1 n/Plan meeting d/Plan board meeting`
 * `editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04`
 * `editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04 a/Samuel a/Christian`
-    
+
 <div style="page-break-after: always;"></div>
     
 <a name="doneTask"></a>
@@ -372,8 +362,6 @@ Format: `done INDEX`
 Examples: 
 * `done 1`
 
-<div style="page-break-after: always;"></div>
-
 <a name="undoTask"></a>
 ### 6. Mark Task as Uncompleted: `undo`
 
@@ -383,8 +371,6 @@ Format: `undo INDEX`
 
 Examples: 
 * `undo 1`
-
-<div style="page-break-after: always;"></div>
 
 <a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
@@ -420,8 +406,6 @@ The DATE specified must follow the format `YYYY-MM-DD`and be a valid date in the
 Examples: 
 * `findBefore 2021-05-04`
 
-<div style="page-break-after: always;"></div>
-
 <a name="findPriority"></a>
 ### 9. Find Tasks by Priority: `findPriority`
 
@@ -438,8 +422,6 @@ Format: `findPriority PRIORITY`
 
 Examples:
 * `findPriority high`
-
-<div style="page-break-after: always;"></div>
 
 <a name="clearAssignees"></a>
 ### 10. Remove all Members Assigned to a Task: `clearAssignees`
@@ -465,8 +447,6 @@ Format: `viewUnassignedTasks`
 Examples: 
 * `viewUnassignedTasks`
 
-<div style="page-break-after: always;"></div>
-
 <a name="findUncompleted"></a>
 ### 12. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
@@ -477,8 +457,6 @@ Format: `viewUncompletedTasks`
 
 Examples: 
 * `viewUncompletedTasks`
-
-<div style="page-break-after: always;"></div>
 
 <a name="findTasksFor"></a>
 ### 13. Find Tasks Assigned to a Single Member: `findTasksFor`
@@ -520,8 +498,6 @@ HEY MATEz data is saved as a JSON file `[JAR file location]/data/heymatez.json`.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, HEY MATEz will discard all data and start with an empty data file at the next run.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
