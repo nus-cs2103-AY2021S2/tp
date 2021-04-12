@@ -126,7 +126,11 @@ public class UniquePoolList implements Iterable<Pool> {
      * Returns true if a pool that contains the given {@code driver} exists.
      */
     public boolean containsDriver(Person driver) {
-        return internalList.stream().anyMatch(pool -> pool.getDriver().isSamePerson(driver));
+        return internalList.stream().anyMatch(pool ->
+                pool.getPassengers().stream().anyMatch(pass -> pass.isSamePerson(driver)
+                        && pool.getDriver().isSamePerson(driver)
+                )
+        );
     }
 
     /**
