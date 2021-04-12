@@ -7,21 +7,18 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=)
 
 #### Enhancements implemented.
-1. Implemented the PriorityTag feature for semesterconfig
-2. Assist in creating sorting comparator to sort the tasks according to Priority levels
-3. Reconfigure Storage component to ensure data are correctly stored
 
-*Enhancement 1*
+*Enhancement 1 : Implemented the PriorityTag feature for semesterconfig*
 * It allows the user to classify tasks into 3 different category, `LOW/MEDIUM/HIGH`, with `HIGH` having the most priority
 * Justification : User can view the different priority on the Ui and each priority levels are color coded distinctively from one another
 * Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature. Worked on the following files: `PriorityTag`, `State`, `Tag`, `AddCommandParser`, `EditCommandParser`, `CliSyntax`, `TaskTrackerParser`, `AddCommand`, `EditCommand`, `ArguementMutliMap`, `ParserUtil`, `Prefix`.
   
-*Enhancement 2*
+*Enhancement 2 : Assist in creating sorting comparator to sort the tasks according to Priority levels*
 * Sorting the priority tag based on priority levels can help the user view the most prioritised tasks at the top of the task list. 
 * Justification : User can better organise and plan which tasks to do first using the priority levels.
 * Highlights : User can use the `sort` feature to identify tasks that requires more attention so that user can better organise their tasks. Worked on the PriorityTag files and Sorting files: `PriorityTagComparator`, `SortCommand`, `SortCommandParser`.
 
-*Enhancement 3*
+*Enhancement 3 : Reconfigure Storage component to ensure data are correctly stored*
 * Ensure testing can be properly function after every deliverables to identify any possible bugs.
 * Justification : Help to identify possible bugs in newly written features.
 * Highlights: Worked on the Storage component files: `JsonAdaptedTag`, `JsonAdaptedTask`, `JsonSerializableTaskTracker`, `JsonUserPrefsStorage`, `Storage`, `StoreManager`, `TaskTrackerStorage`, `UserPrefsStorage`.
