@@ -602,7 +602,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix D: Non-Functional Requirements**
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any [_mainstream OS_](#appendix-e-glossary) as long as it has Java `11` or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster by using commands over the mouse.
 3. Should be able to hold up to 500 properties and 500 appointments concurrently without a noticeable sluggishness in performance for typical usage.
 4. The app should respond within two seconds after each user command.
