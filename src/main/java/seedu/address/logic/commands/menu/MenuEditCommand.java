@@ -43,6 +43,7 @@ public class MenuEditCommand extends Command {
     public static final String MESSAGE_EDIT_DISH_SUCCESS = "Edited Dish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DISH = "This dish already exists in the menu.";
+    public static final String MESSAGE_NOT_ENOUGH_INGREDIENTS = "Insufficient ingredients to fulfil orders with this change";
 
     private final Index index;
     private final MenuEditCommand.EditDishDescriptor editDishDescriptor;
@@ -95,14 +96,14 @@ public class MenuEditCommand extends Command {
             editedOrders.add(orderToEdit.updateDish(dishToEdit, editedDish));
         }
 
-        // Create fake order with all ingredients
+        // If orders cannot be fulfilled using updated Dishes, reject the change
         if (!model.canFulfilOrders(editedOrders)) {
             model.setDish(editedDish, dishToEdit);
             for (Order o : ordersToEdit) {
                 model.addOrder(o);
                 model.decreaseIngredientByOrder(o);
             }
-            throw new CommandException(OrderCommandUtil.MESSAGE_NOT_ENOUGH_INGREDIENTS_ORDER);
+            throw new CommandException(MESSAGE_NOT_ENOUGH_INGREDIENTS);
         }
 
         for (Order o : editedOrders) {
