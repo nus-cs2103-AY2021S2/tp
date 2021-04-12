@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+participant "patientToArchive:Patient" as Patient MODEL_COLOR
+end box
+
+[-> ModelManager : archivePerson(patientToArchive)
+activate ModelManager
+
+ModelManager -> AddressBook : archivePerson((patientToArchive)
+activate AddressBook
+
+AddressBook -> UniquePersonList : archive(patientToArchive)
+activate UniquePersonList
+
+UniquePersonList -> UniquePersonList : remove(patientToArchive)
+UniquePersonList -> Patient : setArchived(true);
+activate Patient
+
+Patient -> Patient : isArchived = true
+Patient --> UniquePersonList
+deactivate Patient
+
+UniquePersonList -> UniquePersonList : add(patientToArchive)
+UniquePersonList --> AddressBook
+deactivate UniquePersonList
+
+AddressBook --> ModelManager
+deactivate AddressBook
+
+[<--ModelManager
+deactivate ModelManager
+@enduml
