@@ -269,7 +269,8 @@ Example: `listappt`
 
 Output:
 
-<img width="972" alt="D3" src="https://user-images.githubusercontent.com/59093518/114416268-16f57a80-9be3-11eb-9056-3d36ad010d69.PNG">
+<img width="972" alt="D3" src="![image](https://user-images.githubusercontent.com/48408342/114423919-39d75d00-9bea-11eb-9903-46a1e2139e08.png)
+">
 
 ### Create a new medical record for a patient : `mrec`
 
