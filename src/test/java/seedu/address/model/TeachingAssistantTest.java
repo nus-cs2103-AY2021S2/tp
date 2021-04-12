@@ -64,19 +64,19 @@ public class TeachingAssistantTest {
 
     @Test
     public void hasContact_contactNotInTeachingAssistant_returnsFalse() {
-        assertFalse(teachingAssistant.hasContact(ALICE));
+        assertFalse(teachingAssistant.hasContact(AMY));
     }
 
     @Test
     public void hasContact_contactInTeachingAssistant_returnsTrue() {
-        teachingAssistant.addContact(ALICE);
-        assertTrue(teachingAssistant.hasContact(ALICE));
+        teachingAssistant.addContact(AMY);
+        assertTrue(teachingAssistant.hasContact(AMY));
     }
 
     @Test
     public void hasContact_contactWithSameIdentityFieldsInTeachingAssistant_returnsTrue() {
-        teachingAssistant.addContact(ALICE);
-        Contact editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        teachingAssistant.addContact(AMY);
+        Contact editedAlice = new ContactBuilder(AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(teachingAssistant.hasContact(editedAlice));
     }

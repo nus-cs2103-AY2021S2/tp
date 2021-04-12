@@ -82,13 +82,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasContact_contactNotInTeachingAssistant_returnsFalse() {
-        assertFalse(modelManager.hasContact(ALICE));
+        assertFalse(modelManager.hasContact(AMY));
     }
 
     @Test
     public void hasContact_contactInTeachingAssistant_returnsTrue() {
-        modelManager.addContact(ALICE);
-        assertTrue(modelManager.hasContact(ALICE));
+        modelManager.addContact(AMY);
+        assertTrue(modelManager.hasContact(AMY));
     }
 
     @Test
