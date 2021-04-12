@@ -641,6 +641,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC08 - Searching for appointment**
 
 **MSS**
@@ -702,6 +704,8 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `exit` <br>
       Expected: App shuts down.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a property
 
 1. Adding a new unique property.
@@ -723,6 +727,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br>
       Expected: No property is added. An error message `This property already exists in the app` is shown in the result display.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding an appointment
 
