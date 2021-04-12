@@ -867,6 +867,21 @@ Similar to *Adding a contact* above (shared phone numbers and/or emails).
 
 1. _{ more test cases …​ }_
 
+### Showing a note
+1. Showing a specific note
+
+    1. Prerequisites: List all notes using the `listnote` command. Multiple notes in the list.
+
+    1. Test case: `shownote 1`<br>
+       Expected: First note is shown on the rightmost panel. Details of the showed note is shown there.
+
+    1. Test case: `shownote 0`<br>
+       Expected: No note is showed. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `shownote`, `shownote x`, `...` (where `x` is larger than the list size)<br>
+       Expected: Similar to previous.
+
+
 ### Modifying the UI through command
 For more information regarding the panel layout and divider position, 
 please refer to the user guide - UI section for more details.
@@ -953,6 +968,7 @@ List of availble toggle divider orientation command : `toggledividerd`, `toggled
       <br> Expected : Dictionary divider  orientation will change to horizontal if it vertical, vice-verse.
 
 2. Repeat the previous test case with `toggledividern`.
+
 
 ### Saving data
 
