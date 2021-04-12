@@ -129,7 +129,7 @@ This section documents some of the noteworthy details on how certain features ar
 
 ### Mark Task as completed / uncompleted feature
 
-The implementation of the Mark Task as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` 
+The implementation of the mark Task as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `UndoTaskCommand` 
 classes respectively, both of which extends from the Command abstract class.
 
 The execution of the command is also facilitated by the following Parser Classes:
