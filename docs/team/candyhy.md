@@ -55,7 +55,7 @@ Given below are my contributions to the project.
     * Added effort section of DG. ([\#322](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/322))
     * Added user stories and use cases for list command. ([\#314](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/314), [\#38](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/38))
     * Updated Storage component and Storage class diagram ([\#199](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/199))
-    * Formatted Appendix with numbering for each section ([\#322](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/322))
+    * Update Manual testing instructions for list command ([\#356](https://github.com/AY2021S2-CS2103T-T13-4/tp/pull/356))
 
 #### Community
 
