@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":HeyMatezParser" as HeyMatezParser LOGIC_COLOR
 participant ":ClearAssigneesCommandParser" as ClearAssigneesCommandParser LOGIC_COLOR
-participant "d:ClearAssigneesCommand" as ClearAssigneesCommand LOGIC_COLOR
+participant "c:ClearAssigneesCommand" as ClearAssigneesCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -33,16 +33,16 @@ create ClearAssigneesCommand
 ClearAssigneesCommandParser -> ClearAssigneesCommand
 activate ClearAssigneesCommand
 
-ClearAssigneesCommand --> ClearAssigneesCommandParser : d
+ClearAssigneesCommand --> ClearAssigneesCommandParser : c
 deactivate ClearAssigneesCommand
 
-ClearAssigneesCommandParser --> HeyMatezParser : d
+ClearAssigneesCommandParser --> HeyMatezParser : c
 deactivate ClearAssigneesCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ClearAssigneesCommandParser -[hidden]-> HeyMatezParser
 destroy ClearAssigneesCommandParser
 
-HeyMatezParser --> LogicManager : d
+HeyMatezParser --> LogicManager : c
 deactivate HeyMatezParser
 
 LogicManager -> ClearAssigneesCommand : execute()

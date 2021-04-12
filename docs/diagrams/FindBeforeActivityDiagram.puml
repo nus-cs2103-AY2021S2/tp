@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes find task before command;
+
+if () then ([deadline input is valid and in correct format])
+    :Fetch tasks from task list;
+    : Update User Interface;
+else ([else])
+    : Output error message;
+endif
+stop
+@enduml

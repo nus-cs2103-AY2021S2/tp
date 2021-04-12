@@ -218,6 +218,14 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `findBefore 2021-04-04` Command](images/FindBeforeSequenceDiagram.png)
 
+<br/>
+
+The following activity diagram summarizes what happens when a user executes the find tasks with deadline before a selected date command:
+
+![#Activity Diagram for find tasks due before a certain date](images/FindBeforeActivityDiagram.png)
+
+<br/>
+
 ### Delete a Task feature
 
 The implementation of the delete a task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
@@ -256,7 +264,11 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
-### Clear all Assignees of a Task feature
+The following activity diagram below summarizes what happens when a user executes the `deleteTask` command:
+
+![#Activity Diagram for Delete Task](images/DeleteTaskActivityDiagram.png)
+
+### Clear all assignees of a Task feature
 
 The implementation of the clear all assignees of a task feature is facilitated by the `ClearAssigneeCommand` 
 class which extends from the Command abstract class.
@@ -292,13 +304,18 @@ new empty HashSet. The copy of the task with the updated assignees field replace
 Step 4. Once the execution is completed, the message `MESSAGE_CLEARED_ASSIGNEES_SUCCESS` is used to return a new Command Result
 with the attached message.
 
-The following sequence diagram shows how the clear all assignees of a Task mechanism behaves. 
+The following sequence diagram shows how the clear all assignees of a task mechanism works: 
 
 ![#Interactions Inside the Logic Component for the `clearAssignees 1` Command](images/ClearAssigneeSequenceDiagram.png)
 
-* Note: The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
-  but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
-  
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ClearAssigneesCommandParser` and `ClearAssigneesCommand` should end at the destroy marker (X) 
+but due to the limitation of PlantUML, the lifeline reaches the end of the sequence diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `clearAssignees` command: 
+
+![#Activity Diagram for the clearAssignees command](images/ClearAssigneesActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -663,7 +680,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `addMember`, `addMember Alice`, `addMember Alice p/12345678`, `addMember Alice e/Alice@gmail.com` <br>
       Expected: similar to previous test case.
 
-### Viewing members
+### Viewing Members
 
 1. View all members
 
@@ -674,11 +691,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a member
 
-    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of Rachel exists in the members list
-       while no members with the name of John exists.
+    1. Prerequisites: List all members using the `viewMembers` command. A member with the name of 'Rachel' exists in the members list
+       while no members with the name of 'John' exists.
 
     2. Test case: `deleteMember Rachel`<br>
-       Expected: Member with the name Rachel is deleted from the members list. Details of the deleted member is shown in the
+       Expected: Member with the name 'Rachel' is deleted from the members list. Details of the deleted member is shown in the
        status message.
 
     3. Test case: `deleteMember John`<br>
@@ -691,19 +708,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a member
 
-    1. Prerequisites: List all members using the `viewMembers` command. Members with the name of Alice and Timothy exists
-       in the members list while no members with the name of Dylan exists.
+    1. Prerequisites: List all members using the `viewMembers` command. Members with the name of 'Alice' and 'Timothy' exists
+       in the members list while no members with the name of 'Dylan' exists.
 
     2. Test case: `editMember Alice n/Allyson`<br>
-       Expected: Member with the name Alice is edited to have a new name of Allyson. Details of the edited member is shown
+       Expected: Member with the name 'Alice' is edited to have a new name of 'Allyson'. Details of the edited member is shown
        in the status message.
 
     3. Test case: `editMember Alice n/Timothy`<br>
-       Expected: No member is edited since a member with the name Timothy already exists. Error details is shown in the status
+       Expected: No member is edited since a member with the name 'Timothy' already exists. Error details is shown in the status
        message.
        
     4. Test case: `editMember Alice n/Alice Tan p/98887777 e/aliceTan@gmail.com`
-       Expected: Member with the name Alice is edited to have the new details as specified. Details of the edited member is shown
+       Expected: Member with the name 'Alice' is edited to have the new details as specified. Details of the edited member is shown
        in the status message.
 
     5. Test case: `editMember Dylan`<br>
@@ -712,7 +729,7 @@ testers are expected to do more *exploratory* testing.
     6. Other incorrect delete commands to try: `edit`, `editMember x` (where x is a name which does not exist in the members list) <br>
        Expected: Similar to previous test case.
 
-### Finding Members by Keywords
+### Finding Members by keywords
 
 1. Finding members whose details (i.e. name, phone number, email, role) contain any of the specified keywords
 
@@ -723,7 +740,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `findMembers Alice`<br>
        Expected: Alice is listed in the members list.
 
-    3. Test case: `findMembers alice@gmail.com bryan@gmail.com` <br>
+    3. Test case: `findMembers alice@gmail.com 89996666` <br>
        Expected: Both Alice and Bryan are listed in the members list.
 
     4. Test case: `findMembers secretary`<br>
@@ -735,7 +752,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `findMembers`<br>
        Expected: Invalid command format, error details is shown in the status message.
        
-### Viewing tasks
+### Viewing Tasks
 
 1. View all tasks 
    
@@ -847,13 +864,13 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `findTasksFor`
       Expected: Error message displayed in the status bar.
 
-### Finding Tasks by Keywords
+### Finding Tasks by keywords
 
 1. Finding all tasks whose title or description contain any of the specified keywords
 
     1. Prerequisites: HEY MATEz contains 2 tasks, T1 and T2, with the following details: <br>
-        * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach session
-        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline for EXCO event 
+        * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach
+        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline
 
     2. Test case: `findTasks Community`<br>
        Expected: Task T1 is listed in the task list. 
@@ -870,7 +887,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `findTasks`<br>
        Expected: Invalid command format, error details is shown in the status message.
 
-### Clearing all Assignees of a Task
+### Clearing all assignees of a Task
 
 1. Clearing all Assignees of a Task
 
