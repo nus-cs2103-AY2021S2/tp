@@ -87,7 +87,7 @@ public class EnrolCommandParserTest {
     public void parse_manyDogsManyPrograms_failure() {
         // Test that invalid ID parseException is thrown
         String userInput = DOGID_DESC_TWO + DOGID_DESC_FOUR + PROGRAMID_DESC_FIFTEEN + PROGRAMID_DESC_SEVENTEEN;
-        assertParseFailure(parser, userInput, EnrolDropCommandParser.MESSAGE_UNSUPPORTED_BATCH_OPERATION);
+        assertParseFailure(parser, userInput, EnrolDropCommandParser.MESSAGE_UNSUPPORTED_BATCH_ENROL_OPERATION);
     }
 
     @Test
