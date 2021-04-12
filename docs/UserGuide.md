@@ -57,10 +57,10 @@ are further divided into 3 sections which include the **General features**, **Me
 Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
 to manage tasks which can be identified by their unique list indexes.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
-
---------------------------------------------------------------------------------------------------------------------
 <a name="quick-start"></a>
 ## Quick Start
 
@@ -88,9 +88,9 @@ to manage tasks which can be identified by their unique list indexes.
 
 1. Refer to the [Features](#features) below for details of each command.
 
-<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 <a name="features"></a>
 ## Features
@@ -153,9 +153,9 @@ Format: `exit`
 
 Example: `exit`
 
-<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 <a name="members"></a>
 ## Member Related Features
@@ -263,9 +263,10 @@ Examples:
 * `findMembers Rachel 98562154 john@gmail.com`
 * `findMembers Rachel 98562154 john@gmail.com President`
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
--------------------------------------------------------------------------------------------------------------
 <a name="tasks"></a>
 ## Task Related Features
 
@@ -477,9 +478,10 @@ Examples:
 * `findTasksFor Alex Yeoh`
 * `findTasksFor Bernice Teo Hui Min`
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 <a name="dataStorage"></a>
 ## Data Storage 
 
@@ -505,9 +507,9 @@ If your changes to the data file makes its format invalid, HEY MATEz will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HEY MATEz home folder.
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 <a name="summary"></a>
 ## Command summary
