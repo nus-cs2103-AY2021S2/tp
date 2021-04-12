@@ -196,7 +196,7 @@ Example(s):
 * `cfind Danny` returns `danny` and `Danny Tan`
 * `cfind amy yeoh` returns only `Amy Yeoh`
 
-Below is an illustration of entering`cfind yeoh` on a sample Teaching Assistant:
+Below is an illustration of entering `cfind yeoh` on a sample Teaching Assistant:
 
 ![Find contact example](images/FindContactExample.png)
 
