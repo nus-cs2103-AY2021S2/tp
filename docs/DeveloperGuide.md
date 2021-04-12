@@ -563,7 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-    
+
 **Use case: UC03 - Edit a dog/owner profile or program**
 
 **MSS**
@@ -631,7 +631,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-    
+
 **Use case UC06 - Find entity by keyword(s)**
 
 **MSS**
@@ -649,7 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-    
+
 **Use case: UC07 - Enrol dog to a program**
 
 **MSS**
@@ -674,7 +674,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-    
+
 **Use case: UC08 - Drop dog from program**
 
 **MSS**
@@ -699,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1b1-1b2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-    
+
 **Use case: UC09 - View schedule**
 
 **MSS**
@@ -717,12 +717,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the command entered is correct.<br>
 
       Use case resumes at step 2.
-    
+
 **Use case: UC10 - View Help Window**
 
 **MSS**
 
-1.  User enters `help` command into the command box and presses <kbd>enter</kbd>.   
+1.  User enters `help` command into the command box and presses <kbd>enter</kbd>.
 2.  Pawbook opens a help window containing the link to the user guide and also a command summary for the user.
 
     Use case ends.
@@ -787,7 +787,7 @@ guide for comprehensive testing. The state of the application is assumed to cont
 application is first launched.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing. Take note that all test cases are separate and individual and assume 
+testers are expected to do more *exploratory* testing. Take note that all test cases are separate and individual and assume
 the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 2 programs) respectively, if not otherwise specified. <br>
 :bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program. Remember to switch different list views using the list command to look at different lists and ensure all entities have been removed.
 </div>
@@ -839,7 +839,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
     1. Test case: `add owner n/John Doe a/311, Clementi Ave 2, #02-25 e/johnd@example.com p/98765432  t/friends t/owesMoney` <br>
         Expected: Similar to previous.
-       
+
     1.  Test case : `add owner n/John Doe e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` <br>
         Expected: Missing parameter, status message indicates invalid command format.
 
@@ -903,10 +903,10 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 1. Deleting a program while all programs are being shown
 
     1. Prerequisites: Refer to above. List programs using `list program`.
-    
+
     1. Test case: `delete program 3`<br>
-       Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program. 
-       
+       Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program.
+
     1. Test case: `delete program 0`<br>
        Expected: No program is deleted. Error details shown in the status message. Status bar remains the same.
 
@@ -933,11 +933,11 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 1. Editing a dog
 
     1. Test case: `edit dog 2 n/Milo` <br>
-       Expected: Successfully renamed Bruce to Milo. 
-       
+       Expected: Successfully renamed Bruce to Milo.
+
     1. Test case: `edit dog 2 n/Bruce o/4` <br>
-       Expected: Successfully renamed Milo to Bruce and changed owner from John Doe to James Bond. 
-       
+       Expected: Successfully renamed Milo to Bruce and changed owner from John Doe to James Bond.
+
     1. Test case: `edit dog 3 n/Milo o/4` <br>
        Expected: Error status message shown, indicating dog ID provided is invalid.
 
@@ -955,7 +955,7 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 1. Editing a program
 
     1. Test case: `edit program 3 n/Kennel Training` <br>
-       Expected: Successfully renamed Obedience Training to Kennel Training. 
+       Expected: Successfully renamed Obedience Training to Kennel Training.
 
     1. Test case: `edit program 3 n/Kennel Training s/01-02-2021 17:00` <br>
        Expected: Successfully renamed Obedience Training to Kennel Training and changes the session date to 1700 from 1800.
@@ -1041,23 +1041,23 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
     1. Test case: `view 1` <br>
        Expected: John's and Bruce's contacts are listed. John Doe's contact is at the top, followed by Bruce.
-       
-1. Viewing dog 
-    
+
+1. Viewing dog
+
     1. Test case: `view 2` <br>
-       Expected: John, Bruce and Obedience Training program is listed. Bruce's contact is at the top, followed by John, 
-        followed by Obedience Training. 
+       Expected: John, Bruce and Obedience Training program is listed. Bruce's contact is at the top, followed by John,
+        followed by Obedience Training.
 
 1. Viewing program
 
     1. Test case: `view 3` <br>
-       Expected: Bruce and Obedience Training program is listed. Obedience training details are at the top, followed by Bruce's details. 
-       
-1. Invalid view ID 
+       Expected: Bruce and Obedience Training program is listed. Obedience training details are at the top, followed by Bruce's details.
+
+1. Invalid view ID
 
     1. Test case: `view 4`<br>
-       Expected: Error status message is provided, indicating invalid ID. 
-       
+       Expected: Error status message is provided, indicating invalid ID.
+
     1. Test case: `view -1`<br>
        Expected: Error status message is provided, indicating ID must be positive.
 
@@ -1081,15 +1081,15 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
     1. Test case: `schedule 01-02-2021` <br>
        Expected: Successful status message, shows the sample Obedience Training 2 happening on 01-02-2021.
-    
+
 1. Viewing schedules on an invalid day
 
     1. Test case: `schedule 31-02-2021`<br>
        Expected: Error status message thrown, indicating day of the month does not exist.
-       
+
     1. Test case: `schedule 031-02-2021`<br>
-       Expected: Error status message thrown, indicating that date format should be in dd-MM-yyyy format. 
-       
+       Expected: Error status message thrown, indicating that date format should be in dd-MM-yyyy format.
+
 ### Enrol Command
 
 1. Pre-requisites
@@ -1232,19 +1232,21 @@ the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 
 
 1. Test case: `exit` <br>
    Expected: The program should exit and close.
-   
-## Effort 
 
-Throughout the development, our team wanted to make Pawbook easy to use, intuitive and presentable. After countless group discussions, physical meetings and additional effort leading up to submission, we managed to pull through and present a usable and functioning product that we are proud of. Amassing over 14,000 lines of code combined, we had to stick to strict internal deadlines, manage conflicts and maintain a culture of open communication and transparency. We also took the liberty to call for group meetings whenever needed, going beyond just the usual meetings to make sure everyone is in sync. 
+## Effort
 
-The first step of development was abstracting the "entity" that was used in AddressBook. Instead of just a Person entity, we realised we needed to create three entities: Dog, Owner and Program. This included a great deal of refactoring and involved the abstraction of an Entity class that is inherited by all three classes. 
+Throughout the development, our team wanted to make Pawbook easy to use, intuitive and presentable. After countless group discussions, physical meetings and additional effort leading up to submission, we managed to pull through and present a usable and functioning product that we are proud of. Amassing over 14,000 lines of code combined, we had to stick to strict internal deadlines, manage conflicts and maintain a culture of open communication and transparency. We also took the liberty to call for group meetings whenever needed, going beyond just the usual meetings to make sure everyone is in sync.
 
-The second challenge was deciding what type of data structure we wanted to use. Because of the relationship between owners, dogs and programs, we knew that there must be a way for the entities to call on each other. However, we did not want to store the related objects directly in each entity as that would lead to very high coupling. We came up with an ID system that allows us to refer to each entity by ID. However, we were stuck when trying to implement the hashmap data structure that we were initially thinking of using. This was because changing the internal data structure would greatly impact al aspects of the application, including UI, testing and functionality. We then decided to refactor the internal list structure to accept a Pair class, containing the ID as the key and the object as the value. This was another huge refactoring that we had to work through. 
+The first step of development was abstracting the "entity" that was used in AddressBook. Instead of just a Person entity, we realized that we needed to create three entities: Dog, Owner and Program. This included a great deal of refactoring and involved the abstraction of an Entity class that is inherited by all three classes. The alternative was a simple solution would be to duplicate the `Person` class 3 times and have 3 separate containers alongside 3 different GUI components. But this naive implementation is only good as a proof-of-concept. it greatly violated the DRY principle.
 
-Once the bottleneck on the underlying data structure was finally completed, we had to think of how to refactor the functions such that they were able to accept all three entities. Additioanlly, we had to think of all the features that we wanted to accomplish to help us achieve our target proposition. With all of us taking one or more commands, we worked in parallel to push out new commands such as `list`, `view`, `schedule`, `enrol`, `drop` while heavily refactoring existing commands and improving on them to not just work with the three new entities, but also change the way the results are displayed. We decided that we wanted the display results not to follow numerical ordering, but in order of relevance and sense from the user perspective. 
+The second challenge was deciding what type of data structure we wanted to use for storing all the entities. Because of the relationship between owners, dogs and programs, we knew that there must be a way for the entities to call on each other. However, we did not want to store the related objects directly in each entity as that would lead to very high coupling. We came up with an ID system that allows us to refer to each entity by ID. However, we were stuck when trying to implement the hashmap data structure that we were initially thinking of using. This was because changing the internal data structure would greatly impact all aspects of the application, including UI, testing and functionality. We then decided to refactor the internal list structure to accept a `Pair` class, containing the ID as the key and the object as the value. This was yet another huge refactoring that we had to work through to migrate from the index-based system over to an ID-based one.
 
-In terms of testing, we are proud to say that our test coverage has passed over the 77% mark, above the original coverage of AB3 which was 72%. This was because the team really pulled together to bring our coverage up leading to the final submission, ensuring that our tests were comprehensive enough to cover majority of the functional code. 
+Once the bottleneck on the underlying data structure was finally completed, we had to think of how to refactor the functions such that they were able to accept all three entities. Additionanlly, we had to think of all the features that we wanted to accomplish to help us achieve our target proposition. With all of us taking one or more commands, we worked in parallel to push out new commands such as `list`, `view`, `schedule`, `enrol`, `drop` while heavily refactoring existing commands and improving on them to not just work with the three new entities, but also change the way the results are displayed. We decided that we wanted the display results not to follow numerical ordering, but in order of relevance and sense from the user perspective.
 
-We also placed emphasis on GUI, making sure that our GUI was suitable and aesthetically pleasing for users. Through the process, we also had to learn a great deal of fxml syntax as we did away with SceneBuilder which we thought was hard to use and inflexible. Hence, we directly edited the code instead. 
+In terms of testing, we are proud to say that our test coverage is above over the 77% mark, above the original coverage of AB3 which was 72%. This was because the team really pulled together to bring our coverage up leading to the final submission, ensuring that our tests were comprehensive enough to not only cover majority of the functional code, but also the possible corner cases.
 
-Finally, the team made additional effort into making sure that the documentation was organised, comprehensive and easy to read. We all had to pick up PlantUML notation to create the UML diagrams such as activity diagrams and sequence diagram. Before submission, we made sure to standardise and make consistent the formatting, positioning of diagrams and overall flow and logic of the User Guide and this Developer Guide.
+We also placed emphasis on GUI, making sure that our GUI was suitable and aesthetically pleasing for users. Through the process, we also had to learn a great deal of FXML syntax as we did away with SceneBuilder which we thought was hard to use and inflexible. Hence, we directly edited the code instead. It was also necessary to edit the CSS to change the theme of the application.
+
+While Pawbook inherited a GUI from AddressBook, we made a conscious effort to not revolve the product too heavily on the GUI. Instead of having separate tabs for each of the entities, we decided to make use of the existing `ListView` to display the various types of entities, allowing the user to switch between them using the `list` command rather than requireing that the user leave their keyboard to reach for their mouse in order to perform a trivial task like this.
+
+Finally, the team made additional effort into making sure that the documentation was organised, comprehensive and easy to read. We all had to pick up PlantUML notation to create the UML diagrams such as activity diagrams and sequence diagram. Before submission, we made sure to standardize and make the formatting consistent, positioning of diagrams and overall flow and logic of the User Guide and this Developer Guide.
