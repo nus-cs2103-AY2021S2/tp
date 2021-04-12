@@ -16,8 +16,7 @@ public class EmailFilter extends Filter {
      * @param filterString the string against which to parse
      */
     public EmailFilter(String filterString) {
-        super(filterString.trim());
-        Objects.requireNonNull(filterString);
+        super(filterString);
     }
 
     /**

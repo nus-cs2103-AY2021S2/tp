@@ -26,7 +26,6 @@ public class CoeExpiryFilter extends Filter {
      */
     public CoeExpiryFilter(String filterString) {
         super(filterString);
-        requireNonNull(filterString);
         checkArgument(isValidFilter(filterString), MESSAGE_CONSTRAINTS);
         LocalDate currentDate = LocalDate.now(); // Should be the date without time
         System.out.println(filterString);

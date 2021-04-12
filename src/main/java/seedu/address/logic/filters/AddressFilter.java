@@ -16,8 +16,7 @@ public class AddressFilter extends Filter {
      * @param filterString the given filter string against which to match customers
      */
     public AddressFilter(String filterString) {
-        super(filterString.trim());
-        Objects.requireNonNull(filterString);
+        super(filterString);
     }
 
     /**

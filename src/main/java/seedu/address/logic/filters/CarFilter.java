@@ -14,8 +14,7 @@ public abstract class CarFilter extends Filter {
      * @param filterString the filter to match the {@code Customer}
      */
     public CarFilter(String filterString) {
-        super(filterString.trim());
-        requireNonNull(filterString);
+        super(filterString);
     }
 
     /**
