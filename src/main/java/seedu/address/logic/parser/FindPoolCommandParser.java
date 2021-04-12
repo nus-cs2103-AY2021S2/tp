@@ -53,8 +53,8 @@ public class FindPoolCommandParser implements Parser<FindPoolCommand> {
 
         if (PREFIX_NAME.equals(prefix) && argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
             for (String s : argumentMultimap.getAllValues(PREFIX_NAME)) {
-                String parsedNameAsString = ParserUtil.parseName(s).toString();
-                outputList.add(parsedNameAsString.trim());
+                String parsedNameAsString = ParserUtil.parseName(s).toString().replaceAll("\\s+", " ");
+                outputList.add(parsedNameAsString.trim().toLowerCase());
             }
         }
         return outputList;

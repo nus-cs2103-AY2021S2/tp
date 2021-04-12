@@ -50,6 +50,7 @@ public class CommandTestUtil {
     public static final String VALID_LAST_NAME_FIONA = TypicalPassengers.FIONA.getName().toString()
             .split("\\s+")[1];
     public static final String VALID_FIRST_NAME_AMY = VALID_NAME_AMY.split("\\s+")[0];
+    public static final String VALID_FIRST_NAME_AMY_LOWER_CASE = VALID_NAME_AMY.split("\\s+")[0].toLowerCase();
     public static final String VALID_FIRST_NAME_BOB = VALID_NAME_BOB.split("\\s+")[0];
     public static final String VALID_NAME_BOB_LOWER_CASE = VALID_NAME_BOB.toLowerCase();
     public static final String VALID_PHONE_AMY = "11111111";
