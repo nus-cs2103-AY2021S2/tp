@@ -152,7 +152,7 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 * Parameters can be in any order.<br>
   e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a prefix is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
@@ -227,7 +227,7 @@ Examples:
 
 Edits an existing person in the contact list.
 
-Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]…​}`
+Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`
 1. If index supplied, `edit INDEX [...]`: Edits the person at the specified `INDEX`
    * At least 1 parameter must be supplied.
    * Existing values are replaced by the input values, if specified.
@@ -356,7 +356,7 @@ Examples:
 
 Marks event(s) in PartyPlanet's Events List as done.
 
-Format: `edone INDEX [INDEX]…​`
+Format: `edone INDEX [INDEX]...`
 
 * `INDEX` must be a positive integer within the number of events in Events List.
 
@@ -402,7 +402,7 @@ The Autocomplete feature helps autocomplete when editing a Person or an Event to
 
 Format:
 
-Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
+Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] TAB`
 
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK] TAB`
 
