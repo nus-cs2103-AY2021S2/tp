@@ -24,10 +24,10 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ParentPal.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -119,13 +119,13 @@ Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-ParentPal's theme is set to dark by default.
-</div>
-
 Currently available options for the [OPTION] field include: 
 * `light` Light theme
 * `dark` Dark theme
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+ParentPal's theme is set to dark by default.
+</div>
 
 Examples: 
 * `theme o/light` changes theme to a light theme.
@@ -151,43 +151,27 @@ Examples:
 * `add n/John Doe p/98765432`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Adding/replacing tags to a contact: `tag` 
+#### Deleting a contact : `delete`
 
-Adds or replaces tags to the specified contact by index.
+Deletes the specified contact(s) from the address book.
 
-Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `delete INDEX [MORE_INDEXES]…​`
 
-* Tags the contact at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed contact list. 
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the contact at the specified `INDEX` or multiple `INDEXES`.
+* The index refers to the index number shown in the displayed contact list.
+* The index/indexes **must be a positive integer/integers** 1, 2, 3, …​
+* If deleting multiple contacts by multiple indexes, the indexes *must* be separated by a whitespace and must all be valid.
 
-Currently available options for the `[OPTION]` field include:
-* `replace` Replaces the currently existing tags with the given new set of tags 
-  
-Examples:
-*  `tag 4 t/School t/English` Adds the tags School and English to the 4th contact.
-*  `tag 2 o/replace tc/Alexa t/English` Replaces all existing tags of the 2nd contact with the 
-   child tag Alexa and the tag English.
-
-
-#### Listing all contacts : `list`
-
-Shows a list of all contacts in the address book.
-
-Format: `list [o/OPTION]`
-
-Currently available options for the `[OPTION]` field include:
-* `fav` Shows list of favourited contacts in the address book
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To favourite a contact, use the <a href = "#favourite-a-contact--fav">fav</a> command.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Contacts that are involved with appointments cannot be deleted.
 </div>
 
 Examples:
-* `list` List all contacts in the address book
-* `list o/fav` Lists all favourited contacts in the address book
+* `list` followed by `delete 2` deletes the 2nd contact in the address book.
+* `list` followed by `delete 1 2 3` deletes the 1st, 2nd and 3rd contact in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-#### Editing a contact : `edit` 
+#### Editing a contact : `edit`
 
 Edits an existing contact in the address book.
 
@@ -213,7 +197,7 @@ Examples:
 
 #### Finding contacts: `find`
 
-Find contacts based on the given option. 
+Find contacts based on the given option.
 
 **If no options are specified**, all of a contact's
 fields will be searched and any keyword matches in any one of the fields will display that contact.
@@ -229,7 +213,7 @@ Currently available options for the `[OPTION]` field include:
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 When using the <code>tag</code> option <code>t/</code> needs to be placed in front of the tag 
-you are searching for. Also, please note that only exact matches will be returned for find by tag.<br>
+you are searching for. Also, note that only exact matches will be returned for find by tag.<br>
 Example: <code>find o/tag t/first t/second</code>
 </div>
 
@@ -240,55 +224,46 @@ Example: <code>find o/tag t/first t/second</code>
   e.g. `Alex David` will return `Alex Yeoh`, `David Li`.
 * If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
   e.g. when 0 results are found, "0 Contact(s) listed!" is displayed.
-  
+
 Examples:
 * `find John` returns `john` and `John Doe`.
 * `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found.
 * `find o/phone 9927` return contacts whose phone number contains 9927 (partial matches will also be returned).
 
+#### Listing all contacts : `list`
 
-#### Deleting a contact : `delete`
+Shows a list of all contacts in the address book.
 
-Deletes the specified contact from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Contacts that are involved with appointments cannot be deleted.
-</div>
-
-#### Sorting all contacts : `sort`
-
-Sorts the address book in the order based on the given option.
-
-Format: `sort o/OPTION` 
+Format: `list [o/OPTION]`
 
 Currently available options for the `[OPTION]` field include:
-* `name` Sorts by name (alphabetical order)
-* `date` Sorts by date added (chronological order)
+* `fav` Shows list of favourited contacts in the address book
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To favourite a contact, use the <a href = "#favourite-a-contact--fav">fav</a> command.
+</div>
+
+Examples:
+* `list` List all contacts in the address book
+* `list o/fav` Lists all favourited contacts in the address book
+
+#### Adding/replacing tags to a contact: `tag` 
+
+Adds or replaces tags to the specified contact by index.
+
+Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
+
+* Tags the contact at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed contact list. 
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Currently available options for the `[OPTION]` field include:
+* `replace` Replaces the currently existing tags with the given new set of tags 
   
 Examples:
-* `sort o/name` returns the contact list sorted in alphabetical order.
-* `sort o/date` returns the contact list sorted in chronological order.
-* `find Alice` followed by `sort o/name` returns the list of contacts found sorted in alphabetical order.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The sorting order is saved across different use sessions.
-The default order is by the date the contact was added.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If sort is entered after executing find, a sorted found list will be displayed as explained in the 3rd example above.<br>
-The sort order will also be saved and the full address book will be sorted.
-</div>
+*  `tag 4 t/School t/English` Adds the tags School and English to the 4th contact.
+*  `tag 2 o/replace tc/Alexa t/English` Replaces all existing tags of the 2nd contact with the 
+   child tag Alexa and the tag English.
 
 #### Favourite a contact : `fav`
 
@@ -301,15 +276,42 @@ Format: `fav INDEX [o/OPTION]`
 Currently available options for the `[OPTION]` field include:
 * `remove` Unfavourites the specified contact
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When a contact is favourited, the star next to their name will become filled.
+When a contact is unfavourited, the star will turn empty.
+</div>
+
 Examples:
 * `list` followed by `fav 2` favourites the 2nd contact in the address book.
 * `find Betsy` followed by `fav 1` favourites the 1st contact in the results of the `find` command.
 * `fav 3 o/remove` unfavourites the 3rd contact in the address book.
 
+#### Sorting all contacts : `sort`
+
+Sorts the address book in the order based on the given option.
+
+Format: `sort o/OPTION`
+
+Currently available options for the `[OPTION]` field include:
+* `name` Sorts by name (alphabetical order)
+* `date` Sorts by date added (chronological order)
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-When a contact is favourited, the star next to their name will become filled.
-When a contact is unfavourited, the star will turn empty.
+The sorting order is saved across different use sessions.
+The default order is by the date the contact was added.
 </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If sort is entered after executing find, a sorted found list will be displayed as explained in the 3rd example above.<br>
+The sort order will also be saved and the full address book will be sorted.
+</div>
+
+Examples:
+* `sort o/name` returns the contact list sorted in alphabetical order.
+* `sort o/date` returns the contact list sorted in chronological order.
+* `find Alice` followed by `sort o/name` returns the list of contacts found sorted in alphabetical order.
+
+
 
 #### Clearing all entries : `clear`
 
@@ -396,13 +398,6 @@ fields will be searched and any keyword matches in any one of the fields will re
 
 Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
-Currently available options for the `[OPTION]` field include:
-* `name` Find by the name of the appointment
-* `child` Find by the child that the appointment is tagged to   
-* `address` Find by address of the appointment  
-* `date` Find by date of appointment
-* `contact` Find by name of the contacts involved in the appointment
-
 * The search is case-insensitive. e.g `ptm` will match `PTM`.
 * The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`.
 * Incomplete words will also be matched e.g. `PT` will match `PTM`.
@@ -410,6 +405,14 @@ Currently available options for the `[OPTION]` field include:
   e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`.
 * If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed.
+  
+Currently available options for the `[OPTION]` field include:
+* `name` Find by the name of the appointment
+* `child` Find by the child that the appointment is tagged to   
+* `address` Find by address of the appointment  
+* `date` Find by date of appointment
+* `contact` Find by name of the contacts involved in the appointment
+
 
 Examples:
 * `findAppt ptm` returns appointments with any field containing `PTM`.
@@ -482,14 +485,14 @@ Action | Format, Examples
 **Theme** | `theme o/OPTION` <br> e.g., `theme o/light`
 ​ | **Address Book Commands**
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear [t/TAG]…​`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
 **Find** | `find [o/OPTION] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find John`
 **List** | `list [o/OPTION]`
 **Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
+**Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
 **Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
+**Clear** | `clear [t/TAG]…​`
 ​ | **Appointment Book Commands**
 **Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
 **Delete** | `deleteAppt INDEX` <br> e.g., `deleteAppt 2`
