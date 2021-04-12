@@ -40,7 +40,7 @@ class VenueTagContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different venue tags -> returns false
+        // different tag sets -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -64,10 +64,10 @@ class VenueTagContainsKeywordsPredicateTest {
     @Test
     public void test_venueTagDoesNotContainKeyword_returnsFalse() {
         // Non-matching keyword
-        Set<Tag> firstPredicateTagSet = new HashSet<>();
-        firstPredicateTagSet.add(new Tag("Carol"));
+        Set<Tag> predicateTagSet = new HashSet<>();
+        predicateTagSet.add(new Tag("Carol"));
 
-        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate(firstPredicateTagSet);
+        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate(predicateTagSet);
         assertFalse(predicate.test(new VenueBuilder().withTags("Alice").build()));
 
     }

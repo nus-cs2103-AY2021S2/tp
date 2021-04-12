@@ -40,7 +40,7 @@ class PersonTagContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different tag sets -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -64,10 +64,10 @@ class PersonTagContainsKeywordsPredicateTest {
     @Test
     public void test_personTagDoesNotContainKeyword_returnsFalse() {
         // Non-matching keyword
-        Set<Tag> firstPredicateTagSet = new HashSet<>();
-        firstPredicateTagSet.add(new Tag("amy"));
+        Set<Tag> predicateTagSet = new HashSet<>();
+        predicateTagSet.add(new Tag("amy"));
 
-        PersonTagContainsKeywordsPredicate predicate = new PersonTagContainsKeywordsPredicate(firstPredicateTagSet);
+        PersonTagContainsKeywordsPredicate predicate = new PersonTagContainsKeywordsPredicate(predicateTagSet);
         assertFalse(predicate.test(new PersonBuilder().withTags("student").build()));
     }
 }

@@ -41,7 +41,7 @@ public class BookingTagContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different tags -> returns false
+        // different tag sets -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -66,10 +66,10 @@ public class BookingTagContainsKeywordsPredicateTest {
     @Test
     public void test_bookingTagDoesNotContainKeyword_returnsFalse() {
         // Non-matching keyword
-        Set<Tag> firstPredicateTagSet = new HashSet<>();
-        firstPredicateTagSet.add(new Tag("tag1"));
+        Set<Tag> predicateTagSet = new HashSet<>();
+        predicateTagSet.add(new Tag("tag1"));
 
-        BookingTagContainsKeywordsPredicate predicate = new BookingTagContainsKeywordsPredicate(firstPredicateTagSet);
+        BookingTagContainsKeywordsPredicate predicate = new BookingTagContainsKeywordsPredicate(predicateTagSet);
         assertFalse(predicate.test(new BookingBuilder().withTags("hall").build()));
     }
 }
