@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
@@ -19,7 +18,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Passenger> {
     @Override
     public boolean test(Passenger passenger) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(passenger.getName().fullName, keyword));
+                .anyMatch(keyword -> {
+                    String passengerNameLowerCase = passenger.getName().toString()
+                            .toLowerCase().replaceAll("\\s+", " ");
+
+                    return passengerNameLowerCase.contains(keyword);
+                });
     }
 
     @Override
