@@ -415,7 +415,7 @@ client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
 
-information_source: It is a known issue that Outlook for Windows do not have "Commas to Separate
+:information_source: It is a known issue that Outlook for Windows do not have "Commas to Separate
 Multiple Email Recipients" feature turned on. Follow the guide here to enable
 it: <https://www.lifewire.com/commas-to-separate-email-recipients-1173680>
 
@@ -614,6 +614,13 @@ Add tags to persons in address book.
 | `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the persons selected.                               |
 | `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to persons at index `1`, `2` and `3`. |
 
+**:bulb: Bulk Add Tag**
+
+To bulk add tag, either do:
+* `tag add 1 2 3` to add tags to persons at indexes 1, 2 and 3 or,
+* `tag add shown` to add tags to all the shown persons or,
+* `tag add selected` to add tags to all the selected persons
+
 ### Delete tags from persons: `tag delete`
 
 Delete tags from persons in address book.
@@ -633,6 +640,13 @@ Delete tags from persons in address book.
 | `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the persons shown in the UI.                          |
 | `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
 | `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
+
+**:bulb: Bulk Delete Tag**
+
+To bulk delete tag, either do:
+* `tag delete 1 2 3` to delete tags to persons at indexes 1, 2 and 3 or,
+* `tag delete shown` to delete tags to all the shown persons or,
+* `tag delete selected` to delete tags to all the selected persons
 
 ## Saving the data
 
