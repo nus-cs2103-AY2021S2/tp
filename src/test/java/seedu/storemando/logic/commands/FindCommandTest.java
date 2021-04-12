@@ -3,12 +3,14 @@ package seedu.storemando.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.commons.core.Messages.MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW;
-import static seedu.storemando.commons.core.Messages.MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW;
+import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.testutil.TypicalItems.CREAM;
 import static seedu.storemando.testutil.TypicalItems.EGGS;
 import static seedu.storemando.testutil.TypicalItems.FLOUR;
+import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -85,7 +87,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleItemsFound() {
-        String expectedMessage = String.format(MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(FindCommand.MESSAGE_MORE_THAN_ONE_ITEM_FOUND_OVERVIEW, 3);
         ItemNameContainsKeywordsPredicate predicate = preparePredicate("Cream Eggs Flour");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
@@ -95,12 +97,20 @@ public class FindCommandTest {
 
     @Test
     public void execute_singleKeyword_singleItemFound() {
-        String expectedMessage = String.format(MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(FindCommand.MESSAGE_LESS_THAN_TWO_ITEMS_FOUND_OVERVIEW, 1);
         ItemNameContainsKeywordsPredicate predicate = preparePredicate("Eggs");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(EGGS), model.getFilteredItemList());
+    }
+
+    @Test
+    public void execute_noItemInList() {
+        showEmptyListAfterFind(model, HEATER);
+        ItemNameContainsKeywordsPredicate predicate = preparePredicate("Eggs");
+
+        assertCommandFailure(new FindCommand(predicate), model, MESSAGE_NO_ITEM_IN_LIST);
     }
 
     /**

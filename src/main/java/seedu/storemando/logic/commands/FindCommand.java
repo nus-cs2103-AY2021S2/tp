@@ -2,9 +2,11 @@ package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.storemando.commons.core.Messages;
+import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
@@ -25,6 +27,9 @@ public class FindCommand extends Command {
         + "1. " + COMMAND_WORD + " potato chip \n"
         + "2. " + COMMAND_WORD + " */cheese egg";
 
+    public static final String MESSAGE_LESS_THAN_TWO_ITEMS_FOUND_OVERVIEW = "%1$d item found!";
+    public static final String MESSAGE_MORE_THAN_ONE_ITEM_FOUND_OVERVIEW = "%1$d items found!";
+
     private final Predicate<Item> predicate;
 
     public FindCommand(ItemNameContainsKeywordsPredicate predicate) {
@@ -36,17 +41,21 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Item> currentList = model.getFilteredItemList();
+        if (currentList.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
+        }
         model.updateCurrentPredicate(predicate);
         model.updateFilteredItemList(model.getCurrentPredicate());
         int numberOfItems = model.getFilteredItemList().size();
         if (numberOfItems > 1) {
             return new CommandResult(
-                String.format(Messages.MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW, numberOfItems));
+                String.format(MESSAGE_MORE_THAN_ONE_ITEM_FOUND_OVERVIEW, numberOfItems));
         } else {
             return new CommandResult(
-                String.format(Messages.MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW, numberOfItems));
+                String.format(MESSAGE_LESS_THAN_TWO_ITEMS_FOUND_OVERVIEW, numberOfItems));
         }
     }
 

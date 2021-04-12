@@ -6,7 +6,9 @@ import static seedu.storemando.logic.parser.CommandParserTestUtil.assertParseSuc
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.logic.commands.ClearAllCommand;
 import seedu.storemando.logic.commands.ClearCommand;
+import seedu.storemando.logic.commands.ClearLocationCommand;
 import seedu.storemando.model.item.LocationContainsPredicate;
 
 public class ClearCommandParserTest {
@@ -14,8 +16,8 @@ public class ClearCommandParserTest {
     private final ClearCommandParser parser = new ClearCommandParser();
 
     @Test
-    public void parse_emptyArg_returnsClearCommand() {
-        ClearCommand expectedClearCommand = new ClearCommand();
+    public void parse_emptyArg_returnsClearAllCommand() {
+        ClearCommand expectedClearCommand = new ClearAllCommand();
         assertParseSuccess(parser, "  ", expectedClearCommand);
     }
 
@@ -25,13 +27,17 @@ public class ClearCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "n/bedroom",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+
+        // correct prefix but no location given
+        assertParseFailure(parser, "l/",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_validLocationArgs_returnsClearCommand() {
+    public void parse_validLocationArgs_returnsClearLocationCommand() {
         String location = "kitchen";
         ClearCommand expectedClearCommand =
-            new ClearCommand(new LocationContainsPredicate(location));
+            new ClearLocationCommand(new LocationContainsPredicate(location));
         assertParseSuccess(parser, " l/kitchen", expectedClearCommand);
         assertParseSuccess(parser, " l/    kitchen", expectedClearCommand);
         assertParseSuccess(parser, " l/kitchen    ", expectedClearCommand);

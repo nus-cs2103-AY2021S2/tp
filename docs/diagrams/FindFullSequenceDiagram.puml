@@ -5,8 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
-participant "f:FindCommand" as FindCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "command:FindCommand" as FindCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -33,19 +33,19 @@ create FindCommand
 FindCommandParser -> FindCommand
 activate FindCommand
 
-FindCommand --> FindCommandParser : f
+FindCommand --> FindCommandParser : command
 deactivate FindCommand
 
-FindCommandParser --> StoreMandoParser : f
+FindCommandParser --> StoreMandoParser : command
 deactivate FindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FindCommandParser -[hidden]-> StoreMandoParser
 destroy FindCommandParser
 
-StoreMandoParser --> LogicManager : f
+StoreMandoParser --> LogicManager : command
 deactivate StoreMandoParser
 
-LogicManager -> FindCommand : execute()
+LogicManager -> FindCommand : execute(model)
 activate FindCommand
 
 FindCommand -> Model : updateCurrentPredicate(["Chocolate"])
@@ -70,12 +70,12 @@ create CommandResult
 FindCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> FindCommand
+CommandResult --> FindCommand : result
 deactivate CommandResult
 
 FindCommand --> LogicManager : result
 deactivate FindCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

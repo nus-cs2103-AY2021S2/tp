@@ -28,7 +28,7 @@ You can reach me at the email `e0406389@u.nus.edu`
 You can reach me at the email `e0417962@u.nus.edu`
 
 * Role: Developer
-* Responsibilities: Logic expert, Code Quality, Documentation
+* Responsibilities: Logic and GUI Expert
 
 ### Mohamed Fazil
 
@@ -37,7 +37,7 @@ You can reach me at the email `e0417962@u.nus.edu`
 [[github](http://github.com/Md-Fazil)] [[portfolio](team/md-fazil.md)] You can reach me at the email `mohamedfazil@u.nus.edu`
 
 * Role: Developer
-* Responsibilities: In charge of documentation and integration. Git Expert.
+* Responsibilities: Documentation and Git Expert
 
 ### Kumaran S/O Selvvaratnam
 
@@ -48,7 +48,7 @@ You can reach me at the email `e0417962@u.nus.edu`
 You can reach me at the email `e0407113@u.nus.edu`
 
 * Role: Developer
-* Responsibilities: In charge of Code Quality and Model, Testing Expert
+* Responsibilities: Documentation and Testing Expert
 
 ### Amanda Ang Yee Min
 
@@ -59,4 +59,4 @@ You can reach me at the email `e0407113@u.nus.edu`
 You can reach me at the email `amandaang@u.nus.edu`
 
 * Roles: Developer
-* Responsibilities: UI Expert, Testing Expert & SourceTree Expert
+* Responsibilities: GUI and SourceTree Expert

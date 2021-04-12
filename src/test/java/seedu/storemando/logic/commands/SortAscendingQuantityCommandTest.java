@@ -2,6 +2,7 @@ package seedu.storemando.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
@@ -25,7 +26,7 @@ class SortAscendingQuantityCommandTest {
         expectedModel.setStoreMando(getTypicalStoreMandoSortedByIncreasingQuantity());
 
         assertCommandSuccess(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortAscendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_ASC, expectedModel);
     }
 
     @Test
@@ -33,7 +34,7 @@ class SortAscendingQuantityCommandTest {
         Model model = new ModelManager();
 
         assertCommandFailure(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
+            MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
@@ -42,7 +43,7 @@ class SortAscendingQuantityCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
 
         assertCommandSuccess(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortAscendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_ASC, expectedModel);
     }
 
     @Test
@@ -51,7 +52,7 @@ class SortAscendingQuantityCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
 
         assertCommandSuccess(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortAscendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_ASC, expectedModel);
     }
 
     @Test
@@ -59,8 +60,7 @@ class SortAscendingQuantityCommandTest {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         showEmptyListAfterFind(model, HEATER);
 
-        assertCommandFailure(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
+        assertCommandFailure(new SortAscendingQuantityCommand(), model, MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test

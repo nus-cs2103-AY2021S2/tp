@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
-participant "h:HelpCommand" as HelpCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "command:HelpCommand" as HelpCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 [-> LogicManager : execute("help")
@@ -18,10 +18,10 @@ create HelpCommand
 StoreMandoParser -> HelpCommand
 activate HelpCommand
 
-HelpCommand --> StoreMandoParser : h
+HelpCommand --> StoreMandoParser : command
 deactivate HelpCommand
 
-StoreMandoParser --> LogicManager : h
+StoreMandoParser --> LogicManager : command
 deactivate StoreMandoParser
 
 LogicManager -> HelpCommand : execute()
@@ -31,13 +31,13 @@ create CommandResult
 HelpCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> HelpCommand
+CommandResult --> HelpCommand : result
 deactivate CommandResult
 
-HelpCommand --> LogicManager
+HelpCommand --> LogicManager : result
 deactivate HelpCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 
 @enduml

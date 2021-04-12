@@ -56,7 +56,7 @@ Each of the four components,
   API `interface` mentioned in the previous point).
 
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues
-the command `delete 5`.
+the command `delete 1`.
 
 ![Sequence Diagram of the Architecture](images/ArchitectureSequenceDiagram.png)
 
@@ -144,43 +144,47 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 ## **Implementation**
 
-### Add feature `add`
+### Add Feature `add`
 
-#### Actual Implementation
-
-The `add` feature allows users to add an item's details to the inventory. An item's details is made up of it's name, 
-quantity, location, expiry date (optional), and tags (optional).
+The add feature allows users to add an item's details to the inventory. An item's details is made up of a name,
+quantity, location, expiry date, and tags.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** 
-An item's name, quantity and location are compulsory fields that must be supplied by the user.
+An item's name, quantity and location are compulsory fields that must be supplied by the user. Expiry date and tags are optional.
 </div>
 
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-issues the command `add n/apple q/2 l/kitchen`.
+#### Actual Implementation
+
+The sequence diagram below shows how the components interact with each other for the scenario where the user
+issues the command `add n/apple q/2 l/kitchen`:
+
+<br>
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-
 From the diagram above:
 
-1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+1. When the user keys in an input, `execute` method of `LogicManager` is called with the user input as the parameter.
 2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
-3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
-4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. In the `parse` method,
+3. The `StoreMandoParser` parses the user input, identifies it as an `AddCommand` and instantiates an `AddCommandParser` object. 
+4. `StoreMandoParser` then invokes the `parse` method of the `AddCommandParser` object to further parse the arguments provided. In the `parse` method,
    the `AddCommandParser` ensures that the input is of the correct format and identifies the input for the item name, quantity, 
    location, expiry date and tag(s).
-5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
+5. If all the inputs are valid, the `AddCommandParser` creates a new `Item` object, 
    and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
-   returned to the `LogicManager`.
-6. The `LogicManager` will then invoke the `execute` method of the `AddCommand` object with `model` as argument.   
-7. Consequently, `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` to `LogicManager`.
-8. This `CommandResult` will be returned at the end.
+   returned to `LogicManager` via `StoreMandoParser`.
+6. The `LogicManager` will then invoke the overridden `execute` method of the `AddCommand` object with `Model` as argument.   
+7. Subsequently, the `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` object to `LogicManager`.
+8. This `CommandResult` will be returned at the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes a new `add` command:
+The following Activity Diagram summarizes what happens when a user executes the `add` command:
+
+<br>
+
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
-##### Proposed Improvements
+#### Proposed Improvements
 1. Items with the same name, location and expiry date cannot co-exist in the inventory. Thus, every item that 
    is to be added has to be checked and validated that it is not a duplicate item. The current implementation to do so
    involves iterating through the list of all items to check if there already exists an item in the inventory that has 
@@ -189,275 +193,307 @@ The following activity diagram summarizes what happens when a user executes a ne
    done in O(1) time. This feature was not implemented as it would introduce unnecessary complexity, and the current 
    solution meets the non-functional requirements regarding performance.
 
-##### Design Considerations:
+#### Design Considerations:
 
 ##### Aspect: Identifying the addition of duplicate item
-* **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by name, location 
-  **and** expiry date.
-    * Pros: Allows users to store the same products that may have been produced in different batches. This would also 
+* **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by **name, location 
+  and expiry date**.
+    * **Pros**: Allows users to store the same products that may have been produced in different batches. This would also 
       help users identify and differentiate similar products by their expiry date.
-    * Cons: Items with the same name and location may be a potential source of confusion.
+    * **Cons**: Items with the same name and location may be a potential source of confusion.
 
-* **Alternative 2:** Compare item to be added and existing items in the inventory by name and location only.
-    * Pros: Allows users to clearly distinguish items with the same names by location. This would prevent confusion and
+
+* **Alternative 2:** Compare item to be added and existing items in the inventory by **name and location** only.
+    * **Pros**: Allows users to clearly distinguish items with the same names by location. This would prevent confusion and
       save users from going through the hassle of distinguishing items by expiry date.
-    * Cons: Users would not be able to store similar items that have different expiry dates as a result of being 
+    * **Cons**: Users would not be able to store similar items that have different expiry dates as a result of being 
       produced in different batches.
+      
+<br>
 
+### Edit Feature `edit`
+The edit feature allows users to edit an item's name, quantity, location, expiry date and tag.
 
-
-### Edit feature
-The edit feature allows the user to edit an item's name, quantity, location, expiry date and tag. This will help the
-user to not delete and add back an item upon inputting an incorrect item. <br>
 The edit command has the following format: `edit INDEX [n/ITEM NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]...`
 and only changes the specified attribute.
 
-:information_source: : Things to note
-- Even though the edit command expects the user input to only have multiple tag prefixes, it still allows
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**
+Even though the edit command expects the user input to only have multiple tag prefixes, it still allows
   other prefixes to be declared more than once. However, StoreMando only parses the last common prefix input to update the
   item.
+</div>
 
-#### Implementation
+#### Actual Implementation
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `edit 1 n/apple`: 
+
+<br>
+
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-Step 1: The user inputs `edit 1 n/apple` wanting to change the first item's name.
+From the diagram above:
 
-Step 2: The input is passed to `LogicManager` in a form of a String.
+1. When the user keys in an input, `execute` method of the `LogicManager` is called with the given user input as parameter.
 
-Step 3: The input string is passed to `StoreMandoParser` for it to be parsed.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
 
-Step 4: The input string is separated into command keyword and arguments containing the prefixes with the updated item's
-attribute.
+3. The `StoreMandoParser` parses the user input and identifies it as an `EditCommand` and instantiates an `EditCommandParser` object.
 
-Step 5: The argument is passed to `EditCommandParser` to check if the user input follows the edit command format.
+4. `StoreMandoParser` then invokes the `parse` method of `EditCommandParser` to further parse the arguments provided. In the `parse` method,
+   the `EditCommandParser` ensures that the input is of the correct format and creates an `EditItemDescriptor` object 
+   through `EditCommand`.
 
-Step 6: `EditCommandParser` creates `EditItemDescriptor` through `EditCommand`.
+5. Based on the user input, the `EditItemDescriptor` updates its own attributes.
 
-Step 7: Based on the user input string, the `EditItemDescriptor` updates its own attributes.
+6. `EditCommandParser` creates an `EditCommand` object with the item index and `EditItemDescriptor`.
 
-Step 8: `EditCommandParser` creates an `EditCommand` with the item index and `EditItemDescriptor`.
+7. The `EditCommand` object is passed back to `StoreMandoParser` and then back to `LogicManager`.
 
-Step 9: The new `EditCommand` is pass from `EditCommandParser` back to `LogicManager`.
+8. The `LogicManager` then invokes the `execute` method of the `EditCommand` object with `Model` as argument.
 
-Step 10: `LogicManager` then calls the **execute** method of `EditCommand`.
+9. `EditCommand` calls the `getFilteredItemList` method of `Model` to get the list of items. It also calls the
+`createEditedItem` method to create the edited item. 
 
-Step 11: `EditCommand` calls **getFilteredList** method to get the list of item from `Model`. It also calls the
-**createEditedItem** method to create the edited item.
+10. Using the index attribute of the `EditCommand` object, the targeted item from the list of items is retrieved and set to the
+edited item.
 
-Step 12: From the index argument of `EditCommand`, it gets the targeted item from the list of items and set it to the
-edit item.
+11. `EditCommand` will create a `CommandResult` object and return it  to `LogicManager`.
 
-Step 13: `EditCommand` will create a `CommandResult` and pass to `LogicManager` with message containing the edited
-item's description and possibly some warning.
+12. This `CommandResult` will be returned in the end by `LogicManager`.
 
-Step 14: Depending on the entire execution, the `LogicManager` either receive an exception or the `CommandResult`. The
-GUI proceeds to show it on the result display.
+The following Activity Diagram summarizes what happens when a user executes the `edit` command:
 
-#### Activity Diagram
+<br>
+
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How Edit executes
+##### Aspect: How `edit` executes
 
-* **Alternative 1 (current choice):** Doesn't allow edit item to have the same field as the original item.
-    * Pros: User will be notified if original items are not being edited.
-    * Cons: Harder to implement
+* **Alternative 1 (current choice):** Prevent the edited item to have the same field as the original item.
+    * **Pros**: User will be notified if original items are not being edited.
+    * **Cons**: Harder to implement
 
-* **Alternative 2:** Allow edit item to have the same fields as the original item.
-    * Pros: Easy to implement.
+
+* **Alternative 2:** Allow edited item to have the same fields as the original item.
+    * **Pros**: Easy to implement.
+    * **Cons**: May seem confusing that an edit with no changes result in a success.
     
-### Delete Item `Delete`
+<br>
+
+### Delete Feature `delete`
+
+The delete feature allows users to delete an item from the inventory by using the item's index in the displayed list.
 
 #### Actual Implementation
 
-The `delete` feature allows users to delete an item in their Inventory by the item's index in the list.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `delete 5` to delete the item with index 5 in the currently displayed list:
 
-The following sequence diagram shows how the delete operation works:
+<br>
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-Given below is an example usage scenario and how delete mechanism behaves at each step.
+From the diagram above:
 
-Step 1. User executes `delete 5` to delete the 5th item in the list. `StoreMandoParser` takes in the user input and
-determines the command word (delete) and argument (5) respectively.
+1. When the user keys in an input, `execute` method of `LogicManager` is called with the user input as the parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. The `StoreMandoParser` parses the user input, identifies it as a `DeleteCommand` and instantiates a `DeleteCommandParser` object.
+4. `StoreMandoParser` then invokes the `parse` method of the `DeleteCommandParser` object to further parse the arguments provided. In the `parse` method,
+   the `DeleteCommandParser` ensures that the input is of the correct format and identifies the input for the index of the item to be deleted.
+5. If the index specified by the user is valid, a new `DeleteCommand` instance will be
+   created and returned to `LogicManager` via `StoreMandoParser`.
+6. The `LogicManager` will then invoke the overridden `execute` method of the `DeleteCommand` object with `Model` as the argument.
+7. Subsequently, the `DeleteCommand` object will invoke `deleteItem` method of `Model` with the index of the item to delete as the argument. It will then return 
+a `CommandResult` object to `LogicManager`.
+8. This `CommandResult` will be returned at the end by `LogicManager`.
 
-Step 2. An instance of `DeleteCommandParser` will be created, followed by a call on its `parse` method, taking in the
-argument stated in step 1 (5).
+The following Activity Diagram summarizes what happens when a user executes the `delete` command:
 
-Step 3. The `parse` method will check for the validity of the index. If valid, a new `DeleteCommand` instance will be
-created and returned to `LogicManager` class via `StoreMandoParser` class.
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** If the index is determined to be invalid, a parseException will be thrown to notify the
-user of the error.
-
-</div>
-
-Step 4. The overridden `execute` method of `DeleteCommand` will be called, deleting the item from the list.
-
-Step 5. Finally, a `CommandResult` object is created and returned to `LogicManager`.
+<br>
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
+#### Design Considerations:
+
 ##### Aspect: How `delete` executes
 
-* **Alternative 1 (current choice):** Delete item by an index.
-    * Pros: Easy to implement.
-    * Cons: Requires user to scroll through the list to find the item and specify the index.
+* **Alternative 1 (current choice):** Delete item by its index in the displayed list.
+    * **Pros**: Easy to implement.
+    * **Cons**: Requires user to scroll through the list to find the item and specify the index.
 
 * **Alternative 2:** Delete item by item name.
-    * Pros: Will be easier for the user especially when the list is huge.
-    * Cons: There are items with the same name but in different location, will cause confusion.
+    * **Pros**: Will be easier for the user especially when there are many items in the list.
+    * **Cons**: Items with the same name in different locations may cause confusion.
 
-### Find Item `find KEYWORD [MORE_KEYWORDS]` or `find */KEYWORD [MORE_KEYWORDS]`
+<br>
+
+### Find Feature `find`
+
+The find feature helps users find and display all items whose names
+contain any of the given keywords, either in full or partial.
+
+`find KEYWORD [MORE_KEYWORDS]` displays items whose names contain any of the given keywords in full.
+
+`find */KEYWORD [MORE_KEYWORDS]` display all items whose names contain any of the given partial keywords .
 
 #### Actual Implementation
 
-The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features find and display all items whose names
-contain any of the given keywords, either in full or partially respectively.
-
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-keys in the command `find Chocolate`:
-![Interactions Inside the Logic Component for the `find KEYWORD [MORE_KEYWORDS]` Command](images/FindFullSequenceDiagram.png)
-
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find */cheese egg`:
-![Interactions Inside the Logic Component for the `find */KEYWORD [MORE_KEYWORDS]` Command](images/FindPartialSequenceDiagram.png)
 
-Given below is an example usage scenario and how the find operation behaves at each step.
+<br>
 
-Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword.
-`StoreMandoParser` takes in the user input and determines the command word (find) and argument ("Chocolate") respectively.
+![FindPartialSequenceDiagram](images/FindPartialSequenceDiagram.png)
 
-Step 2. An instance of `FindCommandParser` will be created, followed by a call on its `parse` method, taking in the
-argument stated in step 1 ("Chocolate").
+<br>
 
-Step 3. The `parse` method will check for the presence of keyword(s). If keywords are present, a new `FindCommand` instance will be
-created and returned to `LogicManager` class via `StoreMandoParser` class.
+The sequence diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `find Chocolate`:
 
-<div markdown="span" class="alert alert-info"> 
-:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
-user of the error.
-</div>
+<br>
 
-Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
-be updated, and all items in the inventory that matches the keyword in full will be listed. An instance of
-`CommandResult` will be created, generating the result of the execution. The String parameter passed in the `CommandResult` depends
-on whether the number of items that matched the keyword is more than one or less than two. The `LogicManager` class will receive the
-result of the execution.
+![FindFullSequenceDiagram](images/FindFullSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+From the diagram above:
+
+1. When the user keys in an input, `execute` method of `LogicManager` is called with the given user input as parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. The `StoreMandoParser` parses the user input and identifies it as an `FindCommand` and instantiates a `FindCommandParser` object.
+4. `StoreMandoParser` then invokes the `parse` method of `FindCommandParser` to further parse the arguments provided. In the `parse` method,
+   the `FindCommandParser` ensures that there are keywords provided.
+5. If there are any keywords present, a `FindCommand` object will be
+   created and returned to the `StoreMandoParser` which will then return it to the `LogicManager`.
+6. The `LogicManager` will then invoke the `execute` method of the `FindCommand` object with `model` as argument.
+7. In the `execute` method, `FindCommand` calls the `updateCurrentPredicate` method of `Model` and passes its own predicate attribute as argument.
+8. `FindCommand` calls the `getCurrentPredicate` method of `Model` to obtain the current predicate and uses it
+   to update the list by calling on `updateFilteredItemList` method of `Model` with the current predicate as argument.
+9. Finally, a `CommandResult` object is created and returned to `LogicManager`.
+10. This `CommandResult` object will be returned in the end by `LogicManager`.
+
+The following Activity Diagram summarizes what happens when a user executes the `find` command:
+
+<br>
+
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How find executes
+##### Aspect: How `find` executes
 
 * **Alternative 1 (current choice):** Find items in the current list that matches the keyword, either fully or partially.
-    * Pros: Easy to implement.
-    * Cons: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
+    * **Pros**: Easy to implement.
+    * **Cons**: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
+
 
 * **Alternative 2:** Find items in the current list that matches the keyword, and an attribute e.g. tag.
-    * Pros: Users would be able to retrieve a specific item more efficiently.
-    * Cons: Users need to remember the items' attributes.
+    * **Pros**: Users would be able to retrieve a specific item more efficiently.
+    * **Cons**: Users need to remember the items' attributes.
+    
+<br>
 
-_{more aspects and alternatives to be added}_
-
-### List Items `list`, `list l/LOCATION` or `list t/TAG`
-
-#### Actual Implementation
+### List Feature `list`
 
 The `list` feature allows users to list all items in the inventory based on the order they were added.
+
 The `list l/LOCATION` and `list t/TAG` features allow users to list all items in a specific location
 or with a specific tag respectively.
 
+#### Actual Implementation
+
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `list`:
-![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
 
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-keys in the command `list l/kitchen`:
-![Interactions Inside the Logic Component for the `list l/kitchen` Command](images/ListLocationSequenceDiagram.png)
+<br>
 
-Given below is an example usage scenario and how the list operation behaves at each step.
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-Step 1. The user execute `list` to list all the items in the inventory. `StoreMandoParser` takes in the user input and
-determines the command word (list) and argument ("") respectively.
+From the diagram above:
 
-Step 2. An instance of `ListCommandParser` will be created, followed by a call on its `parse` method, taking in the
-argument stated in step 1 (""), which will be initialised to true.
+1. When the user keys in an input, `execute` method of `LogicManager` is called with the user input as the parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. The `StoreMandoParser` parses the user input, identifies it as a `ListCommand` and instantiates a `ListCommandParser` object.
+4. `StoreMandoParser` then invokes the `parse` method of the `ListCommandParser` object to further parse the arguments provided. In the `parse` method,
+   the `ListCommandParser` ensures that the input is of the correct format.
+5. If the user input is valid, a new `ListCommand` instance will be created and returned to `LogicManager` via `StoreMandoParser`.
+6. The `LogicManager` will then invoke the overridden `execute` method of the `ListCommand` object with `Model` as argument.
+7. In the `execute` method, `ListCommand` calls the `updateCurrentPredicate` method of `Model` and then calls the `getCurrentPredicate` method of 
+   `Model` to retrieve the current predicate. The retrieved predicate is then used to update the list by calling on `updateFilteredItemList` method of `Model`.  
+8. Subsequently, a `CommandResult` object is created and returned to `LogicManager`.
+9. This `CommandResult` will be returned at the end by `LogicManager`.
 
-Step 3. The `parse` method will check for the validity of the user input. If valid, a new `ListCommand` instance will be
-created and returned to `LogicManager` class via `StoreMandoParser` class.
+The following Activity Diagram summarizes what happens when a user executes the `list` command:
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
-user of the error.
-</div>
-
-Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
-be updated, and all items in the inventory will be listed. An instance of `CommandResult` will be created, generating
-the result of the execution. The `LogicManager` class will receive the result of the execution.
-
-The following activity diagram summarizes what happens when a user executes the list command:
+<br>
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How list executes
+##### Aspect: How `list` executes
 
 * **Alternative 1 (current choice):** List the entire inventory in the order they were added.
-    * Pros: Easy to implement.
-    * Cons: The overview of all the items in the inventory may appear disorganised.
+    * **Pros**: Easy to implement.
+    * **Cons**: Items in the same location may not be displayed together and may appear disorganised.
+
 
 * **Alternative 2:** List the entire inventory categorised in their specific locations.
-    * Pros: More organised overview of all the items in the inventory.
-    * Cons: More difficult to implement.
+    * **Pros**: More organised overview of all the items in the inventory.
+    * **Cons**: Difficult to implement.
+    
+<br>
 
-_{more aspects and alternatives to be added}_
+### Reminder Feature `reminder`
 
-### Reminder Feature
-
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-issues the command `reminder 1 week`.
-
-![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
-
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-issues the command `reminder 3 days`.
-
-![ReminderSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
+The reminder feature allows users to view items that are expiring within a certain number of days/weeks as specified by the user.
 
 #### Actual Implementation
 
-This portion describes the implementation of the reminder feature which allows users to view items that are expiring
-within a certain number of days as specified by the user.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 1 week`:
 
-1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
-2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
-3. `StoreMandoParser` parses the command and determines that the command given is a `ReminderCommand`.
+<br>
+
+![ReminderWeeksSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
+
+<br>
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 3 days`:
+
+<br>
+
+![ReminderDaysSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
+
+From the diagrams above:
+
+1. When the user keys in an input, `execute` method of `LogicManager` is called with the user input as the parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. `StoreMandoParser` parses the user input and determines that the command given is a `ReminderCommand`.
    Then, a `ReminderCommandParser` object is created to further parse the command.
 4. `StoreMandoParser` then calls on the `parse` method of `ReminderCommandParser` to parse the arguments provided.
-5. `ReminderCommandParser` calls on its own `timeConversion` method to convert the string into an integer. A
-   `CommandParseException` will be thrown if this is not possible.
+5. `ReminderCommandParser` calls on its own `timeConversion` method to convert the user input string into an integer.
 6. `ReminderCommandParser` then calls on the constructor of `ItemExpiringPredicate` with the integer as parameter to
-   create an `ItemExpiringPredicate` object and then calls on the constructor of `ReminderCommand` with the `ItemExpiringPredicate` object as
+   create an `ItemExpiringPredicate` object and then instantiates a `ReminderCommand` object with the `ItemExpiringPredicate` object as
    a parameter.
-7. The `ReminderCommand` object will be created and returned to `StoreMandoParser` which returns it to `LogicManager`
-8. `LogicManager` then calls on the `execute` method of `ReminderCommand` with `model` as argument.
-9. `ReminderCommand` calls the `updateCurrentPredicate` method of `model` and passes its own `ItemExpiringPredicate`
+7. The `ReminderCommand` will be returned to `StoreMandoParser` which returns it to `LogicManager`.
+8. `LogicManager` then calls on the overridden `execute` method of `ReminderCommand` with `Model` as argument.
+9. `ReminderCommand` calls the `updateCurrentPredicate` method of `Model` and passes its own `ItemExpiringPredicate`
    as argument.
-10. `ReminderCommand` calls the `getCurrentPredicate` method of `model` to obtain the current predicate and uses it
-    to update the list by calling on `updateFilteredItemList` method of `model` with the current predicate as argument.
-11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedItemList` with
+10. `ReminderCommand` calls the `getCurrentPredicate` method of `Model` to obtain the current predicate and uses it
+    to update the list by calling on `updateFilteredItemList` method of `Model` with the current predicate as argument.
+11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `Model`'s `updateSortedItemList` with
     `ItemComparatorByExpiryDate` as argument to sort the list.
 12. Finally, a `CommandResult` object is created and returned to `LogicManager`.
+13. This `CommandResult` object will be returned at the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes a new `reminder` command:
+The following Activity Diagram summarizes what happens when a user executes a `reminder` command:
+
+<br>
 
 ![ReminderActivityDiagram](images/ReminderActivityDiagram.png)
 
@@ -465,48 +501,54 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How `reminder` executes
 
-**Alternative 1 (current choice)** : provide an integer as an input argument
-* Pros: Faster to type as compared to date in a particular format.
-* Cons: More cases to consider when parsing the command.
+* **Alternative 1 (current choice)** : Provide an integer as an input argument
+    * **Pros**: Faster to type as compared to date in a particular format.
+    * **Cons**: More cases to consider when parsing the command.
 
-**Alternative 2** : provide a date in the format of YYYY-MM-DD as input
-* Pros: Easier to compare between items as the input date can be used to create an `expiryDate` object
-which can be used to compare with all the items' expiry dates.
-* Cons: When the user wants to find items that are already expired, it is easier to key in a number then to
-find a particular date and key it in. This is more taxing on the user.
 
+* **Alternative 2** : Provide a date in the format of YYYY-MM-DD as input
+    * **Pros**: Easier to compare between items as the input date can be used to create an `expiryDate` object
+    which can be used to compare with all the items' expiry dates.
+    * **Cons**: When the user wants to find items that are already expired, it is easier to key in a number then to
+    find a particular date and key it in. This is more taxing on the user.
+
+<br>
 
 ### Sort Feature `sort`
 
-#### Actual Implementation
+The sort feature allows users to view the items in the displayed list of items in a specific order.
 
-The `sort` feature allows users to view the items in the displayed list of items in a specific order.
-The `sort quantity asc` and` sort quantity desc` commands allows users to view all items in the displayed list in 
-ascending or descending order of quantity respectively. In comparison, the `sort expirydate` command allows users to 
+The `sort quantity asc` and `sort quantity desc` commands allows users to view all items in the displayed list in
+ascending or descending order of quantity respectively. 
+
+In comparison, the `sort expirydate` command allows users to
 view items in the displayed list in chronological order of their expiry date.
 
+#### Actual Implementation
+
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-issues the command `sort quantity asc`.
+keys in the command `sort quantity asc`:
+
+<br>
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 From the diagram above:
-1. `LogicManager`'s `execute` is called when the user enters an input into the command box.
-2. `LogicManager` then calls `parseCommand` of `StoreMandoParser` to parse the user input.
-3.  The `StoreMandoParser` identifies the input as an `SortCommand` and initializes `SortCommandParser`.
+1. When the user keys in an input, `execute` method of `LogicManager` is called with the user input as the parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3.  The `StoreMandoParser` parses the user input, identifies it as a `SortCommand` and instantiates a `SortCommandParser` object.
 4. `StoreMando` then invokes the method `parse` of `SortCommandParser` to further parse the user input.
    The `SortCommandParser` ensures that the input is of the correct format and identifies the type of 
    sorting to be done.
-5. If all the arguments of the `sort quantity asc` command are valid, The `SortCommandParser` initiates a new 
+5. If the input is valid, the `SortCommandParser` creates a new 
    `SortAscendingQuantityCommand` object. This `SortAscendingQuantityCommand` object will be returned to the 
-   `LogicManager`.
+   `StoreMandoParser` which will return it to the `LogicManager`.
 6. The `LogicManager` will then invoke the `execute` method of the `SortAscendingQuantityCommand` object.
 7. The `SortAscendingQuantityCommand` object will then retrieve the currently displayed list of items through the 
-   `getFilteredItemList` method of `Model`to check if there are items to be sorted.
+   `getFilteredItemList` method of `Model` to check if there are items to be sorted.
 8. If there are items to be sorted, `SortAscendingQuantityCommand` will create an `ItemComparatorByIncreasingQuantity` 
    comparator object that determines how any two items in the list should be compared.
-9. `SortAscendingQuantityCommand` passes this comparator to `Model` through `Model`'s `updateSortedItemList` method 
-   to sort the list of items. 
+9. `SortAscendingQuantityCommand` calls on `Model`'s `updateSortedItemList` method with the comparator as parameter to sort the list of items. 
 10. `SortAscendingQuantityCommand` will then call `setItems` method of `Model` and pass in the sorted list of items 
     retrieved from `Model` through it's `getSortedItemList` method. This would result in the sorted list of items
     being displayed.
@@ -515,96 +557,130 @@ From the diagram above:
     
 12. This `CommandResult` will be returned at the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes a `sort quantity asc` command:
+
+The following Activity Diagram summarizes what happens when a user executes a `sort quantity asc` command:
+
+<br>
+
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
 
-##### Design Considerations:
+#### Design Considerations:
 
-##### Aspect: Determining the implementation of sort as initial implementation of filtered list had no sorting capability.
+##### Aspect: Data structure to  use to sort the list of items
 
 * **Alternative 1 (current choice):** Maintain current implementation of filtered list and utilise a new sorted list to sort items.
-    * Pros: Faster alternative and easy to implement as existing components need not be modified.
-    * Cons: Have to ensure the toggling between sorted list and filtered list is done accurately for each command.
+    * **Pros**: Faster alternative and easy to implement as existing components need not be modified.
+    * **Cons**: Have to ensure the toggling between sorted list and filtered list is done accurately for each command.
+    
 
 * **Alternative 2:** Change underlying list implementation from filtered list to a list that supports sorting.
-    * Pros: Easy to maintain once implemented.
-    * Cons: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components
+    * **Pros**: Easy to maintain once implemented.
+    * **Cons**: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components 
       that depend on filtered list implementation would have to be changed as well.
 
-### Clear Feature
+<br>
 
-This portion describes the implementation of the clear feature which allows users to clear items that are either in
-a particular location or clear all items in the list.
+### Clear Feature `clear`
 
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-keys in the command `clear`
+The clear feature allows users to either clear all items in the inventory or clear all items from a specific location.
 
-![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
-
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-keys in the command `clear l/Kitchen`
-
-![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
 
 #### Actual Implementation 
 
-1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
-2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
-3. `StoreMandoParser` parses the string and determines the command given is a `ClearCommand`.
-    Then, a `ClearCommandParser` object is created to further parse the command.
-4. `StoreMandoParser` then calls on the `parse` method of `ClearCommandParser` to parse the arguments provided.
-5. `ClearCommandParser` checks if the argument provided is an empty string. If so, the constructor of `ClearCommand`
-    without any parameters is called. Else, a `LocationContainsPredicate` object will be created with the arguments
-    as parameter.`CommandParseException` will be thrown if this is not possible.
-6. `ClearCommand` object will be returned to `ClearCommandParser` which then returns it to `LogicManager`. `LogicManager`
-    then calls the `execute` method of `ClearCommand` with a `Model` object, model, as parameter.
-7. `ClearCommand` calls on the `clearLocation` method of model with the `ClearCommand`'s attribute predicate as parameter.
-    Subsequently, it calls on model's `updateFilteredItemList`.
-8. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear`:
 
-The following activity diagram summarizes what happens when a user executes a clear by location command:
+<br>
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+<br>
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear l/Kitchen`:
+
+<br>
+
+![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
+
+From the diagram above:
+
+1. When the user keys in an input, `execute` method of the `LogicManager` is called with the user input as parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. `StoreMandoParser` parses the user input, identifies it as a `ClearCommand` and instantiates a `ClearCommandParser` object.
+4. `StoreMandoParser` then calls on the `parse` method of `ClearCommandParser` to parse the arguments provided.
+5. `ClearCommandParser` checks if there are any arguments provided. If there are not, the constructor of `ClearCommand`
+    without any parameters is called. Else, a `LocationContainsPredicate` object will be created with the arguments
+    as parameter. This `LocationContainsPredicate` will be passed as a parameter to create a `ClearCommand` object.
+6. `ClearCommand` object will be returned to `ClearCommandParser` which then returns it to `LogicManager`.
+7. `LogicManager` then calls the `execute` method of `ClearCommand` with a `Model` as argument.
+8. `ClearCommand` calls on the `clearLocation` method of `Model` with the `ClearCommand`'s predicate attribute as parameter.
+    Subsequently, it calls on `Model`'s `updateFilteredItemList` method.
+9. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
+10. The `CommandResult` object will be returned in the end by `LogicManager`.
+
+The following Activity Diagram summarizes what happens when a user executes the clear by location command:
+
+<br>
 
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
-### Help feature
-The help feature redirects the user to StoreMando's User Guide. If the device is connected to the Internet, StoreMando 
+<br>
+
+### Help Feature `help`
+
+The help feature redirects users to StoreMando's User Guide. If the device is connected to the Internet, StoreMando 
 will automatically open the User Guide in a new browser. Otherwise, it will have a pop out window with the User
-Guide link. This will save the user the hassle of locating the documentation. <br>
-The help command has the following format :`help`.
+Guide link.
 
-:information_source: : Things to note
-- Even though the help command expects the user input to contain the `help` command keyword, it still allows users to
+The help command has the following format : `help`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**
+Even though the help command expects the user input to contain the `help` command keyword, it still allows users to
   append arguments. However, the arguments will not be parsed by StoreMando.
+</div>
 
-#### Implementation
+#### Actual Implementation
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `help`:
+
+<br>
+
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
-Step 1: The user inputs `help` wanting to be redirected to the User Guide to learn more about StoreMando's command. <br>
-Step 2: The input is passed to `LogicManager` in a form of a String. <br>
-Step 3: The input string is passed to `StoreMandoParser` for it to be parsed. <br>
-Step 4: The input string is separated into command keyword and arguments containing the prefixes with the updated item's
-attribute. <br>
-Step 5: StoreMandoParser recognise that it is a `Help` command and creates a `HelpCommand` object. <br>
-Step 6: The `HelpCommand` is pass back to `LogicManager`. <br>
-Step 7: `LogicManager` then execute the `HelpCommand`. <br>
-Step 8: `HelpCommand` will create a `CommandResult` and pass to `LogicManager` with message stating
-"Opened user guide information." <br>
 
-#### Activity Diagram
+From the diagram above:
+
+1. When the user keys in an input, `execute` method of the `LogicManager` is called with the user input as parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+4. The input string is separated into command keyword and arguments containing the prefixes with the updated item's
+   attribute.
+5. StoreMandoParser recognises that it is a `HelpCommand` and creates a `HelpCommand` object.
+6. The `HelpCommand` is passed back to `LogicManager`.
+7. `LogicManager` then calls the `execute` method of `HelpCommand` with `Model` as argument.
+8. A new tab of the user guide will be opened if there is Internet connection. Otherwise, the URL link of the user guide
+   will be provided. `HelpCommand` will then create a `CommandResult` and pass to `LogicManager`.
+9. The `CommandResult` object will be returned in the end by `LogicManager`.   
+
+The following Activity Diagram summarizes what happens when a user executes a help command:
+
+<br>
+
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
 #### Design Considerations
-- Alternative 1 (Current choice): Automatically open a browser to StoreMando's User Guide when there is internet access.
-    - Pros: User don't have to manually copy and paste the link on their browser.
 
-- Alternative 2: Provide user the link to StoreMando's user guide.
-    - Pros: Easier to implement.
-    - Cons: User has to copy and paste their link manually on their browser to get to the User guide.
+##### Aspect: How `help` executes
 
-### \[Proposed\] Data archiving
+* **Alternative 1 (Current choice):** Automatically open a browser to StoreMando's User Guide when there is internet access.
+    * **Pros**: User doesn't have to manually copy and paste the link on their browser.
 
-_{Explain here how the data archiving feature will be implemented}_
-
+* **Alternative 2**: Provide user the link to StoreMando's user guide.
+    * **Pros**: Easier to implement.
+    * **Cons**: User has to copy and paste their link manually on their browser to get to the User guide.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -645,17 +721,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user | add an item to the inventory | keep track of it’s location, quantity and expiry date |
 | `* * *` | user who discards items often | delete an item from the inventory | remove it when it is expired or used up |
 | `* * *` | user who stocks up items regularly | update my items’ details | change the items' expiry dates and/or quantities accordingly | 
-| `* * *` | user with many items | list down all items | know all the items I have in one glance |
-| `* *` | user who has many items in my room | see all items in my room | keep track of exactly what I have | 
-| `* *` | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
-| `* * *` | forgetful user with many items | search for an item quickly | locate them easily |
-| `* *` | forgetful user | be aware of my expiring items | replace them before it is expired or discard them if they have expired |
-| `* *` | grocery buyer of the household | sort my items in terms of quantity | stock up items that are running low on quantity |
-| `* *` | user who does not like to waste food | sort my food in terms of expiry date | consume food that is expiring first |
+| `* * *` | user with many items | list down all my items | know all the items I have in one glance |
+| `* * *` | forgetful user with many items | find an item quickly using its name | locate them easily |
+| `* *` | user who has many items in the storeroom | view all items in the storeroom | keep track of exactly what I have | 
+| `* *` | user who keeps track of my guests' favourites | view all items tagged with "guests" | better prepare the items when hosting my guests |
+| `* *` | grocery buyer of the household | sort my items in terms of increasing quantity | stock up items that are running low on quantity |
+| `* *` | user who does not like wastage | sort my items in terms of decreasing quantity | use up items that are high in quantity first |
+| `* *` | user who does not like to waste food | sort my food items in terms of expiry date | consume food that is expiring first |
+| `* *` | user who does not like to waste food | be reminded of all food items expiring in a specified number of days | consume them within that period |
 | `*` | user who discards large number of items at once | clear all the items in the inventory | start the list afresh without having waste time deleting each item manually |
-| `*` | user who does room cleaning during CNY | clear all the items in a certain location | add them back to different places easily |
-
-_**(more to be added)**_
+| `*` | user who does room cleaning during spring cleaning | clear all the items in a certain location | add them back to different places easily |
 
 ### Use cases
 
@@ -684,12 +759,18 @@ otherwise)
     * 1b1. StoreMando shows an error message.
 
       Use case resumes at step 1.
+    
+* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+
+    * 1c1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC2 - Delete an item in a specific location**
 
 **MSS**
 
-1. User requests to <u> list all items in a specific location (UC3). </u>
+1. User requests to <u> list all items in a specific location (UC7). </u>
 2. StoreMando displays all items in the location.
 3. User requests to delete a specific item in the list.
 4. StoreMando deletes the specified item from the list and displays the updated list of items.
@@ -708,24 +789,7 @@ otherwise)
 
       Use case resumes at step 3.
 
-**Use case: UC3 - List all items in a specific location**
-
-**MSS**
-
-1. User requests to display all items in a specific location.
-2. StoreMando displays all items in that specific location.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User input has invalid syntax.
-
-    * 1a1. StoreMando shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC4 - Find an item**
+**Use case: UC3 - Find an item**
 
 **MSS**
 
@@ -734,7 +798,7 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC5 - Edit an item**
+**Use case: UC4 - Edit an item**
 
 **MSS**
 
@@ -757,18 +821,24 @@ otherwise)
 
       Use case resumes at step 1.
 
-**Use case: UC6 - Check for expiring items**
+* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+
+    * 1c1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
+    
+**Use case: UC5 - Check for expiring items**
 
 **MSS**
 
-1. User wants to search for items that are expiring within the next 7 days.
-2. StoreMando displays a list of items that have either expired or are expiring within the next 7 days.
+1. User wants to search for items that are expiring within a specific number of days.
+2. StoreMando displays a list of items that have either expired or are expiring within the specified number of days.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User inputs a negative number.
+* 1a. User inputs a number smaller than -365 or larger than 365.
 
     * 1a1. StoreMando shows an error message.
 
@@ -780,7 +850,7 @@ otherwise)
 
       Use case resumes at step 1.
 
-**Use case: UC7 - List all items**
+**Use case: UC6 - List all items**
 
 **MSS**
 
@@ -788,6 +858,23 @@ otherwise)
 2. StoreMando displays all items in the inventory.
 
    Use case ends.
+
+**Use case: UC7 - List all items in a specific location**
+
+**MSS**
+
+1. User requests to display all items in a specific location.
+2. StoreMando displays all items in that specific location.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User input has invalid syntax.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC8 - List all items with a specific tag**
 
@@ -825,7 +912,16 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC12 - Delete all items in a specific location**
+**Use case: UC12 - Clear all items**
+
+**MSS**
+
+1. User requests to clear all items in the inventory.
+2. StoreMando deletes all items in the inventory.
+
+Use case ends.
+
+**Use case: UC13 - Clear all items in a specific location**
 
 **MSS**
 
@@ -842,28 +938,33 @@ Use case ends.
 
       Use case resumes at step 1.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1. **Performance**
     * Result should appear within 0.3 seconds after user keys in a command.
 2. **Reliability**
     * Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
+    * Should be able to detect and inform users of duplicate items (i.e. same name, location and expiry date) and prevent users from adding them.
+    * Should be able to detect and inform users of expired items when being added to the inventory.
 3. **Portability**
     * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. **Usability**
     * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
       be able to accomplish most of the tasks faster by typing rather than using the mouse.
+    * A user should be able to use all functionalities of the application without needing to use a mouse to navigate.
     * StoreMando should work with or without Internet connection.
-
+5. **Security**
+    * Users that request to delete any item from the inventory will have that item permanently removed from memory.
+    
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **StoreMando**: Name of the application
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
+* **User**: Any member under the same household
 * **Inventory**: List of all items stored in StoreMando
+* **Tag**: A miscellaneous piece of information that the user associates the item with, that isn't captured by the other fields but is good to have.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -885,14 +986,7 @@ testers are expected to do more *exploratory* testing.
     1. Launch the jar file using the java -jar command rather than double-clicking (reason: to ensure the jar file is 
        using the same java version that you verified above). Use double-clicking as a last resort.
        If you are on Windows, use the DOS prompt, or the PowerShell (not the WSL terminal) to run the JAR file. The 
-       window size may not be optimum.
-
-1. Saving window preferences
-
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-    1. Re-launch the app using the jar file.<br>
-       Expected: The most recent window size and location is retained.
+       window size will be fixed and will be full screen.
 
 ### Adding an item
 
@@ -1009,3 +1103,47 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `clear l/Bedroom`<br>
        Expected: All items in the specified location are cleared.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+This section explains the challenges faced as well as the effort required to develop StoreMando.
+
+Creating StoreMando required a significant amount of effort and commitment from all the team members. Due to the 
+restrictions imposed by the pandemic, our team had to overcome and conquer the challenges of communicating and 
+collaborating virtually. In addition, we had to make sacrifices to our individual schedules to attend weekly online 
+meetings. Despite the unprecedented circumstances, our team persevered and developed a product that we are all proud of.
+
+### Major Enhancements
+
+StoreMando has many significant enhancements from AB3. Here are some examples:
+
+1. There was a need to change a large portion of the AB3 code, as we had a completely different set of variables for 
+   StoreMando. We had to do a lot of refactoring in the form of renaming class and attributes. The restrictions on 
+   fields in AB3 were also different from those in StoreMando (eg. Email in AB3 was a compulsory field whereas ExpiryDate in 
+   StoreMando is optional and must be provided in YYYY-MM-DD format), and we had to edit those restrictions respectively.
+
+2. StoreMando has a revamped UI to better tailor to the needs of our target users. The UI of AB3 only contained one 
+   panel (ListPanel). On the other hand, StoreMando has 4 panels which added additional complexity. Beyond just 
+   duplicating the panels, each panel also incorporated extended functionality of viewing all locations and reminders.
+
+3. The numerous new classes created and enhancements to existing commands meant that a lot more effort was required to 
+   implement testing for StoreMando. This is evident in our implementation of new test classes 
+   (eg. `SortAscendingQuantityCommandTest`, `SortExpiryDateCommandTest`, `ReminderCommandTest`, `ReminderCommandParserTest`, 
+   etc) and additional test cases in existing test classes (eg. `ListCommandTest`, `EditCommandTest`, etc).
+
+4. Implementing the reminder and sort features required a deep understanding of the design of AB3. Merely manipulating 
+   variables in existing code was not sufficient, and we had to create many new classes such as `ReminderCommand`, 
+   `ReminderCommandParser`, `SortAscendingQuantityCommand` and etc. We also had to come up with ways to keep track of 
+   the state of the currently displayed list, to allow users to work with a sublist of items instead of the entire 
+   inventory of items. There was not a need for this in AB3.
+
+### Working Process
+
+Our team placed heavy emphasis on communication and efficient division of workload. We made use of github's issue trackers, which allowed efficient division and tracking of work, and also helped each
+team member visualise the tasks remaining.
+
+With our dedicated members and good team spirit, we were able to overcome the challenges mentioned 
+above and produce a great product.
+
+

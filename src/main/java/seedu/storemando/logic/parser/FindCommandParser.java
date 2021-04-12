@@ -35,9 +35,15 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (argMultimap.getValue(PREFIX_PARTIAL_NAME).isPresent()) {
             ItemName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARTIAL_NAME).get());
             String[] nameKeywords = name.fullName.split("\\s+");
+            for (String word : nameKeywords) {
+                ParserUtil.parseName(word);
+            }
             return new FindCommand(new ItemNameContainsPartialKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             String[] nameKeywords = trimmedArgs.split("\\s+");
+            for (String word : nameKeywords) {
+                ParserUtil.parseName(word);
+            }
             return new FindCommand(new ItemNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 

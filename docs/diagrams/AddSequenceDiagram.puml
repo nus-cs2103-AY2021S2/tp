@@ -31,13 +31,13 @@ StoreMandoParser -> AddCommandParser : parse("n/apple q/2 l/kitchen")
 activate AddCommandParser
 
 create Item
-AddCommandParser -> Item : Item()
+AddCommandParser -> Item
 activate Item
 Item --> AddCommandParser : item
 deactivate Item
 
 create AddCommand
-AddCommandParser -> AddCommand : AddCommand(item)
+AddCommandParser -> AddCommand
 activate AddCommand
 AddCommand --> AddCommandParser : command
 deactivate AddCommand
@@ -76,7 +76,7 @@ deactivate Model
 
 
 create CommandResult
-AddCommand -> CommandResult : CommandResult()
+AddCommand -> CommandResult
 activate CommandResult
 CommandResult --> AddCommand : result
 deactivate CommandResult
@@ -87,3 +87,4 @@ deactivate AddCommand
 [<--LogicManager : result
 deactivate LogicManager
 @enduml
+

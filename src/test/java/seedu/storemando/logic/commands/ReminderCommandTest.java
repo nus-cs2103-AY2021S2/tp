@@ -3,9 +3,12 @@ package seedu.storemando.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
+import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -31,19 +34,17 @@ public class ReminderCommandTest {
 
     @Test
     public void equals() {
-        ItemExpiringPredicate firstPredicate =
-            new ItemExpiringPredicate((long) 3);
-        ItemExpiringPredicate secondPredicate =
-            new ItemExpiringPredicate((long) 7);
+        ItemExpiringPredicate firstPredicate = new ItemExpiringPredicate((long) 3);
+        ItemExpiringPredicate secondPredicate = new ItemExpiringPredicate((long) 7);
 
-        ReminderCommand reminderFirstCommand = new ReminderCommand(firstPredicate);
-        ReminderCommand reminderSecondCommand = new ReminderCommand(secondPredicate);
+        ReminderCommand reminderFirstCommand = new ReminderCommand(firstPredicate, 3, "days");
+        ReminderCommand reminderSecondCommand = new ReminderCommand(secondPredicate, 3, "days");
 
         // same object -> returns true
         assertTrue(reminderFirstCommand.equals(reminderFirstCommand));
 
         // same values -> returns true
-        ReminderCommand reminderFirstCommandCopy = new ReminderCommand(firstPredicate);
+        ReminderCommand reminderFirstCommandCopy = new ReminderCommand(firstPredicate, 3, "days");
         assertTrue(reminderFirstCommand.equals(reminderFirstCommandCopy));
 
         // different types -> returns false
@@ -64,6 +65,35 @@ public class ReminderCommandTest {
         expectedModel.updateSortedItemList(comparator);
         expectedModel.setItems(expectedModel.getSortedItemList());
         assertEquals(Arrays.asList(BREAD, APPLE), expectedModel.getFilteredItemList());
-        assertCommandSuccess(new ReminderCommand(predicate), model, ReminderCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void getMessageTest() {
+        ItemExpiringPredicate expiredPredicate = new ItemExpiringPredicate((long) -7);
+        ItemExpiringPredicate expiringTodayPredicate = new ItemExpiringPredicate((long) 0);
+        ItemExpiringPredicate expiringPredicate = new ItemExpiringPredicate((long) 7);
+
+        ReminderCommand expiredReminderCommand = new ReminderCommand(expiredPredicate, -7,
+            "days");
+        ReminderCommand expiringTodayReminderCommand = new ReminderCommand(expiringTodayPredicate,
+            0, "days");
+        ReminderCommand expiringReminderCommand = new ReminderCommand(expiringPredicate,
+            7, "days");
+
+        assertEquals(expiredReminderCommand.getMessage(),
+            String.format(ReminderCommand.MESSAGE_SUCCESS_EXPIRED_ITEM, 7, "days"));
+        assertEquals(expiringTodayReminderCommand.getMessage(),
+            String.format(ReminderCommand.MESSAGE_SUCCESS_EXPIRING_TODAY_ITEM, 0, "day"));
+        assertEquals(expiringReminderCommand.getMessage(),
+            String.format(ReminderCommand.MESSAGE_SUCCESS_EXPIRING_ITEM, 7, "days"));
+    }
+
+    @Test
+    public void execute_noItemInList() {
+        showEmptyListAfterFind(model, HEATER);
+        ItemExpiringPredicate predicate = new ItemExpiringPredicate(3L);
+
+        assertCommandFailure(new ReminderCommand(predicate, 3L, "days"),
+            model, MESSAGE_NO_ITEM_IN_LIST);
     }
 }

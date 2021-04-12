@@ -12,6 +12,7 @@ import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedB
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
@@ -25,7 +26,7 @@ class SortExpiryDateCommandTest {
         expectedModel.setStoreMando(getTypicalStoreMandoSortedByExpiryDate());
 
         assertCommandSuccess(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortExpiryDateCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
     }
 
     @Test
@@ -33,7 +34,7 @@ class SortExpiryDateCommandTest {
         Model model = new ModelManager();
 
         assertCommandFailure(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
+            Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
@@ -42,7 +43,7 @@ class SortExpiryDateCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
 
         assertCommandSuccess(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortExpiryDateCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
     }
 
     @Test
@@ -51,7 +52,7 @@ class SortExpiryDateCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
 
         assertCommandSuccess(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortExpiryDateCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
     }
 
     @Test
@@ -60,7 +61,7 @@ class SortExpiryDateCommandTest {
         showEmptyListAfterFind(model, HEATER);
 
         assertCommandFailure(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
+            Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
 

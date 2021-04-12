@@ -5,8 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
 participant ":ClearCommandParser" as ClearCommandParser LOGIC_COLOR
-participant "c:ClearCommand" as ClearCommand LOGIC_COLOR
-participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "command:ClearCommand" as ClearCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -30,20 +30,20 @@ StoreMandoParser -> ClearCommandParser : parse()
 activate ClearCommandParser
 
 create ClearCommand
-ClearCommandParser --> ClearCommand : ClearCommand()
+ClearCommandParser -> ClearCommand :
 activate ClearCommand
 
-ClearCommand --> ClearCommandParser : c
+ClearCommand --> ClearCommandParser : command
 deactivate ClearCommand
 
-ClearCommandParser --> StoreMandoParser : c
+ClearCommandParser --> StoreMandoParser : command
 deactivate ClearCommandParser
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ClearCommandParser -[hidden]-> StoreMandoParser
 destroy ClearCommandParser
 
-StoreMandoParser --> LogicManager : c
+StoreMandoParser --> LogicManager : command
 deactivate StoreMandoParser
 
 LogicManager -> ClearCommand : execute(model)
@@ -65,12 +65,12 @@ create CommandResult
 ClearCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ClearCommand : r
+CommandResult --> ClearCommand : result
 deactivate CommandResult
 
-ClearCommand --> LogicManager : r
+ClearCommand --> LogicManager : result
 deactivate ClearCommand
 
-[<--LogicManager : r
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

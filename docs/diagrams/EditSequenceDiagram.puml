@@ -5,9 +5,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
-participant "e:EditCommand" as EditCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "ed:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant "descriptor:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -38,26 +38,26 @@ create EditItemDescriptor
 EditCommand -> EditItemDescriptor
 activate EditItemDescriptor
 
-EditItemDescriptor --> EditCommand : ed
+EditItemDescriptor --> EditCommand : descriptor
 deactivate EditItemDescriptor
 
-EditCommand --> EditCommandParser : ed
+EditCommand --> EditCommandParser : descriptor
 deactivate EditCommand
 
 create EditCommand
 EditCommandParser -> EditCommand
 activate EditCommand
 
-EditCommand --> EditCommandParser : e
+EditCommand --> EditCommandParser : command
 deactivate EditCommand
 
-EditCommandParser --> StoreMandoParser : e
+EditCommandParser --> StoreMandoParser : command
 deactivate EditCommandParser
 
 EditCommandParser -[hidden]-> StoreMandoParser
 destroy EditCommandParser
 
-StoreMandoParser --> LogicManager : e
+StoreMandoParser --> LogicManager : command
 deactivate StoreMandoParser
 
 LogicManager -> EditCommand : execute(model)
@@ -85,12 +85,12 @@ create CommandResult
 EditCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditCommand
+CommandResult --> EditCommand : result
 deactivate CommandResult
 
-EditCommand --> LogicManager
+EditCommand --> LogicManager : result
 deactivate EditCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml

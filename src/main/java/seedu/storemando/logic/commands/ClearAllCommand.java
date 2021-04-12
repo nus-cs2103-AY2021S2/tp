@@ -1,19 +1,29 @@
 package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
-import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemComparatorByIncreasingQuantity;
 
-public class SortAscendingQuantityCommand extends SortCommand {
-    public static final String MESSAGE_SUCCESS_QUANTITY_ASC = "Sorted all items based on their quantity in an"
-        + " ascending order.";
+/**
+ * Clears the entire storemando inventory.
+ */
+public class ClearAllCommand extends ClearCommand {
+
+    public static final String CLEAR_MESSAGE_SUCCESS = "All items in the inventory are cleared!";
+
+    private final Predicate<Item> predicate;
+
+    public ClearAllCommand() {
+        this.predicate = PREDICATE_SHOW_ALL_ITEMS;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -21,16 +31,15 @@ public class SortAscendingQuantityCommand extends SortCommand {
         if (currentList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
         }
-        Comparator<Item> comparator = new ItemComparatorByIncreasingQuantity();
-        model.updateSortedItemList(comparator);
-        model.setItems(model.getSortedItemList());
-        return new CommandResult(MESSAGE_SUCCESS_QUANTITY_ASC);
+        model.clearLocation(predicate);
+        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        return new CommandResult(CLEAR_MESSAGE_SUCCESS);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof SortAscendingQuantityCommand);
+            || other instanceof ClearAllCommand; // instanceof handles nulls
     }
-}
 
+}

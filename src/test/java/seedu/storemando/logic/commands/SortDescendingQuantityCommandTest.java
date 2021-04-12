@@ -12,6 +12,7 @@ import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedB
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
@@ -25,7 +26,7 @@ public class SortDescendingQuantityCommandTest {
         expectedModel.setStoreMando(getTypicalStoreMandoSortedByDecreasingQuantity());
 
         assertCommandSuccess(new SortDescendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortDescendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_DESC, expectedModel);
     }
 
     @Test
@@ -33,7 +34,7 @@ public class SortDescendingQuantityCommandTest {
         Model model = new ModelManager();
 
         assertCommandFailure(new SortDescendingQuantityCommand(), model,
-            SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
+            Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
@@ -42,7 +43,7 @@ public class SortDescendingQuantityCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
 
         assertCommandSuccess(new SortDescendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortDescendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_DESC, expectedModel);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class SortDescendingQuantityCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
 
         assertCommandSuccess(new SortDescendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortDescendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_DESC, expectedModel);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class SortDescendingQuantityCommandTest {
         showEmptyListAfterFind(model, HEATER);
 
         assertCommandFailure(new SortDescendingQuantityCommand(), model,
-            SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
+            Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
