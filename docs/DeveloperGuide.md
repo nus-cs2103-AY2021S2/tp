@@ -20,13 +20,13 @@ targeted towards users with a daily 7am - 4pm schedule, have frequent meetings d
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 ### Architecture
 
@@ -36,11 +36,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the diagrams folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called `Main` and `MainApp`. It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -68,10 +68,6 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-A similar *Sequence Diagram* exists for meeting related commands like `editm 1`.
-
-<img src="images/ArchitectureSequenceDiagramMeeting.png" width="574" />
-
 The sections below give more details of each component.
 
 ### UI component
@@ -80,12 +76,12 @@ The sections below give more details of each component.
 for clarity.](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+`Ui.java`
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`
 
 The `UI` component,
 
@@ -97,9 +93,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+`Logic.java`
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `MeetBuddyParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -109,20 +105,15 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Given below is another Sequence Diagram for interactions within the `Logic` component for the more complicated command  `execute("showm1")` API call.
-
-![Interactions Inside the Logic Component for the `showm 1` Command](images/ShowPersonsInMeetingSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ShowMeetingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagramNew.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : `Model.java`
 
 The `Model`,
 
@@ -131,7 +122,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the meeting book data.
 * exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the connection between the person in the address book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
+* stores the connection between the person in the contacts book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
 * does not depend on any of the other three components.
 * (Some details are omitted)
 
@@ -147,7 +138,7 @@ The `Model`,
 
 ![Structure of the Storage Component. The full diagram for MeetingBook is omitted to make the figure less cluttered.](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : `Storage.java`
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -159,7 +150,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -171,7 +162,7 @@ However, there were a few implementations details to consider. The implementatio
 discuss the one for contacts.
 
 Currently, an essential attribute in the model are the filtered lists, 
-which shows the results of searches and finds. 
+which show the results of searches and finds. 
 The indexes used in commands like "edit" are taken with respect to these filtered list.
 These filtered lists, however, are backed by immutable observable lists, 
 which helps update the JavaFX GUI. I initially tried to make copies of these observable lists,
@@ -203,6 +194,58 @@ The predicate is computed by the logical `AND` of all input predicates. For inst
 suppose we want to search for a meeting with name "lecture" and with priority 1. 
 The predicate to filter the meeting list is simply: meeting contains "lecture" in its name `AND`
 meeting has priority 1.
+
+### Show contacts in meeting (author: hengyiqun)
+The command `showm` leverages on the PersonMeetingConnection as well as the FilteredPersonList for filtering.
+Specifically, a predicate, PersonInMeetingPredicate, is used to filter out persons who are in the specified meeting.
+The predicate can be extended to include people who are in groups that are within the meeting. This would involve 
+the use of three streams - one stream for contacts directly associated with the meeting, one stream for all the groups
+of a person of interest, and a last stream for all groups in the meeting.
+This has been implemented, but a reduced version is currently used to show only contacts that are directly associated
+with the meeting. The expanded version will be introduced subsequently.
+
+Given below is a Sequence Diagram for interactions within the `Logic` component for the `execute("showm1")` API call.
+
+![Interactions Inside the Logic Component for the `showm 1` Command](images/ShowPersonsInMeetingSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ShowMeetingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Find persons in group (author: hengyiqun)
+The command `findpg` leverages the filtering capabilities of the FilteredList for persons.
+A predicate is used to compute if a user input keyword is part of a group.
+
+### Edit meeting (author: hengyiqun)
+The command `editm` makes use of existing API to edit an existing meeting. As the initial meeting still exists in
+the MeetingBook, editing the meeting name will cause the application to register a clashing meeting (i.e. it clashes
+with itself due to the same start time and end time). A duplicate meeting will also be registered if only the 
+priority of the meeting is edited, because only the name, start time and end time of a meeting are required to be 
+unique. As such, additional API, `clashesExceptOne` has been implemented to ensure that meetings are not checked
+against itself for clashes and duplicates.
+
+Below shows a general *Sequence Diagram* for `editm 1`. Details for timetable conflicts and duplicates have been
+deliberately left out for brevity.
+
+![Sequence Diagram for the `editm 1` Command](images/ArchitectureSequenceDiagramMeeting.png)
+<div markdown="span" class="alert alert-info">
+
+### Notes feature (author: hengyiqun)
+(Coming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
+
+The note feature has been implemented to help the user insert and delete personal notes.
+This feature is introduced with the intention to help users manage their personal notes, and to make
+MeetBuddy a more attractive one-stop application for users to manage their contacts, store their meeting
+information, and also keep track of various personal notes. While this feature has already been implemented,
+it will only be made available in subsequent iterations, after the storage is made more mature for handling notes.
+
+Just like the AddressBook for managing contacts and MeetingBook for managing meeting information, a NoteBook
+was implemented for users to store personal notes. The NoteBook is implemented with a Command Pattern.
+
+The user input command is first passed to the LogicManager class, which then makes use of the MeetBuddyParser
+for deciding the type of command. Commands can be related to contacts, meetings, notes or timetable. This is decided
+based on the command word. A specific command parser, such as AddNoteCommandParser, will be called which return
+a Command such as AddNoteCommand. This command will be executed by the Logic Manager, before encapsulating
+the result as a CommandResult object for passing back to the Model. The Ui component may then be invoked to display
+the results (e.g. the notes) to the user.
 
 ### Timetable feature (author : Maurice)
 
@@ -339,26 +382,6 @@ how the timetable is updated.
 
 
 
-
-### Notes feature (Cooming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
-
-The note feature has been implemented to help the user insert and delete personal notes.
-This feature is introduced with the intention to help users manage their personal notes, and to make
-MeetBuddy a more attractive one-stop application for users to manage their contacts, store their meeting 
-information, and also keep track of various personal notes. While this feature has already been implemented,
-it will only be made available in subsequent iterations, after the storage is made more mature for handling notes.
-
-Just like the AddressBook for managing contacts and MeetingBook for managing meeting information, a NoteBook
-was implemented for users to store personal notes. The NoteBook is implemented with a Command Pattern.
-
-The user input command is first passed to the LogicManager class, which then makes use of the MeetBuddyParser
-for deciding the type of command. Commands can be related to contacts, meetings, notes or timetable. This is decided
-based on the command word. A specific command parser, such as AddNoteCommandParser, will be called which return
-a Command such as AddNoteCommand. This command will be executed by the Logic Manager, before encapsulating
-the result as a CommandResult object for passing back to the Model. The Ui component may then be invoked to display
-the results (e.g. the notes) to the user.
-
-
 ### Person Meeting Connection feature (Written by: Chen Yuheng (Github: skinnychenpi))
 MeetBuddy allows users to track and record the contacts related with their meetings.
 #### Implementation
@@ -394,7 +417,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -404,7 +427,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -412,7 +435,7 @@ Reason for choosing Alternative 1: Due to the time constraint of this project, o
 
 * Any user who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy schedules
  from 7 am - 4pm. 
-* Has a lot of contacts and meeting alot of people out for events.
+* Has a lot of contacts and meeting many people out for events.
 * Is more visual and would like to see the meetings on a timetable, and see when he is free. 
 Is probably relatively young, and has friends with online gravatar profiles. 
 * Would like to keep track of contacts and organise them as well for 
@@ -441,14 +464,14 @@ Users would be better able to manage their social and academic commitments by to
 | medium   | person trying to back up data  | store information in a file       | I can clear and move my data to a different machine         |
 | medium   | student with a lot of groups | assign contacts to groups         | I can organise my contacts into the groups                  |
 | high     | user                           | close the app                     | I can clear up my memory and store the data into text files |
-| high     | student                        | add meetings                      | I can keep track of my meetings                             |
-| medium   | student                        | look up meeting by time           | I can tell if I'm busy during a time                        |
-| medium   | student                        | sort contacts                     | I can organize the contact list in a convenient way         |
-| medium   | student                        | sort meetings                     | I can organize the meeting list in a convenient way         |
-| high     | student                        | view all contacts                 | I can see all the contacts I added                          |
-| high     | student                        | view all meetings                 | I can see all the meetings I added                          |
-| high     | student                        | delete meetings                   | I can remove the meetings that already happened             |
-| high     | student                        | delete contacts                   | I can remove the unimportant contacts                       |
+| high     | user                        | add meetings                      | I can keep track of my meetings                             |
+| medium   | user                        | look up meeting by time           | I can tell if I'm busy during a time                        |
+| medium   | user                        | sort contacts                     | I can organize the contact list in a convenient way         |
+| medium   | user                        | sort meetings                     | I can organize the meeting list in a convenient way         |
+| high     | user                        | view all contacts                 | I can see all the contacts I added                          |
+| high     | user                        | view all meetings                 | I can see all the meetings I added                          |
+| high     | user                        | delete meetings                   | I can remove the meetings that already happened             |
+| high     | user                        | delete contacts                   | I can remove the unimportant contacts                       |
 
 ## Appendix: Use cases
 
@@ -462,9 +485,7 @@ Users would be better able to manage their social and academic commitments by to
 2.  MeetBuddy shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  MeetBuddy deletes the person
-
-
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
@@ -486,8 +507,7 @@ Users would be better able to manage their social and academic commitments by to
 1.  User requests to add a meeting with priority
 2.  MeetBuddy shows the list of meetings after adding.
 
-
-    Use case ends.
+    Use case ends
 
 **Extensions**
 
@@ -497,17 +517,82 @@ Users would be better able to manage their social and academic commitments by to
 
   Use case ends.
 
-<<<<<<< HEAD
-**Use case: Viewing meetings in the timetable**
+**Use case: Sort contact list**
 
-=======
->>>>>>> 6b3cdedcdc7d066e766ef5f4d6971efdb9916ac1
+**MSS**
 
-New features on V1.2
-5.  Assign priorities to contacts
-6.  Notes about the contact.
-7.  Sort contacts by (priorities/personName/groups)
-8.  Last meetup date for each contact
+1.  User requests to sort the contact list
+2.  MeetBuddy updates the contact list following the sorting criterion.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The sort parameters are invalid
+
+    * 1a1. MeetBuddy shows an error message.
+
+  Use case ends.
+
+**Use case: Unsort contact list**
+
+**MSS**
+
+1.  User requests to unsort the contact list
+2.  MeetBuddy updates the contact list to the original state without sorting.
+    
+    Use case ends.
+
+
+
+**Use case: Sort meeting list**
+
+**MSS**
+
+1.  User requests to sort the meeting list
+2.  MeetBuddy updates the meeting list following the sorting criterion.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The sort parameters are invalid
+
+    * 1a1. MeetBuddy shows an error message.
+
+  Use case ends.
+
+**Use case: Unsort contact list**
+
+**MSS**
+
+1.  User requests to unsort the meeting list
+2.  MeetBuddy updates the meeting list to the original state without sorting.
+
+    Use case ends.
+
+**Use case: Find meeting**
+
+**MSS**
+
+1.  User searches for a meeting with some criteria.
+2.  MeetBuddy updates the meeting list following the criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The search parameters are invalid
+
+    * 1a1. MeetBuddy shows an error message.
+    
+  Use case ends.
+
+* 2a. No meeting is found.
+    * 2a1. MeetBuddy shows an empty meeting list.
+  
+    Use case ends.
+
 
 ## Appendix: Non-Functional Requirements
 
@@ -533,7 +618,7 @@ especially by adding the event into the app.
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
