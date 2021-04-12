@@ -83,4 +83,10 @@ Given below are my contributions to the project.
 * **Community**:
     * Asked questions in Gitter, one of which was about the convention of code integration.
     * Reported bugs and suggestions for other teams in the module (examples: [1](https://github.com/AY2021S2-CS2103T-W13-3/tp/issues/200), [2](https://github.com/AY2021S2-CS2103T-W13-3/tp/issues/201), [3](https://github.com/AY2021S2-CS2103T-W13-3/tp/issues/196))
+    * Provide feedback to peers on their pull requests.
+      
+
+* **Tools**:
+  * Used JavaFX library and CSS and Canva extensively for the Graphic User Interface.
+ 
 

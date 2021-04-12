@@ -21,7 +21,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/habi39.png" width="200px">
 
-[[homepage](https://www.lhanbin.com)]
+[[homepage](http://www.lhanbin.com)]
 [[github](https://github.com/habi39)]
 [[portfolio](team/habi39.md)]
 * Role: Team Lead / Developer
