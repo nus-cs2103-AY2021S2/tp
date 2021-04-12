@@ -737,11 +737,11 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
     1. Test case: corrupt the file `bookingsystem.json` under ./data/. There are many ways to do so, such as inputting invalid values for fields (e.g. adding digits in name fields that can only take in alphabetic characters and spaces). 
-    1. Open the jar file by running `java -jar bookingapp.jar` on your terminal.
+    1. Open the jar file by running `java -jar bookcoin.jar` on your terminal.
     Expected: GUI starts up with no data populated.
 <br>
     1. Test case: delete the current save file under ./data/.
-    1. Open the jar file by running `java -jar bookingapp.jar` on your terminal.
+    1. Open the jar file by running `java -jar bookcoin.jar` on your terminal.
     Expected: GUI starts up with no data populated.
 
 ----------------------
