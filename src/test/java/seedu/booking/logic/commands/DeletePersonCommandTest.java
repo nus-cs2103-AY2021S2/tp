@@ -47,7 +47,7 @@ public class DeletePersonCommandTest {
         Email emailNotInSystem = new Email(NON_EXISTENT_EMAIL);
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(emailNotInSystem);
 
-        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_EMAIL);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_NON_EXISTENT_PERSON_EMAIL);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class DeletePersonCommandTest {
 
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(emailNotInSystem);
 
-        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_EMAIL);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_NON_EXISTENT_PERSON_EMAIL);
     }
 
     @Test

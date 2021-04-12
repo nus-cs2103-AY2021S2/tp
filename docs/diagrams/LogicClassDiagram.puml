@@ -25,6 +25,16 @@ Class "{abstract}\nCommand" as Command
 Class CommandState
 }
 
+package CommandState {
+Class CommandState
+Class XYZCommandState
+}
+
+package Intermediate {
+Interface Intermediate <<Interface>>
+Class XYZIntermediate
+}
+
 Interface Logic <<Interface>>
 Class LogicManager
 Class StatefulLogicManager
@@ -58,9 +68,18 @@ XYZCommand -up-|> Command
 XYZPromptCommand -right-|> Command
 LogicManager .left.> Command : executes >
 
+XYZCommandState -up-|> CommandState
+CommandState *--> "1" Model
+
+XYZIntermediate ..|> Intermediate
+XYZIntermediate *--> XYZCommandState
+Intermediate ..> CommandState
+XYZCommand ..> XYZCommandState : creates >
+note right of XYZCommandState: XYZCommand = AddCommand, \nFindCommand, etc
+
 LogicManager --> Model
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note left of XYZCommand: XYZCommandState = AddBookingCommandState, \nAddPersonCommandState, etc.
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
