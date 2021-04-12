@@ -501,7 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix C: Use Cases**
 
-(The **System** is the `PocketEsate` app, and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PocketEsate` app, and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Add a property**
 
@@ -519,6 +519,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PocketEstate shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 * 1b. The property to be added has a deadline that is already over.
 
@@ -588,6 +590,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. PocketEstate shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC05 - Edit an appointment**
 
