@@ -900,7 +900,8 @@ to work on.
 
     1. Download the jar file and copy into an empty folder.
 
-    2. Double-click the jar file Expected: Shows the GUI with a set of sample food Diary entries. The window size may not be optimum.
+    2. Double-click the jar file<br>
+       Expected: Shows the GUI with a set of sample food Diary entries. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -917,7 +918,7 @@ to work on.
 
     2. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
     
-        Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
+        Expected: Adds an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
     FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.<br />
     <br />
     3. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
@@ -945,7 +946,7 @@ to work on.
         Expected: A list of valid schools will be shown in the result display. Entry will not be added.<br />
     <br />
     9. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
-    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
+    <br>followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)<br>
 
 ### Add on to an entry
 1. Add on to an entry with the provided details
@@ -987,7 +988,7 @@ to work on.
         Expected: Error of invalid entry shown in result display. No entry is deleted.<br />
         <br />
        
-    4. Other incorrect delete commands to try: `delete`, `delete Starbucks`
+    4. Other incorrect `delete` commands to try: `delete`, `delete Starbucks`
        Expected: Invalid command format error. No entry is deleted.
    
     
@@ -1043,7 +1044,7 @@ to work on.
         - Success message displayed informing the user of the number of entries found.
         - Suggestion message displayed informing the user of possible typos for a rating search,
         and a price search, providing directions to correct the typos.
-        - 0 default entries will be shown.
+        - 0 default entries will be shown.<br />
        
 ### Find specific entries
 
@@ -1187,35 +1188,35 @@ to work on.
     
        Expected:
         - First entry has named changed to "McDonalds".
-        - All entries remained shown
+        - All entries remain shown
         - Success message displayed informing the user of change.<br />
         <br />
     3. Test case: `edit 2 ra/0`
 
        Expected:
         - Second entry has rating changed to 0. (0/5)
-        - All entries remained shown (with the first entry remaining edited as done previously).
+        - All entries remain shown (with the first entry remaining edited as done previously).
         - Success message displayed informing the user of change.<br />
         <br />
     4. Test case: `edit 3 a/50 West Coast Road`
 
        Expected:
         - Third entry has address changed to "50 West Coast Road".
-        - All entries remained shown (with all entries updated previously).
+        - All entries remain shown (with all entries updated previously).
         - Success message displayed informing the user of change.<br />
         <br />
     5. Test case: `edit 4 re/I had a great time here.`
 
        Expected:
         - Fourth entry has review changed to "I had a great time here".
-        - All entries remained shown (with all entries updated previously).
+        - All entries remain shown (with all entries updated previously).
         - Success message displayed informing the user of change.<br />
         <br />
     6. Test case: `edit 5 p/20`
 
        Expected:
        - Fifth entry has price changed to "20". ($20)
-       - All entries remained shown (with all entries updated previously).
+       - All entries remain shown (with all entries updated previously).
        - Success message displayed informing the user of change.<br />
         <br />
     7. Test case: `edit 1 n/Hwangs ra/4 p/7 a/NUS re/Korean food makes me happy. s/Utown c/Korean`
@@ -1224,7 +1225,7 @@ to work on.
         - First entry has name changed to "Hwangs", rating changed to "4" (4/5), price changed to "7" ($7),
         review changed to "Korean food makes me happy.", school location tags changed to "UTOWN", and 
         food category changed to "Korean".
-        - All entries remained shown (with all entries updated previously).
+        - All entries remain shown (with all entries updated previously).
         - Success message displayed informing the user of change.<br />
         <br />
     8. Test case: `edit 1 c/Korean c/Others`
@@ -1232,7 +1233,13 @@ to work on.
         Expected:
         - First entry has food category changed to "Korean" and "Others".
         - All entries remained shown (with all entries updated previously).
-        - Success message displayed informing the user of change.
+        - Success message displayed informing the user of change.<br />
+        <br />
+    9. Test case: `edit -13 c/Korean c/Others`
+    
+        Expected:
+        - Error message will be thrown, warning users that the index of the entry is out of bounds.
+        - All entries remain shown (with all entries updated previously).
   
 ### Clear all entries
 1. Remove all entries from The Food Diary
