@@ -24,8 +24,8 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 <div markdown="block" class="alert-warning">
 
-**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the
-JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
+**:warning: PartyPlanet will use its default Address (resp. Event) Book if it is unable to locate the
+JSON file for the Address (resp. Event) Book. It will start with an empty Address (resp. Event) Book if there is an error in the JSON file for the Address (resp. Event) Book.**
 
 </div>
 
@@ -43,7 +43,7 @@ purposes, these steps are split into a few categories.
    not important. For instance, the Welfare IC might want to store the address of a member to hold a surprise party.
 
 2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for
-   further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to
+   further parties. All fields are optional except name as it does not make sense for the welfare IC to be forced to
    store information such as Birthdays. This gives the Welfare IC flexibility to decide on what information needs to
    be stored. For instance, the Welfare IC might want to store the email of a catering company, or the address of a bakery for cake pickups.
 
@@ -76,9 +76,9 @@ dates where event 6 is marked as done.
 #### Search and Sort through contacts and events
 
 6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month
-   and tag to allow for ease of searching for specific people even with lots of contacts. The sorting allows Welfare
-   ICs an easy way of organising the people. For example, they can sort by upcoming birthdays (according to day and
-   month only) with `list -s u` so that they can plan for the parties accordingly.
+   and tag to allow for ease of searching for specific people even with lots of contacts. The seraching and sorting 
+   allows Welfare ICs an easy way of organising the people. For example, they can search for all people with 
+   birthdays in the month September `list -b 9` so that they can plan for the parties accordingly.
 
 7. Welfare ICs can search and sort events by criteria. This allows them to search for events by event name and
    remark to allow for ease of searching for specific events even with lots of events. The sorting allows Welfare
@@ -442,8 +442,7 @@ Note: Autocompleted Tags will be returned in alphabetical order and is case-sens
 
 Undoes the most recent action that changed PartyPlanet's Contact or Event List.
 
-Note: This means that only commands such, as `add`, `delete` etc.., can be undone.<br>
-Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
+Note: This means that only the commands, `add`, `delete`, `edit`, `eadd`, `edelete`, `eedit`, `edone`, can be undone.
 
 Can be invoked repeatedly until there is no more history from the current session.
 
@@ -495,6 +494,7 @@ Retrieves previously entered input.
 #### Data path display :
 
 * Displays the absolute path to the folder where the data is stored at the bottom of PartyPlanet.
+* Data directory will only be created only upon the first command input. Fresh application start ups will not have the data folder.
 
 <div markdown="block" class="alert-warning">
 
