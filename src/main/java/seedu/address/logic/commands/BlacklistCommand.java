@@ -25,7 +25,7 @@ public class BlacklistCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Blacklists/Un-blacklists the person identified "
             + "by the index number used in the last person listing. "
             + "Current blacklist status will be changed.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     private static final Logger logger = Logger.getLogger("BlacklistLogger");
@@ -47,18 +47,6 @@ public class BlacklistCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         logger.log(Level.INFO, "Starting execution of BlacklistCommand");
-        Person editedPerson = toggleBlacklist(model);
-        logger.log(Level.INFO, "End execution of BlacklistCommand");
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
-
-    /**
-     * Toggles the blacklist status of person in model and returns the updated person.
-     * @param model that the person is in
-     * @return editedPerson after the blacklist status is toggled
-     * @throws CommandException if the index is invalid
-     */
-    private Person toggleBlacklist(Model model) throws CommandException {
         Person personToEdit = getPerson(model);
         updateThisBlacklist(personToEdit);
 
@@ -71,7 +59,8 @@ public class BlacklistCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         logger.log(Level.INFO, "Person replaced");
 
-        return editedPerson;
+        logger.log(Level.INFO, "End execution of BlacklistCommand");
+        return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
     private Person getPerson(Model model) throws CommandException {
