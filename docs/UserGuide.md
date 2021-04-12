@@ -484,7 +484,9 @@ Example:
 
 ![add_session_example](images/choonwei/add_session.png)
 
-3. You will now see that a new session is added in the session list under **John Doe** and is marked with a green letter **"I"** to indicate an individual session.
+<ol start="3">
+    <li>You will now see that a new session is added in the session list under **John Doe** and is marked with a green letter **"I"** to indicate an individual session.</li>
+</ol>
 
 ![add_session_result_example](images/choonwei/add_session_result.png)
 
@@ -508,7 +510,9 @@ Example:
 
 ![add_recurring_session_example](images/choonwei/add_recurring_session.png)
 
-3. You will now see that a new recurring session is added in the session list under **John Doe** and is marked with an orange letter **"R"** to indicate a recurring session.
+<ol start="3">
+    <li>You will now see that a new recurring session is added in the session list under **John Doe** and is marked with an orange letter **"R"** to indicate a recurring session.</li>
+</ol>
 
 ![add_recurring_session_result_example](images/choonwei/add_recurring_session_result.png)
 
@@ -532,9 +536,11 @@ Example 1:
 2. Locate the session index to delete on the right of the session card.
 
 ![delete_session_example](images/choonwei/delete_session.png)
-   
-3. Using the index from step 2, type in `delete_session n/John Doe i/1` and press <kbd>Enter</kbd> to deletes **John Doe**'s first session.
-4. You will now see that the session has been deleted.
+
+<ol start="3">
+    <li>Using the index from step 2, type in `delete_session n/John Doe i/1` and press <kbd>Enter</kbd> to deletes **John Doe**'s first session.</li>
+    <li>You will now see that the session has been deleted.</li>
+</ol>
 
 ![delete_session_result_example](images/choonwei/delete_session_result.png)
 
@@ -544,8 +550,10 @@ Example 2:
 
 ![delete_session_recurring_example](images/choonwei/delete_session_recurring.png)
 
-3. Using the index from step 2, type in `delete_session n/Alex Yeoh i/1` and press <kbd>Enter</kbd> to deletes **Alex Yeoh**'s first and only session.
-4. You will now see that the session has been deleted.
+<ol start="3">
+    <li>Using the index from step 2, type in `delete_session n/Alex Yeoh i/1` and press <kbd>Enter</kbd> to deletes **Alex Yeoh**'s first and only session.</li>
+    <li>You will now see that the session has been deleted.</li>
+</ol>
 
 ![delete_session_recurring_ result_example](images/choonwei/delete_session_recurring_result.png)
 
@@ -568,9 +576,10 @@ Example:
 
 ![delete_recurring_session_example](images/choonwei/delete_recurring_session.png)
 
-3. Using the index from step 2, type in `delete_rec_session n/John Doe i/1 d/2021-01-16` and press <kbd>Enter</kbd> to delete a single session from **John Doe**'s recurring session.
-4. You will now see that this splits the original recurring session into two recurring session from **02 Jan 2021** to **09 Jan 2021** and
-   another from **23 Jan 2021** to **30 Jan 2021**.
+<ol start="3">
+    <li>Using the index from step 2, type in `delete_rec_session n/John Doe i/1 d/2021-01-16` and press <kbd>Enter</kbd> to delete a single session from **John Doe**'s recurring session.</li>
+    <li>You will now see that this splits the original recurring session into two recurring session from **02 Jan 2021** to **09 Jan 2021** and another from **23 Jan 2021** to **30 Jan 2021**.</li>
+</ol>
 
 ![delete_recurring_session_result_example](images/choonwei/delete_recurring_session_result.png)
   
