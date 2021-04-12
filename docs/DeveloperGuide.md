@@ -252,6 +252,15 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
+**Design consideration**:
+
+**Aspect: How `Find` delivery task command executes**
+
+**Alternative**: Find delivery tasks based on the incomplete keywords.
+
+**Pros:** Wider range of delivery tasks could be retrieved.
+
+**Cons:** Too many results, which may defeat the purposes of reducing the number of entries to go through.
 
 ### Remark Command - `remark INDEX r/DESCRIPTION`
 
@@ -279,6 +288,15 @@ Below is an activity diagram for the remark command.
 
 ![Remark Command Activity Diagram](images/RemarkCommandActivityDiagram.png)
 
+**Design consideration**:
+
+**Aspect: How `Remark` delivery task command executes**
+
+**Alternative**: Incorporate a Delivery Description field to remark to only store info on items being delivered.
+
+**Pros:** Adds a further critetria to the delivery task.
+
+**Cons:** Reduce flexibility of remark command.
 
 ### List Command - `list`
 The list command allows users to see all the delivery tasks in the delivery list.
