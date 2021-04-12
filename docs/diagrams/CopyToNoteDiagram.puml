@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+participant ":List<? extends DisplayableContent>" as List MODEL_COLOR
+participant ":String" as Content MODEL_COLOR
+end box
+
+box Content LOGIC_COLOR_T1
+participant ":Content" as ContentObj LOGIC_COLOR
+end box
+
+box Note STORAGE_COLOR_T1
+participant "createdNote:Note" as Note STORAGE_COLOR
+end box
+
+
+[-> Model: executeCommand("copytonote 1")
+activate Model
+
+Model -> List : getFilteredCurrentDictionaryList()
+activate List
+List --> Model : lastShownList
+deactivate List
+
+create Content
+Model -> Content : lastShownList.get(targetIndex.getZeroBased())
+activate Content
+
+Content -> ContentObj : .getDictionaryContent()
+activate ContentObj
+ContentObj --> Content
+deactivate ContentObj
+
+Content --> Model : contentToAdd
+deactivate Content
+
+create Note
+Model -> Note : new Note(contentToAdd)
+activate Note
+
+Note --> Model
+deactivate Note
+
+Model -> Model: addNote()
+
+[<--Model
+deactivate Model
+@enduml

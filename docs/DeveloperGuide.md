@@ -382,6 +382,33 @@ After typing in `mergenote 1 2` and executing it, the result would be:
     * Pros: Less Lines of Code and simpler due to not extending the Command class.
     * Cons: Might be confusing as some of the commands are already implented and might not be consistent with other commands.
 
+### Dictionary features
+
+#### Copying Content to a Note
+#####  Implementation
+Dictionote provides a way for users to copy over the content from the dictionary to a note.
+This feature is implemented as a command, `copytonote`, combining 2 models, namely the 'Content', and the 'Note' Models.  
+
+The `execute()` method will first call on `getFilteredCurrentDictionaryList()` to get the currently shown list in the dictionary panel.   
+The method will then get the index keyed in by the user and find the corresponding content from the list at the index.   
+A `String` object will then be created to store this information by getting the content body of the Content using the `get()` method.  
+The nextstep is to produce a new note by calling the `new Note()` constructor, with the note content being the `String` object created by the `get()` method.   
+Finally, the method will call on `addNote()` to add the created note into the notes list.  
+The `execute()` method will facilitate the display of the new note in the note list panel.
+
+The following is the sequence diagram for executing the `execute()` command in copying a content to a note.
+
+![CopyToNote](images/CopyToNoteDiagram.png)
+
+#### Design Consideration
+* **Alternative 1 (current choice):** Make use of the existing `Note` and `Content` models.
+    * Pros: Make use of the existing system and easy to implement
+    * Cons: Different methods and constructors have to be called since there exists 2 different models, which can induce type casting conflicts or get confusing. 
+* Alternative 2: Create a new model that will contain a mix of the `Note` and `Content` models.
+    * Pros: No constructors have to called and there won't be a need to worry about type casting failures.
+    * Cons: Increasing workload and no other features will use this new model.
+
+
 <!--
 ### \[Proposed\] Undo/redo feature
 
@@ -527,7 +554,6 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
 | `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Dictionary/Essential|
 | `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Dictionary/Essential|
-| `*`      | CS2103T student                                              | Track my progress when reading through a summary         | Continue my preparation from where I left off                 | Dictionary/Non-essential|
 | `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Dictionary/Non-essential|
 |***Note*** |  |  |  | |
 | `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Note/Essential  |
@@ -720,7 +746,55 @@ _{Explain here how the data archiving feature will be implemented}_
 * 2a. The list is empty.
 
   Use case ends.
-    
+
+
+**Use case: UC08 -  Find Content in the Dictionary**
+
+**MSS**
+
+1.  User requests to list content.
+2.  Dictionote shows a list of content.
+3.  User requests to find content using a certain set of keywords.
+4.  Dictionote shows the list of contents matching those keywords.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+**Use case: UC09 -  Copy Content to Note**
+
+**MSS**
+
+1.  User requests to list content.
+2.  Dictionote shows a list of content.
+3.  User requests to show the content at a specific index.
+4.  Dictionote shows the content.
+5.  User requests to content the content at a specific index to a note.
+6.  Dictionte adds a new note with the note body being the content at that index.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+* 3a. The given index is invalid.
+
+    * 3a1. Dictionote shows an error message.
+
+      Use case resumes at step 2.
+* 5a. The given index is invalid.
+
+    * 3a1. Dictionote shows an error message.
+
+      Use case resumes at step 4.
+
 
 ### Non-Functional Requirements
 

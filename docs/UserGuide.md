@@ -18,7 +18,7 @@ title: User Guide
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
-1. Download the additional files 'dictionarybook.json' and 'definitionbook.json' into the ***same*** folder as the one you have downloaded the application into in Step 3. This step will add the contents and definitions into the Dictionary of the application for your usage.
+1. Download the additional files 'dictionarybook.json' and 'definitionbook.json' from [here](https://github.com/AY2021S2-CS2103T-W13-1/tp/releases/tag/v1.4) into the ***same*** folder as the one you have downloaded the application into in Step 3. This step will add the contents and definitions into the Dictionary of the application for your usage.
 
 1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
    ![UiUserguide](images/UiUserGuide.png)
@@ -184,12 +184,14 @@ Format: `showdc INDEX​`
 
 #### Copying content to a note: `copytonote`
 
-Shows a list of all the definitions in the Dictionary.
+Copies the content/definition into a note
 
-* This command allows you to view the entire list of definitions in the dictionary panel.
-* Useful in scenarios when the list had previously been trimmed by other commands such as `finddef`, or when the dictionary panel is showing content instead of definitions.
+Format: Format: `copytonote INDEX​`
 
-Format: `copytonote`
+* This command allows you to copy the content, at the index that you have keyed in, over from the displayed dictionary panel into a new note.
+* The index and corresponding content will depend on the currently displayed list in the Dictionary List Panel. 
+  i.e. if the list displayed is a list of definitions, then keying in `copytonote 1` will create a note that contains the definition of index 1.
+  Similarly, if the list displayed is a list of content, then keying in `copytonote 1` will create a note that contains the content of index 1.
 
 Example: `copytonote 1`
   ![copytonote](images/Diagram-copytonote.png)  
@@ -436,7 +438,7 @@ Examples:
 * `findcontact n/John` returns `john` and `John Doe`
 * `findcontact n/jack e/@email.net t/friends t/university` returns all contacts containing `Jack` in their name, `@email.net` in their email, and both `Friends` and `University` as part of their tags.
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.png)
+  ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.PNG)
 * `findcontact t/colleagues t/friends` returns `Bernice Yu` <br>
   ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.png)
 * `findcontact t/colleagues n/roy` returns `Roy Balakrishnan` <br>
@@ -732,8 +734,6 @@ Action | Format, Examples
 **List content** | `listcontent`
 **List definitions** | `listdef`
 **Copy content to note** | `copytonote`
-**Add new definition** | `adddef tm/TERM d/DEFINITION`
-**Add new content** | `addcontent dt/TITLE h/HEADER mc/MAINCONTENT`
 ***Note Features*** | 
 **Add note** | `addnote c/CONTENT [t/TAG]…​`
 **Delete note** | `deletenote INDEX`
