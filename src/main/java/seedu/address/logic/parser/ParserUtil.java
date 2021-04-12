@@ -40,7 +40,7 @@ public class ParserUtil {
     public static final String VALID_NAME_REGEX = "[^ ].*";
 
     // Phone validation: must contain numerical characters only.
-    public static final String VALID_PHONE_REGEX = "[0-9]*";
+    public static final String VALID_PHONE_REGEX = "[0-9]+";
 
     // Email address validation: must conform to the form local-part@domain
     // Assumes IP addresses are not used as domain portion
