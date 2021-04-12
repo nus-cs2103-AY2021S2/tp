@@ -365,6 +365,8 @@ Examples:
 * `delete 2` delete the order with `INDEX` 2 from CakeCollate.
 * `delete 2 3` delete the orders with `INDEXES` 2 and 3 from CakeCollate.
 
+<div style="page-break-after: always;"></div>
+
 ##### Editing an order: `edit`
 
 Edit an existing order in CakeCollate.
@@ -397,6 +399,8 @@ Examples:
 * `undelivered 2` sets the delivery status of the order with `INDEX` 2 in CakeCollate as `undelivered`.
 * `undelivered 2 3` sets the delivery status of the orders with `INDEXES` 2 and 3 in CakeCollate as `undelivered`.
 
+<div style="page-break-after: always;"></div>
+
 ###### Setting the delivery status of an order as delivered: `delivered`
 
 Sets the delivery status of the specified order(s) in CakeCollate as `delivered`.
@@ -422,6 +426,8 @@ Examples:
 
 * `cancelled 2` sets the delivery status of the order with `INDEX` 2 in CakeCollate as `cancelled`.
 * `cancelled 2 3` sets the delivery status of the orders with `INDEXES` 2 and 3 in CakeCollate as `cancelled`.
+
+<div style="page-break-after: always;"></div>
 
 #### **4.1.2** ***Modifying what is displayed*** 
 
@@ -451,6 +457,8 @@ Format: `find [n/KEYWORD_NAME]…​ [p/KEYWORD_PHONE]…​ [e/KEYWORD_EMAIL]�
   E.g. `n/Hans o/Cake` will only match orders with names that match `Hans` and order descriptions that match `Cake`.
 * `AND` searches will take priority.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 * `find n/John` will return all orders with name `john`, `John Doe` or `Johnathan`.
@@ -460,12 +468,20 @@ Examples:
 * `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`.<br>
   ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG)
 <br><br>
+
+<div style="page-break-after: always;"></div>
+
 * `find alex bernice` will return all orders that matches `alex` or `bernice`.<br>
   ![result for 'find alex bernice'](images/findAlexBernice.PNG)
 <br><br>
+
+<div style="page-break-after: always;"></div>
+
 * `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
   ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
+<div style="page-break-after: always;"></div>
+
 ##### List all existing orders: `list`
 
 Shows a list of all orders in CakeCollate.
@@ -485,6 +501,7 @@ Examples:
 * `remind 365` displays all undelivered orders that have a delivery date within 365 days from today. <br>
     ![result for 'remind 365'](images/Remind365.PNG) 
 
+<div style="page-break-after: always;"></div>
 
 ### **4.2 Order Items**
 This section contains information about the commands that can modify the [order items box](#221-sections-of-the-ui).
@@ -512,6 +529,8 @@ Format: `deleteItem ORDER_ITEM_INDEXES`
 Examples:
 * `deleteItem 2` deletes the order item with `ORDER_ITEM_INDEX` 2 from the order items table.
 * `deleteItem 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
+
+<div style="page-break-after: always;"></div>
 
 ### **4.3 Others**
 This section contains information about other useful commands that you can use as well as features that are implemented in CakeCollate.
@@ -609,6 +628,8 @@ Action  | Format
 **Undelivered** | `undelivered INDEXES`
 **Delivered** | `delivered INDEXES`
 **Cancelled** | `cancelled INDEXES`
+
+<div style="page-break-after: always;"></div>
 
 #### Modifying what is displayed
 
