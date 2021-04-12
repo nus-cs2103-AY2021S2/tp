@@ -13,12 +13,17 @@ In this section, you will be given a brief overview of what Pawbook is all about
 This user guide contains (but not limited to) a [quick start guide](#quick-start), a [features walkthrough](#commands) and a [command summary table](#command-summary) for easy reference. In each feature or functionality, we further provide command formats and command examples to ensure that you can become proficient in using Pawbook.
 
 ## Introduction
+Dog school managers face multiple administrative issues, such as a large amount of data to handle and having multiple users 
+accessing the data. On top of this, such operations are also time-sensitive as dog schools aim to provide excellent customer 
+service after all. As more people own dogs or aspire to be dog owners, dog schools are experiencing a rise in popularity, 
+which brings to light the heavy administrative issues they face. These problems can all be resolved by Pawbook, a targeted 
+solution for all your dog school needs!
 
-Managing a business is definitely not easy. Imagine if your business involves taking care of countless energetic furpals. That's right! We are talking about the job of dog school managers.
-
-As dog schools and dog day cares rise in popularity due to the hectic work life of dog owners, the operations of dog schools can quickly get out of hand. But no worries, we have Pawbook to save the day!
-
-With Pawbook, you can add and delete owner and dog profiles alike, to easily keep track of dogs and their respective owners. Pawbook also allows the managing of the various canine-training programs to cater to your furry customers. We understand that as a successful business you have many programs running in the school everyday, Pawbook helps to condense your hectic schedule for you. With the ability viewing your schedule, you are able to better plan for the day ahead.
+With Pawbook, you can add and delete owner and dog profiles alike, to easily keep track of dogs and their respective owners. 
+Pawbook also allows the managing of the various canine-training programs to cater to your furry customers. As an extension, 
+Pawbook also facilitates the enrolling and dropping of dogs from programs. We understand that as a successful business, there 
+can be multiple programs running in the school every day. To deal with this, Pawbook condenses your hectic timetable and 
+provides a user-friendly view of your schedule of the day for increased convenience.
 
 Pawbook is a desktop application for dog school managers to facilitate their bookkeeping of puppies and dogs in the school, optimized for input via a **Command Line Interface (CLI)** which caters to fast-typers who prefer to use a keyboard. You can navigate the application with ease and execute instructions by typing text-based commands in the command box provided without ever having to reach for your mouse!
 
