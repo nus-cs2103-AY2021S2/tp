@@ -297,22 +297,27 @@ Format: `exit`
 ### Saving the data
 
 Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
+ 
+ :information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
 
-:information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
+### Editing the data
+
+Vax@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
 
 > Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
-:information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting Vax@NUS.
+Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity. 
 
-> :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment. 
+Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
 
-:information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
+> :warning: If your direct changes to the data file result in invalid data formatting, Vax@NUS will discard all data and start with an empty data file in your next launch. Be very careful!
 
---------------------------------------------------------------------------------------------------------------------
+>--------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
 
-The following parameter formats must be followed:**
+The following parameter formats must be followed:
 
 ### Matriculation Number
  The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
@@ -404,14 +409,14 @@ Action | Format, Examples
 **Add Student** | `add MATRICULATION_NUMBER n/NAME f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
 **Edit Student** | `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
-**Filter Students** | `filter VACCINATION_STATUS` e.g., `filter vaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
+**Filter Students** | `filter VACCINATION_STATUS` e.g., `filter vaccinated` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
 **Add Appointment** | `addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt A1234567X d/2021-12-13 ts/13:00`
 **Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g.,`editAppt A1234567X d/2021-12-13 ts/14:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` <br> e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`
 **List All Data** | `list`
-**Find Student and Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**Find Student And Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **View Help** | `help` 
 **Clear All Data** | `clear` 
 **Exit Program** | `exit`
