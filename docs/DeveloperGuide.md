@@ -856,7 +856,30 @@ testers are expected to do more *exploratory* testing.
 
 ### Testing Address Book Features
 
-#### Add a contact
+#### Tag a contact
+1. Append tags to a contact
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+       
+    2. Input `tag 2 tc/alice t/kovanSecSch` into the command box and press enter.
+       Expected: The tags of the second contact (*Charlotte Oliveiro*) should now include a red ChildTag `alice` and
+       the tag `kovanSecSch` as seen below.
+       
+![Append tags example](images/AppendTagExample.png)
+
+2. Replace tags of a contact
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+    
+    2. Input `tag 2 o/replace tc/alice` into the command box and press enter.
+       Expected: The tags of the second contact (*Charlotte Oliveiro*) should be entirely replaced with only a red
+       ChildTag `alice` as seen below.
+       
+![Replace tags example](images/ReplaceTagExample.png)
+    
+#### Clear tags
+1. Clearing contacts by tag
+    1. Prerequisites: The contacts list are the set of sample contacts as provided when ParentPal is first opened.
+    
+    2. Input `clear t/psg` into the command box and press enter.
 
 #### Delete a contact
 
@@ -878,12 +901,36 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing data files
-    1. Prerequisites: some commands that makes a change to the Address Book and Appointment Book have been performed.
+    1. Prerequisites: some commands that triggers saving data have been performed.
        
-    1. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
+    2. Delete the `addressbook.json` and `appointmentbook.json` files found in the directory 
       `[JAR file location]/data`.
       
-    2. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+    3. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
         Expected: The app launches with the sample contacts and appointments.
 
-1. _{ more test cases …​ }_
+
+2. Dealing with corrupted address book data
+    1. Prerequisites: some commands that triggers saving data have been performed.
+    
+    2. Open the `addressbook.json` file with a text editor found at `[JAR file location]/data/addressbook.json`.
+    
+    3. Make some changes to corrupt the file such as deleting a line or adding a nonsense line such as `aaaaaaaa`
+    to the middle of the file.
+       
+    4. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+        Expected: The app launches with the appointments loading correctly, and an empty contacts list.
+
+
+3. Dealing with corrupted appointment book data
+    1. Prerequisites: some commands that triggers saving data have been performed.
+
+    2. Open the `appointmentbook.json` file with a text editor found at `[JAR file location]/data/appointmentbook.json`.
+
+    3. Make some changes to corrupt the file such as deleting a line or adding a nonsense line such as `aaaaaaaa`
+       to the middle of the file.
+
+    4. Re-launch the app by double-clicking the jar file or run `java -jar parentpal.jar`.<br>
+       Expected: The app launches with the contacts loading correctly, and an empty appointments list.
+    
+
