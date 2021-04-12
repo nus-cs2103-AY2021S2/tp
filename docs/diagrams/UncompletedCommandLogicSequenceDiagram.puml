@@ -31,7 +31,7 @@ deactivate DeliveryListParser
 LogicManager -> UncompletedCommand : execute()
 activate UncompletedCommand
 
-UncompletedCommand -> Model : updateFilteredCustomerList()
+UncompletedCommand -> Model : updateFilteredCustomerList(uncomplete)
 activate Model
 
 Model --> UncompletedCommand
