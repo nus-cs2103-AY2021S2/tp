@@ -186,10 +186,8 @@ When the user enters any of the aforementioned commands,
 the user input command undergoes the same command
 parsing as described in the [Logic component](#logic-component).
 
-To add, delete or edit the `favourite` attribute of a `Tutor`, we use of an `EditTutorDescriptor`. The `EditTutorDescriptor` describes the
-attributes of a tutor to be edited. To `favourite` to a `Tutor`, we can simply create an `EditTutorDescriptor` which a
-`Favourite` descriptor, and edit the corresponding `Tutor` with this descriptor. The following shows an example of how an
-`FavouriteCommand` is executed.
+To add the `favourite` attribute to a Tutor, we can simply create an `EditTutorDescriptor` which is a `Favourite` descriptor, and edit the corresponding `Tutor` with this descriptor. 
+The following shows an example of how an `FavouriteCommand` is executed.
 
 Steps for the execution of the `FavouriteCommand` (assuming that no errors are encountered during parsing of inputs):
 1. When the `execute()` method of the `FavouriteCommand` is called, the `Model`’s `getFilteredTutorList()` method is called.
@@ -245,10 +243,8 @@ When the user enters any of the aforementioned commands,
 the user input command undergoes the same command
 parsing as described in the [Logic component](#logic-component).
 
-To add, delete or edit a `Notes` of a `Tutor`, we use of an `EditTutorDescriptor`. The `EditTutorDescriptor` describes the 
-attributes of a tutor to be edited. To add a `Notes` to a `Tutor`, we can simply create an `EditTutorDescriptor` which a 
-`Notes` descriptor, and edit the corresponding `Tutor` with this descriptor. The following shows an example of how an
-`AddNoteCommand` is executed.
+To add the `note` attribute to a Tutor, we can simply create an `EditTutorDescriptor` which is a `Note` descriptor, and edit the corresponding `Tutor` with this descriptor.
+The following shows an example of how an `AddNoteCommand` is executed.
 
 Steps for the execution of the `AddNoteCommand` (assuming that no errors are encountered during parsing of inputs):
 1. When the `execute()` method of the `AddNoteCommand` is called, the `Model`’s `getFilteredTutorList()` method is called.
