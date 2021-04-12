@@ -20,7 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/OhJunMing)]
 [[portfolio](team/OhJunMing.md)]
 
-* Role: Deciding, we will allocate equally, everyone gets a chance
+* Role: Deciding, we will allocate 
 
 ### Shi Zheng
 
