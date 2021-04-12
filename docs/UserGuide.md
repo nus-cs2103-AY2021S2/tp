@@ -98,11 +98,11 @@ These components include:
 The `Menu Bar` contains drop-down menus which provides you access to common useful functions.
 These functions include:
 
-- [Exit](#exiting-the-program-:-`exit`) - Exits the program
+- [Exit](#511-exiting-the-program--exit) - Exits the program
 - `Toggling CLI's visibility` - Shows/Hides the [Command Box](#44-command-box) and [Result Display](#45-result-display)
-- [Category Statistics](#viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
-- [Month Statistics](#viewing-budget-for-the-current-month) - Opens the Month statistics window
-- [Help](#viewing-help-:-`help`) - Opens the Help window
+- [Category Statistics](#512-viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
+- [Month Statistics](#513-viewing-budget-for-the-current-month) - Opens the Month statistics window
+- [Help](#51-viewing-help--help) - Opens the Help window
 
 ### 4.2 Budget Display
 
@@ -116,7 +116,7 @@ Each record in the list contain details like description, amount, timestamp as w
 
 ### 4.4 Command Box
 
-The `Command Box` is where you can supply your command inputs. The application will processs these inputs and make changes to your data when necessary. The available command inputs (format and examples) can be found in the [Features](#features) section.
+The `Command Box` is where you can supply your command inputs. The application will processs these inputs and make changes to your data when necessary. The available command inputs (format and examples) can be found in the [Features](#5-features) section.
 
 <div markdown="block" class="alert alert-primary">
 
@@ -133,7 +133,7 @@ The `Result Display` interactively display results of a given command so you can
 ### 4.6 Status Bar
 
 The `Status Bar` displays the location of the data file being used by the application.
-To find out more about how the data file is being managed, please refer to [Saving the data](#saving-the-data) and [Editing the data file](#editing-the-data-file)
+To find out more about how the data file is being managed, please refer to [Saving the data](#515-saving-the-data) and [Editing the data file](#516-editing-the-data-file)
 
 ## 5 Features
 
@@ -332,6 +332,8 @@ Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 - `d/FR_DESCRIPTION`, `a/FR_AMOUNT` and `c/FR_CATEGORY` are optional fields, but the command expects at least 1 field present.
 - `c/FR_CATEGORY` accepts multiple categories (i.e. `c/Food c/Picnic c/Family`)
 - The function only filters records that satisfies all the fields provided.
+- The command can be used again on an already filtered list.
+- Find result is not case-sensitive (i.e. `find-fr d/lunch` will display results for records with description `Lunch`)
 - For the specifications on `FR_DESCRIPTION`, `FR_AMOUNT` and `CATEGORY`, please refer to `add-fr` command.
 
 Examples:
