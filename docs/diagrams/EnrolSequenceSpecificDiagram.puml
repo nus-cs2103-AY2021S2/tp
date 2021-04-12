@@ -18,7 +18,7 @@ mainframe **sd** enrol dog with ID 2 into program with ID 3
 
 activate EnrolCommand
 
-EnrolCommand -> Model : check ID validitiy
+EnrolCommand -> Model : check ID validity
 activate Model
 Model --> EnrolCommand
 deactivate Model

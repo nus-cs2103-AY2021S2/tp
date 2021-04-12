@@ -18,7 +18,7 @@ mainframe **sd** drop dog with ID 2 from program with ID 3
 
 activate DropCommand
 
-DropCommand -> Model : check ID validitiy
+DropCommand -> Model : check ID validity
 activate Model
 Model --> DropCommand
 deactivate Model
