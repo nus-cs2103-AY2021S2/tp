@@ -191,15 +191,13 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the add feature works:
+The sequence diagram below shows how the `add` feature works:
 ![Sequence Diagram for Add Command](images/AddSequenceDiagram.png)
 ![Sequence Diagram for Ref Add Command](images/AddCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when an add command is executed:
+The activity diagram shows the workflow when an `add` command is executed:
 ![Activity Diagram for Add Command](images/AddActivityDiagram.png)
 
 #### Design consideration:
@@ -255,15 +253,13 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the edit command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the edit feature works:
+The sequence diagram below shows how the `edit` feature works:
 ![Sequence Diagram for Edit Command](images/EditSequenceDiagram.png)
 ![Sequence Diagram for Ref Edit Command](images/EditCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when an edit command is executed:
+The activity diagram shows the workflow when a `edit` command is executed:
 ![Activity Diagram for Edit Command](images/EditActivityDiagram.png)
 
 #### Design consideration:
@@ -317,15 +313,13 @@ a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
 
 Step 6. If the delete command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the delete feature works:
+The sequence diagram below shows how the `delete` feature works:
 ![Sequence Diagram for Delete Command](images/DeleteSequenceDiagram.png)
 ![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a delete command is executed:
+The activity diagram shows the workflow when a `delete` command is executed:
 ![Activity Diagram for Delete Command](images/DeleteActivityDiagram.png)
 
 #### Design consideration:
@@ -372,14 +366,12 @@ get displayed and a new `CommandResult` is returned. Otherwise, a `CommandExcept
 
 Step 6. If the detail command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the detail feature works:
+The sequence diagram below shows how the `detail` feature works:
 ![Sequence Diagram for Delete Command](images/DetailSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a detail command is executed:
+The activity diagram shows the workflow when a `detail` command is executed:
 ![Activity Diagram for Delete Command](images/DetailActivityDiagram.png)
 
 #### Design consideration:
@@ -412,7 +404,7 @@ The search mechanism is facilitated by `SearchCommand`, `SearchCommandParser` an
 * `SearchCommandParser#parse()`  —  parses the user's input and returns a new `SearchCommand` with a new `NameSchoolAndSubjectContainsKeywordsPredicate` as argument if the command format is valid.
 * `SearchCommandParser#extractKeywordsAsArray()`  —  extracts the keywords following a prefix that is passed as parameter into an array.
 
-`NameSchoolAndTagContainsKeywordsPredicate` implements the `Predicate` interface and contains 3 `List` of keywords: name, school and subject. It implements the following operations:
+`NameSchoolAndSubjectContainsKeywordsPredicate` implements the `Predicate` interface and contains 3 `List` of keywords: name, school and subject. It implements the following operations:
 
 * `NameSchoolAndSubjectContainsKeywordsPredicate#test()`  —  tests if the name, school and tag keywords matches the name, school and subjects of the student contacts respectively, and returns true if matches.
 * `NameSchoolAndSubjectContainsKeywordsPredicate#testBySubject()`  —  tests if the subject keywords matches the subjects of the student.
@@ -436,12 +428,10 @@ The updated filtered person list with the search results will then be displayed.
 
 Step 6. If the `search` command has been successfully executed, a message will be displayed indicating the number of person listed.
 
-#### Sequence Diagram
 The sequence diagram below shows how the `search` feature works:
 
 ![Sequence Diagram for Search Command](images/SearchSequenceDiagram.png)
 
-#### Activity Diagram
 The activity diagram shows the workflow when a `search` command is executed:
 
 ![Activity Diagram for Search Command](images/SearchActivityDiagram.png)
@@ -494,12 +484,10 @@ a new `CommandResult` is returned.
 
 Step 7. If the sort command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 The sequence diagram below shows how the `sort` feature works:
 
 ![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
 
-#### Activity Diagram
 The activity diagram shows the workflow when a `sort` command is executed:
 
 ![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
@@ -549,14 +537,10 @@ are advanced by one education level. Otherwise, a `CommandException` is thrown.
 
 Step 6. If the advancing command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the levelup feature works:
+The sequence diagram below shows how the `levelup` feature works:
 ![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a levelup command is executed:
+The activity diagram shows the workflow when a `levelup` command is executed:
 ![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
 
 #### Design consideration:
@@ -607,14 +591,12 @@ are advanced by one education level. Otherwise, a `CommandException` is thrown.
 
 Step 6. If the advancing command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
 
-The sequence diagram below shows how the leveldown feature works:
+The sequence diagram below shows how the `leveldown` feature works:
 ![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
 
-#### Activity Diagram
 
-The activity diagram shows the workflow when a leveldown command is executed:
+The activity diagram shows the workflow when a `leveldown` command is executed:
 ![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
 
 #### Design consideration:
@@ -670,15 +652,11 @@ Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add important date command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the add important date feature works:
+The sequence diagram below shows how the `add-date` feature works:
 ![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
 ![Sequence Diagram for ref CreateAddDateCommand](images/CreateAddDateCommandSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when an add important date command is executed:
+The activity diagram shows the workflow when an `add-date` command is executed:
 ![Activity Diagram for Add Important Date Command](images/AddImportantDateActivityDiagram.png)
 
 #### Design consideration:
@@ -726,14 +704,10 @@ a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
 
 Step 6. If the delete important date command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the delete important date feature works:
+The sequence diagram below shows how the `delete-date` feature works:
 ![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a delete important date command is executed:
+The activity diagram shows the workflow when a `delete-date` command is executed:
 ![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
 
 #### Design consideration:
@@ -798,16 +772,12 @@ create a `dateListPanel`, containing the `ObservableList` of important dates.
 
 Step 7. If the list important dates command has been successfully executed, the success message will be displayed.
 
-#### Sequence Diagram
-
-The sequence diagram below shows how the list important dates feature works:
+The sequence diagram below shows how the `list-date` feature works:
 ![Sequence Diagram for List Important Dates Command](images/ListImportantDatesSequenceDiagram.png)
 ![Sequence Diagram for ref List Important Dates](images/ListImportantDatesCommandSequenceDiagram.png)
 ![Sequence Diagram for ref Execute Important Dates Command](images/ExecuteImportantDatesCommandSequenceDiagram.png)
 
-#### Activity Diagram
-
-The activity diagram shows the workflow when a list important dates command is executed:
+The activity diagram shows the workflow when a `list-date` command is executed:
 ![Activity Diagram for List Important Dates Command](images/ListImportantDatesActivityDiagram.png)
 
 #### Design consideration:
@@ -870,7 +840,6 @@ The sequence diagram below shows how the `schedule` feature works:
 ![Sequence Diagram for Schedule Command](images/ScheduleSequenceDiagram.png)
 
 ![Sequence Diagram for Ref Schedule Command](images/ScheduleCommandSequenceDiagram.png)
-
 
 Step 5. The user then executes `detail 1` command that does not modify the `internalList` or the seven separate `ObservableList`
 of lessons for each day of the week. The `detail` command instead modifies another `ObservableList`. Thus, the schedule
@@ -1493,7 +1462,7 @@ Add a student with his/her details
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-### Viewing the Schedule
+### Viewing the schedule
 
 1. Viewing the schedule while all students are being shown.
   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
