@@ -44,7 +44,7 @@ public class ValidateCommand extends Command {
 
         model.validate(masterPlan, currentSemester);
         model.updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS); // ensure validate command always show table of plans
-        model.setCurrentCommand("list");                        // ensure validate command always show table of plans
+        model.setCurrentCommand("list"); // ensure validate command always show table of plans
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
