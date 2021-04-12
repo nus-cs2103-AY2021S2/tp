@@ -197,7 +197,7 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]â€
 * There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However, you can cannot directly modify a 
   task's status to `expired` or from `uncompleted`/`completed` to `expired`.
 * If the edited task exist in the tasklist, an error will be thrown to the user. A task is considered duplicated only if 
-  it's name, description and dateTime is the same.
+  it's name, description and date is the same.
 
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
