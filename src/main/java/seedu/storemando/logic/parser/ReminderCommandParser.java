@@ -21,7 +21,9 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
      * Parses the given {@code String} of arguments in the context of the ReminderCommand
      * and returns a ReminderCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args Parses the given {@code String} of arguments in the context of the ReminderCommand.
+     * @return a ReminderCommand object for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     @Override
     public ReminderCommand parse(String args) throws ParseException {
