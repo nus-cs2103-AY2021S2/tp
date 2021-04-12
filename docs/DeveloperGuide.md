@@ -600,7 +600,7 @@ The sequence diagram below shows how the `leveldown` feature works:
 ![Activity Diagram for Execute LevelDown Command](images/ExecuteLevelDownCommandSequenceDiagram.png)
 
 The activity diagram shows the workflow when a `leveldown` command is executed:
-![Activity Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
+![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
 
 #### Design consideration:
 
