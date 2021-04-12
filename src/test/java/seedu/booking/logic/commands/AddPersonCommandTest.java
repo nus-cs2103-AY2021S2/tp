@@ -278,7 +278,7 @@ public class AddPersonCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        public final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
         public boolean hasPerson(Person person) {

@@ -16,7 +16,6 @@ import seedu.booking.model.booking.Booking;
  */
 public class BookingListPanel extends UiPart<Region> {
     private static final String FXML = "BookingListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(BookingListPanel.class);
 
     @FXML
     private ListView<Booking> bookingListView;

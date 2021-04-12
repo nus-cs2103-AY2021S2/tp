@@ -29,7 +29,7 @@ public class EndTime {
     }
 
 
-    boolean isValidTime(LocalDateTime input) {
+    public boolean isValidTime(LocalDateTime input) {
         try {
             formatter.parse(input.toString());
             return true;

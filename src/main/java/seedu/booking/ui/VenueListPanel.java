@@ -16,7 +16,6 @@ import seedu.booking.model.venue.Venue;
  */
 public class VenueListPanel extends UiPart<Region> {
     private static final String FXML = "VenueListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(VenueListPanel.class);
 
     @FXML
     private ListView<Venue> venueListView;

@@ -17,9 +17,6 @@ import seedu.booking.model.venue.VenueName;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Booking {
-    // Random object used to generate booking id.
-    private static final Random BOOKING_RANDOM = new Random();
-
     // Data fields
     private Email bookerEmail;
     private VenueName venueName;
@@ -78,7 +75,7 @@ public class Booking {
      * Returns true if both bookings overlap.
      * This can be used to test for booking conflicts.
      */
-    public boolean isOverlapping(seedu.booking.model.booking.Booking otherBooking) {
+    public boolean isOverlapping(Booking otherBooking) {
         if (otherBooking == this) {
             return true;
         }
@@ -105,11 +102,11 @@ public class Booking {
             return true;
         }
 
-        if (!(other instanceof seedu.booking.model.booking.Booking)) {
+        if (!(other instanceof Booking)) {
             return false;
         }
 
-        seedu.booking.model.booking.Booking otherBooking = (seedu.booking.model.booking.Booking) other;
+        Booking otherBooking = (Booking) other;
         return otherBooking.getBookerEmail().equals(getBookerEmail())
                 && otherBooking.getVenueName().equals(getVenueName())
                 && otherBooking.getDescription().equals(getDescription())

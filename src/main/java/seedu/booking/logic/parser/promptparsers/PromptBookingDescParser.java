@@ -10,12 +10,12 @@ public class PromptBookingDescParser implements Parser<PromptBookingDescCommand>
     /**
      * Parses user input for booking description
      */
-    public PromptBookingDescCommand parse(String args) throws ParseException {
+    public PromptBookingDescCommand parse(String description) throws ParseException {
 
-        if (args.equals("")) {
-            args = "No description provided.";
+        if (description.equals("")) {
+            description = "No description provided.";
         }
 
-        return new PromptBookingDescCommand(new Description(args));
+        return new PromptBookingDescCommand(new Description(description));
     }
 }
