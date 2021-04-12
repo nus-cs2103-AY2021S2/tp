@@ -27,12 +27,12 @@ Given below are my contributions to the project.
 * **New Feature**: Added a updateE command that allows the user to change details of a specified event inside a project specified by project index.
   * What it does: allows the user to change details of an event inside a project.
   * Justification: This feature improves the product significantly as it is a core part of project management application.
-  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because the some of the input are optional, which makes the creation of updated event harder to implement. 
+  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because the some of the input are optional, which makes the creation of updated event harder to implement.
 
 * **New Feature**: Added a updateD command that allows the user to change details of a specified deadline inside a project specified by project index.
   * What it does: allows the user to change details of a deadline inside a project.
   * Justification: This feature improves the product significantly as it is a core part of project management application.
-  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because the some of the input are optional, which makes the creation of updated event harder to implement. Also, it is important to make sure that the status "isDone" of deadline is not affected.  
+  * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because the some of the input are optional, which makes the creation of updated event harder to implement. Also, it is important to make sure that the status "isDone" of deadline is not affected.
 
 * **New Feature**: Added a updateT command that allows the user to change details of a specified Todo inside a Project specified by project index.
   * What it does: allows the user to change details of a todo inside a project.
@@ -63,12 +63,12 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `updateP`, `updateD`, `updateE`, `updateT`: [\#242](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/242)
     * Updated the format of some parts of the documentation.
-    * Discussed and proposed ideas for various parts of the User Guide
+    * Discussed and proposed ideas for various parts of the User Guide.
     * Checked the User Guide several time to spot errors, did some of those chages (others done by teammate).
   * Developer Guide:
-    * Added implementation details of the `addE` feature. [\#158](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/158)
-    * Added UML sequence diagram for `addE` feature [\#364](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/364)
-    * Discussed and proposed ideas for various parts of the Developer Guide
+    * Added implementation details of the `addE` feature: [\#158](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/158)
+    * Added UML sequence diagram for `addE` feature: [\#364](https://github.com/AY2021S2-CS2103T-T11-2/tp/pull/364)
+    * Discussed and proposed ideas for various parts of the Developer Guide.
     * Checked the Developer Guide several time to spot errors, did some of those chages (others done by teammate).
 
 * **Community**:
