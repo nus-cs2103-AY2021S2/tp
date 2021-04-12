@@ -24,6 +24,7 @@ import seedu.address.model.TripDay;
 import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
@@ -58,6 +59,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED_DAY_ERROR = "The Passenger to be edited exists in a pool. "
             + "Day cannot be edited.";
     public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
+    public static final String MESSAGE_DRIVER_IS_PASSENGER = "Driver %s cannot pool themselves.";
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
@@ -88,7 +90,7 @@ public class EditCommand extends Command {
         Passenger passengerToEdit = lastShownList.get(index.getZeroBased());
         Passenger editedPassenger = createEditedPassenger(passengerToEdit, editPassengerDescriptor);
 
-        if (!passengerToEdit.isSamePassenger(editedPassenger) && model.hasPassenger(editedPassenger)) {
+        if (!passengerToEdit.isSamePerson(editedPassenger) && model.hasPassenger(editedPassenger)) {
             throw new CommandException(MESSAGE_DUPLICATE_PASSENGER);
         }
 
@@ -98,6 +100,10 @@ public class EditCommand extends Command {
 
         if (model.hasPoolWithPassenger(passengerToEdit) && editPassengerDescriptor.getTripTime().isPresent()) {
             outputMessage = MESSAGE_EDIT_PASSENGER_WARNING;
+        }
+
+        if (model.hasPoolWithDriver(passengerToEdit)) {
+            throw new CommandException(String.format(MESSAGE_DRIVER_IS_PASSENGER, passengerToEdit));
         }
 
         model.setPassenger(passengerToEdit, editedPassenger);

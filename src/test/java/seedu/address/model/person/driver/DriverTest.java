@@ -28,27 +28,27 @@ public class DriverTest {
     @Test
     public void isSameDriver() {
         // same object -> returns true
-        assertTrue(DRIVER_ALICE.isSameDriver(DRIVER_ALICE));
+        assertTrue(DRIVER_ALICE.isSamePerson(DRIVER_ALICE));
 
         // null -> returns false
-        assertFalse(DRIVER_ALICE.isSameDriver(null));
+        assertFalse(DRIVER_ALICE.isSamePerson(null));
 
         // different phone, all other attributes same -> returns false
         Driver editedAlice = new DriverBuilder(DRIVER_ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DRIVER_ALICE.isSameDriver(editedAlice));
+        assertFalse(DRIVER_ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new DriverBuilder(DRIVER_ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(DRIVER_ALICE.isSameDriver(editedAlice));
+        assertFalse(DRIVER_ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Driver editedBob = new DriverBuilder(TypicalDrivers.DRIVER_BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(TypicalDrivers.DRIVER_BOB.isSameDriver(editedBob));
+        assertFalse(TypicalDrivers.DRIVER_BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new DriverBuilder(TypicalDrivers.DRIVER_BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(TypicalDrivers.DRIVER_BOB.isSameDriver(editedBob));
+        assertFalse(TypicalDrivers.DRIVER_BOB.isSamePerson(editedBob));
     }
 
     @Test

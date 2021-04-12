@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
 
@@ -72,6 +74,11 @@ public interface Model {
      * Returns true if a pool that contains the given {@code passenger} exists in the address book.
      */
     boolean hasPoolWithPassenger(Passenger passenger);
+
+    /**
+     * Returns true if a pool that contains the given {@code driver} exists in the address book.
+     */
+    boolean hasPoolWithDriver(Person driver);
 
     /**
      * Deletes the given passenger.

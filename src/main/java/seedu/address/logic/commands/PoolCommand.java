@@ -58,6 +58,7 @@ public class PoolCommand extends Command {
             + "to a pool.";
     public static final String MESSAGE_TRIPDAY_MISMATCH = "One or more of the passengers specified "
             + "have a trip day that does not match this pool driver's trip day.";
+    public static final String MESSAGE_DRIVER_IS_PASSENGER = "Driver %s cannot pool themselves.";
 
     private final Driver driver;
     private final TripDay tripDay;
@@ -126,6 +127,10 @@ public class PoolCommand extends Command {
 
         if (passengers.stream().anyMatch(model::hasPoolWithPassenger)) {
             throw new CommandException(MESSAGE_POOLS_CONTAIN_PERSON);
+        }
+
+        if (passengers.stream().anyMatch(driver::isSamePerson)) {
+            throw new CommandException(String.format(MESSAGE_DRIVER_IS_PASSENGER, driver.getName()));
         }
 
         boolean shouldWarn = checkTimeDifference(passengers);

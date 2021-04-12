@@ -80,20 +80,6 @@ public class Passenger extends Person {
     }
 
     /**
-     * Returns true if both passengers have the same name.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSamePassenger(Passenger otherPassenger) {
-        if (otherPassenger == this) {
-            return true;
-        }
-
-        return otherPassenger != null
-                && otherPassenger.getName().equals(getName())
-                && otherPassenger.getPhone().equals(getPhone());
-    }
-
-    /**
      * Returns true if both passengers have the same identity and data fields.
      * This defines a stronger notion of equality between two passengers.
      */

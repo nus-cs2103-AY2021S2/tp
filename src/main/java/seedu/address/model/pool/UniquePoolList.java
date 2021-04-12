@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.exceptions.DuplicatePoolException;
 import seedu.address.model.pool.exceptions.PoolNotFoundException;
@@ -119,6 +121,13 @@ public class UniquePoolList implements Iterable<Pool> {
      */
     public boolean containsPassenger(Passenger key) {
         return internalList.stream().anyMatch(pool -> pool.hasPassenger(key));
+    }
+
+    /**
+     * Returns true if a pool that contains the given {@code driver} exists.
+     */
+    public boolean containsDriver(Person driver) {
+        return internalList.stream().anyMatch(pool -> pool.getDriver().isSamePerson(driver));
     }
 
     /**

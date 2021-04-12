@@ -196,7 +196,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPassenger(Passenger passenger) {
             requireNonNull(passenger);
-            return this.passenger.isSamePassenger(passenger);
+            return this.passenger.isSamePerson(passenger);
         }
     }
 
@@ -209,7 +209,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPassenger(Passenger passenger) {
             requireNonNull(passenger);
-            return passengersAdded.stream().anyMatch(passenger::isSamePassenger);
+            return passengersAdded.stream().anyMatch(passenger::isSamePerson);
         }
 
         @Override
