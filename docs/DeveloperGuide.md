@@ -902,8 +902,6 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 
-<div style="page-break-after: always;"></div>
-
 ### Showing a note
 
 1. Showing a specific note
@@ -934,8 +932,6 @@ testers are expected to do more *exploratory* testing.
   1. Other incorrect delete commands to try: `findcontent`, `findcontent `, `...` (where ` ` is a space)<br>
      Expected: Error message should be shown, stating that there is an 'invalid command format'.
 
-<div style="page-break-after: always;"></div>
-
 ### Showing content/definition
 
 1. Showing a specific content/definition
@@ -950,6 +946,8 @@ testers are expected to do more *exploratory* testing.
 
   1. Other incorrect delete commands to try: `showdc`, `showdc x`, `...` (where `x` is larger than the list size)<br>
      Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Modifying the UI through command
 
