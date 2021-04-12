@@ -152,7 +152,7 @@ public class MainWindow extends UiPart<Stage> {
                 personListPanel.selectPrev((value) -> {
                     commandBox.setAndAppendIndex(value);
                 });
-            }   
+            }
 
             if (event.getCode() == KeyCode.DOWN) {
                 personListPanel.selectNext((value) -> {
