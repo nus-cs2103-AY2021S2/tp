@@ -12,33 +12,21 @@ if () then ([all required prefixes present])
       :Check if schedule already existed;
 
           if () then ([schedule do not exist])
-          :Check if time_From is before time_To;
+          :Check if time_from and time_to are valid;
 
-              if () then ([time_From is before time_To])
-              :Check if time_From and
-              time_To are in the future;
+              if () then ([time_from is before time_to])
 
-                  if () then ([time_From and time_To
-        are in the future])
-                  :Check if time_From is before 6:00 AM;
+                  if () then ([time_from and time_to are in the future])
 
-                      if () then ([time_From is after or equal to 6:00 AM])
-                      :Check if time_To is after 11:00 PM;
+                      if () then ([time_from is after or equal to 6:00 AM])
 
-                          if () then ([time_To is before or equal to 11:00 PM])
-                          :Check if the duration is at least 1 hour
-                          and not exceeding 8 hours;
+                          if () then ([time_to is before or equal to 11:00 PM])
 
-                              if () then ([time_To is before or equal to 11:00 PM])
-                              :Check if time_From and time_To
-                              are in 30 or 60 minutes blocks;
+                              if () then ([duration is between 1 to 8 hours])
 
-                                  if () then ([time_From and time_To are in 30 or 60 minutes blocks])
-                                  :Check if the time_From
-                                  and time_To clash with any
-                                  existing appointments or events;
+                                  if () then ([time_from and time_to are in 30 or 60 minutes blocks])
 
-                                      if () then ([time_From and time_To does not clash])
+                                      if () then ([timing do not clash with existing timeslots])
                                       :Add schedule to Schedule Tracker;
                                       :Show success message;
 
@@ -65,14 +53,14 @@ if () then ([all required prefixes present])
 
                           else ([else])
 
-                          :Shows an invalid time_To
+                          :Shows an invalid time_to
                           error message;
 
                           endif
 
                       else ([else])
 
-                      :Shows an invalid time_From
+                      :Shows an invalid time_from
                       error message;
 
                       endif

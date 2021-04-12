@@ -7,11 +7,12 @@ participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
 participant ":AddScheduleCommandParser" as AddScheduleCommandParser LOGIC_COLOR
 participant "a:AddScheduleCommand" as AddScheduleCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "s:Schedule" as Schedule LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "s:Schedule" as Schedule MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
+participant ":ScheduleTracker" as ScheduleTracker MODEL_COLOR
 end box
 
 [-> LogicManager : execute("add_schedule t/Maths Homework \nds/Page 101 d/2021-4-11 \nfr/10:00 AM to/12:00 PM")
@@ -31,7 +32,7 @@ TutorTrackerParser -> AddScheduleCommandParser : parse("Maths Homework", "2021-4
 activate AddScheduleCommandParser
 
 create Schedule
-AddScheduleCommandParser -> Schedule : Schedule("Maths Homework", "2021-4-11 10:00 AM", "2021-4-11 12:00 PM", "Page 101")
+AddScheduleCommandParser -> Schedule : Schedule("Maths Homework", "2021-4-11 10:00 AM", \n"2021-4-11 12:00 PM", "Page 101")
 activate Schedule
 
 Schedule --> AddScheduleCommandParser : s
@@ -56,8 +57,16 @@ deactivate TutorTrackerParser
 LogicManager -> AddScheduleCommand : execute()
 activate AddScheduleCommand
 
+ref over AddScheduleCommand, ScheduleTracker : Check validity
+
 AddScheduleCommand -> Model : addSchedule(s)
 activate Model
+
+Model -> ScheduleTracker : addSchedule(s)
+activate ScheduleTracker
+
+ScheduleTracker --> Model
+deactivate ScheduleTracker
 
 Model --> AddScheduleCommand
 deactivate Model

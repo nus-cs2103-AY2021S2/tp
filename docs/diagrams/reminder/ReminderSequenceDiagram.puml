@@ -7,11 +7,12 @@ participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
 participant ":AddReminderCommandParser" as AddReminderCommandParser LOGIC_COLOR
 participant "a:AddReminderCommand" as AddReminderCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "r:Reminder" as Reminder LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
+participant "r:Reminder" as Reminder MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
+participant ":ReminderTracker" as ReminderTracker MODEL_COLOR
 end box
 
 [-> LogicManager : execute("add_reminder \nds/Pay Tuition Fee d/2021-4-11")
@@ -56,8 +57,28 @@ deactivate TutorTrackerParser
 LogicManager -> AddReminderCommand : execute()
 activate AddReminderCommand
 
+AddReminderCommand -> AddReminderCommand : isBeforeToday()
+activate AddReminderCommand
+AddReminderCommand --> AddReminderCommand
+deactivate AddReminderCommand
+
+AddReminderCommand -> Model : hasReminder(r)
+activate Model
+Model -> ReminderTracker : hasReminder(r)
+activate ReminderTracker
+ReminderTracker --> Model
+deactivate ReminderTracker
+Model --> AddReminderCommand
+deactivate Model
+
 AddReminderCommand -> Model : addReminder(r)
 activate Model
+
+Model -> ReminderTracker : addReminder(r)
+activate ReminderTracker
+
+ReminderTracker --> Model
+deactivate ReminderTracker
 
 Model --> AddReminderCommand
 deactivate Model

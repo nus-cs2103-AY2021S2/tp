@@ -1,0 +1,61 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "a:AddScheduleCommand" as AddScheduleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ScheduleTracker" as ScheduleTracker MODEL_COLOR
+end box
+
+mainframe sd Check validity
+
+activate AddScheduleCommand
+AddScheduleCommand -> Model : hasSchedule(s)
+activate Model
+Model -> ScheduleTracker : hasSchedule(s)
+activate ScheduleTracker
+ScheduleTracker --> Model
+deactivate ScheduleTracker
+Model --> AddScheduleCommand
+deactivate Model
+
+AddScheduleCommand -> AddScheduleCommand : isInvalidTimeRange()
+activate AddScheduleCommand
+AddScheduleCommand --> AddScheduleCommand
+deactivate AddScheduleCommand
+
+AddScheduleCommand -> AddScheduleCommand : isBeforeNow()
+activate AddScheduleCommand
+AddScheduleCommand --> AddScheduleCommand
+deactivate AddScheduleCommand
+
+AddScheduleCommand -> AddScheduleCommand : isInvalidStartTime()
+activate AddScheduleCommand
+AddScheduleCommand --> AddScheduleCommand
+deactivate AddScheduleCommand
+
+AddScheduleCommand -> AddScheduleCommand : isInvalidEndTime()
+activate AddScheduleCommand
+AddScheduleCommand --> AddScheduleCommand
+deactivate AddScheduleCommand
+
+AddScheduleCommand -> AddScheduleCommand : isValidDuration()
+activate AddScheduleCommand
+AddScheduleCommand --> AddScheduleCommand
+deactivate AddScheduleCommand
+
+AddScheduleCommand -> AddScheduleCommand : isValidMinutes()
+activate AddScheduleCommand
+AddScheduleCommand --> AddScheduleCommand
+deactivate AddScheduleCommand
+
+AddScheduleCommand -> Model : hasClashingDateTime(s)
+activate Model
+Model --> AddScheduleCommand
+deactivate Model
+
+deactivate AddScheduleCommand
+@enduml

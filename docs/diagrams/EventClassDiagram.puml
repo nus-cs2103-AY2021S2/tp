@@ -7,6 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Class "{abstract}\nEvent" as Event
 
 Schedule -up-|> Event
+Appointment -up-|> Event
 Event *-right-> TimeFrom
 Event *-left-> TimeTo
 
@@ -15,5 +16,12 @@ ScheduleList o-right-> Schedule
 
 Schedule *--> Title
 Schedule *--> Description
+
+AppointmentBook *-left-> "1" AppointmentList
+AppointmentList o-left-> Appointment
+
+Appointment *--> Name
+Appointment *--> Subject
+Appointment *--> Location
 
 @enduml

@@ -140,10 +140,51 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Implementation**
 
-### [Proposed] Favourite Feature
-#### Proposed Implementation
-The proposed favourite feature is to facilitate the user to keep track of his/her favourites out of the entire list of tutors. 
+### Tutor Book
+Tutor Tracker's Tutor Book allows users to store a list of tuition tutors.
+
+#### Rationale
+As Tutor Tracker is an application to aid users in viewing a tutor's profile, having a list of tuition tutors is core of Tutor Tracker.
+
+The proposed tutor features is to facilitate the user to keep track of his/her list of tutors.
 It implements the following operations:
+* `Add tutor` - Adds a tutor to the list of tutors.
+* `Edit tutor` - Edit a tutor from the list of tutors.
+* `Delete tutor` - Delete a tutor from the list of tutors.
+* `Find tutor` - Find a tutor from the list of tutors by name.
+* `View tutor` - View a tutor by index from the list of tutors.
+* `List all tutors` - Show an unfiltered list of the tutors.
+
+These operations are exposed in the `Logic` interface by parsing respective `AddCommand` `EditCommand`, `DeleteCommand`, `FindCommand`,
+`ViewCommand` and `ListCommand`. 
+
+### Appointment Book
+Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
+
+The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
+It implements the following operations:
+* `Add appointment` - Adds an appointment to the list of appointments.
+* `Edit appointment` - Edit an appointment from the list of appointments.
+* `Delete appointment` - Delete an appointment from the list of appointments.
+* `Find appointment` - Find a tutor from the list of appointments by tutor's name.
+* `View schedules` - View the list of appointments that is happening on the queried date.
+* `List all appointments` - Show an unfiltered list of the appointments.
+
+These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
+`ViewAppointmentCommand` and `ListAppointmentCommand`.
+
+### Favourite Feature
+Tutor Tracker's Favourite feature allows users to create a list of favourites tutors from the entire list of tutors.
+
+#### Rationale
+As Tutor Tracker is an application to aid users in viewing a tutor's personal profile, we have also considered that users may also wish to keep a favourite tutor list for easier personal reference instead of performing a search or filtering every time.
+
+#### Implementation
+The proposed note feature is to facilitate the user to keep track of his/her own note of different tutors and export them.
+The notes feature consists of the following operations that can be performed on tutors:
 * `Favourite tutor` - Add a tutor to the list of favourite tutors.
 * `Unfavourite tutor` - Delete the tutor from the list of favourite.
 * `List favourites` - Show the list of the favourite tutor.
@@ -153,8 +194,37 @@ These operations are exposed in the `Logic` interface by parsing respective `Fav
 
 Given below are example usage scenarios and how the favourite feature behaves at each step.
 
+When the user enters any of the aforementioned commands, the user input command undergoes the same command parsing as described in the [Logic component](#logic-component).
+
+Steps for the execution of the `FavouriteCommand` (assuming that no errors are encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `FavouriteCommandParser`.
+3. The `FavouriteCommandParser` will then parse and validate the inputs, and creates a `FavouriteCommandParser` with a target index number,
+   and an `EditTutorDescriptor` with a `Favourite` descriptor.
+4. The `execute()` method of the created `FavouriteCommand` will be called.
+5. The `FavouriteCommand` will validate both the index number and the `EditTutorDescriptor` and call the `ModelManager`'s
+   `setTutor()` method, followed by `TutorBook`'s `setTutor()` method which will add the `Favourite` attribute to the existing tutor.
+6. After the new `Notes` has been successfully added to a tutor, it will update the GUI with the `Favourite` indicator (a star) beside the tutor's name, and return
+   a `CommandResult` to provide feedback of the command's execution.
+
+#### Design Consideration
+
+##### Displaying Favourite Tutors in the GUI
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1 (current choice)** <br> Display tutors with a graphical indicator beside tutor's name. | Allows users to view everything in a single panel. | May be difficult to differentiate non-favourite and favourite tutor. |
+| **Option 2** <br> Separate non-favourite and favourite tutors into different tabs. | Clear segregation between non-favourite and favourite tutors. | May impose inconvenience as users have to switch tabs between non-favourite and favourite tutor depending on their needs. |
+
+Reason for choosing option 1:
+* We have researched the existing website and applications and concluded that option 1 is the most commonly adopted method.
+* There is also the `list_favourites` command in case users may want to only display favourite tutors.
+
+The following activity diagram summarizes what happens when the `favourite` command is executed.
+
+![Activity Diagram of Add Schedule](images/notes/NotesActivityDiagram.png)
+
 ### Note Feature
-#### Proposed Implementation
 Tutor Tracker's Notes feature allows users to create notes that are tagged to specific tutors and export them into a text file.
 
 #### Rationale
@@ -1106,8 +1176,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Event**: Something happening on the day.
-* **Appointment**: An event that refers to a tuition session with a particular tutor. Information stored including the tutor's name, date of appointment, start and end time and location.
+* **Event**: Tuition-related event that is happening on a particular day that has a start time and end time.
+* **Appointment**: An event that refers to a tuition session with a particular tutor. Information stored including, the tutor's name, date of appointment, start and end time and location.
 * **Schedule**: An event that is closely related to tuition, such as allocating time to do tuition homework or assessments.
 * **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
 * **Years of Experience**: Years of experience of tutoring a specific subject.
@@ -1160,18 +1230,19 @@ Given below are instructions to test the app manually.
 
 1. Adding a schedule
     1. Prerequisites:
-        1. Arguments are valid and compulsory parameters are provided 
-        2. The date must be in the form `yyyy-mm-dd`. 
-        3. The time must be in the form ` hh:mm a`.
-        4. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
-        5. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
-        6. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
-        7. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
-        8. The schedule's timeslot must not clash with existing appointments & schedules. <br><br>
+        1. Arguments are valid and compulsory parameters are provided.
+        1. The date must be in the form `yyyy-mm-dd`. 
+        1. The time must be in the form ` hh:mm a`.
+        1. The new schedule date and time must be a future datetime.  
+        1. `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+        1. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
+        1. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
+        1. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
+        1. The schedule's timeslot must not clash with existing appointments & schedules. <br><br>
     2. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
-       Expected: Adds a schedule by the name `Maths Tuition Homework`, happening from `Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM` <br><br>
+       Expected: Adds a schedule by the title `Maths Tuition Homework`, happening from `Jun 02 2021 05:00 PM to Jun 02 2021 07:00 PM` <br><br>
     3. Test Case: `add_schedule t/Science Tuition Homework d/2021-6-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6` <br>
-       Expected: Adds a schedule by the name `Science Tuition Homework`, happening from `Jun 30 2021 06:00 PM to Jun 30 2021 07:00 PM` <br><br>
+       Expected: Adds a schedule by the title `Science Tuition Homework`, happening from `Jun 30 2021 06:00 PM to Jun 30 2021 07:00 PM` <br><br>
     4. Test Case: `add_schedule t/Maths Tuition Homework d/2021-6-2 fr/5:00pm to/7:00pm ds/Calculus Topic` <br>
        Expected: The schedule is not added. An error message saying that the schedule already exists (assuming you did the first
        test case) is shown <br><br>
@@ -1190,6 +1261,74 @@ Given below are instructions to test the app manually.
     11. Test Case: `add_schedule t/English Tuition Homework d/2021-6-2 fr/4:00pm to/8:00pm ds/Calculus Topic` <br>
       Expected: The schedule is not added. An error message saying that the schedule clashes with another appointment or schedule (assuming you did the first
       test case) is shown <br><br>
+
+### Editing a Schedule
+
+1. Editing a schedule
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided.
+        1. The schedule to be edited must not be in the past.
+        1. The date must be in the form `yyyy-mm-dd`.
+        1. The time must be in the form ` hh:mm a`.
+        1. The edited schedule date and time must be a future datetime.
+        1. If any of the following parameter: `DATE`, `TIME_FROM` or `TIME_TO` are edited, all three parameters **must be** provided.
+        1. TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+        1. The earliest possible `TIME_FROM` is **06:00 AM** and latest possible `TIME_TO` is **11:00 PM**.
+        1. The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**
+        1. The schedule's timeslot must be in blocks of **30 minutes** or **1 hour**.
+        1. The schedule's timeslot must not clash with existing appointments & schedules.
+        1. The index provided must be a task index seen on the current window.<br><br>
+    1. Test Case: `edit_schedule 1 t/New Schedule Name` <br>
+       Expected: The schedule's title changes to `New Schedule Name` <br><br>
+    1. Test Case: `edit_schedule 1 ds/New Schedule Description` <br>
+       Expected: The schedule's description changes to `New Schedule Description` <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-2 fr/5:00pm to/7:00pm` <br>
+       Expected: The schedule's time_from changes to `Jun 02 2021 05:00 PM` and time_to changes to `Jun 02 2021 07:00 PM`. <br><br>
+    1. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
+       Assuming the schedule to be edited is in the past,  
+       Expected: The schedule is not updated. An error message saying that past schedules cannot be edited. <br><br>
+    1. Test Case: `edit_schedule 1 fr/5:00pm to/7:00pm` <br>
+       Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
+    1. Test Case: `edit_schedule 1 to/7:00pm` <br>
+      Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-2` <br>
+      Expected: The schedule is not updated. An error message saying that all three date and time parameters must be present. <br><br>
+    1. Test Case: `edit_schedule 1 d/2/5/2021 fr/5:00pm to/7:00pm` <br>
+       Expected: The schedule is not updated. An error message saying that the date is in the wrong format is shown <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/15:00pm to/7:00pm` <br>
+       Expected: The schedule is not updated. An error message saying that the time is in the wrong format is shown <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/7:00pm to/5:00pm` <br>
+       Expected: The schedule is not updated. An error message saying that the time range is invalid is shown <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:00am to/10:00am` <br>
+       Expected: The schedule is not updated. An error message saying that the start time is invalid is shown <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/10:00pm to/1:00am` <br>
+       Expected: The schedule is not updated. An error message saying that the end time is invalid is shown <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-10 fr/5:31pm to/8:46pm` <br>
+        Expected: The schedule is not updated. An error message saying that the time minutes are not in blocks of 30 or 60 minutes is shown <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-6-2 fr/4:00pm to/8:00pm` <br>
+        Expected: The schedule is not updated. An error message saying that the schedule clashes with another appointment or schedule (assuming you did the first
+        test case) is shown <br><br>
+    1. Test Case: `edit_schedule -1 t/New Schedule Name` <br>
+        Expected: The schedule is not updated. An error message about the invalid index is shown. <br><br>
+
+### Viewing Schedules
+
+1. Viewing schedules
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided.
+        2. The date must be in the form `yyyy-mm-dd`.<br><br>
+    2. Test Case: `view_schedule 2021-4-20` <br>
+       Expected: The Schedule List Panel displays the schedules happening on Apr 20 2021. <br><br>
+    3. Test Case: `view_schedule 20/4/2021` <br>
+      Expected: The Schedule List Panel not updated. An error message saying that the date is in the wrong format is shown. <br><br>
+
+### Listing All Schedules
+
+1. List all schedules
+    1. Test Case: `list_schedules` <br>
+       Expected: The Schedule List Panel displays the all the schedules in ascending (oldest to newest) order. <br><br>
+    2. Test Case: `list_schedules abcdefg` <br>
+      Expected: The Schedule List Panel displays the all the schedules in ascending (oldest to newest) order. <br><br>
 
 ### Deleting a Schedule
 
@@ -1210,7 +1349,8 @@ Given below are instructions to test the app manually.
 1. Adding a reminder
     1. Prerequisites:
         1. Arguments are valid and compulsory parameters are provided
-        2. The date must be in the form `yyyy-mm-dd`. <br><br>
+        1. The date must be in the form `yyyy-mm-dd`.
+        1. The new reminder date must be a future date. <br><br>
     2. Test Case: `add_reminder ds/Science Tuition Payment Due d/2021-6-2` <br>
        Expected: Adds a reminder by the name `Science Tuition Payment Due`, to be reminded on `Jun 02 2021` <br><br>
     3. Test Case: `add_reminder ds/Maths Tuition Payment Due d/2021-6-21` <br>
@@ -1220,14 +1360,41 @@ Given below are instructions to test the app manually.
        test case) is shown <br><br>
     5. Test Case: `add_reminder ds/Science Tuition Payment Due d/2/6/2021` <br>
        Expected: The reminder is not added. An error message saying that the date is in the wrong format is shown <br><br>
-       
+
+### Editing a Reminder
+
+1. Editing a reminder
+    1. Prerequisites:
+        1. Arguments are valid and compulsory parameters are provided.
+        1. The reminder to be edited must not be in the past.
+        1. The date must be in the form `yyyy-mm-dd`.
+        1. The edited reminder date must be a future date.
+        1. The index provided must be a positive integer index seen on the current window. <br><br>
+    1. Test Case: `edit_reminder 1 ds/New Reminder Description` <br>
+       Expected: The reminder's description changes to `New Reminder Description` <br><br>
+    1. Test Case: `edit_reminder 1 d/2021-6-5` <br>
+       Expected: The schedule's date changes to `Jun 05 2021` <br><br>
+    1. Test Case: `edit_schedule 1 d/2021-1-5` <br>
+       Assuming the reminder to be edited is in the past,  
+       Expected: The reminder is not updated. An error message saying that past reminders cannot be edited. <br><br>
+    1. Test Case: `edit_reminder -1 ds/New Reminder Description` <br>
+       Expected: The reminder is not updated. An error message about the invalid index is shown. <br><br>
+
+### Listing All Reminders
+
+1. List all schedules
+    1. Test Case: `list_reminders` <br>
+       Expected: The Reminder List Panel displays the all the reminders in ascending (oldest to newest) order. <br><br>
+    2. Test Case: `list_reminders abcdefg` <br>
+       Expected: The Reminder List Panel displays the all the reminders in ascending (oldest to newest) order. <br><br>
+
 ### Deleting a Reminder
 
 1. Deleting a Reminder
     1. Prerequisites:
         1. List all reminder(s) using the `list_reminders` command. Multiple reminders in the list.
         2. The reminder to be deleted must exist.
-        3. Index must be a positive integer.
+        3. The index provided must be a positive integer index seen on the current window. <br><br>
     2. Test Case: `delete_reminder 1` <br>
        Expected: The first reminder displayed in the list is deleted. <br><br>
     3. Test Case: `delete_reminder` <br>
