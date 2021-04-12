@@ -26,7 +26,9 @@ Given below are my contributions to the project.
           
         * Relevant PRs: [\#65](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/65), [\#158](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/158),
           [\#160](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/160), [\#155](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/155),
-          [\#165](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/165), [\#172](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/172)  
+          [\#165](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/165), [\#172](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/172), 
+          [\#187](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/187), [\#191](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/191),
+          [\#190](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/190)
           
     * #### Implemented the Date class
         * What it does: An essential field in a Task, used for deadlines.
@@ -37,7 +39,7 @@ Given below are my contributions to the project.
         * Highlights: Minor changes to logic in many classes. Checking if a string is valid to be parsed as a Date was 
           slightly challenging at first.
           
-        * Relevant PRs: [\#33](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/33)
+        * Relevant PRs: [\#33](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/33), [\#150](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/158)
     
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=W14-4&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=CSmortal&tabRepo=AY2021S2-CS2103T-W14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)  
 
@@ -48,10 +50,12 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added the Features and Command Summary section: [\#40](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/40)
-        * Spruced up the description of the `delete` command: [\#79](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/79)
-    
+        * Spruced up the description of the `delete` command: [\#79](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/79), [\#189](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/189)
+        * Added the **Deleting multiple tasks** feature description: [\#189](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/189)
     * Developer Guide:
         * Added user stories and use cases: [\#40](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/40)
+        * Added section 4.7 to 4.9: [\#199](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/199)
+        * Modified section 7.4 [\#199](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/199)
     
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#54](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/54), [\#36](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/36),
