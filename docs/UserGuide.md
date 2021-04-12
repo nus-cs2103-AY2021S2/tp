@@ -95,6 +95,7 @@ Shows a list of available contact command with description
 
 Format: `commanddetailc`
 
+<div style="page-break-after: always;"></div>
 ##### Viewing Ui command details : `commanddetailu`
 
 Shows a list of available Ui command with description
