@@ -2,18 +2,25 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BLACKLIST_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BLACKLIST_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BLACKLIST_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODE_OF_CONTACT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODE_OF_CONTACT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODE_OF_CONTACT_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -23,6 +30,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -61,9 +69,6 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withModeOfContact("email").withBlacklist(false).build();
-    public static final Person JANE = new PersonBuilder().withName("Jane Vermilion").withPhone("87514098")
-            .withEmail("jane@example.com").withAddress("7th street").withRemark("On leave of absence")
-            .withModeOfContact("phone").withBlacklist(true).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
@@ -74,6 +79,10 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRemark(VALID_REMARK_BOB)
             .withModeOfContact(VALID_MODE_OF_CONTACT_BOB).withBlacklist(VALID_BLACKLIST_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .build();
+    public static final Person JANE = new PersonBuilder().withName(VALID_NAME_JANE).withPhone(VALID_PHONE_JANE)
+            .withEmail(VALID_EMAIL_JANE).withAddress(VALID_ADDRESS_JANE).withRemark(VALID_REMARK_JANE)
+            .withModeOfContact(VALID_MODE_OF_CONTACT_JANE).withBlacklist(VALID_BLACKLIST_JANE)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -92,12 +101,24 @@ public class TypicalPersons {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons. The address book
-     * is not sorted in alphabetical order to test the sort commands.
+     * Returns an {@code AddressBook} with all the typical persons but not
+     * sorted in alphabetical order to test the sort commands.
      */
     public static AddressBook getUnsortedTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getUnsortedTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} where each person is blacklisted to test the massblacklist
+     * commands.
+     */
+    public static AddressBook getBlacklistedTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getBlacklistedTypicalPersons()) {
             ab.addPerson(person);
         }
         return ab;
@@ -109,5 +130,9 @@ public class TypicalPersons {
 
     public static List<Person> getUnsortedTypicalPersons() {
         return new ArrayList<>(Arrays.asList(BENSON, ELLE, CARL, ALICE, JANE, GEORGE, FIONA, DANIEL));
+    }
+
+    public static List<Person> getBlacklistedTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(CARL, FIONA, JANE));
     }
 }

@@ -4,10 +4,34 @@ title: User Guide
 ---
 
 SpamEZ is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, SpamEZ can get your contact management tasks done faster than traditional GUI apps.
+For fast typists, SpamEZ can complete contact management tasks faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+---
+## Contents
+- [Quick start](#quick-start)
+- [Features](#features)
+  - [Viewing help: `help`](#viewing-help--help)
+  - [Adding a person: `add`](#adding-a-person-add)
+  - [Listing all persons: `list`](#listing-all-persons--list)
+  - [Editing a person: `edit`](#editing-a-person--edit)
+  - [Adding a new remark or replacing an existing remark: `remark`](#adding-a-new-remark-or-replacing-an-existing-remark--remark)
+  - [Blacklisting a contact: `blist`](#blacklisting-a-contact--blist)
+  - [Blacklisting or unblacklisting multiple contacts: `massblist`](#blacklisting-or-unblacklisting-multiple-contacts--massblist)
+  - [Deleting a person: `delete`](#deleting-a-person--delete)
+  - [Deleting multiple contacts: `massdelete`](#deleting-multiple-contacts--massdelete)
+  - [Clearing all entries: `clear`](#clearing-all-entries--clear)
+  - [Collecting details from contacts: `collect`](#collecting-details-from-contacts--collect)
+  - [Sorting entries by name: `sort`](#sorting-entries-by-name--sort)
+  - [Finding persons by details: `find`](#finding-persons-by-details-find)
+  - [Changing view type to light mode: `light`](#changing-view-type-to-light-mode--light)
+  - [Changing view type to dark mode: `dark`](#changing-view-type-to-dark-mode--dark)
+  - [Undoing previous operations: `undo`](#undoing-previous-operations-undo)
+  - [Exiting the program: `exit`](#exiting-the-program--exit)
+  - [Reviewing previous commands](#reviewing-previous-commands)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -107,7 +131,8 @@ Edits an existing person in the contacts list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MODE_OF_CONTACT] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+  The index **must be a valid positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -118,29 +143,56 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name and/or tag: `find`
+### Adding a new remark or replacing an existing remark : `remark`
 
-Finds persons whose attributes (except remark) contain any of the given keywords.
+Adds an optional remark to a person in the address book.
+If the person already has a remark, the existing remark will be replaced.
 
-Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_KEYWORDS] [p/PHONE_NUMBERS] [b/IS_BLACKLISTED] [m/MODE_OF_CONTACT]`
+Format: `remark INDEX r/REMARK`
 
-* At least one of the parameters must be included as the parameters.
-* Parameters, if provided, may not be empty. In other words, commands such as `find n/` or `find n/abc t/` are invalid.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* For name, tag and address parameters, only full words will be matched e.g. `Han` will not match `Hans`.
-* For email and phone parameters, partial matches are allowed, e.g. for phone number, `8123` will match `81234567`.  
-* Persons matching at least one keyword of each provided attribute will be returned.
-  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`.
-* Blacklist parameter (`b/`) only accepts `true` or `false`.
-* Mode of contact parameter (`m/`) only accepts `phone`, `email` or `address`.
-* Blacklist and mode of contact parameters only take in the first keyword. For example, if `b/true blah blah` is inputted, it will be interpreted as `b/true`.
+* Adds or replaces the remark of the person at the specified `INDEX`. The index
+  refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, ...
+* By default, all newly added contacts will be displayed as having 'No remark'.
+* You can remove a person's remark by typing `r/` without specifying any remark after it. This will cause the person
+  will be displayed as having 'No remark'.
+
+Example:
+
+`remark 3 r/Currently on Stay Home Notice`
+
+### Blacklisting a contact : `blist`
+
+Blocks specific contacts, to specify that they do not want to be contacted.
+If the contact is already blacklisted, they will be un-blacklisted. 
+
+Format: `blist INDEX`
+
+* Changes the blacklist status of the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a valid positive integer** 1, 2, 3, ...
+
+### Blacklisting or un-blacklisting multiple contacts : `massblist`
+
+Blacklist or un-blacklist all contacts within the specified index range (inclusive).
+
+Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
+
+* Changes the blacklist status of all contacts whose `INDEX` lies between the specified index range
+  to either 'blacklist' or 'unblacklist' depending on the input parameter.
+* The keyword (`blacklist` and `unblacklist`) must be in lower case. 
+* The index refers to the index number shown in the displayed person list. Both the 
+  start index and end index must be valid positive integers 1, 2, 3, ...
+* Start index must be strictly smaller than the end index and the end index cannot be larger than the number of contacts
+  currently displayed in the list.
+* The index range must be specified before the keyword. <br>
+  e.g. `massblist b/blacklist 4-5` is treated as an invalid input.
 
 Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavid.png)
-* `find n/alex david t/family` returns `David Li`
+* Suppose you start with the following contact list:
+  ![massBlacklist1](images/massBlacklist1.png)
+  Executing `massblist 1-3 b/blacklist` will blacklist the first three contacts. Since the second contact is already
+  blacklisted, it remains the same. <br>
+  ![massBlacklist2](images/massBlacklist2.png)
 
 ### Deleting a person : `delete`
 
@@ -156,61 +208,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-###Deleting multiple contacts : `massdelete`
+### Deleting multiple contacts : `massdelete`
 
-Deletes all contacts within the specified index range.
+Deletes all contacts within the specified index range (inclusive).
 
 Format: `massdelete START-END`
-* The index refers to the index number shown in the displayed person list.
-* Both the Start Index and End Index **must be a valid positive integer** 1, 2, …​, 2147483647
-* Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
+* Deletes all contacts whose `INDEX` lies between the specified index range.
+* The index refers to the number shown in the displayed person list. Both the start index and end index must be valid
+  positive integers 1, 2, 3, ...
+* Start index must be strictly smaller than the end index and the end index cannot be larger than the
+  number of contacts currently displayed in the list.
 
 Example:
-`massdelete 2-41`
-
-### Blacklist a contact : `blist`
-
-Blocks specific contacts, to specify that they do not want to be contacted.
-If the contact is already blacklisted, they will be un-blacklisted. 
-
-Format: blist INDEX
-
-* Changes the blacklist status of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, …​, 2147483647
-
-### Blacklist or unblacklist multiple contacts : `massblist`
-
-Blacklists or unblacklists all contacts within the specified index range (inclusive).
-
-Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
-
-* The index refers to the index number shown in the displayed person list.
-* Both the start index and end index **must be valid positive integers** positive integers 1, 2, …​, 2147483647
-* Start index must be strictly smaller than the end index. 
-* End index cannot be larger than the number of contacts in the list.
-
-Example:
-`massblist 15-42 b/blacklist`
-
-### Collect details from contacts : `collect`
-
-Collects the specified details of all contacts in the displayed person list.
-The type of detail is specified by the prefix provided. Details will be separated
-by the given separator, or by a semicolon if unspecified.
-
-Format: collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]
-
-* Exactly one of the type of detail prefix must be provided.
-  The corresponding fields are as follows.
-  * `n/`: Name
-  * `p/`: Phone
-  * `e/`: Email
-  * `a/`: Address
-* The separator will ignore leading and trailing spaces. 
-  As such, it is not possible to start or end the separator with a space.   
-* Words following any prefix other than `s/` will be ignored.
-* Unrelated prefixes will be ignored.
+`massdelete 7-34`
 
 ### Clearing all entries : `clear`
 
@@ -218,33 +228,67 @@ Clears all entries from the contacts list.
 
 Format: `clear`
 
-### Adding a new remark or replacing an existing remark : `remark`
+### Collecting details from contacts : `collect`
 
-Adds a new remark to the specified person in the contacts list. 
-If the person already has a remark, the new remark will replace the
-existing remark.
+Collects the specified details of all contacts in the displayed person list. This
+is for ease of copying contact details into recipient lists.
+The type of detail is specified by the prefix provided. Details will be separated
+by the given separator, or by a semicolon if unspecified.
 
-Format: `remark INDEX r/REMARK`
+Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 
-* Adds/Replaces the remark of the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, …​, 2147483647
+* Exactly one of the type of detail prefix must be provided.
+  The corresponding fields are as follows.
+    * `n/`: Name
+    * `p/`: Phone
+    * `e/`: Email
+    * `a/`: Address
+* The separator will ignore leading and trailing spaces.
+  As such, it is not possible to start or end the separator with a space.
+* Words following any prefix other than `s/` will be ignored.
+* Unrelated prefixes will be ignored.
 
-Example:
+### Sorting entries by name : `sort`
 
-`remark 3 r/Currently on Stay Home Notice`
-
-### Sort entries by name : `sort`
-
-Sort the contacts in the address book by name in alphabetical order. The list can be sorted in
-either ascending or descending order.
+Sorts the contacts in the entire address book by name in alphabetical order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
+* `ascending` sorts the list in ascending alphabetical order and `descending` sorts the list in
+  descending alphabetical order.
+* The keyword (`ascending` or `descending`) must be in lower case.
+* Both the currently displayed list and the entire contact list will be sorted.
+* Contacts with the same name will be sorted by email in lexicographical order.
 
 Examples:
 
 * `sort ascending`
 * `sort descending`
+
+### Finding persons by details: `find`
+
+Finds persons whose attributes (except remark) contain any of the given keywords.
+
+Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_KEYWORDS] [p/PHONE_NUMBERS] [b/IS_BLACKLISTED] [m/MODE_OF_CONTACT]`
+
+* At least one of the parameters must be included as the parameters.
+* Parameters, if provided, may not be empty. In other words, commands such as `find n/` or `find n/abc t/` are invalid.
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* For name, tag and address parameters, only full words will be matched e.g. `Han` will not match `Hans`.
+* For email and phone parameters, partial matches are allowed, e.g. for phone number, `8123` will match `81234567`.
+* Persons matching at least one keyword of each provided attribute will be returned.
+  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`.
+* Blacklist parameter (`b/`) only accepts `true` or `false`.
+* Mode of contact parameter (`m/`) only accepts `phone`, `email` or `address`.
+* Blacklist and mode of contact parameters only take in the first keyword. For example, if `b/true blah blah` is inputted, it will be interpreted as `b/true`.
+
+Examples:
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find n/alex david'](images/findAlexDavidResult.png)
+* `find n/alex david t/family` returns `David Li`
+* `find n/bernice b/true` returns `Bernice Yu`<br>
+  ![result for 'find n/bernice b/true](images/findBerniceBlistResult.png)
 
 ### Changing view type to light mode : `light`
 
@@ -258,7 +302,14 @@ Changes the color theme to a dark theme.
 
 Format: `dark`
 
-### Review previous commands
+### Undoing previous operations: `undo`
+Undo the changes done to the list of contacts.
+
+Format: `undo`
+* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
+
+
+### Reviewing previous commands
 Users can view the commands they have inserted previously using up and down arrow keys.
 To re-execute the command, users simply need to press enter.
 
@@ -275,17 +326,11 @@ SpamEZ data are saved in the hard disk automatically after any command that chan
 ### Editing the data file
 
 SpamEZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
-Do not update data directly by editing that data file as it may result in unintended behaviors.
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you edit the data file and make its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
 </div>
-
-### Undo previous operations: `undo`
-Undo the changes done to the list of contacts.
-
-Format: `undo`
-* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -300,9 +345,9 @@ Format: `undo`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/email t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
-**Mass blacklist** | `massblist START-END`<br> e.g., `massblist 13-67 b/blacklist`
+**Mass blacklist** | `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`<br> e.g., `massblist 13-67 b/blacklist`
 **Clear** | `clear`
 **Collect** | `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`<br> e.g., `collect e/ s/,`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
@@ -311,8 +356,7 @@ Action | Format, Examples
 **Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates a/Singapore`
 **Help** | `help`
 **List** | `list`
-**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
-**Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
+**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on leave of absence`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Light** | `light`
 **Dark** | `dark`

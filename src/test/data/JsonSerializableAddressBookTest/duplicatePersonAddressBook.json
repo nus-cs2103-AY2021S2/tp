@@ -1,9 +1,9 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
+    "name": "Alicia Paulina",
+    "phone": "35215349",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "address": "1234, Jurong West Ave 8, #08-112",
     "remark": "No remark",
     "modeOfContact" : "email",
     "isBlacklisted": false,
@@ -11,10 +11,10 @@
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
     "remark": "No remark",
     "modeOfContact" : "phone",
-    "isBlacklisted": false
+    "isBlacklisted": true
   } ]
 }

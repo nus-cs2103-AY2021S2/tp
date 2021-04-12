@@ -77,6 +77,31 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Deletes all persons within the specified index range (inclusive).
+     */
+    void massDelete(int startIndex, int endIndex);
+
+    /**
+     * Blacklists all persons within the specified index range (inclusive).
+     * If the person is already blacklisted, then no change will occur.
+     */
+    void massBlacklist(int startIndex, int endIndex);
+
+    /**
+     * Unblacklists all persons within the specified index range (inclusive).
+     * If the person is not in the blacklist to begin with, then no change will occur.
+     */
+    void massUnblacklist(int startIndex, int endIndex);
+
+    /**
+     * Sorts all persons in the address book by name in alphabetical order.
+     *
+     * @param isAscending The list will be sorted by ascending order if true and descending
+     * otherwise.
+     */
+    void sortByName(boolean isAscending);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -85,30 +110,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Sorts the contact in the address book by name in alphabetical order.
-     *
-     * @param isAscending The list will be sorted by ascending order if true and descending
-     * otherwise.
-     */
-    void sortByName(boolean isAscending);
-
-    /**
-     * Toggles the blacklist status of the given person {@code target}.
-     * {@code target} must exist in the address book.
-     */
-    void toggleBlacklist(Person target);
-
-    /**
-     * Blacklists the given person.
-     */
-    void blacklistPerson(Person target);
-
-    /**
-     * Unblacklists the given person.
-     */
-    void unblacklistPerson(Person target);
 
     /**
      * Sets the user prefs' CSS settings.

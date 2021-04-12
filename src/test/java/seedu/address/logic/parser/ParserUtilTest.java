@@ -26,7 +26,6 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_REMARK = "";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_SORT_DIRECTION = "???????";
 
@@ -155,19 +154,21 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRemark_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(INVALID_REMARK));
-    }
-
-    @Test
     public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
         Remark expectedRemark = new Remark(VALID_REMARK);
         assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
     }
 
     @Test
+    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
+        String remarkWithWhitespace = WHITESPACE + VALID_REMARK + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
+    }
+
+    @Test
     public void parseSortDirection_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortDirection((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortDirection(null));
     }
 
     @Test
@@ -184,8 +185,7 @@ public class ParserUtilTest {
     @Test
     public void parseSortDirection_validValueWithWhitespace_returnsBoolean() throws Exception {
         String sortDirectionWithWhitespace = WHITESPACE + VALID_SORT_DIRECTION + WHITESPACE;
-        assertEquals(VALID_SORT_DIRECTION_RESULT,
-                ParserUtil.parseSortDirection(sortDirectionWithWhitespace));
+        assertEquals(VALID_SORT_DIRECTION_RESULT, ParserUtil.parseSortDirection(sortDirectionWithWhitespace));
     }
 
 

@@ -10,7 +10,7 @@ import seedu.address.model.ReadOnlyAddressBook;
  * Guarantees: immutability, non-null
  */
 public class State {
-    private final LinkedList<ReadOnlyAddressBook> addressBookStates;
+    private final LinkedList<AddressBookCommandPair> addressBookStates;
 
     /**
      * Constructs a State object.
@@ -23,9 +23,10 @@ public class State {
      * Adds a new state into the list.
      * @param currState Current state of the data.
      */
-    public void addState(ReadOnlyAddressBook currState) {
+    public void addState(ReadOnlyAddressBook currState, String command) {
         assert currState != null;
-        this.addressBookStates.add(currState);
+        assert command != null;
+        this.addressBookStates.add(new AddressBookCommandPair(currState, command));
     }
 
     /**
@@ -39,15 +40,31 @@ public class State {
      * Returns the current state of the data.
      * @return The current state of the data.
      */
-    public ReadOnlyAddressBook getCurrentState() {
+    public AddressBookCommandPair getCurrentState() {
         return this.addressBookStates.peekLast();
+    }
+
+    /**
+     * Returns the current address book.
+     */
+    public ReadOnlyAddressBook getCurrentAddressBook() {
+        AddressBookCommandPair lastElement = getCurrentState();
+        return lastElement == null ? null : lastElement.getAddressBook();
+    }
+
+    /**
+     * Returns the current command tagged to the address book.
+     */
+    public String getCurrentCommand() {
+        AddressBookCommandPair lastElement = getCurrentState();
+        return lastElement == null ? null : lastElement.getCurrentCommand();
     }
 
     /**
      * Returns the previous state.
      * @return The previous state.
      */
-    public ReadOnlyAddressBook getPreviousState() {
+    public AddressBookCommandPair getPreviousState() {
         return addressBookStates.size() > 1
                 ? this.addressBookStates.get(addressBookStates.size() - 2)
                 : null;

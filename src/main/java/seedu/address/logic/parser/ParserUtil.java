@@ -9,6 +9,7 @@ import java.util.Set;
 import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.MassBlacklistCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -25,8 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_RANGE = "Invalid range format.";
-    public static final String MESSAGE_INVALID_START = "Start index must be positive and start index < end index.";
+    public static final String MESSAGE_INVALID_INDEX_RANGE = "Invalid range format.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -110,9 +110,6 @@ public class ParserUtil {
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
-            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
-        }
         return new Remark(trimmedRemark);
     }
 
@@ -129,22 +126,23 @@ public class ParserUtil {
         if (!SortCommand.isValidSortDirection(trimmedSortDirection)) {
             throw new ParseException(SortCommand.MESSAGE_USAGE);
         }
-        return trimmedSortDirection.equals("ascending");
+        return trimmedSortDirection.equals(SortCommand.SORT_ASCENDING_KEYWORD);
     }
 
     /**
-     * Parses a {@code String isBlacklist} into a {@code boolean}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String blacklistKeyword} into a {@code boolean}. Returns true if the
+     * keyword is blacklist and false if the keyword is unblacklist. Leading and trailing
+     * whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code isBlacklist} is invalid.
      */
-    public static boolean parseIsBlacklist(String isBlacklist) throws ParseException {
-        requireNonNull(isBlacklist);
-        String trimmedIsAscending = isBlacklist.trim();
-        if (!trimmedIsAscending.equals("blacklist") && !trimmedIsAscending.equals("unblacklist")) {
-            throw new ParseException("Input should either be blacklist or unblacklist");
+    public static boolean parseBlacklistKeyword(String blacklistKeyword) throws ParseException {
+        requireNonNull(blacklistKeyword);
+        String trimmedBlacklistKeyword = blacklistKeyword.trim();
+        if (!MassBlacklistCommand.isValidBlacklistKeyword(trimmedBlacklistKeyword)) {
+            throw new ParseException(MassBlacklistCommand.MESSAGE_USAGE);
         }
-        return trimmedIsAscending.equals("blacklist");
+        return trimmedBlacklistKeyword.equals(MassBlacklistCommand.BLACKLIST_KEYWORD);
     }
 
     /**
@@ -163,28 +161,21 @@ public class ParserUtil {
     }
 
     /**
-     * Parses  a {@code String range} into a {@code Pair}.
+     * Parses a {@code String range} into a {@code Pair}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code isAscending} is invalid.
+     * @throws ParseException if the given {@code range} is invalid.
      */
     public static Pair<Index, Index> parseRange(String range) throws ParseException {
         requireNonNull(range);
         String trimmedRange = range.trim();
-        try {
-            String[] splitRange = trimmedRange.split("-");
-            if (splitRange.length != 2) {
-                throw new ParseException(MESSAGE_INVALID_RANGE);
-            }
-            Index startIndex = parseIndex(splitRange[0]);
-            Index endIndex = parseIndex(splitRange[1]);
-            if (startIndex.getZeroBased() > endIndex.getZeroBased()) {
-                throw new ParseException(MESSAGE_INVALID_START);
-            }
-            return new Pair<>(startIndex, endIndex);
-        } catch (NumberFormatException exception) {
-            throw new ParseException(MESSAGE_INVALID_RANGE);
+        String[] splitRange = trimmedRange.split("-");
+        if (splitRange.length != 2) {
+            throw new ParseException(MESSAGE_INVALID_INDEX_RANGE);
         }
+        Index startIndex = parseIndex(splitRange[0]);
+        Index endIndex = parseIndex(splitRange[1]);
+        return new Pair<>(startIndex, endIndex);
     }
 
     /**

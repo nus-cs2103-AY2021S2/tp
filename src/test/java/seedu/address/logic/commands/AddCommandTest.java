@@ -149,6 +149,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public void massDelete(int startIndex, int endIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void massBlacklist(int startIndex, int endIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void massUnblacklist(int startIndex, int endIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortByName(boolean isAscending) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -156,26 +176,6 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void toggleBlacklist(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void blacklistPerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void unblacklistPerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void sortByName(boolean isAscending) {
-            throw new AssertionError("This method should not be called");
         }
     }
 

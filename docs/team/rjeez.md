@@ -13,7 +13,8 @@ Given below are my contributions to the project.
   * What it does: Allows users to specify the preferred mode of contact to each contact.
   * Justification: This feature ensures that the information sent by the user is properly received by the contacts.
   * Highlights: This enhancement affects existing commands and future commands that acts on the fields of the Person Class.
-  * Credits: The implementation of this feature is mainly inspired from AB3 developer guide
+  * Credits: The implementation of this feature is mainly inspired from AB3 developer guide.
+
 
 * **New Feature**: Added `Light` and `Dark` command
   * What it does: Allows users change between light and dark mode.
