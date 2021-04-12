@@ -83,13 +83,13 @@ public class EditAutocompleteUtil implements AutocompleteUtil {
 
         // Create a Map of Prefix to the relevant getter method
         Map<Prefix, String> prefixMethodMap = Map.of(
-            PREFIX_ADDRESS, person.getAddress().value,
-            PREFIX_BIRTHDAY, person.getBirthday().value,
-            PREFIX_EMAIL, person.getEmail().value,
-            PREFIX_NAME, person.getName().fullName,
-            PREFIX_PHONE, person.getPhone().value,
-            PREFIX_REMARK, person.getRemark().value,
-            PREFIX_TAG, ""
+                PREFIX_ADDRESS, person.getAddress().value,
+                PREFIX_BIRTHDAY, person.getBirthday().value,
+                PREFIX_EMAIL, person.getEmail().value,
+                PREFIX_NAME, person.getName().fullName,
+                PREFIX_PHONE, person.getPhone().value,
+                PREFIX_REMARK, person.getRemark().value,
+                PREFIX_TAG, ""
         );
 
         String output = "edit " + argMultimap.getPreamble();

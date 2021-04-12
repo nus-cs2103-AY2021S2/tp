@@ -14,7 +14,7 @@ public class AutocompleteParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    private static final String autocompleteError = "Unable to match input String. Returning input String.";
+    private static final String AUTOCOMPLETE_ERROR = "Unable to match input String. Returning input String.";
 
     /**
      * Parses input string and retrieves the relevant Autocomplete Util.
@@ -24,7 +24,7 @@ public class AutocompleteParser {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
-            throw new AutocompleteException(autocompleteError);
+            throw new AutocompleteException(AUTOCOMPLETE_ERROR);
         }
 
         final String commandWord = matcher.group("commandWord");

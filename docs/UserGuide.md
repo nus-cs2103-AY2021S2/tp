@@ -421,7 +421,7 @@ Below are the respective behaviors of Autocomplete for various prefixes.
 
 All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
 
-Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the user.
+Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the person.
 
 Below are some examples for example Person 1 with Tags "Hello" and "World".
 1. Empty Tag Prefix, e.g. `edit 1 -t`
