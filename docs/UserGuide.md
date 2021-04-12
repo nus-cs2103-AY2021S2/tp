@@ -248,7 +248,7 @@ not patient
 
 Deletes solely the note added previously to tutor at a particular index.
 
-Format: `delete_note INDEX NOTE`
+Format: `delete_note INDEX`
 
 Example: `delete_note 1` deletes the existing note from the first tutor displayed.
 
@@ -851,9 +851,9 @@ This feature allows tutees to track and manage reminders daily. This is exceptio
 * Description
 * Reminder Date
 
-* Minimum length for description is 1 character, maximum is 50 characters.
-
 <div markdown="block" class="alert alert-info">
+
+* Minimum length for description is 1 character, maximum is 50 characters.
 
 **:information_source: Note:**<br>
 
