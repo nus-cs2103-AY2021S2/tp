@@ -561,8 +561,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*Note:* The mandatory details here refer to name, breed, owner ID for dogs; name, phone number, email and address for owners; name and time for programs.
-
 **Use case: UC02 - Delete a dog/owner profile or program**
 
 **MSS**
