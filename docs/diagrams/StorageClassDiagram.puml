@@ -23,11 +23,15 @@ Storage -|> UserPrefsStorage
 Storage -|> AddressBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
+JsonAddressBookStorage .right.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBook
-JsonSerializableAddressBook .right.> JsonAdaptedPerson
-JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonSerializableAddressBook .left.> JsonAdaptedPerson
+JsonAdaptedPerson .down.> JsonAdaptedTag
+
+JsonAddressBookStorage -[hidden]> AliasMapStorage
+JsonSerializableAddressBook -[hidden]> JsonAliasMapStorage
 
 JsonAliasMapStorage .up.|> AliasMapStorage
-JsonAliasMapStorage .left.> JsonSerializableAliasMap
+JsonAliasMapStorage .right.> JsonSerializableAliasMap
+JsonSerializableAliasMap .down.> JsonAdaptedCommandAlias
 @enduml
