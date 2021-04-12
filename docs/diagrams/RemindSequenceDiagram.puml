@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ResidenceTrackerParser" as ResidenceTrackerParser LOGIC_COLOR
+participant "r:RemindCommand" as RemindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ResidenceTracker" as ResidenceTracker MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remind")
+activate LogicManager
+
+LogicManager -> ResidenceTrackerParser : parseCommand("remind")
+activate ResidenceTrackerParser
+
+create RemindCommand
+ResidenceTrackerParser -> RemindCommand
+activate RemindCommand
+
+RemindCommand --> ResidenceTrackerParser : r
+deactivate RemindCommand
+
+ResidenceTrackerParser --> LogicManager : r
+deactivate ResidenceTrackerParser
+
+LogicManager -> RemindCommand : execute()
+activate RemindCommand
+
+RemindCommand -> Model : updateFilteredResidenceList(predicate)
+activate Model
+
+Model -> ResidenceTracker : sortResidenceList()
+activate ResidenceTracker
+
+ResidenceTracker --> Model
+deactivate ResidenceTracker
+
+Model --> RemindCommand
+deactivate Model
+
+create CommandResult
+RemindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemindCommand
+deactivate CommandResult
+
+RemindCommand --> LogicManager : result
+deactivate RemindCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemindCommand -[hidden]-> ResidenceTrackerParser
+destroy RemindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

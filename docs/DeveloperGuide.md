@@ -140,7 +140,7 @@ The proposed mechanism is facilitated by the `logic` component described above. 
 
 * `Residence#hasUpcomingBooking()` — Returns true if the `Residence` has a booking starting in the next 7 days.
 
-These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method and `Model` has a new public static `Predicate` named `PREDICATE_UPCOMING_BOOKED_RESIDENCES`.
+These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method. `Model` has a new public static `Predicate` named `PREDICATE_UPCOMING_BOOKED_RESIDENCES`.
 
 Given below is an example usage scenario and how the reminder filtering mechanism behaves at each step.
 
@@ -151,6 +151,10 @@ Step 2. The user executes `addb 2 n/New Tenant p/098 ...` command to add a booki
 Step 3. The user executes `remind` to list all residences with upcoming bookings. The `remind` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing a filtered list of `Residence`s to be displayed which includes the updated residence from the previous step.
 
 Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `delete`, `deleteb` or `list` will return to the previous display of the full residence list.
+
+The following sequence diagram shows how the operation works:
+
+![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -163,7 +167,7 @@ Step 4. Any successful execution of commands `add`, `addb`, `edit`, `editb`, `de
 * **Alternative 2:** Residences are automatically displayed with residences having upcoming bookings on top.
     * Pros: Users will be able to see the residences that need the most urgent attention on top of their list without interacting with the app.
     * Cons: The users will not be able to tell how many in the list will need to be cleaned immediately for the next 7 days. 
-      Using colour codes to differentiate the residences from the rest will make it visually more unpleasant for the users as it already uses colour coding for bookings.
+      Using colour codes to differentiate these residences from the rest will make it visually more unpleasant for the users as it already uses colour coding for bookings.
 
 ### Status feature
 
@@ -352,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case(UC09): Adds a new booking of the specified residence** <br>
+**Use case(UC09): Add a new booking to a specific residence** <br>
 **MSS** <br>
 1.  User adds a new booking to a residence.
 2.  System confirms the validity of the residence and the new booking details.
@@ -369,7 +373,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case(UC10): edit a booking of the specified residence** <br>
+**Use case(UC10): Edit a booking of a specific residence** <br>
 **MSS** <br>
 1.  User edits a residence's booking. 
 2.  System confirms the validity of the residence and the edited booking details.
@@ -386,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case (UC11): Delete a booking of a residence**<br>
+**Use case (UC11): Delete a booking of a specific residence**<br>
 **MSS**
 1.  User deletes a booking from a residence.
 2.  System validates the booking to be deleted.
@@ -404,7 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case (UC12): Reminder of Residences with Upcoming Bookings** <br>
+**Use case (UC12): Get reminder of residences with upcoming bookings** <br>
 **MSS**<br>
 1.  User requests a reminder of residences with upcoming bookings.
 2.  System shows a list of all residences with bookings starting in the next 7 days.
