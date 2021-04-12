@@ -137,6 +137,7 @@ public class CommandHistoryTest {
 
     /**
      * Asserts that the given command history has the same entries in the same order as a given list of entries.
+     *
      * @param commandHistory The command history to check.
      * @param entries The entries to check against.
      */
