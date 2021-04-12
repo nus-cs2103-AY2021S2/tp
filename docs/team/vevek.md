@@ -10,7 +10,7 @@ CoLAB (Collaboration Lab) is a desktop app for university students to manage the
 Given below are my contributions to the project.
 
 * **New Feature**: Added add todo/deadline commands.
-  * What it does: This feature allows the user to add a todo/deadline to a project. 
+  * What it does: This feature allows the user to add a todo/deadline to a project.
   * Justification: This feature improves the product significantly as it is a core part of the application.
   * Highlights: This enhancement required an in-depth analysis of design alternatives. The implementation was challenging because it involved thinking through the implementation of todo/deadline models.
 
@@ -38,35 +38,35 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**:
   * Commons
-    * Added DateUtil
-    * Added TimeUtil
-    * Added DateConversionException
-    * Added TimeConversionException
+    * Added DateUtil.
+    * Added TimeUtil.
+    * Added DateConversionException.
+    * Added TimeConversionException.
   * Model
     * Added CompletableTodo, CompletableDeadline, Repeatable, Todo, Deadline and Event classes to the model to allow for further extension of previous versions.
     * Refactored existing code to fit new model format.
   * Logic
-    * Add todo/deadline command
-    * Delete todo/deadline/event command
-    * Mark todo/deadline command
+    * Add todo/deadline command.
+    * Delete todo/deadline/event command.
+    * Mark todo/deadline command.
   * Testing
-    * Added tests for todo/deadline/event models
+    * Added tests for todo/deadline/event models.
     * Added tests for add/delete/mark todo/deadline/event commands and as well as their respective parsers.
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `Deadlines`, `Events` and `Todos` and other features [\#72]()
-    * Did cosmetic tweaks to various parts of the documentation
-    * Update user guide introduction and quick start
-    * Update documentation for the command summary and FAQ
+    * Did cosmetic tweaks to various parts of the documentation.
+    * Update user guide introduction and quick start.
+    * Update documentation for the command summary and FAQ.
   * Developer Guide:
     * Added implementation details of the `Deadlines`, `Events` and `Todos` models.
 
 * **Contributions to Team Based Tasks**:
   * Set up the GitHub team org and repo.
-  * Set up the issue tracker with required labels
-  * Updated documentation and config for different product
-  * Set up tools
+  * Set up the issue tracker with required labels.
+  * Updated documentation and config for different product.
+  * Set up tools.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#338](), [\#270](), [\#252](), [\#227]()
