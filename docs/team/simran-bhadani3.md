@@ -5,44 +5,44 @@ title: Bhadani Simran's Project Portfolio Page
 
 ## Project: CakeCollate
 
-CakeCollate is a desktop order book application used for tracking cake orders. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
-
-### to edit closer to end of project
+CakeCollate is a desktop application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added an IndexList class
+  * What it does: Allows parsing of multiple Indexes input by the user.
+  * Justification: This allows users to key in multiple indexes for any command which requires an Index to be input.
+  * Highlights: This feature was challenging to implement as it required quite a few changes to existing commands and tests.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added an OrderItems model
+  * What it does: An `OrderItems` model allows the creation of `OrderItem` objects and also multiple operations to be performed on them.
+  * Justification: An `OrderItems` model was needed for the OrderItems table which relies on a `UniqueOrderItemList` which was added in the model.
+  * Highlights: This model is a crucial part of CakeCollate and was challenging to implement as a lot of classes had to be created and tested properly.
+  * Credit: Based on the CakeCollate model.
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added the `deleteItem` and `addItem` commands.
+  * What it does: These commands allow the users to interact with the `OrderItems` model by enabling them to add their own order items to the order items table and also delete orders.
+  * Justification: The user needs to be able to add their own order items to the order items table since they might want to predefine order items.
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=simran-bhadani3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=simran-bhadani3&tabRepo=AY2021S2-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+        * Maintained the issue tracker
+        * Managed jar file creation for two releases
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Modified delete command to accept multiple indexes
+        * Involved creating the `IndexList` class
 
 * **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * User Guide:
+        * Added documentation for the `delete`, `addItem` and `deleteItem` features. [\#122](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/112/)
+        * Edited Glossary, FAQ and checked for grammatical errors. [\#248](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/248)
+
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+        * Added implementation details for the `addItem` feature.
+        * Added implementation details for the `deleteItem` feature.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+    * PRs reviewed (with non-trivial review comments): [\#125](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/125), [\#232](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/232)
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
