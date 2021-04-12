@@ -209,8 +209,8 @@ Examples:
 
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
-Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
-existing Member in the application with the name you specify.
+Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of an 
+existing member in the application with the name you specify.
 
 Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
 
@@ -306,12 +306,12 @@ Examples:
 
 <a name="editTask"></a>
 ###     4. Edit Task: `editTask`
-With ever-changing task requirements, you can edit a task at the task index specified with the new details 
+With ever-changing task requirements, you can edit an existing task at the task index specified with the new details 
 you key in.
 
 Format: `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NEW_STATUS] [p/NEW_PRIORITY] [a/NEW_ASSIGNEE]...`
 
-* Edits the Task at the specified INDEX.
+* Edits the task at the specified INDEX.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assignees, the existing assignees of the task will be removed i.e adding of assignees is not cumulative.
@@ -492,7 +492,7 @@ Action | Format, Examples
 **Edit Member** | `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`<br> e.g.,`editMember Alice e/newAlice@gmail.com r/Events head`
 **Find Members by Keywords** | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `findMembers Rachel 98562154 john@gmail.com`
 ||
-**Add Task** | `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]...` <br> e.g., Example: `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
+**Add Task** | `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]...` <br> e.g.,`addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
 **Delete Task** | `deleteTask INDEX` <br> e.g., `deleteTask 1`
 **View Tasks** | `viewTasks`<br> e.g., `viewTasks`
 **Edit Task** | `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NEW_STATUS] [p/NEW_PRIORITY] [a/NEW_ASSIGNEE]...`<br> e.g.,`editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04`
