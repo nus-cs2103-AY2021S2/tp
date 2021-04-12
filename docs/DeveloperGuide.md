@@ -203,27 +203,114 @@ Apart from regex, validation is also done through looking up of the model to ens
 
 #### Data consistency
 
-To ensure data consistency, some calls of the `delete` function have cascading effects. 
+Given that in JJIMY, all objects are immutable and store local copies of other objects, to ensure data consistency, 
+`delete` and `edit` functions need to proper data links that get triggered when they are called.  For instance, when an
+order is logged, the `Person` object that represents the customer is duplicated and this new copy stored within the new
+`Order` object. Therefore, simply editing the `Person` object in `PersonBook` is not enough to result in changes being
+propagated across other parts of the programme such as `OrderBook` because each `Order` holds its own local copy of 
+`Person` instead of a reference to a global copy of `Person` for a given customer.
 
 ##### Deletion of Person objects
 
-When a `Person` is deleted from the model, all `Order`s related to that `Person` should also be deleted, since that `Person` no longer exists. This is illustrated in the following sequence diagram:
+When a `Person` is deleted from the model, all `Order`s related to that `Person` should also be deleted, since that 
+`Person` no longer exists. This is illustrated in the following sequence diagram:
 
 ![Diagram showing example of cascading deletion](images/CascadingDeletionCustomers.png)
 
 As seen from the above sequence diagram, when `deletePerson` is called on `ModelManager`, it first deletes the `Person`
-from `PersonBook`. Then, it retrieves the entire order list from `OrderBook` and checks each individual `Order`. If the
-`Order` is associated with the `Person`, then the `Order` is removed by `ModelManger` via the `deleteOrder` method. This
-check is done via `Order::isFromCustomer` which returns `true` if the `Order` is associated with the `Customer` and
-`false` otherwise.
+from `PersonBook`. Next, `ModelManager::getOrdersFromPerson` is used to gather all `Order` objects that belong to that
+`Person` object. `getOrdersFromPerson` functions by iterating over all `Order` objects within `Order` book and
+checking if they belong to the `Person` object using `Order::isFromCustomer` which returns `true` if the `Order` is 
+associated with the `Person` object and `false` otherwise. Those orders that are by the customer are then deleted
+with `deleteOrder`.
+
+Note that because of the cascading effects of the `customer delete INDEX` operation, in the event that there are `Order`
+objects that will be deleted that are yet to be completed (ie the state of the order is `UNCOMPLETED`), then the user is
+required to append `-f` to the end of the delete command to acknowledge this behavior. This is to prevent users from
+unknowingly deleting orders that are still pending, resulting in pontential customer dissatisfaction.
+
+##### Editing of Person objects
+
+When a `Person` has its attribute edited via the `customer edit ...` command, there is a need to replace all instances
+of the `Person` object within `OrderBook` as well. This is because each `Order` holds its own local and immutable copy 
+of `Person` objects. Hence, it is not enough to edit the copy within `OrderBook` only.
+
+```
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        personBook.setPerson(target, editedPerson);
+        List<Order> ordersFromTarget = getOrdersFromPerson(target);
+        for (Order orderFromTarget : ordersFromTarget) {
+            Order updatedOrder = orderFromTarget.updateCustomer(editedPerson);
+            setOrder(orderFromTarget, updatedOrder);
+        }
+    }
+```
+To do so, we use the `setPerson` method as shown above. `target` refers to the old copy that is to be replaced with
+`editedPerson` which is identical to `target` except with certain attributes edited, where relevant. The method begins
+with `personBook::setPerson` which replaces the `target` within `PersonBook` with `editedPerson`.
+Next, all `Order` objects that belong to the `target` are gathered and for each of them, an updated `Order` object 
+(`updatedOrder`) is created but with the `customer` attribute replaced with this new `editedPerson` object. Finally,
+`updatedOrder` object is used to replace `orderFromTarget` within `OrderBook` via `setOrder`.
+
+##### Deletion of Dish objects
+
+When `Dish` objects are deleted, all orders that contain the particular dish are marked as cancelled. This is because
+without the item available, those orders can no longer be fulfilled and hence, are cancelled. 
+
+```
+    Dish dishToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+    List<Order> outstandingOrders = model.getIncompleteOrdersContainingDish(dishToDelete);
+    boolean isOutstandingOrders = !outstandingOrders.isEmpty();
+
+    ...
+
+    model.cancelOrders(outstandingOrders);
+    model.deleteDish(dishToDelete);
+```
+
+The above code block is taken from `MenuDeleteCommand::execute` and contains the main logic behind the deletion of `Dish`
+objects. All outstanding orders are first fetched via `Model::getIncompleteOrdersContainingDish` which returns a list
+of `Order` objects that contain the affected `Dish` and is also `UNCOMPLETED`. Then, all of those orders are cancelled
+using `Model::cancelOrders` which marks all the outstanding orders as `CANCELLED`. Finally, the `Dish` is deleted from
+`DishBook` itself.
+
+The `-f` flag is required for the same reason as the deletion of `Person` objects.
+
+##### Editing of Dish objects
+
+When `Dish` objects are edited, extra care is needed to ensure that the currently uncompleted orders, if replaced with 
+these edited `Dish` objects, are able to fulfill themselves given the inventory. The mechanism for doing so is as follows
+
+![Activity diagram for editing of Dish objects](images/EditDishObject.png)
+
+As seen in the sequence diagram above, all uncompleted orders containing the dish to be edited are first gathered and
+deleted from the database. Then, new orders are generated with the new `Dish` object containing the edits. With this
+set of edited `Order` objects, check to see if there is currently sufficient inventory to fulfil these orders. If there
+is sufficient inventory, then these new updated `Order` objects which contain the new updated `Dish` object are added
+to the class. If there is insufficient inventory, then the old `Order` objects are inserted back into the database and
+the edited `Order` object is not committed.
 
 ##### Deletion of Ingredient objects
 
-Another key instance of data consistency occurs between the `Ingredient` and `Dish` classes. The deletion of an Ingredient also affects all the dishes that use that ingredient and hence, those `Dish`es will also be removed.
+Another key instance of data consistency occurs between the `Ingredient` and `Dish` classes. The deletion of an 
+`Ingredient` object affects all the `Dish` objects that use that ingredient and hence, those `Dish` objects
+will also be removed. This is because without the `Ingredient` in the inventory, there is no way that those `Dish` objects
+that utilize the ingredients can be produced, hence, there is a cascading deletion of `Dish` objects when `Ingredients`
+are deleted. The cascading deletion of `Dish` then triggers the cascading 
 
-When an `Ingredient` is being attempted to be deleted, a check is first done to see if any `Dish` uses that `Ingredient`. If no `Dish` uses the `Ingredient`, then it is deleted immediately.
+For this command, the `-f` flag is also required for the user to acknowledge this cascading deletion behavior. This is
+to prevent the user from unknowingly removing items from the menu.
 
-However, in the event that there are `Dish`es that use the `Ingredient` in question, then a warning will be displayed and users will be required to re-enter their command but with a `-f` flag to confirm that they want to also delete all `Dish`es associated with the `Ingredient`.
+##### Editing of Order objects
+
+When orders are edited, there is a need to ensure that given the new dishes and quantities, that there is still sufficient
+inventory to produce the new order. Hence, when an `Order` is edited, old copy of `Order` is removed from the `OrderBook`
+and the new `Order` object is attempted to be inserted as those it were a new order with accompanying checks that the
+new order can be fulfilled. In the event that this new `Order` cannot be fulfilled given the inventory, then the old
+copy of `Order` is reinserted and an error message is displayed to the user.
 
 ##### Logging of Order object
 
