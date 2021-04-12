@@ -304,7 +304,7 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 * A set of keywords (search phrase) can be used for finding.
 * At least one keyword in a search phrase should be present in the garments to get results.
 * Keywords are not case-sensitive.
-* The list of all garments with matching attributes will be shown.<br><br>
+* The list of all garments with attributes that contain the specified keywords will be shown.<br><br>
 </div>
 Example:
 
