@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Contact {
+Class Contact
+Class UniqueContactList
+Class Phone
+Class Email
+}
+
+Package Tag {
+Class Tag
+Class ChildTag
+}
+
+Class Address
+Class Name
+
+AddressBook *--> "1" UniqueContactList
+UniqueContactList o---> "*" Contact
+
+Package Appointment {
+Class Appointment
+Class UniqueAppointmentList
+Class DateTime
+}
+
+AppointmentBook *--> "1" UniqueAppointmentList
+UniqueAppointmentList o--> "*" Appointment
+
+Tag <|- ChildTag
+
+Contact ---> "1" Name
+Contact ---> "0..1" Address
+Contact ---> "0..1" Phone
+Contact ---> "0..1" Email
+Contact ---> "~*" Tag
+
+Appointment --> "1" Name
+Appointment --> "1" Address
+Appointment --> "1" DateTime
+Appointment --> "~*" Contact
+Appointment --> "~*" Tag
+
+@enduml
