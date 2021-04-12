@@ -264,6 +264,28 @@ public class ParserUtil {
     }
 
     /**
+     * Validates prefix arguments {@code ArgumentMultiMap}. All arguments must be a valid prefix and must be empty.
+     *
+     * @param prefix Prefix to validate.
+     * @param argMultimap Arguments of to validate.
+     * @return true if prefix exists and is valid. false if prefix does not exist.
+     * @throws ParseException if a prefix contains values.
+     */
+    public static boolean validatePrefixEmpty(Prefix prefix, ArgumentMultimap argMultimap)
+            throws ParseException {
+        if (argMultimap.getValue(prefix).isEmpty()) {
+            return false;
+        }
+        for (String value: argMultimap.getAllValues(prefix)) {
+            if (value.isEmpty()) {
+                continue;
+            }
+            throw new ParseException(prefix.getPrefix());
+        }
+        return true;
+    }
+
+    /**
      * Parses a {@code String company} into an {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *

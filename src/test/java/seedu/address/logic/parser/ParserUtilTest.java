@@ -1,8 +1,12 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -285,5 +289,64 @@ public class ParserUtilTest {
                 Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void validatePrefixEmpty_returnTrue() throws Exception {
+        ArgumentMultimap map = new ArgumentMultimap();
+        ArgumentMultimap mapDuplicate = new ArgumentMultimap();
+        map.put(PREFIX_PHONE, "");
+        map.put(PREFIX_EMAIL, "");
+        mapDuplicate.put(PREFIX_PHONE, "");
+        mapDuplicate.put(PREFIX_PHONE, "");
+        mapDuplicate.put(PREFIX_EMAIL, "");
+
+        assertTrue(ParserUtil.validatePrefixEmpty(PREFIX_PHONE, map));
+        assertTrue(ParserUtil.validatePrefixEmpty(PREFIX_EMAIL, map));
+        assertTrue(ParserUtil.validatePrefixEmpty(PREFIX_PHONE, mapDuplicate));
+        assertTrue(ParserUtil.validatePrefixEmpty(PREFIX_EMAIL, mapDuplicate));
+    }
+
+    @Test
+    public void validatePrefixEmpty_returnFalse() throws Exception {
+        ArgumentMultimap map = new ArgumentMultimap();
+        ArgumentMultimap mapDuplicate = new ArgumentMultimap();
+        map.put(PREFIX_PHONE, "");
+        map.put(PREFIX_EMAIL, "");
+        mapDuplicate.put(PREFIX_PHONE, "");
+        mapDuplicate.put(PREFIX_PHONE, "");
+        mapDuplicate.put(PREFIX_EMAIL, "");
+
+        assertFalse(ParserUtil.validatePrefixEmpty(PREFIX_ADDRESS, map));
+        assertFalse(ParserUtil.validatePrefixEmpty(PREFIX_ADDRESS, mapDuplicate));
+    }
+
+    @Test
+    public void validatePrefixEmpty_validWithInvalid_throwsParseException() {
+        ArgumentMultimap map = new ArgumentMultimap();
+        ArgumentMultimap mapDuplicate = new ArgumentMultimap();
+        map.put(PREFIX_PHONE, "asdf");
+        map.put(PREFIX_EMAIL, "");
+        mapDuplicate.put(PREFIX_PHONE, "");
+        mapDuplicate.put(PREFIX_PHONE, "asdf");
+        mapDuplicate.put(PREFIX_EMAIL, "");
+
+        assertThrows(ParseException.class, () -> ParserUtil.validatePrefixEmpty(PREFIX_PHONE, map));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.validatePrefixEmpty(PREFIX_PHONE, mapDuplicate));
+    }
+
+    @Test
+    public void validatePrefixEmpty_validWithInvalid_returnsTrue() throws Exception {
+        ArgumentMultimap map = new ArgumentMultimap();
+        ArgumentMultimap mapDuplicate = new ArgumentMultimap();
+        map.put(PREFIX_PHONE, "asdf");
+        map.put(PREFIX_EMAIL, "");
+        mapDuplicate.put(PREFIX_PHONE, "");
+        mapDuplicate.put(PREFIX_PHONE, "asdf");
+        mapDuplicate.put(PREFIX_EMAIL, "");
+
+        assertTrue(ParserUtil.validatePrefixEmpty(PREFIX_EMAIL, map));
+        assertTrue(ParserUtil.validatePrefixEmpty(PREFIX_EMAIL, mapDuplicate));
     }
 }
