@@ -15,6 +15,8 @@ a Command Line Interface (CLI) application which handles user requests that are 
 
 With HEY MATEz, managing and distributing tasks will never be a headache again! :smile:
 
+<div style="page-break-after: always;"></div>
+
 ## About this User Guide
 This user guide includes information on the **features** of HEY MATEz as well as a walkthrough on how to use them. The features 
 are further divided into 3 sections which include the **General features**, **Member related features** as well as the **Task related features**.
@@ -53,6 +55,8 @@ to manage tasks which can be identified by their unique list indexes.
   + [Editing the data file](#editData)
 * [FAQ](#faq)
 * [Command Summary](#summary)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 <a name="quick-start"></a>
