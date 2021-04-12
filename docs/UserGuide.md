@@ -36,7 +36,6 @@ DocBob's interface comprises of 4 main parts.
    <div markdown="block" class="alert alert-info">
 
    **First Startup**: If the full Graphical User Interface does not appear on your screen, please resize your window. DocBob comes with some sample patient data when started for the first time. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample patient data and start adding your own patients!
-</div>
 
 1. Execute commands by typing them in the command box and pressing **Enter**. See [Features](#features) for more comprehensive details of each and every command.<br>
    Example commands you can try:
