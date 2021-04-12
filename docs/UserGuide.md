@@ -44,11 +44,11 @@ Before you continue reading the rest of the User Guide, take note of the followi
 
 # Quickstart Guide
 
-1. Ensure that **Java 11** or above is installed in the computer.
+1. Ensure that **Java 11** or above is installed in your computer.
 
 1. Download the latest **abb.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
-1. Copy the file to the target folder to use as the _home folder_ to contain the A-Bash Book data.
+1. Copy the file to your preferred target folder to use as the _home folder_ to contain the A-Bash Book data.
    See [FAQ: What is the Home Folder?](#what-is-the-home-folder) to understand more.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.<br>
@@ -57,7 +57,7 @@ Before you continue reading the rest of the User Guide, take note of the followi
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands to try:
 
-    * **`help`** : Opens this User Guide.
+    * **`help`** : Opens the [Command Summary](#command-summary) in the app.
 
     * **`list`** : Lists all contacts.
 
@@ -628,16 +628,16 @@ If changes to the data file renders its format invalid, A-Bash Book will discard
 
 ## What is the Home Folder?
 
-A home folder is a file system folder where A-Bash Book stores data.
+The home folder is the file system folder on your computer where A-Bash Book stores your data.
 
 ```
 foldername (Home Folder)
-├── a-bash-book.jar
-├── addressbook.log.0
+├── abashbook.jar
+├── abashbook.log.0
 ├── config.json
 ├── data
-│   ├── addressbook.json
-│   └── aliases.json
+│   ├── abashbook.json
+│   └── alias.json
 ├── preferences.json
 ```
 
