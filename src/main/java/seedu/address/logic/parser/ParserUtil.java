@@ -28,6 +28,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
     public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
     public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
+    public static final String MESSAGE_INVALID_TAG = "Invalid tag specified.";
     public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
     public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
     public static final String MESSAGE_INVALID_PRICE = "Price must be a non-negative double.";
@@ -56,6 +57,9 @@ public class ParserUtil {
 
     // DateTime validation: must be of the form DD-MM-YYYY HH:MM
     public static final String VALID_DATETIME_REGEX = "\\d\\d-\\d\\d-\\d\\d\\d\\d \\d\\d:\\d\\d";
+
+    // Tag validation: tag cannot start with whitespace, or " " can be a valid tag.
+    public static final String VALID_TAG_REGEX = "[^ ].*";
 
     // Email address validation: must conform to the form local-part@domain
     // Assumes IP addresses are not used as domain portion
@@ -147,7 +151,7 @@ public class ParserUtil {
     // ========== PERSON ==========
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -162,7 +166,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
@@ -177,7 +181,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
@@ -192,7 +196,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String email}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
@@ -209,7 +213,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String tag} into a tag.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
@@ -217,6 +221,9 @@ public class ParserUtil {
     public static String parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        if (!trimmedTag.matches(VALID_TAG_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_TAG);
+        }
         return trimmedTag;
     }
 
@@ -225,9 +232,11 @@ public class ParserUtil {
      */
     public static List<String> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        ArrayList<String> tagList = new ArrayList<>(tags);
-        HashSet<String> deduplicatedSet = new HashSet<>(tagList);
-        List<String> deduplicatedTagList = new ArrayList<>(deduplicatedSet);
+        HashSet<String> tagSet = new HashSet<>();
+        for (String tag : tags) {
+            tagSet.add(parseTag(tag));
+        }
+        List<String> deduplicatedTagList = new ArrayList<>(tagSet);
         Collections.sort(deduplicatedTagList);
         return deduplicatedTagList;
     }
