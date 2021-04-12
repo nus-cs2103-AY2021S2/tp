@@ -666,6 +666,85 @@ Note: This set of test cases can be similarly performed for doctor records by re
 
 Note: This set of test cases can be similarly performed for doctors in the doctor records by replacing mentions of `delete-patient` with `delete-doctor`.
 
+### Editing a patient
+
+1. Editing a patient
+
+    1. Prerequisites: The patient to edited must already exist in the patient records.
+
+    1. Test case: `edit-patient 1 p/98432567`<br>
+       Expected: The phone number of the first patient in the patient list is changed to 98432567, and the details of the patients are displayed in the status message.
+
+    1. Test case: `edit-patient 2 e/`<br>
+       Expected: The email address of the second patient in the patient list is not changed. Error details are shown in the status message. Status bar remains the same.
+
+    1. Other incorrect `edit-patient` commands to try: `edit-patient 1 e/John*example.com`, `...` (where the `Email` address is invalid)<br>
+       Expected: Similar to previous.
+
+1. Editing results in duplicated patients
+
+    1. Prerequisites: The edited name of the patient has the same `Name` as an existing patient in the patient records.
+
+    1. Test case: `edit-patient 1 n/Dong`<br>
+       Expected: The name of patient 1 is not edited. Error details are shown in the status message. Status bar remains the same.
+
+### Editing a doctor
+
+1. Editing a doctor
+
+    1. Prerequisites: The doctor to edited must already exist in the doctor records.
+
+    1. Test case: `edit-doctor 1 t/medicine`<br>
+       Expected: The tag of the first doctor in the doctor list is changed to medicine, and the details of the doctors are displayed in the status message.
+
+    1. Test case: `edit-patient 2 t/`<br>
+       Expected: All the tags of the second doctor in the doctor list are cleared, and the details of the doctors are displayed in the status message.
+
+    1. Other incorrect `edit-doctor` commands to try: `edit-doctor 1`, `...` (where no field to edit is provided)<br>
+       Expected: An error message informing that at least one field to edit must be provided.
+
+1. Editing results in duplicated doctors
+
+    1. Prerequisites: The edited name of the doctor has the same `Name` as an existing doctor in the doctor records.
+
+    1. Test case: `edit-doctor 1 n/Dr Who`<br>
+       Expected: The name of doctor 1 is not edited. Error details are shown in the status message. Status bar remains the same.
+
+### Edit an appointment
+
+1. Editing an appointment
+
+    1. Prerequisites: The appointment to edited must already exist in the appointment schedule.
+
+    1. Test case: `edit-appt 1 pt/2`<br>
+       Expected: The patient of the first appointment in the appointment schedule is changed to the second patient in the patient list, and the details of the appointments are displayed in the status message.
+
+    1. Test case: `edit-appt 2 at/2021-05-08 09:00`<br>
+       Expected: The starting time of the second appointment in the appointment schedule is changed to 2021-05-08 09:00. If the starting time is the same or after the end time of the appointment, and error message will be shown indicating the timeslot end date and time must be strictly after the start date and time.
+
+    1. Other incorrect `edit-appt` commands to try: `edit-appt 1 at/2021-*-08 09:00 `, `...` (where the starting time format provided is invalid)<br>
+       Expected: An error message informing 'Invalid Date Time Format!' is shown.
+
+1. Editing results in conflicting appointments
+
+    1. Prerequisites: The edited appointment has conflicting patient or doctor timeslots with an existing appointment in the appointment schedule.
+    1. Test case: `edit-appt 1 to/2022-06-08 09:00`<br>
+       Expected: The end time of the first appointment in the appointment schedule is not changed. Error details are shown in the status message. Status bar remains the same.
+
+### Find patients by search fields
+
+1. Finding a patient
+
+    1. Prerequisites: The patient to be found must exits in the patient list.
+
+    1. Test case: `find-patient John`<br>
+       Expected: The patient with name John is found and listed.
+
+    1. Test case: `find-patient 84511556`<br>
+       Expected: 0 patient is found. This is because `find-patient` command only search for keywords in the patient's name field.
+
+Note: This test case can be similarly performed for doctors in the doctor records by replacing `find-patient` with `find-doctor`.
+
 ### Listing patient records (or doctor records, or appointment schedule)
 
 1. Listing of all patients in the patient records when a predicate has been applied.
