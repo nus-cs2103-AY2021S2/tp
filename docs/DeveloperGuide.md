@@ -852,15 +852,85 @@ testers are expected to do more *exploratory* testing.
 #### Find a contact
 
 #### Sort contacts
+1. Sorting contacts while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command. 
+       Multiple contacts in the list.
+    1. Test case: `sort o/name` \
+       Expected: List of contacts get sorted in alphabetical order. 
+       Success message is shown in the status message.
+    1. Test case: `sort o/date` \
+       Expected: List of contacts get sorted in chronological order. 
+       Success message is shown in the status message.
+    1. Test case: `sort` \
+       Expected: List does not get sorted. 
+       Invalid command format error details shown in the status message.
+    1. Other incorrect sort commands to try: `sort   `, `sort 1`, `sort aaa` \
+       Expected: Similar to previous.
+    1. Test case: `sort o/jskdnks` \
+       Expected: List does not get sorted. 
+       Invalid option error details shown in the status message.
+
+2. Sorting contacts on a found list
+    1. Prerequisites: Multiple contacts in the list sharing a keyword.
+       Find contacts related to keyword using the `find` command.
+    1. Test case: `sort o/name` \
+       Expected: Found list of contacts get sorted in alphabetical order.
+       Executing the `list` command after this should show the full contact list in alphabetical order.
+    1. Test case: `sort o/date` \
+       Expected: Found list of contacts get sorted in chronological order.
+       Executing the `list` command after this should show the full contact list in chronological order.
 
 #### Favourite a contact
+1. Favourite a contact while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command.
+    1. Test case: `fav 1` \
+       Expected: First contact in the list is favourited. 
+       Details of favourited contact is shown in status message.
+       The star next to the first contact's name becomes filled.
+    1. Test case: `fav 1 o/remove` \
+       Expected: First contact in the list is unfavourited. 
+       Details of unfavourited contact is shown in status message.
+       The star next to the first contact's name becomes empty.
+    1. Test case: `fav` \
+       Expected: Invalid command format error details shown in the status message.
+    1. Other incorrect sort commands to try: `fav   ` \
+       Expected: Similar to previous.
+    1. Test case: `fav aaa`
+       Expected: Invalid index error details shown in the status message.
+    1. Other incorrect sort commands to try: `fav x` (where x is larger than list size) \
+       Expected: Similar to previous.
+    1. Test case: `fav 1 o/jskdnks` \
+       Expected: Invalid option error details shown in the status message.
+       
+2. Favourite a contact while a found list is being shown
+    1. Prerequisites: Multiple contacts in the list sharing a keyword.
+       Find contacts related to keyword using the `find` command.
+    1. Test case: `fav 2` \
+       Expected: Second contact in the list is favourited.
+       Details of favourited contact is shown in status message.
+       The star next to the second contact's name becomes filled.
+    1. Test case: `fav 1 o/remove` \
+       Expected: First contact in the list is unfavourited.
+       Details of unfavourited contact is shown in status message.
+       The star next to the first contact's name becomes empty.
 
 #### List all contacts
-      
+
 
 ### Testing Appointment Book Features
 
 #### Add an appointment
+
+1. Adding an appointment
+    
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" does not already exist \
+       Expected: A new appointment named "PTM" is created. The date of the appointment is 21/05/2021 10:00, the address is "ABC Pri Sch" and the appointment is tagged with the child tag "alice". 
+
+    1. Test case: `addAppt n/PTM a/ABC Pri Sch d/21/05/2021 10:00 tc/alice`, where an appointment named "PTM" that occurs on 21/05/2021 10:00 at ABC Pri Sch already exists \
+       Expected: No appointment is added. Error details shown in the status message.
+
+    1. Test case: `addAppt n/PTM` \
+       Expected: No appointment is added. Error details shown in the status message.
 
 #### Edit an appointment
 
