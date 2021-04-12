@@ -6,7 +6,6 @@ import seedu.cakecollate.model.order.Order;
 public class AddOrderDescriptorBuilder {
     private AddCommand.AddOrderDescriptor descriptor;
 
-    // todo javadocs
     public AddOrderDescriptorBuilder() {
         descriptor = new AddCommand.AddOrderDescriptor();
     }

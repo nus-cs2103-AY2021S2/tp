@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### Priscilla
+### Princess Priscilla Paulson
 
 <img src="images/ppris.png" width="200px">
 
@@ -37,7 +37,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer, Documentation
 * Responsibilities: Commons
 
-### Pavitra
+### Pavitra Thyagarajan
 
 <img src="images/pavz02.png" width="200px">
 
