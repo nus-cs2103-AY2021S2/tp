@@ -22,8 +22,7 @@ Given below are my contributions to the project.
   * What it does: allows the user to find contacts by specifying a specific field to search in by 
     adding `o/OPTION` to the command.
   * Justification: This feature improves the product significantly because a user might know exactly what 
-    they wish to find and need a quick way to find it. By allowing them to search in the specified field, 
-    they can find contacts faster.
+    they wish to find. By allowing them to search in the specified field, they can find contacts faster.
   * Highlights: The parser need to be edited to handle all the different options.This increased the number of branches in the code
     significantly, hence the implementation was challenging. The number of exceptions to be handled also increased, adding to the complexity.
     In addition, OOP was used as I extended the search predicates from a common parent class to prevent code duplication.
@@ -49,8 +48,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**: Extend usage of `help` command from teammate [Nicole](https://github.com/nicoleang09).
   * What it does: Instead of just copying the link to the user's clipboard, allowed button to open the link in the user's default browser.
-  * Justification: it is troublesome to click on `copy URL`, open the browser then paste the link into a browser. Instead, opening the link straight would make things a lot easier for the user.
-  * Highlights: Had to make use of external libraries that i had to do a lot of googling to find out about. Hence, the implementation was hard as it required understanding external API documentations and implementing them.
+  * Justification: It is troublesome to click on `copy URL`, then paste the link into a browser.
+  * Highlights: Had to make use of external libraries. Hence, the implementation was hard as it required understanding documentations and implementing them.
   * Pull requests: [#151](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/151) 
   
 * **Documentation**:
@@ -65,8 +64,7 @@ Given below are my contributions to the project.
 * **Community**:
   * Contributed to forum discussions (examples: [#17](https://github.com/nus-cs2103-AY2021S2/forum/issues/17#issuecomment-767455612), [21](https://github.com/nus-cs2103-AY2021S2/forum/issues/21), [#281](https://github.com/nus-cs2103-AY2021S2/forum/issues/281#issuecomment-811904159), [#95](https://github.com/nus-cs2103-AY2021S2/forum/issues/95#issuecomment-775764330))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/177), [2](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/173), [3](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/167), [4](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/165), [5](https://github.com/AY2021S2-CS2103T-T11-3/tp/issues/163))
-
 * **Team-Based**:
   * Set up Git Repo and organization at the start of project.
   * Set up GitHub pages and added initial PPP for teammates.
-  * Documented product aim in README.md
+
