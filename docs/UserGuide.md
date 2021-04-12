@@ -164,6 +164,7 @@ You can add a client to Link.me, by specifying each of the fields below:
 
 * Name 
   * should only contain alphanumeric characters, spaces and these special characters: (),-
+    * :bulb: **Tip:** Use `-` in place of `/` if your name has it. e.g. `Ravi s/o Veegan` --> `Ravi s-o Veegan`
   * should not be blank
   * should not be the same as an existing client
     * :bulb: **Tip:** Link.me does not allow identical names to help you avoid confusion. If more than one of your

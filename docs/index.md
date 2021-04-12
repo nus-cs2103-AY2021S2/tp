@@ -8,10 +8,10 @@ title: Link.me
 
 ![Ui](images/Ui.png)
 
-**Link.me is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**Link.me is a desktop application built to help insurance agents manage their clients.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using Link.me, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing Link.me, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in the development of Link.me, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
