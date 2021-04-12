@@ -956,6 +956,8 @@ Several attributes such as date, time and price are new attributes relative to A
 
 There was also a challenge in determining what was considered a valid or invalid input. Eg. How do we validate postal code / email. Such problems were further reviewed during the mock practical exam, where questions to what were considered valid inputs were further raised. By considering the suggestions of our peers, we improved our input validation by implementing stricter regex.
 
+<div style="page-break-after: always;"></div>
+
 ### Achievements:
 
 1. User story - We originally planned to fulfill 15 [User stories](#appendix-b-user-stories), but exceeded expectation by adding new User stories upon addition of new features,  eventually fulfilling a total of 20 user stories.
