@@ -190,7 +190,7 @@ These commands do not process any additional parameters, including the single-ar
 | Show help | `help` |
 | Exit the app | `exit` |
 
-A special command invoked by pressing the `TAB` key instead of `Enter` exists for `edit` and `eedit` -  details specified
+A special command invoked by pressing the <kbd>TAB</kbd> key instead of `Enter` exists for `edit` and `eedit` -  details specified
 in the [autocomplete section](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#autocomplete-tab)
 
 ### Contact list commands
@@ -407,21 +407,21 @@ Examples:
 * `help` lists all available commands.
 * `help list` shows the syntax and description for the `list` command.
 
-#### Autocomplete: `TAB`
+#### Autocomplete: <kbd>TAB</kbd>
 
 The Autocomplete feature helps autocomplete when editing a Person or an Event to save the user time from retyping details. Currently, the feature only works for commands `edit` and `eedit`.
 
 Format:
 
-Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] TAB`
+Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]`<kbd>TAB</kbd>
 
-EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK] TAB`
+EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]`<kbd>TAB</kbd>
 
 Note: Valid INDEX must be used in order for Autocomplete to function.
 
 Below are the respective behaviors of Autocomplete for various prefixes.
 
-All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
+All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on <kbd>TAB</kbd> keypress down.
 
 Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the person.
 
