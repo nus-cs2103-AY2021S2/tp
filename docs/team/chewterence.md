@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     already be completed or entered with wrong details.
   * Highlights: Initially this command was implemented as the `undrive` command that edits the assigned driver of a passenger to be empty. However, after
     reconsidering and conceptualizing how the user would use the product, the model was updated to include a list of pools which the `unpool` command would then delete from.
-    Implementation of this command was the precursor that lead to the consideration of redesigning the model to include both a pool and passenger list.
+    Implementation of this command was the precursor that led to the consideration of redesigning the model to include both a pool and passenger list.
 
 * **Project management**:
   * Maintained issue tracker for the team by assigning tasks and linking pull requests.
@@ -63,7 +63,7 @@ Given below are my contributions to the project.
     * Added documentation for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
     * Added UML sequence and activity diagrams for `pool` and `unpool` commands (Pull requests [\#234](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/234)).
     * Added instructions for manual testing documentation for `pool` and `unpool` commands (Pull requests [\#277](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/277)).
-    * Added Effort Appendix page (Pull requests [\#280](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/280)).
+    * Added Effort Appendix section (Pull requests [\#280](https://github.com/AY2021S2-CS2103T-W10-1/tp/pull/280)).
     * Updated glossary to contain descriptions of words that require an elaboration on.
 
 * **Contributions beyond the project team**:
