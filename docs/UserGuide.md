@@ -79,7 +79,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ## 3.1 General Purpose Features
 
-## 3.1.1 User Interface
+### 3.1.1 User Interface
 
 The various sections of the User Interface are described as in the picture below.
 ![Ui_labelled](images/Ui_labelled.png)

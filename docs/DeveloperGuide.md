@@ -601,7 +601,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding passengers by name while all passengers shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. 
+       All passengers listed using `list`.
 
     1. Test case: `find n/bernice`.<br>
        Expected: Details of passenger named `Bernice Yu` is shown. Status message shows 1 passenger listed.
@@ -618,7 +619,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding passengers by tag while all passengers are shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`.
+       All passengers listed using `list`.
 
     1. Test case: `find tag/finance`.<br>
        Expected: Details of `Bernice Yu` and `Roy Balakrishnan` are shown. Status message shows 2 passengers listed.
@@ -633,7 +635,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a pool while all pools are being shown.
 
-    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command. Default addressbook.json file present in the data folder.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`.
+       All pools listed using `listPool`.
 
     1. Test case: `findPool n/lenny`.<br>
        Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
@@ -651,7 +654,7 @@ testers are expected to do more *exploratory* testing.
 
 ## **Appendix: Effort**
 
-The creation of GreenMileageEfforts came with a great deal of effort from each and every one of the team members. Since the start of the project we have
+The creation of GreenMileageEfforts came with a great deal of effort from each of the team members. Since the start of the project we have
 made the effort to consistently conduct team meetings every week, most of these meetings were held in physical settings such that we could communicate our ideas effectively.
 Upon completion of the project, we have achieved a product that is a direct reflection of our hard work and determination.
 GreenMileageEfforts is a product that has been adapted and morphed from AB3, where there have been significant enhancements made since AB3.
@@ -684,27 +687,24 @@ While the user interface of AB3 consists of one panel to illustrate a list of pe
 was not a trivial task, as each of the panels had their own set of commands such as adding, deleting and filtering. On top of that, enhancements were made to ensure a cleaner looking user interface
 that is the current GreenMileageEfforts product today.
 
+#### Extension of `find` command
+
+The initial implementation of `find` inherited from AB3 only allowed users to search by names. 
+To improve usability for users, we introduced searching of other fields of a passenger. 
+While implementing the first iteration in v1.2, it took some additional time as it took some time to understand which classes interacted with each other when `find` was executed.
+This was harder to understand as there was no sequence diagram included for the `find` command as well.
+To implement the command, a predicate was needed for each of the attributes as well as the parsing of the arguments in `FindCommandParser` to allow for different type of searches to be possible.
+
+#### Extension of `delete` command
+The initial implementation of `delete` inherited from AB3 only allowed users to delete 1 passenger at a time. 
+To improve usability for users, we introduced multi-passenger deletion using indexes.
+The first iteration of this allowed for passengers to be deleted despite some other passengers being already in a pool.
+This was later revised to prevent users from executing `delete` all together when there are passengers still in a pool.
+This was chosen as better code quality could be achieved through such a decision.
+
 #### Workflow
 
-At the very start of the project for the very first milestone, work delegation and flow was not ideal, where one team member had to wait for the changes that another had to make.
+At the start of the project, work delegation and flow was not ideal, where one team member had to wait for the changes that another had to make.
 For instance, while one team member added new fields such as (TripTime and TripDay), another team member was tasked to update the logic of `Add` and `Edit` command for the new fields.
-Upon a post-mortem that reflects and self-evaluates our work process, we have refined our workflow such that it would be much more efficient by the second milestone, this included the proper
+Upon a post-mortem to reflect and evaluate our workflow, we managed to refine our workflow to make it much more efficient by the second milestone, this included the proper
 segmentation and delegation of work into its features. Finally, by doing so we have achieved a far better workflow by the end of the project that enabled us to create the GreenMileageEfforts product as it is today.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
