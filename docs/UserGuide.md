@@ -11,7 +11,7 @@ Welcome to the PocketEstate User Guide! Learn how to use PocketEstate to efficie
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. Introduction
 
@@ -37,6 +37,8 @@ This user guide uses various formatting styles to facilitate reading and to comm
 | UPPER_CASE                | Parameters of a command to be supplied by the user           |
 | ...                       | Parameters of a command that can be used multiple times      |
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick start
 
 ### 2.1 Download and Launch
@@ -50,6 +52,8 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
 
    ![Ui](images/AnnotatedUi.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 2.2 Trying out
 
@@ -73,7 +77,8 @@ This user guide uses various formatting styles to facilitate reading and to comm
 For a quick reference of the available commands and their syntax, refer to the [Command Summary](#7-command-summary) section.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## 3. User Interface
 
 ### 3.1 Design
@@ -81,6 +86,8 @@ For a quick reference of the available commands and their syntax, refer to the [
 PocketEstate boasts a minimalist design with alternating steel blue and light blue colours for regular properties/ appointments as its main design scheme. We also feature a grey background for property and appointment listings with an expired deadline to allow users to better focus on current properties/ appointments.
 
 ![uiColorScheme](images/UiColorscheme.png)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2 Property Icons
 
@@ -91,6 +98,8 @@ We also use the following symbols for easier identification of different propert
 {::nomarkdown}<p align="center">{:/} Hdb | {::nomarkdown}<p align="center">{:/} ![Hdb](images/hdb_16.png)
 {::nomarkdown}<p align="center">{:/} Condo | {::nomarkdown}<p align="center">{:/} ![Condo](images/condo_16.png)
 {::nomarkdown}<p align="center">{:/} Landed | {::nomarkdown}<p align="center">{:/} ![Landed](images/landed_16.png)
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Commands
 
@@ -116,6 +125,8 @@ We also use the following symbols for easier identification of different propert
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 4.1 General
 
 #### 4.1.1 Viewing help : `help`
@@ -132,6 +143,8 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2 Adding
 
 #### 4.2.1 Adding a property: `add property`
@@ -143,11 +156,14 @@ Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE 
 Description:
 * Each property has a **unique pair of address and postal code**.
   * No two properties with the exact same pair of address and postal code can exist in the app at the same time.
+* Property types can be either Hdb ![hdb_icon](images/hdb_16.png), Condo ![condo_icon](images/condo_16.png) or Landed ![landed_icon](images/landed_16.png)
 * The format for specifying a deadline date is **`DD-MM-YYYY`**.
 * Postal codes should have a **minimum of 5 digits** and a **maximum of 10 digits**.
 * Client's contact number should have a **minimum of 7 digits** and a **maximum of 15 digits**.
 * There can be multiple tags but different tags should be **separated with a comma**. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 * The property to be added **cannot have a deadline that is already passed**.
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
@@ -155,6 +171,8 @@ Examples:
 ![Example property added](images/ExampleAddProperty.png)
 
 * `add property n/The Estuary t/Condo a/97 Yishun Ave 1 p/769138 d/01-01-2022 r/Owner is up for negotiation of selling price cn/Sam cc/87553781 ce/sam_goh@gmail.com ca/$1,200,000 tags/99 year leasehold, Reservoir view`
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2 Adding an appointment: `add appointment`
 
@@ -176,6 +194,7 @@ Examples:
 
 * `add appointment n/Meeting at agency r/Company is setting new sales target for the month d/01-06-2021 t/1300`
 
+<div style="page-break-after: always;"></div>
 
 ### 4.3 Editing
 
@@ -197,11 +216,6 @@ Description:
 * Existing values will be updated to the input values.
 * The edited property **cannot have a deadline that is already passed**.
 
-Examples:
-*  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
-
-![Example property edited](images/ExampleEditProperty.PNG)
-
 <br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -209,6 +223,15 @@ Examples:
 To remove tags from a property, you can use the command `edit property INDEX tags/`. <br> e.g. `edit property 1 tags/` can be used to remove all the tags from the property at index 1.
 
 </div>
+
+<div style="page-break-after: always;"></div>
+
+Examples:
+*  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
+
+![Example property edited](images/ExampleEditProperty.PNG)
+
+<div style="page-break-after: always;"></div>
 
 #### 4.3.2 Editing an appointment : `edit appointment`
 
@@ -226,6 +249,8 @@ Examples:
 *  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
 
 ![Example appointment edited](images/ExampleEditAppointment.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4 Deleting
 
@@ -257,6 +282,8 @@ Description:
 Examples:
 *  `delete appointment 7` deletes the appointment at index `7`.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5 Listing
 
 #### 4.5.1 Listing all properties and appointments : `list all`
@@ -279,6 +306,8 @@ Shows a list of all appointments in the app.
 
 Format:
 * `list appointment`
+
+<div style="page-break-after: always;"></div>
 
 ### 4.6 Updating status
 
@@ -313,11 +342,17 @@ Status Types:
 * `SalesAgreement` represents the state when the Sales and Purchase Agreement has been issued
 * `Completion` represents the state when the sales of the property has completed
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
 
+<br>
+
 ![Example property updated](images/ExampleUpdateNew.PNG)
+
+<div style="page-break-after: always;"></div>
 
 ### 4.7 Sorting
 
@@ -353,6 +388,8 @@ Description:
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.8 Undoing
 
 #### 4.8.1 Undoing : `undo`
@@ -367,6 +404,8 @@ Description:
 
 Examples:
 *  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.9 Searching
 
@@ -390,22 +429,20 @@ Options:
 
     Searches for properties with names that contain the keywords in `NAME`, i.e. "Mayfair" matches `find property n/mayfair` but not `find property n/may`. 
 
-* `[pm/PRICE_UPPER_LIMIT]`
+* `[pl/UPPER_PRICE_LIMIT]`
 
-    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`.
+    Searches for properties with prices less than `[UPPER_PRICE_LIMIT]`.
 
-* `[pl/PRICE_LOWER_LIMIT]`
+* `[pm/LOWER_PRICE_LIMIT]`
 
-    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
+    Searches for properties with prices more than `[LOWER_PRICE_LIMIT]`.
     
 * `[t/PROPERTY_TYPE]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+    Searches for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
 
-    The following property types are supported:
-    * hdb
-    * condo
-    * landed
+    The following property types are supported:<br>
+    Hdb, Condo, Landed
     
 * `[a/ADDRESS]`
     
@@ -439,6 +476,7 @@ Options:
 
     Searches for properties whose tags contains tags in `[TAGS_SEPARATED_BY_COMMAS]`. `TAGS_SEPARATED_BY_COMMAS` consists of all tags you wish to search for, all separated with comma. 
 
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find property n/mayfair`
@@ -446,6 +484,8 @@ Examples:
 * `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
 ![find property example](images/findproperty.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 4.9.2 Searching appointments: `find appointment`
 
@@ -475,14 +515,18 @@ Options:
         
 * `[t/TIME]`
     
-    Searches for properties with `[TIME]` as time. 
-    
+    Searches for properties with `[TIME]` as time.
+
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
 * `find appointment t/2030`
 
 ![find appointment example](images/findappointment.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 4.9.3 Searching clients: `find client`
 
@@ -498,7 +542,9 @@ Examples:
 * `find client jacob`
 * `find client george`
 
-![find client example](images/findclient.png)
+<img src="images/findclient.png" height="600" width="612" />
+
+<div style="page-break-after: always;"></div>
 
 ### 4.10 Clearing
 
@@ -523,6 +569,8 @@ Clears all appointments from the app.
 Format:
 * `clear appointment`
 
+<div style="page-break-after: always;"></div>
+
 ## 5. Storage
 
 #### 5.1 Saving the data
@@ -542,6 +590,8 @@ Advanced users are welcome to update data directly by editing the data files.
 If your changes to the data file makes its format invalid, PocketEstate will discard all data and start with an empty data file at the next run. For example, if the property storage data file is corrupted but the appointment storage data file is in the correct format, PocketEstate will start with an empty data file for properties and use the original data file for appointments.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 5.3 Specifying the data files
 
 It is also possible to specify your own property and/or appointment storage data files. In the `preferences.json` file that is generated when you first launch the app, you may edit the values of `propertyBookFilePath` and/or `appointmentBookFilePath` to your own property and appointment storage file paths respectively.
@@ -552,14 +602,13 @@ It is also possible to specify your own property and/or appointment storage data
 
 </div>
 
---------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PocketEstate home folder.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. Command summary
 
@@ -567,25 +616,27 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
-**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
-**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
-**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cc/96011846`
-**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/21-07-2021 t/1500`
-**Delete property** | `delete property INDEX`<br><br> e.g.,`delete property 7`
-**Delete appointment** | `delete appointment INDEX`<br><br> e.g.,`delete appointment 7`
+**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g. `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
+**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g. `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g. `edit property 1 r/Urgent to sell cc/96011846`
+**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g. `edit appointment 3 d/21-07-2021 t/1500`
+**Delete property** | `delete property INDEX`<br><br> e.g. `delete property 7`
+**Delete appointment** | `delete appointment INDEX`<br><br> e.g. `delete appointment 7`
 **List all properties and appointments** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
-**Sort property** | `sort property o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g., `sort property o/asc k/price`
-**Sort appointment** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g., `sort appointment o/asc k/datetime`
+**Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g. `update 1 u/new 600000`
+**Sort property** | `sort property o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g. `sort property o/asc k/price`
+**Sort appointment** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g. `sort appointment o/asc k/datetime`
 **Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] [ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
-**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]` <br><br> e.g., `find appointment n/bob d/23-12-2021`
-**Find client** | `find client [KEYWORD]...` <br><br> e.g., `find client alice`
+**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]` <br><br> e.g. `find appointment n/bob d/23-12-2021`
+**Find client** | `find client [KEYWORD]...` <br><br> e.g. `find client alice`
 **Clear all properties and appointments** | `clear all`
 **Clear property** | `clear property`
 **Clear appointment** | `clear appointment`
 **Undo** | `undo`
+
+<div style="page-break-after: always;"></div>
 
 ## 8. Appendix
 
