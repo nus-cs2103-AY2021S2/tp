@@ -17,6 +17,8 @@ public class Messages {
             + "provided does not exist in the system.\n";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_NO_PERSONS_FOUND = "No persons found!";
+    public static final String MESSAGE_NON_EXISTENT_PERSON_EMAIL =
+            "The person email provided does not exist in the system.\n";
 
     // Venue related messages
     public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
@@ -35,6 +37,7 @@ public class Messages {
     // Booking related messages
     public static final String MESSAGE_BOOKING_DISPLAYED = "%1$d Booking listed!";
     public static final String MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX = "The booking index provided is invalid.";
+    public static final String MESSAGE_BOOKING_INDEX_OUT_OF_RANGE = "The booking index provided is out of range.";
     public static final String MESSAGE_NO_BOOKINGS_FOUND = "No bookings found!";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! Input "
             + "should be in yyyy-mm-dd HH:MM format.\n";
