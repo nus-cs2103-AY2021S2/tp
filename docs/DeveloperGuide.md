@@ -382,7 +382,7 @@ we assume that the user input is `return bc/1000000000`:
   `Model#getBookNameForReturn()`, `Model#markRecordAsReturned()` and `Model#returnBook()`.
 * Step 5: After calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`.
 * Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the
-  dateReturned to 'LocalDate.now()'.
+  dateReturned to `LocalDate.now()`.
 * Step 7: After calling `Model#returnBook()`, `ModelManager` will then call `ModelManager#updateFilteredRecordList()`
   which will update the corresponding record list in local storage file.
 * Step 8: `ModelManager#returnBook()` will also change the status of book and reader specified by calling
