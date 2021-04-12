@@ -145,7 +145,9 @@ The `Appointment`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the `PatientRecords` data in json format and read it back.
+* can save the `DoctorRecords` data in json format and read it back.
+* can save the `AppointmentSchedule` data in json format and read it back.
 
 ### Common classes
 
@@ -197,33 +199,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                      | I want to …​                              | So that I can…​                                                      |
 | -------- | ------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------- |
 | `* * *`  | new user                                    | see usage instructions                   | refer to instructions when I forget how to use the App              |
-| `* * *`  | user                                        | add a new appointment                    |                                                                     |
-| `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
-| `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
-| `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
 | `* * *`  | user                                        | add a new patient                        |                                                                     |
-| `* * *`  | user                                        | delete a patient                         | remove patients who on longer have appointments                     |
-| `* * *`  | user                                        | find a patient  by specific fields       | locate details of relevant patients without having to go through the entire list |
-| `* * *`  | user                                        | edit a patient  by specific fields       | update the patient information without having to delete and add a new patient |
 | `* * *`  | user                                        | add a new doctor                         |                                                                     |
+| `* * *`  | user                                        | add a new appointment                    |                                                                     |
+| `* * *`  | user                                        | delete a patient                         | remove patients who on longer have appointments                     |
 | `* * *`  | user                                        | delete a doctor                          | remove doctors who on longer work for the clinic                    |
+| `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
+| `* * *`  | user                                        | edit a patient by specific fields        | update the patient information without having to delete and add a new patient |
+| `* * *`  | user                                        | edit a doctor by specific fields         | update the doctor information without having to delete and add a new doctor |
+| `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
+| `* * *`  | user                                        | find a patient by specific fields        | locate details of relevant patients without having to go through the entire list |
 | `* * *`  | user                                        | find a doctor by specific fields         |  locate details of relevant doctors without having to go through the entire list |
-| `* * *`  | user                                        | edit a doctor  by specific fields        | update the doctor information without having to delete and add a new doctor |
-| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
+| `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
 | `* * *`  | user                                        | list all patients                        | see all the patients or reset the patient filters                   |
 | `* * *`  | user                                        | list all doctors                         | see all the doctors or reset the doctors filters                    |
-| `* *`    | user                                        | clear all appointments                   | clear the appointment list without having to delete appointments one by one |
-| `* *`    | user                                        | clear all patients                       | clear the patient list without having to delete appointments one by one     |
-| `* *`    | user                                        | clear all doctors                        | clear the doctor list without having to delete appointments one by one     |
-| `* *`    | user                                        | lookup previous records of an appointment| fill in missing information where ommitted by the appointment       |
-| `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
-| `* *`    | user                                        | lookup previous records of a doctor      | fill in missing information where ommitted by the doctor            |
-| `* *`    | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
-| `* *`    | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
+| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
+| `* *`    | user                                        | clear the patient records                | clear the patient records without having to delete patients one by one |
+| `* *`    | user                                        | clear the doctor records                 | clear the doctor records without having to delete doctors one by one |
+| `* *`    | user                                        | clear the appointment schedule           | clear the appointment schedule without having to delete appointments one by one |
+| `* *`    | user                                        | look up previous records of a patient    | fill in missing information where omitted by the patient            |
+| `* *`    | user                                        | look up previous records of an appointment | fill in missing information where omitted by the appointment      |
+| `* *`    | user                                        | look up previous records of a doctor     | fill in missing information where omitted by the doctor             |
+| `*`      | user with many appointments in the schedule | be reminded of overdue appointments      | take the appropriate action to resolve the issues                   |
+| `*`      | user with many appointments in the schedule | tag appointments with urgency categories | more urgent appointments can take priority                          |
 | `*`      | user with many appointments in the schedule | sort appointments by specific fields     | locate a category of appointments easily                            |
 | `*`      | user with many appointments in the schedule | automatically recommended available timings and doctors for new appointments | create appointments without manually checking availability in the schedule |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -490,6 +490,7 @@ Use case ends.
 1. User enters the `list-appt` command.
 2. App-Ointment displays all appointments in the appointment schedule.
 
+
 ### Non-Functional Requirements
 _Non-functional requirements specify the constraints under which App-Ointment is developed and operated._
 
@@ -509,7 +510,6 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 
 #### Notes about project scope:
 * The App-Ointment data file is private and local to the user.
-*{More to be added}*
 
 ### Glossary
 
@@ -523,8 +523,6 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 * **Subcommand**: The prefixes and parameters that follow behind a Command Word entered by the user. eg. `n/Some Name`
 * **System**: The App-Ointment App
 * **User**: The Receptionist, not the patient or doctor
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
