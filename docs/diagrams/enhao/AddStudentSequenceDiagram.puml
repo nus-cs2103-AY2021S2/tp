@@ -52,16 +52,17 @@ AddStudentCommand -> Model : hasStudent(name)
 activate Model
 deactivate Model
 
-opt no student with the same identity in TutorBuddy
+opt has an existing student with the same identity in the application
+    AddStudentCommand --> LogicManager : throw CommandException
+    [<--LogicManager : throw CommandException
+end opt
+
 AddStudentCommand -> Model : addStudent(student)
 activate Model
 
 Model -> Model : updateFilteredStudentList\n(PREDICATE_SHOW_ALL_STUDENTS)
 Model --> AddStudentCommand
 deactivate Model
-end opt
-
-
 
 create CommandResult
 AddStudentCommand -> CommandResult
