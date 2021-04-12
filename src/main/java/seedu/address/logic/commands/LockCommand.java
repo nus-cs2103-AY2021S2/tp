@@ -31,7 +31,8 @@ public class LockCommand extends Command {
 
     public static final String MESSAGE_FAILED_TO_STORE_PASSWORD = "Failed to store password file.";
 
-    public static final String MESSAGE_CURRENT_PASSWORD_PROVIDED_BUT_NOT_LOCKED = "ClientBook is not yet locked, please provide only the new password.";
+    public static final String MESSAGE_CURRENT_PASSWORD_PROVIDED_BUT_NOT_LOCKED = "ClientBook is not yet locked, " +
+            "please provide only the new password.";
 
 
     private final Optional<String> currentPassword;
