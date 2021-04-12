@@ -314,7 +314,7 @@ time frame of 1 week that pops out whenever the user opens the application.
       * User has no flexibility to specify the time range he/she wants to receive reminders for.
       * If user want to check for reminders again he has to reopen the application.
     
-###Add Order Item Feature
+### Add Order Item Feature
 The `addItem` command enables users to predefine order items (also known as cake items or order descriptions). The user can choose to add order items directly from this table when adding orders to CakeCollate.
 
 An `OrderItem` consists of a `Type` field which refers to the description of the order item. In the user guide the `Type` field is referred to as `ORDER_DESCRIPTION` in order to make it more user friendly since `Type` is not very descriptive.
@@ -362,6 +362,53 @@ The following sequence diagram shows how this works:
       * Provides more flexibility to user who might want to add in the same order item with different case.
     * Cons:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
+
+### Delete Order Item Feature
+The `deleteItem` command enables users to delete predefined order items (also known as cake items or order descriptions). The user can choose to delete a single order item or multiple order items at the same time.
+
+The `deleteItem` command utilises the `IndexList` class to enable the deletion of multiple items at once. The `IndexList` parser takes in a string of multiple indexes separated by spaces, parses them to `Index` and stores them in an `ArrayList<Index>`.
+
+The underlying functionality for the `deleteItem` command utilises the `DeleteOrderItemCommand::execute` method which sorts the provided `Index List` in descending order. All the `OrderItem`s pertaining to the indexes input by the user are removed from the `UniqueOrderItemList` using the `Model::deleteOrderItem` method.
+
+If the user wants to delete an order items at index `1` and `2` in the order items table, they can use the command `deleteItem 1 2`.
+
+Given below is an example usage scenario and how the `deleteItem` mechanism works.
+
+*Step 1.* The user keys in and executes the command `deleteItem 1 2` to delete the order items located at index 1 and 2 in the order items table.
+
+*Step 2.* The command is parsed by `DeleteOrderItemCommandParser`.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, a `DeleteOrderItemCommand` will be created.
+
+*Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
+
+The following sequence diagram shows how this works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates AddOrderItemCommandParser and calls parse("Chocolate Cake") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+![DeleteOrderItemSequenceDiagram](images/DeleteOrderItemSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+
+#### Design considerations:
+
+##### Aspect: Checking for duplicates when adding `OrderItem` to `UniqueOrderItemList`
+* **Alternative 1 (current choice):** `Type::equals` method ignores case (returns `True` if the type is the same even if the case is different).
+    * Pros:
+        * Prevents user from accidentally adding a duplicate `OrderItem` with the same value for `Type` but different case.
+    * Cons:
+        * Provides lesser flexibility to user who might want to add in the same order item with different case.
+
+* **Alternative 2:** `Type::equals` method considers case (returns `False` if case is different).
+    * Pros:
+        * Provides more flexibility to user who might want to add in the same order item with different case.
+    * Cons:
+        * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
 ### \[Proposed\] Undo/redo feature
 
