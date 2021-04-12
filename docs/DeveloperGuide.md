@@ -1,7 +1,9 @@
-﻿# NuFash Guide
----
+﻿---
 layout: page
-title: NuFash Developer Guide
+title: Developer Guide
+---
+# NuFash Developer Guide
+
 ---
 * Table of Contents
   {:toc}
