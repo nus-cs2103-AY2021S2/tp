@@ -56,7 +56,7 @@ The application consists of 6 main components:
 
 | Component                           | Description
 | ----------------------------------- | -------------------------------------------------------------------- |
-| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). * It is responsible for: * At app launch: Initializes the components in the correct sequence, and connects them up with each other. * At shut down: Shuts down the components and invokes cleanup methods where necessary.|
+| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java).  It is responsible for: (1) At app launch: Initializes the components in the correct sequence, and connects them up with each other. (2) At shut down: Shuts down the components and invokes cleanup methods where necessary.|
 | [**`UI`**](#ui-component)           | The UI of the App.                                                   |
 | [**`Logic`**](#logic-component)     | The command executor.                                                |
 | [**`Model`**](#model-component)     | Holds the data of the App in memory.                                 |
@@ -170,7 +170,7 @@ As Tutor Tracker is an application to aid users to track their upcoming tuition 
 The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
 It implements the following operations:
 * `Add appointment` - Adds an appointment to the list of appointments.
-* `Edit appointment` - Edit an appointment from the list of appointments.
+* `Edit appointment` - Edit an existing appointment from the list of appointments.
 * `Delete appointment` - Delete an appointment from the list of appointments.
 * `Find appointment` - Find a tutor from the list of appointments by tutor's name.
 * `View schedules` - View the list of appointments that is happening on the queried date.
@@ -779,7 +779,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
       Use case resumes at step 2.
 
 * 2b. The tutor specified is invalid.
-    * 1b1. TutorTracker shows an error message.
+    * 2b1. TutorTracker shows an error message.
 
       Use case resumes at step 2.
 
@@ -830,6 +830,11 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
       
       Use case resumes at step 2.
 
+* 3b. The tutor is already a favourite.
+   * 3b1. TutorTracker shows an error message.
+
+     Use case ends.   
+
 <hr/>
 
 **Use Case UC0006: List favourite(s)**
@@ -870,9 +875,9 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
       Use case resumes at step 2.
 
 * 3b. The tutor is not a favourite so cannot be unfavourited.
-    * 3a1. TutorTracker shows an error message.
-      
-      Use case resumes at step 2.
+    * 3b1. TutorTracker shows an error message.
+
+      Use case ends.
 
 <hr/>
 
@@ -882,7 +887,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 1.  User __requests to list tutors (UC0002)__.
 2.  TutorTracker shows a list of tutors.
-3.  User requests to export a tutor's details,subject list and notes in the list, by index.
+3.  User requests to export a tutor's details,subject list and notes in the list, by index of that tutor.
 4.  Text file containing tutor's details,subject list and notes created.
     
     Use case ends.
@@ -928,6 +933,11 @@ Use case ends.
 2. TutorTracker displays the list of tuition appointments to the user.
 
     Use case ends.
+
+**Extension**
+
+* 1a. The list is empty.   
+  Use case ends.
 
 <hr/>
 
@@ -1034,7 +1044,7 @@ Use case ends.
 4.  TutorTracker deletes that specific grade.    
     Use case ends.
 
-**Extensions**
+**Extension**
 * 3a. Index is invalid.
     * 3a1. TutorTracker shows an error message.
 
@@ -1136,7 +1146,7 @@ Use case ends.
 
    Use case ends.
 
-**Extensions**
+**Extension**
 * 2a. There is no existing budget.
    * 2a1. TutorTracker flags out an error.
 
