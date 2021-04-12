@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: alt-page
 title: Yao Wei's Project Portfolio Page
 ---
 

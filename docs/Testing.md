@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: alt-page
 title: Testing guide
 ---
 

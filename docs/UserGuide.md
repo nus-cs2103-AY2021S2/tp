@@ -1,6 +1,7 @@
 ---
 layout: page
-title: User Guide
+title: A-Bash Book User Guide
+navigation_title: User Guide
 ---
 
 <h1 align="center">A-Bash Book User Guide</h1>

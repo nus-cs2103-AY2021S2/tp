@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: alt-page
 title: "Tutorial: Adding a command"
 ---
 

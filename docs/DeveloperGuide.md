@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Developer Guide
+title: A-Bash Book Developer Guide
+navigation_title: Developer Guide
 ---
 * Table of Contents
 {:toc}
