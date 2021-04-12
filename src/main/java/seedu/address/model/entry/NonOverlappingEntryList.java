@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.exceptions.EntryNotFoundException;
 import seedu.address.model.entry.exceptions.OverlappingEntryException;
 

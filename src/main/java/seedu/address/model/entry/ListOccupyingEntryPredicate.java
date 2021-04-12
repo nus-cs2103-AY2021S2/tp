@@ -11,6 +11,9 @@ public class ListOccupyingEntryPredicate implements Predicate<Entry> {
     private final LocalDateTime targetStart;
     private final LocalDateTime targetEnd;
 
+    /**
+     * Creates a ListOccupyingEntryPredicate with target interval.
+     */
     public ListOccupyingEntryPredicate(EntryDate startDateTime, EntryDate endDateTime) {
         this.targetStart = startDateTime.getDate();
         this.targetEnd = endDateTime.getDate();
