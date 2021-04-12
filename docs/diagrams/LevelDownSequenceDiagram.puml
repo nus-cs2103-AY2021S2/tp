@@ -48,7 +48,18 @@ deactivate AddressBookParser
 LogicManager -> LevelDownCommand : execute()
 activate LevelDownCommand
 
-ref over LevelDownCommand, Model : execute method of LevelDownCommand
+LevelDownCommand -> Model : filterIndicesThenTransformPersonList(indices, new PersonLevelDownFunction())
+activate Model
+
+Model --> LevelDownCommand
+deactivate Model
+
+create CommandResult
+LevelDownCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LevelDownCommand
+deactivate CommandResult
 
 LevelDownCommand --> LogicManager : result
 deactivate LevelDownCommand

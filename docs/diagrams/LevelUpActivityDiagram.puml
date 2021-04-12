@@ -11,7 +11,7 @@ if () then ([command word is valid])
         :Returns LevelUpCommand with indexes to be excluded as argument;
         :Model filters the excluded people then advances the rest of the people in the
         transformed persons list by one education level;
-        :Displays observable persons list;
+        :Displays transformed persons list;
     else ([else])
         :ParseException is thrown;
     endif
