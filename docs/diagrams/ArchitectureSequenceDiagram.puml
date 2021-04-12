@@ -1,26 +1,27 @@
 @startuml
 !include style.puml
+hide stereotypes
 
 Actor User as user USER_COLOR
-Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
-Participant ":Storage" as storage STORAGE_COLOR
+Participant ":UI" as ui <<ui>> UI_COLOR
+Participant ":Logic" as logic <<logic>> LOGIC_COLOR
+Participant ":Model" as model <<model>> MODEL_COLOR
+Participant ":Storage" as storage <<storage>> STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "delete 1"
-activate ui UI_COLOR
+user -[USER_COLOR]> ui : executeCommand\n("customer delete 1")
+activate ui UI_COLOR UI_COLOR_DARK
 
-ui -[UI_COLOR]> logic : execute("delete 1")
-activate logic LOGIC_COLOR
+ui -[UI_COLOR]> logic : execute\n("customer delete 1")
+activate logic LOGIC_COLOR LOGIC_COLOR_DARK
 
 logic -[LOGIC_COLOR]> model : deletePerson(p)
-activate model MODEL_COLOR
+activate model MODEL_COLOR MODEL_COLOR_DARK
 
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(personBook)
-activate storage STORAGE_COLOR
+logic -[LOGIC_COLOR]> storage : savePersonBook(personBook)
+activate storage STORAGE_COLOR STORAGE_COLOR_DARK
 
 storage -[STORAGE_COLOR]> storage : Save to file
 activate storage STORAGE_COLOR_T1

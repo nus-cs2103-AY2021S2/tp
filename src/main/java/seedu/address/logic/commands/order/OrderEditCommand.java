@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,6 @@ public class OrderEditCommand extends Command {
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order.";
-    public static final String MESSAGE_NOT_UNCOMPLETED_ORDER = "This order is not uncompleted. It cannot be modified";
 
     private final Index index;
     private final OrderEditCommand.EditOrderDescriptor editOrderDescriptor;
@@ -72,10 +72,6 @@ public class OrderEditCommand extends Command {
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
 
-        if (orderToEdit.getState() != Order.State.UNCOMPLETED) {
-            throw new CommandException(MESSAGE_NOT_UNCOMPLETED_ORDER);
-        }
-
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 
         if (!orderToEdit.isSame(editedOrder) && model.hasOrder(editedOrder)) {
@@ -94,7 +90,11 @@ public class OrderEditCommand extends Command {
             model.addOrder(orderToEdit);
             model.decreaseIngredientByOrder(orderToEdit);
             throw exception;
+        } finally {
+            Comparator<Order> comparator = new OrderChronologicalComparator();
+            model.updateFilteredOrderList(comparator);
         }
+
 
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder),
                 CommandResult.CRtype.PERSON);
@@ -135,7 +135,8 @@ public class OrderEditCommand extends Command {
 
         assert updatedDishQuantityList != null;
 
-        Order editedOrder = new Order(updatedDateTime, updatedCustomer, updatedDishQuantityList);
+        Order editedOrder = new Order(updatedDateTime, updatedCustomer, updatedDishQuantityList,
+            orderToEdit.getState());
 
         return editedOrder;
     }

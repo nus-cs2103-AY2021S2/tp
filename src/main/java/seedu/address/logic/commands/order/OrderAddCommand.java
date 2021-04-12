@@ -68,7 +68,7 @@ public class OrderAddCommand extends Command {
 
         Person customer = OrderCommandUtil.getValidCustomerByOneIndex(customerId, model);
 
-        Order toAdd = new Order(dateTime, customer, dishQuantityList);
+        Order toAdd = new Order(dateTime, customer, dishQuantityList, Order.State.UNCOMPLETED);
 
         // isValidOrderAddition throws a CommandException and hence acts as a guard clause
         OrderCommandUtil.isValidOrderAddition(toAdd, model);
@@ -76,8 +76,7 @@ public class OrderAddCommand extends Command {
         model.decreaseIngredientByOrder(toAdd);
 
         model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
-        Comparator<Order> comparator = (first, second) ->
-                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
+        Comparator<Order> comparator = new OrderChronologicalComparator();
         model.updateFilteredOrderList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.ORDER);
     }

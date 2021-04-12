@@ -1,15 +1,24 @@
 @startuml
 !include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor LOGIC_COLOR_T4
+skinparam arrowThickness 2
+skinparam arrowColor LOGIC_COLOR
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic {
+skinparam Note {
+    BackgroundColor #white
+}
 
-package Parser {
+package Logic{
+
+package Parser as parser{
 Interface Parser <<Interface>>
-Class AddressBookParser
-Class XYZCommandParser
+Class JJIMYParser
+Interface ComponentParser <<Interface>>
+Class CustomerParser
+Class MenuParser
+Class OrderParser
+Class InventoryParser
+Class ComponentXYZCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -17,8 +26,8 @@ Class ArgumentTokenizer
 Class Prefix
 }
 
-package Command {
-Class XYZCommand
+package Command as command {
+Class ComponentXYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
@@ -28,35 +37,48 @@ Class LogicManager
 }
 
 package Model{
-Class HiddenModel #FFFFFF
+Class HiddenModel<<hidden>>
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+package Storage{
+Class HiddenStorage<<hidden>>
+}
 
-LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+Class HiddenOutside<<hidden>>
+HiddenOutside .down.> Logic
 
-XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
+LogicManager -down-> "1" JJIMYParser
+JJIMYParser .right.> ComponentParser: creates >
+CustomerParser .up.|> ComponentParser
+MenuParser .up.|> ComponentParser
+OrderParser .up.|> ComponentParser
+InventoryParser .up.|> ComponentParser
+CustomerParser ..> ComponentXYZCommandParser: creates >
+MenuParser ..> ComponentXYZCommandParser: creates >
+OrderParser ..> ComponentXYZCommandParser: creates >
+InventoryParser ..> ComponentXYZCommandParser: creates >
+
+ComponentXYZCommandParser .left.> ComponentXYZCommand: creates >
+ComponentXYZCommandParser .right.|> Parser : \t
+ComponentXYZCommandParser ..> ArgumentMultimap
+ComponentXYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
+ComponentXYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
+ComponentXYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
+
+ComponentXYZCommand -up-|> Command
+Command .up.> CommandResult
+LogicManager .down.> CommandResult
+
+LogicManager .up.|> Logic
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+LogicManager -up-> Storage
+LogicManager -down-> Model
+Command .left.> Model
 
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
-Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+Logic .right.> CommandResult
 @enduml

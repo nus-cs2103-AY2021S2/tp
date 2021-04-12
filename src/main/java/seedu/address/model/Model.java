@@ -252,13 +252,13 @@ public interface Model {
 
     /**
      * Deletes the given order.
-     * The order must exist.
+     * @param order to delete
      */
     void deleteOrder(Order order);
 
     /**
-     * Deletes a list of orders.
-     * The orders must exist.
+     * Deletes a {@code List<Order>} of orders
+     * @param orders to delete
      */
     void deleteOrders(List<Order> orders);
 
@@ -323,4 +323,7 @@ public interface Model {
 
     /** Returns true if an order can be fulfilled */
     boolean canFulfilOrder(Order target);
+
+    /** Returns true if a list of orders can be fulfilled */
+    boolean canFulfilOrders(List<Order> orders);
 }

@@ -213,6 +213,7 @@ component command prefix/[INPUT] -flag
 
         The above command would add a new contact named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
         address "Lower Kent Ridge Road, Singapore 119077" and tagged with "Gluten Allergy".
+        > Note: A known limitation of add is that customers with different names but exactly the same details (phone number, email, address) will not be marked as a duplicate.
         
         <p>&nbsp;</p>
         
@@ -504,7 +505,7 @@ component command prefix/[INPUT] -flag
         order edit [INDEX] (n/[CUSTOMER_ID]) (dt/[DELIVERY_DATETIME]) (d/[DISH_ID]... q/[QUANTITY]...)
         ```
 
-        At least one of the fields in round brackets must be present in the edit command.
+        At least one of the fields in round brackets must be present in the edit command Only uncompleted orders can be edited. Uncompleted orders can be viewed with the `order list` command.
       
         <p>&nbsp;</p>
         
@@ -540,8 +541,7 @@ component command prefix/[INPUT] -flag
         ```
         order complete [INDEX]
         ```
-        The above command would mark the order of that index as complete. The order will no longer be in the order list. Instead, it will be in order history.
-        
+        The above command would mark the order of that index as complete. Only uncompleted orders can be completed. Uncompleted orders can be viewed with the `order list` command. The order will no longer be in the order list. Instead, it will be in order history.        
         <p>&nbsp;</p>
         
         ---
@@ -705,6 +705,9 @@ component command prefix/[INPUT] -flag
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JJIMY home folder.
 ![MoveData](images/MoveData.png)
+
+**Q**: The window for JJIMY is too small, is there a way for me to resize the window?<br>
+**A**: Hover over the bottom right corner ![corner](images/corner.png) of JJIMY, you will see ![resize](images/resize_white.png) icon. Drag it to resize the window.
 
 </details>
 

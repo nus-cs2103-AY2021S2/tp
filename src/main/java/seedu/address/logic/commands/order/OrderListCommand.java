@@ -23,8 +23,7 @@ public class OrderListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Comparator<Order> comparator = (first, second) ->
-                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
+        Comparator<Order> comparator = new OrderChronologicalComparator();
         model.updateFilteredOrderList(comparator);
         model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
         return new CommandResult(MESSAGE_SUCCESS, CommandResult.CRtype.ORDER);

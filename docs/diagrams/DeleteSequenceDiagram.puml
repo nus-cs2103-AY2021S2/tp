@@ -1,68 +1,77 @@
 @startuml
 !include style.puml
 
-box Logic LOGIC_COLOR_T1
+skinparam SequenceBoxBorderColor  LOGIC_COLOR_DARK
+
+box Logic LOGIC_COLOR_T2
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":JJIMYParser" as JJIMYParser LOGIC_COLOR
+participant ":ComponentParser" as ComponentParser LOGIC_COLOR
+participant ":CustomerDeleteCommandParser" as CustomerDeleteCommandParser LOGIC_COLOR
+participant "d:CustomerDeleteCommand" as CustomerDeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
+box Model MODEL_COLOR_T2
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute\n("customer delete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> JJIMYParser : parseCommand\n("customer delete 1")
+activate JJIMYParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+JJIMYParser -> ComponentParser : parse("delete 1")
+activate ComponentParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+create CustomerDeleteCommandParser
+ComponentParser -> CustomerDeleteCommandParser
+activate CustomerDeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+CustomerDeleteCommandParser --> ComponentParser
+deactivate CustomerDeleteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+ComponentParser -> CustomerDeleteCommandParser : parse("1")
+activate CustomerDeleteCommandParser
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+create CustomerDeleteCommand
+CustomerDeleteCommandParser -> CustomerDeleteCommand
+activate CustomerDeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+CustomerDeleteCommand --> CustomerDeleteCommandParser : d
+deactivate CustomerDeleteCommand
+
+CustomerDeleteCommandParser --> ComponentParser : d
+deactivate CustomerDeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+CustomerDeleteCommandParser -[hidden]-> JJIMYParser
+destroy CustomerDeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+ComponentParser --> JJIMYParser : d
+deactivate ComponentParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+JJIMYParser --> LogicManager : d
+deactivate JJIMYParser
 
-DeleteCommand -> Model : deletePerson(1)
+LogicManager -> CustomerDeleteCommand : execute()
+activate CustomerDeleteCommand
+
+CustomerDeleteCommand -> Model : deletePerson(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> CustomerDeleteCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+CustomerDeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> CustomerDeleteCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+CustomerDeleteCommand --> LogicManager : result
+deactivate CustomerDeleteCommand
 
 [<--LogicManager
 deactivate LogicManager

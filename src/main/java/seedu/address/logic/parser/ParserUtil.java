@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,16 +21,18 @@ public class ParserUtil {
 
     // ========== ERROR MESSAGES ==========
 
-    public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
-    public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
-    public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
-    public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
-    public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
-    public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
-
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_NONNEGATIVE_INT = "Non-negative integer must be specified.";
+
+    public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
+    public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
+    public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
+    public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
+    public static final String MESSAGE_INVALID_TAG = "Invalid tag specified.";
+    public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
+    public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
     public static final String MESSAGE_INVALID_PRICE = "Price must be a non-negative double.";
+    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format specified.";
 
     public static final String MESSAGE_NO_KEYWORD = "No keyword specified.";
     public static final String MESSAGE_NO_KEYWORDS = "No keywords specified.";
@@ -41,6 +45,21 @@ public class ParserUtil {
 
     // Phone validation: must contain numerical characters only.
     public static final String VALID_PHONE_REGEX = "[0-9]+";
+
+    // Address validation: address cannot start with whitespace, or " " can be a valid address.
+    public static final String VALID_ADDRESS_REGEX = "[^ ].*";
+
+    // Ingredient name validation: ingredient name cannot start with whitespace, or " " can be a valid ingredient name.
+    public static final String VALID_INGREDIENT_REGEX = "[^ ].*";
+
+    // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
+    public static final String VALID_DISH_REGEX = "[^ ].*";
+
+    // DateTime validation: must be of the form DD-MM-YYYY HH:MM
+    public static final String VALID_DATETIME_REGEX = "\\d\\d-\\d\\d-\\d\\d\\d\\d \\d\\d:\\d\\d";
+
+    // Tag validation: tag cannot start with whitespace, or " " can be a valid tag.
+    public static final String VALID_TAG_REGEX = "[^ ].*";
 
     // Email address validation: must conform to the form local-part@domain
     // Assumes IP addresses are not used as domain portion
@@ -55,15 +74,6 @@ public class ParserUtil {
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
     public static final String VALID_EMAIL_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-
-    // Address validation: address cannot start with whitespace, or " " can be a valid address.
-    public static final String VALID_ADDRESS_REGEX = "[^ ].*";
-
-    // Ingredient name validation: ingredient name cannot start with whitespace, or " " can be a valid ingredient name.
-    public static final String VALID_INGREDIENT_REGEX = "[^ ].*";
-
-    // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
-    public static final String VALID_DISH_REGEX = "[^ ].*";
 
     // ========== GENERAL ==========
 
@@ -116,6 +126,12 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Guarantees that two lists have the same length.
+     * @param listA The first list in the comparison.
+     * @param listB The other list in the comparison.
+     * @throws ParseException if the two lists do not have the same length.
+     */
     public static void validateListLengths(List listA, List listB) throws ParseException {
         requireNonNull(listA);
         requireNonNull(listB);
@@ -135,7 +151,7 @@ public class ParserUtil {
     // ========== PERSON ==========
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -150,7 +166,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
@@ -165,7 +181,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
@@ -180,7 +196,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String email}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
@@ -197,7 +213,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String tag} into a tag.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
@@ -205,6 +221,9 @@ public class ParserUtil {
     public static String parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        if (!trimmedTag.matches(VALID_TAG_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_TAG);
+        }
         return trimmedTag;
     }
 
@@ -213,7 +232,13 @@ public class ParserUtil {
      */
     public static List<String> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        return new ArrayList<>(tags);
+        HashSet<String> tagSet = new HashSet<>();
+        for (String tag : tags) {
+            tagSet.add(parseTag(tag));
+        }
+        List<String> deduplicatedTagList = new ArrayList<>(tagSet);
+        Collections.sort(deduplicatedTagList);
+        return deduplicatedTagList;
     }
 
     // ========== INGREDIENT ==========
@@ -250,7 +275,6 @@ public class ParserUtil {
         return trimmedDishName;
     }
 
-
     /**
      * Parse non-negative double from String.
      * @throws ParseException if specified string is not a positive double.
@@ -263,5 +287,22 @@ public class ParserUtil {
         return Double.valueOf(trimmedToParse);
     }
 
+    // ========== ORDER ==========
+
+    /**
+     * Parses a {@code String dateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid (does not match
+     * DD-MM-YYYY HH:MM).
+     */
+    public static String validateDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!trimmedDateTime.matches(VALID_DATETIME_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_DATETIME);
+        }
+        return trimmedDateTime;
+    }
 
 }

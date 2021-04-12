@@ -33,6 +33,8 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
      */
     @SuppressWarnings("checkstyle:Indentation")
     public OrderAddCommand parse(String args) throws ParseException {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATETIME, PREFIX_DISH, PREFIX_QUANTITY);
 
@@ -43,8 +45,11 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
 
         Integer customerId = ParserUtil.parseNonNegativeInt(argMultimap.getValue(PREFIX_NAME).get());
         String strDateTime = argMultimap.getValue(PREFIX_DATETIME).get();
+        ParserUtil.validateDateTime(strDateTime);
+
         List<String> dishNumbers = argMultimap.getAllValues(PREFIX_DISH);
         List<String> dishQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
+        ParserUtil.validateListLengths(dishNumbers, dishQuantities);
 
         List<Pair<Index, Integer>> dishQuantityList = new ArrayList<>();
 
@@ -56,10 +61,10 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
         }
 
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(strDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+            LocalDateTime dateTime = LocalDateTime.parse(strDateTime, dateTimeFormatter);
             return new OrderAddCommand(dateTime, customerId, dishQuantityList);
         } catch (DateTimeParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OrderAddCommand.MESSAGE_USAGE));
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_DATETIME);
         }
 
     }

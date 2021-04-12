@@ -5,44 +5,69 @@
  '/
 
 
-'T1 through T4 are shades of the original color from lightest to darkest
+'T1 through T4 are shades of the original color from darkest to lightest
 
-!define UI_COLOR #1D8900
-!define UI_COLOR_T1 #83E769
-!define UI_COLOR_T2 #3FC71B
-!define UI_COLOR_T3 #166800
-!define UI_COLOR_T4 #0E4100
+!define UI_COLOR_DARK #3a6b39
+!define UI_COLOR #5fb051
+!define UI_COLOR_T1 #7dc971
+!define UI_COLOR_T2 #A7E99C
+!define UI_COLOR_T3 #BFEEB7
+!define UI_COLOR_T4 #D7F4D2
 
-!define LOGIC_COLOR #3333C4
-!define LOGIC_COLOR_T1 #C8C8FA
-!define LOGIC_COLOR_T2 #6A6ADC
-!define LOGIC_COLOR_T3 #1616B0
-!define LOGIC_COLOR_T4 #101086
+!define LOGIC_COLOR_DARK #1b286b
+!define LOGIC_COLOR #2B40AB
+!define LOGIC_COLOR_T1 #88AED0
+!define LOGIC_COLOR_T2 #96B9D0
+!define LOGIC_COLOR_T3 #A4C3D2
+!define LOGIC_COLOR_T4 #AECBD6
 
-!define MODEL_COLOR #9D0012
-!define MODEL_COLOR_T1 #F97181
-!define MODEL_COLOR_T2 #E41F36
-!define MODEL_COLOR_T3 #7B000E
-!define MODEL_COLOR_T4 #51000A
+!define MODEL_COLOR_DARK #7a1c18
+!define MODEL_COLOR #CF4040
+!define MODEL_COLOR_T1 #FF7974
+!define MODEL_COLOR_T2 #FF8986
+!define MODEL_COLOR_T3 #FF9997
+!define MODEL_COLOR_T4 #FFA9A9
 
-!define STORAGE_COLOR #A38300
-!define STORAGE_COLOR_T1 #FFE374
-!define STORAGE_COLOR_T2 #EDC520
-!define STORAGE_COLOR_T3 #806600
-!define STORAGE_COLOR_T2 #544400
+!define STORAGE_COLOR_DARK #854c30
+!define STORAGE_COLOR #FFA071
+!define STORAGE_COLOR_T1 #FFB480
+!define STORAGE_COLOR_T2 #FEC98F
+!define STORAGE_COLOR_T3 #FEDD9E
+!define STORAGE_COLOR_T2 #FDF1AD
 
 !define USER_COLOR #000000
+!define BACKGROUND_COLOR #e3f0ff
 
-skinparam BackgroundColor #FFFFFFF
+scale 1280*720
+
+skinparam BackgroundColor BACKGROUND_COLOR
 
 skinparam Shadowing false
 
+skinparam sequenceArrowThickness 2
+
+skinparam Rectangle {
+    BorderThickness 2
+    BorderColor #000000
+}
+
 skinparam Class {
     FontColor #FFFFFF
-    BorderThickness 1
-    BorderColor #FFFFFF
+    BorderThickness 2
+    BorderColor #000000
+    BorderColor<<logic>> LOGIC_COLOR_DARK
+    BorderColor<<ui>> UI_COLOR_DARK
+    BorderColor<<model>> MODEL_COLOR_DARK
+    BorderColor<<storage>> STORAGE_COLOR_DARK
     StereotypeFontColor #FFFFFF
     FontName Arial
+}
+
+skinparam Class<<hidden>> {
+    BackgroundColor BACKGROUND_COLOR
+    BorderColor BACKGROUND_COLOR
+    FontColor BACKGROUND_COLOR
+    StereotypeFontColor BACKGROUND_COLOR
 }
 
 skinparam Actor {
@@ -60,6 +85,11 @@ skinparam Sequence {
 }
 
 skinparam Participant {
+    BorderColor #black
+    BorderColor<<logic>> LOGIC_COLOR_DARK
+    BorderColor<<ui>> UI_COLOR_DARK
+    BorderColor<<model>> MODEL_COLOR_DARK
+    BorderColor<<storage>> STORAGE_COLOR_DARK
     FontColor #FFFFFFF
     Padding 20
 }

@@ -394,6 +394,16 @@ public class CustomerAddCommandTest {
         public boolean canFulfilOrder(Order target) {
             return false;
         }
+
+        /**
+         * Returns true if a list of orders can be fulfilled
+         *
+         * @param orders
+         */
+        @Override
+        public boolean canFulfilOrders(List<Order> orders) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

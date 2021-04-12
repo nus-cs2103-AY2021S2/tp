@@ -59,6 +59,10 @@ a, a:visited {
   color: var(--primary-color)
 }
 
+a:hover {
+  color: var(--secondary-color)
+}
+
 pre,pre>code {
   color: var(--font-color);
   background-color: var(--quinary-color);

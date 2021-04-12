@@ -1,26 +1,30 @@
 @startuml
+left to right direction
 !include <office/Concepts/globe_internet>
 !include <office/Concepts/documents>
 !include <office/Users/user>
 !include style.puml
+hide stereotypes
 
 Package " "<<Rectangle>>{
-    Class UI UI_COLOR
-    Class Logic LOGIC_COLOR
-    Class Storage STORAGE_COLOR
-    Class Model MODEL_COLOR
+    Class UI <<ui>> UI_COLOR
+    Class Logic <<logic>> LOGIC_COLOR
+    Class Storage <<storage>> STORAGE_COLOR
+    Class Model <<model>> MODEL_COLOR
     Class Main #grey
-    Class Commons LOGIC_COLOR_T2
+    Class Commons LOGIC_COLOR_T1
 }
 
-Class "<$user>" as User MODEL_COLOR_T2
-Class "<$documents>" as File UI_COLOR_T1
+skinparam roundCorner 10
+
+Class "<$user>" as User <<model>> MODEL_COLOR
+Class "<$documents>" as File <<ui>> UI_COLOR
 
 
-UI -[#green]> Logic
+UI -[#green]-> Logic
 UI -right[#green]-> Model
-Logic -[#blue]-> Storage
-Logic -down[#blue]-> Model
+Logic -[LOGIC_COLOR]-> Storage
+Logic -down[LOGIC_COLOR]-> Model
 Main -[#grey]-> UI
 Main -[#grey]-> Logic
 Main -[#grey]-> Storage

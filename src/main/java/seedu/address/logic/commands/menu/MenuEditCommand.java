@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.order.Order;
 
 public class MenuEditCommand extends Command {
 
@@ -40,7 +42,8 @@ public class MenuEditCommand extends Command {
     public static final String MESSAGE_EDIT_DISH_SUCCESS = "Edited Dish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DISH = "This dish already exists in the menu.";
-
+    public static final String MESSAGE_NOT_ENOUGH_INGREDIENTS = "Insufficient ingredients to fulfil orders "
+            + "with this change. Please remove incomplete orders that will be affected first.";
     private final Index index;
     private final MenuEditCommand.EditDishDescriptor editDishDescriptor;
 
@@ -73,7 +76,40 @@ public class MenuEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DISH);
         }
 
+        // Get all orders that contain the item
+        List<Order> ordersToEdit = model.getIncompleteOrdersContainingDish(dishToEdit);
+
+        // Remove all these orders from the database
+        model.deleteOrders(ordersToEdit);
+        for (Order o : ordersToEdit) {
+            model.deleteOrder(o);
+            model.increaseIngredientByOrder(o);
+        }
+
+        // Set editedDish
         model.setDish(dishToEdit, editedDish);
+
+        // Make new orders with editedDish
+        List<Order> editedOrders = new ArrayList<>();
+        for (Order orderToEdit : ordersToEdit) {
+            editedOrders.add(orderToEdit.updateDish(dishToEdit, editedDish));
+        }
+
+        // If orders cannot be fulfilled using updated Dishes, reject the change
+        if (!model.canFulfilOrders(editedOrders)) {
+            model.setDish(editedDish, dishToEdit);
+            for (Order o : ordersToEdit) {
+                model.addOrder(o);
+                model.decreaseIngredientByOrder(o);
+            }
+            throw new CommandException(MESSAGE_NOT_ENOUGH_INGREDIENTS);
+        }
+
+        for (Order o : editedOrders) {
+            model.addOrder(o);
+            model.decreaseIngredientByOrder(o);
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_DISH_SUCCESS, editedDish),
                 CommandResult.CRtype.PERSON);
     }
