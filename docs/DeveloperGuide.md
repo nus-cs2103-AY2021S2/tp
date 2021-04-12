@@ -230,7 +230,7 @@ As an example, consider running Dictionote as follows:
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
 
-![ContactMostFreqFeatureInitState](images/ContactMostFreqFeatureInitState.png)
+![ContactMostFreqFeatureInitState](images/ContactMostFreqFeatureInitState.PNG)
 
 * In addition, assume the successful execution of the following commands:
     * `emailcontact 3` three times.
@@ -239,7 +239,7 @@ As an example, consider running Dictionote as follows:
 
 * After typing in `mostfreqcontact` and executing it, the result would be:
 
-![ContactMostFreqFeatureExecute](images/ContactMostFreqFeatureExecute.png)
+![ContactMostFreqFeatureExecute](images/ContactMostFreqFeatureExecute.PNG)
 
 * Note that the ordering of the contacts in the contacts list had changed, with Charlie (formerly with index number 3) being the first on the list, followed by Alice (formerly with index number 1) and finally Bob (formerly with index number 2).
 
@@ -773,7 +773,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. Note that some tests use specific data in their examples, which might need to be inserted first using CRUD commands; however, it is possible to replace such specific data with already-existing ones found by default in the application.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -797,22 +797,33 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact
 
-1. Deleting a person while all persons are being shown
+1. Adding a contact that shares its phone number with another existing contact.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: At least one contact is present in the list.
+	
+	1. Assumptions: One contact is present with the phone number `11223344`.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `addcontact p/11223344 n/<ANY_NAME> a/<ANY_ADDRESS> e/<ANY_UNIQUE_EMAIL>`<br>
+       Expected: An error message is displayed, telling that another existing contact already has the specified phone number or email.
+	   
+	* Note that this behavior should apply for any phone number that is already used for another contact in the list.
+	
+1. Adding a contact that shares its email with another existing contact.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Prerequisites: At least one contact is present in the list.
+	
+	1. Assumptions: One contact is present with the email `taken@email.com`.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `addcontact e/taken@email.com n/<ANY_NAME> a/<ANY_ADDRESS> p/<ANY_UNIQUE_PHONE_NUMBER>`<br>
+       Expected: An error message is displayed, telling that another existing contact already has the specified phone number or email.
+	   
+	* Note that this behavior should apply for any email that is already used for another contact in the list.
+	
+### Editing a contact
 
-1. _{ more test cases …​ }_
+Similar to *Adding a contact* above (shared phone numbers and/or emails).
 
 ### Saving data
 
