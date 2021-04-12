@@ -309,7 +309,7 @@ time frame of 1 week that pops out whenever the user opens the application.
       * User has no flexibility to specify the time range he/she wants to receive reminders for.
       * If user want to check for reminders again he has to reopen the application.
     
-###Add Order Item Feature
+### Add Order Item Feature
 The `addItem` command enables users to predefine order items (also known as cake items or order descriptions). The user can choose to add order items directly from this table when adding orders to CakeCollate.
 
 An `OrderItem` consists of a `Type` field which refers to the description of the order item. In the user guide the `Type` field is referred to as `ORDER_DESCRIPTION` in order to make it more user friendly since `Type` is not very descriptive.
@@ -414,8 +414,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `*`     | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
 | `*`     | User                                         | save a particular customer's information                           | I can quickly add another order from this customer next time                                 |
 | `*`     | Regular user                                 | keep track of the money paid or owed by the customer               | I can ensure that all my dues have been received                                             |
-
-[comment]: <> (# will need to add a few more based on new order model and any new features we decide on)
 
 ### Use cases
 
@@ -548,8 +546,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     
       Use case resumes at step 1.
     
-* *a. User requests for help <link help use case here>.
-
 **Use case: Delete an order item**
 
 **MSS**
@@ -577,7 +573,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 1.
 
-* *a. User requests for help <link help use case here>.
+
 
 **Use case: Help needed for command summary**
 
@@ -675,6 +671,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: none
     1. Test case: `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2022 o/Chocolate Cake o/chocolate cake o/Mochi Cake t/friend t/daughter` <br>
     Expected: A new entry corresponding to the details of this order is added to the Order Box. Details of the successful input is shown in the status box. If `Mochi Cake` and `Chocolate Cake` are not in the Order Items table previously, they should be added to it now.
+   1. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2022`
+      Expected: An invalid command format message with details is displayed. No order is added. 
 
 ### Deleting multiple orders
 

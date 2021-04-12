@@ -158,7 +158,6 @@ public class CommandTestUtil {
 
         OrderItems expectedOrderItems = new OrderItems(actualModel.getOrderItems());
         List<OrderItem> expectedOrderItemsList = new ArrayList<>(actualModel.getFilteredOrderItemsList());
-        // todo sounds like something to add here
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedCakeCollate, actualModel.getCakeCollate());
