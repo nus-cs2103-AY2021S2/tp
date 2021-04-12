@@ -73,7 +73,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'abb.jar'
+    archiveName = 'abashbook.jar'
 }
 
 defaultTasks 'clean', 'test'
