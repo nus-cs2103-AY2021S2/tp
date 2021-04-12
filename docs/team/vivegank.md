@@ -41,12 +41,12 @@ Given below are my contributions to the project.
   * Updated UI.png in every iteration of the product.
   * Maintained README.md that appears whenever project repo is opened.
   * User Guide:
-    * Added documentation for the features `archive`, `unarchive` and `archivelist` (Pull request [\#43](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/43)).
+    * Added documentation for the features archive, unarchive and archivelist (Pull request [\#43](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/43)).
     * Added Layout section (Image credited to teammate Nicholas)
-    * Tweaked existing documentation of feature `add` to include new fields and show the expected format of all fields (Pull request [\#98](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/98)).
+    * Tweaked existing documentation of feature add to include new fields and show the expected format of all fields (Pull request [\#98](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/98)).
   * Developer Guide:
-    * Added implementation details of the `archive`, `unarchive` and `archivelist` features. (Pull request [\#100](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/100)).
-    * Added UML diagrams for `archive` feature.
+    * Added implementation details of the archive, unarchive and archivelist features. (Pull request [\#100](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/100)).
+    * Added UML diagrams for archive feature.
     * Updated UML diagram for Model component to include the new fields added to Patient.
     * Added on instructions for manual testing.
 
