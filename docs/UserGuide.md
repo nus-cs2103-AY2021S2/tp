@@ -728,7 +728,7 @@ Parameters:
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
 * [`NAME`](#name) The updated name of the groupmate.
-* [`ROLE`](#role) The updated role of the groupmate.
+* [`ROLE`](#role) The updated roles of the groupmate.
 
 Examples:
 
