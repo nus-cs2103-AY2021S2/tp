@@ -134,9 +134,7 @@ Action                            | Format
 * Inputs with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. in `[t/TAG]…​`, the following inputs are valid:
     * `t/medical`
-    * `t/mdecial t/investment`
-    * `  `  (an empty input)
-
+    * `t/medical t/investment`
 
 * You can enter your inputs in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
