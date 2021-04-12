@@ -1,0 +1,65 @@
+# Sends notification to organization Telegram group
+#
+# Triggered on opening of pull request. By default, pull requests from forks of public repos do not have access to
+# organization secret tokens, which is required to access Telegram bot token and target group chat, in order to invoke
+# sendMessage to desired Telegram group chat. Circumvented by using `pull_request_target` that runs the action
+# in the context of the base forked commit for security.
+#
+# Runs when the following events are triggered:
+# 1. opened : pull request is newly opened
+# 2. reopened : pull request (that was previously closed) is re-opened
+# 3. synchronize : commit(s) were pushed to pull request (including base branch fast forwards)
+# 4. closed : pull request is closed (be it merged or not merged)
+
+name: Telegram PR notification
+on:
+  pull_request_target:
+    branches: [ master ]
+    types: [ opened, reopened, closed ]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send notification (opened)
+      if: github.event.action == 'opened'
+      uses: appleboy/telegram-action@beaf02496b42e8584e144c9ef273af028f51f616
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          New PR opened: [#${{ github.event.number }}](${{ github.event.pull_request.html_url }})
+
+    - name: Send notification (reopened)
+      if: github.event.action == 'reopened'
+      uses: appleboy/telegram-action@beaf02496b42e8584e144c9ef273af028f51f616
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          PR updated: [#${{ github.event.number }}](${{ github.event.pull_request.html_url }})
+          Reopened by: ${{ github.event.sender.login }}
+
+    - name: Send notification (closed)
+      if: github.event.action == 'closed' && !github.event.pull_request.merged
+      uses: appleboy/telegram-action@beaf02496b42e8584e144c9ef273af028f51f616
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          PR closed (without merging): [#${{ github.event.number }}](${{ github.event.pull_request.html_url }})
+          Closed by: ${{ github.event.sender.login }}
+
+    - name: Send notification (merged)
+      if: github.event.action == 'closed' && github.event.pull_request.merged
+      uses: appleboy/telegram-action@beaf02496b42e8584e144c9ef273af028f51f616
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          PR merged: [#${{ github.event.number }}](${{ github.event.pull_request.html_url }})
+          Merged by: ${{ github.event.sender.login }}

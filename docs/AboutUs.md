@@ -5,55 +5,49 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Glenn Lee Jia Song
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/glennljs.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/glennljs)]
+[[portfolio](team/glennljs.md)]
 
-* Role: Project Advisor
+### Justin Peh Yu Xiang
 
-### Jane Doe
+<img src="images/pyuxiang.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://pyuxiang.com/)]
+[[github](https://github.com/pyuxiang)]
+[[portfolio](team/pyuxiang.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+### Foo Chuan Le, Nicholas
 
-### Johnny Doe
+<img src="images/nickyfoo.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/nickyfoo)]
+[[portfolio](team/nickyfoo.md)]
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+### Gary Lee Jia Jin
 
-### Jean Doe
+<img src="images/garyljj.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/garyljj)]
+[[portfolio](team/garyljj.md)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Zheng Ruoxin
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/zhengruoxin.png" width="200px">
 
-### James Doe
+[[github](https://github.com/zhengruoxin)]
+[[portfolio](team/zhengruoxin.md)]
 
-<img src="images/johndoe.png" width="200px">
+### Lee Pai Joo, Yvelle
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/ellevy.png" width="200px">
 
-* Role: Developer
-* Responsibilities: UI
+[[github](https://github.com/ellevy)]
+[[portfolio](team/ellevy.md)]

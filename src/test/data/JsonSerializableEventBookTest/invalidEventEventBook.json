@@ -1,0 +1,8 @@
+{
+  "events" : [ {
+    "name" : "Jan celebration",
+    "isDone" : "1",
+    "eventDate" : "01-01-2019",
+    "remark" : "10 people"
+  } ]
+}

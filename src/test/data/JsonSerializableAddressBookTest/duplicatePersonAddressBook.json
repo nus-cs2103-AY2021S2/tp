@@ -3,12 +3,16 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "birthday" : "1999-10-27",
     "address": "123, Jurong West Ave 6, #08-111",
+    "remark": "loves snacks",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "birthday" : "1997-11-28",
+    "address": "4th street",
+    "remark": "loves snacks"
   } ]
 }

@@ -6,10 +6,13 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyEventBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
+Class EventBook
 Class ReadOnlyAddressBook
+Class ReadOnlyEventBook
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -18,16 +21,35 @@ Class ReadOnlyUserPrefs
 Package Person {
 Class Person
 Class Address
+Class Birthday
 Class Email
-Class Name
 Class Phone
 Class UniquePersonList
+}
+
+Package Event {
+Class Event
+Class EventDate
+Class UniqueEventList
 }
 
 Package Tag {
 Class Tag
 }
+
+Package Name {
+Class Name
 }
+
+package Date {
+Class Date
+}
+
+Package Remark {
+Class Remark
+}
+}
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -40,17 +62,30 @@ ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+EventBook .up.|> ReadOnlyEventBook
+ModelManager o--> "1" EventBook
+
+
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "1" Name
+Person *--> "0..1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
+Person *--> "0..1" Remark
+Person *--> "0..1" Birthday
 Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+EventBook *--> "1" UniqueEventList
+UniqueEventList o--> "*" Event
+Event *--> "1" Name
+Event *--> "0..1" Remark
+Event *--> "0..1" EventDate
 
-ModelManager ----->" ~* filtered list" Person
+Birthday --|> Date
+EventDate --|> Date
+Tag -[hidden]-> Phone
+
+ModelManager ------>" ~* filtered list" Person
+ModelManager ------>" ~* filtered list" Event
 @enduml
