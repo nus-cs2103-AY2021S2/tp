@@ -84,8 +84,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.\n"
-            + "Note that Tags are not taken into consideration when checking for duplicated orders.";
-
+            + "Note that Name, Address, Order Description and Delivery Date are taken into consideration "
+            + "when checking for duplicated orders.";
     private final IndexList orderItemIndexList;
     private final AddOrderDescriptor addOrderDescriptor;
 
