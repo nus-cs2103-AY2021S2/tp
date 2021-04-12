@@ -291,7 +291,7 @@ Example:
 ![add_student_example](images/enhao/add_student%20-%20edited.png)
 
 <ol start="3">
-    <li>Scrolling down to the end of the student list, you will see that **John Doe** has been added to TutorBuddy.</li>
+    <li>Scrolling down to the end of the student list, you will see that <b>John Doe</b> has been added to TutorBuddy.</li>
 </ol>
 
 ![add_student_result_example](images/enhao/add_student_result%20-%20edited.png)
@@ -356,6 +356,7 @@ Example:
 <ol start="3">
     <li>The edited student information will be reflected in the student list.</li>
 </ol>
+
 ![edit_student_result_example](images/enhao/edit_student_result%20-%20edited.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
@@ -379,7 +380,7 @@ Example:
 ![delete_student_example](images/enhao/delete_student%20-%20edited.png)
 
 <ol start="3">
-    <li>The 2nd student in the list (**Bernice Yu**) and her associated sessions will be deleted.</li>
+    <li>The 2nd student in the list (<b>Bernice Yu</b>) and her associated sessions will be deleted.</li>
 </ol>
 
 ![delete_student_result_example](images/enhao/delete_student_result%20-%20edited.png)
