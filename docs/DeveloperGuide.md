@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/ay2021s2-cs2103-t16-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidenceListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -207,7 +207,7 @@ The following activity diagram summarizes what happens when a user executes a `s
 
 ![StatusActivityDiagram](images/StatusActivityDiagram.png)
 
-#### Design consideration:How to update clean status of residences
+#### Design consideration: How to update clean status of residences
 
 * **Alternative 1 (current choice):** Create status-updated residences one by one and set them to residence list through function `Model#setResidence` 
     * Pros: Easy to implement,and not change the existing structure.
@@ -254,11 +254,7 @@ And the activity diagram:
 
 Implementation of edit booking creates a `editedBooking` before calling `BookingList#setBooking` to replace `bookingToEdit` with `editedBooking`. There is a need to ensure that `editedBooking` has no overlap dates with other bookings. However, if `BookingList#contains` (method that checks if a booking overlaps with other bookings in the `bookingList`) is called, it is likely that it returns `true` because `editedBooking` has overlapping dates with `bookingToEdit` since at this point, `bookingToEdit`still exists in the `bookingList`.
 
-* **Alternative 1:** After creating `editedBooking`, use `DeleteBookingCommand` on `bookingToEdit` and `AddBookingCommand` to add `editedBooking` back to the `bookingList`
-    * Pros: `AddBookingCommand` handles the check for overlapping dates for `editedBooking`. Previous issue of `bookingToEdit`existing in the `bookingList` is solved by deletion.
-    * Cons: ties the implementation of `EditBookingCommand` to `AddBookingCommand` and `DeleteBookingCommand`.
-
-* **Alternative 2:** Verify the validity of `BookingList#setBooking` by simulating the deletion of `bookingToEdit` and addition of `editedBooking` through a method in `BookingList`
+* **Alternative 1 (current choice):** Verify the validity of `BookingList#setBooking` by simulating the deletion of `bookingToEdit` and addition of `editedBooking` through a method in `BookingList`
     * Pros: allows the use of `BookingList#setBooking`, separating `EditBookingCommand` from `AddingBookingCommand` and `DeleteBookingCommand`.
     * Cons: creating a method that is similar to `BookingList#contains`.
     
@@ -272,6 +268,10 @@ Implementation of edit booking creates a `editedBooking` before calling `Booking
 * **Alternative 2:** Preserve `Person` class
     * Pros: If the same person is making multiple bookings, storing `Person`s would save time spent on re-entering the same details (e.g. `TenantName` and `Phone`). 
     * Cons: Considering ResidenceTracker's target users would have a high turnover rate for their rental properties, keeping records of `Person`s could result in excessive storage usage. Furthermore, most `Person`s would probably only be used once, which makes storing them wasteful.
+
+* **Alternative 2:** After creating `editedBooking`, use `DeleteBookingCommand` on `bookingToEdit` and `AddBookingCommand` to add `editedBooking` back to the `bookingList`
+    * Pros: `AddBookingCommand` handles the check for overlapping dates for `editedBooking`. Previous issue of `bookingToEdit`existing in the `bookingList` is solved by deletion.
+    * Cons: ties the implementation of `EditBookingCommand` to `AddBookingCommand` and `DeleteBookingCommand`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -544,9 +544,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a residence
 
-1. Adding a residence to the list of residences shown
+1. Adding a residence
 
-    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    1. Prerequisites: User should have launched residence tracker.
     
     2. Test case: `add n/Amber Park a/22 Bedok Street` <br>
     Expected: A new residence named 'Amber Park' and with address '22 Bedok Street' will display in the list of residences. It is initialised with 'Clean' as its default status since this optional field is left empty.
@@ -555,16 +555,16 @@ testers are expected to do more *exploratory* testing.
     Expected: A new residence named 'Midtown Modern' with address '18 Tan Quee Lan Street' will display in the list of residences. It should have 'Unclean' as its clean status and 'popular' as a tag.
     
     4. Test case: `add n/Capetown` <br>
-    Expected: Invalid command format message displayed to indicate the required and optional parameters of the command.
+    Expected: No residence is added. Error details shown in the status message to indicate the required and optional parameters of the command. Status bar remains the same.
 
 ### Deleting a residence
 
 1. Deleting a residence while all residences are being shown
 
-   1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+   1. Prerequisites: User should have launched residence tracker with some residence data or use `list` command to display all the residences.
 
    1. Test case: `delete 1`<br>
-      Expected: First residence is deleted from the list. Details of the deleted residence shown in the status message.
+      Expected: First residence is deleted from the list. Details of the deleted residence is shown in the status message.
 
    1. Test case: `delete 0`<br>
       Expected: No residence is deleted. Error details shown in the status message. Status bar remains the same.
@@ -574,76 +574,78 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a residence
 
-1. Editing a residence while all the residence are being shown
+1. Editing a residence while all the residences are being shown
 
-    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    1. Prerequisites: User should have launched residence tracker with some residence data or use `list` command to display all the residences. Add at least 2 residences marked as `Unclean` and 2 other residences marked as `Clean`.
     
     2. Test case: `edit 2 c/y` <br> 
-       Expected: Changes the clean status of the second residence in the list to 'clean'. A rearrangment of the residence list will occur such that this residence will now be displayed below all the other residences that have 'unclean' as their clean status.
+       Expected: Changes the clean status of the second residence in the list to 'clean'. The displayed residence list may re-order itself such that this residence will now be displayed below all the other residences marked 'unclean'.
     
     3. Test case: `edit 2` <br>
-       Expected: Error message indicating that at least one field must be provided.
+       Expected: No residence is edited. Error details regarding missing parameters shown in the status message. Status bar remains the same.
     
-    4. Test case: `edit 6 n/NameToChange` when there are less than 6 residences shown in the residence list. <br>
-       Expected: Error message indicating invalid residence index.  
+    4. Test case: `edit x n/NameToChange` when there are less than `x` residences shown in the residence list. <br>
+       Expected: No residence is edited. Error details regarding invalid residence index shown in the status message. Status bar remains the same.
+
+### Multiple clean status updates
+
+1. Changing the clean status of multiple residences at once
+
+    1. Prerequisites: User should have launched residence tracker with some residence data or use `list` command to display all the residences. Have at least 2 residences marked as `Unclean` and 2 other residences marked as `Clean`.
+
+    2. Test case: `status clean 1 2 3 4` <br>
+       Expected: Changes the clean status of the first 4 residence in the list to `Clean`. The displayed residence list may re-order itself such that these updated residences will now be displayed below all the other residences marked `Unclean`.
+
+    3. Test case: `status unclean 1 2 x` when there are less than `x` residences in the residence list. <br>
+       Expected: No residence is updated. Error details regarding invalid residence index shown in the status message. Status bar remains the same.
        
 ### Adding a booking
 
-1. Adding of a booking to a specific residence
+1. Adding a booking to a specific residence
 
-    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    1. Prerequisites: User should have launched residence tracker with some residence data or use `list` command to display all the residences. Have at least 2 residences in the list.
     
     2. Test case: `addb 2 n/Bob p/91234567 s/01-01-2022 e/01-02-2022` <br>
-       Expected: Booking with the details as inputted shown in the 'BOOKINGS' column of the 2nd residence. Since this is an upcoming booking, it should be highlighted in green.
+       Expected: A corresponding booking with the details given is shown in the `BOOKINGS` column of the 2nd residence. If this is an upcoming booking, it should be highlighted in green.
     
     3. Test case: `addb 1 n/Sandy p/87654321 s/09-08-2021 e/122-08-2021` <br>
-       Expected: Error message indicating date not entered in the expected format.
+       Expected: No booking is added. Error details regarding invalid date format shown in the status message. Status bar remains the same.
     
-    4. Test case: `addb 6 n/Sandy p/87654321 s/09-08-2021 e/12-08-2021` when there are less than 6 residences in the residence list.<br>
-       Expected: Error message indicating the provided residence index is invalid.
+    4. Test case: `addb x n/Sandy p/87654321 s/09-08-2021 e/12-08-2021` when there are less than `x` residences in the residence list.<br>
+       Expected: No booking is added. Error details regarding invalid residence index shown in the status message. Status bar remains the same.
 
 ### Deleting a booking
 
 1. Deleting a booking from a specific residence
 
-    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    1. Prerequisites: User should have launched residence tracker with some residence data or use `list` command to display all the residences. Have at least 2 residences in the list.
     
     2. Test case: `deleteb r/2 b/2` <br>
        Expected: The second booking of the second residence will be deleted. Details of the deleted booking will be shown in the status message.
     
-    3. Test case: `deleteb r/2 b/10` when the second residence has less than 10 bookings. <br>
-       Expected: Error message indicating the provided booking index is invalid.
+    3. Test case: `deleteb r/2 b/x` when the second residence has less than `x` bookings. <br>
+       Expected: No booking is deleted. Error details regarding invalid booking index shown in the status message. Status bar remains the same.
 
 ### Editing a booking
 
 1. Editing a booking from a specific residence
 
-    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+    1. Prerequisites: User should have launched residence tracker with some residence data or use `list` command to display all the residences. Have at least 2 residences in the list.
     
     2. Test case: `editb r/2 b/2 n/Bob` <br>
-       Expected: The tenant name of the second booking of the second residence will be changed to Bob and the details of the edited booking will be shown in the status message.
+       Expected: The tenant name of the second booking of the second residence will be changed to `Bob` and the details of the edited booking will be shown in the status message.
     
-    3. Test case: `editb r/2 b/2 e/31-05-2021` when there exists another booking that lasts from 30-05-2021 to 01-06-2021. <br>
-       Expected: Error message indicating overlapping dates of bookings.
-       
-### Multiple clean status updates
-1. Changing the clean status of multiple residences at once
-
-    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
-    
-    2. Test case: `status clean 1 2 3 4 5` <br>
-    Expected: clean status of residences 1, 2, 3, 4, 5 is changed to 'Clean'.
-    
-    3. Test case: `status unclean 1 2 3 4 5 6` when there are only 5 residences in the residence list. <br>
-    Expected: Error message indicating that invalid residence index is provided.
+    3. Test case: `editb r/2 b/2 e/31-05-2021` when there exists another booking that lasts from `30-05-2021` to `01-06-2021`. <br>
+       Expected: No booking is edited. Error details regarding overlap of bookings for this residence shown in the status message. Status bar remains the same.
     
 ### Reminder of upcoming bookings
-1. Showing the residences with upcoming bookings in the next seven days (excluding today).
 
-    1. Prerequisites: User should be at launch state with saved data initialised or after using `list` command to display all the residences.
+1. Showing only the residences with upcoming bookings in the next seven days (excluding today).
+
+    1. Prerequisites: User should have launched residence tracker with some residence data or use `list` command to display all the residences. Have at least 1 residence with booking starting in the next 7 days.
     
     2. Test case: `remind` <br>
-    Expected: residences with upcoming bookings starting in the next seven days (excluding the current day) will be displayed to the user. The list will be sorted to show unclean residences before clean residences.
+    Expected: residences with upcoming bookings starting in the next seven days (excluding the current day) will be displayed. The list will be sorted to show residences marked `Unclean` before residences marked `Clean`.
     
     
 ### Modifying data files
@@ -671,15 +673,15 @@ testers are expected to do more *exploratory* testing.
        
 
 ## **Appendix: Effort**
-ResidenceTracker is a brownfield project that builds on the existing code base of AddressBook3. It contains around 7k LOC of additional implementation, testing, documentation and refactoring as logged by reposense. <br>
+ResidenceTracker is a brownfield project that builds on the existing code base of AddressBook3. It contains around 7k LOC of additional implementation, testing, documentation and refactoring as logged by RepoSense. <br>
 
-The person class was refactored into a residence class with some different parameters. We added some parameters such as BookingList and clean status tag. <br>
+The `Person` class was refactored into a residence class with different parameters. We added new parameters such as `BookingList` and `CleanStatusTag`. The `BookingList` is like a second entity which stores a unique list of bookings and has it's own parameters.
 
-Quite some time was spent on the refactoring of classes due to changes in variable naming and implementation, and the fixing of broken tests caused by the refactoring.
+Quite some time was spent on the refactoring of classes due to changes especially in fixing of broken tests caused by the refactoring.<br>
 
-The bulk of our features is based on the implementation of BookingList. Since this app is designed to help manage a user's residences for rent, the key point of this app would be to help keep track of the residences' bookings. <br>
+The bulk of our features is based around the implementation of `CleanStatusTag` and `BookingList` as these will be essential to our target users in managing residences. Since this app is designed to help manage a user's residences for rent, the key point of this app would be to help keep track of the residences' bookings and clean status to plan cleaning schedules. <br>
 
-There was careful consideration and discussion on how best information should processed and displayed from the user's perspective. As such, this results in minor changes to user experience such as sorting the residences based on clean status, bookings based on timing and colour indicators for bookings to signify the different statuses (expired, ongoing, upcoming).
+There was careful consideration and discussion on product development with a user centric approach. As such, we made minor changes to improve user experience such as sorting the residences based on clean status, bookings based on timing and colour indicators for bookings to signify the different statuses (expired, ongoing, upcoming).
 
-The Ui was also also redesigned to add a additonal column of bookings for each residences, including other changes to the design and color scheme of the application.
+The Ui was also redesigned to add an additional column of bookings for each residence, including other changes to the design and color scheme of the application to optimise screen space rather than having all the information vertically on the app.<br>
 

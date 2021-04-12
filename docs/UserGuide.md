@@ -86,6 +86,7 @@ Adds a new residence to the list of residences, default for clean status is ‘c
 * Address can take any values (even emojis) but only alphanumeric characters and symbols will be visible on the residence tracker while other inputs may be distorted or invisible. `@!df34!@//` is a valid address.
 * Tags should only contain alphanumeric characters. Symbols and spaces are not valid.
 * Valid tags are case-sensitive so will be used exactly as provided by the user. e.g `POPular` will be used and displayed as `POPular`
+* Tags are meant for quick reference. Overtly long or numerous number of tags may be used at the user's own discretion but it will not be visually user-friendly.
 
 Format: ` add n/RESIDENCE_NAME a/ADDRESS [c/VALID_CLEAN_STATUS] [t/TAG]... `
 
