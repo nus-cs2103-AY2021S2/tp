@@ -27,7 +27,7 @@ public class PoolCommandParser implements Parser<PoolCommand> {
      * Parses the given {@code String} of arguments in the context of the PoolCommand
      * and returns an PoolCommand object for execution.
      *
-     * @param args The arguments to be parsed.
+     * @param args Arguments to be parsed.
      * @return The PoolCommand created from parsing the arguments.
      * @throws ParseException If the user input does not conform the expected format.
      */
