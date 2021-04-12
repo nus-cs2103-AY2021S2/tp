@@ -59,6 +59,8 @@ public class EditCommand extends Command {
             + "Day cannot be edited.";
     public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
     public static final String MESSAGE_DRIVER_IS_PASSENGER = "Driver %s cannot pool themselves.";
+    public static final String MESSAGE_PASSENGER_ALREADY_DRIVING =
+            "%s is already driving at this time.";
 
     private final Index index;
     private final EditPassengerDescriptor editPassengerDescriptor;
@@ -103,6 +105,14 @@ public class EditCommand extends Command {
 
         if (model.hasPoolWithDriver(editedPassenger)) {
             throw new CommandException(String.format(MESSAGE_DRIVER_IS_PASSENGER, editedPassenger.getName()));
+        }
+
+        if (model.hasPoolWithDayTimePerson(
+                editedPassenger.getTripDay(),
+                editedPassenger.getTripTime(),
+                editedPassenger)
+        ) {
+            throw new CommandException(MESSAGE_PASSENGER_ALREADY_DRIVING);
         }
 
         model.setPassenger(passengerToEdit, editedPassenger);
