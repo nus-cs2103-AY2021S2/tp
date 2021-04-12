@@ -65,3 +65,4 @@ My code contribution can be found at [ReposenseLink](https://nus-cs2103-ay2021s2
         - Details for deleting session ([PR #103](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/103))
         - Recurring Session, besides delete rec session feature (([PR #306](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/306)))
           ([PR #320](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/320))
+          
