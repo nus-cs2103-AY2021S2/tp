@@ -231,7 +231,7 @@ Step 5. After the project gets updated, `Model#saveProjectsFolder` is called to 
     * Pros: Will use less memory (only needs memory for an integer instead of a `Contact` object or an `Index` object), no reliance on `Index`.
     * Cons: May be confusing for new developers since some other parts of the code use one-based indexes instead.
 
-### Add Event to Project Command [Implemented in v1.2]
+### Add Event to Project Command
 
 The mechanism is used to add an event to the `EventList` of `Project` specified by the index in the project list shown.
 
