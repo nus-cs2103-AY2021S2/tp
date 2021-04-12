@@ -11,7 +11,7 @@ public class Messages {
     //=================================Patient related messages===============================================
     public static final String MESSAGE_ADD_PATIENT_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_ADD_DUPLICATE_PATIENT = "This patient already exists in the patient records";
-    public static final String MESSAGE_PATIENTS_FOUND_OVERVIEW = "%1$d patients found!";
+    public static final String MESSAGE_FIND_PATIENT_SUCCESS = "%1$d patients found!";
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
     public static final String MESSAGE_FORCE_DELETE_PATIENT_REQUIRED =
             "The patient has existing appointments in appointment schedule."
@@ -27,7 +27,7 @@ public class Messages {
     //=================================Doctor related messages================================================
     public static final String MESSAGE_ADD_DOCTOR_SUCCESS = "New doctor added: %1$s";
     public static final String MESSAGE_ADD_DUPLICATE_DOCTOR = "This doctor already exists in the doctor records";
-    public static final String MESSAGE_DOCTORS_FOUND_OVERVIEW = "%1$d doctors found!";
+    public static final String MESSAGE_FIND_DOCTOR_SUCCESS = "%1$d doctors found!";
     public static final String MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX = "The doctor index provided is invalid";
     public static final String MESSAGE_FORCE_DELETE_DOCTOR_REQUIRED =
             "The doctor has existing appointments in appointment schedule."
@@ -48,5 +48,5 @@ public class Messages {
             "The appointment index provided is invalid";
     public static final String MESSAGE_CLEAR_APPOINTMENT_SUCCESS = "Appointment Schedule has been cleared!";
     public static final String MESSAGE_LIST_APPOINTMENT_SUCCESS = "Listed all Appointments";
-    public static final String MESSAGE_APPOINTMENTS_FOUND_OVERVIEW = "%1$d appointments found!";
+    public static final String MESSAGE_FIND_APPOINTMENT_SUCCESS = "%1$d appointments found!";
 }

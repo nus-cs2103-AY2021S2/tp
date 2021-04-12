@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.doctor;
 
 import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED;
+import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_DOCTOR_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppObjects.getEmptyAppointmentSchedule;
@@ -12,7 +13,6 @@ import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,9 +31,9 @@ public class ClearDoctorCommandTest {
         expectedNonEmptyPatientRecordsModel.setPatientRecords(getTypicalPatientRecords());
 
         assertCommandSuccess(new ClearDoctorCommand(), emptyPatientRecordsModel,
-                Messages.MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedEmptyPatientRecordsModel);
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedEmptyPatientRecordsModel);
         assertCommandSuccess(new ClearDoctorCommand(), nonEmptyPatientRecordsModel,
-                Messages.MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedNonEmptyPatientRecordsModel);
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedNonEmptyPatientRecordsModel);
     }
 
     @Test
@@ -53,9 +53,9 @@ public class ClearDoctorCommandTest {
         expectedNonEmptyPatientRecordsModel.setDoctorRecords(getEmptyDoctorRecords());
 
         assertCommandSuccess(new ClearDoctorCommand(), emptyPatientRecordsModel,
-                Messages.MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedEmptyPatientRecordsModel);
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedEmptyPatientRecordsModel);
         assertCommandSuccess(new ClearDoctorCommand(), nonEmptyPatientRecordsModel,
-                Messages.MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedNonEmptyPatientRecordsModel);
+                MESSAGE_CLEAR_DOCTOR_SUCCESS, expectedNonEmptyPatientRecordsModel);
     }
 
     @Test
@@ -71,5 +71,4 @@ public class ClearDoctorCommandTest {
         assertCommandFailure(new ClearDoctorCommand(), nonEmptyPatientRecordsModel,
                 MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED);
     }
-
 }

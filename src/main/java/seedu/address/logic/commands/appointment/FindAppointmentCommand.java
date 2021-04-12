@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_FIND_APPOINTMENT_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -45,8 +45,7 @@ public class FindAppointmentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPOINTMENTS_FOUND_OVERVIEW,
-                model.getFilteredAppointmentList().size()));
+                String.format(MESSAGE_FIND_APPOINTMENT_SUCCESS, model.getFilteredAppointmentList().size()));
     }
 
     @Override

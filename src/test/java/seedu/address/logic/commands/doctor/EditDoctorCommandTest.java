@@ -2,6 +2,7 @@ package seedu.address.logic.commands.doctor;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DR_LEONARD;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DR_SHELDON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DR_SHELDON;
@@ -9,6 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TALL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showDoctorAtIndex;
+import static seedu.address.logic.commands.doctor.EditDoctorCommand.MESSAGE_DUPLICATE_DOCTOR;
+import static seedu.address.logic.commands.doctor.EditDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
@@ -17,7 +20,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_IN_LIST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.doctor.EditDoctorCommand.EditDoctorDescriptor;
 import seedu.address.model.AddressBook;
@@ -42,7 +44,7 @@ public class EditDoctorCommandTest {
         EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder(editedDoctor).build();
         EditDoctorCommand editDoctorCommand = new EditDoctorCommand(INDEX_FIRST_IN_LIST, descriptor);
 
-        String expectedMessage = String.format(editDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
 
         Model expectedModel = new ModelManager(
                 new AddressBook<>(model.getPatientRecords()),
@@ -68,7 +70,7 @@ public class EditDoctorCommandTest {
                 .withTags(VALID_TAG_TALL).build();
         EditDoctorCommand editDoctorCommand = new EditDoctorCommand(indexLastDoctor, descriptor);
 
-        String expectedMessage = String.format(editDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
 
         Model expectedModel = new ModelManager(
                 new AddressBook<>(model.getPatientRecords()),
@@ -88,7 +90,7 @@ public class EditDoctorCommandTest {
                 new EditDoctorDescriptor());
         Doctor editedDoctor = model.getFilteredDoctorList().get(INDEX_FIRST_IN_LIST.getZeroBased());
 
-        String expectedMessage = String.format(editDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
 
         Model expectedModel = new ModelManager(
                 new AddressBook<>(model.getPatientRecords()),
@@ -109,7 +111,7 @@ public class EditDoctorCommandTest {
         EditDoctorCommand editDoctorCommand = new EditDoctorCommand(INDEX_FIRST_IN_LIST,
                 new EditDoctorDescriptorBuilder().withName(VALID_NAME_DR_SHELDON).build());
 
-        String expectedMessage = String.format(editDoctorCommand.MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor);
 
         Model expectedModel = new ModelManager(
                 new AddressBook<>(model.getPatientRecords()),
@@ -129,7 +131,7 @@ public class EditDoctorCommandTest {
         EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder(firstPerson).build();
         EditDoctorCommand editDoctorCommand = new EditDoctorCommand(INDEX_SECOND_IN_LIST, descriptor);
 
-        assertCommandFailure(editDoctorCommand, model, editDoctorCommand.MESSAGE_DUPLICATE_DOCTOR);
+        assertCommandFailure(editDoctorCommand, model, MESSAGE_DUPLICATE_DOCTOR);
     }
 
     @Test
@@ -141,7 +143,7 @@ public class EditDoctorCommandTest {
         EditDoctorCommand editDoctorCommand = new EditDoctorCommand(INDEX_FIRST_IN_LIST,
                 new EditDoctorDescriptorBuilder(doctorInList).build());
 
-        assertCommandFailure(editDoctorCommand, model, editDoctorCommand.MESSAGE_DUPLICATE_DOCTOR);
+        assertCommandFailure(editDoctorCommand, model, MESSAGE_DUPLICATE_DOCTOR);
     }
 
     @Test
@@ -150,7 +152,7 @@ public class EditDoctorCommandTest {
         EditDoctorDescriptor descriptor = new EditDoctorDescriptorBuilder().withName(VALID_NAME_DR_SHELDON).build();
         EditDoctorCommand editDoctorCommand = new EditDoctorCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editDoctorCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+        assertCommandFailure(editDoctorCommand, model, MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
     }
 
     /**
@@ -167,7 +169,7 @@ public class EditDoctorCommandTest {
         EditDoctorCommand editDoctorCommand = new EditDoctorCommand(outOfBoundIndex,
                 new EditDoctorDescriptorBuilder().withName(VALID_NAME_DR_SHELDON).build());
 
-        assertCommandFailure(editDoctorCommand, model, Messages.MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
+        assertCommandFailure(editDoctorCommand, model, MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX);
     }
 
     @Test
