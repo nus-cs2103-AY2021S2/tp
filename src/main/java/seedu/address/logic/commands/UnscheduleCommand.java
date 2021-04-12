@@ -74,5 +74,4 @@ public class UnscheduleCommand extends Command {
                 && all == ((UnscheduleCommand) other).all
                 && expired == ((UnscheduleCommand) other).expired); // state check
     }
-
 }
