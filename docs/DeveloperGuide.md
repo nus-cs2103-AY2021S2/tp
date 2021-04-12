@@ -177,15 +177,15 @@ The following sequence diagram outlines how the free operation works:
 has been ommitted for simplicity.
 </div>
 
-### [Proposed] Merge Schedule and Task
+### Merge Schedule and Task
 
-The proposed merger attempts to combine the functionalities of both the Task and Schedule classes. \
+The merger attempts to combine the functionalities of both the Task and Schedule classes. \
 As the Task and Schedule classes are similar in features, we can merge them into an Entry class for maintainability.
 
 ![Entry Class](images/EntryClassDiagram.png)
 
 Previously, we allowed schedules and tasks to be added separately through using two commands, `sadd` and `tadd`. \
-Combining them into an Entry task, we propose a "eadd" command.
+Combining them into an Entry task, we implement an "eadd" command.
 
 Below, we can see the before and after activity diagrams involving this merger.
 
