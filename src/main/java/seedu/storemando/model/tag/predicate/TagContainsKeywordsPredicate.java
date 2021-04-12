@@ -8,7 +8,14 @@ import seedu.storemando.commons.util.StringUtil;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.tag.Tag;
 
+/**
+ * Tests that a {@code Item}'s {@code Tag} contains the specified keyword.
+ */
 public class TagContainsKeywordsPredicate implements Predicate<Item> {
+
+    /**
+     * List of keywords to check.
+     */
     private final List<String> keywords;
 
     public TagContainsKeywordsPredicate(List<String> keywords) {
