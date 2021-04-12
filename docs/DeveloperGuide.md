@@ -561,7 +561,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a pool while all pools are being shown.
 
-    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command.
+    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command. Default addressbook.json file present in the data folder.
 
     1. Test case: `findPool n/lenny`.<br>
        Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
@@ -592,7 +592,7 @@ The following section describes the challenges our team faced in this project, t
 
 As our group had initially decided on morphing the existing AB3, changes to the model consisted mainly of refactoring existing classes. Although a rather trivial task, this process was rather time-consuming and tedious. Due to the scale of the existing AB3 code, some difficulty was encountered during this refactoring stage as some making seemingly minute changes in method signatures or names would result in a need to edit other segments of affected code. Although the use of IntelliJ’s toolbox greatly sped up the process, the nature of some of the refactoring changes we intended to make meant that some of said changes were not as easily detected by IntelliJ, resulting in some uncaught bugs following our refactoring stage. The brownfield nature of the project also led to some difficulty in understanding the model and how the different modules interact with each other.
 
-Nearing the end of the first milestone, every team member had a better understanding of the existing code allowing for a better segmentation of work. As this was also the period where new additions were made to the existing AB3 model instead of simple refactoring, there was also less confusion surrounding what components of the model needed to be modified. This was also helped by the fact that in the case of adding features, we had a clearer idea of what needed to be done for the new feature instead of following the trails of an existing one.
+Towards the end of the first milestone, every team member had a better understanding of the existing code allowing for a better segmentation of work. As this was also the period where new additions were made to the existing AB3 model instead of simple refactoring, there was also less confusion surrounding what components of the model needed to be modified. This was also helped by the fact that in the case of adding features, we had a clearer idea of what needed to be done for the new feature instead of following the trails of an existing one.
 
 Finally, by the end of the second milestone, many of us have a firm grasp of the model and its components. This allowed us to make improvements to not just to the code of the features we had added, but also to the code that was existed in the original AB3.
 
