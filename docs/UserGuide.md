@@ -117,7 +117,8 @@ Continue reading for more ways to improve your productivity with Focuris!
   e.g. if you specify `d/walk d/run`, only `d/run` will be taken.
 
 - Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will be result in an error message.<br>
-e.g. if you type `help 123`, Focuris will show an error that says `Please remove extra irrelevant arguments!`.
+  e.g. if you type `help 123`, Focuris will show an error that says `Please remove extra irrelevant arguments!`.
+
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
