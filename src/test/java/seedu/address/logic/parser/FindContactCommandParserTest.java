@@ -11,9 +11,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 
+/**
+ * Contains tests to make sure the parser instantiates the correct {@code FindContactCommand}.
+ */
 public class FindContactCommandParserTest {
 
-    private FindContactCommandParser parser = new FindContactCommandParser();
+    private final FindContactCommandParser parser = new FindContactCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

@@ -10,6 +10,8 @@ import seedu.address.model.entry.Entry;
 
 public class TypicalTeachingAssistant {
 
+    // === Entries ===
+
     public static final Entry CONSULTATION = new EntryBuilder().withEntryName("Consultation")
             .withStartDate("2022-02-01 13:00").withEndDate("2022-02-01 14:30").withTags("History").build();
 
@@ -25,9 +27,8 @@ public class TypicalTeachingAssistant {
     public static final Entry DO_STUFF = new EntryBuilder().withEntryName("Go do something important")
             .withStartDate("2022-02-04 09:00").withEndDate("2022-02-04 09:30").withTags("Important", "Stuff").build();
 
-    //Manually Added
-    public static final Entry REMEDIAL = new EntryBuilder().withEntryName("Remedial").withStartDate("2022-02-05 10:00")
-            .withEndDate("2022-02-05 12:00").withTags("Geography", "21A07").build();
+    public static final Entry REMEDIAL = new EntryBuilder().withEntryName("Remedial")
+            .withStartDate("2022-02-05 10:00").withEndDate("2022-02-05 12:00").withTags("Geography", "21A07").build();
 
     public static final Entry CONSULTATION_MATH = new EntryBuilder().withEntryName("Consultation")
             .withStartDate("2022-02-05 17:00").withEndDate("2022-02-05 18:00").withTags("Math", "Alice").build();
@@ -38,37 +39,47 @@ public class TypicalTeachingAssistant {
     public static final Entry OVERDUE_ENTRY = new EntryBuilder().withEntryName("This entry is overdue")
             .withStartDate("2010-02-04 09:00").withEndDate("2010-02-04 09:30").withTags("Important", "Stuff").build();
 
-    //===Contact===
+    // === Contacts ===
+
+    public static final Contact AMY = new ContactBuilder().withName("Amy Bee")
+            .withEmail("amy@example.com").withPhone("11111111").withTags("friends").build();
+
+    public static final Contact BOB = new ContactBuilder().withName("Bob Choo")
+            .withEmail("bob@example.com").withPhone("22222222").withTags("owesMoney", "friends").build();
+
     public static final Contact AVA = new ContactBuilder().withName("Ava Pauline")
-            .withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").build();
+            .withEmail("alice@example.com").withPhone("94351253").withTags("friends").build();
 
     public static final Contact BEN = new ContactBuilder().withName("Ben Meier")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withEmail("johnd@example.com").withPhone("98765432").withTags("owesMoney", "friends").build();
 
-    public static final Contact CLAIRE = new ContactBuilder().withName("Claire Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withTags("colleagues").build();
+    public static final Contact CLAIRE = new ContactBuilder().withName("Claire Kurz")
+            .withPhone("95352563").withEmail("heinz@example.com").withTags("colleagues").build();
 
-    public static final Contact DAVID = new ContactBuilder().withName("David Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withTags("friends").build();
+    public static final Contact DAVID = new ContactBuilder().withName("David Meier")
+            .withPhone("87652533").withEmail("cornelia@example.com").withTags("friends").build();
 
-    public static final Contact ELLIE = new ContactBuilder().withName("Ellie Meyer").withPhone("94822244")
-            .withEmail("werner@example.com").build();
+    public static final Contact ELLIE = new ContactBuilder().withName("Ellie Meyer")
+            .withPhone("94822244").withEmail("werner@example.com").build();
 
-    public static final Contact FINN = new ContactBuilder().withName("Finn Kunz").withPhone("94824277")
-            .withEmail("lydia@example.com").build();
+    public static final Contact FINN = new ContactBuilder().withName("Finn Kunz")
+            .withPhone("94824277").withEmail("lydia@example.com").build();
 
-    public static final Contact GABRIEL = new ContactBuilder().withName("Gabriel Best").withPhone("94824422")
-            .withEmail("anna@example.com").build();
-    // Manually added
-    public static final Contact HANNAH = new ContactBuilder().withName("Hannah Meier").withPhone("84824244")
-            .withEmail("stefan@example.com").build();
-    public static final Contact IVAN = new ContactBuilder().withName("Ivan Mueller").withPhone("84821311")
-            .withEmail("hans@example.com").build();
+    public static final Contact GABRIEL = new ContactBuilder().withName("Gabriel Best")
+            .withPhone("94824422").withEmail("anna@example.com").build();
+
+    public static final Contact HANNAH = new ContactBuilder().withName("Hannah Meier")
+            .withPhone("84824244").withEmail("stefan@example.com").build();
+
+    public static final Contact IVAN = new ContactBuilder().withName("Ivan Mueller")
+            .withPhone("84821311").withEmail("hans@example.com").build();
 
     private TypicalTeachingAssistant() {} // prevents instantiation
+
+    public static TeachingAssistant getEmptyTypicalTeachingAssistant() {
+        TeachingAssistant ab = new TeachingAssistant();
+        return ab;
+    }
 
     public static TeachingAssistant getTypicalTeachingAssistant() {
         TeachingAssistant ab = new TeachingAssistant();

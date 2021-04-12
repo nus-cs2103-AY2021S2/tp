@@ -4,20 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Represents a Tag in Teaching Assistant.
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and a single word.";
+
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
 
     /**
-     * Constructs a {@code Tag}.
-     *
-     * @param tagName A valid tag name.
+     * Creates a Tag with a valid name.
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
@@ -26,7 +24,7 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid name.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -50,5 +48,4 @@ public class Tag {
     public String toString() {
         return '[' + tagName + ']';
     }
-
 }

@@ -4,8 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Contact's name in Teaching Assistant.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents a Contact's name.
  */
 public class ContactName {
 
@@ -14,7 +13,7 @@ public class ContactName {
             + "- consist of only alphabets, spaces and hyphens\n"
             + "- start and end with alphabets";
 
-    /*
+    /**
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
@@ -23,9 +22,7 @@ public class ContactName {
     public final String fullName;
 
     /**
-     * Constructs a {@code ContactName}.
-     *
-     * @param name A valid name.
+     * Creates a ContactName with a vaild name.
      */
     public ContactName(String name) {
         requireNonNull(name);
@@ -39,7 +36,6 @@ public class ContactName {
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {
@@ -57,6 +53,5 @@ public class ContactName {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }
 

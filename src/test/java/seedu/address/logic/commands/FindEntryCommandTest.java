@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalEntries.CONSULTATION;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
+import static seedu.address.testutil.TypicalTeachingAssistant.CONSULTATION;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,8 +23,9 @@ import seedu.address.testutil.EntryBuilder;
  * Contains integration tests (interaction with the Model) for {@code FindEntryCommand}.
  */
 public class FindEntryCommandTest {
-    private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalEntriesList(), new UserPrefs());
+
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void equals() {

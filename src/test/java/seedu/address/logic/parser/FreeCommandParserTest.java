@@ -11,9 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FreeCommand;
 
+/**
+ * Contains tests to make sure the parser instantiates the correct {@code FreeCommand}.
+ */
 public class FreeCommandParserTest {
 
-    private FreeCommandParser parser = new FreeCommandParser();
+    private final FreeCommandParser parser = new FreeCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

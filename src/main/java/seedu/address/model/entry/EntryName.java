@@ -3,13 +3,16 @@ package seedu.address.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Entry's name.
+ */
 public class EntryName {
 
     public static final String NAME_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank.";
 
     /**
-     * The first character of the address must not be a whitespace,
+     * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -17,9 +20,7 @@ public class EntryName {
     public final String name;
 
     /**
-     * Constructs an EntryName
-     *
-     * @param name valid name
+     * Creates an EntryName with a vaild name.
      */
     public EntryName(String name) {
         requireNonNull(name);

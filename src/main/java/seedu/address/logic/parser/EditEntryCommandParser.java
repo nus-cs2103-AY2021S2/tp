@@ -20,21 +20,23 @@ import seedu.address.model.entry.TemporaryEntry;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditEntryCommand object
+ * Parses input arguments and creates a new EditEntryCommand object.
  */
 public class EditEntryCommandParser implements Parser<EditEntryCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditEntryCommand
      * and returns an EditEntryCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EditEntryCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap = ArgumentTokenizer
                 .tokenize(args, PREFIX_NAME, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_TAG);
 
         Index targetIndex;
+
         try {
             targetIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -43,6 +45,7 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
         }
 
         TemporaryEntry tempEntry = new TemporaryEntry();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             tempEntry.setEntryName(ParserUtil.parseEntryName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -78,6 +81,7 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
+
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }

@@ -55,5 +55,4 @@ public class JsonSerializableTeachingAssistantTest {
                 JsonSerializableTeachingAssistant.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-
 }

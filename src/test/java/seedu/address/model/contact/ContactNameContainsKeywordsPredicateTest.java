@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ContactBuilder;
 
+/**
+ * Contains unit tests for {@code ContactNameContainsKeywordsPredicate}.
+ */
 public class ContactNameContainsKeywordsPredicateTest {
 
     @Test

@@ -11,10 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListEntryCommand;
 
+/**
+ * Contains tests to make sure the parser instantiates the correct {@code ListEntryCommand}.
+ */
 public class ListEntryCommandParserTest {
 
-    private ListEntryCommandParser parser = new ListEntryCommandParser();
-
+    private final ListEntryCommandParser parser = new ListEntryCommandParser();
 
     @Test
     public void parser_emptyInput_success() {

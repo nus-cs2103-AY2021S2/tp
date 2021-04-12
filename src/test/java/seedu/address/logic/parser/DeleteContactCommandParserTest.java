@@ -18,7 +18,7 @@ import seedu.address.logic.commands.DeleteContactCommand;
  */
 public class DeleteContactCommandParserTest {
 
-    private DeleteContactCommandParser parser = new DeleteContactCommandParser();
+    private final DeleteContactCommandParser parser = new DeleteContactCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteContactCommand() {

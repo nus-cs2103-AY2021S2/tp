@@ -6,7 +6,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Contains unit tests for {@code EntryName}.
+ */
 public class EntryNameTest {
 
     @Test

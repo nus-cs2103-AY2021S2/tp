@@ -9,13 +9,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code ClearOverdueEntryCommand}.
+ */
 public class ClearOverdueEntryCommandTest {
 
     @Test
     public void execute_emptyTeachingAssistant_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
-
         assertCommandSuccess(new ClearOverdueEntryCommand(), model,
                 ClearOverdueEntryCommand.MESSAGE_SUCCESS, expectedModel);
     }
