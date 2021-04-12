@@ -282,7 +282,56 @@ time frame of 1 week that pops out whenever the user opens the application.
     * Cons:
       * User has no flexibility to specify the time range he/she wants to receive reminders for.
       * If user want to check for reminders again he has to reopen the application.
-      
+    
+###Add Order Item Feature
+The `addItem` command enables users to predefine order items (also known as cake items or order descriptions). The user can choose to add order items directly from this table when adding orders to CakeCollate.
+
+An `OrderItem` consists of a `Type` field which refers to the description of the order item. In the user guide the `Type` field is referred to as `ORDER_DESCRIPTION` in order to make it more user friendly since `Type` is not very descriptive.
+
+All order items input by the user are added to the `UniqueOrderItemList` and displayed on the right side of the Ui.
+
+The underlying functionality for the `addItem` command utilises the `AddOrderItemCommand::execute` method which checks for duplicates of that particular `OrderItem` in the `UniqueOrderItemList` using the `Model::hasOrderItem` method. The `OrderItem` input by the user is added to the `UniqueOrderItemList` using the `Model::addOrderItem` method if no duplicates are found.  
+
+If the user wants to add an order item "Chocolate Cake" they can use the command `addItem Chocolate Cake`.
+
+Given below is an example usage scenario and how the `addItem` mechanism works.
+
+*Step 1.* The user keys in and executes the command `addItem Chocolate Cake` to add an order item with a `Type` field of "Chocolate Cake".
+
+*Step 2.* The command is parsed by `AddOrderItemCommandParser`.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, an `AddOrderItemCommand` will be created.
+
+*Step 4.* `AddOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
+
+The following sequence diagram shows how this works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates AddOrderItemCommandParser and calls parse("Chocolate Cake") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+![AddOrderItemSequenceDiagram](images/AddOrderItemSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+
+#### Design considerations: 
+
+##### Aspect: Checking for duplicates when adding `OrderItem` to `UniqueOrderItemList`
+* **Alternative 1 (current choice):** `Type::equals` method ignores case (returns `True` if the type is the same even if the case is different). 
+   * Pros:
+     * Prevents user from accidentally adding a duplicate `OrderItem` with the same value for `Type` but different case. 
+   * Cons: 
+     * Provides lesser flexibility to user who might want to add in the same order item with different case.
+
+* **Alternative 2:** `Type::equals` method considers case (returns `False` if case is different).
+    * Pros:
+      * Provides more flexibility to user who might want to add in the same order item with different case.
+    * Cons:
+      * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -541,6 +590,53 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 2.
 
+**Use case: Add an order item**
+
+**MSS**
+
+1.  User requests to add an order item to the order items table.
+2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The order item description is invalid i.e. it contains invalid characters such as numbers and special characters or is blank.
+
+    * 1a1. CakeCollate shows an error message stating that the order item description should only contain alphabets and shouldn't be blank.
+    
+      Use case resumes at step 1.
+    
+* *a. User requests for help <link help use case here>.
+
+**Use case: Delete an order item**
+
+**MSS**
+
+1.  User requests to delete a specific list of order items.
+2.  CakeCollate deletes the specified order items.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. One or more indexes input by the user exceeds the length of the current list.
+
+    * 3a1. CakeCollate shows an error message stating that the index provided is invalid.
+
+      Use case resumes at step 1.
+
+* 3b. One or more indexes input by the user is negative.
+
+    * 3a1. CakeCollate shows an error message stating that the index can't be negative.
+
+      Use case resumes at step 1.
+
+* *a. User requests for help <link help use case here>.
 
 **Use case: Help needed for command summary**
 
