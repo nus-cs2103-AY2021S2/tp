@@ -20,14 +20,16 @@ Thus, the main interaction with **Tutor Tracker** will be done through commands.
 Tutor Tracker is an all-in-one tuition management solution for tech-savvy secondary school students.
 The features of Tutor Tracker includes:
 
-- Viewing of tutors' profile
+- Adding, editing, deleting and viewing of tutors' profile
+- Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
 - Adding a note to each tutor's profile
 - Exporting tutor's details  
-- Adding, editing, deleting and viewing of tuition appointments
-- Adding, editing, deleting and viewing of tuition-related schedules
-- Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
-- Adding, editing, deleting and listing grade records in GradeBook
+- Creating a list of favourites tutors
+- Adding, editing, deleting and viewing of all tuition appointments
+- Adding, editing, deleting and viewing of all tuition-related schedules
+- Adding, editing, deleting and listing grade records
 - Adding, editing, deleting and viewing of reminders
+- Adding, editing, deleting and viewing of budget
 
 The purpose of this Developer Guide is to help you understand the design and implementation of Tutor Tracker to get started on your contributions to Tutor Tracker.
 
@@ -119,8 +121,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the TutorTracker data.
+* stores the Tutor Tracker data.
 * exposes an unmodifiable `ObservableList<XYZ>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* In-depth details of each `XYZ` model are shown in each [Implementation](#implementation) section.
 
 ### Storage component
 
@@ -1206,9 +1209,7 @@ Given below are instructions to test the app manually.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
+       
 ### Deleting a tutor
 
 1. Deleting a tutor while all tutor(s) are being shown
@@ -1223,9 +1224,7 @@ Given below are instructions to test the app manually.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
+       
 ### Adding a Schedule
 
 1. Adding a schedule
