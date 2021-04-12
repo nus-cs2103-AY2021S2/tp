@@ -23,7 +23,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ninijiaying.png" width="200px">
 
 [[github](http://github.com/ninijiaying)]
-[[portfolio](team/minijiaying.md)]
+[[portfolio](team/ninijiaying.md)]
 
 * Role: Developer, integration
 * Responsibilities:
