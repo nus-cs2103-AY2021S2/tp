@@ -38,17 +38,17 @@ public class SampleDataUtil {
 
     public static Entry[] getSampleEntries() {
         return new Entry[] {
-          new Entry(new EntryName("Consultation with 2A"), new EntryDate("2021-05-04 13:00"),
+            new Entry(new EntryName("Consultation with 2A"), new EntryDate("2021-05-04 13:00"),
                   new EntryDate("2021-05-04 15:00"), getTagSet("consultation")),
-          new Entry(new EntryName("Department meeting"), new EntryDate("2021-05-05 16:00"),
+            new Entry(new EntryName("Department meeting"), new EntryDate("2021-05-05 16:00"),
                   new EntryDate("2021-05-05 17:00"), getTagSet("meeting", "needprep")),
-          new Entry(new EntryName("CCA"), new EntryDate("2021-05-11 16:00"),
+            new Entry(new EntryName("CCA"), new EntryDate("2021-05-11 16:00"),
                    new EntryDate("2021-05-11 18:00"), getTagSet("cca")),
-          new Entry(new EntryName("Leadership Camp"), new EntryDate("2021-05-15 07:00"),
+            new Entry(new EntryName("Leadership Camp"), new EntryDate("2021-05-15 07:00"),
                    new EntryDate("2021-05-16 18:00"), getTagSet("event")),
-          new Entry(new EntryName("Sec 2 teachers meeting"), new EntryDate("2021-05-17 13:00"),
+            new Entry(new EntryName("Sec 2 teachers meeting"), new EntryDate("2021-05-17 13:00"),
                    new EntryDate("2021-05-17 14:00"), getTagSet("meeting")),
-          new Entry(new EntryName("Consultation with 2B"), new EntryDate("2021-05-18 13:00"),
+            new Entry(new EntryName("Consultation with 2B"), new EntryDate("2021-05-18 13:00"),
                    new EntryDate("2021-05-18 15:00"), getTagSet("consultation"))
         };
     }
