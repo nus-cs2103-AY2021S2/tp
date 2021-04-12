@@ -71,8 +71,11 @@ public class Task {
             }
             return false;
         } else {
-            this.status = new Status(StatusType.EXPIRED);
-            return true;
+            if (!this.getStatusType().equals(StatusType.COMPLETED)) {
+                this.status = new Status(StatusType.EXPIRED);
+                return true;
+            }
+            return false;
         }
 
     }
