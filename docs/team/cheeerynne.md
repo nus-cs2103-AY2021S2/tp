@@ -11,10 +11,10 @@ that are typed into the input box as commands and it has a GUI created with Java
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to assign members to a task (Pull Requests: [\#161](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/161), [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163))
-    * What it does: allows the user to assign multiple members to a task and edit assignees to a task. 
-    * Justification: This feature improves the product significantly because a user can conveniently track which members  
-      are assigned to a task. Also, users can easily modify the assignees to a task should there be any changes in the assignment of a task. 
+* **New Feature**: Added the ability to assign members to a task. (Pull Requests: [\#161](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/161), [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163))
+    * What it does: Allows the user to assign multiple members to a task and edit assignees to a task. 
+    * Justification: This feature improves the product significantly because a user can conveniently track which members are assigned to a task.
+      Also, users can easily modify the assignees to a task should there be any changes in the assignment of a task. 
     * Highlights: The implementation was challenging as I had to check whether the specified member's name exists in the 
       members' list before allowing assignment to a task. I decided to implement an Assignee class, along with a checkAssignees 
       method within the ModelManager class. The checkAssignees method checks the validity of the specified member's name by 
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
       the validity of the specified names while not creating any unnecessary dependency between the Task and Person class.
 
 * **New Feature**: Added the ability to find tasks with specified keywords. (Pull Requests: [\#133](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/133))
-    * What it does: allows the user to find all tasks which contain any of the specified keywords in its title or description. 
+    * What it does: Allows the user to find all tasks which contain any of the specified keywords in its title or description. 
     * Justification: This feature improves the product significantly because a user can easily filter and find tasks based on specific 
       keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific task. 
     * Highlights: The implementation was challenging as I had to check through the title and description fields of all the tasks 
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
       Furthermore, integration and unit testing had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
     
 * **New Feature**: Added the ability to find members with specified keywords. (Pull Requests: [\#130](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/130))
-    * What it does: allows the user to find all members whose name, phone number, email or role contain any of the specified keywords.
+    * What it does: Allows the user to find all members whose name, phone number, email or role contain any of the specified keywords.
     * Justification: This feature improves the product significantly because a user can easily filter and find members based on specific 
       keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific member.
     * Highlights: The implementation was challenging as I had to check through all the fields of the members in the list. 
@@ -65,7 +65,7 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Updated the Storage UML Diagram in the Developer Guide. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191))
         * Added implementation explanation for the `clearAssignees` command. (Pull Requests: [\#191](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/191))
-        * Added and updated use cases in the Developer Guide (Pull Requests: [\#143](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/143), [\#171](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/171))
+        * Added and updated use cases in the Developer Guide. (Pull Requests: [\#143](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/143), [\#171](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/171))
        
 * **Community**:
     * PRs reviewed (Pull requests: [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#276](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/276))
