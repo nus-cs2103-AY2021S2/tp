@@ -447,8 +447,8 @@ enter any command that updates data.
 
 ### 5.17 Editing the data file
 
-Data is saved as an encoded JSON file to the following location `[JAR file location]/data/budgetbaby.json`. You are
-<strong>NOT RECOMMENDED</strong> to edit the file in any way.
+Data is saved as a JSON file at the following location `[JAR file location]/data/budgetbaby.json`. Advanced users are
+welcome to make changes to the data directly by making edits to the data file.
 
 **:exclamation: Caution:**
 If your changes to the data file invalidates its format, BudgetBaby will discard all your data and start with an
