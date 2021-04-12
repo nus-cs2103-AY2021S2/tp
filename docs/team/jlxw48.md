@@ -11,10 +11,6 @@ insurance agents who can type fast to accomplish their client management tasks f
 
 Given below are my contributions to the project.
 
-* **New Feature**: Extended `InsurancePolicy` class to also store the URLs to the policy documents.
-    * **What it does**: Associates each policy ID with an optional policy URL to the policy document.
-    * **Justification**: Allows the user to store the policy URL associated with their clients' policies, acting as a central storage facility to facilitate retrieval and access of policy documents.
-<br><br>
 * **New Feature**: Added a new command which allows user to display client's policies in a pop-up window.
     * **What it does**: Allows the user to view all the policies in a separate window, where they can then click a "Copy URL" button to easily retrieve the policy's URL (if any). 
     * **Justification**: This feature improves the product significantly because a user can easily retrieve the URL of a policy document, and enter it into a web browser to view the policy document.
@@ -27,38 +23,38 @@ Given below are my contributions to the project.
     * **Justification**: This feature improves the product significantly because a user no longer has to repeat similar commands just to change a particular detail that some clients might have in common. 
       * For example, some clients might co-own an insurance policy, and the policy ID of this policy might have changed. 
       This can be done easily using 1 command now instead of having to key in the same command repeatedly for numerous clients.
-    * **Highlights**: This enhancement affects existing commands (`EditCommand` and `DeleteCommand`). 
-      It required an in-depth analysis of how the system works, since it required the use of other existing system components. 
-      Much effort was taken to ensure that the implementations of existing system components were minimally affected by this new command.
-      The implementation was challenging as it required the use of other existing system components and stellar system design to ensure that components are logically related to each other.
+    * **Highlights**: This enhancement makes use of existing commands (`EditCommand` and `DeleteCommand`). 
+      The implementation was challenging as it required stellar system design to ensure that all involved components are logically related to each other,
+      while ensuring that the behaviour of existing system components are minimally affected by this new command. 
 <br><br>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=jlxw48&tabRepo=AY2021S2-CS2103T-W15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 <br><br>
 * **Project management**:
-    * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+    * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub.
 <br><br>
 * **Enhancements to existing features**:
     * Wrote tests to ensure correctness of implemented `policy` (Pull request [\#51](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/51))
       and `batch` (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/98), 
       [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)) commands.
-    * Corrected existing bugs from the original upstream repository (Pull request [\#183](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/183))
+    * Corrected existing bugs from the original upstream repository (Pull request [\#183](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/183)).
 <br><br>
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features:
-          * `policy`: [\#42](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/42), [\#43](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/43)
-          * `batch`: [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)
-        * Did cosmetic tweaks to existing documentation : 
+        * Added documentation for 
+          `policy` (Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/42), [\#43](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/43)) and
+          `batch` (Pull request [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101))
+          commands.
+        * Did cosmetic tweaks to existing documentation: Pull requests
               [\#61](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/61),
               [\#63](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/63), 
               [\#78](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/78)
             * Drafted initial layout of User Guide that is still used in current iterations, through improvements in formatting, whitespaces, organisation and page flow.
-            * Increase readability of User Guide, even for non-technical readers, through grammar and spelling checks for example.
+            * Increase coherence and readability of User Guide.
             * Crafted welcoming introduction to ClientBook's User Guide. 
     * Developer Guide:
         * Added implementation details [here](https://ay2021s2-cs2103t-w15-2.github.io/tp/DeveloperGuide.html#feature-to-display-the-insurance-policies-associated-with-a-selected-client) 
           for the `policy` feature, to launch a pop-up window to display policies of a selected client (Pull request [\#82](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/82)).
-        * Added use cases for `policy` and `batch` features (Pull request [\#191](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/191)).
+        * Added user stories and use cases for `policy` and `batch` features (Pull requests [\#191](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/191), [\#192](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/192)).
         * Modified Logic component's Class Diagram and abstracted the Parser component into its own Class Diagram (Pull request [\#194](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/194)).
 <br><br>
 * **Community**:
