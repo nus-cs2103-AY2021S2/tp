@@ -181,14 +181,8 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * Lesson time must be in **HHmm** format e.g. **1300**
 
-* If the student name to be added already exists in TutorsPet, a warning
-`This student name Alex Yeoh already exists with a different phone number. Do you wish to proceed? y/n` will be shown.
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
-  If `n` is entered, the contact would not be added.
-  
-* If the lesson day and time to be added already exists in TutorsPet, a warning 
-  `You have a lesson at [lesson day and time] with [student(s)]. Do you wish to proceed? y/n` will be shown
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
+* If the student **name** or **lesson** to be added already exists in TutorsPet, a warning prompting user's input will be shown.
+  If `y` is entered, the contact will be added.
   If `n` is entered, the contact would not be added.
   
 * Student's phone number is allowed to be the same as the guardian's number.
@@ -263,15 +257,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
 
-* If the student name to be edited already exists in TutorsPet, a warning
-  `This student name Alex Yeoh already exists with a different phone number. Do you wish to proceed? y/n` will be shown.
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
-  If `n` is entered, the contact would not be added.
-
-* If the lesson day and time to be edited already exists in TutorsPet, a warning
-  `You have a lesson at [lesson day and time] with [student(s)]. Do you wish to proceed? y/n` will be shown
-  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
-  If `n` is entered, the contact would not be added.
+* If the student **name** or **lesson** to be edited already exists in TutorsPet, a warning prompting user's input will be shown.
+  If `y` is entered, the contact will be edited.
+  If `n` is entered, the contact would not be edited.
 
 <div markdown="block" class="alert alert-primary">
 :bulb:**Tips:** <br>
@@ -380,10 +368,6 @@ Prefix | Searching Criteria
 `s/`   | School
 `t/`   | Subject
 
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
 * **At least one** prefix must be used.
    
 * All 3 types of prefix can be used **concurrently**.
@@ -392,11 +376,16 @@ Prefix | Searching Criteria
   
 * The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
    
-* Only full words will be matched e.g. `Ta` will not match `Tan`.
+* Only full words will be matched. E.g. `Ta` will not match `Tan`.
   
 * Contacts matching at least one keyword will be returned. 
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
+* Available **subject** names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `bio`, `BIO`, `Bio` are equivalent.
 
   For more details, see the [Field Format Summary](#61-field-format-summary) below.
   
