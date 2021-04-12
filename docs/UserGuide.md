@@ -106,6 +106,7 @@ Format: `commanddetailu`
 This section will introduce to you the commands to be used in the Dictionary Panel.
 ![dictionary](images/dictionaryoverview.png)
 
+<div style="page-break-after: always;"></div>
 #### Listing all content : `listcontent`
 
 Shows a list of all contents in the Dictionary.
