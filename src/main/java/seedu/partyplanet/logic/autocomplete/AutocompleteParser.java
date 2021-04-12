@@ -38,7 +38,7 @@ public class AutocompleteParser {
             return new EEditAutocompleteUtil(arguments);
         }
 
-        throw new AutocompleteException(autocompleteError);
+        throw new AutocompleteException(AUTOCOMPLETE_ERROR);
     }
 
 }
