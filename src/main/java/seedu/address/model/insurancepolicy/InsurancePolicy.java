@@ -76,11 +76,13 @@ public class InsurancePolicy {
 
         InsurancePolicy otherPolicy = (InsurancePolicy) other;
 
-        if (otherPolicy.policyUrl == null || policyUrl == null) {
+        if (otherPolicy.policyUrl == null && policyUrl == null) {
             return policyId.equals(otherPolicy.policyId);
-        } else {
+        } else if (otherPolicy.policyUrl != null && policyUrl != null) {
             return policyId.equals(otherPolicy.policyId) && policyUrl.equals(otherPolicy.policyUrl);
         }
+
+        return false;
     }
 
     @Override
