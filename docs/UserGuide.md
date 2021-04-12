@@ -11,7 +11,6 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -30,7 +29,7 @@ title: User Guide
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -60,7 +59,7 @@ title: User Guide
 
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Guide Feature
 #### Viewing help : `help`
 
