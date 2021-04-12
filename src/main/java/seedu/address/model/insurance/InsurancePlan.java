@@ -72,6 +72,12 @@ public class InsurancePlan {
      * Returns true if a given premium amount is a valid amount.
      */
     public static boolean isValidAmount(String premium) {
+        // Check that there is not more than 1 decimal point in the input premium
+        String withoutDecimalPoints = premium.replaceAll("\\.", "");
+        if (premium.length() - withoutDecimalPoints.length() > 1) {
+            return false;
+        }
+
         String[] fragments = premium.split("\\.");
         if (fragments.length == 1) {
             return fragments[0].matches(REGEX_POSITIVE_INTEGER);
