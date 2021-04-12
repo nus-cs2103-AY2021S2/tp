@@ -173,8 +173,8 @@ string are trimmed, and the input string is padded with zeroes as necessary to f
 ### Recording, viewing and clearing notes for clients
 ![NoteSequenceDiagram](images/NoteSequenceDiagram.png)
 
-The `NoteCommand` is created and parsed similar to other commands, as show in the sequence diagram above. The `Prefix` 
-that the user called the command with (`/r` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
+The `NoteCommand` is created and parsed similar to other commands, as shown in the sequence diagram above. The `Prefix` 
+that the user called the command with (`r/` to record note, `v/` to view notes, `c/` to clear notes) is stored as an
 additional parameter in the `NoteCommand`.
 
 
@@ -358,7 +358,7 @@ otherwise)
     * Use case resumes at step 2.
 
 * 3c. The user input is invalid.
-    * 3a1. Link.me shows an error message.
+    * 3c1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 **Use case: Delete a client**
