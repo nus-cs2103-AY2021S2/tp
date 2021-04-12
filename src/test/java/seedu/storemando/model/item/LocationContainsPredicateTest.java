@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 import seedu.storemando.testutil.ItemBuilder;
 
 public class LocationContainsPredicateTest {

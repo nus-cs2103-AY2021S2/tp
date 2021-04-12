@@ -7,9 +7,9 @@ import java.util.List;
 import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
-import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.expirydate.predicate.ItemExpiringPredicate;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemComparatorByExpiryDate;
+import seedu.storemando.model.item.comparator.ItemComparatorByExpiryDate;
 
 /**
  * Finds and lists all items in storemando whose item's expiry date is within a certain days/weeks from today.
@@ -20,14 +20,13 @@ public class ReminderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all items whose expiry date is within "
         + "the user-specified number of days/weeks from the current date. \n"
-        + "Parameters: Days/Weeks (must be an integer) [TimeUnitKeyWord] (days/weeks (day/week accepted for -1/0/1))\n"
+        + "Parameters: NUMBER (must be an integer) TIMEUNITKEYWORD (days/weeks (day/week accepted for -1/0/1))\n"
         + "Example: \n1. " + COMMAND_WORD + " 3 days\n2. " + COMMAND_WORD + " 1 week";
-
-    public static final String MESSAGE_SUCCESS_EXPIRING_ITEM = "Display all items that are expiring within %d %s or has"
-        + " already expired.";
-    public static final String MESSAGE_SUCCESS_EXPIRED_ITEM = "Display all items that has been expired for at least"
+    public static final String MESSAGE_SUCCESS_EXPIRING_ITEM = "Filtered all items that are expiring within %d %s or "
+        + "has already expired.";
+    public static final String MESSAGE_SUCCESS_EXPIRED_ITEM = "Filtered all items that has been expired for at least"
         + " %d %s.";
-    public static final String MESSAGE_SUCCESS_EXPIRING_TODAY_ITEM = "Display all items that are expiring today or "
+    public static final String MESSAGE_SUCCESS_EXPIRING_TODAY_ITEM = "Filtered all items that are expiring today or "
         + "has already expired.";
 
     public static final String MESSAGE_INCORRECT_INTEGER = "Number provided must be greater than -366 "
@@ -40,6 +39,7 @@ public class ReminderCommand extends Command {
     /**
      * Constructor for reminder command with ItemExpiringPredicate predicate, numOfDaysOrWeeksFromToday and the timeUnit
      * specified.
+     *
      * @param predicate The predicate that will be use to filter the item.
      * @param numOfDaysOrWeeksFromToday The number of days away from today.
      * @param timeUnit The unit of time specified by user. It is either in day(s) or week(s).
@@ -66,6 +66,11 @@ public class ReminderCommand extends Command {
         return new CommandResult(message);
     }
 
+    /**
+     * Get the success message based on the number of days specified by the user.
+     *
+     * @return The success message.
+     */
     public String getMessage() {
         if (this.numOfDaysOrWeeksFromToday < 0) {
             return String.format(MESSAGE_SUCCESS_EXPIRED_ITEM, Math.abs(numOfDaysOrWeeksFromToday), timeUnit);

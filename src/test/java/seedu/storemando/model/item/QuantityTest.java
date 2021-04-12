@@ -35,7 +35,7 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity("0")); // zero quantity
         assertFalse(Quantity.isValidQuantity("-1")); // negative quantity
         assertFalse(Quantity.isValidQuantity("1000001")); // above max value
-        assertFalse(Quantity.isValidQuantity("2147483648")); // above maximum possible integer
+        assertFalse(Quantity.isValidQuantity("9223372036854775807")); // above maximum possible integer
 
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("9")); // exactly 1 number

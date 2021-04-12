@@ -14,6 +14,10 @@ Class ResultDisplay
 Class ItemListPanel
 Class ItemCard
 Class CommandBox
+Class ExpiredTablePanel
+Class ExpiringTablePanel
+Class LocationListPanel
+Class LocationCard
 }
 
 package Model <<Rectangle>> {
@@ -27,22 +31,30 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .right.|> Ui
 UiManager -down-> MainWindow
 MainWindow -down-> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> ItemListPanel
+MainWindow *-down-> ExpiredTablePanel
+MainWindow *-down-> ExpiringTablePanel
+MainWindow *-down-> LocationListPanel
 
 ItemListPanel -down-> ItemCard
+LocationListPanel -down-> LocationCard
 
 MainWindow -left-|> UiPart
 
+ExpiredTablePanel -down-|> UiPart
+ExpiringTablePanel -down-|> UiPart
 ResultDisplay -down-|> UiPart
 CommandBox -down-|> UiPart
 ItemListPanel -down-|> UiPart
 ItemCard -down-|> UiPart
 HelpWindow -down-|> UiPart
+LocationListPanel -down-|> UiPart
+LocationCard -down-|> UiPart
 
 ItemCard .right.> Model
 UiManager -right-> Logic

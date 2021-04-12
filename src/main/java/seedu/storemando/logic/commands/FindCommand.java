@@ -9,8 +9,8 @@ import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
-import seedu.storemando.model.item.ItemNameContainsPartialKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsPartialKeywordsPredicate;
 
 /**
  * Finds and lists all items in storemando whose item name contains any of the argument keywords.
@@ -30,6 +30,9 @@ public class FindCommand extends Command {
     public static final String MESSAGE_LESS_THAN_TWO_ITEMS_FOUND_OVERVIEW = "%1$d item found!";
     public static final String MESSAGE_MORE_THAN_ONE_ITEM_FOUND_OVERVIEW = "%1$d items found!";
 
+    /**
+     * The predicate that find command uses to filter the items.
+     */
     private final Predicate<Item> predicate;
 
     public FindCommand(ItemNameContainsKeywordsPredicate predicate) {

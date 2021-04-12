@@ -13,7 +13,7 @@ import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.UniqueItemList;
 
 /**
- * Wraps all data at the storemando level
+ * Wraps all data at the storemando level.
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class StoreMando implements ReadOnlyStoreMando {

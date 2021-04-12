@@ -9,8 +9,11 @@ import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.item.Item;
-import seedu.storemando.model.item.ItemComparatorByIncreasingQuantity;
+import seedu.storemando.model.item.comparator.ItemComparatorByIncreasingQuantity;
 
+/**
+ * Sort the item in an ascending order based on the item's quantity.
+ */
 public class SortAscendingQuantityCommand extends SortCommand {
     public static final String MESSAGE_SUCCESS_QUANTITY_ASC = "Sorted all items based on their quantity in an"
         + " ascending order.";

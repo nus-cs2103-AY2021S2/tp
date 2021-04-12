@@ -6,6 +6,8 @@ title: User Guide
 {:toc}
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 1. Introduction
 
 ### 1.1. About StoreMando
@@ -51,6 +53,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Quick start
 
 ### 2.1. Installation
@@ -74,12 +78,11 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2. StoreMando's layout
 
-#### Main Panel
-
-The main panel is the display window of items stored in StoreMando. Depending on which command you key in, the main
-panel will display the corresponding items.
+![GUILayout](images/GUILayout.png)
 
 #### Command Box
 
@@ -87,8 +90,28 @@ The command box is the long box at the top where you will be entering commands t
 
 #### Result Display Box
 
-The result display box, located directly below the command box, is where StoreMando’s server replies to every command 
+The result display box, located directly below the command box, is where StoreMando’s server replies to every command
 that you key in. Any success, error or warning messages will be displayed in this box.
+
+#### Item List Panel
+
+The item list panel is the display window of items stored in StoreMando. Depending on which command you key in, the main
+panel will display the corresponding items.
+
+#### Expiring Items Table
+
+The expiring items table refers to the topmost table which consists of 2 columns, number of days and number of items. It 
+displays the number of items in StoreMando that are expiring within the stated number of days from the current date.
+
+#### Expired Items Table
+
+The expired items table refers to the lower table which consists of 2 columns, number of days and number of items. 
+It displays the number of items in StoreMando that have expired for the stated number of days from the current date.
+
+#### Location List Panel
+
+The location list panel is the display window of all the locations of items stored in StoreMando. 
+
 
 ### 2.3. Information on Items
 
@@ -123,6 +146,8 @@ t/ | TAG | `t/TAG` | Each TAG must only be one word long.
 */ | PARTIAL_WORD | `*/PARTIAL_WORD` | PARTIAL_WORD must have at least one word.
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Features
 
@@ -299,6 +324,8 @@ you to do just that.
 
 You can use this command in 3 different ways.
 
+<div style="page-break-after: always;"></div>
+
 * #### 3.5.1. Listing all items in StoreMando
 
   This command allows you to view all the items in the inventory.
@@ -445,7 +472,7 @@ You can use this command in 3 different ways.
 
   Example:
   
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
+    * `sort expirydate` sorts the items in the displayed list from the earliest expiry date to the latest.
       
     <br>
 
@@ -536,7 +563,7 @@ restart with an empty data file at the next run. Proceed with caution!!
 the data of your previous StoreMando home folder.
 
 **Q**: Can I have two or more inventories in one computer?<br>
-**A**: Download and install StoreMando in two different folders on your computer so that you will have two different
+**A**: Yes. Download and install StoreMando in two different folders on your computer so that you will have two different
 data files in separate locations. You can have as many inventories as you want using this method.
 
 **Q**: What if I want to have more features implemented in the product?<br>
@@ -547,6 +574,8 @@ data files in separate locations. You can have as many inventories as you want u
 to this user guide to provide you with the help you need.
 
 ----
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
@@ -565,6 +594,8 @@ Action | Format, Examples
 
 ----
 
+<div style="page-break-after: always;"></div>
+
 ## 6. Glossary
 
 * **StoreMando**: Name of the application
@@ -575,4 +606,5 @@ Action | Format, Examples
 * **Similar Items**: Items that have the same spelling for name and location but differ by letter case.
 * **Identical Items**: Items that have the same name and location in terms of spelling and letter case, as well as the same expiry date if it exists for both.
 * **Alphanumeric**: Alphanumeric characters are those comprised of the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
+
 ----

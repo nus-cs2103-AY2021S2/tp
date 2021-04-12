@@ -17,7 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.storemando.commons.core.GuiSettings;
-import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
+import seedu.storemando.model.item.predicate.ItemNameContainsKeywordsPredicate;
 import seedu.storemando.testutil.StoreMandoBuilder;
 
 public class ModelManagerTest {

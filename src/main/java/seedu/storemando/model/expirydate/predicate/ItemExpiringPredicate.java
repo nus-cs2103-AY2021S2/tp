@@ -1,4 +1,4 @@
-package seedu.storemando.model.expirydate;
+package seedu.storemando.model.expirydate.predicate;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 

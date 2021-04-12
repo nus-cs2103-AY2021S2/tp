@@ -46,9 +46,9 @@ public class EditCommand extends Command {
         + PREFIX_QUANTITY + "5 "
         + PREFIX_EXPIRYDATE + "2018-10-10";
 
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited item: %1$s.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in storemando.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory.";
     public static final String MESSAGE_NO_CHANGE = "Item not edited! Specified change in item details same as "
         + "original.";
     public static final String MESSAGE_ITEM_EXPIRED_WARNING = "\nWarning: Item has already expired!";
@@ -58,8 +58,8 @@ public class EditCommand extends Command {
     private final EditItemDescriptor editItemDescriptor;
 
     /**
-     * @param index              of the item in the filtered item list to edit
-     * @param editItemDescriptor details to edit the item with
+     * @param index of the item in the filtered item list to edit.
+     * @param editItemDescriptor details to edit the item with.
      */
     public EditCommand(Index index, EditItemDescriptor editItemDescriptor) {
         requireNonNull(index);

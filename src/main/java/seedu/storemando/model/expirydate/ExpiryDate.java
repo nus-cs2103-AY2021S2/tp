@@ -71,7 +71,7 @@ public class ExpiryDate {
     }
 
     /**
-     * Checks if the current expiryDate is past current date
+     * Checks if the current expiryDate is past current date.
      */
     public boolean isPastCurrentDate() {
         return expiryDate != null && expiryDate.isBefore(LocalDate.now());
@@ -99,10 +99,10 @@ public class ExpiryDate {
     }
 
     /**
-     * Compares between 2 ExpiryDate objects by seeing which item expires earlier
+     * Compares between 2 ExpiryDate objects by checking which item expires earlier.
      *
-     * @param anotherExpiryDate ExpiryDate object to be compared to this
-     * @return an integer to show which ExpiryDate is greater
+     * @param anotherExpiryDate ExpiryDate object to be compared with.
+     * @return a positive or negative integer.
      */
     public int compare(ExpiryDate anotherExpiryDate) {
         if (this.expiryDate == null && anotherExpiryDate.expiryDate == null) {
