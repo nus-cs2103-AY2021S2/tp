@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+group sd Automatic Sorting of Residences by Clean Status
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as Model MODEL_COLOR
@@ -31,4 +32,5 @@ deactivate ResidenceTracker
 
 [<- Model
 deactivate Model
+end
 @enduml
