@@ -101,9 +101,9 @@ Legend | Description
 6. Type the command in the command box at the top and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
    
-   * `**reset** t/blank`: Resets sample data in the application.
+   * **`RESET`**` t/blank`: Resets sample data in the application.
 
-   * `**bmi** g/M a/43 h/170 w/70 i/50`: Sets up your user profile with the gender (male), age (43), height (170cm), weight (70kg) and ideal weight (50kg).
+   * **`BMI`**` g/M a/43 h/170 w/70 i/50`: Sets up your user profile with the gender (male), age (43), height (170cm), weight (70kg) and ideal weight (50kg).
 
    * **`bmi_query`**: Returns information on your current BMI profile.
 
