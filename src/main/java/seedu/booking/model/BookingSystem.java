@@ -111,6 +111,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        bookings.removeBookingWithBooker(key.getEmail());
     }
 
     @Override
@@ -224,6 +225,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      * {@code key} must exist in the booking system.
      */
     public void removeVenue(Venue key) {
+        bookings.removeBookingWithVenue(key.getVenueName());
         venues.remove(key);
     }
 

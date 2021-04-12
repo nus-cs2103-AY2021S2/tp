@@ -13,7 +13,9 @@ import seedu.booking.model.booking.exceptions.BookingNotFoundException;
 import seedu.booking.model.booking.exceptions.DuplicateBookingException;
 import seedu.booking.model.booking.exceptions.OverlappingBookingException;
 import seedu.booking.model.person.Email;
+import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
+import seedu.booking.model.venue.exceptions.VenueNotFoundException;
 
 /**
  * A list of bookings that enforces that is it non overlapping between its elements and does not allow nulls.
@@ -161,20 +163,25 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
      * Replaces the old venue name {@code oldVenueName} in the booking with {@code newVenueName}.
      */
     public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
-        internalList.stream()
-                .filter(x -> StringUtil.containsWordIgnoreCase(x.getVenueName().venueName, oldVenueName.venueName))
-                .forEach(x -> x.setVenueName(newVenueName));
+        for (int i = 0; i < internalList.size(); i++) {
+            if (!(internalList.get(i).getVenueName().venueName.equalsIgnoreCase(oldVenueName.venueName))) {
+                continue;
+            }
+            internalList.get(i).setVenueName(newVenueName);
+        }
     }
-
 
 
     /**
      * Replaces the old person email {@code oldEmail} in the booking with {@code newEmail}.
      */
     public void updatePersonInBookings(Email oldEmail, Email newEmail) {
-        internalList.stream()
-                .filter(x -> StringUtil.containsWordIgnoreCase(x.getBookerEmail().value, oldEmail.value))
-                .forEach(x -> x.setEmail(newEmail));
+        for (int i = 0; i < internalList.size(); i++) {
+            if (!(internalList.get(i).getBookerEmail().value.equalsIgnoreCase(oldEmail.value))) {
+                continue;
+            }
+            internalList.get(i).setEmail(newEmail);
+        }
     }
 
 
@@ -184,5 +191,23 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
     public long countOverlaps(Booking toAdd) {
         requireNonNull(toAdd);
         return internalList.stream().filter(toAdd::isOverlapping).count();
+    }
+
+    public void removeBookingWithVenue(VenueName venueName) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (!(internalList.get(i).getVenueName().venueName.equalsIgnoreCase(venueName.venueName))) {
+                continue;
+            }
+            internalList.remove(i);
+        }
+    }
+
+    public void removeBookingWithBooker(Email email) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (!(internalList.get(i).getBookerEmail().value.equalsIgnoreCase(email.value))) {
+                continue;
+            }
+            internalList.remove(i);
+        }
     }
 }
