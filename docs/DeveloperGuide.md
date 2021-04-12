@@ -85,7 +85,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1 2")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1 2")` API call. This is also explained [below](#deleting-a-passenger).
 
 ![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
 
@@ -233,16 +233,6 @@ From the diagram illustrated above:
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
 
-Design considerations include the `findPool` command being able to be used in conjunction with the `unpool` command. For instance, the user might first use `findPool n/Alice` and then followed by `unpool 1`.
-The `findPool n/Alice` command first filters the list of displayed pools, such that only pools in which there is a passenger named Alice will be displayed. Calling the `unpool` command would then remove the pool specified by the provided indices from the currently displayed list, removing it from the system. The `findPool` command works similarly to the `find` command, except that it currently only supports the use of the name prefix: "/n"
-
-The activity diagram below encapsulates the user workflow of adding passengers, finding passengers and then pooling the passengers:
-
-![Activity Diagram for a user using Unpool](images/UnpoolActivityDiagram.png)
-
-The rationale behind this implementation was because once the GME terminal is populated with a large number of pools, it would be rather difficult for the user to find a specific pool with a specific passenger.
-By allowing the user to first filter the pools before subsequently removing the pool from the filtered list, the findPool feature greatly enhances the unpool feature, thereby making the product much more cohesive as features work well together.
-
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("unpool 1")`.
 ![Interactions Inside the Logic Component for the `unpool 1` Command](images/UnpoolSequenceDiagram.png)
 
@@ -259,6 +249,14 @@ From the diagram illustrated above:
 
 ### FindPool feature
 This feature allows users to find a pool that contains a passenger with a provided keyword in their name.
+
+Design considerations include the `findPool` command being able to be used in conjunction with the `pool` or `unpool`  command. Due to the limitations of the current iteration of GME, each passenger can only belong to one pool. As the number of passengers and pools increases, it may be hard to keep track of the passengers that exist in pools and those that do not, thus, the user might attempt to create a new pool with a passenger and be informed that the passenger already exists in a pool. The `findPool` feature thus allows the user to find the pool that the passenger already exists in to either confirm if they are in the correctly assigned pool, or `unpool` them if they are not. The `findPool` command works similarly to the `find` command, except that it currently only supports the use of the name prefix: "n/"
+
+The activity diagram below encapsulates the user workflow of attempting to pool a passenger, finding out that the passenger already exists in a pool, and using the `findPool` command to rectify the issue:
+
+![Activity Diagram for a user using findPool](images/findPoolActivityDiagram.png)
+
+The rationale behind this implementation was because once the GME terminal is populated with a large number of pools, it would be rather difficult for the user to find a specific pool that includes a specific passenger. This could make it difficult to pool a passenger if they already exist in another pool. By allowing the user to filter the pools by the passengers they include, the user will be able to quickly find the pools that include the passenger they are attempting to pool, allowing them to confirm if they have been assigned to the right pool or to rectify the issue if they have not.
 
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("findPool n/Alice")` command.
 ![Interactions Inside the Logic Component for the `findPool n/Alice` Command](images/FindPoolSequenceDiagram.png)
@@ -571,7 +569,7 @@ testers are expected to do more *exploratory* testing.
 
        Expected: No pool is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `unpool`, `unpool x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect unpool commands to try: `unpool`, `unpool x`, `...` (where x is larger than the list size)<br>
 
        Expected: Similar to previous.
 
@@ -601,7 +599,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding passengers by name while all passengers shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. 
+       All passengers listed using `list`.
 
     1. Test case: `find n/bernice`.<br>
        Expected: Details of passenger named `Bernice Yu` is shown. Status message shows 1 passenger listed.
@@ -618,7 +617,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding passengers by tag while all passengers are shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`.
+       All passengers listed using `list`.
 
     1. Test case: `find tag/finance`.<br>
        Expected: Details of `Bernice Yu` and `Roy Balakrishnan` are shown. Status message shows 2 passengers listed.
@@ -633,7 +633,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a pool while all pools are being shown.
 
-    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command. Default addressbook.json file present in the data folder.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`.
+       All pools listed using `listPool`.
 
     1. Test case: `findPool n/lenny`.<br>
        Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
@@ -646,12 +647,51 @@ testers are expected to do more *exploratory* testing.
        
     1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
        Expected: Similar to previous.
+
+### Editing a passenger
+
+1. Editing passengers with 1 parameter while all passengers shown.
+
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
+
+    1. Test case: `edit 1 n/Alice`.<br>
+       Expected: Name of passenger previously named `Alex Yeoh` is changed to `Alice`. Status message shows all the details of `Alice`.
+       
+    1. Test Case: `edit 0 n/Alice`. <br>
+       Expected: No passenger is edited. Result box shows error: `One of the passenger indexes provided is invalid`. Command box text turns red.
+       
+    1. Other incorrect edit commands to try: `edit n/Alice`, `edit x n/Alice`, ... (where x is larger than the list size).
+       Expected: Similar to previous.
+
+1. Editing passengers with multiple parameters while all passengers shown.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
+       
+    1. Test case: `edit 1 p/12345678 a/Floor Street tag/abcd`.<br>
+       Expected: Phone number, address, and tag of passenger named `Alice` is changed to `12345678`, `Floor Street`, and `abcd` respectively. Status message shows all the new details of `Alice`
+
+1. Editing passenger to match an existing passenger's identity.
+    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+
+    1. Test case: `edit 1 n/Bernice Yu p/99272758`.<br>
+       Expected: No passenger is edited. Result box shows error: `This passenger already exists in the GME Terminal.`. Command box text turns red.
+
+1. Editing passenger that is in a Pool.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`. All pools listed using `listPool`.
+
+    1. Test case: `edit 7 n/Kelly`.<br>
+       Expected: Name of passenger previously named `Kristen Woo` is changed to `Kelly`. Status message shows all the details of `Kelly`. `Trip by Irfan Ibrahim` in Pool list updates to `Roy Balakrishnan, Kelly`.
+
+    1. Test case: `edit 7 d/TUESDAY`.<br>
+       Expected: No passenger is edited. Result box shows error: `TThe Passenger to be edited exists in a pool. Day cannot be edited.`. Command box text turns red.
+
+    1. Test case: `edit 7 t/1400`.<br>
+       Expected: Time of passenger named `Kelly` is changed to `1400`. Status message shows all the details of `Kelly`, and `NOTE: The passenger edited exists in a pool and has had their preferred trip time edited. This might result in a time difference of more than 15 minutes with the pool time.`
  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
 
-The creation of GreenMileageEfforts came with a great deal of effort from each and every one of the team members. Since the start of the project we have
+The creation of GreenMileageEfforts came with a great deal of effort from each of the team members. Since the start of the project we have
 made the effort to consistently conduct team meetings every week, most of these meetings were held in physical settings such that we could communicate our ideas effectively.
 Upon completion of the project, we have achieved a product that is a direct reflection of our hard work and determination.
 GreenMileageEfforts is a product that has been adapted and morphed from AB3, where there have been significant enhancements made since AB3.
@@ -684,27 +724,24 @@ While the user interface of AB3 consists of one panel to illustrate a list of pe
 was not a trivial task, as each of the panels had their own set of commands such as adding, deleting and filtering. On top of that, enhancements were made to ensure a cleaner looking user interface
 that is the current GreenMileageEfforts product today.
 
+#### Extension of `find` command
+
+The initial implementation of `find` inherited from AB3 only allowed users to search by names. 
+To improve usability for users, we introduced searching of other fields of a passenger. 
+While implementing the first iteration in v1.2, it took some additional time as it took some time to understand which classes interacted with each other when `find` was executed.
+This was harder to understand as there was no sequence diagram included for the `find` command as well.
+To implement the command, a predicate was needed for each of the attributes as well as the parsing of the arguments in `FindCommandParser` to allow for different type of searches to be possible.
+
+#### Extension of `delete` command
+The initial implementation of `delete` inherited from AB3 only allowed users to delete 1 passenger at a time. 
+To improve usability for users, we introduced multi-passenger deletion using indexes.
+The first iteration of this allowed for passengers to be deleted despite some other passengers being already in a pool.
+This was later revised to prevent users from executing `delete` all together when there are passengers still in a pool.
+This was chosen as better code quality could be achieved through such a decision.
+
 #### Workflow
 
-At the very start of the project for the very first milestone, work delegation and flow was not ideal, where one team member had to wait for the changes that another had to make.
+At the start of the project, work delegation and flow was not ideal, where one team member had to wait for the changes that another had to make.
 For instance, while one team member added new fields such as (TripTime and TripDay), another team member was tasked to update the logic of `Add` and `Edit` command for the new fields.
-Upon a post-mortem that reflects and self-evaluates our work process, we have refined our workflow such that it would be much more efficient by the second milestone, this included the proper
+Upon a post-mortem to reflect and evaluate our workflow, we managed to refine our workflow to make it much more efficient by the second milestone, this included the proper
 segmentation and delegation of work into its features. Finally, by doing so we have achieved a far better workflow by the end of the project that enabled us to create the GreenMileageEfforts product as it is today.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -79,14 +79,14 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ## 3.1 General Purpose Features
 
-## 3.1.1 User Interface
+### 3.1.1 User Interface
 
 The various sections of the User Interface are described as in the picture below.
 ![Ui_labelled](images/Ui_labelled.png)
 
 ### 3.1.2 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message with a quick summary of the available commands and how to format them. Shows how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -111,6 +111,13 @@ GME data is saved in the hard disk automatically after any command that changes 
 ### 3.1.6 Editing the data file
 
 GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
+
+* Ensure that the following constraints are met if you decide to edit the file:
+    * There are no duplicate `Passengers`
+    * There are no duplicate `Pools`
+    * Only one `Pool` can reference a `Passenger`
+    * The `Passenger` referenced in `Pool` can be found in the `Passenger` object
+    * The `Passenger` in a `Pool` must have the same Trip Day as the `Pool`
 
 <div markdown="block" class="alert alert-warning">
 
@@ -150,9 +157,9 @@ Lists the passengers currently stored in the GME terminal.
 
 **Format:** `list`
 
-### 3.2.3 Editing a person : `edit`
+### 3.2.3 Editing a passenger : `edit`
 
-Edits an existing person in the GME terminal.
+Edits an existing passenger in the GME terminal.
 
 **Format:** `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]​`
 
@@ -161,17 +168,17 @@ Edits an existing person in the GME terminal.
 **:information_source: Notes about the edit command:**<br>
 
 * [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the passenger at the specified `INDEX`. The index refers to the index number shown in the displayed passenger list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `tag/` without
+* When editing tags, the existing tags of the passenger will be removed i.e adding of tags is not cumulative.
+* You can remove all the passenger’s tags by typing `tag/` without
   specifying any tags after it.
 </div>
 
 **Examples:**
-* `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567` respectively.
-* `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/91234567` Edits the phone number of the 1st passenger to be `91234567` respectively.
+* `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd passenger to be `Betsy Crower` and clears all existing tags.
 
 ### 3.2.4 Locating passengers by prefixes: `find`
 
@@ -223,8 +230,8 @@ Deletes the specific passenger from the GME terminal.
 </div>
 
 **Examples:**
-* `list` followed by `delete 3` deletes the *3rd* person in the passenger list.
-* `delete 1 2 5` deletes the 1st, 2nd and 5th person in the passenger list. 
+* `list` followed by `delete 3` deletes the *3rd* passenger in the passenger list.
+* `delete 1 2 5` deletes the 1st, 2nd and 5th passenger in the passenger list. 
 
 
 ## 3.3 Pool features
@@ -246,11 +253,11 @@ Selects passengers from the current view in the bottom left pane of the GME term
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​.
 * The order of the passengers' index does not matter.
-* You must select at least 1 person to pool with one command.
+* You must select at least 1 passenger to pool with one command.
 </div>
 
 **Examples**:
-* `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3` selects the *2nd* and *3rd* person in the
+* `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3` selects the *2nd* and *3rd* passenger in the
   results of `find tag/female` command, and assigns *Alice* with number *91234567* to be the driver of the passengers specified by the indices.
 
 
@@ -329,7 +336,8 @@ Action | Format, Examples
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver.
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. 
+Passenger | An employee carpooling with at least one driver.
 TripDay | Day of the intended carpooling trip.
 TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.

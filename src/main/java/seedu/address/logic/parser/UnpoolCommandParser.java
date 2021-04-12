@@ -15,7 +15,10 @@ public class UnpoolCommandParser implements Parser<UnpoolCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UnpoolCommand
      * and returns a UnpoolCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments to be parsed.
+     * @return The UnpoolCommand created from parsing the arguments.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public UnpoolCommand parse(String args) throws ParseException {
 

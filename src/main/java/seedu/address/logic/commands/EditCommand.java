@@ -63,8 +63,10 @@ public class EditCommand extends Command {
     private final EditPassengerDescriptor editPassengerDescriptor;
 
     /**
-     * @param index of the passenger in the filtered passenger list to edit
-     * @param editPassengerDescriptor details to edit the passenger with
+     * Creates an EditCommand to edit passengers at the specified {@code index}.
+     *
+     * @param index Index of the passenger in the filtered passenger list to edit.
+     * @param editPassengerDescriptor Details to edit the passenger with.
      */
     public EditCommand(Index index, EditPassengerDescriptor editPassengerDescriptor) {
         requireNonNull(index);
