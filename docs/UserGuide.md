@@ -9,8 +9,8 @@ Thank you for downloading **Focuris**! As a busy University student, Focuris hel
 work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making
 your student life a little easier! <br/>
 
-Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
-**displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
+Focuris is a **desktop application** for **managing events** with a [KanBan](#kanban) board. The KanBan board is a board which
+**displays events according to the level of completion**: [Backlog](#backlog), [ToDo](#todo), [In-Progress](#in-progress) and [Done](#done). <br/>
 
 Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management
 and organisation.
@@ -54,8 +54,8 @@ and customise your experience with Focuris!
 
 <!-- AUTO-GENERATED TOC - END -->
 <!-- prettier-ignore-end -->
-i
----
+
+## i
 
 <div class="page-break-before"></div>
 
@@ -166,10 +166,9 @@ and [2.3](#23-event-commands).
 - Events of the same name are treated as case-insensitive. <br>
   e.g. `CS2030` is the same name as `cs2030`.
 - Note that commands are case sensitive, so you must follow the format given closely! <br>
-  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work. 
-- Also note that for the commands where square brackets `[ ]` appear, it indicates that those a optional fields, which means that you do not 
-necessarily have to type them in if you do not want to, as shown in the table above under <b>Format, Examples</b>.
-
+  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work.
+- Also note that for the commands where square brackets `[ ]` appear, it indicates that those a optional fields, which means that you do not
+  necessarily have to type them in if you do not want to, as shown in the table above under <b>Format, Examples</b>.
 
 </div>
 
@@ -215,8 +214,8 @@ There are two views in Focuris, which can be toggled with the [`switch` command]
 
 2. `List` view<br/>
    ![Ui List](images/user-guide/Annotated/UiListWithReferenceAnnotated.png)
-This is how your events are displayed:
-![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
+   This is how your events are displayed:
+   ![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
 
 **:information_source: Please take note that Events are not sorted by their Priority in Focuris (Coming soon!)** <br/>
 
@@ -295,8 +294,8 @@ For the majority of event commands, you can simply execute them via these simple
 
 1. Type the command you desire in the command box with the specified format detailed below.
 2. Hit `enter` on your keyboard!
-3. The result of your command should be visible on the Result Box, while the outcome of your command should be 
-visible on the `KanBan` or `List` view (depending on your view) above the Result Box.
+3. The result of your command should be visible on the Result Box, while the outcome of your command should be
+   visible on the `KanBan` or `List` view (depending on your view) above the Result Box.
 
 Start discovering and using the Commands now by going to the Command Summary!
 
@@ -673,10 +672,20 @@ As a new user to Focuris, you might encounter have certain queries regarding how
 
 # 4. Glossary
 
-<a name="case-insensitive" class="do-not-decorate"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
+<a name="backlog" class="do-not-decorate"><strong>Backlog</strong>: Describes an Event that is currently not being worked on, but needs to be worked on in the future. When an Event is about to be worked on, a status of `ToDo` should be allocated to it.</a>
 
-<a name="parameters" class="do-not-decorate"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+<a name="case-insensitive" class="do-not-decorate"><strong>Case Insensitive</strong>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
 
-<a name="special-characters" class="do-not-decorate"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
+<a name="done" class="do-not-decorate"><strong>Done</strong>: Describes an Event where progress is completed. Once a record of the Event is no longer needed, the Event can be deleted from the `KanBan` board.</a>
+
+<a name="in-progress" class="do-not-decorate"><strong>In Progress</strong>: Describes an Event where progress is currently being made for the task and it will be completed soon. When an Event is completed, a status of `Done` should be allocated to it.</a>
+
+<a name="kanban" class="do-not-decorate"><strong>KanBan</strong>: KanBan is inspired by the Japanese words '看板', meaning signboard. In workflow management, a kanban board aims to help you visualise your workflow, often through including a board with cards and columns, where each card represents a work item and each column represents the current status of a work item, in Focuris, these columns are `Backlog`, `ToDo`, `In Progress` and `Done`.</a>
+
+<a name="parameters" class="do-not-decorate"><strong>Parameters</strong>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+
+<a name="special-characters" class="do-not-decorate"><strong>Special Characters</strong>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
+
+<a name="todo" class="do-not-decorate"><strong>ToDo</strong>: Describes an Event that is currently about to be worked on in the near future. When work on an Event is underway, a status of `In Progress` should be allocated to it.</a>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>

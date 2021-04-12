@@ -26,13 +26,13 @@
 }
 
 .do-not-decorate {
-  text-decoration: none !important;
+  text-decoration: none;
   color: black;
   &:hover {
-    text-decoration: none !important;
+    text-decoration: none;
   }
   &:visited {
-    text-decoration: none !important;
+    text-decoration: none;
   }
 }
 
