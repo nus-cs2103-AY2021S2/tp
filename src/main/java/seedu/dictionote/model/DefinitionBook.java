@@ -22,7 +22,7 @@ public class DefinitionBook implements ReadOnlyDefinitionBook {
     public DefinitionBook() {}
 
     /**
-     * Makes a DefinitionBook.
+     * Makes a DefinitionBook
      *
      * @param toBeCopied ReadOnlyDefinitionBook
      */
