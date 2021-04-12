@@ -449,12 +449,14 @@ public class ModelManager implements Model {
         return orderBook.hasOrder(order);
     }
 
+    @Override
     public void deleteOrder(Order target) {
         orderBook.removeOrder(target);
     }
 
-
+    @Override
     public void deleteOrders(List<Order> orders) {
+        requireNonNull(orders);
         for (Order o : orders) {
             deleteOrder(o);
         }

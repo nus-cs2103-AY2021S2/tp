@@ -17,7 +17,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.order.OrderCommandUtil;
 import seedu.address.model.Model;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.ingredient.Ingredient;
@@ -43,8 +42,8 @@ public class MenuEditCommand extends Command {
     public static final String MESSAGE_EDIT_DISH_SUCCESS = "Edited Dish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DISH = "This dish already exists in the menu.";
-    public static final String MESSAGE_NOT_ENOUGH_INGREDIENTS = "Insufficient ingredients to fulfil orders with this change";
-
+    public static final String MESSAGE_NOT_ENOUGH_INGREDIENTS = "Insufficient ingredients to fulfil orders "
+            + "with this change. Please remove incomplete orders that will be affected first.";
     private final Index index;
     private final MenuEditCommand.EditDishDescriptor editDishDescriptor;
 
