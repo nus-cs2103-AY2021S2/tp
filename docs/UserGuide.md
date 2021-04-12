@@ -568,6 +568,7 @@ The following are the 5 region where the user can manipulate
 
 ![Ui Panel](images/UiPanel.png)
 
+<div style="page-break-after: always;"></div>
 #### Opening and Closing UI Panel
 
 ##### Opening UI Panel: `open`
@@ -592,6 +593,7 @@ Examples:
 * `open -a`
     * All panel will be visible to the user
 
+<div style="page-break-after: always;"></div>
 ##### Closing UI Panel: `close`
 Dictionote will close the UI Panel you've chosen. The panel is set to be invisible when closed.
 
@@ -722,7 +724,7 @@ both the Note List Panel and the Note Content Panel become visible.
 
 Format: `toggledividern`
 
-
+<div style="page-break-after: always;"></div>
 ### Others Feature
 
 #### Exiting the program : `exit`
