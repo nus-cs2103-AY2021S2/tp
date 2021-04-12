@@ -154,7 +154,7 @@ The app will guide you through the command through prompts for each field. As wi
 After keying a valid initial input, the multi-step prompting will prompt you to enter details for the following fields in the specified order:
 * Email: must be unique and of the format <em>local-part@domain</em>.
 * Phone number: must be unique and input as digits without spaces in between. The permitted length is 7-15 digits inclusive, which is the standard length of all international phone numbers.
-* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. No tag can be empty, so consecutive commas without any tag in between would be invalid.
+* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. Tags cannot be empty, so consecutive commas without any tag in between would be invalid.
 <br>
 Format: `add_person n/NAME`
 <br>
@@ -373,7 +373,7 @@ Action | Format, Example
 **add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
 **delete booking** | `delete_booking INDEX` <br> e.g. `delete_booking 1`
 **edit booking** | `edit_booking INDEX [e/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking 1 e/doe@gmail.com`
-**find booking** | `find_booking [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `find_booking b/jane@example.com`
+**find booking** | `find_booking [e/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `find_booking e/jane@example.com`
 **list booking** | `list_booking`
 **help** | `help`
 **clear** | `clear`
