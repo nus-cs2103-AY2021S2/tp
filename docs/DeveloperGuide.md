@@ -550,7 +550,7 @@ testers are expected to do more *exploratory* testing.
     1. If prompt is for email address, test case: `johndoe@gmail.com`<br>
        Expected: The command should be succesfully parsed and a prompt should appear asking for email address input.
     
-    1. If initial prompt has been successfully parsed, test case: `exit_prompt`
+    1. If initial prompt has been successfully parsed, test case: `exit_prompt`<br>
        Expected: The multi-step command should terminate and exit, and users can now input other commands.
 
 
@@ -575,7 +575,7 @@ testers are expected to do more *exploratory* testing.
 1. A multi-step command to add a booking to the booking system
     1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. A person with the email `johndoe@gmail.com` exists, and a person with the venue name `Victoria Hall` exists. List all bookings using the `list_booking` command, and verify that the date and duration you intend to book the venue for does not already exist.
 
-    2. Test case: `add_booking e/johndoe@gmail.com`<br>, followed by `Victoria Hall` (when prompted for venue), followed by `Important meeting` (when prompted for description), followed by `business, finance` (when prompted for tags), followed by `2021-01-01 01:00` and `2021-01-01 02:00` respectively when prompted for start and end date.
+    2. Test case: `add_booking e/johndoe@gmail.com`<br>, followed by `Victoria Hall` (when prompted for venue), followed by `Important meeting` (when prompted for description), followed by `business, finance` (when prompted for tags), followed by `2021-01-01 01:00` and `2021-01-01 02:00` respectively when prompted for start and end date.<br>
     Expected: A booking should appear in the list of bookings with the booker by the email "johndoe@gmail.com", venue "Victoria Hall", with a description of "Important meeting", two tags "business" and "finance". The duration booked should also be listed in the same way as the input, which is in a YYYY-MM-DD HH:MM" format.
        
     3. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-02-01 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
@@ -590,11 +590,11 @@ testers are expected to do more *exploratory* testing.
       Person with email `nonexistent@gmail.com` is not in the list.
 
    1. Test case: `delete_person e/johndoe@gmail.com`<br>
-      Expected: Person with email `johndoe@gmail.com` is deleted from the list.
+      Expected: Person with email `johndoe@gmail.com` is deleted from the list.<br>
       Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete_person e/nonexistent@gmail.com`<br>
-      Expected: No person is deleted. 
+   1. Test case: `delete_person e/nonexistent@gmail.com`
+      Expected: No person is deleted.
       Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `delete_person`, `delete_person x` <br>
@@ -658,9 +658,9 @@ testers are expected to do more *exploratory* testing.
 1. Editing a venue's information
     1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. Venue "Hall" exists in the system. If not, create a venue with the specified name of "Hall".
 
-    1. Test case: `edit_venue vo/Hall v/Court`
+    1. Test case: `edit_venue vo/Hall v/Court`<br>
        Expected: the name of the venue should change from "Hall" to "Court".
-    2. Test case: `edit_venue vo/Hall`
+    2. Test case: `edit_venue vo/Hall`<br>
        Expected: No venue is edited. Error details shown in the status box that command format is invalid.
     3. Other incorrect edit commands to try can be followed similarly to the edit command for Persons under F.8 (i.e. missing `vo/` prefix or no edit fields).
     
@@ -669,29 +669,77 @@ testers are expected to do more *exploratory* testing.
 1. Editing a booking's information
     1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. The booking at index 1 is linked to the venue "Victoria Hall", which exists in the system. A venue by the name of "Hall" exists. A venue by the name of "John" does not.
   
-    1. Test case: `edit_booking 1 v/Hall`
+    1. Test case: `edit_booking 1 v/Hall`<br>
        Expected: the name of the booking venue should change from "Victoria Hall" to "Hall".
-    2. Test case: `edit_booking 1 v/John`
+    2. Test case: `edit_booking 1 v/John`<br>
        Expected: No venue is edited. Error details shown in the status box that the venue does not exist in the system.
     3. Other incorrect edit commands to try: the above test cases can similarly be replicated by editing the booker's email with an email that exists in the system and belongs to a booker, and an email that does not. A similar error should appear notifying users that the booker does not exist if a non-existing (but syntactically correct) email is inputted.
 
+### F.11 Listing all persons
+1. Listing all persons in the system
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. There are some existing persons in the system.
+  
+    1. Test case: `list_person`<br>
+       Expected: The status box should indicate success and all persons are listed.
+    2. Test case: `list_person eorifjeoifj` (redundant trailing output) <br>
+       Expected: The status box should indicate success and all persons are listed.
+    3. Other possible commands to try: delete all persons before running the command `list_person`. 
+       Expected: The list of persons should return empty. Bookings made associated with the person, if any, should all be deleted (the system might take a short while to process).
+       
+### F.12 Listing all venues
+1. Listing all venues in the system
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. There are some existing venues in the system.
+  
+    1. Test case: `list_venue`<br>
+       Expected: The status box should indicate success, and all venues are listed. Bookings made associated with the venue, if any, should all be deleted (the system might take a short while to process).
+       
+### F.13 Listing all bookings
+1. Listing all bookings in the system
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. There are some existing bookings in the system.
+  
+    1. Test case: `list_venue`<br>
+       Expected: The status box should indicate success, and all bookings are listed.
 
-### F.9 Accessing help
+### F.14 Finding certain persons
+1. Filtering and finding persons with certain fields in the system
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. There are some existing persons in the system. There are two people with the tag "basketballer", and other people without the tag. 
+  
+    1. Test case: `find_person t/basketballer`<br>
+       Expected: All persons with the tag "basketballer" are displayed in a list, and nobody without the tag is displayed.
+    2. Test case: `find_person`
+       Expected: Error message indicating invalid command format, because at least one attribute to be filtered by must be given.
+       
+### F.15 Finding certain venues
+1. Filtering and finding venues with certain fields in the system
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. There are some existing venues in the system. There are two venues with the same capacity of 20, and other venues with other capacities that are not 20. 
+  
+    1. Test case: `find_venue max/20`<br>
+       Expected: All venues with a capacity of 20 are displayed in a list, and none with capacities that are not 20 are displayed.
+    2. Other commands to try: filtering by multiple fields e.g. both tag and capacity
+
+### F.16 Finding certain bookings
+1. Filtering and finding bookings with certain fields in the system
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. There are some existing bookings in the system. There are is only one booking on the date "2021-01-01" booked by "johndoe@gmail.com", a valid email belonging to an existing booker in the system. 
+  
+    1. Test case: `find_booking e/johndoe@gmail.com date/2021-01-01`<br>
+       Expected: Only the single booking booked by "johndoe@gmail.com" for the date 1st January 2021 should be displayed. No other bookings made by the same person, or same date, or neither, should be displayed.
+
+### F.17 Accessing help
 
 1. Accessing help feature
 
-    1. Test case: `help`
+    1. Test case: `help`<br>
     Expected: An additional pop up help window should appear with a url to the user guide for Bookcoin.
 
 
-### F.10 Saving data
+### F.18 Saving data
 
 1. Dealing with missing/corrupted data files
 
     1. Test case: corrupt the file `bookingsystem.json` under ./data/. There are many ways to do so, such as inputting invalid values for fields (e.g. adding digits in name fields that can only take in alphabetic characters and spaces). 
     1. Open the jar file by running `java -jar bookingapp.jar` on your terminal.
     Expected: GUI starts up with no data populated.
-
+<br>
     1. Test case: delete the current save file under ./data/.
     1. Open the jar file by running `java -jar bookingapp.jar` on your terminal.
     Expected: GUI starts up with no data populated.
