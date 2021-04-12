@@ -301,7 +301,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![UndoRedoState4](images/CommitActivityDiagram.png)
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
