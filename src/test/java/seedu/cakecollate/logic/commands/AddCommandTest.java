@@ -31,16 +31,6 @@ import seedu.cakecollate.testutil.AddOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
 
 
-/**
- * todo: Tests
- * - order desc that already exists in order item model stub
- * - new order desc + existing order desc + order index
- * <p>
- * basically stub equivalent of addCommandIntegrationTest
- * <p>
- * check if equivalent tests exist in parser
- */
-
 public class AddCommandTest {
     private final IndexList nonNullIndexList = new IndexList(new ArrayList<>());
 

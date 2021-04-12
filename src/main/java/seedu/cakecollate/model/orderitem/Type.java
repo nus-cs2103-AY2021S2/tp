@@ -4,18 +4,27 @@ import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the type of cake of an order item.
+ * Represents the type of cake of an order item. Type refers to the description of the order item.
  * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
  */
 public class Type {
 
+    /**
+     * The following constraints are shared by {@code Type} and {@code OrderDescription} from the {@code Order} model.
+     */
     public static final String SHARED_CONSTRAINTS_MESSAGE =
             "%s should only contain alphabets.";
 
     public static final String MESSAGE_CONSTRAINTS = String.format(SHARED_CONSTRAINTS_MESSAGE, "Order Type");
 
+    /**
+     * Only matches alphabets and white spaces. String cannot start with a space.
+     */
     public static final String VALIDATION_REGEX = "^([\\p{Alpha}]|([\\p{Alpha}][\\p{Alpha} ]*))$";
 
+    /**
+     * Holds the value of the {@code Type} as specified by the user.
+     */
     public final String value;
 
     /**
@@ -29,8 +38,13 @@ public class Type {
         value = type;
     }
 
+
     /**
-     * Returns true if a given string is a valid Type.
+     * Checks whether the string input by the user is a valid {@code Type} or not. For the string to be valid it must
+     * contain only alphabets and must not be blank.
+     *
+     * @param test String to be checked
+     * @return whether the string is valid or not
      */
     public static boolean isValidType(String test) {
         if (test.length() > 0) {
