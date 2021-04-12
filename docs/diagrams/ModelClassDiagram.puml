@@ -26,15 +26,12 @@ Class Email
 Class Name
 Class Phone
 Class School
+Class Level
 Class UniquePersonList
 }
 
 Package Subject {
 Class Subject
-}
-
-Package Level {
-Class Level
 }
 
 Package Lesson {
@@ -93,6 +90,6 @@ Lesson *--> Day
 Lesson *--> Time
 Lesson *--> "*" Person
 
-ModelManager ----->" ~* observable list" Person
-ModelManager ----->" ~* observable list" Lesson
+ModelManager ----->" ~* filtered and observable list" Person
+ModelManager ----->" ~* filtered and observable list" Lesson
 @enduml
