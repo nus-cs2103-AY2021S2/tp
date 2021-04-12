@@ -160,7 +160,7 @@ This necessitates that an unique ID number is assigned to every entity during it
 
 The ID system replaces the original implementation that uses the index of every Person in the visible list. This gives the advantage of being able to reference to any entity on any screen, which can be useful since different entities are not displayed together.
 
-The `UniqueentityList` contains pairs of ID and entity. This attempts to mimic a map/dictionary while keeping possible to continue using the original UI components with minimal changes to the code. Every entity does not store its ID as an internal attribute due to the fact that ID is dynamically generated, usually after the instantiation of the entity itself. The ability to set or change the ID during the lifetime of the entity will violate the immutability of the entities. Furthermore, there is no need for the any entity to be aware of its ID.
+The `UniqueEntityList` contains pairs of ID and entity. This attempts to mimic a map/dictionary while keeping possible to continue using the original UI components with minimal changes to the code. Every entity does not store its ID as an internal attribute due to the fact that ID is dynamically generated, usually after the instantiation of the entity itself. The ability to set or change the ID during the lifetime of the entity will violate the immutability of the entities. Furthermore, there is no need for the any entity to be aware of its ID.
 
 #### Alternative Implementation: Using a Hashmap as container for unique entities
 
@@ -176,8 +176,6 @@ Drawbacks:
 This current implementation though not ideal, avoid many potential rewrites since there is no `ListView` equivalent for maps in JavaFX. Switching to using a hashmap as underlying data structure will mean that a table will need to be used to display all the entries, adding unnecessary complication to the code as filtering and sorting will no longer as be simple. Most of these changes are under-the-hood and does not improve user experience significantly.
 
 ### Adding/Deleting feature
-
-#### What it is
 
 ![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png){: .center-image}
 
@@ -239,11 +237,9 @@ Pawbook allows the users to `find` an entity based on keyword searches. The `fin
 searches and reveals the entire list of commands that match one or more of the results.
 
 When the user enters a valid command with the keyword searches, the arguments are parsed by the `FindCommmandParser` that
-converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` instance
-that uses the list of keywords to find the search results based on the supplied keywords.
-
-This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the
-CommandResult instance that is then passed on in the LogicManager.
+converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` object
+that uses the list of keywords to find the search results based on the supplied keywords. Take note that Find Command supports 
+substring searching, so for example if there is an Alice in the program, searching "Ali" will also return Alice as result. 
 
 Below is an example sequence diagram for a valid find command from the user.
 
