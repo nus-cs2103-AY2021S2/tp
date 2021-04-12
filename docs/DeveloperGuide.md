@@ -365,12 +365,12 @@ keys in the command `find */cheese egg`:
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 The sequence diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find Chocolate`:
 
 <br>
-
-<div style="page-break-after: always;"></div>
 
 ![FindFullSequenceDiagram](images/FindFullSequenceDiagram.png)
 
