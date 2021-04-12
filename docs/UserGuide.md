@@ -90,7 +90,9 @@ Basic features contain the commands for interacting with the list of patients. A
 with `list`, or find a specific patient with `find`. To view the comprehensive information on a patient, use `view`.
 
 <div markdown="block" class="alert alert-info">
+   
 **Quick tip**: To keep the patient list concise, only the most relevant information about a patient such as their name and tags are displayed. To view the full information on a patient, use the **`view`** function
+
 </div>
 
 
