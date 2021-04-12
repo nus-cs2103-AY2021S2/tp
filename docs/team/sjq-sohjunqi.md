@@ -3,6 +3,8 @@ layout: page
 title: Soh Jun Qi's Project Portfolio Page
 ---
 
+<h1 class="post-title">{{ page.title | escape }}</h1>
+
 ## Project: DietLAH!
 
 DietLAH! is a desktop diet-tracking application that uses CLI-based inputs to allow for typists to easily record their meals and track their weight-loss/gain journey.
