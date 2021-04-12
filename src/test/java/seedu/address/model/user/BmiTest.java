@@ -18,4 +18,11 @@ public class BmiTest {
         assertFalse(Bmi.isValidWeightOrHeight("0"));
         assertFalse(Bmi.isValidWeightOrHeight("-1"));
     }
+
+    @Test
+    public void equals_checkEquality() {
+        assertTrue(new Bmi(50.1, 20.1).equals(new Bmi(50.1, 20.1)));
+        assertFalse(new Bmi(50.1, 20.1).equals(new Bmi(50.1, 20.2)));
+        assertFalse(new Bmi(50.1, 20.1).equals(new Bmi(50.2, 20.1)));
+    }
 }

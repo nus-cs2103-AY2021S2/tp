@@ -9,13 +9,15 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.SetActiveDietCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new SetActiveDietCommand object
+ */
 public class SetActiveDietCommandParser implements Parser<SetActiveDietCommand> {
+
     /**
-     * Parses the given {@code String} of arguments in the context of the plan Command
-     * and returns a ViewPlanCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SetActiveDietPlanCommand
+     * and returns a SetActiveDietPlanCommand object for execution.
      *
-     * @param args arguments passed in
-     * @return an ViewPlanCommand instance
      * @throws ParseException if the user input does not conform the expected format
      */
     public SetActiveDietCommand parse(String args) throws ParseException {

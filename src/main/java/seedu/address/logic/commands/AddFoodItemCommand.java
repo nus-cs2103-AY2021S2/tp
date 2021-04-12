@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 
 /**
- * Macronutrients Tracker Food command
+ * Adds Food Item command to the nutrients tracker
  */
 public class AddFoodItemCommand extends Command {
 

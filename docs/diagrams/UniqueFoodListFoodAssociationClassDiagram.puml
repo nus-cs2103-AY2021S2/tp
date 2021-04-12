@@ -10,10 +10,16 @@ show members
 
 left to right direction
 
-class FoodIntake {
-  date : LocalDate
-  food : Food
+class UniqueFoodList {
 }
 
+class Food {
+  name: String
+  carbos: double
+  fats: double
+  proteins: double
+  kiloCalories: double
+}
 
+UniqueFoodList --> "*" Food
 @enduml

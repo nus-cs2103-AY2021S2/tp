@@ -10,10 +10,8 @@ show members
 
 left to right direction
 
-class FoodIntake {
-  date : LocalDate
-  food : Food
+class UniqueFoodList {
+    foodList : ObservableList<Food>
 }
-
 
 @enduml
