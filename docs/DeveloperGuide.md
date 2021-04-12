@@ -211,7 +211,7 @@ From the diagram illustrated above:
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
 1. This would update the model by deleting the specified pool at the first index, then a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
 
-### findPool feature
+### FindPool feature
 This feature allows users to find a pool that contains a passenger with a provided keyword in their name.
 
 Given below is the Sequence Diagram for interactions within the Logic component for the `execute("findPool n/Alice")` command.
@@ -590,3 +590,65 @@ testers are expected to do more *exploratory* testing.
     1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
        Expected: Similar to previous.
        
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+The creation of GreenMileageEfforts came with a great deal of effort from each and every one of the team members. Since the start of the project we have
+made the effort to consistently conduct team meetings every week, most of these meetings were held in physical settings such that we could communicate our ideas effectively.
+Upon completion of the project, we have achieved a product that is a direct reflection of our hard work and determination.
+GreenMileageEfforts is a product that has been adapted and morphed from AB3, where there have been significant enhancements made since AB3.
+
+### Challenges faced, Effort and Achievement
+
+The following section describes the challenges our team faced in this project, the efforts we took to overcome it, as well as what we have achieved as a result of the efforts we have taken.
+
+#### Extension of Model
+
+{Zech to elaborate on the challenges faced when extending the model
+some highlights:
+added new fields
+a great deal of refactoring was done
+model was reworked to contain a passenger and pool list
+the initial person class was refactored to become driver and passenger}
+
+#### Reworking of `drive` command to `pool` command
+
+The initial concept for this product included two commands `drive` and `undrive` which was later reworked to `pool` and `unpool` after much discussion with the team to better suit the needs of our users.
+These changes were made after the addition of a pool list to the model. Prior to the change, the passengers in the model consisted of a driver with a phone number attached to it,
+where `drive` was intended to be implemented in a way which merely edits the driver field in each passenger. Likewise, `undrive` was intended to be implemented to edit the driver field within the
+specified passengers to be empty. Upon extension of the model to include a list of pools, `pool` was implemented to add a pool to the list, while `unpool` was implemented to delete a pool from the list.
+This change involved a significant amount of effort from all of our team members, as the change involved almost all components of the project.
+Each team member tested their own component as extensively as possible before integration of the parts together, eventually coming together to fix the bugs that came from integration.
+As a result, we have achieved a product that is relatively bug-free and extensible as each component has already be properly tested.
+
+#### Extension and rework of UI
+
+While the user interface of AB3 consists of one panel to illustrate a list of persons, GreenMileageEfforts was required to illustrate a list of passengers as well as a list of pools. This
+was not a trivial task, as each of the panels had their own set of commands such as adding, deleting and filtering. On top of that, enhancements were made to ensure a cleaner looking user interface
+that is the current GreenMileageEfforts product today.
+
+#### Workflow
+
+At the very start of the project for the very first milestone, work delegation and flow was not ideal, where one team member had to wait for the changes that another had to make.
+For instance, while one team member added new fields such as (TripTime and TripDay), another team member was tasked to update the logic of `Add` and `Edit` command for the new fields.
+Upon a post-mortem that reflects and self-evaluates our work process, we have refined our workflow such that it would be much more efficient by the second milestone, this included the proper
+segmentation and delegation of work into its features. Finally, by doing so we have achieved a far better workflow by the end of the project that enabled us to create the GreenMileageEfforts product as it is today.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
