@@ -152,7 +152,7 @@ Note:
 - Pawbook supports arbitrary length phone numbers. This is to support phone numbers with differing lengths from different regions.
 - Tags are optional and multiple tags can be added.
 - Tags are only able to take in one alphanumeric string. To write tags with multiple words, consider using camelCase for combining multiple words.
-- Date format used is <kbd>dd-MM-yyyy</kbd>, time format is <kbd>HH:mm</kbd>. For date and time of sessions, it will need therefore need to follow <kbd>dd-MM-yyyy HH:mm</kbd>.<br>
+- {: #date-format} Date format used is <kbd>dd-MM-yyyy</kbd>, time format is <kbd>HH:mm</kbd>. For date and time of sessions, it will need therefore need to follow <kbd>dd-MM-yyyy HH:mm</kbd>.<br>
 
 Date time part| Code | Valid values
 --------------|------|-------------
@@ -365,7 +365,7 @@ schedule [DATE]
 
 Note:
 
-- Date has to be specified in the `dd-MM-yyyy` format, details are explained [here](#add-command-create-a-dogownerprogram).
+- Date has to be specified in the `dd-MM-yyyy` format, details are explained [here](#date-format).
 - If no date is provided, the schedule command will display all programs occurring on the current day.
 
 Examples:
