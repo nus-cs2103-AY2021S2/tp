@@ -10,8 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
-
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.model.customer.Customer;
@@ -72,15 +70,9 @@ public class Filters {
          */
 
         return new Filter(info) {
-
             @Override
             public boolean test(Customer customer) {
                 return false;
-            }
-
-            @Override
-            public List<Customer> filterAllCustomers(List<Customer> customer) {
-                return null;
             }
         };
     }
