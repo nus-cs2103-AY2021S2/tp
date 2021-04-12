@@ -72,10 +72,6 @@ public class OrderEditCommand extends Command {
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
 
-        if (orderToEdit.getState() != Order.State.UNCOMPLETED) {
-            throw new CommandException(MESSAGE_NOT_UNCOMPLETED_ORDER);
-        }
-
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 
         if (!orderToEdit.isSame(editedOrder) && model.hasOrder(editedOrder)) {
@@ -135,7 +131,7 @@ public class OrderEditCommand extends Command {
 
         assert updatedDishQuantityList != null;
 
-        Order editedOrder = new Order(updatedDateTime, updatedCustomer, updatedDishQuantityList);
+        Order editedOrder = new Order(updatedDateTime, updatedCustomer, updatedDishQuantityList, orderToEdit.getState());
 
         return editedOrder;
     }
