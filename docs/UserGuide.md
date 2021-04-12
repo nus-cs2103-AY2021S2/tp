@@ -34,7 +34,7 @@ your task management done faster than traditional GUI apps.
 
     * **`list`** : Lists all tasks.
 
-    * **`delete`**`3` : Deletes the 3rd task shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd task shown in the all tasks list.
 
     * **`clear`** : Deletes all tasks.
 
@@ -101,8 +101,8 @@ Format: `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHT
 
 Example:
 
-* `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` will add this task to the list
-* Priority tag of a task will be set to `LOW` by default if there are not inputs
+* `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` will add this task to the all tasks list.
+* Priority tag of a task will be set to `LOW` by default if there are not inputs.
 * Note that the order of inputs does not matter, for e.g. there is no difference between entering `add mc/CS3243 n/Project 1` and `add n/Project 1 mc/CS3243` .
 
 ### Edit a task: `edit`
@@ -114,7 +114,7 @@ Format: `edit INDEX [n/TASK_NAME] [mc/MODULE_CODE] [d/DEADLINE_DATE]
 
 * Edits the task at the specified index
 * The index must be a positive integer 1,2,3,...
-* The index must be on the list else an error will be thrown
+* The index must be on the all tasks list else an error will be thrown
 * At least one of the optional fields must be provided
 * Existing values will be updated to the input values
 * Weightage value provided must be a positive integer percentage between `0%` to `100%`, e.g. `w/10%`
@@ -223,7 +223,7 @@ Format: `clear`
 
 ### Exit Application `exit`
 
-Exit from semester.config, changes will be saved
+Exit from `semester.config`, changes will be saved
 
 Format: `exit`
 
@@ -300,14 +300,14 @@ the data of your previous `semester.config` home folder.
 
 Action | Format, Examples
 --------|------------------
-**add** | `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10%`
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [ptag/PRIORITY_TAG] [pt/TAGS]...` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10%`
  **delete**  | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`
 **done** | `done INDEX` <br> e.g, `done 1`
 **sort** | `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]` <br> e.g, `sort dateTime` `sort moduleCode`
 **notes** | `notes INDEX notes/NOTES` <br> e.g, `notes 4 notes/Assignment must be handwritten`
-**edit** | `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE_DATE] [t/DEADLINE_TIME] [notes/NOTES] [ptag/PRIORITY_TAG]` <br> e.g, `edit 2 n/Assignment 7`
+**edit** | `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE_DATE] [t/DEADLINE_TIME] [notes/NOTES] [ptag/PRIORITY_TAG] [pt/TAGS]...` <br> e.g, `edit 2 n/Assignment 7`
 **clear** |`clear`
 **dueIn** | `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
 **doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2`
