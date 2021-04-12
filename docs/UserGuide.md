@@ -551,7 +551,7 @@ restart with an empty data file at the next run. Proceed with caution!!
 the data of your previous StoreMando home folder.
 
 **Q**: Can I have two or more inventories in one computer?<br>
-**A**: Download and install StoreMando in two different folders on your computer so that you will have two different
+**A**: Yes. Download and install StoreMando in two different folders on your computer so that you will have two different
 data files in separate locations. You can have as many inventories as you want using this method.
 
 **Q**: What if I want to have more features implemented in the product?<br>

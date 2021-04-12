@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.storemando.logic.commands.ClearAllCommand;
 import seedu.storemando.logic.commands.ClearCommand;
 import seedu.storemando.logic.commands.ClearLocationCommand;
-import seedu.storemando.model.item.LocationContainsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 
 public class ClearCommandParserTest {
 

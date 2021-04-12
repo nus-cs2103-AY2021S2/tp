@@ -13,6 +13,7 @@ import static seedu.storemando.testutil.TypicalItems.HEATER;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.model.item.comparator.ItemComparatorByDecreasingQuantity;
 import seedu.storemando.testutil.ItemBuilder;
 
 class ItemComparatorByDecreasingQuantityTest {

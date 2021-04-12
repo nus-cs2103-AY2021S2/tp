@@ -13,7 +13,7 @@ import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.StoreMando;
 import seedu.storemando.model.UserPrefs;
-import seedu.storemando.model.item.LocationContainsPredicate;
+import seedu.storemando.model.item.predicate.LocationContainsPredicate;
 
 public class ClearAllCommandTest {
 
