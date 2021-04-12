@@ -1,0 +1,54 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LightSkyBlue
+skinparam classBackgroundColor LightSkyBlue
+skinparam nodesep 60
+
+skinparam Class {
+    FontColor #000000
+    stereotypeFontColor #000000
+
+}
+
+class XYZ
+interface "Predicate" as PredicateXYZ<XYZ> <<Interface>>
+class XYZFilter
+
+abstract class FilterSet<XYZ>
+class InclusiveFilterSet<XYZ>
+class ExclusiveFilterSet<XYZ>
+
+class Tutor
+interface "Predicate" as PredicateTutor<Tutor> <<Interface>>
+class TutorFilter
+
+class Appointment
+interface "Predicate" as PredicateAppointment<Appointment> <<Interface>>
+class AppointmentFilter
+
+note "XYZ refers to an\nattribute belonging to\nTutor or Appointment" as n1
+
+XYZ <-[dashed]- PredicateXYZ : tests <
+
+PredicateXYZ <|-[dashed]- XYZFilter
+PredicateXYZ <|-[dashed]- FilterSet
+
+FilterSet <|-- InclusiveFilterSet
+FilterSet <|-- ExclusiveFilterSet
+
+FilterSet *-up- "*" XYZFilter  : tests with >
+
+Tutor *-- "1" XYZ
+XYZ <-[dashed]- TutorFilter : tests each <
+Tutor <-[dashed]- PredicateTutor : tests <
+PredicateTutor <|-[dashed]- TutorFilter
+TutorFilter *-- "1" FilterSet : tests with >
+
+Appointment *-- "1" XYZ
+XYZ <-[dashed]- AppointmentFilter : tests each <
+Appointment <-[dashed]- PredicateAppointment : tests <
+PredicateAppointment <|-[dashed]- AppointmentFilter
+AppointmentFilter *-- "1" FilterSet  : tests with >
+
+@enduml
