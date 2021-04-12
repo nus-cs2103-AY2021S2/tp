@@ -58,7 +58,7 @@ public class SortCommand extends Command {
         assert(direction.equals(DIRECTION_ASCENDING) || direction.equals(DIRECTION_DESCENDING));
 
         if (attribute.equals(SORT_BY_INSURANCE_POLICY)) {
-            comparator = new PolicyComparator();
+            comparator = new PersonPoliciesComparator();
         } else {
             comparator = new PersonNameComparator();
         }
@@ -105,18 +105,18 @@ public class SortCommand extends Command {
     /**
      * Comparator to compare the policies of clients.
      */
-    public static class PolicyComparator implements Comparator<Person> {
+    public static class PersonPoliciesComparator implements Comparator<Person> {
         @Override
         public int compare(Person person, Person otherPerson) {
-            List<InsurancePolicy> policy = person.getPolicies();
-            List<InsurancePolicy> otherPolicy = otherPerson.getPolicies();
+            List<InsurancePolicy> policyList = person.getPolicies();
+            List<InsurancePolicy> otherPolicyList = otherPerson.getPolicies();
 
-            if (policy.size() > otherPolicy.size()) {
+            if (policyList.size() > otherPolicyList.size()) {
                 return 1;
-            } else if (policy.size() < otherPolicy.size()) {
+            } else if (policyList.size() < otherPolicyList.size()) {
                 return -1;
             } else {
-                return (policy.toString()).compareTo(otherPolicy.toString());
+                return (policyList.toString()).compareTo(otherPolicyList.toString());
             }
         }
     }
