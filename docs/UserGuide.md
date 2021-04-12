@@ -462,7 +462,7 @@ empty data file at the next run.
 **A**:
 
 1. You can follow the [quick start](#3-quick-start) guide to install the app to your other computer.
-2. On your current computer send the data file located at `[JAR file location]/data/budgetbaby.json` to your other
+2. On your current computer send the data file located at JAR file location `/data/budgetbaby.json` to your other
    computer.
 3. Overwrite the empty data file on your other computer with the data file you sent over.
 
