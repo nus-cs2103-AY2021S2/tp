@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Wrote additional tests for existing features to increase coverage from various Venue, Parser, Tag, Booking and Storage classes (e.g. [#48](https://github.com/AY2021S2-CS2103-W17-3/tp/commit/7ea8136296ad5dbc60de9440a44b3cc3490e179f), [#238](https://github.com/AY2021S2-CS2103-W17-3/tp/commit/ce330cf23a7f7abbed1b86c0272b7ab48b2626ca))
-    * Managed storage function for Venue class
+    * Implemented and managed storage function for Venue class
     * Managed modifications in implementing tag class to better suit BookCoin's purposes
     * Refactored other Venue commands when modifications are added into Venue class (e.g. [#133](https://github.com/AY2021S2-CS2103-W17-3/tp/pull/133/files))
     * Conducted active bug fixing for Venue class (e.g. [#252](https://github.com/AY2021S2-CS2103-W17-3/tp/commit/9eab70b8ffe26d8f87a118b8a1e04e69db5539fd))

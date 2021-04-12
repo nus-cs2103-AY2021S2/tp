@@ -17,6 +17,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
@@ -73,16 +74,6 @@ public class FindVenueCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredVenueList());
     }
-
-    /*@Test
-    public void execute_capacityKeywordMatches_oneVenueFound() {
-        String expectedMessage = String.format(MESSAGE_VENUE_DISPLAYED, 1);
-        List<Predicate<Venue>> predicate = prepareCapacityPredicate(50);
-
-        FindVenueCommand command = new FindVenueCommand(predicate);
-        expectedModel.updateFilteredVenueList(combineVenuePredicates(predicate));
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    }*/
 
     /**
      * Parses {@code capacityKeyword} into a {@code List<Predicate<Venue>>}.
