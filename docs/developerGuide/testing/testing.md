@@ -43,7 +43,7 @@ Expected Message: `None of the indexes provided are valid`
    
 1. What: Index larger than maximum integer value<br>
 Command: `delete 123456789123456789`<br>
-Expected Message: `Invalid command format!...`
+Expected Message: `Invalid command format! ...`
 
 1. What: Delete all contacts that has `choir` AND `year2` tag<br>
 Command: `delete -t choir -t year2`<br>
@@ -69,7 +69,7 @@ Expected Message: `The person index provided is invalid`
 
 1. What: Remove a tag from all contacts in the application.<br>
 Command: `edit --remove -t year4`<br>
-Expected Message: `Removed tag from:...`
+Expected Message: `Removed tag from: ...`
 
 ### List command
 
@@ -77,7 +77,7 @@ Lists contacts in the application. Used for 2 functions: Searching and Sorting.
 
 1. What: List all contacts<br>
 Command: `list`<br>
-Expected message: `Listed all persons!...`
+Expected message: `Listed all persons! ...`
 
 1. What: Search on partial criteria (case-insensitive), match all. (name contains `l` and tag contains `choir`)<br>
 Command: `list -n l -t choir`<br>
@@ -89,11 +89,11 @@ Expected message: `2 person(s) listed! Each person meets at least 1 requirement 
 
 1. What: Sort list by upcoming birthday. (Ignores year)<br>
 Command: `list -s u`<br>
-Expected message: `Listed all persons! Sorted by upcoming birthdays.  ...`
+Expected message: `Listed all persons! Sorted by upcoming birthdays. ...`
 
 1. What: Sort list by descending name. (Case insensitive)<br>
 Command: `list -s n -o d`<br>
-Expected message: `Listed all persons! Sorted names in descending order.  ...`<br>
+Expected message: `Listed all persons! Sorted names in descending order. ...`<br>
 Note: Default sort is `name` and default order is `ascending`
 
 ### EAdd command
@@ -129,7 +129,7 @@ Expected Message: `None of the indexes provided are valid`
 Eedit
 1. What: Edit the date of an event in the application.<br>
 Command: `eedit 1 -d 25 Dec 2021`<br>
-Expected: `Edited event: Jan celebration; Date: 25 Dec 2021...`
+Expected: `Edited event: Jan celebration; Date: 25 Dec 2021 ...`
 
 1. What: If date does not have a year.<br>
 Command: `eedit 1 -d 25 Dec`<br>
@@ -143,7 +143,7 @@ Expected Message: `Event(s) marked as completed: ...`
 
 1. What: mark first and second event as done (second event already completed)<br>
 Command: `edone 1 2`<br>
-Expected Message: `Event(s) marked as completed:... Invalid/Already completed event index(es):...`
+Expected Message: `Event(s) marked as completed: ... Invalid/Already completed event index(es): ...`
 
 1. What: Wrong format (not a valid index)<br>
 Command: `edone -1`<br>
@@ -182,7 +182,7 @@ Note: Default sort is `name` and default order is `ascending`
 
 1. What: To undo the last action<br>
 Command: `undo`<br>
-Expected Message: `Completed undo for the change:...`
+Expected Message: `Completed undo for the change: ...`
 
 1. What: If there are no more actions to undo<br>
 Command: `undo`<br>
@@ -192,7 +192,7 @@ Expected Message: `There's nothing left to undo!`
 
 1. What: To redo the last action undone<br>
 Command: `redo`<br>
-Expected Message: `Completed redo for the change:...`
+Expected Message: `Completed redo for the change: ...`
 
 1. What: If there is no more actions to redo<br>
 Command: `redo`<br>
