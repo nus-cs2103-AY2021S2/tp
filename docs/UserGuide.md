@@ -109,8 +109,11 @@ to manage tasks which can be identified by their unique list indexes.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For features which use the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
+* For features which uses the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
 
+* The NAME, NEW_NAME, ASSIGNEE and NEW_ASSIGNEE fields are case-sensitive and format-sensitive across all features which uses it.
+  e.g. "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp; Yeoh" are not the same.
+  
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -154,7 +157,6 @@ With new members joining the club, you can add a new member along with his/her c
 
 Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 
-* NAME field is case-sensitive.   
 * NAME and ROLE fields can take on any values with alphanumeric characters.
 * PHONE_NUMBER field has to have a minimum length of 3 digits and maximum length of 15 digits.
 * If ROLE field is not specified, person will be assigned a default role of `Member`.
@@ -188,8 +190,6 @@ As members leave the club, you can delete a member along with all of his/her con
 
 Format: `deleteMember NAME`
 
-* NAME field is case-sensitive.
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The NAME specified must appear in the currently displayed list of members in order for it to be valid.
 </div>
@@ -215,7 +215,6 @@ existing Member in the application with the name you specify.
 Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
 
 * Edits the member at the specified NAME.
-* NAME field is case-sensitive.
 * At least one of the optional fields must be provided.
 * NEW_NAME and NEW_ROLE fields can take on any values with alphanumeric characters.
 * Existing values will be updated to the input values. 
@@ -264,7 +263,6 @@ Format: `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIG
 * STATUS field can only take on the values **completed** or **uncompleted** (Values are case-sensitive).
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
 * PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned** (Values are case-sensitive).
-* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp; Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignee prefixes. 
@@ -317,7 +315,6 @@ Format: `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NE
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assignees, the existing assignees of the task will be removed i.e adding of assignees is not cumulative.
-* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex &nbsp; &nbsp; &nbsp;  Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0). To have multiple assignees, simply use multiple assignee prefixes.    
