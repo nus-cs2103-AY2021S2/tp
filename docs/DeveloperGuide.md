@@ -167,7 +167,15 @@ At a high level, the JSON file is structured as such:
 
 ![High level Storage Class Diagram](images/HighLevelStorageClassDiagram.png)
 
-The `Passengers` are duplicated between the `Passenger` list and each of the `Pools` that reference the `Passenger` simply so we can reuse the `JsonSerializablePassenger` structure. This association would be much better represented in a RDBMS, which will be implemented in a future version.
+The `Passengers` are duplicated between the `Passenger` list and each of the `Pools` that reference the `Passenger` simply so we can reuse the `JsonSerializablePassenger` structure. This association would be much better represented in a RDBMS, which would be an easy change for a potential future iteration.
+
+`JsonSerializableAddressBook` implements checks to ensure the following from the read JSON file:
+* There are no duplicate Passengers
+* There are no duplicate Pools
+* No more than one Pool can reference a single Passenger
+* There are no Pools that reference a Passenger that does not exist
+
+This is to ensure the santisation of data that is read from JSON, if the user decides to edit the JSON file directly.
 
 ### Pool feature
 This feature allows users to create and add a pool to the list of pools, through the use of a `pool` command.
