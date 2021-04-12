@@ -291,7 +291,7 @@ Example: `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 #### Implementation:
 
-The following sequence diagram shows how the add operation works:
+The following sequence diagram shows how the add food item operation works:
 
 <img src="images/AddFoodItemSequenceDiagram.png" width="3060" />
 
