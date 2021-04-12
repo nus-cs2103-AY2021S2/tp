@@ -191,7 +191,7 @@ You may use the `F5` hotkey to open up the Help window.
 
 If you just spent some money and want to record it, you may use the `add-fr` command to add this expenditure as a financial record in BudgetBaby.
 
-<img src="images/features/add-fr.png" width="1000px">
+<img src="images/features/add-fr.png" width="1200px">
 
 Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
@@ -220,7 +220,7 @@ Examples:
 
 If you mistyped a financial record or added a financial record incorrectly, you may use the `delete-fr` command to delete a financial record from BudgetBaby.
 
-<img src="images/features/delete-fr.png" width="1000px">
+<img src="images/features/delete-fr.png" width="1200px">
 
 Format: `delete-fr FR_INDEX [FR_INDEX]`
 
@@ -243,7 +243,7 @@ Examples:
 
 If you mistyped the details of a financial record, instead of deleting it completely, you may use the `edit-fr` command to edit an existing financial record in BudgetBaby.
 
-<img src="images/features/edit-fr.png" width="1000px">
+<img src="images/features/edit-fr.png" width="1200px">
 
 Format: `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]...`
 
@@ -269,7 +269,7 @@ Examples:
 
 If you would like to change your budget to something different from what it currently is in BudgetBaby, you may use the `set-bg` command to set the budget for the current month and the following 12 months. Note that the budget you have set for previous months cannot be updated and you can only update the current month's budget.
 
-<img src="images/features/set-bg.png" width="1000px">
+<img src="images/features/set-bg.png" width="1200px">
 
 Format: `set-bg BG_AMOUNT`
 
@@ -300,7 +300,7 @@ Data associated with a month includes:
 - The amount you have spent in relation to the total budget for that month (in term of percentage)
 - Your list of financial records for that month
 
-<img src="images/features/view-month.png" width="1000px">
+<img src="images/features/view-month.png" width="1200px">
 
 Format: `view-month MM-YYYY`
 
@@ -321,7 +321,7 @@ Examples:
 
 If you would like to find financial records matching description, amount and/or categories, you may use the `find-fr` command to filter the list of financial records based on specified fields.
 
-<img src="images/features/find-fr.png" width="1000px">
+<img src="images/features/find-fr.png" width="1200px">
 
 Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 
@@ -340,7 +340,7 @@ Examples:
 
 If you currently have a filter set, such as a particular month or category, and you would like to go back to the original view of the application, you may use the `reset-filter` command to reset all filters on financial records.
 
-<img src="images/features/reset-filter.png" width="1000px">
+<img src="images/features/reset-filter.png" width="1200px">
 
 Format: `reset-filter`
 
@@ -348,12 +348,16 @@ Format: `reset-filter`
 
 If you made a mistake from executing any commands, `undo` allows you to revert multiple latest changes made.
 
+<img src="images/features/undo.png" width="1200px">
+
 Format: `undo`
 
 ### 5.10 Redoing commands : `redo`
 
 If you made a mistake from executing any commands, `redo` allows you to advance multiple latest changes made.
 It works in the opposite way from `undo`,
+
+<img src="images/features/redo.png" width="1200px">
 
 Format: `redo`
 
@@ -365,7 +369,7 @@ Format: `exit`
 
 ### 5.12 Viewing top 5 categories spent for the current month
 
-<img src="images/features/category-stats.png" width="1000px">
+<img src="images/features/category-stats.png" width="1200px">
 
 The UI displays the top 5 categories that were spent on a particular month.
 
@@ -379,7 +383,7 @@ You may use the `F6` hotkey to open up the Month statistics window.
 
 ### 5.13 Viewing budget for the current month
 
-<img src="images/features/monthly-stats.png" width="1000px">
+<img src="images/features/monthly-stats.png" width="1200px">
 
 The UI displays the current monthly budget that has been set automatically.
 
