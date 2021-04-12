@@ -43,7 +43,9 @@ their profile pictures.
 
 * **Contact**: The set of all the persons stored in MeetBuddy, which is shown in the left part of the GUI.
 * **Person(s)**: Refers to the persons in the contact.
-* **Person Meeting**: Refers to features/models and other aspects that are related to both persons(contact) and meetings in MeetBuddy.
+* **Person Meeting**: Refers to features/models and other aspects that are 
+  related to both persons(contact) and meetings in MeetBuddy.
+
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -102,8 +104,8 @@ MeetBuddy data are saved in the hard disk automatically after any command that c
 ### Editing the data file
 
 Person Contact data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Users are not suggested updating data directly by editing that data file.
-Meeting data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Users are not suggested updating data directly by editing that data file.
-
+Meeting data are saved as a JSON file `[JAR file location]/data/meetingbook.json`. Users are not suggested updating data directly by editing that data file.
+Person Meeting Connection data are saved as a JSON file `[JAR file location]/data/connctions.json`. Users are not suggested updating data directly by editing that data file.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MeetBuddy will discard all data and start with an empty data file at the next run.
 </div>
@@ -154,7 +156,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -273,6 +275,20 @@ Format: `deletem INDEX`
 Examples:
 * `listm` followed by `delete 2` deletes the 2nd meeting in MeetBuddy.
 
+### Locating meetings: `findm`
+
+Finds meetings whose information contain any of the given keywords.
+
+Format: `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`
+
+* The search is case-sensitive in name searching. e.g `CS2103` will not match `cs2103`
+* The order of the searching filed does not matter. e.g. `findm n/CS pr/3` will be the same as `findm pr/3 n/CS`.
+* Time field refers to a point of time, as long as this point of time is in between of a meeting's start time and ending time, the search will return this specific meeting.
+* Time field must follow YYYY-MM-DD HH:MM format.
+* For other fields, the requirement is the same as addm (Adding a meeting). You can refer to the previous UG instruction.
+
+Examples:
+* `findm n/CS pr/3 time/2021-03-12 19:00` will try to find a meeting whose name contains `CS` and with priority level `3` and contains the time point `March 12th, 2021 19:00`.
 
 ### Showing of persons in a meeting : `showm`
 
@@ -389,7 +405,7 @@ Action | Format, Examples
 **Add** | `addp n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `addp n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
 **Delete** | `deletep INDEX`<br> e.g., `deletep 3` <br> <br> `deletem INDEX`<br> e.g., `deletem 3`
 **Edit** | `editp INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com` <br> <br> `editm INDEX [n/NAME] [st/START TIME] [ed/END TIME] [desc/DESCRIPTION] [pr/PRIORITY] [p/PERSON RELATED INDEX] [g/GROUP]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
-**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>
+**Find** | `findp KEYWORD [MORE_KEYWORDS]`<br> e.g., `findp James Jake` <br> <br> `findpg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findpg badminton` <br>  <br> `findm [n/NAME] [time/TIME] [desc/DESCRIPTION] [pr/PRIORITY] [g/GROUP]...[p/INDEX OF PERSON RELATED]...`<br> e.g., `findm n/CS pr/3` <br>
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
