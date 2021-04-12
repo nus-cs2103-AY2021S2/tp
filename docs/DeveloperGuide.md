@@ -1054,12 +1054,17 @@ Use case ends.
 2. User keys in command to add budget of an amount he wants.   
    Use case ends.
 
-**Extensions** 
+**Extensions**
 * 2a. A budget is already present.
-    * 2a1. TutorTracker flags out an error.  
+   * 2a1. TutorTracker flags out an error.
+
+     Use case ends.
+
 * 2b. Invalid budget amount is added, for example a negative amount.
-    * 2b1. TutorTracker flags out the error.
-    
+   * 2b1. TutorTracker flags out the error.
+
+     Use case ends.
+
 <hr/>
 
 **Use Case UC0019: Edit a budget**
@@ -1069,22 +1074,30 @@ Use case ends.
 1. User wants to change the existing budget.
 2. User requests to change the budget to an amount he wants.
 
+   Use case ends.
+
 **Extensions**
 * 2a. A budget is already present.
-    * 2a1. TutorTracker flags out an error.
+   * 2a1. TutorTracker flags out an error.
+
+     Use case ends.
 
 <hr/>
-    
+
 **Use Case UC0020: Delete a budget**
 
 **MSS**
 
 1. User does not want to do with a budget.
-2. User requests to delete budget. 
+2. User requests to delete budget.
 
-**Extensions** 
+   Use case ends.
+
+**Extensions**
 * 2a. There is no existing budget.
-    * 2a1. TutorTracker flags out an error.
+   * 2a1. TutorTracker flags out an error.
+
+     Use case ends.
 
 <hr/>
 
@@ -1095,10 +1108,13 @@ Use case ends.
 1. User does not want view an existing budget.
 2. User requests to view budget.
 
+   Use case ends.
+
 **Extensions**
 * 2a. There is no existing budget.
-  * 2a1. TutorTracker flags out an error.
+   * 2a1. TutorTracker flags out an error.
 
+     Use case ends.
 <hr/>
 
 **Use Case UC0022: Add new schedule**
