@@ -325,8 +325,6 @@ The following Activity Diagram summarizes what happens when a user executes the 
     * **Pros**: Will be easier for the user especially when there are many items in the list.
     * **Cons**: Items with the same name in different locations may cause confusion.
 
-<div style="page-break-after: always;"></div>
-
 ### Find Feature `find`
 
 The find feature helps users find and display all items whose names
@@ -336,14 +334,14 @@ contain any of the given keywords, either in full or partial.
 
 `find */KEYWORD [MORE_KEYWORDS]` display all items whose names contain any of the given partial keywords .
 
+<div style="page-break-after: always;"></div>
+
 #### Actual Implementation
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find */cheese egg`:
 
 ![FindPartialSequenceDiagram](images/FindPartialSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 The sequence diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find Chocolate`:
@@ -563,8 +561,6 @@ keys in the command `clear`:
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
-<div style="page-break-after: always;"></div>
-
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear l/Kitchen`:
 
@@ -585,6 +581,8 @@ From the diagram above:
     Subsequently, it calls on `Model`'s `updateFilteredItemList` method.
 9. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
 10. The `CommandResult` object will be returned in the end by `LogicManager`.
+
+<div style="page-break-after: always;"></div>
 
 The following Activity Diagram summarizes what happens when a user executes the clear by location command:
 
@@ -1036,8 +1034,7 @@ testers are expected to do more *exploratory* testing.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Prerequisites:**
-* Arguments are valid and compulsory parameters are provided.
-* No duplicate item or similar item exists in the list.
+Arguments are valid and compulsory parameters are provided. No duplicate item or similar item exists in the list.
 
 </div>
 
@@ -1059,7 +1056,7 @@ testers are expected to do more *exploratory* testing.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Prerequisites:**
-* There should be items in the inventory.
+There should be items in the inventory.
 
 </div>
 
@@ -1074,7 +1071,7 @@ testers are expected to do more *exploratory* testing.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Prerequisites:**
-* There should be items in the inventory.
+There should be items in the inventory.
 
 </div>
 
@@ -1153,7 +1150,7 @@ testers are expected to do more *exploratory* testing.
     <div markdown="span" class="alert alert-warning">
     
     :exclamation: **Prerequisites:**
-    * Ensure there are items in the inventory.
+    Ensure there are items in the inventory.
     
     </div>
 
@@ -1165,7 +1162,7 @@ testers are expected to do more *exploratory* testing.
     <div markdown="span" class="alert alert-warning">
 
    :exclamation: **Prerequisites:**
-    * Ensure there is an item with the location "Bedroom" in the inventory.
+   Ensure there is an item with the location "Bedroom" in the inventory.
 
     </div>
 
