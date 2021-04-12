@@ -157,7 +157,7 @@ The lifeline for `PoolCommandParser` should end at the destroy marker (X) but du
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"` command.
-1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` class is then accessed, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to
    `PoolCommandParser` which creates and returns a `PoolCommand`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
@@ -179,7 +179,7 @@ Given below is the Sequence Diagram for interactions within the Logic component 
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"listPool"` command.
-1. `AddressBookParser` class is then instantiated, which subsequently instantiates an `ListPoolCommand` object to be returned to `LogicManager`.
+1. `AddressBookParser` class is then accessed, which subsequently instantiates an `ListPoolCommand` object to be returned to `LogicManager`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `ListPoolCommand`.
 1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
 1. Finally, a `CommandResult` would be instantiated to indicate the completion status of the command and returned back to `LogicManager`.
@@ -205,7 +205,7 @@ Given below is the Sequence Diagram for interactions within the Logic component 
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
-1. `AddressBookParser` class is then instantiated, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` class is then accessed, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked, passing the argument `"1"` to `UnpoolCommandParser`.
 1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be instantiated and returned to `LogicManager`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
@@ -225,7 +225,7 @@ The lifeline for `FindPoolCommandParser` should end at the destroy marker (X) bu
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"findPool n/Alice"` command.
-1. `AddressBookParser` class is then created, which subsequently creates `FindPoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` class is then accessed, which subsequently creates `FindPoolCommandParser` class to help parse the user's command.
 1. `AddressBookParser` would then have its `parse()` method invoked to parse the argument `"n/Alice"` and passes it to
    `FindPoolCommandParser`.
 1. `FindPoolCommandParser` parses the argument `"n/Alice"` and creates a `PooledPassengerContainsKeywordPredicate` which is returned to the `FindPoolCommandParser`.
