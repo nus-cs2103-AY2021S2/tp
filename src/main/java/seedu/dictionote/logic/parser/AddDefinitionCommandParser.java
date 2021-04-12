@@ -11,7 +11,7 @@ import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.dictionary.Definition;
 
 /**
- * Parses input arguments and creates a new AddNoteCommand object
+ * Parses input arguments and creates a new AddNoteCommand object.
  */
 public class AddDefinitionCommandParser implements Parser<AddDefinitionCommand> {
 

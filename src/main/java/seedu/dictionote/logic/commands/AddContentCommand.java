@@ -10,7 +10,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.dictionary.Content;
 
 /**
- * Adds content to the dictionote book.
+ * Adds content to the content list.
  */
 public class AddContentCommand extends Command {
     public static final String COMMAND_WORD = "addcontent";
@@ -32,7 +32,8 @@ public class AddContentCommand extends Command {
 
     private final Content toAdd;
 
-    /** Initializes a command to add the given content
+    /**
+     * Initializes a command to add the given content.
      *
      * @param content
      */
