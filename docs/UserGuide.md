@@ -268,7 +268,7 @@ Search criteria, case-insensitive:
 Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
 `--exact` requires exact spelling match, but is still case-insensitive. e.g. `alEx yeOh` will match `Alex Yeoh`.
 
-All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified, then any of the search criteria must be fulfilled.
+All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified, then at least one of the search criteria need to be fulfilled.
 
 Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (except upcoming birthdays), as below.
 
@@ -327,7 +327,7 @@ Examples:
 
 Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
-Format: `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT] [-o ORDER]`
+Format: `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o SORT_ORDER]`
 
 1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
 List out all events in event list.
@@ -342,7 +342,7 @@ Search criteria, case-insensitive:
     * If exact match is desired, specify an additional `--exact` flag. `--exact` requires exact spelling match, but is not case-sensitive.
     * All searches are case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
     * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by
-      default, unless `--any` is specified, then any search criteria must be fulfilled.
+      default, unless `--any` is specified, then at least one search criteria needs to be fulfilled.
     * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as below.
 
 `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of `SORT_FIELD`:
@@ -352,7 +352,7 @@ Search criteria, case-insensitive:
 
 Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
 
-`-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
+`-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of `SORT_ORDER`:
 * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
 * `d`, `desc`, `descending`: descending
 
@@ -530,7 +530,7 @@ Action | Format, Examples
 **Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`<br> e.g. `edit 2 -n James Lee -e jameslee@example.com`<br> e.g. `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g. `list`<br> e.g. `list -s date`
-**EList** | `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
+**EList** | `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o SORT_ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Undo** | `undo`
 **Redo** | `redo`
 **Help** | `help [COMMAND]`<br> e.g. `help`<br> e.g. `help list`
