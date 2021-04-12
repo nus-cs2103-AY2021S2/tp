@@ -1,6 +1,5 @@
 package seedu.address.model.meeting.exceptions;
 
-import seedu.address.model.meeting.Meeting;
 
 
 public class MeetingTimeClashException extends RuntimeException {

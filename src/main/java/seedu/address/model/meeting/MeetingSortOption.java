@@ -9,7 +9,9 @@ public enum MeetingSortOption {
 
     private final String sortString;
 
-    MeetingSortOption(String sortString) {this.sortString = sortString;}
+    MeetingSortOption(String sortString) {
+        this.sortString = sortString;
+    }
 
     public String getValue() { return sortString; }
 }

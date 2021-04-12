@@ -22,10 +22,10 @@ import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.PRIOR
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.PRIORITY_DESC_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.START_DESC_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.START_DESC_MEETING2;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING1;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING1;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_GROUP_DESC;
@@ -98,7 +98,8 @@ class AddMeetingCommandParserTest {
         // parse one connection will not influence the meeting object.
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
             + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
-            + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1 + CONNECTION1_DESC, new AddMeetingCommand(expectedMeeting));
+            + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1
+                + CONNECTION1_DESC, new AddMeetingCommand(expectedMeeting));
 
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
             + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2

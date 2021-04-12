@@ -7,13 +7,17 @@ import seedu.address.model.meeting.Priority;
 public class Note {
     private final Content content;
     private final Priority priority;
-
+    /**
+     * Note Constructor.
+     */
     public Note(Content content) {
         requireNonNull(content);
         this.content = content;
         this.priority = new Priority("1");
     }
-
+    /**
+     * Second Note constructor.
+     */
     public Note(Content content, Priority priority) {
         this.content = content;
         this.priority = priority;

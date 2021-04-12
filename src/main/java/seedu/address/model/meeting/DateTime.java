@@ -1,16 +1,15 @@
 package seedu.address.model.meeting;
 
 
-import seedu.address.logic.parser.DateTimeUtil;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+import seedu.address.logic.parser.DateTimeUtil;
 
 /**
  * Represents a Meeting's DateTime in a meeting.
@@ -88,7 +87,7 @@ public class DateTime implements Comparable<DateTime> {
     public int compareTo(DateTime other) {
         if (value.isBefore(other.value)) {
             return -1;
-        } else if (value.isEqual(other.value)){
+        } else if (value.isEqual(other.value)) {
             return 0;
         }
         return 1;

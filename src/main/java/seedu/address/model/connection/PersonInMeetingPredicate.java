@@ -3,7 +3,6 @@ package seedu.address.model.connection;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -20,14 +19,6 @@ public class PersonInMeetingPredicate implements Predicate<Person> {
         return personsInMeeting.stream()
                 .anyMatch(p -> p.equals(person));
 
-        /* The code below is to be used only if the people in the meeting groups are to be displayed too (i.e. in v1.5) */
-        /*Set<Group> groupsInMeeting = this.meeting.getGroups();
-        Set<Group> groupsForPerson = person.getGroups();
-        return groupsInMeeting.stream()
-                .anyMatch(mGroup ->
-                        groupsForPerson.stream().anyMatch(pGroup ->
-                                pGroup.equals(mGroup))) ||
-                personsInMeeting.stream().anyMatch(p -> p.equals(person));*/
     }
 
     @Override

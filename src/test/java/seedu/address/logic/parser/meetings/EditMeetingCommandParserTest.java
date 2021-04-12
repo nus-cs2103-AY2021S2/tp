@@ -164,7 +164,8 @@ public class EditMeetingCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_PRIORITY_DESC + PRIORITY_DESC_MEETING2;
-        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withPriority(VALID_PRIORITY_MEETING2).build();
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
+                .withPriority(VALID_PRIORITY_MEETING2).build();
         EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

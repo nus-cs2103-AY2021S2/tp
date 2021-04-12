@@ -85,7 +85,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         persons.setPerson(target, editedPerson);
     }
-
+    /**
+     * This method will return a set of person that is in the group specified.
+     */
     public Set<Person> findPersonsInGroup(Group group) {
         Set<Person> personInGroup = new HashSet<>();
         for (Person person: persons) {
