@@ -626,15 +626,16 @@ Similar to viewing a list of uncompleted tasks (UC15) but a list of unassigned t
     
 Use case ends.
 
---------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Data should be persistent after exiting and reopening the app.
-3. App should run locally on the user's computer.
+2. Should be able to hold up to 100 members and tasks without a noticeable sluggishness in performance for typical usage.
+3. Application data should be saved locally.
+4. Application should be able to run normally without any internet.
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CCA**: Co-curricular activities 
 * **CCA / Club head**: A person who has a position in a Club / CCA and is required to manage the tasks and members within the club
 
 --------------------------------------------------------------------------------------------------------------------
@@ -744,7 +745,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: HEY MATEz contains 2 members with the following details: <br>
         * 1. Name: Alice, Phone Number: 98887777, Email: alice@gmail.com, Role: Secretary
-        * 2. Name: Bryan, Phone Number: 89996666, Email: bryan@gmail.com, Role: Secretary
+        * 2. Name: Bryan, Phone Number: 89996666, Email: bryan@gmail.com, Role: Secretary <br>
 
     2. Test case: `findMembers Alice`<br>
        Expected: Alice is listed in the members list.
@@ -834,7 +835,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `deleteTask 4`<br>
        Expected: No task is deleted. Error details shown in the status message(Index is invalid).
 
-    4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1`, `...` <br>
+    4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1` <br>
        Expected: similar to previous test case.
        
 ### Marking a task as completed
@@ -949,8 +950,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: HEY MATEz contains 2 tasks, T1 and T2, with the following details: <br>
         * T1. Title: Community outreach proposal, Description: Write detailed proposal for MINDS outreach
-        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline
-
+        * T2. Title: Proposal for EXCO event, Description: Plan and discuss timeline <br>
+        
     2. Test case: `findTasks Community`<br>
        Expected: Task T1 is listed in the task list. 
 
@@ -984,5 +985,5 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous test case.
 
       
---------------------------------------------------------------------------------------------------------------------
-
+      
+      
