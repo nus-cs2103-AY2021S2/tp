@@ -39,10 +39,10 @@ public class SubjectLevelTest {
     @Test
     public void isValidLevel() {
         // EP 1: Lowercase Alphabet
-        assertTrue(SubjectLevel.isValidLevel("abcdefghijklmnopqrstuvwxyz"));
+        assertTrue(SubjectLevel.isValidLevel("abcdefghi"));
 
         // EP 2: Uppercase Alphabet
-        assertTrue(SubjectLevel.isValidLevel("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        assertTrue(SubjectLevel.isValidLevel("ABCDEFGHI"));
 
         // EP 3: Numbers
         assertTrue(SubjectLevel.isValidLevel("0123456789"));

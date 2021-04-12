@@ -1,0 +1,71 @@
+@startuml
+!include ../style.puml
+title Adding an appointment
+
+start
+:User executes AddAppointmentCommand;
+
+
+if () then ([all required prefixes present])
+      :Parses the prefixes;
+
+      if () then ([all prefixes formatted correctly])
+      : Parses individual values of the prefixes;
+
+        if () then ([all values of prefixes valid])
+        : Creates new appointment to be added;
+
+            if () then ([appointment is not duplicate])
+            :  Checks if appointment's tutor exists in tutor book;
+
+                    if () then ([appointment's tutor exists in tutor book])
+                    : Checks if tutor teaches subject of appointment;
+
+                        if () then ([tutor teaches subject])
+                        : Checks if date time is valid;
+
+                            if () then ([date time is valid])
+                            : Adds appointment to appointment book;
+
+                            else ([else])
+                            : Shows Add appointment error message;
+
+                            endif
+
+
+                        else ([else])
+                        : Shows tutor does not teach subject
+                        error message;
+
+                        endif
+
+                    else ([else])
+                    : Shows tutor does not exist
+                    error message;
+
+                    endif
+
+            else ([else])
+            : Shows duplicate appointment
+            error message;
+
+            endif
+
+        else ([else])
+        : Shows add appointment input error message;
+
+        endif
+
+      else ([else])
+      : Shows an error message on invalid prefix format;
+
+      endif
+
+else ([else])
+: Shows invalid command error message;
+
+endif
+
+stop
+
+@enduml

@@ -30,8 +30,8 @@ public class SubjectQualificationTest {
                 "a m z A M Z 0 5 9").qualification);
 
         // EP 5: Valid Mixed
-        assertEquals("a m z A M Z 0 5 9 - ( )", new SubjectQualification(
-            "a m z A M Z 0 5 9 - ( )").qualification);
+        assertEquals("a m 9 - ( )", new SubjectQualification(
+            "a m 9 - ( )").qualification);
     }
 
     @Test
@@ -45,10 +45,10 @@ public class SubjectQualificationTest {
     @Test
     public void isValidQualification() {
         // EP 1: Lowercase Alphabet
-        assertTrue(SubjectQualification.isValidQualification("abcdefghijklmnopqrstuvwxyz"));
+        assertTrue(SubjectQualification.isValidQualification("abcdefghijk"));
 
         // EP 2: Uppercase Alphabet
-        assertTrue(SubjectQualification.isValidQualification("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+        assertTrue(SubjectQualification.isValidQualification("ABCDEFGHIJ"));
 
         // EP 3: Numbers
         assertTrue(SubjectQualification.isValidQualification("0123456789"));
@@ -61,7 +61,7 @@ public class SubjectQualificationTest {
 
         // EP 6: Valid Symbols
         assertTrue(SubjectQualification.isValidQualification("- ( )"));
-        assertTrue(SubjectQualification.isValidQualification("a m z A M Z 0 5 9 - ( )"));
+        assertTrue(SubjectQualification.isValidQualification("a 5 9 - ( )"));
 
         // EP 7: Invalid Symbols
         assertFalse(SubjectQualification.isValidQualification("!"));
@@ -69,7 +69,7 @@ public class SubjectQualificationTest {
         assertFalse(SubjectQualification.isValidQualification("%"));
         assertFalse(SubjectQualification.isValidQualification("+"));
         assertFalse(SubjectQualification.isValidQualification("+1"));
-        assertFalse(SubjectQualification.isValidQualification("a m z A M Z 0 5 9 !"));
+        assertFalse(SubjectQualification.isValidQualification("a M Z 0 5 9 !"));
 
         // EP 8: Empty
         assertFalse(SubjectQualification.isValidQualification(""));

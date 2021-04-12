@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -184,24 +185,6 @@ public class MainWindow extends UiPart<Stage> {
         filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
                 logic.getAppointmentFilterStringList());
 
-        tabSidePanePlaceHolder.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
-            String tabName = newTab.getText();
-            try {
-                switch (tabName) {
-                case "Reminders":
-                    executeCommand("list_reminders");
-                    break;
-                case "Grades":
-                    executeCommand("list_grades");
-                    break;
-                default:
-                    break;
-                }
-            } catch (CommandException | ParseException e) {
-                logger.info("Invalid command executed");
-            }
-        });
-
         setTabsWidth(tabPanePlaceHolder);
         setTabsWidth(tabSidePanePlaceHolder);
     }
@@ -251,10 +234,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleTimetable() {
+        LocalDate queryDate = logic.getTimeTableDate();
         if (!timetableWindow.isShowing()) {
-            timetableWindow.show(logic.getTimeTableDate());
+            timetableWindow.show(queryDate);
         } else {
-            timetableWindow.focus();
+            timetableWindow.reconstruct(queryDate);
         }
     }
 
