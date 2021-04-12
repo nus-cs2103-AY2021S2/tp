@@ -62,5 +62,4 @@ class CarTest {
         assertTrue(Car.isValidCarType("Porsche"));
         assertTrue(Car.isValidCarType("Honda"));
     }
-
 }
