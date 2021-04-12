@@ -186,7 +186,7 @@ The index number was selected to refer to a particular contact. This is due to i
 
 The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end. In case a note index number is provided, the contents of the note located at the specified index number will be copied to the messages's body field.
 
-If the command is executed successfully, the target contact's frequency counter (see [*Sorting the contacts list by most-frequently contacted*](./DeveloperGuide.md#Sorting-the-contaccts-list-by-most-frequently-contacted) below) will be incremented by one.
+If the command is executed successfully, the target contact's frequency counter (see [*Sorting the contacts list by most-frequently contacted*](./DeveloperGuide.md#sorting-the-contacts-list-by-most-frequently-contacted) below) will be incremented by one.
 
 As an example, consider running Dictionote on a Windows 10 machine with Microsoft Outlook as the OS default mail client:
 
@@ -635,7 +635,51 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC04 -  Clear the contacts list**
+
+**MSS**
+
+1.  User requests to clear their contacts list.
+2.  Dictionote clears the contacts list by deleting all contacts.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+**Use case: UC05 -  Send an email to a contact**
+
+**Actors:** User, Operating System (OS), Mail Application, Web Browser.
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  Dictionote shows a list of contacts.
+3.  User requests to send an email to the contact located at the specified index number.
+4.  Dictionote invokes the OS's mail application with the appropriate fields filled in.
+5.  User types in a subject for the message.
+6.  User sends the message through the mail application.
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+* 3a. User provides a note index whose contents are requested to be sent.
+
+  Use case resumes from step 4.
+
+* 4a. OS does not have a default mail application set.
+    * 4a1. OS invokes its default web browser.
+    * 4a2. Web browser opens a new, empty tab.
+    
+  Use case ends.
 
 ### Non-Functional Requirements
 
