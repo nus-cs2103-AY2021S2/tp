@@ -1,9 +1,6 @@
 ---
 layout: page title: Developer Guide
 ---
-
-* Table of Contents {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

@@ -18,9 +18,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/OhJunMing)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/OhJunMing.md)]
 
-* Role: Deciding, we will allocate equally, everyone gets a chance
+* Role: Deciding, we will allocate 
 
 ### Shi Zheng
 
@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rajobasu.png" width="200px">
 
 [[github](http://github.com/rajobasu)] 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/rajobasu.md)]
 
 * Role: NOT Specific
 
@@ -46,6 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/nighoggdatatype.png" width="200px">
 
 [[GitHub](https://github.com/nighoggDatatype)]
+[[portfolio](team/nighoggdatatype.md)]
 
 * Role: Developer
 * Languages: C, Java, C#, Typescript, Ruby
