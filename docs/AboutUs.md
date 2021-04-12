@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### Glenn Lee
+### Glenn Lee Jia Song
 
 <img src="images/glennljs.png" width="200px">
 
@@ -45,7 +45,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/zhengruoxin)]
 [[portfolio](team/zhengruoxin.md)]
 
-### Lee Pai Joo Yvelle
+### Lee Pai Joo, Yvelle
 
 <img src="images/ellevy.png" width="200px">
 
