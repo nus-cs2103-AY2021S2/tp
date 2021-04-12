@@ -14,7 +14,8 @@ public class MenuListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all dishes";
+    public static final String MESSAGE_SUCCESS = "Listed all dishes\n"
+            + "To show available dish only: menu list -a";
 
 
     @Override

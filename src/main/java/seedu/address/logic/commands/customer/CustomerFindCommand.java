@@ -16,12 +16,13 @@ import seedu.address.model.person.Person;
  */
 public class CustomerFindCommand extends Command {
 
+    public static final String COMPONENT_WORD = "customer";
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all customers whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)...\n"
-            + "Example: " + COMMAND_WORD + " n/alice bob charlie";
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " n/George Michael Lim";
 
     private final Predicate<Person> predicate;
 

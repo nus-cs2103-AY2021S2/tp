@@ -19,12 +19,12 @@ public class InventoryAddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
-            + ": Adds an ingredient to the inventory. "
+            + ": Adds or increases quantity of an ingredient to the inventory. \n"
             + "Parameters: "
-            + PREFIX_NAME + "INGREDIENT_NAME "
-            + PREFIX_QUANTITY + "QUANTITY\n"
+            + PREFIX_NAME + "[INGREDIENT_NAME] "
+            + PREFIX_QUANTITY + "[QUANTITY]\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
-            + PREFIX_NAME + "potato "
+            + PREFIX_NAME + "Flour "
             + PREFIX_QUANTITY + "51";
 
     public static final String ADD_MESSAGE_SUCCESS = "New ingredient added: %1$s";
@@ -49,10 +49,10 @@ public class InventoryAddCommand extends Command {
 
         if (model.hasIngredient(toAdd)) {
             model.increaseIngredientByName(toAdd.getName(), toAdd.getQuantity());
-            message = String.format(INCREASE_MESSAGE_SUCCESS, toAdd);
+            message = String.format(INCREASE_MESSAGE_SUCCESS, toAdd.getName());
         } else {
             model.addIngredient(toAdd);
-            message = String.format(ADD_MESSAGE_SUCCESS, toAdd);
+            message = String.format(ADD_MESSAGE_SUCCESS, toAdd.getName());
         }
 
         return new CommandResult(message, CommandResult.CRtype.INGREDIENT);

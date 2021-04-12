@@ -14,6 +14,7 @@ import seedu.address.model.dish.Dish;
 
 public class MenuFindCommand extends Command {
 
+    public static final String COMPONENT_WORD = "menu";
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds dishes. "
@@ -21,7 +22,7 @@ public class MenuFindCommand extends Command {
             + "n/ - Look for names that contain any of the keywords (case-insensitive) \n"
             + "i/ - Look for ingredients that contains a keyword (case-insensitive) \n"
             + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... i/[KEYWORD]\n"
-            + "Example: " + COMMAND_WORD + " n/burger steak i/beef";
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " n/burger steak i/beef";
 
     private final Predicate<Dish> predicate;
 

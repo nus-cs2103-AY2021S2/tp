@@ -22,7 +22,7 @@ public class OrderDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
             + ": Deletes the order identified by the index number used in the displayed order list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: [INDEX]\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted order: %1$s";
