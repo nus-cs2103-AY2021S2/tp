@@ -71,7 +71,7 @@ CommandResult --> FindTaskBeforeCommand
 deactivate CommandResult
 
 FindTaskBeforeCommand --> LogicManager
-deactivate FindTaskBeforeCommand
+destroy FindTaskBeforeCommand
 
 [<--LogicManager
 deactivate LogicManager

@@ -189,7 +189,7 @@ It is also facilitated by the following Parser Class:
 
 The above mentioned Parser class inherits the `#parse` method from the Parser interface.
 
-* `FindTasksBeforeParser#parse` - checks if the deadline passed to the current FindTasksBeforeCommand is in the correct format and is valid, then creates a FindTasksBeforeCommand instance if they are.
+* `FindTasksBeforeParser#parse` - checks if the deadline passed to the current FindTasksBeforeCommand is in the correct format and is valid, then creates a FindTasksBeforeCommand instance if it is.
 
 
 Subsequently, the created `FindTasksBeforeCommand` object contains an `#execute` method which is responsible for
