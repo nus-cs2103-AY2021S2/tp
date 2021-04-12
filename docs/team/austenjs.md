@@ -11,9 +11,7 @@ I implemented 3 main features:
 
 **Enhancement 1: `DeadlineDate`,`DeadlineTime`, and `Status` attributes**
 * What it does: Allows the user to add, edit, and sort the Task based on these attributes.
-* Justification: Most assignments have a submission date and time. `DeadlineDate` and `DeadlineTime`
-helps to encapsulate these data inside the `Task` class.
-Moreover, the `Status` attribute help to distinguish finished and unfinished tasks.
+* Justification: Useful for `sort` and `dueIn` commands.
 * Highlights :
 The `DeadlineDate` ensures date that are not earlier than today's date as well as
 valid date (for instance 29-02-2021 will be rejected) using the help
@@ -29,11 +27,9 @@ prevent side effects.
 
 **Enhancement 3: `dueIn` command**
 * What it does: Filters tasks that have deadlines within certain number of days/weeks.
-* Justification: Some users might want to check what assignments are due within a certain number of days.
-For instance, in a typical semester, every Monday denotes the beginning of new week and user wanna
-check the upcoming deadlines for this week.
+* Justification: Some users might want to check assignments within a certain day/week.
 * Highlights: Using the command without specifying params will automatically list tasks within
-the next 7 days. 
+the next 7 days.
 ### Contributions to the UG
 * I am the one who initially refactored the UG (removing the 'AddressBook' and change with 'TaskList',
 change the name of attributes used, etc).
@@ -58,6 +54,7 @@ that haven't been done and creating new milestones).
 * During PE-D, reported 22 bugs. 6 are considered `Medium` or `High` as they are unhandled exceptions.
 ### Contributions beyond the project team
 I asked several questions on the forum which might helped other who have similar questions.
+
 ## Contributions to the Developer Guide (Extracts)
 I drew 2 UML diagrams from scratch. These are:
 
