@@ -13,7 +13,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.shortcut.ShortcutLibrary;
 
 /**
- * Handles all execution of {@code BatchCommand} as well as for {@code EditCommand} or {@code DeleteCommand}.
+ * Handles all execution of {@code BatchCommand} as well as for {@code BatchOperation}.
+ *
+ * @param <T> {@code EditCommand} or {@code DeleteCommand}.
  */
 public class BatchCommand<T extends BatchOperation> extends Command {
 
@@ -104,5 +106,4 @@ public class BatchCommand<T extends BatchOperation> extends Command {
 
         return areListsSame;
     }
-
 }
