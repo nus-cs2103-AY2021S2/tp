@@ -416,7 +416,7 @@ Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b B
 
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` + <kbd>TAB</kbd>
 
-Note: Valid INDEX must be used in order for Autocomplete to function.
+Note: Valid `INDEX` must be used in order for Autocomplete to function.
 
 Below are the respective behaviors of Autocomplete for various prefixes.
 
