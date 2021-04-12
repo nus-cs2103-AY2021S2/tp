@@ -108,7 +108,7 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app.
+Most commands require all the fields (e.g. project index and deadline index when updating a deadline) so that you can run the command from anywhere within the app.
 </div>
 
 When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
