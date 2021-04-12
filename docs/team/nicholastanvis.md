@@ -43,29 +43,47 @@ Given below are some of my major contributions to the project.
 ### Architecture Sequence Diagram
 ![Architecture Sequence Diagram](../images/ArchitectureSequenceDiagram.png)
 
+---
+
 ### Delete Contact Sequence Diagram
 ![Delete Contact Sequence Diagram](../images/DeleteSequenceDiagram.png)
+
+---
 
 ### Entry Activity Diagram
 ![Entry Activity Diagram](../images/EntryActivityDiagram.png)
 
-### Entry Class Diagra
+---
+
+### Entry Class Diagram
 ![Entry Class Diagram](../images/EntryClassDiagram.png)
+
+---
 
 ### Filter Entry Sequence Diagram
 ![Filter Entry Sequence Diagram](../images/FilterEntrySequenceDiagram.png)
 
+---
+
 ### Logic Class Diagram
 ![Logic Class Diagram](../images/LogicClassDiagram.png)
+
+---
 
 ### Model Class Diagram
 ![Model Class Diagram](../images/ModelClassDiagram.png)
 
+---
+
 ### Schedule and Task Activity Diagram
 ![Schedule and Task Activity Diagram](../images/ScheduleAndTaskActivityDiagram.png)
 
+---
+
 ### Storage Class Diagram
 ![Storage Class Diagram](../images/StorageClassDiagram.png)
+
+---
 
 ### Ui Class Diagram
 ![Ui Class Diagram](../images/UiClassDiagram.png)
