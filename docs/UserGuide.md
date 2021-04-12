@@ -751,11 +751,23 @@ If your changes are in a valid format but contain normally illegal data (e.g. du
 ### How do I transfer my data to another computer?
 * On the computer with your data, do the following:
     1. Navigate to where SunRez is installed: the location of `sunrez.jar`.
-    2. Copy the following files to your other computer: `data/commandhistory.txt`,
-       `data/sunrez.json`
-* Then, on your other computer, do the following:
+    2. Copy the files in this folder to your other computer: `[JAR file location]/data/`. `[JAR file location]` refers to
+    the folder in step 1 on the computer with your data.
+* Then, on the destination computer, do the following:
     1. Download SunRez (`sunrez.jar`) and place it in a suitable folder.
-    1. Paste the files from earlier in this folder. If prompted to replace existing files, do so.
+    1. If it does not already exist, create a new folder named `data` next to `sunrez.jar`. That is, ensure that the
+       folder `[JAR file location]/data/` exists on the destination computer. `[JAR file location]` here refers to the
+       folder in step 1 on the **destination** computer.
+    1. Paste the files from earlier into this folder. If prompted to replace existing files, do so.
+    1. Launch SunRez. You should see the data from your old computer populating the GUI of SunRez.
+
+<div markdown="span" class="alert alert-warning">
+**:exclamation:Caution**: <br>
+To avoid accidental loss of data, use the **same** version of SunRez on both computers. Different versions of SunRez may
+have incompatible data files which may result in loss of data. An easy way to ensure you have the same version is to
+copy `sunrez.jar` along with its data folder and files to the destination computer. In a future release, we plan to
+implement a safe way to ensure data migration across versions of SunRez.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
