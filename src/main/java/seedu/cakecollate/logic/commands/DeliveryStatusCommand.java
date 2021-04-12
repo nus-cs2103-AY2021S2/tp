@@ -5,13 +5,10 @@ import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
-import seedu.cakecollate.commons.core.LogsCenter;
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
-import seedu.cakecollate.logic.LogicManager;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.DeliveryStatus;
@@ -33,7 +30,6 @@ public class DeliveryStatusCommand extends Command {
     private final IndexList targetIndexList;
 
     private final DeliveryStatus status;
-    final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
      * Initialises a delivery status command.
