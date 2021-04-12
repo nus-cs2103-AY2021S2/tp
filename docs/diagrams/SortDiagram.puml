@@ -25,6 +25,6 @@ ModelManager --> SortedListPerson
 SortedListPerson <.right. FilteredListPerson
 SortedListPerson ..> ObservableListPerson
 
-"UI" --> FilteredListPerson
+"UI" ..> FilteredListPerson
 
 @enduml
