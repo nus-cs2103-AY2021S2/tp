@@ -349,6 +349,10 @@ If you currently have a filter set, such as a particular month or category, and 
 
 Format: `reset-filter`
 
+**:bulb: Tips:**
+
+- This command only resets filters set by `find-fr` on the currently viewed month.
+
 ### 5.9 Undoing commands : `undo`
 
 <div markdown="block" class="alert alert-info">
