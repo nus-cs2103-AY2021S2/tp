@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Pan Jing Bin's Project Portfolio Page
+title: Pan JingBin's Project Portfolio Page
 ---
 
 ## Project: SpamEZ

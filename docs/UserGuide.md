@@ -160,7 +160,7 @@ Format: `remark INDEX r/REMARK`
 
 Example:
 
-`remark 3 r/Currently on Stay Home Notice`
+* `remark 3 r/Currently on Stay Home Notice`
 
 ### Blacklisting or un-blacklisting a contact : `blist`
 
@@ -175,6 +175,10 @@ Format: `blist INDEX`
 * Changes the blacklist status of the person at the specified `INDEX`. The index 
   refers to the index number shown in the displayed person list. The index **must be a valid positive integer** 1, 2, 3, …​
 * By default, all newly added contacts will be displayed as un-blacklisted.
+
+Example:
+
+* `blist 1`
 
 ### Blacklisting or un-blacklisting multiple contacts : `massblist`
 
@@ -193,6 +197,7 @@ Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
   e.g. `massblist b/blacklist 4-5` is treated as an invalid input.
 
 Example:
+
 * Suppose you start with the following contact list:
   ![massBlacklist1](images/massBlacklist1.png)
   Executing `massblist 1-3 b/blacklist` will blacklist the first three contacts. Since the second contact is already
@@ -210,6 +215,7 @@ Format: `delete INDEX`
 * The index **must be a valid positive integer** 1, 2, 3, …​
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
@@ -218,6 +224,7 @@ Examples:
 Deletes all contacts within the specified index range (inclusive).
 
 Format: `massdelete START-END`
+
 * Deletes all contacts whose `INDEX` lies between the specified index range.
 * The index refers to the number shown in the displayed person list. Both the start index and end index **must be valid
   positive integers** 1, 2, 3, …​
@@ -225,7 +232,8 @@ Format: `massdelete START-END`
   number of contacts currently displayed in the list.
 
 Example:
-`massdelete 5-12`
+
+* `massdelete 5-12`
 
 ### Clearing all entries : `clear`
 
@@ -254,11 +262,17 @@ Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 * Words following any prefix other than `s/` will be ignored.
 * Unrelated prefixes will be ignored.
 
+Examples:
+
+* `collect e/`
+* `collect n/ s/,`
+
 ### Sorting entries by name : `sort`
 
 Sorts the contacts in the entire address book by name in alphabetical order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
+
 * `ascending` sorts the list in ascending alphabetical order and `descending` sorts the list in
   descending alphabetical order.
 * The keyword (`ascending` or `descending`) must be in lower case.
@@ -288,6 +302,7 @@ Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_K
 * Blacklist and mode of contact parameters only take in the first keyword. For example, if `b/true blah blah` is inputted, it will be interpreted as `b/true`.
 
 Examples:
+
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find n/alex david'](images/findAlexDavidResult.png)
@@ -311,6 +326,7 @@ Format: `dark`
 Undo the changes done to the list of contacts.
 
 Format: `undo`
+
 * This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
 
 
@@ -321,6 +337,7 @@ Exits the program.
 Format: `exit`
 
 ### Reviewing previous commands
+
 Users can view the commands they have inserted previously using up and down arrow keys.
 To re-execute the command, users simply need to press enter.
 

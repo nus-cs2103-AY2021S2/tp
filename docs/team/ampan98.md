@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Ernest's Project Portfolio Page
+title: Pan Wen Zhuo, Ernest's Project Portfolio Page
 ---
 
 ## Project: SpamEZ
