@@ -5,8 +5,7 @@ title: Tay Kai Xiang's Project Portfolio Page
 
 ## Project: PlanIT
 
-PlanIT is a desktop app for managing tasks catered to NUS computing students, optimised with a Command Line Interface (CLI) 
-and comes with a Graphical User Interface (GUI) with the use of JavaFX. It is written in Java, and has about 10 kLoC.
+PlanIT is a task managing application made specially for NUS computing students. Our goal is to improve students’ productivity with features and tools to help them manage their schedules. It features simple and short commands that are enhanced for fast typists as well as features which focuses on solving our target audience’s problems.
 
 Given below are my contributions to the project.
 
@@ -70,7 +69,7 @@ Given below are my contributions to the project.
   
 
 * **Contributions to team-based tasks**:
-    * Managed releases `v1.3 trial` and  `v1.3` on GitHub.
+    * Managed releases `v1.3 trial`,`v1.3`, `v1.4` on GitHub.
     * Monitored team tasks using Github Project board.
     * Set up issue labels and maintained issue tracker by tagging the issues to the correct team member on Github.
     * Set internal deadlines and managed the milestones of v1.2 to v1.4.
