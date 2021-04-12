@@ -226,7 +226,7 @@ Below shows a general *Sequence Diagram* for `editm 1`. Details for timetable co
 deliberately left out for brevity.
 
 ![Sequence Diagram for the `editm 1` Command](images/ArchitectureSequenceDiagramMeeting.png)
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-info"></div>
 
 ### Notes feature (author: hengyiqun)
 (Coming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
