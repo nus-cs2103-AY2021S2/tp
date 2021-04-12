@@ -57,11 +57,9 @@ AddSessionCommand -> Model : hasSession(name, sessionToAdd)
 activate Model
 deactivate Model
 
-opt has name and does not have session
 AddSessionCommand -> Model : addSession(name, sessionToAdd)
 activate Model
 deactivate Model
-end opt
 
 create CommandResult
 AddSessionCommand -> CommandResult
