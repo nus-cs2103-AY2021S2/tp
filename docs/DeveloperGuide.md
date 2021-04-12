@@ -382,6 +382,71 @@ The following Activity Diagram summarizes what happens when a user executes the 
 
 ![Uncompleted Command Activity Diagram](images/UncompletedCommandActivityDiagram.png)
 
+### Add Command - `add`
+
+The Add command allows drivers to add new delivery tasks to the delivery list.
+
+Below is a sequence diagram for the Add command.
+
+![Add Command Sequence Diagram](images/AddCommandSequenceDiagram.png)
+
+Description:
+When the user keys in the delivery details, execute method of LogicManager is called with the delivery details as the parameter.
+In the method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the delivery details.
+The DeliveryListParser parses the delivery details and identifies it as an AddCommand and instantiates an AddCommandParser object.
+DeliveryListParser then invokes the parse method of the AddCommandParser object to further parse the details.
+In the parse method, the AddCommandParser separates the details into segments based on their prefix. 
+Each segment is sent to the ParserUtil, which will return the respective objects representing that segment.
+The AddCommandParser will create a new customer from the segments and instantiate a new AddCommand object with the 
+customer as the parameter.
+The AddCommand instance will be returned to LogicManager via DeliveryListParser. 
+The LogicManager will then invoke the overridden execute method of the AddCommand object with Model as the argument.
+Subsequently, the AddCommand object will add the customer to the Model.
+It will then return a new CommandResult object to LogicManager, which will then be returned at the end by LogicManager.
+
+Below is an activity diagram for the remark command.
+
+![Remark Command Activity Diagram](images/AddCommandActivityDiagram.png)
+
+### Sort Command - `sort`
+The Sort command allows users to see all the delivery tasks in the delivery list but sorted by completion status
+(incomplete tasks shown first), then by urgency (only for incomplete tasks), and lastly by date.
+
+![List Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
+
+Description:
+When the user keys the input command "sort", execute method of LogicManager is called.
+In the method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the command.
+The DeliveryListParser parses the command and identifies it as a SortCommand and will then create a SortCommand instance.
+The SortCommand instance will be returned to LogicManager via DeliveryListParser.
+The LogicManager will then invoke the overridden execute method of the SortCommand object with Model as the argument.
+Subsequently, the SortCommand object will get the latest delivery list from the model and sort it before setting the 
+sorted delivery list as the latest one. 
+The SortCommand object will return a new CommandResult object to the LogicManager, which will then be returned at the 
+end by LogicManager.
+
+The following Activity Diagram summarizes what happens when a user executes the list command:
+
+![List Command Activity Diagram](images/SortCommandActivityDiagram.png)
+
+### Clear Command - `clear`
+The Clear command allows users to delete all existing delivery tasks at one go.
+
+![List Command Sequence Diagram](images/ClearCommandSequenceDiagram.png)
+
+Description:
+When the user keys the input command "clear", execute method of LogicManager is called. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the command. The
+DeliveryListParser parses the command and identifies it as a ClearCommand and will then create a ClearCommand instance.
+The ClearCommand instance will be returned to LogicManager via DeliveryListParser.
+The LogicManager will then invoke the overridden execute method of the ClearCommand object with Model as the argument.
+Subsequently, the ClearCommand object will set a new empty delivery list as the latest one in the model.
+The ClearCommand object will return a new CommandResult object to the LogicManager, which will then be returned at the
+end by LogicManager.
+
+The following Activity Diagram summarizes what happens when a user executes the list command:
+
+![List Command Activity Diagram](images/ClearCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
