@@ -575,4 +575,5 @@ Action | Format, Examples
 * **Similar Items**: Items that have the same spelling for name and location but differ by letter case.
 * **Identical Items**: Items that have the same name and location in terms of spelling and letter case, as well as the same expiry date if it exists for both.
 * **Alphanumeric**: Alphanumeric characters are those comprised of the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
+
 ----
