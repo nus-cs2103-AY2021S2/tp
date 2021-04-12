@@ -21,7 +21,7 @@ import seedu.address.model.event.EventStatus;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DoneCommand}.
  */
 public class DoneCommandTest {
 
@@ -50,6 +50,27 @@ public class DoneCommandTest {
 
         assertCommandFailure(doneCommand, model,
                 String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER, outOfBoundIndex.getValue()));
+    }
+
+    @Test
+    public void execute_eventIsAlreadyDone_fail() {
+        Event eventToMarkAsDone = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
+        Identifier eventIdentifier = Identifier.fromIdentifier(eventToMarkAsDone.getIdentifier());
+        DoneCommand doneCommand = new DoneCommand(eventIdentifier);
+
+        String expectedMessage = DoneCommand.MESSAGE_DONE_ALR_EVENT;
+
+        assertCommandFailure(doneCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_emptyEventBook_fail() {
+        model = new ModelManager(new UserPrefs(), new EventBook());
+        DoneCommand doneCommand = new DoneCommand(IDENTIFIER_FIRST_EVENT);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS;
+
+        assertCommandFailure(doneCommand, model, expectedMessage);
     }
 
     @Test

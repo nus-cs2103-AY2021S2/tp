@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.EditCommand.EditEventDescriptor;
+import seedu.address.model.EventBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -57,6 +58,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     public void execute_someFieldsSpecified_success() {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
@@ -80,8 +82,9 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
-    public void execute_duplicateEvent_failure() {
+    public void execute_duplicateEvent_fail() {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
         Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
@@ -94,13 +97,23 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidEventIndexUnfilteredList_failure() {
+    public void execute_invalidEventIndexUnfilteredList_fail() {
         Identifier outOfBoundIdentifier = Identifier.fromIdentifier(Event.getLatestIdentifier().getValue() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2030).build();
         EditCommand editCommand = new EditCommand(outOfBoundIdentifier, descriptor);
 
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER,
                 outOfBoundIdentifier.getValue());
+
+        assertCommandFailure(editCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_emptyEventBook_fail() {
+        model = new ModelManager(new UserPrefs(), new EventBook());
+        EditCommand editCommand = new EditCommand(IDENTIFIER_FIRST_EVENT, new EditEventDescriptor());
+
+        String expectedMessage = Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS;
 
         assertCommandFailure(editCommand, model, expectedMessage);
     }
