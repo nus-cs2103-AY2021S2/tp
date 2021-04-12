@@ -18,31 +18,33 @@ Given below are my contributions to the project.
   contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=github-amanda&tabRepo=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
   
 * **Refactoring**:
-    * Refactored Phone to Quantity. (Pull requests [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
-    * Made changes to common variable names. (Pull requests [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
+    * Refactored Phone to Quantity. (Pull request [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
+    * Made changes to common variable names. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
 
 * **Enhancements to existing features**:
-    * Modified `delete` v1.2 (Pull requests [\#83](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/83))
-    * Modified `sort` v2 and added tests (Pull requests [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113))
-    * Modified `find` v3 (Pull requests [\#115](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/115))
-    * Modified `clear` v1 (Pull requests [\#116](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/116))
-    * Modified `clear` v2 (Pull requests [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170))
-    * Fixed `find` bug (Pull requests [\#290](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/290))
-    * Updated GUI v1 (Pull requests [\#102](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/102))
-    * Updated GUI v3 (Pull requests [\#265](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
-    * Wrote additional tests and modified tests for existing features to increase coverage (Pull requests [\#182](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/182))
+    * Modified `delete` v1.2 (Pull request [\#83](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/83))
+    * Modified `sort` v2 and added tests (Pull request [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113))
+    * Modified `find` v3 (Pull request [\#115](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/115))
+    * Modified `clear` v1 (Pull request [\#116](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/116))
+    * Modified `clear` v2 (Pull request [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170))
+    * Fixed `find` bug (Pull request [\#290](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/290))
+    * Updated GUI v1 (Pull request [\#102](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/102))
+    * Updated GUI v3 (Pull request [\#265](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
+    * Wrote additional tests and modified tests for existing features to increase coverage (Pull request [\#182](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/182))
+    * Split `clear` into two command classes and modify test cases accordingly (Pull request [\#319](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
+    * Fixed `reminder` bug and added test cases (Pull request [\#315](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
     
 * **Documentation**:
     * User Guide:
-        * Updated user stories, target user profile and value proposition (Pull requests [\#40](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/40))
-        * Added functionalities for `clear` and `sort` (Pull requests [\#171](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/171))
+        * Updated user stories, target user profile and value proposition (Pull request [\#40](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/40))
+        * Added functionalities for `clear` and `sort` (Pull request [\#171](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/171))
     * About Us:
-        * Updated Amanda Ang's part (Pull requests [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
+        * Updated Amanda Ang's part (Pull request [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
     * Developer Guide:
-        * Added use case for `delete` (Pull requests [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151))
-        * Added implementations for `list` and `find` (Pull requests [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213))
-        * Updated use cases, user stories, non-functional requirements and glossary (Pull requests [\#285](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/285))    
-
+        * Added use case for `delete` (Pull request [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151))
+        * Added implementations for `list` and `find` (Pull request [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213))
+        * Updated use cases, user stories, non-functional requirements and glossary (Pull request [\#285](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/285), [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326))
+    
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4)
       , [\#41](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/41)
