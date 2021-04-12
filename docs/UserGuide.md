@@ -5,10 +5,10 @@ title: User Guide
 
 <p align="center">
   <img src="./images/budget_baby.png" width="200px" />
-  <h1 align="center">BudgetBaby :baby: :money_with_wings: User Guide</h1>
+  <h1 align="center" style="margin-top:15px;">BudgetBaby :baby: :money_with_wings: Team</h1>
 </p>
 
-<br><br>
+<br>
 
 **BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to
 better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and
@@ -17,6 +17,8 @@ Graphical User Interface (GUI).
 
 This document aims to guide users in using BudgetBaby, providing a complete summary of
 the functions and intended usage of the application.
+
+## Table of Content
 
 - [Quick Start](#quick-start)
 - [UI Overview](#ui-overview)
