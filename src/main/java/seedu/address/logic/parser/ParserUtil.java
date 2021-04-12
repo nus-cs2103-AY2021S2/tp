@@ -25,7 +25,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_NONNEGATIVE_INT = "Non-negative integer must be specified.";
 
     public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
-    public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified. Must be between 8 and 15 digits.";
+    public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified. Must be between 7 and 15 digits.";
     public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
     public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
     public static final String MESSAGE_INVALID_TAG = "Invalid tag specified.";
