@@ -853,11 +853,10 @@ This feature allows tutees to track and manage reminders daily. This is exceptio
 
 <div markdown="block" class="alert alert-info">
 
-* Minimum length for description is 1 character, maximum is 50 characters.
-
 **:information_source: Note:**<br>
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+* Minimum length for description is 1 character, maximum is 50 characters.
 
 </div>
 
