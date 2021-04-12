@@ -28,6 +28,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n\n Add an appointment: addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME"
             + "\n\n Edit an appointment: editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME"
             + "\n\n Delete an appointment: deleteAppt MATRICULATION_NUMBER"
+            + "\n\n Find a student and appointment: find MATRICULATION_NUMBER"
             + "\n\n List all students and appointments : list"
             + "\n\n Exit Program: exit";
 
