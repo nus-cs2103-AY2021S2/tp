@@ -241,9 +241,9 @@ And the activity diagram:
 
 ![EditBookingCommandActivityDiagram](images/EditBookingActivityDiagram.png)
 
-### Design Consideration
+#### Design Consideration:
 
-#### How to check if the edited booking has dates that overlap with other bookings of the residence
+##### Checking if the edited booking has dates that overlap with other bookings of the residence
 
 Implementation of edit booking creates a `editedBooking` before calling `BookingList#setBooking` to replace `bookingToEdit` with `editedBooking`. There is a need to ensure that `editedBooking` has no overlap dates with other bookings. However, if `BookingList#contains` (method that checks if a booking overlaps with other bookings in the `bookingList`) is called, it is likely that it returns `true` because `editedBooking` has overlapping dates with `bookingToEdit` since at this point, `bookingToEdit`still exists in the `bookingList`.
 
