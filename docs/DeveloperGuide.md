@@ -554,6 +554,9 @@ _{Explain here how the data archiving feature will be implemented}_
 | `* *`    | CS2103T Student                                              | Tag a contact with a word                                | Find contacts based on their tags                             | Contact/Non-essential |
 | `* *`    | CS2103T Student                                              | Search for contacts using tags                           | Contact anyone from a particular tag                          | Contact/Non-essential |
 | `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list                       | Ask questions, discuss topics, or exchange notes with them    | Contact/Non-essential |
+| `* *`    | Extroverted student who likes to discuss things with friends | Locate the contacts whom I frequently contact                       | Save time having to look for them in my address book    | Contact/Non-essential |
+| `* *`    | CS2103T student | Send a note by email                       | Easily discuss the contents of a particular note with one of my contacts    | Contact/Non-essential |
+| `* *`    | CS2103T Student | Search the email of my friends                       | I can easily find for whom a particular email address is.    | Contact/Non-essential |
 |***Guide*** | | | | |
 | `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Guide/Essential  |
 | `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
