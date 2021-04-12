@@ -144,18 +144,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given passenger {@code target} in the list with {@code editedPassenger}.
-     * {@code target} must exist in the address book.
-     * The passenger identity of {@code editedPassenger} must not be the same as another existing passenger in the
-     * address book.
-     */
-    public void setPool(Pool target, Pool editedPool) {
-        requireNonNull(editedPool);
-
-        pools.setPool(target, editedPool);
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -169,7 +157,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return passengers.asUnmodifiableObservableList().size() + " passengers; "
                 + pools.asUnmodifiableObservableList().size() + " pools";
-        // TODO: refine later
     }
 
     @Override

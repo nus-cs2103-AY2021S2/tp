@@ -41,7 +41,9 @@ public class AddCommand extends Command {
     private final Passenger toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Passenger}
+     * Creates an AddCommand to add the specified {@code passenger}.
+     *
+     * @param passenger Passenger to be added to the passenger list.
      */
     public AddCommand(Passenger passenger) {
         requireNonNull(passenger);
