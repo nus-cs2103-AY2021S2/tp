@@ -1,68 +1,48 @@
 @startuml
 !include style.puml
-'https://plantuml.com/sequence-diagram
+autoactivate on
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PawbookParser" as PawbookParser LOGIC_COLOR
 participant ":EditOwnerCommandParser" as EditOwnerCommandParser LOGIC_COLOR
-participant "s:EditOwnerCommand" as EditOwnerCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "d:EditOwnerDescriptor" as EditOwnerDescriptor LOGIC_COLOR
+participant "c:EditOwnerCommand" as EditOwnerCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
+
 [-> LogicManager : execute("edit owner 1 n/John Doe t/friend")
-activate LogicManager
 
 LogicManager -> PawbookParser : parseCommand("edit owner 1 n/John Doe t/friend")
-activate PawbookParser
 
 create EditOwnerCommandParser
 PawbookParser -> EditOwnerCommandParser
-activate EditOwnerCommandParser
-
-EditOwnerCommandParser --> PawbookParser
-deactivate EditOwnerCommandParser
+return
 
 PawbookParser -> EditOwnerCommandParser : parse("1 n/John Doe t/friend")
-activate EditOwnerCommandParser
+
+create EditOwnerDescriptor
+EditOwnerCommandParser -> EditOwnerDescriptor
+return d
 
 create EditOwnerCommand
-EditOwnerCommandParser -> EditOwnerCommand
-activate EditOwnerCommand
+EditOwnerCommandParser -> EditOwnerCommand : EditOwnerCommand(1, d)
+return c
 
-EditOwnerCommand --> EditOwnerCommandParser : s
-deactivate EditOwnerCommand
-
-EditOwnerCommandParser --> PawbookParser : s
-deactivate EditOwnerCommandParser
+return c
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditOwnerCommandParser -[hidden]-> PawbookParser
+PawbookParser -[hidden]-> EditOwnerCommandParser !! : delete
 destroy EditOwnerCommandParser
 
-PawbookParser --> LogicManager : s
-deactivate PawbookParser
+return c
 
 LogicManager -> EditOwnerCommand : execute()
-activate EditOwnerCommand
 
-EditOwnerCommand -> Model : setEntity(targetId, editedEntity)
-activate Model
+ref over EditOwnerCommand, Model, EditOwnerDescriptor : Edit Owner with ID 1
 
-Model --> EditOwnerCommand
-deactivate Model
+return result
 
-create CommandResult
-EditOwnerCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> EditOwnerCommand
-deactivate CommandResult
-
-EditOwnerCommand --> LogicManager : result
-deactivate EditOwnerCommand
-
-[<--LogicManager
-deactivate LogicManager
+return
 @enduml

@@ -29,7 +29,7 @@ return d
 
 return d
 
-PawbookParser -[hidden]-> DeleteDogCommandParser  !! : delete
+PawbookParser -[hidden]-> DeleteDogCommandParser !! : delete
 destroy DeleteDogCommandParser
 
 return d

@@ -2,8 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -223,7 +223,7 @@ The various add commands will similarly perform the reverse of the delete comman
 
 ### Edit feature
 
-Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit`  some features of an owner. By entering the edit command with the correct identification number of the owner to be edited, the specified features of the owner will be modified accordingly.
+Pawbook allows the user to `edit` an entity. For instance, the user may want to `edit` some features of an owner. By entering the edit command with the correct identification number of the owner to be edited, the specified features of the owner will be modified accordingly.
 
 In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `edit` command keyword to indicate the correct entity type to be edited. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
 
@@ -233,24 +233,19 @@ Below is an example activity diagram for a valid view command from the user.
 
 Figure 3.1: Activity diagram for edit command in main page view.
 
-![EditActivityDiagram](images/EditSequenceDiagram.png)
+![EditActivityDiagram](images/EditSequenceDiagram.png){: .center-image}
 
 Figure 3.2: Sequence diagram for EditOwnerCommand in main page view.
 
-![HighLevelEditSequenceDiagram](images/HighLevelEditSequenceDiagram.png)
+![EditOwnerDetailedSequenceDiagram](images/EditOwnerDetailedSequenceDiagram.png){: .center-image}
 
 Figure 3.3: More-detailed sequence diagram for EditOwnerCommand in main page view.
-
-```
-Lifelines with a destroy marker (X) should end at the destroy marker (X) but due to the limitation of PlantUML, the lifeline reaches the end of the diagram.
-```
 
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
 2. The `PawbookParser` identifies the user command and creates a `EditOwnerCommandParser` object. It then calls the `EditOwnerCommandParser`'s `parse()`method with user input as the parameter.
 3. In the `parse()` method, the `EditOwnerCommandParser` will then generate the `EditOwnerCommand` object. This is then returned all the way back to the `LogicManager`.
 4. The `LogicManager` will then proceed to call the `execute()` method.
 5. The `execute()` method is further explored below. The high level understanding is that a `CommandResult` is returned and finally passed back to `LogicManager`.
-```
 
 ### Find feature
 
