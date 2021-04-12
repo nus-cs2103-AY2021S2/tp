@@ -27,7 +27,7 @@ activate EditCommandParser
 EditCommandParser --> DeliveryListParser
 deactivate EditCommandParser
 
-DeliveryListParser -> EditCommandParser : parse("1 n/apple")
+DeliveryListParser -> EditCommandParser : parse("1 n/jacob")
 activate EditCommandParser
 
 create EditCommand
