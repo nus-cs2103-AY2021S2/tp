@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=edelinetenges&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Prevent deleting of contacts that are involved in appointments (Pull requests [\#149](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/149))
@@ -50,7 +50,7 @@ Given below are my contributions to the project.
     * Added use cases. (Pull request [\#22](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/22))
     * Added implementation details of the `sort` feature. (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/97))
     * Added implementation details of the `favourite` feature. (Pull request [\#283](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/283))
-    * Added test cases for `sort` and `favourite` feature in Appendix. (Pull request [\#306](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/306))
+    * Added test cases for `edit`, `delete`, `list`, `sort` and `favourite` feature in Appendix. (Pull requests [\#306](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/306), [\#318](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/318))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\##139](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/139), [\#141](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/141), [\#147](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/147), [\#42]()
+  * PRs reviewed (with non-trivial review comments): [\#139](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/139), [\#141](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/141), [\#147](https://github.com/AY2021S2-CS2103T-W13-3/tp/pull/147)
