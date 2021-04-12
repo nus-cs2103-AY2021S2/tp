@@ -10,10 +10,10 @@ end box
 box Storage STORAGE_COLOR_T1
 participant ":Authentication" as Authentication STORAGE_COLOR
 end box
-[-> LogicManager : execute(lock 1234)
+[-> LogicManager : execute("lock 1234")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(lock 1234)
+LogicManager -> AddressBookParser : parseCommand("lock 1234")
 activate AddressBookParser
 
 create LockCommand
@@ -29,7 +29,7 @@ deactivate AddressBookParser
 LogicManager -> LockCommand : execute()
 activate LockCommand
 
-LockCommand -> Authentication : setPassword(1234)
+LockCommand -> Authentication : setPassword("1234")
 activate Authentication
 
 Authentication --> LockCommand
