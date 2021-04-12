@@ -721,7 +721,7 @@ Prerequisites: Must have at least one person in the list to view the changes.
 
     1. Test case: `alias add ls list`<br>
        Expected: Executing `ls` will behave exactly like `list`.
-
+       
 1. Delete alias
 
     1. Prerequisites: Must have an alias named `ls` (e.g. `alias add ls list`).
@@ -731,10 +731,8 @@ Prerequisites: Must have at least one person in the list to view the changes.
 
 1. List alias
 
-    1. Prerequisites: Must have a filter applied (e.g. `filter -a -p`).
-
-    1. Test case: `fitler`<br>
-       Expected: All fields are shown.
+    1. Test case: `alias list`<br>
+       Expected: All existing alias(es) are shown.
 
 ### Tag
 
@@ -747,6 +745,8 @@ Prerequisites: Must have at least one person in the list to view the changes.
        before execution, nothing will change for that person. The command result will display the
        total number of persons the command have successfully executed on and not the total number of
        persons the tags are added to.
+
+    1. Prerequisites: Must have at least selected 1 person.
 
     1. Test case: `tag add selected -t Photoshop`<br>
        Expected: All selected person(s) will have `Photoshop` tag added. If `Photoshop` tag exists
