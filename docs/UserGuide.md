@@ -116,8 +116,11 @@ Continue reading for more ways to improve your productivity with Focuris!
 - If a [parameter](#parameters) is expected only once in the command but you specified it multiple times, only the last occurrence of the [parameter](#parameters) will be taken.<br>
   e.g. if you specify `d/walk d/run`, only `d/run` will be taken.
 
-- Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will be result in an error message.<br>
+- Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will result in an error message.<br>
   e.g. if you type `help 123`, Focuris will show an error that says `Please remove extra irrelevant arguments!`.
+  
+- Note that commands are case sensitive, so you must follow the format given closely unless it is explicitly stated otherwise! <br>
+  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work.
 
 </div>
 
@@ -127,7 +130,7 @@ Continue reading for more ways to improve your productivity with Focuris!
 
 ## 2.1 Summary
 
-The summary chapter gives you an overview of what the available commands are and what the parameters you should type into the Command Box of Focuris are.
+The summary chapter gives you an overview of what the available commands are, and the parameters you should type into the Command Box of Focuris.
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -153,7 +156,7 @@ and [2.3](#23-event-commands).
 | [**List**](#238-list-command)      | Clears your previous filters and **lists** all events                | `list`                                                                                                     |
 | [**Log**](#232-log-command)        | Creates your new event with status **Backlog**                       | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
 | [**Prog**](#233-prog-command)      | Creates your new event with status **In-Progress**                   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris                   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris                   | `switch`                             |
 | [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**                          | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 <div markdown="block" class="alert alert-info">
@@ -163,10 +166,6 @@ and [2.3](#23-event-commands).
 - You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
 - Events of the same name are treated as case-insensitive. <br>
   e.g. `CS2030` is the same name as `cs2030`.
-- Note that commands are case sensitive, so you must follow the format given closely! <br>
-  e.g. `list` will work, but `LIST` or `LiSt` or any other variant will not work.
-- Also note that for the commands where square brackets `[ ]` appear, it indicates that those a optional fields, which means that you do not
-  necessarily have to type them in if you do not want to, as shown in the table above under <b>Format, Examples</b>.
 
 </div>
 
@@ -176,8 +175,8 @@ and [2.3](#23-event-commands).
 
 ### 2.1.2 Parameter Summary
 
-You may encounter several [parameters](#parameters) while typing in commands in Focuris which might be unknown to you. <br/>
-The table below gives a detailed summary of the different [parameters](#parameters) you will encounter while using Focuris.
+While typing in commands in Focuris, you may encounter several [parameters](#parameters) that might be unknown to you. <br/>
+The table below provides a detailed summary of the different [parameters](#parameters) you will encounter while using Focuris.
 
 | Parameter   | Prefix    | Description                              | Constraints                                                                                                                                                                                                                                                                                |
 | ----------- | --------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -194,7 +193,7 @@ The table below gives a detailed summary of the different [parameters](#paramete
 - Identifiers are automatically generated for you, you do not need to specify an identifier for your Events.
 - Identifiers will be recalculated every time you run Focuris.
 - Identifiers do not get reset to 1 after a `clear` command.
-- Priority is set to `low` if you do not specify a priority for your event. <br/>
+- Priority is set to `low` by default if you do not specify a priority for your event. <br/>
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
