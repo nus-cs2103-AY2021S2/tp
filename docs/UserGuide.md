@@ -833,7 +833,15 @@ Example: `list_grades`
 
 Result Display Example Output:
 ```
-Listed all grades
+1. Mathematics
+   Final Exam
+   A1
+2. English
+   Midterm
+   B3
+3. Science
+   Lab 1
+   A2
 ```
 
 ### Reminder Tracker
