@@ -533,7 +533,7 @@ Extensions
     
 Use case ends.
 
-:pencil2: **Use case: UC11 - Find Tasks using Priority**
+:pencil2: **Use case: UC11 - Find Tasks with Priority**
 
 **MSS**
 
@@ -631,7 +631,7 @@ Use case ends.
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 100 members and tasks without a noticeable sluggishness in performance for typical usage.
 3. Application data should be saved locally.
-4. Application should be able to run normally without any internet.
+4. Application should be able to run normally without an internet connection.
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -838,7 +838,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1` <br>
        Expected: similar to previous test case.
        
-### Marking a task as completed
+### Marking a Task as completed
 
 1. Marking a task as completed
 
@@ -857,7 +857,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect commands to try: `done`, `done -1` 
       Expected: Similar to previous test case. 
       
-### Marking a task as uncompleted
+### Marking a Task as uncompleted
 
 1. Marking a task as uncompleted
 
@@ -890,7 +890,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `viewUncompletedTasks`<br>
       Expected: Lists all tasks that are uncompleted within the HEY MATEz.
 
-### Finding tasks by priority
+### Finding Tasks by priority
 
 1. Finding tasks by priority
 
@@ -932,7 +932,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous test case.
 
 
-### Finding tasks assigned to a member
+### Finding Tasks assigned to a member
 
 1. Finding all tasks assigned to a member
 
