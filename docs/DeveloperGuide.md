@@ -96,6 +96,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Sequence Diagram for ref Execute Delete Command](images/ExecuteDeleteCommandSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -134,6 +135,8 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the dates book data in json format and read it back.
+* can save the lesson book data in json format and read it back.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -1366,25 +1369,25 @@ testers are expected to do more *exploratory* testing.
 ### Viewing the Schedule
 
 1. Viewing the schedule while all students are being shown.
-  1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-  1. Test case: `schedule`<br>
-     Expected: Opens up the schedule window.
-  1. Test case: `schedulexyz`<br>
-     Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
-  1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
-     Expected: Similar to previous.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    1. Test case: `schedule`<br>
+       Expected: Opens up the schedule window.
+    1. Test case: `schedulexyz`<br>
+       Expected: No schedule window pops up. Error details shown in the status message. Status bar remains the same.
+    1. Other incorrect search commands to try: `schedule*`, `schedulex` <br>
+       Expected: Similar to previous.
 1. Viewing the schedule window while adding or editing student contact.
-  1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
-  1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
-     Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
-  1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact) 
-     to edit the lesson to Monday 2000. Then enter `schedule`.<br>
-     Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
+    1. Prerequisites: Open up the schedule window using `schedule` command. All lessons displayed in the schedule window.
+    1. Test case: Enter `add n/Sara p/91111111 le/monday 1800` to add a contact named Sara with a lesson on Monday 1800. 
+       Then enter `schedule`.<br>
+       Expected: Focuses on the schedule window is updated with a new lesson on Monday 1800, and `Sara` name is there.
+    1. Test case: Enter `list` to display all the contacts. Enter `edit X le/monday 2000` (X is the index of Sara's contact) 
+       to edit the lesson to Monday 2000. Then enter `schedule`.<br>
+       Expected: Focuses on the schedule window which is updated with a new lesson with `Sara` on Monday 2000, and the lesson on Monday 1800 is removed.
 1. Viewing the schedule window while schedule window is already opened.
-   1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
-   1. Test case: `schedule` <br>
-   1. Expected: Focuses back on the schedule window.
+     1. Prerequisites: Open up the schedule window using `schedule` command. Change focus to TutorsPet window.
+     1. Test case: `schedule` <br>
+     1. Expected: Focuses back on the schedule window.
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 

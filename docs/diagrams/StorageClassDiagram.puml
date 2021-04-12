@@ -23,10 +23,15 @@ StorageManager o--> AddressBookStorage
 StorageManager o--> DatesBookStorage
 StorageManager o--> LessonBookStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
+Storage -|> DatesBookStorage
+Storage -|> LessonBookStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .down.> JsonAdaptedPerson
+JsonAddressBookStorage .down.> JsonSerializableAddressBook
+JsonSerializableAddressBook .down.> JsonAdaptedPerson
 JsonAdaptedPerson .right.> JsonAdaptedSubject
 JsonAdaptedPerson .down.> JsonAdaptedLesson
 
@@ -35,8 +40,8 @@ JsonDatesBookStorage .down.> JsonSerializableDatesBook
 JsonSerializableDatesBook .right.> JsonAdaptedImportantDate
 
 JsonLessonBookStorage .up.|> LessonBookStorage
-JsonLessonBookStorage .down.> JsonSerializableLessonBookStorage
-JsonSerializableLessonBookStorage .down.> JsonAdaptedLessonInSchedule
+JsonLessonBookStorage .down.> JsonSerializableLessonBook
+JsonSerializableLessonBook .down.> JsonAdaptedLessonInSchedule
 JsonAdaptedLessonInSchedule .right.> JsonAdaptedPerson
 
 

@@ -29,8 +29,8 @@ Class School
 Class UniquePersonList
 }
 
-Package Tag {
-Class Tag
+Package Subject {
+Class Subject
 }
 
 Package Lesson {
@@ -70,7 +70,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> School
-Person *--> "*" Tag
+Person *--> "*" Subject
 Person *--> "*" Lesson
 
 Name -[hidden]right-> Phone

@@ -17,7 +17,7 @@ Class CommandBox
 Class ImportantDatesWindow
 Class ScheduleWindow
 
-package PanelList <<Rectangle>> {
+package Panel <<Rectangle>> {
 Class DateListPanel
 Class DetailLessonListPanel
 Class LessonListPanel
@@ -72,7 +72,7 @@ StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 ImportantDatesWindow -down-|> UiPart
 ScheduleWindow -down-|> UiPart
-PanelList --|> UiPart
+Panel--|> UiPart
 Card --|> UiPart
 
 
