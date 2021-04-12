@@ -7,6 +7,13 @@ title: Developer Guide
    <img src="images/FriendDex.png" width="200" style="margin: 0 auto" />
 </div>
 
+Our world is more connected than ever. There are numerous interactions between multiple people daily in our lives.
+As we move forward towards more of an asynchronous and remote way of living, daily interactions become more transient and harder to remember.
+FriendDex aims to act as a tool to bridge that gap so that interactions become more permanent. FriendDex will empower you to have better relationships with people around you.
+
+Welcome to the FriendDex Developer Guide. This guide helps current and future developers of FriendDex on navigating the source code of FriendDex. Let us bring the world closer together,
+and remember our core mission, **FriendDex aims to foster meaningful relationships for everyone, without any compromise**.
+
 * Table of Contents
 {:toc}
 
