@@ -44,7 +44,7 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
    open the help window.
    Some example commands you can try can be seen [here](#command-summary).
 
-6. Refer to the [Features](#features) below for the details of the main commands.
+6. Refer to the [Features](#features-and-behaviour) below for the details of the main commands.
 
 --------------------------------------------------------------------------------------------------------------------
 ## UI Layout

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: About Us
 nav-text: About Us
 ---
 
