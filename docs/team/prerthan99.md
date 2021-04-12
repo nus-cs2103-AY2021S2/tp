@@ -20,7 +20,8 @@ Given below are my contributions to the project.
   * Set up meetings to discuss team projects
   * Fixed meeting time and kept track of each members prefered roles
 
-* **Enhancements to existing features**: Added updated the person field to include more information (Pull request [\#2],[\#3],[\#4] (https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/90#issue-609927203))
+* **Enhancements to existing features**: Added updated the person field to include more information (Pull request [\#2],[\#3],[\#4])
+* [link] (https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/90#issue-609927203)
   * What it does: Blood group is an paramter that needs to be keyed in
   * Justification: Blood group is a piece of esential medical information that needs to be recorded by 
   * Highlights: Was able to include Rh factor so we can input O+ instead of just O
