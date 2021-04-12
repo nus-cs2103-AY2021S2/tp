@@ -1,0 +1,11 @@
+@startuml
+start
+:User executes schedule command;
+if () then ([found results])
+:display schedule;
+else ([no found results])
+:show no programs scheduled;
+endif
+:Returns Schedule Command;
+stop
+@enduml

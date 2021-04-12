@@ -54,11 +54,11 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
     * Contributed significantly to Enrol Command and Help Command, and edited other commands to ensure
-  cohesivenss. 
+  cohesiveness. 
     * Improved the introduction of the user guide.
 
   * Developer Guide:
-    * Completed Enrol Command and Help Command, and their respective activity diagrams and seqeunce diagram.
+    * Completed Enrol Command, List Command and Help Command, and their respective activity diagrams and sequence diagrams.
     * Added test cases for Enrol and Drop command for manual testing.
     * Contributed to user stories.
 

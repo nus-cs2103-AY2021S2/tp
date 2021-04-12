@@ -21,6 +21,10 @@ import dog.pawbook.model.managedentity.tag.Tag;
 public class Owner extends Entity {
     public static final String ENTITY_WORD = "owner";
 
+    private static final String PHONE_PREFIX = "Phone: ";
+    private static final String EMAIL_PREFIX = "Email: ";
+    private static final String ADDRESS_PREFIX = "Address: ";
+    private static final String DOG_ID_PREFIX = "ID of Dog(s) owned: ";
     // Identity fields
     private final Phone phone;
     private final Email email;
@@ -109,13 +113,14 @@ public class Owner extends Entity {
     @Override
     public List<String> getOtherPropertiesAsString() {
         List<String> properties = new ArrayList<>();
-        properties.add("Phone: " + phone.value);
-        properties.add("Address: " + address.value);
-        properties.add("Email: " + email.value);
+        properties.add(PHONE_PREFIX + phone.value);
+        properties.add(ADDRESS_PREFIX + address.value);
+        properties.add(EMAIL_PREFIX + email.value);
+
         if (!dogidSet.isEmpty()) {
             properties.add(dogidSet.stream()
                     .map(String::valueOf)
-                    .collect(Collectors.joining(", ", "ID of Dog(s) owned: ", "")));
+                    .collect(Collectors.joining(", ", DOG_ID_PREFIX, "")));
         }
         return properties;
     }

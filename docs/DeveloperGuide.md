@@ -257,18 +257,47 @@ Below is an example sequence diagram for a valid find command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![ViewSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png){: .center-image}
+![FindSequenceDiagramSpecific](images/FindSequenceDiagramSpecific.png) {: .center-image}
 
 1. Upon calling the `execute()` method, the `FindCommand` updates the filtered entity list in `Model` using a `NameContainsKeywordsPredicate` as parameter. 
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
 3. From here, Find Command creates a command result and returns it to the `LogicManager`.
 
-
 ### List Feature
+Pawbook allows the users to `list` an entity based on keyword searches. The `list` function responds to the current available
+entities, which are `owner`, `dog` and `program`, and returns a list of all the entries of the respective entity.
+
+When the user enters a valid command with the entity keyword, the arguments are parsed by `PawbookParser`, which uses `Predicate`
+to identify which entity `owner`, `dog` or `program` it is. `ListCommand` is then generated with the predicate to return
+a list of all the entries of that entity type.
+
+List command supports the plural forms of the entity keywords.
+
+Below is an example activity diagram for a valid find command from the user.
+
+![ListActivityDiagram](images/ListActivityDiagram.png) {: .center-image}
+
+Below is an example sequence diagram for a valid find command from the user.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png) {: .center-image}
+1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
+1. In `PawbookParser`, a `Predicate` is created based on which entity keyword was given by the user. There are only 3 cases here,
+`owner`, `dog`, or `program`.
+1. A `ListCommand` object will be created based on the `Predicate`.
+1. The `LogicManager` will then proceed to call the `execute()` method.
+1. The `execute()` method is further explored below. The high level understanding is that a CommandResult is returned and finally passed back to `LogicManager`.
+
+Here is a more specific breakdown of the command's execute method.
+
+![ListSequenceDiagramSpecific](images/ListSequenceDiagramSpecific.png) {: .center-image}
+1. Upon calling the `execute()` method, the `ListCommand` updates the filtered entity list in `Model` using a `predicate` and an `entityType` as parameters. 
+2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order. 
+3. From here, List Command creates a command result and returns it to the `LogicManager`.
 
 ### View feature
 
-Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
+Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or 
+all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
 
 When the user enters a valid command with the target entity ID, the ViewCommandParser will firstly parse the command and store the ID as an integer that is then passed on to as a parameter into the constructor method of a new ViewCommand instance.
 
@@ -305,6 +334,35 @@ Here is a more specific breakdown of the command's execute method.
 2. This list is then passed into the constructor method of `IdMatchPredicate` and is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model. 
 3. Next, `ViewCommand` creates a `ViewCommandComparator` and uses it to sort the ordering of the filtered entity list. 
 4. From there, `ViewCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
+
+#### Schedule feature
+
+Pawbook allows the user to display the `schedule` of all programs.
+For instance, the user may want to view the `schedule` of all programs on a specific date.
+By entering the correct schedule command with the correct date, the entire list of programs on the specific date will be generated.
+
+When the user enters a valid command with the date, the arguments are parsed by the `ScheduleCommandParser` that converts 
+the argument string into a Date that is subsequently passed on to a `ProgramOccursOnDatePredicate` object. 
+
+Using the `IsEntityPredicate` for program and the `ProgramOccursOnDatePredicate`, the list of programs is retrieved via 
+the `ModelManager` using the `updateFilteredEntityList()` method.
+
+Below is an example activity diagram for a valid schedule command from the user.
+
+![ScheduleActivityDiagram](images/ScheduleActivityDiagram.png){: .center-image}
+
+Below is an example sequence diagram for a valid schedule command from the user.
+
+![ScheduleSequenceDiagram](images/ScheduleSequenceDiagram.png){: .center-image}
+
+Here is a more specific breakdown of the command's execute method.
+
+![ScheduleSequenceDiagramSpecific](images/ScheduleSequenceDiagramSpecific.png)
+
+1. In the execute method of `ScheduleCommand`, it first creates a `ProgramOccursOnDatePredicate` object.
+2. The `IsEntityPredicate` of Program and the `ProgramOccursOnDatePredicate` is then passed into `updateFilteredEntityList()` method. The `updateFilteredEntityList()` updates the filtered entity list in model.
+3. From there, `ScheduleCommand` generates the `CommandResult` based on the filtered entity list. This portion is not shown here as it is trivial.
+
 
 ### Enrol feature
 
@@ -722,8 +780,9 @@ guide for comprehensive testing. The state of the application is assumed to cont
 application is first launched.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
+testers are expected to do more *exploratory* testing. Take note that all test cases are separate and individual and assume 
+the default pre-defined database state containing 6 entities (2 dogs, 2 owners, 2 programs) respectively, if not otherwise specified.  
+:bulb: To empty the database and reset the state (ID goes back to 1) for testing, try deleting all the entities and restart the program. 
 </div>
 
 ### Launch and shutdown
@@ -784,17 +843,27 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `add program n/Obedience Training s/01-02-2021 18:00 t/puppies` <br>
        Expected: If database does not already contain a Bruce, a successful command result should show.
        
-    1. Test case: `add program s/01-02-2021 n/Obedience Training 18:00 t/puppies` <br>
+    1. Test case: `add program s/01-02-2021 18:00 n/Obedience Training t/puppies` <br>
        Expected: Similar to previous.
 
-    1. Test case : `add program n/Obedience Training t/puppies` <br>
+    1. Test case : `add program t/puppies` <br>
        Expected: Missing parameters, status message indicates invalid command format.
         
 ### Delete Command
 
 1. Deleting an owner while all owners are being shown
 
-    1. Prerequisites: List all owners using the `list owner` command. Multiple owners in the list.
+    1. Pre-requisites
+
+        1. Start with an empty database by deleting all entities.
+    
+        1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+    
+        1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`. Ensure Bruce has ID 2. 
+    
+        1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`. Ensure program has ID 3. 
+    
+        1. List owners using `list owner`. 
 
     1. Test case: `delete owner 1`<br>
        Expected: Owner with ID 1 is deleted from the list. All the dogs belonging to the first owner is also deleted. 
@@ -811,7 +880,7 @@ testers are expected to do more *exploratory* testing.
        
 1. Deleting a dog while all dogs are being shown 
 
-    1. Prerequisites: List all dogs using the `list dog` command. Multiple dogs in the list. 
+    1. Prerequisites: Refer to above. List dogs using `list dog`. 
     
     1. Test case: `delete dog 2`<br> 
        Expected: Dog with ID 2 is deleted from the list. The dogs will also be removed from all programs they were previously
@@ -821,23 +890,23 @@ testers are expected to do more *exploratory* testing.
       Expected: No dog is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Test case: `delete dog 1`<br>
-      Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+      Expected: No dog is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete dog`, `delete dog x`, `delete dog -x` (where x is larger than list size or negative)<br>
       Expected: Similar to previous.
 
 1. Deleting a program while all programs are being shown
 
-    1. Prerequisites: List all programs using the `list program` command. Multiple programs in the list.
+    1. Prerequisites: Refer to above. List programs using `list program`. 
 
-    1. Test case: `delete program 3`<br>
+    1. Test case: `delete program 5`<br>
        Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program. 
        
     1. Test case: `delete program 0`<br>
        Expected: No program is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Test case: `delete program 1`<br>
-       Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+       Expected: No program is deleted as ID 1 is not a program. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete program`, `delete program x`, `delete program -x` (where x is larger than list size or negative)<br>
        Expected: Similar to previous.
@@ -893,22 +962,26 @@ testers are expected to do more *exploratory* testing.
 
 1. Find valid entities
 
-    1. Prerequisites: Application is running. List being shown does not matter. 
+    1. Pre-requisites
+    
+        1. Start with an empty database by deleting all entities.
+    
+        1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+    
+        1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+    
+        1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    
+        1. Add another sample owner with `add owner n/James Bond p/90139122 e/jamesbond@example.com a/322, Clementi Ave 2, #02-25 t/friends t/owesMoney` Ensure James Bond has ID 4.
 
-    1. Test case: `Find Carl`<br>
-       Expected: Carl with ID 5 is shown on the display list. Status message says "1 entity listed!"
+     1. Test case: `find John`<br>
+       Expected: Alice with ID 1 is shown on the display list. Status message says "1 entity listed!"
 
-    1. Test case: `Find Car`<br>
-       Expected: Similar to previous. 
-
-    1. Test case: `Find Car`<br>
-       Expected: Similar to previous. 
-
-    1. Test case: `find carl`<br>
-       Expected: Similar to previous  
+    1. Test case: `find Jo`<br>
+       Expected: Similar to previous.
        
-    1. Test case: `find Elsa Flora Genie` <br>
-       Expected: Else, Flora and Genie are displayed on the list. Status messages says: "3 entities listed!"
+    1. Test case: `find John James` <br>
+       Expected: John and James are displayed on the list. Status messages says: "2 entities listed!"
        
 1. Finding invalid entities
 
@@ -981,7 +1054,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Error status message is provided, indicating invalid ID. 
        
     1. Test case: 'view -1'
-       Expected: Similar to previous. 
+       Expected: Error status message is provided, indicating ID must be positive. 
 
 ### Schedule Command 
 
@@ -990,7 +1063,7 @@ testers are expected to do more *exploratory* testing.
     1. Start with an empty database by deleting all entities. 
 
     1. Add a sample program with `add program n/Obedience Training 1 s/[TODAY'S DATE] 18:00 t/puppies`. Fill in today's
-      date in the `[TODAY'S DATE]` field.
+      date in the `[TODAY'S DATE]` field in dd-mm-yyyy format. 
 
     1. Add a sample program with `add program n/Obedience Training 2 s/01-02-2021 18:00 t/puppies`
     
@@ -1002,8 +1075,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Successful status message, shows the sample Obedience Training 1 happening today.
 
     1. Test case: `schedule 01-02-2021` <br>
-       Expected: Successful status message, shows the sample Obedience Training 1 happening on 01-02-2021. 
-       
+       Expected: Successful status message, shows the sample Obedience Training 1 happening on 01-02-2021.
     
 1. Viewing schedules on an invalid day 
 
@@ -1047,7 +1119,7 @@ testers are expected to do more *exploratory* testing.
     1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple as ID 4.
     
     1. Test case: `enrol d/2 d/4 p/3` <br>
-        Expected: Bruce and Apple are successfully added to the Obedience Training program.
+        Expected: Bruce and Apple are successfully added to the Obedience Training program. Remember to drop Bruce from the program if he was enrolled previously! 
         
 1. Enrol one valid dog into multiple valid programs
 
@@ -1056,7 +1128,7 @@ testers are expected to do more *exploratory* testing.
     1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
     
     1. Test case: `enrol d/2 p/3 p/4` <br>
-        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program. 
         
 1. Enrol multiple valid dogs into multiple valid programs
     
@@ -1140,7 +1212,7 @@ testers are expected to do more *exploratory* testing.
     1. Enrol dog into program with: `enrol d/2 p/3` and `enrol d/4 p/5`
     
     1. Test case: `drop d/2 d/4 p/3 p/5 ` <br>
-        Expected: Error messaging stating that droplment of multiple dogs from multiple programs is not supported.
+        Expected: Error messaging stating that dropping of multiple dogs from multiple programs is not supported.
 
 1. Invalid drop command
 

@@ -1,0 +1,22 @@
+@startuml
+
+start
+:User executes list command;
+
+if () then ([missing keyword])
+stop
+else ([valid keyword])
+:PawbookParser processes to reveal results;
+endif
+
+if () then ([entity exists])
+:display list of entries of specified entity;
+else ([entity does not exist])
+:show entity not valid;
+endif
+
+:Returns ListCommand;
+
+stop
+
+@enduml

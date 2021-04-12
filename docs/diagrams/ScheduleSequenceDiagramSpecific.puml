@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "s:ScheduleCommand" as Schedule LOGIC_COLOR
+participant "iep:IsEntityPredicate" as IsEntityPredicate LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+mainframe **sd** show schedule of programs on current date
+
+[-> ScheduleCommand : execute()
+
+activate ScheduleCommand
+
+ScheduleCommand -> Model : Generate filtered entity list
+activate Model
+Model --> ScheduleCommand
+deactivate Model
+
+create IsEntityPredicate
+ScheduleCommand -> IsEntityPredicate
+activate IsEntityPredicate
+IsEntityPredicate --> ScheduleCommand
+deactivate IsEntityPredicate
+
+ScheduleCommand -> Model : updateFilteredEntityList(iep)
+activate Model
+Model --> ScheduleCommand
+deactivate Model
+
+ScheduleCommand -> Model : getFilteredEntityList.size()
+activate Model
+Model --> ScheduleCommand
+deactivate Model
+
+create CommandResult
+ScheduleCommand -> CommandResult
+activate CommandResult
+CommandResult --> ScheduleCommand
+deactivate CommandResult
+
+[<-- ScheduleCommand : cr
+deactivate ScheduleCommand
+@enduml

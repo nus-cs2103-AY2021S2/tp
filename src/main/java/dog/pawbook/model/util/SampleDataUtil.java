@@ -1,16 +1,23 @@
 package dog.pawbook.model.util;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import dog.pawbook.model.Database;
 import dog.pawbook.model.ReadOnlyDatabase;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
+import dog.pawbook.model.managedentity.dog.Breed;
+import dog.pawbook.model.managedentity.dog.DateOfBirth;
+import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.dog.Sex;
 import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.program.Program;
 import dog.pawbook.model.managedentity.program.Session;
 import dog.pawbook.model.managedentity.tag.Tag;
 
@@ -18,33 +25,29 @@ import dog.pawbook.model.managedentity.tag.Tag;
  * Contains utility methods for populating {@code Database} with sample data.
  */
 public class SampleDataUtil {
-    public static Owner[] getSampleOwners() {
-        return new Owner[] {
-            new Owner(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Owner(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Owner(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Owner(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Owner(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Owner(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static Entity[] getSampleEntities() {
+        return new Entity[] {
+            new Owner(new Name("Alice Pauline"), new Phone("94351253"), new Email("alice@example.com"),
+                new Address("123, Jurong West Ave 6, #08-111"),
+                getTagSet("friends"), Collections.singleton(2)),
+            new Dog(new Name("Apple"), new Breed("Golden Retriever"), new DateOfBirth("11-02-2020"),
+                    new Sex("female"), 1, getTagSet("friendly")),
+            new Owner(new Name("Benson Meier"), new Phone("98765432"), new Email("johnd@example.com"),
+                new Address("311, Clementi Ave 2, #02-25"),
+                getTagSet("owesMoney", "friends"), Collections.singleton(4)),
+            new Dog(new Name("Bubbles"), new Breed("Bulldog"), new DateOfBirth("01-01-2021"),
+                    new Sex("female"), 3, getTagSet("cheerful")),
+            new Program(new Name("Active Listening"), getSessionSet("12-12-2021 18:00"),
+                    getTagSet("Puppies"), Collections.singleton(2)),
+            new Program(new Name("Behaving"), getSessionSet("11-11-2021 20:00"),
+                getTagSet("Puppies"), Collections.singleton(4)),
         };
     }
 
     public static ReadOnlyDatabase getSampleDatabase() {
         Database sampleAb = new Database();
-        for (Owner sampleOwner : getSampleOwners()) {
-            sampleAb.addEntity(sampleOwner);
+        for (Entity sampleEntity : getSampleEntities()) {
+            sampleAb.addEntity(sampleEntity);
         }
         return sampleAb;
     }
