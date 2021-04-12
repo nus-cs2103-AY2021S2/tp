@@ -68,10 +68,6 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-A similar *Sequence Diagram* exists for meeting related commands like `editm 1`.
-
-<img src="images/ArchitectureSequenceDiagramMeeting.png" width="574" />
-
 The sections below give more details of each component.
 
 ### UI component
@@ -112,11 +108,6 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Given below is another Sequence Diagram for interactions within the `Logic` component for the more complicated command  `execute("showm1")` API call.
-
-![Interactions Inside the Logic Component for the `showm 1` Command](images/ShowPersonsInMeetingSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ShowMeetingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### Model component
 
@@ -203,6 +194,57 @@ The predicate is computed by the logical `AND` of all input predicates. For inst
 suppose we want to search for a meeting with name "lecture" and with priority 1. 
 The predicate to filter the meeting list is simply: meeting contains "lecture" in its name `AND`
 meeting has priority 1.
+
+### Show contacts in meeting (author: hengyiqun)
+The command `showm` leverages on the PersonMeetingConnection as well as the FilteredPersonList for filtering.
+Specifically, a predicate, PersonInMeetingPredicate, is used to filter out persons who are in the specified meeting.
+The predicate can be extended to include people who are in groups that are within the meeting. This would involve 
+the use of three streams - one stream for contacts directly associated with the meeting, one stream for all the groups
+of a person of interest, and a last stream for all groups in the meeting.
+This has been implemented, but a reduced version is currently used to show only contacts that are directly associated
+with the meeting. The expanded version will be introduced subsequently.
+
+Given below is a Sequence Diagram for interactions within the `Logic` component for the `execute("showm1")` API call.
+
+![Interactions Inside the Logic Component for the `showm 1` Command](images/ShowPersonsInMeetingSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ShowMeetingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Find persons in group (author: hengyiqun)
+The command `findpg` leverages the filtering capabilities of the FilteredList for persons.
+A predicate is used to compute if a user input keyword is part of a group.
+
+### Edit meeting (author: hengyiqun)
+The command `editm` makes use of existing API to edit an existing meeting. As the initial meeting still exists in
+the MeetingBook, editing the meeting name will cause the application to register a clashing meeting (i.e. it clashes
+with itself due to the same start time and end time). A duplicate meeting will also be registered if only the 
+priority of the meeting is edited, because only the name, start time and end time of a meeting are required to be 
+unique. As such, additional API, `clashesExceptOne` has been implemented to ensure that meetings are not checked
+against itself for clashes and duplicates.
+
+Below shows a general *Sequence Diagram* for `editm 1`. Details for timetable conflicts and duplicates have been
+deliberately left out for brevity.
+
+<img src="images/ArchitectureSequenceDiagramMeeting.png" width="574" />
+
+### Notes feature (author: hengyiqun)
+(Cooming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
+
+The note feature has been implemented to help the user insert and delete personal notes.
+This feature is introduced with the intention to help users manage their personal notes, and to make
+MeetBuddy a more attractive one-stop application for users to manage their contacts, store their meeting
+information, and also keep track of various personal notes. While this feature has already been implemented,
+it will only be made available in subsequent iterations, after the storage is made more mature for handling notes.
+
+Just like the AddressBook for managing contacts and MeetingBook for managing meeting information, a NoteBook
+was implemented for users to store personal notes. The NoteBook is implemented with a Command Pattern.
+
+The user input command is first passed to the LogicManager class, which then makes use of the MeetBuddyParser
+for deciding the type of command. Commands can be related to contacts, meetings, notes or timetable. This is decided
+based on the command word. A specific command parser, such as AddNoteCommandParser, will be called which return
+a Command such as AddNoteCommand. This command will be executed by the Logic Manager, before encapsulating
+the result as a CommandResult object for passing back to the Model. The Ui component may then be invoked to display
+the results (e.g. the notes) to the user.
 
 ### Timetable feature (author : Maurice)
 
@@ -337,26 +379,6 @@ how the timetable is updated.
  
 ![A sequence diagram of the setTimetable Command](images/setTimetableActivityDiagra.png)
 
-
-
-
-### Notes feature (Cooming Soon : v1.5 has already been implemented, but will only be introduced in subsequent iterations)
-
-The note feature has been implemented to help the user insert and delete personal notes.
-This feature is introduced with the intention to help users manage their personal notes, and to make
-MeetBuddy a more attractive one-stop application for users to manage their contacts, store their meeting 
-information, and also keep track of various personal notes. While this feature has already been implemented,
-it will only be made available in subsequent iterations, after the storage is made more mature for handling notes.
-
-Just like the AddressBook for managing contacts and MeetingBook for managing meeting information, a NoteBook
-was implemented for users to store personal notes. The NoteBook is implemented with a Command Pattern.
-
-The user input command is first passed to the LogicManager class, which then makes use of the MeetBuddyParser
-for deciding the type of command. Commands can be related to contacts, meetings, notes or timetable. This is decided
-based on the command word. A specific command parser, such as AddNoteCommandParser, will be called which return
-a Command such as AddNoteCommand. This command will be executed by the Logic Manager, before encapsulating
-the result as a CommandResult object for passing back to the Model. The Ui component may then be invoked to display
-the results (e.g. the notes) to the user.
 
 
 ### Person Meeting Connection feature (Written by: Chen Yuheng (Github: skinnychenpi))
