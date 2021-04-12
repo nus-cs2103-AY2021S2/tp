@@ -119,7 +119,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-/### Model component
+### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -128,10 +128,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores all the components' book data.
+* exposes an unmodifiable `ObservableList<T extends Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -146,7 +145,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save all the components' book data in json format and read it back.
 
 ### Common classes
 
@@ -290,9 +289,11 @@ The following sequence diagram shows how the GUI is updated from `MainWindow` af
 
 The `find` command will be implemented for all four components and can be called from the CLI input with the general form
 
-	[component] find [arguments...]
+	[component] find prefix/[keyword]
 
-The arguments of the `find` command will always be the keyword(s) to be searched for.
+Each prefix specifies which field to search for followed by a keyword or list of keywords to search for.
+
+At least one prefix must be specified or find will throw an exception.
 
 The `find` command will be parsed in a similar way to other commands (see the [Component Parser description](#component-parser)). The `find` command will update the `FilteredList` object to only contain items that match the keywords and return a `CommandResult` object to update the GUI, in a similar fashion to the GUI update caused by the [add command](#add-command).
 
@@ -300,9 +301,11 @@ The `find` command will be parsed in a similar way to other commands (see the [C
 
 The `edit` command will be implemented for all four components and can be called from the CLI input with the general form
 
-	[component] edit [arguments...]
+	[component] edit prefix/[value]
 
 Similar to the implementation of the `add` command, the arguments will differ depending on what component the `edit` command is being called on.
+
+At least one prefix must be specified or edit will throw an exception.
 
 The `edit` command will be parsed in a similar way to other commands (see the [Component Parser description](#component-parser)). The `edit` command will select an object from the *currently displayed list* via its (1-indexed) index and create a new object with the same parameters, except for the parameters given as arguments to be updated. 
 
