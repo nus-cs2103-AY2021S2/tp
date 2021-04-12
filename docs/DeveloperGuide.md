@@ -106,7 +106,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-> **NOTE:** student book contains data of student records and student appointments. 
+> **NOTE:** student book contains all student records and appointment data. 
 > 
 >
 ### Storage component
@@ -143,19 +143,12 @@ Given below is an example usage scenario and how the `Add` Student mechanism beh
 
 Step 1: The user executes `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
 
-![Receiving an input](images/ReceiveInput.png)
-
-
 Step 2: The `AddCommandParser` instance obtains the user input and checks for its validity. It then returns a new `AddCommand` instance to the `LogicManager` via the `StudentBookParser` class.
 
 > **NOTE:** If the input format is incorrect or not found, `AddCommandParser` will throw a `ParseException` to tell the user about the error, and execution will stop. 
 
-![Parsing an input](images/ParseInput.png)
-
 
 Step 3: With the `AddCommand` instance, the overridden `execute` method is called to add the `Student` to the `Model`. The `LogicManager` then receives the result of the execution of the command. 
-
-![Processing an input](images/ProcessResult.png)
 
 
 Step 4: The added `Student` is saved into the `StudentBook`. 
@@ -189,8 +182,6 @@ The following activity diagram summarizes what happens when a user executes the 
     * User could forget to add certain attributes, potentially causing bugs later. 
     
 In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. However, the cost of having multiple bugs could be greater. Moreover, the user can use the edit command afterwards to fix any incorrect information added. This would help to mitigate some downsides of this implementation.
-
-_{more aspects and alternatives to be added}_
 
 ### Delete Student `delete`
 
@@ -232,7 +223,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons:
         * User is required to know the student's matriculation number to perform the action.
 
-* **Alternative 2:** Find student using student's name
+* **Alternative 2:** Delete student using student's name
     * Pros:
         * User is not required to know the student's matriculation number.
     * Cons:
@@ -297,8 +288,7 @@ The find student feature helps users to locate a particular student record by th
 
 This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
 `FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
-`FindCommand` will invoke a method to search for the particular student record and the corresponding appointment in `Model` and return the specific student record if the student exists and corresponding appointment if there is an appointment belonging to the student.
-
+FindCommand will invoke a method to search for the particular student record and their corresponding appointment in Model and return the specific student record with their appointment if it exists.
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
 Step 1: The user executes `find A0175678U` into Vax@NUS.
@@ -306,9 +296,9 @@ Step 1: The user executes `find A0175678U` into Vax@NUS.
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
 
-Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record of the particular student and corresponding appointment from `Model` if the student and corresponding appointment exists.
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record and the appointment belonging to the particular student from `Model`.
 
-Step 4: Display the particular student record onto the UI. 
+Step 4: Display the particular student record and appointment onto the UI. 
 
 The following sequence diagram shows how the find operation works:
 
@@ -324,8 +314,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 * **Alternative 1 (current choice):** Find student based on student's matriculation number.
     * Pros:
-        * Each student record found uniquely identifies a student.
-        * Only one student record is shown if the particular student exists in the system. 
+        * Each student record found uniquely identifies a student. 
+        * Only one student record and one appointment is shown if the particular student exists and has an appointment in the system. 
     * Cons:
         * The user is required to know the student's matriculation number to perform the action. 
         
@@ -334,8 +324,10 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros:
         * User is not required to know the student's matriculation number.
     * Cons:
-        * Multiple student records will be shown for students with the same name. The user might have to look through multiple entires to find the particular student hence causing inconvenience to them. 
+        * Multiple student records and appointments will be shown for students with the same name. Users will have to manually look through all entries to find the desired student and appointment records.
         * The user has to type more words if the student name is too long. 
+
+In the end, Alternative 1 was chosen because it is less likely to introduce bugs into the system, even though it comes with some usability cost. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -410,12 +402,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a specific student record.
-2.  System prompts for student's details.
-3.  User inputs the respective details.
-4.  System adds the student record.
-
-    Use case ends.
+1.  User requests to add a student by the student's matriculation number and other relevant details.
+1.  System adds the student. 
+    
+Use case ends
 
 **Extensions**
 
@@ -424,13 +414,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
   
         Use case ends.
+    
+* 2a. User does not give sufficient inputs to add a student entry.
 
-
-* 3a. User does not give sufficient inputs to add a student record.
-
-    * 3a1. System shows an error message.
+    * 2a1. System shows an error message.
   
         Use case ends.  
+* 3a. System detects that the given parameter is invalid.
+
+    * 3a1. System shows an error message.
+    
+        Use case ends. 
+
+        
 
 **Use case: Add a vaccination appointment**
 
@@ -461,24 +457,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find a specific student.
-2.  System prompts for student's matriculation number.
-3.  User inputs the matriculation number.
-4.  System finds the student. 
+1.  User requests to find a specific student record and his/her appointment.
+2.  System finds the particular student record and appointment. 
+3.  System shows the student record and appointment of the particular student.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Specified student does not exist.
-
+        
+* 1a. The given matriculation number is invalid.        
+        
     * 1a1. System shows an error message.
   
         Use case ends.
+        
+* 2a. Specified student does not exist.
 
-* 3a. User input matriculation number in the wrong format.
+    * 2a1. System shows an error message.
+  
+        Use case ends.
+        
+* 3a. Specified student does not have an appointment.
 
-    * 3a1. System shows an error message.
+    * 3a1. System shows an empty appointment list.
   
         Use case ends.
         
@@ -496,12 +498,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
-      <br>Use case ends.
+      
+        Use case ends.
 
 * 1b. System detects that the given parameter is invalid.
 
     * 1b1. System shows an error message.
-      <br> Use case ends.
+
+        Use case ends.
       
 
 **Use case: Delete an appointment**
@@ -515,18 +519,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
-      <br>Use case ends.
+
+        Use case ends.
 
 * 1b. Specified student does not have a appointment.
 
     * 1b1. System shows an error message.
-      <br> Use case ends.
+      
+        Use case ends.
 
 * 1c. System detects that the given parameter is invalid.
 
     * 1c1. System shows an error message.
       <br> Use case ends.
 
+**Use case: Filter all student records**
+
+**MSS**
+
+1.  User requests to filter all student records.
+2.  System displays a list of filtered records.
+
+    Use case ends.
+
+* 1a. System detects that the given parameter is invalid.
+
+    * 1a1. System shows an error message.
+  
+        Use case ends.
+        
 ### Non-Functional Requirements
 
 1.  **Accessibility**
@@ -580,7 +601,46 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-      
+
+### Adding a student
+
+1. Adding a student not currently in Vax@NUS
+    1. Prerequisites: Sample data of students and appointments shown in the list.
+       
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+
+       Expected: Adds a student (John Doe) to the list. Details of the added student is shown in the status message.
+       John Doe's student details appear in the GUI.
+       
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+       This test case assumes that the test case above was performed first.
+       Expected: No student is added. Error details shown in the status message telling user that there already exists a student in Vax@NUS.
+    
+    1. Test case: `add A7654321J n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`   
+       Expected: Adds a student (Betsy Crowe) to the list. Details of the added student is shown in the status message. John Doe's student details appear in the GUI.
+       Betsy Crowe's `School Residence` defaults to `DOES NOT LIVE ON CAMPUS`.
+
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`   
+       Expected: No student is added. Error details shown in the status message telling user that the correct `matriculation number`
+       format should be A + 7 digit numeric sequence + alphabet.
+       
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/not vaccinated m/peanut allergy r/RVRC`   
+       Expected: No student is added. Error details shown in the status message telling user that the `vaccination status` should only be
+       `vaccinated` or `unvaccinated`
+       
+    1. Test case: `add A0241234N n/Jane Doe f/SoC p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`   
+       Expected: No student is added. Error details shown in the status message telling user that the `faculty` should only be
+       one of those shown.
+       
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/kent Ridge`   
+       Expected: No student is added. Error details shown in the status telling user that the `school residence` should only be
+       one of those shown.
+       
+    1. Other incorrect add commands to try: `add`, `add x ...` (where x is not a valid `matriculation number`), `add... f/com r/capt`(where `faculty` and `school residence`
+       are spelt in lowercase) 
+       Expected: Similar to previous.
+
+
 ### Deleting a student
 
 1. Deleting a student
@@ -603,10 +663,47 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
       
-### Saving data
+### Editing an appointment 
 
-1. Dealing with missing/corrupted data files
+1. Editing an appointment in the Vax@NUS records. 
+    1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
+       
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/14:00` <br>
+       Expected: Alex Yeoh's appointment is changed to the given date and time
+       
+    1. Test case: `editAppt A1234567X d/2021-11-13 ts/14:00` <br>
+       Expected: No appointment is edited. Error details shown in the status message telling user that the requested appointment does not exist. 
+       
+    1. Test case: `editAppt A0182345T d/2021-11-130 ts/15:00` <br>
+       Expected: No appointment is edited. Error details shown in the status message telling the user that the date should be of the format `YYYY-MM-DD`.
+       
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/125:00` <br>
+       Expected: No appointment is edited. Error details shown in the status message telling the user that the time should be of a valid form `HH:00` or `HH:30`
+       
+    1. Other incorrect editAppt commands to try: `editAppt`, `editAppt x d/... ts/...`, where x is not a valid matriculation number
+    and date and time are of the wrong format. 
+    
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Finding a student
 
-1. _{ more test cases …​ }_
+1. Finding a student while all students are being shown
+
+   1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
+
+   1. Test case: `find A0221234N`<br>
+      Expected: The student record and appointment belonging to Roy Balakrishnan whose matriculation number matches "A0221234N" will be shown.  
+      
+   1. Test case: `find A1209478T`<br>
+      Expected: No student is found. Error details shown in the status message telling user no student with the specified matriculation number is found. 
+
+   1. Test case: `find A09876321T` <br>
+      Expected: No student is found. Error details shown in the status message telling user the input is not a valid matriculation number.
+ 
+   1. Test case: `find A1239874 T`<br>
+      Expected: No student is found. Error details shown in the status message telling user the input is not a valid matriculation number.
+      
+   1. Other incorrect delete commands to try: `find`, `find x`, `...` (where x is not a valid matriculation number) <br>
+      Expected: Similar to previous.
+      
+    
+    
