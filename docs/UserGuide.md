@@ -263,7 +263,7 @@ Examples:
 * `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
 * `editnote 1 c/Hi` Edits the content of the 1st contact to be `Hi` and keep the tags. 
 
-
+<div style="page-break-after: always;"></div>
 #### Editing a note in edit mode : `editmode`
 
 Edits a note in edit mode.
