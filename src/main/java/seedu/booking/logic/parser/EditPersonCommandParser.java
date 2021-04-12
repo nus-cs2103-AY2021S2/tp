@@ -73,8 +73,8 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
 
     private Set<Tag> getTagSet(String input) throws ParseException {
         final Set<Tag> tagSet = new HashSet<>();
-        if (input.equals("")) {
-            throw new ParseException(Tag.TAG_NON_EMPTY);
+        if (input.trim().equals("")) {
+            return tagSet;
         }
         String[] tags = input.split(",");
         for (String tag : tags) {
