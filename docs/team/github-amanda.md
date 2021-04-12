@@ -5,39 +5,46 @@ title: Amanda Ang's Project Portfolio Page
 
 ## Project: StoreMando
 
-StoreMando is a **desktop app for managing inventory, optimized for use via a Command Line Interface** (CLI) while still
-having the benefits of a Graphical User Interface (GUI). If you can type fast, StoreMando can get your inventory
-management tasks done faster than traditional GUI apps.
+**StoreMando** is an integrated platform fully customised for residents in households, residential colleges and halls, 
+to help users manage their items effectively and efficiently. StoreMando allows users to keep track of their items’ 
+whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an inbuilt 
+reminder feature to help users keep track of items that are expiring. All items’ information is encapsulated clearly on 
+our simple and clean Graphical User Interface (GUI). Our application is optimised for use via the Command Line Interface 
+(CLI) and if users have quick fingers, StoreMando can help users manage their items in the blink of an eye.
 
-Given below are my contributions to the project.
+Given below are my contributions to the project:
 
-* **Code
-  contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=zoom&zA=github-amanda&zR=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&zACS=237.18069145466407&zS=2021-02-19&zFS=&zU=2021-03-21&zMG=undefined&zFTF=commit&zFGS=groupByRepos&zFR=false)
-
+* **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=github-amanda&tabRepo=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+  
 * **Refactoring**:
-    * Refactored Phone to Quantity. (Pull requests [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
-    * Made changes to common variable names. (Pull requests [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
+    * Refactored `Phone` to `Quantity` (Pull request [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
+    * Made changes to common variable names (Pull request [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
 
-* **Enhancements to existing features**:
-    * Modified `Delete` v1.2 (Pull requests [\#83](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/83))
-    * Modified `Sort` v2 and added tests (Pull requests [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113))
-    * Modified `Find` v3 (Pull requests [\#115](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/115))
-    * Modified `Clear` v1 (Pull requests [\#116](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/116))
-    * Modified `Clear` v2 (Pull requests [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170))
-    * Updated GUI v1 (Pull requests [\#102](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/102))
-    * Updated GUI v3 (Pull requests [\#265](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
-    * Wrote additional tests and modified tests for existing features to increase coverage (Pull requests [\#182](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/182))
-    
+* **Enhancements to Existing Features**:
+    * Modified `sort` to sort items in order of ascending and descending quantities and added tests (Pull request [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113))
+    * Modified ambiguous messages in `clear`, `find` (Pull requests [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113), [\#115](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/115), [\#116](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/116))
+    * Modified `clear` to clear all items in location and added tests (Pull request [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170))
+    * Fixed `find` parser bug (Pull request [\#290](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/290))
+    * Updated GUI by modifying the layout, size of panels, labellings and some CSS tweaks (Pull request [\#102](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/102))
+    * Updated GUI by modifying CSS (Pull request [\#265](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
+    * Wrote additional tests and modified tests for `list`, `find` and `CommandResult` to increase coverage (Pull request [\#182](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/182))
+    * Split `clear` into two command classes for `clear` and `clear l/LOCATION` and update test cases accordingly (Pull request [\#319](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/319))
+    * Fixed `reminder` parser bug and added test cases (Pull request [\#315](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/315))
+    * Standardise command messages for all commands (Pull request [\#332](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/332))    
+
 * **Documentation**:
     * User Guide:
-        * Updated user stories, target user profile and value proposition (Pull requests [\#40](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/40))
-        * Added functionalities for Clear and Sort features (Pull requests [\#171](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/171))
+        * Edited ambiguous examples used in `Features` section for `list` and `delete` (Pull request [\#83](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/83))
+        * Updated user stories, target user profile and value proposition (Pull request [\#40](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/40))
+        * Added functionalities for `clear` and `sort` (Pull request [\#171](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/171))
     * About Us:
-        * Updated Amanda Ang's part (Pull requests [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
+        * Updated Amanda Ang's part (Pull request [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
     * Developer Guide:
-        * Added use cases (Pull requests [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151))
-        * Added implementations for List and Find features (Pull requests [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213))
-
+        * Edited ambiguous instruction for manual testing for `delete` (Pull request [\#83](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/83))
+        * Added use case for `delete` (Pull request [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151))
+        * Added implementations with activity diagrams, sequence diagrams and design considerations for `list` and `find` (Pull requests [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213), [\#294](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/294))
+        * Finalise use cases, user stories, non-functional requirements and glossary (Pull requests [\#285](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/285), [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326))
+        
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4)
       , [\#41](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/41)
@@ -46,10 +53,8 @@ Given below are my contributions to the project.
       , [\#76](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/76)
       , [\#124](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/124)
       , [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125)
-    * Contributed to forum discussions:
-    * Reported bugs and suggestions for other teams in the class:
-    * Some parts of the history feature I added was adopted by several other classmates:
+      , [\#282](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/282)
+      , [\#328](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/328)
 
-* **Tools**:
-
-* _{you can add/remove categories in the list above}_
+    * Reported bugs and suggestions for other teams in the class: [13 bugs](https://github.com/github-amanda/ped/issues) in Team CS2103T-T10-1 during Mock PE
+      
