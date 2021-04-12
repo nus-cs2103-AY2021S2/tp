@@ -23,8 +23,7 @@ public class FindVenueCommand extends Command {
     public static final String COMMAND_WORD = "find_venue";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all venues that match the specified fields.\n"
-            + "At least one word must be fully matched for VENUE_NAME and DESCRIPTION.\n"
-            + "Input only one tag at a time.\n"
+            + "At least one word must be fully matched for VENUE_NAME, DESCRIPTION and TAG.\n"
             + "At least one field must be provided.\n"
             + "Parameters: " + COMMAND_WORD + " "
             + "[" + PREFIX_VENUE + "VENUE_NAME] "

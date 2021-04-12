@@ -2,12 +2,15 @@ package seedu.booking.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import seedu.booking.commons.core.LogsCenter;
 
 /**
@@ -35,6 +38,30 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+
+        //Fix from https://github.com/javafxports/openjdk-jfx/issues/222
+        root.setOnShowing(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        Platform.runLater(new Runnable() {
+                            @Override public void run() {
+                                root.sizeToScene();
+                            }
+                        });
+                    }
+                }, "WindowResizer").start();
+            }
+        });
     }
 
     /**

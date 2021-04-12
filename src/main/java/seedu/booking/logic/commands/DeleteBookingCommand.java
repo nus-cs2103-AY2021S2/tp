@@ -39,6 +39,7 @@ public class DeleteBookingCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_BOOKING_INDEX_OUT_OF_RANGE);
         }
+
         Booking bookingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteBooking(bookingToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_BOOKING_SUCCESS, bookingToDelete), COMMAND_SHOW_BOOKINGS);

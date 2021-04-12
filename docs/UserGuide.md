@@ -22,7 +22,7 @@ BookCoin (to the Moon) is a **desktop app for managing bookings that presents us
 
 1. Run `java -jar bookingapp.jar via your terminal` (preferred). As a second alternative, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
 
-   ![Ui](images/Ui_Booking_1.4.png) <br><br>
+   ![Ui](images/Ui_Booking_1.5.png) <br><br>
    When you open the app, note how it already contains some sample data. This is for you to test out the commands first, and you may delete them using the `clear` command when you are ready to use the app for your own purposes. <br>
 
 
@@ -163,7 +163,7 @@ If your command went through successfully without any invalid fields, you should
 After keying a valid initial input, the multi-step prompting will prompt you to enter details for the following fields in the specified order:
 * Email: must be unique and of the format <em>local-part@domain</em>.
 * Phone number: must be unique and input as digits without spaces in between. The permitted length is 7-15 digits inclusive, which is the standard length of all international phone numbers.
-* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. Tags cannot be empty, so consecutive commas without any tag in between would be invalid.
+* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. Tags cannot be empty, so consecutive commas without any tag in between would be invalid. Tags are added in a case-insensitive manner, duplicate tags with different casing but same letters will be merged into one.
 <br>
 Format: `add_person n/NAME`
 <br>
@@ -204,7 +204,7 @@ Shows a list of persons who match the specified field(s).
 Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 * The fields that can be specified include the person's `NAME`, `PHONE`, `EMAIL`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `NAME` field, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
+* Only for the `NAME` and `TAG` fields, multiple keywords can be provided. The keywords must be separated by whitespace for the `NAME` field, and a comma for the `TAG` field. Matching is successful as long as a person's name/tag(s) contains words that fully matches any of the specified keywords.
 
 Example:
 * `find_person n/John Doe t/Student` shows a list of persons whose name contains words that fully matches any of the two specified name keywords `John` and `Doe`, and is tagged with `Student`.
@@ -228,7 +228,7 @@ Adds a new venue for the booking app. `add_venue` is a multi-step command that w
 After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the following optional fields in the order stated, which can be skipped by pressing the <kbd>Enter</kbd> key:
 * Venue capacity: the capacity should be entered as a digit, with the maximum limit being 50000. Default capacity is set to 10.
 * Venue description
-* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. No tag can be empty, so consecutive commas without any tag in between would be invalid.
+* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. No tag can be empty, so consecutive commas without any tag in between would be invalid. Tags are added in a case-insensitive manner, duplicate tags with different casing but same letters will be merged into one.
 
 Format: `add_venue v/VENUE_NAME`
 
@@ -277,7 +277,7 @@ Shows a list of venues that match the specified field(s).
 Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the venue's `VENUE_NAME`, `CAPACITY`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as the venue's name/description contains words that fully matches any of the specified keywords.
+* Only for the `VENUE_NAME`, `DESCRIPTION` and `TAG` fields, multiple keywords can be provided. The keywords must be separated by whitespace for the `VENUE_NAME` and `DESCRIPTION` fields, and a comma for the `TAG` field. Matching is successful as long as the venue's name/description/tag(s) contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:
@@ -347,7 +347,7 @@ Shows a list of bookings that match the specified field(s).
 Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
 * The fields that can be specified include the booking's `BOOKER_EMAIL`, `DATE`, `VENUE_NAME`, `DESCRIPTION`, and `TAG`. At least one field must be provided.
 * Matching is case-insensitive, and partial matching on a keyword is not accepted to reduce the number of unrelated search results for greater convenience in searching.
-* Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a booking's venue name/description contains words that fully matches any of the specified keywords.
+* Only for the `VENUE_NAME`, `DESCRIPTION` and `TAG` fields, multiple keywords can be provided. The keywords must be separated by whitespace for the `VENUE_NAME` and `DESCRIPTION` fields, and a comma for the `TAG` field. Matching is successful as long as a booking's venue name/description/tag(s) contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
 Examples:

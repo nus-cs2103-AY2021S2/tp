@@ -24,6 +24,7 @@ public class FindBookingCommand extends Command {
     public static final String COMMAND_WORD = "find_booking";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all bookings who match the given fields.\n"
+            + "At least one word must be fully matched for VENUE_NAME, DESCRIPTION and TAG.\n"
             + "At least one field must be provided.\n"
             + "Parameters: " + COMMAND_WORD + " "
             + "[" + PREFIX_EMAIL + "BOOKER_EMAIL] "
