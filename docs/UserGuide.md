@@ -36,15 +36,9 @@ their profile pictures.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below (after glossary) for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Glossary 
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -80,6 +74,8 @@ there is no such day corresponding to the given month and year of the date, the 
 
 
 </div>
+
+### Composition of the app
 
 ### Viewing help : `help`
 
@@ -314,12 +310,24 @@ Format: `list`
  * The length of the meeting slot is proportional to the timespan of the meeting.
  
  Note that it will correctly update and display all meetings. Meetings that fall outside the range of the timetable 
- will be filtered off. Some things to note:
+ will be filtered off. 
+ ![An Example Timetable](images/exampleTimetable.png)
  
- * Default when starting the application, the timetable will have the first ( leftmost column ) representing today's date.
+ 
+ 
+ Some things to note:
+ 
+ * Default when starting the application, the timetable will have the first ( leftmost column ) 
+ representing today's date.
  * Meetings can overlap across columns.
- * Setting small meeting times around the edge of the timetable will cause display issues, For example, setting a meeting 
- to 6:44-7:01 might cause display issues from the 7 - 7.01 will not display the date or time.
+ * Setting small meeting times around the edge of the timetable will cause display issues, For example, 
+ setting a meeting 
+ to 6:44-7:01 might cause display issues from the 7 - 7.01 will not display the date or time. Also even though 15 minute 
+ meetings are allowed to be scheduled, the words will appear squished on the timetable. It is therefore highly 
+ recommended to set your meeting times to be `AT LEAST 30 MINS` and `AT MOST 24 characters` long.
+
+![An Example of words being squished](images/SquishedTimetable.png)
+ 
  * Note that you can scroll to view more slots.
  
  
