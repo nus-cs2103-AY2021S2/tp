@@ -84,7 +84,7 @@ public class UpdateDeadlineCommandTest {
     public void execute_invalidProjectIndexFilteredList_failure() {
         showProjectAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of contact list
+        // ensures that outOfBoundIndex is still in bounds of project list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getColabFolder().getProjectsList().size());
 
         UpdateDeadlineCommand updateDeadlineCommand = new UpdateDeadlineCommand(outOfBoundIndex,

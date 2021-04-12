@@ -20,6 +20,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX = "The deadline index provided is invalid.";
     public static final String MESSAGE_INVALID_TODO_DISPLAYED_INDEX = "The todo index provided is invalid.";
 
+    public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
+
     public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "Listing your contacts!";
 
     public static final String MESSAGE_ADD_EVENT_SUCCESS = "New event %1$s added to project %2$s";

@@ -1,6 +1,10 @@
 @startuml
 !include style.puml
 
+skinparam ArrowFontSize 20
+skinparam ParticipantFontSize 20
+skinparam ActorFontSize 20
+
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GROUPMATE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_UPDATED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -15,7 +16,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateGroupmateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.groupmate.Role;
@@ -67,7 +67,7 @@ public class UpdateGroupmateCommandParser implements Parser<UpdateGroupmateComma
         parseRolesForEdit(argMultimap.getAllValues(PREFIX_ROLE)).ifPresent(updateGroupmateDescriptor::setRoles);
 
         if (!updateGroupmateDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(UpdateContactCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_UPDATED);
         }
 
         return new UpdateGroupmateCommand(projectIndex, targetGroupmateIndex, updateGroupmateDescriptor);
