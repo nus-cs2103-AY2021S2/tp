@@ -616,21 +616,21 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
-**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
-**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
-**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cc/96011846`
-**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/21-07-2021 t/1500`
-**Delete property** | `delete property INDEX`<br><br> e.g.,`delete property 7`
-**Delete appointment** | `delete appointment INDEX`<br><br> e.g.,`delete appointment 7`
+**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g. `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
+**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g. `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g. `edit property 1 r/Urgent to sell cc/96011846`
+**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g. `edit appointment 3 d/21-07-2021 t/1500`
+**Delete property** | `delete property INDEX`<br><br> e.g. `delete property 7`
+**Delete appointment** | `delete appointment INDEX`<br><br> e.g. `delete appointment 7`
 **List all properties and appointments** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
-**Sort property** | `sort property o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g., `sort property o/asc k/price`
-**Sort appointment** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g., `sort appointment o/asc k/datetime`
+**Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g. `update 1 u/new 600000`
+**Sort property** | `sort property o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g. `sort property o/asc k/price`
+**Sort appointment** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br><br> e.g. `sort appointment o/asc k/datetime`
 **Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] [ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
 **Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]` <br><br> e.g., `find appointment n/bob d/23-12-2021`
-**Find client** | `find client [KEYWORD]...` <br><br> e.g., `find client alice`
+**Find client** | `find client [KEYWORD]...` <br><br> e.g. `find client alice`
 **Clear all properties and appointments** | `clear all`
 **Clear property** | `clear property`
 **Clear appointment** | `clear appointment`
