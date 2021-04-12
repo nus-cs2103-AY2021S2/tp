@@ -29,6 +29,7 @@ Given below are my contributions to the project.
 
 
 
+
 * **New Feature**: Added ability to show specific content in the Dictionary.
   * What it does: display the contents/definitions at the specified index that is shown on the Dictionary Panel. The feature returns the corresponding content at the index and displays it onto the Dictionary content panel which enables the user to view the full content/definitions.
   * Justifications: This feature improves the product significantly because a user can view the content/definition that they want in detail and easily with a simple command, which satisfies their concern of wasting time digging for contents.
