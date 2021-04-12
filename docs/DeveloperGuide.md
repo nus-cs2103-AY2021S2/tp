@@ -175,7 +175,7 @@ The `Passengers` are duplicated between the `Passenger` list and each of the `Po
 * No more than one Pool can reference a single Passenger
 * There are no Pools that reference a Passenger that does not exist
 
-This is to ensure the santisation of data that is read from JSON, if the user decides to edit the JSON file directly.
+This is to ensure the sanitization of data that is read from JSON, if the user decides to edit the JSON file directly.
 
 ### Pool feature
 This feature allows users to create and add a pool to the list of pools, through the use of a `pool` command.
