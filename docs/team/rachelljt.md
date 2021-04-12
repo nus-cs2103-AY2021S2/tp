@@ -63,8 +63,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the commands `deleteTask`, `viewTasks`, `viewUncompletedTasks`, `viewUnassignedTasks` (Pull requests: [\#117](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/117), [\#160](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/160))
     * Embedded a link to download Java 11 at the Quick Start section (Pull Requests: [\#189](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/189))
-  
-
+    
   * Developer Guide:
     * Updated the user stories in the Developer Guide (Pull requests: [\#138](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/138), [\#169](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/169))
     * Updated the UI UML Diagram, Sequence Diagram in the Developer Guide (Pull requests: [\#185](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/185))
