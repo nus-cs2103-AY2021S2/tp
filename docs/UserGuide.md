@@ -742,23 +742,30 @@ Total Cost of Appointments: 100.
 ```
 
 ### Grade Book
-This feature allows tutees to track and manage their grades obtained in particular subjects.
+This feature allows tutees to track and manage their grades obtained of different tests and different subjects.
 
-![Gradebook Ui](images/ug-images/Grades.png)
+![Gradebook Ui](images/ug-images/Grades_updated.png)
 
 **Attributes / Parameters**:
 * Subject Name
 * Graded Item
-* Alphabet Grade
+* Grade Letter
+
+**:information_source: Note:**<br>
+* Valid `GRADE_LETTER` must follow the Singapore-GCE O'Level grading system:
+  ```  
+  A1, A2, B3, B4, C5, C6, D7, E8, F9
+  ```
+* `SUBJECT_NAME` and `GRADED_ITEM` are case-insensitive. (e.g "s/English" is considered the same as "s/english")
+* `GRADE_LETTER` must be in uppercase.
+* Maximum number of characters for `SUBJECT_NAME` is limited to 20.
+* Maximum number of characters for `GRADED_ITEM` is limited to 25.
 
 #### Add a grade: `add_grade`
 
 Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
 
 Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_LETTER`
-
-* Valid `GRADE_LETTER` must follow the Singapore-GCE O'Level grading system.
-* `SUBJECT_NAME` is case-insensitive and `GRADE_LETTER` must be uppercase.
 
 Example: `add_grade s/English gi/Final gr/A1`
 
@@ -806,15 +813,6 @@ Example: `list_grades`
 Result Display Example Output:
 ```
 Listed all grades
-  1. Science
-     Lab 1
-     A1
-  2. Mathematics
-     Final
-     B3
-  3. English
-     Midterm
-     C5
 ```
 
 ### Reminder Tracker
