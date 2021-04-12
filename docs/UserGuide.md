@@ -219,6 +219,8 @@ Format: `viewMembers `
 Examples: 
 * `viewMembers`
 
+<div style="page-break-after: always;"></div>
+
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
 Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of an 
@@ -239,8 +241,6 @@ Examples:
 * `editMember Alice n/Alice Tan`
 * `editMember Alice n/Alice Tan p/98154155 e/aliceTan@gmail.com`
 * `editMember Alice n/Alice Tan p/98154155 e/aliceTan@gmail.com r/Events head`
-
-<div style="page-break-after: always;"></div>
 
 <a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
@@ -322,6 +322,8 @@ Format: `viewTasks`
 
 Examples: 
 * `viewTasks`
+
+<div style="page-break-after: always;"></div>
 
 <a name="editTask"></a>
 ###     4. Edit Task: `editTask`
