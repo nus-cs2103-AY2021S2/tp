@@ -23,7 +23,7 @@
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                 </padding>
                 <children>
-                    <BarChart fx:id="statsBarChart" animated="false" legendVisible="false" title="Past Months (Max 6)">
+                    <BarChart fx:id="statsBarChart" animated="false" legendVisible="false" title="Past 6 Months">
                         <xAxis>
                             <CategoryAxis side="BOTTOM" />
                         </xAxis>
