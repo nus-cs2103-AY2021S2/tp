@@ -29,11 +29,15 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteTagCommand extends TagCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete tags of person(s) in the address book.\n"
-            + "Parameters: " + DELETE_SUB_COMMAND_WORD + " INDEX … -t TAG …\n"
-            + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 -t Python";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete tag(s) of person(s) in the address book.\n"
+            + "Parameters: " + DELETE_SUB_COMMAND_WORD + " { shown | selected | INDEX… } -t TAG…\n"
+            + "Examples:\n"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " shown -t Photoshop\n"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " selected -t Illustrator\n"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 3 -t Photoshop -t Illustrator";
 
-    public static final String MESSAGE_SUCCESS = "Tag%1$s deleted from %2$d person: %3$s";
+    public static final String MESSAGE_SUCCESS = "Tag command executed on %1$d person(s). Tag(s) deleted: %2$s\n"
+            + "Note: No tag(s) will be deleted from the person(s) without the tag(s).";
 
     private final Set<Tag> tags;
     private final List<Index> targetIndexes;
@@ -104,11 +108,9 @@ public class DeleteTagCommand extends TagCommand {
             model.setPerson(person, editedPerson);
         }
 
-        String singularOrPlural = personList.size() > 1 ? "s" : "";
         int updateCount = personList.size();
-
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, singularOrPlural, updateCount, tagsToString(tags)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updateCount, tagsToString(tags)));
     }
 
     /**
@@ -149,11 +151,9 @@ public class DeleteTagCommand extends TagCommand {
             model.setPerson(person, editedPerson);
         }
 
-        String singularOrPlural = targetIndexes.size() > 1 ? "s" : "";
         int updateCount = targetIndexes.size();
-
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, singularOrPlural, updateCount, tagsToString(tags)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updateCount, tagsToString(tags)));
     }
 
     /**
