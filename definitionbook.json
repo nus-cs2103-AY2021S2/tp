@@ -81,6 +81,9 @@
     "term": "Code review",
     "defs": "Code review is the systematic examination of code with the intention of finding where the code can be improved."
   },{
+    "term": "Cohesion",
+    "defs": "Cohesion is a measure of how strongly-related and focused the various responsibilities of a component are."
+  },{
     "term": "Commit",
     "defs": "Commit (noun): a change (aka a revision) saved in the Git revision history.\n\n(verb): the act of creating a commit i.e., saving a change in the working directory into the Git revision history."
   },{
@@ -219,6 +222,9 @@
     "term": "Milestone",
     "defs": "A milestone is the end of a stage which indicates significant progress."
   },{
+    "term": "Model",
+    "defs": "A model is a representation of something else."
+  },{
     "term": "Multiple Inheritance",
     "defs": "Multiple Inheritance is when a class inherits directly from multiple classes."
   },{
@@ -230,6 +236,9 @@
   },{
     "term": "Non-functional requirements",
     "defs": "Non-functional requirements specify the constraints under which the system is developed and operated."
+  },{
+    "term": "Object-Oriented Domain Models",
+    "defs": "Conceptual class diagrams—or OO domain models (OODMs)—are class diagrams that are used to model the problem domain."
   },{
     "term": "Object-Oriented Programming",
     "defs": "Object-Oriented Programming (OOP) is a programming paradigm. A programming paradigm guides programmers to analyze programming problems, and structure programming solutions, in a specific way."
