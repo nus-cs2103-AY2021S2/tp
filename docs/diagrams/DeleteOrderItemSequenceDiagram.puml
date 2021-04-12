@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":DeleteOrderItemCommandParser" as DeleteOrderItemCommandParser LOGIC_COLOR
+participant ":IndexList" as IndexList LOGIC_COLOR
+participant ":DeleteOrderItemCommand" as DeleteOrderItemCommand LOGIC_COLOR
+end box
+
+[-> DeleteOrderItemCommandParser : parse("1 2")
+activate DeleteOrderItemCommandParser
+
+create IndexList
+DeleteOrderItemCommandParser -> IndexList
+activate IndexList
+
+IndexList --> DeleteOrderItemCommandParser : indexList
+deactivate IndexList
+
+create DeleteOrderItemCommand
+DeleteOrderItemCommandParser -> DeleteOrderItemCommand : DeleteOrderItemCommand(indexList)
+activate DeleteOrderItemCommand
+
+DeleteOrderItemCommand --> DeleteOrderItemCommandParser : d
+deactivate DeleteOrderItemCommand
+
+[<-- DeleteOrderItemCommandParser : d
+deactivate DeleteOrderItemCommandParser
+[<-[hidden]- DeleteOrderItemCommandParser
+destroy DeleteOrderItemCommandParser
+
+@enduml

@@ -1,0 +1,55 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddOrderItemCommandParser" as AddOrderItemCommandParser LOGIC_COLOR
+participant ":OrderItem" as OrderItem LOGIC_COLOR
+participant ":AddOrderItemCommand" as AddOrderItemCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> AddOrderItemCommandParser : parse("Chocolate Cake")
+activate AddOrderItemCommandParser
+
+create OrderItem
+AddOrderItemCommandParser -> OrderItem
+activate OrderItem
+
+OrderItem --> AddOrderItemCommandParser : orderItem
+deactivate OrderItem
+
+create AddOrderItemCommand
+AddOrderItemCommandParser -> AddOrderItemCommand : AddOrderItemCommand(OrderItem)
+activate AddOrderItemCommand
+
+AddOrderItemCommand --> AddOrderItemCommandParser : a
+deactivate AddOrderItemCommand
+
+[<-- AddOrderItemCommandParser : a
+deactivate AddOrderItemCommandParser
+[<-[hidden]- AddOrderItemCommandParser
+destroy AddOrderItemCommandParser
+
+[-> AddOrderItemCommand : execute()
+activate AddOrderItemCommand
+
+AddOrderItemCommand -> Model : addOrderItem(orderItem)
+
+|||
+
+create CommandResult
+AddOrderItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddOrderItemCommand : cr
+deactivate CommandResult
+
+[<-- AddOrderItemCommand : cr
+deactivate AddOrderItemCommand
+
+@enduml
