@@ -29,12 +29,6 @@ public interface Model {
         patient -> patient.getAppointments().size() > 0;
 
     /**
-     * {@code Comparator} that only shows patients with appointments
-     */
-    Comparator<Patient> COMPARATOR_BY_FIRST_APPT_DATE =
-            Comparator.comparing(patient -> patient.getAppointments().get(0).getDate());
-
-    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);

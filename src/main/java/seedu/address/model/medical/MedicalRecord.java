@@ -1,5 +1,6 @@
 package seedu.address.model.medical;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_DISPLAY;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_NO_TIME;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
@@ -22,6 +23,7 @@ public class MedicalRecord {
      * Every field must be present and not null.
      */
     public MedicalRecord(LocalDateTime date, List<Section> sections) {
+        requireAllNonNull(date, sections);
         this.date = date;
         this.sections = sections;
     }
@@ -30,6 +32,7 @@ public class MedicalRecord {
      * Every field must be present and not null.
      */
     public MedicalRecord(Appointment appointment, List<String> sections) {
+        requireAllNonNull(appointment, sections);
         this.date = appointment.getDate();
         this.sections = new ArrayList<>();
         for (String section : sections) {
