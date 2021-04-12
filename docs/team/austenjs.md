@@ -1,9 +1,7 @@
-**semester.config is a desktop application for managing your tasks.**
-While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
-## Summary Of Contributions
-### Code Contributed
-You can see my contribution [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=austenjs&tabRepo=AY2021S2-CS2103-T14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false).
-### Enhancements implemented
+**semester.config is a desktop application for managing your tasks.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+### Summary Of Contributions
+Code Contributed: You can see my contribution [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=austenjs&tabRepo=AY2021S2-CS2103-T14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false).
+#### Enhancements implemented
 I implemented 3 main features:
 1. `DeadlineDate`,`DeadlineTime`, and `Status` attributes for Task which will be useful for users;
 2. `done` command to indicate a task in all tasks list to be done; and,
@@ -30,18 +28,18 @@ prevent side effects.
 * Justification: Some users might want to check assignments within a certain day/week.
 * Highlights: Using the command without specifying params will automatically list tasks within
 the next 7 days.
-### Contributions to the UG
+#### Contributions to the UG
 * I am the one who initially refactored the UG (removing the 'AddressBook' and change with 'TaskList',
 change the name of attributes used, etc).
 * Added `dueIn` and `done` command to list of features.
-### Contributions to the DG
+#### Contributions to the DG
 * I am the one who initially refactored the DG (removing the 'AddressBook' and change with 'TaskList',
 modify the existing UML diagrams, updating PUMLs)
 * Adding `dueIn` section of the DG.
 * In charge of NFRs.
 * In charge of UI component.
 * In charge of creating and verifying all UML diagrams.
-### Contributions to team-based tasks
+#### Contributions to team-based tasks
 * I usually created a new Google docs for every team meeting.
 * I am the one who mostly merged pull requests, and I'll inform my teammates if their PRs failed the CI or testing.
 * I tried to fulfill the tP progress dashboard before the tutorial's deadline (closing issues
@@ -52,10 +50,10 @@ that haven't been done and creating new milestones).
     * `DeadlineDate`,`DeadlineTime`, and `Status` attributes
 * Released JAR file for V1.3.
 * During PE-D, reported 22 bugs. 6 are considered `Medium` or `High` as they are unhandled exceptions.
-### Contributions beyond the project team
+#### Contributions beyond the project team
 I asked several questions on the forum which might helped other who have similar questions.
 
-## Contributions to the Developer Guide (Extracts)
+### Contributions to the Developer Guide (Extracts)
 I drew 2 UML diagrams from scratch. These are:
 
 **`dueIn` sequence diagram**
