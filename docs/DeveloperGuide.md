@@ -344,7 +344,7 @@ At its core, the `edit` feature allows a user to edit multiple fields pertaining
  As such, the edit feature runs solely via the command typed in the command box. The above feature,
  the `revise` feature, builds upon the implementation of the `edit` feature. See more above.
  
-When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute`
+When the edit command is called the command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute()`
  calls `LogicManager#execute()` to parse the user input via `FoodDiaryParser#parseCommand()`.
  The user input will be parsed as an `edit` command and executed to edit the entry specified by
  the index of the command.
@@ -398,7 +398,7 @@ Step 2. The user executes `help`, which opens up a help guide in a separate wind
 Step 3. If the user input is invalid, an error message will be displayed in the command box. 
 
 An additional `HelpWindow` is opened when a user enters the `help` command in the Ui. 
-The command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute` calls `LogicManager#execute()` to parse the
+The command will be passed into `MainWindow#executeCommand()`, to which `Logic#execute()` calls `LogicManager#execute()` to parse the
 user input via `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'Help' command.
 At the end, a `HelpWindow` is returned.
 
@@ -596,6 +596,7 @@ Preconditions: There are less than 1,000,000 entries in the Food Diary applicati
 
 1.  User enters details to add an entry to the Food Diary.
 2.  Food Diary adds a new entry to the app.
+    
     Use case ends.
 
 **Extensions**
@@ -617,6 +618,8 @@ Preconditions: There are less than 1,000,000 entries in the Food Diary applicati
 
 1.  User requests to list all entries.
 2.  Food Diary displays all the entries.
+
+    Use case ends.
 
 **Extensions**
 
@@ -872,7 +875,7 @@ and the back-end, which handles data management and operations. The app is inter
   to accomplish most of the usages of The Food Diary.
 
 ### Project scope
-* The system should mainly comprise the handling of Food Diary-entry addition, deletion, and listing.
+* The system should mainly comprise the handling of entry-addition, deletion, and listing for The Food Diary.
 * The system would not be responsible for features involving multiple users.
 
 ### Scalability requirements
