@@ -90,7 +90,7 @@ public class ModelManager implements Model {
     @Override
     public void setTheme(String theme) {
         requireNonNull(theme);
-        assert(theme != "");
+        assert(!theme.equals(""));
         userPrefs.setTheme(theme);
     }
 
