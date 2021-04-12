@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Statistics (Month)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Statistics (Month)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/help_icon.png" />
     </icons>
@@ -23,7 +23,7 @@
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                 </padding>
                 <children>
-                    <BarChart fx:id="statsBarChart" animated="false" legendVisible="false" title="Past Months (Max 6)">
+                    <BarChart fx:id="statsBarChart" animated="false" legendVisible="false" title="Past 6 Months">
                         <xAxis>
                             <CategoryAxis side="BOTTOM" />
                         </xAxis>
