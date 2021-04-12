@@ -20,7 +20,7 @@ title: User Guide
   - [4.4 Command Box](#44-command-box)
   - [4.5 Result Display](#45-result-display)
   - [4.6 Status Bar](#46-status-bar)
-- [5 Features](#5-features) TODO
+- [5 Features](#5-features)
   - [5.1 Viewing help : `help`](#51-viewing-help--help)
   - [5.2 Adding a financial record : `add-fr`](#52-adding-a-financial-record--add-fr)
   - [5.3 Deleting a financial record : `delete-fr`](#53-deleting-a-financial-record--delete-fr)
@@ -390,7 +390,7 @@ Format: `exit`
 
 ### 5.12 Viewing all categories spent for the current month
 
-The UI displays all the categories spent for the current month at the side panel of the application. The categories are 
+The UI displays all the categories spent for the current month at the side panel of the application. The categories are
 sorted in lexicographical order, so that users are able to find the amounts spent on any particular category easily.
 
 ### 5.13 Viewing top 5 categories spent for the current month
@@ -411,7 +411,7 @@ You may use the `F6` hotkey to open up the Category statistics window.
 
 <img src="images/features/monthly-stats.png" width="1200px">
 
-The UI displays the user's expenditure over the past 6 months with respect to the currently viewed month (inclusive). 
+The UI displays the user's expenditure over the past 6 months with respect to the currently viewed month (inclusive).
 
 <div markdown="block" class="alert alert-primary">
 
