@@ -507,7 +507,7 @@ otherwise)
 * **Note** : Longer and complex remarks that gives details about the client
 * **JAR** : Java Archive File, the deployment format of the Link.me application
 
-<!--
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
@@ -550,6 +550,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+
 
 1. _{ more test cases …​ }_
 
@@ -560,4 +562,48 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
--->
+
+### Recording a note for a client
+
+1. Recording a note for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+    
+    1. Test case: `note 1 r/TEST DATA`<br>
+     Expected: New note is added to the first client. Updated number of notes is shown in the client information. Message of the note and client name shown in the status message. 
+    
+    1. Test case: `note 0 r/TEST DATA`<br>
+     Expected: No note is added. Error details shown in the status message.
+    
+    1. Other incorrect recording note commands to try: `note r/`, `note n r/` (where n is larger than the list size)<br>
+     Expected: Similar to previous.
+
+### Viewing notes for a client
+
+1. Viewing notes for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+
+    1. Test case: `note 1 v/`<br>
+       Expected: Popup window appears, displaying all notes recorded for that client. Client name shown in the status message.
+
+    1. Test case: `note 0 v/`<br>
+       Expected: No popup window appears. Error details shown in the status message.
+
+    1. Other incorrect viewing note commands to try: `note v/`, `note n v/` (where n is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Clearing notes for a client
+
+1. Clearing notes for a client when all clients are shown.
+
+    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
+
+    1. Test case: `note 1 c/`<br>
+       Expected: Notes are cleared for the first client. Client information shows `You have no notes`. Client name shown in the status message.
+
+    1. Test case: `note 0 c/`<br>
+       Expected: Notes are not cleared. Error details shown in the status message.
+
+    1. Other incorrect clearing note commands to try: `note c/`, `note n c/` (where n is larger than the list size)<br>
+       Expected: Similar to previous.
