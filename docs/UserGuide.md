@@ -76,12 +76,12 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 * Words in `UPPER_CASE` are the inputs to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can 
   be used as `add n/striped shirt`.
 * The different inputs that the user can input are the following:
-  * `n/NAME`, the name of the garment
-  * `s/SIZE`, the size of the garment
+  * `n/NAME`, the name of the garment, limited to 40 characters
+  * `s/SIZE`, the size of the garment, which is a positive integer
   * `c/COLOUR`, the colour of the garment
   * `r/DRESSCODE`, the dresscode of the garment
   * `t/TYPE`, the type of the garment
-  * `d/DESCRIPTION`, the description of the garment
+  * `d/DESCRIPTION`, the description of the garment, with each description being limited to 15 characters
 * Items in square brackets are optional e.g. `n/NAME [c/COLOUR]` can be used as `n/striped shirt c/blue` or as `n/striped shirt`.
 * Inputs can be in any order e.g. if the command specifies `n/NAME c/COLOUR`, `c/COLOUR n/NAME` is also acceptable.
 * Items with `…` after them can be used multiple times including zero times.<br>e.g. `[d/DESCRIPTION]...` can be 

@@ -33,13 +33,13 @@
     </VBox>
     <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="35" right="50" bottom="0" left="0"/>
+        <Insets top="70" right="50" bottom="0" left="0"/>
       </padding>
       <Label fx:id="sampleImage" styleClass="cell_small_label" />
     </VBox>
     <VBox alignment="CENTER_RIGHT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="35" right="140" bottom="0" left="0"/>
+        <Insets top="70" right="140" bottom="0" left="0"/>
       </padding>
       <Label fx:id="dressCodeImage" styleClass="cell_small_label" />
     </VBox>
