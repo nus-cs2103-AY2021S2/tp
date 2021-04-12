@@ -3,6 +3,12 @@ layout: page
 title: User Guide
 ---
 
+<style>
+code {
+    padding: 1px 1px;
+}
+</style>
+
 <!-- TOC adapted from
 https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
 -->
@@ -11,18 +17,20 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   {:toc}
 </div>
 
+<div style="page-break-after: always"></div>
+
 ## **1. Introduction**
 
 <div align="center">
   <img alt="logo" src="images/logo.png">
 </div>
 
-Welcome and thank you for downloading **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
+Welcome and thank you for downloading **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many tasks and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
 
 CoLAB (Collaboration Lab) is a **desktop app for university students to manage their school projects.**  CoLAB's main features include:
 
 * Project management
-* Contacts management
+* Contact management
 * Today View that surfaces an overview of upcoming events and deadlines
 
 With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools.
@@ -32,6 +40,8 @@ We have designed a user-friendly User Interface (UI) that is intuitive to both f
 We look forward to seeing what you accomplish with CoLAB. Get your journey started with the [Quick Start section](#3-quick-start)!
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **2. About**
 
@@ -104,7 +114,7 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app.
+Most commands require all the fields (e.g. project index and deadline index when updating a deadline) so that you can run the command from anywhere within the app.
 </div>
 
 When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
@@ -165,7 +175,10 @@ To achieve the best possible experience, avoid adding excessively long text to C
     * 23/11/2021
     * 23.11.2021
     * 23112021
-* The year should be a non-negative number between 0000 and 9999.
+* Date should be a valid date (dd/MM/yyyy) where:
+    * The Year Field (yyyy) should be a non-negative number between 0000 and 9999.
+    * The Month Field (MM) should be a non-negative number between 01 and 12.
+    * The Day Field (dd) should be a non-negative number between 00 and 31 (may be less than 31 depending on the number of days in the month).
 
 ##### `DESCRIPTION`
 
@@ -250,6 +263,8 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## **3. Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -285,6 +300,8 @@ When the sample data is no longer required, you may use the `clear` command to c
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## **4. Features**
 
 This section contains documentation on CoLAB's features and commands.
@@ -315,7 +332,7 @@ Project names that are too long may be truncated in the side panel. Simply view 
 Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-To switch between the overview and todo pages, you can use the `overview` and `todo` commands respectively.
+To switch between the overview and todo pages, you can use the `overview` and `todos` commands respectively.
 </div>
 
 Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
@@ -384,7 +401,7 @@ Format `updateP PROJECT_INDEX n/NAME`
 Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
-* [`NAME`](#name) The name of the project.
+* [`NAME`](#name) The updated name of the project.
 
 Example:
 
@@ -454,7 +471,7 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`TODO_INDEX`](#index) The index of the todo.
-* [`DESCRIPTION`](#description) The description of the todo.
+* [`DESCRIPTION`](#description) The updated description of the todo.
 
 Example:
 
@@ -543,8 +560,8 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`DEADLINE_INDEX`](#index) The index of the deadline.
-* [`DESCRIPTION`](#description) The description of the deadline.
-* [`DATE`](#date) The due date of the deadline.
+* [`DESCRIPTION`](#description) The updated description of the deadline.
+* [`DATE`](#date) The updated due date of the deadline.
 
 Examples:
 
@@ -638,10 +655,10 @@ At least one of the optional fields must be provided.
 Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
-* [`EVENT_INDEX`](#index) The index of an event.
-* [`DESCRIPTION`](#description) The description of an event.
-* [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
-* [`TIME`](#time) The time of the event.
+* [`EVENT_INDEX`](#index) The index of the event.
+* [`DESCRIPTION`](#description) The updated description of the event.
+* [`DATE`](#date) The updated date of the event, or the updated starting date of the event if the event repeats every week.
+* [`TIME`](#time) The updated time of the event.
 * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
@@ -692,7 +709,7 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`NAME`](#name) The name of the groupmate.
-* [`ROLE`](#role) The role of the groupmate.
+* [`ROLE`](#role) The roles of the groupmate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 A groupmate can have any number of roles (including 0).
@@ -724,8 +741,8 @@ Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
 * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
-* [`NAME`](#name) The name of the groupmate.
-* [`ROLE`](#role) The role of the groupmate.
+* [`NAME`](#name) The updated name of the groupmate.
+* [`ROLE`](#role) The updated roles of the groupmate.
 
 Examples:
 
@@ -809,11 +826,11 @@ Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 
 Parameters:
 
-* [`NAME`](#name) The name of a contact.
-* [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
-* [`EMAIL`](#email) The email of a contact.
-* [`ADDRESS`](#address) The address of a contact.
-* [`TAG`](#tag) The tag associated with a contact.
+* [`NAME`](#name) The updated name of the contact.
+* [`PHONE_NUMBER`](#phone_number) The updated phone number of the contact.
+* [`EMAIL`](#email) The updated email of the contact.
+* [`ADDRESS`](#address) The updated address of the contact.
+* [`TAG`](#tag) The updated tag of the contact.
 
 Examples:
 
@@ -930,6 +947,8 @@ Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always"></div>
+
 ## **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -949,6 +968,8 @@ If your changes to the data file makes its format invalid, CoLAB will discard al
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **6. Command summary**
 
@@ -1019,6 +1040,8 @@ Action | Format, Examples
 **Clear All Entries** | `clear`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always"></div>
 
 ## **7. Acknowledgements**
 

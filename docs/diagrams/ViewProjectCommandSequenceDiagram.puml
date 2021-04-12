@@ -5,11 +5,11 @@ skinparam defaultFontSize 24
 Participant ":MainWindow" as mainWindow UI_COLOR
 Participant ":LogicManager" as logic LOGIC_COLOR_T4
 Participant ":ViewProjectCommand" as command LOGIC_COLOR_T3
-Participant ":ViewProjectUiCommand" as uiCommand LOGIC_COLOR_T2
-Participant ":CommandResult" as commandResult LOGIC_COLOR_T2
+Participant "uiCommand:ViewProjectUiCommand" as uiCommand LOGIC_COLOR_T2
+Participant "result:CommandResult" as commandResult LOGIC_COLOR_T2
 
 
---> mainWindow
+-> mainWindow
 activate mainWindow UI_COLOR
 
 mainWindow -[UI_COLOR]> logic : execute("viewP 1")
@@ -26,19 +26,22 @@ uiCommand --[LOGIC_COLOR_T2]> command
 deactivate uiCommand
 
 create commandResult
-command -[LOGIC_COLOR_T3]> commandResult
+command -[LOGIC_COLOR_T3]> commandResult : new CommandResult(..., uiCommand)
 activate commandResult LOGIC_COLOR_T2
 
 commandResult --[LOGIC_COLOR_T2]> command
 deactivate commandResult
 
-command -[LOGIC_COLOR_T3]-> logic
+command -[LOGIC_COLOR_T3]-> logic : result
 deactivate command
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+command -[hidden]-> logic
+destroy command
 
 logic --[LOGIC_COLOR_T4]> mainWindow
 deactivate logic
 
-mainWindow -[UI_COLOR]> commandResult : commandResult.getUiCommand()
+mainWindow -[UI_COLOR]> commandResult : result.getUiCommand()
 activate commandResult LOGIC_COLOR_T2
 
 commandResult --[LOGIC_COLOR_T2]> mainWindow
@@ -55,4 +58,7 @@ deactivate mainWindow
 
 uiCommand --[LOGIC_COLOR_T2]> mainWindow
 deactivate uiCommand
+
+[<--mainWindow
+deactivate mainWindow
 @enduml
