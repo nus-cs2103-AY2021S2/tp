@@ -440,7 +440,7 @@ otherwise)
     * tag: t/TAG
     * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
     * insurance plan name: i/PLAN_NAME
-2.  Link.me shows the list of clients which has at least one attribute matching the user's search keywords
+2.  Link.me shows the list of clients with matching attributes that match the user's search keywords
 3.  Use case ends
 
 **Extensions**
@@ -578,10 +578,10 @@ command
 age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND], i/INSURANCE_PLAN_NAME
 
   1. Test case: `filter a/Clementi g/M t/medical i/Protecc age/23-30` <br>
-    Expected: Returns a list of clients who have "Clementi" in their address, or <br>
-      clients who are Male, or <br>
-      clients with the "medical" tag, or <br>
-      clients with the insurance plan "Protecc", or <br>
+    Expected: Returns a list of clients who have "Clementi" in their address, and <br>
+      clients who are Male, and <br>
+      clients with the "medical" tag, and <br>
+      clients with the insurance plan "Protecc", and <br>
       clients aged between 23 and 30 years old, inclusive
 
   1. Test case: `filter`, `filter 20`, `filter Clementi` <br>
