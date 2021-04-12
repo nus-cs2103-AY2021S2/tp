@@ -1086,3 +1086,18 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Finding a delivery task
+
+1. Finding a delivery task in the delivery list
+
+    1. Prerequisites: TimeforWheels sample data is loaded in the app. List all delivery task using the `list` command.
+
+    2. Test case: `find `<br>
+       Expected: Invalid command format
+
+    3. Test case: `find Alex`<br>
+       Expected: Delivery Tasks with attributes matching the keyword Alex.
+       
+    4. Test case: `find Alex 2021-10-10`<br>
+       Expected: Delivery Tasks with attributes matching the keyword Alex and the date 10th October 2021.
+       
