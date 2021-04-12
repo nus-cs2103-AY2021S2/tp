@@ -102,6 +102,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
+        showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
         expectedModel.setTags(model.getFilteredTaskList().get(0).getTags(), editedTask.getTags());
 
