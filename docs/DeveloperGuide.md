@@ -766,7 +766,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: HEY MATEz contains 2 members with the following details: <br>
         * 1. Name: Alice, Phone Number: 98887777, Email: alice@gmail.com, Role: Secretary
-        * 2. Name: Bryan, Phone Number: 89996666, Email: bryan@gmail.com, Role: Secretar <br>
+        * 2. Name: Bryan, Phone Number: 89996666, Email: bryan@gmail.com, Role: Secretary <br>
 
     2. Test case: `findMembers Alice`<br>
        Expected: Alice is listed in the members list.
