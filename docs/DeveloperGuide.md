@@ -807,8 +807,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
-*{More to be added}*
-
 ### References
 
 Frankenfield, D., Roth-Yousey L. & Compher C. (2005). Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review. *Journal of the American Dietetic Association*, 105(5), 775-89. doi: 10.1016/j.jada.2005.02.005.
@@ -957,6 +955,8 @@ Included in this section are some basic instructions developers may make use of 
 ## **Appendix: Effort**
 
 If AB3 required an implementation effort of 10, DietLAH!'s implementation effort is 18.
+
+According to a [line count app](http://line-count.herokuapp.com/), AB3 had about [7.2k lines of code](http://line-count.herokuapp.com/se-edu/addressbook-level3) (LOC), whereas with DietLAH!, there is around [9.6k LOC](http://line-count.herokuapp.com/AY2021S2-CS2103T-T12-2/tp).
 
 This is primarily due to the fact that AB3 primarily simply took information in and showcased it back to the user (input-output).
 
