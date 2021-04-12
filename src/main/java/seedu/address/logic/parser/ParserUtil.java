@@ -45,6 +45,10 @@ public class ParserUtil {
         String[] splitBySpace = trimmedIndex.split(" ");
 
         for (int i = 0; i < splitBySpace.length; i++) {
+            if (splitBySpace[i].equals("")) {
+                continue;
+            }
+
             if (!StringUtil.isNumbersOnly(splitBySpace[i])) {
                 throw new ParseException(MESSAGE_INDEX_IS_WORD);
             }
@@ -81,15 +85,16 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if input indices from user contains words. Splits by possible delimiters (space, comma).
+     * Checks if input indices from user contains words. Splits by delimiters used by ClientBook (space, comma).
      *
-     * @param splitBySpace array of user input.
+     * @param userInputIndices user input indices.
      * @return boolean indicating if input contains words.
      */
-    public static boolean checkIndicesInputContainsWords(String[] splitBySpace) {
+    public static boolean checkIndicesInputContainsWords(String userInputIndices) {
+        String[] indicesSplitBySpace = userInputIndices.split(" ");
         List<String> input = new ArrayList<>();
-        for (int i = 0; i < splitBySpace.length; i++) {
-            String[] splitByComma = splitBySpace[i].split(",");
+        for (int i = 0; i < indicesSplitBySpace.length; i++) {
+            String[] splitByComma = indicesSplitBySpace[i].split(",");
             input.addAll(Arrays.asList(splitByComma));
         }
 

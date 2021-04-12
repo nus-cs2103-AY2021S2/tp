@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.checkIndicesInputContainsWords;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,8 +48,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING);
 
-        String[] indicesSplitBySpace = argMultimap.getPreamble().split(" ");
-        boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(indicesSplitBySpace);
+        boolean doIndicesContainWords = checkIndicesInputContainsWords(argMultimap.getPreamble());
 
         if (doIndicesContainWords) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

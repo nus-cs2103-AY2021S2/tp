@@ -70,8 +70,7 @@ public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOp
                             PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING,
                             PREFIX_SHORTCUT_COMMAND, PREFIX_SHORTCUT_NAME);
 
-            String[] indicesSplitBySpace = argMultimap.getPreamble().split(" ");
-            boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(indicesSplitBySpace);
+            boolean doIndicesContainWords = ParserUtil.checkIndicesInputContainsWords(argMultimap.getPreamble());
 
             if (doIndicesContainWords && inputCommand.equals(EditCommand.COMMAND_WORD)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

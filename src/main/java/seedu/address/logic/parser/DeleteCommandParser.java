@@ -22,8 +22,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        String[] splitBySpace = args.split(" ");
-        boolean doIndicesContainWords = checkIndicesInputContainsWords(splitBySpace);
+        boolean doIndicesContainWords = checkIndicesInputContainsWords(args);
 
         if (doIndicesContainWords) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
