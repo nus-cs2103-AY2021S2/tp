@@ -156,6 +156,7 @@ The following sequence diagram shows the interactions when user executes the `li
 </div>
 
 The following activity diagram summarizes what happens when a user executes the `list` command.
+
 ![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
 
 ### Students
@@ -563,8 +564,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
 | `* *`    | user                                       | exit the application                              |                                                              |
-
-*{More to be added}*
 
 ### Use cases
 
