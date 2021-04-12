@@ -94,8 +94,6 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 
 ![BetterModelClassDiagram](../images/BetterModelClassDiagram.png)
 
-![Interactions Inside the Logic Component for the `delete 1 2` Command](../images/DeleteSequenceDiagram.png)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ### Model
