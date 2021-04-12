@@ -11,8 +11,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FilterEntryCommand;
 import seedu.address.model.entry.EntryTagsContainKeywordsPredicate;
 
+/**
+ * Contains tests to make sure the parser instantiates the correct {@code FilterEntryCommand}.
+ */
 public class FilterEntryCommandParserTest {
-    private FilterEntryCommandParser parser = new FilterEntryCommandParser();
+
+    private final FilterEntryCommandParser parser = new FilterEntryCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

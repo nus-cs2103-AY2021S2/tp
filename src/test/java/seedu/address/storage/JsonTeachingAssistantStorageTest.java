@@ -22,6 +22,7 @@ import seedu.address.model.ReadOnlyTeachingAssistant;
 import seedu.address.model.TeachingAssistant;
 
 public class JsonTeachingAssistantStorageTest {
+
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTeachingAssistantStorageTest");
 
     @TempDir

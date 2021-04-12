@@ -4,6 +4,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for {@code Tag}.
+ */
 public class TagTest {
 
     @Test
@@ -22,5 +25,4 @@ public class TagTest {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
-
 }

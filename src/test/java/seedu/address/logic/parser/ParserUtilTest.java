@@ -22,6 +22,7 @@ import seedu.address.model.entry.EntryName;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+
     private static final String INVALID_NAME_SYMBOLS = "R@chel";
     private static final String INVALID_NAME_LESS_THAN_2_CHARACTERS = "R";
     private static final String INVALID_NAME_START_WITH_NUMBER = "1Rachel";

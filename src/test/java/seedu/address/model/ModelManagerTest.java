@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.ALICE;
-import static seedu.address.testutil.TypicalContacts.BENSON;
+import static seedu.address.testutil.TypicalTeachingAssistant.AMY;
+import static seedu.address.testutil.TypicalTeachingAssistant.BEN;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +18,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.testutil.TeachingAssistantBuilder;
 
+/**
+ * Contains unit tests for {@code ModelManager}.
+ */
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
@@ -79,13 +82,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasContact_contactNotInTeachingAssistant_returnsFalse() {
-        assertFalse(modelManager.hasContact(ALICE));
+        assertFalse(modelManager.hasContact(AMY));
     }
 
     @Test
     public void hasContact_contactInTeachingAssistant_returnsTrue() {
-        modelManager.addContact(ALICE);
-        assertTrue(modelManager.hasContact(ALICE));
+        modelManager.addContact(AMY);
+        assertTrue(modelManager.hasContact(AMY));
     }
 
     @Test
@@ -95,7 +98,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TeachingAssistant teachingAssistant = new TeachingAssistantBuilder().withContact(ALICE).withContact(BENSON)
+        TeachingAssistant teachingAssistant = new TeachingAssistantBuilder().withContact(AMY).withContact(BEN)
                 .build();
         TeachingAssistant differentTeachingAssistant = new TeachingAssistant();
         UserPrefs userPrefs = new UserPrefs();
@@ -118,7 +121,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTeachingAssistant, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = AMY.getName().fullName.split("\\s+");
         modelManager.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(teachingAssistant, userPrefs)));
 

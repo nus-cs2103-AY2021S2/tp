@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains tests to make sure the arguments are tokenized correctly.
+ */
 public class ArgumentTokenizerTest {
 
     private final Prefix unknownPrefix = new Prefix("--u");
@@ -146,5 +149,4 @@ public class ArgumentTokenizerTest {
         assertNotEquals(aaa, "aaa");
         assertNotEquals(aaa, new Prefix("aab"));
     }
-
 }

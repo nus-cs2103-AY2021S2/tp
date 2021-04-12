@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.EntryBuilder;
 
+/**
+ * Contains unit tests for {@code EntryNameContainsKeywordsPredicate}.
+ */
 public class EntryNameContainsKeywordsPredicateTest {
 
     @Test

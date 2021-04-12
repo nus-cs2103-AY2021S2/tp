@@ -12,7 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code ListEntryCommand}.
+ */
 public class ListEntryCommandTest {
 
     private Model model;
@@ -31,5 +33,4 @@ public class ListEntryCommandTest {
                 String.format(Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW,
                         model.getFilteredEntryList().size()), expectedModel);
     }
-
 }

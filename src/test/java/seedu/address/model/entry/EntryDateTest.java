@@ -9,7 +9,11 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for {@code EntryDate}.
+ */
 public class EntryDateTest {
+
     private String validDateString = "2021-01-01 12:12";
     private LocalDateTime validLocalDateTime = LocalDateTime.parse(validDateString, DEFAULT_FORMATTER);
     private EntryDate validEntryDate = new EntryDate(validDateString);
