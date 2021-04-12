@@ -176,23 +176,6 @@ It implements the following operations:
 * `View schedules` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
-Diagram below shows the activity diagram of the `add_appointment` command.
-
-![Activity Diagram of Add Appointment](images/appointment/appointmentActivity.png)
-
-Steps for the execution of the `AddAppointmentCommand` (assuming that no errors are 
-encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `AddAppointmentCommandParser`.
-3. The `AddApppointmentCommandParser` will then parse the inputs, and then validate
-   the parameters and create an `Appointment` object.
-4. The `AddAppointmentCommandParser` will then create and `AddAppointmentCommand` 
-   with the created `Appointment` object.
-5. Assuming that the above steps are all successful, the `LogicManager` will call 
-   the `ModelManager`'s `addAppointment()`, then create a `CommandResult` object and 
-   return the result.
-
-![Sequence Diagram of Add Appointment](images/appointment/appointmentSequence.png)
 
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
@@ -424,9 +407,6 @@ Option 1 was chosen as it does not require retyping a long command in the event 
 ### Appointment Book
 Tutor Tracker's Appointment Book allows users to manage and keep track his/her tuition appointments.
 
-#### Rationale
-As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, allowing user to store a list of his/her tuition appointment is core of Tutor Tracker.
-
 The proposed appointment feature is to facilitate the user to keep track of his/her tuition appointments.
 It implements the following operations:
 * `Add appointment` - Adds an appointment to the list of appointments.
@@ -436,8 +416,36 @@ It implements the following operations:
 * `View appointments` - View the list of appointments that is happening on the queried date.
 * `List all appointments` - Show an unfiltered list of the appointments.
 
+
+Diagram below shows the activity diagram of the `add_appointment` command.
+
+![Activity Diagram of Add Appointment](images/appointment/appointmentActivity.png)
+
+Steps for the execution of the `AddAppointmentCommand` (assuming that no errors are
+encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddAppointmentCommandParser`.
+3. The `AddApppointmentCommandParser` will then parse the inputs, and then validate
+   the parameters and create an `Appointment` object.
+4. The `AddAppointmentCommandParser` will then create and `AddAppointmentCommand`
+   with the created `Appointment` object.
+5. Assuming that the above steps are all successful, the `LogicManager` will call
+   the `ModelManager`'s `addAppointment()`, then create a `CommandResult` object and
+   return the result.
+
+![Sequence Diagram of Add Appointment](images/appointment/appointmentSequence.png)
+
+
 These operations are exposed in the `Logic` interface by parsing respective `AddAppointmentCommand` `EditAppointmentCommand`, `DeleteAppointmentCommand`, `FindAppointmentCommand`,
 `ViewAppointmentCommand` and `ListAppointmentCommand`.
+
+### Event Class
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition 
+appointments, schedules are naturally created, and the event class helps determine
+the hierarchy of schedule.
+
 
 #### Implementation
 The class and commands are re-used from the `AddressBook Level-3`'s `Person` class.
@@ -707,10 +715,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | Careless user   | Edit grade record details               | Correct typos or update the details of my academic records            |
 | `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
 | `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook      
-| `* *`   | User  | add_budget                                        | Add a personal budget to keep track of
-| `*`     | User  | delete_budget                                     | Delete an existing budget that I have and no longer need
-| `* *`   | User  | edit_budget                                       | Change an existing budget that I have   
-| `* *`   | User  | view_budget                                       | View an existing budget and cost of total appointments of user
+| `* *`   | User  | Add a budget                                      | Add a personal budget to keep track of
+| `*`     | User  | Delete a budget                                   | Delete an existing budget that I have and no longer need
+| `* *`   | User  | Edit a budget                                     | Change an existing budget that I have   
+| `* *`   | User  | View a budget                                     | View an existing budget and cost of total appointments of user
 | `* *`   | User | Add a schedule                                         | Keep track of tuition-related schedules                          |
 | `* *`   | User | View my schedules on a particular date               | Know what schedules do I have on a particular day                                      |
 | `* *`   | User | Delete a schedule                                    | Remove canceled schedules                                    |
