@@ -18,7 +18,8 @@ public class DeleteMemberCommand extends Command {
     public static final String COMMAND_WORD = "deleteMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the member identified by the exact name (case-sensitive) used in the displayed members list.\n"
+            + ": Deletes the member identified by the exact name (case-sensitive and format-sensitive) used in the "
+            + "displayed members list.\n"
             + "Parameters: NAME (must be a valid name)\n"
             + "Example: " + COMMAND_WORD + " John";
 
