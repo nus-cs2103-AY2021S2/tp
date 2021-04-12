@@ -38,6 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_AMY_LOWER_CASE = VALID_NAME_AMY.toLowerCase();
     public static final String VALID_NAME_AMY_FIRST_NAME_MIXED_CASE = "aMy";
     public static final String VALID_NAME_AMY_LAST_NAME_MIXED_CASE = "BeE";
+    public static final String VALID_NAME_AMY_MIXED_CASE = VALID_NAME_AMY_FIRST_NAME_MIXED_CASE + " "
+            + VALID_NAME_AMY_LAST_NAME_MIXED_CASE;
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_CASSANDRA = "Cassandra Monday";
     public static final String VALID_NAME_CASSANDRA_LOWER_CASE = VALID_NAME_CASSANDRA.toLowerCase();
@@ -89,6 +91,7 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_AMY_FIRST_NAME = " " + PREFIX_NAME + VALID_FIRST_NAME_AMY;
+    public static final String NAME_DESC_AMY_MIXED_CASE = " " + PREFIX_NAME + VALID_NAME_AMY_MIXED_CASE;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
