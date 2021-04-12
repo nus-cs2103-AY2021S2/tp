@@ -21,9 +21,8 @@ Given below are my contributions to the project.
     * Managed milestones `v1.1` - `v1.4b` (8 milestones) on GitHub.
     * Managed releases `v1.3.trail - v1.4b` (3 releases) on GitHub.
     * Standardised Intellij setting with the team. (Pull
-      requests [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4))
-    *
-  Managed [Weekly Meeting](https://docs.google.com/document/d/1EHptH8x1ck_H--OhpuIljThwmmqW2otqQ-lm8X460ok/edit?usp=sharing)
+      request [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4))
+    * Managed [Weekly Meeting](https://docs.google.com/document/d/1EHptH8x1ck_H--OhpuIljThwmmqW2otqQ-lm8X460ok/edit?usp=sharing)
 
 * **Features**:
     * Modified `Find` v1. (Pull request [\#74](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/74))
@@ -98,7 +97,7 @@ Given below are my contributions to the project.
     * Refactored Address to Location. (Pull request [\#52](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/52))
     * Handled Pre-1.2 base refactoring. (Pull request [\#69](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/69))
     * Refactored AB3 to StoreMando. (Pull request [\#70](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/70))
-    * Finalised refactoring stage. (Pull request [\#72](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/72)
+    * Finalised refactoring stage. (Pull requests [\#72](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/72)
       , [\#79](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/79))
     * Removed tutorial folder. (Pull request [\#94](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/94))
     * Repackaged expiry date classes. (Pull request [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
