@@ -194,9 +194,9 @@ Below is the activity diagram derived from running the command `delete_booking 1
     * Cons: Rigid implementation that does not account for possible real life scenarios that might arise, as aforementioned.
 
 
-### 4.4 \[Proposed\] Undo/redo Feature
+### 4.3 \[Proposed\] Undo/redo Feature
 
-#### 4.4.1 Proposed Implementation
+#### 4.3.1 Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedBookingSystem`. It extends `BookingSystem` with an undo/redo history, stored internally as an `bookingSystemStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -558,32 +558,29 @@ testers are expected to do more *exploratory* testing.
 1. A multi-step command to add a venue to the booking system
     1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. List all venues using the `list_venue` command, and verify that a venue by the same name cannot already exist. If it is present as a record in the system, delete it.
 
-    2. Test case: `add_venue v/Victoria Hall`<br>
+    2. Test case: `add_venue v/Victoria Hall`, and all other inputs are left empty by pressing <kbd>enter</kbd> whenever prompted to input a field<br>
     Expected: Victoria Hall should appear in the list of venues. The default capacity should be set to 10 as it was unspecified in the command, and there should be no description or tag.
 
-    3. Test case: `add_venue v/Victoria Hall` followed by `50`<br>
-    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50. No description or tag should be present.
+    3. Test case: `add_venue v/Victoria Hall` followed by `50`, and all other inputs left empty.<br>
+    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50. No tag should be present, and the description should be "No description provided".
 
-    4. Test case: `add_venue v/Victoria Hall` followed by `50` followed by `Popular concert hall`<br>
+    4. Test case: `add_venue v/Victoria Hall` followed by `50` followed by `Popular concert hall`, and all other inputs left empty. <br>
     Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50, and a description "Popular concert hall". There should be no tag.
 
-    5. Test case: `add_venue v/Victoria Hall` followed by `50` followed by `Popular concert hall` followed by `indoors`<br>
-    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50, a description "Popular concert hall", and a tag "indoors".
-       
-
+    5. Test case: `add_venue v/Victoria Hall` followed by no input (when prompted for capacity), followed by `Popular concert hall` (when prompted for a venue description), followed by `indoors` (when prompted for tags) <br>
+    Expected: Victoria Hall should appear in the list of venues with a default capacity of 10, a description "Popular concert hall", and a tag "indoors".
+  
+  
 ### F.4 Adding a booking
-1. A multi-step command to add a booking for Victoria Hall
-    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. A venue by the name "Victoria Hall" already exists, and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly, for the email of a booker, create one if not present.
+1. A multi-step command to add a booking to the booking system
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. A person with the email `johndoe@gmail.com` exists, and a person with the venue name `Victoria Hall` exists. List all bookings using the `list_booking` command, and verify that the date and duration you intend to book the venue for does not already exist.
 
-    2. Test case: `add_booking` followed by `example@gmail.com` followed by `Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
-    Expected: There should be an error stating that the venue does not exist in the system
-
+    2. Test case: `add_booking e/johndoe@gmail.com`<br>, followed by `Victoria Hall` (when prompted for venue), followed by `Important meeting` (when prompted for description), followed by `business, finance` (when prompted for tags), followed by `2021-01-01 01:00` and `2021-01-01 02:00` respectively when prompted for start and end date.
+    Expected: A booking should appear in the list of bookings with the booker by the email "johndoe@gmail.com", venue "Victoria Hall", with a description of "Important meeting", two tags "business" and "finance". The duration booked should also be listed in the same way as the input, which is in a YYYY-MM-DD HH:MM" format.
+       
     3. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-02-01 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
     Expected: There should be an error stating that the starting time of a booking should not be later than its ending time.
-
-    4. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
-    Expected: A booking for Victoria Hall should appear in the list of bookings with a description "For FYP Meeting.", a date range from 31st Jan 2012, 22:59 to 23:59 and a tag "meeting".
-
+    
 ### F.5 Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -627,8 +624,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a booking while all bookings are being shown
 
-    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. At least one booking record in the system (use list_booking to verify). Booking with booking index 1 is in the list.
-       Booking with booking index 22 is not in the list.
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. At least one booking record in the system (use list_booking to verify). Booking with booking index 1 is in the list. Booking with booking index 22 is not in the list.
 
     1. Test case: `delete_booking 1`<br>
        Expected: Booking with booking id 1 is deleted from the list.
@@ -637,7 +633,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `delete_booking 22`<br>
        Expected: No booking is deleted. Error details shown in the status message.
 
-    1. Other incorrect delete booking commands to try: `delete_booking`, `delete_booking x`, `delete_booking 1032309` (where the input digit exceeds the current index of the booking system) <br>
+    1. Other incorrect delete booking commands to try: `delete_booking`, `delete_booking x`, `delete_booking 1032309` (where the input digit exceeds the current index of the booking system, and the current accepted range) <br>
        Expected: Similar to previous.
 
 ### F.8 Editing a person
@@ -654,9 +650,30 @@ testers are expected to do more *exploratory* testing.
        Expected: No person is edited.
        Error details shown in the status message that the email address does not exist in the system.
 
-    1. Other incorrect delete commands to try: `edit_person johndoe@gmail.com` (missing prefix), `edit person eo/johndoe@gmail.com` (no fields to be edited) <br>
+    1. Other incorrect edit commands to try: `edit_person johndoe@gmail.com` (missing prefix), `edit person eo/johndoe@gmail.com` (no fields to be edited) <br>
        Expected: Error details to be shown in the status box corresponding to the respective errors.
        
+       
+### F.9 Editing a venue
+1. Editing a venue's information
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. Venue "Hall" exists in the system. If not, create a venue with the specified name of "Hall".
+
+    1. Test case: `edit_venue vo/Hall v/Court`
+       Expected: the name of the venue should change from "Hall" to "Court".
+    2. Test case: `edit_venue vo/Hall`
+       Expected: No venue is edited. Error details shown in the status box that command format is invalid.
+    3. Other incorrect edit commands to try can be followed similarly to the edit command for Persons under F.8 (i.e. missing `vo/` prefix or no edit fields).
+    
+       
+### F.10 Editing a booking
+1. Editing a booking's information
+    1. Prerequisites: BookCoin is not in the middle of executing a multi-step command. The booking at index 1 is linked to the venue "Victoria Hall", which exists in the system. A venue by the name of "Hall" exists. A venue by the name of "John" does not.
+  
+    1. Test case: `edit_booking 1 v/Hall`
+       Expected: the name of the booking venue should change from "Victoria Hall" to "Hall".
+    2. Test case: `edit_booking 1 v/John`
+       Expected: No venue is edited. Error details shown in the status box that the venue does not exist in the system.
+    3. Other incorrect edit commands to try: the above test cases can similarly be replicated by editing the booker's email with an email that exists in the system and belongs to a booker, and an email that does not. A similar error should appear notifying users that the booker does not exist if a non-existing (but syntactically correct) email is inputted.
 
 
 ### F.9 Accessing help
