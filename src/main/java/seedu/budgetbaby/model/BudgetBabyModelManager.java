@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
@@ -129,7 +130,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void addFinancialRecord(FinancialRecord record) {
+    public void addFinancialRecord(FinancialRecord record) throws CommandException {
         FinancialRecord toAdd = record;
         versionedBudgetTracker.addFinancialRecord(record);
         if (!record.getMonth().equals(filteredMonths.get(0).getMonth())) {
@@ -138,7 +139,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
-    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
+    public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) throws CommandException {
         requireAllNonNull(target, editedRecord);
         versionedBudgetTracker.setFinancialRecord(target, editedRecord);
         if (!editedRecord.getMonth().equals(filteredMonths.get(0))) {
