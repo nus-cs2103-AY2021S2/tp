@@ -5,6 +5,19 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+---------------------------------------------------------------------------------------------------------------
+## Introduction
+
+The following document contains a more technical overview of the project. It is suited for developers 
+who wish to develop the project further. 
+
+**MeetBuddy** is a desktop app optimised for people who want to organise their meetings and their contacts.
+They can store both meetings and contacts, view the meetings scheduled for the week, and take note of which contacts
+they are meeting up with. It also allows users to assign notes to their meetings to keep people informed about meeting
+details. Furthermore, it supports automatic syncing of contacts profile photos if they have a Gravatar account. The app is
+targeted towards users with a daily 7am - 4pm schedule, have frequent meetings during this period, and prefer typing.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -177,6 +190,8 @@ timetable, and the timeslot of the meeting.
 The user should be able to change the start date of the timetable. This allows to view a wider
 range of days, as well as view past week schedules.
 
+#### Implementation
+
 
 
 #### Design Considerations:
@@ -188,11 +203,11 @@ Alternative 1 : Represent a 7 day schedule as a 2 dimensional array with each ce
 timeslot within the day. Similar to a booking system, whenever a meeting is added or deleted,
 it will mark the timeslots as taken, or free up the slots.
 
-Pros: A Ui can listen to the model and the display can be updated quickly with each cell change.
+1. Pros: A Ui can listen to the model and the display can be updated quickly with each cell change.
 Whenever a meeting is added or removed, it only takes O(1) time to check each timeslot occupied by
 the meeting.
 
-Cons: Takes up more space. Needs a lot of restrictions on handling meetings with not nice start and ending times,
+2.Cons: Takes up more space. Needs a lot of restrictions on handling meetings with not nice start and ending times,
 and thus reduces a lot of flexibility for the user.
 
 Alternative 2 (*Current Choice): 
@@ -201,17 +216,17 @@ of length proportional to the meeting duration. Depending on the meeting's start
 the program will determine which column to slot the meeting in, as well as the vertical position in the column to
 put the meeting.
 
-Pros: More flexible in allowing users to display meetings with much more different start end times.
+1. Pros: More flexible in allowing users to display meetings with much more different start end times.
 Takes up less space in the model.
 
-Cons: It takes up more time for each operation to update the GUI, because you have to update at the very least 
+2. Cons: It takes up more time for each operation to update the GUI, because you have to update at the very least 
 a whole column, or search through the slots in the column to find the slot.
 
 
 
 
 
-### Notes feature (has already been implemented, but will only be introduced in subsequent iterations)
+### Notes feature (Cooming Soon : v 1.5 has already been implemented, but will only be introduced in subsequent iterations)
 
 The note feature has been implemented to help the user insert and delete personal notes.
 This feature is introduced with the intention to help users manage their personal notes, and to make
