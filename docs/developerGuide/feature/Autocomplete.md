@@ -1,7 +1,7 @@
 ### [Feature] Autocompleting `Edit` Command (Remark)
 
 Since `Remark`s are intended to be capable of containing long sentences or paragraphs,
-it brings an unintended chore of a User having to retype an entire `Remark` in order to edit it.
+it brings an unintended chore of a user having to retype an entire `Remark` in order to edit it.
 
 The Autocomplete feature allows the user to autocomplete a current `Person`'s remark into the
 command box once the correct `Person` id and remark prefix has been keyed.
