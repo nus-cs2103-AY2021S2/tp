@@ -9,7 +9,7 @@ participant ":AddCommand" as AddCommand LOGIC_COLOR
 end box
 
 'is omitting arguments okay, this argument is too long
-[-> AddCommandParser : parse("n/Alex")
+[-> AddCommandParser : parse user input
 activate AddCommandParser
 
 create AddOrderDescriptor
@@ -17,7 +17,7 @@ AddCommandParser -> AddOrderDescriptor
 activate AddOrderDescriptor
 
 'italics?
-'is the return arrow supposed to be descriptor or both
+'is the return arrow supposed to be descriptor or just the object should be named descriptor
 AddOrderDescriptor --> AddCommandParser : descriptor
 deactivate AddOrderDescriptor
 

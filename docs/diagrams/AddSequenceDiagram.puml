@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
 participant "descriptor:AddOrderDescriptor" as AddOrderDescriptor LOGIC_COLOR
-participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -46,12 +46,12 @@ create CommandResult
 AddCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> AddCommand : cr
+CommandResult --> AddCommand : result
 deactivate CommandResult
 [<-[hidden]- AddCommand
 destroy CommandResult
 
-[<-- AddCommand : cr
+[<-- AddCommand : result
 deactivate AddCommand
 [<-[hidden]- AddCommand
 destroy AddCommand
