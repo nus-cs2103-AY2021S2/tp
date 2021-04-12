@@ -294,37 +294,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 |Priority|As a …​    |I want to …​                                                  |So that                                                                                         |
 |--------|--------------|-----------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 |* * *   |HR Executive  |allocate drivers to passengers to be picked up                   |I can arrange carpooling trips for my colleagues                                                |
-|* * *   |HR Executive  |search for specific type of passengers                           |I can see if any passengers fulfil a criteria and view their carpool details                    |
+|* * *   |HR Executive  |search for specific type of passengers                            |I can see if any passengers fulfil a criteria and view their carpool details                    |
 |* * *   |HR Executive  |list all passengers                                              |I can see all the passengers available                                                          |
-|* * *   |HR Executive  |create a profile                                                 |I can easily manage and track drivers and passengers                                            |
-|* * *   |HR Executive  |delete employee profile                                          |passenger's data will not be stored when they are no longer looking to carpool                  |
-|* *     |HR Executive  |filter passengers' destination and pickup point based on location|drivers are not heavily inconvenienced to pick up passengers                                    |
-|* *     |HR Executive  |match only with female drivers                                   |so that female colleagues looking to carpool only with female drivers can be easily accomodated |
+|* * *   |HR Executive  |create a profile                                                  |I can easily manage and track drivers and passengers                                            |
+|* * *   |HR Executive  |delete employee profile                                           |passenger's data will not be stored when they are no longer looking to carpool                  |
+|* *     |HR Executive  |filter passengers' destination based on location                  |drivers are not heavily inconvenienced to pick up passengers                                    |
 |* *     |HR Executive  |edit drop off location                                           |passengers and drivers who have negotiated a new drop off location can be easily updated        |
 |*       |HR Executive  |indicate the price willing to pay                                |drivers are more likely to choose these passengers                                              |
 
 
 ### Use Cases
 
-**Use case: Allocate drivers to passengers to be picked up**
+**System: HR executive's terminal**
+
+**Use case: UC01 - Allocate drivers to passengers to be picked up**
+
+**Actor: User**
 
 **MSS:**
-1. Search or list out passengers available to be picked up.
+1. User lists out passengers available to be picked up.
 2. GME shows a list of passengers.
-3. HR executive chooses and view the details of the specific passenger.
-4. HR executive allocates drivers to specific passenger to the driver's carpooling group.
+3. User chooses and view the details of the specific passenger.
+4. User allocates drivers to specific passenger to the driver's carpooling group.
    
    Use case ends.
 
 ***Extensions***
 
-* 1a. The list is empty.
+* 1a. User <ins>searches for a passenger (UC02)</ins>.
 
   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
+**System: HR executive's terminal**
 
-**Use case: Search for specific type of passengers**
+**Use case: UC02 - Search for specific type of passengers**
+
+**Actor: User**
 
 **MSS:**
 1. HR executive chooses the criteria that the passengers need to fulfil in order to be picked up.
@@ -341,8 +347,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
   Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
+**System: HR executive's terminal**
 
-**Use case: Create a passenger profile**
+**Use case: UC03 - Create a passenger profile**
+
+**Actor: User**
 
 **MSS:**
 1. HR exeuctive fills out the passenger's name, contact number and pickup address.
@@ -357,10 +366,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
   * 2a1. GME warns the user to input the data missing.
 
     Use case ends.
-
+    
 --------------------------------------------------------------------------------------------------------------------
+**System: HR executive's terminal**
 
-**Use case: Delete a passenger profile**
+**Use case: UC04 - Delete a passenger profile**
+
+**Actor: User**
 
 **MSS:**
 1. HR exeuctive indicates they would like to delete a passenger profile.
@@ -375,19 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
     * 2a1. GME warns that no such passenger exists.
 
       Use case ends.
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use case:** **Match only with female drivers**
-
-**Pre-conditions:** Female passenger profile indicating that they are looking for female drivers only have been created
-
-**MSS:**
-1. HR Executive finds passengers only looking for female drivers.
-2. HR Executive then matches female drivers to female passengers looking for female drivers only.
-
-   Use case ends.
-
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ### Non-Functional Requirements
@@ -564,6 +564,22 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `findPool n/...`.<br>
        Expected: Pool list on right pane shows no change. Error details shown in the status message.
        
+    1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
+       Expected: Similar to previous.
+
+1. Finding a pool while a filtered list of pools are being shown.
+
+    1. Prerequisites: Multiple pools in the list. Filter list of pools following a valid input as shown above.
+
+    1. Test case: `findPool n/Turner`.<br>
+       Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
+
+    1. Test case: `findPool n/Michelle`.<br>
+       Expected: No pools are listed. Status message shows 0 pool listed.
+
+    1. Test case: `findPool n/###`.<br>
+       Expected: Pool list on right pane shows no change. Error details shown in the status message.
+
     1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
        Expected: Similar to previous.
        
