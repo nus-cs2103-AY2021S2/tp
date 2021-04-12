@@ -58,12 +58,12 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     public void execute_someFieldsSpecified_success() {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
         int eventBookSize = model.getEventBook().getEventList().size();
-      
         Event lastEvent = model.getEventBook().getEventList().get(eventBookSize - 1);
         Identifier lastEventIdentifier = Identifier.fromIdentifier(lastEvent.getIdentifier());
 
@@ -82,6 +82,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     public void execute_duplicateEvent_fail() {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
