@@ -10,7 +10,7 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 public class Type {
 
     public static final String SHARED_CONSTRAINTS_MESSAGE =
-            "%s should only contain alphabets, and it should not be blank.";
+            "%s should only contain alphabets.";
 
     public static final String MESSAGE_CONSTRAINTS = String.format(SHARED_CONSTRAINTS_MESSAGE, "Order Type");
 
