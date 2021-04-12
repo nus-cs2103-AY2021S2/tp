@@ -158,7 +158,7 @@ This image below is a screenshot of the app displaying events sorted by upcoming
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 * Parameters in `{}` represents mutually-exclusive parameters.<br>
-  Each mutually-exclusve parameter is separated by a `|`.<br>
+  Each mutually-exclusive parameter is separated by a `|`.<br>
   e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
   However `command foo bar` is an invalid command.
 
@@ -267,7 +267,7 @@ Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (e
 `-s` parameter optionally sorts contacts by `SORT_FIELD`. Possible values of `SORT_FIELD`:
 * `n`, `name`: names in (case-insensitive) lexicographical order (by default, if `-s` not specified)
 * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
-* `u`, `upcoming`: days left to next upcoming birthday (only sorts in `ascending` order regardless of `SORT_ORDER` paramter)
+* `u`, `upcoming`: days left to next upcoming birthday (only sorts in `ascending` order regardless of `SORT_ORDER` parameter)
 
 `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
 * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
@@ -389,7 +389,7 @@ Format: `help [COMMAND]`
 * List all available commands.
 * `[COMMAND]` a single parameter requesting help for a specific command's syntax.
 * Any additional parameters will be ignored.
-* If command is not understood then all available commands will be listed.
+* If command is not understood, then all available commands will be listed.
 
 Examples:
 * `help` lists all available commands.
