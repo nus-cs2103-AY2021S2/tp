@@ -85,7 +85,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1 2")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1 2")` API call. This is also explained [below](#deleting-a-passenger).
 
 ![Interactions Inside the Logic Component for the `delete 1 2` Command](images/DeleteSequenceDiagram.png)
 
@@ -649,6 +649,45 @@ testers are expected to do more *exploratory* testing.
        
     1. Other variations to use after the prefix n/: `///`, `?#$%`, `...`, any other non alphanumeric characters.<br>
        Expected: Similar to previous.
+
+### Editing a passenger
+
+1. Editing passengers with 1 parameter while all passengers shown.
+
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
+
+    1. Test case: `edit 1 n/Alice`.<br>
+       Expected: Name of passenger previously named `Alex Yeoh` is changed to `Alice`. Status message shows all the details of `Alice`.
+       
+    1. Test Case: `edit 0 n/Alice`. <br>
+       Expected: No passenger is edited. Result box shows error: `One of the passenger indexes provided is invalid`. Command box text turns red.
+       
+    1. Other incorrect edit commands to try: `edit n/Alice`, `edit x n/Alice`, ... (where x is larger than the list size).
+       Expected: Similar to previous.
+
+1. Editing passengers with multiple parameters while all passengers shown.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`.
+       
+    1. Test case: `edit 1 p/12345678 a/Floor Street tag/abcd`.<br>
+       Expected: Phone number, address, and tag of passenger named `Alice` is changed to `12345678`, `Floor Street`, and `abcd` respectively. Status message shows all the new details of `Alice`
+
+1. Editing passenger to match an existing passenger's identity.
+    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+
+    1. Test case: `edit 1 n/Bernice Yu p/99272758`.<br>
+       Expected: No passenger is edited. Result box shows error: `This passenger already exists in the GME Terminal.`. Command box text turns red.
+
+1. Editing passenger that is in a Pool.
+    1. Prerequisites: Newly generated sample data is used. This can be done by deleting `data/GMEdata.json`. All passengers listed using `list`. All pools listed using `listPool`.
+
+    1. Test case: `edit 7 n/Kelly`.<br>
+       Expected: Name of passenger previously named `Kristen Woo` is changed to `Kelly`. Status message shows all the details of `Kelly`. `Trip by Irfan Ibrahim` in Pool list updates to `Roy Balakrishnan, Kelly`.
+
+    1. Test case: `edit 7 d/TUESDAY`.<br>
+       Expected: No passenger is edited. Result box shows error: `TThe Passenger to be edited exists in a pool. Day cannot be edited.`. Command box text turns red.
+
+    1. Test case: `edit 7 t/1400`.<br>
+       Expected: Time of passenger named `Kelly` is changed to `1400`. Status message shows all the details of `Kelly`, and `NOTE: The passenger edited exists in a pool and has had their preferred trip time edited. This might result in a time difference of more than 15 minutes with the pool time.`
  
 --------------------------------------------------------------------------------------------------------------------
 
