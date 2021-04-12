@@ -74,6 +74,8 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2. StoreMando's layout
 
 ![GUILayout](images/GUILayout.png)
