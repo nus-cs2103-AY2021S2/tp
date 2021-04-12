@@ -2,6 +2,7 @@
 layout: page
 title: John Alec Mendoza Branzuela's Project Portfolio
 ---
+
 ## Project: Pawbook
 
 Pawbook is a desktop application for dog school managers to facilitate their bookkeeping of puppies and dogs in the
@@ -33,6 +34,12 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Improved the GUI of the Help Window and also added the UG class to supplement the HelpWindow FXML file.
 
+* **Code Refactoring**: Helped to remove all references to `AB3-AddressBook`
+  * Assisted to remove project-wide references and usage of variables linked to `AddressBook` and changed it to `Database` to fit with our project.
+
+* **Code Testing**: Writing test cases
+  * Wrote test cases for AddProgramCommand, AddOwnerCommand, DeleteProgramCommand, DeleteOwnerCommand, UG, AddProgramCommandParser, AddOwnerCommandParser, DeleteOwnerCommandParser, DeleteOwnerCommandParser
+  
 * **Documentation**:
   * User Guide:
     * Contributed significant portions in Introduction, Navigating the User Guide,
