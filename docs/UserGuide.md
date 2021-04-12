@@ -1,6 +1,7 @@
 ---
 layout: page
-title: User Guide
+title: A-Bash Book User Guide
+navigation_title: User Guide
 ---
 
 # Table of Contents
@@ -26,11 +27,11 @@ With similarities to Bash, we hope to minimise the learning curve for people wit
 
 # How to Use the User Guide
 
-Use the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
+You can use the [Table of Contents](#table-of-contents) to quickly navigate around the User Guide.
 
-Before reading on, please note the following typographic conventions used in this User Guide:
+Before you continue reading the rest of the User Guide, take note of the following text formats and conventions which are used to place emphasis on certain texts:
 
-| Text Type                                                                | Meaning                         |
+| Text Format                                                              | Meaning                         |
 | ------------------------------------------------------------------------ | ------------------------------- |
 | `Code`                                                                   | Command text                    |
 | <kbd>Keyboard Input</kbd>                                                | Keyboard actions                |
@@ -42,14 +43,14 @@ Before reading on, please note the following typographic conventions used in thi
 
 # Quickstart Guide
 
-1. Ensure that **Java 11** or above is installed in the computer.
+1. Ensure that **Java 11** or above is installed in your computer.
 
-1. Download the latest **abb.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
+1. Download the latest **abashbook.jar** from [here](https://github.com/AY2021S2-CS2103T-T12-3/tp/releases).
 
-1. Copy the abb.jar to the target folder to use as the _home folder_ to contain the A-Bash Book data.
+1. Copy the **abashbook.jar** to your preferred target folder to use as the _home folder_ to contain the A-Bash Book data.
    See [FAQ: What is the Home Folder?](#what-is-the-home-folder) to understand more.
 
-1. Double-click the abb.jar to start the app. The program window should appear in a few seconds.
+1. Double-click the **abashbook.jar** to start the app. The program window should appear in a few seconds.
    Note that the app contains some sample data, as seen in the picture below. <br>
    ![Ui](images/UG_UI%20Guide.png)
    ![Person List Reference ><](images/UG_UI%20Reference.png)
@@ -57,11 +58,11 @@ Before reading on, please note the following typographic conventions used in thi
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands to try:
 
-    * **`help`** : Opens this User Guide.
+    * **`help`** : Opens the [Command Summary](#command-summary) in the app.
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the address book.
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -414,7 +415,7 @@ client. Email client must be configured to allow command separated email values.
 
 <div markdown="block" class="alert alert-info">
 
-information_source: It is a known issue that Outlook for Windows do not have "Commas to Separate
+:information_source: It is a known issue that Outlook for Windows do not have "Commas to Separate
 Multiple Email Recipients" feature turned on. Follow the guide here to enable
 it: <https://www.lifewire.com/commas-to-separate-email-recipients-1173680>
 
@@ -549,11 +550,14 @@ Deletes an existing alias from address book.
 | `alias delete ls` | Removes the alias `ls` |
 | `alias delete f`  | Removes the alias `f`  |
 
-### List Alias: `alias list`
+### List all aliases: `alias list`
 
 Lists all alias(es) in the address book.
 
 **Format**: `alias list`
+
+:information_source: The Command List Panel will show a list of your aliases when you execute the `alias list`. On your next
+keyboard action, the list of your aliases will disappear and show the list of existing commands again.
 
 ![Alias List](images/UG_Alias%20List%20Command.png)
 
@@ -610,6 +614,13 @@ Add tags to persons in address book.
 | `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the persons selected.                               |
 | `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to persons at index `1`, `2` and `3`. |
 
+**:bulb: Bulk Add Tag**
+
+To bulk add tag, either do:
+* `tag add 1 2 3` to add tags to persons at indexes 1, 2 and 3 or,
+* `tag add shown` to add tags to all the shown persons or,
+* `tag add selected` to add tags to all the selected persons
+
 ### Delete tags from persons: `tag delete`
 
 Delete tags from persons in address book.
@@ -629,6 +640,13 @@ Delete tags from persons in address book.
 | `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the persons shown in the UI.                          |
 | `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
 | `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
+
+**:bulb: Bulk Delete Tag**
+
+To bulk delete tag, either do:
+* `tag delete 1 2 3` to delete tags to persons at indexes 1, 2 and 3 or,
+* `tag delete shown` to delete tags to all the shown persons or,
+* `tag delete selected` to delete tags to all the selected persons
 
 ## Saving the data
 
@@ -651,16 +669,16 @@ If changes to the data file renders its format invalid, A-Bash Book will discard
 
 ## What is the Home Folder?
 
-A home folder is a file system folder where A-Bash Book stores data.
+The home folder is the file system folder on your computer where A-Bash Book stores your data.
 
 ```
 foldername (Home Folder)
-├── a-bash-book.jar
-├── addressbook.log.0
+├── abashbook.jar
+├── abashbook.log.0
 ├── config.json
 ├── data
-│   ├── addressbook.json
-│   └── aliases.json
+│   ├── abashbook.json
+│   └── alias.json
 ├── preferences.json
 ```
 

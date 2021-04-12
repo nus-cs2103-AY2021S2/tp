@@ -1,0 +1,20 @@
+@startuml
+
+start
+:User executes command;
+:Parse command input;
+if () then ([Person index is valid])
+    if () then ([Remark value is provided])
+        : Set Person's Remark as provided value;
+
+    else ([else])
+        : Set Person's Remark as empty;
+    endif
+
+else ([else])
+  :Display error message;
+endif
+
+stop
+
+@enduml
