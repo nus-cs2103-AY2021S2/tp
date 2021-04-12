@@ -45,7 +45,7 @@ destroy ViewCommandParser
 WardrobeParser --> LogicManager : c
 deactivate WardrobeParser
 
-LogicManager -> ViewCommand : execute()
+LogicManager -> ViewCommand : execute(model)
 activate ViewCommand
 
 ViewCommand -> Model : updateFilteredGarmentList(predicateViewGarments)
