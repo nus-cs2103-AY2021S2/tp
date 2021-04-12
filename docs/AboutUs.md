@@ -55,4 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/wangtao0717.md)]
 
 * Role: Developer
-* Responsibilities: _TBC_
+* Responsibilities: Features, Testing
