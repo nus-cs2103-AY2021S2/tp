@@ -51,6 +51,7 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
 
     /**
      * Passing the data into the table.
+     *
      * @param itemList The list of data required by the table.
      * @return A list of items expiring in a week.
      */
@@ -85,6 +86,7 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
 
         /**
          * Expired Item constructor.
+         *
          * @param daysAfterExpiry   The number of days before the item expire.
          * @param itemList   The list of items in StoreMando.
          */
@@ -101,6 +103,7 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
 
         /**
          * Convert days that is a integer type to a string.
+         *
          * @param daysAfterExpiry The days in integer that will be converted to String.
          * @return The string representation of days.
          */
@@ -115,8 +118,9 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
         }
 
         /**
-         * Convert number of items that is a integer to a string
-         * @param numberOfItems The number of items in integer that will be converted to string
+         * Convert number of items that is a integer to a string.
+         *
+         * @param numberOfItems The number of items in integer that will be converted to string.
          * @return The string representation of number of items.
          */
         private String convertNumOfItemInIntToString(long numberOfItems) {
@@ -129,6 +133,7 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
 
         /**
          * Get the number of items that has expired for specified number of days.
+         *
          * @param day The specified number of days.
          * @param itemList The list of items in StoreMando.
          * @return The number of items expiring in the specified number of days.
@@ -147,6 +152,7 @@ public class ExpiredTablePanel extends UiPart<Region> implements Initializable {
 
         /**
          * Get the number of items that has expired for more than 7 days.
+         *
          * @param itemList The list of items in StoreMando.
          * @return The number of items expired for more than 7 days.
          */
