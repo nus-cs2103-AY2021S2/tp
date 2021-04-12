@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes "cdelete" and specifies
+the id of the contact to be deleted;
+if () then ([id is valid])
+    : GUI shows information of
+      contact that was deleted
+      and the updated list of contacts;
+else ([id is invalid])
+    : GUI shows a prompt to help user
+      type in the right command;
+endif;
+stop
+
+@enduml

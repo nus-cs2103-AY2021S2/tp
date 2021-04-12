@@ -3,12 +3,12 @@ start
 :User executes "elist" and specifies arguments;
 
 if () then ([argument is empty])
-    :GUI lists all user's schedules;
+    :GUI lists all user's entries;
 else ([else])
     if () then ([argument is "day"])
-        :GUI lists user's schedules by day;
+        :GUI lists user's entries by day;
     else ([else])
-        :GUI lists user's schedules by week;
+        :GUI lists user's entries by week;
     endif
 endif
 stop

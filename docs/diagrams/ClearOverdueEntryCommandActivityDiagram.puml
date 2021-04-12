@@ -1,0 +1,14 @@
+@startuml
+
+start
+
+repeat
+  :Model checks entry;
+    if () then ([Entry End date has passed])
+        :Delete the entry;
+    else ([else])
+    endif
+repeat while () is ([else])
+->[No entries left];
+stop
+@enduml

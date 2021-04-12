@@ -48,8 +48,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 Member | Responsibility 1 | Responsibility 2
 -- | -- | --
-Rong Jieh | Deliverables | Task IC
-Kevin Loh | Documentation | Schedule IC
+Rong Jieh | Deliverables | Entry IC
+Kevin Loh | Documentation | Entry IC
 Nicholas | Testing | Contact IC
 Shen Yang | Code Quality | Scheduling
 Toh Sihui | Tool Expert | Integration

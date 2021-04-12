@@ -1,24 +1,24 @@
 @startuml
 skinparam arrowThickness 1.1
-skinparam arrowColor RED
 skinparam classAttributeIconSize 0
 
-class EntryDescription {
-  + {static} MESSAGE_CONSTRAINTS : String
-  + {static} VALIDATION_REGEX : String
-  + description : String
+hide circle
 
-  + {static} isValidDescription() : boolean
-  + EntryDescription()
+class EntryName {
+  + {static} NAME_CONSTRAINTS : String
+  + {static} VALIDATION_REGEX : String
+  + name : String
+
+  + {static} isValidName() : boolean
+  + EntryName(String)
 }
 
-class DateTime {
-  + {static} MESSAGE_CONSTRAINTS : String
+class EntryDate {
+  + {static} DATE_CONSTRAINTS : String
   + value : LocalDateTime
 
-  + {static} isValidDateTime() : boolean
+  + {static} isValidDate() : boolean
   + DateTime(String)
-  + getDateTime() : LocalDateTime
 }
 
 class Tag {
@@ -31,19 +31,18 @@ class Tag {
 }
 
 class Entry {
-  - description : EntryDescription
-  - startDate : LocalDateTime
-  - endDate : LocalDateTime
+  - entryName: EntryName
+  - startDate : EntryDate
+  - endDate : EntryDate
   - tags : HashSet<Tag>
 
-  + Schedule(...)
+  + Entry(...)
 }
 
-Entry -right-> "1" EntryDescription
-Entry -down-> "2" DateTime
-DateTime -right[hidden]-> Tag
-EntryDescription -down[hidden]-> Tag
+Entry -right-> "1" EntryName
+Entry -down-> "2" EntryDate
+EntryDate -right[hidden]-> Tag
+EntryName -down[hidden]-> Tag
 Entry -> "*" Tag
-
 
 @enduml
