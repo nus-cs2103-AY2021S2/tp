@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import seedu.address.model.tag.Tag;
 
@@ -22,13 +22,13 @@ public class TypicalTags {
      * Returns the common tag.
      */
     public static Set<Tag> getCommonTags() {
-        return new TreeSet<>(Arrays.asList(COMMON_TAG));
+        return new HashSet<>(Arrays.asList(COMMON_TAG));
     }
 
     /**
      * Returns a set of typical tags.
      */
     public static Set<Tag> getTypicalTags() {
-        return new TreeSet<>(Arrays.asList(PHOTOSHOP, ILLUSTRATOR));
+        return new HashSet<>(Arrays.asList(PHOTOSHOP, ILLUSTRATOR));
     }
 }

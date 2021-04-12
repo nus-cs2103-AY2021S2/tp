@@ -1,8 +1,8 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     private static final Remark EMPTY_REMARK = new Remark("");
-    private static final Set<Tag> EMPTY_TAG = new TreeSet<>();
+    private static final Set<Tag> EMPTY_TAG = new HashSet<>();
 
     public static Person[] getSamplePersons() {
         return new Person[] {

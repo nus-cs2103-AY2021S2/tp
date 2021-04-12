@@ -3,9 +3,9 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeSet;
 
 import seedu.address.model.tag.Tag;
 
@@ -25,7 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Remark remark;
-    private final Set<Tag> tags = new TreeSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.

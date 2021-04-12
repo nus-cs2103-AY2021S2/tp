@@ -15,9 +15,9 @@ import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +55,7 @@ public class DeleteTagCommandTest {
     @Test
     public void createWithIndexes_nullTargetIndexes_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> DeleteTagCommand.createWithTargetIndexes(
-                null, new TreeSet<>()));
+                null, new HashSet<>()));
     }
 
     @Test

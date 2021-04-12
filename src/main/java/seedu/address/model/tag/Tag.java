@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag implements Comparable<Tag> {
+public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and without spaces";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -40,17 +40,8 @@ public class Tag implements Comparable<Tag> {
     }
 
     @Override
-    public int compareTo(Tag other) {
-        // short circuit if same object
-        if (other == this) {
-            return 0;
-        }
-        return tagName.compareToIgnoreCase(other.tagName);
-    }
-
-    @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return tagName.toLowerCase().hashCode();
     }
 
     /**
