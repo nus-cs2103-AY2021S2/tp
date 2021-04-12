@@ -505,7 +505,8 @@ The following sequence diagram shows how the add operation works:
     * Cons: More code refactoring leading to more bugs
     
 Alternative 1 was eventually chosen due to ease of refactoring and low chance of future extensions being affected 
-by the placeholder since it is a String.
+by the placeholder since it is a String and only one single use case of placeholders being use throughout the entire
+project hence it would be unnessary abstraction.
 
 ### Appointment feature
 
