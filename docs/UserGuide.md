@@ -345,9 +345,6 @@ Format: `delete INDEX`
 </div>
 Example: <br>
 
-before deleting 7th student in the list.
-![BeforeDelete](images/DemoBeforeDeleteCommand.png)
-
 `list` followed by `delete 7` deletes the 7th student in the list.
 
 ![AfterDelete](images/DemoAfterDeleteCommand.png)
@@ -397,11 +394,7 @@ Prefix | Searching Criteria
 
 Example:
 
-before keying in the search command
-
-![BeforeSearch](images/DemoBeforeSearchCommand.png)
-
-`search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex` (order does not matter), or with
+`search n/yeoh alex s/xyz t/cn` displays a list of students who has the name `yeoh alex`, order does not matter, or with
 the school `xyz` or with subjects `cn`.
 
 ![AfterSearch1](images/DemoAfterSearchCommand.png)
@@ -502,12 +495,14 @@ Example:
 before `levelup ex/1` command, the first student is primary 5 whereas the 2nd student is secondary 3.
 
 ![BeforeLevelUp1](images/DemoBeforeLevelUpCommand1.png)
+
 ![BeforeLevelUp2](images/DemoBeforeLevelUpCommand2.png)
 
 after entering `levelup ex/1`, it advances all students by one level, excluding the 1st student in the list 
 (and `grad` students).
 
 ![AfterLevelUp1](images/DemoAfterLevelUpCommand1.png)
+
 ![AfterLevelUp2](images/DemoAfterLevelUpCommand2.png)
 
 1st student in the list still remains primary 5 whereas the rest of the student advances by one level/
@@ -556,12 +551,14 @@ Example:
 before `leveldown ex/1` command, the first student is secondary 4 whereas the 6th student is secondary 5.
 
 ![BeforeLevelUp1](images/DemoBeforeLevelDownCommand1.png)
+
 ![BeforeLevelUp2](images/DemoBeforeLevelDownCommand2.png)
 
 after entering `leveldown ex/1`, it demotes all students by one level, excluding the 1st student in the list
 (and `grad` students).
 
 ![AfterLevelUp1](images/DemoAfterLevelDownCommand1.png)
+
 ![AfterLevelUp2](images/DemoAfterLevelDownCommand2.png)
 
 
