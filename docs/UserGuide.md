@@ -33,56 +33,56 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
 
 ## Tutorial: Common Workflow for a Welfare IC
 
-Stated below are the steps that a Welfare IC will most likely follow while using PartyPlanet. For visualisation 
+Stated below are the steps that a Welfare IC will most likely follow while using PartyPlanet. For visualisation
 purposes, these steps are split into a few categories.
 
 #### Adding contacts
 
-1. Add in all members in the CCA to easily track who and when to plan birthday celebrations for. All fields are 
-   optional except name so that the Welfare IC can decide what information has to be stored and what information is 
+1. Add in all members in the CCA to easily track who and when to plan birthday celebrations for. All fields are
+   optional except name so that the Welfare IC can decide what information has to be stored and what information is
    not important. For instance, the Welfare IC might want to store the address of a member to hold a surprise party.
-   
-2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for 
-   further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to 
-   store information such as Birthdays. This gives the Welfare IC flexibility to decide on what information needs to 
+
+2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for
+   further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to
+   store information such as Birthdays. This gives the Welfare IC flexibility to decide on what information needs to
    be stored. For instance, the Welfare IC might want to store the email of a catering company, or the address of a bakery for cake pickups.
 
 #### Adding events
 
-3. Add in past events to store for reference when planning future events. As most parties in CCAs are repetitive, it would be 
+3. Add in past events to store for reference when planning future events. As most parties in CCAs are repetitive, it would be
    useful for Welfare ICs to store past events for ease of reference when planning future events that are similar.
 
-4. Add in upcoming events to plan for. Welfare ICs can add in events that are upcoming so that they can be reminded 
-   to plan for these events. All fields are optional except name so that the Welfare IC can decide what information 
-   has to be stored for each event. 
-   For instance, a farewell party for the graduating batch needs to be planned in the next month, but the date is unconfirmed. 
+4. Add in upcoming events to plan for. Welfare ICs can add in events that are upcoming so that they can be reminded
+   to plan for these events. All fields are optional except name so that the Welfare IC can decide what information
+   has to be stored for each event.
+   For instance, a farewell party for the graduating batch needs to be planned in the next month, but the date is unconfirmed.
    The welfare IC can add this as `eadd -n Party for graduating seniors -r Confirm availability of seniors to fix date`
 
 #### Marking events as done
 
-5. Welfare ICs can mark events as done. They can choose to use this feature in the way they prefer. 
+5. Welfare ICs can mark events as done. They can choose to use this feature in the way they prefer.
    These are 2 possible ways of using this feature:
     * Mark the event as done after the planning is completed
     * Mark the event as done after the event is over
 
-   As such, the Welfare ICs are given the flexibility to decide what way they want to use the feature, and hence the 
+   As such, the Welfare ICs are given the flexibility to decide what way they want to use the feature, and hence the
    event will not automatically be marked as done after the date of the event passes.
 
-This image below is a screenshot of the app displaying contacts of a CCA member and a vendor, and events of different 
-dates where event 6 is marked as done. 
+This image below is a screenshot of the app displaying contacts of a CCA member and a vendor, and events of different
+dates where event 6 is marked as done.
 
 <img src="images/tutorial-add.PNG">
 
 #### Search and Sort through contacts and events
 
-6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month 
-   and tag to allow for ease of searching for specific people even with lots of contacts. The sorting allows Welfare 
-   ICs an easy way of organising the people. For example, they can sort by upcoming birthdays (according to day and 
+6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month
+   and tag to allow for ease of searching for specific people even with lots of contacts. The sorting allows Welfare
+   ICs an easy way of organising the people. For example, they can sort by upcoming birthdays (according to day and
    month only) with `list -s u` so that they can plan for the parties accordingly.
-   
-7. Welfare ICs can search and sort events by criteria. This allows them to search for events by event name and 
+
+7. Welfare ICs can search and sort events by criteria. This allows them to search for events by event name and
    remark to allow for ease of searching for specific events even with lots of events. The sorting allows Welfare
-   ICs an easy way of organising the events. For example, they can sort by upcoming event dates (according to day, 
+   ICs an easy way of organising the events. For example, they can sort by upcoming event dates (according to day,
    month and year) with `elist -s u` so that they can refer and plan for the upcoming parties accordingly.
 
 This image below is a screenshot of the app displaying events sorted by upcoming event dates.
@@ -91,10 +91,10 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 
 #### Deleting contacts and events
 
-8. Welfare ICs can delete people by the tags they contain (eg. `AY1920`). This can allow for Welfare ICs to stop 
+8. Welfare ICs can delete people by the tags they contain (eg. `AY1920`). This can allow for Welfare ICs to stop
    storing information about members who contain that tag (eg. graduated members).
 
-9. Welfare ICs can delete events. This can allow for Welfare ICs to stop storing information about one-off events 
+9. Welfare ICs can delete events. This can allow for Welfare ICs to stop storing information about one-off events
    and reduce clutter in the application.
 
 
@@ -161,7 +161,7 @@ This image below is a screenshot of the app displaying events sorted by upcoming
 * Parameters in `{}` represents mutually-exclusive parameters.<br>
   Each mutually-exclusive parameter is separated by a `|`.<br>
   e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
-  However `command foo bar` is an invalid command.
+  However, `command foo bar` is an invalid command.
 
 </div>
 
@@ -209,10 +209,13 @@ Examples:
 Deletes person(s) from the contact list.
 
 Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
-1. If no parameters supplied, `delete`: Deletes all contacts in the displayed contact list
-2. If indices supplied, `delete INDEX [INDEX]...`: Deletes the contacts associated with each specified `INDEX`
+1. If no parameters supplied, `delete`:<br>
+Deletes all contacts in the displayed contact list
+2. If indices supplied, `delete INDEX [INDEX]...`:<br>
+Deletes the contacts associated with each specified `INDEX`
    * Invalid indices are ignored.
-3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`: Delete the contacts containing all specified tags
+3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`:<br>
+Delete the contacts containing all specified tags
    * If the `--any` flag is supplied, contacts only need to match with any of the specified tags.
    * Tags specified are case-sensitive.
 
@@ -228,12 +231,14 @@ Examples:
 Edits an existing person in the contact list.
 
 Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`
-1. If index supplied, `edit INDEX [...]`: Edits the person at the specified `INDEX`
+1. If index supplied, `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]`:<br>
+Edits the person at the specified `INDEX`
    * At least 1 parameter must be supplied.
    * Existing values are replaced by the input values, if specified.
    * To retrieve existing values, use the autocompletion workflow specified [below](#autocomplete-tab).
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
-2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`: Removes all specified tags from every contact in the displayed list
+2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`:<br>
+Removes all specified tags from every contact in the displayed list
    * All specified tags will be removed from every contact in the displayed list.
    * Tags specified are case-sensitive.
 
@@ -247,8 +252,10 @@ Examples:
 Displays a list of contacts in the contact list, with optional search criteria.
 
 Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`
-1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
-2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
+1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+List all contacts in contact list
+2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+List all contacts matching the search criteria
 
 Search criteria, case-insensitive:
 * `-n`, `--name` filters the contacts by name
@@ -257,14 +264,14 @@ Search criteria, case-insensitive:
   * If `BIRTHDAY` is "0" or unspecified, displays filtered contacts without birthday.
   * Otherwise, `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
     i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
-   
+
 Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
 `--exact` requires exact spelling match, but is still case-insensitive. e.g. `alEx yeOh` will match `Alex Yeoh`.
 
-All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified for any match.
+All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified, then any of the search criteria must be fulfilled.
 
 Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (except upcoming birthdays), as below.
-  
+
 `-s` parameter optionally sorts contacts by `SORT_FIELD`. Possible values of `SORT_FIELD`:
 * `n`, `name`: names in (case-insensitive) lexicographical order (by default, if `-s` not specified)
 * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
@@ -322,9 +329,11 @@ Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
 Format: `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT] [-o ORDER]`
 
-1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
+1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`:<br>
+List out all events in event list.
 2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o
-   SORT_ORDER]`: List all events matching the search criteria
+   SORT_ORDER]`:<br>
+List all events matching the search criteria
 
 Search criteria, case-insensitive:
 * `-n`, `--name` filters the events by event name
@@ -333,15 +342,15 @@ Search criteria, case-insensitive:
     * If exact match is desired, specify an additional `--exact` flag. `--exact` requires exact spelling match, but is not case-sensitive.
     * All searches are case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
     * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by
-      default, unless `--any` is specified for any match.
+      default, unless `--any` is specified, then any search criteria must be fulfilled.
     * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as below.
-  
+
 `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of `SORT_FIELD`:
 * `n`, `name`: names (case-insensitive) in lexicographical order (by default, if `-s` not specified)
 * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
 * `u`, `upcoming`: days left to next upcoming event (All overdue events or events marked as `done` will appear at the bottom of the list regardless of the date)
 
-Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order 
+Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
 
 `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
 * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
@@ -369,10 +378,10 @@ Deletes event(s) from PartyPlanet's Events List. Similar to `delete`.
 
 Format: `edelete [INDEX [INDEX]...]`
 
-* If no parameters: `edelete`
-  * Deletes all events in the current events list.
-* If provided with index(es): `edelete INDEX [INDEX]...`
-  * Deletes the event(s) at the specified `INDEX`.
+* If no parameters `edelete`:<br>
+Deletes all events in the current events list.
+* If provided with index(es) `edelete INDEX [INDEX]...`:<br>
+Deletes the event(s) at the specified `INDEX`.
   * All indexes must be a positive integer valid in the list.
 
 Examples:
@@ -482,12 +491,12 @@ Retrieves previously entered input.
 #### Data path display :
 
 * Displays the absolute path to the folder where the data is stored at the bottom of PartyPlanet.
-* Note: Absolute path to the data folder has to be of length less than 60 characters to ensure that this 
+* Note: Absolute path to the data folder has to be of length less than 60 characters to ensure that this
   feature works well.
 
 <div markdown="block" class="alert-warning">
 
-**:warning: When the length of the path is more than 60 characters, there is a chance that the path will be 
+**:warning: When the length of the path is more than 60 characters, there is a chance that the path will be
 concatenated with a trailing `...`.**
 
 </div>
@@ -516,18 +525,18 @@ concatenated with a trailing `...`.**
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add -n NAME [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
+**Add** | `add -n NAME [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]` <br> e.g. `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
 **EAdd** | `eadd -n NAME [-d DATE] [-r REMARK]` <br> e.g. `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!`
-**Delete** | `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
+**Delete** | `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g. `delete -t colleague`
 **EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]...` <br> e.g. `edone 2 3 5`
-**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
+**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`<br> e.g. `edit 2 -n James Lee -e jameslee@example.com`<br> e.g. `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
-**List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s date`
+**List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g. `list`<br> e.g. `list -s date`
 **EList** | `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Undo** | `undo`
 **Redo** | `redo`
-**Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
+**Help** | `help [COMMAND]`<br> e.g. `help`<br> e.g. `help list`
 **Toggle theme** | `theme`
 **Exit** | `exit`
 
