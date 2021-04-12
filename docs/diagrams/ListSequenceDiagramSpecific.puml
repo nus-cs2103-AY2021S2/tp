@@ -30,7 +30,7 @@ deactivate Model
 create CommandResult
 ListCommand -> CommandResult
 activate CommandResult
-CommandResult --> ListCommand
+CommandResult --> ListCommand : cr
 deactivate CommandResult
 
 [<-- ListCommand : cr

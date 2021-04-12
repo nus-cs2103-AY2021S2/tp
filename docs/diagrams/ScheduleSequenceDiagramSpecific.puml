@@ -30,7 +30,7 @@ deactivate Model
 create CommandResult
 ScheduleCommand -> CommandResult
 activate CommandResult
-CommandResult --> ScheduleCommand
+CommandResult --> ScheduleCommand : cr
 deactivate CommandResult
 
 [<-- ScheduleCommand : cr
