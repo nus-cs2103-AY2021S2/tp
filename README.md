@@ -14,5 +14,5 @@ Our targeted users are administrative personnels of schools or organisations who
 
 ## More Details
 
-For the detailed documentation of this project, see the **[BookCoin To The Moon Product Website](https://ay2021s2-cs2103-w17-3.github.io/tp/)**.
+For the detailed documentation of this project, see the **[BookCoin Website](https://ay2021s2-cs2103-w17-3.github.io/tp/)**.
 This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
