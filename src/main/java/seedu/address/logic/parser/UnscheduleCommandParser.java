@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnscheduleCommand;
@@ -30,8 +30,7 @@ public class UnscheduleCommandParser implements Parser<UnscheduleCommand> {
         try {
             index = ParserUtil.parseIndex(args);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UnscheduleCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         return new UnscheduleCommand(index, false, false);
     }

@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a client identified using its displayed index from the address book.
+ * Deletes a client identified using its displayed index from Link.me.
  */
 public class DeleteCommand extends Command {
 

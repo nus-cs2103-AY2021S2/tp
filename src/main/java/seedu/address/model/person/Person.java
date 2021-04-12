@@ -15,7 +15,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in Link.me
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
