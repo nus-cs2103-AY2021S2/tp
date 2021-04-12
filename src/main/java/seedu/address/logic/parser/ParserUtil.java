@@ -44,7 +44,7 @@ public class ParserUtil {
     public static final String VALID_NAME_REGEX = "[^ ].*";
 
     // Phone validation: must contain numerical characters only.
-    public static final String VALID_PHONE_REGEX = "[0-9]*";
+    public static final String VALID_PHONE_REGEX = "[0-9]+";
 
     // Address validation: address cannot start with whitespace, or " " can be a valid address.
     public static final String VALID_ADDRESS_REGEX = "[^ ].*";
