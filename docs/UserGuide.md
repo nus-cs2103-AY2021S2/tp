@@ -109,7 +109,7 @@ This command must be done by the user at least once before they can use other co
 Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
 
 Example output:
-![list plans](images/listPlans.png)
+![list plans](images/Ui.png)
 
 ### Create/Delete Plan: `addp`/`deletep`
 

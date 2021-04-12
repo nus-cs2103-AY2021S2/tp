@@ -9,7 +9,7 @@ NUS Module planner is a brownfield project based on AddressBook - Level 3, a des
 
 Given below are my [contributions](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=ssagit&tabRepo=AY2021S2-CS2103-W17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false) to the project.
 
-###Overview:
+### Overview:
 
 NUS Module Planner is a desktop application for managing your study plans at NUS. Users can create their own study plans to map out what modules to take for each semester so as to meet their graduation requirements. The application also highlights the pre-requisites for each module, to ensure that the user does not miss them out in their planning. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
