@@ -10,7 +10,7 @@ work, deadlines, and projects. We hope this **User Guide** helps you get started
 your student life a little easier! <br/>
 
 Focuris is a **desktop application** for **managing events** with a [KanBan](#kanban) board. The KanBan board is a board which
-**displays events according to the level of completion**: [Backlog](#backlog), [ToDo](#todo), [In-Progress](#in-progress) and [Done](#done). <br/>
+**displays events according to the level of completion**: [Backlog](#backlog), [Todo](#todo), [In-Progress](#in-progress) and [Done](#done). <br/>
 
 Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management
 and organisation.
@@ -86,7 +86,7 @@ Start improving your productivity by following these simple steps:
 
    - **`prog`**`n/CS2100 Lab 3 d/Lab homework` : Adds an event named `CS2100 Lab 3` to the application with status `IN PROGRESS`.
 
-   - **`delete`**`3` : Deletes the event with the identifier of 3 shown on the KanBan board.
+   - **`delete`**`3` : Deletes the event with the identifier of 3 shown on the [KanBan](#kanban) board.
 
    - **`exit`** : Exits the application.
 
@@ -299,7 +299,7 @@ For the majority of event commands, you can simply execute them via these simple
 
 Start discovering and using the Commands now by going to the Command Summary!
 
-<a class="md-btn md-btn-raised" href="#211-command-summary">Bring me to the Command Summary</a>
+<a class="md-btn" href="#211-command-summary">Bring me to the Command Summary</a>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -307,7 +307,7 @@ Start discovering and using the Commands now by going to the Command Summary!
 
 ### 2.3.1 `todo` Command
 
-Adds an event with status `TODO` to Focuris.
+Adds an event with status `TODO` to Focuris. You can find out more about the `TODO` event status [here](#todo).
 
 **What you should type into the Command Box:**
 
@@ -338,7 +338,7 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 ### 2.3.2 `log` Command
 
-Adds an event with status `BACKLOG` to Focuris.
+Adds an event with status `BACKLOG` to Focuris. You can find out more about the `BACKLOG` event status [here](#backlog).
 
 **What you should type into the Command Box:**
 
@@ -368,7 +368,7 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 ### 2.3.3 `prog` Command
 
-Adds an event with status `IN PROGRESS` to Focuris.
+Adds an event with status `IN PROGRESS` to Focuris. You can find out more about the `IN PROGRESS` event status [here](#in-progress).
 
 **What you should type into the Command Box:**
 
@@ -575,7 +575,7 @@ list
 
 ### 2.3.9 `done` Command
 
-Set the status of an Event to `DONE`.
+Set the status of an Event to `DONE`. You can find out more about the `DONE` status [here](#done).
 
 **What you should type into the Command Box:**
 
@@ -672,7 +672,7 @@ As a new user to Focuris, you might encounter have certain queries regarding how
 
 # 4. Glossary
 
-<a name="backlog" class="do-not-decorate"><strong>Backlog</strong>: Describes an Event that is currently not being worked on, but needs to be worked on in the future. When an Event is about to be worked on, a status of `ToDo` should be allocated to it.</a>
+<a name="backlog" class="do-not-decorate"><strong>Backlog</strong>: Describes an Event that is currently not being worked on, but needs to be worked on in the future. When an Event is about to be worked on, a status of `Todo` should be allocated to it.</a>
 
 <a name="case-insensitive" class="do-not-decorate"><strong>Case Insensitive</strong>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
 
@@ -680,12 +680,12 @@ As a new user to Focuris, you might encounter have certain queries regarding how
 
 <a name="in-progress" class="do-not-decorate"><strong>In Progress</strong>: Describes an Event where progress is currently being made for the task and it will be completed soon. When an Event is completed, a status of `Done` should be allocated to it.</a>
 
-<a name="kanban" class="do-not-decorate"><strong>KanBan</strong>: KanBan is inspired by the Japanese words '看板', meaning signboard. In workflow management, a kanban board aims to help you visualise your workflow, often through including a board with cards and columns, where each card represents a work item and each column represents the current status of a work item, in Focuris, these columns are `Backlog`, `ToDo`, `In Progress` and `Done`.</a>
+<a name="kanban" class="do-not-decorate"><strong>KanBan</strong>: KanBan is inspired by the Japanese words '看板', meaning signboard. In workflow management, a kanban board aims to help you visualise your workflow, often through including a board with cards and columns, where each card represents a work item and each column represents the current status of a work item, in Focuris, these columns are `Backlog`, `Todo`, `In Progress` and `Done`.</a>
 
 <a name="parameters" class="do-not-decorate"><strong>Parameters</strong>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
 
 <a name="special-characters" class="do-not-decorate"><strong>Special Characters</strong>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
 
-<a name="todo" class="do-not-decorate"><strong>ToDo</strong>: Describes an Event that is currently about to be worked on in the near future. When work on an Event is underway, a status of `In Progress` should be allocated to it.</a>
+<a name="todo" class="do-not-decorate"><strong>Todo</strong>: Describes an Event that is currently about to be worked on in the near future. When work on an Event is underway, a status of `In Progress` should be allocated to it.</a>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
