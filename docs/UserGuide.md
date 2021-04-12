@@ -140,7 +140,7 @@ Examples:
 * `findcontent program` will return the following 2 contents:
   ![demo findcontent](images/Diagram-findcontent.png)
 
-
+<div style="page-break-after: always;"></div>
 #### Listing all definitions : `listdef`
 
 Shows a list of all the definitions in the Dictionary.
