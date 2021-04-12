@@ -76,6 +76,7 @@ public class EditCommand extends Command implements BatchOperation {
     public static final String MESSAGE_INSERT_DUPLICATE_POLICY = "The policy %s already exists in this "
             + "client's record.";
 
+
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
     private final EditPolicyMode editPolicyMode;
