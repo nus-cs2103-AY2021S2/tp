@@ -70,7 +70,17 @@ Given below are my contributions to the project.
       , [\#157](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/157)
       , [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170)  
       , [\#175](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/175) 
-      
+      , [\#211](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/211)
+      , [\#215](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/215)
+      , [\#221](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/221)
+      , [\#221](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/221)
+      , [\#279](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/279)
+      , [\#280](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/280)
+      , [\#303](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/303)
+      , [\#304](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/304)
+      , [\#326](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/326)
+      , [\#327](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/327)
+        
     * Contributed to forum discussions:
     * Reported bugs and suggestions for other teams in the class:
     * Some parts of the history feature I added was adopted by several other classmates:
