@@ -14,6 +14,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product because a user can now find the respective student's appointment without scrolling through the list of appointments. 
   * Highlights: This feature works in tandem with find students in the "find" command. It was challenging to show the particular appointment found as the user interface for appointment list consisted nested lists. The appointment list consisted  of all appointments which contains another list of same day appointment. 
 
+
 * **New Feature**: Added the ability to filter appointment.
   * What it does: allow users to see a list of student record for faculty/school residence, all vaccinated or unvaccination student.
   * Justification: This feature improves the product because it allows the user to see a filtered view of the student record to better track vaccination. For i.e. users can see a list of students who are unvaccinated and thus able to schedule appointment for them. 
