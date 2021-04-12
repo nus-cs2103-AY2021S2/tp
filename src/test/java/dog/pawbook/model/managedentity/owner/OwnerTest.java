@@ -85,6 +85,27 @@ public class OwnerTest {
     }
 
     @Test
+    public void hashcode() {
+        Owner owner = new OwnerBuilder(ALICE).build();
+
+        // same values -> returns same hashcode
+        assertEquals(owner.hashCode(), new OwnerBuilder(ALICE).build().hashCode());
+
+        // different name -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withName("Peter").build().hashCode());
+
+        // different phone -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withPhone("90019001").build().hashCode());
+
+        // different email -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withEmail("test123@example.com").build().hashCode());
+
+        // different address -> returns different hashcode
+        assertNotEquals(owner.hashCode(), new OwnerBuilder(ALICE).withAddress("Block 123 Street 123")
+                .build().hashCode());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Owner aliceCopy = new OwnerBuilder(ALICE).build();
