@@ -152,7 +152,7 @@ As Tutor Tracker is an application to aid users in viewing a tutor's profile, ha
 The proposed tutor features is to facilitate the user to keep track of his/her list of tutors.
 It implements the following operations:
 * `Add tutor` - Adds a tutor to the list of tutors.
-* `Edit tutor` - Edit a tutor from the list of tutors.
+* `Edit tutor` - Edit an existing tutor from the list of tutors.
 * `Delete tutor` - Delete a tutor from the list of tutors.
 * `Find tutor` - Find a tutor from the list of tutors by name.
 * `View tutor` - View a tutor by index from the list of tutors.
@@ -232,9 +232,9 @@ The proposed note feature is to facilitate the user to keep track of his/her own
 The notes feature consists of the following operations that can be performed on tutors:
 * `Add note` - Adds a note to a tutor
 * `Delete note` - Deletes the note of a tutor
-* `Edit note` - Edits a note of a tutor
+* `Edit note` - Edits an existing note of a tutor
 * `List note` - List tutor(s) that has a note
-* `Export tutor` - Exports the details and attached notes into a text file 
+* `Export tutor` - Exports the tutor's details, subject list and attached notes into a text file 
 
 These operations are exposed in the `Logic` interface by parsing respective `AddNoteCommand`,
 `DeleteNoteCommand`, `EditNoteCommand`, `ListNoteCommand` and `ExportCommand`.
@@ -316,7 +316,7 @@ Steps for the execution of the `AddGradeCommand` (assuming that no errors are en
 4. The `AddGradeCommand` will then validate the parameters and creates a `Grade` object.
 5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addGrade()`, 
 then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect this cahnge and update the GUI.
+6. The `Ui` component will detect this change and update the GUI.
 ![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram.png)
 
 #### Design Consideration
@@ -613,12 +613,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority| As a …​                                 | I want to …​                 | So that I can…​                                                    |
 | --------| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
-| `* * *` | User | Delete tutor details                               | Remove tutors that I no longer need the details of              |
-| `* * *` | User | List all tutors                                    | See all known tutors                                            |
+| `* * *` | User | Delete tutor details                               | Remove tutor that I no longer need the details of              |
+| `* * *` | User | List all tutor(s)                                  | See all known tutor(s)                                            |
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
 | `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
-| `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
-| `* * *` | User | Delete a tuition appointment                       | Remove canceled appointments                                    |
+| `* * *` | User | View my tuition appointment(s)                       | Keep track of appointment(s)                                      |
+| `* * *` | User | Delete a tuition appointment                       | Remove canceled appointment                                    |
 | `* * *` | User | Check my own tuition appointments list             | Know the timing of ALL my appointments in order                 |
 | `* *` | User | Filter tutors by their name | Find a tutor by name |
 | `* *` | User | Filter tutors by their gender | Find a tutor of my preferred gender |
@@ -636,26 +636,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `  | Tech-savvy user| Export tutor's details into a text file  | Share the tutor's details with others                           |
 | `* *`   | User | Keep track of the details of my favourite tutors   | Contact them and set up an appointment with them                |
 | `* *`   | User | Unfavourite a tutor                                | Remove the tutor from my list of favourites                     |
-| `* *`   | User | List all the tutors that were added to favourites  | Access the details of the favourite tutor(s) fast               |
+| `* *`   | User | List all the tutor(s) that were added to favourites  | Access the details of the favourite tutor(s) fast               |
 | `* *`   | Meticulous user| Add note to tutor                        | Remind myself of some additional details of the tutor           |
 | `* *`   | User | Delete note from tutor                             | Remove note from tutor that are no longer relevant              |
 | `* *`   | User | List tutors with note                              | Keep track which tutor has note added                           |
 | `* *`   | Tech-savvy User | Add grade records to a digital GradeBook | Keep track of grades I obtained for reference and future study plan          |
 | `* *`   | Careless user   | Edit grade record details               | Correct typos or update the details of my academic records            |
 | `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
-| `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook      
+| `* *`   | User  | List all grade(s)                                 | See all existing academic record(s) in my GradeBook      
 | `* *`   | User  | add_budget                                        | Add a personal budget to keep track of
 | `*`     | User  | delete_budget                                     | Delete an existing budget that I have and no longer need
 | `* *`   | User  | edit_budget                                       | Change an existing budget that I have   
 | `* *`   | User  | view_budget                                       | View an existing budget and cost of total appointments of user
 | `* *`   | User | Add a schedule                                         | Keep track of tuition-related schedules                          |
-| `* *`   | User | View my schedules on a particular date               | Know what schedules do I have on a particular day                                      |
+| `* *`   | User | View my schedule(s) on a particular date               | Know what schedule(s) do I have on a particular day                                      |
 | `* *`   | User | Delete a schedule                                    | Remove canceled schedules                                    |
-| `* *`   | User | Check my own schedule list                           | Know the timing of all my schedules in order                 |
+| `* *`   | User | Check my own schedule list                           | Know the timing of all my schedule(s) in order                 |
 | `* *`   | Careless user  | Edit schedule details                       | Fix typos or add in details that I forgot to enter of the schedule |
-| `* *`   | Meticulous user  | View my timetable that consist of both appointments and schedules                       | Keep track of appointments and schedules happening on a particular week |
-| `* *`   | User | Add a reminder                                         | Keep track and manage personal reminders                          |
-| `* *`   | User | Delete a reminder                                    | Remove unnecessary reminders                                    |
+| `* *`   | Meticulous user  | View my timetable that consist of both appointment(s) and schedule(s)                       | Keep track of appointment(s) and schedule(s) happening on a particular week |
+| `* *`   | User | Add a reminder                                         | Keep track and manage personal reminder(s)                          |
+| `* *`   | User | Delete a reminder                                    | Remove unnecessary reminder                                    |
 | `* *`   | User | Check my own reminder list                           | Know the dates of all my reminders in order                 |
 | `* *`   | Careless user  | Edit reminder details                       | Fix typos or add in details that I forgot to enter of the reminder |
 
