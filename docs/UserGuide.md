@@ -213,6 +213,7 @@ component command prefix/[INPUT] -flag
 
         The above command would add a new contact named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
         address "Lower Kent Ridge Road, Singapore 119077" and tagged with "Gluten Allergy".
+        > Note: A known limitation of add is that customers with different names but exactly the same details (phone number, email, address) will not be marked as a duplicate.
         
         <p>&nbsp;</p>
         
