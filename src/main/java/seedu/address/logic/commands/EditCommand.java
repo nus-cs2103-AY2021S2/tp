@@ -196,6 +196,8 @@ public class EditCommand extends Command implements BatchOperation {
         for (InsurancePolicy insurancePolicy : policiesToAdd) {
             if (policiesToAddTo.contains(insurancePolicy)) {
                 throw new CommandException(String.format(MESSAGE_INSERT_DUPLICATE_POLICY, insurancePolicy.policyId));
+            } else {
+                policiesToAddTo.add(insurancePolicy);
             }
         }
         return policiesToAddToTemp;
