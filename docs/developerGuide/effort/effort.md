@@ -1,6 +1,8 @@
 ### Difficulties and Challenges
 
-The Difficulty level of implementing PartyPlanet was high, owing mainly to two reasons: 1) refactoring the command set and 2) implementing and integrating the event book.
+The Difficulty level of implementing PartyPlanet was high, owing mainly to two reasons:
+  1. refactoring the command set
+  1. implementing and integrating the event book
 
 1. The previous command set had several redundancies. We thus refactored the entire command set to be more concise, cohesive and disjoint, condensing all the operations into the essential `add`, `edit`, `delete` and `list` (along with the event book equivalents) to support a more streamlined and consistent workflow. In order to create this new and improved command set, we had to think about which commands would facilitate a fast workflow for users. After determining the 4 main commands, we had to craft optional tags to these commands, to fine tune the effects of the command.
 
@@ -12,4 +14,4 @@ The Difficulty level of implementing PartyPlanet was high, owing mainly to two r
 
 * **Cohesive product:** The address book and event books complement each other well, and offer users the ability to gather relevant details easily to plan for a celebration.
 
-*  **User friendly extras to aid workflow:** In addition to the above, we have implemented some features in PartyPlanet to streamline a user’s workflow. From prompts when a command syntax is not recognized, to `undo` and `redo` commands for the occasional wrong command, the time taken for a user to correct any mistake made is minimized. PartyPlanet also provides keyboard shortcuts for `undo` and `redo`, and it includes an input history, accessed with the up and down arrow keys, for users to quickly use commands with a high degree of similarity. 
+*  **User friendly extras to aid workflow:** In addition to the above, we have implemented some features in PartyPlanet to streamline a user’s workflow. From prompts when a command syntax is not recognized, to `undo` and `redo` commands for the occasional wrong command, the time taken for a user to correct any mistake made is minimized. PartyPlanet also provides keyboard shortcuts for `undo` and `redo`, and it includes an input history, accessed with the `UP` and `DOWN` arrow keys, for users to quickly use commands with a high degree of similarity. 
