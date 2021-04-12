@@ -44,7 +44,7 @@ public class TeachingAssistantTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateContacts_throwsDuplicateContactException() {
         // Two contacts with the same identity fields
         Contact editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -60,18 +60,18 @@ public class TeachingAssistantTest {
     }
 
     @Test
-    public void hasContact_personNotInTeachingAssistant_returnsFalse() {
+    public void hasContact_contactNotInTeachingAssistant_returnsFalse() {
         assertFalse(teachingAssistant.hasContact(ALICE));
     }
 
     @Test
-    public void hasContact_personInTeachingAssistant_returnsTrue() {
+    public void hasContact_contactInTeachingAssistant_returnsTrue() {
         teachingAssistant.addContact(ALICE);
         assertTrue(teachingAssistant.hasContact(ALICE));
     }
 
     @Test
-    public void hasContact_personWithSameIdentityFieldsInTeachingAssistant_returnsTrue() {
+    public void hasContact_contactWithSameIdentityFieldsInTeachingAssistant_returnsTrue() {
         teachingAssistant.addContact(ALICE);
         Contact editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();

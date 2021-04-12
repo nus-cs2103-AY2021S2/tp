@@ -4,9 +4,9 @@
 start
 :User executes "free" and specifies interval;
 if () then ([free])
-    :GUI shows "Free" to user;
+    :GUI shows free message to user;
 else ([not free])
-    :GUI shows task occupying interval;
+    :GUI shows entries occupying interval;
 endif
 stop
 

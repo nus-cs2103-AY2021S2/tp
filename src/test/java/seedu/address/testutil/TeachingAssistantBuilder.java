@@ -7,7 +7,7 @@ import seedu.address.model.contact.Contact;
 /**
  * A utility class to help with building TeachingAssistant objects.
  * Example usage: <br>
- *     {@code TeachingAssistant ab = new TeachingAssistantBuilder().withPerson("John", "Doe").build();}
+ *     {@code TeachingAssistant ab = new TeachingAssistantBuilder().withContact("John", "Doe").build();}
  */
 public class TeachingAssistantBuilder {
 

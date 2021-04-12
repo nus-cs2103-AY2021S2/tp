@@ -87,7 +87,7 @@ public class EntryDateTest {
         // null -> returns false
         assertFalse(firstEntryDate.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(firstEntryDate.equals(secondEntryDate));
     }
 }

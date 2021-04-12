@@ -3,10 +3,9 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant TeachingAssistantParser as TeachingAssistantParser LOGIC_COLOR
-participant ":ListEntryCommandParser" as ListEntryCommandParser LOGIC_COLOR
+participant ":TeachingAssistantParser" as TeachingAssistantParser LOGIC_COLOR
 participant ":ListEntryFormatPredicate" as ListEntryFormatPredicate LOGIC_COLOR
-participant "listEntryCommand:ListEntryCommand" as ListEntryCommand LOGIC_COLOR
+participant ":ListEntryCommand" as ListEntryCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -20,40 +19,24 @@ activate LogicManager
 LogicManager -> TeachingAssistantParser : parseCommand("elist day")
 activate TeachingAssistantParser
 
-create ListEntryCommandParser
-TeachingAssistantParser -> ListEntryCommandParser
-activate ListEntryCommandParser
-
-ListEntryCommandParser --> TeachingAssistantParser
-deactivate ListEntryCommandParser
-
-TeachingAssistantParser -> ListEntryCommandParser : parse("day")
-activate ListEntryCommandParser
-
 create ListEntryFormatPredicate
-ListEntryCommandParser -> ListEntryFormatPredicate
+TeachingAssistantParser -> ListEntryFormatPredicate
 activate ListEntryFormatPredicate
 
-ListEntryFormatPredicate --> ListEntryCommandParser
+ListEntryFormatPredicate --> TeachingAssistantParser
 deactivate ListEntryFormatPredicate
 
 create ListEntryCommand
-ListEntryCommandParser -> ListEntryCommand
+TeachingAssistantParser -> ListEntryCommand
 activate ListEntryCommand
 
-ListEntryCommand --> ListEntryCommandParser
+ListEntryCommand --> TeachingAssistantParser
 deactivate ListEntryCommand
-
-ListEntryCommandParser --> TeachingAssistantParser
-deactivate ListEntryCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-ListEntryCommandParser -[hidden]-> TeachingAssistantParser
-destroy ListEntryCommandParser
 
 TeachingAssistantParser --> LogicManager : command
 deactivate TeachingAssistantParser
 
-LogicManager -> ListEntryCommand : execute()
+LogicManager-> ListEntryCommand : execute()
 activate ListEntryCommand
 
 ListEntryCommand -> Model : updateFilteredEntryList(predicate)
