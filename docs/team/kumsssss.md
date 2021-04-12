@@ -26,10 +26,9 @@ Given below are my contributions to the project.
       not know how to constantly update the list while keeping its attribute final. I also had to update the list being
       displayed which took in a predicate to update unlike sort which required a comparator to be updated.
       
-* **Code
-  contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=kumsssss&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=kumsssss&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
-* **Project management**:
+* **Project Management**:
     * Produced milestone v1.3 product demo demonstrating all features implemented at the end of the
       iteration. [Video Link](https://youtu.be/ci2me0pkEsY)
 
@@ -37,7 +36,7 @@ Given below are my contributions to the project.
     * Refactored all instances of Person in StoreMando to Item
       (Pull request [\#57](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/57))
 
-* **Enhancements to existing features**:
+* **Enhancements to Existing Features**:
     * Modified the add feature to include an additional optional attribute, expiry date
       (Pull request [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75))
     * Updated the ExpiryDate class to take in a LocalDate attribute which stores the expiry date of an item.
@@ -45,21 +44,23 @@ Given below are my contributions to the project.
     * Wrote additional tests for existing features to increase coverage
       (Pull request [\#119](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/119))
     * Update implementation of reminder, list and find command so that they are executed on the displayed sublist
-      instead of the entire inventory. [\#158](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/158)
+      instead of the entire inventory. 
+      (Pull request [\#158](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/158))
     * Updated sort feature implementation and added tests for the newly created
-      methods. [\#159](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/159)
+      methods. (Pull request [\#159](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/159))
     * Modified list feature to make the search
-      case-sensitive [\#201](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/201)
+      case-sensitive (Pull request [\#201](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/201))
+    * Added test for classes under logic component (Pull request [\#292](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/292))  
 
 * **Documentation**:
     * User Guide:
-        * Added the documentation for the features `add` [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75)
-        * Added the documentation for the features `sort` [\#101](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/101)
+        * Added the documentation for the features `add` (Pull request [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75))
+        * Added the documentation for the features `sort` (Pull request [\#101](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/101))
         * Updated the documentation for the features `reminder`
-          [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125)
-        * Updated command summary for the User Guide [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125)
+          (Pull request [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125))
+        * Updated command summary for the User Guide (Pull request [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125))
         * Changed the formatting and layout for the User Guide and added a section on Navigating User Guide
-          [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125),
+          (Pull request [\#125](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/125))
         * Further formatting of User Guide and including new sections (Pull
           requests [\#180](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/180),
           [\#217](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/217),
@@ -69,9 +70,15 @@ Given below are my contributions to the project.
         * Added Use Cases to the Developer Guide
           (Pull requests [\#43](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/43),
           [\#143](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/143))
-        * Update NFR, Glossary and Product Scope [\#169](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/169)
+        * Update NFR, Glossary and Product Scope (Pull request [\#169](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/169))
+        * Added activity and sequence diagram for reminder and clear features as well as 
+          explaining the implementation of the features. (Pull request [\#221](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/221))
+        * Edited the implementation steps and sequence diagrams for edit, find, sort, clear 
+          and help features. (Pull request [\#289](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/289))
+        * Edit ambiguous explanations and unecessary tips in DG (Pull request [\#316](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/316))  
     * About Us:
         * Updated Kumaran's part (Pull request [\#18](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/18))
+        * Updated team members' responsibilities. (Pull request [\#296](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/296))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): (Pull requests
