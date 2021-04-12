@@ -204,7 +204,7 @@ This section details the format of the commands available in TutorBuddy. We will
 * Names cannot be duplicates.<br>
   e.g. There cannot be 2 different students of the same name `John Tan` and `John Tan`.
   
-* Indexes **must be positive whole numbers** 1, 2, 3, …
+* Indexes must be positive whole numbers 1, 2, 3, …
 
 * The `STUDENT_INDEX` refers to the index number shown in the [displayed student list](#application-overview).
 
