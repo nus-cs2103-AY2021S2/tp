@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Patient;
 
 /**
- * Clears the address book.
+ * Clears the Patient Records.
  */
 public class ClearPatientCommand extends Command {
 

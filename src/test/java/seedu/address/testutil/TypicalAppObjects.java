@@ -198,13 +198,12 @@ public class TypicalAppObjects {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
-    public static AppointmentSchedule getEmptyAppointmentSchedule() {
-        AppointmentSchedule as = new AppointmentSchedule();
-        return as;
+    public static AddressBook<Patient> getEmptyPatientRecords() {
+        return new AddressBook<>();
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical patients.
+     * Returns an {@code AddressBook} with all the typical doctors.
      */
     public static AddressBook<Doctor> getTypicalDoctorRecords() {
         AddressBook<Doctor> doctorRecords = new AddressBook<>();
@@ -216,6 +215,10 @@ public class TypicalAppObjects {
 
     public static List<Doctor> getTypicalDoctors() {
         return new ArrayList<>(Arrays.asList(DR_GREY, DR_WHO, DR_STRANGE, DR_JEKYLL, DR_MURPHY, DR_DRAKE));
+    }
+
+    public static AddressBook<Doctor> getEmptyDoctorRecords() {
+        return new AddressBook<>();
     }
 
     /**
@@ -232,5 +235,9 @@ public class TypicalAppObjects {
     public static List<Appointment> getTypicalAppointments() {
         return new ArrayList<>(Arrays.asList(BENSON_DR_GREY, CARL_DR_WHO, DANIEL_DR_STRANGE, ELLE_DR_JEKYLL,
                 FIONA_DR_MURPHY, GEORGE_DR_DRAKE));
+    }
+
+    public static AppointmentSchedule getEmptyAppointmentSchedule() {
+        return new AppointmentSchedule();
     }
 }

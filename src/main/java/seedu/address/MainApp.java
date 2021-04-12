@@ -45,7 +45,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 1, false);
+    public static final Version VERSION = new Version(1, 4, 0, false);
 
     private static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
 
@@ -83,11 +83,11 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s appointment schedule, patient records and
-     * {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s appointment schedule, patient records, doctor records and
+     * {@code userPrefs}.
      * The data from the sample patient records will be used instead if {@code storage}'s patient records are not
-     * found, or an empty address book will be used instead if errors occur when reading {@code storage}'s patient
-     * records.
+     * found, or an empty patient address book will be used instead if errors occur when reading {@code storage}'s patient
+     * records. The same applies for doctor records, and appointment schedule.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         // passing storage as a parameter ensures that storage is initialised

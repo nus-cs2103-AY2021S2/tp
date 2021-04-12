@@ -18,7 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListPatientCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListDoctorCommand.
  */
 public class ListDoctorCommandTest {
 

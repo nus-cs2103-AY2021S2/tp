@@ -9,7 +9,7 @@ import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the Appointment Schedule.
  */
 public class ClearAppointmentCommand extends Command {
 
