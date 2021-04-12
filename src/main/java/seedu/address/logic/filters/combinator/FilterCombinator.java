@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Stack;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.filters.Filter;
 import seedu.address.logic.filters.FilterFactory;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -42,6 +43,7 @@ public class FilterCombinator implements Predicate<Customer> {
         Node temp = null;
         try {
             temp = createTree(argument);
+            LogsCenter.getLogger(FilterCombinator.class).info("Created a new filtercombinator" + temp);
         } catch (ParseException e) {
             e.printStackTrace();
             throw e;
@@ -94,6 +96,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 PREFIX_NOT, PREFIX_OR));
 
         allPositions.sort(Comparator.comparingInt(ArgumentTokenizer.PrefixPosition::getStartPosition));
+        LogsCenter.getLogger(FilterCombinator.class).info("All operator positions found : " + allPositions);
         return allPositions;
     }
 
@@ -195,7 +198,7 @@ public class FilterCombinator implements Predicate<Customer> {
             Filter filter = FilterFactory.getCorrespondingFilter(inPresentScope.toString().trim());
             nodeStack.push(new Node(filter));
         }
-
+        LogsCenter.getLogger(FilterCombinator.class).info("Node Stack : " + nodeStack);
         return formTreeFromNodeStack(nodeStack);
     }
 
