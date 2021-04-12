@@ -781,7 +781,7 @@ Action | Format, Examples
 **Show specific content** | `showdc INDEX` <br> e.g., `showdc 1`
 **List content** | `listcontent`
 **List definitions** | `listdef`
-**Copy content to note** | `copytonote`
+**Copy content to note** | `copytonote INDEX` <br> e.g., `copytonote 1`
 ***Note Features*** | 
 **Add note** | `addnote c/CONTENT [t/TAG]…​`
 **List all notes** | `listnote`
