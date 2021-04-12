@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Title {
     public static final String MESSAGE_CONSTRAINTS = "Title should only contain alphanumeric characters and spaces, "
-            + "it should between 2 to 30 characters and not blank\";\n";
+            + "it should between 1 to 30 characters and not blank\n";
 
     /*
      * The first character of the title must not be a whitespace,

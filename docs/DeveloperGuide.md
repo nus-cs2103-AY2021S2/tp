@@ -56,7 +56,7 @@ The application consists of 6 main components:
 
 | Component                           | Description
 | ----------------------------------- | -------------------------------------------------------------------- |
-| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). <br/>It is responsible for: <li>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</li> <li>At shut down: Shuts down the components and invokes cleanup methods where necessary.</li>|
+| `Main`                              | **`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). * It is responsible for: *At app launch: Initializes the components in the correct sequence, and connects them up with each other. *At shut down: Shuts down the components and invokes cleanup methods where necessary.|
 | [**`UI`**](#ui-component)           | The UI of the App.                                                   |
 | [**`Logic`**](#logic-component)     | The command executor.                                                |
 | [**`Model`**](#model-component)     | Holds the data of the App in memory.                                 |
@@ -141,7 +141,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Implementation
 
 ### Tutor Book
 Tutor Tracker's Tutor Book allows users to store a list of tuition tutors.
@@ -518,16 +518,6 @@ The date of an appointment will be indicated using the first column of the grid.
 When the user enters the `timetable` command to open the timetable window, the user input command undergoes the same command parsing as described in
 [Logic component](#logic-component).
 
-Steps for the execution of the `ViewTimeTableCommand` (assuming that no errors are encountered):
-1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
-2. The `TutorTrackerParser` will then create a `ViewTimeTableCommandParser`.
-3. The `ViewTimeTableCommandParser` will then parse the inputs, and creates a `ViewTimeTableCommand`.
-4. The `ViewTimeTableCommand` will then validates the parameters.
-5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `viewTimetable()`, then create a `CommandResult` object and return the result.
-6. The `Ui` component will detect that it is asking for the timetable window, and will open it as a separate window.
-
-![Sequence Diagram of View TimeTable](images/timetable/TimetableWindowSequenceDiagram.png)
-
 **Displaying TimeTable in the GUI**
 
 |              | **Pros**   | **Cons** |
@@ -748,9 +738,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **Extensions**
 
-* 1a. The list is empty.   
-Use case ends.
-
+* 1a. The list is empty.
+  Use case ends.
 <hr/>
 
 **Use Case UC0007: Unfavourite a tutor**
