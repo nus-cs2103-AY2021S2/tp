@@ -523,17 +523,15 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Autocomplete
 
@@ -553,7 +551,7 @@ testers are expected to do more *exploratory* testing.
         2. Exit FriendDex.
     
         3. Remove read permission for data file
-           * (macOS/*nix OS): Execute `chmod 333 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (macOS/*nix OS): Execute `chmod 333 [path of friendDex.jar]/data/frienddex.json` in terminal.
            * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove read 
              permission.
     
@@ -568,7 +566,7 @@ testers are expected to do more *exploratory* testing.
        2. Exit FriendDex.
 
        3. Remove write permission for data file
-           * (macOS/*nix OS): Execute `chmod 555 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (macOS/*nix OS): Execute `chmod 555 [path of friendDex.jar]/data/frienddex.json` in terminal.
            * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove write
              permission.
     
