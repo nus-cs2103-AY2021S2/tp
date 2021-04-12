@@ -37,7 +37,7 @@ public class ClearCommandParserTest {
     public void parse_validLocationArgs_returnsClearLocationCommand() {
         String location = "kitchen";
         ClearCommand expectedClearCommand =
-            new ClearLocationCommand(new LocationContainsPredicate(location));
+            new ClearLocationCommand(new LocationContainsPredicate(location), location);
         assertParseSuccess(parser, " l/kitchen", expectedClearCommand);
         assertParseSuccess(parser, " l/    kitchen", expectedClearCommand);
         assertParseSuccess(parser, " l/kitchen    ", expectedClearCommand);
