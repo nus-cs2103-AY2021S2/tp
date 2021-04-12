@@ -1,7 +1,9 @@
-﻿# NuFash Guide
----
+﻿---
 layout: page
-title: NuFash Developer Guide
+title: Developer Guide
+---
+# NuFash Developer Guide
+
 ---
 * Table of Contents
   {:toc}
@@ -134,7 +136,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
-### [Completed] Default Sorting Order of Garments in Wardrobe
+### Default Sorting Order of Garments in Wardrobe
 
 #### Implementation
 
@@ -327,7 +329,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Harder to implement as the `Name` attribute has its own drawbacks, e.g `Name` could be
       a extremely long phrase, which could be hard for the user to remember or input into the application.
 
-### [Completed] View feature
+### View feature
 
 #### Implementation
 The `view` mechanism extends the `list` mechanism from `AddressBook`. It is facilitated by the `ViewCommand` class.

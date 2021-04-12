@@ -12,7 +12,7 @@ title: Setting up and getting started
 ## Setting up the project in your computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Nufash is a brownfield project for NUS CS2103T AY 20/21 S2, and is built upon the following existing project:
+NuFash is a brownfield project for NUS CS2103T AY 20/21 S2, and is built upon the following existing project:
 
 [AddressBook Level 3](https://github.com/nus-cs2103-AY1920S2/addressbook-level3)
 
@@ -48,7 +48,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [Nufash’s architecture](DeveloperGuide.md#architecture).
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [NuFash’s architecture](DeveloperGuide.md#architecture).
 
 1. **Do the tutorials**
    These tutorials will help you get acquainted with the codebase.
