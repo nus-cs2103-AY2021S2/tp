@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+participant ":PersonListPanel" as PersonListPanel MODEL_COLOR
+participant ":CommandBox" as CommandBox MODEL_COLOR
+end box
+
+-> MainWindow : Up/Down KeyPress
+
+
+alt UP KeyPress
+
+    MainWindow -> PersonListPanel : selectPrev(callback)
+    PersonListPanel -> CommandBox : setAndAppendIndex(string)
+    CommandBox --> PersonListPanel
+    PersonListPanel --> MainWindow
+
+else DOWN KeyPress
+    MainWindow -> PersonListPanel : selectNext(callback)
+    PersonListPanel -> CommandBox : setAndAppendIndex(string)
+    CommandBox --> PersonListPanel
+    PersonListPanel --> MainWindow
+    end
+@enduml

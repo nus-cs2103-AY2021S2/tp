@@ -13,6 +13,20 @@ navigation_title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+A-Bash Book (ABB) is a Command Line Interface (CLI) based Contact Management System built to address the growing demands 
+of businesses with an increasing business ecosystem. Especially in a climate where large amounts of business information 
+are being stored in various decentralised places. ABB acts as a centralised platform for users to store contact details 
+of business partners or colleagues.
+
+This guide serves to aid A-Bash Book (ABB) developers by describing the **Design**, **Architecture** and **Implementation**
+behind each feature. **Design Considerations** can be found for certain features that would require extra attention when
+modifying or enhancing the feature. **Future Enhancements** for some features can also indicate the future state of the feature.
+
+Various **UML Diagrams** are used to help describe the feature flow as well as the associations between objects and classes, 
+to ensure this guide serves as a utilitarian guide. 
+
 
 ## **Design**
 
@@ -248,48 +262,103 @@ hidden UI element will not be included during the layoutBounds calculations.
 
 ### Autocomplete
 
-The current implementation consists of a Ui component called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
-Each `AutoCompleteCell` contains a command word. Command words are retrieved by calling `getAutocompleteCommands()` in `LogicManager` and populated
-by `MainWindow` in the `fillInnerParts()` method. 
+There are 3 autocomplete features currently implemented.
 
-In `CommandBox` a method called `setKeyUpCallback()` triggers the method `updateList()` in `AutocompleteListPanel` on every release of a key. This updates the existing command panel
+1) Commands
+2) Flags
+3) Index
+
+#### Commands
+
+##### Implementation
+
+![Sequence Diagram of Autocomplete Commands](images/AutocompleteCommandsDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+
+Autocomplete Commands currently only implemented for `EDIT` and `DELETE`.
+
+</div>
+
+The current implementation consists of a Ui component called `AutoCompleteListPanel` which is made up of `AutocompleteCells`.
+Each `AutoCompleteCell` contains a command word. Command words are retrieved by calling `LogicManager#getAutocompleteCommands()` and populated
+by `MainWindow#fillInnerParts()`.
+
+The method `CommandBox#setKeyUpCallback()` triggers `AutocompleteListPanel#updateList()` on every release of a key. This updates the existing command panel
 with the correct filtered commands.
 - The `setKeyUpCallback()` uses `addEventFilter()` and detects when a key is released before triggering the function to handle it.
 
-Event filters are added to the root by `MainWindow` and the corresponding keys (`TAB`, `UP`, `DOWN`)
+Event filters are added to the root by `MainWindow` and the corresponding keys (<kbd>`TAB`</kbd>, <kbd>`UP`</kbd>, <kbd>`DOWN`</kbd>, <kbd>ENTER</kbd>)
 are listened to.
 
-- On `TAB` key release, the `doTab()` method which resides in the `AutocompleteListPanel` will be called to handle the
-toggling between commands.
+- On `TAB` key release, `AutocompleteListPanel#processTabKey() ` will be called to handle the
+  toggling between commands.
 
-[Expected Behaviour]
+**[Expected Behaviour]**
 ![TabToggleCommand](images/TabToggleCommand.png)
 
-- On `UP/DOWN` key release, the `selectNext()` and `selectPrev()` methods which reside in PersonListPanel will be called 
-to handle the toggling between contacts.
+#### Flags
+
+##### Implementation
+
+![Sequence Diagram of Autocomplete Flags](images/AutocompleteFlagsDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+
+Autocomplete Flags is currently only implemented for `ADD` and `EDIT` commands.
+
+</div>
+
+The current implementation consists of `MainWindow`, `CommandBox` and `LogicManager`.
+
+`MainWindow` has an eventListener listening to the <kbd>Tab</kbd> key. `LogicManager#getAvailableFlags()` is called to 
+attempt to get the available flags for the command.
+
+`LogicManager#getAvailableFlags()` returns null if command is incomplete. Instead, <kbd>Tab</kbd> key results in
+`Command Autocompletion`.
+
+`LogicManager#getAvailableFlags()` checks if the supplied command string is supported by `Flag Autocompletion`. 
+`LogicManager#filterExistingCommands()` is called to determine which flags are already in the `command string`.
+This is important as this check is required everytime <kbd>Tab</kbd> key is pressed.
+
+When `LogicManager#getAvailableFlags()` returns a populated list of strings, it continues to check the last tag in
+`command string`. If the flag has no content, that flag will be replaced by `CommandBox#setTextvalue()`. If the flag has
+content, the next available flag will be appended by `CommandBox#setAndAppendFlag()`.
+
+#### Index
+
+![Sequence Diagram of Autocomplete Index](images/AutocompleteIndexDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+
+Autocomplete Index is currently only implemented for `EDIT` and `DELETE` commands.
+
+</div>
+
+The current implementation consists of `MainWindow`, `PersonListPanel`, `CommandBox`.
+
+On <kbd>Up/Down</kbd> key press, the `PersonListPanel#selectNext()` and `PersonListPanel#selectPrev()` methods which will be called 
+to handle the toggling between contacts. Then the `CommandBox#setAndAppendIndex()` method appends the index to the
+existing `command string` in `CommandBox`.
 
 [Expected Behaviour]
 ![UpDownToggleCommand](images/UpDownToggleContact.png)
 
-The CommandBox updates the list of commands in the AutocompleteListPanel. 
-The CommandBox also handles autocomplete indices as provided by methods bound to the `UP/DOWN`, by appending them to
-the existing text.
+### Future Enhancements
 
-#### Enhanced Features
+Autocomplete commands could include alias commands.
 
-1. Autocomplete Delete
-    * Once the `DELETE` command is in the command box, `UP/DOWN` keys now scrolls through the contacts. The index
-    of each contact will be autocompleted in the command box.
+### Design Considerations
 
-#### [Proposed Features]
-2. Autocomplete Edit
+Initially, autocomplete flags were untoggleable, and would just append to the `command string` regardless of content. 
+This was originally implemented to allow users to, but to maintain consistency in the future. Consider keeping similar
+autocomplete functionalities to be toggleable.
 
-    * Once the `edit` command is in the command box,`UP/DOWN` keys now scrolls through the contacts. The index of 
-      each contact will be autocompleted in the command box.
-    * On `TAB` key, the possible editable flags will appear be appended into the text of the command box.    
-   
-This feature not only allows the command and index to be autocompleted, but allows autocompletion of command flags too.   
-    
+When adding new flags, `LogicManager#getAutocompleteFlags()` should be updated with the new flags.
+When adding new commands, `LogicManager#getAutocompleteCommands()` should be updated with the new commands.
+When adding autocomplete flag support for new commands, `LogicManager#isAutocompleteFlag()` and 
+`LogicManager#getAvailableFlags()` should add the new commands.
+
 
 ### Remark
 
