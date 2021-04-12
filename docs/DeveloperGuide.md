@@ -933,8 +933,8 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a contact while all contacts are being shown
     1. Prerequisites: List all contacts using the `list` command.
        Multiple contacts in the list, with some contacts tagged in appointments.
-     1. Test case: `delete 1` (where the first contact is not tagged in any appointment) \
-       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
+     1. Test case: `delete 1` (where the 1st contact is not tagged in any appointment) \
+       Expected: 1st contact is deleted from the list. Details of the deleted contact are shown in the status message.
     1. Test case: `delete 0` \
        Expected: No contact is deleted. Error details shown in the status message.
     1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
@@ -943,6 +943,11 @@ testers are expected to do more *exploratory* testing.
        Expected: Contact is not deleted. Error message is shown in status message.
 
 #### Delete multiple contacts
+1. Deleting multiple contacts while all contacts are being shown
+    1. Prerequisites: List all contacts using the `list` command.
+       Multiple contacts in the list, with some contacts tagged in appointments.
+    1. Test case: `delete 1 2` (where the 1st, 2nd contact is not tagged in any appointment) \
+       Expected: 1st, 2nd contact is deleted from the list. Details of the deleted contacts are shown in the status message.
     
 #### Edit a contact
 1. Editing optional fields of a contact while all contacts are being shown
@@ -967,7 +972,17 @@ testers are expected to do more *exploratory* testing.
        Details of edited contact is shown in status message.
        Appointments that have been tagged with the second contact will have their respective contact tags updated to `Annie`.
 
-#### Find a contact
+#### Find contacts
+1. Find contacts with given option
+    1. Prerequisites: There is at least an existing contact that fit the search criteria.
+    1. Test case: `find Alice Bob`\
+       Expected: Returns all contacts which contains 'Alice' or 'Bob' in any of its fields
+    1. Test case: `find o/name Alice`\
+       Expected: Returns all contacts whose name contains 'Alice'.
+    1. Test case: `find o/phone 123`\
+       Expected: Returns all contacts whose phone number contains '123'.
+
+
 
 #### Sort contacts
 1. Sorting contacts while all contacts are being shown
@@ -1064,11 +1079,29 @@ testers are expected to do more *exploratory* testing.
        Expected: No appointment is added. Error details shown in the status message.
 
 #### Delete an appointment
+1. Deleting a appointment while all contacts are being shown
+    1. Prerequisites: List all appointments using the `listAppt` command.
+       Multiple appointments in the list.
+    1. Test case: `delete 1`\
+       Expected: 1st appointment is deleted from the list. Details of the deleted appointment are shown in the status message.
+    1. Test case: `delete 0` \
+       Expected: No appointment is deleted. Error details shown in the status message.
+    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size). \
+       Expected: Similar to the previous.
+       
+#### Find appointments
+1. Find appointments with given option
+    1. Prerequisites: There is at least an existing appointment that fit the search criteria.
+    1. Test case: `findAppt Alice meeting`\
+       Expected: Returns all appointments which contains 'Alice' or 'meeting' in any of its fields
+    1. Test case: `findAppt o/name meeting`\
+       Expected: Returns all appointments with name containing 'meeting'.
+    1. Test case: `findAppt o/address jurong`\
+       Expected: Returns all appointments with address containing 'jurong'.
 
 #### Edit an appointment
 1. Edit all fields
     1. Prerequisites: There is an existing appointment and existing contact in ParentPal.
-    
     2. Input `editAppt 1 n/Math Tuition a/Sunshine Tuition Center d/20/10/2021 13:00 c/1 tc/alice` and press enter.<br>
        Expected: The first appointment is edited to the fields specified.
        
@@ -1076,7 +1109,6 @@ testers are expected to do more *exploratory* testing.
 A reordering of the appointment list may occur.
 </div>
 
-#### Find an appointment
 
 
 
