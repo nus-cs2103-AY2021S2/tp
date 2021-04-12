@@ -22,7 +22,7 @@ Storage -|> XYZStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonXYZStorage .left.|> XYZStorage
 JsonXYZStorage .down.> JsonSerializableXYZ
-JsonSerializableXYZ .right.> JsonAdaptedABC
+JsonSerializableXYZ -right-> JsonAdaptedABC
 
 note left of XYZStorage: XYZ = ContactsList, \nDefinitionBook, etc.
 note right of JsonAdaptedABC: ABC = Contact, \nContent, etc
