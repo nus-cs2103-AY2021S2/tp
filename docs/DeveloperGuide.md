@@ -765,6 +765,25 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `find client`
         Expected: Both lists are not updated. Error details shown in the status message. 
 
+### Listing all properties and appointments
+
+1. List all properties and appointments in the property list and appointment list after a `find` command.
+
+    1. Prerequisites: There exists at least one property and one appointment in the property list and appointment list respectively.
+    
+    1. Test case: `list all`
+       
+       Expected: Filter from `find` command will be cleared, and all properties and appointments in the property list and appointment list are displayed,
+       with a result message showing `Listed all properties and appointments`.
+       
+1. List all properties and appointments in the property and appointment list after a `clear` command.
+
+    1. Prerequisites: There exists at least one property and one appointment in the property list and appointment list respectively.
+    
+    1. Test case: `clear all`
+       
+       Expected: No properties and appointments are displayed, with a result message showing: `No existing properties and appointments available`
+
 ### Editing a property
 
 1. Editing a property.
