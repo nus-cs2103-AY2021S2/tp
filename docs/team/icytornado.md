@@ -18,11 +18,10 @@ Given below are my contributions to the project.
         - `edit-appt` + `index` + `field` to edit => edit the specified field of the appointment specified by the appointment index.
         - the `field` to edit is preceded by its related prefix, i.e. `pt/` for patient, `dr/` for doctor, `at/` for appointment start date and time, `to/` for appointment end date and time, `dur/` for appointment duration, `/t` for appointment tags.
     
-  * Implementation of the `Doctor` feature
+  * Collaborated with teammates in the implementation of `Doctor` feature and its command features.
     - *Description*:
-        - Created the `Doctor` class and implemented its related command features including
-          `delete-doctor`, `edit-doctor`, `add-doctor`, `clear-doctor`, `list-doctor`.
-            
+        - list of `Doctor`commands: `add-doctor`, `delete-doctor`, `list-doctor`,`find-doctor`, `clear-doctor`, `edit-doctor`.
+        - Refer to pull request [#73](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/73)
   * Added some relevant test classes for `Doctor`.
 
 
@@ -40,13 +39,13 @@ Given below are my contributions to the project.
        - Pull request [#154](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/154)
     - Added Use Case documentation on `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
        - Pull request [#162](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/162)
-    - Added Instructions for Manual Testing for `edit-patient`, `find-patient`, `delete-doctor`, `edit-doctor`, `find-doctor`, `edit-appt` features.
+    - Added Instructions for Manual Testing for `edit-patient`, `find-patient`, `edit-doctor`, `find-doctor`, `edit-appt` features.
        - Pull request [#169](https://github.com/AY2021S2-CS2103-W17-2/tp/pull/169)
 
 
 * **Project management**:
-   * Updated a few PRs with the relevant tags and milestones for the project
-   * Closed and merged a few PRs.
+   * Updated my personal PRs with the relevant tags and milestones.
+   * Closed and merged a few of my personal PRs.
    
 
 * **Community**:
