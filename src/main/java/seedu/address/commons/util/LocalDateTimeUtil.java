@@ -15,7 +15,7 @@ public class LocalDateTimeUtil {
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/uuuu HHmm")
             .withResolverStyle(ResolverStyle.SMART);
 
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("d/MM/yyyy")
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy")
             .withResolverStyle(ResolverStyle.SMART);
 
     /**
