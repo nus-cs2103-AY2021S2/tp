@@ -678,8 +678,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 |`*`|Social Users|See/Give reviews on diets|Know which diets are more effective for others|
 |`*`|Social Users|Connect with peers to see their dietary plans and progress|Stay up-to-date with my peers and possibly motivate myself|
 
-*{More to be added}*
-
 ### Use Cases
 
 (For all use cases below, the **Body Mass Index (BMI) Tracker** is the `BMITracker`, **Diet Plan Selector** is the `DietSelector`, **Macronutrients Tracker** is the `MacroTracker` and the **Actor** is the `user`, unless specified otherwise)
@@ -790,8 +788,6 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
    * 1b1. Show invalid food intake message
    * Use case ends
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -915,7 +911,7 @@ Included in this section are some basic instructions developers may make use of 
 
 1. Add food intake for a food item that is already in the food list, but with different nutritional values
     1. Test case: `food_intake_add d/31 Mar 2021 n/potato c/20 f/35 p/50`<br>
-        Result: Food item that was in the list "potato" is added into FoodIntake list for 31 Mar 2021, but with the new nutritional values.
+        Result: Second potato intake for the day, "potato #2" (with duplicate count 2 automatically added) is added into FoodIntake list for 31 Mar 2021 with the new nutritional values. The nutritional values of the food item "potato" is also updated in the food list. Previously added FoodIntakes for "potato" should not be affected.
 
 1. Update food intake
     1. Test case: `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`<br>
