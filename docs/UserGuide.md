@@ -52,6 +52,7 @@ the functions and intended usage of the application.
 
 The main GUI window consists of UI components that work together to help you to perform tasks.
 These components include:
+
 1. [Menu Bar](#menu-bar)
 2. [Budget Display](#budget-display)
 3. [Financial Record List](#financial-record-list)
@@ -63,6 +64,7 @@ These components include:
 
 The `Menu Bar` contains drop-down menus which provides access to common useful functions.
 These functions include:
+
 - [Exit](#exiting-the-program-:-`exit`) - Exits the program
 - `Toggling CLI's visibility` - Shows/Hides the [Command Box](#command-box) and [Result Display](#result-display)
 - [Category Statistics](#viewing-top-5-categories-spent-for-the-current-month) - Opens the Category statistics window
@@ -224,7 +226,7 @@ Examples:
 
 ### Setting monthly budget : `set-bg`
 
-If you would like to change your budget to something different from what it currently is in BudgetBaby, you may use the `set-bg` command to set the budget for the current month and the following 12 months.
+If you would like to change your budget to something different from what it currently is in BudgetBaby, you may use the `set-bg` command to set the budget for the current month and the following 12 months. Note that the budget you have set for previous months cannot be updated and you can only update the current month's budget.
 
 <img src="images/features/set-bg.png" width="600px">
 
@@ -321,6 +323,8 @@ Format: `exit`
 
 The UI displays the top 5 categories that were spent on a particular month.
 
+<div markdown="block" class="alert alert-primary">
+
 **:bulb: Tips:**<br>
 
 You may use the `F6` hotkey to open up the Month statistics window.
@@ -332,6 +336,8 @@ You may use the `F6` hotkey to open up the Month statistics window.
 <img src="images/features/monthly-stats.png" width="450px">
 
 The UI displays the current monthly budget that has been set automatically.
+
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
 
@@ -385,7 +391,7 @@ _Details coming soon ..._
 | **Delete a Financial Record** | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                                                                      |
 | **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                                                                 |
-| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                      |
+| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
 | **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
 | **Help**                      | `help`                                                                                                              |
