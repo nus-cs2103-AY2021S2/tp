@@ -565,8 +565,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
 | `* *`    | user                                       | exit the application                              |                                                              |
 
-*{More to be added}*
-
 ### Use cases
 
 *(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
