@@ -170,26 +170,6 @@ violate the Law of Demeter, hence the AttributeManager class provides access to 
 The separation of attributes and conditions into their own packages increases cohesion and allows for the future
 creation of commands to reuse the code when enforcing conditions.
 
-### Mark task as done
-
-A task has a Status attribute which can be marked as done, using the Done command.
-
-  * The Status attribute is a data field belonging to Task, and only has 2 valid values: 'done' and 'not done'.
-  * The doneCommand only takes in a single parameter, INDEX, which must be a valid positive integer.
-
-The following activity diagram illustrates how a user might utilise this feature:
-
-![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
-
-The following sequence diagram has been simplified to show the main processes called during the execution of
-DoneCommand.
-
-![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
-
-As seen from the sequence diagram above, the Done Command makes use of the setTask() function to update the model
-since this process is equivalent to updating the status attribute from 'not done' to 'done'. This abides by the DRY
-principle to avoid writing functions with similar logical processes.
-
 
 ### Find matching task using keyword(s)
 
@@ -337,6 +317,35 @@ to remove the `Date`/`RecurringSchedule` field without removing the `Duration` f
 
     This approach was not chosen as it would require more refactoring of code - if anything is missed out, 
 it will result in undesirable runtime exceptions.
+
+
+### Mark task as done
+
+A task has a Status attribute which can be marked as done, using the Done command.
+
+  * The Status attribute is a data field belonging to Task, and only has 2 valid values: 'done' and 'not done'.
+  * The doneCommand only takes in a single parameter, INDEX, which must be a valid positive integer.
+
+The following activity diagram illustrates how a user might utilise this feature:
+
+![DoneCommandActivityDiagram](images/DoneCommandActivityDiagram.png)
+
+The following sequence diagram has been simplified to show the main processes called during the execution of
+DoneCommand.
+
+![DoneSequenceDiagram](images/DoneSequenceDiagram.png)
+
+As seen from the sequence diagram above, the Done Command makes use of the setTask() function to update the model
+since this process is equivalent to updating the status attribute from 'not done' to 'done'. This abides by the DRY
+principle to avoid writing functions with similar logical processes.
+
+##### Design Considerations
+For the `DoneCommand`, a new Status attribute needed to be created for the task to be represented as done or not done.
+
+1. **Current design**: The syntax of the command is designed to be short in order to solve the issue of
+efficiency faced by our target users. As such, the only parameter to take in is the INDEX and avoids unnecessary prefix
+requirements.
+
 
 ### Viewing list of tags in the tags panel
 
@@ -718,7 +727,7 @@ Precondition: The task has a title, does not have a deadline date and only repea
 
       Use case ends.
 
-#### **Use case: Mark task as done**
+#### **Use case: Mark a task as done**
 
 **MSS**
 1. User enters command to mark a task as done.
@@ -733,7 +742,7 @@ Precondition: The task has a title, does not have a deadline date and only repea
 
       Use case ends.
       
-#### **Use case: Postpone task's date**
+#### **Use case: Postpone a task's date**
 
 **MSS**
 1. User enters command to snooze the task.
@@ -743,6 +752,9 @@ Precondition: The task has a title, does not have a deadline date and only repea
    Use case ends.
 
 **Extensions**
+* 1a. The task does not contain any date attribute.
+    *2a1. PlanIT displays 'task does not have date attribute' message.
+
 * 2a. The number of days to postpone the task is more than 365
     * 2a1. PlanIT displays snoozeCommand error message.
 
