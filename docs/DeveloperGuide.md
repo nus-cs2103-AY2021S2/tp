@@ -106,7 +106,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-> **NOTE:** student book contains all student records and appointment data. 
+> **NOTE:** `StudentBook` contains all student records and appointment data. 
 > 
 >
 ### Storage component
@@ -186,7 +186,7 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 ### Delete Student `delete`
 
 #### Actual Implementation
-The delete student feature helps users to delete a particular student record by the student's matriculation number.
+The delete student feature helps users to delete a particular student's record by the student's matriculation number.
 
 The delete student feature is implemented in the `DeleteCommand` class and facilitated by the following classes:
 * `Command`. `DeleteCommand` extends `Command` and overrides the `execute` method, which deletes a `Student` from the `Model`.
@@ -238,13 +238,13 @@ Furthermore, in Alternative 2, the user could potentially identify and delete th
 #### Actual Implementation
 An appointment is uniquely determined by a student's matriculation number. Other attributes relevant to an appointment include date, start time, and end time, all of which are compulsory.
 
-The add appointment feature is facilitated by `AddCommandParser` and `AddAppointmentCommand`. Implementing `Parser` interface, `AddCommandParser` takes in user's command and creates a new appointment based on the parsed data. `AddAppointmentCommand`, inheriting from `Command`, adds the newly created `Appointment` to the `Model`.
+The add appointment feature is facilitated by `AddAppointmentCommandParser` and `AddAppointmentCommand`. Implementing `Parser` interface, `AddAppointmentCommandParser` takes in user's command and creates a new appointment based on the parsed data. `AddAppointmentCommand`, inheriting from `Command`, adds the newly created `Appointment` to the `Model`.
 
 Given below is an example usage scenario that elucidates the mechanism of the add appointment feature.
 
-Step 1: The user executes `addAppt A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
+Step 1: The user executes `addAppt A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddAppointmentCommandParser` instance.
 
-Step 2: The `AddCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
+Step 2: The `AddAppointmentCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
 
 > **NOTE:** If the input format is incorrect or not found, `AddAppointmentCommandParser` will throw a `ParseException` to notify the user of the error.
 
@@ -284,11 +284,11 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 
 #### Actual Implementation
 
-The find student feature helps users to locate a particular student record by the student's matriculation number along with the corresponding appointment if present.
+The find student feature helps users to locate a particular student's record by the student's matriculation number along with the corresponding appointment if present.
 
 This feature is facilitated by `FindCommandParser` which implements the `Parser` interface and `FindCommand` which extends the abstract class `Command`. 
 `FindCommandParser` takes in the user's command and validates the input before passing it to `FindCommand`.
-FindCommand will invoke a method to search for the particular student record and their corresponding appointment in Model and return the specific student record with their appointment if it exists.
+FindCommand will invoke a method to search for the particular student's record and their corresponding appointment in Model and return the specific student's record with their appointment if it exists.
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
 Step 1: The user executes `find A0175678U` into Vax@NUS.
@@ -296,9 +296,9 @@ Step 1: The user executes `find A0175678U` into Vax@NUS.
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
 
-Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student record and the appointment belonging to the particular student from `Model`.
+Step 3: The instance of `FindCommandParser` will create a new `FindCommand` instance which will retrieve and return the student's record and the appointment belonging to the particular student from `Model`.
 
-Step 4: Display the particular student record and appointment onto the UI. 
+Step 4: Display the particular student's record and appointment onto the UI. 
 
 The following sequence diagram shows how the find operation works:
 
@@ -314,8 +314,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 * **Alternative 1 (current choice):** Find student based on student's matriculation number.
     * Pros:
-        * Each student record found uniquely identifies a student. 
-        * Only one student record and one appointment is shown if the particular student exists and has an appointment in the system. 
+        * Each student's record found uniquely identifies a student. 
+        * Only one student's record and one appointment is shown if the particular student exists and has an appointment in the system. 
     * Cons:
         * The user is required to know the student's matriculation number to perform the action. 
         
@@ -346,7 +346,7 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 ### Product scope
 **Target user profile story**: <br> <br>
 Ian is a former air crew with Singapore Airlines. He recently lost his job due to the COVID-19 pandemic resulting in the collapse in international travel.
-He found a job with the University Health Center (UHC) as an admin executive. He is a fast typer with good knowledge of the command line interface.
+He found a job with the University Health Center (UHC) as an admin executive. He is a fast typist with good knowledge of the command line interface.
 Currently, Ian is using Excel to keep track of all the student records and vaccination appointments in UHC. With so many rows and columns of data to look at, 
 Ian finds it difficult to sieve information and is prone to making human errors.
 
@@ -372,17 +372,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | add a new student record       | keep track of that student's vaccination status                        |
-| `* * *`  | user                                       | edit a student's record        | update the system of student's records should changes occur            |
-| `* * *`  | user                                       | delete a student's record      | remove records that I no longer need or I accidentally added           | |
+| `* * *`  | user                                       | add a new student to the records       | keep track of that student's vaccination status                        |
+| `* * *`  | user                                       | edit a student's record        | update the student's record should changes occur            |
+| `* * *`  | user                                       | delete a student's record      | remove the student's record that I no longer need or I accidentally added           | |
 | `* * *`  | user                                       | view student statistics        | understand the progress of the vaccination program                      |
 | `* * *`  | user                                       | add an appointment for a student | schedule and keep track of that student's appointment                |
 | `* * *`  | user                                       | arrange for appointments without timing clashes | maximise the number of appointments in a day to increase UHC's efficiency and effectivity |
 | `* * *`  | user                                       | quickly arrange for appointments without manually checking for timing clashes | effectively and efficiently schedule appointments |
-| `* * *`  | user                                       | edit a student's appointment    | update the system of appointments should changes occur                 |
+| `* * *`  | user                                       | edit a student's appointment    | update the appointment should changes occur                 |
 | `* * *`  | user                                       | delete a student's appointment  | remove appointments that I no longer need or I accidentally added    |
 | `* * *`  | user                                       | list all data                   | view all student records and appointments at once                      |
-| `* *`    | user                                       | find a student and their appointment | locate a particular student record and their appointment (if it exists) without traversing the entire list   |
+| `* *`    | user                                       | find a student and their appointment | locate a particular student's record and their appointment (if it exists) without traversing the entire list   |
 | `* *`    | user                                       | filter student records         | view a specific group of student records |
 | `* *`    | new user                                   | see the usage of commonly used commands   | quickly refer to instructions when I forget how to use Vax@NUS    |
 | `* *`    | new user                                   | see the usage of all instructions         | refer to instructions when I forget how to use less common commands in Vax@NUS     |
@@ -409,7 +409,7 @@ Use case ends
 
 **Extensions**
 
-* 1a. The specified student record exists in the system.
+* 1a. The specified student's record exists in the system.
 
     * 1a1. System shows an error message.
   
@@ -457,9 +457,9 @@ Use case ends
 
 **MSS**
 
-1.  User requests to find a specific student record and his/her appointment.
-2.  System finds the particular student record and appointment. 
-3.  System shows the student record and appointment of the particular student.
+1.  User requests to find a specific student's record and his/her appointment.
+2.  System finds the particular student's record and appointment. 
+3.  System shows the student's record and appointment of the particular student.
 
     Use case ends.
 
@@ -472,13 +472,13 @@ Use case ends
   
         Use case ends.
         
-* 2a. Specified student does not exist.
+* 2a. the specified student does not exist.
 
     * 2a1. System shows an error message.
   
         Use case ends.
         
-* 3a. Specified student does not have an appointment.
+* 3a. The specified student does not have an appointment.
 
     * 3a1. System shows an empty appointment list.
   
@@ -495,7 +495,7 @@ Use case ends
 
 **Extensions**
 
-* 1a. Specified student does not exist.
+* 1a. The specified student does not exist.
 
     * 1a1. System shows an error message.
       
@@ -516,6 +516,8 @@ Use case ends
 
     Use case ends.
 
+**Extensions**
+
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
@@ -530,8 +532,9 @@ Use case ends
 
 * 1c. System detects that the given parameter is invalid.
 
-    * 1c1. System shows an error message.
-      <br> Use case ends.
+    * 1c1. System shows an error message. 
+      
+        Use case ends.
 
 **Use case: Filter all student records**
 
@@ -541,6 +544,8 @@ Use case ends
 2.  System displays a list of filtered records.
 
     Use case ends.
+
+**Extensions**
 
 * 1a. System detects that the given parameter is invalid.
 
@@ -691,7 +696,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
 
    1. Test case: `find A0221234N`<br>
-      Expected: The student record and appointment belonging to Roy Balakrishnan whose matriculation number matches "A0221234N" will be shown.  
+      Expected: The student's record and appointment belonging to Roy Balakrishnan whose matriculation number matches "A0221234N" will be shown.  
       
    1. Test case: `find A1209478T`<br>
       Expected: No student is found. Error details shown in the status message telling user no student with the specified matriculation number is found. 
