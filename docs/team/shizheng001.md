@@ -1,3 +1,10 @@
+shizheng001.md---
+layout: page
+title: Shi Zheng's Project Portfolio Page
+---
+
+## Project: Car@leads
+
 #Overview Of Product
 
 Car@leads is a **desktop app for a car salesperson to manage customer contacts** (CLI), to facilitate easy access to
@@ -14,7 +21,7 @@ This is the [code](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=sh
 - I have also updated the relevant classes which are required for a functional email feature.
 
 - I have also implemented some filters such as the address filter and the tag filter.
-  
+
 - I enhanced the delete function to delete customer in the contact list base on his name rather than index, this is more simplified as one may simply delete the customer with a matching name typed in. As a salesperson, user may have hundreds of contacts in his list, and it will be troublesome for him to scroll through the list or to use filter function to first filter the list then delete by index. 
 
 - In the UG, I have done GUI testing and make sure all example commands works well and added on details and screenshots to provided better explanations. I have also updated delete function and added email feature in UG.

@@ -43,6 +43,6 @@ Given below are my contributions to the project.
     * Appendix for effort
     * Sequence diagrams enhancement
   *Index landing:[\#77](https://github.com/AY2021S2-CS2103T-W12-2/tp/pull/77/files)
-      
-      
+
+
 * _{you can add/remove categories in the list above}_
