@@ -13,7 +13,8 @@ Given below are my contributions to the project.
 * **New Feature**:
    * I had developed the `DeleteContactCommand`, `AddContactCommand`,
      `DeleteContactCommandParser` and `AddContactCommandParser`, etc. I was
-     also responsible for refactoring various files [\#208] [\#89]
+     also responsible for refactoring various files [\#208](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/208/files) 
+     [\#89](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/89/files)
 
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=KevinLohJunYong&tabRepo=AY2021S2-CS2103T-W13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
@@ -24,13 +25,13 @@ Given below are my contributions to the project.
     * I did tests for `AddContactCommand`, `DeleteContactCommand`
        and their corresponding parsers (i.e `AddContactCommandParser` and
        `DeleteContactCommandParser`)
-    * I thought of how to write the code as elegantly as possible [\#208]
+    * I thought of how to write the code as elegantly as possible [\#208](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/208/files)
   
 * **Documentation**:
   
    * I contributed to the developer guide by in the Delete Contact Command section.
      I had explained about the `DeleteContactCommand` and I 
-     wrote plantUML code to generate the Activity Diagram and Sequence Diagram [\#245]
+     wrote plantUML code to generate the Activity Diagram and Sequence Diagram [\#245](https://github.com/AY2021S2-CS2103T-W13-4/tp/pull/245/files)
 
 *  **Community**
     
