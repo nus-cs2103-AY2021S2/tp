@@ -280,7 +280,7 @@ Takes up less space in the model.
 a whole column, or search through the slots in the column to find the slot.
 
 
-#### setTimetable
+#### Implementation : `setTimetable`
 
 We store an SimpleObjectProperty of a localDate inside a class called timetablePrefs in the model.
 When we initialize the Ui components, a ReadOnlyObservableValue of this localDate is passed to the TimetableView.
