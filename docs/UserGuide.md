@@ -148,6 +148,9 @@ Commands discussed in this user guide follow these rules:
 * Commands that do not take in extra parameters (such as `help` and `exit`) will ignore the additional parameters that are appended to it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* If a command expects a specific set of parameters, another parameter with an unrecognised prefix would be assumed to be part of the previous parameters input and not as another parameter.<br>
+  e.g. if a command expects these parameters `addP n/CS2103` and instead you enter `addP n/CS2103 p/56785678`, the application would assume your input to `n/` to be `CS2103 p/56785678`, which may not be valid for certain commands.
+
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
