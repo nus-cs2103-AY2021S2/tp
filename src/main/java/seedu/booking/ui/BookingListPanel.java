@@ -1,12 +1,12 @@
 package seedu.booking.ui;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.booking.model.booking.Booking;
-
 
 /**
  * Panel containing the list of persons.
@@ -18,7 +18,7 @@ public class BookingListPanel extends UiPart<Region> {
     private ListView<Booking> bookingListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code BookingListPanel} with the given {@code ObservableList}.
      */
     public BookingListPanel(ObservableList<Booking> bookingList) {
         super(FXML);
@@ -26,8 +26,12 @@ public class BookingListPanel extends UiPart<Region> {
         bookingListView.setCellFactory(listView -> new BookingListViewCell());
     }
 
+    public void addListener(ChangeListener<Booking> listener) {
+        bookingListView.getSelectionModel().selectedItemProperty().addListener(listener);
+    }
+
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Booking} using a {@code BookingCard}.
      */
     class BookingListViewCell extends ListCell<Booking> {
         @Override

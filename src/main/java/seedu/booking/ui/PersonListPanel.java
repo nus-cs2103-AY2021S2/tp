@@ -1,5 +1,6 @@
 package seedu.booking.ui;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -23,6 +24,10 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    public void addListener(ChangeListener<Person> listener) {
+        personListView.getSelectionModel().selectedItemProperty().addListener(listener);
     }
 
     /**

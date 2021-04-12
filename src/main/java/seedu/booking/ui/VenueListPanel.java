@@ -1,5 +1,6 @@
 package seedu.booking.ui;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -7,9 +8,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.booking.model.venue.Venue;
 
-
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of venues.
  */
 public class VenueListPanel extends UiPart<Region> {
     private static final String FXML = "VenueListPanel.fxml";
@@ -18,7 +18,7 @@ public class VenueListPanel extends UiPart<Region> {
     private ListView<Venue> venueListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code VenueListPanel} with the given {@code ObservableList}.
      */
     public VenueListPanel(ObservableList<Venue> bookingList) {
         super(FXML);
@@ -26,8 +26,12 @@ public class VenueListPanel extends UiPart<Region> {
         venueListView.setCellFactory(listView -> new VenueListViewCell());
     }
 
+    public void addListener(ChangeListener<Venue> listener) {
+        venueListView.getSelectionModel().selectedItemProperty().addListener(listener);
+    }
+
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Venue} using a {@code VenueCard}.
      */
     class VenueListViewCell extends ListCell<Venue> {
         @Override

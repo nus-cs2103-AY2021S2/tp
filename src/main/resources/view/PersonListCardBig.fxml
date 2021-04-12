@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="id" text="\$id" styleClass="big_cell_id" visible="false"/>
+        <Label fx:id="name" text="\$first" styleClass="big_cell_title" />
+      </HBox>
+      <FlowPane fx:id="tags" styleClass="big_tags" HBox.hgrow="ALWAYS">
+        <padding>
+          <Insets top="5" right="5" bottom="5" left="5" />
+        </padding>
+      </FlowPane>
+      <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" minWidth="150" />
+          <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <children>
+          <Label styleClass="big_cell_heading" text="Phone:" alignment="TOP_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+          <Label fx:id="phone" styleClass="big_cell_label" text="\$phone" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+          <Label styleClass="big_cell_heading" text="Email" alignment="TOP_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+          <Label fx:id="email" styleClass="big_cell_label" text="\$email" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        </children>
+      </GridPane>
+    </VBox>
+  </GridPane>
+</HBox>
