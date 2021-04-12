@@ -1,0 +1,6 @@
+@startuml
+start
+:User executes uncompleted command;
+:Returns delivery list with all delivery tasks that are not done if any;
+stop
+@enduml

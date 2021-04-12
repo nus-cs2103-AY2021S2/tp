@@ -7,17 +7,17 @@ participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant ":EditCommand" as EditCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
-participant "descriptor:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+participant "descriptor:EditCustomerDescriptor" as EditCustomerDescriptor LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit 1 n/jacob")
+[-> LogicManager : execute("edit 1 n/Jacob")
 activate LogicManager
 
-LogicManager -> DeliveryListParser : parseCommand("edit 1 n/jacob")
+LogicManager -> DeliveryListParser : parseCommand("edit 1 n/Jacob")
 activate DeliveryListParser
 
 create EditCommandParser
@@ -27,19 +27,19 @@ activate EditCommandParser
 EditCommandParser --> DeliveryListParser
 deactivate EditCommandParser
 
-DeliveryListParser -> EditCommandParser : parse("1 n/apple")
+DeliveryListParser -> EditCommandParser : parse("1 n/Jacob")
 activate EditCommandParser
 
 create EditCommand
 EditCommandParser -> EditCommand
 activate EditCommand
 
-create EditItemDescriptor
-EditCommand -> EditItemDescriptor
-activate EditItemDescriptor
+create EditCustomerDescriptor
+EditCommand -> EditCustomerDescriptor
+activate EditCustomerDescriptor
 
-EditItemDescriptor --> EditCommand : descriptor
-deactivate EditItemDescriptor
+EditCustomerDescriptor --> EditCommand : descriptor
+deactivate EditCustomerDescriptor
 
 EditCommand --> EditCommandParser : descriptor
 deactivate EditCommand
@@ -63,13 +63,13 @@ deactivate DeliveryListParser
 LogicManager -> EditCommand : execute(model)
 activate EditCommand
 
-EditCommand -> Model : getFilteredLCustomerList()
+EditCommand -> Model : getFilteredCustomerList()
 activate Model
 
 Model --> EditCommand
 deactivate Model
 
-EditCommand -> EditCommand : createEditedCustomer(customerToEdit, editCustomerDescription)
+EditCommand -> EditCommand : createEditedCustomer(customerToEdit, editCustomerDescriptor)
 activate EditCommand
 
 EditCommand --> EditCommand
@@ -94,3 +94,4 @@ deactivate EditCommand
 [<--LogicManager : result
 deactivate LogicManager
 @enduml
+

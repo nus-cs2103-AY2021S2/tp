@@ -10,7 +10,7 @@ if () then ([user input is valid])
     if () then ([delivery tasks exists in delivery list])
         :Delete tasks from delivery list;
     else ([else])
-        :Show delivery tasks does not exist message;
+        :Show invalid index message;
     endif
 else ([else])
     : Show invalid command format message;

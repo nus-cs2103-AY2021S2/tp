@@ -4,7 +4,7 @@
 start
 :User executes edit command;
 :Parse user input;
-if () then ([ Index <= 0 or Index > number of delivery task in the list ])
+if () then ([ user input is not valid ])
     : Display command error message;
 else ([else])
     if () then ([else])

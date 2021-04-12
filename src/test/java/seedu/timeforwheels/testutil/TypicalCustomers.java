@@ -26,22 +26,22 @@ public class TypicalCustomers {
 
     public static final Customer ALICE = new CustomerBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRemark("Busy")
+            .withPhone("94351253").withRemark("Busy").withDone("[✓]")
             .withTags("liquid").build();
     public static final Customer BENSON = new CustomerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withRemark("Very Busy")
-            .withTags("hot", "fragile").build();
+            .withTags("hot", "fragile").withDone("[✓]").build();
     public static final Customer CARL = new CustomerBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withDone("[✓]").withAddress("wall street").build();
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("heavy").build();
+            .withEmail("cornelia@example.com").withDone("[✓]").withAddress("10th street").withTags("heavy").build();
     public static final Customer ELLE = new CustomerBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withEmail("werner@example.com").withDone("[X]").withAddress("michegan ave").build();
     public static final Customer FIONA = new CustomerBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withEmail("lydia@example.com").withDone("[X]").withAddress("little tokyo").build();
     public static final Customer GEORGE = new CustomerBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withDone("[X]").withAddress("4th street").build();
 
     // Manually added
     public static final Customer HOON = new CustomerBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -72,7 +72,23 @@ public class TypicalCustomers {
         return ab;
     }
 
+    public static DeliveryList getCompletedDeliveryList() {
+        DeliveryList ab = new DeliveryList();
+        for (Customer customer : getCompletedCustomers()) {
+            ab.addCustomer(customer);
+        }
+        return ab;
+    }
+
     public static List<Customer> getTypicalCustomers() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Customer> getCompletedCustomers() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL));
+    }
+
+    public static List<Customer> getUncompletedCustomers() {
+        return new ArrayList<>(Arrays.asList(ELLE, FIONA, GEORGE));
     }
 }

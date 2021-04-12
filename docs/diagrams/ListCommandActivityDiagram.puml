@@ -1,0 +1,6 @@
+@startuml
+start
+:User executes list command;
+:Returns the current delivery list;
+stop
+@enduml

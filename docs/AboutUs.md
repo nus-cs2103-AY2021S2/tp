@@ -42,8 +42,8 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 
 <img src="images/jacob-109.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio]()]
+[[github](http://github.com/Jacob-109)]
+[[portfolio](team/Jacob-109.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading

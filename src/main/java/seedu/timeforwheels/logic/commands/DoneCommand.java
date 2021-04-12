@@ -20,13 +20,12 @@ public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a task as done with a tick "
-            + "by the task number used in the listing. \n"
-            + "Parameters: TASK_NUMBER "
+            + ": Set a delivery task in the delivery list to done or not done \n"
+            + "Parameters: TASK_NUMBER \n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_DONE_CUSTOMER_SUCCESS =
-        "The following Delivery Order has been checkmarked : %1$s";
+        "The following Delivery Task has been marked : %1$s";
     public static final String CHECKMARK = "[✓]";
     public static final String CROSS = "[X]";
     private final Index targetIndex;

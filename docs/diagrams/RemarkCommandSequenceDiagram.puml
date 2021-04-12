@@ -5,15 +5,16 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":DeliveryListParser" as DeliveryListParser LOGIC_COLOR
 participant ":RemarkCommandParser" as RemarkCommandParser LOGIC_COLOR
-participant "command:RemarkCommand" as RemarkCommand LOGIC_COLOR
+participant ":RemarkCommand" as RemarkCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
+participant "descriptor:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("remark 3 r/regular customer")
+[-> LogicManager : execute("edit 1 n/jacob")
 activate LogicManager
 
 LogicManager -> DeliveryListParser : parseCommand("remark 3 r/regular customer")
@@ -26,8 +27,22 @@ activate RemarkCommandParser
 RemarkCommandParser --> DeliveryListParser
 deactivate RemarkCommandParser
 
-DeliveryListParser -> RemarkCommandParser : parse("remark 3 r/regular customer"")
+DeliveryListParser -> RemarkCommandParser : parse("3 r/regular customer")
 activate RemarkCommandParser
+
+create RemarkCommand
+RemarkCommandParser -> RemarkCommand
+activate RemarkCommand
+
+create EditItemDescriptor
+RemarkCommand -> EditItemDescriptor
+activate EditItemDescriptor
+
+EditItemDescriptor --> RemarkCommand : descriptor
+deactivate EditItemDescriptor
+
+RemarkCommand --> RemarkCommandParser : descriptor
+deactivate RemarkCommand
 
 create RemarkCommand
 RemarkCommandParser -> RemarkCommand
@@ -38,7 +53,7 @@ deactivate RemarkCommand
 
 RemarkCommandParser --> DeliveryListParser : command
 deactivate RemarkCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
+
 RemarkCommandParser -[hidden]-> DeliveryListParser
 destroy RemarkCommandParser
 
@@ -48,13 +63,19 @@ deactivate DeliveryListParser
 LogicManager -> RemarkCommand : execute(model)
 activate RemarkCommand
 
-RemarkCommand -> Model : getFilteredCustomerList()
+RemarkCommand -> Model : getFilteredLCustomerList()
 activate Model
 
 Model --> RemarkCommand
 deactivate Model
 
-RemarkCommand -> Model : setCustomer(old customer, updated customer)
+RemarkCommand -> RemarkCommand : createEditedCustomer(customerToEdit, editCustomerDescription)
+activate RemarkCommand
+
+RemarkCommand --> RemarkCommand
+deactivate RemarkCommand
+
+RemarkCommand -> Model : setCustomer(customerToEdit, editedCustomer)
 activate Model
 
 Model --> RemarkCommand
