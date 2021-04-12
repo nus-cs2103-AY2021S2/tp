@@ -21,6 +21,4 @@ else([invalid command format])
 endif
 stop
 
-
-
 @enduml

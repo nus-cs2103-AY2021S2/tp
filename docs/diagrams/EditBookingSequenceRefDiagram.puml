@@ -60,9 +60,3 @@ group sd How EditBookingCommand interacts with Model to edit the booking
 
 end
 @enduml
-
-
-
-
-
-
