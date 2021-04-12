@@ -35,10 +35,10 @@ public class TypicalPassengers {
             .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0))
             .withAddress("wall street").build();
     public static final Passenger DANIEL = new PassengerBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0))
+            .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(18, 0))
             .withAddress("10th street").withTags("marketing").build();
     public static final Passenger ELLE = new PassengerBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(21, 0))
+            .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(21, 0))
             .withAddress("michegan ave").build();
     public static final Passenger FIONA = new PassengerBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(8, 30))

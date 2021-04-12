@@ -1,11 +1,11 @@
 {
-  "_comment": "AddressBook save file with a Pool referencing a nonexistent Passenger",
+  "_comment": "AddressBook save file which contains the same Passenger and Pool values as in TypicalAddressBook#getTypicalAddressBook()",
   "passengers" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "marketing" ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "1800",
     "priceStr" : ""
   }, {
@@ -91,11 +91,11 @@
   } ],
   "pools" : [ {
     "passengers" : [ {
-    "name" : "Invalid Passenger",
+    "name" : "Alice Pauline",
     "phone" : "94351253",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "marketing" ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "1800",
     "priceStr" : ""
     }, {
@@ -128,7 +128,7 @@
     "phone" : "87652533",
     "address" : "10th street",
     "tagged" : [ "marketing" ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "1800",
     "priceStr" : ""
     }, {
@@ -136,7 +136,7 @@
     "phone" : "9482224",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "tripDayStr" : "FRIDAY",
+    "tripDayStr" : "MONDAY",
     "tripTimeStr" : "2100",
     "priceStr" : ""
     }, {
