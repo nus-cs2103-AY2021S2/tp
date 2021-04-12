@@ -20,3 +20,4 @@ like `and` `or` `not` as well as brackets to give rise to more complex query str
   in the user guide. 
   
 - In the DG, I updated some Use cases.
+
