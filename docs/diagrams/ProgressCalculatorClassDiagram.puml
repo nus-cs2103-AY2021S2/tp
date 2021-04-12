@@ -1,5 +1,12 @@
 @startuml
 'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor #73c8df
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeFontColor #FFFFFF
+skinparam ArrowColor MODEL_COLOR
+show members
 
 skinparam classAttributeIconSize 0
 
