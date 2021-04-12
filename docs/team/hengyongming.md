@@ -59,7 +59,6 @@ Given below are my contributions to the project.
   * Setting up GitHub team organisation and repo
   * Managed releases `v1.3(trial)` on [Github](https://github.com/AY2021S2-CS2103T-W14-4/tp/releases/tag/v1.3-trial)
   * Managed the issue tracker and milestones v1.1 - v1.4 (4 milestones) on GitHub.
-  * Miscellaneous GitHub related set-up (product website, protected GitHub branch, set up tests, etc.)
 
 * **Documentation**:
   * User Guide:
