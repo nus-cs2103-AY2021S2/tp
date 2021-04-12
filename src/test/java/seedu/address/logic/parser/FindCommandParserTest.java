@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -46,11 +45,11 @@ public class FindCommandParserTest {
 
         FindCommand expectedNameFindCommand = new FindCommand(predicate);
         assertParseSuccess(parser,
-                PREFIX_NAME + PREAMBLE_WHITESPACE + "Alice Bob", expectedNameFindCommand);
+                PREFIX_NAME + " " + "Alice Bob", expectedNameFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                PREFIX_NAME + PREAMBLE_WHITESPACE + " \n Alice \n \t Bob  \t", expectedNameFindCommand);
+                PREFIX_NAME + " " + " \n Alice \n \t Bob  \t", expectedNameFindCommand);
     }
 
     @Test
@@ -61,11 +60,11 @@ public class FindCommandParserTest {
 
         FindCommand expectedTagFindCommand = new FindCommand(predicate);
         assertParseSuccess(parser,
-                PREFIX_TAG + PREAMBLE_WHITESPACE + "Hotline Service", expectedTagFindCommand);
+                PREFIX_TAG + " " + "Hotline Service", expectedTagFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                PREFIX_TAG + PREAMBLE_WHITESPACE + " \n Hotline \n \t Service  \t", expectedTagFindCommand);
+                PREFIX_TAG + " " + " \n Hotline \n \t Service  \t", expectedTagFindCommand);
     }
 
     @Test
@@ -76,11 +75,11 @@ public class FindCommandParserTest {
 
         FindCommand expectedRemarkFindCommand = new FindCommand(predicate);
         assertParseSuccess(parser,
-                PREFIX_REMARK + PREAMBLE_WHITESPACE + "HR Network", expectedRemarkFindCommand);
+                PREFIX_REMARK + " " + "HR Network", expectedRemarkFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                PREFIX_REMARK + PREAMBLE_WHITESPACE + " \n HR \n \t Network  \t", expectedRemarkFindCommand);
+                PREFIX_REMARK + " " + " \n HR \n \t Network  \t", expectedRemarkFindCommand);
     }
 
     @Test
@@ -91,12 +90,12 @@ public class FindCommandParserTest {
 
         FindCommand expectedEmailFindCommand = new FindCommand(predicate);
         assertParseSuccess(parser,
-                PREFIX_EMAIL + PREAMBLE_WHITESPACE
+                PREFIX_EMAIL + " "
                         + "test@mail.com bob@box.net", expectedEmailFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
-                PREFIX_EMAIL + PREAMBLE_WHITESPACE
+                PREFIX_EMAIL + " "
                         + " \n test@mail.com \n \t bob@box.net  \t", expectedEmailFindCommand);
     }
 
