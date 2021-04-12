@@ -19,7 +19,7 @@ public class FindPoolCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of trips where passenger's name contains "
             + "the keyword\n"
-            + "Parameters: PREFIX + KEYWORD\n"
+            + "Parameters: " + PREFIX_NAME + "KEYWORD\n"
             + "Example: \n1. " + COMMAND_WORD + " " + PREFIX_NAME + "alice";
 
     private final Predicate<Pool> predicate;
