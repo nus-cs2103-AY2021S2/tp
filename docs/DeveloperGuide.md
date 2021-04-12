@@ -601,7 +601,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding passengers by name while all passengers shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list. Default GMEdata.json file present in the data folder.
 
     1. Test case: `find n/bernice`.<br>
        Expected: Details of passenger named `Bernice Yu` is shown. Status message shows 1 passenger listed.
@@ -618,7 +618,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding passengers by tag while all passengers are shown.
 
-    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list.
+    1. Prerequisites: Using sample passengers, list all passengers using the `list` command. Multiple passengers in the list. Default GMEdata.json file present in the data folder.
 
     1. Test case: `find tag/finance`.<br>
        Expected: Details of `Bernice Yu` and `Roy Balakrishnan` are shown. Status message shows 2 passengers listed.
@@ -633,7 +633,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding a pool while all pools are being shown.
 
-    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command. Default addressbook.json file present in the data folder.
+    1. Prerequisites: Multiple pools in the list. List all pools using the `list` command. Default GMEdata.json file present in the data folder.
 
     1. Test case: `findPool n/lenny`.<br>
        Expected: Details of only the pool with `Alan Poh`, `Lenny Hoon`, and `Turner Peck` is shown. Status message shows 1 pool listed.
