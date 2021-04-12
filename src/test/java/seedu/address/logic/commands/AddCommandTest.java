@@ -16,62 +16,63 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.ResidenceTracker;
+import seedu.address.model.residence.Residence;
+import seedu.address.testutil.ResidenceBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullResidence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_residenceAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingResidenceAdded modelStub = new ModelStubAcceptingResidenceAdded();
+        Residence validResidence = new ResidenceBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validResidence).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validResidence), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validResidence), modelStub.residencesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateResidence_throwsCommandException() {
+        Residence validResidence = new ResidenceBuilder().build();
+        AddCommand addCommand = new AddCommand(validResidence);
+        ModelStub modelStub = new ModelStubWithResidence(validResidence);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_RESIDENCE, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Residence residence1 = new ResidenceBuilder().withName("Amber Heights").build();
+        Residence residence2 = new ResidenceBuilder().withName("Beauty World").build();
+        AddCommand addFirstCommand = new AddCommand(residence1);
+        AddCommand addSecondCommand = new AddCommand(residence2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addFirstCommand.equals(addFirstCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addAliceCommandCopy = new AddCommand(residence1);
+        assertTrue(addFirstCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addFirstCommand.equals(addSecondCommand));
     }
 
     /**
@@ -99,95 +100,95 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getResidenceTrackerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setResidenceTrackerFilePath(Path residenceTrackerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addResidence(Residence residence) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setResidenceTracker(ReadOnlyResidenceTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyResidenceTracker getResidenceTracker() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasResidence(Residence residence) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteResidence(Residence target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setResidence(Residence target, Residence editedResidence) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Residence> getFilteredResidenceList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredResidenceList(Predicate<Residence> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single residence.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithResidence extends ModelStub {
+        private final Residence residence;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithResidence(Residence residence) {
+            requireNonNull(residence);
+            this.residence = residence;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasResidence(Residence residence) {
+            requireNonNull(residence);
+            return this.residence.isSameResidence(residence);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the residence being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingResidenceAdded extends ModelStub {
+        final ArrayList<Residence> residencesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasResidence(Residence residence) {
+            requireNonNull(residence);
+            return residencesAdded.stream().anyMatch(residence::isSameResidence);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addResidence(Residence residence) {
+            requireNonNull(residence);
+            residencesAdded.add(residence);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyResidenceTracker getResidenceTracker() {
+            return new ResidenceTracker();
         }
     }
 

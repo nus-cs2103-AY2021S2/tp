@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +11,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
+import seedu.address.model.residence.ResidenceAddress;
+import seedu.address.model.residence.ResidenceName;
+import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,10 +25,12 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "The date is not in the expected format: DD-MM-YYYY";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -36,18 +42,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code ResidenceName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static ResidenceName parseResidenceName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!ResidenceName.isValidResidenceName(trimmedName)) {
+            throw new ParseException(ResidenceName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new ResidenceName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TenantName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TenantName parseTenantName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ResidenceName.isValidResidenceName(trimmedName)) {
+            throw new ParseException(TenantName.MESSAGE_CONSTRAINTS);
+        }
+        return new TenantName(trimmedName);
     }
 
     /**
@@ -66,33 +87,68 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address} into an {@code ResidenceAddress}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static ResidenceAddress parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!ResidenceAddress.isValidResidenceAddress(trimmedAddress)) {
+            throw new ParseException(ResidenceAddress.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new ResidenceAddress(trimmedAddress);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String bookingDetails} into an {@code Booking}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code booking} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Booking parseBooking(TenantName tenantName, Phone phone,
+                                       String start, String end) throws ParseException {
+        requireNonNull(start);
+        requireNonNull(end);
+        try {
+
+            LocalDate startTime = LocalDate.parse(start.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu"));
+            LocalDate endTime = LocalDate.parse(end.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu"));
+            if (!Booking.isValidBookingTime(startTime, endTime)) {
+                throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
+            }
+            return new Booking(tenantName, phone, startTime, endTime);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
-        return new Email(trimmedEmail);
+    }
+
+    /**
+     *
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        try {
+            return LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-uuuu"));
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
+    }
+
+    /**
+     * Parses a {@code String clean status(y or n)} into a {@code CleanStatusTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cleanStatus} is invalid.
+     */
+    public static CleanStatusTag parseCleanStatusTag(String cleanStatus) throws ParseException {
+        requireNonNull(cleanStatus);
+        String trimmedTag = cleanStatus.trim();
+        if (!CleanStatusTag.isValidCleanStatusTag(trimmedTag)) {
+            throw new ParseException(CleanStatusTag.MESSAGE_CONSTRAINTS);
+        }
+        return new CleanStatusTag(trimmedTag);
     }
 
     /**

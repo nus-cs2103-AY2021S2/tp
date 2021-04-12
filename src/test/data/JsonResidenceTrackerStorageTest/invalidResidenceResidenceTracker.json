@@ -1,0 +1,9 @@
+{
+  "residences" : [ {
+    "bookingList" : [ ],
+    "cleanStatusTag" : "Unclean",
+    "tags" : [ "Boo ked" ],
+    "residenceName" : "HDB",
+    "residenceAddress" : "Blk 30 Geylang Street 29, #06-40"
+  } ]
+}

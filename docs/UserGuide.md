@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+
+ResidenceTracker (RT) is a **desktop app for managing residences, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, RT can get your residence management tasks done faster than traditional GUI apps.
+
+In addition to being able to managing several residences at once with just a few key strokes of the keyboard,
+ResidenceTracker helps users to also keep track of any bookings a residence has, overseeing multiple residences with ease. 
 
 * Table of Contents
 {:toc}
@@ -14,9 +18,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `residencetracker.jar` from [here](https://github.com/AY2021S2-CS2103-T16-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ResidenceTracker.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,14 +28,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
+   * **`list`** : Lists all residences in the app.
+   * **`add`**`n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 c/n` : Adds a residence named `Clementi HDB` to the ResidenceTracker.
+   * **`edit`**`1 c/y` : edit the first residence clean status as Clean.
+   * **`delete`**`3` : Deletes the 3rd residence shown in the current list.
+   * **`clear`** : Deletes all residences.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -45,19 +46,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Amber Heights`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/Amber Heights t/friend` or as `n/Amber Heights`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `a/Jurong West St 60 a/Jurong West St 70`, only `a/Jurong West St 70` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -66,87 +67,174 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message with the current list of commands along with examples.
+It also provides a button to copy the URL link to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a residence: `add`
 
-Adds a person to the address book.
+Adds a new residence to the list of residences, default for clean status is ‘clean’. Valid clean status inputs are `y`,`n`, `clean` and `unclean`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+* Names can include `@` inside. e.g `pinnacle@duxton`
+* Names can include numbers. e.g `Block71`
+* Names must include at least one alphanumeric character.
+* Valid clean statuses is case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
+* Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
+* Tags should only contain alphanumeric characters, symbols and spaces are not valid.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: ` add n/RESIDENCE_NAME a/ADDRESS [c/VALID_CLEAN_STATUS] [t/TAG]... `
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Melville Park a/22 Simei Street 1, #10-02, S529948`
+* `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 c/n`
 
-### Listing all persons : `list`
+### Listing all residences: `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all residences in the app.
 
 Format: `list`
 
-### Editing a person : `edit`
+* The displayed list of residences will be sorted by their clean status.
+* Unclean residences come before clean residences.  
 
-Edits an existing person in the address book.
+### Listing residences with bookings starting in the next 7 days: `remind`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Shows a list of all residences with bookings starting in the next 7 days.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `remind`
+
+* Next 7 days: If today is 1st April, residences with bookings starting on 2nd April to 8th April (inclusive) will be listed.
+* The displayed list of residences is always sorted.
+* Unclean residences come before clean residences.
+
+### Editing a residence: `edit`
+
+Edits the given fields of an existing residence (excludes bookings, see `editb` instead to edit bookings).
+
+Format: `edit RESIDENCE_INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`
+
+* Edits the residence at the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residence list(i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` **must be a positive integer** 1, 2, 3, …​
+* At least one field must be provided.
+* If this command is used to edit tags, all tags for this residence need to be specified.
+* Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
+* Valid clean statuses is case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
+* Tags should only contain alphanumeric characters, symbols and spaces are not valid.
+* Editing of tags overwrites all existing tags.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 c/y` Edits the clean status of the 1st residence on the list to `Clean`.
+*  `edit 2 n/Nashville`  Edits the name of the 2nd residence on the list from to `Nashville`.
+*  `edit 1 t/tag1 t/tag2` Edits the 1st residence on the list to have tags `tag1` and `tag2`.
 
-### Locating persons by name: `find`
+### Locating residences by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds residences whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `duxton` will match `Duxton`
+* The order of the keywords does not matter. e.g. `Gardens Bay` will match `Bay Gardens`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `Dux` will not match `Duxton`
+* Apartments matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Gardens Bay` will return `Botanic Gardens`, `Bay Area`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find heights` returns `Hillview Heights` and `Aspen Heights`
+* `find east coast` returns `East View`, `West Coast`<br>
 
-### Deleting a person : `delete`
+### Deleting a residence: `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified residence from the list of residences shown.
 
-Format: `delete INDEX`
+Format: `delete RESIDENCE_INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the residence at the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 3` deletes the 3rd residence in the list of residences shown.
+
+### Update multiple Clean status: `status`
+
+Update Clean status of multiple residences at once.
+
+Format: `status clean RESIDENCE_INDEX1 RESIDENCE_INDEX2..` or `status unclean RESIDENCE_INDEX1 RESIDENCE_INDEX2..`
+
+* Updates the clean status of the residences' with the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
+* More than 1 residence indexes can be specified.
+* After updating, the residence list will sort automatically to show Unclean residences before the clean residences.
+
+Examples:
+* `status clean 1 3` update the 1st and 3rd residences clean status to `Clean`.
+* `status unclean 2 5` update the 2nd and 5th residences clean status to `Unclean`.
+
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the residence tracker.
 
 Format: `clear`
+
+### Adding a booking: `addb`
+
+Adds a new booking to the specified residence.
+
+Format: `addb RESIDENCE_INDEX n/NAME_OF_TENANT p/PHONE_OF_TENANT s/START_DATE e/END_DATE`
+
+* Adds a booking to the residence at the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
+* The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
+* The phone must only include numbers and must be at least 3 characters long. e.g `p/999` `p/12345678`
+* The dates must follow the format DD-MM-YYYY. e.g `s/01-02-2021`
+* It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
+  to be earlier than the `START_DATE`.
+* It is invalid to edit `START_DATE` or `END_DATE` such that it overlaps with dates of other bookings.
+* Existing values will be updated to the input values.
+
+Examples:
+* `addb 1 n/John p/91234567 s/01-01-2021 e/02-01-2021`
+* `addb 2 n/Jane Tan p/65812567 s/31-12-2021 e/05-01-2022`
+
+### Deleting a booking from a residence: `deleteb`
+
+Deletes the specified booking from the specified residence.
+
+Format: `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`
+
+* Deletes the booking at the specified `BOOKING_INDEX` from the residence at the specified `RESIDENCE_INDEX`
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `deleteb r/3 b/2` deletes the 2nd booking from the 3rd residence.
+
+### Editing a booking: `editb`
+
+Edits the specified booking from the specified residence.
+
+Format: `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` 
+
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
+to be earlier than the `START_DATE`.
+* It is invalid to edit `START_DATE` or `END_DATE` such that it overlaps with dates of other bookings.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editb r/1 b/2 p/90069009 s/03-28-2021` Edits the phone number and start date of 2nd booking of the 1st residence to be
+`90069009` and `03-28-2021` respectively.
 
 ### Exiting the program : `exit`
 
@@ -156,14 +244,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ResidenceTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ResidenceTracker data are saved as a JSON file `[JAR file location]/data/residencetracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ResidenceTracker will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -175,7 +263,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ResidenceTracker home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,10 +271,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Add Residence** | `add n/NAME_OF_RESIDENCE a/ADDRESS [clean/[y or n]] [t/TAG] …​` <br> e.g., `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n`
+**Add Booking to Residence** | `addb RESIDENCE_INDEX n/NAME_OF_BOOKER p/PHONE_OF_BOOKER s/START_TIME e/END_TIME` <br> e.g., `add 2 n/John a/91234567 s/01-01-2021 e/02-01-2021`
+**Delete Residence** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Booking of Residence** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
+**Edit Residence** | `edit INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`<br> e.g.,`edit 2 c/n`
+**Edit Booking of Residence** | `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
+**Update Multiple Clean Status** | `status clean INDEX1 INDEX2..` or `status unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
+**Find Residence** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
+**Remind Residences with Upcoming Bookings** | `remind`
+**List All Residences** | `list`
 **Help** | `help`
+**Exit** | `exit`
+**Clear** | `clear`

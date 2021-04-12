@@ -9,51 +9,49 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lim Li Gang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/whatthelump.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/whatthelump)]
 
-* Role: Project Advisor
+* Role: Code Quality and Documentation
+* Responsibilities: _TBC_
 
-### Jane Doe
+### Aw Zhen Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/awzhenyi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/awzhenyi)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: _TBC_
 
-### Jean Doe
+### Teng Shu Wei Jared
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaredtengsw.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jaredtengsw)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: _TBC_
+
+### V R Soorya
+
+<img src="images/vrsoorya.png" width="200px">
+
+[[github](http://github.com/vrsoorya)]
+[[portfolio](team/vrsoorya.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops
+
+### Wang Tao
+
+<img src="images/wangtao0717.png" width="200px">
+
+[[github](http://github.com/wangtao0717)]
+[[portfolio](team/wangtao0717.md)]
+
+* Role: Developer
+* Responsibilities: _TBC_
