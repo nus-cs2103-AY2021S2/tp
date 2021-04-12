@@ -575,11 +575,18 @@ Users will be able to press tab to cycle through the available options. -->
 
 ## Tagging persons: `tag`
 
-The tag commands allows you to add and delete specific tags of persons.
+The tag command allows you to add and delete specific tags of persons.
+
+* Tags are [case-insensitive](#glossary). e.g. `Photoshop` tag and `photoshop` tag are treated as the same tag.
+* Same tags cannot be added to a person. e.g. A person cannot have both `Photoshop` and `photoshop` tags.
 
 ### Add tags to persons: `tag add`
 
 Add tags to persons in address book.
+
+* A `tag add` command adding the same `photoshop` tag to a person with `Photoshop` tag will be executed successfully.
+* When adding a same tag to a person, the command will be executed successfully, but the same tag will not be added to the person.
+* The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are added to.
 
 **Format**: `tag add { shown | selected | INDEX ... } -t TAG...`
 
@@ -587,13 +594,17 @@ Add tags to persons in address book.
 
 | Example                                     | Description                                                                  |
 | ------------------------------------------- | ---------------------------------------------------------------------------- |
-| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the people shown in the UI.                          |
-| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the people selected.                               |
-| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to people at index `1`, `2` and `3`. |
+| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the persons shown in the UI.                          |
+| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the persons selected.                               |
+| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to persons at index `1`, `2` and `3`. |
 
 ### Delete tags from persons: `tag delete`
 
 Delete tags from persons in address book.
+
+* A `tag delete` command deleting the `Photoshop` tag from a person without `Photoshop` tag will be executed successfully.
+* When deleting a tag from a person without the tag, the command will be executed successfully, but no tags will be deleted from the person.
+* The command result will display the total number of persons the command have successfully executed on and not the total number of persons the tags are deleted from.
 
 **Format**: `tag delete { shown | selected | INDEX... } -t TAG...`
 
@@ -601,9 +612,9 @@ Delete tags from persons in address book.
 
 | Example                                        | Description                                                                       |
 | ---------------------------------------------- | --------------------------------------------------------------------------------- |
-| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the people shown in the UI.                          |
-| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the people selected.                               |
-| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from people at index `1`, `2` and `3`. |
+| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the persons shown in the UI.                          |
+| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the persons selected.                               |
+| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from persons at index `1`, `2` and `3`. |
 
 ## Saving the data
 
@@ -687,3 +698,4 @@ Install the app in the other computer and overwrite the empty data file it creat
 | GUI      | Graphical User Interface                                                         |
 | JSON     | JavaScript Object Notation, data storage format                                  |
 | Terminal | The Command Line Interface where text-based commands are entered.                |
+| Case-insensitive | Uppercase `ABC` and lowercase `abc` letters are treated as being the same. <br> - `Alex Yeoh` and `alex yeoh` are treated as the same. <br> - `Photoshop` and `photoshop` are treated as the same. | 
