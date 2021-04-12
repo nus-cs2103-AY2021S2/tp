@@ -551,7 +551,7 @@ testers are expected to do more *exploratory* testing.
         2. Exit FriendDex.
 
         3. Remove read permission for data file
-           * (macOS/*nix OS): Execute `chmod 333 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (macOS/*nix OS): Execute `chmod 333 [path of friendDex.jar]/data/frienddex.json` in terminal.
            * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove read 
              permission.
 
@@ -566,7 +566,7 @@ testers are expected to do more *exploratory* testing.
        2. Exit FriendDex.
 
        3. Remove write permission for data file
-           * (macOS/*nix OS): Execute `chmod 555 [path of frienddex.jar]/data/frienddex.json` in terminal.
+           * (macOS/*nix OS): Execute `chmod 555 [path of friendDex.jar]/data/frienddex.json` in terminal.
            * (Windows): Right click on the data file and select "Properties > Security > Edit" and remove write
              permission.
 
