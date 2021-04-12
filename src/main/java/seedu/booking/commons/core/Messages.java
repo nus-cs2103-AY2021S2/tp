@@ -16,7 +16,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_EMAIL = "The email provided does not correspond to any user.";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL = "Email address "
             + "provided does not exist in the system.\n";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d person(s) listed!";
     public static final String MESSAGE_NO_PERSONS_FOUND = "No persons found!";
     public static final String MESSAGE_NON_EXISTENT_PERSON_EMAIL =
             "The person email provided does not exist in the system.\n";
