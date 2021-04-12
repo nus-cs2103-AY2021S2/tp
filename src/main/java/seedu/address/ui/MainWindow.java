@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -18,7 +17,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -98,7 +96,10 @@ public class MainWindow extends UiPart<Stage> {
             case DOWN:
                 processKeyDownPress();
                 break;
+            default:
+                break;
             }
+
         });
     }
 
@@ -124,16 +125,16 @@ public class MainWindow extends UiPart<Stage> {
         List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
 
         if (availFlags != null) {
-            // if flag has content -> get next flag
-            // if flag has no content -> toggle
             lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
 
             // Check if lastFlag has content
             if ((lastFlag.split(" ").length > 1
-                    || lastFlag.equals(AddCommand.COMMAND_WORD + " ")
-                    || lastFlag.equals(EditCommand.COMMAND_WORD + " "))
+                    || lastFlag.equals(AddCommand.COMMAND_WORD + " "))
                     && !availFlags.isEmpty()) {
+
                 commandBox.setAndAppendFlag(availFlags.get(0) + " ");
+
+                // Removes flag content
                 lastFlag = lastFlag.split(" ")[0];
 
                 if (currentList.isEmpty()) {
@@ -142,11 +143,13 @@ public class MainWindow extends UiPart<Stage> {
                 currentList = availFlags;
                 currentList.remove(availFlags.get(0));
             } else {
-                // Toggling Flags
+                // Cycling through Flags
+
                 if (!logic.getAutocompleteFlags(AddCommand.COMMAND_WORD)
                         .contains(("-" + lastFlag).trim())) {
                     return;
                 }
+
                 // Populate currentList
                 if (currentList.isEmpty()) {
                     currentList = availFlags;

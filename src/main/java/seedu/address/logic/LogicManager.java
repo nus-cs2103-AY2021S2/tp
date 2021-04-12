@@ -1,7 +1,12 @@
 package seedu.address.logic;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.io.IOException;
@@ -220,8 +225,8 @@ public class LogicManager implements Logic {
         String arguments = matcher.group("arguments");
 
         // Prefixes for ADD and EDIT commands are the same
-        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE
-                , PREFIX_EMAIL, PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
         if (commandWord.equals(AddCommand.COMMAND_WORD) && argMultiMap.getPreamble().length() == 0) {
             // Get possible flags for "ADD" command
