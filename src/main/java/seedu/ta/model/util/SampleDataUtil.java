@@ -1,19 +1,19 @@
-package seedu.address.model.util;
+package seedu.ta.model.util;
 
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.ReadOnlyTeachingAssistant;
-import seedu.address.model.TeachingAssistant;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.ContactEmail;
-import seedu.address.model.contact.ContactName;
-import seedu.address.model.contact.ContactPhone;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.EntryDate;
-import seedu.address.model.entry.EntryName;
-import seedu.address.model.tag.Tag;
+import seedu.ta.model.ReadOnlyTeachingAssistant;
+import seedu.ta.model.TeachingAssistant;
+import seedu.ta.model.contact.Contact;
+import seedu.ta.model.contact.ContactEmail;
+import seedu.ta.model.contact.ContactName;
+import seedu.ta.model.contact.ContactPhone;
+import seedu.ta.model.entry.Entry;
+import seedu.ta.model.entry.EntryDate;
+import seedu.ta.model.entry.EntryName;
+import seedu.ta.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code TeachingAssistant} with sample data.
@@ -72,5 +72,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
