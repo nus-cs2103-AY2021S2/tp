@@ -116,7 +116,7 @@ call.
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores Link.me data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -131,7 +131,7 @@ API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/maste
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save Link.me data in json format and read it back.
 
 ### Common classes
 
@@ -276,7 +276,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | insurance agent                            | add the current insurance plan of each client               | be aware of their current insurance requirements and coverage                |
 | `* * *`  | insurance agent                            | schedule meetings with people or groups of people           | keep track of upcoming meetings                                              |
 | `* * `   | insurance agent                            | check the age of each client                                | know if their insurance plan should be updated/ changed, as they get older   |
-| `* * `   | user with many clients in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
+| `* * `   | user with many clients in Link.me | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
 | `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                       |
 | `* * `   | first-time user                            | see sample entries already in the app                       | get a good idea of the functionalities of the app before deciding to use it  |
 | `* * `   | forgetful insurance agent                  | reminders when clients' important dates are approaching     | prepare a meaningful greeting/ gift                                          |

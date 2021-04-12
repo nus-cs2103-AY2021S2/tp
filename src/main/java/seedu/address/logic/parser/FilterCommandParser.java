@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_RANGE_NOTATION;
 import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_FILTER_KEYWORD_NOTATION;
+import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_RANGE_NOTATION;
 import static seedu.address.commons.core.Messages.MESSAGE_BAD_LOWER_UPPER_AGE_RANGE_NOTATION;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_INPUT;
@@ -11,7 +11,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_WORD_PER_ATTR
 
 
 import java.util.Arrays;
-
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicates.AttributeContainsKeywordsPredicate;
