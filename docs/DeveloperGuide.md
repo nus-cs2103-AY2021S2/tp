@@ -392,6 +392,68 @@ will be initialised and returned from their respective `Parser` classes and exec
     * Pros: `add alias` compared to `alias add` might be more intuitive for users.
     * Cons: Will require huge changes to `AddCommand`. `AddCommand` will require more testing and debugging.
 
+### Tag feature
+
+Allows the user to create and delete one or more `tag` from one or more person in 
+`tag { add | delete | INDEX... } -t TAG...` format. Tags are case-insensitive, therefore `Photoshop` and `photoshop` are
+treated as the same tag. There must be at one index and one tag for the command to be valid.
+
+#### Implementation
+
+The `TagCommand` is split into two sub-commands `AddTagCommand` and `DeleteTagCommand`. Supporting these classes are the 
+`TagCommandParser`, `AddTagCommandParser` and `DeleteTagCommandParser` which helps to parse user input into their 
+respective tag sub-commands.
+
+![TagCommandClassDiagram](images/TagCommandClassDiagram.png)
+
+![TagCommandParserClassDiagram](images/TagCommandParserClassDiagram.png)
+
+Step 1. The user input will be parsed through the `AddressBookParser` which will then pass the user input to the
+`TagCommandParser` when it checks that the user input is trying to execute a tag command.
+
+Step 2. The user input will be parsed through the `TagCommandParser` which will then pass the user input to either 
+`AddTagCommandParser` or `DeleteTagCommandParser` after it checks which tag sub-command the user input is trying to 
+execute.
+
+Step 3. The user input will be parsed through the `AddTagCommandParser` or `DeleteTagCommandParser` and the respective 
+`Parser` will check if the user input is valid.
+* The index argument can only be `shown`, `selected` or `INDEX...`.
+* `INDEX...` must be valid positive integers.
+* `-t TAG...` must be valid tags which are alphanumeric.
+
+Step 4. Once the user input is successfully parsed, a `AddTagCommand` or `DeleteTagCommand` will be initialised and 
+returned from their respective `Parser` classes and executed subsequently.
+
+![TagCommandSequenceDiagram](images/TagCommandSequenceDiagram.png)
+
+![AddTagCommandParserSequenceDiagram](images/AddTagCommandParserSequenceDiagram.png)
+
+![DeleteTagCommandParserSequenceDiagram](images/DeleteTagCommandParserSequenceDiagram.png)
+
+Notes:
+* Tags are stored in a `HashSet` in `Person` class.
+* `tag add` command can be executed successfully even if the persons already have the tags. The tags will just not be 
+  added by the `HashSet` due to the property of `HashSet`.
+* `tag delete` command can be executed successfully even if the persons does not have the tags. The tags will just not 
+  be deleted by the `HashSet` due to the property of `HashSet`.
+
+#### Design Considerations
+
+##### Aspect: Command result for `tag` command
+
+* **Alternative 1 (current choice)**: Command results will show how many persons the command has been executed on, but 
+  not the actual number of persons which tags are added to or deleted from.
+    * Pros: Easy to implement, test and debug. The goal of the command will still be achieved even when the tags are not
+      added or deleted, e.g. a `delete tag` command deleting `Photoshop` tag from a person without the tag will still
+      result in the person without the tag.
+    * Cons: Command results does not reflect the exact number of persons tags are added to or deleted from when the 
+      command is executed. An additional note in the command result will be required to warn users of this behaviour.
+* **Alternative 2**: Command results will show exactly the number of persons tags are added to or deleted from.
+    * Pros: Command results are clearer for users as it will reflect the exact number of persons tags are added to or
+      deleted from when the command is executed.
+    * Cons: Will require many checks to show the exact number of persons modified, and it gets even more complicated
+      when adding multiple tags to multiple persons or deleting multiple tags from multiple persons.
+
 #### Selecting Persons
 
 SelectCommand allows a user to select Person object(s) to apply actions on.

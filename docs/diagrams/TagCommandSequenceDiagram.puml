@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR_T4
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR_T4
+participant ":AddTagCommandParser" as AddTagCommandParser LOGIC_COLOR_T4
+participant ":DeleteTagCommandParser" as DeleteTagCommandParser LOGIC_COLOR_T4
+
+[-> AddressBookParser : parse(args)
+AddressBookParser -> TagCommandParser : parse(args)
+
+'[-> AliasCommandParser : parse(args)
+
+alt tag add INDEX -t TAG
+  TagCommandParser -> AddTagCommandParser : parse(args)
+  ref over AddTagCommandParser
+    AddTagCommandParser parse logic
+  end ref
+  AddTagCommandParser --> TagCommandParser : addTagCommand
+else tag delete INDEX -t TAG
+  TagCommandParser -> DeleteTagCommandParser : parse(args)
+  ref over DeleteTagCommandParser
+    DeleteTagCommandParser parse logic
+  end ref
+  DeleteTagCommandParser --> TagCommandParser : deleteTagCommand
+end
+
+'[<--AliasCommandParser : tagCommand
+
+TagCommandParser --> AddressBookParser : tagCommand
+[<--AddressBookParser : tagCommand
+
+@enduml
+
+@startuml
+!include style.puml
+
+participant ":AddTagCommandParser" as AddTagCommandParser LOGIC_COLOR_T4
+participant "<<class>>\nParserUtil" as ParserUtil USER_COLOR
+participant ":AddTagCommand" as AddTagCommand LOGIC_COLOR
+
+group sd AddTagCommandParser parse logic
+    AddTagCommandParser -> ParserUtil : parseTags(args)
+    ParserUtil --> AddTagCommandParser
+    alt INDEX == shown
+      AddTagCommandParser -> AddTagCommand : AddTagCommand.createWithShownIndex(tags)
+      AddTagCommand --> AddTagCommandParser
+    else INDEX == selected
+      AddTagCommandParser -> AddTagCommand : AddTagCommand.createWithSelectedIndex(tags)
+      AddTagCommand --> AddTagCommandParser
+    else INDEX == integers e.g. 1 2 3
+      AddTagCommandParser -> ParserUtil : parseIndexes(arg)
+      ParserUtil --> AddTagCommandParser
+      AddTagCommandParser -> AddTagCommand : AddTagCommand.createWithTargetIndexes(indexes, tags)
+      AddTagCommand --> AddTagCommandParser
+    end
+end
+@enduml
+
+@startuml
+!include style.puml
+
+participant ":DeleteTagCommandParser" as DeleteTagCommandParser LOGIC_COLOR_T4
+participant "<<class>>\nParserUtil" as ParserUtil USER_COLOR
+participant ":DeleteTagCommand" as DeleteTagCommand LOGIC_COLOR
+
+group sd DeleteTagCommandParser parse logic
+    DeleteTagCommandParser -> ParserUtil : parseTags(args)
+    ParserUtil --> DeleteTagCommandParser
+    alt INDEX == shown
+      DeleteTagCommandParser -> DeleteTagCommand : DeleteTagCommand.createWithShownIndex(tags)
+      DeleteTagCommand --> DeleteTagCommandParser
+    else INDEX == selected
+      DeleteTagCommandParser -> DeleteTagCommand : DeleteTagCommand.createWithSelectedIndex(tags)
+      DeleteTagCommand --> DeleteTagCommandParser
+    else INDEX == integers e.g. 1 2 3
+      DeleteTagCommandParser -> ParserUtil : parseIndexes(arg)
+      ParserUtil --> DeleteTagCommandParser
+      DeleteTagCommandParser -> DeleteTagCommand : DeleteTagCommand.createWithTargetIndexes(indexes, tags)
+      DeleteTagCommand --> DeleteTagCommandParser
+    end
+end
+@enduml
