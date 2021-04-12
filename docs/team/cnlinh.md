@@ -5,7 +5,7 @@ title: Linh's Project Portfolio Page
 
 ## Project: SunRez
 
-SunRez is a desktop resident management application used for managing NUS hostels and residential colleges. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.
+SunRez is a desktop resident management application used for managing NUS hostels and residential colleges. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.
 
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   * Managed post-mortem review.
 
 * **Enhancements to existing features**:
-  * Modify AddressBook parser to support Alias and its ability to undo Alias-related command: [\#71](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/71).
+  * Modify AddressBook parser to support Alias and its ability to undo Alias-related command: [\#296](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/296).
 
 * **Documentation**:
   * User Guide:
@@ -30,11 +30,15 @@ Given below are my contributions to the project.
     * Added a summary section for prefixes: [\#306](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/306).
     * Updated initial user guide intro: [\#10](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/10).
   * Developer Guide:
-    * Added implementation details of the `alias` feature: [\#116](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/65).
+    * Added implementation details of the `alias` feature: [\#116](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/116).
+    * Added manual testing for the `alias` feature: [\#383](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/383).
     * Wrote user case UC-022 and UC-023.
+    * Updated Storage component section: [\#407](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/407)
 
 * **Team Task**:
   * Contributed to initial draft of value proposition, target user and NFRs.
+  * Set up the GitHub team org.  
+  * Created UI mockup.  
   * Set up tasks for the team in various sprints.
   * Assisted in bug triaging and allocation after PE-D.
 
@@ -42,4 +46,5 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [\#341](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/341), [\#104](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/104), [\#107](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/107).
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/271), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/249), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/123)).
   * Bug reports made for other teams: [PED](https://github.com/cnlinh/ped/issues).
+  
   
