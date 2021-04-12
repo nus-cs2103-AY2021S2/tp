@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.budgetbaby.commons.exceptions.DataConversionException;
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
 import seedu.budgetbaby.model.record.Amount;
@@ -33,11 +34,16 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyBudgetTracker getSampleBudgetTracker() {
+    public static ReadOnlyBudgetTracker getSampleBudgetTracker() throws DataConversionException {
         BudgetTracker sample = new BudgetTracker();
-        for (FinancialRecord sampleRecord : getSampleFinancialRecords()) {
-            sample.addFinancialRecord(sampleRecord);
+        try {
+            for (FinancialRecord sampleRecord : getSampleFinancialRecords()) {
+                sample.addFinancialRecord(sampleRecord);
+            }
+        } catch (Exception e) {
+            throw new DataConversionException(e);
         }
+
         return sample;
     }
 }

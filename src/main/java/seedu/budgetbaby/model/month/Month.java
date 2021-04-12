@@ -12,6 +12,7 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.model.Budget;
 import seedu.budgetbaby.model.month.exception.MonthMismatchException;
+import seedu.budgetbaby.model.month.exception.TotalExpenseOutOfBoundException;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.model.record.FinancialRecordList;
@@ -77,10 +78,13 @@ public class Month implements Comparable<Month> {
      * Adds a financial record to the month.
      * The timestamp of the financial record must match the month.
      */
-    public void addFinancialRecord(FinancialRecord toAdd) {
+    public void addFinancialRecord(FinancialRecord toAdd) throws TotalExpenseOutOfBoundException {
         requireNonNull(toAdd);
         if (!toAdd.getMonth().equals(this.month)) {
             throw new MonthMismatchException();
+        }
+        if (getTotalExpenses() + toAdd.getAmount().value > Budget.DEFAULT_BUDGET_UPPER_LIMIT) {
+            throw new TotalExpenseOutOfBoundException();
         }
         records.add(toAdd);
     }

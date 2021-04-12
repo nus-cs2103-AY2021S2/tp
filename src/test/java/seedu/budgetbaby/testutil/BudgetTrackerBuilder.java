@@ -1,5 +1,6 @@
 package seedu.budgetbaby.testutil;
 
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.FinancialRecord;
@@ -31,7 +32,11 @@ public class BudgetTrackerBuilder {
      * Adds a new {@code FinancialRecord} to the {@code BudgetTracker} that we are building.
      */
     public BudgetTrackerBuilder withFinancialRecord(FinancialRecord financialRecord) {
-        budgetTracker.addFinancialRecord(financialRecord);
+        try {
+            budgetTracker.addFinancialRecord(financialRecord);
+        } catch (CommandException e) {
+            return null;
+        }
         return this;
     }
 
