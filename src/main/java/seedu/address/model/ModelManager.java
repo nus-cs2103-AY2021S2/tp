@@ -509,6 +509,11 @@ public class ModelManager implements Model {
         return true;
     }
 
+    /**
+     * Add ingredients and respective quantities of a list of dishes into ingredientsTable
+     * @param ingredientsTable HashMap of ingredients and their quantities
+     * @param dishesQtyList List of {@code Pair<Dish, Integer>} containing the Dish and its quantity
+     */
     private static void collateIngredientsFromDishes(HashMap<Ingredient, Integer> ingredientsTable,
                                       List<Pair<Dish, Integer>> dishesQtyList) {
         for (Pair<Dish, Integer> dishQtyPair : dishesQtyList) {
@@ -518,6 +523,11 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Add ingredients and respective quantity into ingredientsTable
+     * @param ingredientsTable HashMap of ingredients and their quantities
+     * @param ingredientQtyPair of Ingredient and its quantity
+     */
     private static void collateIngredients(HashMap<Ingredient, Integer> ingredientsTable,
                                                    Pair<Ingredient, Integer> ingredientQtyPair) {
         if (!ingredientsTable.containsKey(ingredientQtyPair.getKey())) {
