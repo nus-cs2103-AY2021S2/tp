@@ -21,19 +21,26 @@ public class JsonSerializableIngredientBook {
 
     private final List<Ingredient> ingredients = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonSerializableIngredientBook} with the given persons.
+     */
     @JsonCreator
     public JsonSerializableIngredientBook(@JsonProperty("ingredients") List<Ingredient> ingredients) {
         this.ingredients.addAll(ingredients);
     }
 
+    /**
+     * Converts a given {@code ReadOnlyBook<Ingredient>} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableIngredientBook}.
+     */
     public JsonSerializableIngredientBook(ReadOnlyBook<Ingredient> source) {
         ingredients.addAll(source.getItemList());
     }
 
     /**
-     * Returns model type
-     * @return IngredientBook model
-     * @throws IllegalValueException
+     * Converts this ingredient book into the model's {@code IngredientBook} object.
+     * @throws IllegalValueException if there were any data constraints violated.
      */
     public IngredientBook toModelType() throws IllegalValueException {
         IngredientBook ingredientBook = new IngredientBook();
