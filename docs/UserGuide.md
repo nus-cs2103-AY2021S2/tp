@@ -99,6 +99,9 @@ Format: `add n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of groups (including 0)
 </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+In MeetBuddy we assume that all the persons in the contact list have different names
+</div>
 
 Examples:
 * `add n/John Doe ph/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -357,7 +360,7 @@ Person Contact data are saved as a JSON file `[JAR file location]/data/addressbo
 Meeting data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Users are not suggested updating data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, MeetBuddy will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -367,7 +370,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MeetBuddy home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -24,8 +24,9 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Created the meeting in MeetBuddy model, which is one of two major parts in MeetBuddy. (Pull requests [\#42](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/42))
+    * Created the AddMeetingCommand and AddMeetingParser in MeetBuddy and also modifies the GUI. (Pull requests [\#52](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/52))
     * Created Person Meeting Connection APIs for model development, which allows user to interact with both contacts management and meeting management together (Pull requests [\#70](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/70), [\#73](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/73))
-    * Add AddMeetingCommand into MeetBuddy so that the user can add meetings. (Pull requests [\#103](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/103))
+    * Add AddPersonToMeetingConnectionCommand and DeletePersonToMeetingConnectionCommand into MeetBuddy so that the user can add and delete the persons related to a meeting. (Pull requests [\#103](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/103))
 
 * **Documentation**:
     * Updated User Guide and Developer Guide for Person Meeting Connection and relevant Meeting features, including adding relevant PlantUML diagrams in the Developer Guide to enhance comprehensibility of the codebase and the structure of the feature. (Pull requests [\#186](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/186) [\#200](https://github.com/AY2021S2-CS2103-T16-2/tp/pull/200))

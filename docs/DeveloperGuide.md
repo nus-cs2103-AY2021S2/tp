@@ -119,7 +119,7 @@ Given below is another Sequence Diagram for interactions within the `Logic` comp
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the MeetBuddy data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the meeting book data.
 * exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
