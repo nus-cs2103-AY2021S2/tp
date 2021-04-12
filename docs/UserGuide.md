@@ -32,7 +32,11 @@ DocBob's interface comprises of 4 main parts.
 1. Download the latest `docbob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
 
 1. Double-click the file to start the app. You should see a Graphical User Interface similar to the image below on startup.![images/Startup.png](images/Startup.png)
-   > **First Startup**: If the full Graphical User Interface does not appear on your screen, please resize your window. DocBob comes with some sample patient data when started for the first time. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample patient data and start adding your own patients!
+   
+   <div markdown="block" class="alert alert-info">
+
+   **First Startup**: If the full Graphical User Interface does not appear on your screen, please resize your window. DocBob comes with some sample patient data when started for the first time. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample patient data and start adding your own patients!
+</div>
 
 1. Execute commands by typing them in the command box and pressing **Enter**. See [Features](#features) for more comprehensive details of each and every command.<br>
    Example commands you can try:
@@ -42,8 +46,10 @@ DocBob's interface comprises of 4 main parts.
 
    * **`appt 1 d/010120301200`** : Adds a scheduled appointment with the patient at index 1 in DocBob's main patient list, on 1st January 2030 12pm.
 
-> **Quick tip**: Typing **`help`** and pressing Enter will list out all available commands!
-
+<div markdown="block" class="alert alert-info">
+ 
+**Quick tip**: Typing **`help`** and pressing Enter will list out all available commands!
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
@@ -310,8 +316,10 @@ Output:
 
 ![image](https://user-images.githubusercontent.com/59093518/113469578-2f49f480-9481-11eb-9d42-46d6260417a8.png)
 
-> **Quick tip**: Make sure you have selected the patient whose medical record you want to view first, using `view`. If the selected patient has no medical records to view, you can create a new one using `mrec`
+<div markdown="block" class="alert alert-info">
 
+**Quick tip**: Make sure you have selected the patient whose medical record you want to view first, using `view`. If the selected patient has no medical records to view, you can create a new one using `mrec`
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Archive
