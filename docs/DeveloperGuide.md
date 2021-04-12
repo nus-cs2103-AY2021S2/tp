@@ -565,7 +565,7 @@ testers are expected to do more *exploratory* testing.
 The creation of GreenMileageEfforts came with a great deal of effort from each and every one of the team members. Since the start of the project we have
 made the effort to consistently conduct teams meeting every week, most of these meetings are held in a physical setting such that we could communicate our ideas effectively.
 Upon completion of the project, we have achieved a product that is a direct reflection of our hard work and determination.
-GreenMileageEfforts is a product that has been adapted and evolved from AB3, where there have been significant enhancements made since AB3.
+GreenMileageEfforts is a product that has been adapted and morphed from AB3, where there have been significant enhancements made since AB3.
 
 ### Challenges faced, Effort and Achievement
 
