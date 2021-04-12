@@ -3,24 +3,14 @@ layout: page
 title: Princess Priscilla Paulson's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: CakeCollate
 
-CakeCollate - Level 3 is a desktop cakecollate application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+CakeCollate is a desktop application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-[comment]: <> (* **New Feature**: Added the ability to always list orders sorted by delivery date)
-
-[comment]: <> (    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.)
-
-[comment]: <> (    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.)
-
-[comment]: <> (    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.)
-
-[comment]: <> (    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*)
-
 * **New Feature**: Added the ability to map order item index in user inputs to order description 
-  * What it does: The add command takes in a new parameter of order item indexes (indexes referring to the order items listed on the right of the GUI), which will be then mapped to order descriptions  
+  * What it does: The add command takes in a new parameter of order item indexes that refer to items in the order item model, which will be then mapped to order descriptions  
   * Justification: This allows the user to save keystrokes if they've already entered a particular order description e.g. `chocolate cake` before.
   * Highlights: This feature required creating an AddOrderDescriptor, and resulted in lots of refactoring for the AddCommand and AddCommandParser, which affected majority of the tests that use addcommand.
   * Credits: The AddOrderDescriptor used was similar to the EditOrderDescriptor, though there are some different methods included.
@@ -36,18 +26,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the usefulness of the GUI to the user immensely as their screen will not be cluttered by `delivered` or `cancelled` orders, or orders that are far into their future. They'll be able to focus on the orders that are more important and urgent to take care of. 
   * Highlights:
 
-
-[comment]: <> (As the list passed exposed by the CakeCollate model is unmodifiable, there is a need to create a sort method from inside)
-
-[comment]: <> (  * What it does:)
-
-[comment]: <> (  * Justification:)
-
-[comment]: <> (  * Highlights:)
-
-[comment]: <> (  * Credits:)
-
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=ppris&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=pPris&tabRepo=AY2021S2-CS2103T-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
     * Managed scheduling of meetings and tasks and provided weekly summaries of the tasks due for that week
@@ -55,17 +34,16 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Added order description field to order 
-        * this involved a lot of fixing existing tests involving the `Order` object.
+        * This involved fixing existing tests involving the `Order` object.
     
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `add`. Explained some concepts like `indexes` and quantities in more detail for users[\#226](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/226)
+        * Added documentation for the features `add`. Explained some concepts like `indexes` and quantities in more detail for users [\#226](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/226)
     
   * Developer Guide:
         * Added implementation details of the `add` feature.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#79](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/79), [\#85](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/85), [\#56](https://github.com/AY2021S2-CS2103T-T11-4/tp/pull/56)
-    * Contributed to forum discussions (examples: [211](https://github.com/nus-cs2103-AY2021S2/forum/issues/211))
+    * Contributed to forum discussions ([#211](https://github.com/nus-cs2103-AY2021S2/forum/issues/211))
 
-* _{you can add/remove categories in the list above}_
