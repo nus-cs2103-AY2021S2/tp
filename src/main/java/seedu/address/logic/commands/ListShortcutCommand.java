@@ -11,6 +11,7 @@ import seedu.address.model.shortcut.ShortcutLibrary;
 public class ListShortcutCommand extends Command {
 
     public static final String COMMAND_WORD = "listshortcut";
+    public static final String MESSAGE_SUCCESS = "Listed all shortcuts";
 
     @Override
     public CommandResult execute(Model model) {

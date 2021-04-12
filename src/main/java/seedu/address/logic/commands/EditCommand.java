@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,7 +33,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends Command implements BatchOperation {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -49,21 +48,20 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] where FLAG can be modify, insert or remove "
             + "for editing policy ids. If no flag is specified, the default behaviour is replace."
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_MEETING + "MEETING]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_NOT_EDITED_BATCH = "At least one field (tag or policy) to edit "
-            + "must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_MODIFY_POLICY_CONSTRAINT = "When -modify flag is indicated for editing policy,"
             + " the format should be i/[TO_MODIFY];[TO_REPLACE]. ";
-    public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found!";
+    public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found.";
+    public static final String MESSAGE_POLICY_EMPTY = "Policy field cannot be empty.";
     public static final String MESSAGE_EXCESS_BATCH_ARGUMENTS = "Batch edit can only edit tags or insurance policies.\n"
-            + "Please check that you have not entered other prefixes.";
+            + "Please check that you have not entered other fields.";
+
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -94,7 +92,7 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, editPolicyMode);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToEdit.equals(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -102,6 +100,27 @@ public class EditCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
+
+    @Override
+    public CommandResult executeBatch(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, editPolicyMode);
+
+        if (!personToEdit.equals(editedPerson) && model.hasPerson(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        model.setPerson(personToEdit, editedPerson);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
@@ -141,7 +160,7 @@ public class EditCommand extends Command {
         default:
             throw new CommandException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
         }
-        List<Meeting> updatedMeetings = editPersonDescriptor.getMeetings().orElse(personToEdit.getMeetings());
+        List<Meeting> updatedMeetings = personToEdit.getMeetings();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedPolicies, updatedMeetings);
@@ -207,7 +226,6 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private List<InsurancePolicy> policiesToAdd;
         private List<InsurancePolicy> policiesToRemove;
-        private List<Meeting> meetings;
 
         public EditPersonDescriptor() {}
 
@@ -223,15 +241,13 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setPoliciesToAdd(toCopy.policiesToAdd);
             setPoliciesToRemove(toCopy.policiesToRemove);
-            setMeetings(toCopy.meetings);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove,
-                    meetings);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove);
         }
 
         public void setName(Name name) {
@@ -299,14 +315,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policiesToRemove);
         }
 
-        public void setMeetings(List<Meeting> meetings) {
-            this.meetings = meetings;
-        }
-
-        public Optional<List<Meeting>> getMeetings() {
-            return Optional.ofNullable(meetings);
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -328,8 +336,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getPoliciesToAdd().equals(e.getPoliciesToAdd())
-                    && getPoliciesToRemove().equals(e.getPoliciesToRemove())
-                    && getMeetings().equals(e.getMeetings());
+                    && getPoliciesToRemove().equals(e.getPoliciesToRemove());
         }
     }
 }

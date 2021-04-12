@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -125,6 +126,13 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    private List<Tag> getSortedTags() {
+        Set<Tag> tags = getTags();
+        List<Tag> listOfTags = new ArrayList<>(tags);
+        Collections.sort(listOfTags, Comparator.comparing(tag -> tag.tagName));
+        return listOfTags;
+    }
+
     /**
      * Returns an immutable policy arraylist, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -139,19 +147,6 @@ public class Person {
      */
     public List<Meeting> getMeetings() {
         return Collections.unmodifiableList(meetings);
-    }
-
-    /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
-            return true;
-        }
-
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -174,8 +169,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getPolicies().equals(getPolicies())
-                && otherPerson.getMeetings().equals(getMeetings());
+                && otherPerson.getPolicies().equals(getPolicies());
     }
 
     @Override
@@ -209,7 +203,7 @@ public class Person {
             builder.append("; Address: ").append(address.get());
         }
 
-        Set<Tag> tags = getTags();
+        List<Tag> tags = getSortedTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
@@ -223,7 +217,7 @@ public class Person {
         }
 
         if (!meetings.isEmpty()) {
-            builder.append("; Meeting: ");
+            builder.append("; Meetings: ");
             meetings.forEach(meetingString -> builder.append(meetingString).append(", "));
             builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
         }

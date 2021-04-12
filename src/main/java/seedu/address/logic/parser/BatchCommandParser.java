@@ -17,14 +17,15 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.BatchCommand;
+import seedu.address.logic.commands.BatchOperation;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Handles all parsing of {@code BatchCommand} as well as arguments for {@code EditCommand} or {@code DeleteCommand}.
+ * Handles all parsing of {@code BatchCommand} as well as arguments for {@code BatchOperation}.
  */
-public class BatchCommandParser implements Parser<BatchCommand> {
+public class BatchCommandParser implements Parser<BatchCommand<? extends BatchOperation>> {
     public static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
             + "are supported.";
     public static final String REPEATED_INDICES = "Input indices are repeated! Please ensure that all indices are "
@@ -33,21 +34,24 @@ public class BatchCommandParser implements Parser<BatchCommand> {
             + "phone numbers, addresses, tags and insurance policies can be edited in batch.";
 
     /**
-     * Parses input to prepare for a {@code BatchCommand}, and the {@code Commands} that will be executed by it.
-     * First, parses and checks the validity of the {@code Command} that is to be executed in batch.
+     * Parses input to prepare for a {@code BatchCommand}, and the {@code BatchOperations} that will be executed by it.
+     * First, parses and checks the validity of the {@code BatchOperation}.
      * Then, parses and checks the validity of the indices and arguments (if applicable) to be passed to the
-     * {@code Command} to be executed in bulk.
+     * {@code BatchOperation}.
      *
-     * @param args arguments of the {@BatchCommand} passed in by the user
-     * @return a {@code BatchCommand} with the {@code List} of {@code Commands} to be executed in batch.
-     * @throws ParseException if the user input for {@code BatchCommand} or the {@code Commands} does not conform to
-     *      the expected format.
+     * @param args arguments of the {@code BatchCommand} passed in by the user.
+     * @return a {@code BatchCommand} with the {@code List} of {@code BatchOperations} to be executed.
+     * @throws ParseException if the user input for {@code BatchCommand} or the {@code BatchOperations} does not
+     *      conform to the expected format.
      */
-    public BatchCommand parse(String args) throws ParseException {
-        try {
-            String[] splitCommandAndIndicesAndArgs = args.trim().split(" ", 2);
-            String inputCommand = splitCommandAndIndicesAndArgs[0].trim();
+    public BatchCommand<? extends BatchOperation> parse(String args) throws ParseException {
+        String[] splitCommandAndIndicesAndArgs = args.trim().split(" ", 2);
+        String inputCommand = splitCommandAndIndicesAndArgs[0].trim();
+        if (inputCommand.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+        }
 
+        try {
             // Checks the validity of the Command that the user passed as input to the BatchCommand
             switch (inputCommand) {
             case EditCommand.COMMAND_WORD:
@@ -152,32 +156,21 @@ public class BatchCommandParser implements Parser<BatchCommand> {
                                       List<String> listOfTags, List<String> listOfInsurancePolicies) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < listOfPhoneNumbers.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_PHONE.getPrefix())
-                    .append(listOfPhoneNumbers.get(i))
-                    .append(" ");
-        }
-        for (int i = 0; i < listOfAddresses.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_ADDRESS.getPrefix())
-                    .append(listOfAddresses.get(i))
-                    .append(" ");
-        }
-        for (int i = 0; i < listOfTags.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_TAG.getPrefix())
-                    .append(listOfTags.get(i))
-                    .append(" ");
-        }
-        for (int i = 0; i < listOfInsurancePolicies.size(); i++) {
-            stringBuilder
-                    .append(PREFIX_INSURANCE_POLICY.getPrefix())
-                    .append(listOfInsurancePolicies.get(i))
-                    .append(" ");
-        }
+        appendWithPrefix(stringBuilder, PREFIX_PHONE, listOfPhoneNumbers);
+        appendWithPrefix(stringBuilder, PREFIX_ADDRESS, listOfAddresses);
+        appendWithPrefix(stringBuilder, PREFIX_TAG, listOfTags);
+        appendWithPrefix(stringBuilder, PREFIX_INSURANCE_POLICY, listOfInsurancePolicies);
 
         return stringBuilder.toString().trim();
+    }
+
+    private void appendWithPrefix(StringBuilder stringBuilder, Prefix prefix, List<String> listOfInformation) {
+        for (int i = 0; i < listOfInformation.size(); i++) {
+            stringBuilder
+                    .append(prefix)
+                    .append(listOfInformation.get(i))
+                    .append(" ");
+        }
     }
 
     private boolean areOtherPrefixesEntered(ArgumentMultimap argMultimap) {

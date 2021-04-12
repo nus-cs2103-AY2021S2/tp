@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Parser {
+Interface Parser <<Interface>>
+Class ClientBookParser
+Class XYZCommandParser
+Class CliSyntax
+Class ParserUtil
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class Prefix
+}
+
+package Command {
+Class HiddenModel #FFFFFF
+}
+
+package Storage{
+Class HiddenModel #FFFFFF
+}
+
+package Model {
+Class HiddenModel #FFFFFF
+}
+
+LogicManager .up.|> Logic
+LogicManager -right-> Storage
+LogicManager -left-> Model
+LogicManager .up.> Command
+LogicManager -->"1" ClientBookParser
+
+Logic .right.> Command
+
+ClientBookParser .up.> XYZCommandParser: creates >
+
+XYZCommandParser .up.> XYZCommandParser
+XYZCommandParser .up.> Command : creates >
+XYZCommandParser .left.|> Parser
+XYZCommandParser .down.> ArgumentMultimap
+XYZCommandParser .down.> ArgumentTokenizer
+XYZCommandParser .down.> CliSyntax
+XYZCommandParser .down.> ParserUtil
+
+ArgumentTokenizer .left.> ArgumentMultimap
+ParserUtil --[hidden]left ArgumentTokenizer
+CliSyntax --[hidden]right ParserUtil
+
+CliSyntax .down.> Prefix
+ParserUtil .down.> Prefix
+ArgumentTokenizer .down.> Prefix
+
+Storage --[hidden]left ClientBookParser
+Parser --[hidden]down ArgumentMultimap
+Parser --[hidden]down ClientBookParser
+
+note top of XYZCommandParser: Association between XYZCommandParser \nand XYZCommandParser is only relevant \nfor BatchCommandParser and \nEditCommandParser/DeleteCommandParser
+
+@enduml
