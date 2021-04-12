@@ -17,6 +17,15 @@ It is written in Java, and has about 17 kLOC contributed.
 
 ## Summary of Contributions
 
+* **New Feature**: Added the ability to add either modules or persons.
+    * What it does: allows the user to add modules or persons.
+    * Justification: This feature enhances RemindMe significantly because a user can now add either modules or persons 
+      into RemindMe, and RemindMe is able to process them as separate entities.
+    * Highlights: This enhancement affects existing add command and add command parser. An AddCommandParser is added 
+      such that future possible enhancements can extend from it, with little modifications. 
+    * Credits: *{AddressBook3's AddCommand}*
+    
+
 * **New Feature**: Added the ability to find modules and general events.
     * What it does: allows the user to search for specific modules and general events in RemindMe.
     * Justification: This feature improves RemindMe significantly because a user can make numerous entries into RemindMe, 
