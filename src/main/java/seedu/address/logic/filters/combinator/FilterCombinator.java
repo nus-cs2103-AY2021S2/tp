@@ -6,25 +6,33 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OR;
 
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Stack;
 import java.util.function.Predicate;
 
-import seedu.address.logic.filters.AbstractFilter;
+import seedu.address.logic.filters.Filter;
 import seedu.address.logic.filters.Filters;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.customer.Customer;
 
-
+/**
+ * This class encapsulates the expression tree. It both parses, and evaluates the expression tree on a {@code
+ * Customer}.
+ */
 public class FilterCombinator implements Predicate<Customer> {
     private final Node rootNode;
 
     /**
-     * Constructor for filter combinator to create a expression tree from the given argument.
+     * Constructor for filter combinator to create a expression tree from the given argument. Note that an issue with
+     * the expression is not handled at this point, and is handled only when testing a {@code Customer}
+     * // TODO
      *
-     * @param argument - the filter expression
+     * @param argument the filter expression
      */
     public FilterCombinator(String argument) {
+        Objects.requireNonNull(argument);
+
         Node temp = null;
         try {
             temp = createTree(argument);
@@ -35,10 +43,21 @@ public class FilterCombinator implements Predicate<Customer> {
         }
     }
 
+    /**
+     * Checks whether it is a valid combinator tree.
+     * @return true if the expression actually results in a tree, false otherwise.
+     */
     public boolean isValidCombinator() {
         return rootNode != null;
     }
 
+    /**
+     * Gets the logical operator corresponding to the prefix in {@code CLISyntax}.
+     * @param prefix the logical operator prefix
+     * @return the corresponding logical operator
+     * @throws IllegalArgumentException if the prefix string doesn't match any logical operator prefix as defined
+     * in the {@code CLISyntax} class.
+     */
     private LogicalOperator getCorrespondingLogicalOperator(Prefix prefix) {
         if (prefix.equals(PREFIX_AND)) {
             return LogicalOperator.AND;
@@ -51,7 +70,7 @@ public class FilterCombinator implements Predicate<Customer> {
         }
     }
 
-
+    // TODO
     private Node createTree(String description) {
         description = " " + description + " ";
 
@@ -86,7 +105,7 @@ public class FilterCombinator implements Predicate<Customer> {
                 // now we try to form a Node from the previously given filter at this level.
                 // only try to form a node if we have actually got some information
                 if (inPresentScope.toString().trim().length() > 0) {
-                    AbstractFilter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
+                    Filter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
                     nodeStack.push(new Node(filter));
                 }
 
@@ -127,7 +146,7 @@ public class FilterCombinator implements Predicate<Customer> {
         }
 
         if (inPresentScope.toString().trim().length() > 0) {
-            AbstractFilter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
+            Filter filter = Filters.getCorrespondingFilter(inPresentScope.toString().trim());
             nodeStack.push(new Node(filter));
         }
 
@@ -136,6 +155,7 @@ public class FilterCombinator implements Predicate<Customer> {
         return formTreeFromNodeStack(nodeStack);
     }
 
+    // TODO
     private Node formTreeFromNodeStack(Stack<Node> nodeStack) {
         while (!nodeStack.isEmpty()) {
             if (nodeStack.size() == 1) {
@@ -179,6 +199,7 @@ public class FilterCombinator implements Predicate<Customer> {
 
     @Override
     public boolean test(Customer customer) {
+        Objects.requireNonNull(customer);
         return rootNode.evaluate(customer);
     }
 

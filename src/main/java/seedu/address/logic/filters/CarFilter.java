@@ -7,11 +7,11 @@ import seedu.address.model.customer.Car;
 /**
  * Filters Cars based on user specified filters carBrand, carType.
  */
-public abstract class CarFilter extends AbstractFilter {
+public abstract class CarFilter extends Filter {
     /**
      * Creates a filter for Cars
      *
-     * @param filterString
+     * @param filterString the filter to match the {@code Customer}
      */
     public CarFilter(String filterString) {
         super(filterString.trim());
@@ -21,17 +21,12 @@ public abstract class CarFilter extends AbstractFilter {
     /**
      * Parses filter command for c/, cp/ prefixes.
      *
-     * @param car
+     * @param car the car object to parse
      * @return
      */
     public static Car parseCar(String car) {
-        String trimmedCar = car;
-        String[] carDetails = trimmedCar.split("\\+");
+        String[] carDetails = car.split("\\+");
 
-
-        if (carDetails.length != 2) {
-            //throw new ParseException(Car.MESSAGE_CONSTRAINTS);
-        }
         String filterCarBrand = carDetails[0].trim();
         String filterCarType = carDetails[1].trim();
         if (filterCarBrand.isEmpty()) {
@@ -48,7 +43,7 @@ public abstract class CarFilter extends AbstractFilter {
      *
      * @param car       Car member from carsOwned or carsPreferred.
      * @param filterCar Specified Car to filter by.
-     * @return
+     * @return whether the car satisfies the filter string
      */
     public boolean carFilterPredicate(Car car, String filterCar) {
         filterCar = filterCar.trim();
