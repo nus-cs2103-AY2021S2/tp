@@ -291,7 +291,7 @@ List command supports the plural forms of the entity keywords.
 
 Below is an example activity diagram for a valid list command from the user.
 
-![ListActivityDiagram](images/ListActivityDiagram.png){: .center-image width="50%"}
+![ListActivityDiagram](images/ListActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid list command from the user.
 
@@ -305,7 +305,7 @@ Below is an example sequence diagram for a valid list command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![ListSequenceDiagramSpecific](images/ListSequenceDiagramSpecific.png){: .center-image width="65%"}
+![ListSequenceDiagramSpecific](images/ListSequenceDiagramSpecific.png){: .center-image}
 1. Upon calling the `execute()` method, the `ListCommand` updates the filtered entity list in `Model` using a `predicate` and an `entityType` as parameters.
 2. It then sorts the entity using the `sortEntities()` in increasing order by using a `COMPARATOR_ID_ASCENDING_ORDER` comparator that orders entities in increasing ID order.
 3. From here, List Command creates a command result and returns it to the `LogicManager`.
@@ -388,7 +388,7 @@ In order to enrol a dog into a program, the raw input needs to be parsed first. 
 
 Below is an example activity diagram for a valid enrol command from the user.
 
-![EnrolActivityDiagram>](images/EnrolActivityDiagram.png){: .center-image width="50%"}
+![EnrolActivityDiagram>](images/EnrolActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid enrol command from the user.
 
@@ -421,7 +421,7 @@ To drop a dog from a program, the raw input is parsed and goes through several c
 
 Below is an example activity diagram for a valid drop command from the user.
 
-![DropActivityDiagram](images/DropActivityDiagram.png){: .center-image width="50%"}
+![DropActivityDiagram](images/DropActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid drop command from the user.
 
