@@ -96,7 +96,7 @@ and exposes its functionality using the `LogicManager.java` class which implemen
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `deletereader 1`.
 ![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
