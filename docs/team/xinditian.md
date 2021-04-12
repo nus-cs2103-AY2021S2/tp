@@ -54,6 +54,7 @@ Given below are my contributions to the project.
     * Updated the 'List Command' command to include features of the dictionary (Pull requests [\#168](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/168))
     * Updated the dictionary feature by changing the header from 'week' to 'title' to make the dictionary more realistic (Pull requests [\#248](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/248))
     * Wrote additional tests for existing features to increase coverage (Pull requests [\#165](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/165))
+    * Added content to the dictionary with reference to the textbook (Pull requests [\#278](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/278))
 
 * **Documentation**:
     * User Guide:
@@ -61,7 +62,7 @@ Given below are my contributions to the project.
         * Added documentation for the features `listcontent`, `listddef` and `copytonote` [\#248](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/248)
         * Did cosmetic tweaks to existing documentation of features by editing or adding images `findcontent`, `finddef`, `listcontent`, `listdef` and `copytonote`: [\#248](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/248), [\#251](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/251), [\#264](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/264)
     * Developer Guide:
-        * Added implementation details of the `finddef` feature.
+        * Added implementation details of the `copytonote` feature.
         * Added 'setting up, getting started' section in the Developer's Guide. [\#30](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/30)
         * Added Introduction to Dictionote in the Developer's Guide. [\#135](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/135)  
         * Edited Table of Contents and User Stories. [\#136](https://github.com/AY2021S2-CS2103T-W13-1/tp/pull/136)
