@@ -353,8 +353,8 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** Meetings with clashes will not be scheduled, but Link.me only detects clashes when the scheduled time 
-is exactly the same. Even with a minute difference, Link.me will schedule a new meeting. This is to ensure that our 
-users have the largest flexibility when using Link.me.
+is exactly the same. Even with a minute difference, Link.me will schedule a new meeting. This is to ensure that you
+have the largest flexibility when using Link.me.
 </div>
 
 Example:
