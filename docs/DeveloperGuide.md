@@ -5,13 +5,13 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -122,7 +122,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.heymatez.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 This section documents some of the noteworthy details on how certain features are implemented
@@ -323,7 +323,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![#Activity Diagram for the clearAssignees command](images/ClearAssigneesActivityDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -333,7 +333,7 @@ The following activity diagram summarizes what happens when a user executes the 
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -638,7 +638,7 @@ Use case ends.
 * **CCA**: Co-curricular activities 
 * **CCA / Club head**: A person who has a position in a Club / CCA and is required to manage the tasks and members within the club
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
