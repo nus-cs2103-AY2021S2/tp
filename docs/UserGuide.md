@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 Are you finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We
@@ -350,6 +351,12 @@ Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 :bulb: **Tip:**`DESCRIPTION` can contain any character, including "@".
 </div>
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Meetings with clashes will not be scheduled, but Link.me only detects clashes when the scheduled time 
+is exactly the same. Even with a minute difference, Link.me will schedule a new meeting. This is to ensure that our 
+users have the largest flexibility when using Link.me.
+</div>
+
 Example:
 
 * `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a meeting with description "Insurance Plan" with the 2nd client 
@@ -376,8 +383,8 @@ Example:
 
 #### Finding clients by name: `find`
 
-You can find clients by simply entering their name. If you wish to search for clients with a specific attribute
-such as gender, age, insurance plan name, etc, refer to the `filter` command below.
+You can find clients by simply entering their name. If you wish to filter clients by specific attributes
+such as gender, age, insurance plan name, etc, refer to [Filtering clients by attributes](#filtering-clients-by-attributes--filter) below.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -403,7 +410,7 @@ Supported `PREFIX/KEYWORD` pairs:
 * address: `a/ADDRESS`
 * gender: `g/GENDER` (`GENDER` should be either `M`/`Male`, `F`/`Female` or `N`/`Non-binary`)
 * tag: `t/TAG`
-* age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]`
+* age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]` (Age should be a non-negative integer)
 * insurance plan name: `i/PLAN_NAME`
 
 Lists all of your clients that has one of their attributes that match your search keywords.

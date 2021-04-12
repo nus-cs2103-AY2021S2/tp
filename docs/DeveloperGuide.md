@@ -25,10 +25,15 @@ each component.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
+the [diagrams](https://github.com/AY2021S2-CS2103T-W12-3/tp/tree/master/docs/diagrams) folder. Refer to the 
+[PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
+and edit diagrams.
 
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for classes in sequence diagrams shown in this Developer's Guide should end at the destroy marker
+(X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 **`Main`** has two classes
@@ -51,17 +56,17 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
+* exposes its functionality using a concrete `{Component Name} Manager` class (which implements the corresponding
   API `interface` mentioned in the previous point.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+An example of how the components interact with each other upon user input is given in the sequence diagram below.
+The user input in this example is `delete 1`:
 
 ![Sequence Diagram of the Architecture](images/ArchitectureSequenceDiagram.png)
 
-The sections below give more details of each component.
+The sections below give more details about each individual component.
 
 ### UI component
 
@@ -71,8 +76,10 @@ The sections below give more details of each component.
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, `StatusBarFooter` etc. The `NotifWindow` and `NotesWindow` classes inherit from the `Alert` class. All other classes, 
-including the `MainWindow`, inherit from the abstract `UiPart` class.
+, `StatusBarFooter` etc.
+
+The `NotifWindow` and `NotesWindow` classes inherit from the `Alert` class.
+All other classes, including `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
@@ -104,9 +111,6 @@ call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -116,8 +120,8 @@ call.
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores Link.me data.
+* stores a `UserPref` object that represents the user’s preferences, including GUI sizings and more.
+* stores client data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -132,37 +136,40 @@ API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W12-3/tp/blob/maste
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save Link.me data in json format and read it back.
+* can save client data in json format and read it back.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
+These include configuration settings and common utilities.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how features added in this iteration are implemented.
 
 ### Representing gender of clients
 
 The gender of each client is represented as a `String` with the full gender (Male/ Female/ Non-binary). However, the
-parse will accept any of {M, F, N, Male, Female, Non-binary} with any combination of upper and lower case, and then
-convert it to the full gender.
+parse will accept any of {M, F, N, Male, Female, Non-binary} in any combination of upper and lower cases, and then
+convert it to the full gender. For example, `NoN-binARy` will be successfully recognized as non-binary.
 
 ### Representing birthdate of clients
 
 The birthdate of each client is currently represented as a `LocalDate` object instead of a `String`. This allows us to
 use `LocalDate.parse()` to check for the validity of dates, as well as restricting the range of input dates from
-`1900-01-01` to `LocalDate.now()`.
+`1900-01-01` to `LocalDate.now()`. Link.me supports only strict parsing, which means all invalid dates will not be
+recognized and common mistakes like inputting non-existent dates like the 31st of September will not be automatically 
+round down to the 30th of September.
 
 
 ### Representing insurance premiums of insurance plans
 
 The premium of a client's insurance plan is represented and stored as a `String` to support large amounts without the
-risk of overflow. The validity of the user's input amount is checked using regular expression. Unnecessary leading
-zeroes in the input string are then trimmed and the input string is padded with zeroes as necessary to format it
-to 2 decimal places.
+risk of overflow. This is to support all currency values, including those that have a much lower value than SGD.
+The validity of the user's input amount is checked using regular expressions. Unnecessary leading zeroes in the input 
+string are trimmed, and the input string is padded with zeroes as necessary to format it to 2 decimal places.
 
 ### Adding or removing insurance plans of clients
 ![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
@@ -198,20 +205,21 @@ representing the appropriate `Person`. This `Person` is passed back to the `Ui`,
 ![ScheduleSequenceDiagramLogic](images/ScheduleSequenceDiagramLogic.png)
 ![ScheduleSequenceDiagramModel](images/ScheduleSequenceDiagramModel.png)
 
-Currently, the implementation of the `Meeting` class is placing the `Meeting` as an attribute of  `Person`. While it
-certainly makes more sense for extensions and many-to-many relations to adopt such a implementation, it would cause an
+Currently, the implementation of the `Meeting` class is placing the `Meeting` as an attribute of `Person`. While it
+certainly makes more sense to adopt an implementation where `Person` is an attribute of `Meeting` in order to better
+support extensions and many-to-many relations, it would cause an
 issue where we would have to examine and update every meeting object to edit the person if we were to update and change
-a Person as the current implementation does not give the `Person` object an immutable unique identifier upon
+a `Person` as the current implementation does not give the `Person` object an immutable unique identifier upon
 construction. As a result, the current implementation of the Meeting list takes in the `Person` class as the element of
 the list, and accesses the meeting attribute within the `Person` object when needed.
 
 In regard to the editing of the `UniqueMeetingList`, we implemented it in such a way that the meeting list is edited
-every time the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
+every time the `UniquePersonList` is edited. Hence, the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
-as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as
-is.
+as the wrapper for the `Person` class, or an implementation where `Person` and `Meeting` are completely separate entities,
+but for the sake of functionality and simplicity, we shall keep the current implementation as is.
 
 ### Unscheduling meetings
 
@@ -265,7 +273,7 @@ be displayed.
 
 * manage contacts faster than a typical mouse/GUI driven app
 * maintain notes on their client, their needs, their likes/dislikes, insurance plans etc.
-* get automated reminders about upcoming meetups/ notifications on the client's birthday.
+* get automated reminders about upcoming meetups and notifications on the client's birthday.
 
 ### User stories
 
@@ -313,24 +321,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
+(For all use cases below, the **System** is the `Link.me` and the **Actor** is the `user`, unless specified
 otherwise)
 
 **Use case: Add a client**
 
 **MSS**
 1.  User adds a client with corresponding information.
-2.  AddressBook shows the list of clients.
+2.  Link.me shows the list of clients.
 3.  Use case ends.
 
 **Extensions**
 
 * 1a. The user's input format is invalid.
-    * 1a1. AddressBook shows an error message.
+    * 1a1. Link.me shows an error message.
     * Use case resumes at step 1.
 
 * 1b. The given tag is invalid/nonexistent.
-    * 1b1. AddressBook shows an error message.
+    * 1b1. Link.me shows an error message.
     * Use case ends.
 
 
@@ -338,9 +346,9 @@ otherwise)
 
 **MSS**
 1.  User requests to list clients
-2.  AddressBook shows the list of clients
+2.  Link.me shows the list of clients
 3.  User requests to edit a specific client in the list
-4.  AddressBook edits the client
+4.  Link.me edits the client
 5.  Use case ends.
 
 
@@ -350,24 +358,24 @@ otherwise)
     * Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 * 3b. No optional fields are given.
-    * 3b1. AddressBook shows an error message.
+    * 3b1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 * 3c. The user input is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 **Use case: Delete a client**
 
 **MSS**
 1.  User requests to list clients
-2.  AddressBook shows a list of clients
+2.  Link.me shows a list of clients
 3.  User requests to delete a specific client in the list
-4.  AddressBook deletes the client
+4.  Link.me deletes the client
 5.  Use case ends.
 
 
@@ -377,7 +385,7 @@ otherwise)
     * Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 **Use case: Scheduling a meetup with a client**
@@ -385,9 +393,9 @@ otherwise)
 **MSS**
 
 1. User requests to list clients
-2. AddressBook shows a list of clients
+2. Link.me shows a list of clients
 3. User requests to schedule a meeting a specific client in the list at a specified date and time
-4. AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list
+4. Link.me adds the specified client, as well as the specified date and time of the meeting, to the schedule list
 5. Use case ends.
 
 **Extensions**
@@ -396,20 +404,20 @@ otherwise)
     * Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Link.me shows an error message.
     * Use case resumes at step 2.
 
 * 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd HH:MM)
-    * 3b1. AddressBook shows an error message and reminds the user of the correct format.
+    * 3b1. Link.me shows an error message and reminds the user of the correct format.
     * Use case resumes at step 2.
 
 * 3c. The given date-and-time is invalid (eg. user input 2020-02-31 14:30)
-    * 3c1. AddressBook shows an error message
+    * 3c1. Link.me shows an error message
     * Use case resumes at step 2.
 
 * 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting 2 different clients at
   the same date and time)
-    * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client and asks
+    * 3d1. Link.me alerts the user that the meeting coincides with another meeting with a specified client and asks
       the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
     * If Y, use case continues to step 4. If N, user case resumes at step 2.
 
@@ -422,25 +430,25 @@ otherwise)
     * tag: t/TAG
     * age: age/[AGE] or age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]
     * insurance plan name: i/PLAN_NAME
-2.  AddressBook shows the list of clients which has at least one attribute matching the user's search keywords
+2.  Link.me shows the list of clients which has at least one attribute matching the user's search keywords
 3.  Use case ends.
 
 **Extensions**
 
 * 1a. The user inputs an invalid prefix.
-  * 1a1. AddressBook shows an error message.
+  * 1a1. Link.me shows an error message.
   * Use case resumes at step 1.
     
 * 1b. The user inputs an invalid age parameter or age range as an attribute to filter
-    * 1b1. AddressBook shows an error message
+    * 1b1. Link.me shows an error message
     * Use case resumes at step 1.
     
 * 1c. The user inputs an invalid gender parameter (must be 'M', 'F' or 'N')
-    * 1c1. AddressBook shows an error message
+    * 1c1. Link.me shows an error message
     * Use case resumes at step 1.
     
 * 1d. The user does not input any filter parameters (eg. `filter ` instead of `filter age/25`)
-    * 1d1. AddressBook shows an error message
+    * 1d1. Link.me shows an error message
     * Use case resumes at step 1.
 
 * 2a. The filtered list is empty.
@@ -450,13 +458,13 @@ otherwise)
 
 **MSS**
 1.  User requests to search for clients by name
-2.  AddressBook shows the list of clients whose name matches the user's search keywords
+2.  Link.me shows the list of clients whose name matches the user's search keywords
 3.  Use case ends.
 
 **Extensions**
 
 * 1a. The user does not input any parameter (eg. `find ` instead of `find Alex`)
-    * 1d1. AddressBook shows an error message
+    * 1d1. Link.me shows an error message
     * Use case resumes at step 1.
 
 * 2a. The search result list is empty.
@@ -467,7 +475,7 @@ otherwise)
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The software should not use any OS-dependent libraries and OS-specific features.
 3.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user with average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5.  The software should work without requiring an installer.
 6.  The software should not depend on a remote server.
 7.  The data should be stored locally and should be in a human editable text file.
