@@ -968,7 +968,20 @@ testers are expected to do more *exploratory* testing.
        The star next to the first contact's name becomes empty.
 
 #### List all contacts
-1. List favourited contacts
+1. List all contacts
+    1. Prerequisites: Multiple contacts in the list.
+    1. Test case: `list`
+       Expected: Full list of contacts will be displayed.
+       Success message is shown in the status message.
+    1. Test case: `list ajkndskjn`
+       Expected: Invalid command format error details shown in the status message.
+2. List favourited contacts
+    1. Prerequisites: Multiple contacts in the list, some being favourited contacts.
+    1. Test case: `list o/fav`
+       Expected: List of favourited contacts will be displayed.
+       Success message is shown in the status message.
+    1. Test case: `list o/random`
+       Expected: Invalid option error details shown in the status message.
 
 ### Testing Appointment Book Features
 
