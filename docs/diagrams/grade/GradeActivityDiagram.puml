@@ -9,27 +9,45 @@ if () then ([all required prefixes present])
       :Parses the prefixes;
 
       if () then ([all prefixes formatted correctly])
-      :Check if grade letter follows Singapore-GCE O'Level grading system;
+      :Check if subject name has valid format;
 
-          if () then ([grade letter follows Singapore-GCE O'Level \ngrading system])
-          :Check if grade already existed;
+          if () then ([subject name formatted correctly])
+          :Check if graded item has valid format;
 
-              if () then ([grade does not exist])
-              :Add grade to GradeBook;
-              :Show success message;
+              if () then ([graded item formatted correctly])
+              :Check if grade letter follows Singapore-GCE O'Level grading system;
+
+                  if () then ([grade letter follows Singapore-GCE O'Level \ngrading system])
+                  :Check if grade already existed;
+
+                      if () then ([grade does not exist])
+                      :Add grade to GradeBook;
+                      :Show success message;
+
+                      else ([else])
+
+                      :Shows a grade already exist
+                      error message;
+
+                      endif
+
+                  else ([else])
+                  :Shows an invalid grade letter
+                  error message;
+
+                  endif
 
               else ([else])
-
-              :Shows a grade already exist
+              :Shows an invalid graded item
               error message;
 
               endif
 
           else ([else])
-          :Shows an invalid grade letter
+          :Shows an invalid subject name
           error message;
 
-      endif
+          endif
 
       else ([else])
 

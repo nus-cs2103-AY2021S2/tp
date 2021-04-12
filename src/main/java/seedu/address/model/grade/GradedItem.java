@@ -6,13 +6,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class GradedItem {
     public static final String MESSAGE_CONSTRAINTS =
             "Graded item should only contain alphanumeric characters and spaces, "
-                    + "and it should not be blank";
+                    + "and it should not be blank. "
+                    + "Maximum number of characters is 25.";
 
     /*
      * The first character of the graded item must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     * Maximum number of characters is 25.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "(?=^.{1,25}$)[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String gradedItem;
 

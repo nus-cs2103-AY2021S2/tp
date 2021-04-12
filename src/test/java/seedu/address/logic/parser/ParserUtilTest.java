@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalGrades.MATHS_GRADE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDate;
@@ -19,7 +20,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
+import seedu.address.model.grade.GradeEnum;
+import seedu.address.model.grade.GradedItem;
 import seedu.address.model.reminder.ReminderDate;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Email;
@@ -50,6 +54,16 @@ public class ParserUtilTest {
 
     private static final String VALID_DATE = "2021-05-24";
     private static final String INVALID_DATE = "2/5/2021";
+
+    private static final String INVALID_SUBJECT_IN_GRADE = "Maths&*^";
+    private static final String INVALID_LONG_SUBJECT_NAME = "charactersmorethantwenty";
+    private static final String INVALID_GRADED_ITEM = "Midterm&"; // '&' not allowed in graded items
+    private static final String INVALID_LONG_GRADED_ITEM = "charactersmorethannnnnnn25";
+    private static final String INVALID_GRADE = "A-"; // '-' not allowed in grade
+
+    private static final String VALID_SUBJECT_NAME = "Mathematics";
+    private static final String VALID_GRADED_ITEM = MATHS_GRADE.getGradedItem().toString();
+    private static final String VALID_GRADE = MATHS_GRADE.getGrade().toString();
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -324,5 +338,77 @@ public class ParserUtilTest {
         String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
         LocalDate expectedDate = LocalDate.parse(VALID_DATE, DateTimeFormatter.ofPattern("y-M-d"));
         assertEquals(expectedDate, ParserUtil.parseLocalDate(dateWithWhitespace));
+    }
+
+    @Test
+    public void parseSubjectNameInGrade_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSubjectNameInGrade((String) null));
+    }
+
+    @Test
+    public void parseSubjectNameInGrade_invalidSubjectName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSubjectNameInGrade(INVALID_SUBJECT_IN_GRADE));
+    }
+
+    @Test
+    public void parseSubjectNameInGrade_invalidLongSubjectName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSubjectNameInGrade(INVALID_LONG_SUBJECT_NAME));
+    }
+
+    @Test
+    public void parseSubjectNameInGrade_validSubjectWithoutWhitespace_returnsSubjectName() throws Exception {
+        SubjectName expectedSubject = new SubjectName(VALID_SUBJECT_NAME);
+        assertEquals(expectedSubject, ParserUtil.parseSubjectNameInGrade(VALID_SUBJECT_NAME));
+    }
+
+    @Test
+    public void parseSubjectNameInGrade_validSubjectWithWhitespace_returnsTrimmedSubjectName() throws Exception {
+        String subjectWithWhitespace = WHITESPACE + VALID_SUBJECT_NAME + WHITESPACE;
+        SubjectName expectedSubject = new SubjectName(VALID_SUBJECT_NAME);
+        assertEquals(expectedSubject, ParserUtil.parseSubjectNameInGrade(subjectWithWhitespace));
+    }
+
+    @Test
+    public void parseGradedItem_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGradedItem((String) null));
+    }
+
+    @Test
+    public void parseGradedItem_invalidGradedItem_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGradedItem(INVALID_GRADED_ITEM));
+    }
+
+    @Test
+    public void parseGradedItem_invalidLongGradedItem_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGradedItem(INVALID_LONG_GRADED_ITEM));
+    }
+
+    @Test
+    public void parseGradedItem_validGradedItemWithoutWhitespace_returnsGradedItem() throws Exception {
+        GradedItem expectedGradedItem = new GradedItem(VALID_GRADED_ITEM);
+        assertEquals(expectedGradedItem, ParserUtil.parseGradedItem(VALID_GRADED_ITEM));
+    }
+
+    @Test
+    public void parseGradedItem_validGradedItemWithWhitespace_returnsTrimmedGradedItem() throws Exception {
+        String gradedItemWithWhitespace = WHITESPACE + VALID_GRADED_ITEM + WHITESPACE;
+        GradedItem expectedGradedItem = new GradedItem(VALID_GRADED_ITEM);
+        assertEquals(expectedGradedItem, ParserUtil.parseGradedItem(gradedItemWithWhitespace));
+    }
+
+    @Test
+    public void parseGrade_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGrade((String) null));
+    }
+
+    @Test
+    public void parseGrade_invalidGrade_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGrade(INVALID_GRADE));
+    }
+
+    @Test
+    public void parseGrade_validGrade_returnsSubjectName() throws Exception {
+        GradeEnum expectedGrade = GradeEnum.valueOf(VALID_GRADE);
+        assertEquals(expectedGrade, ParserUtil.parseGrade(VALID_GRADE));
     }
 }

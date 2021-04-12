@@ -12,13 +12,19 @@ import seedu.address.model.subject.SubjectName;
  */
 public class Grade {
     public static final String MESSAGE_CONSTRAINTS =
-            "Each Grade must contain subject name, exam name and grade.";
+            "Each Grade must contain subject name, exam name and grade. ";
+
+    public static final String SUBJECT_CONSTRAINTS =
+            "Subject names should only contain alphanumeric characters and spaces, "
+                    + "and it should not be blank. "
+                    + "Maximum number of characters is 20. ";
 
     /*
      * The first character of the gradedItem must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     * Maximum number of characters is 20.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "(?=^.{1,20}$)[\\p{Alnum}][\\p{Alnum} ]*";
 
     private final SubjectName subject;
     private final GradedItem gradedItem;
@@ -47,6 +53,10 @@ public class Grade {
     public GradeEnum getGrade() {
         assert(this.grade != null);
         return this.grade;
+    }
+
+    public static boolean isValidSubject(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     public static boolean isValidGrade(String test) {

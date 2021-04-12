@@ -70,6 +70,7 @@ public class AddScheduleCommand extends Command {
 
         if (isValidateSuccess) {
             model.addSchedule(toAdd);
+            model.resetPredicates();
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);
         } else {
             throw new CommandException(MESSAGE_ADD_EDIT_COMMAND_ERROR);

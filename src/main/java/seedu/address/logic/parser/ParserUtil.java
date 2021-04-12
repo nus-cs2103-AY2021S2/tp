@@ -18,6 +18,7 @@ import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.reminder.ReminderDate;
@@ -28,6 +29,7 @@ import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
 import seedu.address.model.subject.TutorSubject;
+import seedu.address.model.subject.exceptions.DuplicateSubjectException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Email;
@@ -44,6 +46,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String SUBJECT_LIST_INVALID_LENGTH = "All subjects must have all attributes provided.";
     public static final String MESSAGE_INVALID_DATE = "Date should be in YYYY-MM-DD format.";
+    public static final String MESSAGE_DUPLICATE_SUBJECT = "Operation would result in duplicate subjects.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -68,10 +71,10 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        String properName = convertToTitleCase(trimmedName);
-        if (!Name.isValidName(properName)) {
+        if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+        String properName = convertToTitleCase(trimmedName);
         return new Name(properName);
     }
 
@@ -319,21 +322,25 @@ public class ParserUtil {
 
         SubjectList subjectList = new SubjectList();
 
-        for (int i = 0; i < numSubjects; i++) {
-            SubjectName subjectName = parseSubjectName(subjectNames.get(i));
-            SubjectLevel subjectLevel = parseSubjectLevel(subjectLevels.get(i));
-            SubjectRate subjectRate = parseSubjectRate(subjectRates.get(i));
-            SubjectExperience subjectExperience = parseSubjectExperience(subjectExperiences.get(i));
-            SubjectQualification subjectQualification = parseSubjectQualification(subjectQualifications.get(i));
+        try {
+            for (int i = 0; i < numSubjects; i++) {
+                SubjectName subjectName = parseSubjectName(subjectNames.get(i));
+                SubjectLevel subjectLevel = parseSubjectLevel(subjectLevels.get(i));
+                SubjectRate subjectRate = parseSubjectRate(subjectRates.get(i));
+                SubjectExperience subjectExperience = parseSubjectExperience(subjectExperiences.get(i));
+                SubjectQualification subjectQualification = parseSubjectQualification(subjectQualifications.get(i));
 
-            TutorSubject tutorSubject = new TutorSubject(
-                    subjectName,
-                    subjectLevel,
-                    subjectRate,
-                    subjectExperience,
-                    subjectQualification);
+                TutorSubject tutorSubject = new TutorSubject(
+                        subjectName,
+                        subjectLevel,
+                        subjectRate,
+                        subjectExperience,
+                        subjectQualification);
 
-            subjectList.add(tutorSubject);
+                subjectList.add(tutorSubject);
+            }
+        } catch (DuplicateSubjectException e) {
+            throw new ParseException(MESSAGE_DUPLICATE_SUBJECT);
         }
 
         return subjectList;
@@ -357,6 +364,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_TIME_MINUTES);
         }
         return new AppointmentDateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses a {@code String subjectName} into a {@code SubjectName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subjectName} is invalid.
+     */
+    public static SubjectName parseSubjectNameInGrade(String subjectName) throws ParseException {
+        requireNonNull(subjectName);
+        String trimmedSubjectName = subjectName.trim();
+        if (!Grade.isValidSubject(trimmedSubjectName)) {
+            throw new ParseException(Grade.SUBJECT_CONSTRAINTS);
+        }
+        return new SubjectName(trimmedSubjectName);
     }
 
     /**

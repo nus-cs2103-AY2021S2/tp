@@ -25,7 +25,6 @@ import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
-import seedu.address.model.subject.SubjectName;
 import seedu.address.testutil.GradeBuilder;
 
 public class AddGradeCommandParserTest {
@@ -78,7 +77,7 @@ public class AddGradeCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid subject
         assertParseFailure(parser, INVALID_SUBJECT_DESC + GRADED_ITEM_DESC_MATHS + GRADE_DESC_MATHS,
-                SubjectName.MESSAGE_CONSTRAINTS);
+                Grade.SUBJECT_CONSTRAINTS);
 
         // invalid graded item
         assertParseFailure(parser, SUBJECT_DESC_MATHS + INVALID_GRADED_ITEM_DESC + GRADE_DESC_MATHS,
@@ -90,7 +89,7 @@ public class AddGradeCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_SUBJECT_DESC + GRADED_ITEM_DESC_MATHS + INVALID_GRADE_DESC,
-                SubjectName.MESSAGE_CONSTRAINTS);
+                Grade.SUBJECT_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + SUBJECT_DESC_MATHS

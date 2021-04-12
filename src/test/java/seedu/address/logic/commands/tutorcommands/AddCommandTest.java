@@ -162,6 +162,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void changeAllAppointmentsToName(Name oldName, Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom, AppointmentDateTime timeTo) {
             throw new AssertionError("This method should not be called.");
         }
@@ -445,6 +450,11 @@ public class AddCommandTest {
 
         @Override
         public LocalDate getTimeTableDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPredicates() {
             throw new AssertionError("This method should not be called.");
         }
 

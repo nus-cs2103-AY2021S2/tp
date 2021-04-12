@@ -42,6 +42,9 @@ public class GradeCard extends UiPart<Region> {
         super(FXML);
         this.grade = grade;
         id.setText(displayedIndex + ". ");
+        subjectName.setWrapText(true);
+        gradedItem.setWrapText(true);
+        gradeLetter.setWrapText(true);
 
         subjectName.setText(grade.getSubject().name);
         gradedItem.setText(grade.getGradedItem().gradedItem);

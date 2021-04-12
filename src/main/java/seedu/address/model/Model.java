@@ -236,6 +236,11 @@ public interface Model {
     boolean hasAppointmentContainingTutor(Name name);
 
     /**
+     * Change all names of appointment related to previous tutor to new name.
+     */
+    void changeAllAppointmentsToName(Name oldName, Name name);
+
+    /**
      * @param name Name of tutor to match.
      * @return True is new appointment to be added clashes.
      */
@@ -511,4 +516,10 @@ public interface Model {
      * Returns the query date for Timetable Window.
      */
     LocalDate getTimeTableDate();
+
+    /**
+     * Reset the FilteredList predicates if there's any other operation after clicking on the calendar.
+     */
+    void resetPredicates();
+
 }

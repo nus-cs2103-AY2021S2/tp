@@ -1,0 +1,49 @@
+@startuml
+!include ../style.puml
+title Favourite a Tutor
+
+start
+:User executes FavouriteCommand;
+
+if () then ([all required prefixes present])
+      :Parses the prefixes;
+
+      if () then ([all prefixes formatted correctly])
+      :Check if target index is valid;
+
+          if () then ([valid index])
+          :Check if the tutor is already favourite;
+
+              if () then ([tutor is not favourite yet])
+              :Add favourite the tutor;
+              :Show success message;
+
+              else ([else])
+
+              :Shows tutor is already favourite
+              error message;
+
+              endif
+
+          else ([else])
+          :Shows an invalid target index
+          error message;
+
+      endif
+
+      else ([else])
+
+      :Shows an error message on
+      invalid prefix format;
+
+      endif
+
+else ([else])
+    :Shows an invalid command error
+    and command format message;
+
+endif
+
+stop
+
+@enduml

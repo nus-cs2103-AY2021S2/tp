@@ -9,11 +9,11 @@ It focuses on the Command Line Interface (CLI) while providing users with a simp
 
 Given below are my contributions to the project.
 
-* **New Feature**: Implemented list_appointments and view_appointments.
-  * What it does: allows the user to view all the appointments as well as viewing appointments on a certain date in the Tutor Tracker.
+* **New Feature**: Implemented `list_appointments`, `find_appointment` and `view_appointment`.
+  * What it does: allows the user to view all the appointments, finding appointments based on tutor's name and viewing appointments on a certain date in the Tutor Tracker.
   * Justification: This feature provides the basic necessity in the application as it allows tutees to track their appointments.
-  * Highlights: It mainly supports the GUI in displaying the list of appointments of the tutees. </br>
-  * Credits: Codes are adapted from `ListCommand` in AddressBook 3.
+  * Highlights: It mainly supports the GUI in displaying the list of appointments of the tutees. 
+  * Credits: Codes are adapted from `ListCommand` and `FindCommand` in AddressBook 3.
   * Links: [#88](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/96) 
 
 * **New Feature**: Implemented Event class.
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   * Link: [#142](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/142) 
 
 * **New Feature**: Implemented DateTimeValidationUtil.
-  * What it does: serves as a thorough validation method to ensure the new Appointment and Schedule does not violates the datetime constraints.
+  * What it does: serves as a thorough validation method to ensure the new Appointment and Schedule does not violate the datetime constraints.
   * Justification: this feature improves the product significantly because it extends the usability of the product by ensuring data integrity in Tutor Tracker.
   * Highlights: This method is used in `AddAppointmentCommand`, `EditAppointmentCommand`, `AddScheduleCommand` and `EditScheduleCommand` to ensure data are tested and validated before it can be added to TutorTracker. 
   * Link: [#304](https://github.com/glatiuden/tp/blob/0443beee162b4fb1e8a6ddc2f4e3dc24ccc1754c/src/main/java/seedu/address/commons/util/DateTimeValidationUtil.java)
@@ -32,14 +32,14 @@ Given below are my contributions to the project.
   * What it does: allows the user to create new Schedule objects in Tutor Tracker.
   * Justification: this feature improves the product significantly because it extends the usability of the product by allowing tutees to plan and allocate their time to tuition related task/schedule in Tutor Tracker.
   * Highlights: This enhancement affects all schedule-related commands to be added in the future. 
-  * Credits: Codes are adapted from `Person` in AddressBook 3. </br>
+  * Credits: Codes are adapted from `Person` in AddressBook 3. 
   * Links: [#142](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/142), [#172](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/172) 
 
 * **New Feature**: Implemented Schedule's CRUD Commands.
   * What it does: allows the user to **create, update, retrieve and delete** schedule records from the Tutor Tracker's Schedule Tracker.
   * Justification: this feature improves the product significantly because it extends the usability of the product by allowing tutees to track and manage their schedules.
   * Highlights: This enhancement affects all schedule-related commands to be added in the future.
-    The implementation was challenging as it required changes to the existing model, logic, storage and ui.
+    The implementation was challenging as it required changes to the existing model, logic, storage and UI.
   * Links: [#142](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/142), [#159](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/159)
   * Credits: Codes are adapted from `AddCommand`, `EditCommand`, `ListCommand` and `DeleteCommand` in AddressBook 3. 
 
@@ -54,17 +54,17 @@ Given below are my contributions to the project.
   * What it does: allows the user to **create, update, retrieve and delete** reminder records from the Tutor Tracker's Reminder Tracker.
   * Justification: this feature improves the product significantly because it extends the usability of the product by allowing tutees to track and manage their reminders.
   * Highlights: This enhancement affects all reminder-related commands to be added in the future.
-    The implementation was challenging as it required changes to the existing model, logic, storage and ui. 
+    The implementation was challenging as it required changes to the existing model, logic, storage and UI. 
   * Link: [#185](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/185)
   * Credits: Codes are adapted from `AddCommand`, `EditCommand`, `ListCommand` and `DeleteCommand` in AddressBook 3. 
     
 * **GUI Enhancement**: Implemented TimeTable window GUI.
   * What it does: allows the user to view appointment and schedule in a timetable GUI in Tutor Tracker.
   * Justification: this feature improves the product significantly because it extends the usability of the product by allowing tutees to track and manage their appointments and schedules in a graphical representation.
-  * Highlights: This feature allows tutee to open a window to view their appointments and schedules just like a typical school timetable.
-    The implementation was challenging as it requires a lot of checks before the dynamic population of Ui objects. 
+  * Highlights: This feature allows tutees to open a window to view their appointments and schedules just like a typical school timetable.
+    The implementation was challenging as it requires a lot of checks before the dynamic population of UI objects. 
   * Link: [#168](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/168)
-  * Credits: adapted the solution and reused some codes from senior team [AY2021S1-CS2103T-W13-3](https://github.com/AY2021S1-CS2103T-W13-3/tp/tree/master/src/main/java/seedu/homerce/ui/schedulepanel). </br>
+  * Credits: adapted the solution and reused some codes from senior team [AY2021S1-CS2103T-W13-3](https://github.com/AY2021S1-CS2103T-W13-3/tp/tree/master/src/main/java/seedu/homerce/ui/schedulepanel). 
 
 * **GUI Enhancement**: Added Calendar
   * What it does: allows the user to view `appointment` and `schedule` on a certain date through a calendar interface.

@@ -52,8 +52,8 @@ public class JsonAdaptedGrade {
                     SubjectName.class.getSimpleName()));
         }
 
-        if (!SubjectName.isValidName(subject)) {
-            throw new IllegalValueException(SubjectName.MESSAGE_CONSTRAINTS);
+        if (!Grade.isValidSubject(subject)) {
+            throw new IllegalValueException(Grade.SUBJECT_CONSTRAINTS);
         }
 
         if (gradedItem == null) {

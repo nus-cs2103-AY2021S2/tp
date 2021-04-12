@@ -4,19 +4,18 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Tutor's gender in the TutorBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Genders should be male or female";
+            "Genders should be male, female or others";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String personGender;
 
@@ -32,11 +31,11 @@ public class Gender {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid gender.
      */
     public static boolean isValidGender(String s) {
         String uppercaseString = s.toUpperCase();
-        return uppercaseString.equals("MALE") || uppercaseString.equals("FEMALE");
+        return uppercaseString.equals("MALE") || uppercaseString.equals("FEMALE") || uppercaseString.equals("OTHERS");
     }
 
 

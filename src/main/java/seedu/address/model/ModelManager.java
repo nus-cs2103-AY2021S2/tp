@@ -325,6 +325,13 @@ public class ModelManager implements Model {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
     }
 
+    /**
+     * Change all names of existing appointments with tutor to the new tutor name.
+     */
+    @Override
+    public void changeAllAppointmentsToName(Name oldName, Name name) {
+        appointmentBook.changeAllAppointmentsToName(oldName, name);
+    }
 
     //============== Budget ============================================================
 
@@ -740,6 +747,12 @@ public class ModelManager implements Model {
     @Override
     public LocalDate getTimeTableDate() {
         return timeTableDateMap.get(0);
+    }
+
+    @Override
+    public void resetPredicates() {
+        filteredAppointment.setPredicate(PREDICATE_SHOW_ALL_APPOINTMENT);
+        filteredSchedules.setPredicate(PREDICATE_SHOW_ALL_SCHEDULE);
     }
 
     //@@author Jens-Peter Haack-reused

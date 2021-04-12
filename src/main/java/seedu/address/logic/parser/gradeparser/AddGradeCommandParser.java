@@ -40,7 +40,7 @@ public class AddGradeCommandParser implements Parser<AddGradeCommand> {
         }
 
         SubjectName subjectName =
-                ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get());
+                ParserUtil.parseSubjectNameInGrade(argMultimap.getValue(PREFIX_SUBJECT_NAME).get());
         GradedItem gradedItem =
                 ParserUtil.parseGradedItem(argMultimap.getValue(PREFIX_GRADED_ITEM).get());
         GradeEnum grade =
