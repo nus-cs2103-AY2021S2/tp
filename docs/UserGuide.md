@@ -37,7 +37,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 # 2. Quick start <a name = "quickstart"></a>
 
 1. Ensure you have Java 11 or above installed in your computer.
-2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
+2. Download the latest [CS2103T-W10-1][GreenMileageEfforts].jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
 3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
 4. Double click the file to start the aplication.
 5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
@@ -309,7 +309,7 @@ Lists the pools currently stored in the GME terminal.
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The json file containing the data stored is named `GMEdata.json` and can be found in the `data` folder in the same directory where `GreenMileageEfforts.jar` file is saved.
+**A:** The json file containing the data stored is named **GMEdata.json** and can be found in the **data** folder in the same directory where **[CS2103T-W10-1][GreenMileageEfforts].jar** file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
