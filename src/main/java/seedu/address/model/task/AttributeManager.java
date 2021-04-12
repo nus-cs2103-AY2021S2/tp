@@ -2,7 +2,6 @@ package seedu.address.model.task;
 
 import java.time.LocalDate;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.attributes.Description;
 import seedu.address.model.task.attributes.Duration;

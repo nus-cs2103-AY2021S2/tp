@@ -216,7 +216,7 @@ Below is also an example of the default method of find by title general process 
 6. `filteredTasks` list will be updated accordingly in `ModelManager` and the filtered list display in PlanIT will be updated.
 7. `CommandResult` will eventually be returned and feedback will be given to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**For find by tag and find by description,
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For find by tag and find by description,
 the steps are similar except for step 3 and 4 where it will be TagContainsKeywordsPredicate and
 DescriptionContainsKeywordsPredicate 
 respectively in place of TitleContainsKeywordsPredicate </div>
@@ -506,44 +506,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Precondition: The task does not have a recurring schedule.**
 
 **MSS**
-1. User enters command to add task with a date to a specified task.
+1. User enters command to add task with a date.
 2. PlanIT shows task with updated date and updates list.
 3. This task can be viewed in the Calendar User Interface on the day of the date.
 
    Use case ends.
 
 **Extensions**
-* 2a. The given index is invalid.
-    * 2a1. PlanIt shows error message.
-
-      Use case resumes at step 1.
+* 1a. The given date is invalid format.
+    * 1a1. PlanIt shows error message.
+    * 1a2. User enters the new details.
     
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format.
+  
+    Use case resumes from Step 2.
+    
+
 #### **Use case: Add a duration to a task**
 
 **Precondition: The task has a title and has a deadline date or recurring schedule.**
 
 **MSS**
 
-1. User <u>adds a task</u> to the list.
-2. PlanIT shows task added to the list and updates list.
-3. User enters command to add a duration to a specified task.
-4. PlanIT shows task with updated duration and updates list.
-5. The duration details can be viewed in the Calendar User Interface on the day of the task.
+1. User enters command to add a task with duration.
+2. PlanIT shows task with updated duration and updates list.
+3. The duration details can be viewed in the Calendar User Interface on the day of the task.
 
    Use case ends.
 
 **Extensions**
-* 4a. The given timeslot on that date is already taken.
-    * 4a1. PlanIT shows error message.
-
-      Use case resumes at step 3.
+* 1a. The given duration is invalid format.
+    * 1a1. PlanIT shows error message.
+    * 1a2. User enters the new details. 
+    
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format.
+  
+    Use case resumes from Step 2.
+      
     
 #### **Use case: Add a recurring schedule to the task**
 
 **Precondition: The task has a title, does not have a deadline date and only repeats in weekly or biweekly basis.**
 
 **MSS**
-1. User <u>adds a task</u> with recurring schedule consisting of end date, 
+1. User enters command to add a task with recurring schedule consisting of end date, 
    day of week and week frequency to the list.
 2. PlanIT shows task with the recurring dates based on the conditions specified by the user.
 
@@ -553,13 +559,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given input format is invalid.
     * 1a1. PlanIT display an error message.
     * 1a2. User enters the new details.
-    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. Use case resumes from Step 2.
+    
+    Steps 1a1 to 1a2 are repeated until the user input is of acceptable format. 
+  
+    Use case resumes from Step 2.
 
-* 1b. The given input has an end date that has passed the current system date or less than a week from current system date.
+
+* 1b. The given input has an end date that has before the current date.
     * 1b1. PlanIT display an error message.
     * 1b2. User enters the new details.
-    Steps 1b1 to 1b2 are repeated until the user input end date is valid. Use case resumes from Step 2.
     
+    Steps 1b1 to 1b2 are repeated until the user input end date is ahead of current date. 
+  
+    Use case resumes from Step 2.
+
+
+* 1c. The given input has an end date that has passed the current date more than 6 months.
+    * 1c1. PlanIT display an error message.
+    * 1c2. User enters the new details.
+      
+    Steps 1c1 to 1c2 are repeated until the user input end date is within 6 months of current date. 
+  
+    Use case resumes from Step 2.
+    
+
 #### **Use case: Remove a task**
 
 **Precondition: The task exists in the planner.**
@@ -576,9 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given index is invalid.
     * 1a1. PlanIt shows error message.
-
-
-      Use case resumes at step 1.
+     Use case resumes at step 1.
     
     
 #### **Use case: Remove a field from a task**
@@ -642,7 +663,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given input format is invalid.
     * 3a1. PlanIT display an error message.
     * 3a2. User enters the new details.
-    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+    
+    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. 
+    Use case resumes from Step 4.
       
 * 4a. There are no matching tasks.
     * 4a1. PlanIT shows no matching tasks.
@@ -663,7 +686,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given input format is invalid.
     * 3a1. PlanIT display an error message.
     * 3a2. User enters the new details.
-    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+    
+    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. 
+  
+    Use case resumes from Step 4.
       
 * 4a. There are no matching tasks.
     * 4a1. PlanIT shows no matching tasks.
@@ -684,7 +710,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given input format is invalid.
     * 3a1. PlanIT display an error message.
     * 3a2. User enters the new details. 
-    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. Use case resumes from Step 4.
+    
+    Steps 3a1 to 3a2 are repeated until the user input is of acceptable format. 
+  
+    Use case resumes from Step 4.
       
 * 4a. There are no matching tasks.
     * 4a1. PlanIT shows no matching tasks.
@@ -878,7 +907,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `mk n/CS2103 r/[30/06/2020][mon][weekly]`<br>
     Expected: No task with recurring schedule will be added.
     An error message stating invalid end date input of recurring schedule will be shown in the result display 
-    since it should be ahead of current system date.
+    since it should be ahead of current date.
        
     1. Test case: `mk n/CS2103 r/   [30/05/2021] [mon]  [weekly]`<br>
     Expected: No task with recurring schedule will be added.
@@ -927,14 +956,14 @@ testers are expected to do more *exploratory* testing.
        Expected: No filtered list will be returned.
        An error message stating multiple prefixes will be shown in the result display 
        and it is not allowed to mix description prefix in search task by tag query.
-
-    1. Test case: `find t/    Project`<br>
-       Expected: No filtered list will be returned.
-       An error message stating no whitespaces allowed right after the `t/` tag prefix in search task by tag query.
     
     1. Test case: `find t/Project`<br>
        Expected: A filtered list will be returned if there exists tasks within PlanIT
        that has the full tag keyword `Project` (case-insensitive).
+        
+    1. Test case: `find t/      CS2103`<br>
+       Expected: No filtered list will be returned.
+       An error message stating no white space allowed directly after `t/` tag prefix in search task by tag query.
        
     1. Test case: `find t/Project t/CS2105`<br>
        Expected: A filtered list will be returned if there exists tasks within PlanIT
@@ -961,11 +990,10 @@ testers are expected to do more *exploratory* testing.
        Expected: No filtered list will be returned.
        An error message stating multiple prefixes will be shown in the result display
        and it is not allowed to have more than one `d/` description prefix in search task by description query.
-
-    1. Test case: `find d/    hello`<br>
+       
+    1. Test case: `find d/      Project`<br>
        Expected: No filtered list will be returned.
-       An error message stating no whitespaces allowed right after the `d/` description 
-       prefix in search task by description query.
+       An error message stating no white space allowed directly after `d/` description prefix in search task by description query.
 
     1. Test case: `find d/hello`<br>
        Expected: A filtered list will be returned if there exists tasks within PlanIT
