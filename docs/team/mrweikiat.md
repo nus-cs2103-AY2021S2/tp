@@ -18,18 +18,18 @@ You can see my contributions [here](https://nus-cs2103-ay2021s2.github.io/tp-das
 * Justification : User can view the different priority on the Ui and each priority levels are color coded distinctively from one another
 * Highlights: It was difficult to implement the priority tag feature as we have to take note of the feature ability to be sorted, to handle that issue. I introduced `states` as an attribute to the priority tag class, and assign values to each of those states such that it was easier to implement the comparator feature that was handled by another of my team mate.
 * Worked on the PriorityTag files, but are not restricted to
-        1) `PriorityTag`
-        2) `State`
-        3) `Tag`
-        4) `AddCommandParser`
-        5) `EditCommandParser`
-        6) `CliSyntax`
-        7) `TaskTrackerParser`
-        8) `AddCommand`
-        9) `EditCommand`
-        10) `ArgumentMultiMap`
-        11) `ParserUtil`
-        12) `Prefix`
+        1. `PriorityTag`
+        2. `State`
+        3. `Tag`
+        4. `AddCommandParser`
+        5. `EditCommandParser`
+        6. `CliSyntax`
+        7. `TaskTrackerParser`
+        8. `AddCommand`
+        9. `EditCommand`
+        10. `ArgumentMultiMap`
+        11. `ParserUtil`
+        12. `Prefix`
 
 ### Enhancement 2
 * Sorting the priority tag based on priority levels can help the user view the most prioritised tasks at the top of the task list. 
