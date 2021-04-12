@@ -11,7 +11,8 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Phone numbers should only contain numbers, and it should be at least 3 digits long. "
+                + "Look out for spaces! Spaces are not allowed.";
     public static final String MESSAGE_EMPTY = "Phone number cannot be blank.";
     public static final String MESSAGE_OVERFLOW = "Phone has a size limit of 20 digits.";
     public static final String VALIDATION_REGEX = "\\d{3,}";

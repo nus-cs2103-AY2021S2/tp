@@ -5,10 +5,13 @@ import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.cakecollate.commons.core.LogsCenter;
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
+import seedu.cakecollate.logic.LogicManager;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.DeliveryStatus;
@@ -30,6 +33,7 @@ public class DeliveryStatusCommand extends Command {
     private final IndexList targetIndexList;
 
     private final DeliveryStatus status;
+    final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
      * Initialises a delivery status command.
@@ -85,15 +89,18 @@ public class DeliveryStatusCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Order> lastShownList = model.getFilteredOrderList();
+
+        List<Order> copy = new ArrayList<>(lastShownList);
+        
         List<Order> updatedOrders = new ArrayList<>();
         List<Order> sameOrders = new ArrayList<>();
 
         for (Index targetIndex:this.targetIndexList.getIndexList()) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            if (targetIndex.getZeroBased() >= copy.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
             }
 
-            Order orderToUpdate = lastShownList.get(targetIndex.getZeroBased());
+            Order orderToUpdate = copy.get(targetIndex.getZeroBased());
 
             if (orderToUpdate.getDeliveryStatus().equals(status)) {
                 sameOrders.add(orderToUpdate);
