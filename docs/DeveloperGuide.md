@@ -102,7 +102,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `food_delete n\grape`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="3060" />
 
 The sections below give more details of each component.
 
@@ -349,8 +349,6 @@ Step 1: The user launches the application and executes `food_list`.
 
 Step 2: The food item(s) in the food list will be displayed.
 
-The following sequence diagram shows how the delete operation works:
-
 ### Delete food item feature
 
 The following activity diagram summarizes what happens when a user executes a `food_delete` command:
@@ -372,8 +370,6 @@ Below is an example of a usage scenario:
 Step 1: The user launches the application and executes `food_delete n/grape`.
 
 Step 2: The food item specified will be deleted from the food list.
-
-The following sequence diagram shows how the delete operation works:
 
 ### FoodIntake Object
 
