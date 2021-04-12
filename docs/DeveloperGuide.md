@@ -1561,7 +1561,60 @@ Given below are instructions to test the app manually.
        Expected: An error message about the invalid command format is shown. <br><br>
     4. Test Case: `delete_grade -1` <br>
        Expected: An error message about the invalid command format is shown. <br><br>
-       
+
+### Adding a Tutor Filter
+
+1. Adding a Tutor Filter
+    1. Prerequisites for each test case:
+        1. List of Tutor Filters must be empty
+        2. There must be at least 2 Tutors in the tutor list.
+        3. The first tutor must have the name Alex Yeoh and have at least 1 subject with experience of 5 years
+        4. The second tutor must have the name Bernice Yu and have at least 1 subject with experience of 4 years
+    2. Test Case: `add_tutor_filter n/Alex` <br>
+       Expected: A Tutor Filter `Name: alex` is added and the tutor Bernice Yu is no longer displayed.   <br><br>
+    3. Test Case: `add_tutor_filter y/<5` <br>
+       Expected: A Tutor Filter `Subject Experience: < 5` is added and the Alex Yeoh is no longer displayed. <br><br>
+    4. Test Case: `add_tutor_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
+### Deleting a Tutor Filter
+1. Adding a Tutor Filter
+    1. Prerequisites for each test case:
+        1. Test case is run directly after the previous test case specified
+    2. Test Case (Follows `Adding a Tutor Filter` test case 1.2): `delete_tutor_filter n/Alex` <br>
+       Expected: Tutor Filter `Name: alex` is deleted and both Alex Yeoh and Bernice Yu are shown.   <br><br>
+    3. Test Case (Follows `Adding a Tutor Filter` test case 1.3): `delete_tutor_filter y/<5` <br>
+       Expected: Tutor Filter `Subject Experience: < 5` is deleted and both Alex Yeoh and Bernice Yu are shown. <br><br>
+    4. Test Case: `delete_tutor_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
+### Adding an Appointment Filter
+
+1. Adding an Appointment Filter
+    1. Prerequisites for each test case:
+        1. List of Appointment Filters must be empty
+        2. There must be at least 2 Appointment in the appointment list.
+        3. The first appointment must have the tutor name Alex Yeoh and subject name Mathematics
+        4. The second appointment must have the tutor name Bernice Yu and subject name English
+    2. Test Case: `add_appointment_filter n/Alex` <br>
+       Expected: An Appointment Filter `Name: alex` is added and the appointment with Bernice Yu is no longer displayed.   <br><br>
+    3. Test Case: `add_appointment_filter s/English` <br>
+       Expected: An Appointment Filter `Subject Name: English` is added and the appointment with Alex Yeoh is no longer displayed. <br><br>
+    4. Test Case: `add_appointment_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
+### Deleting an Appointment Filter
+
+1. Deleting an Appointment Filter
+    1. Prerequisites for each test case:
+        1. Test case is run directly after the previous test case specified
+    2. Test Case (Follows `Adding an Appointment Filter` test case 1.2): `delete_appointment_filter n/Alex` <br>
+       Expected: Appointment Filter `Name: alex` is deleted and both appointments with Alex Yeoh and Bernice Yu are displayed.   <br><br>
+    3. Test Case (Follows `Adding an Appointment Filter` test case 1.3): `delete_appointment_filter s/English` <br>
+       Expected: Appointment Filter `Subject Name: English` is deleted and both appointments with Alex Yeoh and Bernice Yu are displayed. <br><br>
+    4. Test Case: `delete_appointment_filter` <br>
+       Expected: An error message is shown saying at least 1 filter must be provided. <br><br>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
