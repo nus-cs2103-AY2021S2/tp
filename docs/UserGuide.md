@@ -162,7 +162,7 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 * `n/NAME p/PHONE` are compulsory fields that must be provided. **Phone can uniquely identify a student.** i.e. Students cannot share the same phone number, while duplicate names are allowed. 
   Note that names are **case-insensitive** in TutorsPet,  e.g. `john`, `JOHN`, `John` are read as the same name.
   
-* `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
+* `[s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
 
 * Education levels are represented abbreviated names. Valid education levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`. Levels are are case-insensitive, e.g. `jc1`, `JC1`, `Jc1` are equivalent.
@@ -706,6 +706,9 @@ However, if you want to personalise your window size, the optimal display resolu
 **Q**: Why is all my data cleared? <br>
 **A**: You could have edited the data files accidentally and corrupted the data.
 
+**Q**: Why is all my data cleared? <br>
+**A**: You could have edited the data files accidentally and corrupted the data.
+
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -714,17 +717,17 @@ However, if you want to personalise your window size, the optimal display resolu
 
 ### 6.1 Field Format Summary
 
-Student Contact Field   | Prefix | Optional?|Format
-------------------------| -------|--------- |------------------------------------
-Name                    | `n/`   | N        | Contains alphanumeric characters and spaces only
-Phone number            | `p/`   | N        | Contains numbers only; at least 3 digits long
-Email                   | `e/`   | Y        | Should be in the format of **local-part@domain** e.g. `alexyeoh@gmail.com`
-Address                 | `a/`   | Y        | Any format
-Guardian's name         | `gn/`  | Y        | Contains alphanumeric characters and spaces only
-Guardian's phone number | `gp/`  | Y        | Contains numbers only; at least 3 digits long
-Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad`
-Subject                 | `t/`   | Y        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.
-Lesson                  | `le/`  | Y        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`
+Student Contact Field   | Prefix | Optional?|Format                                          | Character Limit
+------------------------| -------|--------- |------------------------------------------------|----------------
+Name                    | `n/`   | N        | Contains alphanumeric characters and spaces only | 60
+Phone number            | `p/`   | N        | Contains numbers only; at least 3 digits long | 15
+Email                   | `e/`   | Y        | Should be in the format of **local-part@domain** e.g. `alexyeoh@gmail.com` | 254
+Address                 | `a/`   | Y        | Any format | 254
+Guardian's name         | `gn/`  | Y        | Contains alphanumeric characters and spaces only | 60
+Guardian's phone number | `gp/`  | Y        | Contains numbers only; at least 3 digits long | 15
+Education level         | `lv/`  | Y        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad` | N.A.
+Subject                 | `t/`   | Y        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`, `mal`, `tam`<br>Mathematics & Sciences: `bio`, `chem`, `math`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`, `lit`<br><br>Represents subjects Chinese, English, Malay, Tamil, Biology, Chemistry, Mathematics, Physics, Science, Economics, Geography, History, Literature in order of the above listing.| N.A.
+Lesson                  | `le/`  | Y        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. `1300`| N.A.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
