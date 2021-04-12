@@ -86,7 +86,7 @@ The various sections of the User Interface are described as in the picture below
 
 ### 3.1.2 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message with a quick summary of the available commands and how to format them. Shows how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -336,7 +336,8 @@ Action | Format, Examples
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver.
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. 
+Passenger | An employee carpooling with at least one driver.
 TripDay | Day of the intended carpooling trip.
 TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
