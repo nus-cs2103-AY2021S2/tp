@@ -40,6 +40,6 @@ Given below are my contributions to the project.
         * Added the documentation for the features `add`, and `sort`.[#59](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/59), [#92](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/92)
     * Developer Guide:
         * Added implementation details including class diagram and sequence diagram for Sort feature [#92](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/92)
-        * Modeled `sort` operation via sequence diagram.
+    
 
 
