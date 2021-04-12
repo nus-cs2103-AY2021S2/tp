@@ -250,8 +250,7 @@ exists and editing a client to have the same information as an existing client i
   <tr>
     <td> Name </td>
     <td> <code>n</code> </td>
-    <td> <ul><li>Must only contain <a href=#glossary>alphanumeric</a> characters and spaces </li></ul></td>
-
+    <td> Must only contain <a href="#glossary">alphanumeric</a> characters and spaces </td>
   </tr>
   <tr>
     <td> Phone number </td>

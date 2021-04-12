@@ -666,12 +666,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
-
-2a. The list is empty.
-
-  Use case ends.
-
 <br>
 
 **Use case 4: Edit a client**
@@ -712,29 +706,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
-
-* 2a. The list of matched clients is empty.
-
-  Use case ends.
-
 <br>
 
-**Use case 6: Filter list of clients**
+**Use case 6: Filter list of clients by attributes**
 
 **MSS**
 
-1.  User requests to filter clients with details.
+1.  User requests to filter clients with attributes.
     
-2.  ClientBook shows a list of clients that matches details.
+2.  ClientBook shows a list of clients and the specified attributes.
 
     Use case ends.
-
-**Extensions**
-
-* 2a. The list of matched clients is empty.
-
-  Use case ends.
 
 <br>
 
@@ -771,18 +753,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  ClientBook schedules a meeting with the client.
 
     Use case ends.
-
-**Extensions**
-
-* 2a. The list of clients is empty.
-
-  Use case ends.
-
-* 3a. One or more of the given arguments are invalid.
-
-    * 3a1. ClientBook shows an error message.
-
-      Use case resumes at step 3.
 
 <br>
 
@@ -880,14 +850,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  ClientBook shows the shortcut library.
 
     Use case ends.
-
-**Extensions**
-
-* 1a. The shortcut library is empty.
-
-    * 1a1. ClientBook shows empty shortcut library message.
-
-      Use case ends.
 
 <br>
 
