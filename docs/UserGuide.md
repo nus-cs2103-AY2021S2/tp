@@ -61,7 +61,7 @@ Here are a few steps to get you started on TutorBuddy:
 4. Double-click the file to start the application. An application similar to the one below should appear in a few
    seconds.<br>
 
-![Ui](images/Ui.png)
+![QuickStart](images/QuickStart.png)
 
 ### 3.2 Using TutorBuddy
 
