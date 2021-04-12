@@ -210,25 +210,24 @@ The command is parsed from `WardrobeParser` to the `FindCommandParser`, where th
 object of the input is then created with `argMultiMap` as the argument for the constructor. 
 
 Finding the correct garment is achieved through the creation of new `Predicate` classes (in addition to the existing 
-`NameContainsKeywordsPredicate`) which checks if a :
-* `ContainsKeywordsPredicate`
-* `SizeContainsKeywordsPredicate`
-* `ColourContainsKeywordsPredicate`
-* `TypeContainsKeywordsPredicate`
-* `DressCodeContainsKeywordsPredicate`
-* `DescriptionContainsKeywordsPredicate`
-* `AttributesContainsKeywordsPredicate`
+`NameContainsKeywordsPredicate`):
+* `ContainsKeywordsPredicate` parent class
+* `SizeContainsKeywordsPredicate` child class
+* `ColourContainsKeywordsPredicate` child class
+* `TypeContainsKeywordsPredicate` child class
+* `DressCodeContainsKeywordsPredicate` child class
+* `DescriptionContainsKeywordsPredicate` child class
 
-`AttributesContainsKeywords` looks through each of the other types of `ContainsKeywordsPredicate` to return 
-true for garments that pass each predicate, and false otherwise. 
+`AttributesContainsKeywordsPredicate` class is used which looks through each of the other `ContainsKeywordsPredicate` 
+child classes to return true for garments that pass each predicate, and false otherwise. 
 
 The object of `AttributesContainsKeywordsPredicate` is passed to an object of `FindCommand`. The `execute` method of 
 `FindCommand` object is then called with `model`, which then calls the `updateFilteredGarmentList` method of `model`.
-This then displays all matching garments in the data to the front end of the nufash application.
+This then displays all matching garments in the data to the front end of the NuFash application.
 
 Given below is an example usage scenario of how the `find` mechanism works.
 
-1. The user launches the nufash application for the first time and is presented with a list of all garments 
+1. The user launches the NuFash application for the first time and is presented with a list of all garments 
    retrieved from local storage `wardrobe.json` (if applicable)
 
 2. The user executes `find n/Shirt shorts s/23 22 c/blue` command to find the garments that has name containing 
