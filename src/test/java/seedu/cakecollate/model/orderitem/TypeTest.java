@@ -27,9 +27,9 @@ public class TypeTest {
         // valid types
         assertTrue(Type.isValidType("Strawberry cake")); //typical order type
         assertTrue(Type.isValidType("s")); // one character
-        assertTrue(Type.isValidType("really really really long type with a really long cake description" +
-                " such as seven layered colourful rainbow cake with violet indigo blue green," +
-                " yellow, orange and red")); //really long type
+        assertTrue(Type.isValidType("really really really long type with a really long cake description"
+                + " such as seven layered colourful rainbow cake with violet indigo blue green"
+                + " yellow orange and red")); //really long type
 
         // invalid types
         assertFalse(Type.isValidType("???")); //special characters
