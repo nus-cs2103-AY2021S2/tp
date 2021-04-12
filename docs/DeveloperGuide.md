@@ -358,6 +358,60 @@ The following sequence diagram shows how this works:
     * Cons:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
+### Delete Order Item Feature
+The `deleteItem` command enables users to delete predefined order items (also known as cake items or order descriptions). The user can choose to delete a single order item or multiple order items at the same time.
+
+The `deleteItem` command utilises the `IndexList` class to enable the deletion of multiple items at once. The `IndexList` parser takes in a string of multiple indexes separated by spaces, parses them to `Index` and stores them in an `ArrayList<Index>`.
+
+The underlying functionality for the `deleteItem` command utilises the `DeleteOrderItemCommand::execute` method which sorts the provided `Index List` in descending order. All the `OrderItem`s pertaining to the indexes input by the user are removed from the `UniqueOrderItemList` using the `Model::deleteOrderItem` method.
+
+If the user wants to delete an order items at index `1` and `2` in the order items table, they can use the command `deleteItem 1 2`.
+
+Given below is an example usage scenario and how the `deleteItem` mechanism works.
+
+*Step 1.* The user keys in and executes the command `deleteItem 1 2` to delete the order items located at index 1 and 2 in the order items table.
+
+*Step 2.* The command is parsed by `DeleteOrderItemCommandParser`.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, a `DeleteOrderItemCommand` will be created.
+
+*Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
+
+The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates DeleteOrderItemCommandParser and calls parse("1 2"). 
+
+</div>
+
+![DeleteOrderItemParserSequenceDiagram](images/DeleteOrderItemParserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following sequence diagram shows how the `DeleteOrderItemCommand` works:
+
+![DeleteOrderItemSequenceDiagram](images/DeleteOrderItemSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+#### Design considerations:
+
+##### Aspect: Parsing multiple indexes
+* **Alternative 1 (current choice):** Create an IndexList class which can be used to store and parse multiple Indexes.
+    * Pros:
+        * Other commands which accept multiple indexes can also use methods from the IndexList class.
+    * Cons:
+        * Different commands have different requirements for index lists. For e.g. `DeleteOrderItemCommand` and `DeleteCommand` require that there should be no duplicate `Indexes` in the `IndexList` after parsing. However, the `AddOrderCommand` requires duplicate `Indexes` to also be stored. Each command has to implement additional checks when using `IndexList` due to differing requirements.
+* **Alternative 2:** Simply use an `ArrayList` of `Index` without creating a new class.
+    * Pros:
+        * Each command can have its own implementation of `ArrayList` which suits its needs.
+    * Cons:
+        * Not extensible to other commands as they will have to implement their own `List` if they want to accept multiple indexes.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
