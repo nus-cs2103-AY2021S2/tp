@@ -85,9 +85,10 @@ public interface Logic {
     ObservableList<ImportantDate> getFilteredImportantDatesList();
 
     ObservableList<ImportantDate> getSortedImportantDatesList();
+
     ObservableList<Lesson> getSpecificLessonList(Person selectedPerson);
 
-    public ObservableList<ImportantDate> getTransformedImportantDatesList();
+    ObservableList<ImportantDate> getTransformedImportantDatesList();
 
     Path getDatesBookFilePath();
 

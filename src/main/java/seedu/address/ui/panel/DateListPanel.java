@@ -1,4 +1,4 @@
-package seedu.address.ui.PanelList;
+package seedu.address.ui.panel;
 
 import java.util.logging.Logger;
 
@@ -9,8 +9,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.date.ImportantDate;
-import seedu.address.ui.Card.DateCard;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.card.DateCard;
+
 
 /**
  * Panel containing the list of Important Dates.
@@ -33,7 +34,7 @@ public class DateListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code ImportantDate} using a {@code DateCard}.
      */
     class DateListViewCell extends ListCell<ImportantDate> {
         @Override

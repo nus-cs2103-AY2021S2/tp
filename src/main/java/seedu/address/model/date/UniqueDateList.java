@@ -86,12 +86,13 @@ public class UniqueDateList implements Iterable<ImportantDate> {
     }
 
     /**
-     * Returns true if {@code importantDates} contains only unique important dates.
+     * Returns true if {@code importantDates} contains only unique important dates (all dates have different
+     * descriptions).
      */
     private boolean importantDatesAreUnique(List<ImportantDate> importantDates) {
         for (int i = 0; i < importantDates.size() - 1; i++) {
             for (int j = i + 1; j < importantDates.size(); j++) {
-                if (importantDates.get(i).equals(importantDates.get(j))) {
+                if (importantDates.get(i).isSameImportantDate(importantDates.get(j))) {
                     return false;
                 }
             }

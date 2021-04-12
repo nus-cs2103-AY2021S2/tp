@@ -46,7 +46,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            // throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
             throw new ParseException(String.format(pe.getMessage(), EditCommand.MESSAGE_USAGE), pe);
         }
 
@@ -89,9 +88,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> subjects} into a {@code Set<Tag>} if {@code subjects} is non-empty.
+     * Parses {@code Collection<String> subjects} into a {@code Set<Subject>} if {@code subjects} is non-empty.
      * If {@code subjects} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero subjects.
+     * {@code Set<Subject>} containing zero subjects.
      */
     private Optional<Set<Subject>> parseSubjectsForEdit(Collection<String> subjects) throws ParseException {
         assert subjects != null;

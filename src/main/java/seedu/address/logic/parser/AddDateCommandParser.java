@@ -29,7 +29,7 @@ public class AddDateCommandParser {
         boolean isDescriptionPresent = argMultimap.getValue(PREFIX_DESCRIPTION).isPresent();
         boolean isTimePresent = argMultimap.getValue(PREFIX_DETAILS).isPresent();
 
-        if ((!isDescriptionPresent && !isTimePresent) || !isDescriptionPresent || !isTimePresent) {
+        if (!isDescriptionPresent || !isTimePresent) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDateCommand.MESSAGE_USAGE));
         }

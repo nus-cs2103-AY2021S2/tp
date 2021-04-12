@@ -55,7 +55,7 @@ public class DatesBook implements ReadOnlyDatesBook {
     //// importantDates-level operations
 
     /**
-     * Returns true if an important date with the same description and details as {@code importantDate} exists in the
+     * Returns true if an important date with the same description as {@code importantDate} exists in the
      * dates book.
      */
     public boolean hasImportantDate(ImportantDate importantDate) {
@@ -71,7 +71,6 @@ public class DatesBook implements ReadOnlyDatesBook {
         importantDates.add(date);
     }
 
-
     /**
      * Removes {@code key} from this {@code DatesBook}.
      * {@code key} must exist in the dates book.
@@ -85,7 +84,6 @@ public class DatesBook implements ReadOnlyDatesBook {
     @Override
     public String toString() {
         return importantDates.asUnmodifiableObservableList().size() + " important dates";
-        // TODO: refine later
     }
 
     @Override

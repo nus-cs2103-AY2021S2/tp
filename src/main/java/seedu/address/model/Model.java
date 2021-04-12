@@ -67,7 +67,6 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-
     /**
      * Replaces selected person data with the data in {@code newPerson}.
      */
@@ -149,26 +148,52 @@ public interface Model {
 
     void filterIndicesThenTransformPersonList(List<Index> indices, Function<Person, Person> function);
 
+    /**
+     * Replaces dates book data with the data in {@code datesBook}.
+     */
     void setDatesBook(ReadOnlyDatesBook datesBook);
 
+    /** Returns the DatesBook*/
     ReadOnlyDatesBook getDatesBook();
 
+    /**
+     * Returns true if an important date with the same description as {@code importantDate} exists in the dates book.
+     */
     boolean hasImportantDate(ImportantDate importantDate);
 
+    /**
+     * Deletes the given important date.
+     * The important date must exist in the dates book.
+     */
     void deleteImportantDate(ImportantDate target);
 
+    /**
+     * Adds the given important date.
+     * {@code importantDate} must not already exist in the dates book.
+     */
     void addImportantDate(ImportantDate importantDate);
 
     void filterImportantDates(Predicate<ImportantDate> predicate);
 
+    /** Returns an unmodifiable view of the filtered important dates list */
     ObservableList<ImportantDate> getFilteredImportantDatesList();
 
+    /**
+     * Updates the filter of the filtered important dates list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredImportantDatesList(Predicate<ImportantDate> predicate);
 
+    /** Returns an unmodifiable view of the sorted important dates list */
     ObservableList<ImportantDate> getSortedImportantDatesList();
 
+    /**
+     * Updates the comparator of the sorted important dates list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
     void updateSortedImportantDatesList(Comparator<ImportantDate> comparator);
 
+    /** Returns an unmodifiable view of the transformed important dates list */
     ObservableList<ImportantDate> getTransformedImportantDatesList();
 
     /**
