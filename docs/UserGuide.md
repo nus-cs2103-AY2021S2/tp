@@ -1,6 +1,8 @@
 ---
 layout: page title: User Guide
 ---
+# Overview 
+
 `semester.config` is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `semester.config` can get
 your contact management tasks done faster than traditional GUI apps.
