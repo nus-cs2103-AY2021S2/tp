@@ -47,10 +47,11 @@ Given below are my contributions to the project.
 
    * Developer Guide:
       * Added UML diagrams and explanation for List,Help,Completed,Uncompleted Commands (PR [\#144](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/144/))
-      * Corrected UML diagrams for StorageClassDiagram and others, added manual testing and updated use cases (PR [\#155](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/155/))   
+      * Corrected UML diagrams for StorageClassDiagram and others, added manual testing, updated use cases and standardized DG
+        (PR [\#155](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/155/))   
 
-   *  Others:
-   * Updated the photos and text in readme and index.md page to fit TimeforWheels product 
+   *  Others: 
+      * Updated the photos and text in readme and index.md page to fit TimeforWheels product 
 
 
 * **Community**:
