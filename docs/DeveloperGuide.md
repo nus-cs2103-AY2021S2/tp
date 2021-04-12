@@ -353,7 +353,7 @@ The following activity diagram summarizes what happens when a user executes a ne
       a extremely long phrase, which could be hard for the user to remember or input into the application.
 
 
-### <a name="view"></a> [Completed] View feature
+### <a name="view"></a> View feature
 
 #### Implementation
 The `view` mechanism extends the `list` mechanism from `AddressBook`. It is facilitated by the `ViewCommand` class.
@@ -423,16 +423,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​ | So that I can…​ |  
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |  
-| `* * *`  | new user                                   | have a tutorial to teach me how to use the app| so that I will be able to learn how to use the app quicker                 |  
-| `* * *`  | user                                       | add an item of clothing               |        keep a record of garments                                                                |  
-| `* * *`  | user                                       | edit details of clothing logged in                | correct incorrect details pertaining to items          |  
-| `* * *`  | user                                       | find a clothing by name          | locate details of clothing without having to go through the entire list |  
-| `* *`    | user                                       | remove an item of clothing from my wardrobe   | so that I can reflect that an item of clothing has been discarded                |  
-|  `* *`      | user        | easily plan a schedule for what clothes to wear                                                |  so that I do not have to waste time deciding at the last minute
-|  `* *`      | user        | be reminded on the clothes I have not worn                                                 |  so that I would not be wearing the same clothes all the time
-|  `*`      | user        | to see whether certain colours and types of clothing match                                                 |  so that I will be able to ascertain if the clothes match without having to try them on physically
+| Priority | As a …​                                 | I want to …​                                            | So that I …​ |  
+| -------- | ------------------------------------------ | ---------------------------------------------------------- | --------------------------------------------------------------------------------------- |  
+| `* * *`  | new user                                   | have a tutorial to teach me how to use the app             | will be able to learn how to use the app quicker                                        |  
+| `* * *`  | user                                       | add an item of clothing                                    | can keep a record of garments                                                           |  
+| `* * *`  | user                                       | edit details of clothing logged in                         | can correct incorrect details pertaining to items                                       |  
+| `* * *`  | user                                       | find a clothing by name                                    | can locate details of clothing without having to go through the entire list             |  
+| `* *`    | user                                       | remove an item of clothing from my wardrobe                | can reflect that an item of clothing has been discarded                                 |  
+|  `* *`   | user                                       | easily plan a schedule for what clothes to wear            | do not have to waste time deciding at the last minute                                   |
+|  `* *`   | user                                       | be reminded on the clothes I have not worn                 | would not be wearing the same clothes all the time                                      |
+|  `*`     | user                                       | to see whether certain colours and types of clothing match | will be able to ascertain if the clothes match without having to try them on physically |
 <br>
 
 ### Use cases
@@ -455,7 +455,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
         Steps 1a1-1a2 are repeated until data entered is in a valid format.
         
-        Use case resumes from step 2.
+        Use case resumes at step 2.
 
       
 **Use case: Delete a garment**
@@ -517,7 +517,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. NuFash shows an error message.  
-    Use case ends.
+      Use case resumes at step 2.
 <br><br>
 
 **Use case: Viewing an outfit consisting of 3 garments (upper, lower, footwear)**
@@ -536,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given indexes are invalid.
     * 3a1. NuFash shows an error message.   
-    Use case ends.
+      Use case resumes at step 2.
       
 <br><br>
       
