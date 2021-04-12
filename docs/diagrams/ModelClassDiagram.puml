@@ -55,7 +55,7 @@ Package UI{
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
-UI .up.> ModelManager
+ModelManager .up.> UI
 
 ContactsList .up.|> ReadOnlyContactsList
 NoteBook .up.|> ReadOnlyNoteBook
