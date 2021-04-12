@@ -229,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes `set
 
 ![](images/SetBgActivityDiagram.png)
 
-### [Completed] Find Financial Record Feature : `find-fr`
+### Find Financial Record Feature : `find-fr`
 
 #### Proposed Implementation
 
@@ -289,7 +289,7 @@ The following activity diagram summarizes what happens when a user executes `fin
   - Cons: Additional implementation and commands. More steps required for user
     when filtering multiple fields
 
-### [Completed] Reset Filter Feature : `reset-filter`
+### Reset Filter Feature : `reset-filter`
 
 #### Actual Implementation
 
@@ -319,7 +319,7 @@ available financial records.
 The following sequence diagram shows how the find operation works:
 ![](images/ResetSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes `reset-filter`: </br>
+The following activity diagram summarizes what happens when a user executes `reset-filter`:
 ![](images/ResetActivityDiagram.png)
 
 ### All Categories Statistics Feature
@@ -371,7 +371,90 @@ The following activity diagram summarizes the flow of events when the Ui calls u
 
 ### Undo Feature
 
-To be updated by De Yi
+The undo and redo features was developed with the help of `VersionedBudgetTracker`.
+`VersionedBudgetTracker` is an extension of `BudgetTracker` which internally stores and handle a list of `BudgetTracker` states.
+A `currentStatePointer` is used internally to access the different states of the `BudgetTracker` list.
+
+<br><br>
+The additional methods that were implemented are:
+* `VersionedBudgetTracker#commit()` -- Saves the current budget tracker state.
+* `VersionedBudgetTracker#undo()` -- Restores to the previous budget tracker state.
+* `VersionedBudgetTracker#redo()` -- Restores to the next budget tracker state.
+
+These additional methods are exposed in the `BudgetBabyModel` interface as `BudgetBabyModel#commitBudgetTracker()`,
+`BudgetBabyModel#undoBudgetTracker()` and `BudgetBabyModel#redoBudgetTracker()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedBudgetTracker` will be initialized with the
+initial budget tracker state, and the `currentStatePointer` pointing to that single budget tracker state.
+
+![](images/UndoRedoState0.png)
+
+Step 2. The user executes `add-fr d/Ramen a/5.0` command to add a financial record with "Ramen" as description and at
+the price of $5.00 in the budget tracker. The `add-fr` command calls `BudgetBabyModel#commitBudgetTracker()`, causing
+the modified state of the budget tracker after the `add-fr d/Ramen a/5.0` command executes to be saved in the
+`budgetTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted budget tracker state.
+
+![](images/UndoRedoState1.png)
+
+Step 3. The user executes `delete-fr 1` to delete the first record in the financial record list. The `delete` command
+also calls `BudgetBabyModel#commitBudgetTracker()`, causing another modified budget tracker state to be saved into the
+`budgetTrackerStateList`.
+
+![](images/UndoRedoState2.png)
+
+[NOTE]
+If a command fails its execution, it will not call `BudgetBabyModel#commitBudgetTracker()`, so the budget tracker state
+will not be saved into the `budgetTrackerStateList`.
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the
+`undo` command. The `undo` command will call `BudgetBabyModel#undoBudgetTracker()`, which will shift the 
+`currentStatePointer` once to the left, pointing it to the previous budget tracker state, and restores the
+budget tracker to that state.
+
+![](images/UndoRedoState3.png)
+
+[NOTE]
+If the `currentStatePointer` is at index 0, pointing to the initial budget tracker state, then there are no previous
+budget tracker states to restore. The `undo` command uses `BudgetBabyModel#canUndoBudgetTracker()` to check if this is
+the case. If so, it will return an error to the user rather than attempting to perform the undo.
+
+The following sequence diagram shows how the undo operation works:
+
+![](images/UndoSequenceDiagram.png)
+image::UndoSequenceDiagram.png[]
+
+NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the
+lifeline reaches the end of diagram.
+
+The `redo` command does the opposite -- it calls `BudgetBabyModel#redoBudgetTracker()`, which shifts the
+`currentStatePointer` once to the right, pointing to the previously undone state, and restores the
+budget tracker to that state.
+
+[NOTE]
+If the `currentStatePointer` is at index `budgetTrackerStateList.size() - 1`, pointing to the latest budget tracker
+state, then there are no undone budget tracker states to restore. The `redo` command uses
+`BudgetBabyModel#canRedoBudgetTracker()` to check if this is the case. If so, it will return an error to the user
+rather than attempting to perform the redo.
+
+Step 5. The user then decides to execute the command `filter-reset`. Commands that are not being supported by undo/redo,
+such as `filter-reset`, will usually not call `BudgetBabyModel#commitBudgetTracker()`,
+`BudgetBabyModel#undoBudgetTracker()` or `BudgetBabyModel#redoBudgetTracker()`. Thus, the `budgetTrackerStateList`
+remains unchanged.
+
+![](images/UndoRedoState4.png)
+
+Step 6. The user executes `set-bg 5000`, which calls `BudgetBabyModel#commitBudgetTracker()`. Since the
+`currentStatePointer` is not pointing at the end of the `budgetTrackerStateList`, all budget tracker states after the
+`currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the
+`set-bg 5000` command. This is the behavior that most modern desktop applications follow.
+
+![](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![](images/CommitActivityDiagram.png)
 
 ---
 
@@ -410,38 +493,6 @@ students as they adjust themselves, easing into adulthood.
   - sending reminders to keep university students on track (i.e. how much money is left in their budget) as they are often busy with school
 
 ### User stories
-
-[comment]: <> (Priorities: High &#40;must have&#41; - `* * *`, Medium &#40;nice to have&#41; - `* *`, Low &#40;unlikely to have&#41; - `*`)
-
-v1.2
-
-| As a …​                                                               | I want to …​                                    | So that I can…​                                                                       |
-| --------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- |
-| university student who wants to manage my finances                    | add an FR                                       | track my spending history easily                                                      |
-| university student who wants to manage my finances                    | delete an FR                                    | recover from mistakes from adding wrong entries of my spending history                |
-| university student who wants to manage my finances                    | view all FRs                                    | quickly glance at all my past spendings                                               |
-| university student who has difficulties in managing expenses          | set a monthly budget                            | keep track of my expenses and reduce chances of overspending                          |
-| university student who has difficulties in managing expenses          | view my monthly budget                          | quickly glance at budget set for the given month                                      |
-| university student who wants to know how much money I can still spend | view my remaining budget for a particular month | be aware of my spending and decide whether I need to be more prudent with my spending |
-
-v1.3
-
-| As a …​                                                                    | I want to …​                                        | So that I can…​                                                                       |
-| -------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| university student who wants to manage my finances                         | add an FR                                           | track my spending history easily                                                      |
-| university student who wants to manage my finances                         | delete an FR                                        | recover from mistakes from adding wrong entries of my spending history                |
-| university student who wants to manage my finances                         | view all FRs                                        | quickly glance at all my past spendings                                               |
-| university student who wants to manage my finances                         | view all FRs in a particular month                  | quickly glance at my spending history of a specific month                             |
-| university student who wants to manage my finances                         | filter FRs based on category                        | quickly glance at my spending history of a specific category                          |
-| university student who wants to manage my finances                         | reset filters on FRs                                | quickly glance at the original list of financial records                              |
-| university student who has difficulties in managing expenses               | set a monthly budget                                | keep track of my expenses and reduce chances of overspending                          |
-| university student who has difficulties in managing expenses               | view my monthly budget                              | quickly glance at budget set for the given month                                      |
-| university student who wants to know how much money I can still spend      | view my remaining budget for a particular month     | be aware of my spending and decide whether I need to be more prudent with my spending |
-| university student who wants to visualise my data in a more concise manner | view the past 6 months' expenditure and budgets     | quickly glance and gain insight from my spending patterns                             |
-| university student who wants to visualise my data in a more concise manner | view the total expenses of the current visible list | quickly glance and gain insight from my spending patterns                             |
-| university student who wants to visualise my data in a more concise manner | view the top 5 categories that I spend the most on  | quickly glance and gain insight from my spending patterns                             |
-
-v1.4
 
 | As a …​                                                                    | I want to …​                                          | So that I can…​                                                                       |
 | -------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
