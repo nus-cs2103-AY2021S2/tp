@@ -10,6 +10,8 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
